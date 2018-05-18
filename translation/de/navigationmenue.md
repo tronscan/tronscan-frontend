@@ -29,7 +29,7 @@ Date : 18.05.2018
 <b>-> 1.2</b> TRANSAKTIONEN<br>
 <b>-> 1.3</b> KONTEN<br>
 <b>-> 1.4</b> STATISTIKEN<br>
-<b>-> 1.5</b> LIVE<br>
+<b>-> 1.5</b> ECHTZEITANZEIGE<br>
 <b>2.</b> REPRÄSENTATEN<br>
 <b>3.</b> TOKENS<br>
 <b>-> 3.1</b> TEILNEHMER<br>
