@@ -9,9 +9,9 @@ Date : 18.05.2018
 EN: BLOCKS<br>
 DE: BLÖCKE<br>
 
-### 3.Table Navigation
+### 2.Table Navigation
 EN: PAGE X OF Y<br>
-DE: BLÖCKE<br>
+DE: SEITE X VON Y<br>
 
 EN: FIRST<br>
 DE: ERSTE<br>
