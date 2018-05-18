@@ -7,11 +7,11 @@ Date : 18.05.2018
 
 ### 1.Heading
 EN: TRANSACTIONS<br>
-DE: <br>
+DE: TRANSAKTIONEN<br>
 
-### 3.Table Navigation
+### 2.Table Navigation
 EN: PAGE X OF Y<br>
-DE: BLÖCKE<br>
+DE: SEITE X VON Y<br>
 
 EN: FIRST<br>
 DE: ERSTE<br>
