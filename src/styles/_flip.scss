@@ -1,0 +1,37 @@
+
+// Card flipping
+.flip {
+  -webkit-perspective: 800;
+  perspective: 800;
+  position: relative;
+
+  .card {
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+
+    &.flipped {
+      -webkit-transform: rotatey(-180deg);
+      transform: rotatey(-180deg);
+    }
+
+    .face {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      z-index: 2;
+    }
+
+    .front {
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .back {
+      -webkit-transform: rotatey(-180deg);
+      transform: rotatey(-180deg);
+    }
+  }
+}

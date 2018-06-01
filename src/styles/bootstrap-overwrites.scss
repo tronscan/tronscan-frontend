@@ -1,0 +1,23 @@
+//boostrap overwrites
+
+.border-bottom {
+    border-bottom: 1px solid $light-grey;
+}
+
+.bg-dark {
+    background-color: $dark-grey !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: transparent !important;
+    outline: none !important;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.page-link:focus {
+  box-shadow: none;
+}

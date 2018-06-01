@@ -1,0 +1,136 @@
+$tronBlue: rgba(21,171,195,1.0);
+
+.theme-tron {
+  background-size: cover;
+  background: #000 url(../images/body_backgound_tronblue_transparent.png) fixed no-repeat;
+  background-position: center -200px;
+  color: rgba(21,171,195, 1.0);
+  font-family: "Bitstream Vera Sans Mono", monospace;
+  text-shadow: 0 0 5px rgba(21,171,195,0.7);
+
+
+  .page-live {
+    .media {
+      color: $tronBlue !important;
+    }
+
+    .text-muted {
+      color: $tronBlue !important;
+    }
+  }
+
+  .modal-content {
+    background: #000;
+  }
+
+  input {
+    color: $tronBlue !important;
+  }
+
+  .home-splash {
+    h2 {
+      color: $tronBlue !important;
+      text-shadow: 0 0 5px rgba(21,171,195,0.7);
+
+    }
+  }
+
+  .sweet-alert {
+    background-color: #000 !important;
+    border: 2px solid $tronBlue;
+  }
+
+  .nav-searchbar {
+    .btn {
+      background: #000;
+      color: $tronBlue;
+      border: 1px solid $tronBlue;
+    }
+
+    input {
+      color: $tronBlue;
+    }
+  }
+
+  a {
+    color: $tronBlue !important;
+  }
+
+  a:hover {
+    color: #fff !important;
+    text-decoration: none;
+    transition: color 0.1s ease-in;
+  }
+
+  .header-top {
+    background: radial-gradient(at 50% -10%, #343a4070, #15abc387) fixed;
+  }
+
+  .sub-header {
+    h4 {
+      color: $tronBlue;
+    }
+  }
+
+  .card {
+    box-shadow: 0 0 9px $tronBlue;
+    border: 1px solid $tronBlue;
+    background: black;
+  }
+
+  .border-bottom {
+    border-color: $tronBlue !important;
+  }
+
+  .bg-white {
+    background: #000 !important;
+  }
+
+
+  .page-link {
+    background: black;
+    color: $tronBlue !important;
+    text-shadow: 0 0 5px rgba(21,171,195,0.7);
+    border: 1px solid $tronBlue;
+  }
+
+  .dropdown-menu {
+    border: 1px solid $tronBlue;
+    box-shadow: 0 0 9px $tronBlue;
+    background: black;
+
+    .dropdown-item:hover {
+      background: $tronBlue;
+      color: black !important;
+    }
+  }
+
+  table {
+    .thead-dark, .thead-light {
+      th {
+        background: $tronBlue;
+        color: black !important;
+        border-color: $tronBlue;
+      }
+    }
+
+    td, th {
+      border-color: $tronBlue !important;
+    }
+    border-color: $tronBlue;
+  }
+
+  .nav-tabs .nav-link {
+    background: #000;
+    border-color: $tronBlue;
+
+    &.active {
+      background: $tronBlue;
+      color: black !important;
+    }
+  }
+
+  .list-group-item {
+    background: #000;
+  }
+}

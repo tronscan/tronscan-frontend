@@ -1,0 +1,28 @@
+
+$time: 1200ms;
+
+.animated-wrapper {
+  position: relative;
+}
+
+.slide-enter {
+  position: absolute;
+  left: 2400px;
+}
+
+.slide-enter-active {
+  position: absolute;
+  transition: all $time;
+  left: 0;
+}
+
+.slide-exit {
+  position: absolute;
+  left: 0;
+}
+
+.slide-exit-active {
+  position: absolute;
+  transition: all $time;
+  left: -1200px;
+}

@@ -1,0 +1,91 @@
+$iconSize: 60px;
+
+.wallet-wizard {
+
+  .ReactPasswordStrength {
+    input {
+      display: block;
+      margin-right: 100px;
+    }
+    .ReactPasswordStrength-strength-desc {
+      width: 100px;
+    }
+  }
+
+  .first-progress {
+    transform: translateX(-50%) !important;
+
+    .progress-bar {
+      width: 100% !important;
+    }
+  }
+  .step {
+
+    &.completed {
+      .progress-bar {
+        width: 100%;
+      }
+
+      .step-icon {
+        //border: 5px solid #EEE;
+        background: #dc3545;
+        color: #FFF;
+        padding-top: 2px;
+        position: relative;
+
+        i {
+          position: absolute;
+        }
+
+        svg {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+        }
+      }
+
+      .icon-waiting {
+        visibility: hidden;
+      }
+
+      .icon-complete {
+        visibility: visible;
+      }
+    }
+
+    position: relative;
+
+    .progress {
+      position: absolute;
+      height: 10px;
+      width: 100%;
+      top: 25px;
+      transform: translateX(50%);
+    }
+
+    .progress-bar {
+      width: 0%;
+    }
+  }
+
+  .wizard-steps {
+    margin-top: -45px;
+    overflow: hidden;
+  }
+
+  .step-icon {
+    z-index: 100;
+    text-align: center;
+    background: #FFF;
+    line-height: 48px;
+    font-size: 30px;
+    border-radius: $iconSize;
+    width: $iconSize;
+    height: $iconSize;
+    border: 5px solid #EEE;
+
+    .icon-complete {
+      visibility: hidden;
+    }
+  }
+}

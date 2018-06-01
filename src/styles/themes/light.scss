@@ -1,0 +1,34 @@
+$white: #F7F7F7;
+
+.theme-light {
+
+  background-size: cover;
+  background: #f5f8fa url(../images/body_backgound_transparent.png) fixed no-repeat;
+  background-position: center -200px;
+
+  .header-top {
+    background: $white;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    color: #000;
+  }
+
+  .top-bar {
+    &.navbar-dark .navbar-nav .nav-link {
+      color: $white !important;
+    }
+
+    background: #343a40;
+  }
+
+  .sub-header h4 {
+    color: #222;
+  }
+
+  .nav-searchbar {
+    input {
+      background-color: #d2d1d1 !important;
+    }
+  }
+}
