@@ -3,13 +3,15 @@ export const messages = {
   "app_title": "Protocole Tron",
   "money_price": "prix",
   "blocks": "blocs",
+  "block": "bloc",
   "transactions": "transactions",
+  "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "name": "nom",
   "issuer": "émetteur",
   "network": "réseau",
   "current": "actuel",
   "last_block": "dernier bloc",
-  "total_supply": "approvisionnement total",
+  "total_supply": "offre totale",
   "sign_out": "déconnexion",
   "register_login": "Inscription / Connexion",
   "register": "S'inscrire",
@@ -87,7 +89,7 @@ export const messages = {
   "blockchain": "blockchain",
   "tokens": "jetons",
   "receive": "recevoir",
-  "supply" : "approvisionnement",
+  "supply" : "offre",
   "have_been_added_to_your_account!": "ont été ajoutés à votre compte!",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Une erreur inconnue s'est produite, veuillez réessayer dans quelques minutes",
   "An_error_occurred": "Une erreur est survenue",
@@ -104,26 +106,74 @@ export const messages = {
   "issue_a_token": "Émettre un jeton",
   "issue_token": "Jeton d'émission",
   "ok": "OK",
-  "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
-  own wallet or exchange to the account address of testnet.`,
-  "tron_foundation": "TRON Foundation",
-  "trx_for_testing": `TRX for testing will be sent to your testing account once you successfully apply through account management.`,
-  "dear_users,": "Dear users,",
-  "finished": "Finished",
-  "need_to_login": "You must be logged in to access to account page ",
-  "produced_by": "Produced by {witnessAddress}",
-  "show_more": "Show {countriesLength} More",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives. 
-    For every TRX you hold in your account you have one vote to spend. 
-    TRX will not be consumed. You can vote as many times for the several representatives as you like. 
-    The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
-                by anyone who has at least 1024 TRX in their account.`,
-  "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
-                Users can then participate within the participation period and exchange their TRX for tokens.`,
-  "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
-                When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
-                receive TRX equal to the specified exchange rate.`,
-  "search_address": "Search for address",
+  "the_lunch_test": "Le lancement de testnet vise à tester toutes les fonctionnalités de notre explorateur blockchain et portefeuille.",
+  "plese_keep_in_mind": `Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre
+  portefeuille ou un site d'échange vers le testnet.`,
+  "tron_foundation": "Fondation TRON",
+  "trx_for_testing": `Les TRX pour les tests seront envoyés à votre compte de test une fois que vous aurez fait la demande puis l'écran de gestion de compte.`,
+  "dear_users,": "Chers utilisateurs,",
+  "finished": "Terminé",
+  "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
+  "produced_by": "Produit par {witnessAddress}",
+  "show_more": "Afficher {countriesLength} de plus",
+  "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants. 
+    Pour chaque TRX que vous détenez dans votre compte, vous avez un vote à dépenser. 
+    Les TRX ne seront pas consommés. Vous pouvez voter autant de fois que vous le souhaitez pour plusieurs représentants. 
+    Les votes finaux seront comptés à 24 heures et la liste des délégués sera mise à jour.`,
+  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
+                par n'importe qui qui a au moins 1024 TRX dans son compte.`,
+  "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
+                Les utilisateurs peuvent alors participer à la période de participation et échanger leur TRX contre des jetons.`,
+  "token_issue_guide_message_3":`Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
+                Lorsque d'autres utilisateurs échangent leur TRX contre des jetons, les jetons seront retirés de votre compte et vous
+                recevez un nombre de TRX égal au taux de change spécifié.`,
+  "search_address": "Rechercher une adresse",
+  "token_transactions": "Transactions du jeton",
+  "token_holders": "Détenteurs de jetons",
+  "not_signed_in": "Vous devrez vous connecter pour utiliser cette fonctionnalité",
+
+  // Coin creation normal messages
+  "details": "détails",
+  "issue_a_token": "émettre un jeton",
+  "issue_token": "émission d'un jeton",
+  "token_name": "nom du jeton",
+  "token_abbr": "abréviation du jeton",
+  "exchange_rate": "taux de change",
+  "token_price": "prix du jeton",
+  "supply_message": "quantité totale de jetons qui seront en circulation",
+  "description_message": "une brève description de l'objectif du jeton",
+  "url_message": "Un site web où les utilisateurs peuvent trouver plus d'informations sur le jeton",
+  "exchange_rate_message_0" : "Indiquez le prix d'un seul jeton en définissant le nombre de jetons qu'un participant recevra pour chaque TRX dépensé.",
+  "exchange_rate_message_1": "Les participants recevront",
+  "exchange_rate_message_2": "pour chaque",
+  "exchange_rate_message_3": "TRX",
+  "participation_message_0": `Indiquez la période de participation pendant laquelle les jetons seront émis.
+      Pendant la période de participation, les utilisateurs peuvent échanger des TRX contre `,
+  "participation_message_1": " jetons.",
+  "token_issued_successfully": "Jeton émis avec succès",
+  "participation": "participation",
+  "start_date": "Date de début",
+  "end_date": "Date de fin",
+  "token_spend_confirm": "Je confirme que la création de l'offre totale du jeton coûte une redevance unique de 1024 TRX.",
+  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
+    par n'importe qui qui a au moins 1024 TRX dans leur compte.`,
+  "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
+  Les utilisateurs peuvent alors participer pendant la période de participation et échanger leur TRX contre des jetons.`,
+  "token_issue_guide_message_3":`Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
+    Lorsque d'autres utilisateurs échangent leur TRX contre des jetons, les jetons seront retirés de votre compte et vous
+    recevez des TRX égals au taux de change spécifié.`,
+
+  // Coin creation error messages
+  "date_error": "La date de fin est antérieure ou identique à la date de début",
+  "no_name_error": "Le nom est requis",
+  "no_supply_error": "L'offre totale doit être d'au moins 1",
+  "coin_value_error": "Le montant du jeton doit être d'au moins 1",
+  "tron_value_error": "Le montant de TRX par pièce doit être d'au moins 1",
+  "invalid_starttime_error": "La date de début fournie est invalide",
+  "invalid_endtime_error": "La date de fin fournie est invalide",
+  "no_description_error": "La description est requise",
+  "no_url_error": "L'URL est requise",
+  "past_starttime_error": "La date de début est antérieure à la date du jour",
+  "no_transactions": "Aucune transaction",
+  "no_transfers": "Aucun transfert",
 };

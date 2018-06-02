@@ -124,5 +124,7 @@ export const messages = {
   "invalid_endtime_error" : "De einddatum is foutief ingevuld",
   "no_description_error" : "Er is geen beschrijving voor uw munt opgegeven",
   "no_url_error" : "Er is geen website opgegeven",
-  "past_starttime_error" : "De opgegeven startdatum is in het verleden"
+  "past_starttime_error" : "De opgegeven startdatum is in het verleden",
+  "no_transactions": "No Transactions",
+  "no_transfers": "No Transfers"
 };
