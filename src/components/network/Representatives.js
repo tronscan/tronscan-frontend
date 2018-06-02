@@ -58,8 +58,8 @@ class Representatives extends Component {
             <tr>
               <th className="text-right d-none d-lg-table-cell">#</th>
               <th>{tu("name")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap">{tu("Status")}</th>
+              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
@@ -163,10 +163,6 @@ function Row({account, showSync = true}) {
       <td>
         <AddressLink address={account.address}>{account.name || account.url}</AddressLink>
       </td>
-
-      <td className="text-right d-none d-sm-table-cell">
-        <BlockNumberLink number={account.latestBlockNumber} />
-      </td>
       {
         showSync ?
           <td className="text-center">
@@ -177,6 +173,9 @@ function Row({account, showSync = true}) {
             }
           </td> : <td>&nbsp;</td>
       }
+      <td className="text-right d-none d-sm-table-cell">
+        <BlockNumberLink number={account.latestBlockNumber} />
+      </td>
       <td className="text-right d-none d-md-table-cell">
         <FormattedNumber value={account.producedTotal} />
       </td>
