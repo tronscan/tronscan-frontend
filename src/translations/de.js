@@ -39,8 +39,8 @@ export const messages = {
      Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
      TRX will not be consumed in the process of super delegate application and voting.
   `,
-  "unknown_error": "ein unbekannter Fehler aufgetreten ist",
-  "representative_understand": "I understand how to be a TRON representative",
+  "unknown_error": "ein unbekannter Fehler ist aufgetreten",
+  "representative_understand": "Ich verstehe wie man ein TRON-Vertreter wird",
   "generate_account": "Klicken Sie hier um Ihre Kontoadresse und Ihr Passwort zu generieren.",
   "create_account_confirm_1": "Ich habe verstanden, dass wenn ich mein Passwort vergesse/verliere niemals auf mein Vermögen zugreifen kann.",
   "create_account_confirm_2": "Ich verstehe, dass wenn ich mein Passwort vergesse/verliere niemand mir helfen kann es wiederherzustellen.",
