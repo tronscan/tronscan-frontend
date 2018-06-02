@@ -3,6 +3,7 @@ export const messages = {
   "app_title": "Tron Protocol",
   "money_price": "price",
   "blocks": "blocks",
+  "block": "block",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "transactions": "transactions",
   "name": "name",
@@ -169,5 +170,7 @@ export const messages = {
   "invalid_endtime_error": "The provided ending date is invalid",
   "no_description_error": "Description is required",
   "no_url_error": "Web URL is required",
-  "past_starttime_error": "The starting date is in the past"
+  "past_starttime_error": "The starting date is in the past",
+  "no_transactions": "No Transactions",
+  "no_transfers": "No Transfers",
 };

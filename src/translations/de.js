@@ -142,4 +142,6 @@ export const messages = {
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
+  "no_transactions": "No Transactions",
+  "no_transfers": "No Transfers"
 };

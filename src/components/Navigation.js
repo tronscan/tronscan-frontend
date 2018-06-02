@@ -308,14 +308,14 @@ class Navigation extends PureComponent {
                               <Avatar size={45} value={account.address}/>
                             </div>
                             <div className="col-lg-10">
-                              <b>{wallet.current.name || "Account"}</b>
+                              <b>{wallet.current.name || tu("account")}</b>
                               <br/>
                                 <AddressLink
                                   address={account.address}
                                   className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
                             </div>
                           </div>
-                          <Link to="/account" className="btn btn-dark btn-block btn-sm">Account</Link>
+                          <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
                         </li>
                         {
                           wallet.current.representative.enabled && (
@@ -346,11 +346,11 @@ class Navigation extends PureComponent {
 
                         <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
                           <i className="fa fa-paper-plane mr-2"/>
-                          Send
+                          {tu("send")}
                         </a>
                         <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
                           <i className="fa fa-qrcode mr-2"/>
-                          Receive
+                          {tu("receive")}
                         </a>
                         {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
                           {/*<i className="fa fa-qrcode mr-2"/>*/}

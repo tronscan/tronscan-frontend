@@ -67,7 +67,9 @@ export default class Transactions extends React.Component {
 
     if (!loading && transactions.length === 0) {
       if (!EmptyState) {
-        return null;
+        return (
+          <div className="p-3 text-center">{tu("no_transactions")}</div>
+        );
       }
       return <EmptyState />;
     }
