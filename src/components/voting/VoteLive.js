@@ -104,6 +104,9 @@ class VoteLive extends React.Component {
         <div className="card mt-3">
           <div className="card-header text-center">
             Live Ranking
+            <div className="small text-center text-muted p-2">
+              Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted
+            </div>
           </div>
           <div className="media m-3 mb-0">
             <div className="font-weight-bold text-center border-1 border-secondary" style={{ width: 25 }}>
