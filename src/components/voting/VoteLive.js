@@ -181,18 +181,5 @@ const style = {
   }
 };
 
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    wallet: state.wallet,
-    flags: state.app.flags,
-  };
-}
-
-const mapDispatchToProps = {
-  reloadWallet,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(withTimers(VoteLive)))
+export default withTimers(VoteLive);
 
