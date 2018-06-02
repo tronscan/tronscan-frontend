@@ -34,8 +34,6 @@ class VoteStats extends React.Component {
 
     let data = await Client.getVoteStats();
 
-    // {address: "27YR6Kpp2F8gf9yESjMZU4cRrAzBNWwg46T", timestamp: 1526893200000, votes: 0}
-
     let stats = {};
     let addresses = {};
 
@@ -58,13 +56,9 @@ class VoteStats extends React.Component {
 
     let i = 0;
 
-    console.log("highest", highestAddresses);
-
     for (let address of Object.keys(highestAddresses)) {
       highestAddresses[address].color = colors[i++];
     }
-
-    console.log("highest", highestAddresses, latestTimestamp);
 
     let rowStats = [];
 

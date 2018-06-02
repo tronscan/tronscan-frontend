@@ -9,6 +9,8 @@ import FlipMove from "react-flip-move";
 import Avatar from "../common/Avatar";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
+import palette from "google-palette";
+import VoteStats from "../blockchain/Statistics/VoteStats";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -43,6 +45,7 @@ class VoteLive extends React.Component {
     this.state = {
       candidates: [],
       votes: {},
+      colors: palette('mpn65', 20),
     };
   }
 
@@ -53,7 +56,8 @@ class VoteLive extends React.Component {
 
     this.props.setInterval(() => {
       this.loadVotes();
-    }, 10000);
+      this.loadCandidates();
+    }, 15000);
   }
 
   loadCandidates = async () => {
@@ -68,29 +72,21 @@ class VoteLive extends React.Component {
   };
 
   loadVotes = async () => {
-    let {candidates} = this.state;
     let votes = await Client.getLiveVotes();
-
-    let candidatesMap = keyBy(candidates, c => c.address);
-
-    console.log(votes, candidates, candidatesMap);
-
-    for (let address of Object.keys(votes)) {
-      console.log("ADDRESS", address, candidatesMap[address], votes[address]);
-      if (candidatesMap[address]) {
-        candidatesMap[address].votes = votes[address].votes;
-      }
-    }
 
     this.setState({
       votes,
-      candidates: Object.values(candidatesMap),
     });
   };
 
   render() {
 
-    let {candidates} = this.state;
+    let {candidates, colors, votes} = this.state;
+
+    candidates = candidates.map(c => ({
+      ...c,
+      votes: (votes[c.address] ? votes[c.address].votes : 0),
+    }));
 
     let newCandidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
       ...c,
@@ -100,6 +96,29 @@ class VoteLive extends React.Component {
     return (
       <main className="container header-overlap pb-3">
         <div className="card">
+          <div className="card-header text-center">
+            3 Days Ranking
+          </div>
+          <VoteStats colors={colors} />
+        </div>
+        <div className="card mt-3">
+          <div className="card-header text-center">
+            Live Ranking
+          </div>
+          <div className="media m-3 mb-0">
+            <div className="font-weight-bold text-center border-1 border-secondary" style={{ width: 25 }}>
+              &nbsp;
+            </div>
+            <div className="mx-2" style={{width: 25}}>
+              &nbsp;
+            </div>
+            <div className="media-body font-weight-bold">
+              Candidate
+            </div>
+            <div className="ml-3 text-center font-weight-bold">
+              Current Votes
+            </div>
+          </div>
           <FlipMove
             duration={700}
             easing="ease"
@@ -108,23 +127,22 @@ class VoteLive extends React.Component {
             staggerDelayBy={20}>
 
           {
-            newCandidates.map((candidate) => (
-              <div key={candidate.address} className="media m-3">
-                <div className="font-weight-bold text-center border-1 border-secondary" style={style.rank}>
+            newCandidates.map((candidate, index) => (
+              <div key={candidate.address} className="media mx-3 mb-3">
+                <div className="font-weight-bold text-center border-1 border-secondary" style={{color: index < 15 ? '#' + colors[index] : null, ...style.rank}}>
                     {candidate.rank}
-                  </div>
+                </div>
                 <div className="mx-2">
                   <Avatar value={candidate.address} size={style.avatar.height} />
                 </div>
                 <div className="media-body">
-                  <h5 className="mt-0" style={style.row}>
+                  <span className="mt-0" style={style.row}>
                     <AddressLink address={candidate.name || candidate.url} />
-                  </h5>
-
+                  </span>
                 </div>
                 <div className="ml-3 text-center">
                   {/*<div className="text-muted">Votes</div>*/}
-                  <div className="font-weight-bold" style={style.votes}>
+                  <div style={style.votes}>
                     <FormattedNumber value={candidate.votes} />
                   </div>
                 </div>
@@ -138,14 +156,14 @@ class VoteLive extends React.Component {
   }
 }
 
-let height = 100;
+let height = 25;
 
 const style = {
   rank: {
-    fontSize: 28,
+    fontSize: 18,
     lineHeight: `${height}px`,
     borderRadius: '6px',
-    width: '65px'
+    width: '25px'
   },
   votes: {
     fontSize: 18,
@@ -153,6 +171,7 @@ const style = {
   },
   row: {
     lineHeight: `${height}px`,
+    fontSize: 18,
   },
   avatar: {
     height: height,
