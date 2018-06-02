@@ -140,7 +140,9 @@ class VoteLive extends React.Component {
                 </div>
                 <div className="media-body">
                   <span className="mt-0" style={style.row}>
-                    <AddressLink address={candidate.name || candidate.url} />
+                    <AddressLink address={candidate.address}>
+                      {candidate.name || candidate.url}
+                    </AddressLink>
                   </span>
                 </div>
                 <div className="ml-3 text-center">
