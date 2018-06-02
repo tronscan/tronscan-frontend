@@ -127,4 +127,6 @@ export const messages = {
                 When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
                 receive TRX equal to the specified exchange rate.`,
   "search_address": "Search for address",
+  "no_transactions": "No Transactions",
+  "no_transfers": "No Transfers"
 };
