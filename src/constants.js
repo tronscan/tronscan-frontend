@@ -7,6 +7,7 @@ export const ONE_TRX = 1000000;
 export const IS_MAINNET = process.env.NET !== 'testnet';
 export const IS_TESTNET = process.env.NET === 'testnet';
 
+export const BLOCK_REWARD = 32;
 
 /**
  *
