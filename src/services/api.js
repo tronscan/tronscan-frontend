@@ -4,8 +4,14 @@ import io from 'socket.io-client';
 
 export const Client = new ApiClient();
 
-Client.setSigner(new ChromeExtensionSigner());
 
+setTimeout(async () => {
+  let chromeSigner = new ChromeExtensionSigner();
+  if (await chromeSigner.isExtensionAvailable()) {
+    console.log("ACCOUNT", await chromeSigner.getAccount());
+    Client.setSigner(chromeSigner);
+  }
+}, 1500);
 
 export function buildClient(account) {
   return new ApiClient();
