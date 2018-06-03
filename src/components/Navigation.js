@@ -84,9 +84,11 @@ class Navigation extends PureComponent {
   };
 
   onFileSelected = async (ev) => {
-    let contents = await readFileContentsFromEvent(ev);
-    this.fileRef.current.value = '';
-    this.openPasswordPrompt(contents);
+    if (ev.target.value.endsWith(".txt")){
+      let contents = await readFileContentsFromEvent(ev);
+      this.fileRef.current.value = '';
+      this.openPasswordPrompt(contents);
+    }
   };
 
   openPasswordPrompt = (contents) => {
@@ -365,12 +367,12 @@ class Navigation extends PureComponent {
                   </Fragment> :
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
-                      {tu("Open Wallet")}
+                      {tu("open_wallet")}
                     </a>
                     <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                       <li className="px-3">
                         <div className="form-group text-center">
-                          <label>{tu("Private Key")}</label>
+                          <label>{tu("private_key")}</label>
                           <input
                             type="text"
                             className="form-control"
@@ -380,17 +382,17 @@ class Navigation extends PureComponent {
                         <button className="btn btn-success btn-block"
                                 disabled={!this.isLoginValid()}
                                 onClick={this.login}>
-                          {tu("sign in")}
+                          {tu("sign_in")}
                         </button>
                       </li>
                       <li className="dropdown-divider"/>
                       <li className="px-3">
                         <div className="form-group text-center">
-                          <label>{tu("Keystore File")}</label>
+                          <label>{tu("keystore_file")}</label>
                           <button className="btn btn-success btn-block" onClick={this.selectFile}>
-                            {tu("Select File")}
+                            {tu("select_file")}
                           </button>
-                          <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} />
+                          <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} accept=".txt" />
                         </div>
 
                       </li>
@@ -402,7 +404,7 @@ class Navigation extends PureComponent {
                               <div className="form-group text-center">
                                 <label>{tu("Mobile Login")}</label>
                                 <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
-                                  {tu("Login with a mobile device")}
+                                  {tu("login_mobile")}
                                 </button>
                               </div>
                             </li>
@@ -411,7 +413,7 @@ class Navigation extends PureComponent {
                       }
                       <li className="px-3 py-2">
                         <Link className="btn btn-primary btn-block" to="/wallet/new">
-                          {tu("create wallet")}
+                          {tu("create_wallet")}
                         </Link>
                       </li>
                     </ul>

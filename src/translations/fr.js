@@ -13,6 +13,7 @@ export const messages = {
   "last_block": "dernier bloc",
   "total_supply": "offre totale",
   "sign_out": "déconnexion",
+  "sign_in": "connexion",
   "register_login": "Inscription / Connexion",
   "register": "S'inscrire",
   "apply_for_delegate": "postuler pour être délégué",
@@ -101,10 +102,6 @@ export const messages = {
   "search_address_or_url": "Rechercher une adresse ou une URL",
   "no_transactions_found": "Aucune transaction trouvée",
   "token_name": "Nom du jeton",
-  "exchange_rate": "Taux de change",
-  "token_price": "Prix du jeton",
-  "issue_a_token": "Émettre un jeton",
-  "issue_token": "Jeton d'émission",
   "ok": "OK",
   "the_lunch_test": "Le lancement de testnet vise à tester toutes les fonctionnalités de notre explorateur blockchain et portefeuille.",
   "plese_keep_in_mind": `Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre
@@ -151,16 +148,6 @@ export const messages = {
   "participation_message_1": " jetons.",
   "token_issued_successfully": "Jeton émis avec succès",
   "participation": "participation",
-  "start_date": "Date de début",
-  "end_date": "Date de fin",
-  "token_spend_confirm": "Je confirme que la création de l'offre totale du jeton coûte une redevance unique de 1024 TRX.",
-  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
-    par n'importe qui qui a au moins 1024 TRX dans leur compte.`,
-  "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
-  Les utilisateurs peuvent alors participer pendant la période de participation et échanger leur TRX contre des jetons.`,
-  "token_issue_guide_message_3":`Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
-    Lorsque d'autres utilisateurs échangent leur TRX contre des jetons, les jetons seront retirés de votre compte et vous
-    recevez des TRX égals au taux de change spécifié.`,
 
   // Coin creation error messages
   "date_error": "La date de fin est antérieure ou identique à la date de début",
@@ -236,6 +223,18 @@ export const messages = {
   "node_tester_test": "Tester GRPC",
   "node_tester_rt": "Temps de réponse",
   "confirmed_block": "Blocs confirmés",
-  "loading": "chargement..."
+  "loading": "chargement...",
+  "open_wallet": "Ouvrir le portefeuille",
+  "private_key": "Clé privée",
+  "keystore_file": "fichier Keystore",
+  "select_file": "Sélectionner un fichier",
+  "login_mobile": "Connectez-vous avec un appareil mobile",
+  "create_wallet": "créer un portefeuille",
+  "no_open_wallet": "Aucun portefeuille ouvert à afficher",
+  "3_day_ranking": "Classement de 3 jours",
+  "live_ranking": "Classement en direct",
+  "live_ranking_msg": "Rafraîchissement toutes les 15 secondes. Les nouveaux votes peuvent prendre jusqu'à 1-2 minutes avant d'être comptés",
+  "candidate": "Candidat",
+  "current_votes": "Votes courants",
   
 };
