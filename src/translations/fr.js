@@ -31,12 +31,12 @@ export const messages = {
   "send": "envoyer",
   "amount": "montant",
   "apply_for_delegate_description": `
-    Les détenteurs de TRX peuvent postuler pour devenir un super délégué en utilisant la fonction de gestion de compte, et voter pour les candidats. 
-    Chaque compte peut mettre à jour les informations actuelles des électeurs et il est également autorisé à voter pour plusieurs candidats. 
-    Le nombre maximum de votes est inférieur ou égal au nombre de TRX détenus à chaque fois par les utilisateurs. 
-    (Si vous avez une certaine somme de TRX, vous pouvez voter moins ou égal à un certain nombre de votes). 
+    Les détenteurs de TRX peuvent postuler pour devenir un super délégué en utilisant la fonction de gestion de compte, et voter pour les candidats.
+    Chaque compte peut mettre à jour les informations actuelles des électeurs et il est également autorisé à voter pour plusieurs candidats.
+    Le nombre maximum de votes est inférieur ou égal au nombre de TRX détenus à chaque fois par les utilisateurs.
+    (Si vous avez une certaine somme de TRX, vous pouvez voter moins ou égal à un certain nombre de votes).
     Le résultat des votes sera calculé en fonction de l'information finale sur l'électeur de chaque compte dans chaque
-     cycle de vote compris de 00:00 à 24:00. Les détenteurs de TRX avec le plus de votes deviendront super délégués. 
+     cycle de vote compris de 00:00 à 24:00. Les détenteurs de TRX avec le plus de votes deviendront super délégués.
      Chaque transaction effectuée sur le réseau doit être validée par tous les Super Délégués, et certains bonus seront crédités.
      TRX ne sera pas utilisé dans le processus de demande de super délégué et de vote.
   `,
@@ -68,8 +68,6 @@ export const messages = {
   "do_not_send_2": "n'envoyez pas de TRX depuis votre porte-feuille ou un site d'échange à l'adresse de compte ci-dessus de testnet!",
   "name_of_the_token": "Nom du jeton",
   "create_token": "Créer un jeton",
-  "start_date": "Date de début",
-  "end_date": "Date de fin",
   "token_spend_confirm": "Je confirme que la création de l'offre totale de jetons aura pour coût unique 1024 TRX.",
   "description": "Description",
   "description_url": "Url de la description",
@@ -116,17 +114,10 @@ export const messages = {
   "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
   "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
-  "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants. 
-    Pour chaque TRX que vous détenez dans votre compte, vous avez un vote à dépenser. 
-    Les TRX ne seront pas consommés. Vous pouvez voter autant de fois que vous le souhaitez pour plusieurs représentants. 
+  "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
+    Pour chaque TRX que vous détenez dans votre compte, vous avez un vote à dépenser.
+    Les TRX ne seront pas consommés. Vous pouvez voter autant de fois que vous le souhaitez pour plusieurs représentants.
     Les votes finaux seront comptés à 24 heures et la liste des délégués sera mise à jour.`,
-  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
-                par n'importe qui qui a au moins 1024 TRX dans son compte.`,
-  "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
-                Les utilisateurs peuvent alors participer à la période de participation et échanger leur TRX contre des jetons.`,
-  "token_issue_guide_message_3":`Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
-                Lorsque d'autres utilisateurs échangent leur TRX contre des jetons, les jetons seront retirés de votre compte et vous
-                recevez un nombre de TRX égal au taux de change spécifié.`,
   "search_address": "Rechercher une adresse",
   "token_transactions": "Transactions du jeton",
   "token_holders": "Détenteurs de jetons",
@@ -134,11 +125,7 @@ export const messages = {
 
   // Coin creation normal messages
   "details": "détails",
-  "issue_a_token": "émettre un jeton",
-  "issue_token": "émission d'un jeton",
   "token_abbr": "abréviation du jeton",
-  "exchange_rate": "taux de change",
-  "token_price": "prix du jeton",
   "supply_message": "quantité totale de jetons qui seront en circulation",
   "description_message": "une brève description de l'objectif du jeton",
   "url_message": "Un site web où les utilisateurs peuvent trouver plus d'informations sur le jeton",
@@ -153,7 +140,6 @@ export const messages = {
   "participation": "participation",
   "start_date": "Date de début",
   "end_date": "Date de fin",
-  "token_spend_confirm": "Je confirme que la création de l'offre totale du jeton coûte une redevance unique de 1024 TRX.",
   "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
     par n'importe qui qui a au moins 1024 TRX dans leur compte.`,
   "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
@@ -237,5 +223,4 @@ export const messages = {
   "node_tester_rt": "Temps de réponse",
   "confirmed_block": "Blocs confirmés",
   "loading": "chargement..."
-  
 };
