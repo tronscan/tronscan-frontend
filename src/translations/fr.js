@@ -136,7 +136,6 @@ export const messages = {
   "details": "détails",
   "issue_a_token": "émettre un jeton",
   "issue_token": "émission d'un jeton",
-  "token_name": "nom du jeton",
   "token_abbr": "abréviation du jeton",
   "exchange_rate": "taux de change",
   "token_price": "prix du jeton",
