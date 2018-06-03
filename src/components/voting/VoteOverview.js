@@ -237,8 +237,8 @@ class VoteOverview extends React.Component {
     if (trxBalance <= 0) {
       return (
         <div className="text-center">
-          At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the{' '}
-          <Link to="/account" className="text-primary">Account Page</Link>
+          {tu("warning_votes")}{' '}
+          <Link to="/account" className="text-primary">{tu("account_page")}</Link>
         </div>
       );
     }
@@ -386,7 +386,7 @@ class VoteOverview extends React.Component {
                     this.loadVoteTimer();
                   }}/>
                 </h3>
-                Next Round
+                {tu("next_round")}
               </div>
             </div>
           </div>
@@ -398,7 +398,7 @@ class VoteOverview extends React.Component {
                 <h3 className="text-secondary">
                   <FormattedNumber value={totalVotes}/>
                 </h3>
-                <a href="javascript:" onClick={() => this.setState(state => ({ viewStats: !state.viewStats  }))}>Total Votes</a>
+                <a href="javascript:" onClick={() => this.setState(state => ({ viewStats: !state.viewStats  }))}>{tu("total_votes")}</a>
               </div>
             </div>
           </div>
@@ -410,7 +410,7 @@ class VoteOverview extends React.Component {
                 <h3 className="text-success">
                   <VoteChange value={biggestGainer.change_cycle} arrow={true}/>
                 </h3>
-                Most Ranks Gained This Round<br/>
+                {tu("most_ranks")}<br/>
                 <div className="text-nowrap text-truncate">
                   <AddressLink address={biggestGainer.address}>
                     {biggestGainer.name || biggestGainer.url}
@@ -422,7 +422,7 @@ class VoteOverview extends React.Component {
         </div>
 
         <Link to="/votes-live" class="btn btn-secondary btn-block mt-3">
-          View Live Ranking
+          {tu("view_live_ranking")}
         </Link>
 
         {
@@ -451,7 +451,7 @@ class VoteOverview extends React.Component {
                       <thead className="thead-dark">
                         <tr>
                           <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
-                          <th>{tu("Name")}</th>
+                          <th>{tu("name")}</th>
                           <th className="text-center d-none d-lg-table-cell" style={{width: 75}}>{tu("24h")}</th>
                           <th className="text-center d-none d-lg-table-cell" style={{width: 25}}>{tu("6h")}</th>
                           <th className="" style={{width: 100}}>{tu("votes")}</th>
@@ -493,7 +493,7 @@ class VoteOverview extends React.Component {
                               {
                                 candidate.hasPage && <div className="ml-0 ml-sm-auto">
                                   <Link className="btn btn-lg btn-block btn-outline-secondary mt-1" to={`/representative/${candidate.address}`}>
-                                    {tu("Open Team Page")}
+                                    {tu("open_team_page")}
                                     <i className="fas fa-users ml-2"/>
                                   </Link>
                                 </div>

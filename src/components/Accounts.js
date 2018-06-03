@@ -147,7 +147,7 @@ class Accounts extends Component {
                 <h3 className="text-primary">
                   <FormattedNumber value={total}/>
                 </h3>
-                Total Accounts
+                {tu("total_accounts")}
               </div>
             </div>
           </div>

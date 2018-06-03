@@ -182,7 +182,7 @@ class Nodes extends Component {
                     <tr>
                       <th style={{width: 150}}>{tu("IP")}</th>
                       <th className="text-nowrap d-none d-lg-table-cell">{tu("Hostname")}</th>
-                      <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("Height")}</th>
+                      <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("height")}</th>
                       <th style={{width: 50}} className="text-center text-nowrap">{tu("GRPC")}</th>
                       <th style={{width: 100}} className="text-center text-nowrap d-none d-md-table-cell">{tu("GRPC m/s")}</th>
                       <th style={{width: 100}} className="text-right text-nowrap">{tu("Last Update")}</th>

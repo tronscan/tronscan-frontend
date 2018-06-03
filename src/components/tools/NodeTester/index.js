@@ -86,9 +86,9 @@ class NodeTester extends Component {
 
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title text-center">Node Tester</h5>
+            <h5 className="card-title text-center">{tu("Node Tester")}</h5>
             <p className="text-center">
-              Insert the IP of you node to test GRPC connection
+            {tu("node_tester_msg")}
             </p>
             <input
               className="form-control text-center"
@@ -100,16 +100,33 @@ class NodeTester extends Component {
               {
                 active ?
                   <button className="btn btn-danger"
-                          onClick={() => this.stopListening()}>Stop testing
+                          onClick={() => this.stopListening()}>{tu("node_tester_stop")}
                   </button> :
                   <button className="btn btn-success"
                           disabled={!this.isValidIp(ip)}
-                          onClick={() => this.testNode(ip)}>Test GRPC
+                          onClick={() => this.testNode(ip)}>{tu("node_tester_test")}
                   </button>
               }
             </div>
           </div>
         </div>
+        {
+          (active && logs.length == 0) &&
+            <div className="card mt-3">
+              <table className="table table-hover table-striped bg-white m-0">
+                <thead className="thead-dark">
+                <tr>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="center">{tu("loading")}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        }
         {
           logs.length > 0 &&
             <div className="card mt-3">
@@ -117,7 +134,7 @@ class NodeTester extends Component {
                 <thead className="thead-dark">
                 <tr>
                   <th>{tu("Message")}</th>
-                  <th style={{width: 200}}>{tu("Response Time")}</th>
+                  <th style={{width: 200}}>{tu("node_tester_rt")}</th>
                 </tr>
                 </thead>
                 <tbody>

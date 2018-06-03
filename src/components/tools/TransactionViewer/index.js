@@ -157,8 +157,7 @@ class TransactionViewer extends Component {
               <div className="card-body">
                 <h5 className="card-title text-center">Transaction HEX</h5>
                 <p className="text-center">
-                  Here you can paste a transaction hex to inspect the contents of a transaction. The transaction
-                  can then be broadcasted to the network
+                  {tu("info_tx_viewer")}
                 </p>
                 <textarea className="w-100 form-control"
                           rows="6"
@@ -167,13 +166,13 @@ class TransactionViewer extends Component {
                 <div className="text-center p-3">
                   <button className="btn btn-primary"
                           disabled={trim(hex) === ""}
-                          onClick={() => this.loadTransaction(hex)}>Load Transaction</button>
+                          onClick={() => this.loadTransaction(hex)}>{tu("load_tx")}</button>
                 </div>
                 <hr/>
                 <div className="text-center p-3">
-                  <h5 className="card-title text-center">Transaction QR Code</h5>
+                  <h5 className="card-title text-center">{tu("tx_qrcode")}</h5>
                   <button className="btn btn-primary" onClick={() => this.scanTransaction()}>
-                    Load Transaction from QR Code
+                    {tu("load_tx_qrcode")}
                     <i className="fa fa-qrcode ml-2"/>
                   </button>
                 </div>

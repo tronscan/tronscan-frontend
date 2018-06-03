@@ -6,7 +6,6 @@ import {clearConstellations, constellationPreset} from "../../lib/constellation/
 import CountUp from 'react-countup';
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
-import {sampleSize} from "lodash";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import SRNews from "./SRNews";

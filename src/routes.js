@@ -117,18 +117,16 @@ export const routes = [
     component: TokenOverview,
     routes: [
       {
-        label: "Participate",
-        path: "/tokens/view",
-        icon: 'fas fa-coins',
-        component: TokenOverview
-      },
-      {
         label: "Overview",
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenList
-      },
-      {
+      },{
+        label: "Participate",
+        path: "/tokens/view",
+        icon: 'fas fa-coins',
+        component: TokenOverview
+      },{
         label: "Create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',

@@ -60,13 +60,13 @@ class System extends Component {
               </td>
             </tr>
             <tr>
-              <th>{tu("Block")}:</th>
+              <th>{tu("block")}:</th>
               <td>
                 <BlockNumberLink number={sync.database.block}>{sync.database.block}</BlockNumberLink>
               </td>
             </tr>
             <tr>
-              <th>{tu("Confirmed Block")}:</th>
+              <th>{tu("confirmed_block")}:</th>
               <td>
                 <BlockNumberLink number={sync.database.unconfirmedBlock - 1}>{sync.database.unconfirmedBlock - 1}</BlockNumberLink>
               </td>
@@ -75,7 +75,7 @@ class System extends Component {
               <td colSpan="2" className="bg-secondary text-white">Full Node</td>
             </tr>
             <tr>
-              <th>{tu("Block")}:</th>
+              <th>{tu("block")}:</th>
               <td>
                 {sync.full.block}
               </td>
@@ -84,7 +84,7 @@ class System extends Component {
               <td colSpan="2" className="bg-secondary text-white">Solidity Node</td>
             </tr>
             <tr>
-              <th>{tu("Block")}:</th>
+              <th>{tu("block")}:</th>
               <td>
                 {sync.solidity.block}
               </td>

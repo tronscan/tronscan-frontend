@@ -6,6 +6,7 @@ import {TRXPrice} from "../../common/Price";
 
 
 export default function Contract({contract}) {
+
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -142,6 +143,18 @@ export default function Contract({contract}) {
             <Field label="Description">{contract.description}</Field>
             <Field label="URL"><ExternalLink url={contract.url}/></Field>
           </table>
+        </Fragment>
+      );
+
+      default: 
+      return (
+        <Fragment>
+          <div className="card-body">
+            <h5 className="card-title text-center">#</h5>
+            <p>
+              #
+            </p>
+          </div>
         </Fragment>
       );
   }
