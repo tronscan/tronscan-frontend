@@ -69,6 +69,8 @@ export const messages = {
   "Last Update": "Last Update",
 
 // account section
+  "set_name": "Set Name",
+  "show_qr_code": "Show QR Code",
   "free_bandwidth": "Free Bandwidth",
   "expires": "expires",
   "have_been_added_to_your_account": "have been added to your account!",
@@ -79,6 +81,7 @@ export const messages = {
   "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
   "transactions": "transactions",
   "tokens": "tokens",
+  "no_tokens": "No Tokens",
   "issued_token": "issued token",
   "start_date": "Start Date",
   "end_date": "End Date",
@@ -89,9 +92,27 @@ export const messages = {
   "network": "network",
   "current": "current",
 
+// account freeze
+  "freeze" : "freeze",
+  "unfreeze" : "unfreeze",
+  "frozen_supply": "Frozen Supply",
+  "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
+  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
+  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
+   For example, with Tron Power you can `,
+  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
+  After this period you can unfreeze the TRX and trade the tokens.`,
+  "freeze_trx_premessage_link": "vote for Super Representatives.",
+
 // account superdelegates
   "apply_for_delegate": "apply for delegate",
   "your_personal_website_address": "your personal website address",
+  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
+  However, for the network and community to operate more smoothly and effectively,
+  we have created a set of standards and regulations for eligible candidates to become
+  recommended Super Representatives. We will promote recommended SRs to increase their
+  chances of being elected. New recommended Super Representatives are updated and posted once a
+  week.`,
   "apply_for_delegate_description": `
    TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
    Each account can update current voter information and also is allowed to vote for multiple candidates.

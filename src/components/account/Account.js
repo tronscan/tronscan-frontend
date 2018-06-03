@@ -91,7 +91,7 @@ class Account extends Component {
     if (tokenBalances.length === 0) {
       return (
         <div className="text-center d-flex justify-content-center p-4">
-          No Tokens
+          {tu("no_tokens")}
         </div>
       );
     }
@@ -341,7 +341,7 @@ class Account extends Component {
       this.setState({
         modal: (
           <SweetAlert warning title="Not enough TRX" onConfirm={this.hideModal}>
-            You need at least 1 TRX to be able to freeze
+            {tu("freeze_trx_least")}
           </SweetAlert>
         )
       });
@@ -434,7 +434,7 @@ class Account extends Component {
       this.setState({
         modal: (
           <SweetAlert success title="TRX Unfrozen" onConfirm={this.hideModal}>
-            Successfully unfrozen TRX
+            {tu("success_unfrozen_trx")}
           </SweetAlert>
         )
       });
@@ -443,7 +443,7 @@ class Account extends Component {
       this.setState({
         modal: (
           <SweetAlert warning title="Unable to unfreeze" onConfirm={this.hideModal}>
-            Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.
+            {tu("unable_unfreeze_trx_message")}
           </SweetAlert>
         ),
       });
@@ -725,7 +725,7 @@ class Account extends Component {
                   <FormattedNumber value={currentWallet.bandwidth.netRemaining} />
                 </h3>
                 <a href="javascript:;" onClick={() => this.setState(state => ({ showBandwidth: !state.showBandwidth }))}>
-                  {tu("Bandwidth")}
+                  {tu("bandwidth")}
                 </a>
               </div>
             </div>
@@ -750,7 +750,7 @@ class Account extends Component {
                 <h3 className="text-danger">
                   <TRXPrice amount={currentWallet.balance / ONE_TRX} />
                 </h3>
-                {tu("Balance")}
+                {tu("balance")}
               </div>
             </div>
           </div>
@@ -776,7 +776,7 @@ class Account extends Component {
                         {
                           trim(currentWallet.name) === "" &&
                             <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
-                              Set Name
+                              {tu("set_name")}
                             </a>
                         }
                       </td>
@@ -803,12 +803,12 @@ class Account extends Component {
                       ({tu("do_not_send_2")})
                     </span>
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                      Show QR Code
+                      {tu("show_qr_code")}
                     </a>
                   </td>
                 </tr>
                 <tr>
-                  <th>{tu("Transactions")}:</th>
+                  <th>{tu("transactions")}:</th>
                   <td>
                     <FormattedNumber value={totalTransactions}/>
                   </td>
@@ -903,7 +903,7 @@ class Account extends Component {
             <div className="card">
               <div className="card-body px-0 border-0">
                 <h5 className="card-title text-center m-0">
-                  {tu("Transactions")}
+                  {tu("transactions")}
                 </h5>
               </div>
               {this.renderTransactions()}
@@ -920,22 +920,17 @@ class Account extends Component {
               </div>
               <div className="card-body text-center pt-0">
                 <p className="card-text">
-                  TRX can be frozen/locked to gain Tron Power and enable additional features.
-                  For example, with Tron Power you can <Link to="/votes" className="text-primary">vote for Super
-                  Representatives.</Link><br/>
-                  Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX
-                  cannot be traded.<br/>
-                  After this period you can unfreeze the TRX and trade the tokens.
+                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{tu("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
                 </p>
                 {
                   hasFrozen &&
                   <button className="btn btn-danger mr-2" onClick={this.showUnfreezeModal}>
-                    Unfreeze
+                    {tu("unfreeze")}
                     <i className="fa fa-fire ml-2"/>
                   </button>
                 }
                 <button className="btn btn-dark mr-2" onClick={this.showFreezeBalance}>
-                  Freeze
+                  {tu("freeze")}
                   <i className="fa fa-snowflake ml-2"/>
                 </button>
               </div>
@@ -1024,12 +1019,7 @@ class Account extends Component {
                   </div>
                   <div className="card-body text-center">
                     <p className="card-text">
-                      Every token holder has the opportunity to become a TRON Super Representative.
-                      However, for the network and community to operate more smoothly and effectively,
-                      we have created a set of standards and regulations for eligible candidates to become
-                      recommended Super Representatives. We will promote recommended SRs to increase their
-                      chances of being elected. New recommended Super Representatives are updated and posted once a
-                      week.
+                      {tu("apply_for_delegate_predescription")}
                     </p>
                     <button className="btn btn-success mr-2" onClick={this.applyForDelegate}>
                       <i className="fa fa-hand-holding-usd mr-2"/>

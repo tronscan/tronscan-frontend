@@ -69,6 +69,8 @@ export const messages = {
   "Last Update": "Letzte Aktualisierung",
 
 // account section
+  "set_name": "Name definieren",
+  "show_qr_code": "QR Code anzeigen",
   "free_bandwidth": "Freie Bandbreite",
   "expires": "abgelaufen",
   "have_been_added_to_your_account": "wurden Ihrem Konto hinzugefügt!",
@@ -79,19 +81,37 @@ export const messages = {
   "do_not_send_2": "Senden Sie bitte kein TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
   "transactions": "Transaktionen",
   "tokens": "Token",
+  "no_tokens": "keine Token vorhanden",
   "issued_token": "ausgegebenes Token",
   "start_date": "Start Datum",
   "end_date": "End Datum",
   "progress": "Fortschritt",
-  "frozen_supply": "Eingefrorenes Saldo",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "Herausgeber",
   "network": "Netzwerk",
   "current": "aktuell",
 
+// account freeze
+  "freeze" : "einfrieren",
+  "unfreeze" : "freigeben",
+  "frozen_supply": "Eingefrorenes Saldo",
+  "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
+  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
+  "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
+  Mit Tron Power können Sie zum Beispiel `,
+  "freeze_trx_premessage_1": ` Eingefrorene Token werden für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
+  Nach dieser Zeit können Sie den TRX auftauen und die Token tauschen.`,
+  "freeze_trx_premessage_link": "für die Super-Repräsentanten abstimmen.",
+
+
 // account superdelegates
   "apply_for_delegate": "Bewerbung als Delegierter",
   "your_personal_website_address": "Ihre persönliche Webseite",
+  "apply_for_delegate_predescription":`Jeder TRX Inhaber hat die Möglichkeit ein TRON-Super-Repräsentanten zu werden.
+   Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
+   wurden Standards und Vorschriften für die Super-Repräsentanten definiert.
+   Wir werden geeignete Super-Repräsentanten fördern und unterstützen.
+   Neue geeignete Super Representatives werden einmal pro Woche aktualisiert und veröffentlicht.`,
   "apply_for_delegate_description": `
    TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
    Each account can update current voter information and also is allowed to vote for multiple candidates.
