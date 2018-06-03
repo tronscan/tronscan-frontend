@@ -132,13 +132,13 @@ class Account extends Component {
           <div className="card">
             <div className="card-body px-0 border-0">
               <h5 className="card-title text-center m-0">
-                {tu("Bandwidth")}
+                {tu("bandwidth")}
               </h5>
             </div>
             <table className="table m-0">
               <tbody>
                 <tr>
-                  <th style={{width: 200}}>{tu("Free Bandwidth")}</th>
+                  <th style={{width: 200}}>{tu("free_bandwidth")}</th>
                   <td>
                     <span className="text-primary">
                       <FormattedNumber value={currentWallet.bandwidth.freeNetUsed} className="text-success"/>&nbsp;
@@ -155,7 +155,7 @@ class Account extends Component {
                   </td>
                 </tr>
                 <tr>
-                  <th style={{width: 200}}>{tu("Bandwidth")}</th>
+                  <th style={{width: 200}}>{tu("bandwidth")}</th>
                   <td>
                     <span className="text-primary">
                       <FormattedNumber value={currentWallet.bandwidth.netUsed} className="text-primary"/>&nbsp;
@@ -261,7 +261,7 @@ class Account extends Component {
         this.setState({
           modal: (
             <SweetAlert success title="TRX Received" onConfirm={this.hideModal}>
-              <FormattedNumber value={10000}/> TRX {tu("have_been_added_to_your_account!")}
+              <FormattedNumber value={10000}/> TRX {tu("have_been_added_to_your_account")}
             </SweetAlert>
           )
         });

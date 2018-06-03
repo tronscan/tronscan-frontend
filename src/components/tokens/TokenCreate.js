@@ -438,7 +438,7 @@ class TokenCreate extends Component {
                         <label>{tu("token_name")} *</label>
                         <TextField cmp={this} field="name" />
                         <small className="form-text text-muted">
-                          Name for the token
+                          {tu("token_message")}
                         </small>
                         { ErrorLabel(errors.name)}
                       </div>
@@ -446,7 +446,7 @@ class TokenCreate extends Component {
                         <label>{tu("token_abbr")} *</label>
                         <TextField cmp={this} field="abbr" />
                         <small className="form-text text-muted">
-                          Abbreviation for the token
+                          {tu("abbr_message")}
                         </small>
                         { ErrorLabel(errors.abbr)}
                       </div>
