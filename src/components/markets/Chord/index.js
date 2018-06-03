@@ -2,6 +2,7 @@ import React from "react";
 import {TimeAgo} from "react-timeago";
 import chordMatrix from "./MatrixFactory";
 import {compareKeys} from "../../../utils/obj";
+import {tu} from "../../../utils/i18n";
 
 const d3 = require("d3");
 
@@ -347,7 +348,7 @@ export default class Chord extends React.PureComponent {
     return (
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title text-center">Trade Volume</h5>
+          <h5 className="card-title text-center">{tu("Trade Volume")}</h5>
           <div className="volume-chords" ref={this.ref}/>
           {
             hasFilters &&

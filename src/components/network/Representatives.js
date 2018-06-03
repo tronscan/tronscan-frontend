@@ -69,13 +69,13 @@ class Representatives extends Component {
           <tbody>
           <tr>
             <td colSpan="9" className="bg-danger text-white text-center font-weight-bold">
-              Super Representatives
+              {tu("Super Representatives")}
             </td>
           </tr>
           {superRepresentatives.map(account => <Row key={account.address} account={account}/>)}
           <tr>
             <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
-              Super Representative Candidates
+              {tu("Super Representative Candidates")}
             </td>
           </tr>
           {candidateRepresentatives.map(account => <Row key={account.address} account={account} showSync={false}/>)}
@@ -108,7 +108,7 @@ class Representatives extends Component {
                   <h3 className="text-primary">
                     <FormattedNumber value={witnesses.length}/>
                   </h3>
-                  {tu("Representatives")}
+                  {tu("representatives")}
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ class Representatives extends Component {
                   <h3 className="text-success">
                     <FormattedNumber value={mostProductive.productivity}/>%
                   </h3>
-                  Highest Productivity<br/>
+                  {tu("Highest Productivity")}<br/>
                   <AddressLink address={mostProductive.address}>
                     {mostProductive.name || mostProductive.url}
                   </AddressLink>
@@ -135,7 +135,7 @@ class Representatives extends Component {
                   <h3 className="text-danger">
                     <FormattedNumber value={leastProductive.productivity}/>%
                   </h3>
-                  Lowest Productivity<br/>
+                  {tu("Lowest Productivity")}<br/>
                   <AddressLink address={leastProductive.address}>
                     {leastProductive.name || leastProductive.url}
                   </AddressLink>

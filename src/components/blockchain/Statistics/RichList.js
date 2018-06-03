@@ -46,9 +46,9 @@ export default class RichList extends Component {
           <table className="table table-hover bg-white m-0 table-striped">
             <thead className="thead-dark">
               <tr>
-                <th>{tu("Balance")}</th>
-                <th className="d-none d-lg-table-cell">{tu("Addresses")}</th>
-                <th className="text-nowrap text-right">% {tu("Addresses")}</th>
+                <th>{tu("balance")}</th>
+                <th className="d-none d-lg-table-cell">{tu("addresses")}</th>
+                <th className="text-nowrap text-right">% {tu("addresses")}</th>
                 <th className="text-right d-none d-md-table-cell">{tu("TRX")}</th>
                 <th className="text-right">$ {tu("USD")}</th>
                 <th className="text-right  d-none d-md-table-cell">% {tu("Coins")}</th>
