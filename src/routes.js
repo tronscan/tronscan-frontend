@@ -19,6 +19,7 @@ import {
   MarketsAsync,
   StatisticsAsync,
   TransactionViewerAsync,
+  VoteLiveAsync,
   VoteOverviewAsync,
   WalletWizardAsync
 } from "./components/async";
@@ -28,7 +29,6 @@ import News from "./components/News";
 import NodeTester from "./components/tools/NodeTester";
 import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
-import VoteLive from "./components/voting/VoteLive";
 
 export const routes = [
   {
@@ -181,7 +181,7 @@ export const routes = [
     path: "/votes-live",
     label: "live",
     icon: 'fas fa-comment',
-    component: VoteLive,
+    component: VoteLiveAsync,
     showInMenu: false,
   },
   {

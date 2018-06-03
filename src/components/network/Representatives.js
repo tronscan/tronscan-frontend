@@ -1,15 +1,14 @@
 import React, {Component, Fragment} from 'react';
-import MediaQuery from "react-responsive";
 import {connect} from "react-redux";
 import {loadWitnesses} from "../../actions/network";
 import {tu} from "../../utils/i18n";
-import {BarLoader, TronLoader} from "../common/loaders";
+import {TronLoader} from "../common/loaders";
 import {FormattedNumber} from "react-intl";
-import _, {sortBy, maxBy} from "lodash";
-import {AddressLink, BlockNumberLink, ExternalLink} from "../common/Links";
-import {Link} from "react-router-dom";
-import {SR_MAX_COUNT} from "../../constants";
+import _, {maxBy, sortBy} from "lodash";
+import {AddressLink, BlockNumberLink} from "../common/Links";
+import {BLOCK_REWARD, SR_MAX_COUNT} from "../../constants";
 import {WidgetIcon} from "../common/Icon";
+import {TRXPrice} from "../common/Price";
 
 class Representatives extends Component {
 
@@ -59,13 +58,12 @@ class Representatives extends Component {
             <tr>
               <th className="text-right d-none d-lg-table-cell">#</th>
               <th>{tu("name")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap">{tu("Status")}</th>
+              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("transactions")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
-              <th className="text-right text-nowrap d-none d-lg-table-cell">{tu("votes")}</th>
+              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("rewards")}</th>
             </tr>
           </thead>
           <tbody>
@@ -165,10 +163,6 @@ function Row({account, showSync = true}) {
       <td>
         <AddressLink address={account.address}>{account.name || account.url}</AddressLink>
       </td>
-
-      <td className="text-right d-none d-sm-table-cell">
-        <BlockNumberLink number={account.latestBlockNumber} />
-      </td>
       {
         showSync ?
           <td className="text-center">
@@ -179,11 +173,11 @@ function Row({account, showSync = true}) {
             }
           </td> : <td>&nbsp;</td>
       }
-      <td className="text-right d-none d-md-table-cell">
-        <FormattedNumber value={account.producedTotal} />
+      <td className="text-right d-none d-sm-table-cell">
+        <BlockNumberLink number={account.latestBlockNumber} />
       </td>
       <td className="text-right d-none d-md-table-cell">
-        <FormattedNumber value={account.producedTrx} />
+        <FormattedNumber value={account.producedTotal} />
       </td>
       <td className="text-right d-none d-md-table-cell">
         <FormattedNumber value={account.missedTotal} />
@@ -201,8 +195,8 @@ function Row({account, showSync = true}) {
         }
 
       </td>
-      <td className="text-right d-none d-lg-table-cell">
-        <FormattedNumber value={account.votes} />
+      <td className="text-right d-none d-md-table-cell text-nowrap">
+        <TRXPrice amount={account.producedTotal * BLOCK_REWARD} />
       </td>
     </tr>
   )

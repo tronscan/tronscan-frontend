@@ -10,6 +10,9 @@ export default class SRNews extends Component {
     this.state = {
       items: [
         {
+          src: require("../../images/frontpage/srnews/slide-4.jpg"),
+        },
+        {
           src: require("../../images/frontpage/srnews/slide-1.jpg"),
         },
         {

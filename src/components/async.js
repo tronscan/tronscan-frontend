@@ -84,3 +84,20 @@ export const VoteOverviewAsync = asyncComponent({
     )
   )
 });
+
+
+export const VoteLiveAsync = asyncComponent({
+  LoadingComponent: () => (
+    <TronLoader />
+  ),
+  resolve: () => new Promise(resolve =>
+    // Webpack's code splitting API w/naming
+    require.ensure(
+      [],
+      (require) => {
+        resolve(require("./voting/VoteLive"));
+      },
+      'VoteLive',
+    )
+  )
+});

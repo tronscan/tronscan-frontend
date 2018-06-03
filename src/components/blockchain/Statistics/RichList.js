@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import {Client} from "../../../services/api";
-import {ExternalLink} from "../../common/Links";
 import {TimeAgo} from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
-import {ONE_TRX} from "../../../constants";
 
 export default class RichList extends Component {
   constructor() {

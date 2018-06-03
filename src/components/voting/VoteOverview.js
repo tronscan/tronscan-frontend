@@ -398,7 +398,7 @@ class VoteOverview extends React.Component {
                 <h3 className="text-secondary">
                   <FormattedNumber value={totalVotes}/>
                 </h3>
-                <a href="javascript:;" onClick={() => this.setState(state => ({ viewStats: !state.viewStats  }))}>Total Votes</a>
+                <a href="javascript:" onClick={() => this.setState(state => ({ viewStats: !state.viewStats  }))}>Total Votes</a>
               </div>
             </div>
           </div>
@@ -420,6 +420,11 @@ class VoteOverview extends React.Component {
             </div>
           </div>
         </div>
+
+        <Link to="/votes-live" class="btn btn-secondary btn-block mt-3">
+          View Live Ranking
+        </Link>
+
         {
           loading ? <div className="card mt-2">
               <TronLoader>
