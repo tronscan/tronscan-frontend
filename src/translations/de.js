@@ -126,16 +126,16 @@ export const messages = {
   "thanks_for_applying": "Danke für Ihre Bewerbung!",
   "to_much_votes": "Zu viele Stimmen",
   "no_trx_remaining": "Kein TRX mehr vorhanden",
-  "produced_by": "Produced by {witnessAddress}",
+  "produced_by": "Produziert von {witnessAddress}",
   "show_more": "Weitere {countriesLength} Informationen anzeigen",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives. 
-    For every TRX you hold in your account you have one vote to spend. 
-    TRX will not be consumed. You can vote as many times for the several representatives as you like. 
-    The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
-    by anyone who has at least 1024 TRX in their account.`,
-  "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
-    Users can then participate within the participation period and exchange their TRX for tokens.`,
+  "vote_guide_message": `Verwenden Sie Ihre TRX um für die Super-Repräsentanten zu stimmen. 
+  Für jeden TRX, den Sie auf Ihrem Konto haben, erhalten Sie eine Stimme die Sie vergeben können. 
+	Sie verlieren dabei keine TRX. Sie können beliebig oft für die einzelnen Vertreter stimmen. 
+	Die Endabstimmung findet um 24 Uhr statt und die Liste der Delegierten wird aktualisiert.`,
+  "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
+   man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
+  "token_issue_guide_message_2":`Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
+    Die Benutzer können innerhalb des definierten Zeitraums teilnehmen und ihre TRX gegen Token eintauschen.`,
   "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
     When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
     receive TRX equal to the specified exchange rate.`,
