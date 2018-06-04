@@ -72,9 +72,11 @@ export const messages = {
   "last_block": "letzter Block",
   "total_supply": "Gesamtvorrat",
   "addresses": "Adressen",
-  "Most Nodes": "Meisten Knoten",
+  "most_nodes": "Meisten Knoten",
+  "loading_nodes" : "Laden der Knoten",
   "Hostname": "Hostname",
   "Last Update": "Letzte Aktualisierung",
+  "first_node_sync_message": "Warten auf die Synchronisation des ersten Knotens, bitte versuchen Sie es in wenigen Minuten erneut.",
 
 // account section
   "set_name": "Name definieren",

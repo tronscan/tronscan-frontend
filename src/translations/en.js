@@ -39,7 +39,7 @@ export const messages = {
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
-  "nodes": "nodes",
+  "nodes": "Nodes",
 
 // navigation section
   "blockchain": "Blockchain",
@@ -72,9 +72,11 @@ export const messages = {
   "last_block": "last block",
   "total_supply": "total supply",
   "addresses": "addresses",
-  "Most Nodes": "Most Nodes",
+  "most_nodes": "Most Nodes",
+  "loading_nodes" : "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
+  "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
 
 // account section
   "set_name": "Set Name",
