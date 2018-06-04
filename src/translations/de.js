@@ -61,6 +61,12 @@ export const messages = {
   "Node Tester": "Knoten Tester",
 
 // tableinformations and Statistics
+  "first": "erste Seite",
+  "previous": "vorherige Seite",
+  "next": "nächste Seite",
+  "last": "letzte Seite",
+  "page": "Seite",
+  "of": "von",
   "last_block": "letzter Block",
   "total_supply": "Gesamtvorrat",
   "addresses": "Adressen",

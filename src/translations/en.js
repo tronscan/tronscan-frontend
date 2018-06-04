@@ -61,6 +61,12 @@ export const messages = {
   "Node Tester": "Node Tester",
 
 // tableinformations and Statistics
+  "first": "first page",
+  "previous": "previous page",
+  "next": "next page",
+  "last": "last page",
+  "page": "page",
+  "of": "of",
   "last_block": "last block",
   "total_supply": "total supply",
   "addresses": "addresses",
@@ -106,7 +112,7 @@ export const messages = {
 
 // account superdelegates
   "apply_for_delegate": "apply for delegate",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate", 
+  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
   "your_personal_website_address": "your personal website address",
   "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
   However, for the network and community to operate more smoothly and effectively,
