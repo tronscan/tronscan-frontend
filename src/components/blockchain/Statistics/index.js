@@ -270,7 +270,7 @@ class Statistics extends React.Component {
           <div className="col-md-6 mt-3">
             <div className="card">
               <div className="card-body">
-                <h5 className="text-center">{tu("Average Block Size")} ({tu("bytes")})</h5>
+                <h5 className="text-center">{tu("average_blocksize")} ({tu("bytes")})</h5>
                 <div style={{height: 300}}>
                   <ResponsiveContainer>
                     <AreaChart data={blockStats} isAnimationActive={false}>

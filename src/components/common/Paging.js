@@ -73,7 +73,7 @@ export default class Paging extends React.PureComponent {
                 <span className="page-link no-hover" style={{padding: 13 }}>
                   <BarLoader/>
                 </span> :
-                <span className="page-link no-hover">Page {page + 1} of {totalPages}</span>
+                <span className="page-link no-hover">{tu("page")} {page + 1} {tu("of")} {totalPages}</span>
             }
           </li>
         </ul>
