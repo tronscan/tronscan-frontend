@@ -304,7 +304,7 @@ class TokenCreate extends Component {
     if (!wallet) {
       return (
         <Alert color="warning" className="text-center">
-          You need to open a wallet to be able to create a token
+          {tu("trx_token_wallet_requirement")}
         </Alert>
       );
     }
@@ -312,7 +312,7 @@ class TokenCreate extends Component {
     if (wallet.balance < ASSET_ISSUE_COST) {
       return (
         <Alert color="danger" className="text-center">
-          1024 TRX is required to issue a new token
+          {tu("trx_token_fee_message")}
         </Alert>
       );
     }
@@ -396,7 +396,7 @@ class TokenCreate extends Component {
               <div className="card">
                 <div className="card-body">
                   <div className="text-center p-3">
-                    You may create only one token per account
+                    {tu("trx_token_account_limit")}
                   </div>
                 </div>
               </div>
@@ -519,15 +519,13 @@ class TokenCreate extends Component {
                   <hr/>
                   <fieldset>
                     <legend>
-                      {tu("Frozen Supply")}
+                      {tu("frozen_supply")}
                       <i className="fa fa-snowflake float-right"/>
                     </legend>
 
                     <div className="form-row text-muted">
                       <p className="col-md-12">
-                        A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-                        for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-                        days has been reached. Freezing supply is not required.
+                        {tu("frozen_supply_message_0")}
                       </p>
                     </div>
                     {
@@ -544,7 +542,7 @@ class TokenCreate extends Component {
                             />
                           </div>
                           <div className="form-group col-md-3">
-                            { index === 0 && <label>{tu("Days to freeze")}</label> }
+                            { index === 0 && <label>{tu("days_to_freeze")}</label> }
                             <input
                               className="form-control"
                               type="number"

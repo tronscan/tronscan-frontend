@@ -165,6 +165,10 @@ export const messages = {
   "creating_a_token": "Creating a token",
   "available": "available",
   "testnet": "Testnet",
+  "days_to_freeze": "Days to freeze",
+  "trx_token_fee_message": "1024 TRX is required to issue a new token",
+  "trx_token_account_limit": "You may create only one token per account",
+  "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
   "invalid_address": "invalid address",
   "insufficient_tokens": "Insufficient tokens",
   "make_another_transaction": "Make another transaction",
@@ -232,6 +236,9 @@ export const messages = {
   "participation_message_0": `Specify the participation period in which tokens will be issued.
    During the participation period users can exchange TRX for `,
  "participation_message_1": " tokens.",
+ "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
+  for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
+  days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
   "participation": "participation",
   "start_date": "Start Date",

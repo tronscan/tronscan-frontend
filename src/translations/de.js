@@ -100,7 +100,7 @@ export const messages = {
 // account freeze
   "freeze" : "einfrieren",
   "unfreeze" : "freigeben",
-  "frozen_supply": "Eingefrorenes Saldo",
+  "frozen_supply": "Eingefrorenes Guthaben",
   "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
   "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die minimale Einfrierzeit noch nicht erreicht ist.",
   "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
@@ -162,6 +162,10 @@ export const messages = {
   "creating_a_token": "Token erstellen",
   "available": "verfügbar",
   "testnet": "Testnetz",
+  "days_to_freeze": "Sperrdauer",
+  "trx_token_fee_message": "1024 TRX wird für die Ausgabe eines neuen Tokens benötigt",
+  "trx_token_account_limit": "Es kann nur ein Token pro Konto erstellt werden",
+  "trx_token_wallet_requirement": "Sie müssen eine Wallet eröffnen um ein Token zu erstellen",
   "invalid_address": "ungültige Adresse",
   "insufficient_tokens": "Unzureichende Token",
   "make_another_transaction": "Eine weitere Transaktion ausführen",
@@ -229,8 +233,11 @@ export const messages = {
   "participation_message_0": `Geben Sie den Teilnahmezeitraum an, in dem die Token ausgegeben werden sollen.
    Während des Teilnahmezeitraums können Benutzer TRX gegen`,
   "participation_message_1": " token tauschen.",
+  "frozen_supply_message_0": `Ein definierter Teil an Token kann automatisch bei der Erstellung eingefroren werden. Die Mindestdauer beträgt einen Tag.
+   Der eingefrorene Tokenvorrat kann nach dem Erreichen des Startdatums und der Freeze Periode (Tage wie lange sie eingeforen wurden)
+   manuell aufgetaut und freigegeben werden. Das Einfrieren der Tokens ist nicht zwingend erforderlich.`,
   "token_issued_successfully": "Token wurden erfolgreich ausgestellt",
-  "participation": "Beteiligung",
+  "participation": "Teilnehmen",
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
   "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
