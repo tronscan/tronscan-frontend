@@ -14,6 +14,7 @@ export const messages = {
   "address": "Address",
   "price": "Preis",
   "sign_out": "Abmelden",
+  "sign_in": "Anmelden",
   "register_login": "Registrieren / Anmelden",
   "register": "Registrieren",
   "login": "Anmelden",
@@ -309,6 +310,19 @@ export const messages = {
     "tron_explorer_api": "Tron Explorer API",
     "tron_architechure": "TRON Architektur",
     "tron_protobuf_doc": "TRON Protobuf Dokumentation",
-    "report_an_error": "Fehler melden / Vorschlag einreichen"
+    "report_an_error": "Fehler melden / Vorschlag einreichen",
 
+    // wallet section
+      "open_wallet": "Wallet öffnen",
+      "private_key": "Privater Schlüssel",
+      "keystore_file": "Keystore Datei",
+      "select_file": "Datei auswählen",
+      "login_mobile": "Anmeldung mit einem mobilen Gerät",
+      "create_wallet": "Wallet erstellen",
+      "no_open_wallet": "Keine offenes Wallet zum Ansehen",
+      "3_day_ranking": "3 Tage Ranking",
+      "live_ranking": "Echtzeit Rangliste",
+      "live_ranking_msg": "Alle 15 Sekunden wird die Ansicht aktualisiert. Bei neue Abstimmungen kann es 1-2 Minuten dauern bevor sie gezählt werden.",
+      "candidate": "Kandidat",
+      "current_votes": "Aktuelle Abstimmungen",
 };

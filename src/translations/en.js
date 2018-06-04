@@ -317,6 +317,7 @@ export const messages = {
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   "report_an_error": "Submit a bug / suggestion",
 
+// wallet section
   "open_wallet": "Open Wallet",
   "private_key": "Private Key",
   "keystore_file": "Keystore File",
