@@ -96,31 +96,29 @@ export const messages = {
   "unfreeze" : "freigeben",
   "frozen_supply": "Eingefrorenes Saldo",
   "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
-  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
+  "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die minimale Einfrierzeit noch nicht erreicht ist.",
   "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
   Mit Tron Power können Sie zum Beispiel `,
   "freeze_trx_premessage_1": ` Eingefrorene Token werden für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
   Nach dieser Zeit können Sie den TRX auftauen und die Token tauschen.`,
   "freeze_trx_premessage_link": "für die Super-Repräsentanten abstimmen.",
 
-
 // account superdelegates
   "apply_for_delegate": "Bewerbung als Delegierter",
   "your_personal_website_address": "Ihre persönliche Webseite",
-  "apply_for_delegate_predescription":`Jeder TRX Inhaber hat die Möglichkeit ein TRON-Super-Repräsentanten zu werden.
+  "apply_for_delegate_predescription":`Jeder TRX Inhaber hat die Möglichkeit ein TRON-Super-Repräsentant zu werden.
    Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
    wurden Standards und Vorschriften für die Super-Repräsentanten definiert.
    Wir werden geeignete Super-Repräsentanten fördern und unterstützen.
    Neue geeignete Super Representatives werden einmal pro Woche aktualisiert und veröffentlicht.`,
   "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
+   TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
+   Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
+   Kandidaten gleichzeitig abstimmen. Die maximal möglichen Anzahl an Stimmrechte entsprechen der Summe an TRX die Sie besitzen.
+   Das Abstimmungsergebnis wird auf der Grundlage der endgültigen Stimmen jedes einzelnen Kontos berechnet.
+   Der Abstimmungszyklus ist von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Superdelegierten gewählt.
+   Jede Transaktion im Netzwerk muss von allen Superdelegierten validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
+   Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert und werden Ihnen nach der Wahl und nach dem Auftauen wieder gutgeschrieben.`,
   "unknown_error": "ein unbekannter Fehler ist aufgetreten",
   "representative_understand": "Ich habe verstanden wie man ein TRON-Vertreter wird.",
   "generate_account": "Klicken Sie hier, um Ihre Kontoadresse und Ihr Passwort zu generieren.",
