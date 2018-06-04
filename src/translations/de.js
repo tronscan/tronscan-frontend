@@ -17,10 +17,6 @@ export const messages = {
   "register_login": "Registrieren / Anmelden",
   "register": "Registrieren",
   "login": "Anmelden",
-  "system": "system",
-  "Overview": "Übersicht",
-  "Participate": "Mitwirkende",
-  "Create": "Erstellen",
   "height": "Größe",
   "age": "alter",
   "produced by": "erstellt von",
@@ -42,23 +38,28 @@ export const messages = {
   "my_vote": "meine Abstimmung",
   "submit_votes": "Stimme abgeben",
   "accounts": "Konten",
-  "account": "Konto",
   "nodes": "Knoten",
 
 // navigation section
-  "blockchain": "blockchain",
-  "wallet": "wallet",
-  "transfers": "übertragungen",
+  "blockchain": "Blockchain",
+  "wallet": "Wallet",
+  "home": "Home",
+  "transfers": "Übertragungen",
   "live": "Echtzeitinformationen",
   "statistics": "Statistiken",
   "markets": "Marktplatz",
-  "Tools": "Tools",
-  "News": "News",
-  "Help": "Hilfe",
-  "Nodes": "Knoten",
+  "tools": "Tools",
+  "news": "News",
+  "help": "Hilfe",
+  "nodes": "Knoten",
   "votes": "Abstimmung",
-  "Transaction Viewer": "Transaktionsbetrachter",
-  "Node Tester": "Knoten Tester",
+  "account": "Konto",
+  "transaction_viewer": "Transaktionsbetrachter",
+  "node_tester": "Knoten Tester",
+  "system": "System",
+  "overview": "Übersicht",
+  "participate": "Mitwirkende",
+  "create": "Erstellen",
 
 // tableinformations and Statistics
   "first": "erste Seite",
@@ -301,5 +302,13 @@ export const messages = {
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
-  "loading": "verarbeiten..."
+  "loading": "verarbeiten...",
+
+  // help section
+    "what_is_tron": "Informationen zu TRON",
+    "tron_explorer_api": "Tron Explorer API",
+    "tron_architechure": "TRON Architektur",
+    "tron_protobuf_doc": "TRON Protobuf Dokumentation",
+    "report_an_error": "Fehler melden / Vorschlag einreichen"
+
 };
