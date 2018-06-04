@@ -52,7 +52,7 @@ class Representatives extends Component {
     let candidateRepresentatives = witnesses.slice(SR_MAX_COUNT);
 
     return (
-      <div className="card">
+      <div className="card border-0">
         <table className="table table-hover table-striped bg-white m-0">
           <thead className="thead-dark">
             <tr>
@@ -146,9 +146,7 @@ class Representatives extends Component {
         }
         <div className="row mt-3">
           <div className="col-md-12">
-            <div className="card">
-              {this.renderWitnesses()}
-            </div>
+            {this.renderWitnesses()}
           </div>
         </div>
       </main>
