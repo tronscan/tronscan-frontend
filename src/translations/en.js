@@ -219,7 +219,7 @@ export const messages = {
   "no_votes_found": "No votes found",
   "no_voters_found": "No voters found",
   "waiting_for_transactions": "Waiting for transactions",
-  "loading_address": "Loading Address",  
+  "loading_address": "Loading Address",
 
 // token creation - normal messages
   "details": "details",
@@ -228,6 +228,7 @@ export const messages = {
   "token_name": "token name",
   "token_abbr": "token Abbreviation",
   "total_issued": "Total issued",
+  "registered": "Registered",
   "abbreviation": "Abbreviations",
   "exchange_rate": "Exchange Rate",
   "token_price": "Token Price",
@@ -288,6 +289,7 @@ export const messages = {
   "Trade Volume": "Trade Volume",
   "rank": "rank",
   "pair": "pair",
+  "volume": "Volume",
 
 // votes section
   "next_round": "Next Round",
@@ -298,6 +300,11 @@ export const messages = {
   "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
   "account_page": "Account Page",
   "loading_votes" : "Loading Votes",
+  "3_day_ranking": "3 Days Ranking",
+  "live_ranking": "Live Ranking",
+  "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
+  "candidate": "Candidate",
+  "current_votes": "Current Votes",
 
 // transaction Viewer
   "info_tx_viewer": `Here you can paste a transaction hex to inspect the contents of a transaction. The transaction
@@ -329,9 +336,21 @@ export const messages = {
   "login_mobile": "Login with a mobile device",
   "create_wallet": "create wallet",
   "no_open_wallet": "No open wallet to view",
-  "3_day_ranking": "3 Days Ranking",
-  "live_ranking": "Live Ranking",
-  "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
-  "candidate": "Candidate",
-  "current_votes": "Current Votes",
+  "new_wallet": "New Wallet",
+  "password_encr_key_message_0": "This password encrypts your private key. This does not act as a seed to generate your keys.",
+  "password_encr_key_message_1": "You will need this password and your private key to unlock your wallet.",
+  "strong_password_info": "A strong password is required",
+  "save_keystore_file": "Save Your Keystore File",
+  "download_keystore_file": "Download Encrypted Key",
+  "do_not_lose_it": "Do not lose it!",
+  "do_not_share_it": "Do not share it!",
+  "make_a_backup": "Make a backup!",
+  "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
+  "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
+  "make_a_backup_message_0": "Just in case your laptop is set on fire.",
+  "save_private_key": "Save Your Private Key",
+  "print_paper_wallet": "Print Paper Wallet",
+  "new_wallet_ready_message": "Your new wallet is ready",
+  "go_to_account_page": "Go to account page",
+
 };

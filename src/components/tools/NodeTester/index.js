@@ -86,7 +86,7 @@ class NodeTester extends Component {
 
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title text-center">{tu("Node Tester")}</h5>
+            <h5 className="card-title text-center">{tu("node_tester")}</h5>
             <p className="text-center">
             {tu("node_tester_msg")}
             </p>

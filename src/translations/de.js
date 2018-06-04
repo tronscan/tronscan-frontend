@@ -216,7 +216,7 @@ export const messages = {
   "no_votes_found": "Keine Stimmen gefunden",
   "no_voters_found": "Keine Wähler gefunden",
   "waiting_for_transactions": "Warten auf Transaktionen",
-  "loading_address": "Lade Adressinformationen",  
+  "loading_address": "Lade Adressinformationen",
 
 // token creation - normal messages
   "details": "Details",
@@ -224,6 +224,7 @@ export const messages = {
   "issue_token": "Tokenausgabe",
   "token_name": "Token Name",
   "total_issued": "Bereits erstellt",
+  "registered": "Registriert",
   "abbreviation": "Tokenkürzel",
   "token_abbr": "Token Abkürzung",
   "exchange_rate": "Wechselkurs",
@@ -283,6 +284,7 @@ export const messages = {
   "Trade Volume": "Handelsvolumen",
   "rank": "Rang",
   "pair": "Paar",
+  "volume": "Volumen",
 
 // votes section
   "next_round": "Nächste Abstimmung",
@@ -293,6 +295,11 @@ export const messages = {
   "warning_votes": "Sie benötigen mindestens 1 Tron Power um an der Abstimmung teilnehmen zu können. Tron Power wird durch das Einfrieren von TRX auf Ihrem Konto gutgeschrieben.",
   "account_page": "Kontoeinstellungen",
   "loading_votes" : "Stimmen werden geladen",
+  "3_day_ranking": "3 Tage Ranking",
+  "live_ranking": "Echtzeit Rangliste",
+  "live_ranking_msg": "Alle 15 Sekunden wird die Ansicht aktualisiert. Bei neue Abstimmungen kann es 1-2 Minuten dauern bevor sie gezählt werden.",
+  "candidate": "Kandidat",
+  "current_votes": "Aktuelle Abstimmungen",
 
 // transaction Viewer
   "info_tx_viewer": `Fügen Sie den gewünschten Transaktions-Hex ein und überprüfen Sie die Informationen der Transaktion.
@@ -309,24 +316,36 @@ export const messages = {
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",
 
-  // help section
-    "what_is_tron": "Informationen zu TRON",
-    "tron_explorer_api": "Tron Explorer API",
-    "tron_architechure": "TRON Architektur",
-    "tron_protobuf_doc": "TRON Protobuf Dokumentation",
-    "report_an_error": "Fehler melden / Vorschlag einreichen",
+// help section
+  "what_is_tron": "Informationen zu TRON",
+  "tron_explorer_api": "Tron Explorer API",
+  "tron_architechure": "TRON Architektur",
+  "tron_protobuf_doc": "TRON Protobuf Dokumentation",
+  "report_an_error": "Fehler melden / Vorschlag einreichen",
 
-    // wallet section
-      "open_wallet": "Wallet öffnen",
-      "private_key": "Privater Schlüssel",
-      "keystore_file": "Keystore Datei",
-      "select_file": "Datei auswählen",
-      "login_mobile": "Anmeldung mit einem mobilen Gerät",
-      "create_wallet": "Wallet erstellen",
-      "no_open_wallet": "Keine offenes Wallet zum Ansehen",
-      "3_day_ranking": "3 Tage Ranking",
-      "live_ranking": "Echtzeit Rangliste",
-      "live_ranking_msg": "Alle 15 Sekunden wird die Ansicht aktualisiert. Bei neue Abstimmungen kann es 1-2 Minuten dauern bevor sie gezählt werden.",
-      "candidate": "Kandidat",
-      "current_votes": "Aktuelle Abstimmungen",
+// wallet section
+  "open_wallet": "Wallet öffnen",
+  "private_key": "Privater Schlüssel",
+  "keystore_file": "Keystore Datei",
+  "select_file": "Datei auswählen",
+  "login_mobile": "Anmeldung mit einem mobilen Gerät",
+  "create_wallet": "Wallet erstellen",
+  "no_open_wallet": "Keine offenes Wallet zum Ansehen",
+  "new_wallet": "Neues Wallet",
+  "password_encr_key_message_0": "Dieses Passwort verschlüsselt Ihren privaten Schlüssel. Es wird nicht für die Schlüsselgenerierung eingesetzt.",
+  "password_encr_key_message_1": "Zum Freischalten Ihrer Wallet benötigen Sie dieses Passwort und Ihren privaten Schlüssel.",
+  "strong_password_info": "Ein sicheres Passwort ist erforderlich",
+  "save_keystore_file": "Speichern Sie Ihre Keystore-Datei",
+  "download_keystore_file": "Download Verschlüsselte Schlüsselinformationen",
+  "do_not_lose_it": "Verlieren Sie es nicht!",
+  "do_not_share_it": "Teilen Sie es nicht!",
+  "make_a_backup": "Erstellen Sie ein Backup!",
+  "do_not_lose_it_message_0": "Tron Foundation kann Ihnen nicht helfen einen verlorenen Schlüssel wiederherzustellen.",
+  "do_not_share_it_message_0": "Ihr Geld kann gestohlen werden wenn Sie diese Datei auf fremden Website verwenden oder sie öffentlich teilen.",
+  "make_a_backup_message_0": "Nur für den Fall wenn Ihr Laptop zerstört wird.",
+  "save_private_key": "Speichern des privaten Schlüssels",
+  "print_paper_wallet": "Paper-Wallet drucken",
+  "new_wallet_ready_message": "Ihre neue Wallet ist fertig.",
+  "go_to_account_page": "Zur Konto-Seite wechseln",
+
 };
