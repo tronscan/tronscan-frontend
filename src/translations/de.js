@@ -216,6 +216,7 @@ export const messages = {
   "no_votes_found": "Keine Stimmen gefunden",
   "no_voters_found": "Keine Wähler gefunden",
   "waiting_for_transactions": "Warten auf Transaktionen",
+  "loading_address": "Lade Adressinformationen",  
 
 // token creation - normal messages
   "details": "Details",
@@ -291,6 +292,7 @@ export const messages = {
   "open_team_page": "Teamseite öffnen",
   "warning_votes": "Sie benötigen mindestens 1 Tron Power um an der Abstimmung teilnehmen zu können. Tron Power wird durch das Einfrieren von TRX auf Ihrem Konto gutgeschrieben.",
   "account_page": "Kontoeinstellungen",
+  "loading_votes" : "Stimmen werden geladen",
 
 // transaction Viewer
   "info_tx_viewer": `Fügen Sie den gewünschten Transaktions-Hex ein und überprüfen Sie die Informationen der Transaktion.

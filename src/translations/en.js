@@ -219,6 +219,7 @@ export const messages = {
   "no_votes_found": "No votes found",
   "no_voters_found": "No voters found",
   "waiting_for_transactions": "Waiting for transactions",
+  "loading_address": "Loading Address",  
 
 // token creation - normal messages
   "details": "details",
@@ -296,6 +297,7 @@ export const messages = {
   "open_team_page": "Open Team Page",
   "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
   "account_page": "Account Page",
+  "loading_votes" : "Loading Votes",
 
 // transaction Viewer
   "info_tx_viewer": `Here you can paste a transaction hex to inspect the contents of a transaction. The transaction
