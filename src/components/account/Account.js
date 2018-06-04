@@ -1023,7 +1023,7 @@ class Account extends Component {
                     </p>
                     <button className="btn btn-success mr-2" onClick={this.applyForDelegate}>
                       <i className="fa fa-hand-holding-usd mr-2"/>
-                      {tu("Apply to be a Super Representative Candidate")}
+                      {tu("apply_super_representative_candidate")}
                     </button>
                   </div>
                 </div>

@@ -105,6 +105,7 @@ export const messages = {
 
 // account superdelegates
   "apply_for_delegate": "Bewerbung als Delegierter",
+  "apply_super_representative_candidate": "Bewerben Sie sich als Super-Repräsentant",
   "your_personal_website_address": "Ihre persönliche Webseite",
   "apply_for_delegate_predescription":`Jeder TRX Inhaber hat die Möglichkeit ein TRON-Super-Repräsentant zu werden.
    Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
