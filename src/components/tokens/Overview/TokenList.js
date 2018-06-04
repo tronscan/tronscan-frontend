@@ -79,9 +79,9 @@ class TokenList extends Component {
                     <thead className="thead-dark">
                       <tr>
                         <th style={{width: 100}}>{tu("name")}</th>
-                        <th style={{width: 100}}>{tu("Abbreviation")}</th>
-                        <th style={{width: 150}}>{tu("total supply")}</th>
-                        <th style={{width: 150}}>{tu("total issued")}</th>
+                        <th style={{width: 100}}>{tu("abbreviation")}</th>
+                        <th style={{width: 150}}>{tu("total_supply")}</th>
+                        <th style={{width: 150}}>{tu("total_issued")}</th>
                         <th style={{width: 150}}>{tu("registered")}</th>
                         {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
                         {/*<th style={{width: 150}}>{tu("transactions")}</th>*/}

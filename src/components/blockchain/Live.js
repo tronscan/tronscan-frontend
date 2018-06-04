@@ -8,6 +8,7 @@ import {FormattedNumber} from "react-intl";
 import {ONE_TRX} from "../../constants";
 import {TronLoader} from "../common/loaders";
 import {AddressLink, TokenLink} from "../common/Links";
+import {tu} from "../../utils/i18n";
 
 const MESSAGE_LIMIT = 30;
 
@@ -231,7 +232,7 @@ class Live extends React.Component {
               events.length === 0 ?
                 <div className="card">
                   <TronLoader>
-                    Waiting for transactions
+                    {tu("waiting_for_transactions")}
                   </TronLoader>
                 </div> :
                 <div className="card">
