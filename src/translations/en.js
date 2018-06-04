@@ -210,6 +210,7 @@ export const messages = {
   "no_blocks_found": "No blocks found",
   "no_votes_found": "No votes found",
   "no_voters_found": "No voters found",
+  "waiting_for_transactions": "Waiting for transactions",
 
 // token creation - normal messages
   "details": "details",
@@ -217,6 +218,8 @@ export const messages = {
   "issue_token": "Issue Token",
   "token_name": "token name",
   "token_abbr": "token Abbreviation",
+  "total_issued": "Total issued",
+  "abbreviation": "Abbreviations",
   "exchange_rate": "Exchange Rate",
   "token_price": "Token Price",
   "supply_message": "Total amount of tokens which will be in circulation",
@@ -259,7 +262,7 @@ export const messages = {
   "Transactions in the past hour": "Transactions in the past hour",
 
 // representatives section
-  "Average Block Size": "Average Block Size",
+  "average_blocksize": "Average Block Size",
   "Highest Productivity": "Highest Productivity",
   "Lowest Productivity": "Lowest Productivity",
   "productivity": "productivity",

@@ -534,7 +534,7 @@ class TokenCreate extends Component {
                       frozenSupply.map((frozen, index) => (
                         <div key={index} className={"form-row " + (frozenSupply.length === index + 1 ? "text-muted" : "")}>
                           <div className="form-group col-md-9">
-                            { index === 0 && <label>{tu("Amount")}</label> }
+                            { index === 0 && <label>{tu("amount")}</label> }
                             <input
                               className="form-control"
                               type="number"

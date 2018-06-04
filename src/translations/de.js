@@ -207,12 +207,15 @@ export const messages = {
   "no_blocks_found": "Keine Blöcke gefunden",
   "no_votes_found": "Keine Stimmen gefunden",
   "no_voters_found": "Keine Wähler gefunden",
+  "waiting_for_transactions": "Warten auf Transaktionen",
 
 // token creation - normal messages
   "details": "Details",
   "issue_a_token": "Erstellen eines Tokens",
   "issue_token": "Tokenausgabe",
   "token_name": "Token Name",
+  "total_issued": "Bereits erstellt",
+  "abbreviation": "Tokenkürzel",
   "token_abbr": "Token Abkürzung",
   "exchange_rate": "Wechselkurs",
   "token_price": "Token Preis",
@@ -254,7 +257,7 @@ export const messages = {
   "Transactions in the past hour": "Transaktionen der letzten Stunde",
 
 // representatives section
-  "Average Block Size": "Average Block Size",
+  "average_blocksize": "Durchschnittliche Blockgröße",
   "Highest Productivity": "Höchste Produktivität",
   "Lowest Productivity": "Niedrigste Produktivität",
   "productivity": "Produktivität",
