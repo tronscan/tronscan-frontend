@@ -702,7 +702,7 @@ class Account extends Component {
             <div className="col-md-12">
               <div className="card p-3">
                 <h5 className="text-muted text-center">
-                  No open wallet to view
+                  {tu("no_open_wallet")}
                 </h5>
               </div>
             </div>

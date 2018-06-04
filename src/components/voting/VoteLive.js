@@ -11,6 +11,7 @@ import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
 import palette from "google-palette";
 import VoteStats from "../blockchain/Statistics/VoteStats";
+import {tu} from "../../utils/i18n"
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -97,15 +98,15 @@ class VoteLive extends React.Component {
       <main className="container header-overlap pb-3">
         <div className="card">
           <div className="card-header text-center">
-            3 Days Ranking
+            {tu("3_day_ranking")}
           </div>
           <VoteStats colors={colors} />
         </div>
         <div className="card mt-3">
           <div className="card-header text-center">
-            Live Ranking
+            {tu("live_ranking")}
             <div className="small text-center text-muted p-2">
-              Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted
+              {tu("live_ranking_msg")}
             </div>
           </div>
           <div className="media m-3 mb-0">
@@ -116,10 +117,10 @@ class VoteLive extends React.Component {
               &nbsp;
             </div>
             <div className="media-body font-weight-bold">
-              Candidate
+              {tu("candidate")}
             </div>
             <div className="ml-3 text-center font-weight-bold">
-              Current Votes
+              {tu("current_votes")}
             </div>
           </div>
           <FlipMove

@@ -14,6 +14,7 @@ export const messages = {
   "address": "address",
   "price": "price",
   "sign_out": "sign out",
+  "sign_in": "sign in",
   "register_login": "Register / Log-in",
   "register": "register",
   "login": "login",
@@ -314,5 +315,18 @@ export const messages = {
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Documentation",
-  "report_an_error": "Submit a bug / suggestion"
+  "report_an_error": "Submit a bug / suggestion",
+
+  "open_wallet": "Open Wallet",
+  "private_key": "Private Key",
+  "keystore_file": "Keystore File",
+  "select_file": "Select File",
+  "login_mobile": "Login with a mobile device",
+  "create_wallet": "create wallet",
+  "no_open_wallet": "No open wallet to view",
+  "3_day_ranking": "3 Days Ranking",
+  "live_ranking": "Live Ranking",
+  "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
+  "candidate": "Candidate",
+  "current_votes": "Current Votes",
 };
