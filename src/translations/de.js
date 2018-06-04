@@ -275,8 +275,8 @@ export const messages = {
   "Super Representative Candidates": "Super Representative Kanidaten",
 
 // markets section
-  "Average Price in USD": "Durchschnittspreis in USD",
-  "Average Volume in USD": "Durchschnittliches Volumen in USD",
+  "average_price_usd": "Durchschnittspreis in USD",
+  "average_volume_usd": "Durchschnittliches Volumen in USD",
   "Trade Volume": "Handelsvolumen",
   "rank": "Rang",
   "pair": "Paar",

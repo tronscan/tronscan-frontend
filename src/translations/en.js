@@ -280,8 +280,8 @@ export const messages = {
   "Super Representative Candidates": "Super Representative Candidates",
 
 // markets section
-  "Average Price in USD": "Average Price in USD",
-  "Average Volume in USD": "Average Volume in USD",
+  "average_price_usd": "Average Price in USD",
+  "average_volume_usd": "Average Volume in USD",
   "Trade Volume": "Trade Volume",
   "rank": "rank",
   "pair": "pair",
