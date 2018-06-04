@@ -75,7 +75,7 @@ export const routes = [
     ]
   },
   {
-    label: "Nodes",
+    label: "nodes",
     icon: 'fa fa-server',
     path: "/nodes",
     component: Nodes,
@@ -117,17 +117,17 @@ export const routes = [
     component: TokenOverview,
     routes: [
       {
-        label: "Overview",
+        label: "overview",
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenList
       },{
-        label: "Participate",
+        label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
         component: TokenOverview
       },{
-        label: "Create",
+        label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
         component: TokensCreate
@@ -184,23 +184,23 @@ export const routes = [
   },
   {
     path: "/account",
-    label: "Account",
+    label: "account",
     showInMenu: false,
     component: Account,
   },
   {
     path: "/tools",
-    label: "Tools",
+    label: "tools",
     icon: "fa fa-wrench",
     routes: [
       {
-        label: "Transaction Viewer",
+        label: "transaction_viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
         component: TransactionViewerAsync,
       },
       {
-        label: "Node Tester",
+        label: "node_tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
         component: NodeTester,
@@ -215,52 +215,52 @@ export const routes = [
   },
   {
     path: "/news",
-    label: "News",
+    label: "news",
     icon: "fa fa-newspaper",
     component: News
   },
   {
     path: "/help",
-    label: "Help",
+    label: "help",
     icon: "fa fa-question",
     component: null,
     routes: [
       'Tron',
       {
         url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
-        label: "What is TRON",
+        label: "what_is_tron",
       },
       '-',
-      'Development',
+      "Development",
       {
         url: "https://api.tronscan.org",
-        label: "Tron Explorer API"
+        label: "tron_explorer_api"
       },
       {
         url: "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",
-        label: "TRON Architecture",
+        label: "tron_architechure",
       },
       {
         url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-        label: "TRON Protobuf Documentation",
+        label: "tron_protobuf_doc",
       },
       '-',
-      'Feedback',
+      "Feedback",
       {
         url: "https://github.com/tronscan/tronscan-frontend/issues/new",
-        label: "Submit a bug / suggestion"
+        label: "report_an_error",
       },
     ]
   },
   {
     path: "/wallet/new",
-    label: "Wallet",
+    label: "wallet",
     showInMenu: false,
     component: WalletWizardAsync,
   },
   {
     path: "/",
-    label: "Home",
+    label: "home",
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
