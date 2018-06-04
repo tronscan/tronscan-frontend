@@ -215,13 +215,13 @@ export const routes = [
   },
   {
     path: "/news",
-    label: "News",
+    label: "news",
     icon: "fa fa-newspaper",
     component: News
   },
   {
     path: "/help",
-    label: "Help",
+    label: "help",
     icon: "fa fa-question",
     component: null,
     routes: [
