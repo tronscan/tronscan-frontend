@@ -310,6 +310,8 @@ export const messages = {
   "load_tx": "Load Transaction",
   "tx_qrcode": "Transaction QR Code",
   "load_tx_qrcode": "Load Transaction from QR Code",
+  "transaction_load_error": "Transaction Load Error",
+  "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
 
 // tools node tester
   "node_tester_msg": "Insert the IP of you node to test GRPC connection",

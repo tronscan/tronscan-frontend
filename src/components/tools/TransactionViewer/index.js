@@ -51,8 +51,8 @@ class TransactionViewer extends Component {
     } catch (e) {
       this.setState({
         modal: (
-          <SweetAlert danger title="Transaction Load Error" onConfirm={this.hideModal}>
-            Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format
+          <SweetAlert danger title= {tu("transaction_load_error")} onConfirm={this.hideModal}>
+            {tu("transaction_load_error_message")}            
           </SweetAlert>
         )
       });
