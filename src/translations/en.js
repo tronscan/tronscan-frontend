@@ -285,6 +285,7 @@ export const messages = {
   "rewards": "rewards",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
+  "loading_representatives": "Loading Representatives",
 
 // markets section
   "average_price_usd": "Average Price in USD",

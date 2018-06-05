@@ -278,6 +278,7 @@ export const messages = {
   "rewards": "Belohnungen",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Kanidaten",
+  "loading_representatives": "Laden der Representativen Kanidaten",
 
 // markets section
   "average_price_usd": "Durchschnittspreis in USD",
