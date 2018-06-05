@@ -189,7 +189,7 @@ class Address extends React.Component {
             {
               loading ? <div className="card">
                   <TronLoader>
-                    Loading Address {address.address}
+                    {tu("loading_address")} {address.address}
                   </TronLoader>
                 </div> :
                 <Fragment>

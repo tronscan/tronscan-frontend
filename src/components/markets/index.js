@@ -47,7 +47,7 @@ class Markets extends React.Component {
           <div className="col-md-6 mt-3 mt-md-0">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title text-center">{tu("Average Price in USD")}</h5>
+                <h5 className="card-title text-center">{tu("average_price_usd")}</h5>
                 <div style={{height: 300}}>
                   {
                     volumeGraph.length === 0 ?
@@ -106,7 +106,7 @@ class Markets extends React.Component {
           <div className="col-md-6 mt-3 mt-md-0">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title text-center">{tu("Average Volume in USD")}</h5>
+                <h5 className="card-title text-center">{tu("average_volume_usd")}</h5>
                 <div style={{height: 300}}>
                   {
                     volumeGraph.length === 0 ?

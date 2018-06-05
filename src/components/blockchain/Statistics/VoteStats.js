@@ -7,6 +7,7 @@ import {Client} from "../../../services/api";
 import {injectIntl} from "react-intl";
 import palette from "google-palette";
 import {TronLoader} from "../../common/loaders";
+import {tu} from "../../../utils/i18n";
 
 class VoteStats extends React.Component {
 
@@ -94,7 +95,7 @@ class VoteStats extends React.Component {
     if (data.length === 0) {
       return (
         <TronLoader>
-          Loading Votes
+          {tu("loading_votes")},
         </TronLoader>
       );
     }
