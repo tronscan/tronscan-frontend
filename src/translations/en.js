@@ -40,6 +40,7 @@ export const messages = {
   "submit_votes": "submit votes",
   "accounts": "accounts",
   "nodes": "Nodes",
+  "exchange": "Exchange",
 
 // navigation section
   "blockchain": "Blockchain",

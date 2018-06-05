@@ -40,6 +40,7 @@ export const messages = {
   "submit_votes": "Stimme abgeben",
   "accounts": "Konten",
   "nodes": "Knoten",
+  "exchange": "Börse",
 
 // navigation section
   "blockchain": "Blockchain",

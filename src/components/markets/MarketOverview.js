@@ -39,7 +39,7 @@ export default class MarketOverview extends Component {
             <thead className="thead-dark">
               <tr>
                 <th style={{width: 25}}>{tu("rank")}</th>
-                <th>{tu("name")}</th>
+                <th>{tu("exchange")}</th>
                 <th style={{width: 100}}>{tu("pair")}</th>
                 <th className="d-none d-sm-table-cell" style={{width: 125}}>{tu("volume")}</th>
                 <th className="d-none d-md-table-cell" style={{width: 75}}>%</th>
