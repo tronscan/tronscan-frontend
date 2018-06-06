@@ -128,7 +128,7 @@ class Markets extends React.Component {
                             tickFormatter={value => intl.formatTime(value * 1000)}
                           />
                           <YAxis
-                            tickFormatter={value => "$" + intl.formatNumber(value/1000000000) + "Mrd"}
+                            tickFormatter={value => "$" + intl.formatNumber(value/1000000) + 'M'}
                             orientation="left"
                           />
                           <CartesianGrid strokeDasharray="3 3"/>
