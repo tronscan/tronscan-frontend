@@ -278,6 +278,7 @@ export const messages = {
   "rewards": "Belohnungen",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Kanidaten",
+  "loading_representatives": "Laden der Representativen Kanidaten",
 
 // markets section
   "average_price_usd": "Durchschnittspreis in USD",
@@ -308,6 +309,8 @@ export const messages = {
   "load_tx": "Laden der Transaktion",
   "tx_qrcode": "Transaktion QR Code",
   "load_tx_qrcode": "Laden der Transaktion über einen QR Code",
+  "transaction_load_error": "Transaktions-Ladefehler",
+  "transaction_load_error_message": "Beim Laden der Transaktion ist ein Fehler aufgetreten. Stellen Sie sicher, dass der HEX-Wert im korrekten Format vorliegt.",
 
 // tools node tester
   "node_tester_msg": "Geben Sie eine gültige IP Adresse für den GRPC Verbindungstest ein.",

@@ -127,7 +127,10 @@ class Markets extends React.Component {
                             dataKey="time"
                             tickFormatter={value => intl.formatTime(value * 1000)}
                           />
-                          <YAxis tickFormatter={value => "$" + intl.formatNumber(value)} />
+                          <YAxis
+                            tickFormatter={value => "$" + intl.formatNumber(value/1000000) + 'M'}
+                            orientation="left"
+                          />
                           <CartesianGrid strokeDasharray="3 3"/>
                           <Tooltip
                             content={ ({payload}) => <div className="bg-white p-2 border">

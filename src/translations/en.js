@@ -221,6 +221,8 @@ export const messages = {
   "no_voters_found": "No voters found",
   "waiting_for_transactions": "Waiting for transactions",
   "loading_address": "Loading Address",
+  "transaction_load_error": "Transaction Load Error",
+  "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
 
 // token creation - normal messages
   "details": "details",
@@ -283,6 +285,7 @@ export const messages = {
   "rewards": "rewards",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
+  "loading_representatives": "Loading Representatives",
 
 // markets section
   "average_price_usd": "Average Price in USD",

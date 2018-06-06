@@ -243,7 +243,7 @@ class Representative extends React.Component {
         <main className="container header-overlap">
           <div className="card text-center">
             <TronLoader>
-              Loading Representative
+              {tu(loading_representatives)}
             </TronLoader>
           </div>
         </main>
@@ -287,7 +287,7 @@ class Representative extends React.Component {
             {
               loading ? <div className="card">
                   <TronLoader>
-                    Loading Representative {address.address}
+                    {tu("loading_representatives")} {address.address}
                   </TronLoader>
                 </div> :
                 <Fragment>
