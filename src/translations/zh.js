@@ -229,7 +229,7 @@ export const messages = {
   "blocks_missed": "Blocks Missed",
   "do_not_send_1": "Do not send TRX from your own wallet or exchange to your testnet address!",
   "go_to_votelist": "Go to votelist",
-  
+
 /*
 ##################################################################################
 #                                                                                #
@@ -262,6 +262,7 @@ export const messages = {
   "not_started_yet": "Not started yet",
   "participated": "You successfully participated!",
   "participated_error": "An error occurred",
+  "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
 ##################################################################################

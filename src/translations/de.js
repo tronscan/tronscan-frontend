@@ -99,7 +99,7 @@ export const messages = {
   "node_tester": "Knoten Tester",
   "system": "System",
   "overview": "Übersicht",
-  "participate": "Mitwirkende",
+  "participate": "Teilnehmer der Blockchain",
 
 /*
 ##################################################################################
@@ -262,6 +262,7 @@ export const messages = {
   "not_started_yet": "Noch nicht gestartet",
   "participated": "Sie haben erfolgreich teilgenommen!",
   "participated_error": "Es ist ein Fehler aufgetreten.",
+  "how_much_buy_message": "Wie viele Token möchten Sie kaufen?",
 
 /*
 ##################################################################################

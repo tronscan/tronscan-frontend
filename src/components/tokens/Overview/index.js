@@ -244,8 +244,8 @@ class TokenOverview extends Component {
                         </div> :
                         <div className="card-footer bg-transparent border-top-0">
                           <div className="text-muted text-center">
-                            How much tokens do you want to buy?<br/>
-                            Price: {(token.price / ONE_TRX)}
+                            {tu("how_much_buy_message")}<br/>
+                            {tu("price")}: {(token.price / ONE_TRX)}
                           </div>
                           <div className="input-group mt-3">
                             <TextField type="number" cmp={this} field="amount" className="form-control"/>
