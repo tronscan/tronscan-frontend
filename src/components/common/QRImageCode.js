@@ -1,6 +1,5 @@
 import React from "react";
-import AwesomeQR from 'awesome-qr/dist/awesome-qr';
-const tronLogo = require('../../images/tron-logo.jpg');
+import QRCode from 'qrcode';
 
 export default class QRImageCode extends React.PureComponent {
 
@@ -16,26 +15,11 @@ export default class QRImageCode extends React.PureComponent {
 
     let {value, size = 120} = this.props;
 
-    var bgImage = new Image();
-    bgImage.src = tronLogo;
-
-    bgImage.onload = () => {
-
-      new AwesomeQR().create({
-        text: value,
-        size,
-        // logoImage: bgImage,
-        backgroundImage: bgImage,
-        margin: 0,
-        autoColor: true,
-        callback: (data) => {
-          this.setState({
-            img: data
-          });
-        }
-      });
-    };
-
+    QRCode.toDataURL(value, {
+      width: size,
+    }).then(img => {
+      this.setState({ img });
+    })
   }
 
   render() {
@@ -48,7 +32,6 @@ export default class QRImageCode extends React.PureComponent {
 
     return (
       <img src={this.state.img} {...props} />
-    )
-
+    );
   }
 }
