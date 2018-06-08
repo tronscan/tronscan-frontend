@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Update Date: 07.06.2018                                                #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
 #         Language: English                                                      #
 #                                                                                #
 ##################################################################################
@@ -64,6 +64,7 @@ export const messages = {
   "receive": "receive",
   "supply": "supply",
   "view": "view",
+  "view_all":"View all",
   "create": "create",
   "country": "region",
   "send": "send",
@@ -71,8 +72,8 @@ export const messages = {
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
-  "nodes": "Nodes",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -99,7 +100,19 @@ export const messages = {
   "system": "System",
   "overview": "Overview",
   "participate": "Participate",
-  "create": "Create",
+
+/*
+##################################################################################
+#                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
 
 /*
 ##################################################################################
@@ -108,10 +121,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first": "first page",
-  "previous": "previous page",
-  "next": "next page",
-  "last": "last page",
+  "first_page": "first page",
+  "previous_page": "previous page",
+  "next_page": "next page",
+  "last_page": "last page",
   "page": "page",
   "of": "of",
   "last_block": "last block",
@@ -241,7 +254,6 @@ export const messages = {
   "invalid_address": "invalid address",
   "insufficient_tokens": "Insufficient tokens",
   "make_another_transaction": "Make another transaction",
-  "participate": "participate",
   "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
   "An_error_occurred": "An error occurred",
@@ -281,6 +293,8 @@ export const messages = {
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
   "not_signed_in": "You will need to log in to make use of this functionality",
+  "loading_map": "Loading Map",
+  "loading_accounts": "loading Accounts",
 
 /*
 ##################################################################################
@@ -376,6 +390,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
+  "address_not_super_representative": "This address is not a Super Representative",
+  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
 /*
 ##################################################################################
@@ -425,6 +441,12 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_success_message": "Transaction successfully broadcasted to the network",
+  "transaction_success": "Transaction Success",
+  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
+  "transaction_error": "Transaction Error",
+  "confirm_transaction_message": "Are you sure you want to send the transaction?",
+  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
 /*
 ##################################################################################
@@ -439,6 +461,17 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "No webcam found",
+  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
+  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
 
 /*
 ##################################################################################
@@ -483,5 +516,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+  "send_to_following_address": "Send to the following address",
 
 };

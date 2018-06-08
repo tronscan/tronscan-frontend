@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Update Date: 07.06.2018                                                #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
 #         Language: Korean                                                       #
 #                                                                                #
 ##################################################################################
@@ -64,6 +64,7 @@ export const messages = {
   "receive": "받기",
   "supply": "supply",
   "view": "보기",
+  "view_all":"View all",
   "create": "생성",
   "country": "지역",
   "send": "보내기",
@@ -71,8 +72,8 @@ export const messages = {
   "my_vote": "나의 투표",
   "submit_votes": "투표 제출",
   "accounts": "계정",
-  "nodes": "노드",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -99,7 +100,19 @@ export const messages = {
   "system": "System",
   "overview": "Overview",
   "participate": "참여하기",
-  "create": "생성",
+
+/*
+##################################################################################
+#                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
 
 /*
 ##################################################################################
@@ -108,10 +121,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first": "first page",
-  "previous": "이전",
-  "next": "다음",
-  "last": "last page",
+  "first_page": "first page",
+  "previous_page": "이전",
+  "next_page": "다음",
+  "last_page": "last page",
   "page": "page",
   "of": "of",
   "last_block": "마지막 블록",
@@ -182,8 +195,7 @@ export const messages = {
    However, for the network and community to operate more smoothly and effectively,
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a
-   week.`,
+   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
   "apply_for_delegate_description": `
     트론 소지자는 계정 관리 기능을 사용하여 최고 위임자로 신청하고 후보자에게 투표할 수 있습니다.
     각 계정은 현재 유권자 정보를 업데이트할 수 있으며 여러 후보자에게 투표할 수 있습니다.
@@ -242,7 +254,6 @@ export const messages = {
   "invalid_address": "잘못된 주소",
   "insufficient_tokens": "불충분한 토큰",
   "make_another_transaction": "다른 거래 만들기",
-  "participate": "참여하기",
   "token_exchange_confirm": "토큰 배포에 {trxAmount}를 사용하여, {tokenAmount}의 토큰을 얻었습니다.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "알 수 없는 오류가 발생했습니다. 몇 분 후에 다시 시도하십시오.",
   "An_error_occurred": "에러가 발생했습니다.",
@@ -275,14 +286,16 @@ export const messages = {
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
   "produced_by": "{witnessAddress}에 의해 생성됨",
   "show_more": "{countriesLength}개 더보기",
-  "vote_guide_message": `TRX를 사용하여 Super Representatives에 투표하십시오. 
-   귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다. 
-   TRX는 소비되지 않습니다. 원하는대로 여러 대표에게 여러 번 투표 할 수 있습니다. 
+  "vote_guide_message": `TRX를 사용하여 Super Representatives에 투표하십시오.
+   귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.
+   TRX는 소비되지 않습니다. 원하는대로 여러 대표에게 여러 번 투표 할 수 있습니다.
    최종 투표는 24시에 집계되며 대표단 명단이 업데이트됩니다.`,
   "search_address": "주소 검색",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
   "not_signed_in": "You will need to log in to make use of this functionality",
+  "loading_map": "Loading Map",
+  "loading_accounts": "loading Accounts",
 
 /*
 ##################################################################################
@@ -329,12 +342,11 @@ export const messages = {
   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
   days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
-  "participation": "participation",
   "participation": "참여",
   "start_date": "시작 일자",
   "end_date": "종료 일자",
   "token_spend_confirm": "나는 토큰의 총 공급을 만드는데 한 번 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`Tron 프로토콜에서 토큰을 발행하는 것은 
+  "token_issue_guide_message_1":`Tron 프로토콜에서 토큰을 발행하는 것은
    계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
   "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
@@ -378,6 +390,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
+  "address_not_super_representative": "This address is not a Super Representative",
+  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
 /*
 ##################################################################################
@@ -427,6 +441,12 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_success_message": "Transaction successfully broadcasted to the network",
+  "transaction_success": "Transaction Success",
+  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
+  "transaction_error": "Transaction Error",
+  "confirm_transaction_message": "Are you sure you want to send the transaction?",
+  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
 /*
 ##################################################################################
@@ -441,6 +461,17 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "No webcam found",
+  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
+  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
 
 /*
 ##################################################################################
@@ -485,5 +516,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+  "send_to_following_address": "Send to the following address",
 
 };

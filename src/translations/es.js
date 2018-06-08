@@ -15,9 +15,9 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Date: 07.06.2018                                                       #
-#         language: Spanish                                               #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
+#         language: Spanish                                                      #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -64,6 +64,7 @@ export const messages = {
   "receive": "recibir",
   "supply": "oferta",
   "view": "visión",
+  "view_all":"View all",
   "create": "crear",
   "country": "pais",
   "send": "enviar",
@@ -71,8 +72,8 @@ export const messages = {
   "my_vote": "mi voto",
   "submit_votes": "enviar votos",
   "accounts": "cuentas",
-  "nodes": "nodos",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -91,15 +92,27 @@ export const messages = {
   "tools": "Tools",
   "news": "Noticias",
   "help": "Socorrer",
-  "nodes": "Nodes",
+  "nodes": "Nodos",
   "votes": "Votos",
   "account": "cuenta",
   "transaction_viewer": "Transaction Viewer",
   "node_tester": "Node Tester",
   "system": "System",
   "overview": "Overview",
-  "participate": "Participate",
-  "create": "Crear",
+  "participate": "Participar",
+
+/*
+##################################################################################
+#                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
 
 /*
 ##################################################################################
@@ -108,10 +121,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first": "primera página",
-  "previous": "página precedente",
-  "next": "página siguiente",
-  "last": "última página",
+  "first_page": "primera página",
+  "previous_page": "página precedente",
+  "next_page": "página siguiente",
+  "last_page": "última página",
   "page": "página",
   "of": "de",
   "last_block": "último bloque",
@@ -182,8 +195,7 @@ export const messages = {
   However, for the network and community to operate more smoothly and effectively,
   we have created a set of standards and regulations for eligible candidates to become
   recommended Super Representatives. We will promote recommended SRs to increase their
-  chances of being elected. New recommended Super Representatives are updated and posted once a
-  week.`,
+  chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
   "apply_for_delegate_description": `
    Los propietarios de TRX pueden solicitar convertirse en super delegado usando la función de gestión de cuenta y votar
    a cadidatos. Cada candidato puede actualizar la información actual del votante y también se le permite votar a multiples candidatos.
@@ -242,7 +254,6 @@ export const messages = {
   "invalid_address": "direccion no válida",
   "insufficient_tokens": "Tokens insuficientes",
   "make_another_transaction": "Hacer otra transacción",
-  "participate": "participar",
   "token_exchange_confirm": "Confirmo qu gastaré {trxAmount} distribuyendo tokens y conseguiré un total de {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Error desconocido, por favor intentalo de nuevo en unos minutos",
   "An_error_occurred": "Ha ocurrido un error",
@@ -282,6 +293,8 @@ export const messages = {
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
   "not_signed_in": "You will need to log in to make use of this functionality",
+  "loading_map": "Loading Map",
+  "loading_accounts": "loading Accounts",
 
 /*
 ##################################################################################
@@ -377,6 +390,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
+  "address_not_super_representative": "This address is not a Super Representative",
+  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
 /*
 ##################################################################################
@@ -426,6 +441,12 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_success_message": "Transaction successfully broadcasted to the network",
+  "transaction_success": "Transaction Success",
+  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
+  "transaction_error": "Transaction Error",
+  "confirm_transaction_message": "Are you sure you want to send the transaction?",
+  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
 /*
 ##################################################################################
@@ -440,6 +461,17 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "No webcam found",
+  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
+  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
 
 /*
 ##################################################################################
@@ -484,5 +516,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+  "send_to_following_address": "Send to the following address",
 
 };

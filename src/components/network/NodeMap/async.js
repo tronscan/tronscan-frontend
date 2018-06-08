@@ -1,6 +1,7 @@
 import React from "react";
 import {asyncComponent} from "react-async-component";
 import {TronLoader} from "../../common/loaders";
+import {tu} from "../../../utils/i18n";
 
 const $script = require("scriptjs");
 
@@ -9,7 +10,7 @@ export const NodeMapAsync = asyncComponent({
   LoadingComponent: () => (
     <div className="card">
       <TronLoader>
-        Loading Map
+        {tu("loading_map")}
       </TronLoader>
     </div>
   ),
@@ -31,7 +32,7 @@ export const GlobeMapAsync = asyncComponent({
   LoadingComponent: () => (
     <div className="card">
       <TronLoader>
-        Loading Map
+        {tu("loading_map")}
       </TronLoader>
     </div>
   ),

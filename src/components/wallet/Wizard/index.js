@@ -300,7 +300,7 @@ class Wizard extends React.PureComponent {
                       disabled={!this.isStepValid()}
                       className="btn btn-dark btn-lg ml-auto"
                       onClick={this.nextStep}>
-                    Next
+                    {tu("next")}
                   </button>
               }
             </div>
