@@ -64,6 +64,7 @@ export const messages = {
   "receive": "받기",
   "supply": "supply",
   "view": "보기",
+  "view_all":"View all",
   "create": "생성",
   "country": "지역",
   "send": "보내기",
@@ -72,6 +73,7 @@ export const messages = {
   "submit_votes": "투표 제출",
   "accounts": "계정",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -102,14 +104,27 @@ export const messages = {
 /*
 ##################################################################################
 #                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
+
+/*
+##################################################################################
+#                                                                                #
 # tableinformations and statistics                                               #
 #                                                                                #
 ##################################################################################
 */
-  "first": "first page",
-  "previous": "이전",
-  "next": "다음",
-  "last": "last page",
+  "first_page": "first page",
+  "previous_page": "이전",
+  "next_page": "다음",
+  "last_page": "last page",
   "page": "page",
   "of": "of",
   "last_block": "마지막 블록",

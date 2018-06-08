@@ -58,12 +58,13 @@ export const messages = {
   "Contract": "Vertrag",
   "from": "von",
   "to": "nach",
-  "value": "Wert",
+  "value": "Betrag",
   "total_accounts": "Gesamtkonten",
   "submit": "Bestätigen",
   "receive": "empfangen",
   "supply": "liefern",
   "view": "Ansicht",
+  "view_all":"Alle anzeigen",
   "create": "erstellen",
   "country": "Region",
   "send": "senden",
@@ -72,6 +73,7 @@ export const messages = {
   "submit_votes": "Stimme abgeben",
   "accounts": "Konten",
   "exchange": "Börse",
+  "next" : "Weiter",
 
 /*
 ##################################################################################
@@ -102,14 +104,27 @@ export const messages = {
 /*
 ##################################################################################
 #                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Web Dezentralisierung",
+  "transactions_last_hour": "Transaktionen der letzten Stunde",
+  "block_height": "Block Größe",
+  "online_nodes": "Aktive Knoten",
+  "pice_per_1000trx": "Preis (pro 1000TRX)",
+
+/*
+##################################################################################
+#                                                                                #
 # tableinformations and Statistics                                               #
 #                                                                                #
 ##################################################################################
 */
-  "first": "erste Seite",
-  "previous": "vorherige Seite",
-  "next": "nächste Seite",
-  "last": "letzte Seite",
+  "first_page": "erste Seite",
+  "previous_page": "vorherige Seite",
+  "next_page": "nächste Seite",
+  "last_page": "letzte Seite",
   "page": "Seite",
   "of": "von",
   "last_block": "letzter Block",
@@ -488,7 +503,7 @@ export const messages = {
   "login_mobile": "Anmeldung mit einem mobilen Gerät",
   "create_wallet": "Wallet erstellen",
   "no_open_wallet": "Keine offenes Wallet zum Ansehen",
-  "new_wallet": "Neues Wallet",
+  "new_wallet": "Neues Wallet erstellen",
   "password_encr_key_message_0": "Dieses Passwort verschlüsselt Ihren privaten Schlüssel. Es wird nicht für die Schlüsselgenerierung eingesetzt.",
   "password_encr_key_message_1": "Zum Freischalten Ihrer Wallet benötigen Sie dieses Passwort und Ihren privaten Schlüssel.",
   "strong_password_info": "Ein sicheres Passwort ist erforderlich",

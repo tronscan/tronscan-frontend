@@ -64,6 +64,7 @@ export const messages = {
   "receive": "recibir",
   "supply": "oferta",
   "view": "visión",
+  "view_all":"View all",
   "create": "crear",
   "country": "pais",
   "send": "enviar",
@@ -72,6 +73,7 @@ export const messages = {
   "submit_votes": "enviar votos",
   "accounts": "cuentas",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -102,14 +104,27 @@ export const messages = {
 /*
 ##################################################################################
 #                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
+
+/*
+##################################################################################
+#                                                                                #
 # tableinformations and Statistics                                               #
 #                                                                                #
 ##################################################################################
 */
-  "first": "primera página",
-  "previous": "página precedente",
-  "next": "página siguiente",
-  "last": "última página",
+  "first_page": "primera página",
+  "previous_page": "página precedente",
+  "next_page": "página siguiente",
+  "last_page": "última página",
   "page": "página",
   "of": "de",
   "last_block": "último bloque",

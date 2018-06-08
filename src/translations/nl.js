@@ -64,6 +64,7 @@ export const messages = {
   "receive": "receive",
   "supply": "supply",
   "view": "bekijken",
+  "view_all":"View all",
   "create": "nieuw",
   "country": "land",
   "send": "versturen",
@@ -72,6 +73,7 @@ export const messages = {
   "submit_votes": "Bevestig stemmen",
   "accounts": "accounts",
   "exchange": "Exchange",
+  "next" : "next",
 
 /*
 ##################################################################################
@@ -102,14 +104,27 @@ export const messages = {
 /*
 ##################################################################################
 #                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Decentralize the Web",
+  "transactions_last_hour": "Transactions last hour",
+  "block_height": "Block Height",
+  "online_nodes": "Online Nodes",
+  "pice_per_1000trx": "Price (per 1000TRX)",
+
+/*
+##################################################################################
+#                                                                                #
 # tableinformations and statistics                                               #
 #                                                                                #
 ##################################################################################
 */
-  "first": "first page",
-  "previous": "previous page",
-  "next": "next page",
-  "last": "last page",
+  "first_page": "first page",
+  "previous_page": "previous page",
+  "next_page": "next page",
+  "last_page": "last page",
   "page": "page",
   "of": "of",
   "last_block": "laatste blok",

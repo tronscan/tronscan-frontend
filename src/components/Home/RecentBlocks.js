@@ -42,9 +42,9 @@ class RecentBlocks extends Component {
     return (
       <div className="card">
         <div className="card-header bg-dark text-white d-flex">
-          <h5 className="m-0 lh-150">{tu("Blocks")}</h5>
+          <h5 className="m-0 lh-150">{tu("blocks")}</h5>
           <Link to="/blockchain/blocks" className="ml-auto text-white btn btn-outline-secondary btn-sm">
-            View All
+            {tu("view_all")}
           </Link>
         </div>
         <ul className="list-group list-group-flush scrollbar-dark" style={styles.list}>

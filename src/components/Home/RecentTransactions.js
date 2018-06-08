@@ -54,7 +54,7 @@ class RecentTransactions extends Component {
         <div className="card-header bg-dark text-white d-flex">
           <h5 className="m-0 lh-150">{tu("Transactions")}</h5>
           <Link to="/blockchain/transactions" className="ml-auto text-white btn btn-outline-secondary btn-sm">
-            View All
+            {tu("view_all")}
           </Link>
         </div>
         <ul className="list-group list-group-flush scrollbar-dark" style={styles.list}>
