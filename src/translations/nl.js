@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Update Date: 07.06.2018                                                #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
 #         Language: Dutch                                                        #
 #                                                                                #
 ##################################################################################
@@ -261,8 +261,7 @@ export const messages = {
   "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
   "search_address_or_url": "Search for address or URL",
   "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
-  own wallet or exchange to the account address of testnet.`,
+  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   "dear_users,": "Dear users,",
@@ -283,6 +282,8 @@ export const messages = {
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
   "not_signed_in": "U moet ingelogd zijn om gebruik te maken van deze functionaliteit",
+  "loading_map": "Loading Map",
+  "loading_accounts": "loading Accounts",
 
 /*
 ##################################################################################
@@ -378,6 +379,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
+  "address_not_super_representative": "This address is not a Super Representative",
+  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
 /*
 ##################################################################################
@@ -427,6 +430,14 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_load_error": "Transaction Load Error",
+  "transaction_success_message": "Transaction successfully broadcasted to the network",
+  "transaction_success": "Transaction Success",
+  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
+  "transaction_error": "Transaction Error",
+  "confirm_transaction": "Confirm Transaction",
+  "confirm_transaction_message": "Are you sure you want to send the transaction?",
+  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
 /*
 ##################################################################################
@@ -441,6 +452,17 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "No webcam found",
+  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
+  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
 
 /*
 ##################################################################################
@@ -485,5 +507,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+  "send_to_following_address": "Send to the following address",
 
 };

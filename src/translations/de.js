@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Update Date: 07.06.2018                                                #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
 #         Language: German                                                       #
 #                                                                                #
 ##################################################################################
@@ -39,11 +39,11 @@ export const messages = {
   "money_price": "Preis",
   "blocks": "Blöcke",
   "block": "block",
-  "balance": "Balanze",
+  "balance": "Balanz",
   "bandwidth": "Bandbreite",
   "name": "Name",
   "website": "Webseite",
-  "address": "Address",
+  "address": "Adresse",
   "price": "Preis",
   "sign_out": "Abmelden",
   "sign_in": "Anmelden",
@@ -144,8 +144,6 @@ export const messages = {
   "tokens": "Token",
   "no_tokens": "keine Token vorhanden",
   "issued_token": "ausgegebenes Token",
-  "start_date": "Start Datum",
-  "end_date": "End Datum",
   "progress": "Fortschritt",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "Herausgeber",
@@ -194,7 +192,7 @@ export const messages = {
    Jede Transaktion im Netzwerk muss von allen Superdelegierten validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
    Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert und werden Ihnen nach der Wahl und nach dem Auftauen wieder gutgeschrieben.`,
   "unknown_error": "ein unbekannter Fehler ist aufgetreten",
-  
+
   "representative_understand": "Ich habe verstanden wie man ein TRON-Vertreter wird.",
   "generate_account": "Klicken Sie hier, um Ihre Kontoadresse und Ihr Passwort zu generieren.",
   "create_account_confirm_1": "Ich habe verstanden, dass wenn ich mein Passwort vergesse/verliere niemals auf mein Vermögen zugreifen kann.",
@@ -203,7 +201,7 @@ export const messages = {
   "vote_thanks": "Vielen Dank für Ihre Abstimmung!",
   "recent_transactions": "jüngste Transaktionen",
   "newest_account": "neuestes Konto",
-  "representatives": "Bevollmächtigter",
+  "representatives": "Repräsentant",
   "most_votes": "meiste Stimmen",
   "start_end_time": "Start-/Endzeit",
   "scan_qr_code": "Scannen des Codes mit einem QR-Code-Scanner",
@@ -284,6 +282,8 @@ export const messages = {
   "token_transactions": "Token Transaktionen",
   "token_holders": "Token Inhaber",
   "not_signed_in": "Sie müssen sich einloggen, um diese Funktionalität nutzen zu können.",
+  "loading_map": "Karte wird geladen",
+  "loading_accounts": "Konten werden geladen",
 
 /*
 ##################################################################################
@@ -332,6 +332,8 @@ export const messages = {
    manuell aufgetaut und freigegeben werden. Das Einfrieren der Tokens ist nicht zwingend erforderlich.`,
   "token_issued_successfully": "Token wurden erfolgreich ausgestellt",
   "participation": "Teilnehmen",
+  "start_date": "Start Datum",
+  "end_date": "End Datum",
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
   "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
@@ -359,7 +361,7 @@ export const messages = {
   "no_url_error": "Web URL ist erforderlich",
   "past_starttime_error": "Der Starttermin liegt in der Vergangenheit.",
   "no_transactions": "Keine Transaktionen",
-  "no_transfers": "Keine Übertragungen",
+  "no_transfers": "Keine Transaktionen vorhanden",
   "TRX transferred in the past hour": "TRX übertragen der letzten Stunde",
   "Transactions in the past hour": "Transaktionen der letzten Stunde",
 
@@ -374,10 +376,12 @@ export const messages = {
   "Highest Productivity": "Höchste Produktivität",
   "Lowest Productivity": "Niedrigste Produktivität",
   "productivity": "Produktivität",
-  "rewards": "Belohnungen",
-  "Super Representatives": "Super Representatives",
-  "Super Representative Candidates": "Super Representative Kanidaten",
-  "loading_representatives": "Laden der Representativen Kanidaten",
+  "rewards": "Belohnung",
+  "Super Representatives": "Super Repräsentant",
+  "Super Representative Candidates": "Super Repräsentant Kanidaten",
+  "loading_representatives": "Laden der Repräsentant Kanidaten",
+  "address_not_super_representative": "Diese Adresse gehört keinem Super Repräsentant",
+  "unable_load_representatives_page_message": "Seite kann nicht geladen werden, evtl. ist die hinterlegte Adresse ungültig oder die Webseite wurde noch nicht durch den Repräsentant konfiguriert.",
 
 /*
 ##################################################################################
@@ -428,6 +432,13 @@ export const messages = {
   "load_tx_qrcode": "Laden der Transaktion über einen QR Code",
   "transaction_load_error": "Transaktions-Ladefehler",
   "transaction_load_error_message": "Beim Laden der Transaktion ist ein Fehler aufgetreten. Stellen Sie sicher, dass der HEX-Wert im korrekten Format vorliegt.",
+  "transaction_success_message": "Transaktion wurde erfolgreich übertragen",
+  "transaction_success": "Transaktion erfolgreich",
+  "transaction_error_message": "Beim Übertragen der Transaktion ist ein Fehler aufgetreten",
+  "transaction_error": "Transaction Fehler",
+  "confirm_transaction": "Bestätigung der Transaktion",
+  "confirm_transaction_message": "Sind Sie sicher, dass Sie die Transaktion durchführen wollen?",
+  "broadcast_transaction_to_network": "Übertragung der Transaktion in das Netzwerk",
 
 /*
 ##################################################################################
@@ -442,6 +453,17 @@ export const messages = {
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "Keine Webcam gefunden",
+  "trying_enable_webcam_message_0": "Fehler beim Versuch die Webcam zu aktivieren.",
+  "trying_enable_webcam_message_1": "Stellen Sie sicher, dass das Gerät berechtigt ist auf die Kamera zuzugreifen.",
 
 /*
 ##################################################################################
@@ -486,5 +508,6 @@ export const messages = {
   "print_paper_wallet": "Paper-Wallet drucken",
   "new_wallet_ready_message": "Ihre neue Wallet ist fertig.",
   "go_to_account_page": "Zur Konto-Seite wechseln",
+  "send_to_following_address": "An folgende Adresse senden",
 
 };

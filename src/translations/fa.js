@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0                                                           #
-#         Update Date: 07.06.2018                                                #
+#         Version: 1.0-08062018                                                  #
+#         Update Date: 08.06.2018                                                #
 #         Language: Persian                                                      #
 #                                                                                #
 ##################################################################################
@@ -182,8 +182,7 @@ export const messages = {
    However, for the network and community to operate more smoothly and effectively,
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a
-   week.`,
+   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
   "apply_for_delegate_description": `
    TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
    Each account can update current voter information and also is allowed to vote for multiple candidates.
@@ -275,13 +274,15 @@ export const messages = {
   "produced_by": "Produced by {witnessAddress}",
   "show_more": "Show {countriesLength} More",
   "vote_guide_message": `Use your TRX to vote for Super Representatives.
-    For every TRX you hold in your account you have one vote to spend.
-    TRX will not be consumed. You can vote as many times for the several representatives as you like.
-    The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+   For every TRX you hold in your account you have one vote to spend.
+   TRX will not be consumed. You can vote as many times for the several representatives as you like.
+   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
   "not_signed_in": "You will need to log in to make use of this functionality",
+  "loading_map": "Loading Map",
+  "loading_accounts": "loading Accounts",
 
 /*
 ##################################################################################
@@ -377,6 +378,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
+  "address_not_super_representative": "This address is not a Super Representative",
+  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
 /*
 ##################################################################################
@@ -426,6 +429,14 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_load_error": "Transaction Load Error",
+  "transaction_success_message": "Transaction successfully broadcasted to the network",
+  "transaction_success": "Transaction Success",
+  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
+  "transaction_error": "Transaction Error",
+  "confirm_transaction": "Confirm Transaction",
+  "confirm_transaction_message": "Are you sure you want to send the transaction?",
+  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
 /*
 ##################################################################################
@@ -440,6 +451,17 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "No webcam found",
+  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
+  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
 
 /*
 ##################################################################################
@@ -484,5 +506,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+  "send_to_following_address": "Send to the following address",
 
 };

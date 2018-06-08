@@ -51,8 +51,8 @@ class TransactionViewer extends Component {
     } catch (e) {
       this.setState({
         modal: (
-          <SweetAlert danger title="Transaction Load Error" onConfirm={this.hideModal}>
-            Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format
+          <SweetAlert danger title={tu("transaction_load_error")} onConfirm={this.hideModal}>
+            {tu("transaction_load_error_message")}
           </SweetAlert>
         )
       });
@@ -76,16 +76,16 @@ class TransactionViewer extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="Transaction Succes" onConfirm={this.hideModal}>
-            Transaction successfully broadcasted to the network
+          <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
+            {tu("transaction_success_message")}
           </SweetAlert>
         )
       });
     } else {
       this.setState({
         modal: (
-          <SweetAlert danger title="Transaction Error" onConfirm={this.hideModal}>
-            Something went wrong while trying to broadcast the transaction<br/>
+          <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
+            {tu("transaction_error_message")}<br/>
             Code: {code}
           </SweetAlert>
         ),
@@ -102,10 +102,10 @@ class TransactionViewer extends Component {
         <SweetAlert
           info
           showCancel
-          confirmBtnText="Confirm Transaction"
+          confirmBtnText={tu("confirm_transaction")}
           confirmBtnBsStyle="success"
           cancelBtnBsStyle="default"
-          title="Are you sure you want to send the transaction?"
+          title={tu("confirm_transaction_message")}
           onConfirm={() => this.broadcastTransaction(hex)}
           onCancel={this.hideModal}
         >
@@ -227,7 +227,7 @@ class TransactionViewer extends Component {
             </div>
             <div className="card mt-3 mb-5">
               <button className="btn btn-success btn-lg" onClick={this.broadcastTransactionModal}>
-                {tu("Broadcast Transaction to Network")}
+                {tu("broadcast_transaction_to_network")}
               </button>
             </div>
           </Fragment>

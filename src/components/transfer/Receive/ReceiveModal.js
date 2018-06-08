@@ -5,6 +5,7 @@ import {find} from "lodash";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRCode from "qrcode.react";
 import {CopyToClipboard} from "react-copy-to-clipboard";
+import {tu} from "../../../utils/i18n";
 
 
 class ReceiveModal extends React.PureComponent {
@@ -29,9 +30,9 @@ class ReceiveModal extends React.PureComponent {
     this.setState({
       modal: (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
-          <ModalHeader className="text-center" toggle={this.hideModal}>Receive</ModalHeader>
+          <ModalHeader className="text-center" toggle={this.hideModal}>{tu("receive")}</ModalHeader>
           <ModalBody className="text-center">
-            <h5 className="py-2">Send to the following address</h5>
+            <h5 className="py-2">{tu("send_to_following_address")}</h5>
             <p>
               <div className="input-group mb-3">
                 <input type="text"

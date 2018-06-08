@@ -84,7 +84,7 @@ class Accounts extends Component {
       return (
         <div className="text-center d-flex justify-content-center py-5">
           <TronLoader>
-            Loading Accounts
+            {tu("loading_accounts")}
           </TronLoader>
         </div>
       );
