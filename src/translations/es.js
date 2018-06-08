@@ -71,7 +71,6 @@ export const messages = {
   "my_vote": "mi voto",
   "submit_votes": "enviar votos",
   "accounts": "cuentas",
-  "nodes": "nodos",
   "exchange": "Exchange",
 
 /*
@@ -91,15 +90,14 @@ export const messages = {
   "tools": "Tools",
   "news": "Noticias",
   "help": "Socorrer",
-  "nodes": "Nodes",
+  "nodes": "Nodos",
   "votes": "Votos",
   "account": "cuenta",
   "transaction_viewer": "Transaction Viewer",
   "node_tester": "Node Tester",
   "system": "System",
   "overview": "Overview",
-  "participate": "Participate",
-  "create": "Crear",
+  "participate": "Participar",
 
 /*
 ##################################################################################
@@ -241,7 +239,6 @@ export const messages = {
   "invalid_address": "direccion no válida",
   "insufficient_tokens": "Tokens insuficientes",
   "make_another_transaction": "Hacer otra transacción",
-  "participate": "participar",
   "token_exchange_confirm": "Confirmo qu gastaré {trxAmount} distribuyendo tokens y conseguiré un total de {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Error desconocido, por favor intentalo de nuevo en unos minutos",
   "An_error_occurred": "Ha ocurrido un error",
@@ -429,12 +426,10 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
-  "transaction_load_error": "Transaction Load Error",
   "transaction_success_message": "Transaction successfully broadcasted to the network",
   "transaction_success": "Transaction Success",
   "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
   "transaction_error": "Transaction Error",
-  "confirm_transaction": "Confirm Transaction",
   "confirm_transaction_message": "Are you sure you want to send the transaction?",
   "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 

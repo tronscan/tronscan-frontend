@@ -71,7 +71,6 @@ export const messages = {
   "my_vote": "meine Abstimmung",
   "submit_votes": "Stimme abgeben",
   "accounts": "Konten",
-  "nodes": "Knoten",
   "exchange": "Börse",
 
 /*
@@ -99,7 +98,6 @@ export const messages = {
   "system": "System",
   "overview": "Übersicht",
   "participate": "Mitwirkende",
-  "create": "Erstellen",
 
 /*
 ##################################################################################
@@ -209,7 +207,7 @@ export const messages = {
   "require_account_to_send": "Sie müssen eingeloggt sein, um Token zu versenden.",
   "require_account_to_receive": "Zum empfangen von Token melden Sie sich bitte an.",
   "successful_send": "Erfolgreich Übertragen!",
-  "confirm_transaction": "Transaktion bestätigen",
+  "confirm_transaction": "Bestätigung der Transaktion",
   "last_confirmed": "Zuletzt bestätigt",
   "blocks_produced": "Blöcke produziert",
   "trx_produced": "Produzierte Transaktionen",
@@ -241,7 +239,6 @@ export const messages = {
   "invalid_address": "ungültige Adresse",
   "insufficient_tokens": "Unzureichende Token",
   "make_another_transaction": "Eine weitere Transaktion ausführen",
-  "participate": "teilnehmen",
   "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token ausgebe, ich erhalte dafür {tokenAmount} Token.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ein unbekannter Fehler ist aufgetreten, bitte versuchen Sie es in ein paar Minuten erneut.",
   "An_error_occurred": "Es ist ein Fehler aufgetreten.",
@@ -436,7 +433,6 @@ export const messages = {
   "transaction_success": "Transaktion erfolgreich",
   "transaction_error_message": "Beim Übertragen der Transaktion ist ein Fehler aufgetreten",
   "transaction_error": "Transaction Fehler",
-  "confirm_transaction": "Bestätigung der Transaktion",
   "confirm_transaction_message": "Sind Sie sicher, dass Sie die Transaktion durchführen wollen?",
   "broadcast_transaction_to_network": "Übertragung der Transaktion in das Netzwerk",
 

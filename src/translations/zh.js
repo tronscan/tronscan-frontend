@@ -71,7 +71,6 @@ export const messages = {
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
-  "nodes": "Nodes",
   "exchange": "Exchange",
 
 /*
@@ -99,7 +98,6 @@ export const messages = {
   "system": "System",
   "overview": "Overview",
   "participate": "Participate",
-  "create": "Create",
 
 /*
 ##################################################################################
@@ -209,7 +207,7 @@ export const messages = {
   "require_account_to_send": "You must be logged in to send coins",
   "require_account_to_receive": "You must be logged in to receive coins",
   "successful_send": "Succesfully send!",
-  "confirm_transaction": "confirm transaction",
+  "confirm_transaction": "Confirm transaction",
   "last_confirmed": "Last Confirmed",
   "blocks_produced": "Blocks Produced",
   "trx_produced": "Transactions Produced",
@@ -241,7 +239,6 @@ export const messages = {
   "invalid_address": "invalid address",
   "insufficient_tokens": "Insufficient tokens",
   "make_another_transaction": "Make another transaction",
-  "participate": "participate",
   "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
   "An_error_occurred": "An error occurred",
@@ -427,12 +424,10 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
-  "transaction_load_error": "Transaction Load Error",
   "transaction_success_message": "Transaction successfully broadcasted to the network",
   "transaction_success": "Transaction Success",
   "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
   "transaction_error": "Transaction Error",
-  "confirm_transaction": "Confirm Transaction",
   "confirm_transaction_message": "Are you sure you want to send the transaction?",
   "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 

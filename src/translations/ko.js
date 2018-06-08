@@ -71,7 +71,6 @@ export const messages = {
   "my_vote": "나의 투표",
   "submit_votes": "투표 제출",
   "accounts": "계정",
-  "nodes": "노드",
   "exchange": "Exchange",
 
 /*
@@ -99,7 +98,6 @@ export const messages = {
   "system": "System",
   "overview": "Overview",
   "participate": "참여하기",
-  "create": "생성",
 
 /*
 ##################################################################################
@@ -241,7 +239,6 @@ export const messages = {
   "invalid_address": "잘못된 주소",
   "insufficient_tokens": "불충분한 토큰",
   "make_another_transaction": "다른 거래 만들기",
-  "participate": "참여하기",
   "token_exchange_confirm": "토큰 배포에 {trxAmount}를 사용하여, {tokenAmount}의 토큰을 얻었습니다.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "알 수 없는 오류가 발생했습니다. 몇 분 후에 다시 시도하십시오.",
   "An_error_occurred": "에러가 발생했습니다.",
@@ -330,7 +327,6 @@ export const messages = {
   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
   days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
-  "participation": "participation",
   "participation": "참여",
   "start_date": "시작 일자",
   "end_date": "종료 일자",
@@ -430,12 +426,10 @@ export const messages = {
   "load_tx_qrcode": "Load Transaction from QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
-  "transaction_load_error": "Transaction Load Error",
   "transaction_success_message": "Transaction successfully broadcasted to the network",
   "transaction_success": "Transaction Success",
   "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
   "transaction_error": "Transaction Error",
-  "confirm_transaction": "Confirm Transaction",
   "confirm_transaction_message": "Are you sure you want to send the transaction?",
   "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 

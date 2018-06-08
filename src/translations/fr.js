@@ -71,7 +71,6 @@ export const messages = {
   "my_vote": "mon vote",
   "submit_votes": "soumettre les votes",
   "accounts": "comptes",
-  "nodes": "noeuds",
   "exchange": "Exchange",
 
 /*
@@ -99,7 +98,6 @@ export const messages = {
   "system": "système",
   "overview": "Aperçu",
   "participate": "participer",
-  "create": "créer",
 
 /*
 ##################################################################################
@@ -241,7 +239,6 @@ export const messages = {
   "invalid_address": "adresse invalide",
   "insufficient_tokens": "Nombre de jetons insuffisant",
   "make_another_transaction": "Faire une autre transaction",
-  "participate": "participer",
   "token_exchange_confirm": "Je confirme l'envoi de {trxAmount}. Je reçois en retour {tokenAmount}.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Une erreur inconnue s'est produite, veuillez réessayer dans quelques minutes",
   "An_error_occurred": "Une erreur est survenue",
@@ -257,9 +254,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "apply_for_delegate": "postuler pour être délégué",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
-  "your_personal_website_address": "l'adresse de votre site web personnel",
   "plese_keep_in_mind": "Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre portefeuille ou un site d'échange vers le testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "Les TRX pour les tests seront envoyés à votre compte de test une fois que vous aurez fait la demande puis l'écran de gestion de compte.",
@@ -429,12 +423,10 @@ export const messages = {
   "load_tx_qrcode": "Charger une transaction depuis un QR Code",
   "transaction_load_error": "Transaction Load Error",
   "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
-  "transaction_load_error": "Transaction Load Error",
   "transaction_success_message": "Transaction successfully broadcasted to the network",
   "transaction_success": "Transaction Success",
   "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
   "transaction_error": "Transaction Error",
-  "confirm_transaction": "Confirm Transaction",
   "confirm_transaction_message": "Are you sure you want to send the transaction?",
   "broadcast_transaction_to_network": "Broadcast Transaction to Network",
 
