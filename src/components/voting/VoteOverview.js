@@ -421,7 +421,7 @@ class VoteOverview extends React.Component {
           </div>
         </div>
 
-        <Link to="/votes-live" class="btn btn-secondary btn-block mt-3">
+        <Link to="/votes-live" className="btn btn-secondary btn-block mt-3">
           {tu("view_live_ranking")}
         </Link>
 
