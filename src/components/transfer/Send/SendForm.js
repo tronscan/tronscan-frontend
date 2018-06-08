@@ -191,6 +191,15 @@ class SendForm extends React.Component {
     )
   }
 
+  setMaxAmount = () => {
+
+    let selectedTokenBalance = this.getSelectedTokenBalance();
+
+    this.setState({
+      amount: selectedTokenBalance,
+    });
+  };
+
   resetForm = ()  => {
     this.setState({
       amount: '',
@@ -277,6 +286,13 @@ class SendForm extends React.Component {
                    className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
                    value={amount}
                    placeholder='0.0000'/>
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary"
+                      type="button"
+                      onClick={this.setMaxAmount}>
+                MAX
+              </button>
+            </div>
             <div className="invalid-feedback">
               {tu("insufficient_tokens")}
             </div>
