@@ -56,7 +56,7 @@ export default class Paging extends React.PureComponent {
           <li className={"page-item " + (showFirst && "invisible")}>
             <FirstButton>
               <i className="fas fa-fast-backward mr-sm-2" />
-              <span className="d-none d-sm-inline-block">{tu("first")}</span>
+              <span className="d-none d-sm-inline-block">{tu("first_page")}</span>
             </FirstButton>
           </li>
           <li className={"page-item " + (showFirst && "invisible")}>

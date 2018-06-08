@@ -228,6 +228,7 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "blocks_missed": "بلاک های از دست رفته",
   "do_not_send_1": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
+  "go_to_votelist": "Go to votelist",
 
 /*
 ##################################################################################
@@ -261,6 +262,7 @@ export const messages = {
   "not_started_yet": "هنوز شروع نشده",
   "participated": "شما با موفقیت شرکت کردید  ",
   "participated_error": "خطایی رخ داد است",
+  "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
 ##################################################################################

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import {BarLoader} from "../common/loaders";
 import xhr from "axios";
@@ -920,7 +920,7 @@ class Account extends Component {
               </div>
               <div className="card-body text-center pt-0">
                 <p className="card-text">
-                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{tu("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
                 </p>
                 {
                   hasFrozen &&

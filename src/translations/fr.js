@@ -51,7 +51,7 @@ export const messages = {
   "register": "S'inscrire",
   "login": "s'identifier",
   "height": "Hauteur",
-  "age": "age",
+  "age": "âge",
   "produced by": "produit par",
   "bytes": "bytes",
   "created": "créé",
@@ -64,7 +64,7 @@ export const messages = {
   "receive": "recevoir",
   "supply": "offre",
   "view": "vue",
-  "view_all":"View all",
+  "view_all":"tout voir",
   "create": "créer",
   "country": "pays",
   "send": "envoyer",
@@ -228,6 +228,7 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
+  "go_to_votelist": "Go to votelist",
 
 /*
 ##################################################################################
@@ -261,6 +262,7 @@ export const messages = {
   "not_started_yet": "Pas encore commencé",
   "participated": "Vous avez participé avec succès!",
   "participated_error": "Une erreur est survenue",
+  "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
 ##################################################################################

@@ -228,6 +228,7 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "blocks_missed": "유실된 블록",
   "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
+  "go_to_votelist": "Go to votelist",
 
 /*
 ##################################################################################
@@ -261,6 +262,7 @@ export const messages = {
   "not_started_yet": "준비중",
   "participated": "당신은 성공적으로 참여했습니다!",
   "participated_error": "에러가 발생했습니다.",
+  "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
 ##################################################################################
