@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.0-09062018-0                                                #
+#         Update Date: 09.06.2018                                                #
 #         Language: Portuguese - Brazil                                          #
 #                                                                                #
 ##################################################################################
@@ -34,46 +34,46 @@ export const messages = {
 ##################################################################################
 */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "Protocolo Tron",
   "password": "senha",
   "money_price": "preço",
   "blocks": "blocos",
-  "block": "block",
+  "block": "bloco",
   "balance": "saldo",
   "bandwidth": "bandwidth",
   "name": "nome",
   "website": "website",
   "address": "endereço",
-  "price": "price",
+  "price": "valor",
   "sign_out": "sair",
-  "sign_in": "sign in",
-  "register_login": "Registrar / Entrar",
+  "sign_in": "entrar",
+  "register_login": "Registar / Entrar",
   "register": "registrar",
   "login": "entrar",
-  "height": "height",
-  "age": "age",
-  "produced by": "produced by",
+  "height": "altura",
+  "age": "idade",
+  "produced by": "produzido por",
   "bytes": "bytes",
-  "created": "created",
-  "Contract": "Contract",
-  "from": "from",
+  "created": "criado",
+  "Contract": "Contrato",
+  "from": "de",
   "to": "para",
-  "value": "value",
-  "total_accounts": "Total Accounts",
+  "value": "valor",
+  "total_accounts": "Total de Contas",
   "submit": "enviar",
   "receive": "receber",
-  "supply": "supply",
+  "supply": "oferta",
   "view": "visualizar",
-  "view_all":"View all",
-  "create": "criar",
-  "country": "região",
+  "view_all":"visualizar todos",
+  "create": "novo",
+  "country": "pais",
   "send": "enviar",
-  "amount": "valor",
-  "my_vote": "meus votos",
+  "amount": "quantidade",
+  "my_vote": "Meus votos",
   "submit_votes": "enviar votos",
   "accounts": "contas",
-  "exchange": "Exchange",
-  "next" : "next",
+  "exchange": "Câmbio",
+  "next" : "Próximo",
 
 /*
 ##################################################################################
@@ -83,23 +83,23 @@ export const messages = {
 ##################################################################################
 */
   "blockchain": "Blockchain",
-  "wallet": "Wallet",
-  "home": "Home",
-  "transfers": "Transfers",
-  "live": "Live",
-  "statistics": "Statistics",
-  "markets": "Markets",
-  "tools": "Tools",
-  "news": "News",
-  "help": "Help",
-  "nodes": "nós",
-  "votes": "votos",
-  "account": "conta",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
-  "system": "System",
-  "overview": "Overview",
-  "participate": "Participate",
+  "wallet": "Carteira",
+  "home": "Iníncio",
+  "transfers": "Transferências",
+  "live": "Ao vivio",
+  "statistics": "Estatisticas",
+  "markets": "Mercado",
+  "tools": "Ferramentas",
+  "news": "Notícias",
+  "help": "Ajuda",
+  "nodes": "Nós",
+  "votes": "Votos",
+  "account": "Conta",
+  "transaction_viewer": "Visualizador de Transações",
+  "node_tester": "Testador de Nó",
+  "system": "Sistema",
+  "overview": "Visão geral",
+  "participate": "Participar",
 
 /*
 ##################################################################################
@@ -108,11 +108,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
-  "block_height": "Block Height",
-  "online_nodes": "Online Nodes",
-  "pice_per_1000trx": "Price (per 1000TRX)",
+  "tron_main_message": "Decentralize uma Rede",
+  "transactions_last_hour": "Transações da última hora",
+  "block_height": "Altura do Bloco",
+  "online_nodes": "Nós conectados",
+  "pice_per_1000trx": "Valor (por 1000TRX)",
 
 /*
 ##################################################################################
@@ -121,20 +121,20 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first_page": "first page",
-  "previous_page": "previous page",
-  "next_page": "next page",
-  "last_page": "last page",
-  "page": "page",
-  "of": "of",
+  "first_page": "Primeira página",
+  "previous_page": "página anterior",
+  "next_page": "próxima página",
+  "last_page": "última página",
+  "page": "página",
+  "of": "de",
   "last_block": "último bloco",
-  "total_supply": "oferta total",
-  "addresses": "addresses",
-  "most_nodes": "Most Nodes",
-  "loading_nodes": "loading Nodes",
+  "total_supply": "Oferta total",
+  "addresses": "endereços",
+  "most_nodes": "Maioria dos Nós",
+  "loading_nodes": "Carregando Nós",
   "Hostname": "Hostname",
-  "Last Update": "Last Update",
-  "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "Last Update": "Última Atualização",
+  "first_node_sync_message": "Aguardando a sincronização do primeiro nó, tente novamente em alguns minutos.",
 
 /*
 ##################################################################################
@@ -143,21 +143,21 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "set_name": "Set Name",
-  "show_qr_code": "Show QR Code",
-  "free_bandwidth": "Free Bandwidth",
-  "expires": "expires",
-  "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "Ao solicitar TRX, você receberá 10.000 TRX, que pode ser usado para teste na testnet.",
-  "information_message_2": "Você só pode solicitar TRX uma vez por conta.",
-  "request_trx_for_testing": "Solicite TRX para teste",
+  "set_name": "Configurar Nome",
+  "show_qr_code": "Mostrar QR Code",
+  "free_bandwidth": "Banda gratuita",
+  "expires": "expira em",
+  "have_been_added_to_your_account": "foram adicionados à sua conta!",
+  "information_message_1": "Ao solicitar TRX, você receberá 10.000 TRX, que podem ser usados para testes na testnet.",
+  "information_message_2": "Você só pode solicitar TRX 10 vezes por conta.",
+  "request_trx_for_testing": "Solicite TRX para testes",
   "tron_power": "Tron Power",
-  "do_not_send_2": "Não envie TRX da sua carteira ou exchange para o endereço da testnet acima!",
+  "do_not_send_2": "Não envie TRX da sua carteira ou troque para o endereço de conta da testnet acima!",
   "transactions": "transações",
   "tokens": "tokens",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
-  "progress": "progress",
+  "no_tokens": "Nenhum Token",
+  "issued_token": "token emitido",
+  "progress": "progresso",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "emissor",
   "network": "rede",
@@ -170,16 +170,16 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
-  "frozen_supply": "Frozen Supply",
-  "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
-  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
-   For example, with Tron Power you can `,
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
-   After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
+  "freeze" : "congelar",
+  "unfreeze" : "descongelar",
+  "frozen_supply": "Fornecimento Congelado",
+  "freeze_trx_least": "Você precisa de pelo menos 1 TRX para poder congelar",
+  "unable_unfreeze_trx_message": "Não é possível descongelar TRX. Isso pode ser causado porque o período mínimo de congelamento ainda não foi atingido.",
+  "freeze_trx_premessage_0": `TRX pode ser congelado/bloqueado para obter Tron Power e habilitar recursos adicionais.
+   Por exemplo, com o Tron Power você pode `,
+  "freeze_trx_premessage_1": ` Os tokens congelados são "bloqueados" por um período de 3 dias. Durante este período, TRX congelados não pode ser negociado.
+   Após este período, você pode descongelar TRX e trocar os tokens.`,
+  "freeze_trx_premessage_link": "votar nos Super Representantes.",
 
 /*
 ##################################################################################
@@ -189,22 +189,22 @@ export const messages = {
 ##################################################################################
 */
   "apply_for_delegate": "candidatar-se a delegado",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
-  "your_personal_website_address": "Digite seu site pessoal",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
-   However, for the network and community to operate more smoothly and effectively,
-   we have created a set of standards and regulations for eligible candidates to become
-   recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
+  "apply_super_representative_candidate": "Candidate-se para ser um Super Representante",
+  "your_personal_website_address": "seu endereço de site pessoal",
+  "apply_for_delegate_predescription":`Cada detentor de token tem a oportunidade de se tornar um Super Representante TRON.
+   No entanto, para que a rede e a comunidade operem de forma mais suave e eficaz,
+   nós criamos um conjunto de normas e regulamentos para candidatos elegíveis a se tornarem
+   recomendados à Super Representantes. Promoveremos SR recomendados para aumentar sua
+   chances de ser eleito. Novos Super Representantes recomendados são atualizados e publicados uma vez por semana.`,
   "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
+   Os titulares de TRX podem se inscrever para se tornar um super delegado usando a função de gerenciamento de conta e votarem nos candidatos.
+   Cada conta pode atualizar as informações atuais de votos, também é permitido votar em vários candidatos.
+   O número máximo de votos é menor ou igual ao número de TRX que o usuário possui.
+   (Se você tem certa soma de TRX, você pode votar menos ou igual a certo número de votos).
+   O resultado dos votos será calculado com base nas informações finais do eleitor de cada conta em cada
+   Ciclo de Votação, cujo horário é de 00:00 a 24:00. Os detentores de TRX com mais votos se tornarão super delegados.
+   Toda transação feita na rede deve ser validada por todos os SuperDelegates, e recompensas serão obtidas.
+   O TRX não será consumido no processo de aplicação e votação do super delegado.`,
   "unknown_error": "Ocoreu um erro desconhecido",
   "representative_understand": "Eu compreendo como ser um representante TRON",
   "generate_account": "Clique para gerar seu endereço de conta e senha",
@@ -214,10 +214,10 @@ export const messages = {
   "vote_thanks": "Obrigado por enviar seu voto!",
   "recent_transactions": "transações recentes",
   "newest_account": "conta mais recente",
-  "representatives": "representantes",
-  "most_votes": "mais votado",
-  "start_end_time": "Data Início / Fim ",
-  "scan_qr_code": "Digitalize a imagem com um scanner de QR code",
+  "representatives": "representatives",
+  "most_votes": "maioria dos votos",
+  "start_end_time": "Hora de Início / Fim",
+  "scan_qr_code": "Digitalize o código com um scanner de QR code",
   "receive_trx": "receber TRX",
   "require_account_to_send": "Você precisa estar logado para enviar moedas",
   "require_account_to_receive": "Você precisa estar logado para receber moedas",
@@ -225,7 +225,7 @@ export const messages = {
   "confirm_transaction": "confirmar transação",
   "last_confirmed": "Última confirmação",
   "blocks_produced": "Blocos Produzidos",
-  "trx_produced": "Transactions Produced",
+  "trx_produced": "Transações Produzidas",
   "blocks_missed": "Blocos Perdidos",
   "do_not_send_1": "Não envie TRX da sua carteira ou exchange para o seu endereço testnet!",
   "go_to_votelist": "Go to votelist",
@@ -239,29 +239,29 @@ export const messages = {
 */
   "name_of_the_token": "Nome do token",
   "create_token": "Criar Token",
-  "token_message": "Name for the token",
+  "token_message": "Nome para o token",
   "abbr_message": "Abbreviation for the token",
   "description": "Descrição",
   "description_url": "Página URL",
-  "quote_token_amount": "Valor do Token",
-  "base_token_amount": "Base do valor do Token",
-  "creating_a_token": "Criando token",
+  "quote_token_amount": "Cotação da Quantidade Token",
+  "base_token_amount": "Quantidade base do Token",
+  "creating_a_token": "Criando um token",
   "available": "disponível",
   "testnet": "Testnet",
-  "days_to_freeze": "Days to freeze",
-  "trx_token_fee_message": "1024 TRX is required to issue a new token",
-  "trx_token_account_limit": "You may create only one token per account",
-  "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
+  "days_to_freeze": "Dias para congelar",
+  "trx_token_fee_message": "1024 TRX são necessários para emitir um novo token",
+  "trx_token_account_limit": "Você pode criar apenas um token por conta",
+  "trx_token_wallet_requirement": "Você precisa abrir uma carteira para poder criar um token",
   "invalid_address": "endereço inválido",
-  "insufficient_tokens": "tokens insuficientes",
-  "make_another_transaction": "Faça outra transação",
-  "token_exchange_confirm": "Eu confirmo a troca pelo token",
-  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
-  "An_error_occurred": "An error occurred",
-  "create_a_token": "Create a token",
-  "not_started_yet": "Not started yet",
-  "participated": "You successfully participated!",
-  "participated_error": "An error occurred",
+  "insufficient_tokens": "Tokens insuficientes",
+  "make_another_transaction": "Realizar outra transação",
+  "token_exchange_confirm": "Eu confirmo para gastar {trxAmount} na emissão dos tokens e obter um total de {tokenAmount} tokens.",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ocorreu um erro desconhecido. Tente novamente em alguns minutos",
+  "An_error_occurred": "Ocorreu um erro",
+  "create_a_token": "Criar um token",
+  "not_started_yet": "Não iniciado ainda",
+  "participated": "Participação realizada com sucesso",
+  "participated_error": "Ocorreu um erro",
   "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
@@ -271,31 +271,31 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "address_warning": "Insira apenas o endereço válido da carteira TRON. Endereços incorretos podem causar perda de TRX.",
-  "search_address_or_url": "Search for address or URL",
-  "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+  "address_warning": "Insira apenas o endereço de carteira TRON válido. Endereços incorretos podem causar perda de TRX.",
+  "search_address_or_url": "Pesquisar por endereço ou URL",
+  "the_lunch_test": "O lançamento do testnet visa testar todos os recursos do nosso blockchain explorer e wallet.",
+  "plese_keep_in_mind": "Lembre-se de que, como o endereço da sua conta registrada é usado apenas para o testnet, não envie o TRX da sua própria carteira ou troque para o endereço da conta testnet.",
   "tron_foundation": "TRON Foundation",
-  "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
-  "dear_users,": "Dear users,",
-  "finished": "Finished",
+  "trx_for_testing": "O TRX para testes será enviado para sua conta de teste assim que você aplicar com sucesso através do gerenciamento de contas.",
+  "dear_users,": "Caros usuários,",
+  "finished": "Finalizado",
   "token": "token",
   "url": "url",
-  "need_to_login": "You must be logged in to access to account page",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "No TRX remaining",
-  "produced_by": "Produced by {witnessAddress}",
-  "show_more": "Show {countriesLength} More",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives.
-   For every TRX you hold in your account you have one vote to spend.
-   TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-  "search_address": "Search for address",
-  "token_transactions": "Token Transactions",
-  "token_holders": "Token Holders",
-  "not_signed_in": "You will need to log in to make use of this functionality",
-  "loading_map": "Loading Map",
+  "need_to_login": "Você deve estar logado para acessar a página da conta",
+  "thanks_for_applying": "Obrigado por se inscrever!",
+  "to_much_votes": "Voto excedidos",
+  "no_trx_remaining": "Não há TRX restante",
+  "produced_by": "Produzido por {witnessAddress}",
+  "show_more": "Mostrar mais {countriesLength}",
+  "vote_guide_message": `Use seu TRX para votar nos Super Representantes.
+   Para cada TRX que você tem em sua conta, você tem um voto para gastar.
+   TRX não será consumido. Você pode votar quantas vezes para os vários representantes que você quiser.
+   Os votos finais serão computados às 24 horas e a lista de delegados será atualizada.`,
+  "search_address": "Procurar por endereço",
+  "token_transactions": "Transações de Token",
+  "token_holders": "Detentores do Token",
+  "not_signed_in": "Você precisará fazer o login para usar essa funcionalidade",
+  "loading_map": "Carregando Mapa",
   "loading_accounts": "loading Accounts",
 
 /*
