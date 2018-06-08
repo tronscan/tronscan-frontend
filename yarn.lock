@@ -7408,6 +7408,10 @@ react-portal@^4.1.2:
   dependencies:
     prop-types "^15.5.8"
 
+react-recaptcha@^2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/react-recaptcha/-/react-recaptcha-2.3.8.tgz#a0d2303bb3f607f622c67c5b2feb1b1b86f9f814"
+
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
