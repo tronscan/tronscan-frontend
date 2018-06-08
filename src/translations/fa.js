@@ -228,7 +228,8 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "blocks_missed": "بلاک های از دست رفته",
   "do_not_send_1": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
-
+  "go_to_votelist": "Go to votelist",
+  
 /*
 ##################################################################################
 #                                                                                #

@@ -228,7 +228,8 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "blocks_missed": "Bloques perdidos",
   "do_not_send_1": "¡No envíes TRX desde tu cartera o exchange a tu dirección de testnet!",
-
+  "go_to_votelist": "Go to votelist",
+  
 /*
 ##################################################################################
 #                                                                                #

@@ -223,7 +223,7 @@ class Representative extends React.Component {
         </div>
         <Link className="btn btn-secondary btn-block mb-2" to="/votes">
           <i className="fa fa-arrow-left mr-2"/>
-          Go to votelist
+          {tu("go_to_votelist")}
         </Link>
       </div>
     );

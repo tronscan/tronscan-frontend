@@ -72,7 +72,7 @@ export const messages = {
   "my_vote": "meine Abstimmung",
   "submit_votes": "Stimme abgeben",
   "accounts": "Konten",
-  "exchange": "Börse",
+  "exchange": "Handelsplatz",
   "next" : "Weiter",
 
 /*
@@ -148,11 +148,11 @@ export const messages = {
   "free_bandwidth": "Freie Bandbreite",
   "expires": "abgelaufen",
   "have_been_added_to_your_account": "wurden Ihrem Konto hinzugefügt!",
-  "information_message_1": "Wenn Sie TRX Testcoins anfordern erhalten Sie 10000 TRX die Sie zum Testen vom Testnetz verwenden können.",
+  "information_message_1": "Wenn Sie TRX Testcoins anfordern erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
   "information_message_2": "Sie können TRX nur 10 Mal pro Konto anfordern.",
   "request_trx_for_testing": "TRX zum Testen anfordern",
   "tron_power": "Tron Power",
-  "do_not_send_2": "Senden Sie bitte kein TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
+  "do_not_send_2": "Senden Sie bitte keine TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
   "transactions": "Transaktionen",
   "tokens": "Token",
   "no_tokens": "keine Token vorhanden",
@@ -177,8 +177,8 @@ export const messages = {
   "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die minimale Einfrierzeit noch nicht erreicht ist.",
   "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
    Mit Tron Power können Sie zum Beispiel `,
-  "freeze_trx_premessage_1": ` Eingefrorene Token werden für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
-   Nach dieser Zeit können Sie den TRX auftauen und die Token tauschen.`,
+  "freeze_trx_premessage_1": ` Eingefrorene Token werden mindestens für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
+   Nach Ablauf der Frist können Sie Ihr Guthaben wieder auftauen und verwenden.`,
   "freeze_trx_premessage_link": "für die Super-Repräsentanten abstimmen.",
 
 /*
@@ -191,19 +191,19 @@ export const messages = {
   "apply_for_delegate": "Bewerbung als Delegierter",
   "apply_super_representative_candidate": "Bewerben Sie sich als Super-Repräsentant",
   "your_personal_website_address": "Ihre persönliche Webseite",
-  "apply_for_delegate_predescription":`Jeder TRX Inhaber hat die Möglichkeit ein TRON-Super-Repräsentant zu werden.
+  "apply_for_delegate_predescription":`Jeder TRX Inhaber kann ein TRON-Super-Repräsentant werden.
    Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
-   wurden Standards und Vorschriften für die Super-Repräsentanten definiert.
+   wurden Standards und Vorschriften für die Super-Repräsentanten Anwärter festgelegt.
    Wir werden geeignete Super-Repräsentanten fördern und unterstützen.
-   Neue geeignete Super Representatives werden einmal pro Woche aktualisiert und veröffentlicht.`,
+   Einmal pro Woche werden neue geeignete Super Representatives bestimmt und veröffentlicht.`,
   "apply_for_delegate_description": `
    TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
    Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
    Kandidaten gleichzeitig abstimmen. Die maximal möglichen Anzahl an Stimmrechte entsprechen der Summe an TRX die Sie besitzen.
    Das Abstimmungsergebnis wird auf der Grundlage der endgültigen Stimmen jedes einzelnen Kontos berechnet.
-   Der Abstimmungszyklus ist von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Superdelegierten gewählt.
-   Jede Transaktion im Netzwerk muss von allen Superdelegierten validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
-   Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert und werden Ihnen nach der Wahl und nach dem Auftauen wieder gutgeschrieben.`,
+   Der Abstimmungszyklus ist von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Super-Repräsentant gewählt.
+   Jede Transaktion im Netzwerk muss von allen Super-Repräsentant validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
+   Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert. Sie werden Ihnen nach der Wahl und nach Ablauf der Sperrfrist wieder gutgeschrieben.`,
   "unknown_error": "ein unbekannter Fehler ist aufgetreten",
 
   "representative_understand": "Ich habe verstanden wie man ein TRON-Vertreter wird.",
@@ -228,6 +228,7 @@ export const messages = {
   "trx_produced": "Produzierte Transaktionen",
   "blocks_missed": "Fehlende Blöcke",
   "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der Tron Testnetz Adresse!",
+  "go_to_votelist": "Zurück zur Voteliste",
 
 /*
 ##################################################################################
@@ -390,7 +391,7 @@ export const messages = {
   "productivity": "Produktivität",
   "rewards": "Belohnung",
   "Super Representatives": "Super Repräsentant",
-  "Super Representative Candidates": "Super Repräsentant Kanidaten",
+  "Super Representative Candidates": "Super Repräsentanten Anwärter",
   "loading_representatives": "Laden der Repräsentant Kanidaten",
   "address_not_super_representative": "Diese Adresse gehört keinem Super Repräsentant",
   "unable_load_representatives_page_message": "Seite kann nicht geladen werden, evtl. ist die hinterlegte Adresse ungültig oder die Webseite wurde noch nicht durch den Repräsentant konfiguriert.",
@@ -406,7 +407,7 @@ export const messages = {
   "average_volume_usd": "Durchschnittliches Volumen in USD",
   "Trade Volume": "Handelsvolumen",
   "rank": "Rang",
-  "pair": "Paar",
+  "pair": "Währungspaar",
   "volume": "Volumen",
 
 /*
@@ -502,7 +503,7 @@ export const messages = {
   "select_file": "Datei auswählen",
   "login_mobile": "Anmeldung mit einem mobilen Gerät",
   "create_wallet": "Wallet erstellen",
-  "no_open_wallet": "Keine offenes Wallet zum Ansehen",
+  "no_open_wallet": "Keine Wallet verfügbar",
   "new_wallet": "Neues Wallet erstellen",
   "password_encr_key_message_0": "Dieses Passwort verschlüsselt Ihren privaten Schlüssel. Es wird nicht für die Schlüsselgenerierung eingesetzt.",
   "password_encr_key_message_1": "Zum Freischalten Ihrer Wallet benötigen Sie dieses Passwort und Ihren privaten Schlüssel.",
@@ -512,12 +513,12 @@ export const messages = {
   "do_not_lose_it": "Verlieren Sie es nicht!",
   "do_not_share_it": "Teilen Sie es nicht!",
   "make_a_backup": "Erstellen Sie ein Backup!",
-  "do_not_lose_it_message_0": "Tron Foundation kann Ihnen nicht helfen einen verlorenen Schlüssel wiederherzustellen.",
-  "do_not_share_it_message_0": "Ihr Geld kann gestohlen werden wenn Sie diese Datei auf fremden Website verwenden oder sie öffentlich teilen.",
-  "make_a_backup_message_0": "Nur für den Fall wenn Ihr Laptop zerstört wird.",
+  "do_not_lose_it_message_0": "Die Tron Foundation kann Ihnen nicht bei der Wiederherstellung eines verlorenen gegangenen Schlüssels helfen.",
+  "do_not_share_it_message_0": "Veröffentlichen oder teilen Sie die Datei nicht mit Anderen und nutzen Sie für den Zugriff ausschließlich die offizielle Webseite. Andernfalls kann es zum Verlust Ihres Guthaben kommen.",
+  "make_a_backup_message_0": "Nur für den Fall dass Ihr Laptop zerstört wird und Sie nicht mehr auf Ihre Daten zugreifen können.",
   "save_private_key": "Speichern des privaten Schlüssels",
   "print_paper_wallet": "Paper-Wallet drucken",
-  "new_wallet_ready_message": "Ihre neue Wallet ist fertig.",
+  "new_wallet_ready_message": "Ihre neue Wallet wurde erstellt.",
   "go_to_account_page": "Zur Konto-Seite wechseln",
   "send_to_following_address": "An folgende Adresse senden",
 
