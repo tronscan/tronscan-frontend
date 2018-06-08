@@ -39,7 +39,7 @@ export const messages = {
   "money_price": "Preis",
   "blocks": "Blöcke",
   "block": "block",
-  "balance": "Balanz",
+  "balance": "Saldo",
   "bandwidth": "Bandbreite",
   "name": "Name",
   "website": "Webseite",
@@ -55,7 +55,7 @@ export const messages = {
   "produced by": "erstellt von",
   "bytes": "bytes",
   "created": "Erstellt",
-  "Contract": "Vertrag",
+  "contract": "Vertrag",
   "from": "von",
   "to": "nach",
   "value": "Betrag",
@@ -74,6 +74,7 @@ export const messages = {
   "accounts": "Konten",
   "exchange": "Handelsplatz",
   "next" : "Weiter",
+  "copied_to_clipboard": "In Zwischenablage kopiert",
 
 /*
 ##################################################################################
@@ -113,6 +114,10 @@ export const messages = {
   "block_height": "Block Größe",
   "online_nodes": "Aktive Knoten",
   "pice_per_1000trx": "Preis (pro 1000TRX)",
+  "vote_for_supre_representatives": "Für einen Super Representatives abstimmen",
+  "view_super_representatives": "Super Representaten Übersicht",
+  "create_new_wallet": "Ein neues Wallet erstellen",
+  "view_tokens": "Tokenübersicht",
 
 /*
 ##################################################################################
@@ -155,6 +160,9 @@ export const messages = {
   "do_not_send_2": "Senden Sie bitte keine TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
   "transactions": "Transaktionen",
   "tokens": "Token",
+  "token_balances": "Tokenbestand",
+  "produced_blocks": "Produzierte Blöcke",
+  "voters": "Wähler",
   "no_tokens": "keine Token vorhanden",
   "issued_token": "ausgegebenes Token",
   "progress": "Fortschritt",
@@ -295,9 +303,13 @@ export const messages = {
   "search_address": "Nach einer Adresse suchen",
   "token_transactions": "Token Transaktionen",
   "token_holders": "Token Inhaber",
+  "nr_of_Transfers": "Anzahl der Transfers",
   "not_signed_in": "Sie müssen sich einloggen, um diese Funktionalität nutzen zu können.",
   "loading_map": "Karte wird geladen",
   "loading_accounts": "Konten werden geladen",
+  "quantity": "Anzahl",
+  "percentage": "Prozentsatz",
+  "loading_token": "Laden des Tokens",
 
 /*
 ##################################################################################
@@ -312,7 +324,7 @@ export const messages = {
   "no_votes_found": "Keine Stimmen gefunden",
   "no_voters_found": "Keine Wähler gefunden",
   "waiting_for_transactions": "Warten auf Transaktionen",
-  "loading_address": "Lade Adressinformationen",
+  "loading_address": "Lade Adressinformationen zu",
 
 /*
 ##################################################################################

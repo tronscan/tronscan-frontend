@@ -74,6 +74,7 @@ export const messages = {
   "accounts": "계정",
   "exchange": "Exchange",
   "next" : "next",
+  "copied_to_clipboard": "Copied to clipboard",
 
 /*
 ##################################################################################
@@ -113,6 +114,10 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
+  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "view_super_representatives": "View Super Representatives",
+  "create_new_wallet": "Create a new Wallet",
+  "view_tokens": "View Tokens",
 
 /*
 ##################################################################################
@@ -155,6 +160,9 @@ export const messages = {
   "do_not_send_2": "TRX를 귀하의 지갑이나 거래소에서 위의 테스트넷 계정 주소로 보내지 마십시오!",
   "transactions": "거래",
   "tokens": "토큰",
+  "token_balances": "token balances",
+  "produced_blocks": "produced blocks",
+  "voters": "voters",
   "no_tokens": "No Tokens",
   "issued_token": "issued token",
   "progress": "progress",
@@ -295,9 +303,13 @@ export const messages = {
   "search_address": "주소 검색",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
+  "nr_of_Transfers": "Nr. of Transfers",
   "not_signed_in": "You will need to log in to make use of this functionality",
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
+  "quantity": "quantity",
+  "percentage": "Percentage",
+  "loading_token": "Loading Token",
 
 /*
 ##################################################################################
