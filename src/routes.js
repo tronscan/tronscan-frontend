@@ -194,13 +194,13 @@ export const routes = [
     icon: "fa fa-wrench",
     routes: [
       {
-        label: "transaction_viewer",
+        label: "transaction viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
         component: TransactionViewerAsync,
       },
       {
-        label: "node_tester",
+        label: "node tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
         component: NodeTester,
@@ -215,13 +215,13 @@ export const routes = [
   },
   {
     path: "/news",
-    label: "News",
+    label: "news",
     icon: "fa fa-newspaper",
     component: News
   },
   {
     path: "/help",
-    label: "Help",
+    label: "help",
     icon: "fa fa-question",
     component: null,
     routes: [

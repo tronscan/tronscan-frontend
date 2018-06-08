@@ -113,7 +113,7 @@ class Nodes extends Component {
         <main className="container header-overlap">
           <div className="card">
             <TronLoader>
-              Waiting for first node sync, please try again in a few minutes
+              {tu("first_node_sync_message")}
             </TronLoader>
           </div>
         </main>
@@ -125,7 +125,7 @@ class Nodes extends Component {
         <main className="container header-overlap">
           <div className="card">
             <TronLoader>
-              Loading Nodes
+              {tu("loading_nodes")}
             </TronLoader>
           </div>
         </main>
@@ -144,7 +144,7 @@ class Nodes extends Component {
                   <h3 className="text-secondary">
                     {nodes.length}
                   </h3>
-                  {tu("Nodes")}
+                  {tu("nodes")}
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@ class Nodes extends Component {
                         Unknown
                       </h3>
                   }
-                  {tu("Most Nodes")}
+                  {tu("most_nodes")}
                 </div>
               </div>
             </div>
