@@ -7,6 +7,7 @@ import Representatives from "./components/network/Representatives";
 import TokensCreate from "./components/tokens/TokenCreate";
 import TokenOverview from "./components/tokens/Overview";
 import Account from "./components/account/Account";
+import Redirect from "./components/blockchain/redirect";
 import Blocks from "./components/blockchain/Blocks";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
@@ -35,6 +36,7 @@ export const routes = [
     path: "/blockchain",
     label: "blockchain",
     icon: 'fa fa-link',
+    component: Redirect,
     routes: [
       {
         path: "/blockchain/blocks",
