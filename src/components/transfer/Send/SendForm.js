@@ -115,6 +115,8 @@ class SendForm extends React.Component {
 
   setAmount = (amount) => {
 
+
+
     if (amount !== '') {
       amount = parseFloat(amount);
       amount = round(amount, 6);
@@ -142,7 +144,7 @@ class SendForm extends React.Component {
   isAmountValid = () => {
     let {amount} = this.state;
     let selectedTokenBalance = this.getSelectedTokenBalance();
-    return amount === 0 || amount === '' || selectedTokenBalance >= amount;
+    return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
   };
 
   componentDidMount() {
@@ -237,7 +239,7 @@ class SendForm extends React.Component {
     let {tokenBalances} = this.props;
     let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
 
-    let isToValid = to.length === 0 || isAddressValid(to);
+    let isToValid = to.length !== 0 && isAddressValid(to);
     let isAmountValid = this.isAmountValid();
 
 
@@ -268,7 +270,8 @@ class SendForm extends React.Component {
                    className={"form-control " + (!isToValid ? "is-invalid" : "")}
                    value={to} />
             <div className="invalid-feedback">
-              {tu("invalid_address")}
+                { tu("fill_a_valid_address") }
+                {/* tu("invalid_address") */}
             </div>
           </div>
         </div>
@@ -310,7 +313,8 @@ class SendForm extends React.Component {
               </button>
             </div>
             <div className="invalid-feedback">
-              {tu("insufficient_tokens")}
+              { tu("fill_a_valid_number") }
+              {/* tu("insufficient_tokens") */}
             </div>
           </div>
         </div>
