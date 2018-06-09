@@ -591,7 +591,6 @@ class TokenCreate extends Component {
                           isValidDate={this.isValidStartTime}
                           value={startTime}
                           input={false}/>
-                        {/*<TextField type="datetime-local" cmp={this} field="startTime" max="9999-12-31T23:59"/>*/}
                         {ErrorLabel(errors.startDate)}
                       </div>
                       <div className="form-group col-md-6">
@@ -602,7 +601,6 @@ class TokenCreate extends Component {
                           value={endTime}
                           input={false}
                         />
-                        {/*<TextField type="datetime-local" cmp={this} field="endTime" max="9999-12-31T23:59"/>*/}
                         {ErrorLabel(errors.endDate)}
                       </div>
                     </div>
