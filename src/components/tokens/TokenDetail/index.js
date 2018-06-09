@@ -71,7 +71,7 @@ export default class TokenDetail extends React.Component {
         {
           loading ? <div className="card">
             <TronLoader>
-              Loading Token {token.name}
+              {tu("loading_token")} {token.name}
             </TronLoader>
           </div> :
             <div className="row">
@@ -141,7 +141,7 @@ export default class TokenDetail extends React.Component {
                       </td>
                     </tr>
                     <tr>
-                      <th>{tu("Nr. of Transfers")}:</th>
+                      <th>{tu("nr_of_Transfers")}:</th>
                       <td>
                         <FormattedNumber value={token.totalTransactions} />
                       </td>

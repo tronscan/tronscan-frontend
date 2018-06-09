@@ -99,7 +99,7 @@ class Transactions extends React.Component {
                           <th className="d-none d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
                           <th className="d-none d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
                           <th className="d-none d-sm-table-cell">{tu("address")}</th>
-                          <th className="d-none d-md-table-cell" style={{ width: 125 }}>{tu("Contract")}</th>
+                          <th className="d-none d-md-table-cell" style={{ width: 125 }}>{tu("contract")}</th>
                         </tr>
                       </thead>
                       <tbody>

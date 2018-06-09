@@ -345,10 +345,10 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>Quick links</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><Link to="/votes"><i className="fa fa-angle-right"/> Vote for Super Representatives</Link></li>
-                  <li><Link to="/representatives"><i className="fa fa-angle-right"/> View Super Representatives</Link></li>
-                  <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> Create a new Wallet</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> View Tokens</Link></li>
+                  <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_supre_representatives")}</Link></li>
+                  <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
+                  <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
+                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
                 </ul>
               </div>
             </div>

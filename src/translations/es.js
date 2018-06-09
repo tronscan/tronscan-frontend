@@ -74,6 +74,7 @@ export const messages = {
   "accounts": "cuentas",
   "exchange": "Exchange",
   "next" : "luego",
+  "copied_to_clipboard": "Copied to clipboard",
 
 /*
 ##################################################################################
@@ -113,6 +114,10 @@ export const messages = {
   "block_height": "Altura de Bloque",
   "online_nodes": "Nodos en línea",
   "pice_per_1000trx": "Precio (por cada 1000TRX)",
+  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "view_super_representatives": "View Super Representatives",
+  "create_new_wallet": "Create a new Wallet",
+  "view_tokens": "View Tokens",
 
 /*
 ##################################################################################
@@ -155,6 +160,9 @@ export const messages = {
   "do_not_send_2": "¡No envíes TRX desde tu cartera o exchange a la dirección de testnet que aparece arriba!",
   "transactions": "transacciones",
   "tokens": "tokens",
+  "token_balances": "token balances",
+  "produced_blocks": "produced blocks",
+  "voters": "voters",
   "no_tokens": "No Tokens",
   "issued_token": "token emitido",
   "progress": "progresar",
@@ -294,9 +302,13 @@ export const messages = {
   "search_address": "Buscar dirección",
   "token_transactions": "Transacciones Token",
   "token_holders": "Propietarios de Token",
+  "nr_of_Transfers": "Nr. of Transfers",
   "not_signed_in": "Deberá iniciar sesión para hacer uso de esta funcionalidad",
   "loading_map": "Cargando mapa",
   "loading_accounts": "Cargando Cuentas",
+  "quantity": "quantity",
+  "percentage": "Percentage",
+  "loading_token": "Loading Token",
 
 /*
 ##################################################################################
