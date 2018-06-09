@@ -57,7 +57,7 @@ export default class TestNetRequest extends React.Component {
         this.setState({
           success: true,
           modal: (
-            <SweetAlert success title="TRX Received" onConfirm={this.hideModal}>
+            <SweetAlert success title={tu("trx_received")} onConfirm={this.hideModal}>
               <FormattedNumber value={amount / ONE_TRX}/> TRX {tu("have_been_added_to_your_account")}
             </SweetAlert>
           )
@@ -66,7 +66,7 @@ export default class TestNetRequest extends React.Component {
         this.setState({
           modal: (
             <SweetAlert danger title="Error" onConfirm={this.hideModal}>
-              Test TRX is temporarily unavailable. Please try again later.
+              {tu("test_trx_temporarily_unavailable_message")}
             </SweetAlert>
           )
         });

@@ -15,9 +15,9 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
-#         Language: Korean                                                       #
+#         Version: 1.0-09062018                                                  #
+#         Update Date: 09.06.2018                                                #
+#         Language: Swedish                                                      #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -33,46 +33,46 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "ok": "확인",
-  "app_title": "Tron Protocol",
-  "password": "암호",
-  "money_price": "가격",
-  "blocks": "블록",
-  "block": "블록",
-  "balance": "잔액",
-  "bandwidth": "bandwidth",
-  "name": "이름",
-  "website": "website",
-  "address": "주소",
-  "price": "price",
-  "sign_out": "로그아웃",
-  "sign_in": "sign in",
-  "register_login": "가입 / 로그인",
-  "register": "가입",
-  "login": "로그인",
-  "height": "높이",
-  "age": "age",
-  "produced by": "produced by",
-  "bytes": "Bytes",
-  "created": "created",
-  "Contract": "Contract",
-  "from": "보내는 주소",
-  "to": "받는 주소",
-  "value": "value",
-  "total_accounts": "Total Accounts",
-  "submit": "제출",
-  "receive": "받기",
-  "supply": "supply",
-  "view": "보기",
+  "ok": "OK",
+  "app_title": "Tron protokollet",
+  "password": "lösenord",
+  "money_price": "pris",
+  "blocks": "block",
+  "block": "block",
+  "balance": "balans",
+  "bandwidth": "bandbredd",
+  "name": "namn",
+  "website": "hemsida",
+  "address": "address",
+  "price": "pris",
+  "sign_out": "logga ut",
+  "sign_in": "logga in",
+  "register_login": "Registrera / Logga in",
+  "register": "registrera",
+  "login": "login",
+  "height": "höjd",
+  "age": "ålder",
+  "produced by": "skapad av",
+  "bytes": "bytes",
+  "created": "skapad",
+  "Contract": "Kontrakt",
+  "from": "från",
+  "to": "till",
+  "value": "värde",
+  "total_accounts": "Konton Totalt",
+  "submit": "skicka",
+  "receive": "ta emot",
+  "supply": "tillgång",
+  "view": "vy",
   "view_all":"View all",
-  "create": "생성",
-  "country": "지역",
-  "send": "보내기",
-  "amount": "수량",
-  "my_vote": "나의 투표",
-  "submit_votes": "투표 제출",
-  "accounts": "계정",
-  "exchange": "Exchange",
+  "create": "skapa",
+  "country": "region",
+  "send": "skicka",
+  "amount": "belopp",
+  "my_vote": "min röst",
+  "submit_votes": "skicka röst",
+  "accounts": "konton",
+  "exchange": "Börs",
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
 
@@ -83,24 +83,24 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "blockchain": "블록체인",
-  "wallet": "Wallet",
-  "home": "Home",
-  "transfers": "Transfers",
+  "blockchain": "Blockkedja",
+  "wallet": "Plånbok",
+  "home": "Hem",
+  "transfers": "Överföringar",
   "live": "Live",
-  "statistics": "Statistics",
-  "markets": "Markets",
-  "tools": "Tools",
-  "news": "News",
-  "help": "Help",
-  "nodes": "노드",
-  "votes": "투표수",
-  "account": "계정",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
+  "statistics": "Statestik",
+  "markets": "Marknader",
+  "tools": "Verktyg",
+  "news": "Nyheter",
+  "help": "Hjälp",
+  "nodes": "Noder",
+  "votes": "Röster",
+  "account": "Konto",
+  "transaction_viewer": "Transaktions Vy",
+  "node_tester": "Nod Testare",
   "system": "System",
-  "overview": "Overview",
-  "participate": "참여하기",
+  "overview": "Översikt",
+  "participate": "Deltaga",
 
 /*
 ##################################################################################
@@ -118,7 +118,6 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
-
 /*
 ##################################################################################
 #                                                                                #
@@ -126,20 +125,20 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first_page": "first page",
-  "previous_page": "이전",
-  "next_page": "다음",
-  "last_page": "last page",
-  "page": "page",
-  "of": "of",
-  "last_block": "마지막 블록",
-  "total_supply": "총 공급",
+  "first": "första sidan",
+  "previous": "föregående sida",
+  "next": "nästa sida",
+  "last": "sista sidan",
+  "page": "sida",
+  "of": "av",
+  "last_block": "senaste blocket",
+  "total_supply": "total tillgång",
   "addresses": "addresses",
-  "most_nodes": "Most Nodes",
-  "loading_nodes": "loading Nodes",
-  "Hostname": "Hostname",
-  "Last Update": "Last Update",
-  "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "most_nodes": "Flesta Noder",
+  "loading_nodes" : "laddar Noder",
+  "Hostname": "Hostnamn",
+  "Last Update": "Senast Uppdaterat",
+  "first_node_sync_message": "Väntar på att första noden ska synka, var vänlig testa igen om några minuter.",
 
 /*
 ##################################################################################
@@ -148,28 +147,28 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "set_name": "Set Name",
-  "show_qr_code": "Show QR Code",
-  "free_bandwidth": "Free Bandwidth",
-  "expires": "expires",
-  "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "TRX를 요청할 때 10000 TRX를 받습니다. TRX는 테스트 네트워크에서 테스트하는 데 사용할 수 있습니다.",
-  "information_message_2": "TRX는 계정 당 한 번만 요청할 수 있습니다.",
-  "request_trx_for_testing": "테스트용 TRX 요청",
+  "set_name": "Skriv Namn",
+  "show_qr_code": "Visa QR Kod",
+  "free_bandwidth": "Gratis Bandbredd",
+  "expires": "förfaller",
+  "have_been_added_to_your_account": "har lagts till i ditt konto!",
+  "information_message_1": "När du efterfråga TRX så kommer du att få 1000 TRX som du kan använda för testning på testnet.",
+  "information_message_2": "Du kan bara efterfråga TRX 10 gånger per konto.",
+  "request_trx_for_testing": "Efterfråga TRX för testning",
   "tron_power": "Tron Power",
-  "do_not_send_2": "TRX를 귀하의 지갑이나 거래소에서 위의 테스트넷 계정 주소로 보내지 마십시오!",
-  "transactions": "거래",
-  "tokens": "토큰",
+  "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
+  "transactions": "transaktioner",
+  "tokens": "tokens", 
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
+  "no_tokens": "Inga Tokens",
+  "issued_token": "utfärdade token",
   "progress": "progress",
-  "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
-  "issuer": "발행자",
-  "network": "네트워크",
-  "current": "현재",
+  "transactions_count": "{transaktioner, plural, one {transaktion} other {transaktioner}}",
+  "issuer": "utgivare",
+  "network": "nätverk",
+  "current": "nuvarande",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
 
@@ -180,16 +179,13 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
-  "frozen_supply": "Frozen Supply",
-  "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
-  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
-   For example, with Tron Power you can `,
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
-   After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
+  "freeze" : "frysa",
+  "unfreeze" : "ofrysa",
+  "frozen_supply": "Frusna Tillgångar",
+  "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
+  "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna Tron Power och aktivera ytterligare funktioner. Med Tron Power kan du till exempel",
+  "freeze_trx_premessage_1": "Frysta tokens är låsta” för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
+  "freeze_trx_premessage_link": "rösta på Super Representatives.",
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
@@ -201,46 +197,46 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "apply_for_delegate": "위임자 신청",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
-  "your_personal_website_address": "귀하의 개인 웹 사이트 주소",
+  "apply_for_delegate": "ansöka om ombudet",
+  "apply_super_representative_candidate": "Ansök om att bli en Super Representative kandidat",
+  "your_personal_website_address": "din personliga webbadress",
   "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
    However, for the network and community to operate more smoothly and effectively,
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
    chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
   "apply_for_delegate_description": `
-    트론 소지자는 계정 관리 기능을 사용하여 최고 위임자로 신청하고 후보자에게 투표할 수 있습니다.
-    각 계정은 현재 유권자 정보를 업데이트할 수 있으며 여러 후보자에게 투표할 수 있습니다.
-    최대 투표수는 매번 사용자가 보유한 TRX보다 적거나 같습니다.
-    (귀하가 특정 수의 TRX를 가지고 있으면 그 수와 같거나 이하의 투표를 할 수 있습니다)
-    투표 결과는 각 투표주기의 각 계정의 최종 유권자 정보를 기반으로 계산되며 시간은 00:00에서 24:00 사이입니다.
-     가장 많은 표를 얻은 TRX 소지자는 최고 위임자가 됩니다.
-     네트워크에서 이루어진 모든 거래는 모든 최고 위임자들에 의해 검증되어야 하며 일부 보너스를 받을 수 있습니다.
-     TRX는 최고 위임자 신청 및 투표 과정에서 소비되지 않습니다.`,
-  "unknown_error": "알 수 없는 오류가 발생했습니다",
-  "representative_understand": "트론 위임자가 되는 것을 이해했습니다",
-  "generate_account": "귀하의 계정 주소와 암호를 생성하려면 클릭하세요",
-  "create_account_confirm_1": "암호를 잃어버리면 자산에 절대로 접근할 수 없는 것을 이해했습니다",
-  "create_account_confirm_2": "암호를 잊거나 잃어버리면 아무도 복구할 수 없는 것을 이해했습니다",
-  "create_account_confirm_3": "암호를 다른 곳에 적어놨습니다",
-  "vote_thanks": "귀하의 투표를 제출해 주셔서 감사합니다",
-  "recent_transactions": "최근 거래",
-  "newest_account": "신규 계정",
-  "representatives": "위임자",
-  "most_votes": "최대 투표수",
-  "start_end_time": "시작 / 종료 시간",
-  "scan_qr_code": "QR 코드 스캐너로 코드를 스캔하세요",
-  "receive_trx": "TRX 받기",
-  "require_account_to_send": "코인을 보내려면 로그인을 해야 합니다",
-  "require_account_to_receive": "코인을 받으려면 로그인을 해야 합니다",
-  "successful_send": "전송 성공!",
-  "confirm_transaction": "거래 확인",
-  "last_confirmed": "마지막 확인",
-  "blocks_produced": "생성된 블록",
-  "trx_produced": "Transactions Produced",
-  "blocks_missed": "유실된 블록",
-  "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
+   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
+   Each account can update current voter information and also is allowed to vote for multiple candidates.
+   The maximum number of votes is less than or equal to the number of TRX users hold each time.
+   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
+   The result of votes will be calculated based on the final voter information of every account in each
+   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
+   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
+   TRX will not be consumed in the process of super delegate application and voting.`,
+  "unknown_error": "okänt fel inträffade",
+  "representative_understand": "Jag förstår hur man blir en TRON Representant",
+  "generate_account": "Klicka för att generera din konto address och lösenord",
+  "create_account_confirm_1": "Jag förstår att om jag glömmer/tappar mitt lösenord, så kommer jag aldrig att kunna återfå mina tillgångar",
+  "create_account_confirm_2": "Jag förstår att om jag glömmer/tappar mitt lösenord, så kommer ingen kunna hjälpa mig att åter få det",
+  "create_account_confirm_3": "Jag har skrivit ner mitt lösenord på papper",
+  "vote_thanks": "Tack för din röst!",
+  "recent_transactions": "senaste transaktioner",
+  "newest_account": "nyaste kontot",
+  "representatives": "representanter",
+  "most_votes": "flesta röster",
+  "start_end_time": "Start / Slut Tid",
+  "scan_qr_code": "Scanna koden med en QR Code scanner",
+  "receive_trx": "mottag TRX",
+  "require_account_to_send": "Du måste vara inloggad för att skicka tokens",
+  "require_account_to_receive": "Du måste vara inloggad för att mottaga tokens",
+  "successful_send": "Lyckad sändning!",
+  "confirm_transaction": "konfirmera transaktion",
+  "last_confirmed": "Senast Konfimerad",
+  "blocks_produced": "Block Producerade",
+  "trx_produced": "Transanktioner Producerade",
+  "blocks_missed": "Missade Block",
+  "do_not_send_1": "Skicka inte TRX från din egna plånbok eller börs till till din testnet address!.",
   "go_to_votelist": "Go to votelist",
 
 /*
@@ -250,31 +246,32 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "name_of_the_token": "토큰 이름",
-  "create_token": "토큰 생성",
-  "token_message": "Name for the token",
-  "abbr_message": "Abbreviation for the token",
-  "description": "토큰 설명",
-  "description_url": "토큰 설명 주소",
-  "quote_token_amount": "견적 토큰 금액",
-  "base_token_amount": "기본 토큰 금액",
-  "creating_a_token": "토큰 만들기",
-  "available": "이용가능",
-  "testnet": "테스트넷",
-  "days_to_freeze": "Days to freeze",
-  "trx_token_fee_message": "1024 TRX is required to issue a new token",
-  "trx_token_account_limit": "You may create only one token per account",
-  "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
-  "invalid_address": "잘못된 주소",
-  "insufficient_tokens": "불충분한 토큰",
-  "make_another_transaction": "다른 거래 만들기",
-  "token_exchange_confirm": "토큰 배포에 {trxAmount}를 사용하여, {tokenAmount}의 토큰을 얻었습니다.",
-  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "알 수 없는 오류가 발생했습니다. 몇 분 후에 다시 시도하십시오.",
-  "An_error_occurred": "에러가 발생했습니다.",
-  "create_a_token": "토큰 생성",
-  "not_started_yet": "준비중",
-  "participated": "당신은 성공적으로 참여했습니다!",
-  "participated_error": "에러가 발생했습니다.",
+  "name_of_the_token": "Tokens namn",
+  "create_token": "Skapa Token",
+  "token_message": "Namn för token",
+  "abbr_message" : "Abbreviation för token",
+  "description": "Beskrivning",
+  "description_url": "Beskrivning URL",
+  "quote_token_amount": "Notera Token belopp",
+  "base_token_amount": "Token Bas Belopp",
+  "creating_a_token": "Skapa en token",
+  "available": "tillgänlig",
+  "testnet": "Testnet",
+  "days_to_freeze": "Dagar att frysa",
+  "trx_token_fee_message": "1024 TRX är nödvändigt för att utfärda en ny token",
+  "trx_token_account_limit": "Du kan skapa endast en token per konto",
+  "trx_token_wallet_requirement": "Du behöver öppna en plånbok för att kunna skapa en token",
+  "invalid_address": "ogiltig adress",
+  "insufficient_tokens": "otillräcklig med tokens",
+  "make_another_transaction": "Gör en annan transaktion",
+  "participate": "deltaga",
+  "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
+  "An_error_occurred": "Ett fel inträffade",
+  "create_token": "Skapa en Token",
+  "not_started_yet": "Inte startat ännu",
+  "participated": "Du har framgångsrikt deltagit!",
+  "participated_error": "Ett fel inträffade",
   "how_much_buy_message": "How much tokens do you want to buy?",
 
 /*
@@ -284,32 +281,31 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "address_warning": "유효한 TRON 지갑 주소만 입력하십시오. 잘못된 주소는 TRX 손실을 초래할 수 있습니다.",
-  "search_address_or_url": "주소 또는 URL 검색",
-  "the_lunch_test": "테스트넷의 출시는 블록 체인 탐색기와 지갑의 모든 기능을 테스트하는 것을 목표로합니다.",
-  "plese_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
-  own wallet or exchange to the account address of testnet.`,
+  "address_warning": "Ange endast en giltig TRON plånbok adress. Felaktiga adresser kan leda till förlust av TRX.",
+  "search_address_or_url": "Sök efter adress eller URL",
+  "the_lunch_test": "Lanseringen av testnet syftar till att testa alla funktioner i våran blockchain explorer och plånbok",
+  "plese_keep_in_mind": "Vänligen tänk på, att eftersom din registrerade kontoadress används endast för testnet, skicka inte TRX från din egen plånbok eller exchange till ditt konto på testnet.",
   "tron_foundation": "TRON Foundation",
-  "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",
-  "dear_users,": "친애하는 사용자,",
-  "finished": "종료",
-  "token": "토큰",
-  "url": "토큰 정보 안내 주소",
-  "need_to_login": "계정 페이지에 액세스하려면 로그인해야합니다.",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "남아있는 TRX가 없습니다.",
-  "produced_by": "{witnessAddress}에 의해 생성됨",
-  "show_more": "{countriesLength}개 더보기",
-  "vote_guide_message": `TRX를 사용하여 Super Representatives에 투표하십시오.
-   귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.
-   TRX는 소비되지 않습니다. 원하는대로 여러 대표에게 여러 번 투표 할 수 있습니다.
-   최종 투표는 24시에 집계되며 대표단 명단이 업데이트됩니다.`,
-  "search_address": "주소 검색",
-  "token_transactions": "Token Transactions",
-  "token_holders": "Token Holders",
+  "trx_for_testing": "TRX för testning kommer att skickas till ditt test-konto när du framgångsrikt ansöka via kontohantering.",
+  "dear_users": "Kära användare,",
+  "finished": "Färdig",
+  "token": "token",
+  "url": "url",  
+  "need_to_login": "Du måste vara inloggad för att få tillgång till kontosida",
+  "thanks_for_applying": "Tack för ansökningen",
+  "to_much_votes": "För mycket röster",
+  "no_trx_remaining": "Inga TRX kvar",
+  "produced_by": "Producerad av {witnessAddress}",
+  "show_more": "Visa {countriesLength} Mer",  
+  "vote_guide_message": `Use your TRX to vote for Super Representatives.
+   For every TRX you hold in your account you have one vote to spend.
+   TRX will not be consumed. You can vote as many times for the several representatives as you like.
+   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+  "search_address": "Sök efter address",
+  "token_transactions": "Token Transanktioner",
+  "token_holders": "Token Innehavare",
   "nr_of_Transfers": "Nr. of Transfers",
-  "not_signed_in": "You will need to log in to make use of this functionality",
+  "not_signed_in": "Du måste logga in för att använda denna funtion",
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
   "quantity": "quantity",
@@ -323,11 +319,15 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_transactions_found": "거래 없음",
-  "no_tokens_found": "No tokens found",
-  "no_blocks_found": "No blocks found",
-  "no_votes_found": "No votes found",
-  "no_voters_found": "No voters found",
+  "no_transactions_found": "Hittade inga transanktioner",
+  "no_tokens_found": "Inga token hittades",
+  "no_blocks_found": "Inga block hittades",
+  "no_votes_found": "Inga röster hittades",
+  "no_voters_found": "Inga rösande hittades",
+  "waiting_for_transactions": "Väntar på transanktioner",
+  "loading_address": "Laddar Address",
+  "transaction_load_error": "Transaktion Load Error",
+  "transaction_load_error_message": "Något gick fel när du försökte ladda transaktionen. Kontrollera att HEX värdet är i korrekt format",
   "waiting_for_transactions": "Waiting for transactions",
   "loading_address": "Loading Address",
 
@@ -338,39 +338,36 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "details": "세부 사항",
-  "issue_a_token": "토큰 발행",
-  "issue_token": "토큰 발행",
-  "token_name": "토큰 이름",
-  "token_abbr": "token Abbreviation",
-  "total_issued": "Total issued",
-  "registered": "Registered",
-  "abbreviation": "Abbreviations",
-  "exchange_rate": "교환 비율",
-  "token_price": "토큰 가격",
-  "supply_message": "Total amount of tokens which will be in circulation",
-  "description_message": "A short description of the purpose of the token",
-  "url_message": "A website where users can find more information about the token",
+  "details": "detaljer",
+  "issue_a_token": "Utfärda en Token",
+  "issue_token": "Utfärda Token",
+  "token_name": "token namn",
+  "token_abbr": "token Förkortning",
+  "total_issued": "Totalt utfärdade",
+  "registered": "Registrerad",
+  "abbreviation": "Förkortningar",
+  "exchange_rate": "Växlingskurs",
+  "token_price": "Token Pris",
+  "supply_message": "Totala antalet tokens som kommer vara i cirkulation",
+  "description_message": "Kort beskrivning av syfte med token",
+  "url_message": "En webbsida där användare kan hitta mer information om din token",
   "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
   "exchange_rate_message_1": "Participants will receive",
   "exchange_rate_message_2": "for every",
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
- "participation_message_1": " tokens.",
- "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-  for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-  days has been reached. Freezing supply is not required.`,
+  "participation_message_1": " tokens.",
+  "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
+   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
+   days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
-  "participation": "참여",
-  "start_date": "시작 일자",
-  "end_date": "종료 일자",
-  "token_spend_confirm": "나는 토큰의 총 공급을 만드는데 한 번 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`Tron 프로토콜에서 토큰을 발행하는 것은
-   계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
-  "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
-   사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
-  "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
-   다른 사용자가 TRX를 토큰으로 교환하면 토큰이 계정에서 철회되고 지정된 환율과 동일한 TRX를 받게됩니다.`,
+  "participation": "participation",
+  "start_date": "Start Date",
+  "end_date": "End Date",
+  "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
+  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto,"
+  "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
+  "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
 
 /*
 ##################################################################################
@@ -379,20 +376,20 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "date_error": "The end date is earlier or the same as the starting date",
-  "no_name_error": "Name is required",
-  "no_supply_error": "Total Supply must be at least 1",
-  "coin_value_error": "Token amount must be at least 1",
-  "tron_value_error": "The amount of TRX per coin must be at least 1",
-  "invalid_starttime_error": "The provided starting date is invalid",
-  "invalid_endtime_error": "The provided ending date is invalid",
-  "no_description_error": "Description is required",
-  "no_url_error": "Web URL is required",
-  "past_starttime_error": "The starting date is in the past",
-  "no_transactions": "No Transactions",
-  "no_transfers": "No Transfers",
-  "TRX transferred in the past hour": "TRX transferred in the past hour",
-  "Transactions in the past hour": "Transactions in the past hour",
+  "date_error": "Slut datumet är tidigare eller lika med start datum",
+  "no_name_error": "Namn är nödvändigt",
+  "no_supply_error": "Totala Tillgångar måste vara mins 1",
+  "coin_value_error": "Token antal måste vara minst 1",
+  "tron_value_error": "Mängden TRX per token måste vara minst 1",
+  "invalid_starttime_error": "Angiven start datum är fel",
+  "invalid_endtime_error": "Angiven slut datum är fel",
+  "no_description_error": "Beskrivning är nödvändig",
+  "no_url_error": "Webb URL är nödvändig",
+  "past_starttime_error": "Start datum är tillbaka i tiden",
+  "no_transactions": "Inga Transanktioner",
+  "no_transfers": "Inga överföringar",
+  "TRX transferred in the past hour": "TRX överförda den senaste timmen",
+  "Transactions in the past hour": "Transaktioner den senaste timmen ",
 
 /*
 ##################################################################################
@@ -401,14 +398,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Average Block Size",
-  "Highest Productivity": "Highest Productivity",
-  "Lowest Productivity": "Lowest Productivity",
-  "productivity": "productivity",
-  "rewards": "rewards",
+  "average_blocksize": "Medel Block Storlek",
+  "Highest Productivity": "Högsta produktivitet",
+  "Lowest Productivity": "Lägsta produktivitet",
+  "productivity": "produktivitet",
+  "rewards": "belöningar",
   "Super Representatives": "Super Representatives",
-  "Super Representative Candidates": "Super Representative Candidates",
-  "loading_representatives": "Loading Representatives",
+  "Super Representative Candidates": "Super Representative Kandidater",
+  "loading_representatives": "Laddar Representatives",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 
@@ -419,12 +416,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_price_usd": "Average Price in USD",
-  "average_volume_usd": "Average Volume in USD",
-  "Trade Volume": "Trade Volume",
-  "rank": "rank",
-  "pair": "pair",
-  "volume": "Volume",
+  "average_price_usd": "Medel Pris i USD",
+  "average_volume_usd": "Medel Volym i USD",
+  "Trade Volume": "Handelsvolym",
+  "rank": "rang",
+  "pair": "par",
+  "volume": "Volym",
 
 /*
 ##################################################################################
@@ -458,8 +455,8 @@ export const messages = {
   "load_tx": "Load Transaction",
   "tx_qrcode": "Transaction QR Code",
   "load_tx_qrcode": "Load Transaction from QR Code",
-  "transaction_load_error": "Transaction Load Error",
-  "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
+  "transaction_load_error": "Transaktion Load Error",
+  "transaction_load_error_message": "Något gick fel när du försökte ladda transaktionen. Kontrollera att HEX värdet är i korrekt format",
   "transaction_success_message": "Transaction successfully broadcasted to the network",
   "transaction_success": "Transaction Success",
   "transaction_error_message": "Something went wrong while trying to broadcast the transaction",

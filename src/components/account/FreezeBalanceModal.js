@@ -2,7 +2,7 @@
 import {connect} from "react-redux";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
@@ -83,7 +83,7 @@ class FreezeBalanceModal extends React.PureComponent {
         <ModalBody className="text-center">
           <form>
             <div className="form-group">
-              <label>{tu("TRX Amount")}</label>
+              <label>{tu("trx_amount")}</label>
               <input type="number"
                      value={amount}
                      className="form-control text-center"
@@ -94,7 +94,7 @@ class FreezeBalanceModal extends React.PureComponent {
                      className="form-check-input"
                      onChange={(ev) => this.setState({ confirmed: ev.target.checked })} />
               <label className="form-check-label">
-                I confirm to freeze <b><FormattedNumber value={amount}/> TRX</b> for at least of 3 days
+                {tu("token_freeze_confirm_message_0")} <b><FormattedNumber value={amount}/> TRX</b> {t("token_freeze_confirm_message_1")}
               </label>
             </div>
             <p className="mt-3">

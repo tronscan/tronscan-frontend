@@ -100,7 +100,7 @@ export const messages = {
   "node_tester": "Knoten Tester",
   "system": "System",
   "overview": "Übersicht",
-  "participate": "Teilnehmer der Blockchain",
+  "participate": "Token erwerben",
 
 /*
 ##################################################################################
@@ -170,6 +170,8 @@ export const messages = {
   "issuer": "Herausgeber",
   "network": "Netzwerk",
   "current": "aktuell",
+  "trx_received": "TRX empfangen",
+  "test_trx_temporarily_unavailable_message": "Test TRX sind aktuell nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
 
 /*
 ##################################################################################
@@ -188,6 +190,9 @@ export const messages = {
   "freeze_trx_premessage_1": ` Eingefrorene Token werden mindestens für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
    Nach Ablauf der Frist können Sie Ihr Guthaben wieder auftauen und verwenden.`,
   "freeze_trx_premessage_link": "für die Super-Repräsentanten abstimmen.",
+  "trx_amount": "TRX Betrag",
+  "token_freeze_confirm_message_0": "Hiermit bestätige ich das Einfrieren von ",
+  "token_freeze_confirm_message_1": "für mindestens 3 Tage.",
 
 /*
  ##################################################################################
@@ -207,13 +212,12 @@ export const messages = {
   "apply_for_delegate_description": `
    TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
    Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
-   Kandidaten gleichzeitig abstimmen. Die maximal möglichen Anzahl an Stimmrechte entsprechen der Summe an TRX die Sie besitzen.
-   Das Abstimmungsergebnis wird auf der Grundlage der endgültigen Stimmen jedes einzelnen Kontos berechnet.
-   Der Abstimmungszyklus ist von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Super-Repräsentant gewählt.
-   Jede Transaktion im Netzwerk muss von allen Super-Repräsentant validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
-   Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert. Sie werden Ihnen nach der Wahl und nach Ablauf der Sperrfrist wieder gutgeschrieben.`,
+   Kandidaten gleichzeitig abstimmen. Die maximal mögliche Anzahl an Stimmrechten entsprechen der Summe Ihrer TRX.
+   Das Abstimmungsergebnis wird auf der Grundlage der endgültigen Abstimmung jedes einzelnen Kontos berechnet.
+   Der Abstimmungszyklus ist täglich von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Super-Repräsentant gewählt.
+   Jede Transaktion im Netzwerk muss von allen Super-Repräsentanten validiert werden, dafür erhalten sie eine entsprechende Belohnung in Form von TRX.
+   Die von Ihnen eingesetzten TRX verlieren durch die Stimmenabgabe keinen Wert. Sie werden Ihnen nach der Wahl und nach Ablauf der Sperrfrist wieder auf Ihrem Konto gutgeschrieben.`,
   "unknown_error": "ein unbekannter Fehler ist aufgetreten",
-
   "representative_understand": "Ich habe verstanden wie man ein TRON-Vertreter wird.",
   "generate_account": "Klicken Sie hier, um Ihre Kontoadresse und Ihr Passwort zu generieren.",
   "create_account_confirm_1": "Ich habe verstanden, dass wenn ich mein Passwort vergesse/verliere niemals auf mein Vermögen zugreifen kann.",
@@ -527,8 +531,8 @@ export const messages = {
   "do_not_share_it": "Teilen Sie es nicht!",
   "make_a_backup": "Erstellen Sie ein Backup!",
   "do_not_lose_it_message_0": "Die Tron Foundation kann Ihnen nicht bei der Wiederherstellung eines verlorenen gegangenen Schlüssels helfen.",
-  "do_not_share_it_message_0": "Veröffentlichen oder teilen Sie die Datei nicht mit Anderen und nutzen Sie für den Zugriff ausschließlich die offizielle Webseite. Andernfalls kann es zum Verlust Ihres Guthaben kommen.",
-  "make_a_backup_message_0": "Nur für den Fall dass Ihr Laptop zerstört wird und Sie nicht mehr auf Ihre Daten zugreifen können.",
+  "do_not_share_it_message_0": "Veröffentlichen oder teilen Sie die Datei nicht mit anderen Personen und nutzen Sie für den Zugriff auf Ihre Wallet ausschließlich die offizielle Tron Webseite. Andernfalls kann es zum Verlust Ihres Guthaben kommen.",
+  "make_a_backup_message_0": "Nur für den Fall, dass Ihr Laptop zerstört wird und Sie nicht mehr auf Ihre Daten zugreifen können.",
   "save_private_key": "Speichern des privaten Schlüssels",
   "print_paper_wallet": "Paper-Wallet drucken",
   "new_wallet_ready_message": "Ihre neue Wallet wurde erstellt.",
