@@ -64,6 +64,7 @@ export default class TestNetRequest extends React.Component {
         });
       } else if (code === "CONTRACT_VALIDATE_ERROR") {
         this.setState({
+          verificationCode: null,
           modal: (
             <SweetAlert danger title="Error" onConfirm={this.hideModal}>
               Test TRX is temporarily unavailable. Please try again later.
@@ -72,6 +73,7 @@ export default class TestNetRequest extends React.Component {
         });
       } else {
         this.setState({
+          verificationCode: null,
           modal: (
             <SweetAlert danger title="Error" onConfirm={this.hideModal}>
               {message}
@@ -84,6 +86,7 @@ export default class TestNetRequest extends React.Component {
 
     } catch (e) {
       this.setState({
+        verificationCode: null,
         modal: (
           <SweetAlert danger title="TRX Received" onConfirm={this.hideModal}>
             {tu("An_unknown_error_occurred,_please_try_again_in_a_few_minutes")}

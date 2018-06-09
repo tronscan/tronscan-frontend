@@ -605,7 +605,7 @@ class Account extends Component {
     this.setState({
       modal: (
         <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} >
-          <ModalHeader toggle={this.hideModal}></ModalHeader>
+          <ModalHeader toggle={this.hideModal}/>
           <ModalBody className="text-center p-0" onClick={this.hideModal}>
             <QRImageCode value={currentWallet.address} size={500} style={{width: '100%'}} />
           </ModalBody>
