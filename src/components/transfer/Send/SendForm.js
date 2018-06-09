@@ -11,6 +11,7 @@ import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {TronLoader} from "../../common/loaders";
 
 class SendForm extends React.Component {
 
@@ -79,7 +80,6 @@ class SendForm extends React.Component {
 
   confirmSend = () => {
     let {to, token, amount} = this.state;
-
     this.setState({
       modal: (
         <SweetAlert
@@ -213,7 +213,7 @@ class SendForm extends React.Component {
   render() {
 
     let {tokenBalances} = this.props;
-    let {sendStatus, modal, to, toAccount, token, amount} = this.state;
+    let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
 
     let isToValid = to.length === 0 || isAddressValid(to);
     let isAmountValid = this.isAmountValid();
@@ -237,6 +237,7 @@ class SendForm extends React.Component {
     return (
       <form>
         {modal}
+        {isLoading && <TronLoader/>}
         <div className="form-group">
           <label>{tu("to")}</label>
           <div className="input-group mb-3">
