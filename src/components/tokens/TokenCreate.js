@@ -12,6 +12,7 @@ import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
 import DateTimePicker from "react-datetime";
 import {Link} from "react-router-dom";
+import {NumberField} from "../common/Fields";
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -385,7 +386,7 @@ class TokenCreate extends Component {
   }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, startTime, endTime} = this.state;
+    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime} = this.state;
 
     if (!this.isLoggedIn()) {
       return (
@@ -470,7 +471,10 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-12">
                         <label>{tu("total_supply")} *</label>
-                        <TextField type="number" cmp={this} field="totalSupply" />
+                        <NumberField
+                          value={totalSupply}
+                          min={1}
+                          onChange={(totalSupply) => this.setState({ totalSupply })} />
                         <small className="form-text text-muted">
                           {tu("supply_message")}
                         </small>
@@ -517,12 +521,20 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-6">
                         <label>TRX {tu("amount")} *</label>
-                        <TextField type="number" cmp={this} field="numberOfTron" />
+                        <NumberField
+                          className="form-control"
+                          value={numberOfTron}
+                          min={1}
+                          onChange={(value) => this.setState({ numberOfTron: value })} />
                         { numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
                       </div>
                       <div className="form-group col-md-6">
                         <label>{tu("token")} {tu("amount")} *</label>
-                        <TextField type="number" cmp={this} field="numberOfCoins" />
+                        <NumberField
+                          className="form-control"
+                          value={numberOfCoins}
+                          min={1}
+                          onChange={(value) => this.setState({ numberOfCoins: value })} />
                         { numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
                       </div>
                     </div>
@@ -549,20 +561,22 @@ class TokenCreate extends Component {
                         <div key={index} className={"form-row " + (frozenSupply.length === index + 1 ? "text-muted" : "")}>
                           <div className="form-group col-md-9">
                             { index === 0 && <label>{tu("amount")}</label> }
-                            <input
+                            <NumberField
                               className="form-control"
-                              type="number"
                               value={frozen.amount}
+                              min={0}
                               onBlur={() => this.blurFrozen(index)}
-                              onChange={(ev) => this.updateFrozen(index, { amount: ev.target.value })}
+                              decimals={0}
+                              onChange={(amount) => this.updateFrozen(index, { amount })}
                             />
                           </div>
                           <div className="form-group col-md-3">
                             { index === 0 && <label>{tu("days_to_freeze")}</label> }
-                            <input
+                            <NumberField
                               className="form-control"
-                              type="number"
-                              onChange={(ev) => this.updateFrozen(index, { days: ev.target.value })}
+                              onChange={(days) => this.updateFrozen(index, { days })}
+                              decimals={0}
+                              min={1}
                               value={frozen.days} />
                           </div>
                         </div>
