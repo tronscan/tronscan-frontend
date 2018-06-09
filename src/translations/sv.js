@@ -158,7 +158,7 @@ export const messages = {
   "tron_power": "Tron Power",
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "transactions": "transaktioner",
-  "tokens": "tokens", 
+  "tokens": "tokens",
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
@@ -290,13 +290,13 @@ export const messages = {
   "dear_users": "Kära användare,",
   "finished": "Färdig",
   "token": "token",
-  "url": "url",  
+  "url": "url",
   "need_to_login": "Du måste vara inloggad för att få tillgång till kontosida",
   "thanks_for_applying": "Tack för ansökningen",
   "to_much_votes": "För mycket röster",
   "no_trx_remaining": "Inga TRX kvar",
   "produced_by": "Producerad av {witnessAddress}",
-  "show_more": "Visa {countriesLength} Mer",  
+  "show_more": "Visa {countriesLength} Mer",
   "vote_guide_message": `Use your TRX to vote for Super Representatives.
    For every TRX you hold in your account you have one vote to spend.
    TRX will not be consumed. You can vote as many times for the several representatives as you like.
@@ -365,7 +365,7 @@ export const messages = {
   "start_date": "Start Date",
   "end_date": "End Date",
   "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
-  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto,"
+  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto,",
   "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
 
