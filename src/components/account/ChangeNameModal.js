@@ -29,7 +29,7 @@ class ChangeNameModal extends Component {
       return [ false, "Name is to long"];
     }
 
-    if (!/[a-zA-Z0-9\s]+$/.test(name)) {
+    if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
       return [false, "Name may only contain a-z A-Z 0-9"];
     }
 
