@@ -85,6 +85,10 @@ a {
   font-size: 20px;
 }
 
+.dropdown-menu-right {
+  z-index: 10000;
+}
+
 .header-top {
   box-shadow: 1px 0 14px 0 rgba(0, 0, 0, 0.5);
 }
@@ -403,6 +407,12 @@ tr a {
   border-color: $color-grey;
 }
 
+// Wallet wizard
+.wallet-wizard .wallet-wizard-logo {
+  height: 100px;
+  max-width: 100%;
+}
+
 
 /* Mobile fixes */
 @media only screen and (max-width: 768px) {
@@ -414,6 +424,7 @@ tr a {
     .navbar-collapse .dropdown-menu.show {
       background-color: #353a40;
       border: 0px;
+
     }
     .navbar-collapse .dropdown-menu.show .dropdown-item {
       color: #d2d1d1;
@@ -439,6 +450,18 @@ tr a {
     .home .card {
       margin-bottom: 25px;
     }
+
+  // Wallet wizard
+  .wallet-wizard .wallet-wizard-logo {
+    height: 75px;
+    max-width: 100%;
+  }
+
+  // Buttons
+  .container button {
+    font-size: 11px;
+  }
+
 }
 
 .show-mobile {
@@ -531,7 +554,7 @@ tr a {
   .card h5 {
     font-weight: 300;
   }
-  card-body {
+  .card-body {
     padding-top: 0;
   }
 }

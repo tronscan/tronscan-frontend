@@ -288,7 +288,7 @@ class Wizard extends React.PureComponent {
       <main className="container wallet-wizard header-overlap">
         <div className="card">
           <div className="text-center p-5 bg-dark">
-            <img src={tronLogo} style={{ height: 100 }}/>
+            <img className="wallet-wizard-logo" src={tronLogo}/>
           </div>
           <div className="card-body d-flex wizard-steps">
             <WizardStep completed={step > 0} first={true} icon="fa fa-key" />
