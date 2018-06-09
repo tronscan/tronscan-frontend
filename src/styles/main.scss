@@ -85,6 +85,10 @@ a {
   font-size: 20px;
 }
 
+.dropdown-menu-right {
+  z-index: 10000;
+}
+
 .header-top {
   box-shadow: 1px 0 14px 0 rgba(0, 0, 0, 0.5);
 }
@@ -420,6 +424,7 @@ tr a {
     .navbar-collapse .dropdown-menu.show {
       background-color: #353a40;
       border: 0px;
+
     }
     .navbar-collapse .dropdown-menu.show .dropdown-item {
       color: #d2d1d1;
