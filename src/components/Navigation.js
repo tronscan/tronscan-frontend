@@ -38,6 +38,13 @@ class Navigation extends PureComponent {
     this.state = {
       privateKey: '',
       search: "",
+      searchType:'searchBlockNumber',
+      searchTypes:[
+          'searchBlockNumber',
+          'searchTxHash',
+          'searchToken',
+          'searchAddress'
+      ],
       popup: null,
       notifications: [],
     };
@@ -162,8 +169,8 @@ class Navigation extends PureComponent {
 
 
   doSearch = async () => {
-    let {search} = this.state;
-    let result = await doSearch(search);
+    let {search,searchType} = this.state;
+    let result = await doSearch(search,searchType);
     if (result === true) {
       this.setState({ search: "", });
     } else if (result !== null) {
@@ -264,7 +271,7 @@ class Navigation extends PureComponent {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications} = this.state;
+    let {search, searchType, searchTypes, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -537,6 +544,16 @@ class Navigation extends PureComponent {
 
             <div className="ml-auto py-3 hidden-mobile nav-searchbar">
               <div className="input-group">
+                  <select
+                      className="form-control margin-select"
+                      onChange={(ev) => this.setState({ searchType: ev.target.value }) }
+                      value={searchType}>
+                      {
+                          searchTypes.map((type) => (
+                              <option value={type}>{type}</option>
+                          ))
+                      }
+                  </select>
                 <input type="text"
                        className="form-control p-2 bg-white border-0 box-shadow-none"
                        style={styles.search}
@@ -545,6 +562,7 @@ class Navigation extends PureComponent {
                        onChange={ev => this.setState({search: ev.target.value})}
                        placeholder="Search Blockchain"/>
                 <div className="input-group-append">
+
                   <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
                     <i className="fa fa-search"/>
                   </button>

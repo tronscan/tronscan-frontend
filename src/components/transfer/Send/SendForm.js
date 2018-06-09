@@ -59,6 +59,7 @@ class SendForm extends React.Component {
       this.refreshTokenBalances();
 
       onSend && onSend();
+      //two work flows!
 
       this.setState({
         sendStatus: 'success',

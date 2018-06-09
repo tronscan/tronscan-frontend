@@ -3,7 +3,7 @@ import {Client} from "./api";
 import {store} from "../store";
 import {enableFlag, setTheme} from "../actions/app";
 
-export async function doSearch(criteria) {
+export async function doSearch(criteria,type) {
 
   criteria = trim(criteria);
 
@@ -27,13 +27,16 @@ export async function doSearch(criteria) {
     store.dispatch(enableFlag("scanTransactionQr"));
     return true;
   }
-
+console.log(type);
   for (let search of searches) {
 
     try {
-      let result = await search(criteria);
-      if (typeof result !== 'undefined') {
-        return result;
+
+      if(type===search.name){
+          let result = await search(criteria);
+          if (typeof result !== 'undefined') {
+              return result;
+          }
       }
 
     } catch(e) {}
@@ -56,13 +59,13 @@ async function searchBlockNumber(criteria) {
 }
 
 async function searchTxHash(criteria) {
-  let {transfers} = await Client.getTransactions({
+  let {transactions} = await Client.getTransactions({
     hash: criteria,
     limit: 1,
   });
 
-  if (transfers.length === 1) {
-    return `#/transaction/${transfers[0].hash}`;
+  if (transactions.length === 1) {
+    return `#/transaction/${transactions[0].hash}`;
   }
 
 }
