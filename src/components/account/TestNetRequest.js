@@ -46,17 +46,25 @@ export default class TestNetRequest extends React.Component {
 
       let address = account.address;
 
-      let {data} = await xhr.post(`${API_URL}/api/testnet/request-coins`, {
+      let {success, message, code, amount} = await xhr.post(`${API_URL}/api/testnet/request-coins`, {
         address,
         captchaCode: verificationCode,
       });
 
-      if (data.success) {
+      if (success) {
         this.setState({
           success: true,
           modal: (
             <SweetAlert success title="TRX Received" onConfirm={this.hideModal}>
-              <FormattedNumber value={data.amount / ONE_TRX}/> TRX {tu("have_been_added_to_your_account")}
+              <FormattedNumber value={amount / ONE_TRX}/> TRX {tu("have_been_added_to_your_account")}
+            </SweetAlert>
+          )
+        });
+      } else if (code === "CONTRACT_VALIDATE_ERROR") {
+        this.setState({
+          modal: (
+            <SweetAlert danger title="Error" onConfirm={this.hideModal}>
+              Test TRX is temporarily unavailable. Please try again later.
             </SweetAlert>
           )
         });
@@ -64,7 +72,7 @@ export default class TestNetRequest extends React.Component {
         this.setState({
           modal: (
             <SweetAlert danger title="Error" onConfirm={this.hideModal}>
-              {data.message}
+              {message}
             </SweetAlert>
           )
         });
