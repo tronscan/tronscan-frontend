@@ -409,6 +409,7 @@ tr a {
   max-width: 100%;
 }
 
+
 /* Mobile fixes */
 @media only screen and (max-width: 768px) {
 
@@ -450,7 +451,9 @@ tr a {
     height: 75px;
     max-width: 100%;
   }
-  button {
+
+  // Buttons
+  .container button {
     font-size: 11px;
   }
 
