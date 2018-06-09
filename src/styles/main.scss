@@ -403,6 +403,11 @@ tr a {
   border-color: $color-grey;
 }
 
+// Wallet wizard
+.wallet-wizard .wallet-wizard-logo {
+  height: 100px;
+  max-width: 100%;
+}
 
 /* Mobile fixes */
 @media only screen and (max-width: 768px) {
@@ -439,6 +444,16 @@ tr a {
     .home .card {
       margin-bottom: 25px;
     }
+
+  // Wallet wizard
+  .wallet-wizard .wallet-wizard-logo {
+    height: 75px;
+    max-width: 100%;
+  }
+  button {
+    font-size: 11px;
+  }
+
 }
 
 .show-mobile {
@@ -531,7 +546,7 @@ tr a {
   .card h5 {
     font-weight: 300;
   }
-  card-body {
+  .card-body {
     padding-top: 0;
   }
 }
