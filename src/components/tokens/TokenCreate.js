@@ -11,6 +11,7 @@ import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
 import DateTimePicker from "react-datetime";
+import {Link} from "react-router-dom";
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -308,7 +309,10 @@ class TokenCreate extends Component {
     if (isTokenCreated) {
       return (
         <Alert color="success" className="text-center">
-          {tu("token_issued_successfully")}
+          {tu("token_issued_successfully")}<br/>
+          The token will be available on the{' '}
+          <Link to="/tokens/list">Tokens page</Link>{' '}
+          in a few minutes
         </Alert>
       );
     }
