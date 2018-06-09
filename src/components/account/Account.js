@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
-import {BarLoader} from "../common/loaders";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
@@ -13,15 +12,15 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX} from "../../constants";
 import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
-import Transactions from "../common/Transactions";
 import ApplyForDelegate from "./ApplyForDelegate";
 import {filter, trim} from "lodash";
-import {Modal, ModalBody} from "reactstrap";
+import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import Transfers from "../common/Transfers";
+import TestNetRequest from "./TestNetRequest";
 
 class Account extends Component {
 
@@ -30,7 +29,6 @@ class Account extends Component {
 
     this.state = {
       modal: null,
-      waitingForTrx: false,
       showRequest: true,
       showFreezeBalance: false,
       sr: null,
@@ -244,55 +242,6 @@ class Account extends Component {
     )
   }
 
-  requestTrx = async () => {
-    let {account} = this.props;
-
-    this.setState({waitingForTrx: true});
-
-    try {
-
-      let address = account.address;
-
-      let {data} = await xhr.post(`https://tronscan.org/request-coins`, {
-        address,
-      });
-
-      if (data.success) {
-        this.setState({
-          modal: (
-            <SweetAlert success title="TRX Received" onConfirm={this.hideModal}>
-              <FormattedNumber value={10000}/> TRX {tu("have_been_added_to_your_account")}
-            </SweetAlert>
-          )
-        });
-      } else {
-        this.setState({
-          modal: (
-            <SweetAlert danger title="Error" onConfirm={this.hideModal}>
-              {data.message}
-            </SweetAlert>
-          )
-        });
-      }
-
-      setTimeout(() => this.reloadTokens(), 1500);
-
-    } catch (e) {
-      this.setState({
-        modal: (
-          <SweetAlert danger title="TRX Received" onConfirm={this.hideModal}>
-            tu("An_unknown_error_occurred,_please_try_again_in_a_few_minutes")
-          </SweetAlert>
-        )
-      });
-    }
-    finally {
-      this.setState({
-        waitingForTrx: false
-      });
-    }
-  };
-
   renderTransactions() {
 
     let {account} = this.props;
@@ -305,32 +254,6 @@ class Account extends Component {
         EmptyState={() => <p className="text-center">No transactions yet</p>}
         filter={{address: account.address, limit: 10}}/>
     )
-  }
-
-  renderTestnetRequest() {
-
-    let {waitingForTrx} = this.state;
-
-    if (waitingForTrx) {
-      return (
-        <div className="text-center d-flex justify-content-center p-4">
-          <BarLoader/>
-        </div>
-      );
-    }
-
-    return (
-      <React.Fragment>
-        <p className="pt-1">
-          {tu("information_message_1")}
-          <br/>
-          {tu("information_message_2")}
-        </p>
-        <button className="btn btn-primary" onClick={this.requestTrx}>
-          {tu("request_trx_for_testing")}
-        </button>
-      </React.Fragment>
-    );
   }
 
   showFreezeBalance = () => {
@@ -682,6 +605,7 @@ class Account extends Component {
     this.setState({
       modal: (
         <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} >
+          <ModalHeader toggle={this.hideModal}></ModalHeader>
           <ModalBody className="text-center p-0" onClick={this.hideModal}>
             <QRImageCode value={currentWallet.address} size={500} style={{width: '100%'}} />
           </ModalBody>
@@ -920,7 +844,7 @@ class Account extends Component {
               </div>
               <div className="card-body text-center pt-0">
                 <p className="card-text">
-                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{tu("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
                 </p>
                 {
                   hasFrozen &&
@@ -1038,7 +962,9 @@ class Account extends Component {
                   <h5 className="card-title border-bottom-0 m-0">
                     {tu("testnet")}
                   </h5>
-                  {this.renderTestnetRequest()}
+                  <TestNetRequest
+                    account={account}
+                    onRequested={() => setTimeout(() => this.reloadTokens(), 1500)}/>
                 </div>
               </div>
             </div>

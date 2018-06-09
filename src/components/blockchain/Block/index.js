@@ -14,6 +14,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import {Truncate} from "../../common/text";
 import Transfers from "../../common/Transfers";
+import {Alert} from "reactstrap";
 
 class Block extends React.Component {
 
@@ -23,6 +24,7 @@ class Block extends React.Component {
 
     this.state = {
       loading: true,
+      notFound: false,
       block: {
         number: -1,
         transfers: [],
@@ -72,6 +74,13 @@ class Block extends React.Component {
       block = await Client.getBlockByHash(id);
     }
 
+    if (!block) {
+      this.setState({
+        notFound: true,
+      });
+      return;
+    }
+
     let {total} = await Client.getTransactions({
       block: id,
       limit: 1,
@@ -102,8 +111,18 @@ class Block extends React.Component {
 
   render() {
 
-    let {block, tabs, loading, totalTransactions} = this.state;
+    let {block, tabs, loading, totalTransactions, notFound} = this.state;
     let {activeLanguage, match} = this.props;
+
+    if (notFound) {
+      return (
+        <main className="container header-overlap">
+          <Alert color="warning" className="text-center">
+            Block {block.number} not found
+          </Alert>
+        </main>
+      );
+    }
 
     return (
       <main className="container header-overlap">

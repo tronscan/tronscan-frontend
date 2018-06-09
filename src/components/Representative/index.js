@@ -181,8 +181,7 @@ class Representative extends React.Component {
             <div className="card text-center">
               <div className="card-body">
                 <Alert color="warning">
-                  Unable to load page, this may happen if the address is invalid, the address is not a representative
-                  or the representative did not configure this page yet
+                  {tu("unable_load_representatives_page")}
                 </Alert>
               </div>
               <p>
@@ -224,7 +223,7 @@ class Representative extends React.Component {
         </div>
         <Link className="btn btn-secondary btn-block mb-2" to="/votes">
           <i className="fa fa-arrow-left mr-2"/>
-          Go to votelist
+          {tu("go_to_votelist")}
         </Link>
       </div>
     );
@@ -243,7 +242,7 @@ class Representative extends React.Component {
         <main className="container header-overlap">
           <div className="card text-center">
             <TronLoader>
-              Loading Representative
+              {tu("loading_representatives")}
             </TronLoader>
           </div>
         </main>
@@ -256,7 +255,7 @@ class Representative extends React.Component {
           <div className="card text-center">
             <div className="card-body">
               <Alert color="warning">
-                This address is not a Super Representative
+                {tu("address_not_super_representative")}
               </Alert>
             </div>
             <p>

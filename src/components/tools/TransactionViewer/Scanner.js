@@ -1,6 +1,7 @@
 import React from "react";
 import Instascan from "instascan";
 import {Alert} from "reactstrap";
+import {tu} from "../../../utils/i18n";
 
 export default class Scanner extends React.Component {
 
@@ -46,7 +47,7 @@ export default class Scanner extends React.Component {
         this.setState({
           error: (
             <Alert color="warning" className="text-center">
-              No webcam found
+              {tu("no_webcam_found")}
             </Alert>
           )
         });
@@ -55,7 +56,7 @@ export default class Scanner extends React.Component {
       this.setState({
         error: (
           <Alert color="danger" className="text-center">
-            Error while trying to enable webcam. <br/>Make sure camera permissions are enabled.
+            {tu("trying_enable_webcam_message_0")} <br/>{tu("trying_enable_webcam_message_1")}
           </Alert>
         )
       })

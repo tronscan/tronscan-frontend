@@ -145,6 +145,12 @@ class Wizard extends React.PureComponent {
     }));
   };
 
+  downloadEncryptedKeyFile = () => {
+    let {address} = this.state;
+
+    downloadStringAsFile(this.buildEncryptedKeyStore(), address + ".txt");
+  };
+
   isStepValid = () => {
     let {step, passwordValid} = this.state;
 
@@ -157,7 +163,7 @@ class Wizard extends React.PureComponent {
   };
 
   renderPage() {
-    let {step, address, privateKey, encryptedKey} = this.state;
+    let {step, privateKey} = this.state;
 
     switch (step) {
       case 0:
@@ -204,7 +210,7 @@ class Wizard extends React.PureComponent {
               <div className="col-md-6">
                 <h5>{tu("save_keystore_file")}</h5>
                 <p>
-                  <button className="btn btn-lg btn-block" onClick={() => downloadStringAsFile(this.buildEncryptedKeyStore(), address + ".txt")}>
+                  <button className="btn btn-lg btn-block" onClick={this.downloadEncryptedKeyFile}>
                     <i className="fa fa-download mr-2"/>
                     {tu("download_keystore_file")}
                   </button>
@@ -300,7 +306,7 @@ class Wizard extends React.PureComponent {
                       disabled={!this.isStepValid()}
                       className="btn btn-dark btn-lg ml-auto"
                       onClick={this.nextStep}>
-                    Next
+                    {tu("next")}
                   </button>
               }
             </div>

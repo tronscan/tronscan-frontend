@@ -2,13 +2,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loadNodes} from "../../actions/network";
-import {filter, sortBy, sumBy, maxBy} from "lodash";
-import {tu, tv} from "../../utils/i18n";
+import {filter, maxBy, sortBy, sumBy} from "lodash";
+import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {GlobeMapAsync, NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
-import {ONE_TRX} from "../../constants";
 import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
 

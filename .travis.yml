@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "9"
+before_install:
+  - "npm config set spin false"
+install:
+  - yarn install
+script:
+  - CI=false PUBLIC_URL=https://tronscan.github.io/tronscan-frontend yarn run build
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+deploy:
+  provider: pages
+  local-dir: build
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master

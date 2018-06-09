@@ -5,8 +5,6 @@ import L from "leaflet";
 import "leaflet.markercluster/dist/leaflet.markercluster-src.js";
 import "leaflet.markercluster.placementstrategies/dist/leaflet-markercluster.placementstrategies.js";
 
-// import "script-loader!echarts/dist/echarts.js";
-// import "script-loader!../../../lib/world.js";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";

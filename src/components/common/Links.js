@@ -42,6 +42,7 @@ export class AddressLink extends React.PureComponent {
     this.setState({
       modal: (
         <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} >
+          <ModalHeader toggle={this.hideModal}/>
           <ModalBody className="text-center p-0" onClick={this.hideModal}>
             <QRImageCode value={address} size={500} style={{width: '100%'}} />
           </ModalBody>

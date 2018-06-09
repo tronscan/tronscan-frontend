@@ -42,7 +42,7 @@ class Representatives extends Component {
       return (
         <div className="card">
           <TronLoader>
-            Loading Representatives
+            {tu("loading_representatives")}
           </TronLoader>
         </div>
       );

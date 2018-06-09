@@ -5,7 +5,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import SendOption from "./../SendOption";
-import {find} from "lodash";
+import {find, round} from "lodash";
 import {ONE_TRX} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
@@ -92,7 +92,16 @@ class SendForm extends React.Component {
           onConfirm={this.send}
           onCancel={this.hideModal}
         >
-          Are you sure you want to transfer <span className="font-weight-bold"><FormattedNumber value={amount} /> {token}</span> to {to}?
+          Are you sure you want to transfer<br/>
+          <span className="font-weight-bold">{' '}
+            <FormattedNumber
+              maximumFractionDigits={7}
+              minimunFractionDigits={7}
+              value={amount} />{' '}
+            {token + ' '}
+          </span><br/>
+          to<br/>
+          {to}?
         </SweetAlert>
       )
     });
@@ -108,10 +117,14 @@ class SendForm extends React.Component {
 
     if (amount !== '') {
       amount = parseFloat(amount);
+      amount = round(amount, 6);
+      if (amount <= 0) {
+        amount = 0;
+      }
     }
 
     this.setState({
-      amount: amount >= 0 ? amount : '',
+      amount,
     });
   };
 
@@ -191,6 +204,15 @@ class SendForm extends React.Component {
     )
   }
 
+  setMaxAmount = () => {
+
+    let selectedTokenBalance = this.getSelectedTokenBalance();
+
+    this.setState({
+      amount: selectedTokenBalance,
+    });
+  };
+
   resetForm = ()  => {
     this.setState({
       amount: '',
@@ -264,7 +286,9 @@ class SendForm extends React.Component {
               value={token}>
               {
                 tokenBalances.map(tokenBalance => (
-                  <SendOption key={tokenBalance.name} name={tokenBalance.name} balance={tokenBalance.balance}/>
+                  <SendOption key={tokenBalance.name}
+                              name={tokenBalance.name}
+                              balance={tokenBalance.balance}/>
                 ))
               }
             </select>
@@ -277,7 +301,14 @@ class SendForm extends React.Component {
                    onChange={(ev) => this.setAmount(ev.target.value) }
                    className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
                    value={amount}
-                   placeholder='0.0000'/>
+                   placeholder='0.000000'/>
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary"
+                      type="button"
+                      onClick={this.setMaxAmount}>
+                MAX
+              </button>
+            </div>
             <div className="invalid-feedback">
               {tu("insufficient_tokens")}
             </div>

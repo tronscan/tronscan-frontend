@@ -2,6 +2,7 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 import React, {Fragment} from "react";
 import {alpha} from "../../utils/str";
 import {Tooltip} from "reactstrap";
+import {tu} from "../../utils/i18n";
 
 export class CopyText extends React.Component {
 
@@ -35,7 +36,7 @@ export class CopyText extends React.Component {
         <span id={id} style={{cursor: 'pointer'}}>
           <i className="fa fa-paste"/>
           <Tooltip placement="top" isOpen={copied} target={id}>
-            Copied to clipboard
+            {tu("copied_to_clipboard")}
           </Tooltip>
         </span>
       </CopyToClipboard>

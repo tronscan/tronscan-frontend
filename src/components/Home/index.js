@@ -12,6 +12,7 @@ import SRNews from "./SRNews";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";
+import {tu} from "../../utils/i18n";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -138,7 +139,7 @@ class Home extends Component {
                        className="animated ad-600ms zoomIn"/>
                 </p>
                 <h2 className="mb-5 mt-4 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>
-                  Decentralize the Web
+                  {tu("tron_main_message")}
                 </h2>
                 <div className={
                   "input-group input-group-lg pb-5 mb-5 " +
@@ -166,26 +167,26 @@ class Home extends Component {
               <div className="col-md-3">
                 <Link to="/nodes?mode=3d" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousOnlineNodes} end={stats.onlineNodes} duration={1}/></h2>
-                  <p>Online Nodes</p>
+                  <p>{tu("online_nodes")}</p>
                 </Link>
               </div>
               <div className="col-md-3">
                 <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousBlockHeight} end={stats.blockHeight} duration={1}/></h2>
-                  <p>Block Height</p>
+                  <p>{tu("block_height")}</p>
                 </Link>
               </div>
               <div className="col-md-3">
                 <Link to="/blockchain/transactions"
                       className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTransactionPerHour} end={stats.transactionPerHour} duration={1}/></h2>
-                  <p>Transactions last hour</p>
+                  <p>{tu("transactions_last_hour")}</p>
                 </Link>
               </div>
               <div className="col-md-3">
                 <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><TRXPrice amount={1000} currency="USD"/></h2>
-                  <p>Price (per 1000TRX)</p>
+                  <p>{tu("pice_per_1000trx")}</p>
                 </Link>
               </div>
             </div>
@@ -344,10 +345,10 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>Quick links</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><Link to="/votes"><i className="fa fa-angle-right"/> Vote for Super Representatives</Link></li>
-                  <li><Link to="/representatives"><i className="fa fa-angle-right"/> View Super Representatives</Link></li>
-                  <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> Create a new Wallet</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> View Tokens</Link></li>
+                  <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_supre_representatives")}</Link></li>
+                  <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
+                  <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
+                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
                 </ul>
               </div>
             </div>
@@ -396,4 +397,3 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(Home)))
-
