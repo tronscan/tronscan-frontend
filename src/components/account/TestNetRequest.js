@@ -46,10 +46,12 @@ export default class TestNetRequest extends React.Component {
 
       let address = account.address;
 
-      let {success, message, code, amount} = await xhr.post(`${API_URL}/api/testnet/request-coins`, {
+      let {data} = await xhr.post(`${API_URL}/api/testnet/request-coins`, {
         address,
         captchaCode: verificationCode,
       });
+
+      let {success, message, code, amount} = data;
 
       if (success) {
         this.setState({
