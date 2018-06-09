@@ -92,7 +92,16 @@ class SendForm extends React.Component {
           onConfirm={this.send}
           onCancel={this.hideModal}
         >
-          Are you sure you want to transfer <span className="font-weight-bold"><FormattedNumber value={amount} /> {token}</span> to {to}?
+          Are you sure you want to transfer<br/>
+          <span className="font-weight-bold">{' '}
+            <FormattedNumber
+              maximumFractionDigits={7}
+              minimunFractionDigits={7}
+              value={amount} />{' '}
+            {token + ' '}
+          </span><br/>
+          to<br/>
+          {to}?
         </SweetAlert>
       )
     });
