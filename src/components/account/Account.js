@@ -14,7 +14,7 @@ import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import ApplyForDelegate from "./ApplyForDelegate";
 import {filter, trim} from "lodash";
-import {Modal, ModalBody} from "reactstrap";
+import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
@@ -605,6 +605,7 @@ class Account extends Component {
     this.setState({
       modal: (
         <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} >
+          <ModalHeader toggle={this.hideModal}></ModalHeader>
           <ModalBody className="text-center p-0" onClick={this.hideModal}>
             <QRImageCode value={currentWallet.address} size={500} style={{width: '100%'}} />
           </ModalBody>
