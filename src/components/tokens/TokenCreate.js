@@ -8,7 +8,9 @@ import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
 import {FormattedNumber} from "react-intl";
 import {Alert} from "reactstrap";
-import {addDays, addHours} from "date-fns";
+import {addDays, addHours, isAfter} from "date-fns";
+import "react-datetime/css/react-datetime.css";
+import DateTimePicker from "react-datetime";
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -38,8 +40,8 @@ class TokenCreate extends Component {
       totalSupply: 100000,
       numberOfCoins: 1,
       numberOfTron: 1,
-      startTime: startTime.toISOString().split(".")[0],
-      endTime: endTime.toISOString().split(".")[0],
+      startTime: startTime,
+      endTime: endTime,
       description: "",
       url: "http://",
       confirmed: false,
@@ -220,9 +222,19 @@ class TokenCreate extends Component {
     let minimumTime = addHours(new Date(block.timestamp), 1);
 
     this.setState({
-      startTime: startTime.toISOString().split(".")[0],
+      startTime,
       minimumTime,
     });
+  };
+
+  isValidStartTime = (current, selectedDate) => {
+    let {minimumTime} = this.state;
+    return isAfter(current, minimumTime);
+  };
+
+  isValidEndTime = (current, selectedDate) => {
+    let {startTime} = this.state;
+    return isAfter(current, startTime);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -369,7 +381,7 @@ class TokenCreate extends Component {
   }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset} = this.state;
+    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, startTime, endTime} = this.state;
 
     if (!this.isLoggedIn()) {
       return (
@@ -574,12 +586,23 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-6">
                         <label>{tu("start_date")}</label>
-                        <TextField type="datetime-local" cmp={this} field="startTime" max="9999-12-31T23:59"/>
+                        <DateTimePicker
+                          onChange={(data) => this.setState({ startTime: data.toDate() }) }
+                          isValidDate={this.isValidStartTime}
+                          value={startTime}
+                          input={false}/>
+                        {/*<TextField type="datetime-local" cmp={this} field="startTime" max="9999-12-31T23:59"/>*/}
                         {ErrorLabel(errors.startDate)}
                       </div>
                       <div className="form-group col-md-6">
                         <label>{tu("end_date")}</label>
-                        <TextField type="datetime-local" cmp={this} field="endTime" max="9999-12-31T23:59"/>
+                        <DateTimePicker
+                          onChange={(data) => this.setState({ endTime: data.toDate() }) }
+                          isValidDate={this.isValidEndTime}
+                          value={endTime}
+                          input={false}
+                        />
+                        {/*<TextField type="datetime-local" cmp={this} field="endTime" max="9999-12-31T23:59"/>*/}
                         {ErrorLabel(errors.endDate)}
                       </div>
                     </div>
