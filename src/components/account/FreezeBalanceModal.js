@@ -7,6 +7,7 @@ import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
+import {NumberField} from "../common/Fields";
 
 class FreezeBalanceModal extends React.PureComponent {
 
@@ -37,11 +38,11 @@ class FreezeBalanceModal extends React.PureComponent {
     });
   };
 
-  onAmountChanged = (ev) => {
+  onAmountChanged = (value) => {
 
     let {trxBalance} = this.props;
 
-    let amount = parseInt(ev.target.value);
+    let amount = parseInt(value);
 
     if (!isNaN(amount)) {
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
@@ -84,7 +85,9 @@ class FreezeBalanceModal extends React.PureComponent {
           <form>
             <div className="form-group">
               <label>{tu("trx_amount")}</label>
-              <input type="number"
+              <NumberField
+                     min={1}
+                     decimals={0}
                      value={amount}
                      className="form-control text-center"
                      onChange={this.onAmountChanged}/>

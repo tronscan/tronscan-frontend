@@ -13,6 +13,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Paging from "../../common/Paging";
 import {checkPageChanged} from "../../../utils/PagingUtils";
+import {NumberField} from "../../common/Fields";
 
 class TokenOverview extends Component {
 
@@ -77,24 +78,41 @@ class TokenOverview extends Component {
 
   buyTokens = (token) => {
     let {amount} = this.state;
+    let {wallet} = this.props;
 
-    this.setState({
-      alert: (
-        <SweetAlert
-          info
-          showCancel
-          confirmBtnText="Confirm Transaction"
-          confirmBtnBsStyle="success"
-          cancelBtnBsStyle="default"
-          title="Are you sure?"
-          onConfirm={() => this.confirmTransaction(token)}
-          onCancel={() => this.setState({ alert: null })}
-        >
-          Are you sure you want to buy<br/>
-          {amount} {token.name} for {amount * (token.price / ONE_TRX)} TRX?
-        </SweetAlert>
-      ),
-    });
+    let tokenCosts = amount * (token.price / ONE_TRX);
+
+    if (( wallet.balance / ONE_TRX) < tokenCosts) {
+      this.setState({
+        alert: (
+          <SweetAlert
+            warning
+            title="Insufficient TRX"
+            onConfirm={() => this.setState({ alert: null })}
+          >
+            You do not have enough TRX to buy so many tokens
+          </SweetAlert>
+        ),
+      });
+    } else {
+      this.setState({
+        alert: (
+          <SweetAlert
+            info
+            showCancel
+            confirmBtnText="Confirm Transaction"
+            confirmBtnBsStyle="success"
+            cancelBtnBsStyle="default"
+            title="Are you sure?"
+            onConfirm={() => this.confirmTransaction(token)}
+            onCancel={() => this.setState({ alert: null })}
+          >
+            Are you sure you want to buy<br/>
+            {amount} {token.name} for {amount * (token.price / ONE_TRX)} TRX?
+          </SweetAlert>
+        ),
+      });
+    }
   };
 
   containsToken(token) {
@@ -196,13 +214,13 @@ class TokenOverview extends Component {
                       </span>
                       /&nbsp;
                       <span className="text-muted">
-                        <FormattedNumber value={token.totalSupply}/>
+                        <FormattedNumber value={token.availableSupply}/>
                       </span>
                       <span className="float-right text-success">
-                        {Math.ceil(token.percentage)}%
+                        {Math.ceil(token.issuedPercentage)}%
                       </span>
                       <div className="progress mt-1">
-                        <div className="progress-bar bg-success" style={{width: token.percentage + '%'}}/>
+                        <div className="progress-bar bg-success" style={{width: token.issuedPercentage + '%'}}/>
                       </div>
                     </li>
                     <li className="list-group-item">
@@ -248,7 +266,13 @@ class TokenOverview extends Component {
                             {tu("price")}: {(token.price / ONE_TRX)}
                           </div>
                           <div className="input-group mt-3">
-                            <TextField type="number" cmp={this} field="amount" className="form-control"/>
+                            <NumberField
+                              className="form-control"
+                              value={amount}
+                              max={token.remaining}
+                              min={1}
+                              onChange={value => this.setState({ amount: value })}
+                            />
                             <div className="input-group-append">
                               <button className="btn btn-success"
                                       type="button"
@@ -369,6 +393,7 @@ function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
     account: state.app.account,
+    wallet: state.wallet.current,
   };
 }
 
