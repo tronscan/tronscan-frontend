@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {filter, find, includes, sortBy, round} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {tu} from "../../../utils/i18n";
+import {tu,t} from "../../../utils/i18n";
 import {TextField} from "../../../utils/formHelper";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
@@ -100,15 +100,16 @@ class TokenOverview extends Component {
           <SweetAlert
             info
             showCancel
-            confirmBtnText="Confirm Transaction"
+            confirmBtnText={tu("confirm_transaction")}
             confirmBtnBsStyle="success"
+            cancelBtnText={tu("cancel")}
             cancelBtnBsStyle="default"
-            title="Are you sure?"
+            title={tu("buy_confirm_message_0")}
             onConfirm={() => this.confirmTransaction(token)}
             onCancel={() => this.setState({ alert: null })}
           >
-            Are you sure you want to buy<br/>
-            {amount} {token.name} for {amount * (token.price / ONE_TRX)} TRX?
+            {tu("buy_confirm_message_1")}<br/>
+            {amount} {token.name} {t("for")} {amount * (token.price / ONE_TRX)} TRX?
           </SweetAlert>
         ),
       });
@@ -263,7 +264,7 @@ class TokenOverview extends Component {
                         <div className="card-footer bg-transparent border-top-0">
                           <div className="text-muted text-center">
                             {tu("how_much_buy_message")}<br/>
-                            {tu("price")}: {(token.price / ONE_TRX)}
+                            {tu("price")}: {(token.price / ONE_TRX)} TRX
                           </div>
                           <div className="input-group mt-3">
                             <NumberField

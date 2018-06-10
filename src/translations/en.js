@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: English                                                      #
+#         Status: Approved Version                                               #
+#         Number of checks: 2                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -73,8 +75,9 @@ export const messages = {
   "submit_votes": "submit votes",
   "accounts": "accounts",
   "exchange": "Exchange",
-  "next" : "next",
+  "next": "next",
   "copied_to_clipboard": "Copied to clipboard",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -274,7 +277,18 @@ export const messages = {
   "not_started_yet": "Not started yet",
   "participated": "You successfully participated!",
   "participated_error": "An error occurred",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "How much tokens do you want to buy?",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
 
 /*
 ##################################################################################

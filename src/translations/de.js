@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: German                                                       #
+#         Status: Approved Version                                               #
+#         Number of checks: 4                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Handelsplatz",
   "next" : "Weiter",
   "copied_to_clipboard": "In Zwischenablage kopiert",
+  "cancel": "Abbrechen",
 
 /*
 ##################################################################################
@@ -274,7 +277,18 @@ export const messages = {
   "not_started_yet": "Noch nicht gestartet",
   "participated": "Sie haben erfolgreich teilgenommen!",
   "participated_error": "Es ist ein Fehler aufgetreten.",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "Wie viele Token möchten Sie kaufen?",
+  "buy_confirm_message_0": "Kaufbestätigung",
+  "buy_confirm_message_1": "Möchten Sie folgende Token erwerben?",
+  "for": "für",
 
 /*
 ##################################################################################

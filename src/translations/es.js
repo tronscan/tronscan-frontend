@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-09062018-0                                                #
-#         Update Date: 09.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         language: Spanish                                                      #
+#         Status: Second Draft                                                    #
+#         Number of checks: 1                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Exchange",
   "next" : "luego",
   "copied_to_clipboard": "Copied to clipboard",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -87,17 +90,17 @@ export const messages = {
   "wallet": "Cartera",
   "home": "Inicio",
   "transfers": "Transferencias",
-  "live": "Live",
+  "live": "En vivo",
   "statistics": "Estadísticas",
   "markets": "Mercados",
-  "tools": "Tools",
+  "tools": "Herramientas",
   "news": "Noticias",
   "help": "Ayuda",
   "nodes": "Nodos",
   "votes": "Votos",
   "account": "Cuenta",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
+  "transaction_viewer": "Visualizador de Transacciones",
+  "node_tester": "Comprobador de Nodo",
   "system": "Sistema",
   "overview": "Resumen",
   "participate": "Participar",
@@ -275,7 +278,18 @@ export const messages = {
   "not_started_yet": "Aún no empezado",
   "participated": "¡Has participado con éxito!",
   "participated_error": "Ha ocurrido un error",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "How much tokens do you want to buy?",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
 
 /*
 ##################################################################################
@@ -497,7 +511,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "what_is_tron": "Qué es TRON",
+  "what_is_tron": "Qué es TRON?",
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
