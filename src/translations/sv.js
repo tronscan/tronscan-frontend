@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-09062018                                                  #
-#         Update Date: 09.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: Swedish                                                      #
+#         Status: Approved Version                                               #
+#         Number of checks: 3                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -74,7 +76,7 @@ export const messages = {
   "accounts": "konton",
   "exchange": "Börs",
   "next" : "next",
-  "copied_to_clipboard": "Copied to clipboard",
+  "copied_to_clipboard": "Kopierad till utklipp",
 
 /*
 ##################################################################################
@@ -109,15 +111,15 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
-  "block_height": "Block Height",
-  "online_nodes": "Online Nodes",
-  "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
-  "view_super_representatives": "View Super Representatives",
-  "create_new_wallet": "Create a new Wallet",
-  "view_tokens": "View Tokens",
+  "tron_main_message": "Decentralisera Webben",
+  "transactions_last_hour": "Transaktioner senaste timmen",
+  "block_height": "Block Höjd",
+  "online_nodes": "Noder Onlines",
+  "pice_per_1000trx": "Pris (per 1000TRX)",
+  "vote_for_supre_representatives": "Rösta för Super Representatives",
+  "view_super_representatives": "Se Super Representatives",
+  "create_new_wallet": "Skapa en ny plånbok",
+  "view_tokens": "Se Tokens",
 /*
 ##################################################################################
 #                                                                                #
@@ -158,9 +160,9 @@ export const messages = {
   "tron_power": "Tron Power",
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "transactions": "transaktioner",
-  "tokens": "tokens",
+  "tokens": "tokens", 
   "token_balances": "token balances",
-  "produced_blocks": "produced blocks",
+  "produced_blocks": "producerade blocks",
   "voters": "voters",
   "no_tokens": "Inga Tokens",
   "issued_token": "utfärdade token",
@@ -170,7 +172,7 @@ export const messages = {
   "network": "nätverk",
   "current": "nuvarande",
   "trx_received": "TRX received",
-  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "test_trx_temporarily_unavailable_message": "Test TRX är för tillfället oåtkomligt. Var vänlig försök igen senare.",
 
 /*
 ##################################################################################
@@ -180,15 +182,15 @@ export const messages = {
 ##################################################################################
 */
   "freeze" : "frysa",
-  "unfreeze" : "ofrysa",
+  "unfreeze" : "frigöra",
   "frozen_supply": "Frusna Tillgångar",
   "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
   "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna Tron Power och aktivera ytterligare funktioner. Med Tron Power kan du till exempel",
-  "freeze_trx_premessage_1": "Frysta tokens är låsta” för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
+  "freeze_trx_premessage_1": "Frysta tokens är låsta för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
   "freeze_trx_premessage_link": "rösta på Super Representatives.",
-  "trx_amount": "TRX Amount",
-  "token_freeze_confirm_message_0": "I confirm to freeze ",
-  "token_freeze_confirm_message_1": "for at least of 3 days",
+  "trx_amount": "TRX Antal",
+  "token_freeze_confirm_message_0": "Jag bekräftar att frysa ",
+  "token_freeze_confirm_message_1": "i minst 3 dagar",
 
 /*
 ##################################################################################
@@ -200,20 +202,17 @@ export const messages = {
   "apply_for_delegate": "ansöka om ombudet",
   "apply_super_representative_candidate": "Ansök om att bli en Super Representative kandidat",
   "your_personal_website_address": "din personliga webbadress",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
-   However, for the network and community to operate more smoothly and effectively,
-   we have created a set of standards and regulations for eligible candidates to become
-   recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
+  "apply_for_delegate_predescription":`Varje token innehavare har möjlighet att bli en TRON Super Representative.
+   För att nätverket och samhället ska fungera mer smidigt och effektivt har vi dock skapat en uppsättning standarder och regler för kvalificerade kandidater att bli rekommenderade superrepresentanter.
+   Vi kommer att främja rekommenderade SR: er för att öka deras chanser att bli valda. 
+   Nya rekommenderade Super Representatives uppdateras och publiceras en gång i`, 
   "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
+   TRX hållare kan ansöka om att bli Super Representative genom att använda konto hanterings funktionen, och rösta för kandidater. 
+   Varje konto kan uppdatera sin röst information och är också tillåten att rösta på flera kandidater. 
+   Det maximala antalet röster är mindre eller lika med antalet TRX varje innehavare har varje gång. (Om du har ett antal TRX, 
+   så kan du rösta mindre eller lika mycket av ditt innehav). Resultated av rösterna kommer att beräknas baserat på slutliga
+   röst informationen av varje konto i varje röst cyckel som är mellan 00:00 till 24:00. T
+   RX innehavare med flest röster kommer att bli super ombud. Alla transaktioner gjorda i nätverket är tvingade till att bli validerade av alla SuperOmbud, och viss bonus kommer att delas ut. TRX kommer inte att konsumeras i röstnings processen av super ombud.`,
   "unknown_error": "okänt fel inträffade",
   "representative_understand": "Jag förstår hur man blir en TRON Representant",
   "generate_account": "Klicka för att generera din konto address och lösenord",
@@ -226,7 +225,7 @@ export const messages = {
   "representatives": "representanter",
   "most_votes": "flesta röster",
   "start_end_time": "Start / Slut Tid",
-  "scan_qr_code": "Scanna koden med en QR Code scanner",
+  "scan_qr_code": "Scanna koden med en QR Kod scanner",
   "receive_trx": "mottag TRX",
   "require_account_to_send": "Du måste vara inloggad för att skicka tokens",
   "require_account_to_receive": "Du måste vara inloggad för att mottaga tokens",
@@ -237,7 +236,7 @@ export const messages = {
   "trx_produced": "Transanktioner Producerade",
   "blocks_missed": "Missade Block",
   "do_not_send_1": "Skicka inte TRX från din egna plånbok eller börs till till din testnet address!.",
-  "go_to_votelist": "Go to votelist",
+  "go_to_votelist": "Gå till röst listan",
 
 /*
 ##################################################################################
@@ -272,7 +271,7 @@ export const messages = {
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
-  "how_much_buy_message": "How much tokens do you want to buy?",
+  "how_much_buy_message": "Hur många Tokens vill du köpa?",
 
 /*
 ##################################################################################
@@ -296,21 +295,21 @@ export const messages = {
   "to_much_votes": "För mycket röster",
   "no_trx_remaining": "Inga TRX kvar",
   "produced_by": "Producerad av {witnessAddress}",
-  "show_more": "Visa {countriesLength} Mer",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives.
-   For every TRX you hold in your account you have one vote to spend.
-   TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+  "show_more": "Visa {countriesLength} Mer",  
+  "vote_guide_message": `Använd dina TRX för att rösta för Super Representatives. 
+   För varje TRX du håller i ditt konto har du en röst att spendera. 
+   TRX kommer att förbrukas. Du kan rösta hur många gånger för varje representant du vill. 
+   Dem sista rösterna kommer att räknas vi kl 24 och listan med deligaten kommer att uppdateras`,
   "search_address": "Sök efter address",
   "token_transactions": "Token Transanktioner",
   "token_holders": "Token Innehavare",
-  "nr_of_Transfers": "Nr. of Transfers",
+  "nr_of_Transfers": "Antal Transanktioner",
   "not_signed_in": "Du måste logga in för att använda denna funtion",
-  "loading_map": "Loading Map",
-  "loading_accounts": "loading Accounts",
-  "quantity": "quantity",
-  "percentage": "Percentage",
-  "loading_token": "Loading Token",
+  "loading_map": "Laddar Karta",
+  "loading_accounts": "laddar Konton",
+  "quantity": "kvantitet",
+  "percentage": "Procent",
+  "loading_token": "Laddar Token",
 
 /*
 ##################################################################################
@@ -328,8 +327,8 @@ export const messages = {
   "loading_address": "Laddar Address",
   "transaction_load_error": "Transaktion Load Error",
   "transaction_load_error_message": "Något gick fel när du försökte ladda transaktionen. Kontrollera att HEX värdet är i korrekt format",
-  "waiting_for_transactions": "Waiting for transactions",
-  "loading_address": "Loading Address",
+  "waiting_for_transactions": "Väntar på transanktioner",
+  "loading_address": "Laddar Address",
 
 /*
 ##################################################################################
@@ -351,21 +350,19 @@ export const messages = {
   "supply_message": "Totala antalet tokens som kommer vara i cirkulation",
   "description_message": "Kort beskrivning av syfte med token",
   "url_message": "En webbsida där användare kan hitta mer information om din token",
-  "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
-  "exchange_rate_message_1": "Participants will receive",
-  "exchange_rate_message_2": "for every",
+  "exchange_rate_message_0" : "Ange priset för en enda token genom att definiera hur många token en deltagare kommer att få för varje TRX de spenderar.",
+  "exchange_rate_message_1": "Deltagare kommer att få",
+  "exchange_rate_message_2": "för varje",
   "exchange_rate_message_3": "TRX",
-  "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
+  "participation_message_0": "Ange deltagandeperioden för vilken tokens kommer att utfärdas. Under deltagandeperioden kan användare byta TRX för tokens",
   "participation_message_1": " tokens.",
-  "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-   days has been reached. Freezing supply is not required.`,
-  "token_issued_successfully": "Token successfully issued",
-  "participation": "participation",
-  "start_date": "Start Date",
-  "end_date": "End Date",
+  "frozen_supply_message_0": `En del av tillgången kan frysas. Mängden av tillgången kan specificeras och måste frysas i minst 1 dag. Den frusna tillgången kan manuellt frysas efter startdatum + de frusna dagarna har uppnåtts. Frysning av tillgångarna behöver inte frysas.`,
+  "token_issued_successfully": "Token är framgångsrikt utfärdade",
+  "participation": "deltaga",
+  "start_date": "Start Datum",
+  "end_date": "Slut Datum",
   "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
-  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto,",
+  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
   "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
 
@@ -406,8 +403,8 @@ export const messages = {
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Kandidater",
   "loading_representatives": "Laddar Representatives",
-  "address_not_super_representative": "This address is not a Super Representative",
-  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "address_not_super_representative": "Den här adressen är inte en Super Representative",
+  "unable_load_representatives_page_message": "Det gick inte att ladda sidan, detta kan hända när en address är ogiltig, adressen inte är en  representative eller representative har inte konfigurerat sidan ännu.",
 
 /*
 ##################################################################################
@@ -430,19 +427,19 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "next_round": "Next Round",
-  "total_votes": "Total Votes",
-  "most_ranks": "Most Ranks Gained This Round",
-  "view_live_ranking": "View Live Ranking",
-  "open_team_page": "Open Team Page",
-  "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
+  "next_round": "Nästa Runda",
+  "total_votes": "Totala Röster",
+  "most_ranks": "Högsta Rang Intjänad Denna Runda",
+  "view_live_ranking": "Se Live Rang",
+  "open_team_page": "Öppna Team Sida",
+  "warning_votes": "Minst 1 Tron Power är nödvändig för att börja rösta. Tron Power fås gengom att frysa TRX på",
   "account_page": "Account Page",
-  "loading_votes": "Loading Votes",
+  "loading_votes" : "Loading Votes",
   "3_day_ranking": "3 Days Ranking",
   "live_ranking": "Live Ranking",
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
-  "candidate": "Candidate",
-  "current_votes": "Current Votes",
+  "candidate": "Kandidat",
+  "current_votes": "Nuvarande Röster",
 
 /*
 ##################################################################################
@@ -451,18 +448,18 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "info_tx_viewer": "Here you can paste a transaction hex to inspect the contents of a transaction. The transaction can then be broadcasted to the network",
-  "load_tx": "Load Transaction",
-  "tx_qrcode": "Transaction QR Code",
-  "load_tx_qrcode": "Load Transaction from QR Code",
+  "info_tx_viewer": "Här kan du klistra in en transaktions hex för att inspektera innehållet i en transaktion. Transanktionen kan sedan sändas till nätverket",
+  "load_tx": "Ladda Transanktion",
+  "tx_qrcode": "Transanktion QR Kod",
+  "load_tx_qrcode": "Ladda Transaktion från QR Kod",
   "transaction_load_error": "Transaktion Load Error",
   "transaction_load_error_message": "Något gick fel när du försökte ladda transaktionen. Kontrollera att HEX värdet är i korrekt format",
-  "transaction_success_message": "Transaction successfully broadcasted to the network",
-  "transaction_success": "Transaction Success",
-  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
-  "transaction_error": "Transaction Error",
-  "confirm_transaction_message": "Are you sure you want to send the transaction?",
-  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
+  "transaction_success_message": "Transanktionen har lyckats skickas till nätverket",
+  "transaction_success": "Lyckad Transanktion",
+  "transaction_error_message": "Något gick fel när transanktionen skulle skickas över nätverket",
+  "transaction_error": "Transanktions Fel",
+  "confirm_transaction_message": "Är du säker på att du vill skicka denna transanktion?",
+  "broadcast_transaction_to_network": "Skicka transanktion över nätverket",
 
 /*
 ##################################################################################
@@ -471,12 +468,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "node_tester_msg": "Insert the IP of you node to test GRPC connection",
-  "node_tester_stop": "Stop testing",
-  "node_tester_test": "Test GRPC",
-  "node_tester_rt": "Response Time",
-  "confirmed_block": "Confirmed Block",
-  "loading": "loading...",
+  "node_tester_msg": "Sätt in IP för din nod för att testa GRPC-anslutningen",
+  "node_tester_stop": "Stop testning",
+  "node_tester_test": "Test aGRPC",
+  "node_tester_rt": "Svarstid",
+  "confirmed_block": "Bekräftat block",
+  "loading": "laddar...",
 
 /*
 ##################################################################################
@@ -485,9 +482,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_webcam_found": "No webcam found",
-  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
-  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
+  "no_webcam_found": "Ingen webkamera hittades",
+  "trying_enable_webcam_message_0": "Fel när webkamera skulle aktiveras",
+  "trying_enable_webcam_message_1": "Kontrollera att webkamera rättigheter är aktiverade",
 
 /*
 ##################################################################################
@@ -496,11 +493,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "what_is_tron": "What is TRON",
+  "what_is_tron": "Vad är TRON",
   "tron_explorer_api": "Tron Explorer API",
-  "tron_architechure": "TRON Architecture",
-  "tron_protobuf_doc": "TRON Protobuf Documentation",
-  "report_an_error": "Submit a bug / suggestion",
+  "tron_architechure": "TRON Arkitektur",
+  "tron_protobuf_doc": "TRON Protobuf Dokumentation",
+  "report_an_error": "Anmäl en bug / förslag",
 
 /*
 ##################################################################################
@@ -509,29 +506,29 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "open_wallet": "Open Wallet",
-  "private_key": "Private Key",
-  "keystore_file": "Keystore File",
-  "select_file": "Select File",
-  "login_mobile": "Login with a mobile device",
-  "create_wallet": "create wallet",
-  "no_open_wallet": "No open wallet to view",
-  "new_wallet": "New Wallet",
-  "password_encr_key_message_0": "This password encrypts your private key. This does not act as a seed to generate your keys.",
-  "password_encr_key_message_1": "You will need this password and your private key to unlock your wallet.",
-  "strong_password_info": "A strong password is required",
-  "save_keystore_file": "Save Your Keystore File",
-  "download_keystore_file": "Download Encrypted Key",
-  "do_not_lose_it": "Do not lose it!",
-  "do_not_share_it": "Do not share it!",
-  "make_a_backup": "Make a backup!",
-  "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
-  "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
-  "make_a_backup_message_0": "Just in case your laptop is set on fire.",
-  "save_private_key": "Save Your Private Key",
-  "print_paper_wallet": "Print Paper Wallet",
+  "open_wallet": "Öppna Plånbok",
+  "private_key": "Private Nyckel",
+  "keystore_file": "Keystore Fil",
+  "select_file": "Välj Fil",
+  "login_mobile": "Logga in med en mobilenhet",
+  "create_wallet": "skapa plånbok",
+  "no_open_wallet": "Ingen öppen plånbok att se",
+  "new_wallet": "Ny Plånbok",
+  "password_encr_key_message_0": "Detta lösenord krypterar din privata nyckel. Detta fungerar inte som en seed till din nyckel.",
+  "password_encr_key_message_1": "Du behöver detta lösenord och din privata nyckel för att låsa upp din plånbok.",
+  "strong_password_info": "Ett starkt lösenord krävs",
+  "save_keystore_file": "Spara din Keystore-fil",
+  "download_keystore_file": "Ladda ner Krypterad nyckel",
+  "do_not_lose_it": "Förlora den inte!",
+  "do_not_share_it": "Dela den inte!",
+  "make_a_backup": "Skapa en backup!",
+  "do_not_lose_it_message_0": "Tron Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
+  "do_not_share_it_message_0": "Dina pengar kan bli stulna om du använder den här filen på en skadlig webbplats.",
+  "make_a_backup_message_0": "ifall din dator fattar eld.",
+  "save_private_key": "Spara din privata nyckel",
+  "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Your new wallet is ready",
-  "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
+  "go_to_account_page": "Gå till kontosidan",
+  "send_to_following_address": "Skicka till följande address",
 
 };
