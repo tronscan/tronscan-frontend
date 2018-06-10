@@ -15,7 +15,7 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: Dutch                                                        #
 #         Status: First Draft                                                    #
@@ -40,31 +40,31 @@ export const messages = {
   "password": "wachtwoord",
   "money_price": "prijs",
   "blocks": "blokken",
-  "block": "block",
+  "block": "blok",
   "balance": "balans",
-  "bandwidth": "bandwidth",
+  "bandwidth": "bandbreedte",
   "name": "naam",
-  "website": "website",
+  "website": "webpagina",
   "address": "adres",
   "price": "price",
   "sign_out": "uitloggen",
-  "sign_in": "sign in",
+  "sign_in": "inloggen",
   "register_login": "Registreren / Inloggen",
-  "register": "registreren",
+  "register": "inschrijven",
   "login": "inloggen",
   "height": "height",
   "age": "age",
-  "produced by": "produced by",
+  "produced by": "geproduceerd door",
   "bytes": "bytes",
-  "created": "created",
+  "created": "gemaakt",
   "Contract": "Contract",
-  "from": "from",
-  "to": "to",
-  "value": "value",
-  "total_accounts": "Total Accounts",
+  "from": "van",
+  "to": "naar",
+  "value": "waarde",
+  "total_accounts": "Totaal accounts",
   "submit": "bevestig",
-  "receive": "receive",
-  "supply": "supply",
+  "receive": "ontvang",
+  "supply": "lever",
   "view": "bekijken",
   "view_all":"View all",
   "create": "nieuw",
@@ -78,6 +78,8 @@ export const messages = {
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
 
 /*
 ##################################################################################
@@ -91,10 +93,10 @@ export const messages = {
   "home": "Home",
   "transfers": "Transfers",
   "live": "Live",
-  "statistics": "Statistics",
-  "markets": "Markets",
-  "tools": "Tools",
-  "news": "News",
+  "statistics": "Statistieken",
+  "markets": "Markten",
+  "tools": "Gereedschap",
+  "news": "Nieuws",
   "help": "Help",
   "nodes": "Nodes",
   "votes": "stemmen",
@@ -102,7 +104,7 @@ export const messages = {
   "transaction_viewer": "Transaction Viewer",
   "node_tester": "Node Tester",
   "system": "System",
-  "overview": "Overview",
+  "overview": "Overzicht",
   "participate": "Participate",
 
 /*
@@ -112,9 +114,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
-  "block_height": "Block Height",
+  "tron_main_message": "Decentraliseer het Web",
+  "transactions_last_hour": "Transacties gedurende laatste uur",
+  "block_height": "Blokhoogte",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
   "vote_for_supre_representatives": "Vote for Super Representatives",
@@ -129,12 +131,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first_page": "first page",
-  "previous_page": "previous page",
-  "next_page": "next page",
-  "last_page": "last page",
-  "page": "page",
-  "of": "of",
+  "first_page": "eerste pagina",
+  "previous_page": "vorige pagina",
+  "next_page": "volgende pagina",
+  "last_page": "laatste pagina",
+  "page": "pagina",
+  "of": "van",
   "last_block": "laatste blok",
   "total_supply": "totale voorraad",
   "most_nodes": "Most Nodes",
@@ -187,6 +189,7 @@ export const messages = {
   "current": "huidig",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -469,6 +472,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
   "current_votes": "Current Votes",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################

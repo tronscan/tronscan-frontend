@@ -66,7 +66,7 @@ export default class TestNetRequest extends React.Component {
         this.setState({
           verificationCode: null,
           modal: (
-            <SweetAlert danger title="Error" onConfirm={this.hideModal}>
+            <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
               {tu("test_trx_temporarily_unavailable_message")}
             </SweetAlert>
           )

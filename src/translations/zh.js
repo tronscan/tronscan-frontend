@@ -15,7 +15,7 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: Chinese                                                      #
 #         Status: First Draft                                                    #
@@ -78,6 +78,8 @@ export const messages = {
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
 
 /*
 ##################################################################################
@@ -187,6 +189,7 @@ export const messages = {
   "current": "current",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -467,6 +470,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
   "current_votes": "Current Votes",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################

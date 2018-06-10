@@ -263,7 +263,7 @@ class Account extends Component {
     if (trxBalance === 0) {
       this.setState({
         modal: (
-          <SweetAlert warning title="Not enough TRX" onConfirm={this.hideModal}>
+          <SweetAlert warning title={tu("not_enough_trx")} onConfirm={this.hideModal}>
             {tu("freeze_trx_least")}
           </SweetAlert>
         )
