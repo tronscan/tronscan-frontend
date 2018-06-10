@@ -137,12 +137,24 @@ export const messages = {
   "of": "of",
   "last_block": "dernier bloc",
   "total_supply": "offre totale",
-  "addresses": "adresses",
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hôte",
   "Last Update": "Dernière MAJ",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "adresses",
+  "trx_transferred_past_hour": "TRX transférés dans l'heure passée",
+  "transactions_past_hour": "Transactions dans l'heure passée",
+  "average_blocksize": "Average Block Size",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -402,8 +414,6 @@ export const messages = {
   "past_starttime_error": "La date de début est antérieure à la date du jour",
   "no_transactions": "Aucune transaction",
   "no_transfers": "Aucun transfert",
-  "TRX transferred in the past hour": "TRX transférés dans l'heure passée",
-  "Transactions in the past hour": "Transactions dans l'heure passée",
 
 /*
 ##################################################################################
@@ -412,7 +422,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Average Block Size",
   "Highest Productivity": "Productivité la plus élevée",
   "Lowest Productivity": "Productivité la plus faible",
   "productivity": "productivité",

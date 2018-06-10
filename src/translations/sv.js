@@ -136,12 +136,25 @@ export const messages = {
   "of": "av",
   "last_block": "senaste blocket",
   "total_supply": "total tillgång",
-  "addresses": "addresses",
   "most_nodes": "Flesta Noder",
   "loading_nodes": "laddar Noder",
   "Hostname": "Hostnamn",
   "Last Update": "Senast Uppdaterat",
   "first_node_sync_message": "Väntar på att första noden ska synka, var vänlig testa igen om några minuter.",
+
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "TRX överförda den senaste timmen",
+  "transactions_past_hour": "Transaktioner den senaste timmen ",
+  "average_blocksize": "Medel Block Storlek",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -392,8 +405,6 @@ export const messages = {
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
   "no_transfers": "Inga överföringar",
-  "TRX transferred in the past hour": "TRX överförda den senaste timmen",
-  "Transactions in the past hour": "Transaktioner den senaste timmen ",
 
 /*
 ##################################################################################
@@ -402,7 +413,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Medel Block Storlek",
   "Highest Productivity": "Högsta produktivitet",
   "Lowest Productivity": "Lägsta produktivitet",
   "productivity": "produktivitet",

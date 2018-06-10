@@ -121,6 +121,7 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -136,12 +137,24 @@ export const messages = {
   "of": "of",
   "last_block": "last block",
   "total_supply": "total supply",
-  "addresses": "addresses",
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "TRX transferred in the past hour",
+  "transactions_past_hour": "Transactions in the past hour",
+  "average_blocksize": "Average Block Size",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -404,8 +417,6 @@ export const messages = {
   "past_starttime_error": "The starting date is in the past",
   "no_transactions": "No Transactions",
   "no_transfers": "No Transfers",
-  "TRX transferred in the past hour": "TRX transferred in the past hour",
-  "Transactions in the past hour": "Transactions in the past hour",
 
 /*
 ##################################################################################
@@ -414,7 +425,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Average Block Size",
   "Highest Productivity": "Highest Productivity",
   "Lowest Productivity": "Lowest Productivity",
   "productivity": "productivity",

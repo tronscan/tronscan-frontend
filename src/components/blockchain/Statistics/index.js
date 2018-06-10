@@ -194,7 +194,7 @@ class Statistics extends React.Component {
           <div className="col-md-6 mt-3">
             <div className="card">
               <div className="card-body">
-                <h5 className="text-center">{tu("TRX transferred in the past hour")}</h5>
+                <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
                 <div style={{height: 300}}>
                   <ResponsiveContainer>
                     <AreaChart data={transactionValueStats} isAnimationActive={false}>
@@ -233,7 +233,7 @@ class Statistics extends React.Component {
           <div className="col-md-6 mt-3">
             <div className="card">
               <div className="card-body">
-                <h5 className="text-center">{tu("Transactions in the past hour")}</h5>
+                <h5 className="text-center">{tu("transactions_past_hour")}</h5>
                 <div style={{height: 300}}>
                   <ResponsiveContainer>
                     <AreaChart data={transactionStats} isAnimationActive={false}>

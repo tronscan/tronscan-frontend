@@ -137,12 +137,24 @@ export const messages = {
   "of": "de",
   "last_block": "último bloque",
   "total_supply": "suministro total",
-  "addresses": "addresses",
   "most_nodes": "Mayoría de Nodos",
   "loading_nodes" : "loading Nodes",
   "Hostname": "Nombre del host",
   "Last Update": "Última actualización",
   "first_node_sync_message": "Esperando a la sincronización del primer nodo, por favor inténtalo de nuevo en unos minutos.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "Se ha intentado transferir TRX a una hora pasada",
+  "transactions_past_hour": "Se ha intentado hacer transacciones a una hora pasada",
+  "average_blocksize": "Tamaño promedio de bloque",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -403,8 +415,6 @@ export const messages = {
   "past_starttime_error": "La fecha de inicio ya ha transcurrido",
   "no_transactions": "No han ocurrido transacciones",
   "no_transfers": "No han ocurrido transferencias",
-  "TRX transferred in the past hour": "Se ha intentado transferir TRX a una hora pasada",
-  "Transactions in the past hour": "Se ha intentado hacer transacciones a una hora pasada",
 
 /*
 ##################################################################################
@@ -413,7 +423,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Tamaño promedio de bloque",
   "Highest Productivity": "Mayor productividad",
   "Lowest Productivity": "Productividad más baja",
   "productivity": "productividad",
