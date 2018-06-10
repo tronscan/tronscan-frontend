@@ -170,6 +170,8 @@ export const messages = {
   "issuer": "صادر کننده",
   "network": "شبکه",
   "current": "در حال حاضر",
+  "trx_received": "TRX received",
+  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
 
 /*
 ##################################################################################
@@ -188,6 +190,9 @@ export const messages = {
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
+  "trx_amount": "TRX Amount",
+  "token_freeze_confirm_message_0": "I confirm to freeze ",
+  "token_freeze_confirm_message_1": "for at least of 3 days",
 
 /*
 ##################################################################################

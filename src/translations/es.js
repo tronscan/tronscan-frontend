@@ -170,6 +170,8 @@ export const messages = {
   "issuer": "emisor",
   "network": "red",
   "current": "actual",
+  "trx_received": "TRX received",
+  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
 
 /*
 ##################################################################################
@@ -188,6 +190,9 @@ export const messages = {
   "freeze_trx_premessage_1": ` Los tokens congelados permanecen "bloqueados" por un tiempo de 3 días. Durante este período, no podrá comercializar con TRX.
    Transcurrido ese tiempo puede descongelar los TRX y comercializar de nuevo con ellos.`,
   "freeze_trx_premessage_link": "Votar los candidatos a Super Representantes.",
+  "trx_amount": "TRX Amount",
+  "token_freeze_confirm_message_0": "I confirm to freeze ",
+  "token_freeze_confirm_message_1": "for at least of 3 days",
 
 /*
 ##################################################################################

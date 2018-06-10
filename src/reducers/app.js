@@ -24,9 +24,10 @@ const initialState = {
     percentage: 0,
   },
   availableLanguages: {
-    // nl: "Nederlands",
     en: "English",
+    nl: "Nederlands",
     de: "Deutsch",
+    sv: "Svenska",
     zh: "简体中文",
     fa:"فارسی",
     ko:"한국어",
