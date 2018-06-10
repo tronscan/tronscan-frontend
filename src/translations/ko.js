@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: Korean                                                       #
+#         Status: first draft                                                    #
+#         Number of checks: 0                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Exchange",
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -134,12 +137,24 @@ export const messages = {
   "of": "of",
   "last_block": "마지막 블록",
   "total_supply": "총 공급",
-  "addresses": "addresses",
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "TRX transferred in the past hour",
+  "transactions_past_hour": "Transactions in the past hour",
+  "average_blocksize": "Average Block Size",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -275,7 +290,18 @@ export const messages = {
   "not_started_yet": "준비중",
   "participated": "당신은 성공적으로 참여했습니다!",
   "participated_error": "에러가 발생했습니다.",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "How much tokens do you want to buy?",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
 
 /*
 ##################################################################################
@@ -391,8 +417,6 @@ export const messages = {
   "past_starttime_error": "The starting date is in the past",
   "no_transactions": "No Transactions",
   "no_transfers": "No Transfers",
-  "TRX transferred in the past hour": "TRX transferred in the past hour",
-  "Transactions in the past hour": "Transactions in the past hour",
 
 /*
 ##################################################################################
@@ -401,7 +425,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Average Block Size",
   "Highest Productivity": "Highest Productivity",
   "Lowest Productivity": "Lowest Productivity",
   "productivity": "productivity",

@@ -77,6 +77,7 @@ export const messages = {
   "exchange": "Börs",
   "next" : "next",
   "copied_to_clipboard": "Kopierad till utklipp",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -127,20 +128,33 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first": "första sidan",
-  "previous": "föregående sida",
-  "next": "nästa sida",
-  "last": "sista sidan",
+  "first_page": "första sidan",
+  "previous_page": "föregående sida",
+  "next_page": "nästa sida",
+  "last_page": "sista sidan",
   "page": "sida",
   "of": "av",
   "last_block": "senaste blocket",
   "total_supply": "total tillgång",
-  "addresses": "addresses",
   "most_nodes": "Flesta Noder",
-  "loading_nodes" : "laddar Noder",
+  "loading_nodes": "laddar Noder",
   "Hostname": "Hostnamn",
   "Last Update": "Senast Uppdaterat",
   "first_node_sync_message": "Väntar på att första noden ska synka, var vänlig testa igen om några minuter.",
+
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "TRX överförda den senaste timmen",
+  "transactions_past_hour": "Transaktioner den senaste timmen ",
+  "average_blocksize": "Medel Block Storlek",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -160,7 +174,7 @@ export const messages = {
   "tron_power": "Tron Power",
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "transactions": "transaktioner",
-  "tokens": "tokens", 
+  "tokens": "tokens",
   "token_balances": "token balances",
   "produced_blocks": "producerade blocks",
   "voters": "voters",
@@ -204,12 +218,12 @@ export const messages = {
   "your_personal_website_address": "din personliga webbadress",
   "apply_for_delegate_predescription":`Varje token innehavare har möjlighet att bli en TRON Super Representative.
    För att nätverket och samhället ska fungera mer smidigt och effektivt har vi dock skapat en uppsättning standarder och regler för kvalificerade kandidater att bli rekommenderade superrepresentanter.
-   Vi kommer att främja rekommenderade SR: er för att öka deras chanser att bli valda. 
-   Nya rekommenderade Super Representatives uppdateras och publiceras en gång i`, 
+   Vi kommer att främja rekommenderade SR: er för att öka deras chanser att bli valda.
+   Nya rekommenderade Super Representatives uppdateras och publiceras en gång i`,
   "apply_for_delegate_description": `
-   TRX hållare kan ansöka om att bli Super Representative genom att använda konto hanterings funktionen, och rösta för kandidater. 
-   Varje konto kan uppdatera sin röst information och är också tillåten att rösta på flera kandidater. 
-   Det maximala antalet röster är mindre eller lika med antalet TRX varje innehavare har varje gång. (Om du har ett antal TRX, 
+   TRX hållare kan ansöka om att bli Super Representative genom att använda konto hanterings funktionen, och rösta för kandidater.
+   Varje konto kan uppdatera sin röst information och är också tillåten att rösta på flera kandidater.
+   Det maximala antalet röster är mindre eller lika med antalet TRX varje innehavare har varje gång. (Om du har ett antal TRX,
    så kan du rösta mindre eller lika mycket av ditt innehav). Resultated av rösterna kommer att beräknas baserat på slutliga
    röst informationen av varje konto i varje röst cyckel som är mellan 00:00 till 24:00. T
    RX innehavare med flest röster kommer att bli super ombud. Alla transaktioner gjorda i nätverket är tvingade till att bli validerade av alla SuperOmbud, och viss bonus kommer att delas ut. TRX kommer inte att konsumeras i röstnings processen av super ombud.`,
@@ -263,7 +277,6 @@ export const messages = {
   "invalid_address": "ogiltig adress",
   "insufficient_tokens": "otillräcklig med tokens",
   "make_another_transaction": "Gör en annan transaktion",
-  "participate": "deltaga",
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
   "An_error_occurred": "Ett fel inträffade",
@@ -271,7 +284,18 @@ export const messages = {
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
-  "how_much_buy_message": "Hur många Tokens vill du köpa?",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
+    "how_much_buy_message": "How much tokens do you want to buy?",
+    "buy_confirm_message_0": "Are you sure?",
+    "buy_confirm_message_1": "Are you sure you want to buy",
+    "for": "for",
 
 /*
 ##################################################################################
@@ -295,10 +319,10 @@ export const messages = {
   "to_much_votes": "För mycket röster",
   "no_trx_remaining": "Inga TRX kvar",
   "produced_by": "Producerad av {witnessAddress}",
-  "show_more": "Visa {countriesLength} Mer",  
-  "vote_guide_message": `Använd dina TRX för att rösta för Super Representatives. 
-   För varje TRX du håller i ditt konto har du en röst att spendera. 
-   TRX kommer att förbrukas. Du kan rösta hur många gånger för varje representant du vill. 
+  "show_more": "Visa {countriesLength} Mer",
+  "vote_guide_message": `Använd dina TRX för att rösta för Super Representatives.
+   För varje TRX du håller i ditt konto har du en röst att spendera.
+   TRX kommer att förbrukas. Du kan rösta hur många gånger för varje representant du vill.
    Dem sista rösterna kommer att räknas vi kl 24 och listan med deligaten kommer att uppdateras`,
   "search_address": "Sök efter address",
   "token_transactions": "Token Transanktioner",
@@ -323,10 +347,6 @@ export const messages = {
   "no_blocks_found": "Inga block hittades",
   "no_votes_found": "Inga röster hittades",
   "no_voters_found": "Inga rösande hittades",
-  "waiting_for_transactions": "Väntar på transanktioner",
-  "loading_address": "Laddar Address",
-  "transaction_load_error": "Transaktion Load Error",
-  "transaction_load_error_message": "Något gick fel när du försökte ladda transaktionen. Kontrollera att HEX värdet är i korrekt format",
   "waiting_for_transactions": "Väntar på transanktioner",
   "loading_address": "Laddar Address",
 
@@ -385,8 +405,6 @@ export const messages = {
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
   "no_transfers": "Inga överföringar",
-  "TRX transferred in the past hour": "TRX överförda den senaste timmen",
-  "Transactions in the past hour": "Transaktioner den senaste timmen ",
 
 /*
 ##################################################################################
@@ -395,7 +413,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Medel Block Storlek",
   "Highest Productivity": "Högsta produktivitet",
   "Lowest Productivity": "Lägsta produktivitet",
   "productivity": "produktivitet",

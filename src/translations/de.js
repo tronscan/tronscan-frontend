@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: German                                                       #
+#         Status: Approved Version                                               #
+#         Number of checks: 4                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Handelsplatz",
   "next" : "Weiter",
   "copied_to_clipboard": "In Zwischenablage kopiert",
+  "cancel": "Abbrechen",
 
 /*
 ##################################################################################
@@ -134,12 +137,24 @@ export const messages = {
   "of": "von",
   "last_block": "letzter Block",
   "total_supply": "Gesamtvorrat",
-  "addresses": "Adressen",
   "most_nodes": "Meisten Knoten",
   "loading_nodes": "Laden der Knoten",
   "Hostname": "Hostname",
   "Last Update": "Letzte Aktualisierung",
   "first_node_sync_message": "Warten auf die Synchronisation des ersten Knotens, bitte versuchen Sie es in wenigen Minuten erneut.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "Adressen",
+  "trx_transferred_past_hour": "TRX übertragen der letzten Stunde",
+  "transactions_past_hour": "Transaktionen der letzten Stunde",
+  "average_blocksize": "Durchschnittliche Blockgröße",
+  "rich_list": "Aufteilung TRX - Inhaber/Mengen",
 
 /*
 ##################################################################################
@@ -274,7 +289,18 @@ export const messages = {
   "not_started_yet": "Noch nicht gestartet",
   "participated": "Sie haben erfolgreich teilgenommen!",
   "participated_error": "Es ist ein Fehler aufgetreten.",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "Wie viele Token möchten Sie kaufen?",
+  "buy_confirm_message_0": "Kaufbestätigung",
+  "buy_confirm_message_1": "Möchten Sie folgende Token erwerben?",
+  "for": "für",
 
 /*
 ##################################################################################
@@ -392,8 +418,6 @@ export const messages = {
   "past_starttime_error": "Der Starttermin liegt in der Vergangenheit.",
   "no_transactions": "Keine Transaktionen",
   "no_transfers": "Keine Transaktionen vorhanden",
-  "TRX transferred in the past hour": "TRX übertragen der letzten Stunde",
-  "Transactions in the past hour": "Transaktionen der letzten Stunde",
 
 /*
 ##################################################################################
@@ -402,7 +426,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Durchschnittliche Blockgröße",
   "Highest Productivity": "Höchste Produktivität",
   "Lowest Productivity": "Niedrigste Produktivität",
   "productivity": "Produktivität",
