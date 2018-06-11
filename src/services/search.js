@@ -1,7 +1,5 @@
 import {trim} from "lodash";
 import {Client} from "./api";
-import {store} from "../store";
-import {enableFlag, setTheme} from "../actions/app";
 
 export async function doSearch(criteria, type) {
 
@@ -18,15 +16,6 @@ export async function doSearch(criteria, type) {
         searchToken,
         searchAddress
     ];
-
-    if (criteria.toLowerCase() === "enter the grid") {
-        store.dispatch(setTheme("tron"));
-        return true;
-    }
-    if (criteria.toLowerCase() === "scan-trx") {
-        store.dispatch(enableFlag("scanTransactionQr"));
-        return true;
-    }
 
     for (let search of searches) {
 
