@@ -25,6 +25,7 @@ import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
+import {toastr} from 'react-redux-toastr'
 
 class Navigation extends PureComponent {
 
@@ -157,6 +158,7 @@ class Navigation extends PureComponent {
 
   componentWillUnmount() {
     this.listener && this.listener.close();
+    // what's the use of this?
   }
 
   getActiveComponent() {
@@ -169,6 +171,7 @@ class Navigation extends PureComponent {
 
 
   doSearch = async () => {
+
     let {search,searchType} = this.state;
     let result = await doSearch(search,searchType);
     if (result === true) {
@@ -176,7 +179,8 @@ class Navigation extends PureComponent {
     } else if (result !== null) {
       window.location.hash = result;
       this.setState({ search: "", });
-    }
+    } else
+        toastr.warning('Warning', 'Record not found!')
   };
 
   onSearchKeyDown = (ev) => {

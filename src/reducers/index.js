@@ -7,6 +7,8 @@ import {marketsReducer} from "./markets";
 import {walletReducer} from "./wallet";
 import {votesReducer} from "./votes";
 
+import {reducer as toastrReducer} from 'react-redux-toastr'
+
 export default {
   app: appReducer,
   blockchain: blockchainReducer,
@@ -16,4 +18,5 @@ export default {
   markets: marketsReducer,
   wallet: walletReducer,
   voting: votesReducer,
+  toastr: toastrReducer
 };
