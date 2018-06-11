@@ -34,6 +34,7 @@ const initialState = {
     br: "Português Brasil",
     fr: "Français",
     es: "Español",
+    tr: "Türkçe",
   },
   activeLanguage: 'en',
   account: {
