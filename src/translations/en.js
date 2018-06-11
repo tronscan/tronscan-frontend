@@ -325,7 +325,7 @@ export const messages = {
   "url": "url",
   "need_to_login": "You must be logged in to access to account page",
   "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
+  "to_much_votes": "To many votes",
   "no_trx_remaining": "No TRX remaining",
   "produced_by": "Produced by {witnessAddress}",
   "show_more": "Show {countriesLength} More",
