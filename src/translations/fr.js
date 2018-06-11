@@ -19,7 +19,7 @@ export const messages = {
 #         Update Date: 11.06.2018                                                #
 #         Language: French                                                       #
 #         Status: Second Draft                                                   #
-#         Number of checks: 1                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: El Petito Nicolas, Dev Obs                               #
 #                                                                                #
 ##################################################################################
@@ -77,10 +77,10 @@ export const messages = {
   "accounts": "comptes",
   "exchange": "Exchange",
   "next" : "next",
-  "copied_to_clipboard": "Copied to clipboard",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "copied_to_clipboard": "Copié dans le presse-papiers",
+  "cancel": "Annuler",
+  "reset": "Réinitialiser",
+  "error": "Erreur",
 
 /*
 ##################################################################################
@@ -122,8 +122,8 @@ export const messages = {
   "pice_per_1000trx": "Price (per 1000TRX)",
   "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
-  "create_new_wallet": "Create a new Wallet",
-  "view_tokens": "View Tokens",
+  "create_new_wallet": "Créer un nouveau portefeuille",
+  "view_tokens": "Afficher les jetons",
 
 /*
 ##################################################################################
@@ -188,9 +188,9 @@ export const messages = {
   "issuer": "émetteur",
   "network": "réseau",
   "current": "courant",
-  "trx_received": "TRX received",
-  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
-  "not_enough_trx": "Not enough TRX",
+  "trx_received": "TRX reçu",
+  "test_trx_temporarily_unavailable_message": "Test TRX est temporairement indisponible. Veuillez réessayer plus tard.",
+  "not_enough_trx": "Pas assez de TRX",
 
 /*
 ##################################################################################
@@ -204,11 +204,9 @@ export const messages = {
   "frozen_supply": "Frozen Supply",
   "freeze_trx_least": "Vous avez besoin d'au moins 1 TRX pour pouvoir en geler",
   "unable_unfreeze_trx_message": "Impossible de débloquer les TRX. Cela pourrait être dû au fait que la période de gel minimale n'a pas encore été atteinte.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
-   For example, with Tron Power you can `,
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
-   After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
+  "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du Tron Power et activer des fonctionnalités supplémentaires. Par exemple, avec Tron Power vous pouvez",
+  "freeze_trx_premessage_1": "Les jetons gelés sont verrouillés pour une période de 3 jours. Durant cette période, les TRX gelés ne peuvent pas être échangé. Après cette période, vous pouvez débloquer les TRX et échanger les jetons.",
+  "freeze_trx_premessage_link": "vote pour les Super Représentants.",
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
@@ -223,11 +221,11 @@ export const messages = {
   "apply_for_delegate": "postuler pour être délégué",
   "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
   "your_personal_website_address": "l'adresse de votre site web personnel",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
-   However, for the network and community to operate more smoothly and effectively,
-   we have created a set of standards and regulations for eligible candidates to become
-   recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
+  "apply_for_delegate_predescription": `Chaque détenteur de jeton a la possibilité de devenir un super représentant TRON.
+   Néanmoins, pour que le réseau et la communauté fonctionnent de manière plus fluide et efficace, nous avons créé un
+   ensemble de normes et de règlements pour les candidats éligibles à devenir des Super Représentants recommandés.
+   Nous promouvrons les SR recommandés pour augmenter leurs chances d'être élus. Les nouveaux Super Représentants
+   recommandés sont mis à jour et affichés une fois par semaine.`,
   "apply_for_delegate_description": `
    Les détenteurs de TRX peuvent postuler pour devenir un super délégué en utilisant la fonction de gestion de compte, et voter pour les candidats.
    Chaque compte peut mettre à jour les informations actuelles des électeurs et il est également autorisé à voter pour plusieurs candidats.
@@ -257,7 +255,7 @@ export const messages = {
   "confirm_transaction": "Confirmer la transaction",
   "last_confirmed": "Dernier confirmé",
   "blocks_produced": "Blocs produits",
-  "trx_produced": "Transactions Produced",
+  "trx_produced": "Transactions Produites",
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
   "go_to_votelist": "Go to votelist",
@@ -275,15 +273,15 @@ export const messages = {
   "abbr_message": "Abbreviation for the token",
   "description": "Description",
   "description_url": "Url de la description",
-  "quote_token_amount": "Montant du jeton de devis",
-  "base_token_amount": "Montant du jeton de base",
+  "quote_token_amount": "Donnez la quantité de Jetons",
+  "base_token_amount": "Quantité de Jetons de Base",
   "creating_a_token": "Créer un jeton",
   "available": "disponible",
   "testnet": "Testnet",
-  "days_to_freeze": "Days to freeze",
-  "trx_token_fee_message": "1024 TRX is required to issue a new token",
+  "days_to_freeze": "Jours d'immobilité",
+  "trx_token_fee_message": "1024 TRX sont nécessaires pour créer un nouveau token",
   "trx_token_account_limit": "You may create only one token per account",
-  "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
+  "trx_token_wallet_requirement": "Vous avez besoin d'un portefeuille ouvert pour pouvoir créer un token",
   "invalid_address": "adresse invalide",
   "insufficient_tokens": "Nombre de jetons insuffisant",
   "make_another_transaction": "Faire une autre transaction",
@@ -350,11 +348,11 @@ export const messages = {
 ##################################################################################
 */
   "no_transactions_found": "Aucune transaction trouvée",
-  "no_tokens_found": "No tokens found",
-  "no_blocks_found": "No blocks found",
-  "no_votes_found": "No votes found",
-  "no_voters_found": "No voters found",
-  "waiting_for_transactions": "Waiting for transactions",
+  "no_tokens_found": "Aucun jeton trouvé",
+  "no_blocks_found": "Aucun bloc trouvé",
+  "no_votes_found": "Aucun vote trouvé",
+  "no_voters_found": "Aucun électeur trouvé",
+  "waiting_for_transactions": "En attente de transactions",
   "loading_address": "Loading Address",
 
 /*
@@ -443,9 +441,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_price_usd": "Average Price in USD",
-  "average_volume_usd": "Average Volume in USD",
-  "Trade Volume": "Volume d'échanges",
+  "average_price_usd": "Prix moyen en USD",
+  "average_volume_usd": "Volume moyen en USD",
+  "Trade Volume": "Trade Volume",
   "rank": "rang",
   "pair": "paire",
   "volume": "Volume",
@@ -523,9 +521,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_webcam_found": "No webcam found",
-  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
-  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
+  "no_webcam_found": "Aucune webcam trouvée",
+  "trying_enable_webcam_message_0": "Erreur lors de l'activation de la webcam.",
+  "trying_enable_webcam_message_1": "Assurez-vous que les autorisations de caméra sont activées.",
 
 /*
 ##################################################################################
