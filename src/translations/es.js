@@ -16,10 +16,10 @@ export const messages = {
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
 #         Version: 1.1-11062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Update Date: 11.06.2018                                                #
 #         language: Spanish                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -133,8 +133,8 @@ export const messages = {
 ##################################################################################
 */
   "first_page": "primera página",
-  "previous_page": "página precedente",
-  "next_page": "página siguiente",
+  "previous_page": "página anterior",
+  "next_page": "siguiente página",
   "last_page": "última página",
   "page": "página",
   "of": "de",
@@ -183,7 +183,7 @@ export const messages = {
   "voters": "voters",
   "no_tokens": "Sin Tokens",
   "issued_token": "token emitido",
-  "progress": "progresar",
+  "progress": "desarrollo",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "emisor",
   "network": "red",
