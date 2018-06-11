@@ -9,6 +9,7 @@ import Lockr from "lockr";
 import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
+import Ledger from "./ledger/Index";
 
 class MainWrap extends React.Component {
 
@@ -37,6 +38,7 @@ class MainWrap extends React.Component {
           <ConnectedRouter history={reduxHistory}>
             <React.Fragment>
               { flags.mobileLogin && <SignModal /> }
+              <Ledger/>
               <Navigation/>
               <Content router={router} />
             </React.Fragment>

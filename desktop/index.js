@@ -1,12 +1,17 @@
-const {app, BrowserWindow, protocol} = require('electron');
-const path = require('path')
-const url = require('url')
+const {app, BrowserWindow, protocol, Menu, ipcMain} = require('electron');
+const path = require('path');
+const url = require('url');
+const Transport = require("@ledgerhq/hw-transport-node-hid").default;
+const AppTrx = require("./src/Ledger/Trx");
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
 function createWindow () {
+
+  console.log(process.versions);
 
 
   // Create the browser window.
@@ -19,7 +24,66 @@ function createWindow () {
     },
   });
 
-  win.setMenu(null);
+  const menuTemplate = [
+    {
+      label: 'Ledger',
+      submenu: [
+        {
+          label: 'Start Listener',
+          click: async () => {
+            const sub = Transport.listen({
+              next: async e => {
+                console.log("GOT DEVICE", e);
+                if (e.type==="add") {
+                  sub.unsubscribe();
+
+                  win.webContents.send('ledger-connected');
+
+                  let i = setInterval(async () => {
+                    const transport = await Transport.open(e.descriptor);
+                    try {
+                      const trx = new AppTrx(transport);
+                      let address = await trx.getAddress("44'/195'/0'/0/0", true);
+                      console.log("AUTO LISTEN", address);
+
+                      win.webContents.send('ledger-got-address', {
+                        address: address.address,
+                      });
+
+                      clearInterval(i);
+                    } finally {
+                      transport.close();
+                    }
+                  }, 2000);
+                }
+              },
+              error: error => {
+                console.log("GOT ERROR", error);
+              },
+              complete: () => {
+                console.log("DONE");
+              }
+            });
+          }
+        },
+        {
+          label: 'Get Address',
+          click: async () => {
+            console.log(Transport);
+            const transport = await Transport.create(10000, 10000);
+            console.log("CREATED")
+            const trx = new AppTrx(transport);
+            let address = await trx.getAddress("44'/195'/0'/0/0");
+            console.log(address);
+          }
+        },
+      ]
+    }
+  ];
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
+
+  // win.setMenu(null);
   win.maximize();
 
   // and load the index.html of the app.
@@ -54,7 +118,7 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null
-  })
+  });
 }
 
 // This method will be called when Electron has finished
