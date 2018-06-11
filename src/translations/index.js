@@ -8,6 +8,7 @@ import * as messages_br from "./br.js";
 import * as messages_fr from "./fr.js";
 import * as messages_es from "./es.js";
 import * as messages_sv from "./sv.js";
+import * as messages_tr from "./tr.js";
 
 import {addLocaleData} from 'react-intl';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -19,6 +20,7 @@ import frLocaleData from 'react-intl/locale-data/fr';
 import esLocaleData from 'react-intl/locale-data/es';
 import deLocaleData from 'react-intl/locale-data/de';
 import svLocaleData from 'react-intl/locale-data/sv';
+import trLocaleData from 'react-intl/locale-data/tr';
 
 addLocaleData([
   ...nlLocaleData,
@@ -30,6 +32,7 @@ addLocaleData([
   ...esLocaleData,
   ...deLocaleData,
   ...svLocaleData,
+  ...trLocaleData,
 ]);
 
 export const languages = {
@@ -43,4 +46,5 @@ export const languages = {
     'es': messages_es.messages,
     'de': messages_de.messages,
     'sv': messages_sv.messages,
+    'tr': messages_tr.messages,
 };
