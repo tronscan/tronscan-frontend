@@ -550,6 +550,7 @@ class Navigation extends PureComponent {
               <div className="input-group">
                   <select
                       className="form-control mr-1"
+                      style={styles.searchType}
                       onChange={(ev) => this.setState({ searchType: ev.target.value }) }
                       value={searchType}>
                       {
@@ -584,6 +585,9 @@ const styles = {
   search: {
     fontSize: 13,
     minWidth: 220,
+  },
+  searchType: {
+    fontSize: 13,
   },
 };
 
