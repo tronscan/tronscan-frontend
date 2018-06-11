@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-09062018-0                                                #
-#         Update Date: 09.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         language: Spanish                                                      #
+#         Status: Second Draft                                                    #
+#         Number of checks: 1                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Exchange",
   "next" : "luego",
   "copied_to_clipboard": "Copied to clipboard",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -87,17 +90,17 @@ export const messages = {
   "wallet": "Cartera",
   "home": "Inicio",
   "transfers": "Transferencias",
-  "live": "Live",
+  "live": "En vivo",
   "statistics": "Estadísticas",
   "markets": "Mercados",
-  "tools": "Tools",
+  "tools": "Herramientas",
   "news": "Noticias",
   "help": "Ayuda",
   "nodes": "Nodos",
   "votes": "Votos",
   "account": "Cuenta",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
+  "transaction_viewer": "Visualizador de Transacciones",
+  "node_tester": "Comprobador de Nodo",
   "system": "Sistema",
   "overview": "Resumen",
   "participate": "Participar",
@@ -134,12 +137,24 @@ export const messages = {
   "of": "de",
   "last_block": "último bloque",
   "total_supply": "suministro total",
-  "addresses": "addresses",
   "most_nodes": "Mayoría de Nodos",
   "loading_nodes" : "loading Nodes",
   "Hostname": "Nombre del host",
   "Last Update": "Última actualización",
   "first_node_sync_message": "Esperando a la sincronización del primer nodo, por favor inténtalo de nuevo en unos minutos.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "Se ha intentado transferir TRX a una hora pasada",
+  "transactions_past_hour": "Se ha intentado hacer transacciones a una hora pasada",
+  "average_blocksize": "Tamaño promedio de bloque",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -170,6 +185,8 @@ export const messages = {
   "issuer": "emisor",
   "network": "red",
   "current": "actual",
+  "trx_received": "TRX received",
+  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
 
 /*
 ##################################################################################
@@ -188,6 +205,9 @@ export const messages = {
   "freeze_trx_premessage_1": ` Los tokens congelados permanecen "bloqueados" por un tiempo de 3 días. Durante este período, no podrá comercializar con TRX.
    Transcurrido ese tiempo puede descongelar los TRX y comercializar de nuevo con ellos.`,
   "freeze_trx_premessage_link": "Votar los candidatos a Super Representantes.",
+  "trx_amount": "TRX Amount",
+  "token_freeze_confirm_message_0": "I confirm to freeze ",
+  "token_freeze_confirm_message_1": "for at least of 3 days",
 
 /*
 ##################################################################################
@@ -270,7 +290,18 @@ export const messages = {
   "not_started_yet": "Aún no empezado",
   "participated": "¡Has participado con éxito!",
   "participated_error": "Ha ocurrido un error",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "How much tokens do you want to buy?",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
 
 /*
 ##################################################################################
@@ -384,8 +415,6 @@ export const messages = {
   "past_starttime_error": "La fecha de inicio ya ha transcurrido",
   "no_transactions": "No han ocurrido transacciones",
   "no_transfers": "No han ocurrido transferencias",
-  "TRX transferred in the past hour": "Se ha intentado transferir TRX a una hora pasada",
-  "Transactions in the past hour": "Se ha intentado hacer transacciones a una hora pasada",
 
 /*
 ##################################################################################
@@ -394,7 +423,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Tamaño promedio de bloque",
   "Highest Productivity": "Mayor productividad",
   "Lowest Productivity": "Productividad más baja",
   "productivity": "productividad",
@@ -492,7 +520,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "what_is_tron": "Qué es TRON",
+  "what_is_tron": "Qué es TRON?",
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",

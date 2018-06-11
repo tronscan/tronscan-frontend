@@ -2,11 +2,12 @@
 import {connect} from "react-redux";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
+import {NumberField} from "../common/Fields";
 
 class FreezeBalanceModal extends React.PureComponent {
 
@@ -37,11 +38,11 @@ class FreezeBalanceModal extends React.PureComponent {
     });
   };
 
-  onAmountChanged = (ev) => {
+  onAmountChanged = (value) => {
 
     let {trxBalance} = this.props;
 
-    let amount = parseInt(ev.target.value);
+    let amount = parseInt(value);
 
     if (!isNaN(amount)) {
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
@@ -83,8 +84,10 @@ class FreezeBalanceModal extends React.PureComponent {
         <ModalBody className="text-center">
           <form>
             <div className="form-group">
-              <label>{tu("TRX Amount")}</label>
-              <input type="number"
+              <label>{tu("trx_amount")}</label>
+              <NumberField
+                     min={1}
+                     decimals={0}
                      value={amount}
                      className="form-control text-center"
                      onChange={this.onAmountChanged}/>
@@ -94,7 +97,7 @@ class FreezeBalanceModal extends React.PureComponent {
                      className="form-check-input"
                      onChange={(ev) => this.setState({ confirmed: ev.target.checked })} />
               <label className="form-check-label">
-                I confirm to freeze <b><FormattedNumber value={amount}/> TRX</b> for at least of 3 days
+                {tu("token_freeze_confirm_message_0")} <b><FormattedNumber value={amount}/> TRX</b> {t("token_freeze_confirm_message_1")}
               </label>
             </div>
             <p className="mt-3">

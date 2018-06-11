@@ -40,7 +40,7 @@ export default class RichList extends Component {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title text-center">
-              Rich List
+              {tu("rich_list")}
             </h5>
           </div>
           <table className="table table-hover bg-white m-0 table-striped">

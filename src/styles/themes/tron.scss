@@ -40,6 +40,10 @@ $tronBlue: rgba(21,171,195,1.0);
     border: 2px solid $tronBlue;
   }
 
+  .dropdown-menu b span {
+    color: $tronBlue;
+  }
+
   .nav-searchbar {
     .btn {
       background: #000;
@@ -102,6 +106,12 @@ $tronBlue: rgba(21,171,195,1.0);
     .dropdown-item:hover {
       background: $tronBlue;
       color: black !important;
+    }
+    span {
+      color: $tronBlue;
+    }
+    .btn span{
+      color: #fff;
     }
   }
 

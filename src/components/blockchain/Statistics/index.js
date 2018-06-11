@@ -14,7 +14,7 @@ import {TronLoader} from "../../common/loaders";
 const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
 
 
-function CustomizedContent({root, depth, x, y, width, height, index, payload, colors, rank, name}) {
+function CustomizedContent({ root, depth, x, y, width, height, index, payload, colors, rank, name }) {
 
     return (
         <g onClick={() => alert('clicked')}>
@@ -44,7 +44,7 @@ function CustomizedContent({root, depth, x, y, width, height, index, payload, co
                     : null
             }
             {
-                depth !== 2 ?
+                depth !== 2  ?
                     <text
                         x={x + 4}
                         y={y + 18}
@@ -87,7 +87,7 @@ class Statistics extends React.Component {
             accounts: [],
             transactionStats: [],
             blockStats: [],
-            transactionValueStats: []
+            transactionValueStats:[]
         };
     }
 
@@ -184,14 +184,14 @@ class Statistics extends React.Component {
                                 <div style={{height: 300}}>
                                     {
                                         accounts.length === 0 ?
-                                            <TronLoader/> :
-                                            <ResponsiveContainer>
-                                                {/*{this.renderTreeMap()}*/}
-                                                {/*/!*<SimpleTreemap/>*!/*/}
-                                                <PieChart>
-                                                    <Pie data={accounts} fill="#82ca9d" label/>
-                                                </PieChart>
-                                            </ResponsiveContainer>
+                                        <TronLoader/> :
+                                        < ResponsiveContainer >
+                                        {/*{this.renderTreeMap()}*/}
+                                        {/*/!*<SimpleTreemap/>*!/*/}
+                                          <PieChart>
+                                          <Pie data={accounts} fill="#82ca9d" label />
+                                          </PieChart>
+                                        </ResponsiveContainer>
                                     }
                                 </div>
                             </div>
@@ -200,9 +200,8 @@ class Statistics extends React.Component {
                     <div className="col-md-6 mt-3">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="text-center">{tu("TRX transferred in the past hour")}</h5>
+                                <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
                                 <div style={{height: 300}}>
-
                                     {
                                         transactionValueStats.length === 0 ?
                                             <TronLoader/> :
@@ -246,41 +245,41 @@ class Statistics extends React.Component {
                     <div className="col-md-6 mt-3">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="text-center">{tu("Transactions in the past hour")}</h5>
+                                <h5 className="text-center">{tu("transactions_past_hour")}</h5>
                                 <div style={{height: 300}}>
                                     {
                                         transactionStats.length === 0 ?
-                                            <TronLoader/> :
-                                            <ResponsiveContainer>
-                                                <AreaChart data={transactionStats} isAnimationActive={false}>
-                                                    <defs>
-                                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <XAxis dataKey="timestamp"/>
-                                                    <YAxis/>
-                                                    {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                    <Tooltip/>
-                                                    {/*<Legend />*/}
-                                                    <Area name="Transactions"
-                                                          type="natural"
-                                                          dataKey="value"
-                                                          stroke={styles.line.stroke}
-                                                          strokeWidth={1}
-                                                          activeDot={{r: 8}}
-                                                          fillOpacity={1}
-                                                          fill="url(#colorUv)"
-                                                          isAnimationActive={false}/>
-                                                </AreaChart>
-                                            </ResponsiveContainer>
+                                        <TronLoader/> :
+                                        <ResponsiveContainer>
+                                            <AreaChart data={transactionStats} isAnimationActive={false}>
+                                                <defs>
+                                                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor={styles.line.stroke}
+                                                              stopOpacity={0.8}/>
+                                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                                                    </linearGradient>
+                                                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor={styles.line.stroke}
+                                                              stopOpacity={0.8}/>
+                                                        <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <XAxis dataKey="timestamp"/>
+                                                <YAxis/>
+                                                {/*<CartesianGrid strokeDasharray="3 3"/>*/}
+                                                <Tooltip/>
+                                                {/*<Legend />*/}
+                                                <Area name="Transactions"
+                                                      type="natural"
+                                                      dataKey="value"
+                                                      stroke={styles.line.stroke}
+                                                      strokeWidth={1}
+                                                      activeDot={{r: 8}}
+                                                      fillOpacity={1}
+                                                      fill="url(#colorUv)"
+                                                      isAnimationActive={false}/>
+                                            </AreaChart>
+                                        </ResponsiveContainer>
                                     }
                                 </div>
                             </div>
@@ -292,39 +291,38 @@ class Statistics extends React.Component {
                                 <h5 className="text-center">{tu("average_blocksize")} ({tu("bytes")})</h5>
                                 <div style={{height: 300}}>
                                     {
-                                        blockStats.length === 0 ?
-                                            <TronLoader/> :
-
-                                            <ResponsiveContainer>
-                                                <AreaChart data={blockStats} isAnimationActive={false}>
-                                                    <defs>
-                                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <XAxis dataKey="timestamp"/>
-                                                    <YAxis/>
-                                                    {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                    <Tooltip/>
-                                                    {/*<Legend />*/}
-                                                    <Area name="Block Size"
-                                                          type="natural"
-                                                          dataKey="value"
-                                                          stroke={styles.line.stroke}
-                                                          strokeWidth={1}
-                                                          activeDot={{r: 8}}
-                                                          fillOpacity={1}
-                                                          fill="url(#colorUv)"
-                                                          isAnimationActive={false}/>
-                                                </AreaChart>
-                                            </ResponsiveContainer>
+                                        blockStats.length ===0 ?
+                                        <TronLoader/> :
+                                        <ResponsiveContainer>
+                                            <AreaChart data={blockStats} isAnimationActive={false}>
+                                                <defs>
+                                                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor={styles.line.stroke}
+                                                              stopOpacity={0.8}/>
+                                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                                                    </linearGradient>
+                                                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor={styles.line.stroke}
+                                                              stopOpacity={0.8}/>
+                                                        <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <XAxis dataKey="timestamp"/>
+                                                <YAxis/>
+                                                {/*<CartesianGrid strokeDasharray="3 3"/>*/}
+                                                <Tooltip/>
+                                                {/*<Legend />*/}
+                                                <Area name="Block Size"
+                                                      type="natural"
+                                                      dataKey="value"
+                                                      stroke={styles.line.stroke}
+                                                      strokeWidth={1}
+                                                      activeDot={{r: 8}}
+                                                      fillOpacity={1}
+                                                      fill="url(#colorUv)"
+                                                      isAnimationActive={false}/>
+                                            </AreaChart>
+                                        </ResponsiveContainer>
                                     }
                                 </div>
                             </div>
@@ -333,7 +331,7 @@ class Statistics extends React.Component {
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-12">
-                        <RichList/>
+                        <RichList />
                     </div>
                 </div>
             </main>
@@ -343,10 +341,12 @@ class Statistics extends React.Component {
 
 
 function mapStateToProps(state) {
-    return {};
+    return {
+    };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+};
 
 const styles = {
     line: {

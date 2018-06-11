@@ -15,9 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.0-08062018                                                  #
-#         Update Date: 08.06.2018                                                #
+#         Version: 1.1-10062018                                                  #
+#         Update Date: 10.06.2018                                                #
 #         Language: Dutch                                                        #
+#         Status: First Draft                                                    #
+#         Number of checks: 1                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,6 +77,7 @@ export const messages = {
   "exchange": "Exchange",
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
+  "cancel": "Cancel",
 
 /*
 ##################################################################################
@@ -134,12 +137,24 @@ export const messages = {
   "of": "of",
   "last_block": "laatste blok",
   "total_supply": "totale voorraad",
-  "addresses": "addresses",
   "most_nodes": "Most Nodes",
   "loading_nodes" : "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "TRX transferred in the past hour",
+  "transactions_past_hour": "Transactions in the past hour",
+  "average_blocksize": "Average Block Size",
+  "rich_list": "Rich List",
 
 /*
 ##################################################################################
@@ -170,6 +185,8 @@ export const messages = {
   "issuer": "uitgever",
   "network": "netwerk",
   "current": "huidig",
+  "trx_received": "TRX received",
+  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
 
 /*
 ##################################################################################
@@ -188,6 +205,9 @@ export const messages = {
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
+  "trx_amount": "TRX Amount",
+  "token_freeze_confirm_message_0": "I confirm to freeze ",
+  "token_freeze_confirm_message_1": "for at least of 3 days",
 
 /*
 ##################################################################################
@@ -270,7 +290,18 @@ export const messages = {
   "not_started_yet": "Not started yet",
   "participated": "You successfully participated!",
   "participated_error": "An error occurred",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
   "how_much_buy_message": "How much tokens do you want to buy?",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
 
 /*
 ##################################################################################
@@ -386,8 +417,6 @@ export const messages = {
   "past_starttime_error": "De opgegeven startdatum is in het verleden",
   "no_transactions": "No Transactions",
   "no_transfers": "No Transfers",
-  "TRX transferred in the past hour": "TRX transferred in the past hour",
-  "Transactions in the past hour": "Transactions in the past hour",
 
 /*
 ##################################################################################
@@ -396,7 +425,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_blocksize": "Average Block Size",
   "Highest Productivity": "Highest Productivity",
   "Lowest Productivity": "Lowest Productivity",
   "productivity": "productivity",

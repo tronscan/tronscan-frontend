@@ -41,6 +41,7 @@ export default class Paging extends React.PureComponent {
     let {page, total, pageSize, className, loading = false, ...props} = this.props;
 
     let totalPages = Math.floor(total / pageSize);
+    totalPages = totalPages <= 0 ? 1 : totalPages;
 
     let showFirst = page === 0;
     let showLast = !(totalPages > (page + 1));
