@@ -20,6 +20,7 @@ export const messages = {
 #         language: Spanish                                                      #
 #         Status: Second Draft                                                   #
 #         Number of checks: 2                                                    #
+#         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -230,7 +231,7 @@ export const messages = {
    de cuentas y votar por los candidatos. Cada cuenta puede actualizar la información del votante y también puede votar por múltiples candidatos.
    La cantidad máxima de votos es menor o igual al número de usuarios de TRX.
    (Si tiene una cierta suma de TRX, puede votar menos o igual a tantos TRX posea).
-   El resultado de los votos se calculará en función de la información del votante de cada cuenta en su correspondiente ciclo de votación, 
+   El resultado de los votos se calculará en función de la información del votante de cada cuenta en su correspondiente ciclo de votación,
    de 00:00h a 24:00h. Quien posea TRX y cuente con un mayor número de votos será elegido como Súper Representante.
    Todas las transacciones realizadas en la red deben ser validadas por todos los Súper Representante y además se otorgarán bonificaciones.
    No se gastarán TRX en la solicitud a Súper Representante ni en la votación de los mismos.`,
@@ -383,7 +384,7 @@ export const messages = {
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "Especifique el período de participación en el que se emitirán los tokens. Durante el período de participación, los usuarios podrán intercambiar TRX por",
   "participation_message_1": " tokens.",
-  "frozen_supply_message_0": `Se puede congelar una parte del suministro. Se puede espicificar la cantidad y debe de congelarse durante 1 día como mínimo. 
+  "frozen_supply_message_0": `Se puede congelar una parte del suministro. Se puede espicificar la cantidad y debe de congelarse durante 1 día como mínimo.
    El suministro congelado se puede descongelar manualmente después de la fecha de inicio más el periodo mínimo de congelación.
    No se requiere suministro congelado.`,
   "token_issued_successfully": "Token emitido con éxito",
