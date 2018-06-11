@@ -316,7 +316,7 @@ export const messages = {
   "address_warning": "유효한 TRON 지갑 주소만 입력하십시오. 잘못된 주소는 TRX 손실을 초래할 수 있습니다.",
   "search_address_or_url": "주소 또는 URL 검색",
   "the_lunch_test": "테스트넷의 출시는 블록 체인 탐색기와 지갑의 모든 기능을 테스트하는 것을 목표로합니다.",
-  "plese_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
+  "please_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
   own wallet or exchange to the account address of testnet.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",

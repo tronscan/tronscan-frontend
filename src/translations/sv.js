@@ -310,7 +310,7 @@ export const messages = {
   "address_warning": "Ange endast en giltig TRON plånbok adress. Felaktiga adresser kan leda till förlust av TRX.",
   "search_address_or_url": "Sök efter adress eller URL",
   "the_lunch_test": "Lanseringen av testnet syftar till att testa alla funktioner i våran blockchain explorer och plånbok",
-  "plese_keep_in_mind": "Vänligen tänk på, att eftersom din registrerade kontoadress används endast för testnet, skicka inte TRX från din egen plånbok eller exchange till ditt konto på testnet.",
+  "please_keep_in_mind": "Vänligen tänk på, att eftersom din registrerade kontoadress används endast för testnet, skicka inte TRX från din egen plånbok eller exchange till ditt konto på testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX för testning kommer att skickas till ditt test-konto när du framgångsrikt ansöka via kontohantering.",
   "dear_users": "Kära användare,",

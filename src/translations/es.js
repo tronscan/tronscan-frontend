@@ -316,7 +316,7 @@ export const messages = {
   "address_warning": "Ingrese una dirección válida de la cartera TRON. Podría perder TRX si introduce una dirección errónea.",
   "search_address_or_url": "Buscar dirección o URL",
   "the_lunch_test": "El lanzamiento de la red de pruebas tiene como objetivo probar todas las características de nuestro explorador Blockchain y cartera.",
-  "plese_keep_in_mind": "Tenga en cuenta que, dado que la dirección de su cuenta registrada solo se usa con fines de realizar pruebas, no envíe TRX desde su cartera o Exchange a la dirección de la cuenta de la red de pruebas.",
+  "please_keep_in_mind": "Tenga en cuenta que, dado que la dirección de su cuenta registrada solo se usa con fines de realizar pruebas, no envíe TRX desde su cartera o Exchange a la dirección de la cuenta de la red de pruebas.",
   "tron_foundation": "Fundación TRON",
   "trx_for_testing": "Se le enviará TRX para realizar pruebas a su cuenta una vez que los solicite en el apartado de gestión de cuentas.",
   "dear_users,": "Estimados usuarios,",

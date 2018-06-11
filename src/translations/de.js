@@ -315,7 +315,7 @@ export const messages = {
   "address_warning": "Bitte achten Sie darauf, dass die eingegebene TRON-Walletadressen gültig ist. Die Eingabe einer falsche Adressen kann zu TRX-Verlusten führen.",
   "search_address_or_url": "Nach Adresse oder URL suchen.",
   "the_lunch_test": "Das Ziel des Testnetzwerkes ist es alle Funktionen unseres Blockchain Explorers und der Wallets zu testen.",
-  "plese_keep_in_mind": `Bitte beachten Sie, dass Ihre registrierte Kontoadresse nur für das Testnetzwerk gültig ist. Senden Sie keine TRX von Ihrer
+  "please_keep_in_mind": `Bitte beachten Sie, dass Ihre registrierte Kontoadresse nur für das Testnetzwerk gültig ist. Senden Sie keine TRX von Ihrer
    eigenen Wallet oder einer Exchange auf Ihre Kontoadresse des Testnetzwerkes.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "Sobald Sie sich erfolgreich mit Ihrem Profil angemeldet haben können Sie die TRX-Token für das Testnetzwerk verwenden.",

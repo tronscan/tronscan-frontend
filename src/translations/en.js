@@ -316,7 +316,7 @@ export const messages = {
   "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
   "search_address_or_url": "Search for address or URL",
   "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+  "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   "dear_users,": "Dear users,",

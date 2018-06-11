@@ -313,7 +313,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "plese_keep_in_mind": "Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre portefeuille ou un site d'échange vers le testnet.",
+  "please_keep_in_mind": "Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre portefeuille ou un site d'échange vers le testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "Les TRX pour les tests seront envoyés à votre compte de test une fois que vous aurez fait la demande puis l'écran de gestion de compte.",
   "dear_users,": "Chers utilisateurs,",

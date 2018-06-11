@@ -316,7 +316,7 @@ export const messages = {
   "address_warning": "لطفا آدرس معتبر کیف پول ترون را وارد کنید. در غیر اینصورت ممکن است ترون های خود را از دست بدهید",
   "search_address_or_url": "جستوجوی آدرس ",
   "the_lunch_test": "هدف از راه اندازی شبکه ی تست بررسی و تست ویژگی های شبکه ی ترون و کیف پول آن است ",
-  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+  "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "بنیاد ترون",
   "trx_for_testing": "0",
   "dear_users,": "کاربران عزیز",
