@@ -67,7 +67,7 @@ export const messages = {
   "receive": "receive",
   "supply": "supply",
   "view": "view",
-  "view_all":"View all",
+  "view_all": "View all",
   "create": "create",
   "country": "region",
   "send": "send",
@@ -199,8 +199,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
+  "freeze": "freeze",
+  "unfreeze": "unfreeze",
   "frozen_supply": "Frozen Supply",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
@@ -337,7 +337,7 @@ export const messages = {
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
-  "nr_of_Transfers": "Nr. of Transfers",
+  "nr_of_Transfers": "Number of Transfers",
   "not_signed_in": "You will need to log in to make use of this functionality",
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
@@ -380,7 +380,7 @@ export const messages = {
   "supply_message": "Total amount of tokens which will be in circulation",
   "description_message": "A short description of the purpose of the token",
   "url_message": "A website where users can find more information about the token",
-  "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
+  "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
   "exchange_rate_message_1": "Participants will receive",
   "exchange_rate_message_2": "for every",
   "exchange_rate_message_3": "TRX",
@@ -394,7 +394,7 @@ export const messages = {
   "start_date": "Start Date",
   "end_date": "End Date",
   "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
+  "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
   "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
     Users can then participate within the participation period and exchange their TRX for tokens.`,
