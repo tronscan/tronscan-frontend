@@ -15,11 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-11062018                                                  #
+#         Update Date: 11.06.2018                                                #
 #         Language: English                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 2                                                    #
+#         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -66,7 +67,7 @@ export const messages = {
   "receive": "receive",
   "supply": "supply",
   "view": "view",
-  "view_all":"View all",
+  "view_all": "View all",
   "create": "create",
   "country": "region",
   "send": "send",
@@ -78,6 +79,8 @@ export const messages = {
   "next": "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
 
 /*
 ##################################################################################
@@ -117,7 +120,7 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
@@ -187,6 +190,7 @@ export const messages = {
   "current": "current",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -195,8 +199,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
+  "freeze": "freeze",
+  "unfreeze": "unfreeze",
   "frozen_supply": "Frozen Supply",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
@@ -313,7 +317,7 @@ export const messages = {
   "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
   "search_address_or_url": "Search for address or URL",
   "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+  "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   "dear_users,": "Dear users,",
@@ -322,7 +326,7 @@ export const messages = {
   "url": "url",
   "need_to_login": "You must be logged in to access to account page",
   "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
+  "to_much_votes": "To many votes",
   "no_trx_remaining": "No TRX remaining",
   "produced_by": "Produced by {witnessAddress}",
   "show_more": "Show {countriesLength} More",
@@ -333,7 +337,7 @@ export const messages = {
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
-  "nr_of_Transfers": "Nr. of Transfers",
+  "nr_of_Transfers": "Number of Transfers",
   "not_signed_in": "You will need to log in to make use of this functionality",
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
@@ -376,7 +380,7 @@ export const messages = {
   "supply_message": "Total amount of tokens which will be in circulation",
   "description_message": "A short description of the purpose of the token",
   "url_message": "A website where users can find more information about the token",
-  "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
+  "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
   "exchange_rate_message_1": "Participants will receive",
   "exchange_rate_message_2": "for every",
   "exchange_rate_message_3": "TRX",
@@ -390,7 +394,7 @@ export const messages = {
   "start_date": "Start Date",
   "end_date": "End Date",
   "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
+  "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
   "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
     Users can then participate within the participation period and exchange their TRX for tokens.`,
@@ -469,6 +473,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
   "current_votes": "Current Votes",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################

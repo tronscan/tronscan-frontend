@@ -15,11 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: Portuguese - Brazil                                          #
 #         Status: First Draft                                                    #
 #         Number of checks: 1                                                    #
+#         Participants: gguelber                                                 #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -78,6 +79,8 @@ export const messages = {
   "next" : "Próximo",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
 
 /*
 ##################################################################################
@@ -117,7 +120,7 @@ export const messages = {
   "block_height": "Altura do Bloco",
   "online_nodes": "Nós conectados",
   "pice_per_1000trx": "Valor (por 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
@@ -187,6 +190,7 @@ export const messages = {
   "current": "atual",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -313,7 +317,7 @@ export const messages = {
   "address_warning": "Insira apenas o endereço de carteira TRON válido. Endereços incorretos podem causar perda de TRX.",
   "search_address_or_url": "Pesquisar por endereço ou URL",
   "the_lunch_test": "O lançamento do testnet visa testar todos os recursos do nosso blockchain explorer e wallet.",
-  "plese_keep_in_mind": "Lembre-se de que, como o endereço da sua conta registrada é usado apenas para o testnet, não envie o TRX da sua própria carteira ou troque para o endereço da conta testnet.",
+  "please_keep_in_mind": "Lembre-se de que, como o endereço da sua conta registrada é usado apenas para o testnet, não envie o TRX da sua própria carteira ou troque para o endereço da conta testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "O TRX para testes será enviado para sua conta de teste assim que você aplicar com sucesso através do gerenciamento de contas.",
   "dear_users,": "Caros usuários,",
@@ -469,6 +473,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
   "current_votes": "Current Votes",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################
