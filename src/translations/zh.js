@@ -119,7 +119,7 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",

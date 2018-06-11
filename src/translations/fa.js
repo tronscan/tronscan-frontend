@@ -120,7 +120,7 @@ export const messages = {
   "block_height": "ارتفاع بلوک",
   "online_nodes": "نود های آنلاین",
   "pice_per_1000trx": "قیمت (1000TRX هر)",
-  "vote_for_supre_representatives": "برای نمایندگان ممتاز رای دهید",
+  "vote_for_super_representatives": "برای نمایندگان ممتاز رای دهید",
   "view_super_representatives": "مشاهده نمایندگان ممتاز",
   "create_new_wallet": "ایجاد کیف پول جدید",
   "view_tokens": "مشاهده توکن ها",

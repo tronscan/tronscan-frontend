@@ -120,7 +120,7 @@ export const messages = {
   "block_height": "Blok yüksekliği",
   "online_nodes": "Çevrim içi düğümler",
   "pice_per_1000trx": "Fiyat (1000TRX başına)",
-  "vote_for_supre_representatives": "Süper Temsciler için oy ver",
+  "vote_for_super_representatives": "Süper Temsciler için oy ver",
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
   "view_tokens": "Jetonları görüntüle",

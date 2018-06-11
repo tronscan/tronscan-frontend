@@ -15,11 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-11062018                                                  #
+#         Update Date: 11.06.2018                                                #
 #         Language: French                                                       #
 #         Status: Second Draft                                                   #
 #         Number of checks: 1                                                    #
+#         Participants: El Petito Nicolas, Dev Obs                               #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -101,8 +102,8 @@ export const messages = {
   "nodes": "noeuds",
   "votes": "votes",
   "account": "compte",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
+  "transaction_viewer": "Visionneur de transactions",
+  "node_tester": "Testeur de nœud",
   "system": "système",
   "overview": "Aperçu",
   "participate": "participer",
@@ -119,7 +120,7 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
@@ -131,19 +132,19 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first_page": "first page",
-  "previous_page": "previous page",
-  "next_page": "next page",
-  "last_page": "last page",
+  "first_page": "première page",
+  "previous_page": "page précédente",
+  "next_page": "page suivante",
+  "last_page": "dernière page",
   "page": "page",
-  "of": "of",
+  "of": "sur",
   "last_block": "dernier bloc",
   "total_supply": "offre totale",
-  "most_nodes": "Most Nodes",
+  "most_nodes": "Le plus de nœuds",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hôte",
   "Last Update": "Dernière MAJ",
-  "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "first_node_sync_message": "En attente de la synchronisation du premier noeud, veuillez réessayer dans quelques minutes.",
 
 /*
 ##################################################################################
@@ -165,13 +166,13 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "set_name": "Set Name",
-  "show_qr_code": "Show QR Code",
-  "free_bandwidth": "Free Bandwidth",
+  "set_name": "Définir le nom",
+  "show_qr_code": "Afficher le QR Code",
+  "free_bandwidth": "Bande passante libre",
   "expires": "expires",
-  "have_been_added_to_your_account": "have been added to your account!",
+  "have_been_added_to_your_account": "ont été ajoutés à votre compte!",
   "information_message_1": "Lorsque vous demanderez des TRX, vous recevrez 10000 TRX que vous pouvez utiliser sur le testnet.",
-  "information_message_2": "Vous ne pouvez demander des TRX qu'une seule fois par compte.",
+  "information_message_2": "Vous ne pouvez demander des TRX que 10 fois par compte.",
   "request_trx_for_testing": "Demander des TRX pour les tests",
   "tron_power": "Tron Power",
   "do_not_send_2": "n'envoyez pas de TRX depuis votre porte-feuille ou un site d'échange à l'adresse de compte ci-dessus de testnet!",
@@ -180,13 +181,13 @@ export const messages = {
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
-  "progress": "progress",
+  "no_tokens": "Pas de jetons",
+  "issued_token": "jeton émis",
+  "progress": "progression",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "émetteur",
   "network": "réseau",
-  "current": "actuel",
+  "current": "courant",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
@@ -198,11 +199,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
+  "freeze" : "Gel",
+  "unfreeze" : "débloquer",
   "frozen_supply": "Frozen Supply",
-  "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
-  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
+  "freeze_trx_least": "Vous avez besoin d'au moins 1 TRX pour pouvoir en geler",
+  "unable_unfreeze_trx_message": "Impossible de débloquer les TRX. Cela pourrait être dû au fait que la période de gel minimale n'a pas encore été atteinte.",
   "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
    For example, with Tron Power you can `,
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.

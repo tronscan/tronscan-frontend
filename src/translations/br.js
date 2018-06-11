@@ -20,6 +20,7 @@ export const messages = {
 #         Language: Portuguese - Brazil                                          #
 #         Status: First Draft                                                    #
 #         Number of checks: 1                                                    #
+#         Participants: gguelber                                                 #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -119,7 +120,7 @@ export const messages = {
   "block_height": "Altura do Bloco",
   "online_nodes": "Nós conectados",
   "pice_per_1000trx": "Valor (por 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",

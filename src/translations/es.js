@@ -120,7 +120,7 @@ export const messages = {
   "block_height": "Altura de Bloque",
   "online_nodes": "Nodos en línea",
   "pice_per_1000trx": "Precio (por cada 1000TRX)",
-  "vote_for_supre_representatives": "Vote por los Super Representantes",
+  "vote_for_super_representatives": "Vote por los Super Representantes",
   "view_super_representatives": "Ver Super Representantes",
   "create_new_wallet": "Crear Cartera",
   "view_tokens": "Ver Tokens",

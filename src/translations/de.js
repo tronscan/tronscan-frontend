@@ -20,7 +20,7 @@ export const messages = {
 #         Language: German                                                       #
 #         Status: Approved Version                                               #
 #         Number of checks: 4                                                    #
-#         Participants: PMD3VSolution,DrKaradenizli                              #
+#         Participants: PMD3VSolution,DrKaradenizli,DrKara                       #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -120,8 +120,8 @@ export const messages = {
   "block_height": "Block Größe",
   "online_nodes": "Aktive Knoten",
   "pice_per_1000trx": "Preis (pro 1000TRX)",
-  "vote_for_supre_representatives": "Für einen Super Representatives abstimmen",
-  "view_super_representatives": "Super Representaten Übersicht",
+  "vote_for_super_representatives": "Für einen Super Repräsentant abstimmen",
+  "view_super_representatives": "Super Repräsentanten Übersicht",
   "create_new_wallet": "Ein neues Wallet erstellen",
   "view_tokens": "Tokenübersicht",
 
@@ -227,7 +227,7 @@ export const messages = {
    Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
    wurden Standards und Vorschriften für die Super-Repräsentanten Anwärter festgelegt.
    Wir werden geeignete Super-Repräsentanten fördern und unterstützen.
-   Einmal pro Woche werden neue geeignete Super Representatives bestimmt und veröffentlicht.`,
+   Einmal pro Woche werden neue geeignete Super Repräsentanten bestimmt und veröffentlicht.`,
   "apply_for_delegate_description": `
    TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
    Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere

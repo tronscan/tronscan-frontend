@@ -120,7 +120,7 @@ export const messages = {
   "block_height": "Block Höjd",
   "online_nodes": "Noder Onlines",
   "pice_per_1000trx": "Pris (per 1000TRX)",
-  "vote_for_supre_representatives": "Rösta för Super Representatives",
+  "vote_for_super_representatives": "Rösta för Super Representatives",
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
