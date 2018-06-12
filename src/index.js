@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/main.scss';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import "./scripts.js";
 import App from './components/App';
 // import registerServiceWorker from './registerServiceWorker';

@@ -1,6 +1,5 @@
 import React from "react";
 import {filter, flatten} from "lodash";
-
 import Accounts from "./components/Accounts";
 import Nodes from "./components/network/Nodes";
 import Representatives from "./components/network/Representatives";
@@ -29,12 +28,14 @@ import News from "./components/News";
 import NodeTester from "./components/tools/NodeTester";
 import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
+import {Redirect} from "react-router-dom";
 
 export const routes = [
   {
     path: "/blockchain",
     label: "blockchain",
     icon: 'fa fa-link',
+    component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
       {
         path: "/blockchain/blocks",

@@ -81,13 +81,7 @@ class Accounts extends Component {
     let {accounts} = this.state;
 
     if (accounts.length === 0) {
-      return (
-        <div className="text-center d-flex justify-content-center py-5">
-          <TronLoader>
-            {tu("loading_accounts")}
-          </TronLoader>
-        </div>
-      );
+      return;
     }
 
     return (
@@ -152,18 +146,7 @@ class Accounts extends Component {
             </div>
           </div>
 
-          {/*<div className="col-md-6 mobile-pt">*/}
-            {/*<div className="card h-100">*/}
-              {/*<div className="card-body text-center">*/}
-                {/*<h3 className="text-secondary text-nowrap text-truncate">*/}
-                  {/*{accounts[0] && accounts[0].address}*/}
-                {/*</h3>*/}
-                {/*Most Valuable Account*/}
-              {/*</div>*/}
-            {/*</div>*/}
-          {/*</div>*/}
         </div>
-        {
           <div className="row mt-2">
             <div className="col-md-12">
               <StickyContainer>
@@ -182,8 +165,6 @@ class Accounts extends Component {
               </StickyContainer>
             </div>
           </div>
-        }
-
       </main>
     )
   }
