@@ -75,7 +75,7 @@ export const messages = {
   // row description - eg. produced by XXX
   "produced by": "produced by",
   // row description - which contract is assigned
-  "Contract": "Contract",
+  "contract": "Contract",
   // text module (send XXX from ...to)
   "from": "from",
   // text module (send XXX from ...to)
@@ -306,11 +306,11 @@ export const messages = {
   "progress": "progress",
   // statusinformation - transaction
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
-   // tableinformation - row name -
+   // tableinformation - row name - issuer
   "issuer": "issuer",
-  // tableinformation - row name -
+  // tableinformation - row name - network
   "network": "network",
-  // tableinformation - row name -
+  // tableinformation - row name - current
   "current": "current",
   // button description to receive test trx
   "trx_received": "TRX received",
@@ -332,8 +332,6 @@ export const messages = {
   "freeze": "freeze",
   // button description - to unfreez trx
   "unfreeze": "unfreeze",
-  // infomessage - title - Not enough TRX ..to freeze
-  "not_enough_trx": "Not enough TRX",
   // infomessage - description
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   // errormessage - message text
@@ -350,7 +348,7 @@ export const messages = {
   "trx_amount": "TRX Amount",
   // infomessage - text module 1 - I confirm to freeze XXX trx for at least of 3 days
   "token_freeze_confirm_message_0": "I confirm to freeze ",
-// infomessage - text module 2 - I confirm to freeze XXX trx for at least of 3 days
+  // infomessage - text module 2 - I confirm to freeze XXX trx for at least of 3 days
   "token_freeze_confirm_message_1": "for at least of 3 days",
   // table title - Frozen Supply
   "frozen_supply": "Frozen Supply",
@@ -772,7 +770,6 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  //
   "info_tx_viewer": "Here you can paste a transaction hex to inspect the contents of a transaction. The transaction can then be broadcasted to the network",
   "load_tx": "Load Transaction",
   "tx_qrcode": "Transaction QR Code",
@@ -833,7 +830,7 @@ export const messages = {
   "tron_explorer_api": "Tron Explorer API",
   // navigation bar - help - hyperlink - to get informations about the TRON Architecture
   "tron_architechure": "TRON Architecture",
-  // navigation bar - help - hyperlink - to get the TRON Protobuf Documentatio
+  // navigation bar - help - hyperlink - to get the TRON Protobuf Documentation
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   // navigation bar - help - hyperlink - to Submit a bug / suggestion
   "report_an_error": "Submit a bug / suggestion",

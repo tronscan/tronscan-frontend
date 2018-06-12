@@ -264,7 +264,6 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "Tokens namn",
-  "create_token": "Skapa Token",
   "token_message": "Namn för token",
   "abbr_message" : "Abbreviation för token",
   "description": "Beskrivning",
