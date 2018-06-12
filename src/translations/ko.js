@@ -15,7 +15,7 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: Korean                                                       #
 #         Status: first draft                                                    #
@@ -78,6 +78,8 @@ export const messages = {
   "next" : "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
 
 /*
 ##################################################################################
@@ -117,7 +119,7 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_supre_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
@@ -187,6 +189,7 @@ export const messages = {
   "current": "현재",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -313,7 +316,7 @@ export const messages = {
   "address_warning": "유효한 TRON 지갑 주소만 입력하십시오. 잘못된 주소는 TRX 손실을 초래할 수 있습니다.",
   "search_address_or_url": "주소 또는 URL 검색",
   "the_lunch_test": "테스트넷의 출시는 블록 체인 탐색기와 지갑의 모든 기능을 테스트하는 것을 목표로합니다.",
-  "plese_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
+  "please_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
   own wallet or exchange to the account address of testnet.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",
@@ -469,6 +472,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
   "current_votes": "Current Votes",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################

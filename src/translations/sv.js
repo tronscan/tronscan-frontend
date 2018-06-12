@@ -15,11 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 3                                                    #
+#         Participants: joelstahre                                               #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -75,9 +76,11 @@ export const messages = {
   "submit_votes": "skicka röst",
   "accounts": "konton",
   "exchange": "Börs",
-  "next" : "next",
+  "next" : "Nästa",
   "copied_to_clipboard": "Kopierad till utklipp",
-  "cancel": "Cancel",
+  "cancel": "avboka",
+  "reset": "återställa",
+  "error": "fel",
 
 /*
 ##################################################################################
@@ -117,7 +120,7 @@ export const messages = {
   "block_height": "Block Höjd",
   "online_nodes": "Noder Onlines",
   "pice_per_1000trx": "Pris (per 1000TRX)",
-  "vote_for_supre_representatives": "Rösta för Super Representatives",
+  "vote_for_super_representatives": "Rösta för Super Representatives",
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
@@ -187,6 +190,7 @@ export const messages = {
   "current": "nuvarande",
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX är för tillfället oåtkomligt. Var vänlig försök igen senare.",
+  "not_enough_trx": "Not enough TRX",
 
 /*
 ##################################################################################
@@ -307,7 +311,7 @@ export const messages = {
   "address_warning": "Ange endast en giltig TRON plånbok adress. Felaktiga adresser kan leda till förlust av TRX.",
   "search_address_or_url": "Sök efter adress eller URL",
   "the_lunch_test": "Lanseringen av testnet syftar till att testa alla funktioner i våran blockchain explorer och plånbok",
-  "plese_keep_in_mind": "Vänligen tänk på, att eftersom din registrerade kontoadress används endast för testnet, skicka inte TRX från din egen plånbok eller exchange till ditt konto på testnet.",
+  "please_keep_in_mind": "Vänligen tänk på, att eftersom din registrerade kontoadress används endast för testnet, skicka inte TRX från din egen plånbok eller exchange till ditt konto på testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX för testning kommer att skickas till ditt test-konto när du framgångsrikt ansöka via kontohantering.",
   "dear_users": "Kära användare,",
@@ -457,6 +461,17 @@ export const messages = {
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Kandidat",
   "current_votes": "Nuvarande Röster",
+  "click_to_start_voting": "Klicka här för att börja rösta",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
 ##################################################################################

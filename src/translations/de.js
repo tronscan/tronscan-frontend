@@ -15,11 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018                                                  #
+#         Version: 1.1-10062018-1                                                #
 #         Update Date: 10.06.2018                                                #
 #         Language: German                                                       #
 #         Status: Approved Version                                               #
 #         Number of checks: 4                                                    #
+#         Participants: PMD3VSolution,DrKaradenizli,DrKara                       #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -78,6 +79,8 @@ export const messages = {
   "next" : "Weiter",
   "copied_to_clipboard": "In Zwischenablage kopiert",
   "cancel": "Abbrechen",
+  "reset": "Zurücksetzen",
+  "error": "Fehler",
 
 /*
 ##################################################################################
@@ -117,8 +120,8 @@ export const messages = {
   "block_height": "Block Größe",
   "online_nodes": "Aktive Knoten",
   "pice_per_1000trx": "Preis (pro 1000TRX)",
-  "vote_for_supre_representatives": "Für einen Super Representatives abstimmen",
-  "view_super_representatives": "Super Representaten Übersicht",
+  "vote_for_super_representatives": "Für einen Super Repräsentant abstimmen",
+  "view_super_representatives": "Super Repräsentanten Übersicht",
   "create_new_wallet": "Ein neues Wallet erstellen",
   "view_tokens": "Tokenübersicht",
 
@@ -187,6 +190,7 @@ export const messages = {
   "current": "aktuell",
   "trx_received": "TRX empfangen",
   "test_trx_temporarily_unavailable_message": "Test TRX sind aktuell nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
+  "not_enough_trx": "Nicht ausreichend TRX",
 
 /*
 ##################################################################################
@@ -223,7 +227,7 @@ export const messages = {
    Damit das Netzwerk und die Gemeinschaft reibungslos und effektiver arbeiten kann
    wurden Standards und Vorschriften für die Super-Repräsentanten Anwärter festgelegt.
    Wir werden geeignete Super-Repräsentanten fördern und unterstützen.
-   Einmal pro Woche werden neue geeignete Super Representatives bestimmt und veröffentlicht.`,
+   Einmal pro Woche werden neue geeignete Super Repräsentanten bestimmt und veröffentlicht.`,
   "apply_for_delegate_description": `
    TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
    Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
@@ -312,7 +316,7 @@ export const messages = {
   "address_warning": "Bitte achten Sie darauf, dass die eingegebene TRON-Walletadressen gültig ist. Die Eingabe einer falsche Adressen kann zu TRX-Verlusten führen.",
   "search_address_or_url": "Nach Adresse oder URL suchen.",
   "the_lunch_test": "Das Ziel des Testnetzwerkes ist es alle Funktionen unseres Blockchain Explorers und der Wallets zu testen.",
-  "plese_keep_in_mind": `Bitte beachten Sie, dass Ihre registrierte Kontoadresse nur für das Testnetzwerk gültig ist. Senden Sie keine TRX von Ihrer
+  "please_keep_in_mind": `Bitte beachten Sie, dass Ihre registrierte Kontoadresse nur für das Testnetzwerk gültig ist. Senden Sie keine TRX von Ihrer
    eigenen Wallet oder einer Exchange auf Ihre Kontoadresse des Testnetzwerkes.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "Sobald Sie sich erfolgreich mit Ihrem Profil angemeldet haben können Sie die TRX-Token für das Testnetzwerk verwenden.",
@@ -470,6 +474,17 @@ export const messages = {
   "live_ranking_msg": "Alle 15 Sekunden wird die Ansicht aktualisiert. Bei neuen Abstimmungen kann es 1-2 Minuten dauern bevor sie gezählt werden.",
   "candidate": "Kandidat",
   "current_votes": "Aktuelle Abstimmungen",
+  "click_to_start_voting": "Klicken Sie hier um mit der Abstimmung zu starten",
+  "votes_remaining_message": "Verbleibende Stimmen",
+  "open_wallet_start_voting_message": "Sie benötigen ein Wallet um an der Abstimmung teilnehmen zu können.",
+  "thanks_submitting_vote_message": "Vielen Dank für Ihre Abstimmung!",
+  "need_min_trx_to_vote_message": "Für die Teilnahme an der Abstimmung benötigen Sie mindesten 1 TRX.",
+  "to_much_votes_massage": "Zu haben zu viele Stimmen vergeben!",
+  "all_votes_are_used_message": "Alle Stimmen wurden vergeben!",
+  "submissing_vote_message_title": "Vielen Dank für Ihre Teilnahme!",
+  "submissing_vote_message_0": "Ihre persönliche Abstimmung wurde erfolgreich übermittelt und wird zum nächste Wahlzyklus wirksam.",
+  "submissing_vote_message_1": "Sie haben jedoch jederzeit die Möglichkeit die bereits abgegebenen Stimmen neu zu vergeben.",
+  "submitting_vote_error_message": "Bei der Stimmenabgabe ist ein Fehler aufgetreten. Versuchen Sie es bitte später noch einmal.",
 
 /*
 ##################################################################################

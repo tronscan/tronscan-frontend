@@ -40,12 +40,12 @@ class Navigation extends PureComponent {
       privateKey: '',
       search: "",
       searchType:'searchBlockNumber',
-      searchTypes:[
-          'searchBlockNumber',
-          'searchTxHash',
-          'searchToken',
-          'searchAddress'
-      ],
+      searchTypes: {
+        searchBlockNumber:  'Block',
+        searchTxHash:       'TX',
+        searchToken:        'Token',
+        searchAddress:      'Address',
+      },
       popup: null,
       notifications: [],
     };
@@ -158,7 +158,6 @@ class Navigation extends PureComponent {
 
   componentWillUnmount() {
     this.listener && this.listener.close();
-    // what's the use of this?
   }
 
   getActiveComponent() {
@@ -172,15 +171,16 @@ class Navigation extends PureComponent {
 
   doSearch = async () => {
 
-    let {search,searchType} = this.state;
-    let result = await doSearch(search,searchType);
+    let {search, searchType} = this.state;
+    let result = await doSearch(search, searchType);
     if (result === true) {
-      this.setState({ search: "", });
+      this.setState({search: "",});
     } else if (result !== null) {
       window.location.hash = result;
-      this.setState({ search: "", });
-    } else
-        toastr.warning('Warning', 'Record not found!')
+      this.setState({search: "",});
+    } else {
+      toastr.warning('Warning', 'Record not found!');
+    }
   };
 
   onSearchKeyDown = (ev) => {
@@ -549,12 +549,13 @@ class Navigation extends PureComponent {
             <div className="ml-auto py-3 hidden-mobile nav-searchbar">
               <div className="input-group">
                   <select
-                      className="form-control margin-select"
+                      className="form-control mr-1"
+                      style={styles.searchType}
                       onChange={(ev) => this.setState({ searchType: ev.target.value }) }
                       value={searchType}>
                       {
-                          searchTypes.map((type) => (
-                              <option value={type}>{type}</option>
+                          Object.entries(searchTypes).map(([type, label]) => (
+                              <option value={type}>{label}</option>
                           ))
                       }
                   </select>
@@ -584,6 +585,9 @@ const styles = {
   search: {
     fontSize: 13,
     minWidth: 220,
+  },
+  searchType: {
+    fontSize: 13,
   },
 };
 
