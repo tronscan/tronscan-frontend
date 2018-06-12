@@ -58,6 +58,7 @@
     "jquery": "^3.3.1",
     "js-sha3": "^0.7.0",
     "leaflet": "^1.3.1",
+    "leaflet-echarts": "^0.2.1",
     "leaflet.gridlayer.googlemutant": "^0.6.4",
     "leaflet.markercluster": "^1.3.0",
     "leaflet.markercluster.placementstrategies": "^0.1.6",

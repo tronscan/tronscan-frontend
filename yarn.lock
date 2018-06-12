@@ -5443,6 +5443,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet-echarts@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/leaflet-echarts/-/leaflet-echarts-0.2.1.tgz#36dd23061ac171c89cf5f66fe6fb5e233bf18af3"
+
 leaflet.gridlayer.googlemutant@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/leaflet.gridlayer.googlemutant/-/leaflet.gridlayer.googlemutant-0.6.4.tgz#4a47ce941becad175e3b6355f26464bc2236ac10"
