@@ -11,6 +11,7 @@ import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {TronLoader} from "../../common/loaders";
 
 class SendForm extends React.Component {
 
@@ -58,6 +59,7 @@ class SendForm extends React.Component {
       this.refreshTokenBalances();
 
       onSend && onSend();
+      //two work flows!
 
       this.setState({
         sendStatus: 'success',
@@ -79,7 +81,6 @@ class SendForm extends React.Component {
 
   confirmSend = () => {
     let {to, token, amount} = this.state;
-
     this.setState({
       modal: (
         <SweetAlert
@@ -115,6 +116,8 @@ class SendForm extends React.Component {
 
   setAmount = (amount) => {
 
+
+
     if (amount !== '') {
       amount = parseFloat(amount);
       amount = round(amount, 6);
@@ -142,7 +145,7 @@ class SendForm extends React.Component {
   isAmountValid = () => {
     let {amount} = this.state;
     let selectedTokenBalance = this.getSelectedTokenBalance();
-    return amount === 0 || amount === '' || selectedTokenBalance >= amount;
+    return amount !== 0 && amount !== '' && selectedTokenBalance >= amount;
   };
 
   componentDidMount() {
@@ -235,9 +238,9 @@ class SendForm extends React.Component {
   render() {
 
     let {tokenBalances} = this.props;
-    let {sendStatus, modal, to, toAccount, token, amount} = this.state;
+    let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
 
-    let isToValid = to.length === 0 || isAddressValid(to);
+    let isToValid = to.length !== 0 && isAddressValid(to);
     let isAmountValid = this.isAmountValid();
 
 
@@ -259,6 +262,7 @@ class SendForm extends React.Component {
     return (
       <form>
         {modal}
+        {isLoading && <TronLoader/>}
         <div className="form-group">
           <label>{tu("to")}</label>
           <div className="input-group mb-3">
@@ -267,7 +271,8 @@ class SendForm extends React.Component {
                    className={"form-control " + (!isToValid ? "is-invalid" : "")}
                    value={to} />
             <div className="invalid-feedback">
-              {tu("invalid_address")}
+                { tu("fill_a_valid_address") }
+                {/* tu("invalid_address") */}
             </div>
           </div>
         </div>
@@ -309,7 +314,8 @@ class SendForm extends React.Component {
               </button>
             </div>
             <div className="invalid-feedback">
-              {tu("insufficient_tokens")}
+              { tu("fill_a_valid_number") }
+              {/* tu("insufficient_tokens") */}
             </div>
           </div>
         </div>

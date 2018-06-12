@@ -52,7 +52,7 @@ class RecentBlocks extends Component {
             blocks.map(block => (
               <li key={block.number} className="list-group-item p-2 py-1">
                 <div key={block.number} className="media d-flex align-items-stretch">
-                  <Link class="block mr-1 text-white d-flex flex-column justify-content-center" to={`/block/${block.number}`}>
+                  <Link className="block mr-1 text-white d-flex flex-column justify-content-center" to={`/block/${block.number}`}>
                     #{block.number}
                   </Link>
                   <div className="media-body mb-0 ml-1 d-flex">
