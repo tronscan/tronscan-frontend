@@ -21,6 +21,8 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import Transfers from "../common/Transfers";
 import TestNetRequest from "./TestNetRequest";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 class Account extends Component {
 
@@ -117,6 +119,81 @@ class Account extends Component {
         }
         </tbody>
       </table>
+    )
+  }
+
+  renderIssuedTokens(issuedAsset) {
+
+    if (!issuedAsset) {
+      return (
+        <div className="text-center d-flex justify-content-center p-4">
+          {tu("no_issued_tokens")}
+        </div>
+      );
+    }
+
+    return (
+      issuedAsset &&
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              <table className="table m-0">
+                <tbody>
+                  <tr>
+                    <th style={{width: 150}}>{tu("name")}:</th>
+                    <td>
+                      <TokenLink name={issuedAsset.name} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{tu("start_date")}:</th>
+                    <td>
+                      <FormattedDate value={issuedAsset.startTime} />{' '}
+                      <FormattedTime value={issuedAsset.startTime} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{tu("end_date")}:</th>
+                    <td>
+                      <FormattedDate value={issuedAsset.endTime} />{' '}
+                      <FormattedTime value={issuedAsset.endTime} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{tu("progress")}:</th>
+                    <td>
+                      <div className="progress mt-1">
+                        <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
+                      </div>
+                    </td>
+                  </tr>
+                  {
+                    issuedAsset.frozen.length > 0 &&
+                      <tr>
+                        <th>{tu("Frozen Supply")}:</th>
+                        <td>
+                          <a href="javascript:" className="float-right text-primary" onClick={this.unfreezeAssetsConfirmation}>
+                            Unfreeze Assets
+                          </a>
+                          {
+                            issuedAsset.frozen.map(frozen => (
+                              <div>
+                                {frozen.amount} can be unlocked&nbsp;
+                                {
+                                  (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
+                                    <FormattedRelative value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))} />
+                                }
+                              </div>
+                            ))
+                          }
+                        </td>
+                      </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     )
   }
 
@@ -253,6 +330,146 @@ class Account extends Component {
         autoRefresh={30000}
         EmptyState={() => <p className="text-center">No transactions yet</p>}
         filter={{address: account.address, limit: 10}}/>
+    )
+  }
+
+  renderTronPower(hasFrozen){
+    return (
+      <div className="card-body text-center pt-0">
+        <div className="card">
+          <div className="card-body text-center">
+            <p className="card-text text-center">
+              {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+            </p>
+          </div>
+        </div>
+        <br/>
+        {
+          hasFrozen &&
+          <button className="btn btn-danger mr-2" onClick={this.showUnfreezeModal}>
+            {tu("unfreeze")}
+            <i className="fa fa-fire ml-2"/>
+          </button>
+        }
+        <button className="btn btn-dark mr-2" onClick={this.showFreezeBalance}>
+          {tu("freeze")}
+          <i className="fa fa-snowflake ml-2"/>
+        </button>
+      </div>
+    )
+  }
+
+  renderSR(currentWallet, sr){
+    return (
+      currentWallet.representative.enabled ?
+      <div className="row mt-3">
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title text-center">
+                {tu("Super Representative")}
+              </h5>
+              <p className="card-text">
+                As a representative you receive rewards for producing blocks. These rewards
+                can be claimed every 24 hours
+              </p>
+              <button className="btn btn-success mr-2" onClick={this.claimRewards}>
+                Claim Rewards
+                <i className="fa fa-hand-holding-usd ml-2"/>
+              </button>
+            </div>
+            <div className="card-body border-top">
+              <h5 className="card-title text-center">
+                {tu("Landing Page")}
+              </h5>
+              <p className="card-text text-center">
+                Super Representatives can create a landing page on which they
+                can share more information about their team and plans
+              </p>
+              <p className="text-center">
+                <a className="btn btn-primary mr-2" target="_blank" href="https://github.com/tronscan/tronsr-template#readme">
+                  Show more Information on how to publish a page
+                  <i className="fa fa-question ml-2"/>
+                </a>
+              </p>
+              {
+                !this.hasGithubLink() &&
+                  <Fragment>
+                    <p className="card-text text-center">
+                      Did you already configure your Github template? Then set the URL by using the button below
+                    </p>
+                    <p className="text-center">
+                      <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
+                        Set Github Link
+                        <i className="fab fa-github ml-2"/>
+                      </button>
+                    </p>
+                  </Fragment>
+              }
+            </div>
+            {
+              this.hasGithubLink() &&
+                <table className="table m-0">
+                  <tbody>
+                  <tr>
+                    <th>{tu("Github Link")}:</th>
+                    <td>
+                      <a href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</a>
+                      <a href="javascript:;" className="float-right text-primary" onClick={this.changeGithubURL}>
+                        {tu("Change Github Link")}
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{tu("Representative Page")}</th>
+                    <td><Link className="text-primary" to={`/representative/${currentWallet.address}`}>View</Link>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+            }
+          </div>
+        </div>
+      </div> :
+      <div className="row mt-3">
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-body px-0 border-0">
+              <h5 className="card-title text-center m-0">
+                {tu("Super Representative")}
+              </h5>
+            </div>
+            <div className="card-body text-center">
+              <p className="card-text">
+                {tu("apply_for_delegate_predescription")}
+              </p>
+              <button className="btn btn-success mr-2" onClick={this.applyForDelegate}>
+                <i className="fa fa-hand-holding-usd mr-2"/>
+                {tu("apply_super_representative_candidate")}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderTestNet(showRequest, account){
+    return (
+      showRequest && <div className="row mt-3">
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title border-bottom-0 m-0">
+                {tu("testnet")}
+              </h5>
+              <TestNetRequest
+                account={account}
+                onRequested={() => setTimeout(() => this.reloadTokens(), 1500)}/>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 
@@ -558,7 +775,6 @@ class Account extends Component {
     this.loadAccount();
   };
 
-
   changeWebsite = () => {
     this.setState({
       modal: (
@@ -680,296 +896,112 @@ class Account extends Component {
           </div>
         </div>
 
-        {showBandwidth && this.renderBandwidth()}
-
         <div className="row mt-3">
           <div className="col-md-12">
             <div className="card">
-              {
-                currentWallet.representative.enabled &&
-                  <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-              }
-              <table className="table m-0">
-                <tbody>
-                {
-                  wallet.isOpen &&
-                    <tr>
-                      <th>{tu("name")}:</th>
-                      <td>
-                        {currentWallet.name || "-"}
+              <Tabs>
+                <TabList>
+                  <Tab><i className="fa fa-question mr-2"/> Informations</Tab>
+                  <Tab><i className="fas fa-coins mr-2"/> {tu("tokens")}</Tab>
+                  <Tab><i className="fa fa-paper-plane mr-2"/> {tu("Issued Token")}</Tab>
+                  <Tab><i className="fa fa-exchange-alt mr-2"/> {tu("transactions")}</Tab>
+                  <Tab><i className="fa fa-bolt mr-2"/> {tu("Tron Power")}</Tab>
+                  <Tab><i className="fa fa-rocket mr-2"/> {tu("Super Representative")}</Tab>
+                  <Tab><i className="fa fa-database mr-2"/> {tu("testnet")}</Tab>
+                </TabList>
+
+                <TabPanel>
+                  {showBandwidth && this.renderBandwidth()}
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <div className="card">
                         {
-                          trim(currentWallet.name) === "" &&
-                            <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
-                              {tu("set_name")}
-                            </a>
+                          currentWallet.representative.enabled &&
+                            <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
                         }
-                      </td>
-                    </tr>
-                }
-                {
-                  currentWallet.representative.enabled &&
-                    <tr>
-                      <th>{tu("Website")}:</th>
-                      <td>
-                        <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                        <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
-                          Change Website
-                        </a>
+                        <table className="table m-0">
+                          <tbody>
+                          {
+                            wallet.isOpen &&
+                              <tr>
+                                <th>{tu("name")}:</th>
+                                <td>
+                                  {currentWallet.name || "-"}
+                                  {
+                                    trim(currentWallet.name) === "" &&
+                                      <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
+                                        {tu("set_name")}
+                                      </a>
+                                  }
+                                </td>
+                              </tr>
+                          }
+                          {
+                            currentWallet.representative.enabled &&
+                              <tr>
+                                <th>{tu("Website")}:</th>
+                                <td>
+                                  <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                                  <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
+                                    Change Website
+                                  </a>
 
-                      </td>
-                    </tr>
-                }
-                <tr>
-                  <th>{tu("address")}:</th>
-                  <td>
-                    <AddressLink address={account.address} includeCopy={true}/><br/>
-                    <span className="text-danger">
-                      ({tu("do_not_send_2")})
-                    </span>
-                    <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                      {tu("show_qr_code")}
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>{tu("transactions")}:</th>
-                  <td>
-                    <FormattedNumber value={totalTransactions}/>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-body px-0 border-0">
-                <h5 className="card-title text-center m-0">
-                  {tu("tokens")}
-                </h5>
-              </div>
-              {this.renderTokens()}
-            </div>
-          </div>
-        </div>
-        {
-          issuedAsset &&
-            <div className="row mt-3">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body px-0 border-0">
-                    <h5 className="card-title text-center m-0">
-                      {tu("Issued Token")}
-                    </h5>
-                  </div>
-                  <table className="table m-0">
-                    <tbody>
-                      <tr>
-                        <th style={{width: 150}}>{tu("name")}:</th>
-                        <td>
-                          <TokenLink name={issuedAsset.name} />
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>{tu("start_date")}:</th>
-                        <td>
-                          <FormattedDate value={issuedAsset.startTime} />{' '}
-                          <FormattedTime value={issuedAsset.startTime} />
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>{tu("end_date")}:</th>
-                        <td>
-                          <FormattedDate value={issuedAsset.endTime} />{' '}
-                          <FormattedTime value={issuedAsset.endTime} />
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>{tu("progress")}:</th>
-                        <td>
-                          <div className="progress mt-1">
-                            <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
-                          </div>
-                        </td>
-                      </tr>
-                      {
-                        issuedAsset.frozen.length > 0 &&
+                                </td>
+                              </tr>
+                          }
                           <tr>
-                            <th>{tu("Frozen Supply")}:</th>
+                            <th>{tu("address")}:</th>
                             <td>
-                              <a href="javascript:" className="float-right text-primary" onClick={this.unfreezeAssetsConfirmation}>
-                                Unfreeze Assets
+                              <AddressLink address={account.address} includeCopy={true}/><br/>
+                              <span className="text-danger">
+                                ({tu("do_not_send_2")})
+                              </span>
+                              <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
+                                {tu("show_qr_code")}
                               </a>
-                              {
-                                issuedAsset.frozen.map(frozen => (
-                                  <div>
-                                    {frozen.amount} can be unlocked&nbsp;
-                                    {
-                                      (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
-                                        <FormattedRelative value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))} />
-                                    }
-                                  </div>
-                                ))
-                              }
                             </td>
                           </tr>
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        }
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-body px-0 border-0">
-                <h5 className="card-title text-center m-0">
-                  {tu("transactions")}
-                </h5>
-              </div>
-              {this.renderTransactions()}
+                          <tr>
+                            <th>{tu("transactions")}:</th>
+                            <td>
+                              <FormattedNumber value={totalTransactions}/>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderTokens()}
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderIssuedTokens(issuedAsset)}
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderTransactions()}
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderTronPower(hasFrozen)}
+                  {this.renderFrozenTokens()}
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderSR(currentWallet, sr)}
+                </TabPanel>
+
+                <TabPanel>
+                  {this.renderTestNet(showRequest, account)}
+                </TabPanel>
+              </Tabs>
             </div>
           </div>
         </div>
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-body px-0 border-0">
-                <h5 className="card-title text-center m-0">
-                  {tu("Tron Power")}
-                </h5>
-              </div>
-              <div className="card-body text-center pt-0">
-                <p className="card-text">
-                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
-                </p>
-                {
-                  hasFrozen &&
-                  <button className="btn btn-danger mr-2" onClick={this.showUnfreezeModal}>
-                    {tu("unfreeze")}
-                    <i className="fa fa-fire ml-2"/>
-                  </button>
-                }
-                <button className="btn btn-dark mr-2" onClick={this.showFreezeBalance}>
-                  {tu("freeze")}
-                  <i className="fa fa-snowflake ml-2"/>
-                </button>
-              </div>
-              {this.renderFrozenTokens()}
-            </div>
-          </div>
-        </div>
-        {
-          currentWallet.representative.enabled ?
-            <div className="row mt-3">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body text-center">
-                    <h5 className="card-title text-center">
-                      {tu("Super Representative")}
-                    </h5>
-                    <p className="card-text">
-                      As a representative you receive rewards for producing blocks. These rewards
-                      can be claimed every 24 hours
-                    </p>
-                    <button className="btn btn-success mr-2" onClick={this.claimRewards}>
-                      Claim Rewards
-                      <i className="fa fa-hand-holding-usd ml-2"/>
-                    </button>
-                  </div>
-                  <div className="card-body border-top">
-                    <h5 className="card-title text-center">
-                      {tu("Landing Page")}
-                    </h5>
-                    <p className="card-text text-center">
-                      Super Representatives can create a landing page on which they
-                      can share more information about their team and plans
-                    </p>
-                    <p className="text-center">
-                      <a className="btn btn-primary mr-2" target="_blank" href="https://github.com/tronscan/tronsr-template#readme">
-                        Show more Information on how to publish a page
-                        <i className="fa fa-question ml-2"/>
-                      </a>
-                    </p>
-                    {
-                      !this.hasGithubLink() &&
-                        <Fragment>
-                          <p className="card-text text-center">
-                            Did you already configure your Github template? Then set the URL by using the button below
-                          </p>
-                          <p className="text-center">
-                            <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
-                              Set Github Link
-                              <i className="fab fa-github ml-2"/>
-                            </button>
-                          </p>
-                        </Fragment>
-                    }
-                  </div>
-                  {
-                    this.hasGithubLink() &&
-                      <table className="table m-0">
-                        <tbody>
-                        <tr>
-                          <th>{tu("Github Link")}:</th>
-                          <td>
-                            <a href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</a>
-                            <a href="javascript:;" className="float-right text-primary" onClick={this.changeGithubURL}>
-                              {tu("Change Github Link")}
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("Representative Page")}</th>
-                          <td><Link className="text-primary" to={`/representative/${currentWallet.address}`}>View</Link>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                  }
-                </div>
-              </div>
-            </div> :
-            <div className="row mt-3">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body px-0 border-0">
-                    <h5 className="card-title text-center m-0">
-                      {tu("Super Representative")}
-                    </h5>
-                  </div>
-                  <div className="card-body text-center">
-                    <p className="card-text">
-                      {tu("apply_for_delegate_predescription")}
-                    </p>
-                    <button className="btn btn-success mr-2" onClick={this.applyForDelegate}>
-                      <i className="fa fa-hand-holding-usd mr-2"/>
-                      {tu("apply_super_representative_candidate")}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        }
-        {
-          showRequest && <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-body text-center">
-                  <h5 className="card-title border-bottom-0 m-0">
-                    {tu("testnet")}
-                  </h5>
-                  <TestNetRequest
-                    account={account}
-                    onRequested={() => setTimeout(() => this.reloadTokens(), 1500)}/>
-                </div>
-              </div>
-            </div>
-          </div>
-        }
       </main>
     )
   }

@@ -102,6 +102,7 @@
     "react-scrollspy": "^3.3.5",
     "react-spinners": "^0.2.6",
     "react-sticky": "^6.0.2",
+    "react-tabs": "^2.2.2",
     "react-timeago": "^3.4.3",
     "react-transition-group": "^2.3.1",
     "react-vivus": "^0.0.2",
