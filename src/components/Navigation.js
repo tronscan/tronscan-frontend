@@ -554,8 +554,8 @@ class Navigation extends PureComponent {
                       onChange={(ev) => this.setState({ searchType: ev.target.value }) }
                       value={searchType}>
                       {
-                          Object.entries(searchTypes).map(([type, label]) => (
-                              <option value={type}>{label}</option>
+                          Object.entries(searchTypes).map(([type, label],index) => (
+                              <option key={index} value={type}>{label}</option>
                           ))
                       }
                   </select>

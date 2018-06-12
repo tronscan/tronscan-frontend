@@ -20,9 +20,11 @@ export default function Contract({contract}) {
             </p>
           </div>
           <table className="table">
-            <Field label="From"><AddressLink address={contract.from} /></Field>
-            <Field label="To"><AddressLink address={contract.to} /></Field>
-            <Field label="Amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
+            <tbody>
+              <Field label="From"><AddressLink address={contract.from} /></Field>
+              <Field label="To"><AddressLink address={contract.to} /></Field>
+              <Field label="Amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
+            </tbody>
           </table>
         </Fragment>
       );

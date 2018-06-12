@@ -13,6 +13,8 @@ import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+import {toastr} from "react-redux-toastr";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -63,7 +65,21 @@ class Home extends Component {
 
   doSearch = async () => {
     let {search} = this.state;
-    let result = await doSearch(search);
+    let type;
+    if(isAddressValid(search)){
+      type='searchAddress';
+    }
+    else if(!isNaN(Number(search))){
+      type='searchBlockNumber';
+    }
+    else if(search.length===64){
+      type='searchTxHash';
+    }
+    else
+      type='searchToken';
+
+
+    let result = await doSearch(search,type);
     if (result !== null) {
       this.setState({
         hasFound: true,
@@ -82,6 +98,8 @@ class Home extends Component {
           isShaking: false,
         });
       }, 1000);
+
+      toastr.warning('Warning', 'Record not found!');
     }
   };
 
