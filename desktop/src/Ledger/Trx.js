@@ -17,12 +17,14 @@
 
 const { splitPath, foreach } = require("./utils");
 
+const CLA = 0x27;
+
 /**
- * Ethereum API
+ * Tron API
  *
  * @example
- * import Eth from "@ledgerhq/hw-app-eth";
- * const eth = new Eth(transport)
+ * import Trx from "@ledgerhq/hw-app-trx";
+ * const trx = new Trx(transport)
  */
 class Trx {
 
@@ -41,7 +43,11 @@ class Trx {
   }
 
   /**
-   * get Ethereum address for a given BIP 32 path.
+   * Get TRX address for a given BIP 32 path.
+   * cla: number, is 0x27
+   * ins: number, is the function 0x02 publickey 0x04 sign 0x06 configuration
+   * p1: number, is used to get confirmation, set as 0 for now
+   * p2: number,is used to chain, we dont have itm so 0 too
    * @param path a path in BIP 32 format
    * @option boolDisplay optionally enable or not the display
    * @option boolChaincode optionally enable or not the chaincode request
@@ -63,7 +69,7 @@ class Trx {
 
     return this.transport
       .send(
-        0x27,
+        CLA,
         0x02,
         boolDisplay ? 0x01 : 0x00,
         boolChaincode ? 0x01 : 0x00,
@@ -84,48 +90,68 @@ class Trx {
    * @example
    eth.signTransaction("44'/60'/0'/0'/0", "e8018504e3b292008252089428ee52a8f3d6e5d15f8b131996950d7f296c7952872bd72a2487400080").then(result => ...)
    */
-  signTransaction(
+  async signTransaction(
     path,
     rawTxHex
   ) {
     let paths = splitPath(path);
-    let offset = 0;
     let rawTx = new Buffer(rawTxHex, "hex");
-    let toSend = [];
-    let response;
-    while (offset !== rawTx.length) {
-      let maxChunkSize = offset === 0 ? 150 - 1 - paths.length * 4 : 150;
-      let chunkSize =
-        offset + maxChunkSize > rawTx.length
-          ? rawTx.length - offset
-          : maxChunkSize;
-      let buffer = new Buffer(
-        offset === 0 ? 1 + paths.length * 4 + chunkSize : chunkSize
-      );
-      if (offset === 0) {
-        buffer[0] = paths.length;
-        paths.forEach((element, index) => {
-          buffer.writeUInt32BE(element, 1 + 4 * index);
-        });
-        rawTx.copy(buffer, 1 + 4 * paths.length, offset, offset + chunkSize);
-      } else {
-        rawTx.copy(buffer, 0, offset, offset + chunkSize);
-      }
-      toSend.push(buffer);
-      offset += chunkSize;
-    }
-    return foreach(toSend, (data, i) =>
-      this.transport
-        .send(0xe0, 0x04, i === 0 ? 0x00 : 0x80, 0x00, data)
-        .then(apduResponse => {
-          response = apduResponse;
-        })
-    ).then(() => {
-      const v = response.slice(0, 1).toString("hex");
-      const r = response.slice(1, 1 + 32).toString("hex");
-      const s = response.slice(1 + 32, 1 + 32 + 32).toString("hex");
-      return { v, r, s };
+    let buffer = new Buffer(1 + paths.length * 4 + rawTx.length);
+    buffer[0] = paths.length;
+    paths.forEach((element, index) => {
+      buffer.writeUInt32BE(element, 1 + 4 * index);
     });
+    let copyResponse = rawTx.copy(buffer, 1 + 4 * paths.length, 0, rawTx.length);
+    console.log("signTransaction", {
+      paths,
+      buffer,
+      rawTx,
+      rawTxHex,
+      copyResponse,
+    });
+
+
+
+    // let toSend = [];
+    // let response;
+    // while (offset !== rawTx.length) {
+    //   let maxChunkSize = offset === 0 ? 150 - 1 - paths.length * 4 : 150;
+    //   let chunkSize =
+    //     offset + maxChunkSize > rawTx.length
+    //       ? rawTx.length - offset
+    //       : maxChunkSize;
+    //   let buffer = new Buffer(
+    //     offset === 0 ? 1 + paths.length * 4 + chunkSize : chunkSize
+    //   );
+    //   if (offset === 0) {
+    //     buffer[0] = paths.length;
+    //     paths.forEach((element, index) => {
+    //       buffer.writeUInt32BE(element, 1 + 4 * index);
+    //     });
+    //     rawTx.copy(buffer, 1 + 4 * paths.length, offset, offset + chunkSize);
+    //   } else {
+    //     rawTx.copy(buffer, 0, offset, offset + chunkSize);
+    //   }
+    //   toSend.push(buffer);
+    //   offset += chunkSize;
+    // }
+
+
+    try {
+
+      console.log("DATA LIMIT", buffer.length);
+
+      let response = await this.transport.send(CLA, 0x04, 0x00, 0x00, buffer);
+
+      console.log("TRANSPORT RESPONSE", response);
+
+      return response;
+    }
+    catch(e) {
+      console.log("ERROR RESPONSE", e);
+    }
+
+    return null;
   }
 
   /**

@@ -8,11 +8,22 @@ export const setActiveWallet = (wallet) => ({
   wallet,
 });
 
-export const reloadWallet = () => async (dispatch, getState) => {
-  let {app} = getState();
 
-  if (app.account.isLoggedIn) {
-    let {balances, frozen, ...wallet} = await Client.getAccountByAddress(app.account.address);
+export const loadWallet = (address) => async (dispatch, getState) => {
+
+  let {balances, frozen, ...wallet} = await Client.getAccountByAddress(address);
+  wallet.frozenTrx = frozen.total;
+  dispatch(setActiveWallet(wallet));
+  dispatch(setTokenBalances(balances, frozen));
+};
+
+
+export const reloadWallet = () => async (dispatch, getState) => {
+
+  let {wallet} = getState();
+
+  if (wallet.current.isOpen) {
+    let {balances, frozen, ...wallet} = await Client.getAccountByAddress(wallet.current.address);
     wallet.frozenTrx = frozen.total;
     dispatch(setActiveWallet(wallet));
     dispatch(setTokenBalances(balances, frozen));

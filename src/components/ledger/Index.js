@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {filter, isUndefined} from "lodash";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {Client} from "../../services/api";
+import LedgerSigner from "./LedgerSigner";
+import {connect} from "react-redux";
+import {injectIntl} from "react-intl";
+import {loadAccounts, loginWithAddress} from "../../actions/app";
 
 const {ipcRenderer} = window.require('electron');
 
-
-export default class Ledger extends Component {
+class Ledger extends Component {
 
   constructor() {
     super();
@@ -22,37 +26,42 @@ export default class Ledger extends Component {
   };
 
   componentDidMount() {
-    ipcRenderer.on('ledger-connected', (event, arg) => {
-      this.setState({
-        modal: (
-          <SweetAlert info title="Ledger Detected" onConfirm={this.hideModal}>
-            Waiting for Address
-          </SweetAlert>
-        ),
-      });
 
-      ipcRenderer.on('ledger-got-address', (event, arg) => {
-        console.log(event, arg);
-        this.setState({
-          modal: (
-            <SweetAlert success title="Ledger Wallet Opened" onConfirm={this.hideModal}>
-              Address: {arg.address}
-            </SweetAlert>
-          ),
-        });
+    ipcRenderer.on('ledger', (event, arg) => {
 
+      switch (arg.type) {
+        case "LEDGER_CONNECTED":
 
-      });
-    });
+          Client.setSigner(new LedgerSigner());
 
-    ipcRenderer.on('ledger-disconnected', (event, arg) => {
-      this.setState({
-        modal: (
-          <SweetAlert warning title="Ledger Disconnected" onConfirm={this.hideModal}>
-            Ledger Disconnected
-          </SweetAlert>
-        ),
-      })
+          this.setState({
+            modal: (
+              <SweetAlert info title="Ledger Detected" onConfirm={this.hideModal}>
+                Waiting for Address
+              </SweetAlert>
+            ),
+          });
+          break;
+        case "LEDGER_ADDRESS":
+          this.props.loginWithAddress(arg.address);
+          this.setState({
+            modal: (
+              <SweetAlert success title="Ledger Wallet Opened" onConfirm={this.hideModal}>
+                Address: {arg.address}
+              </SweetAlert>
+            ),
+          });
+          break;
+        case "LEDGER_DISCONNECTED":
+          this.setState({
+            modal: (
+              <SweetAlert warning title="Ledger Disconnected" onConfirm={this.hideModal}>
+                Ledger Disconnected
+              </SweetAlert>
+            ),
+          });
+          break;
+      }
     });
   }
 
@@ -67,3 +76,18 @@ export default class Ledger extends Component {
     )
   }
 }
+
+
+
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
+const mapDispatchToProps = {
+  loginWithAddress,
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ledger);

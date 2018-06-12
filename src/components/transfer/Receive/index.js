@@ -20,15 +20,15 @@ class Receive extends React.Component {
 
   renderReceiveUrl() {
 
-    let {account} = this.props;
+    let {wallet} = this.props;
 
-    if (!account.isLoggedIn) {
+    if (!wallet.isOpen) {
       return;
     }
 
     let rootUrl = process.env.PUBLIC_URL || window.location.origin;
 
-    QRCode.toDataURL(`${rootUrl}/#/send?to=${account.address}`, (err, url) => {
+    QRCode.toDataURL(`${rootUrl}/#/send?to=${wallet.current.address}`, (err, url) => {
       this.setState({
         qrcode: url,
       });
@@ -38,9 +38,9 @@ class Receive extends React.Component {
   render() {
 
     let {qrcode} = this.state;
-    let {account} = this.props;
+    let {wallet} = this.props;
 
-    if (!account.isLoggedIn) {
+    if (!wallet.isOpen) {
       return (
         <div>
           <div className="alert alert-warning">
@@ -81,7 +81,7 @@ class Receive extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+    wallet: state.wallet,
   };
 }
 
