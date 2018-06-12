@@ -36,18 +36,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "OK",
+  // title - Tron protocol
   "app_title": "Protocolo Tron",
+  // description of an input field  (enter the password)
   "password": "contraseña",
+  // description of a display field - price
   "money_price": "precio",
+  // description of a display field - price
+  "price": "precio",
+  // blockchain -> blocks - plural
   "blocks": "bloques",
+  // blockchain -> block - singular
   "block": "bloque",
+  // description of a display field - name
+  "name": "nombre",
   "balance": "saldo",
   "bandwidth": "ancho de banda",
-  "name": "nombre",
   "website": "página web",
   "address": "dirección",
-  "price": "precio",
   "sign_out": "cerrar sesión",
   "sign_in": "iniciar sesión",
   "register_login": "Registrarse / Iniciar sesión",

@@ -35,18 +35,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "确定",
+  // title - Tron protocol
   "app_title": "波场协议",
+  // description of an input field  (enter the password)
   "password": "密码",
+  // description of a display field - price
   "money_price": "价格",
+  // description of a display field - price
+  "price": "价格",
+  // blockchain -> blocks - plural
   "blocks": "区块",
+  // blockchain -> block - singular
   "block": "区块",
+  // description of a display field - name
+  "name": "名称",
   "balance": "余额",
   "bandwidth": "带宽",
-  "name": "名称",
   "website": "网址",
   "address": "地址",
-  "price": "价格",
   "sign_out": "退出",
   "sign_in": "登录",
   "register_login": "注册 / 登录",
