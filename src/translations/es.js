@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018-1                                                #
+#         Version: 1.1-11062018-2                                                #
 #         Update Date: 11.06.2018                                                #
 #         language: Spanish                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -36,18 +36,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "OK",
+  // title - Tron protocol
   "app_title": "Protocolo Tron",
+  // description of an input field  (enter the password)
   "password": "contraseña",
+  // description of a display field - price
   "money_price": "precio",
+  // description of a display field - price
+  "price": "precio",
+  // blockchain -> blocks - plural
   "blocks": "bloques",
+  // blockchain -> block - singular
   "block": "bloque",
-  "balance": "equilibrio",
-  "bandwidth": "ancho de banda",
+  // description of a display field - name
   "name": "nombre",
+  "balance": "saldo",
+  "bandwidth": "ancho de banda",
   "website": "página web",
   "address": "dirección",
-  "price": "precio",
   "sign_out": "cerrar sesión",
   "sign_in": "iniciar sesión",
   "register_login": "Registrarse / Iniciar sesión",
@@ -141,7 +149,7 @@ export const messages = {
   "last_block": "último bloque",
   "total_supply": "suministro total",
   "most_nodes": "Mayoría de Nodos",
-  "loading_nodes" : "loading Nodes",
+  "loading_nodes" : "cargando Nodes",
   "Hostname": "Nombre del host",
   "Last Update": "Última actualización",
   "first_node_sync_message": "Esperando a la sincronización del primer nodo, por favor inténtalo de nuevo en unos minutos.",
@@ -167,29 +175,32 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Escriba su nombre",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Mostrar código QR",
   "free_bandwidth": "Ancho de banda disponible",
   "expires": "caduca",
   "have_been_added_to_your_account": "han sido añadidos a tu cuenta!",
   "information_message_1": "Cuando solicite TRX, recibirá 10000 TRX que podrá usarlos en la red de pruebas.",
   "information_message_2": "Solo se podrá solicitar TRX un máximo de 10 veces por cuenta.",
-  "request_trx_for_testing": "Solicite TRX para realizar pruebas",
+  "request_trx_for_testing": "Solicitar TRX para realizar pruebas",
   "tron_power": "Tron Power",
   "do_not_send_2": "No envíe TRX desde su cartera o desde un Exchange a la dirección de la red de pruebas!",
   "transactions": "transacciones",
   "tokens": "tokens",
-  "token_balances": "token balances",
-  "produced_blocks": "produced blocks",
-  "voters": "voters",
-  "no_tokens": "Sin Tokens",
-  "issued_token": "token emitido",
+  "token_balances": "Saldo Token",
+  "produced_blocks": "bloques producidos",
+  "voters": "votantes",
+  "no_tokens": "Sin Tokens disponibles",
+  "issued_token": "Token emitido",
   "progress": "desarrollo",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "emisor",
   "network": "red",
   "current": "actual",
   "trx_received": "TRX recibidos",
-  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
+  "test_trx_temporarily_unavailable_message": "No es posible realizar pruebas con TRX temporalmente. Por favor, inténtelo de nuevo más tarde.",
   "not_enough_trx": "No hay suficiente TRX",
 
 /*
@@ -223,7 +234,7 @@ export const messages = {
   "apply_for_delegate": "solicitar ser representante",
   "apply_super_representative_candidate": "Solicitar ser un Candidato a Súper Representante",
   "your_personal_website_address": "su dirección web personal",
-  "apply_for_delegate_predescription":`Podrá ser Super Representante de TRON siempre y cuando sea poseedor de 1 Token como mínimo.
+  "apply_for_delegate_predescription":`Podrá ser Super Representante de TRON siempre y cuando disponga de 1 Token como mínimo.
    Sin embargo, para que la red y la comunidad funcionen de una forma más fluida y efectiva, hemos creado un conjunto de estándares y regulaciones para que los candidatos a Super representantes puedan ser recomendados. Promoveremos a los SR recomendados para que tengan más posibilidades de que sean elegidos.
    Los nuevos Súper Representantes que sean recomendados se actualizan y publican una vez a la semana.`,
   "apply_for_delegate_description": `
@@ -245,7 +256,7 @@ export const messages = {
   "recent_transactions": "transacciones recientes",
   "newest_account": "cuenta más reciente",
   "representatives": "representantes",
-  "most_votes": "mas votados",
+  "most_votes": "Los más votados",
   "start_end_time": "Hora de Inicio / Fin",
   "scan_qr_code": "Escanear el código con un escáner de código QR",
   "receive_trx": "recibir TRX",
@@ -301,9 +312,9 @@ export const messages = {
 ##################################################################################
 */
   "how_much_buy_message": "¿Cuántos Tokens desea comprar?",
-  "buy_confirm_message_0": "¿Estás seguro de eso?",
-  "buy_confirm_message_1": "¿Estás seguro de que quieres comprar",
-  "for": "for",
+  "buy_confirm_message_0": "¿Seguro?",
+  "buy_confirm_message_1": "¿Seguro que desea adquirir",
+  "for": "por",
 
 /*
 ##################################################################################
@@ -322,7 +333,7 @@ export const messages = {
   "finished": "Terminado",
   "token": "token",
   "url": "url",
-  "need_to_login": "Debes iniciar sesión para acceder a su cuenta",
+  "need_to_login": "Debes iniciar sesión para acceder a tu cuenta",
   "thanks_for_applying": "Gracias por presentarse!",
   "to_much_votes": "Demasiados votos",
   "no_trx_remaining": "No quedan TRX",
@@ -335,7 +346,7 @@ export const messages = {
   "search_address": "Buscar dirección",
   "token_transactions": "Transacciones Token",
   "token_holders": "Propietarios de Token",
-  "nr_of_Transfers": "Nr. of Transfers",
+  "nr_of_Transfers": "Número de Transferencias",
   "not_signed_in": "Deberá iniciar sesión para hacer uso de esta funcionalidad",
   "loading_map": "Cargando mapa",
   "loading_accounts": "Cargando Cuentas",
@@ -425,8 +436,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Mayor productividad",
-  "Lowest Productivity": "Productividad más baja",
+  "Highest Productivity": "Más productivo",
+  "Lowest Productivity": "Menos productivo",
   "productivity": "productividad",
   "rewards": "recompensas",
   "Super Representatives": "Súper Representantes",
@@ -469,17 +480,17 @@ export const messages = {
   "live_ranking_msg": "La clasificación se refresca automáticamente cada 15 segundos. Los nuevos votos pueden tardar de 1 a 2 minutos antes de ser contabilizados",
   "candidate": "Candidato",
   "current_votes": "Votos actuales",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "click_to_start_voting": "Clic aquí para comenzar la votación",
+  "votes_remaining_message": "Votos Restantes",
+  "open_wallet_start_voting_message": "Abra su cartera para comenzar a votar",
+  "thanks_submitting_vote_message": "Gracias por enviar su voto!",
+  "need_min_trx_to_vote_message": "Necesita al menos 1 TRX para poder votar",
+  "to_much_votes_massage": "Votaste demasiado!",
+  "all_votes_are_used_message": "Se han consumido todo los votos posibles!",
+  "submissing_vote_message_title": "Muchísimas gracias por votar!",
+  "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
+  "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
+  "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
 
 /*
 ##################################################################################
@@ -513,7 +524,7 @@ export const messages = {
   "node_tester_test": "Comprobar GRPC",
   "node_tester_rt": "Tiempo de respuesta",
   "confirmed_block": "Bloque confirmado",
-  "loading": "cargar...",
+  "loading": "cargando...",
 
 /*
 ##################################################################################
@@ -533,7 +544,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "what_is_tron": "Qué es TRON?",
+  "what_is_tron": "¿Qué es TRON?",
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
@@ -563,8 +574,8 @@ export const messages = {
   "do_not_share_it": "Tampoco la comparta!",
   "make_a_backup": "Realice una copia de seguridad!",
   "do_not_lose_it_message_0": "La Fundación Tron no puede ayudarle a recuperar una clave perdida.",
-  "do_not_share_it_message_0": "Sus fondos pueden ser robados si usa este archivo de una manera irresponsable.",
-  "make_a_backup_message_0": "En caso de que tu portátil se incendie.",
+  "do_not_share_it_message_0": "¡Ojo! Pueden robar sus fondos si usa este archivo de una manera irresponsable.",
+  "make_a_backup_message_0": "En caso de que su equipo se incendie.",
   "save_private_key": "Guarde su clave privada",
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
   "new_wallet_ready_message": "Tu nueva cartera está lista",
