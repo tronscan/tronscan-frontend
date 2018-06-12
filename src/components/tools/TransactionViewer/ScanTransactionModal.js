@@ -51,7 +51,7 @@ class ScanSignatureModal extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+
   };
 }
 
@@ -59,4 +59,5 @@ const mapDispatchToProps = {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScanSignatureModal);
+export default ScanSignatureModal;
+// export default connect(mapStateToProps, mapDispatchToProps)(ScanSignatureModal);

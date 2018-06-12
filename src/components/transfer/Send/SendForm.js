@@ -35,9 +35,9 @@ class SendForm extends React.Component {
    */
   isValid = () => {
     let {to, token, amount} = this.state;
-    const {account} = this.props ;
+    const {currentWallet} = this.props;
 
-    return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
+    return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== currentWallet.address;
   };
 
   /**
@@ -45,7 +45,7 @@ class SendForm extends React.Component {
    */
   send = async () => {
     let {to, token, amount} = this.state;
-    let {account, onSend} = this.props;
+    let {currentWallet, onSend} = this.props;
 
     this.setState({ isLoading: true, modal: null });
 
@@ -53,7 +53,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.send(token, account.address, to, amount)(account.key);
+    let {success} = await Client.send(token, currentWallet.address, to, amount)(currentWallet.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -155,8 +155,8 @@ class SendForm extends React.Component {
   }
 
   refreshTokenBalances = () => {
-    let {account} = this.props;
-    if (account.isLoggedIn) {
+    let {currentWallet} = this.props;
+    if (currentWallet.isLoggedIn) {
       this.props.reloadWallet();
     }
   };
@@ -327,7 +327,7 @@ class SendForm extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+    currentWallet: state.wallet.current,
     tokenBalances: state.account.tokens,
   };
 }

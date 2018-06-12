@@ -265,8 +265,6 @@ class Navigation extends PureComponent {
     let {
       languages,
       activeLanguage,
-      account,
-      tokenBalances,
       totalTransactions = 0,
       currencyConversions,
       activeCurrency,
@@ -307,7 +305,7 @@ class Navigation extends PureComponent {
                 wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
               }
               {
-                (account.isLoggedIn && wallet.isOpen)
+                (wallet.isOpen)
                   ?
                   <Fragment>
                     <li className="nav-item dropdown">
@@ -318,13 +316,13 @@ class Navigation extends PureComponent {
                         <li className="px-1 py-1">
                           <div className="row" style={{width: 305}}>
                             <div className="col-lg-2">
-                              <Avatar size={45} value={account.address}/>
+                              <Avatar size={45} value={wallet.current.address}/>
                             </div>
                             <div className="col-lg-10">
                               <b>{wallet.current.name || tu("account")}</b>
                               <br/>
                                 <AddressLink
-                                  address={account.address}
+                                  address={wallet.current.address}
                                   className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
                             </div>
                           </div>
@@ -351,7 +349,7 @@ class Navigation extends PureComponent {
                           <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> Bandwidth
                         </Link>
                         <Link className="dropdown-item"
-                              to={"/blockchain/transactions?address=" + account.address}>
+                              to={"/blockchain/transactions?address=" + wallet.current.address}>
                           <i className="fa fa-exchange-alt mr-2"/>
                           <FormattedNumber value={totalTransactions} /> Transactions
                         </Link>
@@ -596,7 +594,6 @@ function mapStateToProps(state) {
     activeLanguage: state.app.activeLanguage,
     router: state.router,
     languages: state.app.availableLanguages,
-    account: state.app.account,
     tokenBalances: state.account.tokens,
     frozen: state.account.frozen,
     totalTransactions: state.account.totalTransactions,

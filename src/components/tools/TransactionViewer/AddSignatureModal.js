@@ -73,7 +73,7 @@ class AddSignatureModal extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+
   };
 }
 
@@ -81,4 +81,6 @@ const mapDispatchToProps = {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSignatureModal);
+export default AddSignatureModal;
+
+// export default connect(mapStateToProps, mapDispatchToProps)(AddSignatureModal);

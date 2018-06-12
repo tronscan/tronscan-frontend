@@ -1,13 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {filter, find, includes, sortBy, round} from "lodash";
+import {filter, find, includes, round, sortBy} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {tu,t} from "../../../utils/i18n";
-import {TextField} from "../../../utils/formHelper";
+import {t, tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
-import {ExternalLink, TokenLink} from "../../common/Links";
+import {TokenLink} from "../../common/Links";
 import Avatar from "../../common/Avatar";
 import {Sticky, StickyContainer} from "react-sticky";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -162,18 +161,16 @@ class TokenOverview extends Component {
 
   submit = async (token) => {
 
-    let {account} = this.props;
+    let {wallet} = this.props;
     let {amount} = this.state;
 
     this.setState({ loading: true });
 
-    console.log("participate", token);
-
     let isSuccess = await Client.participateAsset(
-      account.address,
+      wallet.address,
       token.ownerAddress,
       token.name,
-      amount * token.price)(account.key);
+      amount * token.price)(wallet.key);
 
     this.setState({
       activeToken: null,
@@ -184,7 +181,7 @@ class TokenOverview extends Component {
   };
 
   renderGrid() {
-    let {account} = this.props;
+    let {wallet} = this.props;
     let {amount, tokens} = this.state;
 
     return (
@@ -247,7 +244,7 @@ class TokenOverview extends Component {
                     </li>
                   </ul>
                   {
-                    (account.isLoggedIn && this.getTokenState(token) === 'active') && (
+                    (wallet.isOpen && this.getTokenState(token) === 'active') && (
                       !this.containsToken(token) ?
                         <div className="card-footer bg-transparent border-top-0">
                           {
@@ -393,7 +390,6 @@ class TokenOverview extends Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
-    account: state.app.account,
     wallet: state.wallet.current,
   };
 }

@@ -134,16 +134,16 @@ class VoteOverview extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.account.isLoggedIn && (this.props.account.address !== prevProps.account.address)) {
-      this.loadCurrentVotes(this.props.account.address);
+    if (this.props.wallet.isOpen && (this.props.wallet.current.address !== prevProps.wallet.current.address)) {
+      this.loadCurrentVotes(this.props.wallet.current.address);
     }
   }
 
   componentDidMount() {
-    let {account,} = this.props;
-    if (account.isLoggedIn) {
+    let {wallet} = this.props;
+    if (wallet.isOpen) {
       this.props.reloadWallet();
-      this.loadCurrentVotes(account.address);
+      this.loadCurrentVotes(wallet.current.address);
     }
     this.loadVotes();
     this.loadVoteTimer();
@@ -214,11 +214,11 @@ class VoteOverview extends React.Component {
 
   renderVotingBar() {
     let {votingEnabled, votesSubmitted} = this.state;
-    let {account} = this.props;
+    let {wallet} = this.props;
 
     let {trxBalance} = this.getVoteStatus();
 
-    if (!account.isLoggedIn) {
+    if (!wallet.isOpen) {
       return (
         <div className="text-center">
           {tu("open_wallet_start_voting_message")}
@@ -291,7 +291,7 @@ class VoteOverview extends React.Component {
   };
 
   submitVotes = async () => {
-    let {account} = this.props;
+    let {wallet} = this.props;
     let {votes} = this.state;
 
     let witnessVotes = {};
@@ -300,7 +300,7 @@ class VoteOverview extends React.Component {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+    let {success} = await Client.voteForWitnesses(wallet.current.address, witnessVotes)(wallet.current.key);
 
     if (success) {
       setTimeout(() => this.props.reloadWallet(), 1200);
@@ -566,7 +566,6 @@ class VoteOverview extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
     tokenBalances: state.account.tokens,
     wallet: state.wallet,
     flags: state.app.flags,

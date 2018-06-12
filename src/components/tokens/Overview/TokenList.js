@@ -119,7 +119,7 @@ class TokenList extends Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+
   };
 }
 
@@ -127,4 +127,4 @@ const mapDispatchToProps = {
   loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenList));
+export default connect(null, mapDispatchToProps)(injectIntl(TokenList));

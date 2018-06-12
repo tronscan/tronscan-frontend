@@ -38,24 +38,24 @@ class Account extends Component {
   }
 
   componentDidMount() {
-    let {account} = this.props;
-    if (account.isLoggedIn) {
+    let {wallet} = this.props;
+    if (wallet.isOpen) {
       this.reloadTokens();
       this.loadAccount();
     }
   }
 
   componentDidUpdate(prevProps) {
-    let {account} = this.props;
-    if ((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) {
+    let {wallet} = this.props;
+    if ((prevProps.walllet.isOpen !== wallet.isOpen) && wallet.isOpen) {
       this.reloadTokens();
       this.loadAccount();
     }
   }
 
   loadAccount = async () => {
-    let {account, loadRecentTransactions, currentWallet} = this.props;
-    loadRecentTransactions(account.address);
+    let {loadRecentTransactions, currentWallet} = this.props;
+    loadRecentTransactions(currentWallet.address);
 
     this.setState({
       issuedAsset: null,
@@ -69,7 +69,7 @@ class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset(account.address).then(({token}) => {
+    Client.getIssuedAsset(currentWallet.address).then(({token}) => {
       this.setState({
         issuedAsset: token,
       });
@@ -244,7 +244,7 @@ class Account extends Component {
 
   renderTransactions() {
 
-    let {account} = this.props;
+    let {wallet} = this.props;
 
     return (
       <Transfers
@@ -252,7 +252,7 @@ class Account extends Component {
         showTotal={false}
         autoRefresh={30000}
         EmptyState={() => <p className="text-center">No transactions yet</p>}
-        filter={{address: account.address, limit: 10}}/>
+        filter={{address: wallet.current.address, limit: 10}}/>
     )
   }
 
@@ -324,9 +324,9 @@ class Account extends Component {
 
   claimRewards = async () => {
 
-    let {account, currentWallet} = this.props;
+    let {currentWallet} = this.props;
 
-    let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
+    let {success, code} = await Client.withdrawBalance(currentWallet.address)(currentWallet.key);
     if (success) {
       this.setState({
         modal: (
@@ -348,11 +348,11 @@ class Account extends Component {
   };
 
   unfreeze = async () => {
-    let {account} = this.props;
+    let {currentWallet} = this.props;
 
     this.hideModal();
 
-    let {success} = await Client.unfreezeBalance(account.address)(account.key);
+    let {success} = await Client.unfreezeBalance(currentWallet.address)(currentWallet.key);
     if (success) {
       this.setState({
         modal: (
@@ -374,11 +374,11 @@ class Account extends Component {
   };
 
   unfreezeAssets = async () => {
-    let {account} = this.props;
+    let {currentWallet} = this.props;
 
     this.hideModal();
 
-    let {success} = await Client.unfreezeAssets(account.address)(account.key);
+    let {success} = await Client.unfreezeAssets(currentWallet.address)(currentWallet.key);
     if (success) {
       this.setState({
         modal: (
@@ -415,8 +415,8 @@ class Account extends Component {
   };
 
   updateName = async (name) => {
-    let {account, currentWallet} = this.props;
-    let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
+    let {currentWallet} = this.props;
+    let {success} = await Client.updateAccountName(currentWallet.address, name)(currentWallet.key);
 
     if (success) {
       this.setState({
@@ -440,8 +440,8 @@ class Account extends Component {
   };
 
   updateWebsite = async (url) => {
-    let {account, currentWallet} = this.props;
-    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
+    let {currentWallet} = this.props;
+    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(currentWallet.key);
 
     if (success) {
       this.setState({
@@ -544,8 +544,8 @@ class Account extends Component {
 
   updateGithubURL = async (url) => {
 
-    let {account, currentWallet} = this.props;
-    let key = await Client.auth(account.key);
+    let {currentWallet} = this.props;
+    let key = await Client.auth(currentWallet.key);
 
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");

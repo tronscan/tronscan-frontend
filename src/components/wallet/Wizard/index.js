@@ -280,8 +280,6 @@ class Wizard extends React.PureComponent {
 
   render() {
 
-    let {} = this.props;
-
     let {step} = this.state;
 
     return (
@@ -319,7 +317,7 @@ class Wizard extends React.PureComponent {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+
   };
 }
 

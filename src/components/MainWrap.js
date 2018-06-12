@@ -54,7 +54,6 @@ function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,
     availableLanguages: state.app.availableLanguages,
-    account: state.app.account,
     router: state.router,
     theme: state.app.theme,
     flags: state.app.flags,

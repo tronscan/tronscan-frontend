@@ -387,7 +387,6 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
     theme: state.app.theme,
   };
 }

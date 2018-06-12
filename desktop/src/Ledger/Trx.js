@@ -141,7 +141,7 @@ class Trx {
 
       console.log("DATA LIMIT", buffer.length);
 
-      let response = await this.transport.send(CLA, 0x04, 0x00, 0x00, buffer);
+      let response = await this.transport.send(CLA, 0x04, 0x01, 0x00, buffer);
 
       console.log("TRANSPORT RESPONSE", response);
 

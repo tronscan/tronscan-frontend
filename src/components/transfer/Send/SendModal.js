@@ -40,11 +40,11 @@ class SendModal extends React.PureComponent {
 
   render() {
 
-    let {account} = this.props;
+    let {wallet} = this.props;
 
     let {modal} = this.state;
 
-    if (!account.isLoggedIn) {
+    if (!wallet.isOpen) {
       return (
         <SweetAlert danger title="Not logged in" onConfirm={this.hideModal}>
           You have to be logged in to make transactions
@@ -58,7 +58,7 @@ class SendModal extends React.PureComponent {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+    wallet: state.wallet,
     tokenBalances: state.account.tokens,
   };
 }

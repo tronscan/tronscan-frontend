@@ -1,7 +1,7 @@
 import {Client} from "../services/api";
 import xhr from "axios";
 import {loadRecentTransactions} from "./account";
-import {loadWallet, reloadWallet} from "./wallet";
+import {loadWalletFromAddress, loadWalletWithPrivateKey, reloadWallet} from "./wallet";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 export const SET_ACCOUNTS = 'SET_ACCOUNTS';
@@ -68,13 +68,13 @@ export const login = (privateKey) => async (dispatch, getState) => {
 
   await dispatch(loginWithPrivateKey(privateKey));
   let address = pkToAddress(privateKey);
-  await dispatch(loadWallet(address));
+  await dispatch(loadWalletWithPrivateKey(address));
   await dispatch(loadRecentTransactions(address));
 };
 
 export const loginWithAddress = (address) => async (dispatch) => {
   await dispatch(setLoginWithAddress(address));
-  await dispatch(loadWallet(address));
+  await dispatch(loadWalletFromAddress(address));
   await dispatch(loadRecentTransactions(address));
 };
 

@@ -33,12 +33,12 @@ class ApplyForDelegate extends Component {
   };
 
   doApply = async () => {
-    let {account} = this.props;
+    let {currentWallet} = this.props;
     let {url} = this.state;
 
     this.setState({ loading: true, });
 
-    let {success} = await Client.applyForDelegate(account.address, url)(account.key);
+    let {success} = await Client.applyForDelegate(currentWallet.address, url)(currentWallet.key);
     this.setState({ loading: false });
     if (success) {
       this.confirm();
@@ -124,7 +124,7 @@ class ApplyForDelegate extends Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
+    currentWallet: state.wallet.current,
   };
 }
 

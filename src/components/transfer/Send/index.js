@@ -21,11 +21,11 @@ class Send extends React.Component {
 
   render() {
 
-    let {account} = this.props;
+    let {wallet} = this.props;
 
     let {to} = this.state;
 
-    if (!account.isLoggedIn) {
+    if (!wallet.isOpen) {
       return (
         <div>
           <div className="alert alert-warning">
@@ -61,8 +61,8 @@ class Send extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
     tokenBalances: state.account.tokens,
+    wallet: state.wallet,
   };
 }
 

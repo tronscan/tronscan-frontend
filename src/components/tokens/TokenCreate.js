@@ -70,13 +70,13 @@ class TokenCreate extends Component {
   }
 
   submit = async () => {
-    let {account} = this.props;
+    let {currentWallet} = this.props;
 
     this.setState({ loading: true, submitMessage: null });
 
     try {
       let {success} = await Client.createToken({
-        address: account.address,
+        address: currentWallet.address,
         name: trim(this.state.name),
         shortName: trim(this.state.abbr),
         totalSupply: this.state.totalSupply,
@@ -87,7 +87,7 @@ class TokenCreate extends Component {
         description: this.state.description,
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
-      })(account.key);
+      })(currentWallet.key);
 
       if (success) {
         this.setState({
@@ -193,8 +193,8 @@ class TokenCreate extends Component {
   };
 
   isLoggedIn = () => {
-    let {account} = this.props;
-    return account.isLoggedIn;
+    let {wallet} = this.props;
+    return wallet.isOpen;
   };
 
   componentDidMount() {
@@ -661,8 +661,8 @@ class TokenCreate extends Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
-    account: state.app.account,
-    wallet: state.wallet.current,
+    currentWallet: state.wallet.current,
+    wallet: state.wallet,
   };
 }
 
