@@ -167,6 +167,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "İsim belirle",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Kare kod görüntüle",
   "free_bandwidth": "Boştaki Bantgenişliği",
   "expires": "sonlanır",

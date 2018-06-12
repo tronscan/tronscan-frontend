@@ -166,6 +166,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "تنظیم نام",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "نمایش کد QR",
   "free_bandwidth": "پهنای باند رایگان",
   "expires": "انقضاء",

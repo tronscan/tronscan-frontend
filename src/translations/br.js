@@ -167,6 +167,7 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Configurar Nome",
+  "unique_account_message": "You may only set your account name once!",
   "show_qr_code": "Mostrar QR Code",
   "free_bandwidth": "Banda gratuita",
   "expires": "expira em",

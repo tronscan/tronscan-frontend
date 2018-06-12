@@ -167,6 +167,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Skriv Namn",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Visa QR Kod",
   "free_bandwidth": "Gratis Bandbredd",
   "expires": "förfaller",

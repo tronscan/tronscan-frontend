@@ -166,6 +166,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "设置名称",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "显示二维码",
   "free_bandwidth": "免费带宽",
   "expires": "失效",
@@ -447,7 +450,7 @@ export const messages = {
   "view_live_ranking": "查看实时排名",
   "open_team_page": "查看团队页面",
   "warning_votes": "投票需要至少1单位Tron Power，Tron Power 可以通过在(账户页面)冻结TRX获得。",
-  "account_page": "账户页面", 
+  "account_page": "账户页面",
   "loading_votes": "投票加载中",
   "3_day_ranking": "三日投票排名",
   "live_ranking": "实时排名",
