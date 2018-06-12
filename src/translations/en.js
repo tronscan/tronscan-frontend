@@ -372,7 +372,7 @@ export const messages = {
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
    chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
-   // infomessage - description
+  // infomessage - description
   "apply_for_delegate_description": `
    TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
    Each account can update current voter information and also is allowed to vote for multiple candidates.
@@ -396,7 +396,6 @@ export const messages = {
   "create_account_confirm_3": "I've written my password on paper",
   // confirm message - submitting the vote
   "vote_thanks": "Thanks for submitting your vote!",
-
   "recent_transactions": "recent transactions",
   "newest_account": "newest account",
   "representatives": "representatives",
@@ -626,13 +625,13 @@ export const messages = {
   "end_date": "End Date",
   // confirm message - token spend
   "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  // userinfomation - token issue guide message -part 1
+  // userinfomation - token issue guide message - part 1
   "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
-  // userinfomation - token issue guide message -part 2
+  // userinfomation - token issue guide message - part 2
   "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
     Users can then participate within the participation period and exchange their TRX for tokens.`,
-  // userinfomation - token issue guide message -part 3
+  // userinfomation - token issue guide message - part 3
   "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
     When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
     receive TRX equal to the specified exchange rate.`,
