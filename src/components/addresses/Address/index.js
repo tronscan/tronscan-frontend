@@ -139,14 +139,14 @@ class Address extends React.Component {
           id: "token_balances",
           icon: "fa fa-piggy-bank",
           path: "/token-balances",
-          label: <span>{tu("token balances")}</span>,
+          label: <span>{tu("token_balances")}</span>,
           cmp: () => <TokenBalances tokenBalances={address.balances}/>,
         },
         blocks_produced: {
           id: "blocks-produced",
           icon: "fa fa-cube",
           path: "/blocks",
-          label: <span>{tu("produced blocks")}</span>,
+          label: <span>{tu("produced_blocks")}</span>,
           cmp: () => <Blocks blocks={blocks}/>,
         },
         votes: {
@@ -189,7 +189,7 @@ class Address extends React.Component {
             {
               loading ? <div className="card">
                   <TronLoader>
-                    Loading Address {address.address}
+                    {tu("loading_address")} {address.address}
                   </TronLoader>
                 </div> :
                 <Fragment>

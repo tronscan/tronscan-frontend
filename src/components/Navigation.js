@@ -25,6 +25,7 @@ import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
+import {toastr} from 'react-redux-toastr'
 
 class Navigation extends PureComponent {
 
@@ -38,6 +39,13 @@ class Navigation extends PureComponent {
     this.state = {
       privateKey: '',
       search: "",
+      searchType:'searchBlockNumber',
+      searchTypes: {
+        searchBlockNumber:  'Block',
+        searchTxHash:       'TX',
+        searchToken:        'Token',
+        searchAddress:      'Address',
+      },
       popup: null,
       notifications: [],
     };
@@ -162,13 +170,16 @@ class Navigation extends PureComponent {
 
 
   doSearch = async () => {
-    let {search} = this.state;
-    let result = await doSearch(search);
+
+    let {search, searchType} = this.state;
+    let result = await doSearch(search, searchType);
     if (result === true) {
-      this.setState({ search: "", });
+      this.setState({search: "",});
     } else if (result !== null) {
       window.location.hash = result;
-      this.setState({ search: "", });
+      this.setState({search: "",});
+    } else {
+      toastr.warning('Warning', 'Record not found!');
     }
   };
 
@@ -264,7 +275,7 @@ class Navigation extends PureComponent {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications} = this.state;
+    let {search, searchType, searchTypes, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -531,12 +542,23 @@ class Navigation extends PureComponent {
           (activeComponent && activeComponent.showSubHeader !== false) && <div className="container d-flex sub-header">
             {
               activeComponent && <h4 className="pt-4 text-uppercase">
-                {activeComponent.label}
+                {tu(activeComponent.label)}
               </h4>
             }
 
             <div className="ml-auto py-3 hidden-mobile nav-searchbar">
               <div className="input-group">
+                  <select
+                      className="form-control mr-1"
+                      style={styles.searchType}
+                      onChange={(ev) => this.setState({ searchType: ev.target.value }) }
+                      value={searchType}>
+                      {
+                          Object.entries(searchTypes).map(([type, label]) => (
+                              <option value={type}>{label}</option>
+                          ))
+                      }
+                  </select>
                 <input type="text"
                        className="form-control p-2 bg-white border-0 box-shadow-none"
                        style={styles.search}
@@ -545,6 +567,7 @@ class Navigation extends PureComponent {
                        onChange={ev => this.setState({search: ev.target.value})}
                        placeholder="Search Blockchain"/>
                 <div className="input-group-append">
+
                   <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
                     <i className="fa fa-search"/>
                   </button>
@@ -562,6 +585,9 @@ const styles = {
   search: {
     fontSize: 13,
     minWidth: 220,
+  },
+  searchType: {
+    fontSize: 13,
   },
 };
 

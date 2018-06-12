@@ -8,7 +8,11 @@ import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
 import {FormattedNumber} from "react-intl";
 import {Alert} from "reactstrap";
-import {addDays, addHours} from "date-fns";
+import {addDays, addHours, isAfter} from "date-fns";
+import "react-datetime/css/react-datetime.css";
+import DateTimePicker from "react-datetime";
+import {Link} from "react-router-dom";
+import {NumberField} from "../common/Fields";
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -38,8 +42,8 @@ class TokenCreate extends Component {
       totalSupply: 100000,
       numberOfCoins: 1,
       numberOfTron: 1,
-      startTime: startTime.toISOString().split(".")[0],
-      endTime: endTime.toISOString().split(".")[0],
+      startTime: startTime,
+      endTime: endTime,
       description: "",
       url: "http://",
       confirmed: false,
@@ -220,9 +224,19 @@ class TokenCreate extends Component {
     let minimumTime = addHours(new Date(block.timestamp), 1);
 
     this.setState({
-      startTime: startTime.toISOString().split(".")[0],
+      startTime,
       minimumTime,
     });
+  };
+
+  isValidStartTime = (current, selectedDate) => {
+    let {minimumTime} = this.state;
+    return isAfter(current, minimumTime);
+  };
+
+  isValidEndTime = (current, selectedDate) => {
+    let {startTime} = this.state;
+    return isAfter(current, startTime);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -296,7 +310,10 @@ class TokenCreate extends Component {
     if (isTokenCreated) {
       return (
         <Alert color="success" className="text-center">
-          {tu("token_issued_successfully")}
+          {tu("token_issued_successfully")}<br/>
+          The token will be available on the{' '}
+          <Link to="/tokens/list">Tokens page</Link>{' '}
+          in a few minutes
         </Alert>
       );
     }
@@ -369,7 +386,7 @@ class TokenCreate extends Component {
   }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset} = this.state;
+    let {numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime} = this.state;
 
     if (!this.isLoggedIn()) {
       return (
@@ -454,7 +471,10 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-12">
                         <label>{tu("total_supply")} *</label>
-                        <TextField type="number" cmp={this} field="totalSupply" />
+                        <NumberField
+                          value={totalSupply}
+                          min={1}
+                          onChange={(totalSupply) => this.setState({ totalSupply })} />
                         <small className="form-text text-muted">
                           {tu("supply_message")}
                         </small>
@@ -501,12 +521,20 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-6">
                         <label>TRX {tu("amount")} *</label>
-                        <TextField type="number" cmp={this} field="numberOfTron" />
+                        <NumberField
+                          className="form-control"
+                          value={numberOfTron}
+                          min={1}
+                          onChange={(value) => this.setState({ numberOfTron: value })} />
                         { numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
                       </div>
                       <div className="form-group col-md-6">
                         <label>{tu("token")} {tu("amount")} *</label>
-                        <TextField type="number" cmp={this} field="numberOfCoins" />
+                        <NumberField
+                          className="form-control"
+                          value={numberOfCoins}
+                          min={1}
+                          onChange={(value) => this.setState({ numberOfCoins: value })} />
                         { numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
                       </div>
                     </div>
@@ -533,20 +561,22 @@ class TokenCreate extends Component {
                         <div key={index} className={"form-row " + (frozenSupply.length === index + 1 ? "text-muted" : "")}>
                           <div className="form-group col-md-9">
                             { index === 0 && <label>{tu("amount")}</label> }
-                            <input
+                            <NumberField
                               className="form-control"
-                              type="number"
                               value={frozen.amount}
+                              min={0}
                               onBlur={() => this.blurFrozen(index)}
-                              onChange={(ev) => this.updateFrozen(index, { amount: ev.target.value })}
+                              decimals={0}
+                              onChange={(amount) => this.updateFrozen(index, { amount })}
                             />
                           </div>
                           <div className="form-group col-md-3">
                             { index === 0 && <label>{tu("days_to_freeze")}</label> }
-                            <input
+                            <NumberField
                               className="form-control"
-                              type="number"
-                              onChange={(ev) => this.updateFrozen(index, { days: ev.target.value })}
+                              onChange={(days) => this.updateFrozen(index, { days })}
+                              decimals={0}
+                              min={1}
                               value={frozen.days} />
                           </div>
                         </div>
@@ -574,12 +604,21 @@ class TokenCreate extends Component {
                     <div className="form-row">
                       <div className="form-group col-md-6">
                         <label>{tu("start_date")}</label>
-                        <TextField type="datetime-local" cmp={this} field="startTime" max="9999-12-31T23:59"/>
+                        <DateTimePicker
+                          onChange={(data) => this.setState({ startTime: data.toDate() }) }
+                          isValidDate={this.isValidStartTime}
+                          value={startTime}
+                          input={false}/>
                         {ErrorLabel(errors.startDate)}
                       </div>
                       <div className="form-group col-md-6">
                         <label>{tu("end_date")}</label>
-                        <TextField type="datetime-local" cmp={this} field="endTime" max="9999-12-31T23:59"/>
+                        <DateTimePicker
+                          onChange={(data) => this.setState({ endTime: data.toDate() }) }
+                          isValidDate={this.isValidEndTime}
+                          value={endTime}
+                          input={false}
+                        />
                         {ErrorLabel(errors.endDate)}
                       </div>
                     </div>

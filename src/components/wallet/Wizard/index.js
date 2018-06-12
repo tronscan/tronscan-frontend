@@ -145,6 +145,12 @@ class Wizard extends React.PureComponent {
     }));
   };
 
+  downloadEncryptedKeyFile = () => {
+    let {address} = this.state;
+
+    downloadStringAsFile(this.buildEncryptedKeyStore(), address + ".txt");
+  };
+
   isStepValid = () => {
     let {step, passwordValid} = this.state;
 
@@ -157,7 +163,7 @@ class Wizard extends React.PureComponent {
   };
 
   renderPage() {
-    let {step, address, privateKey, encryptedKey} = this.state;
+    let {step, privateKey} = this.state;
 
     switch (step) {
       case 0:
@@ -165,19 +171,19 @@ class Wizard extends React.PureComponent {
           <WizardPage>
             <div className="d-flex justify-content-center text-center">
               <div className="col-md-12">
-                <h5>New Wallet</h5>
+                <h5>{tu("new_wallet")}</h5>
                 <p>
-                  This password encrypts your private key. This does not act as a seed to generate your keys.
+                  {tu("password_encr_key_message_0")}
                 </p>
                 <p>
-                  You will need this password and your private key to unlock your wallet.
+                  {tu("password_encr_key_message_1")}
                 </p>
               </div>
             </div>
             <div className="d-flex justify-content-center">
               <div className="col-md-5">
                 <div className="text-center">
-                  <label>{tu("Password")}</label>
+                  <label>{tu("password")}</label>
                   <ReactPasswordStrength
                     minLength={8}
                     changeCallback={this.onPasswordChanged}
@@ -190,7 +196,7 @@ class Wizard extends React.PureComponent {
                       className: ""
                     }}
                   />
-                  <div className="text-muted">A strong password is required</div>
+                  <div className="text-muted">{tu("strong_password_info")}</div>
                 </div>
               </div>
             </div>
@@ -202,19 +208,19 @@ class Wizard extends React.PureComponent {
           <WizardPage>
             <div className="d-flex justify-content-center text-center">
               <div className="col-md-6">
-                <h5>Save Your Keystore File</h5>
+                <h5>{tu("save_keystore_file")}</h5>
                 <p>
-                  <button className="btn btn-lg btn-block" onClick={() => downloadStringAsFile(this.buildEncryptedKeyStore(), address + ".txt")}>
+                  <button className="btn btn-lg btn-block" onClick={this.downloadEncryptedKeyFile}>
                     <i className="fa fa-download mr-2"/>
-                    Download Encrypted Key
+                    {tu("download_keystore_file")}
                   </button>
                 </p>
               </div>
             </div>
             <p className="text-center">
-              <b>Do not lose it!</b> Tron Foundation cannot help you recover a lost key.<br/>
-              <b>Do not share it!</b> Your funds may be stolen if you use this file a malicious site.<br/>
-              <b>Make a backup!</b> Just in case your laptop is set on fire.<br/>
+              <b>{tu("do_not_lose_it")}</b> {tu("do_not_lose_it_message_0")} <br/>
+              <b>{tu("do_not_share_it")}</b> {tu("do_not_share_it_message_0")} <br/>
+              <b>{tu("make_a_backup")}</b> {tu("make_a_backup_message_0")} <br/>
             </p>
           </WizardPage>
         );
@@ -225,7 +231,7 @@ class Wizard extends React.PureComponent {
           <WizardPage>
             <div className="d-flex justify-content-center text-center">
               <div className="col-md-6">
-                <h5>Save Your Private Key</h5>
+                <h5>{tu("save_private_key")}</h5>
                 <p>
                   <div className="input-group mb-3">
                     <input type="text"
@@ -244,15 +250,15 @@ class Wizard extends React.PureComponent {
                 <p>
                   <button className="btn btn-lg btn-block" onClick={this.printPaperWallet}>
                     <i className="fa fa-print mr-2"/>
-                    Print Paper Wallet
+                    {tu("print_paper_wallet")}
                   </button>
                 </p>
               </div>
             </div>
             <p className="text-center">
-              <b>Do not lose it!</b> Tron Foundation cannot help you recover a lost key.<br/>
-              <b>Do not share it!</b> Your funds may be stolen if you use this private key on a malicious website.<br/>
-              <b>Make a backup!</b> Just in case your laptop is set on fire.<br/>
+                <b>{tu("do_not_lose_it")}</b> {tu("do_not_lose_it_message_0")} <br/>
+                <b>{tu("do_not_share_it")}</b> {tu("do_not_share_it_message_0")} <br/>
+                <b>{tu("make_a_backup")}</b> {tu("make_a_backup_message_0")} <br/>
             </p>
           </WizardPage>
         );
@@ -263,9 +269,9 @@ class Wizard extends React.PureComponent {
           <WizardPage>
             <div className="text-center">
               <p className="font-weight-bold">
-                Your new wallet is ready
+                {tu("new_wallet_ready_message")}
               </p>
-              <Link className="btn btn-success" to="/account">Go to account page</Link>
+              <Link className="btn btn-success" to="/account">{tu("go_to_account_page")}</Link>
             </div>
           </WizardPage>
         );
@@ -282,7 +288,7 @@ class Wizard extends React.PureComponent {
       <main className="container wallet-wizard header-overlap">
         <div className="card">
           <div className="text-center p-5 bg-dark">
-            <img src={tronLogo} style={{ height: 100 }}/>
+            <img className="wallet-wizard-logo" src={tronLogo}/>
           </div>
           <div className="card-body d-flex wizard-steps">
             <WizardStep completed={step > 0} first={true} icon="fa fa-key" />
@@ -300,7 +306,7 @@ class Wizard extends React.PureComponent {
                       disabled={!this.isStepValid()}
                       className="btn btn-dark btn-lg ml-auto"
                       onClick={this.nextStep}>
-                    Next
+                    {tu("next")}
                   </button>
               }
             </div>

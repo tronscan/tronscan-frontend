@@ -1,42 +1,239 @@
+
 export const messages = {
+/*
+##################################################################################
+#                                                                                #
+#  $$$$$$$$\                                                                     #
+#  \__$$  __|                                                                    #
+#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+#                                                                                #
+##################################################################################
+#                                                                                #
+#         Template for translating the tronscan.org website                      #
+#         Version: 1.1-11062018-1                                                #
+#         Update Date: 11.06.2018                                                #
+#         Language: Persian                                                      #
+#         Status: Second Draft                                                   #
+#         Number of checks: 2                                                    #
+#         Participants: Mr.Babak(patoghfa)                                       #
+#                                                                                #
+##################################################################################
+#                                                                                #
+# description and structure of the template                                      #
+#                                                                                #
+# "<name of the variable>": "<corresponding translation>"                        #
+#                                                                                #
+# Note: please concentrate only on the value <corresponding translation>         #
+#                                                                                #
+##################################################################################
+#                                                                                #
+# global section                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "ok": "متوجه شدم",
   "app_title": "Tron Protocol",
-  "money_price": "قیمت",
-  "blocks": "بلاک ها",
-  "transactions": "تراکنش ها",
+  "password": "رمز ورود",
+  "money_price": "قیمت پول",
+  "blocks": "بلوک ها",
+  "block": "بلوک",
+  "balance": "مانده حساب",
+  "bandwidth": "پهنای باند",
   "name": "نام",
+  "website": "وب سایت",
+  "address": "آدرس",
+  "price": "قیمت",
+  "sign_out": "خروج",
+  "sign_in": "ورود",
+  "register_login": "ثبت نام / ورود",
+  "register": "ثبت نام",
+  "login": "ورود",
+  "height": "ارتفاع",
+  "age": "سن",
+  "produced by": "تولید شده توسط",
+  "bytes": "بایت",
+  "created": "ایجاد شده",
+  "Contract": "قرارداد",
+  "from": "از",
+  "to": "به آدرس",
+  "value": "مقدار",
+  "total_accounts": "کل حساب ها",
+  "submit": "ارسال",
+  "receive": "دریافت",
+  "supply": "عرضه",
+  "view": "نمایش",
+  "view_all": "نمایش همه",
+  "create": "ایجاد",
+  "country": "کشور",
+  "send": "ارسال",
+  "amount": "مقدار",
+  "my_vote": "رای من",
+  "submit_votes": "آرای ارسالی",
+  "accounts": "حساب ها",
+  "exchange": "مبادله",
+  "next": "بعدی",
+  "copied_to_clipboard": "به حافظه کپی شد",
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "error": "Error",
+
+/*
+##################################################################################
+#                                                                                #
+# navigation section                                                             #
+#                                                                                #
+##################################################################################
+*/
+  "blockchain": "بلاکچین",
+  "wallet": "کیف پول",
+  "home": "صفحه اصلی",
+  "transfers": "انتقالات",
+  "live": "زنده",
+  "statistics": "آمار",
+  "markets": "بازار ها",
+  "tools": "ابزار",
+  "news": "اخبار",
+  "help": "راهنمایی",
+  "nodes": "نود ها",
+  "votes": "رای ها",
+  "account": "حساب",
+  "transaction_viewer": "ناظر تراکنش",
+  "node_tester": "تست کننده نود",
+  "system": "سیستم",
+  "overview": "خلاصه ای",
+  "participate": "مشارکت",
+
+/*
+##################################################################################
+#                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "غیر متمرکز سازی وب",
+  "transactions_last_hour": "تراکنش های یک ساعت اخیر",
+  "block_height": "ارتفاع بلوک",
+  "online_nodes": "نود های آنلاین",
+  "pice_per_1000trx": "قیمت (1000TRX هر)",
+  "vote_for_super_representatives": "برای نمایندگان ممتاز رای دهید",
+  "view_super_representatives": "مشاهده نمایندگان ممتاز",
+  "create_new_wallet": "ایجاد کیف پول جدید",
+  "view_tokens": "مشاهده توکن ها",
+
+/*
+##################################################################################
+#                                                                                #
+# tableinformations and statistics                                               #
+#                                                                                #
+##################################################################################
+*/
+  "first_page": "صفحه نخست",
+  "previous_page": "صفحه قبلی",
+  "next_page": "صفحه بعدی",
+  "last_page": "صفحه آخر",
+  "page": "صفحه",
+  "of": "از",
+  "last_block": "آخرین بلوک",
+  "total_supply": "کل عرضه",
+  "most_nodes": "بیشترین نود ها",
+  "loading_nodes": "نود های بارگزاری شده",
+  "Hostname": "نام میزبان",
+  "Last Update": "اخرین بروزرسانی",
+  "first_node_sync_message": "در انتظار همگام سازی اولین نود، لطفا چند دقیقه دیگر دوباره امتحان کنید",
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "addresses",
+  "trx_transferred_past_hour": "تی آر ایکس انتقالی در یک ساعت اخیر",
+  "transactions_past_hour": "تراکنش های یک ساعت اخیر",
+  "average_blocksize": "میانگین اندازه بلوک",
+  "rich_list": "Rich List",
+
+/*
+##################################################################################
+#                                                                                #
+# account section                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "set_name": "تنظیم نام",
+  "show_qr_code": "نمایش کد QR",
+  "free_bandwidth": "پهنای باند رایگان",
+  "expires": "انقضاء",
+  "have_been_added_to_your_account": "به حساب شما افزوده شده است!",
+  "information_message_1": "بعد از درخواست ترون شما 10000 ترون برای تست در شبکه دریافت میکنید",
+  "information_message_2": " شما به ازای هر حساب فقط یک بار میتوانید ترون درخواست کنید ",
+  "request_trx_for_testing": "درخواست ترون برای تست",
+  "tron_power": "Tron Power",
+  "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
+  "transactions": "تراکنش ها",
+  "tokens": "توکن ها",
+  "token_balances": "موجودی توکن",
+  "produced_blocks": "بلوک های تولید شده",
+  "voters": "رای دهندگان",
+  "no_tokens": "بدون توکن",
+  "issued_token": "توکن صادر شده",
+  "progress": "پیشرفت",
+  "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "صادر کننده",
   "network": "شبکه",
   "current": "در حال حاضر",
-  "last_block": "آخرین بلاک",
-  "total_supply": "مجموع ارائه شده",
-  "sign_out": "خروج",
-  "register_login": "ثبت نام / ورود",
-  "register": "ثبت نام",
-  "apply_for_delegate": "امادگی برا نمایندگی",
-  "login": "ورود",
-  "view": "نمایش",
-  "create": "ایجاد",
-  "country": "منطقه",
-  "address": "آدرس",
-  "balance": "مانده حساب",
-  "votes": "رای ها",
-  "password": "رمز ورود",
-  "my_vote": "رای من",
-  "submit_votes": "ارسال رای",
-  "submit": "ارسال",
+  "trx_received": "TRX دریافت شد",
+  "test_trx_temporarily_unavailable_message": "تست تی آرایکس به طور موقت در دسترس نیست لطفا بعدا دوباره امتحان کنید",
+  "not_enough_trx": "Not enough TRX",
+
+/*
+##################################################################################
+#                                                                                #
+# account freeze                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "freeze": "مسدود",
+  "unfreeze": "آزاد",
+  "frozen_supply": "موجودی مسدود",
+  "freeze_trx_least": "شما حداقل به یک تی آرایکس برای مسدود کردن نیاز دارید",
+  "unable_unfreeze_trx_message": "تی آرایکس را نمیشود آزاد کرد این امر می تواند ناشی از آن باشد که حداقل دوره ی مسدودی هنوز به دست نیامده است.",
+  "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو Tron و فعال کردن ویژگی های اضافی باشد.
+    به عنوان مثال، با قدرت Tron شما می توانید `,
+  "freeze_trx_premessage_1": ` توکن های مسدود به مدت 3 روز "قفل شده اند". در این دوره تی آرایکس های مسدود قابل خرید و فروش نیستند.
+   بعد از این دوره شما می توانید تی آرایکس ها را آزاد کنید و توکن ها رو بفروشید.`,
+  "freeze_trx_premessage_link": "به نمایندگان ممتاز رای دهید",
+  "trx_amount": "مقدار TRX",
+  "token_freeze_confirm_message_0": "تایید مسدود سازی ",
+  "token_freeze_confirm_message_1": "برای حداقل 3 روز",
+
+/*
+##################################################################################
+#                                                                                #
+# account superdelegates                                                         #
+#                                                                                #
+##################################################################################
+*/
+  "apply_for_delegate": "درخواست برای نمایندگی",
+  "apply_super_representative_candidate": "درخواست کاندیداتوری برای نماینده ممتاز شدن",
   "your_personal_website_address": "وبسایت شخصی شما",
-  "send": "پرداخت",
-  "amount": "مقدار",
+  "apply_for_delegate_predescription":`هر صاحب توکن این فرصت را دارد که به عنوان یک نماینده ممتاز ترون تبدیل شود.
+   با این حال، برای عملکرد هماهنگ و کارآمد تر شبکه و جامعه،
+   ما مجموعه ای از استانداردها و مقررات را برای کاندیدهای واجد شرایط برای تبدیل شدن به نمایندگان ممتاز توصیه شده ایجاد کرده ایم. ما نمایندگان ممتاز توصیه شده را ترویج میدهیم تا شانس خود را برای انتخاب شدن افزایش دهند. نمایندگان ممتاز توصیه شده جدید، یک بار در هفته بروز و ارسال می شود.`,
   "apply_for_delegate_description": `
-      TRX holders can apply to become a super delegate by using the account management function, and vote for candidates. 
-      Each account can update current voter information and also is allowed to vote for multiple candidates. 
-      The maximum number of votes is less than or equal to the number of TRX users hold each time. 
-      (If you have certain sum of TRX, you can vote less than or equal to certain number of votes). 
-      The result of votes will be calculated based on the final voter information of every account in each
-       voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate. 
-       Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-       TRX will not be consumed in the process of super delegate application and voting.
-    `,
+   دارندگان تی آرایکس می توانند با استفاده از عملکرد مدیریت حساب، یک نماینده ممتاز بشوند، و به کاندیدها رای دهند.
+   هر حساب می تواند اطلاعات رأی دهندگان فعلی را به روز کند و نیز اجازه داده می شود که برای چند کاندید رای دهند.
+   حداکثر تعداد آرا کمتر یا برابر تعداد کاربران دارنده تی آر ایکس در هر زمان است.
+   (اگر مقدار مشخصی از تی آر ایکس دارید، می توانید کمتر یا برابر با تعداد مشخصی از رای ها رای دهید).
+   نتیجه آرا بر اساس اطلاعات رای دهندگان نهایی هر حساب محاسبه خواهد شد
+    زمان چرخه رای گیری از 00:00 تا 24:00 است. دارندگان تی آر ایکس با بیشترین آرا به نماینده ممتاز تبدیل خواهند شد
+   هر تراکنش که در شبکه انجام می شود باید توسط تمام نمایندگان ممتاز تأیید شود و مقداری از  پاداش را دریافت می کنند
+   مقدار تی آر ایکس در فرآیند درخواست نماینده ممتاز و رای گیری کسر نخواهد شد.`,
   "unknown_error": "خطای ناشناخته ای اتفاق افتاد",
   "representative_understand": "متوجه شدم که چگونه میتوانم یک نماینده ی ترون باشم ",
   "generate_account": "برای ساختن آدرس و رمزتان کلیک کنید",
@@ -49,98 +246,327 @@ export const messages = {
   "representatives": "نمایندگان",
   "most_votes": "بیشترین رای ها",
   "start_end_time": "شروع / پایان زمان",
-  "accounts": "حساب ها",
   "scan_qr_code": "کد را اسکن کنید ",
   "receive_trx": "دریافت ترون",
   "require_account_to_send": "شما برای پرداخت کوین باید به حسابتان وارد شوید",
   "require_account_to_receive": "شما برای دریافت کوین باید وارد حساب کاربریتان شوید",
   "successful_send": "با موفقیت پرداخت شد",
-  "nodes": "نود ها",
-  "receive": "دریافت",
-  "tokens": "توکن ها",
-  "No transactions": "فاقد تراکنش",
-  "blockchain": "بلاکچین",
-  "Recent blocks": "بلاک های اخیر",
-  "All blocks": "تمام بلاک ها",
-  "Send TRX": "انتقال ترون",
-  "to": "به آدرس",
-  "token": "توکن",
-  "Most TRX": "بیشترین ترون",
-  "account": "حساب",
-  "Welcome to TRON": "خوش آمدید به ترون",
-  "or register a new account": "یک حساب جدید ایجاد کنید ",
-  "Account Address": "آدرس",
-  "Private Key": "کلید خصوصی",
-  "Create Account": "ایجاد حساب",
   "confirm_transaction": "تایید تراکنش",
   "last_confirmed": "آخرین تایید ",
-  "blocks_produced": "بلاک های ایجاد شده ",
-  "blocks_missed": "بلاک های از دست رفته",
-  "Show": "نمایش",
-  "more": "تا بیشتر",
-  "Mined by": "استخراج توسط:",
-  "bytes": "بایت",
-  "Go to login": "برو به صفحه ورود",
-  "do_not_send_1": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
-  "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
+  "blocks_produced": "بلوک های ایجاد شده ",
+  "trx_produced": "تراکنش های ایجاد شده",
+  "blocks_missed": "بلوک های از دست رفته",
+  "do_not_send_1": "لطفا هیچ ترونی از آدرس کیف پول یا اکسچنج به این حساب واریز نکنید",
+  "go_to_votelist": "برو به لیست رای",
+
+/*
+##################################################################################
+#                                                                                #
+# token creation formular                                                        #
+#                                                                                #
+##################################################################################
+*/
   "name_of_the_token": "نام توکن",
   "create_token": "ایجاد توکن",
-  "start_date": "تاریخ شروع",
-  "end_date": "پایان شروع",
-  "token_spend_confirm": "من تأیید میکنم که باید 1024 ترون را برای ساختن توکن صرف کنم",
+  "token_message": "نام برای توکن",
+  "abbr_message": "نام اختصاری برای توکن",
   "description": "توضیحات",
-  "description_url": "آدرس توضیحات",
-  "quote_token_amount": "مقدار توقع توکن",
+  "description_url": "آدرس سایت توضیحات",
+  "quote_token_amount": "مقدار کافی توکن",
   "base_token_amount": "مقدار توکن اصلی",
   "creating_a_token": "ایجاد توکن",
   "available": "در دسترس",
-  "information_message_1": "بعد از درخواست ترون شما 10000 ترون برای تست در شبکه دریافت میکنید",
-  "information_message_2": " شما به ازای هر حساب فقط یک بار میتوانید ترون درخواست کنید ",
+  "testnet": "شبکه تست",
+  "days_to_freeze": "تعداد روز برای مسدودی",
+  "trx_token_fee_message": "1024 تی آر ایکس برای صدور یک توکن جدید لازم است",
+  "trx_token_account_limit": "شما می توانید تنها یک توکن برای هر حساب ایجاد کنید",
+  "trx_token_wallet_requirement": "شما باید یک کیف پول باز کنید تا بتوانید یک توکن ایجاد کنید",
   "invalid_address": "آدرس غیر معتبر است",
   "insufficient_tokens": "عدم وجود توکن کافی",
   "make_another_transaction": "تراکنش دیگری انجام دهید",
-  "have_been_added_to_your_account!": "به حساب شما افزوده شد",
-  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
-  "testnet": "تست شبکه",
-  "An_error_occurred": "یک خطا رخ داد",
-  "price": "قیمت",
   "token_exchange_confirm": "تایید تراکنش توکن",
-  "participate": "مشارکت",
-  "request_trx_for_testing": "درخواست ترون برای تست",
-  "address_warning": "لطفا آدرس معتبر کیف پول ترون را وارد کنید. در غیر اینصورت ممکن است ترون های خود را از دست بدهید",
-  "participated_error": "خطایی رخ داد است",
-  "participated": "شما با موفقیت شرکت کردید  ",
-  "not_started_yet": "هنوز شروع نشده",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
+  "An_error_occurred": "یک خطا رخ داد",
   "create_a_token": "یک توکن ایجاد کنید",
-  "search_address_or_url": "جستوجوی آدرس ",
-  "no_transactions_found": "هیچ تراکنشی پیدا نشد",
-  "token_name": "نام توکن",
-  "exchange_rate": "نرخ ارز",
-  "token_price": "قیمت توکن",
-  "issue_a_token": "فرستادن یک توکن",
-  "issue_token": "فرستادن توکن",
-  "ok": "متوجه شدم",
+  "not_started_yet": "هنوز شروع نشده",
+  "participated": "شما با موفقیت شرکت کردید  ",
+  "participated_error": "خطایی رخ داد است",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
+  "how_much_buy_message": "شما چقدر توکن می خواهید خرید کنید؟",
+  "buy_confirm_message_0": "Are you sure?",
+  "buy_confirm_message_1": "Are you sure you want to buy",
+  "for": "for",
+
+/*
+##################################################################################
+#                                                                                #
+# global messages                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "address_warning": "لطفا آدرس معتبر کیف پول ترون را وارد کنید. در غیر اینصورت ممکن است ترون های خود را از دست بدهید",
+  "search_address_or_url": "جستجوی آدرس ",
   "the_lunch_test": "هدف از راه اندازی شبکه ی تست بررسی و تست ویژگی های شبکه ی ترون و کیف پول آن است ",
-  "plese_keep_in_mind": `لطفا توجه کنید که از آنجایی که حساب کاربری ایجاد شده برای شما فقط برای استفاده در شبکه ی تست است لذا از ارسال هر .ترونی از کیف پول اصلیتان یا اکسچنج به این آدرس یا حساب خودداری فرمایید `,
+  "please_keep_in_mind": "لطفا توجه داشته باشید، که از آنجا که آدرس حساب ثبت شده شما فقط برای شبکه تست استفاده می شود، تی آر ایکس را از کیف پول خود و یا اکسچنج به آدرس حساب شبکه تست ارسال نکنید",
   "tron_foundation": "بنیاد ترون",
-  "trx_for_testing": `از طریق حسابتان میتوانید ترون برای تست در شبکه دریافت کنید`,
+  "trx_for_testing": "0",
   "dear_users,": "کاربران عزیز",
   "finished": "پایان یافته",
+  "token": "توکن",
+  "url": "آدرس اینترنتی",
   "need_to_login": "برای دسترسی به صفحه ی حسابتان باید ابتدا وارد حسابتان شوید",
-  "produced_by": "Produced by {witnessAddress}",
-  "show_more": "Show {countriesLength} More",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives. 
-    For every TRX you hold in your account you have one vote to spend. 
-    TRX will not be consumed. You can vote as many times for the several representatives as you like. 
-    The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
-                by anyone who has at least 1024 TRX in their account.`,
-  "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
-                Users can then participate within the participation period and exchange their TRX for tokens.`,
-  "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
-                When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
-                receive TRX equal to the specified exchange rate.`,
-  "search_address": "Search for address",
-  "no_transactions": "No Transactions",
-  "no_transfers": "No Transfers"
+  "thanks_for_applying": "تشکر برای درخواست!",
+  "to_much_votes": "رای های خیلی زیاد",
+  "no_trx_remaining": "تی آر ایکسی باقی نمانده است",
+  "produced_by": "تولید شده توسط {witnessAddress}",
+  "show_more": "نمایش {countriesLength} بیشتر",
+  "vote_guide_message": `برای رای دادن به نمایندگان ممتاز از تی آر ایکس خود استفاده کنید.
+   برای هر تی آر ایکس که در حسابتان نگهداری می کنید، شما یک رای برای استفاده کردن دارید.
+   تی آر ایکس کسر نخواهد شد. شما می توانید چندین بار برای نمایندگان مختلف که دوست داشته باشید رای دهید.
+   رای گیری های نهایی در ساعت 24 انجام می شود و لیست نمایندگان به روز می شود.`,
+  "search_address": "جستجو برای آدرس",
+  "token_transactions": "تراکنش توکن",
+  "token_holders": "دارندگان توکن",
+  "nr_of_Transfers": "تعداد تراکنش ها",
+  "not_signed_in": "برای استفاده از این قابلیت، باید وارد سیستم شوید",
+  "loading_map": "بارگزاری نقشه",
+  "loading_accounts": "بارگزاری حساب ها",
+  "quantity": "کمیت",
+  "percentage": "درصد",
+  "loading_token": "بارگزاری توکن",
+
+/*
+##################################################################################
+#                                                                                #
+# transaction information                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "no_transactions_found": "هیچ تراکنشی پیدا نشد",
+  "no_tokens_found": "هیچ توکنی پیدا نشد",
+  "no_blocks_found": "هیچ بلوکی پیدا نشد",
+  "no_votes_found": "هیچ رای ای پیدا نشد",
+  "no_voters_found": "هیچ رای دهنده ای پیدا نشد",
+  "waiting_for_transactions": "در انتظار تراکنش ها",
+  "loading_address": "بارگزاری آدرس",
+
+/*
+##################################################################################
+#                                                                                #
+# token creation - default messages                                              #
+#                                                                                #
+##################################################################################
+*/
+  "details": "جزئیات",
+  "issue_a_token": "صدور یک توکن",
+  "issue_token": "صدور توکن",
+  "token_name": "نام توکن",
+  "token_abbr": "علامت اختصاری توکن",
+  "total_issued": "مجموع صادر شده",
+  "registered": "ثبت شده",
+  "abbreviation": "علامت اختصاری",
+  "exchange_rate": "نرخ تبادل ارز",
+  "token_price": "قیمت توکن",
+  "supply_message": "کل مقدار توکن هایی که در گردش خواهند بود",
+  "description_message": "شرح مختصری از هدف این توکن",
+  "url_message": "وب سایتی که کاربران می توانند اطلاعات بیشتری در مورد توکن پیدا کنند",
+  "exchange_rate_message_0" : "تعیین قیمت توکن واحد با تعیین تعداد توکن هایی که یک شرکت کننده برای هر تی آر ایکس که می پردازند، دریافت می کند.",
+  "exchange_rate_message_1": "شرکت کننده دریافت می کند",
+  "exchange_rate_message_2": "برای هر",
+  "exchange_rate_message_3": "TRX",
+  "participation_message_0": "تعیین دوره مشارکت که در آن توکن ها صادر می شوند. در طول مدت مشارکت، کاربران میتوانند تی آر ایکس را تبادل کنند برای ",
+  "participation_message_1": " توکن ها.",
+  "frozen_supply_message_0": `بخشی از عرضه می تواند مسدود شود. مقدار عرضه می تواند مشخص شود و باید مسدود باشد
+    برای حداقل 1 روز. عرضه مسدودی می تواند به صورت دستی آزاد شود پس از تاریخ شروع + روز های مسدود شده که سر رسیده باشد. عرضه مسدود شده نیازی نیست`,
+  "token_issued_successfully": "توکن با موفقیت صادر شد",
+  "participation": "مشارکت",
+  "start_date": "تاریخ شروع",
+  "end_date": "تاریخ پایان",
+  "token_spend_confirm": "من تأیید میکنم که باید 1024 ترون را برای ساختن توکن خرج کنم",
+  "token_issue_guide_message_1":`صدور توکن در پروتکل Tron می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
+  "token_issue_guide_message_2":`هنگامی که یک توکن صادر می شود، در صفحه مشاهده توکن نمایش داده می شود.
+    سپس کاربران می توانند در دوره مشارکت شرکت کنند و TRX را برای توکن ها مبادله کنند.`,
+  "token_issue_guide_message_3":`بعد از صدور توکن، حساب شما مقدار توکن هایی را که برابر با کل عرضه هستند دریافت خواهد کرد.
+    هنگامی که دیگر کاربران TRX را برای توکن ها مبادله می کنند، پس از آن، توکن ها از حساب شما خارج خواهند شد و شما می توانید  TRX برابر با نرخ تبادل ارز مشخص شده را دریافت کنید.`,
+
+/*
+##################################################################################
+#                                                                                #
+# token creation - error messages                                                #
+#                                                                                #
+##################################################################################
+*/
+  "date_error": "تاریخ پایان زودتر یا همان تاریخ شروع است",
+  "no_name_error": "نام لازم است",
+  "no_supply_error": "کل عرضه باید حداقل 1 باشد",
+  "coin_value_error": "مقدار توکن باید حداقل 1 باشد",
+  "tron_value_error": "مقدار تی آر ایکس به ازای هر کوین باید حداقل 1 باشد",
+  "invalid_starttime_error": "تاریخ شروع ارائه شده نامعتبر است",
+  "invalid_endtime_error": "تاریخ پایان ارائه شده نامعتبر است",
+  "no_description_error": "توضیحات لازم است",
+  "no_url_error": "آدرس وب سایت لازم است",
+  "past_starttime_error": "تاریخ شروع گذشته است",
+  "no_transactions": "بدون تراکنش",
+  "no_transfers": "بدون انتقال",
+
+/*
+##################################################################################
+#                                                                                #
+# representatives section                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "Highest Productivity": "بالاترین بهره وری",
+  "Lowest Productivity": "پایین ترین بهره وری",
+  "productivity": "بهره وری",
+  "rewards": "پاداش ها",
+  "Super Representatives": "نمایندگان ممتاز",
+  "Super Representative Candidates": "کاندیدهای نماینده ممتاز",
+  "loading_representatives": "بارگزاری نمایندگان",
+  "address_not_super_representative": "این آدرس یک نماینده ممتاز نیست",
+  "unable_load_representatives_page_message": "صفحه قابل بارگزاری نیست، ممکن است این اتفاق اگر آدرس نامعتبر باشد، بیفتد ، آدرس نماینده ممتاز نیست یا نماینده این صفحه را پیکربندی نکرده است",
+
+/*
+##################################################################################
+#                                                                                #
+# markets section                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "average_price_usd": "میانگین قیمت به دلار",
+  "average_volume_usd": "میانگین حجم به دلار",
+  "Trade Volume": "حجم خرید و فروش",
+  "rank": "رتبه",
+  "pair": "جفت",
+  "volume": "حجم",
+
+/*
+##################################################################################
+#                                                                                #
+# votes section                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "next_round": "دور بعدی",
+  "total_votes": "کل آرا",
+  "most_ranks": "بیشترین رتبه کسب شده در این دوره",
+  "view_live_ranking": "مشاهده رتبه به صورت زنده",
+  "open_team_page": "باز کردن صفحه تیم",
+  "warning_votes": "برای شروع رأی گیری لازم است حداقل 1 ترون نیرو باشد.  نیرو ترون توسط انجماد TRX در",
+  "account_page": "صفحه حساب",
+  "loading_votes": "بارگزاری آرا",
+  "3_day_ranking": "رتبه 3 روزه",
+  "live_ranking": "رتبه به صورت زنده",
+  "live_ranking_msg": "هر 15 ثانیه بروزرسانی می کند. رأی های جدید ممکن است قبل از شمارش، 1-2 دقیقه طول بکشد",
+  "candidate": "کاندید",
+  "current_votes": "رأی فعلی",
+  "click_to_start_voting": "Click here to Start Voting",
+  "votes_remaining_message": "Votes Remaining",
+  "open_wallet_start_voting_message": "Open wallet to start voting",
+  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
+  "to_much_votes_massage": "You spend to much votes!",
+  "all_votes_are_used_message": "All votes are used!",
+  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
+  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+
+/*
+##################################################################################
+#                                                                                #
+# transaction Viewer                                                             #
+#                                                                                #
+##################################################################################
+*/
+  "info_tx_viewer": "در اینجا می توانید یک تراکنش به صورت hex را برای بازبینی محتویات یک تراکنش وارد کنید. سپس تراکنش می تواند به شبکه ارسال شود",
+  "load_tx": "بارگزاری تراکنش",
+  "tx_qrcode": "کد QR تراکنش",
+  "load_tx_qrcode": "بارگزاری تراکنش از کد QR",
+  "transaction_load_error": "خطا در بارگزاری تراکنش",
+  "transaction_load_error_message": "در هنگام تلاش برای بارگزاری تراکنش خطایی رخ داد. مطمئن شوید که HEX در فرمت صحیح است",
+  "transaction_success_message": "تراکنش با موفقیت به شبکه ارسال شد",
+  "transaction_success": "تراکنش موفق",
+  "transaction_error_message": "هنگام تلاش برای ارسال تراکنش خطایی رخ داد",
+  "transaction_error": "تراکنش ناموفق",
+  "confirm_transaction_message": "آیا مطمئن هستید که می خواهید تراکنش را ارسال کنید؟",
+  "broadcast_transaction_to_network": "تراکنش در شبکه منتشر شد",
+
+/*
+##################################################################################
+#                                                                                #
+# tools node tester                                                              #
+#                                                                                #
+##################################################################################
+*/
+  "node_tester_msg": "برای تست اتصال GRPC، آی پی نود را وارد کنید",
+  "node_tester_stop": "توقف تست",
+  "node_tester_test": "تست GRPC",
+  "node_tester_rt": "زمان پاسخ",
+  "confirmed_block": "بلوک تایید شده",
+  "loading": "بارگزاری...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "وب کم یافت نشد",
+  "trying_enable_webcam_message_0": "هنگام تلاش برای فعال کردن وب کم خطایی رخ داد.",
+  "trying_enable_webcam_message_1": "اطمینان حاصل کنید که مجوزهای دوربین فعال هستند.",
+
+/*
+##################################################################################
+#                                                                                #
+# help section                                                                   #
+#                                                                                #
+##################################################################################
+*/
+  "what_is_tron": "TRON چیست",
+  "tron_explorer_api": "مرورگر Tron API",
+  "tron_architechure": "معماری TRON",
+  "tron_protobuf_doc": "مستندات TRON Protobuf",
+  "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
+
+/*
+##################################################################################
+#                                                                                #
+# wallet section                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "open_wallet": "باز کردن کیف پول",
+  "private_key": "کلید خصوصی",
+  "keystore_file": "فایل Keystore",
+  "select_file": "انتخاب فایل",
+  "login_mobile": "با یک دستگاه تلفن همراه وارد شوید",
+  "create_wallet": "ایجاد کیف پول",
+  "no_open_wallet": "هیچ کیف پول باز، برای مشاهده وجود ندارد",
+  "new_wallet": "کیف پول جدید",
+  "password_encr_key_message_0": "این رمز عبور کلید خصوصی شما را رمزگذاری می کند. این به عنوان مولد برای تولید کلید های شما عمل نمی کند.",
+  "password_encr_key_message_1": "برای باز کردن قفل کیف پول، به این رمز عبور و کلید خصوصی خود نیاز خواهید داشت.",
+  "strong_password_info": "رمز عبور قوی مورد نیاز است",
+  "save_keystore_file": "فایل Keystore خود را ذخیره کنید",
+  "download_keystore_file": "کلید رمزگذاری را دانلود کنید",
+  "do_not_lose_it": "از دستش نده!",
+  "do_not_share_it": "آن را به اشتراک نگذارید!",
+  "make_a_backup": "تهیه نسخه پشتیبان!",
+  "do_not_lose_it_message_0": "بنیاد ترون نمی تواند به شما در بازیابی کلید گم شده کمک کند.",
+  "do_not_share_it_message_0": "اگر از این فایل در یک سایت مخرب استفاده کنید، ممکن است پول شما دزدیده شود.",
+  "make_a_backup_message_0": "فقط در صورتی که لپ تاپ شما محافظ داشته باشد.",
+  "save_private_key": "کلید خصوصی خود را ذخیره کنید",
+  "print_paper_wallet": "چاپ کیف پول کاغذی",
+  "new_wallet_ready_message": "کیف پول جدید شما آماده است",
+  "go_to_account_page": "رفتن به صفحه حساب کاربری",
+  "send_to_following_address": "ارسال به آدرس زیر",
+
 };

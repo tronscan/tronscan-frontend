@@ -2,13 +2,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loadNodes} from "../../actions/network";
-import {filter, sortBy, sumBy, maxBy} from "lodash";
-import {tu, tv} from "../../utils/i18n";
+import {filter, maxBy, sortBy, sumBy} from "lodash";
+import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {GlobeMapAsync, NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
-import {ONE_TRX} from "../../constants";
 import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
 
@@ -113,7 +112,7 @@ class Nodes extends Component {
         <main className="container header-overlap">
           <div className="card">
             <TronLoader>
-              Waiting for first node sync, please try again in a few minutes
+              {tu("first_node_sync_message")}
             </TronLoader>
           </div>
         </main>
@@ -125,7 +124,7 @@ class Nodes extends Component {
         <main className="container header-overlap">
           <div className="card">
             <TronLoader>
-              Loading Nodes
+              {tu("loading_nodes")}
             </TronLoader>
           </div>
         </main>
@@ -144,7 +143,7 @@ class Nodes extends Component {
                   <h3 className="text-secondary">
                     {nodes.length}
                   </h3>
-                  {tu("Nodes")}
+                  {tu("nodes")}
                 </div>
               </div>
             </div>
@@ -162,7 +161,7 @@ class Nodes extends Component {
                         Unknown
                       </h3>
                   }
-                  {tu("Most Nodes")}
+                  {tu("most_nodes")}
                 </div>
               </div>
             </div>

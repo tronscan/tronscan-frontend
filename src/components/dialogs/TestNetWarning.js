@@ -41,7 +41,7 @@ export default class TestNetWarning extends React.Component {
                 <p>{tu("the_lunch_test")}</p>
                 <p>
                   <span className="font-weight-bold text-danger pr-1">
-                    {tu("plese_keep_in_mind")}
+                    {tu("please_keep_in_mind")}
                   </span>
                  {tu("trx_for_testing")}
                 </p>

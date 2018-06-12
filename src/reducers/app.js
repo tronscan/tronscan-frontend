@@ -24,15 +24,17 @@ const initialState = {
     percentage: 0,
   },
   availableLanguages: {
-    // nl: "Nederlands",
     en: "English",
+    nl: "Nederlands",
     de: "Deutsch",
+    sv: "Svenska",
     zh: "简体中文",
     fa:"فارسی",
     ko:"한국어",
     br: "Português Brasil",
     fr: "Français",
     es: "Español",
+    tr: "Türkçe",
   },
   activeLanguage: 'en',
   account: {

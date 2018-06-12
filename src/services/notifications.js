@@ -1,22 +1,37 @@
 export async function requestNotifyPermissions() {
 
   return new Promise(resolve => {
-    Notification.requestPermission(permission => {
-      resolve(permission === "granted");
-    });
+
+    if (window.Notification) {
+      Notification.requestPermission(permission => {
+        resolve(permission === "granted");
+      });
+    } else {
+      resolve(false);
+    }
   });
 }
 
 export function notifyEnabled() {
-  return Notification.permission === "granted";
+  if (window.Notification) {
+    return Notification.permission === "granted";
+  } else {
+    return false;
+  }
 }
 
 export function getNotifyPermission() {
-  return Notification.permission;
+  if (window.Notification) {
+    return Notification.permission;
+  } else {
+    return "denied";
+  }
 }
 
 export function sendNotification(title, options = {}) {
-  new Notification(title, {
-    ...options,
-  });
+  if (window.Notification) {
+    new Notification(title, {
+      ...options,
+    });
+  }
 }

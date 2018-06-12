@@ -179,28 +179,28 @@ class VoteOverview extends React.Component {
       case 0:
         return (
           <span className="text-success">
-            All votes are used!
+            {tu("all_votes_are_used_message")}
           </span>
         );
 
       case 1:
         return (
           <span>
-            Votes Remaining:&nbsp;<b><FormattedNumber value={votesAvailable}/></b>
+            {tu("votes_remaining_message")}:&nbsp;<b><FormattedNumber value={votesAvailable}/></b>
           </span>
         );
 
       case -1:
         return (
           <span className="text-danger">
-            You spend to much votes!
+            {tu("to_much_votes_massage")}
           </span>
         );
 
       case -2:
         return (
           <span className="text-danger">
-            You need at least 1 TRX to be able to vote
+            {tu("need_min_trx_to_vote_message")}
           </span>
         );
     }
@@ -221,7 +221,7 @@ class VoteOverview extends React.Component {
     if (!account.isLoggedIn) {
       return (
         <div className="text-center">
-          Open wallet to start voting
+          {tu("open_wallet_start_voting_message")}
         </div>
       );
     }
@@ -229,7 +229,7 @@ class VoteOverview extends React.Component {
     if (votesSubmitted) {
       return (
         <Alert color="success" className="text-center m-0">
-          Thanks for submitting your vote!
+          {tu("thanks_submitting_vote_message")}
         </Alert>
       );
     }
@@ -255,9 +255,9 @@ class VoteOverview extends React.Component {
           <div className="ml-auto">
             {this.renderVoteStatus()}
           </div>
-          <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>Cancel</button>
-          <button className="btn btn-warning ml-1" onClick={this.resetVotes}>Reset</button>
-          <button className="btn btn-success ml-1" onClick={this.submitVotes}>Submit Votes</button>
+          <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
+          <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
+          <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
         </div>
       );
     }
@@ -265,7 +265,7 @@ class VoteOverview extends React.Component {
     return (
       <div>
         <button className="btn btn-tron btn-block" onClick={this.enableVoting}>
-          Click here to Start Voting
+          {tu("click_to_start_voting")}
         </button>
       </div>
     );
@@ -310,17 +310,17 @@ class VoteOverview extends React.Component {
         votesSubmitted: true,
         votingEnabled: false,
         modal: (
-          <SweetAlert success title="Thank you for voting!" onConfirm={this.hideModal}>
-            Your votes are successfully submitted, they will take effect when the next voting cycle starts.<br/>
-            You may redistribute your votes anytime you like
+          <SweetAlert success title={tu("submissing_vote_message_title")} onConfirm={this.hideModal}>
+            {tu("submissing_vote_message_0")}<br/>
+            {tu("submissing_vote_message_1")}
           </SweetAlert>
         )
       });
     } else {
       this.setState({
         modal: (
-          <SweetAlert danger title="Error" onConfirm={this.hideModal}>
-            Something went wrong while submitting your votes. Please try again later.
+          <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
+             {tu("submitting_vote_error_message")}
           </SweetAlert>
         )
       });
@@ -421,7 +421,7 @@ class VoteOverview extends React.Component {
           </div>
         </div>
 
-        <Link to="/votes-live" class="btn btn-secondary btn-block mt-3">
+        <Link to="/votes-live" className="btn btn-secondary btn-block mt-3">
           {tu("view_live_ranking")}
         </Link>
 
@@ -464,10 +464,10 @@ class VoteOverview extends React.Component {
                       </thead>
                       <tbody>
                       {
-                        (searchCriteria.length > 0 && filteredCandidates === 0) &&
+                        (searchCriteria.length > 0 && filteredCandidates.length === 0) &&
                           <tr>
-                            <td colSpan="5" className="p-3 text-center">
-                              No Super Representatives found for {searchCriteria}
+                            <td colSpan="6" className="p-3 text-center">
+                              No Super Representatives found for <b>{searchCriteria}</b>
                             </td>
                           </tr>
                       }
@@ -582,4 +582,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(VoteOverview)))
-

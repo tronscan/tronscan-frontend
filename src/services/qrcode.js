@@ -1,6 +1,4 @@
-// import AwesomeQR from "awesome-qr/dist/awesome-qr";
 import QRCode from 'qrcode'
-
 
 export function GenerateQRCode(value, size = 260) {
 
