@@ -9,7 +9,7 @@ export const setActiveWallet = (wallet) => ({
 });
 
 
-export const loadWallet = (address) => async (dispatch, getState) => {
+export const loadWallet = (address) => async (dispatch) => {
 
   let {balances, frozen, ...wallet} = await Client.getAccountByAddress(address);
   wallet.frozenTrx = frozen.total;
@@ -22,7 +22,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
 
   let {wallet} = getState();
 
-  if (wallet.current.isOpen) {
+  if (wallet.isOpen) {
     let {balances, frozen, ...wallet} = await Client.getAccountByAddress(wallet.current.address);
     wallet.frozenTrx = frozen.total;
     dispatch(setActiveWallet(wallet));
