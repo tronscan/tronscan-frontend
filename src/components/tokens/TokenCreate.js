@@ -472,8 +472,10 @@ class TokenCreate extends Component {
                       <div className="form-group col-md-12">
                         <label>{tu("total_supply")} *</label>
                         <NumberField
+                          className="form-control"
                           value={totalSupply}
                           min={1}
+
                           onChange={(totalSupply) => this.setState({ totalSupply })} />
                         <small className="form-text text-muted">
                           {tu("supply_message")}
