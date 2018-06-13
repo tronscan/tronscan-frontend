@@ -86,9 +86,9 @@ export const messages = {
   "exchange": "Câmbio",
   "next": "Próximo",
   "copied_to_clipboard": "Copiado para a área de transferência",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "cancel": "Cancelar",
+  "reset": "Restabelecer",
+  "error": "Erro",
 
 /*
 ##################################################################################
@@ -175,9 +175,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Configurar Nome",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "Você só pode definir o nome da sua conta uma vez!",
+  "change_name": "Mude o nome",
+  "account_name": "Nome da conta",
   "show_qr_code": "Mostrar QR Code",
   "free_bandwidth": "Banda gratuita",
   "expires": "expira em",
@@ -201,7 +201,7 @@ export const messages = {
   "current": "atual",
   "trx_received": "TRX recebidos",
   "test_trx_temporarily_unavailable_message": "Rede de testes TRX temporariamente indisponível. Tente mais tarde.",
-  "not_enough_trx": "Not enough TRX",
+  "not_enough_trx": "Insuficiente TRX",
 
 /*
 ##################################################################################
@@ -313,10 +313,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "Quanto fichas quer comprar?",
+  "buy_confirm_message_0": "Você tem certeza?",
+  "buy_confirm_message_1": "Tem certeza que quer comprar",
+  "for": "para",
 
 /*
 ##################################################################################
@@ -351,7 +351,7 @@ export const messages = {
   "nr_of_Transfers": "Nr. de transferências",
   "not_signed_in": "Você precisará fazer o login para usar essa funcionalidade",
   "loading_map": "Carregando Mapa",
-  "loading_accounts": "loading Accounts",
+  "loading_accounts": "Carregando contas",
   "quantity": "quantidade",
   "percentage": "Percentage",
   "loading_token": "Carregando Tokens",
@@ -478,16 +478,16 @@ export const messages = {
   "live_ranking_msg": "Recarrega a cada 15 segundos. Novos votos podem levar de 1 a 2 minutos até serem contabilizados",
   "candidate": "Candidato",
   "current_votes": "Votos atuais",
-  "click_to_start_voting": "Click here to Start Voting",
+  "click_to_start_voting": "Clique aqui para começar a votação",
   "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "open_wallet_start_voting_message": "Carteira aberta para começar a votar",
+  "thanks_submitting_vote_message": "Obrigado por enviar seu voto!",
   "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
   "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "all_votes_are_used_message": "Todos os votos são usados!",
+  "submissing_vote_message_title": "Obrigado por votar!",
+  "submissing_vote_message_0": "Seus votos são enviados com sucesso, eles entrarão em vigor quando o próximo ciclo de votação começar.",
+  "submissing_vote_message_1": "Você pode redistribuir seus votos sempre que quiser",
   "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*
