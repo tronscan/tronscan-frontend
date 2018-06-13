@@ -331,7 +331,7 @@ export const messages = {
   own wallet or exchange to the account address of testnet.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",
-  "dear_users,": "친애하는 사용자,",
+  "dear_users": "친애하는 사용자,",
   "finished": "종료",
   "token": "토큰",
   "url": "토큰 정보 안내 주소",

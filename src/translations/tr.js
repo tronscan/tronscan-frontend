@@ -331,7 +331,7 @@ export const messages = {
   "plese_keep_in_mind": "Kayıtlı hesabınız yalnızca test ağında kullanıldığı için test ağındaki hesap adresinize kendi cüzdanınızdan ya da bir borsadan TRX göndermemeniz gerektiğini lütfen unutmayın.",
   "tron_foundation": "TRON Vakfı",
   "trx_for_testing": "Hesap yönetimi kısmından başarılı bir şekilde başvurduğunuzda, deneme amaçlı TRX deneme hesabınıza gönderilecektir.",
-  "dear_users,": "Sevgili kullanıcılar,",
+  "dear_users": "Sevgili kullanıcılar,",
   "finished": "Sonlandı",
   "token": "jeton",
   "url": "web adresi",
