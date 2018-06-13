@@ -59,3 +59,12 @@ To build a Windows, Mac and Linux app run the following command:
 ```bash
 > yarn desktop:build:full
 ```
+
+And to run, make sure to start the web app first:
+```bash
+> yarn start
+```
+and then run the desktop version:
+```bash
+> yarn desktop:start
+```
