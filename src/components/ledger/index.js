@@ -64,6 +64,10 @@ class Ledger extends Component {
     });
   }
 
+  componentWillUnmount() {
+    ipcRenderer.removeAllListeners('ledger');
+  }
+
   render() {
 
     let {modal} = this.state;
