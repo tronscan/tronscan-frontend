@@ -128,7 +128,7 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_super_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "voter pour  Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Créer un nouveau portefeuille",
   "view_tokens": "Afficher les jetons",
@@ -176,8 +176,8 @@ export const messages = {
 */
   "set_name": "Définir le nom",
   "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "change_name": "nom du changement",
+  "account_name": "nom du compt",
   "show_qr_code": "Afficher le QR Code",
   "free_bandwidth": "Bande passante libre",
   "expires": "expires",
@@ -269,7 +269,7 @@ export const messages = {
   "trx_produced": "Transactions Produites",
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
-  "go_to_votelist": "Go to votelist",
+  "go_to_votelist": "aller à la liste de vote",
 
 /*
 ##################################################################################
@@ -280,7 +280,7 @@ export const messages = {
 */
   "name_of_the_token": "Nom du jeton",
   "create_token": "Créer un jeton",
-  "token_message": "Name for the token",
+  "token_message": "Nom du token",
   "abbr_message": "Abbreviation for the token",
   "description": "Description",
   "description_url": "Url de la description",
@@ -311,10 +311,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "Ombien de jetons voulez-vous acheter ??",
+  "buy_confirm_message_0": "Vous êtes sûr ?",
+  "buy_confirm_message_1": "Vous êtes sûr de vouloir acheter",
+  "for": "à",
 
 /*
 ##################################################################################
@@ -331,9 +331,9 @@ export const messages = {
   "token": "token",
   "url": "url",
   "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "No TRX remaining",
+  "thanks_for_applying": "Merci pour l’appliquation!",
+  "to_much_votes": "Trop de votes",
+  "no_trx_remaining": "Aucuns TRX restant",
   "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
   "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
@@ -350,6 +350,7 @@ export const messages = {
   "quantity": "quantity",
   "percentage": "Percentage",
   "loading_token": "Loading Token",
+  "search_address_or_url": "Recherche d'adresse ou d'URL",
 
 /*
 ##################################################################################
@@ -579,6 +580,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
+  "send_to_following_address": "envoyez à l'adresse suivante",
 
 };
