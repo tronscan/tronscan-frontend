@@ -42,7 +42,7 @@
 
 ## Configuring API URL
 
-By default the Explorer will connect to https://api.tronscan.org for its data. 
+By default the Explorer will connect to https://api.tronscan.org for its data.
 
 When developing locally the url can be changed by defining the `API_URL` environment variable
 
@@ -57,5 +57,5 @@ Tronscan.org can be published as a Desktop app wrapped in Electron.
 To build a Windows, Mac and Linux app run the following command:
 
 ```bash
-> yarn run desktop:build:full
+> yarn desktop:build:full
 ```
