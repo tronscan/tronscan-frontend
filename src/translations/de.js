@@ -263,7 +263,7 @@ export const messages = {
   // title/headline of the form
   "set_name": "Name definieren",
   // statusmessage
-  "unique_account_message": "You may only set your account name once!",
+  "unique_account_message": "Sie dürfen Ihren Kontonamen nur einmal vergeben!",
   // button description
   "change_name": "Change Name",
   // placeholder message
@@ -336,7 +336,7 @@ export const messages = {
   // infomessage - description
   "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
   // errormessage - message text
-  "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die minimale Einfrierzeit noch nicht erreicht ist.",
+  "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die Mindestsperrdauer noch nicht überschritten ist.",
   // infomessage - text module 1
   "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
    Mit Tron Power können Sie zum Beispiel `,
@@ -353,6 +353,17 @@ export const messages = {
   "token_freeze_confirm_message_1": "für mindestens 3 Tage.",
   // table title - Frozen Supply
   "frozen_supply": "Eingefrorenes Guthaben",
+  "tokens_unfrozen": "Token freigeben/auftauen",
+  "success_tokens_unfrozen_message": "Die Token wurden erfolgreich aufgetaut.",
+  "unable_to_unfreeze": "Freigabe nicht möglich",
+  "Unable_tokens_unfrozen_message": "Die Token können aktuell nicht aufgetaut werden.",
+  "tokens_frozen": "Token eingefroren",
+  "successfully_frozen": "Ihre TRX wurden erfolgreich eingefroren",
+  "name_changed": "Name geändert",
+  "successfully_changed_name_to_message": "Ihr Profilname wurde erfolgreich geändert in",
+  "unable_to_rename_title": "Namensänderung nicht möglich",
+  "unable_to_rename_message": "Beim Aktualisieren Ihres Kontonamens ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
+  "unfreeze_trx_confirm_message": "Sind Sie sicher, dass Sie TRX auftauen wollen?",
 
 /*
  ##################################################################################

@@ -353,7 +353,17 @@ export const messages = {
   "token_freeze_confirm_message_1": "for at least of 3 days",
   // table title - Frozen Supply
   "frozen_supply": "Frozen Supply",
-
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 /*
 ##################################################################################
 #                                                                                #
