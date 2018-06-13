@@ -331,7 +331,7 @@ export const messages = {
   "please_keep_in_mind": "Lembre-se de que, como o endereço da sua conta registrada é usado apenas para o testnet, não envie o TRX da sua própria carteira ou troque para o endereço da conta testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "O TRX para testes será enviado para sua conta de teste assim que você aplicar com sucesso através do gerenciamento de contas.",
-  "dear_users,": "Caros usuários,",
+  "dear_users": "Caros usuários,",
   "finished": "Finalizado",
   "token": "token",
   "url": "url",
@@ -434,8 +434,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Maior Produtividade",
-  "Lowest Productivity": "Menor Produtividade",
+  "highest_productivity": "Maior Produtividade",
+  "lowest_productivity": "Menor Produtividade",
   "productivity": "Produtividade",
   "rewards": "Ganhos",
   "Super Representatives": "Super Representantes",

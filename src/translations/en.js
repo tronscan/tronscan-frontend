@@ -501,7 +501,7 @@ export const messages = {
   // statusmessage
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   // statusmessage
-  "dear_users,": "Dear users,",
+  "dear_users": "Dear users,",
   // field information  - fin
   "finished": "Finished",
   // field information  - token
@@ -674,9 +674,9 @@ export const messages = {
 ##################################################################################
 */
   // statistic dialog - Highest Productivity eg. tron node XXX Highest Productivity
-  "Highest Productivity": "Highest Productivity",
+  "highest_productivity": "Highest Productivity",
   // statistic dialog - Highest Productivity eg. tron node YYY Lowest Productivity
-  "Lowest Productivity": "Lowest Productivity",
+  "lowest_productivity": "Lowest Productivity",
   // title name - SR
   "Super Representatives": "Super Representatives",
   // title name - SRC

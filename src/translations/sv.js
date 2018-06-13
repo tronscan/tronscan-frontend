@@ -427,8 +427,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Högsta produktivitet",
-  "Lowest Productivity": "Lägsta produktivitet",
+  "highest_productivity": "Högsta produktivitet",
+  "lowest_productivity": "Lägsta produktivitet",
   "productivity": "produktivitet",
   "rewards": "belöningar",
   "Super Representatives": "Super Representatives",

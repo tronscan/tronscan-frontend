@@ -328,7 +328,7 @@ export const messages = {
   "please_keep_in_mind": "لطفا توجه داشته باشید، که از آنجا که آدرس حساب ثبت شده شما فقط برای شبکه تست استفاده می شود، تی آر ایکس را از کیف پول خود و یا اکسچنج به آدرس حساب شبکه تست ارسال نکنید",
   "tron_foundation": "بنیاد ترون",
   "trx_for_testing": "0",
-  "dear_users,": "کاربران عزیز",
+  "dear_users": "کاربران عزیز",
   "finished": "پایان یافته",
   "token": "توکن",
   "url": "آدرس اینترنتی",
@@ -434,8 +434,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "بالاترین بهره وری",
-  "Lowest Productivity": "پایین ترین بهره وری",
+  "highest_productivity": "بالاترین بهره وری",
+  "lowest_productivity": "پایین ترین بهره وری",
   "productivity": "بهره وری",
   "rewards": "پاداش ها",
   "Super Representatives": "نمایندگان ممتاز",
