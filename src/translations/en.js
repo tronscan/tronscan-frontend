@@ -360,58 +360,57 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    // button description - apply for delegate
-    "apply_for_delegate": "apply for delegate",
-    // button description - Apply to be a Super Representative Candidate
-    "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
-    // inputfield description - Homepage
-    "your_personal_website_address": "your personal website address",
-    // infomessage - predescription
-    "apply_for_delegate_predescription": `Every token holder has the opportunity to become a TRON Super Representative.
-     However, for the network and community to operate more smoothly and effectively,
-     we have created a set of standards and regulations for eligible candidates to become
-     recommended Super Representatives. We will promote recommended SRs to increase their
-     chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
-    // infomessage - description
-    "apply_for_delegate_description": `
-     TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-     Each account can update current voter information and also is allowed to vote for multiple candidates.
-     The maximum number of votes is less than or equal to the number of TRX users hold each time.
-     (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-     The result of votes will be calculated based on the final voter information of every account in each
-     voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-     Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-     TRX will not be consumed in the process of super delegate application and voting.`,
-    // errormessage - an unknown error occurred
-    "unknown_error": "an unknown error occurred",
-    // confirm - message
-    "representative_understand": "I understand how to be a TRON representative",
-    // button description - create address and password
-    "generate_account": "Click to generate your account address and password",
-    // confirm message - part 1
-    "create_account_confirm_1": "I understand that if I forget/lose my password I will never be able to access my assets",
-    // confirm message - part 2
-    "create_account_confirm_2": "I understand that if I forget/lose my password no one will be able to help me recover it",
-    // confirm message - part 3
-    "create_account_confirm_3": "I've written my password on paper",
-    // confirm message - submitting the vote
-    "vote_thanks": "Thanks for submitting your vote!",
-    "recent_transactions": "recent transactions",
-    "newest_account": "newest account",
-    "representatives": "representatives",
-    "most_votes": "most votes",
-    "start_end_time": "Start / End Time",
-    "scan_qr_code": "Scan the code with a QR Code scanner",
-    "receive_trx": "receive TRX",
-    "require_account_to_send": "You must be logged in to send coins",
-    "require_account_to_receive": "You must be logged in to receive coins",
-    "successful_send": "Succesfully send!",
-    "confirm_transaction": "confirm transaction",
-    "last_confirmed": "Last Confirmed",
-    "trx_produced": "Transactions Produced",
-    "do_not_send_1": "Do not send TRX from your own wallet or exchange to your testnet address!",
-    // button description - Go to votelist
-    "go_to_votelist": "Go to votelist",
+	// button description - apply for delegate
+	"apply_for_delegate": "apply for delegate",
+	// button description - Apply to be a Super Representative Candidate
+	"apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
+	// inputfield description - Homepage
+	"your_personal_website_address": "your personal website address",
+	// infomessage - predescription
+	"apply_for_delegate_predescription": `Every token holder has the opportunity to become a TRON Super Representative.
+	However, for the network and community to operate more smoothly and effectively,
+	we have created a set of standards and regulations for eligible candidates to become
+	recommended Super Representatives. We will promote recommended SRs to increase their
+	chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
+	// infomessage - description
+	"apply_for_delegate_description": `	TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
+	Each account can update current voter information and also is allowed to vote for multiple candidates.
+	The maximum number of votes is less than or equal to the number of TRX users hold each time.
+	(If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
+	The result of votes will be calculated based on the final voter information of every account in each
+	voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
+	Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
+	TRX will not be consumed in the process of super delegate application and voting.`,
+	// errormessage - an unknown error occurred
+	"unknown_error": "an unknown error occurred",
+	// confirm - message
+	"representative_understand": "I understand how to be a TRON representative",
+	// button description - create address and password
+	"generate_account": "Click to generate your account address and password",
+	// confirm message - part 1
+	"create_account_confirm_1": "I understand that if I forget/lose my password I will never be able to access my assets",
+	// confirm message - part 2
+	"create_account_confirm_2": "I understand that if I forget/lose my password no one will be able to help me recover it",
+	// confirm message - part 3
+	"create_account_confirm_3": "I've written my password on paper",
+	// confirm message - submitting the vote
+	"vote_thanks": "Thanks for submitting your vote!",
+	"recent_transactions": "recent transactions",
+	"newest_account": "newest account",
+	"representatives": "representatives",
+	"most_votes": "most votes",
+	"start_end_time": "Start / End Time",
+	"scan_qr_code": "Scan the code with a QR Code scanner",
+	"receive_trx": "receive TRX",
+	"require_account_to_send": "You must be logged in to send coins",
+	"require_account_to_receive": "You must be logged in to receive coins",
+	"successful_send": "Succesfully send!",
+	"confirm_transaction": "confirm transaction",
+	"last_confirmed": "Last Confirmed",
+	"trx_produced": "Transactions Produced",
+	"do_not_send_1": "Do not send TRX from your own wallet or exchange to your testnet address!",
+	// button description - Go to votelist
+	"go_to_votelist": "Go to votelist",
 
 /*
 ##################################################################################
@@ -420,50 +419,50 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    // description of an input field - Name of the token
-    "name_of_the_token": "Name of the token",
-    // longdescription - additional userinfo - Name of the token
-    "token_message": "Name for the token",
-    // description of an input field - token Abbreviation
-    "token_abbr": "token Abbreviation",
-    // longdescription - additional userinfo - token Abbreviation
-    "abbr_message": "Abbreviation for the token",
-    // field information - statistics - total supply of trx
-    "total_supply": "total supply",
-    // field information - issued token
-    "issued_token": "issued token",
-    // button description - Create Token
-    "create_token": "Create Token",
-    // description of an input field - Description
-    "description": "Description",
-    // description of an input field -  Description URL
-    "description_url": "Description URL",
-    // field information - Quote Token Amount
-    "quote_token_amount": "Quote Token Amount",
-    // field information - Base Token Amount
-    "base_token_amount": "Base Token Amount",
-    // statusmessage - Creating a token
-    "creating_a_token": "Creating a token",
-    // field information - available
-    "available": "available",
-    // title - Testnet
-    "testnet": "Testnet",
-    "days_to_freeze": "Days to freeze",
-    "trx_token_fee_message": "1024 TRX is required to issue a new token",
-    "trx_token_account_limit": "You may create only one token per account",
-    "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
-    "invalid_address": "invalid address",
-    "insufficient_tokens": "Insufficient tokens",
-    "fill_a_valid_number": "Please fill a valid number",
-    "fill_a_valid_address": "Please fill a valid address",
-    "make_another_transaction": "Make another transaction",
-    "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
-    "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
-    "An_error_occurred": "An error occurred",
-    "create_a_token": "Create a token",
-    "not_started_yet": "Not started yet",
-    "participated": "You successfully participated!",
-    "participated_error": "An error occurred",
+	// description of an input field - Name of the token
+	"name_of_the_token": "Name of the token",
+	// longdescription - additional userinfo - Name of the token
+	"token_message": "Name for the token",
+	// description of an input field - token Abbreviation
+	"token_abbr": "token Abbreviation",
+	// longdescription - additional userinfo - token Abbreviation
+	"abbr_message": "Abbreviation for the token",
+	// field information - statistics - total supply of trx
+	"total_supply": "total supply",
+	// field information - issued token
+	"issued_token": "issued token",
+	// button description - Create Token
+	"create_token": "Create Token",
+	// description of an input field - Description
+	"description": "Description",
+	// description of an input field -  Description URL
+	"description_url": "Description URL",
+	// field information - Quote Token Amount
+	"quote_token_amount": "Quote Token Amount",
+	// field information - Base Token Amount
+	"base_token_amount": "Base Token Amount",
+	// statusmessage - Creating a token
+	"creating_a_token": "Creating a token",
+	// field information - available
+	"available": "available",
+	// title - Testnet
+	"testnet": "Testnet",
+	"days_to_freeze": "Days to freeze",
+	"trx_token_fee_message": "1024 TRX is required to issue a new token",
+	"trx_token_account_limit": "You may create only one token per account",
+	"trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
+	"invalid_address": "invalid address",
+	"insufficient_tokens": "Insufficient tokens",
+	"fill_a_valid_number": "Please fill a valid number",
+	"fill_a_valid_address": "Please fill a valid address",
+	"make_another_transaction": "Make another transaction",
+	"token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
+	"An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
+	"An_error_occurred": "An error occurred",
+	"create_a_token": "Create a token",
+	"not_started_yet": "Not started yet",
+	"participated": "You successfully participated!",
+	"participated_error": "An error occurred",
 
 /*
 ##################################################################################
@@ -488,63 +487,63 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    // error message - incorrect trx address
-    "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
-    // statusmessage - search for address or URL
-    "search_address_or_url": "Search for address or URL",
-    // statusmessage
-    "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-    // statusmessage
-    "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
-    // statusmessage - title
-    "tron_foundation": "TRON Foundation",
-    // statusmessage
-    "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
-    // statusmessage
-    "dear_users": "Dear users,",
-    // field information  - fin
-    "finished": "Finished",
-    // field information  - token
-    "token": "token",
-    // field information  - website url
-    "url": "url",
-    // infomessage - loggin is required
-    "need_to_login": "You must be logged in to access to account page",
-    // confirm message - Thanks for applying!
-    "thanks_for_applying": "Thanks for applying!",
-    // errormessage - To many votes
-    "to_much_votes": "To many votes",
-    // errormessage - No TRX remaining
-    "no_trx_remaining": "No TRX remaining",
-    // statusmessage - Produced by TRX address
-    "produced_by": "Produced by {witnessAddress}",
-     // infomessage .. Show XXX more
-    "show_more": "Show {countriesLength} More",
-    // infomessage - vote guide
-    "vote_guide_message": `Use your TRX to vote for Super Representatives.
-     For every TRX you hold in your account you have one vote to spend.
-     TRX will not be consumed. You can vote as many times for the several representatives as you like.
-     The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-    // infofield
-    "search_address": "Search for address",
-    // infofield - Token Transactions
-    "token_transactions": "Token Transactions",
-    // infofield - Token Holders
-    "token_holders": "Token Holders",
-    // infofield - Number of Transfers
-    "nr_of_Transfers": "Number of Transfers",
-    // errormessage -> login required
-    "not_signed_in": "You will need to log in to make use of this functionality",
-    // statusmessage - Loading Map
-    "loading_map": "Loading Map",
-    // statusmessage - loading Accounts
-    "loading_accounts": "loading Accounts",
-    // table - row title - quantity
-    "quantity": "quantity",
-    // table - row title - Percentage
-    "percentage": "Percentage",
-    // statusmessage - loading token
-    "loading_token": "Loading Token",
+	// error message - incorrect trx address
+	"address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
+	// statusmessage - search for address or URL
+	"search_address_or_url": "Search for address or URL",
+	// statusmessage
+	"the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
+	// statusmessage
+	"please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+	// statusmessage - title
+	"tron_foundation": "TRON Foundation",
+	// statusmessage
+	"trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
+	// statusmessage
+	"dear_users": "Dear users,",
+	// field information  - fin
+	"finished": "Finished",
+	// field information  - token
+	"token": "token",
+	// field information  - website url
+	"url": "url",
+	// infomessage - loggin is required
+	"need_to_login": "You must be logged in to access to account page",
+	// confirm message - Thanks for applying!
+	"thanks_for_applying": "Thanks for applying!",
+	// errormessage - To many votes
+	"to_much_votes": "To many votes",
+	// errormessage - No TRX remaining
+	"no_trx_remaining": "No TRX remaining",
+	// statusmessage - Produced by TRX address
+	"produced_by": "Produced by {witnessAddress}",
+	// infomessage .. Show XXX more
+	"show_more": "Show {countriesLength} More",
+	// infomessage - vote guide
+	"vote_guide_message": `Use your TRX to vote for Super Representatives.
+	For every TRX you hold in your account you have one vote to spend.
+	TRX will not be consumed. You can vote as many times for the several representatives as you like.
+	The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+	// infofield
+	"search_address": "Search for address",
+	// infofield - Token Transactions
+	"token_transactions": "Token Transactions",
+	// infofield - Token Holders
+	"token_holders": "Token Holders",
+	// infofield - Number of Transfers
+	"nr_of_Transfers": "Number of Transfers",
+	// errormessage -> login required
+	"not_signed_in": "You will need to log in to make use of this functionality",
+	// statusmessage - Loading Map
+	"loading_map": "Loading Map",
+	// statusmessage - loading Accounts
+	"loading_accounts": "loading Accounts",
+	// table - row title - quantity
+	"quantity": "quantity",
+	// table - row title - Percentage
+	"percentage": "Percentage",
+	// statusmessage - loading token
+	"loading_token": "Loading Token",
 
 /*
 ##################################################################################
@@ -575,66 +574,66 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    // button description - details
-  	"details": "details",
-    // button description - Issue a Token
-  	"issue_a_token": "Issue a Token",
-    // table - row name - Issue Token
-  	"issue_token": "Issue Token",
-    // table - row name - token name
-  	"token_name": "token name",
-      // table - row name - Total issued
-  	"total_issued": "Total issued",
-      // table - row name - Registered
-  	"registered": "Registered",
-     	// table - row name - Abbreviations
-  	"abbreviation": "Abbreviations",
-     	// title - Exchange Rate
-  	"exchange_rate": "Exchange Rate",
-     	// table - row name - Token Price
-  	"token_price": "Token Price",
-   	// usermessage - total amount of tokens
-   	"supply_message": "Total amount of tokens which will be in circulation",
-    // field description - short description
-    "description_message": "A short description of the purpose of the token",
-    // field description - website url
-    "url_message": "A website where users can find more information about the token",
-    // usermessage - Token
-    "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
-    // usermessage - text part 1 - Participants will receive 20 XXX for every 10 TRX
-    "exchange_rate_message_1": "Participants will receive",
-    // usermessage - text part 2 - Participants will receive 20 XXX for every 10 TRX
-    "exchange_rate_message_2": "for every",
-    // usermessage - text part 3 - Participants will receive 20 XXX for every 10 TRX
-    "exchange_rate_message_3": "TRX",
-    // usermessage - text part 1 - Participation Message
-    "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
-    // usermessage - text part 2 - Participation Message
-    "participation_message_1": " tokens.",
-    // usermessage - text part 1 - frozen supply message
-    "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-     for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-     days has been reached. Freezing supply is not required.`,
-    // statusmessage - Token successfully issued
-    "token_issued_successfully": "Token successfully issued",
-    // title - participation
-    "participation": "participation",
-    // description - date/time pannel - Start Date
-    "start_date": "Start Date",
-    // description - date/time pannel - End Date
-    "end_date": "End Date",
-    // confirm message - token spend
-   	"token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-   	// userinfomation - token issue guide message - part 1
-   	"token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
-      by anyone who has at least 1024 TRX in their account.`,
-    // userinfomation - token issue guide message - part 2
-    "token_issue_guide_message_2": `When a token is issued it will be shown on the token overview page.
-     Users can then participate within the participation period and exchange their TRX for tokens.`,
-    // userinfomation - token issue guide message - part 3
-    "token_issue_guide_message_3": `After issuing the token your account will receive the amount of tokens equal to the total supply.
-      When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
-      receive TRX equal to the specified exchange rate.`,
+	// button description - details
+	"details": "details",
+	// button description - Issue a Token
+	"issue_a_token": "Issue a Token",
+	// table - row name - Issue Token
+	"issue_token": "Issue Token",
+	// table - row name - token name
+	"token_name": "token name",
+	// table - row name - Total issued
+	"total_issued": "Total issued",
+	// table - row name - Registered
+	"registered": "Registered",
+	// table - row name - Abbreviations
+	"abbreviation": "Abbreviations",
+	// title - Exchange Rate
+	"exchange_rate": "Exchange Rate",
+	// table - row name - Token Price
+	"token_price": "Token Price",
+	// usermessage - total amount of tokens
+	"supply_message": "Total amount of tokens which will be in circulation",
+	// field description - short description
+	"description_message": "A short description of the purpose of the token",
+	// field description - website url
+	"url_message": "A website where users can find more information about the token",
+	// usermessage - Token
+	"exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
+	// usermessage - text part 1 - Participants will receive 20 XXX for every 10 TRX
+	"exchange_rate_message_1": "Participants will receive",
+	// usermessage - text part 2 - Participants will receive 20 XXX for every 10 TRX
+	"exchange_rate_message_2": "for every",
+	// usermessage - text part 3 - Participants will receive 20 XXX for every 10 TRX
+	"exchange_rate_message_3": "TRX",
+	// usermessage - text part 1 - Participation Message
+	"participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
+	// usermessage - text part 2 - Participation Message
+	"participation_message_1": " tokens.",
+	// usermessage - text part 1 - frozen supply message
+	"frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
+	for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
+	days has been reached. Freezing supply is not required.`,
+	// statusmessage - Token successfully issued
+	"token_issued_successfully": "Token successfully issued",
+	// title - participation
+	"participation": "participation",
+	// description - date/time pannel - Start Date
+	"start_date": "Start Date",
+	// description - date/time pannel - End Date
+	"end_date": "End Date",
+	// confirm message - token spend
+	"token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
+	// userinfomation - token issue guide message - part 1
+	"token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
+	by anyone who has at least 1024 TRX in their account.`,
+	// userinfomation - token issue guide message - part 2
+	"token_issue_guide_message_2": `When a token is issued it will be shown on the token overview page.
+	Users can then participate within the participation period and exchange their TRX for tokens.`,
+	// userinfomation - token issue guide message - part 3
+	"token_issue_guide_message_3": `After issuing the token your account will receive the amount of tokens equal to the total supply.
+	When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
+	receive TRX equal to the specified exchange rate.`,
 
 /*
 ##################################################################################
