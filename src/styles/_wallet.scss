@@ -89,3 +89,65 @@ $iconSize: 60px;
     }
   }
 }
+
+
+.account-selector {
+
+  $arrowSize: 30px;
+
+  .nav {
+    padding-top: 20px;
+    z-index: 100;
+
+  }
+
+  .nav-item {
+
+    display: block;
+    position: relative;
+
+    a {
+      padding: 15px 10px 15px 0;
+      text-align: right;
+    }
+
+    border-bottom: 2px solid #f1f1f1;
+    border-top: 2px solid #f1f1f1;
+
+    &.active {
+      background-color: #FFF;
+      border-bottom: 2px solid #EEE;
+      border-top: 2px solid #EEE;
+
+      &:after {
+        left: 100%;
+        top: 50%;
+        z-index: 100;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(136, 183, 213, 0);
+        border-left-color: #fff;
+        border-width: $arrowSize;
+        margin-top: -$arrowSize;
+      }
+    }
+  }
+
+  .icon {
+    height: 25px;
+    padding-left: 10px;
+  }
+
+  .nav {
+    border-right: 2px solid #EEE;
+  }
+
+  .account-page {
+    background-color: #f1f1f1;
+  }
+
+}

@@ -65,7 +65,6 @@ export const setActiveCurrency = (currency) => ({
 });
 
 export const login = (privateKey) => async (dispatch, getState) => {
-
   await dispatch(loginWithPrivateKey(privateKey));
   let address = pkToAddress(privateKey);
   await dispatch(loadWalletWithPrivateKey(address));
@@ -73,6 +72,12 @@ export const login = (privateKey) => async (dispatch, getState) => {
 };
 
 export const loginWithAddress = (address) => async (dispatch) => {
+  await dispatch(setLoginWithAddress(address));
+  await dispatch(loadWalletFromAddress(address));
+  await dispatch(loadRecentTransactions(address));
+};
+
+export const loginWithAddressReadOnly = (address) => async (dispatch) => {
   await dispatch(setLoginWithAddress(address));
   await dispatch(loadWalletFromAddress(address));
   await dispatch(loadRecentTransactions(address));

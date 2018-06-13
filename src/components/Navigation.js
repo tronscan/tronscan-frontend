@@ -380,6 +380,11 @@ class Navigation extends PureComponent {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                       <li className="px-3">
+                        <Link className="btn btn-success btn-block" to="/wallet/open">
+                          {tu("open_wallet")}
+                        </Link>
+                      </li>
+                      <li className="px-3">
                         <div className="form-group text-center">
                           <label>{tu("private_key")}</label>
                           <input

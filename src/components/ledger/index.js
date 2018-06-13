@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {filter, isUndefined} from "lodash";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../services/api";
-import LedgerSigner from "./LedgerSigner";
+import LedgerSigner from "../../hw/ledger/LedgerSigner";
 import {connect} from "react-redux";
 import {loginWithAddress} from "../../actions/app";
 

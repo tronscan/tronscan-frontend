@@ -53,4 +53,6 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+  desktopSrc: resolveApp('desktop'),
+  desktopIndexJs: resolveApp('desktop/index.js'),
 };

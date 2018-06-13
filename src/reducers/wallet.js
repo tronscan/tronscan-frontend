@@ -26,6 +26,7 @@ export function walletReducer(state = initialState, action) {
         ...state,
         isOpen: true,
         current: {
+          readonly: false,
           ...(state.current || {}),
           ...action.wallet,
         },

@@ -91,3 +91,9 @@ module.exports.asyncWhile =  function asyncWhile(
   }
   return Promise.resolve([]).then(iterate);
 };
+
+module.exports.delay = function(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}

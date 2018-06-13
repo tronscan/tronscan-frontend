@@ -13,6 +13,7 @@ export const setActiveWallet = (wallet) => ({
 export const loadWalletFromAddress = (address) => async (dispatch) => {
   let {balances, frozen, ...wallet} = await Client.getAccountByAddress(address);
   wallet.frozenTrx = frozen.total;
+  wallet.type = 'address';
   dispatch(setActiveWallet(wallet));
   dispatch(setTokenBalances(balances, frozen));
 };
@@ -22,6 +23,7 @@ export const loadWalletWithPrivateKey = (privateKey) => async (dispatch) => {
   let {balances, frozen, ...wallet} = await Client.getAccountByAddress(address);
   wallet.frozenTrx = frozen.total;
   wallet.key = privateKey;
+  wallet.type = 'pk';
   dispatch(setActiveWallet(wallet));
   dispatch(setTokenBalances(balances, frozen));
 };
@@ -29,7 +31,6 @@ export const loadWalletWithPrivateKey = (privateKey) => async (dispatch) => {
 export const reloadWallet = () => async (dispatch, getState) => {
 
   let {wallet} = getState();
-  console.log("reloadWallet", wallet);
 
   if (wallet.isOpen) {
     let {balances, frozen, ...walletProps} = await Client.getAccountByAddress(wallet.current.address);

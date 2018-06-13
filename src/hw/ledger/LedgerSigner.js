@@ -1,4 +1,5 @@
-const hextoString = require("@tronscan/client/src/utils/bytes").hextoString;
+const LEDGER_SIGNATURE_RESPONSE = require("./constants").LEDGER_SIGNATURE_RESPONSE;
+const LEDGER_SIGNATURE_REQUEST = require("./constants").LEDGER_SIGNATURE_REQUEST;
 const byteArray2hexStr = require("@tronscan/client/src/utils/bytes").byteArray2hexStr;
 const {ipcRenderer} = window.require('electron');
 
@@ -12,10 +13,9 @@ export default class LedgerSigner {
 
     console.log("GOT LEDGER SIGN REQUEST");
 
-
     return new Promise(resolve => {
 
-      ipcRenderer.once('ledger-trx-signed', (event, arg) => {
+      ipcRenderer.once(LEDGER_SIGNATURE_RESPONSE, (event, arg) => {
         console.log("GOT LEDGER RESPONSE", arg);
 
         let raw = transaction.getRawData();
@@ -34,7 +34,7 @@ export default class LedgerSigner {
 
       console.log("SENDING TO LEDGER");
 
-      ipcRenderer.send('ledger-sign-request', JSON.stringify({
+      ipcRenderer.send(LEDGER_SIGNATURE_REQUEST, JSON.stringify({
         transaction: {
           hex: byteArray2hexStr(transaction.getRawData().serializeBinary()),
         }

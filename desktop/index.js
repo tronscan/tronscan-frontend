@@ -26,7 +26,7 @@ function createWindow () {
   });
 
   let ledgerBridge = new LedgerBridge(win);
-
+  ledgerBridge.startListener();
 
   const menuTemplate = [
     {
