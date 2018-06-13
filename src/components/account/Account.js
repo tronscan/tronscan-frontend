@@ -47,7 +47,7 @@ class Account extends Component {
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-    if ((prevProps.walllet.isOpen !== wallet.isOpen) && wallet.isOpen) {
+    if ((prevProps.wallet.isOpen !== wallet.isOpen) && wallet.isOpen) {
       this.reloadTokens();
       this.loadAccount();
     }
