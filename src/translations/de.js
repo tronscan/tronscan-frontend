@@ -501,7 +501,7 @@ export const messages = {
   // statusmessage
   "trx_for_testing": "Sobald Sie sich erfolgreich mit Ihrem Profil angemeldet haben können Sie die TRX-Token für das Testnetzwerk verwenden.",
   // statusmessage
-  "dear_users,": "Sehr geehrte Benutzer,",
+  "dear_users": "Sehr geehrte Benutzer,",
   // field information  - fin
   "finished": "Abgeschlossen",
   // field information  - token
@@ -626,13 +626,13 @@ export const messages = {
   "end_date": "End Datum",
   // confirm message - token spend
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
-  // userinfomation - token issue guide message - part 1  
+  // userinfomation - token issue guide message - part 1
   "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
   // userinfomation - token issue guide message - part 2
   "token_issue_guide_message_2":`Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
    Die Benutzer können innerhalb des definierten Zeitraums teilnehmen und ihre TRX gegen Token eintauschen.`,
-  // userinfomation - token issue guide message - part 3  
+  // userinfomation - token issue guide message - part 3
   "token_issue_guide_message_3":`Nach der Erstellung des Token werden Ihnen diese auf Ihrem Konto gugeschrieben.
     Wenn Benutzer TRX gegen den von Ihnen erstellen Token eintauschen, erhalten Sie den entsprechenden Gegenwert
     auf Ihrem Konto Gutgeschrieben. Gleichzeitig werden Ihnen die Token abgezogen.`,

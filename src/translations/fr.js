@@ -499,7 +499,7 @@ export const messages = {
     // statusmessage
     "trx_for_testing": "Les TRX pour les tests seront envoyés à votre compte de test une fois que vous aurez fait la demande puis l'écran de gestion de compte.",
     // statusmessage
-    "dear_users,": "Chers utilisateurs,",
+    "dear_users": "Chers utilisateurs,",
     // field information  - fin
     "finished": "Terminé",
     // field information  - token

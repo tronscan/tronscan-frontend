@@ -367,7 +367,7 @@ export const messages = {
     // inputfield description - Homepage
     "your_personal_website_address": "your personal website address",
     // infomessage - predescription
-    "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
+    "apply_for_delegate_predescription": `Every token holder has the opportunity to become a TRON Super Representative.
      However, for the network and community to operate more smoothly and effectively,
      we have created a set of standards and regulations for eligible candidates to become
      recommended Super Representatives. We will promote recommended SRs to increase their
@@ -501,7 +501,7 @@ export const messages = {
     // statusmessage
     "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
     // statusmessage
-    "dear_users,": "Dear users,",
+    "dear_users": "Dear users,",
     // field information  - fin
     "finished": "Finished",
     // field information  - token
@@ -576,25 +576,25 @@ export const messages = {
 ##################################################################################
 */
     // button description - details
-    "details": "details",
+  	"details": "details",
     // button description - Issue a Token
-    "issue_a_token": "Issue a Token",
+  	"issue_a_token": "Issue a Token",
     // table - row name - Issue Token
-    "issue_token": "Issue Token",
+  	"issue_token": "Issue Token",
     // table - row name - token name
-    "token_name": "token name",
-    // table - row name - Total issued
-    "total_issued": "Total issued",
-    // table - row name - Registered
-    "registered": "Registered",
-    // table - row name - Abbreviations
-    "abbreviation": "Abbreviations",
-    // title - Exchange Rate
-    "exchange_rate": "Exchange Rate",
-    // table - row name - Token Price
-    "token_price": "Token Price",
-    // usermessage - total amount of tokens
-    "supply_message": "Total amount of tokens which will be in circulation",
+  	"token_name": "token name",
+      // table - row name - Total issued
+  	"total_issued": "Total issued",
+      // table - row name - Registered
+  	"registered": "Registered",
+     	// table - row name - Abbreviations
+  	"abbreviation": "Abbreviations",
+     	// title - Exchange Rate
+  	"exchange_rate": "Exchange Rate",
+     	// table - row name - Token Price
+  	"token_price": "Token Price",
+   	// usermessage - total amount of tokens
+   	"supply_message": "Total amount of tokens which will be in circulation",
     // field description - short description
     "description_message": "A short description of the purpose of the token",
     // field description - website url
@@ -624,15 +624,15 @@ export const messages = {
     // description - date/time pannel - End Date
     "end_date": "End Date",
     // confirm message - token spend
-    "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-    // userinfomation - token issue guide message - part 1
-    "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
+   	"token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
+   	// userinfomation - token issue guide message - part 1
+   	"token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
       by anyone who has at least 1024 TRX in their account.`,
     // userinfomation - token issue guide message - part 2
-    "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
-      Users can then participate within the participation period and exchange their TRX for tokens.`,
+    "token_issue_guide_message_2": `When a token is issued it will be shown on the token overview page.
+     Users can then participate within the participation period and exchange their TRX for tokens.`,
     // userinfomation - token issue guide message - part 3
-    "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
+    "token_issue_guide_message_3": `After issuing the token your account will receive the amount of tokens equal to the total supply.
       When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
       receive TRX equal to the specified exchange rate.`,
 

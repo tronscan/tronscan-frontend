@@ -316,7 +316,7 @@ export const messages = {
   "please_keep_in_mind": "请注意，您注册的账户地址只用于测试网，请勿通过钱包或交易所向测试网地址进行转账。",
   "tron_foundation": "波场基金会",
   "trx_for_testing": "在账户管理页面成功申请后，TRX将发送至您的测试账户。",
-  "dear_users,": "亲爱的用户,",
+  "dear_users": "亲爱的用户,",
   "finished": "结束",
   "token": "通证",
   "url": "url",

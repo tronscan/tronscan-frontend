@@ -328,7 +328,7 @@ export const messages = {
   "please_keep_in_mind": "Tieni presente che, dal momento che l'indirizzo dell'account registrato è utilizzato solo per testnet, non inviare TRX dal proprio portafoglio o exchange all'indirizzo dell'account di testnet. ",
   "tron_foundation": "Fondazione TRON",
   "trx_for_testing": "Una volta effettuata con successo la richiesta attraverso la gestione del tuo conto, una quantitá di TRX verrá inviata al tuo test conto",
-  "dear_users,": "Cari utenti,",
+  "dear_users": "Cari utenti,",
   "finished": "Finito",
   "token": "token",
   "url": "url",
