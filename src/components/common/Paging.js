@@ -9,18 +9,40 @@ export default class Paging extends React.PureComponent {
     super();
 
     this.state = {
-      page: 0,
+      page: 1,
+      pageSize:40,
+      pageSizeOptions:[20,40,60,80]
     };
   }
 
   changePage = (page) => {
+    this.setState({ page: page });
     let {onChange} = this.props;
-    onChange && onChange({ page });
+    let {pageSize}=this.state;
+    onChange && onChange(page,pageSize);
   };
-
+  changePageSize = (pageSize) => {
+    this.setState({ pageSize: pageSize },() => { this.changePage(1); });
+  };
+  enterPress = (e) => {
+    let event = e || window.event;
+    let {total} = this.props;
+    let {pageSize} = this.state;
+    let totalPages = Math.ceil(total / pageSize);
+    let page = event.target.value;
+    if(page <= 0){
+      page = 1;
+    }else if(page > totalPages){
+      page = totalPages;
+    }
+    if(e.keyCode == 13){
+      this.changePage(page);
+    }
+  }
   renderButton(text, page) {
     let {url} = this.props;
 
+    /*
     if (url) {
       return ({children}) => (
         <Link className="page-link" to={`${url}?page=${page}`}>
@@ -28,28 +50,30 @@ export default class Paging extends React.PureComponent {
         </Link>
       );
     } else {
+    */
       return ({children}) => (
         <a className="page-link" href="javascript:" onClick={() => this.changePage(page)}>
           {children}
         </a>
       );
-    }
+    /* }*/
   }
 
   render() {
 
-    let {page, total, pageSize, className, loading = false, ...props} = this.props;
+    let {total, className, loading = false, ...props} = this.props;
+    let {page, pageSize, pageSizeOptions} = this.state;
 
-    let totalPages = Math.floor(total / pageSize);
+    let totalPages = Math.ceil(total / pageSize);
     totalPages = totalPages <= 0 ? 1 : totalPages;
 
-    let showFirst = page === 0;
-    let showLast = !(totalPages > (page + 1));
+    let showFirst = page === 1;
+    let showLast = !(totalPages > page);
 
-    let FirstButton = this.renderButton(tu("first_page"), 0);
+    let FirstButton = this.renderButton(tu("first_page"), 1);
     let PreviousButton = this.renderButton(tu("previous_page"), page - 1);
     let NextButton = this.renderButton(tu("next_page"), page + 1);
-    let LastButton = this.renderButton(tu("last_page"), totalPages - 1);
+    let LastButton = this.renderButton(tu("last_page"), totalPages);
 
     return (
       <div className="d-flex">
@@ -74,7 +98,7 @@ export default class Paging extends React.PureComponent {
                 <span className="page-link no-hover" style={{padding: 13 }}>
                   <BarLoader/>
                 </span> :
-                <span className="page-link no-hover">{tu("page")} {page + 1} {tu("of")} {totalPages}</span>
+                <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.enterPress(event)}}  /> {tu("of")} {totalPages}</span>
             }
           </li>
         </ul>
@@ -92,6 +116,20 @@ export default class Paging extends React.PureComponent {
             </LastButton>
           </li>
         </ul>
+          <ul className="pagination p-0 my-0 mx-auto">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="page-link" id="btnGroupAddon">Page Size:</div>
+              </div>
+                <select onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
+                  {
+                    pageSizeOptions.map((size,index) => (
+                      <option key={index} value={size}>{size}</option>
+                    ))
+                  }
+                  </select>
+              </div>
+          </ul>
       </div>
     );
   }

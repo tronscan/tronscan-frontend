@@ -599,3 +599,11 @@ tr a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.inputForPaging {
+  height: 25px;
+  width: 100px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  position: relative;
+}

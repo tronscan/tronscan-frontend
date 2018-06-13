@@ -19,9 +19,7 @@ export default class Transactions extends React.Component {
     this.state = {
       filter: {},
       transactions: [],
-      page: 0,
       total: 0,
-      pageSize: 25,
       emptyState: props.EmptyState || (
         <TronLoader>
           Loading Transactions
@@ -34,26 +32,24 @@ export default class Transactions extends React.Component {
     this.loadTransactions();
   }
 
-  onChange = ({page}) => {
-    this.loadTransactions(page);
+  onChange = (page,pageSize) => {
+    this.loadTransactions(page,pageSize);
   };
 
-  loadTransactions = async (page = 0) => {
+  loadTransactions = async (page = 1,pageSize=40) => {
 
     let {filter} = this.props;
-    let {pageSize} = this.state;
 
     this.setState({ loading: true });
 
     let {transactions, total} = await Client.getTransactions({
       sort: '-timestamp',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       ...filter,
     });
 
     this.setState({
-      page,
       transactions,
       total,
       loading: false,
@@ -62,7 +58,7 @@ export default class Transactions extends React.Component {
 
   render() {
 
-    let {transactions, page, total, pageSize, loading, EmptyState = null} = this.state;
+    let {transactions, total, loading, EmptyState = null} = this.state;
     let {theadClass = "thead-dark"} = this.props;
 
     if (!loading && transactions.length === 0) {
@@ -76,18 +72,17 @@ export default class Transactions extends React.Component {
 
     return (
       <StickyContainer>
-        {
-          total > pageSize &&
+
             <Sticky>
               {
                 ({style}) => (
                   <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                    <Paging onChange={this.onChange} total={total} loading={loading} pageSize={pageSize} page={page}/>
+                    <Paging onChange={this.onChange} total={total} loading={loading}/>
                   </div>
                 )
               }
             </Sticky>
-        }
+
         <table className="table table-hover m-0 border-top-0">
           <thead className={theadClass}>
           <tr>
