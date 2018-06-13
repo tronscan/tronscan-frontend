@@ -36,18 +36,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "OK",
+  // title - Tron protocol
   "app_title": "Tron protokollet",
+  // description of an input field  (enter the password)
   "password": "lösenord",
+  // description of a display field - price
   "money_price": "pris",
+  // description of a display field - price
+  "price": "pris",
+  // blockchain -> blocks - plural
   "blocks": "block",
+  // blockchain -> block - singular
   "block": "block",
+  // description of a display field - name
+  "name": "namn",
   "balance": "balans",
   "bandwidth": "bandbredd",
-  "name": "namn",
   "website": "hemsida",
   "address": "address",
-  "price": "pris",
   "sign_out": "logga ut",
   "sign_in": "logga in",
   "register_login": "Registrera / Logga in",
@@ -167,6 +175,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Skriv Namn",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Visa QR Kod",
   "free_bandwidth": "Gratis Bandbredd",
   "expires": "förfaller",
@@ -264,7 +275,6 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "Tokens namn",
-  "create_token": "Skapa Token",
   "token_message": "Namn för token",
   "abbr_message" : "Abbreviation för token",
   "description": "Beskrivning",

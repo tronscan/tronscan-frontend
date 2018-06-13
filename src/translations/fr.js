@@ -36,18 +36,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "OK",
+  // title - Tron protocol
   "app_title": "Protocole Tron",
+  // description of an input field  (enter the password)
   "password": "mot de passe",
+  // description of a display field - price
   "money_price": "prix",
+  // description of a display field - price
+  "price": "prix",
+  // blockchain -> blocks - plural
   "blocks": "blocs",
+  // blockchain -> block - singular
   "block": "bloc",
+  // description of a display field - name
+  "name": "nom",
   "balance": "solde",
   "bandwidth": "bande passante",
-  "name": "nom",
   "website": "website",
   "address": "adresse",
-  "price": "prix",
   "sign_out": "déconnexion",
   "sign_in": "connexion",
   "register_login": "Inscription / Connexion",
@@ -167,6 +175,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Définir le nom",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Afficher le QR Code",
   "free_bandwidth": "Bande passante libre",
   "expires": "expires",
