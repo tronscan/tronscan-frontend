@@ -34,7 +34,6 @@ export const MarketsAsync = asyncComponent({
   )
 });
 
-
 export const WalletWizardAsync = asyncComponent({
   LoadingComponent: () => (
     <TronLoader />
@@ -50,7 +49,6 @@ export const WalletWizardAsync = asyncComponent({
     )
   )
 });
-
 
 export const TransactionViewerAsync = asyncComponent({
   LoadingComponent: () => (
@@ -68,7 +66,6 @@ export const TransactionViewerAsync = asyncComponent({
   )
 });
 
-
 export const VoteOverviewAsync = asyncComponent({
   LoadingComponent: () => (
     <TronLoader />
@@ -84,7 +81,6 @@ export const VoteOverviewAsync = asyncComponent({
     )
   )
 });
-
 
 export const VoteLiveAsync = asyncComponent({
   LoadingComponent: () => (

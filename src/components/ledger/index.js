@@ -4,8 +4,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {Client} from "../../services/api";
 import LedgerSigner from "./LedgerSigner";
 import {connect} from "react-redux";
-import {injectIntl} from "react-intl";
-import {loadAccounts, loginWithAddress} from "../../actions/app";
+import {loginWithAddress} from "../../actions/app";
 
 const {ipcRenderer} = window.require('electron');
 
@@ -77,8 +76,6 @@ class Ledger extends Component {
   }
 }
 
-
-
 function mapStateToProps(state) {
   return {
 
@@ -88,6 +85,5 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loginWithAddress,
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ledger);

@@ -29,6 +29,7 @@ import NodeTester from "./components/tools/NodeTester";
 import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
+import OpenWallet from "./components/wallet/OpenWallet";
 
 export const routes = [
   {
@@ -258,6 +259,12 @@ export const routes = [
     label: "wallet",
     showInMenu: false,
     component: WalletWizardAsync,
+  },
+  {
+    path: "/wallet/open",
+    label: "open wallet",
+    showInMenu: false,
+    component: OpenWallet,
   },
   {
     path: "/",

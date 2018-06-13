@@ -9,7 +9,8 @@ import Lockr from "lockr";
 import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
-import Ledger from "./ledger/Index";
+import {IS_DESKTOP} from "../constants";
+import {LedgerAsync} from "./ledger/async";
 
 class MainWrap extends React.Component {
 
@@ -38,7 +39,7 @@ class MainWrap extends React.Component {
           <ConnectedRouter history={reduxHistory}>
             <React.Fragment>
               { flags.mobileLogin && <SignModal /> }
-              <Ledger/>
+              { IS_DESKTOP && <LedgerAsync/> }
               <Navigation/>
               <Content router={router} />
             </React.Fragment>
