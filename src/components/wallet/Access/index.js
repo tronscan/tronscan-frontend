@@ -59,7 +59,7 @@ class Index extends Component {
       default:
         return (
           <div className="text-center">
-            <h3 className="py-5 text-muted">Choose access method</h3>
+            <h3 className="py-5 text-muted">Choose a method to access your wallet</h3>
           </div>
         );
 

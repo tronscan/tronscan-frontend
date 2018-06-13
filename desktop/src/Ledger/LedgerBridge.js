@@ -75,15 +75,12 @@ class LedgerBridge {
       let {transaction} = JSON.parse(arg);
       let response = await this.signTransaction(transaction);
 
-      console.log("RESPONSE", response);
-
       this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
         hex: response,
       });
     });
 
     ipcMain.on(LEDGER_CONNECTION_CHECK, async () => {
-      console.log("GOT CONNECTION CHECK");
       try {
         let address = await this.getAddress();
         this.sendToWeb(LEDGER_CONNECTION_STATUS, {

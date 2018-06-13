@@ -384,6 +384,7 @@ class Navigation extends PureComponent {
                           {tu("open_wallet")}
                         </Link>
                       </li>
+                      <li className="dropdown-divider"/>
                       <li className="px-3">
                         <div className="form-group text-center">
                           <label>{tu("private_key")}</label>

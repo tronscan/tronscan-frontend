@@ -263,7 +263,7 @@ export const routes = [
   {
     path: "/wallet/open",
     label: "open wallet",
-    // showInMenu: false,
+    showInMenu: false,
     component: OpenWallet,
   },
   {
