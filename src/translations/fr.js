@@ -187,7 +187,7 @@ export const messages = {
     // subtitle - realtime information - current price per 1000 trx
     "pice_per_1000trx": "Price (per 1000TRX)",
     // hyperlink description - to vote for the super representatives
-    "vote_for_super_representatives": "Vote for Super Representatives",
+    "vote_for_super_representatives": "voter pour  Super Representatives",
     // hyperlink description - to view the super representatives
     "view_super_representatives": "View Super Representatives",
     // hyperlink description - to create a new wallet
@@ -265,9 +265,9 @@ export const messages = {
     // statusmessage
     "unique_account_message": "You may only set your account name once!",
     // button description
-    "change_name": "Change Name",
+    "change_name": "nom du changement",
     // placeholder message
-    "account_name": "Account Name",
+    "account_name": "nom du compte",
     // button description
     "show_qr_code": "Afficher le QR Code",
     // infomessage for the user
@@ -319,7 +319,7 @@ export const messages = {
     // errormessage - Not enough TRX to freeze
     "not_enough_trx": "Pas assez de TRX",
     // address title -> receive trx - TRX address
-    "send_to_following_address": "Send to the following address",
+    "send_to_following_address": "envoyez à l'adresse suivante",
 
 /*
 ##################################################################################
@@ -409,7 +409,7 @@ export const messages = {
     "trx_produced": "Transactions Produites",
     "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
     // button description - Go to votelist
-    "go_to_votelist": "Go to votelist",
+    "go_to_votelist": "aller à la liste de vote",
 
 /*
 ##################################################################################
@@ -421,7 +421,7 @@ export const messages = {
     // description of an input field - Name of the token
     "name_of_the_token": "Nom du jeton",
     // longdescription - additional userinfo - Name of the token
-    "token_message": "Name for the token",
+    "token_message": "Nom du token",
     // description of an input field - token Abbreviation
     "token_abbr": "abréviation du jeton",
     // longdescription - additional userinfo - token Abbreviation
@@ -471,13 +471,13 @@ export const messages = {
 ##################################################################################
 */
     // messagedialog - title
-    "buy_confirm_message_0": "Are you sure?",
+    "buy_confirm_message_0": "Vous êtes sûr ?",
     // messagedialog - maintext
-    "how_much_buy_message": "How much tokens do you want to buy?",
+    "how_much_buy_message": "Combien de jetons voulez-vous acheter ?",
     // infomessage - text module 1 - Are you sure you want to buy 1 <Tokenname> for 1 TRX
-    "buy_confirm_message_1": "Are you sure you want to buy",
+    "buy_confirm_message_1": "Vous êtes sûr de vouloir acheter ?",
     // infomessage - text module 1 - Are you sure you want to buy 1 <Tokenname> for 1 TRX
-    "for": "for",
+    "for": "à",
 
 /*
 ##################################################################################
@@ -487,9 +487,9 @@ export const messages = {
 ##################################################################################
 */
     // error message - incorrect trx address
-    "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
+    "address_warning": "Saisissez uniquement une adresse valide d'un portefeuille TRON. Des adresses incorrectes peuvent entraîner une perte de TRX.",
     // statusmessage - search for address or URL
-    "search_address_or_url": "Search for address or URL",
+    "search_address_or_url": "Recherche d'adresse ou d'URL",
     // statusmessage
     "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
     // statusmessage
@@ -509,11 +509,11 @@ export const messages = {
     // infomessage - loggin is required
     "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
     // confirm message - Thanks for applying!
-    "thanks_for_applying": "Thanks for applying!",
+    "thanks_for_applying": "Merci pour l’appliquation!",
     // errormessage - To many votes
-    "to_much_votes": "To much votes",
+    "to_much_votes": "Trop de votes",
     // errormessage - No TRX remaining
-    "no_trx_remaining": "No TRX remaining",
+    "no_trx_remaining": "Aucuns TRX restant",
     // statusmessage - Produced by TRX address
     "produced_by": "Produit par {witnessAddress}",
     // infomessage .. Show XXX more
