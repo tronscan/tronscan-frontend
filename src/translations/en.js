@@ -318,6 +318,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   // errormessage - Not enough TRX to freeze
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   // address title -> receive trx - TRX address
   "send_to_following_address": "Send to the following address",
 

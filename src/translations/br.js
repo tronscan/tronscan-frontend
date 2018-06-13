@@ -202,6 +202,7 @@ export const messages = {
   "trx_received": "TRX recebidos",
   "test_trx_temporarily_unavailable_message": "Rede de testes TRX temporariamente indisponível. Tente mais tarde.",
   "not_enough_trx": "Insuficiente TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################

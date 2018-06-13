@@ -201,6 +201,7 @@ export const messages = {
   "trx_received": "TRX دریافت شد",
   "test_trx_temporarily_unavailable_message": "تست تی آرایکس به طور موقت در دسترس نیست لطفا بعدا دوباره امتحان کنید",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################

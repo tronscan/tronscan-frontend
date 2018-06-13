@@ -275,7 +275,7 @@ export const messages = {
   // subtitle - statistic information eg. 2 Bandwidth
   "bandwidth": "Bandbreite",
   // subtitle - statistic information eg. 5 Balance
-  "balance": "Saldo",
+  "balance": "Guthaben",
   // subtitle - statistic information eg. 100 Tron Power
   "tron_power": "Tron Power",
   // title/headline of the table
@@ -318,6 +318,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX sind aktuell nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
   // errormessage - Not enough TRX to freeze
   "not_enough_trx": "Nicht ausreichend TRX",
+  "information_message_3": "Ihre Anfrage war erfolgreich.  Wenn Sie dennoch keine TRX erhalten haben, sind derzeit keine Test TRX verfügbar. Versuchen Sie es bitte zu einem  späteren Zeitpunkt erneut.",
   // address title -> receive trx - TRX address
   "send_to_following_address": "An folgende Adresse senden",
 
@@ -665,7 +666,7 @@ export const messages = {
   // errormessage - startdate < now
   "past_starttime_error": "Der Starttermin liegt in der Vergangenheit.",
   // statusmessage - no transactions available
-  "no_transactions": "Keine Transaktionen",
+  "no_transactions": "Keine Transaktionen vorhanden",
 
 /*
 ##################################################################################
