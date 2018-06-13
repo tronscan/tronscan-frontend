@@ -522,7 +522,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "node_tester_msg": "Insert the IP of you node to test GRPC connection",
+  "node_tester_msg": "Insert the IP of your node to test GRPC connection",
   "node_tester_stop": "Stop testing",
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Response Time",
