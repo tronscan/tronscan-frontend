@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-12062018-1                                                #
+#         Update Date: 12.06.2018                                                #
 #         Language: Chinese                                                      #
-#         Status: First Draft                                                    #
-#         Number of checks: 0                                                    #
+#         Status: Second Draft                                                   #
+#         Number of checks: 2                                                    #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -35,51 +35,59 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "ok": "OK",
-  "app_title": "Tron Protocol",
-  "password": "password",
-  "money_price": "price",
-  "blocks": "blocks",
-  "block": "block",
-  "balance": "balance",
-  "bandwidth": "bandwidth",
-  "name": "name",
-  "website": "website",
-  "address": "address",
-  "price": "price",
-  "sign_out": "sign out",
-  "sign_in": "sign in",
-  "register_login": "Register / Log-in",
-  "register": "register",
-  "login": "login",
-  "height": "height",
-  "age": "age",
-  "produced by": "produced by",
-  "bytes": "bytes",
-  "created": "created",
-  "Contract": "Contract",
-  "from": "from",
-  "to": "to",
-  "value": "value",
-  "total_accounts": "Total Accounts",
-  "submit": "submit",
-  "receive": "receive",
-  "supply": "supply",
-  "view": "view",
-  "view_all":"View all",
-  "create": "create",
-  "country": "region",
-  "send": "send",
-  "amount": "amount",
-  "my_vote": "my vote",
-  "submit_votes": "submit votes",
-  "accounts": "accounts",
-  "exchange": "Exchange",
-  "next" : "next",
-  "copied_to_clipboard": "Copied to clipboard",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  // button description - OK (confirm)
+  "ok": "确定",
+  // title - Tron protocol
+  "app_title": "波场协议",
+  // description of an input field  (enter the password)
+  "password": "密码",
+  // description of a display field - price
+  "money_price": "价格",
+  // description of a display field - price
+  "price": "价格",
+  // blockchain -> blocks - plural
+  "blocks": "区块",
+  // blockchain -> block - singular
+  "block": "区块",
+  // description of a display field - name
+  "name": "名称",
+  "balance": "余额",
+  "bandwidth": "带宽",
+  "website": "网址",
+  "address": "地址",
+  "sign_out": "退出",
+  "sign_in": "登录",
+  "register_login": "注册 / 登录",
+  "register": "注册",
+  "login": "登录",
+  "height": "高度",
+  "age": "年龄",
+  "produced by": "出块者",
+  "bytes": "字节",
+  "created": "创建时间",
+  "Contract": "合约",
+  "from": "发送人",
+  "to": "接收人",
+  "value": "价值",
+  "total_accounts": "总账户数量",
+  "submit": "提交",
+  "receive": "接收",
+  "supply": "持有量",
+  "view": "查看",
+  "view_all": "查看全部",
+  "create": "创建",
+  "country": "地区",
+  "send": "发送",
+  "amount": "数额",
+  "my_vote": "我的投票",
+  "submit_votes": "确认投票",
+  "accounts": "账户",
+  "exchange": "交易所",
+  "next": "下一步",
+  "copied_to_clipboard": "已复制到剪贴板",
+  "cancel": "取消",
+  "reset": "清零",
+  "error": "错误",
 
 /*
 ##################################################################################
@@ -88,24 +96,24 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "blockchain": "Blockchain",
-  "wallet": "Wallet",
-  "home": "Home",
-  "transfers": "Transfers",
-  "live": "Live",
-  "statistics": "Statistics",
-  "markets": "Markets",
-  "tools": "Tools",
-  "news": "News",
-  "help": "Help",
-  "nodes": "Nodes",
-  "votes": "Votes",
-  "account": "Account",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
-  "system": "System",
-  "overview": "Overview",
-  "participate": "Participate",
+  "blockchain": "区块链",
+  "wallet": "钱包",
+  "home": "主页",
+  "transfers": "转账",
+  "live": "实时",
+  "statistics": "数据",
+  "markets": "市场信息",
+  "tools": "工具",
+  "news": "新闻",
+  "help": "帮助",
+  "nodes": "节点",
+  "votes": "投票",
+  "account": "账户",
+  "transaction_viewer": "查看交易",
+  "node_tester": "测试节点",
+  "system": "系统",
+  "overview": "概况",
+  "participate": "参与",
 
 /*
 ##################################################################################
@@ -114,15 +122,15 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
-  "block_height": "Block Height",
-  "online_nodes": "Online Nodes",
-  "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_super_representatives": "Vote for Super Representatives",
-  "view_super_representatives": "View Super Representatives",
-  "create_new_wallet": "Create a new Wallet",
-  "view_tokens": "View Tokens",
+  "tron_main_message": "去中心化网络",
+  "transactions_last_hour": "过去一小时交易量",
+  "block_height": "区块高度",
+  "online_nodes": "线上节点",
+  "pice_per_1000trx": "价格（每1000TRX）",
+  "vote_for_supre_representatives": "为超级代表投票",
+  "view_super_representatives": "查看超级代表",
+  "create_new_wallet": "创建新钱包",
+  "view_tokens": "查看通证",
 
 /*
 ##################################################################################
@@ -131,19 +139,19 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "first_page": "first page",
-  "previous_page": "previous page",
-  "next_page": "next page",
-  "last_page": "last page",
-  "page": "page",
-  "of": "of",
-  "last_block": "last block",
-  "total_supply": "total supply",
-  "most_nodes": "Most Nodes",
-  "loading_nodes": "loading Nodes",
-  "Hostname": "Hostname",
-  "Last Update": "Last Update",
-  "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "first_page": "第一页",
+  "previous_page": "上一页",
+  "next_page": "下一页",
+  "last_page": "尾页",
+  "page": "第",
+  "of": "共",
+  "last_block": "上一区块",
+  "total_supply": "发行量",
+  "most_nodes": "最多节点",
+  "loading_nodes" : "加载中节点",
+  "Hostname": "主机名",
+  "Last Update": "最近一次更新",
+  "first_node_sync_message": "等待第一次节点同步，请几分钟后再次尝试。",
 
 /*
 ##################################################################################
@@ -152,11 +160,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "addresses": "addresses",
-  "trx_transferred_past_hour": "TRX transferred in the past hour",
-  "transactions_past_hour": "Transactions in the past hour",
-  "average_blocksize": "Average Block Size",
-  "rich_list": "Rich List",
+  "addresses": "地址",
+  "trx_transferred_past_hour": "过去一小时TRX转账额",
+  "transactions_past_hour": "过去一小时交易数目",
+  "average_blocksize": "平均区块大小",
+  "rich_list": "富豪榜",
 
 /*
 ##################################################################################
@@ -165,31 +173,34 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "set_name": "Set Name",
-  "show_qr_code": "Show QR Code",
-  "free_bandwidth": "Free Bandwidth",
-  "expires": "expires",
-  "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "When requesting TRX you will receive 10000 TRX which you can use for testing on the testnet.",
-  "information_message_2": "You may only request TRX 10 times per account.",
-  "request_trx_for_testing": "Request TRX for testing",
+  "set_name": "设置名称",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
+  "show_qr_code": "显示二维码",
+  "free_bandwidth": "免费带宽",
+  "expires": "失效",
+  "have_been_added_to_your_account": "已添加至账户！",
+  "information_message_1": "申请TRX后，您可以领取10000TRX，用于在测试网进行测试。",
+  "information_message_2": "每个账户只能领取10次TRX.",
+  "request_trx_for_testing": "申请测试TRX",
   "tron_power": "Tron Power",
-  "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
-  "transactions": "transactions",
-  "tokens": "tokens",
-  "token_balances": "token balances",
-  "produced_blocks": "produced blocks",
-  "voters": "voters",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
-  "progress": "progress",
+  "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
+  "transactions": "交易",
+  "tokens": "通证",
+  "token_balances": "通证余额",
+  "produced_blocks": "出块数目",
+  "voters": "选民",
+  "no_tokens": "无通证",
+  "issued_token": "已发行通证",
+  "progress": "进展",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
-  "issuer": "issuer",
-  "network": "network",
-  "current": "current",
-  "trx_received": "TRX received",
-  "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
-  "not_enough_trx": "Not enough TRX",
+  "issuer": "发行者",
+  "network": "网络",
+  "current": "当前",
+  "trx_received": "已接收TRX",
+  "test_trx_temporarily_unavailable_message": "暂时无法领取测试TRX,请稍后再试。",
+  "not_enough_trx": "TRX余额不足",
 
 /*
 ##################################################################################
@@ -198,19 +209,17 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
-  "frozen_supply": "Frozen Supply",
-  "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
-  "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
-   For example, with Tron Power you can `,
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
-   After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
-  "trx_amount": "TRX Amount",
-  "token_freeze_confirm_message_0": "I confirm to freeze ",
-  "token_freeze_confirm_message_1": "for at least of 3 days",
+   "freeze" : "冻结",
+  "unfreeze" : "解冻",
+  "frozen_supply": "冻结数额",
+  "freeze_trx_least": "至少需要1TRX才能成功冻结。",
+  "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
+  "freeze_trx_premessage_0": `再次冻结/锁定TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以为超级代表投票。`,
+  "freeze_trx_premessage_1": ` 冻结通证将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
+  "freeze_trx_premessage_link": "为超级代表投票。",
+  "trx_amount": "TRX数额",
+  "token_freeze_confirm_message_0": "确认冻结",
+  "token_freeze_confirm_message_1": "至少3天",
 
 /*
 ##################################################################################
@@ -219,47 +228,35 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "apply_for_delegate": "apply for delegate",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
-  "your_personal_website_address": "your personal website address",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
-   However, for the network and community to operate more smoothly and effectively,
-   we have created a set of standards and regulations for eligible candidates to become
-   recommended Super Representatives. We will promote recommended SRs to increase their
-   chances of being elected. New recommended Super Representatives are updated and posted once a week.`,
-  "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
-  "unknown_error": "an unknown error occurred",
-  "representative_understand": "I understand how to be a TRON representative",
-  "generate_account": "Click to generate your account address and password",
-  "create_account_confirm_1": "I understand that if I forget/lose my password I will never be able to access my assets",
-  "create_account_confirm_2": "I understand that if I forget/lose my password no one will be able to help me recover it",
-  "create_account_confirm_3": "I've written my password on paper",
-  "vote_thanks": "Thanks for submitting your vote!",
-  "recent_transactions": "recent transactions",
-  "newest_account": "newest account",
-  "representatives": "representatives",
-  "most_votes": "most votes",
-  "start_end_time": "Start / End Time",
-  "scan_qr_code": "Scan the code with a QR Code scanner",
-  "receive_trx": "receive TRX",
-  "require_account_to_send": "You must be logged in to send coins",
-  "require_account_to_receive": "You must be logged in to receive coins",
-  "successful_send": "Succesfully send!",
-  "confirm_transaction": "Confirm transaction",
-  "last_confirmed": "Last Confirmed",
-  "blocks_produced": "Blocks Produced",
-  "trx_produced": "Transactions Produced",
-  "blocks_missed": "Blocks Missed",
-  "do_not_send_1": "Do not send TRX from your own wallet or exchange to your testnet address!",
-  "go_to_votelist": "Go to votelist",
+  "apply_for_delegate": "申请成为超级代表",
+  "apply_super_representative_candidate": "申请成为超级代表候选人",
+  "your_personal_website_address": "个人网页地址",
+  "apply_for_delegate_predescription":`每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。`,
+  "apply_for_delegate_description": `每个代币持有者都可以通过账户管理页面，申请成为超级代表，或是为候选人投票。每个账户均可以更新投票人信息，可以为多个候选人投票。用户的最高投票数必须少于或者等于持有TRX的数量。（如果持有一定数量的TRX，投票数量则小于或等于相应的TRX数量。）投票结果以每名用户最终投票结果为准，每轮投票时间为00：00至24：00。票数最高的用户可以成为超级代表。波场网络中每个交易都需要经由所有超级代表验证，超级代表可以获得一定奖励。申请超级代表及为其投票不消耗TRX。`,
+  "unknown_error": "发生未知错误",
+  "representative_understand": "我已了解如何成为波场超级代表",
+  "generate_account": "点击生成账户密码及地址",
+  "create_account_confirm_1": "我已了解如果忘记或丢失密码，将不能登录账户查看资产。",
+  "create_account_confirm_2": "我已了解如果忘记或丢失密码，没有任何方式可以找回。",
+  "create_account_confirm_3": "我已经手写记录下密码。",
+  "vote_thanks": "感谢您的投票！",
+  "recent_transactions": "近期交易",
+  "newest_account": "最新账户",
+  "representatives": "超级代表",
+  "most_votes": "最高得票",
+  "start_end_time": "开始/结束时间",
+  "scan_qr_code": "扫描二维码",
+  "receive_trx": "接收TRX",
+  "require_account_to_send": "发送TRX请先登录账户",
+  "require_account_to_receive": "接收TRX请先登录账户",
+  "successful_send": "转账成功！",
+  "confirm_transaction": "确认交易",
+  "last_confirmed": "最终确定",
+  "blocks_produced": "出块数量",
+  "trx_produced": "生成交易数量",
+  "blocks_missed": "丢失区块数量",
+  "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
+  "go_to_votelist": "前往投票列表",
 
 /*
 ##################################################################################
@@ -268,33 +265,31 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "name_of_the_token": "Name of the token",
-  "create_token": "Create Token",
-  "token_message": "Name for the token",
-  "abbr_message": "Abbreviation for the token",
-  "description": "Description",
-  "description_url": "Description URL",
-  "quote_token_amount": "Quote Token Amount",
-  "base_token_amount": "Base Token Amount",
-  "creating_a_token": "Creating a token",
-  "available": "available",
-  "testnet": "Testnet",
-  "days_to_freeze": "Days to freeze",
-  "trx_token_fee_message": "1024 TRX is required to issue a new token",
-  "trx_token_account_limit": "You may create only one token per account",
-  "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
-  "invalid_address": "invalid address",
-  "insufficient_tokens": "Insufficient tokens",
-  "fill_a_valid_number": "Please fill a valid number",
-  "fill_a_valid_address": "Please fill a valid address",
-  "make_another_transaction": "Make another transaction",
-  "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
-  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "An unknown error occured, please try again in a few minutes",
-  "An_error_occurred": "An error occurred",
-  "create_a_token": "Create a token",
-  "not_started_yet": "Not started yet",
-  "participated": "You successfully participated!",
-  "participated_error": "An error occurred",
+  "name_of_the_token": "通证名称",
+  "create_token": "发行通证",
+  "token_message": "通证名称",
+  "abbr_message": "通证缩写",
+  "description": "描述",
+  "description_url": "网站URL",
+  "quote_token_amount": "二级通证数额",
+  "base_token_amount": "基本通证数额",
+  "creating_a_token": "发行通证",
+  "available": "可供购买",
+  "testnet": "测试网",
+  "days_to_freeze": "冻结天数",
+  "trx_token_fee_message": "发行新通证将花费1024TRX",
+  "trx_token_account_limit": "每个账户只能发行1种通证",
+  "trx_token_wallet_requirement": "发行通证需要首先打开钱包",
+  "invalid_address": "无效地址",
+  "insufficient_tokens": "通证不足",
+  "make_another_transaction": "发起其他交易",
+  "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证,总计获得{通证数额} 个代币.",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "发生未知错误，请几分钟后再次尝试",
+  "An_error_occurred": "发生错误",
+  "create_a_token": "发行通证",
+  "not_started_yet": "尚未开始",
+  "participated": "成功参与通证发行！",
+  "participated_error": "发生错误",
 
 /*
 ##################################################################################
@@ -303,10 +298,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "您想购买多少数量的通证？",
+  "buy_confirm_message_0": "是否确定购买？",
+  "buy_confirm_message_1": "是否确定要购买通证",
+  "for": "共计",
 
 /*
 ##################################################################################
@@ -315,34 +310,36 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "address_warning": "Only enter valid TRON wallet address. Incorrect addresses can lead to TRX loss.",
-  "search_address_or_url": "Search for address or URL",
-  "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
-  "tron_foundation": "TRON Foundation",
-  "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
-  "dear_users,": "Dear users,",
-  "finished": "Finished",
-  "token": "token",
+  "address_warning": "请输入正确的波场钱包地址，输入错误地址可能造成损失。",
+  "search_address_or_url": "查询地址或URL",
+  "the_lunch_test": "上线测试网的目的在于测试区块浏览器以及钱包的所有功能。",
+  "please_keep_in_mind": "请注意，您注册的账户地址只用于测试网，请勿通过钱包或交易所向测试网地址进行转账。",
+  "tron_foundation": "波场基金会",
+  "trx_for_testing": "在账户管理页面成功申请后，TRX将发送至您的测试账户。",
+  "dear_users,": "亲爱的用户,",
+  "finished": "结束",
+  "token": "通证",
   "url": "url",
-  "need_to_login": "You must be logged in to access to account page",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "No TRX remaining",
-  "produced_by": "Produced by {witnessAddress}",
-  "show_more": "Show {countriesLength} More",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives.
-   For every TRX you hold in your account you have one vote to spend.
-   TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
-  "search_address": "Search for address",
-  "token_transactions": "Token Transactions",
-  "token_holders": "Token Holders",
-  "nr_of_Transfers": "Nr. of Transfers",
-  "not_signed_in": "You will need to log in to make use of this functionality",
-  "quantity": "Quantity",
-  "percentage": "Percentage",
-  "loading_token": "Loading Token",
+  "need_to_login": "查看账户页面请先登录账户",
+  "thanks_for_applying": "感谢您的申请！",
+  "to_much_votes": "票数过多",
+  "no_trx_remaining": "无TRX余额",
+  "produced_by": "出块者：{超级代表地址}",
+  "show_more": "展示{国家长度} 更多内容",
+  "vote_guide_message": `使用TRX为超级代表投票。
+   每一个TRX享有一次投票机会。
+   投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
+   最终票数于每天24点统计并更新超级代表名单。`,
+  "search_address": "搜索地址",
+  "token_transactions": "通证交易",
+  "token_holders": "通证持有者",
+  "nr_of_Transfers": "转账数量",
+  "not_signed_in": "使用此功能请先登录账户",
+  "loading_map": "地图加载中",
+  "loading_accounts": "账户加载中",
+  "quantity": "数量",
+  "percentage": "百分比",
+  "loading_token": "通证加载中",
 
 /*
 ##################################################################################
@@ -351,13 +348,13 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_transactions_found": "No transactions found",
-  "no_tokens_found": "No tokens found",
-  "no_blocks_found": "No blocks found",
-  "no_votes_found": "No votes found",
-  "no_voters_found": "No voters found",
-  "waiting_for_transactions": "Waiting for transactions",
-  "loading_address": "Loading Address",
+  "no_transactions_found": "未查询到交易",
+  "no_tokens_found": "未查询到通证",
+  "no_blocks_found": "未查询到区块",
+  "no_votes_found": "未查询到投票",
+  "no_voters_found": "未查询到投票人",
+  "waiting_for_transactions": "等待交易结果",
+  "loading_address": "地址加载中",
 
 /*
 ##################################################################################
@@ -366,40 +363,36 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "details": "details",
-  "issue_a_token": "Issue a Token",
-  "issue_token": "Issue Token",
-  "token_name": "token name",
-  "token_abbr": "token Abbreviation",
-  "total_issued": "Total issued",
-  "registered": "Registered",
-  "abbreviation": "Abbreviations",
-  "exchange_rate": "Exchange Rate",
-  "token_price": "Token Price",
-  "supply_message": "Total amount of tokens which will be in circulation",
-  "description_message": "A short description of the purpose of the token",
-  "url_message": "A website where users can find more information about the token",
-  "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
-  "exchange_rate_message_1": "Participants will receive",
-  "exchange_rate_message_2": "for every",
+  "details": "详情",
+  "issue_a_token": "发行通证",
+  "issue_token": "发行通证",
+  "token_name": "通证名称",
+  "token_abbr": "通证缩写",
+  "total_issued": "认购量",
+  "registered": "注册日期",
+  "abbreviation": "缩写",
+  "exchange_rate": "汇率",
+  "token_price": "通证价格",
+  "supply_message": "进入流通的通证数量",
+  "description_message": "发行通证目的简述",
+  "url_message": "用户可以查询到更多通证信息的网站",
+  "exchange_rate_message_0" : "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
+  "exchange_rate_message_1": "参与者可以获得",
+  "exchange_rate_message_2": "每",
   "exchange_rate_message_3": "TRX",
-  "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
-  "participation_message_1": " tokens.",
-  "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-   days has been reached. Freezing supply is not required.`,
-  "token_issued_successfully": "Token successfully issued",
-  "participation": "participation",
-  "start_date": "Start Date",
-  "end_date": "End Date",
-  "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
-    by anyone who has at least 1024 TRX in their account.`,
-  "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
-    Users can then participate within the participation period and exchange their TRX for tokens.`,
-  "token_issue_guide_message_3":`After issuing the token your account will receive the amount of tokens equal to the total supply.
-    When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
-    receive TRX equal to the specified exchange rate.`,
+  "participation_message_0": "规定通证发行周期，在发行期间，参与者可以用TRX购买",
+  "participation_message_1": " 通证.",
+  "frozen_supply_message_0": `可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。`,
+  "token_issued_successfully": "通证发行成功！",
+  "participation": "参与",
+  "start_date": "开始日期",
+  "end_date": "结束时期",
+  "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
+  "token_issue_guide_message_1":`用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
+  "token_issue_guide_message_2":`通证发行后，会在通证总览页面进行显示。
+    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
+  "token_issue_guide_message_3":`在发行通证后，您的账户将会收到全部的发行数额。
+    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
 
 /*
 ##################################################################################
@@ -408,18 +401,18 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "date_error": "The end date is earlier or the same as the starting date",
-  "no_name_error": "Name is required",
-  "no_supply_error": "Total Supply must be at least 1",
-  "coin_value_error": "Token amount must be at least 1",
+  "date_error": "结束日期早于开始日期，或与开始日期相同",
+  "no_name_error": "请填写名称",
+  "no_supply_error": "发行总量至少为1",
+  "coin_value_error": "单位通证数量对应的TRX价值至少为1",
   "tron_value_error": "The amount of TRX per coin must be at least 1",
-  "invalid_starttime_error": "The provided starting date is invalid",
-  "invalid_endtime_error": "The provided ending date is invalid",
-  "no_description_error": "Description is required",
-  "no_url_error": "Web URL is required",
-  "past_starttime_error": "The starting date is in the past",
-  "no_transactions": "No Transactions",
-  "no_transfers": "No Transfers",
+  "invalid_starttime_error": "所填写的开始日期无效",
+  "invalid_endtime_error": "所填写的结束日期无效",
+  "no_description_error": "请填写描述",
+  "no_url_error": "请填写网站URL",
+  "past_starttime_error": "开始日期早于今日日期",
+  "no_transactions": "无交易",
+  "no_transfers": "无转账",
 
 /*
 ##################################################################################
@@ -428,15 +421,15 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Highest Productivity",
-  "Lowest Productivity": "Lowest Productivity",
-  "productivity": "productivity",
-  "rewards": "rewards",
-  "Super Representatives": "Super Representatives",
-  "Super Representative Candidates": "Super Representative Candidates",
-  "loading_representatives": "Loading Representatives",
-  "address_not_super_representative": "This address is not a Super Representative",
-  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "Highest Productivity": "出块效率最高y",
+  "Lowest Productivity": "出块效率最低",
+  "productivity": "效率",
+  "rewards": "奖励",
+  "Super Representatives": "超级代表",
+  "Super Representative Candidates": "超级代表候选人",
+  "loading_representatives": "超级代表加载中",
+  "address_not_super_representative": "本地址非超级代表",
+  "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
 
 /*
 ##################################################################################
@@ -445,12 +438,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "average_price_usd": "Average Price in USD",
-  "average_volume_usd": "Average Volume in USD",
-  "Trade Volume": "Trade Volume",
-  "rank": "rank",
-  "pair": "pair",
-  "volume": "Volume",
+  "average_price_usd": "平均价格（单位：美元）",
+  "average_volume_usd": "平均成交量（单位：美元）",
+  "Trade Volume": "交易量",
+  "rank": "排名",
+  "pair": "交易对",
+  "volume": "交易量",
 
 /*
 ##################################################################################
@@ -459,30 +452,30 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "next_round": "Next Round",
-  "total_votes": "Total Votes",
-  "most_ranks": "Most Ranks Gained This Round",
-  "view_live_ranking": "View Live Ranking",
-  "open_team_page": "Open Team Page",
-  "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
-  "account_page": "Account Page",
-  "loading_votes": "Loading Votes",
-  "3_day_ranking": "3 Days Ranking",
-  "live_ranking": "Live Ranking",
-  "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
-  "candidate": "Candidate",
-  "current_votes": "Current Votes",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "next_round": "下一轮投票",
+  "total_votes": "总票数",
+  "most_ranks": "排名上升最多",
+  "view_live_ranking": "查看实时排名",
+  "open_team_page": "查看团队页面",
+  "warning_votes": "投票需要至少1单位Tron Power，Tron Power 可以通过在(账户页面)冻结TRX获得。",
+  "account_page": "账户页面",
+  "loading_votes": "投票加载中",
+  "3_day_ranking": "三日投票排名",
+  "live_ranking": "实时排名",
+  "live_ranking_msg": "票数每15秒刷新，新增票数可能需要1-2分钟才会计入总票数。",
+  "candidate": "候选人",
+  "current_votes": "当前票数",
+  "click_to_start_voting": "点击进行投票",
+  "votes_remaining_message": "剩余票数",
+  "open_wallet_start_voting_message": "进入钱包开始投票",
+  "thanks_submitting_vote_message": "感谢您的投票!",
+  "need_min_trx_to_vote_message": "您至少需要持有1TRX才能开始投票",
+  "to_much_votes_massage": "投票数量过多!",
+  "all_votes_are_used_message": "您已用尽所有票数!",
+  "submissing_vote_message_title": "感谢您的投票!",
+  "submissing_vote_message_0": "您已投票成功，将会在新一轮投票中生效。",
+  "submissing_vote_message_1": "您可以随时重新分配您的票数",
+  "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
 
 /*
 ##################################################################################
@@ -491,18 +484,18 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "info_tx_viewer": "Here you can paste a transaction hex to inspect the contents of a transaction. The transaction can then be broadcasted to the network",
-  "load_tx": "Load Transaction",
-  "tx_qrcode": "Transaction QR Code",
-  "load_tx_qrcode": "Load Transaction from QR Code",
-  "transaction_load_error": "Transaction Load Error",
-  "transaction_load_error_message": "Something went wrong while trying to load the transaction. Make sure the HEX is in a correct format",
-  "transaction_success_message": "Transaction successfully broadcasted to the network",
-  "transaction_success": "Transaction Success",
-  "transaction_error_message": "Something went wrong while trying to broadcast the transaction",
-  "transaction_error": "Transaction Error",
-  "confirm_transaction_message": "Are you sure you want to send the transaction?",
-  "broadcast_transaction_to_network": "Broadcast Transaction to Network",
+  "info_tx_viewer": "在此处粘贴十六进制交易哈希值，查看交易内容，随后交易会进行全网广播。",
+  "load_tx": "上传交易",
+  "tx_qrcode": "交易二维码",
+  "load_tx_qrcode": "扫描二维码上传交易",
+  "transaction_load_error": "交易上传错误",
+  "transaction_load_error_message": "上传交易时发生错误，请确认交易哈希值格式正确",
+  "transaction_success_message": "交易广播成功",
+  "transaction_success": "交易成功",
+  "transaction_error_message": "广播交易过程中发生错误",
+  "transaction_error": "交易错误",
+  "confirm_transaction_message": "是否确认发送交易？",
+  "broadcast_transaction_to_network": "全网交易广播",
 
 /*
 ##################################################################################
@@ -511,12 +504,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "node_tester_msg": "Insert the IP of you node to test GRPC connection",
-  "node_tester_stop": "Stop testing",
-  "node_tester_test": "Test GRPC",
-  "node_tester_rt": "Response Time",
-  "confirmed_block": "Confirmed Block",
-  "loading": "loading...",
+  "node_tester_msg": "输入节点IP测试GRPC连接状况",
+  "node_tester_stop": "请停止测试",
+  "node_tester_test": "测试GRPC",
+  "node_tester_rt": "响应时间",
+  "confirmed_block": "已确认的区块",
+  "loading": "加载中",
 
 /*
 ##################################################################################
@@ -525,9 +518,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_webcam_found": "No webcam found",
-  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
-  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
+  "no_webcam_found": "未发现网络摄像头",
+  "trying_enable_webcam_message_0": "开启网络摄像头时发生错误。",
+  "trying_enable_webcam_message_1": "请确认摄像头权限已开启。",
 
 /*
 ##################################################################################
@@ -536,11 +529,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "what_is_tron": "What is TRON",
-  "tron_explorer_api": "Tron Explorer API",
-  "tron_architechure": "TRON Architecture",
-  "tron_protobuf_doc": "TRON Protobuf Documentation",
-  "report_an_error": "Submit a bug / suggestion",
+  "what_is_tron": "TRON是什么",
+  "tron_explorer_api": "波场浏览器API",
+  "tron_architechure": "波场架构",
+  "tron_protobuf_doc": "TRON Protobuf文档",
+  "report_an_error": "提交BUG/建议",
 
 /*
 ##################################################################################
@@ -549,29 +542,29 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "open_wallet": "Open Wallet",
-  "private_key": "Private Key",
-  "keystore_file": "Keystore File",
-  "select_file": "Select File",
-  "login_mobile": "Login with a mobile device",
-  "create_wallet": "create wallet",
-  "no_open_wallet": "No open wallet to view",
-  "new_wallet": "New Wallet",
-  "password_encr_key_message_0": "This password encrypts your private key. This does not act as a seed to generate your keys.",
-  "password_encr_key_message_1": "You will need this password and your private key to unlock your wallet.",
-  "strong_password_info": "A strong password is required",
-  "save_keystore_file": "Save Your Keystore File",
-  "download_keystore_file": "Download Encrypted Key",
-  "do_not_lose_it": "Do not lose it!",
-  "do_not_share_it": "Do not share it!",
-  "make_a_backup": "Make a backup!",
-  "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
-  "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
-  "make_a_backup_message_0": "Just in case your laptop is set on fire.",
-  "save_private_key": "Save Your Private Key",
-  "print_paper_wallet": "Print Paper Wallet",
-  "new_wallet_ready_message": "Your new wallet is ready",
-  "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
+  "open_wallet": "打开钱包",
+  "private_key": "私钥",
+  "keystore_file": "密钥库文件",
+  "select_file": "选择文档",
+  "login_mobile": "使用移动设备登录",
+  "create_wallet": "创建钱包",
+  "no_open_wallet": "未打开钱包以供查看",
+  "new_wallet": "新钱包",
+  "password_encr_key_message_0": "此密码用于加密私钥，不作为生成私钥的种子。",
+  "password_encr_key_message_1": "您需要使用此密码及私钥才能解锁钱包。",
+  "strong_password_info": "请使用高强度密码。",
+  "save_keystore_file": "保存私钥库文件",
+  "download_keystore_file": "下载密钥",
+  "do_not_lose_it": "请勿遗失！",
+  "do_not_share_it": "请勿向他人分享！",
+  "make_a_backup": "请制作备份！",
+  "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。",
+  "do_not_share_it_message_0": "如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。",
+  "make_a_backup_message_0": "以防您的电脑故障。",
+  "save_private_key": "请保管好您的私钥",
+  "print_paper_wallet": "打印纸钱包",
+  "new_wallet_ready_message": "新钱包已准备就绪",
+  "go_to_account_page": "进入账户页面",
+  "send_to_following_address": "对以下地址转账",
 
 };

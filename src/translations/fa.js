@@ -36,18 +36,26 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  // button description - OK (confirm)
   "ok": "متوجه شدم",
+  // title - Tron protocol
   "app_title": "Tron Protocol",
+  // description of an input field  (enter the password)
   "password": "رمز ورود",
+  // description of a display field - price
   "money_price": "قیمت پول",
+  // description of a display field - price
+  "price": "قیمت",
+  // blockchain -> blocks - plural
   "blocks": "بلوک ها",
+  // blockchain -> block - singular
   "block": "بلوک",
+  // description of a display field - name
+  "name": "نام",
   "balance": "مانده حساب",
   "bandwidth": "پهنای باند",
-  "name": "نام",
   "website": "وب سایت",
   "address": "آدرس",
-  "price": "قیمت",
   "sign_out": "خروج",
   "sign_in": "ورود",
   "register_login": "ثبت نام / ورود",
@@ -166,6 +174,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "تنظیم نام",
+  "unique_account_message": "You may only set your account name once!",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "نمایش کد QR",
   "free_bandwidth": "پهنای باند رایگان",
   "expires": "انقضاء",
