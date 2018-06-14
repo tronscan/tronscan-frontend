@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-14062018-1                                                #
+#         Update Date: 14.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: joelstahre                                               #
 #                                                                                #
 ##################################################################################
@@ -222,16 +222,16 @@ export const messages = {
   "token_freeze_confirm_message_0": "Jag bekräftar att frysa ",
   "token_freeze_confirm_message_1": "i minst 3 dagar",
   "tokens_unfrozen": "Tokens Unfrozen",
-  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "success_tokens_unfrozen_message": "Framgångsrikt frosna tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
-  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
-  "tokens_frozen": "Tokens Frozen",
-  "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
-  "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
-  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "Unable_tokens_unfrozen_message": "Kan inte frigöra tokens.",
+  "tokens_frozen": "Tokens Frosna",
+  "successfully_frozen": "Framfyllt med framgång",
+  "name_changed": "Namn ändrats",
+  "successfully_changed_name_to_message": "Namnet har ändrats till",
+  "unable_to_rename_title": "Kan inte byta namn",
+  "unable_to_rename_message": "Något gick fel när du uppdaterade ditt kontonamn, snälla försök igen senare",
+  "unfreeze_trx_confirm_message": "Är du säker på att du vill frigöra TRX?",
 
 /*
 ##################################################################################
@@ -318,10 +318,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    "how_much_buy_message": "How much tokens do you want to buy?",
-    "buy_confirm_message_0": "Are you sure?",
-    "buy_confirm_message_1": "Are you sure you want to buy",
-    "for": "for",
+    "how_much_buy_message": "Hur mycket tokens vill du köpa?",
+    "buy_confirm_message_0": "Är du säker?",
+    "buy_confirm_message_1": "Är du säker på att du vill köpa",
+    "for": "för",
 
 /*
 ##################################################################################
