@@ -86,9 +86,13 @@ export const messages = {
   "exchange": "Câmbio",
   "next": "Próximo",
   "copied_to_clipboard": "Copiado para a área de transferência",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "cancel": "Cancelar",
+  "reset": "Restabelecer",
+  "error": "Erro",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -175,9 +179,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Configurar Nome",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "Você só pode definir o nome da sua conta uma vez!",
+  "change_name": "Mude o nome",
+  "account_name": "Nome da conta",
   "show_qr_code": "Mostrar QR Code",
   "free_bandwidth": "Banda gratuita",
   "expires": "expira em",
@@ -201,7 +205,8 @@ export const messages = {
   "current": "atual",
   "trx_received": "TRX recebidos",
   "test_trx_temporarily_unavailable_message": "Rede de testes TRX temporariamente indisponível. Tente mais tarde.",
-  "not_enough_trx": "Not enough TRX",
+  "not_enough_trx": "Insuficiente TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -223,6 +228,17 @@ export const messages = {
   "trx_amount": "Quantidade de TRX",
   "token_freeze_confirm_message_0": "Eu confirmo o congelamento ",
   "token_freeze_confirm_message_1": "durante três dias, pelo menos",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -297,6 +313,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Você precisa abrir uma carteira para poder criar um token",
   "invalid_address": "endereço inválido",
   "insufficient_tokens": "Tokens insuficientes",
+  "fill_a_valid_number": "Por favor, preencha um número válido",
+  "fill_a_valid_address": "Por favor, preencha um endereço válido",
   "make_another_transaction": "Realizar outra transação",
   "token_exchange_confirm": "Eu confirmo para gastar {trxAmount} na emissão dos tokens e obter um total de {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ocorreu um erro desconhecido. Tente novamente em alguns minutos",
@@ -313,10 +331,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "Quanto fichas quer comprar?",
+  "buy_confirm_message_0": "Você tem certeza?",
+  "buy_confirm_message_1": "Tem certeza que quer comprar",
+  "for": "para",
 
 /*
 ##################################################################################
@@ -331,7 +349,7 @@ export const messages = {
   "please_keep_in_mind": "Lembre-se de que, como o endereço da sua conta registrada é usado apenas para o testnet, não envie o TRX da sua própria carteira ou troque para o endereço da conta testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "O TRX para testes será enviado para sua conta de teste assim que você aplicar com sucesso através do gerenciamento de contas.",
-  "dear_users,": "Caros usuários,",
+  "dear_users": "Caros usuários,",
   "finished": "Finalizado",
   "token": "token",
   "url": "url",
@@ -351,7 +369,7 @@ export const messages = {
   "nr_of_Transfers": "Nr. de transferências",
   "not_signed_in": "Você precisará fazer o login para usar essa funcionalidade",
   "loading_map": "Carregando Mapa",
-  "loading_accounts": "loading Accounts",
+  "loading_accounts": "Carregando contas",
   "quantity": "quantidade",
   "percentage": "Percentage",
   "loading_token": "Carregando Tokens",
@@ -434,8 +452,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Maior Produtividade",
-  "Lowest Productivity": "Menor Produtividade",
+  "highest_productivity": "Maior Produtividade",
+  "lowest_productivity": "Menor Produtividade",
   "productivity": "Produtividade",
   "rewards": "Ganhos",
   "Super Representatives": "Super Representantes",
@@ -478,16 +496,16 @@ export const messages = {
   "live_ranking_msg": "Recarrega a cada 15 segundos. Novos votos podem levar de 1 a 2 minutos até serem contabilizados",
   "candidate": "Candidato",
   "current_votes": "Votos atuais",
-  "click_to_start_voting": "Click here to Start Voting",
+  "click_to_start_voting": "Clique aqui para começar a votação",
   "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "open_wallet_start_voting_message": "Carteira aberta para começar a votar",
+  "thanks_submitting_vote_message": "Obrigado por enviar seu voto!",
   "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
   "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
+  "all_votes_are_used_message": "Todos os votos são usados!",
   "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
+  "submissing_vote_message_0": "Seus votos são enviados com sucesso, eles entrarão em vigor quando o próximo ciclo de votação começar.",
+  "submissing_vote_message_1": "Você pode redistribuir seus votos sempre que quiser",
   "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
 
 /*

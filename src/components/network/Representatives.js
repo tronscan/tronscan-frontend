@@ -119,7 +119,7 @@ class Representatives extends Component {
                   <h3 className="text-success">
                     <FormattedNumber value={mostProductive.productivity}/>%
                   </h3>
-                  {tu("Highest Productivity")}<br/>
+                  {tu("highest_productivity")}<br/>
                   <AddressLink address={mostProductive.address}>
                     {mostProductive.name || mostProductive.url}
                   </AddressLink>
@@ -134,7 +134,7 @@ class Representatives extends Component {
                   <h3 className="text-danger">
                     <FormattedNumber value={leastProductive.productivity}/>%
                   </h3>
-                  {tu("Lowest Productivity")}<br/>
+                  {tu("lowest_productivity")}<br/>
                   <AddressLink address={leastProductive.address}>
                     {leastProductive.name || leastProductive.url}
                   </AddressLink>

@@ -41,10 +41,10 @@ class Navigation extends PureComponent {
       search: "",
       searchType:'searchBlockNumber',
       searchTypes: {
-        searchBlockNumber:  'Block',
+        searchBlockNumber:  tu("block"),
         searchTxHash:       'TX',
         searchToken:        'Token',
-        searchAddress:      'Address',
+        searchAddress:      tu("address"),
       },
       popup: null,
       notifications: [],
@@ -107,12 +107,13 @@ class Navigation extends PureComponent {
           showCancel
           inputType="password"
           cancelBtnBsStyle="default"
-          title="Unlock KeyFile"
+          cancelBtnText={tu("cancel")}
+          title={tu("unlock_keyFile")}
           placeHolder="Password"
           onCancel={this.hideModal}
-          validationMsg="You must enter your password!"
+          validationMsg={tu("enter_password_message")}
           onConfirm={(password) => this.unlockKeyFile(password, contents)}>
-          Password
+          {tu("password")}
         </SweetAlert>
       )
     });
@@ -143,8 +144,9 @@ class Navigation extends PureComponent {
           <SweetAlert
             danger
             showCancel
-            title="Password Incorrect"
-            cancelBtnText="Try again"
+            title={tu("password_incorrect")}
+            cancelBtnBsStyle="default"
+            cancelBtnText={tu("try_again")}
             onCancel={() => this.openPasswordPrompt(contents)}
             onConfirm={this.hideModal} />
         )

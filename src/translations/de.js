@@ -122,6 +122,14 @@ export const messages = {
   "reset": "Zurücksetzen",
   // error message title - Error
   "error": "Fehler",
+  // statusmessage - Title
+  "unlock_keyFile": "Passwortdatei entschlüsseln",
+  // errormessage - no password entered
+  "enter_password_message": "Bitte geben Sie ein Passwort ein!",
+  // errormessage - wrong password
+  "password_incorrect":"falsches Passwort",
+  // button description - Try again
+  "try_again": "Erneut versuchen",
 
 /*
 ##################################################################################
@@ -263,7 +271,7 @@ export const messages = {
   // title/headline of the form
   "set_name": "Name definieren",
   // statusmessage
-  "unique_account_message": "You may only set your account name once!",
+  "unique_account_message": "Sie dürfen Ihren Kontonamen nur einmal vergeben!",
   // button description
   "change_name": "Change Name",
   // placeholder message
@@ -275,7 +283,7 @@ export const messages = {
   // subtitle - statistic information eg. 2 Bandwidth
   "bandwidth": "Bandbreite",
   // subtitle - statistic information eg. 5 Balance
-  "balance": "Saldo",
+  "balance": "Guthaben",
   // subtitle - statistic information eg. 100 Tron Power
   "tron_power": "Tron Power",
   // title/headline of the table
@@ -291,7 +299,7 @@ export const messages = {
   // infomessage - receive trx eg. 10 trx have been added to your account!
   "have_been_added_to_your_account": "wurden Ihrem Konto hinzugefügt!",
   // infomessage - Testnet informessage - receive 10000 TRX for testing
-  "information_message_1": "Wenn Sie TRX Testcoins anfordern erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
+  "information_message_1": "Wenn Sie TRX Testcoins anfordern, erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
   // infomessage - Testnet informessage - limitation
   "information_message_2": "Sie können TRX nur 10 Mal pro Konto anfordern.",
   // button description - Request TRX for testing
@@ -318,6 +326,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX sind aktuell nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
   // errormessage - Not enough TRX to freeze
   "not_enough_trx": "Nicht ausreichend TRX",
+  "information_message_3": "TRX wurde erfolgreich angefordert.  Wenn Sie dennoch keine TRX erhalten haben, sind derzeit keine Test TRX verfügbar. Versuchen Sie es bitte zu einem  späteren Zeitpunkt erneut.",
   // address title -> receive trx - TRX address
   "send_to_following_address": "An folgende Adresse senden",
 
@@ -335,7 +344,7 @@ export const messages = {
   // infomessage - description
   "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
   // errormessage - message text
-  "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die minimale Einfrierzeit noch nicht erreicht ist.",
+  "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die Mindestsperrdauer noch nicht überschritten ist.",
   // infomessage - text module 1
   "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
    Mit Tron Power können Sie zum Beispiel `,
@@ -352,6 +361,17 @@ export const messages = {
   "token_freeze_confirm_message_1": "für mindestens 3 Tage.",
   // table title - Frozen Supply
   "frozen_supply": "Eingefrorenes Guthaben",
+  "tokens_unfrozen": "Token freigeben/auftauen",
+  "success_tokens_unfrozen_message": "Die Token wurden erfolgreich aufgetaut.",
+  "unable_to_unfreeze": "Freigabe nicht möglich",
+  "Unable_tokens_unfrozen_message": "Die Token können aktuell nicht aufgetaut werden.",
+  "tokens_frozen": "Token eingefroren",
+  "successfully_frozen": "Ihre TRX wurden erfolgreich eingefroren",
+  "name_changed": "Name geändert",
+  "successfully_changed_name_to_message": "Ihr Profilname wurde erfolgreich geändert in",
+  "unable_to_rename_title": "Namensänderung nicht möglich",
+  "unable_to_rename_message": "Beim Aktualisieren Ihres Kontonamens ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
+  "unfreeze_trx_confirm_message": "Sind Sie sicher, dass Sie TRX auftauen wollen?",
 
 /*
  ##################################################################################
@@ -501,7 +521,7 @@ export const messages = {
   // statusmessage
   "trx_for_testing": "Sobald Sie sich erfolgreich mit Ihrem Profil angemeldet haben können Sie die TRX-Token für das Testnetzwerk verwenden.",
   // statusmessage
-  "dear_users,": "Sehr geehrte Benutzer,",
+  "dear_users": "Sehr geehrte Benutzer,",
   // field information  - fin
   "finished": "Abgeschlossen",
   // field information  - token
@@ -626,13 +646,13 @@ export const messages = {
   "end_date": "End Datum",
   // confirm message - token spend
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
-  // userinfomation - token issue guide message - part 1  
+  // userinfomation - token issue guide message - part 1
   "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
   // userinfomation - token issue guide message - part 2
   "token_issue_guide_message_2":`Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
    Die Benutzer können innerhalb des definierten Zeitraums teilnehmen und ihre TRX gegen Token eintauschen.`,
-  // userinfomation - token issue guide message - part 3  
+  // userinfomation - token issue guide message - part 3
   "token_issue_guide_message_3":`Nach der Erstellung des Token werden Ihnen diese auf Ihrem Konto gugeschrieben.
     Wenn Benutzer TRX gegen den von Ihnen erstellen Token eintauschen, erhalten Sie den entsprechenden Gegenwert
     auf Ihrem Konto Gutgeschrieben. Gleichzeitig werden Ihnen die Token abgezogen.`,
@@ -665,7 +685,7 @@ export const messages = {
   // errormessage - startdate < now
   "past_starttime_error": "Der Starttermin liegt in der Vergangenheit.",
   // statusmessage - no transactions available
-  "no_transactions": "Keine Transaktionen",
+  "no_transactions": "Keine Transaktionen vorhanden",
 
 /*
 ##################################################################################
@@ -675,9 +695,9 @@ export const messages = {
 ##################################################################################
 */
   // statistic dialog - Highest Productivity eg. tron node XXX Highest Productivity
-  "Highest Productivity": "Höchste Produktivität",
+  "highest_productivity": "Höchste Produktivität",
   // statistic dialog - Highest Productivity eg. tron node YYY Lowest Productivity
-  "Lowest Productivity": "Niedrigste Produktivität",
+  "lowest_productivity": "Niedrigste Produktivität",
   // title name - SR
   "Super Representatives": "Super Repräsentant",
   // title name - SRC

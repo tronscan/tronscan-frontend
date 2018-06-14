@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018-2                                                #
+#         Version: 1.2-13062018-2                                                #
 #         Update Date: 11.06.2018                                                #
 #         language: Spanish                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "Cancelar",
   "reset": "Reiniciar",
   "error": "falla",
+  "unlock_keyFile": "Desbloquear KeyFile",
+  "enter_password_message": "Debe introducir su contraseña!",
+  "password_incorrect":"Contraseña incorrecta",
+  "try_again": "Inténtelo de nuevo",
 
 /*
 ##################################################################################
@@ -128,7 +132,7 @@ export const messages = {
   "block_height": "Altura de Bloque",
   "online_nodes": "Nodos en línea",
   "pice_per_1000trx": "Precio (por cada 1000TRX)",
-  "vote_for_super_representatives": "Vote por los Super Representantes",
+  "vote_for_supre_representatives": "Votar a los Súper Representantes",
   "view_super_representatives": "Ver Super Representantes",
   "create_new_wallet": "Crear Cartera",
   "view_tokens": "Ver Tokens",
@@ -142,14 +146,14 @@ export const messages = {
 */
   "first_page": "primera página",
   "previous_page": "página anterior",
-  "next_page": "siguiente página",
+  "next_page": "página siguiente",
   "last_page": "última página",
   "page": "página",
   "of": "de",
   "last_block": "último bloque",
   "total_supply": "suministro total",
   "most_nodes": "Mayoría de Nodos",
-  "loading_nodes" : "cargando Nodes",
+  "loading_nodes" : "cargando Nodos",
   "Hostname": "Nombre del host",
   "Last Update": "Última actualización",
   "first_node_sync_message": "Esperando a la sincronización del primer nodo, por favor inténtalo de nuevo en unos minutos.",
@@ -162,10 +166,10 @@ export const messages = {
 ##################################################################################
 */
   "addresses": "addresses",
-  "trx_transferred_past_hour": "Se ha intentado transferir TRX a una hora pasada",
-  "transactions_past_hour": "Se ha intentado hacer transacciones a una hora pasada",
+  "trx_transferred_past_hour": "TRX transferidos en la última hora",
+  "transactions_past_hour": "Transacciones realizadas en la última hora",
   "average_blocksize": "Tamaño promedio de bloque",
-  "rich_list": "Rich List",
+  "rich_list": "Riqueza",
 
 /*
 ##################################################################################
@@ -175,9 +179,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Escriba su nombre",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "Sólo puede establecer el nombre de su cuenta una vez!",
+  "change_name": "Cambiar Nombre",
+  "account_name": "Nombre de la cuenta",
   "show_qr_code": "Mostrar código QR",
   "free_bandwidth": "Ancho de banda disponible",
   "expires": "caduca",
@@ -202,6 +206,7 @@ export const messages = {
   "trx_received": "TRX recibidos",
   "test_trx_temporarily_unavailable_message": "No es posible realizar pruebas con TRX temporalmente. Por favor, inténtelo de nuevo más tarde.",
   "not_enough_trx": "No hay suficiente TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -223,6 +228,17 @@ export const messages = {
   "trx_amount": "Cantidad TRX",
   "token_freeze_confirm_message_0": "Acepto congelar",
   "token_freeze_confirm_message_1": "durante 3 días",
+  "tokens_unfrozen": "Descongelar Tokens",
+  "success_tokens_unfrozen_message": "Tokens descongelados con éxito",
+  "unable_to_unfreeze": "No fue posible descongelar",
+  "Unable_tokens_unfrozen_message": "No fue posible descongelar Tokens.",
+  "tokens_frozen": "Congelar Tokens",
+  "successfully_frozen": "Congelados con éxito",
+  "name_changed": "Nombre cambiado",
+  "successfully_changed_name_to_message": "El nombre se cambió correctamente a",
+  "unable_to_rename_title": "No se pudo cambiar el nombre",
+  "unable_to_rename_message": "Algo salió mal al actualizar el nombre de su cuenta, por favor, inténtelo de nuevo más tarde",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -244,7 +260,7 @@ export const messages = {
    (Si tiene una cierta suma de TRX, puede votar menos o igual a tantos TRX posea).
    El resultado de los votos se calculará en función de la información del votante de cada cuenta en su correspondiente ciclo de votación,
    de 00:00h a 24:00h. Quien posea TRX y cuente con un mayor número de votos será elegido como Súper Representante.
-   Todas las transacciones realizadas en la red deben ser validadas por todos los Súper Representante y además se otorgarán bonificaciones.
+   Todas las transacciones realizadas en la red deben ser validadas por todos los Súper Representantes y además se otorgarán bonificaciones.
    No se gastarán TRX en la solicitud a Súper Representante ni en la votación de los mismos.`,
   "unknown_error": "se produjo un error desconocido",
   "representative_understand": "Entiendo cómo ser un representante de TRON",
@@ -295,6 +311,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Necesita abrirse una cartera para crear un Token",
   "invalid_address": "dirección inválida",
   "insufficient_tokens": "Tokens insuficientes",
+  "fill_a_valid_number": "Por favor, introduzca un número válido",
+  "fill_a_valid_address": "Por favor, introduzca una dirección válida",
   "make_another_transaction": "Realizar otra transacción",
   "token_exchange_confirm": "Acepto gastar {trxAmount} en la distribución de Tokens, y obtener un total de {tokenAmount} Tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Se produjo un error desconocido. Inténtelo de nuevo en unos minutos.",
@@ -329,7 +347,7 @@ export const messages = {
   "please_keep_in_mind": "Tenga en cuenta que, dado que la dirección de su cuenta registrada solo se usa con fines de realizar pruebas, no envíe TRX desde su cartera o Exchange a la dirección de la cuenta de la red de pruebas.",
   "tron_foundation": "Fundación TRON",
   "trx_for_testing": "Se le enviará TRX para realizar pruebas a su cuenta una vez que los solicite en el apartado de gestión de cuentas.",
-  "dear_users,": "Estimados usuarios,",
+  "dear_users": "Estimados usuarios,",
   "finished": "Terminado",
   "token": "token",
   "url": "url",
@@ -436,8 +454,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Más productivo",
-  "Lowest Productivity": "Menos productivo",
+  "highest_productivity": "Más productivo",
+  "lowest_productivity": "Menos productivo",
   "productivity": "productividad",
   "rewards": "recompensas",
   "Super Representatives": "Súper Representantes",

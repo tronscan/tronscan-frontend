@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "Annuler",
   "reset": "Réinitialiser",
   "error": "Erreur",
+  "unlock_keyFile": "Déverrouiller le KeyFile",
+  "enter_password_message": "Vous devez entrer votre mot de passe !",
+  "password_incorrect":"Mot de passe incorrect",
+  "try_again": "Essayez à nouveau",
 
 /*
 ##################################################################################
@@ -124,11 +128,11 @@ export const messages = {
 ##################################################################################
 */
   "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
+  "transactions_last_hour": "Transactions de l'heure passée",
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_super_representatives": "Vote for Super Representatives",
+  "vote_for_super_representatives": "voter pour Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Créer un nouveau portefeuille",
   "view_tokens": "Afficher les jetons",
@@ -149,7 +153,7 @@ export const messages = {
   "last_block": "dernier bloc",
   "total_supply": "offre totale",
   "most_nodes": "Le plus de nœuds",
-  "loading_nodes": "loading Nodes",
+  "loading_nodes": "nœuds de chargement",
   "Hostname": "Hôte",
   "Last Update": "Dernière MAJ",
   "first_node_sync_message": "En attente de la synchronisation du premier noeud, veuillez réessayer dans quelques minutes.",
@@ -164,7 +168,7 @@ export const messages = {
   "addresses": "adresses",
   "trx_transferred_past_hour": "TRX transférés dans l'heure passée",
   "transactions_past_hour": "Transactions dans l'heure passée",
-  "average_blocksize": "Average Block Size",
+  "average_blocksize": "Taille de bloc moyenne",
   "rich_list": "Rich List",
 
 /*
@@ -176,8 +180,8 @@ export const messages = {
 */
   "set_name": "Définir le nom",
   "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "change_name": "nom du changement",
+  "account_name": "nom du compt",
   "show_qr_code": "Afficher le QR Code",
   "free_bandwidth": "Bande passante libre",
   "expires": "expires",
@@ -202,6 +206,7 @@ export const messages = {
   "trx_received": "TRX reçu",
   "test_trx_temporarily_unavailable_message": "Test TRX est temporairement indisponible. Veuillez réessayer plus tard.",
   "not_enough_trx": "Pas assez de TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -218,9 +223,20 @@ export const messages = {
   "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du Tron Power et activer des fonctionnalités supplémentaires. Par exemple, avec Tron Power vous pouvez",
   "freeze_trx_premessage_1": "Les jetons gelés sont verrouillés pour une période de 3 jours. Durant cette période, les TRX gelés ne peuvent pas être échangé. Après cette période, vous pouvez débloquer les TRX et échanger les jetons.",
   "freeze_trx_premessage_link": "vote pour les Super Représentants.",
-  "trx_amount": "TRX Amount",
-  "token_freeze_confirm_message_0": "I confirm to freeze ",
-  "token_freeze_confirm_message_1": "for at least of 3 days",
+  "trx_amount": "TRX quantité",
+  "token_freeze_confirm_message_0": "Je confirme de geler ",
+  "token_freeze_confirm_message_1": "pendant au moins 3 jours",
+  "tokens_unfrozen": "Jeton Dégelé",
+  "success_tokens_unfrozen_message": "Des jetons dégelés avec succès",
+  "unable_to_unfreeze": "Impossible à débloquer",
+  "Unable_tokens_unfrozen_message": "Impossible de débloquer les jetons.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successivement frozen",
+  "name_changed": "Changement de nom",
+  "successfully_changed_name_to_message": "A changé de nom avec succès pour devenir",
+  "unable_to_rename_title": "Impossible de renommer",
+  "unable_to_rename_message": "Quelque chose a mal tourné lors de la mise à jour de votre nom de compte, veuillez réessayer plus tard",
+  "unfreeze_trx_confirm_message": "Vous êtes sûr de vouloir débloquer le TRX ?",
 
 /*
 ##################################################################################
@@ -269,7 +285,7 @@ export const messages = {
   "trx_produced": "Transactions Produites",
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
-  "go_to_votelist": "Go to votelist",
+  "go_to_votelist": "aller à la liste de vote",
 
 /*
 ##################################################################################
@@ -280,7 +296,7 @@ export const messages = {
 */
   "name_of_the_token": "Nom du jeton",
   "create_token": "Créer un jeton",
-  "token_message": "Name for the token",
+  "token_message": "Nom du token",
   "abbr_message": "Abbreviation for the token",
   "description": "Description",
   "description_url": "Url de la description",
@@ -295,6 +311,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Vous avez besoin d'un portefeuille ouvert pour pouvoir créer un token",
   "invalid_address": "adresse invalide",
   "insufficient_tokens": "Nombre de jetons insuffisant",
+  "fill_a_valid_number": "Veuillez saisir un numéro valide",
+  "fill_a_valid_address": "Veuillez indiquer une adresse valide",
   "make_another_transaction": "Faire une autre transaction",
   "token_exchange_confirm": "Je confirme l'envoi de {trxAmount}. Je reçois en retour {tokenAmount}.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Une erreur inconnue s'est produite, veuillez réessayer dans quelques minutes",
@@ -311,10 +329,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "Ombien de jetons voulez-vous acheter ??",
+  "buy_confirm_message_0": "Vous êtes sûr ?",
+  "buy_confirm_message_1": "Vous êtes sûr de vouloir acheter",
+  "for": "à",
 
 /*
 ##################################################################################
@@ -326,14 +344,14 @@ export const messages = {
   "please_keep_in_mind": "Veuillez gardez à l'esprit, que puisque votre adresse de compte enregistrée est utilisée uniquement pour le testnet, ne pas envoyeer de TRX de votre portefeuille ou un site d'échange vers le testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "Les TRX pour les tests seront envoyés à votre compte de test une fois que vous aurez fait la demande puis l'écran de gestion de compte.",
-  "dear_users,": "Chers utilisateurs,",
+  "dear_users": "Chers utilisateurs,",
   "finished": "Terminé",
   "token": "token",
   "url": "url",
   "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "No TRX remaining",
+  "thanks_for_applying": "Merci pour l’appliquation!",
+  "to_much_votes": "Trop de votes",
+  "no_trx_remaining": "Aucuns TRX restant",
   "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
   "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
@@ -348,8 +366,9 @@ export const messages = {
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
   "quantity": "quantity",
-  "percentage": "Percentage",
+  "percentage": "Pourcentage",
   "loading_token": "Loading Token",
+  "search_address_or_url": "Recherche d'adresse ou d'URL",
 
 /*
 ##################################################################################
@@ -364,7 +383,7 @@ export const messages = {
   "no_votes_found": "Aucun vote trouvé",
   "no_voters_found": "Aucun électeur trouvé",
   "waiting_for_transactions": "En attente de transactions",
-  "loading_address": "Loading Address",
+  "loading_address": "Chargement de l'adresse",
 
 /*
 ##################################################################################
@@ -435,8 +454,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Productivité la plus élevée",
-  "Lowest Productivity": "Productivité la plus faible",
+  "highest_productivity": "Productivité la plus élevée",
+  "lowest_productivity": "Productivité la plus faible",
   "productivity": "productivité",
   "rewards": "récompenses",
   "Super Representatives": "Super Représentants",
@@ -579,6 +598,6 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
+  "send_to_following_address": "envoyez à l'adresse suivante",
 
 };

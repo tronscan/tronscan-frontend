@@ -37,7 +37,7 @@ export default class TestNetWarning extends React.Component {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-body">
-                <p>{tu("dear_users,")}</p>
+                <p>{tu("dear_users")}</p>
                 <p>{tu("the_lunch_test")}</p>
                 <p>
                   <span className="font-weight-bold text-danger pr-1">
