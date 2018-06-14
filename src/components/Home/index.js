@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {doSearch} from "../../services/search";
+import {doSearch, getSearchType} from "../../services/search";
 import {clearConstellations, constellationPreset} from "../../lib/constellation/constellation";
 import CountUp from 'react-countup';
 import {Client} from "../../services/api";
@@ -65,21 +65,9 @@ class Home extends Component {
 
   doSearch = async () => {
     let {search} = this.state;
-    let type;
-    if(isAddressValid(search)){
-      type='searchAddress';
-    }
-    else if(!isNaN(Number(search))){
-      type='searchBlockNumber';
-    }
-    else if(search.length===64){
-      type='searchTxHash';
-    }
-    else
-      type='searchToken';
+    let type = getSearchType(search);
 
-
-    let result = await doSearch(search,type);
+    let result = await doSearch(search, type);
     if (result !== null) {
       this.setState({
         hasFound: true,
@@ -101,7 +89,7 @@ class Home extends Component {
 
       toastr.warning('Warning', 'Record not found!');
     }
-  };
+  }
 
   onSearchKeyDown = (ev) => {
     if (ev.keyCode === KEY_ENTER) {

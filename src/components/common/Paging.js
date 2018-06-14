@@ -1,9 +1,9 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {tu} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
+import AutosizeInput from "react-input-autosize";
 import {connect} from "react-redux";
-import {loadTokens} from "../../actions/tokens";
+import {KEY_ENTER} from "../../utils/constants";
 
 class Paging extends React.PureComponent {
 
@@ -11,9 +11,12 @@ class Paging extends React.PureComponent {
     super();
     this.state = {
       page: 1,
+      pageValue: 1,
       pageSize:40,
       pageSizeOptions:[20,40,60,80]
     };
+
+    this.pageInput = React.createRef();
   }
 
   changePage = (page) => {
@@ -22,24 +25,42 @@ class Paging extends React.PureComponent {
     let {pageSize}=this.state;
     onChange && onChange(page,pageSize);
   };
+
   changePageSize = (pageSize) => {
-    this.setState({ pageSize: pageSize },() => { this.changePage(1); });
+    this.setState({pageSize: pageSize}, () => {
+      this.changePage(1);
+    });
   };
-  enterPress = (e) => {
-    let event = e || window.event;
+
+  onKeyDown = (e) => {
+    let {pageValue} = this.state;
+
+    if (e.keyCode === KEY_ENTER) {
+      this.changePage(pageValue);
+    }
+  };
+
+  setPage = (page) => {
     let {total} = this.props;
     let {pageSize} = this.state;
     let totalPages = Math.ceil(total / pageSize);
-    let page = parseInt(event.target.value);
-    if(page <= 0){
+
+    page = parseInt(page);
+
+    if (isNaN(page))
       page = 1;
-    }else if(page > totalPages){
+
+    if (page <= 0) {
+      page = 1;
+    } else if (page > totalPages) {
       page = totalPages;
     }
-    if(e.keyCode == 13){
-      this.changePage(page);
-    }
-  }
+
+    this.setState({
+      pageValue: page,
+    });
+  };
+
   renderButton(page) {
     let {url} = this.props;
 
@@ -63,7 +84,7 @@ class Paging extends React.PureComponent {
   render() {
 
     let {total, className, loading = false} = this.props;
-    let {page, pageSize, pageSizeOptions} = this.state;
+    let {page, pageSize, pageSizeOptions, pageValue} = this.state;
 
     let totalPages = Math.ceil(total / pageSize);
     totalPages = totalPages <= 0 ? 1 : totalPages;
@@ -93,13 +114,27 @@ class Paging extends React.PureComponent {
           </li>
         </ul>
         <ul className="pagination p-0 my-0 mx-auto">
-          <li className="mx-auto page-item">
+          <li className="mx-auto page-item" onClick={() => this.pageInput.current.focus()}>
             {
               loading ?
                 <span className="page-link no-hover" style={{padding: 13 }}>
                   <BarLoader/>
                 </span> :
-                <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.enterPress(event)}}  /> {tu("of")} {totalPages}</span>
+                <span className="page-link">
+                  {tu("page")}{' '}
+                  <AutosizeInput
+                    ref={this.pageInput}
+                    className=""
+                    inputClassName="border-0"
+                    placeholder={page}
+                    value={pageValue}
+                    onBlur={() => this.changePage(pageValue)}
+                    onFocus={ev => ev.target.select()}
+                    onChange={e => this.setPage(e.target.value)}
+                    onKeyDown={this.onKeyDown} />{' '}
+                  {tu("of")}{' '}
+                  {totalPages}
+                </span>
             }
           </li>
         </ul>
@@ -117,11 +152,13 @@ class Paging extends React.PureComponent {
             </LastButton>
           </li>
         </ul>
-        <ul className="pagination p-0 my-0">
+        <ul className="pagination p-0 my-0 ml-1">
           <li className="page-item">
             <a className="page-link" href="javascript:">
-              <span className="d-none d-sm-inline-block" id="btnGroupAddon">{tu("page_size")}:</span>
-              <select className="ml-sm-2 selectForPaging" onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
+              <span className="d-none d-sm-inline-block">{tu("page_size")}:</span>
+              <select className="ml-sm-1"
+                      style={styles.pageSize}
+                      onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
                  {
                    pageSizeOptions.map((size,index) => (
                      <option key={index} value={size}>{size}</option>
@@ -135,6 +172,15 @@ class Paging extends React.PureComponent {
     );
   }
 }
+
+
+const styles = {
+  pageSize: {
+    border: 0,
+    backgroundColor: '#fff',
+  }
+};
+
 function mapStateToProps(state) {
   return {
     activeLanguage: state.app.activeLanguage,

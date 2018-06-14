@@ -15,7 +15,7 @@ import {AddressLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
 import {IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
-import {doSearch} from "../services/search"
+import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -39,15 +39,6 @@ class Navigation extends PureComponent {
     this.state = {
       privateKey: '',
       search: "",
-    /*
-      searchType:'searchBlockNumber',
-      searchTypes: {
-        searchBlockNumber:  tu("block"),
-        searchTxHash:       'TX',
-        searchToken:        'Token',
-        searchAddress:      tu("address"),
-      },
-    */
       popup: null,
       notifications: [],
     };
@@ -176,24 +167,14 @@ class Navigation extends PureComponent {
   doSearch = async () => {
 
     let {search} = this.state;
-    let type;
-    if(isAddressValid(search)){
-      type='searchAddress';
-    }
-    else if(!isNaN(Number(search))){
-      type='searchBlockNumber';
-    }
-    else if(search.length===64){
-      type='searchTxHash';
-    }
-    else
-      type='searchToken';
+    let type = getSearchType(search);
+
     let result = await doSearch(search, type);
     if (result === true) {
-      this.setState({search: "",});
+      this.setState({search: ""});
     } else if (result !== null) {
       window.location.hash = result;
-      this.setState({search: "",});
+      this.setState({search: ""});
     } else {
       toastr.warning('Warning', 'Record not found!');
     }
@@ -564,21 +545,6 @@ class Navigation extends PureComponent {
 
             <div className="ml-auto py-3 hidden-mobile nav-searchbar">
               <div className="input-group">
-                {
-                  /*
-                  <select
-                    className="form-control mr-1"
-                    style={styles.searchType}
-                    onChange={(ev) => this.setState({searchType: ev.target.value})}
-                    value={searchType}>
-                    {
-                    Object.entries(searchTypes).map(([type, label], index) => (
-                        <option key={index} value={type}>{label}</option>
-                    ))
-                    }
-                  </select>
-                 */
-                }
                 <input type="text"
                        className="form-control p-2 bg-white border-0 box-shadow-none"
                        style={styles.search}
