@@ -306,6 +306,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Du behöver öppna en plånbok för att kunna skapa en token",
   "invalid_address": "ogiltig adress",
   "insufficient_tokens": "otillräcklig med tokens",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "Gör en annan transaktion",
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",

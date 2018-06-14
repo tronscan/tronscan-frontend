@@ -311,6 +311,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Necesita abrirse una cartera para crear un Token",
   "invalid_address": "dirección inválida",
   "insufficient_tokens": "Tokens insuficientes",
+  "fill_a_valid_number": "Por favor, introduzca un número válido",
+  "fill_a_valid_address": "Por favor, introduzca una dirección válida",
   "make_another_transaction": "Realizar otra transacción",
   "token_exchange_confirm": "Acepto gastar {trxAmount} en la distribución de Tokens, y obtener un total de {tokenAmount} Tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Se produjo un error desconocido. Inténtelo de nuevo en unos minutos.",

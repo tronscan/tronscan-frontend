@@ -312,6 +312,8 @@ export const messages = {
   "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
   "invalid_address": "잘못된 주소",
   "insufficient_tokens": "불충분한 토큰",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "다른 거래 만들기",
   "token_exchange_confirm": "토큰 배포에 {trxAmount}를 사용하여, {tokenAmount}의 토큰을 얻었습니다.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "알 수 없는 오류가 발생했습니다. 몇 분 후에 다시 시도하십시오.",

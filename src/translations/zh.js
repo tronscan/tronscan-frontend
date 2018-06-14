@@ -298,6 +298,8 @@ export const messages = {
   "trx_token_wallet_requirement": "发行通证需要首先打开钱包",
   "invalid_address": "无效地址",
   "insufficient_tokens": "通证不足",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "发起其他交易",
   "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证,总计获得{通证数额} 个代币.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "发生未知错误，请几分钟后再次尝试",

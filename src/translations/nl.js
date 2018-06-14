@@ -314,6 +314,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Je dient een portemonee te hebben om een token te kunnen maken",
   "invalid_address": "ongeldig adres",
   "insufficient_tokens": "Onvoldoende tokens",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "Maak nog een transactie aan",
   "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Er is een onbekende fout opgetreden. Probeer het over enkele minuten nogmaals",

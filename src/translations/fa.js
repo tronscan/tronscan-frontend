@@ -310,6 +310,8 @@ export const messages = {
   "trx_token_wallet_requirement": "شما باید یک کیف پول باز کنید تا بتوانید یک توکن ایجاد کنید",
   "invalid_address": "آدرس غیر معتبر است",
   "insufficient_tokens": "عدم وجود توکن کافی",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "تراکنش دیگری انجام دهید",
   "token_exchange_confirm": "تایید تراکنش توکن",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
