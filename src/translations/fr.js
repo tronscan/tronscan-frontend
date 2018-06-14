@@ -54,7 +54,7 @@ export const messages = {
   "name": "nom",
   "balance": "solde",
   "bandwidth": "bande passante",
-  "website": "website",
+  "website": "site web",
   "address": "adresse",
   "price": "prix",
   "sign_out": "déconnexion",
