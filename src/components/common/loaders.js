@@ -5,7 +5,7 @@ const DEFAULT_COLOR = "#343a40";
 
 export function BarLoader(props = {}) {
     return (
-        <Spinners.BarLoader color={DEFAULT_COLOR} loading={true} height={5} width={150} {...props} />
+        <Spinners.BarLoader color={DEFAULT_COLOR} loading={true} height={5} width={60} {...props} />
     )
 }
 
