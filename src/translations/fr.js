@@ -124,11 +124,11 @@ export const messages = {
 ##################################################################################
 */
   "tron_main_message": "Decentralize the Web",
-  "transactions_last_hour": "Transactions last hour",
+  "transactions_last_hour": "Transactions de l'heure passée",
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_super_representatives": "voter pour  Super Representatives",
+  "vote_for_super_representatives": "voter pour Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Créer un nouveau portefeuille",
   "view_tokens": "Afficher les jetons",
@@ -149,7 +149,7 @@ export const messages = {
   "last_block": "dernier bloc",
   "total_supply": "offre totale",
   "most_nodes": "Le plus de nœuds",
-  "loading_nodes": "loading Nodes",
+  "loading_nodes": "nœuds de chargement",
   "Hostname": "Hôte",
   "Last Update": "Dernière MAJ",
   "first_node_sync_message": "En attente de la synchronisation du premier noeud, veuillez réessayer dans quelques minutes.",
@@ -164,7 +164,7 @@ export const messages = {
   "addresses": "adresses",
   "trx_transferred_past_hour": "TRX transférés dans l'heure passée",
   "transactions_past_hour": "Transactions dans l'heure passée",
-  "average_blocksize": "Average Block Size",
+  "average_blocksize": "Taille de bloc moyenne",
   "rich_list": "Rich List",
 
 /*
@@ -219,20 +219,20 @@ export const messages = {
   "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du Tron Power et activer des fonctionnalités supplémentaires. Par exemple, avec Tron Power vous pouvez",
   "freeze_trx_premessage_1": "Les jetons gelés sont verrouillés pour une période de 3 jours. Durant cette période, les TRX gelés ne peuvent pas être échangé. Après cette période, vous pouvez débloquer les TRX et échanger les jetons.",
   "freeze_trx_premessage_link": "vote pour les Super Représentants.",
-  "trx_amount": "TRX Amount",
-  "token_freeze_confirm_message_0": "I confirm to freeze ",
-  "token_freeze_confirm_message_1": "for at least of 3 days",
-  "tokens_unfrozen": "Tokens Unfrozen",
-  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
-  "unable_to_unfreeze": "Unable to unfreeze",
-  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "trx_amount": "TRX quantité",
+  "token_freeze_confirm_message_0": "Je confirme de geler ",
+  "token_freeze_confirm_message_1": "pendant au moins 3 jours",
+  "tokens_unfrozen": "Jeton Dégelé",
+  "success_tokens_unfrozen_message": "Des jetons dégelés avec succès",
+  "unable_to_unfreeze": "Impossible à débloquer",
+  "Unable_tokens_unfrozen_message": "Impossible de débloquer les jetons.",
   "tokens_frozen": "Tokens Frozen",
-  "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
-  "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
-  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "successfully_frozen": "Successivement frozen",
+  "name_changed": "Changement de nom",
+  "successfully_changed_name_to_message": "A changé de nom avec succès pour devenir",
+  "unable_to_rename_title": "Impossible de renommer",
+  "unable_to_rename_message": "Quelque chose a mal tourné lors de la mise à jour de votre nom de compte, veuillez réessayer plus tard",
+  "unfreeze_trx_confirm_message": "Vous êtes sûr de vouloir débloquer le TRX ?",
 
 /*
 ##################################################################################
@@ -360,7 +360,7 @@ export const messages = {
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
   "quantity": "quantity",
-  "percentage": "Percentage",
+  "percentage": "Pourcentage",
   "loading_token": "Loading Token",
   "search_address_or_url": "Recherche d'adresse ou d'URL",
 
@@ -377,7 +377,7 @@ export const messages = {
   "no_votes_found": "Aucun vote trouvé",
   "no_voters_found": "Aucun électeur trouvé",
   "waiting_for_transactions": "En attente de transactions",
-  "loading_address": "Loading Address",
+  "loading_address": "Chargement de l'adresse",
 
 /*
 ##################################################################################
