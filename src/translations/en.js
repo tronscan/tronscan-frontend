@@ -792,7 +792,7 @@ export const messages = {
 ##################################################################################
 */
   // field descritionp - enter a valid ip address
-  "node_tester_msg": "Insert the IP of you node to test GRPC connection",
+  "node_tester_msg": "Insert the IP of your node to test GRPC connection",
   // button description - to stop the test
   "node_tester_stop": "Stop testing",
   // button description - to start the test
