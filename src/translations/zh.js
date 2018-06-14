@@ -88,6 +88,10 @@ export const messages = {
   "cancel": "取消",
   "reset": "清零",
   "error": "错误",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################

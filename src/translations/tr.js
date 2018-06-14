@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "İptal",
   "reset": "Sıfırla",
   "error": "Hata",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################

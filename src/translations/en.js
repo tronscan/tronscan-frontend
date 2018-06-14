@@ -122,6 +122,14 @@ export const messages = {
   "reset": "Reset",
   // error message title - Error
   "error": "Error",
+  // statusmessage - Title
+  "unlock_keyFile": "Unlock KeyFile",
+  // errormessage - no password entered
+  "enter_password_message": "You must enter your password!",
+  // errormessage - wrong password
+  "password_incorrect":"Password Incorrect",
+  // button description - Try again
+  "try_again": "Try Again",
 
 /*
 ##################################################################################

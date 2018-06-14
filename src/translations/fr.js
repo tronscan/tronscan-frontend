@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "Annuler",
   "reset": "Réinitialiser",
   "error": "Erreur",
+  "unlock_keyFile": "Déverrouiller le KeyFile",
+  "enter_password_message": "Vous devez entrer votre mot de passe !",
+  "password_incorrect":"Mot de passe incorrect",
+  "try_again": "Essayez à nouveau",
 
 /*
 ##################################################################################

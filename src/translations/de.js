@@ -122,6 +122,14 @@ export const messages = {
   "reset": "Zurücksetzen",
   // error message title - Error
   "error": "Fehler",
+  // statusmessage - Title
+  "unlock_keyFile": "Passwortdatei entschlüsseln",
+  // errormessage - no password entered
+  "enter_password_message": "Bitte geben Sie ein Passwort ein!",
+  // errormessage - wrong password
+  "password_incorrect":"falsches Passwort",
+  // button description - Try again
+  "try_again": "Erneut versuchen",
 
 /*
 ##################################################################################
