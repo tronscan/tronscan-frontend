@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 import {tu} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
 import {connect} from "react-redux";
+import {loadTokens} from "../../actions/tokens";
 
-export default class Paging extends React.Component {
+class Paging extends React.PureComponent {
 
   constructor() {
     super();
-
     this.state = {
       page: 1,
       pageSize:40,
@@ -62,7 +62,7 @@ export default class Paging extends React.Component {
 
   render() {
 
-    let {total, className, loading = false, ...props} = this.props;
+    let {total, className, loading = false} = this.props;
     let {page, pageSize, pageSizeOptions} = this.state;
 
     let totalPages = Math.ceil(total / pageSize);
@@ -78,7 +78,7 @@ export default class Paging extends React.Component {
 
     return (
       <div className="d-flex">
-        <ul className={"pagination p-0 my-0 " + className} {...props}>
+        <ul className={"pagination p-0 my-0 " + className} >
           <li className={"page-item " + (showFirst && "invisible")}>
             <FirstButton>
               <i className="fas fa-fast-backward mr-sm-2" />
@@ -135,3 +135,14 @@ export default class Paging extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    activeLanguage: state.app.activeLanguage,
+  };
+}
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Paging);
