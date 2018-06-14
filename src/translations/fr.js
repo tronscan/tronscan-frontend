@@ -1,3 +1,4 @@
+
 export const messages = {
   /*
   ##################################################################################
@@ -516,7 +517,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-    "info_tx_viewer": "Vous pouvez coller un HEX de transaction pour consulter son contenu. La transaction peut ensuite être diffusé sur le réseau",
+    "info_tx_viewer": "Vous pouvez coller un HEX de transaction pour consulter son contenu. La transaction peut ensuite être diffusé sur le réseau",
     "load_tx": "Charger la transaction",
     "tx_qrcode": "QR Code d'une transaction ",
     "load_tx_qrcode": "Charger une transaction depuis un QR Code",
@@ -600,3 +601,4 @@ export const messages = {
     "send_to_following_address": "envoyez à l'adresse suivante",
   
   };
+  
