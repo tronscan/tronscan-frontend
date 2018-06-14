@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {login} from "../../../actions/app";
 import {trim} from "lodash";
 import {tu} from "../../../utils/i18n";
+import {loadWalletWithPrivateKey} from "../../../actions/wallet";
 
 class PrivateKeyAccess extends Component {
 
@@ -32,7 +32,7 @@ class PrivateKeyAccess extends Component {
   login = () => {
     let {privateKey} = this.state;
     let {history} = this.props;
-    this.props.login(privateKey);
+    this.props.loadWalletWithPrivateKey(privateKey);
 
     history.push("/account");
   };
@@ -67,7 +67,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  login
+  loadWalletWithPrivateKey,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PrivateKeyAccess));

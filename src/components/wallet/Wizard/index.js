@@ -8,11 +8,12 @@ import {encryptKey, encryptString} from "../../../services/secureKey";
 import {downloadStringAsFile} from "../../../services/file";
 import {printPaperWallet} from "../Utils";
 import {Link} from "react-router-dom";
-import {login} from "../../../actions/app";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import ReactPasswordStrength from "react-password-strength";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import {stringToBytes} from "@tronscan/client/src/lib/code";
+import {loadWalletWithPrivateKey} from "../../../actions/wallet";
+
 const uuidv4 = require("uuid/v4");
 
 const tronLogo = require("../../../images/tron-banner-inverted.png");
@@ -130,7 +131,7 @@ class Wizard extends React.PureComponent {
         });
         break;
       case 3:
-        this.props.login(privateKey);
+        this.props.loadWalletWithPrivateKey(privateKey);
         break;
     }
 
@@ -322,7 +323,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  login,
+  loadWalletWithPrivateKey,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wizard)

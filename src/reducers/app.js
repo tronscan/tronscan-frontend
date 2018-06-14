@@ -122,7 +122,6 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN: {
 
-      Lockr.set("account_key", base64DecodeFromString(action.password));
 
       return {
         ...state,
@@ -136,9 +135,6 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_PK: {
 
-      Lockr.set("account_key", action.privateKey);
-      Lockr.rm("account_address");
-
       return {
         ...state,
         account: {
@@ -151,9 +147,6 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_ADDRESS: {
 
-      Lockr.rm("account_key");
-      Lockr.set("account_address", action.address);
-
       return {
         ...state,
         account: {
@@ -165,8 +158,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
-      Lockr.rm("account_key");
-      Lockr.rm("account_address");
       return {
         ...state,
         account: {

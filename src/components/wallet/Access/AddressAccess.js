@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {login, loginWithAddressReadOnly} from "../../../actions/app";
+import {loginWithAddressReadOnly} from "../../../actions/app";
 import {trim} from "lodash";
 import {tu} from "../../../utils/i18n";
-import {readFileContentsFromEvent} from "../../../services/file";
-import SweetAlert from "react-bootstrap-sweetalert";
-import {decryptString, validatePrivateKey} from "../../../services/secureKey";
-import {bytesToString} from "@tronscan/client/src/utils/bytes";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
+import {saveWallet} from "../../../utils/storage";
 
 class AddressAccess extends Component {
 
@@ -23,7 +18,14 @@ class AddressAccess extends Component {
 
   login = () => {
     let {address} = this.state;
+    let {history} = this.props;
     this.props.loginWithAddressReadOnly(address);
+    history.push("/account");
+
+    saveWallet({
+      type: 'readonly',
+      address,
+    });
   };
 
   render() {
@@ -47,8 +49,7 @@ class AddressAccess extends Component {
   }
 }
 
-
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   };
 }

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {login} from "../../../actions/app";
 import {trim} from "lodash";
 import {tu} from "../../../utils/i18n";
 import {readFileContentsFromEvent} from "../../../services/file";
@@ -10,6 +9,7 @@ import {decryptString, validatePrivateKey} from "../../../services/secureKey";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
+import {loadWalletWithPrivateKey} from "../../../actions/wallet";
 
 class KeyStoreAccess extends Component {
 
@@ -76,7 +76,7 @@ class KeyStoreAccess extends Component {
             onConfirm={() => history.push("/account")} />
         )
       });
-      this.props.login(privateKey);
+      this.props.loadWalletWithPrivateKey(privateKey);
     } else {
       this.setState({
         popup: (
@@ -116,7 +116,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  login
+  loadWalletWithPrivateKey,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(KeyStoreAccess));

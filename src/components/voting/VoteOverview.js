@@ -134,8 +134,11 @@ class VoteOverview extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.wallet.isOpen && (this.props.wallet.current.address !== prevProps.wallet.current.address)) {
-      this.loadCurrentVotes(this.props.wallet.current.address);
+
+    if (prevProps.wallet.current) {
+      if (this.props.wallet.isOpen && (this.props.wallet.current.address !== prevProps.wallet.current.address)) {
+        this.loadCurrentVotes(this.props.wallet.current.address);
+      }
     }
   }
 

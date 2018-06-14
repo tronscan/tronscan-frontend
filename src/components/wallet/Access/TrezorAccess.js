@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {login} from "../../../actions/app";
 import {trim} from "lodash";
 
 class TrezorAccess extends Component {

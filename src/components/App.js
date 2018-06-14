@@ -3,10 +3,13 @@ import {Provider} from "react-redux";
 import {store} from "../store";
 import MainWrap from "./MainWrap";
 import {PriceProvider} from "./common/Price";
-import Lockr from "lockr";
-import {loadSyncStatus, login, loginWithAddress} from "../actions/app";
+import {loadSyncStatus} from "../actions/app";
 
 import ReduxToastr from 'react-redux-toastr'
+import {loadWalletFromLocalStorage} from "../utils/storage";
+import {loadWalletFromAddressReadOnly, loadWalletFromLedger} from "../actions/wallet";
+import {Client} from "../services/api";
+import LedgerSigner from "../hw/ledger/LedgerSigner";
 
 class App extends Component {
 
@@ -18,14 +21,26 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    let accountKey = Lockr.get("account_key");
-    let accountAddress = Lockr.get("account_address");
-    if (accountKey !== undefined) {
-      this.state.store.dispatch(login(accountKey));
-    } else if (accountAddress !== undefined) {
-      this.state.store.dispatch(loginWithAddress(accountAddress));
+  loadWallet() {
+    let savedWallet = loadWalletFromLocalStorage();
+    if (savedWallet) {
+      let {type, address} = savedWallet;
+
+      switch (type) {
+        case "readonly":
+          this.state.store.dispatch(loadWalletFromAddressReadOnly(address));
+          break;
+
+        case "ledger":
+          this.state.store.dispatch(loadWalletFromLedger(address));
+          Client.setSigner(new LedgerSigner());
+          break;
+      }
     }
+  }
+
+  componentDidMount() {
+    this.loadWallet();
 
     // Refresh sync status
     setInterval(() => {

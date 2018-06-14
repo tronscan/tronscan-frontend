@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {login, loginWithAddress} from "../../../actions/app";
 import {trim} from "lodash";
 import LedgerDevice from "../../../hw/ledger/LedgerDevice";
 import {delay} from "../../../utils/promises";
 import {tu} from "../../../utils/i18n";
-import {Client} from "../../../services/api";
-import LedgerSigner from "../../../hw/ledger/LedgerSigner";
+import {saveWallet} from "../../../utils/storage";
+import {loadWalletFromLedger} from "../../../actions/wallet";
 
 class LedgerAccess extends Component {
 
@@ -24,8 +23,6 @@ class LedgerAccess extends Component {
   };
 
   componentDidMount() {
-    console.log("MOUNTED");
-
     this._isMounted = true;
     this.checkForConnection();
   }
@@ -42,7 +39,6 @@ class LedgerAccess extends Component {
 
       let {connected, address} = await this.ledger.checkForConnection();
       if (connected) {
-        Client.setSigner(new LedgerSigner());
         this.setState({
           connected,
           address,
@@ -58,8 +54,13 @@ class LedgerAccess extends Component {
   openWallet = () => {
     let {address} = this.state;
     let {history} = this.props;
-    this.props.loginWithAddress(address);
+    this.props.loadWalletFromLedger(address);
     history.push("/account");
+
+    saveWallet({
+      type: 'ledger',
+      address,
+    });
   };
 
   render() {
@@ -92,7 +93,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  loginWithAddress,
+  loadWalletFromLedger,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LedgerAccess));

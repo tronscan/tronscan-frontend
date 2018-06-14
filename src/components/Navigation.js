@@ -26,6 +26,7 @@ import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
+import {loadWalletWithPrivateKey} from "../actions/wallet";
 
 class Navigation extends PureComponent {
 
@@ -65,7 +66,7 @@ class Navigation extends PureComponent {
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
-      this.props.login(privateKey);
+      this.props.loadWalletWithPrivateKey(privateKey);
     }
   };
 
@@ -136,7 +137,7 @@ class Navigation extends PureComponent {
             onConfirm={this.hideModal} />
         )
       });
-       this.props.login(privateKey);
+       this.props.loadWalletWithPrivateKey(privateKey);
     } else {
       this.setState({
         popup: (
@@ -615,7 +616,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   setLanguage,
   logout,
-  login,
+  loadWalletWithPrivateKey,
   setActiveCurrency,
   setTheme,
   enableFlag,
