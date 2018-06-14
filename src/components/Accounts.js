@@ -50,7 +50,7 @@ class Accounts extends Component {
   };
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadAccounts);
+    //checkPageChanged(this, this.loadAccounts);
   }
   onChange = (page,pageSize) => {
     this.loadAccounts(page,pageSize);
@@ -127,7 +127,7 @@ class Accounts extends Component {
   render() {
 
     let {match} = this.props;
-    let {accounts, pageSize, total, page, loading} = this.state;
+    let {accounts, total, loading} = this.state;
 
     return (
       <main className="container header-overlap pb-3">
@@ -153,7 +153,7 @@ class Accounts extends Component {
                     {
                       ({style}) => (
                         <div className="card-body bg-white py-3 border-bottom" style={{zIndex: 100, ...style}}>
-                          <Paging  onChange={this.onChange} url={match.url} total={total} pageSize={pageSize} page={page} loading={loading} />
+                          <Paging onChange={this.onChange} url={match.url} total={total} loading={loading} />
                         </div>
                       )
                     }

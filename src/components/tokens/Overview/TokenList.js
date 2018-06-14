@@ -18,27 +18,22 @@ class TokenList extends Component {
     this.state = {
       tokens: [],
       loading: false,
-      pageSize: 25,
-      page: 0,
       total: 0,
     };
   }
 
 
-  loadPage = async (page = 0) => {
+  loadPage = async (page = 1,pageSize=40) => {
 
     this.setState({ loading: true });
-
-    let {pageSize} = this.state;
 
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
     });
 
     this.setState({
-      page,
       loading: false,
       tokens,
       total,
@@ -50,12 +45,14 @@ class TokenList extends Component {
   }
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadPage);
+    //checkPageChanged(this, this.loadPage);
   }
-
+  onChange = (page,pageSize) => {
+    this.loadPage(page,pageSize);
+  }
   render() {
 
-    let {tokens, alert, loading, pageSize, page, total} = this.state;
+    let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
 
     return (
@@ -70,7 +67,7 @@ class TokenList extends Component {
                     {
                       ({style}) => (
                         <div style={{ zIndex: 100, ...style }} className="py-3 bg-white card-body border-bottom">
-                          <Paging loading={loading} url={match.url} total={total} pageSize={pageSize} page={page}  />
+                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}  />
                         </div>
                       )
                     }

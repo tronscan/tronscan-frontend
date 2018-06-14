@@ -34,7 +34,6 @@ class Transactions extends React.Component {
 
   componentDidUpdate() {
     //checkPageChanged(this, this.loadTransactions);
-
   }
   onChange = (page,pageSize) => {
     this.loadTransactions(page,pageSize);

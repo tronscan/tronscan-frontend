@@ -24,9 +24,7 @@ class Transfers extends React.Component {
 
     this.state = {
       transfers: [],
-      page: 0,
       total: 0,
-      pageSize: 50,
     };
   }
 
@@ -35,13 +33,14 @@ class Transfers extends React.Component {
   }
 
   componentDidUpdate() {
-    checkPageChanged(this, this.load);
+    //checkPageChanged(this, this.load);
   }
-
-  load = async (page = 0) => {
+  onChange = (page,pageSize) => {
+    this.load(page,pageSize);
+  };
+  load = async (page = 1, pageSize=40) => {
 
     let {location} = this.props;
-    let {pageSize} = this.state;
 
     this.setState({ loading: true });
 
@@ -59,7 +58,7 @@ class Transfers extends React.Component {
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       ...searchParams,
     });
 
@@ -72,7 +71,7 @@ class Transfers extends React.Component {
 
   render() {
 
-    let {transfers, page, total, pageSize, loading} = this.state;
+    let {transfers, total, loading} = this.state;
     let {match} = this.props;
 
     return (
@@ -87,7 +86,7 @@ class Transfers extends React.Component {
                       {
                         ({style}) => (
                           <div style={{ zIndex: 100, ...style }} className="card-body bg-white py-3 border-bottom">
-                            <Paging loading={loading} url={match.url} total={total} pageSize={pageSize} page={page}  />
+                            <Paging onChange={this.onChange} loading={loading} url={match.url} total={total} />
                           </div>
                         )
                       }

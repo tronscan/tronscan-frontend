@@ -29,7 +29,7 @@ export default class Paging extends React.PureComponent {
     let {total} = this.props;
     let {pageSize} = this.state;
     let totalPages = Math.ceil(total / pageSize);
-    let page = event.target.value;
+    let page = parseInt(event.target.value);
     if(page <= 0){
       page = 1;
     }else if(page > totalPages){
@@ -116,20 +116,20 @@ export default class Paging extends React.PureComponent {
             </LastButton>
           </li>
         </ul>
-          <ul className="pagination p-0 my-0 mx-auto">
-            <div className="input-group">
-              <div className="input-group-prepend">
-                <div className="page-link" id="btnGroupAddon">Page Size:</div>
-              </div>
-                <select onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
-                  {
-                    pageSizeOptions.map((size,index) => (
-                      <option key={index} value={size}>{size}</option>
-                    ))
-                  }
-                  </select>
-              </div>
-          </ul>
+        <ul className="pagination p-0 my-0">
+          <li className="page-item">
+            <a className="page-link" href="javascript:">
+              <span className="d-none d-sm-inline-block" id="btnGroupAddon">Page Size:</span>
+              <select className="ml-sm-2 selectForPaging" onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
+                 {
+                   pageSizeOptions.map((size,index) => (
+                     <option key={index} value={size}>{size}</option>
+                   ))
+                 }
+              </select>
+            </a>
+          </li>
+        </ul>
       </div>
     );
   }

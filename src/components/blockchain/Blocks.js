@@ -21,8 +21,6 @@ class Blocks extends React.Component {
     this.state = {
       loading: false,
       blocks: [],
-      page: 0,
-      pageSize: 50,
       total: 0,
     };
   }
@@ -30,21 +28,22 @@ class Blocks extends React.Component {
   componentDidMount() {
     this.loadBlocks();
   }
+  onChange = (page,pageSize) => {
+    this.loadBlocks(page,pageSize);
+   };
 
-  loadBlocks = async (page = 0) => {
+  loadBlocks = async (page = 1,pageSize=40) => {
 
     this.setState({ loading: true });
 
-    let {pageSize} = this.state;
 
     let {blocks, total} = await Client.getBlocks({
       sort: '-number',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
     });
 
     this.setState({
-      page,
       loading: false,
       blocks,
       total
@@ -52,12 +51,12 @@ class Blocks extends React.Component {
   };
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadBlocks);
+    //checkPageChanged(this, this.loadBlocks);
   }
 
   render() {
 
-    let {blocks, page, total, pageSize, loading} = this.state;
+    let {blocks, total, loading} = this.state;
     let {match} = this.props;
 
     return (
@@ -71,7 +70,7 @@ class Blocks extends React.Component {
                     {
                       ({style}) => (
                         <div style={{ zIndex: 100, ...style }} className="py-3 bg-white card-body border-bottom">
-                          <Paging loading={loading} url={match.url} total={total} pageSize={pageSize} page={page}  />
+                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}  />
                         </div>
                       )
                     }
