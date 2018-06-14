@@ -122,6 +122,14 @@ export const messages = {
   "reset": "Reset",
   // error message title - Error
   "error": "Error",
+  // statusmessage - Title
+  "unlock_keyFile": "Unlock KeyFile",
+  // errormessage - no password entered
+  "enter_password_message": "You must enter your password!",
+  // errormessage - wrong password
+  "password_incorrect":"Password Incorrect",
+  // button description - Try again
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -320,6 +328,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   // errormessage - Not enough TRX to freeze
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   // address title -> receive trx - TRX address
   "send_to_following_address": "Send to the following address",
 
@@ -354,7 +363,17 @@ export const messages = {
   "token_freeze_confirm_message_1": "for at least of 3 days",
   // table title - Frozen Supply
   "frozen_supply": "Frozen Supply",
-
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 /*
 ##################################################################################
 #                                                                                #
@@ -503,7 +522,7 @@ export const messages = {
   // statusmessage
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   // statusmessage
-  "dear_users,": "Dear users,",
+  "dear_users": "Dear users,",
   // field information  - fin
   "finished": "Finished",
   // field information  - token
@@ -676,9 +695,9 @@ export const messages = {
 ##################################################################################
 */
   // statistic dialog - Highest Productivity eg. tron node XXX Highest Productivity
-  "Highest Productivity": "Highest Productivity",
+  "highest_productivity": "Highest Productivity",
   // statistic dialog - Highest Productivity eg. tron node YYY Lowest Productivity
-  "Lowest Productivity": "Lowest Productivity",
+  "lowest_productivity": "Lowest Productivity",
   // title name - SR
   "Super Representatives": "Super Representatives",
   // title name - SRC

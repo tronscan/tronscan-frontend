@@ -88,6 +88,10 @@ export const messages = {
   "cancel": "取消",
   "reset": "清零",
   "error": "错误",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -202,6 +206,7 @@ export const messages = {
   "trx_received": "已接收TRX",
   "test_trx_temporarily_unavailable_message": "暂时无法领取测试TRX,请稍后再试。",
   "not_enough_trx": "TRX余额不足",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -221,6 +226,17 @@ export const messages = {
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -283,6 +299,8 @@ export const messages = {
   "trx_token_wallet_requirement": "发行通证需要首先打开钱包",
   "invalid_address": "无效地址",
   "insufficient_tokens": "通证不足",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "发起其他交易",
   "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证,总计获得{通证数额} 个代币.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "发生未知错误，请几分钟后再次尝试",
@@ -317,7 +335,7 @@ export const messages = {
   "please_keep_in_mind": "请注意，您注册的账户地址只用于测试网，请勿通过钱包或交易所向测试网地址进行转账。",
   "tron_foundation": "波场基金会",
   "trx_for_testing": "在账户管理页面成功申请后，TRX将发送至您的测试账户。",
-  "dear_users,": "亲爱的用户,",
+  "dear_users": "亲爱的用户,",
   "finished": "结束",
   "token": "通证",
   "url": "url",
@@ -422,8 +440,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "出块效率最高y",
-  "Lowest Productivity": "出块效率最低",
+  "highest_productivity": "出块效率最高y",
+  "lowest_productivity": "出块效率最低",
   "productivity": "效率",
   "rewards": "奖励",
   "Super Representatives": "超级代表",

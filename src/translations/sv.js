@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-14062018-1                                                #
+#         Update Date: 14.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: joelstahre                                               #
 #                                                                                #
 ##################################################################################
@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "avboka",
   "reset": "återställa",
   "error": "fel",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -202,6 +206,7 @@ export const messages = {
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX är för tillfället oåtkomligt. Var vänlig försök igen senare.",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -220,6 +225,17 @@ export const messages = {
   "trx_amount": "TRX Antal",
   "token_freeze_confirm_message_0": "Jag bekräftar att frysa ",
   "token_freeze_confirm_message_1": "i minst 3 dagar",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Framgångsrikt frosna tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Kan inte frigöra tokens.",
+  "tokens_frozen": "Tokens Frosna",
+  "successfully_frozen": "Framfyllt med framgång",
+  "name_changed": "Namn ändrats",
+  "successfully_changed_name_to_message": "Namnet har ändrats till",
+  "unable_to_rename_title": "Kan inte byta namn",
+  "unable_to_rename_message": "Något gick fel när du uppdaterade ditt kontonamn, snälla försök igen senare",
+  "unfreeze_trx_confirm_message": "Är du säker på att du vill frigöra TRX?",
 
 /*
 ##################################################################################
@@ -290,6 +306,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Du behöver öppna en plånbok för att kunna skapa en token",
   "invalid_address": "ogiltig adress",
   "insufficient_tokens": "otillräcklig med tokens",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "Gör en annan transaktion",
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
@@ -306,10 +324,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    "how_much_buy_message": "How much tokens do you want to buy?",
-    "buy_confirm_message_0": "Are you sure?",
-    "buy_confirm_message_1": "Are you sure you want to buy",
-    "for": "for",
+    "how_much_buy_message": "Hur mycket tokens vill du köpa?",
+    "buy_confirm_message_0": "Är du säker?",
+    "buy_confirm_message_1": "Är du säker på att du vill köpa",
+    "for": "för",
 
 /*
 ##################################################################################
@@ -427,8 +445,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Högsta produktivitet",
-  "Lowest Productivity": "Lägsta produktivitet",
+  "highest_productivity": "Högsta produktivitet",
+  "lowest_productivity": "Lägsta produktivitet",
   "productivity": "produktivitet",
   "rewards": "belöningar",
   "Super Representatives": "Super Representatives",

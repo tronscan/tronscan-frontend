@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "Cancel",
   "reset": "Reset",
   "error": "Error",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -201,6 +205,7 @@ export const messages = {
   "trx_received": "TRX دریافت شد",
   "test_trx_temporarily_unavailable_message": "تست تی آرایکس به طور موقت در دسترس نیست لطفا بعدا دوباره امتحان کنید",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -222,6 +227,17 @@ export const messages = {
   "trx_amount": "مقدار TRX",
   "token_freeze_confirm_message_0": "تایید مسدود سازی ",
   "token_freeze_confirm_message_1": "برای حداقل 3 روز",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -294,6 +310,8 @@ export const messages = {
   "trx_token_wallet_requirement": "شما باید یک کیف پول باز کنید تا بتوانید یک توکن ایجاد کنید",
   "invalid_address": "آدرس غیر معتبر است",
   "insufficient_tokens": "عدم وجود توکن کافی",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "تراکنش دیگری انجام دهید",
   "token_exchange_confirm": "تایید تراکنش توکن",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
@@ -328,7 +346,7 @@ export const messages = {
   "please_keep_in_mind": "لطفا توجه داشته باشید، که از آنجا که آدرس حساب ثبت شده شما فقط برای شبکه تست استفاده می شود، تی آر ایکس را از کیف پول خود و یا اکسچنج به آدرس حساب شبکه تست ارسال نکنید",
   "tron_foundation": "بنیاد ترون",
   "trx_for_testing": "0",
-  "dear_users,": "کاربران عزیز",
+  "dear_users": "کاربران عزیز",
   "finished": "پایان یافته",
   "token": "توکن",
   "url": "آدرس اینترنتی",
@@ -434,8 +452,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "بالاترین بهره وری",
-  "Lowest Productivity": "پایین ترین بهره وری",
+  "highest_productivity": "بالاترین بهره وری",
+  "lowest_productivity": "پایین ترین بهره وری",
   "productivity": "بهره وری",
   "rewards": "پاداش ها",
   "Super Representatives": "نمایندگان ممتاز",

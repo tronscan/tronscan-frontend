@@ -89,6 +89,10 @@ export const messages = {
   "cancel": "Cancel",
   "reset": "Reset",
   "error": "Error",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -203,6 +207,7 @@ export const messages = {
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -224,6 +229,17 @@ export const messages = {
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -298,6 +314,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Je dient een portemonee te hebben om een token te kunnen maken",
   "invalid_address": "ongeldig adres",
   "insufficient_tokens": "Onvoldoende tokens",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "Maak nog een transactie aan",
   "token_exchange_confirm": "I've confirmed to spend {trxAmount} on token distribution, and get a total of {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Er is een onbekende fout opgetreden. Probeer het over enkele minuten nogmaals",
@@ -332,7 +350,7 @@ export const messages = {
   "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
-  "dear_users,": "Dear users,",
+  "dear_users": "Dear users,",
   "finished": "Finished",
   "token": "token",
   "url": "url",
@@ -441,8 +459,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Hoogste Productiviteit",
-  "Lowest Productivity": "Laagste Productiviteit",
+  "highest_productivity": "Hoogste Productiviteit",
+  "lowest_productivity": "Laagste Productiviteit",
   "productivity": "productiviteit",
   "rewards": "beloning",
   "Super Representatives": "Super Vertegenwoordiger",

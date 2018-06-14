@@ -72,7 +72,7 @@ class ChangeNameModal extends Component {
             <label className="text-danger">{tu("unique_account_message")}</label>
             <input className={"form-control text-center " + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
                    type="text"
-                   placeholder={tu("account_name")}
+                   placeholder="Account Name"
                    value={name}
                    onChange={(ev) => this.setState({ name: ev.target.value })}/>
             <div className="invalid-feedback text-center text-danger">

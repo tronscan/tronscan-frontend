@@ -88,6 +88,10 @@ export const messages = {
   "cancel": "Cancel",
   "reset": "Reset",
   "error": "Error",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect":"Password Incorrect",
+  "try_again": "Try Again",
 
 /*
 ##################################################################################
@@ -201,6 +205,7 @@ export const messages = {
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
 ##################################################################################
@@ -222,6 +227,17 @@ export const messages = {
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -296,6 +312,8 @@ export const messages = {
   "trx_token_wallet_requirement": "You need to open a wallet to be able to create a token",
   "invalid_address": "잘못된 주소",
   "insufficient_tokens": "불충분한 토큰",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "다른 거래 만들기",
   "token_exchange_confirm": "토큰 배포에 {trxAmount}를 사용하여, {tokenAmount}의 토큰을 얻었습니다.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "알 수 없는 오류가 발생했습니다. 몇 분 후에 다시 시도하십시오.",
@@ -331,7 +349,7 @@ export const messages = {
   own wallet or exchange to the account address of testnet.`,
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",
-  "dear_users,": "친애하는 사용자,",
+  "dear_users": "친애하는 사용자,",
   "finished": "종료",
   "token": "토큰",
   "url": "토큰 정보 안내 주소",
@@ -439,8 +457,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Highest Productivity",
-  "Lowest Productivity": "Lowest Productivity",
+  "highest_productivity": "Highest Productivity",
+  "lowest_productivity": "Lowest Productivity",
   "productivity": "productivity",
   "rewards": "rewards",
   "Super Representatives": "Super Representatives",

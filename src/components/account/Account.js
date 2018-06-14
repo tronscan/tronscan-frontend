@@ -293,10 +293,11 @@ class Account extends Component {
         <SweetAlert
           info
           showCancel
-          confirmBtnText="Unfreeze"
+          confirmBtnText={tu("unfreeze")}
           confirmBtnBsStyle="danger"
           cancelBtnBsStyle="default"
-          title="Are you sure you want to unfreeze TRX"
+          cancelBtnText={tu("cancel")}
+          title={tu("unfreeze_trx_confirm_message")}
           onConfirm={this.unfreeze}
           onCancel={this.hideModal}
         >
@@ -366,7 +367,7 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title="Unable to unfreeze" onConfirm={this.hideModal}>
+          <SweetAlert warning title={tu("unable_to_unfreeze")} onConfirm={this.hideModal}>
             {tu("unable_unfreeze_trx_message")}
           </SweetAlert>
         ),
@@ -383,8 +384,8 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="Tokens Unfrozen" onConfirm={this.hideModal}>
-            Successfully unfrozen tokens
+          <SweetAlert success title={tu("tokens_unfrozen")} onConfirm={this.hideModal}>
+            {tu("success_tokens_unfrozen_message")}
           </SweetAlert>
         )
       });
@@ -395,8 +396,8 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title="Unable to unfreeze" onConfirm={this.hideModal}>
-            Unable to unfreeze tokens.
+          <SweetAlert warning title={tu("unable_to_unfreeze")} onConfirm={this.hideModal}>
+            {tu("Unable_tokens_unfrozen_message")}
           </SweetAlert>
         ),
       });
@@ -406,8 +407,8 @@ class Account extends Component {
   showFreezeConfirmation = (amount) => {
     this.setState({
       modal: (
-        <SweetAlert success title="Tokens Frozen" onConfirm={this.hideModal}>
-          Successfully frozen {amount} TRX
+        <SweetAlert success title={tu("tokens_frozen")} onConfirm={this.hideModal}>
+          {tu("successfully_frozen")} {amount} TRX
         </SweetAlert>
       )
     });
@@ -422,8 +423,8 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="Name changed" onConfirm={this.hideModal}>
-            Successfully changed name to <b>{name}</b>
+          <SweetAlert success title={tu("name_changed")} onConfirm={this.hideModal}>
+            {tu("successfully_changed_name_to_message")} <b>{name}</b>
           </SweetAlert>
         )
       });
@@ -432,8 +433,8 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title="Unable to rename" onConfirm={this.hideModal}>
-            Something went wrong while updating your account name, please try again later
+          <SweetAlert warning title={tu("unable_to_rename_title")} onConfirm={this.hideModal}>
+            {tu("unable_to_rename_message")}
           </SweetAlert>
         )
       })

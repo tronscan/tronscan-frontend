@@ -124,8 +124,7 @@ export default class TestNetRequest extends React.Component {
         {
           success ?
             <Alert color="success">
-              Successfully requested TRX. If you did not receive any TRX then
-              there is no test TRX available right now and you should try again at a later time.
+              {tu("information_message_3")}
             </Alert> :
             <React.Fragment>
               <p className="d-flex justify-content-center">
