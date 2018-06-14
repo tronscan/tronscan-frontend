@@ -214,6 +214,8 @@ export const messages = {
   "page": "page",
   // table description -> Page 2 of 3
   "of": "of",
+  // the records each page displays ->20,40,60,80
+  "page_size":"page size",
   // information field - statistics - in which country are the most nodes e.g. USA ... Most Nodes
   "most_nodes": "Most Nodes",
   // status message - loading informations - loading Node informations

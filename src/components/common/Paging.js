@@ -2,8 +2,9 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {tu} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
+import {connect} from "react-redux";
 
-export default class Paging extends React.PureComponent {
+export default class Paging extends React.Component {
 
   constructor() {
     super();
@@ -39,7 +40,7 @@ export default class Paging extends React.PureComponent {
       this.changePage(page);
     }
   }
-  renderButton(text, page) {
+  renderButton(page) {
     let {url} = this.props;
 
     /*
@@ -70,10 +71,10 @@ export default class Paging extends React.PureComponent {
     let showFirst = page === 1;
     let showLast = !(totalPages > page);
 
-    let FirstButton = this.renderButton(tu("first_page"), 1);
-    let PreviousButton = this.renderButton(tu("previous_page"), page - 1);
-    let NextButton = this.renderButton(tu("next_page"), page + 1);
-    let LastButton = this.renderButton(tu("last_page"), totalPages);
+    let FirstButton = this.renderButton(1);
+    let PreviousButton = this.renderButton(page - 1);
+    let NextButton = this.renderButton(page + 1);
+    let LastButton = this.renderButton(totalPages);
 
     return (
       <div className="d-flex">
@@ -119,7 +120,7 @@ export default class Paging extends React.PureComponent {
         <ul className="pagination p-0 my-0">
           <li className="page-item">
             <a className="page-link" href="javascript:">
-              <span className="d-none d-sm-inline-block" id="btnGroupAddon">Page Size:</span>
+              <span className="d-none d-sm-inline-block" id="btnGroupAddon">{tu("page_size")}:</span>
               <select className="ml-sm-2 selectForPaging" onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
                  {
                    pageSizeOptions.map((size,index) => (
