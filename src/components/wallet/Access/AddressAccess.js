@@ -28,8 +28,6 @@ class AddressAccess extends Component {
 
   render() {
 
-    let {popup} = this.state;
-
     return (
       <div className="text-center p-3 mx-5">
         <h2>{tu("address_only")}</h2>

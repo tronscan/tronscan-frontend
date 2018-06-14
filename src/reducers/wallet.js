@@ -12,8 +12,8 @@ export function walletReducer(state = initialState, action) {
   switch (action.type) {
 
     case LOGOUT: {
-
       return {
+        ...state,
         isOpen: false,
         current: null,
       };
