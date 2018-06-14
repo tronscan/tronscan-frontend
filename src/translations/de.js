@@ -291,7 +291,7 @@ export const messages = {
   // infomessage - receive trx eg. 10 trx have been added to your account!
   "have_been_added_to_your_account": "wurden Ihrem Konto hinzugefügt!",
   // infomessage - Testnet informessage - receive 10000 TRX for testing
-  "information_message_1": "Wenn Sie TRX Testcoins anfordern erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
+  "information_message_1": "Wenn Sie TRX Testcoins anfordern, erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
   // infomessage - Testnet informessage - limitation
   "information_message_2": "Sie können TRX nur 10 Mal pro Konto anfordern.",
   // button description - Request TRX for testing

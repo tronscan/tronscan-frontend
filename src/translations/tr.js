@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018-1                                                #
-#         Update Date: 11.06.2018                                                #
+#         Version: 1.2-14062018                                                  #
+#         Update Date: 14.06.2018                                                #
 #         Language: Turkish                                                      #
 #         Status: first Version                                                  #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: ahm37k(Ahmet)                                            #
 #                                                                                #
 ##################################################################################
@@ -86,9 +86,9 @@ export const messages = {
   "exchange": "Borsa",
   "next": "sonraki",
   "copied_to_clipboard": "Hafızaya kopyalandı",
-  "cancel": "cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "cancel": "İptal",
+  "reset": "Sıfırla",
+  "error": "Hata",
 
 /*
 ##################################################################################
@@ -124,11 +124,11 @@ export const messages = {
 ##################################################################################
 */
   "tron_main_message": "İnterneti merkezi olmaktan çıkart",
-  "transactions_last_hour": "Geçtiğimiz saatte yapılan işlemler",
+  "transactions_last_hour": "Son saatte yapılan işlem adeti",
   "block_height": "Blok yüksekliği",
-  "online_nodes": "Çevrim içi düğümler",
+  "online_nodes": "Çevrimiçi Düğüm Adeti",
   "pice_per_1000trx": "Fiyat (1000TRX başına)",
-  "vote_for_super_representatives": "Süper Temsciler için oy ver",
+  "vote_for_super_representatives": "Süper Temsilcileri Oyla",
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
   "view_tokens": "Jetonları görüntüle",
@@ -162,10 +162,10 @@ export const messages = {
 ##################################################################################
 */
   "addresses": "adresler",
-  "trx_transferred_past_hour": "Geçtiğimiz saatte aktarılan TRX miktarı",
-  "transactions_past_hour": "Geçtiğimiz saatteki işlemler",
+  "trx_transferred_past_hour": "Son bir saatte aktarılan TRX miktarı",
+  "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
-  "rich_list": "Rich List",
+  "rich_list": "Varlıklılar Listesi",
 
 /*
 ##################################################################################
@@ -175,10 +175,10 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "İsim belirle",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
-  "show_qr_code": "Kare kod görüntüle",
+  "unique_account_message": "Hesap isminizi bir defa belirleyebilirsiniz!",
+  "change_name": "İsmi Değiştir",
+  "account_name": "Hesap İsmi",
+  "show_qr_code": "Kare kodu görüntüle",
   "free_bandwidth": "Boştaki Bantgenişliği",
   "expires": "sonlanır",
   "have_been_added_to_your_account": "hesabınıza eklendi!",
@@ -201,8 +201,8 @@ export const messages = {
   "current": "mevcut",
   "trx_received": "TRX alındı",
   "test_trx_temporarily_unavailable_message": "Deneme amaçlı TRX geçici olarak mevcut değil. Lütfen daha sonra tekrar deneyiniz.",
-  "not_enough_trx": "Not enough TRX",
-  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "not_enough_trx": "Yeterli TRX bulunamadı",
+  "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
 
 /*
 ##################################################################################
@@ -220,7 +220,7 @@ export const messages = {
    Örneğin, Tron Power ile `,
   "freeze_trx_premessage_1": `Dondurulmuş jetonlar 3 gün süre ile kilitlenmiş durumdadır. Donmuş durumdaki TRX bu süre içerisinde alınıp satılamaz.
    Bu süre sonunda TRX'i çözüp jeton alıp satabilirsiniz.`,
-  "freeze_trx_premessage_link": "Süper Temsilcileri oyla.",
+  "freeze_trx_premessage_link": "Süper Temsilciler için oy verebililrsiniz.",
   "trx_amount": "TRX Miktarı",
   "token_freeze_confirm_message_0": "Dondurma işlemini onaylıyorum ",
   "token_freeze_confirm_message_1": "en az 3 gün süre ile",
@@ -310,6 +310,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Jeton üretmek için bir cüzdan açmanız gerekmektedir",
   "invalid_address": "geçersiz adres",
   "insufficient_tokens": "Yetersiz jeton",
+  "fill_a_valid_number": "Geçerli bir sayı girin",
+  "fill_a_valid_address": "Geçerli bir adres girin",
   "make_another_transaction": "Başka bir işlem yap",
   "token_exchange_confirm": "Jeton dağıtımı için {trxAmount} harcamayı ve toplam {tokenAmount} jeton almayı onaylıyorum.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Bilinmeyen bir hata oluştu, lütfen birkaç dakika içinde tekrar deneyiniz",
@@ -327,9 +329,9 @@ export const messages = {
 ##################################################################################
 */
   "how_much_buy_message": "Ne kadar jeton almak istiyorsunuz?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "buy_confirm_message_0": "Emin misiniz?",
+  "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
+  "for": "için",
 
 /*
 ##################################################################################
@@ -344,7 +346,7 @@ export const messages = {
   "plese_keep_in_mind": "Kayıtlı hesabınız yalnızca test ağında kullanıldığı için test ağındaki hesap adresinize kendi cüzdanınızdan ya da bir borsadan TRX göndermemeniz gerektiğini lütfen unutmayın.",
   "tron_foundation": "TRON Vakfı",
   "trx_for_testing": "Hesap yönetimi kısmından başarılı bir şekilde başvurduğunuzda, deneme amaçlı TRX deneme hesabınıza gönderilecektir.",
-  "dear_users": "Sevgili kullanıcılar,",
+  "dear_users": "Muhterem kullanıcılar,",
   "finished": "Sonlandı",
   "token": "jeton",
   "url": "web adresi",
