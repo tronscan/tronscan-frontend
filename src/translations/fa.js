@@ -19,7 +19,7 @@ export const messages = {
 #         Update Date: 11.06.2018                                                #
 #         Language: Persian                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Mr.Babak(patoghfa)                                       #
 #                                                                                #
 ##################################################################################
@@ -78,13 +78,13 @@ export const messages = {
   "exchange": "مبادله",
   "next": "بعدی",
   "copied_to_clipboard": "به حافظه کپی شد",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "cancel": "لغو",
+  "reset": "بازنشانی",
+  "error": "خطا",
   "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
+  "enter_password_message": "شما باید رمز عبور خود را وارد کنید",
+  "password_incorrect":"رمز عبور اشتباه است",
+  "try_again": "دوباره امتحان کنید",
 
 /*
 ##################################################################################
@@ -170,9 +170,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "تنظیم نام",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "شما فقط می توانید نام حساب خود را یک بار تنظیم کنید",
+  "change_name": "تغییر نام",
+  "account_name": "نام کاربری",
   "show_qr_code": "نمایش کد QR",
   "free_bandwidth": "پهنای باند رایگان",
   "expires": "انقضاء",
@@ -196,7 +196,7 @@ export const messages = {
   "current": "در حال حاضر",
   "trx_received": "TRX دریافت شد",
   "test_trx_temporarily_unavailable_message": "تست تی آرایکس به طور موقت در دسترس نیست لطفا بعدا دوباره امتحان کنید",
-  "not_enough_trx": "Not enough TRX",
+  "not_enough_trx": " کافی نیست TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
 
 /*
@@ -225,7 +225,7 @@ export const messages = {
   "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
   "tokens_frozen": "Tokens Frozen",
   "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
+  "name_changed": "نام تغییر کرد",
   "successfully_changed_name_to_message": "Successfully changed name to",
   "unable_to_rename_title": "Unable to rename",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
