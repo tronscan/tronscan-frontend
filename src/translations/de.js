@@ -63,7 +63,7 @@ export const messages = {
   "submit": "Bestätigen",
   "send": "senden",
   "receive": "empfangen",
-  "supply": "liefern",
+  "supply": "Vorrat",
   "view": "Ansicht",
   "view_all": "Alle anzeigen",
   "create": "erstellen",
@@ -83,7 +83,7 @@ export const messages = {
   "enter_password_message": "Bitte geben Sie ein Passwort ein!",
   "password_incorrect":"falsches Passwort",
   "try_again": "Erneut versuchen",
-  "wallet_unlocked": "Wallet entriegelt",
+  "wallet_unlocked": "Das Wallet wurde erfolgreich entriegelt",
 
 /*
 ##################################################################################
@@ -142,7 +142,7 @@ export const messages = {
   "last_page": "letzte Seite",
   "page": "Seite",
   "of": "von",
-  "most_nodes": "Meisten Knoten",
+  "most_nodes": "Meiste Anzahl an Knoten",
   "loading_nodes": "Laden der Knoten",
   "Hostname": "Hostname",
   "Last Update": "Letzte Aktualisierung",
@@ -282,8 +282,8 @@ export const messages = {
   "trx_produced": "Produzierte Transaktionen",
   "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der Tron Testnetz Adresse!",
   "go_to_votelist": "Zurück zur Voteliste",
-  "understand_tron_sr_message_0": "Ich verstehe was die Aufgabe eines TRON-Repräsentanten ist und ich bestätige hiermit, dass ich eine Gebühr von ",
-  "understand_tron_sr_message_1": "bezahle.",
+  "understand_tron_sr_message_0": "Ich habe die Funktion und die Aufgaben eines TRON-Repräsentanten verstanden und akzeptiere hiermit die Zahlung einer Gebühr in Höhe von  ",
+  "understand_tron_sr_message_1": ".",
 
 /*
 ##################################################################################
@@ -504,7 +504,7 @@ export const messages = {
   "open_wallet_start_voting_message": "Sie benötigen ein Wallet um an der Abstimmung teilnehmen zu können.",
   "thanks_submitting_vote_message": "Vielen Dank für Ihre Abstimmung!",
   "need_min_trx_to_vote_message": "Für die Teilnahme an der Abstimmung benötigen Sie mindesten 1 TRX.",
-  "to_much_votes_massage": "Zu haben zu viele Stimmen vergeben!",
+  "to_much_votes_massage": "Sie haben zu viele Stimmen vergeben!",
   "all_votes_are_used_message": "Alle Stimmen wurden vergeben!",
   "submissing_vote_message_title": "Vielen Dank für Ihre Teilnahme!",
   "submissing_vote_message_0": "Ihre persönliche Abstimmung wurde erfolgreich übermittelt und wird zum nächste Wahlzyklus wirksam.",
@@ -541,7 +541,7 @@ export const messages = {
 */
   "node_tester_msg": "Geben Sie eine gültige IP Adresse für den GRPC Verbindungstest ein.",
   "node_tester_stop": "Test stoppen",
-  "node_tester_test": "Test GRPC",
+  "node_tester_test": "GRPC Test starten",
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",

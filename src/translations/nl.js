@@ -77,14 +77,14 @@ export const messages = {
   "accounts": "accounts",
   "exchange": "Exchange",
   "next" : "next",
-  "copied_to_clipboard": "Copied to clipboard",
-  "cancel": "Cancel",
+  "copied_to_clipboard": "Kopieerd naar klembord",
+  "cancel": "Annuleren",
   "reset": "Reset",
-  "error": "Error",
+  "error": "Fout",
   "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
+  "enter_password_message": "U moet uw wachtwoord invoeren!",
+  "password_incorrect":"Wachtwoord onjuist",
+  "try_again": "Nogmaals proberen",
   "wallet_unlocked": "Wallet Unlocked",
 
 /*
@@ -127,7 +127,7 @@ export const messages = {
   "pice_per_1000trx": "Prijs (per 1000TRX)",
   "vote_for_super_representatives": "Vote for Super Representatives",
   "view_super_representatives": "View Super Representatives",
-  "create_new_wallet": "Create a new Wallet",
+  "create_new_wallet": "Creëer een nieuwe Wallet",
   "view_tokens": "View Tokens",
 
 /*
@@ -172,9 +172,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Stel naam in",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "U mag uw accountnaam slechts één keer instellen!",
+  "change_name": "Wijzigen Naam",
+  "account_name": "Account Naam",
   "show_qr_code": "Toon QR Code",
   "free_bandwidth": "Gratis Bandbreedte",
   "expires": "verloopt",
@@ -228,9 +228,9 @@ export const messages = {
   "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
   "tokens_frozen": "Tokens Frozen",
   "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
-  "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
+  "name_changed": "Naam veranderd",
+  "successfully_changed_name_to_message": "Succesvol veranderde naam in",
+  "unable_to_rename_title": "Kan de naam niet wijzigen",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
@@ -245,11 +245,11 @@ export const messages = {
   "apply_super_representative_candidate": "Solliciteer voor Super Vertegenwoordiger Kandidaat",
   "your_personal_website_address": "uw persoonlijke website URL",
   "apply_for_delegate_predescription":`Elke tokenhouder heeft de mogelijkheid om TRON Super Vertegenwoordiger te worden.
-   Echter, voor verkiesbare kandidaten hebben wij een aantal standaarden en regulaties gecre�erd,
-   om het netwerk en de gemeenschap soepeler en effieci�nter te laten lopen,
+   Echter, voor verkiesbare kandidaten hebben wij een aantal standaarden en regulaties gecreëerd,
+   om het netwerk en de gemeenschap soepeler en efficiënter te laten lopen,
    om voorgedragen Super Vertegenwoordig te kunnen worden. Wij zullen de voorgedragen Super Vertegenwoordigers
-   promoten om de kans dat ze worden gekozen te vergroten. E�n keer per week worden nieuw voorgedragen Super
-   Vertegenwoordigers ge�pdatet en gepost.`,
+   promoten om de kans dat ze worden gekozen te vergroten. Eën keer per week worden nieuw voorgedragen Super
+   Vertegenwoordigers geüpdatet en gepost.`,
   "apply_for_delegate_description": `
    TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
    Each account can update current voter information and also is allowed to vote for multiple candidates.
@@ -305,7 +305,7 @@ export const messages = {
   "testnet": "Testnet",
   "days_to_freeze": "Dagen om te bevriezen",
   "trx_token_fee_message": "Er is 1024 TRX nodig om een nieuwe token uittegeven",
-  "trx_token_account_limit": "Je kunt slechts ��n token per account maken",
+  "trx_token_account_limit": "Je kunt slechts een token per account maken",
   "trx_token_wallet_requirement": "Je dient een portemonee te hebben om een token te kunnen maken",
   "invalid_address": "ongeldig adres",
   "insufficient_tokens": "Onvoldoende tokens",
@@ -350,15 +350,15 @@ export const messages = {
   "token": "token",
   "url": "url",
   "need_to_login": "You must be logged in to access to account page",
-  "thanks_for_applying": "Thanks for applying!",
-  "to_much_votes": "To much votes",
-  "no_trx_remaining": "No TRX remaining",
-  "produced_by": "Produced by {witnessAddress}",
+  "thanks_for_applying": "Hartelijk dank voor uw sollicitatie!",
+  "to_much_votes": "U hebt het maximum aantal stemmen overschreden",
+  "no_trx_remaining": "Geen TRX meer beschikbaar",
+  "produced_by": "Gemaakt door {witnessAddress}",
   "show_more": "Show {countriesLength} More",
-  "vote_guide_message": `Use your TRX to vote for Super Representatives.
-    For every TRX you hold in your account you have one vote to spend.
-    TRX will not be consumed. You can vote as many times for the several representatives as you like.
-    The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+  "vote_guide_message": `Gebruik uw TRX om op de super-representanten te stemmen.
+   Voor elke TRX die u in uw account heeft, ontvangt u een stem die u kunt toewijzen.
+   U verliest TRX niet. U kunt zo vaak stemmen als u wilt op elke vertegenwoordiger.
+   De eindstemming vindt om middernacht plaats en de presentielijst wordt bijgewerkt.`,
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
@@ -498,17 +498,17 @@ export const messages = {
   "live_ranking_msg": "Ververst elke 15 seconden. Het kan 1-2 minuten duren voordat nieuwe stemmen worden geteld",
   "candidate": "kandidaat",
   "current_votes": "Huidige Stemmen",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "click_to_start_voting": "Klik hier om te beginnen met de stemming",
+  "votes_remaining_message": "Overige stemmen",
+  "open_wallet_start_voting_message": "Open wallet om te gaan stemmen",
+  "thanks_submitting_vote_message": "Bedankt voor het indienen van uw stem!",
+  "need_min_trx_to_vote_message": "U hebt minstens 1 TRX nodig om te kunnen stemmen.",
+  "to_much_votes_massage": "U hebt te veel stemmen uitgebracht!",
+  "all_votes_are_used_message": "Alle stemmen zijn uitgebracht!",
+  "submissing_vote_message_title": "Dank u voor de stemming!",
+  "submissing_vote_message_0": "Hun persoonlijke stem met succes is uitgebracht en in de volgende verkiezingscyclus van kracht zal worden.",
+  "submissing_vote_message_1": "U mag uw stemmen herverdelen wanneer u maar wilt",
+  "submitting_vote_error_message": "Bij het stemmen is een fout opgetreden. Probeer het later nog eens.",
 
 /*
 ##################################################################################
@@ -540,7 +540,7 @@ export const messages = {
 */
   "node_tester_msg": "Vul het IP van jouw node in om de GRPC verbinding te testen",
   "node_tester_stop": "Stop met testen",
-  "node_tester_test": "Test GRPC",
+  "node_tester_test": "Start de GRPC-test",
   "node_tester_rt": "Responstijd",
   "confirmed_block": "Bevestigd Blok",
   "loading": "Aan het laden...",
