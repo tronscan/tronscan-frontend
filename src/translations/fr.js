@@ -77,7 +77,7 @@ export const messages = {
   "accounts": "comptes",
   "exchange": "Exchange",
   "next" : "next",
-  "copied_to_clipboard": "Copié dans le presse-papiers",
+  "copied_to_clipboard": "Copié dans le presse-papier",
   "cancel": "Annuler",
   "reset": "Réinitialiser",
   "error": "Erreur",
@@ -96,7 +96,7 @@ export const messages = {
 */
   "blockchain": "blockchain",
   "wallet": "portefeuille",
-  "home": "Home",
+  "home": "Accueil",
   "transfers": "transferts",
   "live": "En direct",
   "statistics": "statistiques",
@@ -120,11 +120,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralize the Web",
+  "tron_main_message": "Décentraliser le Web",
   "transactions_last_hour": "Transactions de l'heure passée",
-  "block_height": "Block Height",
-  "online_nodes": "Online Nodes",
-  "pice_per_1000trx": "Price (per 1000TRX)",
+  "block_height": "Hauteur du bloc",
+  "online_nodes": "Nœuds en ligne",
+  "pice_per_1000trx": "Prix (pour 1000TRX)",
   "vote_for_super_representatives": "voter pour Super Representatives",
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Créer un nouveau portefeuille",
@@ -279,6 +279,8 @@ export const messages = {
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
   "go_to_votelist": "aller à la liste de vote",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################

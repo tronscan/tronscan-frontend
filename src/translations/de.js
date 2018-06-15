@@ -282,6 +282,8 @@ export const messages = {
   "trx_produced": "Produzierte Transaktionen",
   "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der Tron Testnetz Adresse!",
   "go_to_votelist": "Zurück zur Voteliste",
+  "understand_tron_sr_message_0": "Ich verstehe was die Aufgabe eines TRON-Repräsentanten ist und ich bestätige hiermit, dass ich eine Gebühr von ",
+  "understand_tron_sr_message_1": "bezahle.",
 
 /*
 ##################################################################################

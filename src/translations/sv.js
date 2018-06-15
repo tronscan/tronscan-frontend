@@ -150,7 +150,6 @@ export const messages = {
   "Last Update": "Senast Uppdaterat",
   "first_node_sync_message": "Väntar på att första noden ska synka, var vänlig testa igen om några minuter.",
 
-
 /*
 ##################################################################################
 #                                                                                #
@@ -275,6 +274,8 @@ export const messages = {
   "blocks_missed": "Missade Block",
   "do_not_send_1": "Skicka inte TRX från din egna plånbok eller börs till till din testnet address!.",
   "go_to_votelist": "Gå till röst listan",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################

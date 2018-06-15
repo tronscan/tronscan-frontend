@@ -81,11 +81,11 @@ export const messages = {
   "cancel": "İptal",
   "reset": "Sıfırla",
   "error": "Hata",
-  "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
-  "wallet_unlocked": "Wallet Unlocked",
+  "unlock_keyFile": "Anahtar dosyasının kilidini çöz",
+  "enter_password_message": "Parolanızı girmeniz gerekmektedir!",
+  "password_incorrect":"Girilen parola yanlış",
+  "try_again": "Tekrar deneyin",
+  "wallet_unlocked": "Cüzdan açıldı",
 
 /*
 ##################################################################################
@@ -232,7 +232,7 @@ export const messages = {
   "successfully_changed_name_to_message": "İsim başarı ile değiştirildi. Yeni isim:",
   "unable_to_rename_title": "İsim değiştirilemedi",
   "unable_to_rename_message": "Hesap isminiz değiştirilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "unfreeze_trx_confirm_message": "TRX çözmek istediğinizden emin misiniz?",
 
 /*
 ##################################################################################
@@ -282,6 +282,8 @@ export const messages = {
   "blocks_missed": "Kaçırılan Bloklar",
   "do_not_send_1": "Kendi cüzdanınızdan ya da bir borsadan kendi test ağı adresinize TRX göndermeyin!",
   "go_to_votelist": "Oylama listesine git",
+  "understand_tron_sr_message_0": "Nasıl süper temsilci olunacağını anladım ve bunun için bir ücret ödeyeceğimi",
+  "understand_tron_sr_message_1": "onaylıyorum.",
 
 /*
 ##################################################################################

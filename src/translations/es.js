@@ -279,6 +279,8 @@ export const messages = {
   "blocks_missed": "Bloques Perdidos",
   "do_not_send_1": "¡No envíe TRX desde su cartera o Exchange a su dirección de la red de pruebas!",
   "go_to_votelist": "Ir a la lista de votos",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################

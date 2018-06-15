@@ -257,7 +257,7 @@ class TokenOverview extends Component {
                               </button> :
                               <button className="btn btn-block btn-outline-primary"
                                       onClick={() => this.toggleToken(token)}>
-                                Participate
+                                {tu("participate")}
                               </button>
                           }
                         </div> :

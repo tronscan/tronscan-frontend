@@ -278,6 +278,8 @@ export const messages = {
   "blocks_missed": "بلوک های از دست رفته",
   "do_not_send_1": "لطفا هیچ ترونی از آدرس کیف پول یا اکسچنج به این حساب واریز نکنید",
   "go_to_votelist": "برو به لیست رای",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################

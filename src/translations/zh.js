@@ -266,6 +266,8 @@ export const messages = {
   "blocks_missed": "丢失区块数量",
   "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
   "go_to_votelist": "前往投票列表",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################

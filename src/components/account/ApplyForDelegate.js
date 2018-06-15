@@ -103,8 +103,8 @@ class ApplyForDelegate extends Component {
                      checked={check}
                      onChange={(ev) => this.setState({ check: ev.target.checked })} />
               <label className="form-check-label">
-                I understand how to be a TRON representative and
-                i confirm to spend a <b><FormattedNumber value={WITNESS_CREATE_COST}/> TRX</b> fee.
+                {tu("understand_tron_sr_message_0")}
+                <b> <FormattedNumber value={WITNESS_CREATE_COST}/> TRX</b> {t("understand_tron_sr_message_1")}
               </label>
             </div>
           </div>
@@ -133,4 +133,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplyForDelegate)
-

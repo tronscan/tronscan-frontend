@@ -280,6 +280,8 @@ export const messages = {
   "blocks_missed": "유실된 블록",
   "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
   "go_to_votelist": "Go to votelist",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
 
 /*
 ##################################################################################
