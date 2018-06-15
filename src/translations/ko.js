@@ -35,21 +35,13 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  // button description - OK (confirm)
   "ok": "확인",
-  // title - Tron protocol
   "app_title": "Tron Protocol",
-  // description of an input field  (enter the password)
   "password": "암호",
-  // description of a display field - price
   "money_price": "가격",
-  // description of a display field - price
   "price": "price",
-  // blockchain -> blocks - plural
   "blocks": "블록",
-  // blockchain -> block - singular
   "block": "블록",
-  // description of a display field - name
   "name": "이름",
   "balance": "잔액",
   "bandwidth": "bandwidth",
