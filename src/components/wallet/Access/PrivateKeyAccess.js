@@ -41,16 +41,19 @@ class PrivateKeyAccess extends Component {
 
 
     return (
-      <div className="text-center p-3 mx-5">
-        <h2>{tu("private_key")}</h2>
+      <div className="text-center p-3 mx-auto mt-5" style={{ maxWidth: '400px' }}>
+        {/*<h2>{tu("private_key")}</h2>*/}
+        <div className="text-muted text-center">
+          Open a wallet with the private key
+        </div>
         <div className="form-group text-center mt-3">
           <input
             type="text"
-            className="form-control"
+            className="form-control text-center"
             onChange={ev => this.setState({ privateKey: ev.target.value })}
-            placeholder=""/>
+            placeholder="Private Key"/>
         </div>
-        <button className="btn btn-success btn-block"
+        <button className="btn btn-success"
                 disabled={!this.isKeyValid()}
                 onClick={this.login}>
           {tu("open_wallet")}

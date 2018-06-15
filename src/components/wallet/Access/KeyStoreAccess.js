@@ -97,9 +97,12 @@ class KeyStoreAccess extends Component {
     let {popup} = this.state;
 
     return (
-      <div className="text-center p-3 mx-5">
+      <div className="text-center p-3 mx-auto mt-5" style={{ maxWidth: '400px' }}>
         {popup}
-        <h2>{tu("keystore_file")}</h2>
+        <div className="text-muted">
+          Select a keystore file
+        </div>
+        <br/>
         <button className="btn btn-success btn-block" onClick={this.selectFile}>
           {tu("select_file")}
         </button>

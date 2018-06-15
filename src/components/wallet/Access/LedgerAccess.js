@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {trim} from "lodash";
@@ -7,6 +7,7 @@ import {delay} from "../../../utils/promises";
 import {tu} from "../../../utils/i18n";
 import {saveWallet} from "../../../utils/storage";
 import {loadWalletFromLedger} from "../../../actions/wallet";
+import {BarLoader, PulseLoader} from "react-spinners";
 
 class LedgerAccess extends Component {
 
@@ -68,19 +69,32 @@ class LedgerAccess extends Component {
     let {loading, connected, address} = this.state;
 
     return (
-      <div className="text-center p-3 mx-5">
-        <h2>Ledger</h2>
-        { loading && <div>Waiting for Ledger</div> }
-        { address && <div>{address}</div> }
-        { connected && <div>CONNECTED</div> }
-        <br/>
-        <br/>
-        <br/>
-        <button className="btn btn-success btn-block"
-                disabled={!connected}
-                onClick={this.openWallet}>
-          {tu("open_wallet")}
-        </button>
+      <div className="text-center pt-5 mx-5">
+        <img src={require("../../../images/ledger-nano-s.png")} style={{ height: 65 }} />
+        { loading &&
+          <div className="mt-4">
+            <div className="text-muted">
+              Open the Tron app on your Ledger
+            </div>
+            <div className="my-3">
+              <PulseLoader color="#343a40" loading={true} height={5} width={150} />
+            </div>
+          </div>
+        }
+        {
+          connected &&
+          <Fragment>
+            <div className="text-center my-4">
+              <b className="text-success">Ledger Connected</b><br/>
+              {address}
+            </div>
+            <button className="btn btn-success mt-3"
+                    onClick={this.openWallet}>
+              {tu("open_wallet")}
+            </button>
+          </Fragment>
+        }
+
       </div>
     )
   }

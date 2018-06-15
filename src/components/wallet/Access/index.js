@@ -6,6 +6,9 @@ import TrezorAccess from "./TrezorAccess";
 import LedgerAccess from "./LedgerAccess";
 import AddressAccess from "./AddressAccess";
 
+const tronLogo = require("../../../images/tron-banner-inverted.png");
+
+
 class Index extends Component {
 
   constructor() {
@@ -16,7 +19,7 @@ class Index extends Component {
       pages: [
         {
           id: "address",
-          label: "Address (Readonly)",
+          label: "Address",
           icon: require("../../../images/private-key-1.png"),
         },
         {
@@ -31,7 +34,7 @@ class Index extends Component {
         },
         {
           id: "ledger",
-          label: "Ledger Nano S",
+          label: "Ledger",
           icon: require("../../../images/ledger-icon.jpg"),
         },
         {
@@ -58,8 +61,10 @@ class Index extends Component {
     switch (pageId) {
       default:
         return (
-          <div className="text-center">
-            <h3 className="py-5 text-muted">Choose a method to access your wallet</h3>
+          <div className="text-center text-muted">
+            <h3 className="py-5">Choose a method to access your wallet</h3>
+            <i className="fa fa-arrow-left fa-3x" />
+
           </div>
         );
 
@@ -98,8 +103,9 @@ class Index extends Component {
     return (
       <main className="container header-overlap account-selector">
         <div className="card">
-          <div className="card-header text-center">
-            Access your wallet
+          <div className="text-center p-4 bg-dark" style={styles.headerWrap}>
+            <img className="wallet-wizard-logo" src={tronLogo} style={styles.header} />
+            <h3 style={{ color: '#bebebe'}} className="mt-3">Open Wallet</h3>
           </div>
           <div className="row no-gutters">
             <ul className="nav flex-column col-md-3">
@@ -125,7 +131,12 @@ class Index extends Component {
 }
 
 const styles = {
-
+  header: {
+    height: '100px',
+  },
+  headerWrap: {
+    borderBottom: '5px solid #e9ecef'
+  }
 };
 
 function mapStateToProps(state) {

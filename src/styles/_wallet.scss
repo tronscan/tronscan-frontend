@@ -96,7 +96,7 @@ $iconSize: 60px;
   $arrowSize: 30px;
 
   .nav {
-    padding-top: 20px;
+    //padding-top: 20px;
     z-index: 100;
 
   }
@@ -115,9 +115,16 @@ $iconSize: 60px;
     border-top: 2px solid #f1f1f1;
 
     &.active {
-      background-color: #FFF;
-      border-bottom: 2px solid #EEE;
-      border-top: 2px solid #EEE;
+
+      $activeColor: #dc3545;
+
+      background-color: $activeColor !important;
+      border-bottom: 2px solid $activeColor;
+      border-top: 2px solid $activeColor;
+
+      a {
+        color: #FFF !important;
+      }
 
       &:after {
         left: 100%;
@@ -130,7 +137,7 @@ $iconSize: 60px;
         position: absolute;
         pointer-events: none;
         border-color: rgba(136, 183, 213, 0);
-        border-left-color: #fff;
+        border-left-color: $activeColor;
         border-width: $arrowSize;
         margin-top: -$arrowSize;
       }

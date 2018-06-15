@@ -5,6 +5,7 @@ import {loginWithAddressReadOnly} from "../../../actions/app";
 import {trim} from "lodash";
 import {tu} from "../../../utils/i18n";
 import {saveWallet} from "../../../utils/storage";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 
 class AddressAccess extends Component {
 
@@ -28,19 +29,29 @@ class AddressAccess extends Component {
     });
   };
 
+  isValid = () => {
+    let {address} = this.state;
+
+    return isAddressValid(address);
+  };
+
   render() {
 
     return (
-      <div className="text-center p-3 mx-5">
-        <h2>{tu("address_only")}</h2>
+      <div className="text-center p-3 mx-auto mt-5" style={{ maxWidth: '400px' }}>
+        {/*<h2>{tu("address")}</h2>*/}
+        <div className="text-muted text-center">
+          Open a readonly wallet for the given address
+        </div>
         <div className="form-group text-center mt-3">
           <input
             type="text"
-            className="form-control"
+            className="form-control text-center"
             onChange={ev => this.setState({ address: ev.target.value })}
-            placeholder=""/>
+            placeholder="Address"/>
         </div>
-        <button className="btn btn-success btn-block"
+        <button className="btn btn-success"
+                disabled={!this.isValid()}
                 onClick={this.login}>
           {tu("open_wallet")}
         </button>
