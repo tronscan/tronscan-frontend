@@ -258,7 +258,7 @@ export const messages = {
    The maximum number of votes is less than or equal to the number of TRX users hold each time.
    (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
    The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
+   voting cycle of which the time is from 00:00:00 p.m. am to 11:59:59 pm. TRX holders with the most votes will become super delegate.
    Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
    TRX will not be consumed in the process of super delegate application and voting.`,
   "unknown_error": "an unknown error occurred",

@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.1-15062018-1                                                #
+#         Update Date: 15.06.2018                                                #
 #         Language: German                                                       #
 #         Status: Approved Version                                               #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: PMD3VSolution,DrKaradenizli,DrKara                       #
 #                                                                                #
 ##################################################################################
@@ -436,16 +436,16 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "date_error": "Das Enddatum ist kleiner oder gleich dem Anfangsdatum.",
-  "no_name_error": "Name ist erforderlich",
-  "no_supply_error": "Die Gesamtanzahl muss mindestens 1 sein.",
-  "coin_value_error": "Der Wert des Tokens muss mindestens 1 sein.",
-  "tron_value_error": "Der Wert von TRX pro Münze muss mindestens 1 % des Saldos betragen.",
+  "date_error": "Das Enddatum liegt vor dem Startdatum oder entspricht diesem.",
+  "no_name_error": "Der Name des Tokens muss vergeben werden",
+  "no_supply_error": "Die Menge der auszugebenen Token muss größer als der Wert 1 sein.",
+  "coin_value_error": "Die Token-Anzahl muss gößer sein als 1.",
+  "tron_value_error": "Der Wert eines TRX pro Token muss mehr als 1 % des Saldos betragen.",
   "invalid_starttime_error": "Das angegebene Startdatum ist ungültig.",
   "invalid_endtime_error": "Das angegebene Enddatum ist ungültig.",
-  "no_description_error": "Beschreibung ist erforderlich",
-  "no_url_error": "Web URL ist erforderlich",
-  "past_starttime_error": "Der Starttermin liegt in der Vergangenheit.",
+  "no_description_error": "Eine Beschreibung ist erforderlich",
+  "no_url_error": "Eine Web URL ist erforderlich",
+  "past_starttime_error": "Das Startdatum liegt in der Vergangenheit.",
   "no_transactions": "Keine Transaktionen vorhanden",
 
 /*
