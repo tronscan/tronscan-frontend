@@ -220,16 +220,16 @@ export const messages = {
   "token_freeze_confirm_message_0": "تایید مسدود سازی ",
   "token_freeze_confirm_message_1": "برای حداقل 3 روز",
   "tokens_unfrozen": "Tokens Unfrozen",
-  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
-  "unable_to_unfreeze": "Unable to unfreeze",
-  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
-  "tokens_frozen": "Tokens Frozen",
-  "successfully_frozen": "Successfully frozen",
+  "success_tokens_unfrozen_message": "نشانه های موفقیت آمیز باز کردن",
+  "unable_to_unfreeze": "نمیتونم بریزم",
+  "Unable_tokens_unfrozen_message": "قادر به فشرده سازی نشانه ها نیست",
+  "tokens_frozen": "نشانه های منجمد",
+  "successfully_frozen": "نشانه های منجمد",
   "name_changed": "نام تغییر کرد",
-  "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
-  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "successfully_changed_name_to_message": "تغییر نام به صورت موفقیت آمیز بود",
+  "unable_to_rename_title": "قادر به تغییر نام نیست",
+  "unable_to_rename_message": "در هنگام بهروزرسانی نام حسابتان، چیزی اشتباه رفت، لطفا بعدا دوباره امتحان کنید",
+  "unfreeze_trx_confirm_message": "آیا مطمئن هستید که می خواهید TRX را آزاد کنید؟",
 
 /*
 ##################################################################################
@@ -321,9 +321,9 @@ export const messages = {
 ##################################################################################
 */
   "how_much_buy_message": "شما چقدر توکن می خواهید خرید کنید؟",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "buy_confirm_message_0": "شما مطمئن هستید؟",
+  "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
+  "for": "برای",
 
 /*
 ##################################################################################
@@ -488,14 +488,14 @@ export const messages = {
   "live_ranking_msg": "هر 15 ثانیه بروزرسانی می کند. رأی های جدید ممکن است قبل از شمارش، 1-2 دقیقه طول بکشد",
   "candidate": "کاندید",
   "current_votes": "رأی فعلی",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
+  "click_to_start_voting": "برای شروع رأی گیری اینجا را کلیک کنید",
+  "votes_remaining_message": "رأی باقی مانده است",
+  "open_wallet_start_voting_message": "کیسه باز برای شروع رأی گیری",
+  "thanks_submitting_vote_message": "متشکرم برای ارسال رای شما",
   "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
   "to_much_votes_massage": "You spend to much votes!",
   "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
+  "submissing_vote_message_title": "از رای شما سپاسگذاریم.",
   "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
   "submissing_vote_message_1": "You may redistribute your votes anytime you like",
   "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
