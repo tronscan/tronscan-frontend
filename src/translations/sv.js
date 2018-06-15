@@ -81,11 +81,11 @@ export const messages = {
   "cancel": "avboka",
   "reset": "återställa",
   "error": "fel",
-  "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
-  "wallet_unlocked": "Wallet Unlocked",
+  "unlock_keyFile": "Lås upp KeyFile",
+  "enter_password_message": "Du måste skriva ditt lösenord!",
+  "password_incorrect": "Fel lösenord",
+  "try_again": "Försök igen",
+  "wallet_unlocked": "Plånbok upplåst",
 
 /*
 ##################################################################################
@@ -172,8 +172,8 @@ export const messages = {
 */
   "set_name": "Skriv Namn",
   "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "change_name": "Byt Namn",
+  "account_name": "Kontonamn",
   "show_qr_code": "Visa QR Kod",
   "free_bandwidth": "Gratis Bandbredd",
   "expires": "förfaller",
@@ -185,9 +185,9 @@ export const messages = {
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "transactions": "transaktioner",
   "tokens": "tokens",
-  "token_balances": "token balances",
+  "token_balances": "token balanser",
   "produced_blocks": "producerade blocks",
-  "voters": "voters",
+  "voters": "röstare",
   "no_tokens": "Inga Tokens",
   "issued_token": "utfärdade token",
   "progress": "progress",
@@ -195,10 +195,10 @@ export const messages = {
   "issuer": "utgivare",
   "network": "nätverk",
   "current": "nuvarande",
-  "trx_received": "TRX received",
+  "trx_received": "TRX mottaget",
   "test_trx_temporarily_unavailable_message": "Test TRX är för tillfället oåtkomligt. Var vänlig försök igen senare.",
-  "not_enough_trx": "Not enough TRX",
-  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "not_enough_trx": "Inte tillräckligt med TRX",
+  "information_message_3": "Förfrågan om TRX lyckades. Om du inte fick någon TRX så är det för att det inte finns några test TRX just nu. Du bör försöka igen vid en senare tidpunkt.",
 
 /*
 ##################################################################################
@@ -274,8 +274,8 @@ export const messages = {
   "blocks_missed": "Missade Block",
   "do_not_send_1": "Skicka inte TRX från din egna plånbok eller börs till till din testnet address!.",
   "go_to_votelist": "Gå till röst listan",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Jag förstår hur man blir en TRON representative och jag godkänner att spendera en",
+  "understand_tron_sr_message_1": "avgift.",
 
 /*
 ##################################################################################
@@ -300,8 +300,8 @@ export const messages = {
   "trx_token_wallet_requirement": "Du behöver öppna en plånbok för att kunna skapa en token",
   "invalid_address": "ogiltig adress",
   "insufficient_tokens": "otillräcklig med tokens",
-  "fill_a_valid_number": "Please fill a valid number",
-  "fill_a_valid_address": "Please fill a valid address",
+  "fill_a_valid_number": "Var vänlig fyll i ett giltigt nummer",
+  "fill_a_valid_address": "Var vänlig fyll i en giltig address",
   "make_another_transaction": "Gör en annan transaktion",
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
@@ -323,7 +323,7 @@ export const messages = {
     "buy_confirm_message_1": "Är du säker på att du vill köpa",
     "for": "för",
     "insufficient_trx": "Insufficient TRX",
-    "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+    "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
 
 /*
 ##################################################################################
@@ -486,16 +486,16 @@ export const messages = {
   "candidate": "Kandidat",
   "current_votes": "Nuvarande Röster",
   "click_to_start_voting": "Klicka här för att börja rösta",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "votes_remaining_message": "Röster Kvar",
+  "open_wallet_start_voting_message": "Öppna plånbok för att börja rösta",
+  "thanks_submitting_vote_message": "Tack för din röst",
+  "need_min_trx_to_vote_message": "Du behöver minst 1 TRCX för att kunna rösta!",
+  "to_much_votes_massage": "Du har spenderat för många röster!",
+  "all_votes_are_used_message": "Alla röster är använda!",
+  "submissing_vote_message_title": "Tack för att du röstar!",
+  "submissing_vote_message_0": "Dina röster har skickats in, de träder i kraft när nästa röstcykel börjar.",
+  "submissing_vote_message_1": "Du kan omfördela dina röster när som helst.",
+  "submitting_vote_error_message": "Något gick fel när du skickade in dina röster. Vänligen försök igen senare.",
 
 /*
 ##################################################################################
