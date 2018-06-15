@@ -327,10 +327,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "how_much_buy_message": "Hoeveel tokens wil je kopen?",
+  "buy_confirm_message_0": "Weet je het zeker?",
+  "buy_confirm_message_1": "Weet u zeker dat u de jeton koopt? U ontvangt ",
+  "for": "voor",
+  "insufficient_trx": "Niet genoeg TRX beschikbaar",
+  "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
 
 /*
 ##################################################################################

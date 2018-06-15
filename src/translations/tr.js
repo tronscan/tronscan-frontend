@@ -331,6 +331,8 @@ export const messages = {
   "buy_confirm_message_0": "Emin misiniz?",
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
   "for": "için",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
 
 /*
 ##################################################################################

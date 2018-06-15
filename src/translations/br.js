@@ -283,7 +283,7 @@ export const messages = {
   "go_to_votelist": "Ir para a lista de eleitores",
   "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
   "understand_tron_sr_message_1": "fee.",
-  
+
 /*
 ##################################################################################
 #                                                                                #
@@ -330,6 +330,8 @@ export const messages = {
   "buy_confirm_message_0": "Você tem certeza?",
   "buy_confirm_message_1": "Tem certeza que quer comprar",
   "for": "para",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
 
 /*
 ##################################################################################

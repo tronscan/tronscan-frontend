@@ -315,6 +315,8 @@ export const messages = {
   "buy_confirm_message_0": "是否确定购买？",
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
 
 /*
 ##################################################################################

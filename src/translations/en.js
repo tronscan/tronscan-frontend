@@ -335,6 +335,8 @@ export const messages = {
   "how_much_buy_message": "How much tokens do you want to buy?",
   "buy_confirm_message_1": "Are you sure you want to buy",
   "for": "for",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
 
 /*
 ##################################################################################

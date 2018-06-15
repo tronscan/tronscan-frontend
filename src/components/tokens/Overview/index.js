@@ -87,10 +87,10 @@ class TokenOverview extends Component {
         alert: (
           <SweetAlert
             warning
-            title="Insufficient TRX"
+            title={tu("insufficient_trx")}
             onConfirm={() => this.setState({ alert: null })}
           >
-            You do not have enough TRX to buy so many tokens
+            {tu("not_enouth_trx_message")}
           </SweetAlert>
         ),
       });

@@ -200,7 +200,7 @@ export const messages = {
   "network": "Netzwerk",
   "current": "aktuell",
   "trx_received": "TRX empfangen",
-  "test_trx_temporarily_unavailable_message": "Test TRX sind aktuell nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
+  "test_trx_temporarily_unavailable_message": "Für das Testnet sind aktuell keine TRX verfügbar. Bitte versuchen Sie es später noch einmal.",
   "not_enough_trx": "Nicht ausreichend TRX",
   "information_message_3": "TRX wurde erfolgreich angefordert.  Wenn Sie dennoch keine TRX erhalten haben, sind derzeit keine Test TRX verfügbar. Versuchen Sie es bitte zu einem  späteren Zeitpunkt erneut.",
   "send_to_following_address": "An folgende Adresse senden",
@@ -332,8 +332,10 @@ export const messages = {
 */
   "buy_confirm_message_0": "Kaufbestätigung",
   "how_much_buy_message": "Wie viele Token möchten Sie kaufen?",
-  "buy_confirm_message_1": "Möchten Sie folgende Token erwerben?",
+  "buy_confirm_message_1": "Sind Sie sich beim Kauf des Tokens auch wirklich sicher? Sie erhalten ",
   "for": "für",
+  "insufficient_trx": "Nicht ausreichend TRX vorhanden",
+  "not_enouth_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
 
 /*
 ##################################################################################
