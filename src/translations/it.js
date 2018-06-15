@@ -82,9 +82,9 @@ export const messages = {
   "reset": "Reimposta",
   "error": "Errore",
   "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
+  "enter_password_message": "È necessario inserire la password!",
+  "password_incorrect":"Password errata",
+  "try_again": "Prova di nuovo",
   "wallet_unlocked": "Wallet Unlocked",
 
 /*
