@@ -83,7 +83,7 @@ export const messages = {
   "enter_password_message": "Bitte geben Sie ein Passwort ein!",
   "password_incorrect":"falsches Passwort",
   "try_again": "Erneut versuchen",
-  "wallet_unlocked": "Das Wallet wurde erfolgreich entriegelt",
+  "wallet_unlocked": "Das Wallet wurde erfolgreich entsperrt",
 
 /*
 ##################################################################################
