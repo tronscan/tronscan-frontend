@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-14062018                                                  #
-#         Update Date: 14.06.2018                                                #
+#         Version: 1.2-15062018                                                  #
+#         Update Date: 15.06.2018                                                #
 #         Language: Turkish                                                      #
 #         Status: first Version                                                  #
 #         Number of checks: 3                                                    #
@@ -495,17 +495,17 @@ export const messages = {
   "live_ranking_msg": "Her 15 saniyede bir güncellenir. Yeni oyların sayılması 1-2 dakika sürebilir",
   "candidate": "Aday",
   "current_votes": "Mevcut Oylar",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
-  "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "click_to_start_voting": "Buraya tıklayarak oy vermeye başlayabilirsiniz",
+  "votes_remaining_message": "Kalan oy hakkınız",
+  "open_wallet_start_voting_message": "Cüzdan'ı açarak oy vermeye başlayabilirsiniz",
+  "thanks_submitting_vote_message": "Oyunuzu gönderdiğiniz için teşekkürler!",
+  "need_min_trx_to_vote_message": "Oy verebilmek için bakiyeniz en az 1 TRX olmalıdır",
+  "to_much_votes_massage": "Çok fazla oy harcadınız!",
+  "all_votes_are_used_message": "Tüm oylar kullanıldı!",
+  "submissing_vote_message_title": "Oylama için teşekkürler!",
+  "submissing_vote_message_0": "Oylarınız başarıyla iletildi, bir sonraki oylama döngüsü başladığında devreye girecekler.",
+  "submissing_vote_message_1": "İstediğiniz anda oylarınızı yeniden dağıtabilirsiniz",
+  "submitting_vote_error_message": "Oylarınız gönderilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz.",
 
 /*
 ##################################################################################
