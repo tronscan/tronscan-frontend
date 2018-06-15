@@ -85,6 +85,7 @@ export const messages = {
   "enter_password_message": "Vous devez entrer votre mot de passe !",
   "password_incorrect":"Mot de passe incorrect",
   "try_again": "Essayez à nouveau",
+  "wallet_unlocked": "Wallet Unlocked",
 
 /*
 ##################################################################################

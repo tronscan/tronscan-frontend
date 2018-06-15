@@ -85,6 +85,7 @@ export const messages = {
   "enter_password_message": "شما باید رمز عبور خود را وارد کنید",
   "password_incorrect":"رمز عبور اشتباه است",
   "try_again": "دوباره امتحان کنید",
+  "wallet_unlocked": "Wallet Unlocked",
 
 /*
 ##################################################################################

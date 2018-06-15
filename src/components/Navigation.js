@@ -133,7 +133,7 @@ class Navigation extends PureComponent {
       this.setState({
         popup: (
           <SweetAlert
-            success title="Wallet Unlocked"
+            success title={tu("wallet_unlocked")}
             onConfirm={this.hideModal} />
         )
       });
