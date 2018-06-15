@@ -39,7 +39,6 @@ class PrivateKeyAccess extends Component {
 
   render() {
 
-
     return (
       <div className="text-center p-3 mx-auto mt-5" style={{ maxWidth: '400px' }}>
         {/*<h2>{tu("private_key")}</h2>*/}

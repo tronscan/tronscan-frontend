@@ -93,7 +93,8 @@ class Trx {
   async signTransaction(
     path,
     rawTxHex,
-    sha256 = false
+    sha256 = false,
+    contractType,
   ) {
     let paths = splitPath(path);
     let rawTx = new Buffer(rawTxHex, "hex");
@@ -109,6 +110,7 @@ class Trx {
       rawTx,
       rawTxHex,
       copyResponse,
+      sha256,
     });
 
 
@@ -140,7 +142,15 @@ class Trx {
 
     try {
 
-      console.log("DATA LIMIT", buffer.length);
+
+      if (sha256) {
+        buffer = Buffer.concat([
+          Buffer.from([contractType]),
+          buffer,
+        ]);
+      }
+
+      console.log("BUFFER", buffer);
 
       let response = await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
 

@@ -77,11 +77,11 @@ class TokenOverview extends Component {
 
   buyTokens = (token) => {
     let {amount} = this.state;
-    let {wallet} = this.props;
+    let {currentWallet} = this.props;
 
     let tokenCosts = amount * (token.price / ONE_TRX);
 
-    if (( wallet.balance / ONE_TRX) < tokenCosts) {
+    if (( currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
         alert: (
           <SweetAlert
@@ -161,16 +161,16 @@ class TokenOverview extends Component {
 
   submit = async (token) => {
 
-    let {wallet} = this.props;
+    let {currentWallet} = this.props;
     let {amount} = this.state;
 
     this.setState({ loading: true });
 
     let isSuccess = await Client.participateAsset(
-      wallet.address,
+      currentWallet.address,
       token.ownerAddress,
       token.name,
-      amount * token.price)(wallet.key);
+      amount * token.price)(currentWallet.key);
 
     this.setState({
       activeToken: null,
@@ -390,7 +390,8 @@ class TokenOverview extends Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
-    wallet: state.wallet.current,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
   };
 }
 

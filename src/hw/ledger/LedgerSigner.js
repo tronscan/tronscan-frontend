@@ -22,12 +22,14 @@ export default class LedgerSigner {
       case Transaction.Contract.ContractType.TRANSFERASSETCONTRACT:
       case Transaction.Contract.ContractType.TRANSFERCONTRACT:
         return {
+          contractType,
           sha256: false,
           hex: byteArray2hexStr(raw.serializeBinary()),
         };
 
       default:
         return {
+          contractType,
           sha256: true,
           hex: byteArray2hexStr(SHA256(raw.serializeBinary())),
         };
@@ -41,6 +43,8 @@ export default class LedgerSigner {
     return new Promise(resolve => {
 
       ipcRenderer.once(LEDGER_SIGNATURE_RESPONSE, (event, arg) => {
+
+        console.log("LEDGER_SIGNATURE_RESPONSE", arg);
 
         let raw = transaction.getRawData();
         let uint8Array = Uint8Array.from(arg.hex);
@@ -57,13 +61,10 @@ export default class LedgerSigner {
 
       console.log("SENDING TO LEDGER");
 
-      let {hex, sha256} = this.serializeTransaction(transaction);
+      let serializedTransaction = this.serializeTransaction(transaction);
 
       ipcRenderer.send(LEDGER_SIGNATURE_REQUEST, JSON.stringify({
-        transaction: {
-          sha256,
-          hex,
-        }
+        transaction: serializedTransaction,
       }));
     });
   }

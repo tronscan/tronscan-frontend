@@ -64,7 +64,7 @@ export const setActiveCurrency = (currency) => ({
   currency
 });
 
-export const login = (privateKey) => async (dispatch, getState) => {
+export const login = (privateKey) => async (dispatch) => {
   await dispatch(loginWithPrivateKey(privateKey));
   await dispatch(loadWalletWithPrivateKey(privateKey));
 };

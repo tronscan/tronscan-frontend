@@ -53,7 +53,11 @@ class LedgerBridge {
       const transport = await Transport.create();
       try {
         const trx = new AppTrx(transport);
-        let response = await trx.signTransaction(this.path, transaction.hex, transaction.sha256);
+        let response = await trx.signTransaction(
+          this.path,
+          transaction.hex,
+          transaction.sha256,
+          transaction.contractType);
         resolve(response);
       } catch(e) {
         reject(e);

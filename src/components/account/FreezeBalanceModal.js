@@ -40,7 +40,9 @@ class FreezeBalanceModal extends React.PureComponent {
 
   onAmountChanged = (value) => {
 
-    let {trxBalance} = this.props;
+    let {currentWallet} = this.props;
+
+    let trxBalance = currentWallet.balance / ONE_TRX;
 
     let amount = parseInt(value);
 
@@ -58,12 +60,12 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {account} = this.props;
+    let {currentWallet} = this.props;
     let {amount} = this.state;
 
     this.setState({ loading: true });
 
-    let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3)(account.key);
+    let {success} = await Client.freezeBalance(currentWallet.address, amount * ONE_TRX, 3)(currentWallet.key);
 
     this.confirmModal({ amount });
     this.setState({ loading: false });
@@ -72,9 +74,9 @@ class FreezeBalanceModal extends React.PureComponent {
   render() {
 
     let {amount, confirmed, loading} = this.state;
-    let {trxBalance} = this.props;
+    let {currentWallet} = this.props;
 
-    let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
+    let isValid = !loading && (amount > 0 && (currentWallet.balance / ONE_TRX) >= amount && confirmed);
 
     return (
       <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered" >
@@ -118,9 +120,7 @@ class FreezeBalanceModal extends React.PureComponent {
 
 function mapStateToProps(state) {
   return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    trxBalance: state.account.trxBalance,
+    currentWallet: state.wallet.current,
   };
 }
 
