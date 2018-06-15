@@ -81,9 +81,9 @@ export const messages = {
   "reset": "清零",
   "error": "错误",
   "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
+  "enter_password_message": "你必须输入你的密码",
+  "password_incorrect":"密码错误",
+  "try_again": "再试一次",
   "wallet_unlocked": "Wallet Unlocked",
 
 /*
@@ -171,9 +171,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "设置名称",
-  "unique_account_message": "You may only set your account name once!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "unique_account_message": "您只能设置一次您的帐户名称",
+  "change_name": "更换名字",
+  "account_name": "用户名",
   "show_qr_code": "显示二维码",
   "free_bandwidth": "免费带宽",
   "expires": "失效",
@@ -224,7 +224,7 @@ export const messages = {
   "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
   "tokens_frozen": "Tokens Frozen",
   "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
+  "name_changed": "名称已更改",
   "successfully_changed_name_to_message": "Successfully changed name to",
   "unable_to_rename_title": "Unable to rename",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
