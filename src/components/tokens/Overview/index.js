@@ -4,7 +4,6 @@ import {filter, find, includes, sortBy, round} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {tu,t} from "../../../utils/i18n";
-import {TextField} from "../../../utils/formHelper";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {ExternalLink, TokenLink} from "../../common/Links";
@@ -12,7 +11,6 @@ import Avatar from "../../common/Avatar";
 import {Sticky, StickyContainer} from "react-sticky";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Paging from "../../common/Paging";
-import {checkPageChanged} from "../../../utils/PagingUtils";
 import {NumberField} from "../../common/Fields";
 
 class TokenOverview extends Component {

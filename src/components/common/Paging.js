@@ -1,9 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {tu} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
 import {connect} from "react-redux";
-import {loadTokens} from "../../actions/tokens";
 
 class Paging extends React.PureComponent {
 

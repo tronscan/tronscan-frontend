@@ -6,7 +6,6 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import {tu} from "../../../utils/i18n";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
-import {checkPageChanged} from "../../../utils/PagingUtils";
 import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
 

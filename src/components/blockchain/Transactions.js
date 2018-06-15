@@ -5,15 +5,11 @@ import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import {random, range} from "lodash";
 import TimeAgo from "react-timeago";
-import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import {ONE_TRX} from "../../constants";
 import {getQueryParams} from "../../utils/url";
-import {checkPageChanged} from "../../utils/PagingUtils";
 import Paging from "../common/Paging";
 import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "../common/Price";
 import {Truncate} from "../common/text";
 import {ContractTypes} from "../../utils/protocol";
 

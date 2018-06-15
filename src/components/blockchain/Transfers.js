@@ -10,11 +10,9 @@ import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
 import {ONE_TRX} from "../../constants";
 import {getQueryParams} from "../../utils/url";
-import {checkPageChanged} from "../../utils/PagingUtils";
 import Paging from "../common/Paging";
 import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "../common/Price";
-import {TronLoader} from "../common/loaders";
 import {Truncate} from "../common/text";
 
 class Transfers extends React.Component {
@@ -151,7 +149,6 @@ class Transfers extends React.Component {
 }
 
 function mapStateToProps(state) {
-
   return {
   };
 }

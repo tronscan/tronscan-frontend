@@ -8,10 +8,9 @@ import TimeAgo from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink} from "../common/Links";
-import {checkPageChanged} from "../../utils/PagingUtils";
 import Paging from "../common/Paging";
 import {Sticky, StickyContainer} from "react-sticky";
-import {TronLoader} from "../common/loaders";
+
 
 class Blocks extends React.Component {
 
@@ -35,7 +34,6 @@ class Blocks extends React.Component {
   loadBlocks = async (page = 1,pageSize=40) => {
 
     this.setState({ loading: true });
-
 
     let {blocks, total} = await Client.getBlocks({
       sort: '-number',
