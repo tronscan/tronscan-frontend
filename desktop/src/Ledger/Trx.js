@@ -17,7 +17,7 @@
 
 const { splitPath, foreach } = require("./utils");
 
-const CLA = 0x27;
+const CLA = 0xE0;
 
 /**
  * Tron API
@@ -44,7 +44,7 @@ class Trx {
 
   /**
    * Get TRX address for a given BIP 32 path.
-   * cla: number, is 0x27
+   * cla: number, is 0xE0
    * ins: number, is the function 0x02 publickey 0x04 sign 0x06 configuration
    * p1: number, is used to get confirmation, set as 0 for now
    * p2: number,is used to chain, we dont have itm so 0 too
