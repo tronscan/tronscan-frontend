@@ -28,6 +28,7 @@ const initialState = {
     nl: "Nederlands",
     de: "Deutsch",
     sv: "Svenska",
+    pl: "Polski",
     zh: "简体中文",
     fa:"فارسی",
     ko:"한국어",
