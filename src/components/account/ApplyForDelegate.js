@@ -38,19 +38,26 @@ class ApplyForDelegate extends Component {
 
     this.setState({ loading: true, });
 
-    let {success} = await Client.applyForDelegate(currentWallet.address, url)(currentWallet.key);
-    this.setState({ loading: false });
-    if (success) {
-      this.confirm();
-    } else {
-      this.setState({
-        modal: (
-          <SweetAlert warning title="Error" onConfirm={this.hideModal}>
-            Something went wrong while trying to apply for representative.<br/>
-            Make sure you have enough TRX for the fee, or try again later.
-          </SweetAlert>
-        )
-      })
+    try {
+      let {success} = await Client.applyForDelegate(currentWallet.address, url)(currentWallet.key);
+      if (success) {
+        this.confirm();
+      } else {
+        this.setState({
+          modal: (
+            <SweetAlert warning title="Error" onConfirm={this.hideModal}>
+              Something went wrong while trying to apply for representative.<br/>
+              Make sure you have enough TRX for the fee, or try again later.
+            </SweetAlert>
+          )
+        });
+      }
+    }
+    catch(e) {
+
+    }
+    finally {
+      this.setState({ loading: false });
     }
   };
 

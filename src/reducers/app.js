@@ -10,7 +10,7 @@ import {
   SET_CURRENCY,
   SET_LANGUAGE,
   SET_PRICE, SET_SYNC_STATUS,
-  SET_THEME
+  SET_THEME, SET_TRANSACTION_POPUP
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
@@ -19,6 +19,7 @@ const initialState = {
   theme: Lockr.get("theme", "dark"),
   accounts: [],
   syncStatus: null,
+  transactionPopup: null,
   price: {
     usd: 0,
     percentage: 0,
@@ -95,6 +96,15 @@ export function appReducer(state = initialState, action) {
       }
     }
 
+    case SET_TRANSACTION_POPUP:
+
+      console.log("SET TRANSACTION POPUP", action.popup);
+
+      return {
+        ...state,
+        transactionPopup: action.popup,
+      };
+
     case SET_LANGUAGE: {
       let language = action.language;
 
@@ -121,8 +131,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGIN: {
-
-
       return {
         ...state,
         account: {
@@ -134,7 +142,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGIN_PK: {
-
       return {
         ...state,
         account: {
@@ -146,7 +153,6 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGIN_ADDRESS: {
-
       return {
         ...state,
         account: {

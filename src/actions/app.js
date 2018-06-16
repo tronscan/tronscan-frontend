@@ -1,8 +1,6 @@
 import {Client} from "../services/api";
 import xhr from "axios";
-import {loadRecentTransactions} from "./account";
 import {loadWalletFromAddress, loadWalletWithPrivateKey} from "./wallet";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 export const SET_ACCOUNTS = 'SET_ACCOUNTS';
 export const SET_PRICE = 'SET_PRICE';
@@ -16,12 +14,22 @@ export const ENABLE_FLAG = 'ENABLE_FLAG';
 export const DISABLE_FLAG = 'DISABLE_FLAG';
 export const SET_THEME = 'SET_THEME';
 export const SET_SYNC_STATUS = 'SET_SYNC_STATUS';
+export const SET_TRANSACTION_POPUP = 'SET_TRANSACTION_POPUP';
 
 export const setLanguage = (language = 'en') => ({
   type: SET_LANGUAGE,
   language,
 });
 
+export const openTransactionPopup = (popup) => ({
+  type: SET_TRANSACTION_POPUP,
+  popup,
+});
+
+export const closeTransactionPopup = () => ({
+  type: SET_TRANSACTION_POPUP,
+  popup: null
+});
 
 export const setTheme = (theme) => ({
   type: SET_THEME,

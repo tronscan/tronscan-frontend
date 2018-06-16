@@ -12,6 +12,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
+import AccountName from "../../common/AccountName";
 
 class SendForm extends React.Component {
 
@@ -202,7 +203,7 @@ class SendForm extends React.Component {
           type="button"
           disabled={!this.isValid() || isLoading}
           className="btn btn-primary btn-block btn-lg"
-          onClick={this.confirmSend}>{tu("send")}</button>
+          onClick={this.send}>{tu("send")}</button>
       </Fragment>
     )
   }
@@ -227,12 +228,6 @@ class SendForm extends React.Component {
 
   setAddress = (address) => {
     this.setState({ to: address });
-
-    Client.getAddress(address).then(data => {
-      this.setState({
-        toAccount: data ? data : null,
-      });
-    })
   };
 
   render() {
@@ -242,7 +237,6 @@ class SendForm extends React.Component {
 
     let isToValid = to.length !== 0 && isAddressValid(to);
     let isAmountValid = this.isAmountValid();
-
 
     if (sendStatus === 'success') {
       return (
@@ -276,11 +270,11 @@ class SendForm extends React.Component {
             </div>
           </div>
         </div>
-        {
-          (toAccount && toAccount.name !== "") && <Alert color="info">
-            <b>{toAccount.name}</b>
-          </Alert>
-        }
+        <AccountName address={to}>
+          { name => (
+            <Alert color="info" className="font-weight-bold"> {name}</Alert>
+          )}
+        </AccountName>
         <div className="form-group">
           <label>{tu("token")}</label>
           <div className="input-group mb-3">

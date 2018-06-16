@@ -97,6 +97,17 @@ class Trx {
     contractType,
   ) {
     let paths = splitPath(path);
+
+    // Prepend contractType if sha256
+    if (sha256) {
+      let hexContractType = contractType.toString(16);
+      if (hexContractType.length === 1) {
+        hexContractType = "0" + hexContractType;
+      }
+
+      rawTxHex = hexContractType + rawTxHex;
+    }
+
     let rawTx = new Buffer(rawTxHex, "hex");
     let buffer = new Buffer(1 + paths.length * 4 + rawTx.length);
     buffer[0] = paths.length;
@@ -113,50 +124,9 @@ class Trx {
       sha256,
     });
 
-
-
-    // let toSend = [];
-    // let response;
-    // while (offset !== rawTx.length) {
-    //   let maxChunkSize = offset === 0 ? 150 - 1 - paths.length * 4 : 150;
-    //   let chunkSize =
-    //     offset + maxChunkSize > rawTx.length
-    //       ? rawTx.length - offset
-    //       : maxChunkSize;
-    //   let buffer = new Buffer(
-    //     offset === 0 ? 1 + paths.length * 4 + chunkSize : chunkSize
-    //   );
-    //   if (offset === 0) {
-    //     buffer[0] = paths.length;
-    //     paths.forEach((element, index) => {
-    //       buffer.writeUInt32BE(element, 1 + 4 * index);
-    //     });
-    //     rawTx.copy(buffer, 1 + 4 * paths.length, offset, offset + chunkSize);
-    //   } else {
-    //     rawTx.copy(buffer, 0, offset, offset + chunkSize);
-    //   }
-    //   toSend.push(buffer);
-    //   offset += chunkSize;
-    // }
-
-
     try {
 
-
-      if (sha256) {
-        buffer = Buffer.concat([
-          Buffer.from([contractType]),
-          buffer,
-        ]);
-      }
-
-      console.log("BUFFER", buffer);
-
-      let response = await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
-
-      console.log("TRANSPORT RESPONSE", response);
-
-      return response;
+      return await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
     }
     catch(e) {
       console.log("ERROR RESPONSE", e);

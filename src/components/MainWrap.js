@@ -28,7 +28,7 @@ class MainWrap extends React.Component {
 
   render() {
 
-    let {activeLanguage, router, flags} = this.props;
+    let {activeLanguage, router, flags, transactionPopup} = this.props;
 
 
     return (
@@ -42,6 +42,7 @@ class MainWrap extends React.Component {
               { IS_DESKTOP && <LedgerAsync/> }
               <Navigation/>
               <Content router={router} />
+              {transactionPopup}
             </React.Fragment>
           </ConnectedRouter>
         </IntlProvider>
@@ -58,6 +59,7 @@ function mapStateToProps(state) {
     router: state.router,
     theme: state.app.theme,
     flags: state.app.flags,
+    transactionPopup: state.app.transactionPopup,
   };
 }
 

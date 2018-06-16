@@ -1,3 +1,11 @@
+import {signTransaction} from "@tronscan/client/src/utils/crypto";
+import {store} from "../../store";
+import {closeTransactionPopup, openTransactionPopup} from "../../actions/app";
+import {buildTransactionInfoModal} from "../../utils/modals";
+import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import React from "react";
+import {PulseLoader} from "react-spinners";
+
 const SHA256 = require("@tronscan/client/src/utils/crypto").SHA256;
 const LEDGER_SIGNATURE_RESPONSE = require("./constants").LEDGER_SIGNATURE_RESPONSE;
 const LEDGER_SIGNATURE_REQUEST = require("./constants").LEDGER_SIGNATURE_REQUEST;
@@ -9,6 +17,63 @@ export default class LedgerSigner {
 
   constructor() {
     console.log("LEDGER ACTIVATED");
+  }
+
+
+  hideModal = () => {
+    store.dispatch(closeTransactionPopup());
+  };
+
+  async buildModal(transaction, resolve, error) {
+
+    let cancel = () => {
+      error();
+      this.hideModal();
+    };
+
+    let contractInfo = await buildTransactionInfoModal(transaction);
+
+    return (
+      <Modal isOpen={true} toggle={cancel} fade={false} size="lg" className="modal-dialog-centered" >
+        <ModalHeader className="text-center" toggle={cancel}>
+          Confirm transaction
+        </ModalHeader>
+        <ModalBody className="p-0">
+          {contractInfo}
+          <div className="text-center my-1">
+            <img src={require("../../images/ledger-nano-s.png")} style={{ height: 50 }}/><br/>
+            Confirm the transaction on your ledger
+          </div>
+          <div className="text-center my-1">
+            <PulseLoader color="#343a40" loading={true} height={5} width={150} />
+          </div>
+        </ModalBody>
+        <ModalFooter>
+
+          {/*<button className="btn btn-outline-secondary" onClick={cancel}>*/}
+            {/*Cancel*/}
+          {/*</button>*/}
+          {/*<button className="btn btn-success" onClick={resolve}>*/}
+            {/*Confirm*/}
+          {/*</button>*/}
+        </ModalFooter>
+      </Modal>
+    )
+  }
+
+  async confirm(transaction) {
+
+    store.dispatch(
+      openTransactionPopup(
+        await this.buildModal(
+          transaction,
+          () => {
+            this.hideModal();
+          },
+          () => this.hideModal()
+        ),
+      )
+    );
   }
 
 
@@ -36,9 +101,7 @@ export default class LedgerSigner {
     }
   }
 
-  async signTransaction(transaction) {
-
-    console.log("GOT LEDGER SIGN REQUEST", transaction);
+  async signTransactionWithLedger(transaction) {
 
     return new Promise(resolve => {
 
@@ -67,5 +130,16 @@ export default class LedgerSigner {
         transaction: serializedTransaction,
       }));
     });
+  }
+
+  async signTransaction(transaction) {
+
+    try {
+      this.confirm(transaction);
+      return await this.signTransactionWithLedger(transaction);
+    }
+    finally {
+      this.hideModal();
+    }
   }
 }

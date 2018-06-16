@@ -4003,7 +4003,7 @@ google-palette@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/google-palette/-/google-palette-1.1.0.tgz#37e508568b8ca904e57976dfe28d92f701624a9a"
 
-google-protobuf@^3.5.0:
+google-protobuf@^3.5.0, google-protobuf@latest:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.5.0.tgz#b8cc63c74d83457bd8a9a904503c8efb26bca339"
 

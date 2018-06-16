@@ -1,8 +1,8 @@
 import {Client} from "../services/api";
 import {setTokenBalances} from "./account";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import PrivateKeySigner from "@tronscan/client/src/signer/privateKeySigner";
 import LedgerSigner from "../hw/ledger/LedgerSigner";
+import PrivateKeySigner from "../services/privateKeySigner";
 
 export const SET_ACTIVE_WALLET = 'SET_ACTIVE_WALLET';
 
