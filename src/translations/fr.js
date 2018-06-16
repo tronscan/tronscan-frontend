@@ -460,7 +460,7 @@ export const messages = {
   "rewards": "récompenses",
   "Super Representatives": "Super Représentants",
   "Super Representative Candidates": "Candidats super-représentatifs",
-  "loading_representatives": "Loading Representatives",
+  "loading_representatives": "chargement des Représentants",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
 

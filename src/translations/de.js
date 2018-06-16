@@ -282,7 +282,7 @@ export const messages = {
   "trx_produced": "Produzierte Transaktionen",
   "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der Tron Testnetz Adresse!",
   "go_to_votelist": "Zurück zur Voteliste",
-  "understand_tron_sr_message_0": "Ik begrijp de rol en verantwoordelijkheden van een TRON-vertegenwoordiger en accepteer hierbij betaling van een vergoeding van  ",
+  "understand_tron_sr_message_0": "Ich habe die Funktion und die Aufgaben eines TRON-Repräsentanten verstanden und akzeptiere hiermit die Zahlung einer Gebühr in Höhe von  ",
   "understand_tron_sr_message_1": ".",
   "invalid_url": "Ungültige URL",
   "apply_representative_error_message_0": "Bei der Bewerbung als Representant ist ein Fehler aufgetreten.",
