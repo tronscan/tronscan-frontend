@@ -284,6 +284,9 @@ export const messages = {
   "go_to_votelist": "Oylama listesine git",
   "understand_tron_sr_message_0": "Nasıl süper temsilci olunacağını anladım ve bunun için bir ücret ödeyeceğimi",
   "understand_tron_sr_message_1": "onaylıyorum.",
+  "invalid_url": "Geçersiz URL",
+  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
 
 /*
 ##################################################################################

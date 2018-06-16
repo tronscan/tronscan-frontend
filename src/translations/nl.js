@@ -282,8 +282,11 @@ export const messages = {
   "blocks_missed": "Gemiste Blokken",
   "do_not_send_1": "Verstuur geen TRX van je portemonnee of exchange naar je testnetadres!",
   "go_to_votelist": "Go to votelist",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Ik begrijp de rol en verantwoordelijkheden van een TRON-vertegenwoordiger en accepteer hierbij betaling van een vergoeding van ",
+  "understand_tron_sr_message_1": ".",
+  "invalid_url": "Ongeldige URL",
+  "apply_representative_error_message_0": "Tijdens de representatieve toepassing is een fout opgetreden.",
+  "apply_representative_error_message_1": "Zorg ervoor dat u genoeg TRX in uw account voor de registratiekosten, of probeer het later opnieuw.",
 
 /*
 ##################################################################################

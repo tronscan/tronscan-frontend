@@ -276,6 +276,9 @@ export const messages = {
   "go_to_votelist": "Gå till röst listan",
   "understand_tron_sr_message_0": "Jag förstår hur man blir en TRON representative och jag godkänner att spendera en",
   "understand_tron_sr_message_1": "avgift.",
+  "invalid_url": "Ogiltig webbadress",
+  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
 
 /*
 ##################################################################################
