@@ -152,6 +152,9 @@ export const messages = {
   "blocks_missed": "Fehlende Blöcke",
   "productivity": "Produktivität",
   "rewards": "Belohnung",
+  "token_created": "erstellte Token",
+  "witness": "Zeuge/Prüfer",
+  "asset_participation": "Asset-Beteiligung",
 
 /*
 ##################################################################################

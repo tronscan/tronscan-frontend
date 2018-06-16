@@ -121,11 +121,11 @@ export const messages = {
 ##################################################################################
 */
   "tron_main_message": "Décentraliser le Web",
-  "transactions_last_hour": "Transactions de l'heure passée",
+  "transactions_last_hour": "Transactions dernière heure",
   "block_height": "Hauteur du bloc",
   "online_nodes": "Nœuds en ligne",
   "pice_per_1000trx": "Prix (pour 1000TRX)",
-  "vote_for_super_representatives": "voter pour Super Representatives",
+  "vote_for_super_representatives": "Votez pour les Super Représentants",
   "view_super_representatives": "voir les super représentants",
   "create_new_wallet": "Créer un nouveau portefeuille",
   "view_tokens": "Afficher les jetons",
@@ -458,6 +458,9 @@ export const messages = {
   "lowest_productivity": "Productivité la plus faible",
   "productivity": "productivité",
   "rewards": "récompenses",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
   "Super Representatives": "Super Représentants",
   "Super Representative Candidates": "Candidats super-représentatifs",
   "loading_representatives": "chargement des Représentants",

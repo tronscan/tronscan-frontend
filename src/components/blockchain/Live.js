@@ -37,32 +37,32 @@ class Live extends React.Component {
       filters: {},
       filterButtons: [
         {
-          label: 'Transactions',
+          label: tu("transactions"),
           icon: 'fa fa-exchange-alt',
           id: 'transaction',
         },
         {
-          label: 'Votes',
+          label: tu("votes"),
           icon: 'fa fa-bullhorn',
           id: 'vote',
         },
         {
-          label: 'Asset Participation',
+          label: tu("asset_participation"),
           icon: 'fa fa-arrow-right',
           id: 'asset-participate',
         },
         {
-          label: 'Token Created',
+          label: tu("token_created"),
           icon: 'fa fa-plus-circle',
           id: 'asset-create',
         },
         {
-          label: 'Witness',
+          label: tu("witness"),
           icon: 'fa fa-eye',
           id: 'witness-create',
         },
         {
-          label: 'Account',
+          label: tu("account"),
           icon: 'fa fa-user',
           id: 'account-name-changed',
         },
