@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-13062018-2                                                #
-#         Update Date: 11.06.2018                                                #
+#         Version: 1.2-16062018-2                                                #
+#         Update Date: 16.06.2018                                                #
 #         language: Spanish                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 5                                                    #
+#         Number of checks: 6                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -85,7 +85,7 @@ export const messages = {
   "enter_password_message": "Debe introducir su contraseña!",
   "password_incorrect":"Contraseña incorrecta",
   "try_again": "Inténtelo de nuevo",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "Cartera Desbloqueada",
 
 /*
 ##################################################################################
@@ -199,7 +199,7 @@ export const messages = {
   "trx_received": "TRX recibidos",
   "test_trx_temporarily_unavailable_message": "No es posible realizar pruebas con TRX temporalmente. Por favor, inténtelo de nuevo más tarde.",
   "not_enough_trx": "No hay suficiente TRX",
-  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "information_message_3": "Solicitud de TRX realizada con éxito. Si no recibió ningún TRX, se debe a que no es posible realizar pruebas en este momento y debe volver a intentarlo más tarde.",
 
 /*
 ##################################################################################
@@ -231,7 +231,7 @@ export const messages = {
   "successfully_changed_name_to_message": "El nombre se cambió correctamente a",
   "unable_to_rename_title": "No se pudo cambiar el nombre",
   "unable_to_rename_message": "Algo salió mal al actualizar el nombre de su cuenta, por favor, inténtelo de nuevo más tarde",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "unfreeze_trx_confirm_message": "¿Seguro que desea descongelar TRX?",
 
 /*
 ##################################################################################
@@ -279,11 +279,11 @@ export const messages = {
   "blocks_missed": "Bloques Perdidos",
   "do_not_send_1": "¡No envíe TRX desde su cartera o Exchange a su dirección de la red de pruebas!",
   "go_to_votelist": "Ir a la lista de votos",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Entiendo cómo ser representante de TRON y confirmo gastar",
+  "understand_tron_sr_message_1": "de tasa.",
   "invalid_url": "URL no válida",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "Algo salió mal al aplicar la solicitud para ser representante.",
+  "apply_representative_error_message_1": "Asegúrese de tener suficiente TRX para la tasa, o inténtelo de nuevo más tarde.",
 
 /*
 ##################################################################################
@@ -331,8 +331,8 @@ export const messages = {
   "buy_confirm_message_0": "¿Seguro?",
   "buy_confirm_message_1": "¿Seguro que desea adquirir",
   "for": "por",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "insufficient_trx": "TRX insuficientes",
+  "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
 
 /*
 ##################################################################################
