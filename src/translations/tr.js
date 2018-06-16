@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-15062018                                                  #
-#         Update Date: 15.06.2018                                                #
+#         Version: 1.2-16062018                                                  #
+#         Update Date: 16.06.2018                                                #
 #         Language: Turkish                                                      #
 #         Status: first Version                                                  #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: ahm37k(Ahmet)                                            #
 #                                                                                #
 ##################################################################################

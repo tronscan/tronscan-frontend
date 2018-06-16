@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-14062018-1                                                #
-#         Update Date: 14.06.2018                                                #
+#         Version: 1.1-16062018-1                                                #
+#         Update Date: 16.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 4                                                    #
@@ -171,7 +171,7 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Skriv Namn",
-  "unique_account_message": "You may only set your account name once!",
+  "unique_account_message": "Du kan bara sätta ditt kontonamn en gång!",
   "change_name": "Byt Namn",
   "account_name": "Kontonamn",
   "show_qr_code": "Visa QR Kod",
@@ -277,8 +277,8 @@ export const messages = {
   "understand_tron_sr_message_0": "Jag förstår hur man blir en TRON representative och jag godkänner att spendera en",
   "understand_tron_sr_message_1": "avgift.",
   "invalid_url": "Ogiltig webbadress",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "Något gick fel när du försökte ansöka om representant.",
+  "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
 
 /*
 ##################################################################################
@@ -325,7 +325,7 @@ export const messages = {
     "buy_confirm_message_0": "Är du säker?",
     "buy_confirm_message_1": "Är du säker på att du vill köpa",
     "for": "för",
-    "insufficient_trx": "Insufficient TRX",
+    "insufficient_trx": "Otillräcklig TRX",
     "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
 
 /*
