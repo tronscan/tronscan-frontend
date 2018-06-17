@@ -91,6 +91,7 @@ export const messages = {
   "good": "valida",
   "strong": "robusto",
   "secure": "sicuro",
+  "status": "status",
 
 /*
 ##################################################################################
