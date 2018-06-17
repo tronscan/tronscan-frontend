@@ -1,12 +1,12 @@
+import AppTrx from "./Trx";
 const Transport = require("@ledgerhq/hw-transport-node-hid").default;
-const AppTrx = require("./Trx");
 const LEDGER_SIGNATURE_RESPONSE = require("../../../src/hw/ledger/constants").LEDGER_SIGNATURE_RESPONSE;
 const LEDGER_SIGNATURE_REQUEST = require("../../../src/hw/ledger/constants").LEDGER_SIGNATURE_REQUEST;
 const LEDGER_CONNECTION_STATUS = require("../../../src/hw/ledger/constants").LEDGER_CONNECTION_STATUS;
 const LEDGER_CONNECTION_CHECK = require("../../../src/hw/ledger/constants").LEDGER_CONNECTION_CHECK;
 const {ipcMain} = require('electron');
 
-class LedgerBridge {
+export default class LedgerBridge {
 
   constructor(win) {
     this.win = win;
@@ -108,6 +108,7 @@ class LedgerBridge {
           address,
         });
       } catch(e) {
+        console.log("LEDGER_CONNECTION_CHECK", e);
         this.sendToWeb(LEDGER_CONNECTION_STATUS, {
           connected: false,
         });
@@ -116,4 +117,3 @@ class LedgerBridge {
   }
 }
 
-module.exports = LedgerBridge;

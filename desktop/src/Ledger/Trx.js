@@ -26,7 +26,7 @@ const CLA = 0xE0;
  * import Trx from "@ledgerhq/hw-app-trx";
  * const trx = new Trx(transport)
  */
-class Trx {
+export default class Trx {
 
   constructor(transport) {
     this.transport = transport;
@@ -200,5 +200,3 @@ eth.signPersonalMessage("44'/60'/0'/0'/0", Buffer.from("test").toString("hex")).
     });
   }
 }
-
-module.exports = Trx;

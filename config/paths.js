@@ -55,4 +55,5 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
   desktopSrc: resolveApp('desktop'),
   desktopIndexJs: resolveApp('desktop/index.js'),
+  desktopOutput: resolveApp('build-native'),
 };

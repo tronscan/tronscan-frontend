@@ -1,8 +1,7 @@
 import React, {Fragment} from "react";
 import {ONE_TRX} from "../../../constants";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink} from "../../common/Links";
 import Field from "./Field";
-import {TRXPrice} from "../../common/Price";
 import {Transaction} from "@tronscan/client/src/protocol/core/Tron_pb";
 import AccountName from "../../common/AccountName";
 import {FormattedTRX} from "../../../utils/tron";

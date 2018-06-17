@@ -1,19 +1,13 @@
-const LedgerBridge = require("./src/Ledger/LedgerBridge");
-const {app, BrowserWindow, protocol, Menu, ipcMain} = require('electron');
+import LedgerBridge from "./src/Ledger/LedgerBridge";
+const {app, BrowserWindow, protocol, Menu} = require('electron');
 const path = require('path');
 const url = require('url');
-const Transport = require("@ledgerhq/hw-transport-node-hid").default;
-const AppTrx = require("./src/Ledger/Trx");
-
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
 function createWindow () {
-
-  console.log(process.versions);
-
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -28,30 +22,30 @@ function createWindow () {
   let ledgerBridge = new LedgerBridge(win);
   ledgerBridge.startListener();
 
-  const menuTemplate = [
-    {
-      label: 'Ledger',
-      submenu: [
-        {
-          label: 'Start Listener',
-          click: async () => {
-            ledgerBridge.startListener();
-          }
-        },
-      ]
-    }
-  ];
-  const menu = Menu.buildFromTemplate(menuTemplate);
-  Menu.setApplicationMenu(menu);
+  // const menuTemplate = [
+  //   {
+  //     label: 'Ledger',
+  //     submenu: [
+  //       {
+  //         label: 'Start Listener',
+  //         click: async () => {
+  //           ledgerBridge.startListener();
+  //         }
+  //       },
+  //     ]
+  //   }
+  // ];
+  // const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(null);
 
   // win.setMenu(null);
   win.maximize();
 
   // and load the index.html of the app.
 
+  win.webContents.openDevTools();
   if (process.env.DEV === 'true') {
     win.loadURL("http://localhost:3000");
-    win.webContents.openDevTools()
   } else {
 
     win.loadURL(url.format({
@@ -64,7 +58,6 @@ function createWindow () {
   protocol.interceptFileProtocol('file', (request, callback) => {
     const url = request.url.substr(7);
     const newPath = path.normalize(`${__dirname}/${url}`);
-    console.log("NEW PATH", newPath);
     callback({ path: newPath })
   }, (err) => {
     if (err) console.error('Failed to register protocol')
