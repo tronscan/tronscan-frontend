@@ -178,6 +178,9 @@ export const messages = {
 */
   "set_name": "Configurar Nome",
   "unique_account_message": "Você só pode definir o nome da sua conta uma vez!",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "Mude o nome",
   "account_name": "Nome da conta",
   "show_qr_code": "Mostrar QR Code",

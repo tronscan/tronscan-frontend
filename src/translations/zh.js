@@ -177,6 +177,9 @@ export const messages = {
 */
   "set_name": "设置名称",
   "unique_account_message": "您只能设置一次您的帐户名称",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "更换名字",
   "account_name": "用户名",
   "show_qr_code": "显示二维码",

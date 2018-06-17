@@ -178,6 +178,9 @@ export const messages = {
 */
   "set_name": "Stel naam in",
   "unique_account_message": "U mag uw accountnaam slechts één keer instellen!",
+  "name_to_short": "De ingevoerde naam is te kort!",
+  "name_to_long": "De ingevoerde naam is te lang!",
+  "permitted_characters_message": "De naam bevat ongeldige karakters, a-z A-Z 0-9 zijn toegestaan.",
   "change_name": "Wijzigen Naam",
   "account_name": "Account Naam",
   "show_qr_code": "Toon QR Code",

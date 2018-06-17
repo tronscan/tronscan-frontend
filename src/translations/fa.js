@@ -177,6 +177,9 @@ export const messages = {
 */
   "set_name": "تنظیم نام",
   "unique_account_message": "شما فقط می توانید نام حساب خود را یک بار تنظیم کنید",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "تغییر نام",
   "account_name": "نام کاربری",
   "show_qr_code": "نمایش کد QR",

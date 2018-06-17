@@ -178,6 +178,9 @@ export const messages = {
 */
   "set_name": "İsim belirle",
   "unique_account_message": "Hesap isminizi bir defa belirleyebilirsiniz!",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "İsmi Değiştir",
   "account_name": "Hesap İsmi",
   "show_qr_code": "Kare kodu görüntüle",

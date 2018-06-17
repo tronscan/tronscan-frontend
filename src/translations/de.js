@@ -183,8 +183,11 @@ export const messages = {
 */
   "set_name": "Name definieren",
   "unique_account_message": "Sie dürfen Ihren Kontonamen nur einmal vergeben!",
-  "change_name": "Change Name",
-  "account_name": "Account Name",
+  "name_to_short": "Der eingegebene Name ist zu kurz!",
+  "name_to_long": "Der eingegebene Name ist zu lang!",
+  "permitted_characters_message": "Der Name enthält ungültige Zeichen, erlaubt sind a-z A-Z 0-9.",
+  "change_name": "Name ändern",
+  "account_name": "Kontoname",
   "show_qr_code": "QR Code anzeigen",
   "do_not_send_2": "Senden Sie bitte keine TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
   "bandwidth": "Bandbreite",
