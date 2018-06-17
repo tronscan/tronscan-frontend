@@ -86,6 +86,11 @@ export const messages = {
   "password_incorrect":"Wachtwoord onjuist",
   "try_again": "Nogmaals proberen",
   "wallet_unlocked": "Wallet Unlocked",
+  "weak": "weak",
+  "okay": "okay",
+  "good": "good",
+  "strong": "strong",
+  "secure": "secure",
 
 /*
 ##################################################################################

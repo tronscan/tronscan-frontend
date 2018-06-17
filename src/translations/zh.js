@@ -85,6 +85,11 @@ export const messages = {
   "password_incorrect":"密码错误",
   "try_again": "再试一次",
   "wallet_unlocked": "Wallet Unlocked",
+  "weak": "weak",
+  "okay": "okay",
+  "good": "good",
+  "strong": "strong",
+  "secure": "secure",
 
 /*
 ##################################################################################

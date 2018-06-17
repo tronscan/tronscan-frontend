@@ -86,6 +86,11 @@ export const messages = {
   "password_incorrect":"Girilen parola yanlış",
   "try_again": "Tekrar deneyin",
   "wallet_unlocked": "Cüzdan açıldı",
+  "weak": "weak",
+  "okay": "okay",
+  "good": "good",
+  "strong": "strong",
+  "secure": "secure",
 
 /*
 ##################################################################################
