@@ -124,15 +124,7 @@ class Trx {
       sha256,
     });
 
-    try {
-
-      return await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
-    }
-    catch(e) {
-      console.log("ERROR RESPONSE", e);
-    }
-
-    return null;
+    return await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
   }
 
   /**

@@ -77,11 +77,27 @@ class LedgerBridge {
 
     ipcMain.on(LEDGER_SIGNATURE_REQUEST, async (event, arg) => {
       let {transaction} = JSON.parse(arg);
-      let response = await this.signTransaction(transaction);
+      try {
+        let response = await this.signTransaction(transaction);
 
-      this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
-        hex: response,
-      });
+        this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
+          success: true,
+          status: 'ACCEPTED',
+          hex: response,
+        });
+      } catch(e) {
+        if (e.statusText === 'CONDITIONS_OF_USE_NOT_SATISFIED') {
+          this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
+            success: false,
+            status: 'REJECTED',
+          });
+        } else {
+          this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
+            success: false,
+            status: 'UNKNOWN_ERROR',
+          });
+        }
+      }
     });
 
     ipcMain.on(LEDGER_CONNECTION_CHECK, async () => {

@@ -320,13 +320,13 @@ class VoteOverview extends React.Component {
         )
       });
     } else {
-      this.setState({
-        modal: (
-          <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
-             {tu("submitting_vote_error_message")}
-          </SweetAlert>
-        )
-      });
+      // this.setState({
+      //   modal: (
+      //     <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
+      //        {tu("submitting_vote_error_message")}
+      //     </SweetAlert>
+      //   )
+      // });
     }
   };
 

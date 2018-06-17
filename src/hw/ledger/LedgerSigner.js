@@ -1,9 +1,9 @@
-import {signTransaction} from "@tronscan/client/src/utils/crypto";
 import {store} from "../../store";
 import {closeTransactionPopup, openTransactionPopup} from "../../actions/app";
 import {buildTransactionInfoModal} from "../../utils/modals";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import React from "react";
+import SweetAlert from "react-bootstrap-sweetalert";
 import {PulseLoader} from "react-spinners";
 
 const SHA256 = require("@tronscan/client/src/utils/crypto").SHA256;
@@ -34,7 +34,7 @@ export default class LedgerSigner {
     let contractInfo = await buildTransactionInfoModal(transaction);
 
     return (
-      <Modal isOpen={true} toggle={cancel} fade={false} size="lg" className="modal-dialog-centered" >
+      <Modal isOpen={true} fade={false} size="lg" className="modal-dialog-centered" >
         <ModalHeader className="text-center" toggle={cancel}>
           Confirm transaction
         </ModalHeader>
@@ -49,13 +49,6 @@ export default class LedgerSigner {
           </div>
         </ModalBody>
         <ModalFooter>
-
-          {/*<button className="btn btn-outline-secondary" onClick={cancel}>*/}
-            {/*Cancel*/}
-          {/*</button>*/}
-          {/*<button className="btn btn-success" onClick={resolve}>*/}
-            {/*Confirm*/}
-          {/*</button>*/}
         </ModalFooter>
       </Modal>
     )
@@ -103,26 +96,45 @@ export default class LedgerSigner {
 
   async signTransactionWithLedger(transaction) {
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
 
       ipcRenderer.once(LEDGER_SIGNATURE_RESPONSE, (event, arg) => {
 
-        console.log("LEDGER_SIGNATURE_RESPONSE", arg);
+        switch (arg.status) {
+          case "ACCEPTED":
+            let raw = transaction.getRawData();
+            let uint8Array = Uint8Array.from(arg.hex);
+            let count = raw.getContractList().length;
+            for (let i = 0; i < count; i++) {
+              transaction.addSignature(uint8Array);
+            }
 
-        let raw = transaction.getRawData();
-        let uint8Array = Uint8Array.from(arg.hex);
-        let count = raw.getContractList().length;
-        for (let i = 0; i < count; i++) {
-          transaction.addSignature(uint8Array);
+            resolve({
+              transaction,
+              hex: byteArray2hexStr(transaction.serializeBinary()),
+            });
+
+            this.hideModal();
+            break;
+
+          case "REJECTED":
+            store.dispatch(openTransactionPopup(
+              <SweetAlert warning title="Transaction Rejected" onConfirm={this.hideModal} />
+            ));
+            reject();
+            break;
+
+          default:
+            store.dispatch(openTransactionPopup(
+              <SweetAlert warning title="Unknown Error" onConfirm={this.hideModal}>
+                An unknown error occurred
+              </SweetAlert>
+            ));
+            reject();
+            break;
         }
 
-        resolve({
-          transaction,
-          hex: byteArray2hexStr(transaction.serializeBinary()),
-        });
       });
-
-      console.log("SENDING TO LEDGER");
 
       let serializedTransaction = this.serializeTransaction(transaction);
 
@@ -138,8 +150,11 @@ export default class LedgerSigner {
       this.confirm(transaction);
       return await this.signTransactionWithLedger(transaction);
     }
+    catch(e) {
+
+    }
     finally {
-      this.hideModal();
+
     }
   }
 }

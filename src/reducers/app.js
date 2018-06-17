@@ -164,6 +164,7 @@ export function appReducer(state = initialState, action) {
     }
 
     case LOGOUT: {
+      Lockr.rm("wallet");
       return {
         ...state,
         account: {
