@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018                                                  #
-#         Update Date: 11.06.2018                                                #
+#         Version: 1.2-18062018                                                  #
+#         Update Date: 18.06.2018                                                #
 #         Language: French                                                       #
 #         Status: Second Draft                                                   #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: El Petito Nicolas, Dev Obs                               #
 #                                                                                #
 ##################################################################################
@@ -182,10 +182,10 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Définir le nom",
-  "unique_account_message": "You may only set your account name once!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "unique_account_message": "Vous ne pouvez définir votre nom de compte qu'une seule fois!",
+  "name_to_short": "Le nom est trop court",
+  "name_to_long": "Le nom est trop long",
+  "permitted_characters_message": "Le nom contient des caractères non valides, les suivants sont autorisés a-z A-Z 0-9",
   "change_name": "nom du changement",
   "account_name": "nom du compt",
   "show_qr_code": "Afficher le QR Code",
@@ -212,7 +212,7 @@ export const messages = {
   "trx_received": "TRX reçu",
   "test_trx_temporarily_unavailable_message": "Test TRX est temporairement indisponible. Veuillez réessayer plus tard.",
   "not_enough_trx": "Pas assez de TRX",
-  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "information_message_3": "TRX demandé avec succès. Si vous n'avez pas reçu de TRX, alors il n'y a pas de TRX de test disponible actuellement et vous devriez réessayer plus tard.",
 
 /*
 ##################################################################################
@@ -223,7 +223,7 @@ export const messages = {
 */
   "freeze" : "Gel",
   "unfreeze" : "débloquer",
-  "frozen_supply": "Frozen Supply",
+  "frozen_supply": "Offre gelée",
   "freeze_trx_least": "Vous avez besoin d'au moins 1 TRX pour pouvoir en geler",
   "unable_unfreeze_trx_message": "Impossible de débloquer les TRX. Cela pourrait être dû au fait que la période de gel minimale n'a pas encore été atteinte.",
   "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du Tron Power et activer des fonctionnalités supplémentaires. Par exemple, avec Tron Power vous pouvez",
@@ -252,7 +252,7 @@ export const messages = {
 ##################################################################################
 */
   "apply_for_delegate": "postuler pour être délégué",
-  "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
+  "apply_super_representative_candidate": "Postuler pour être un candidat Super Représentant",
   "your_personal_website_address": "l'adresse de votre site web personnel",
   "apply_for_delegate_predescription": `Chaque détenteur de jeton a la possibilité de devenir un super représentant TRON.
    Néanmoins, pour que le réseau et la communauté fonctionnent de manière plus fluide et efficace, nous avons créé un
@@ -292,11 +292,11 @@ export const messages = {
   "blocks_missed": "Blocs manqués",
   "do_not_send_1": "n'envoyez pas de TRX depuis votre porte-monnaie ou un site d'échange vers votre adresse testnet!",
   "go_to_votelist": "aller à la liste des votes",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Je comprends comment être un représentant TRON et je confirme de dépenser un montant de",
+  "understand_tron_sr_message_1": "honoraires.",
   "invalid_url": "URL invalide",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_1": "Assurez-vous d'avoir assez de TRX pour les frais, ou réessayez plus tard.",
 
 /*
 ##################################################################################
@@ -316,7 +316,7 @@ export const messages = {
   "creating_a_token": "Créer un jeton",
   "available": "disponible",
   "testnet": "Testnet",
-  "days_to_freeze": "Jours de gel",
+  "days_to_freeze": "Jours d'immobilité",
   "trx_token_fee_message": "1024 TRX sont nécessaires pour créer un nouveau jeton",
   "trx_token_account_limit": "Vous ne pouvez créer qu'un seul jeton par compte",
   "trx_token_wallet_requirement": "Vous avez besoin d'un portefeuille ouvert pour pouvoir créer un token",
@@ -340,12 +340,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "Ombien de jetons voulez-vous acheter ?",
-  "buy_confirm_message_0": "Vous êtes sûr ?",
-  "buy_confirm_message_1": "Vous êtes sûr de vouloir acheter",
+  "how_much_buy_message": "Combien de jetons souhaitez-vous acheter?",
+  "buy_confirm_message_0": "Etes-vous sûr?",
+  "buy_confirm_message_1": "Etes-vous sûr de vouloir acheter",
   "for": "à",
   "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "not_enouth_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
   "ends": "fins",
   "starts": "démarrages",
 
@@ -364,9 +364,9 @@ export const messages = {
   "token": "jeton",
   "url": "url",
   "need_to_login": "Vous devez être connecté pour accéder à la page du compte ",
-  "thanks_for_applying": "Merci pour l’appliquation!",
+  "thanks_for_applying": "Merci d'avoir postulé!",
   "to_much_votes": "Trop de votes",
-  "no_trx_remaining": "Aucuns TRX restant",
+  "no_trx_remaining": "Pas de TRX restant",
   "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
   "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
@@ -378,7 +378,7 @@ export const messages = {
   "token_holders": "Détenteurs de jetons",
   "nr_of_Transfers": "Nombre de transferts",
   "not_signed_in": "Vous devrez vous connecter pour utiliser cette fonctionnalité",
-  "loading_map": "Loading Map",
+  "loading_map": "Chargement de la carte",
   "loading_accounts": "chargement des comptes",
   "quantity": "quantité",
   "percentage": "pourcentage",
@@ -412,9 +412,9 @@ export const messages = {
   "issue_token": "émission d'un jeton",
   "token_name": "Nom du jeton",
   "token_abbr": "abréviation du jeton",
-  "total_issued": "Total issued",
-  "registered": "Registered",
-  "abbreviation": "Abbreviations",
+  "total_issued": "Total émis",
+  "registered": "Inscrit",
+  "abbreviation": "Abréviations",
   "exchange_rate": "taux de change",
   "token_price": "prix du jeton",
   "supply_message": "quantité totale de jetons qui seront en circulation",
@@ -426,9 +426,8 @@ export const messages = {
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "Indiquez la période de participation pendant laquelle les jetons seront émis. Pendant la période de participation, les utilisateurs peuvent échanger des TRX contre ",
   "participation_message_1": " jetons.",
-  "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
-   days has been reached. Freezing supply is not required.`,
+  "frozen_supply_message_0": `Une partie de l'offre peut être gelée. La quantité d'offre peut être spécifiée et doit être gelée
+   pour un minimum de 1 jour. L'offre gelée peut être manuellement débloqué après la date de début + nombre de jour à atteindre. Le gel de l'offre n'est pas obligatoire.`,
   "token_issued_successfully": "Jeton émis avec succès",
   "participation": "participation",
   "start_date": "Date de début",
@@ -479,8 +478,8 @@ export const messages = {
   "Super Representatives": "Super Représentants",
   "Super Representative Candidates": "Candidats super-représentatifs",
   "loading_representatives": "chargement des Représentants",
-  "address_not_super_representative": "This address is not a Super Representative",
-  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "address_not_super_representative": "cette adresse ne correspond pas à un Super Représentant",
+  "unable_load_representatives_page_message": "Impossible de charger la page, cela peut arriver si l'adresse n'est pas valide, l'adresse ne correspond pas à un représentant ou bien ce dernier n'a pas encore configuré cette page",
 
 /*
 ##################################################################################
@@ -510,7 +509,7 @@ export const messages = {
   "open_team_page": "Ouvrir la page de l'équipe",
   "warning_votes": "Au moins 1 Tron Power est nécessaire pour commencer à voter. Tron Power est obtenu en gelant des TRX dans la",
   "account_page": "page de votre compte",
-  "loading_votes": "Loading Votes",
+  "loading_votes": "chargement des Votes",
   "3_day_ranking": "Classement de 3 jours",
   "live_ranking": "Classement en direct",
   "live_ranking_msg": "Rafraîchissement toutes les 15 secondes. Les nouveaux votes peuvent prendre jusqu'à 1-2 minutes avant d'être comptés",
