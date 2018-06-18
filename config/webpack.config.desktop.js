@@ -12,8 +12,7 @@ module.exports = {
     electron: "require('electron')",
   },
   node: {
-    __dirname: false,
-    "require.resolve": false,
+    __dirname: false
   },
   module: {
     rules: [
