@@ -39,7 +39,7 @@ class Live extends React.Component {
         {
           label: 'Transactions',
           icon: 'fa fa-exchange-alt',
-          id: 'transaction',
+          id: 'transfer',
         },
         {
           label: 'Votes',
