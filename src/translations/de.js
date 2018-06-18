@@ -92,8 +92,8 @@ export const messages = {
   "status": "status",
   "no_notifications": "Keine Benachrichtigungen",
   "enable_desktop_notifications": "Desktop-Benachrichtigungen aktivieren",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
+  "desktop_notification_enabled": "Desktop Benachrichtigung wurde aktiviert!",
+  "notifications_enabled": "Benachrichtigung aktiviert",
 
 /*
 ##################################################################################

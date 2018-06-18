@@ -86,16 +86,16 @@ export const messages = {
   "password_incorrect":"Contraseña incorrecta",
   "try_again": "Inténtelo de nuevo",
   "wallet_unlocked": "Cartera Desbloqueada",
-  "weak": "weak",
+  "weak": "flojo",
   "okay": "okay",
-  "good": "good",
-  "strong": "strong",
-  "secure": "secure",
+  "good": "bueno",
+  "strong": "vigoroso",
+  "secure": "seguro",
   "status": "estado",
   "no_notifications": "No hay notificaciones",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
+  "enable_desktop_notifications": "Habilitar notificaciones de escritorio",
+  "desktop_notification_enabled": "Notificaciones de Escritorio Habilitadas!",
+  "notifications_enabled": "Notificaciones Habilitadas",
 
 /*
 ##################################################################################
