@@ -228,20 +228,20 @@ class TokenOverview extends Component {
                       {
                         this.getTokenState(token) === 'active' &&
                         <div className="text-center">
-                          ends&nbsp;
+                          {tu("ends")}&nbsp;
                           <FormattedRelative value={token.endTime} units="day"/>
                         </div>
                       }
                       {
                         this.getTokenState(token) === 'finished' &&
                         <button className="btn btn-link btn-block" disabled={true}>
-                          Finished
+                          {tu("finished")}
                         </button>
                       }
                       {
                         this.getTokenState(token) === 'waiting' &&
                         <div className="text-center">
-                          Starts <FormattedRelative value={token.endTime}/>
+                          {tu("starts")} <FormattedRelative value={token.endTime}/>
                         </div>
                       }
                     </li>
@@ -253,7 +253,7 @@ class TokenOverview extends Component {
                           {
                             this.getTokenState(token) === 'finished' ?
                               <button className="btn btn-outline-secondary btn-block" disabled={true}>
-                                Finished
+                                {tu("finished")}
                               </button> :
                               <button className="btn btn-block btn-outline-primary"
                                       onClick={() => this.toggleToken(token)}>
@@ -309,7 +309,7 @@ class TokenOverview extends Component {
       return (
         <Fragment>
           <span className="text-muted">
-            Finished&nbsp;
+            {tu("finished")}&nbsp;
             <FormattedDate value={token.endTime}/>&nbsp;
             <FormattedTime value={token.endTime}/>
           </span>
@@ -340,7 +340,7 @@ class TokenOverview extends Component {
     return (
       <Fragment>
           <span className="text-muted">
-            Starts&nbsp;
+            {tu("starts")}&nbsp;
             <FormattedDate value={token.startTime}/>&nbsp;
             <FormattedTime value={token.startTime}/>
           </span>

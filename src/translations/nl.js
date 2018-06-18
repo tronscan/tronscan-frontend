@@ -348,6 +348,8 @@ export const messages = {
   "for": "voor",
   "insufficient_trx": "Niet genoeg TRX beschikbaar",
   "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################

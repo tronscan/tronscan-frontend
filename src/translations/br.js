@@ -348,6 +348,8 @@ export const messages = {
   "for": "para",
   "insufficient_trx": "Insufficient TRX",
   "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################

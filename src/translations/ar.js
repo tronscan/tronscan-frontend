@@ -341,6 +341,8 @@ export const messages = {
   "for": "مقابل",
   "insufficient_trx": "غير كافيةTRX",
   "not_enouth_trx_message": "ليس لديك ما يكفي من TRX لشراء العديد من الرموز",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################

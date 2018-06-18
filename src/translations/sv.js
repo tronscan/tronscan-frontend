@@ -340,6 +340,8 @@ export const messages = {
     "for": "för",
     "insufficient_trx": "Otillräcklig TRX",
     "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
+    "ends": "ends",
+    "starts": "starts",
 
 /*
 ##################################################################################

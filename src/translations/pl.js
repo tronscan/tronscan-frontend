@@ -350,6 +350,8 @@ export const messages = {
   "how_much_buy_message": "Ile tokenów chcesz zakupić?",
   "buy_confirm_message_1": "Na pewno chcesz dokonać zakupu",
   "for": "za",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################
