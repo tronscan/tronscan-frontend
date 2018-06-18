@@ -90,6 +90,10 @@ export const messages = {
   "strong": "قوي",
   "secure": "تأمين",
   "status": "الحالة",
+  "no_notifications": "No notifications",
+  "enable_desktop_notifications": "Enable Desktop Notifications",
+  "desktop_notification_enabled": "Desktop Notifications Enabled!",
+  "notifications_enabled": "Notifications Enabled",
 
 /*
 ##################################################################################
