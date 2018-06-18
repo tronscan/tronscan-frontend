@@ -81,21 +81,21 @@ export const messages = {
   "cancel": "Cancelar",
   "reset": "Restabelecer",
   "error": "Erro",
-  "unlock_keyFile": "Unlock KeyFile",
-  "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
-  "try_again": "Try Again",
+  "unlock_keyFile": "Desbloquear KeyFile",
+  "enter_password_message": "Você deve digitar sua senha!",
+  "password_incorrect":"Senha incorreta",
+  "try_again": "Tente novamente",
   "wallet_unlocked": "Wallet Unlocked",
-  "weak": "weak",
+  "weak": "fraco",
   "okay": "okay",
-  "good": "good",
-  "strong": "strong",
-  "secure": "secure",
-  "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
+  "good": "Boa",
+  "strong": "Forte",
+  "secure": "seguro",
+  "status": "estado",
+  "no_notifications": "Nenhuma notificação",
+  "enable_desktop_notifications": "Ativar notificações da área de trabalho",
+  "desktop_notification_enabled": "Notificações na área de trabalho ativadas!",
+  "notifications_enabled": "Notificações ativadas",
 
 /*
 ##################################################################################
@@ -183,9 +183,9 @@ export const messages = {
 */
   "set_name": "Configurar Nome",
   "unique_account_message": "Você só pode definir o nome da sua conta uma vez!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Nome é curto",
+  "name_to_long": "O nome é longo",
+  "permitted_characters_message": "O nome só pode conter a-z A-Z 0-9",
   "change_name": "Mude o nome",
   "account_name": "Nome da conta",
   "show_qr_code": "Mostrar QR Code",
@@ -212,7 +212,7 @@ export const messages = {
   "trx_received": "TRX recebidos",
   "test_trx_temporarily_unavailable_message": "Rede de testes TRX temporariamente indisponível. Tente mais tarde.",
   "not_enough_trx": "Insuficiente TRX",
-  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "information_message_3": "TRX solicitado com sucesso. Se você não recebeu nenhum TRX, então não há teste TRX disponível no momento e você deve tentar novamente mais tarde.",
 
 /*
 ##################################################################################
@@ -237,14 +237,14 @@ export const messages = {
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
-  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "Unable_tokens_unfrozen_message": "Não é possível descongelar tokens.",
   "tokens_frozen": "Tokens Frozen",
   "successfully_frozen": "Successfully frozen",
   "name_changed": "Name changed",
-  "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
+  "successfully_changed_name_to_message": "Nome alterado com sucesso para",
+  "unable_to_rename_title": "Incapaz de renomear",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "unfreeze_trx_confirm_message": "Tem certeza de que deseja descongelar?",
 
 /*
 ##################################################################################
@@ -294,11 +294,11 @@ export const messages = {
   "blocks_missed": "Blocos Perdidos",
   "do_not_send_1": "Não envie TRX da sua carteira ou exchange para o seu endereço testnet!",
   "go_to_votelist": "Ir para a lista de eleitores",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Eu entendo como ser um representante TRON e eu confirmo para gastar um",
+  "understand_tron_sr_message_1": "taxa.",
   "invalid_url": "URL inválido",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "Algo deu errado ao tentar solicitar um representante.",
+  "apply_representative_error_message_1": "Verifique se você tem TRX suficiente para a taxa ou tente novamente mais tarde.",
 
 /*
 ##################################################################################
@@ -347,9 +347,9 @@ export const messages = {
   "buy_confirm_message_1": "Tem certeza que quer comprar",
   "for": "para",
   "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "not_enouth_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
+  "ends": "termina",
+  "starts": "começa",
 
 /*
 ##################################################################################
@@ -471,9 +471,9 @@ export const messages = {
   "lowest_productivity": "Menor Produtividade",
   "productivity": "Produtividade",
   "rewards": "Ganhos",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
+  "token_created": "Token criado",
+  "witness": "Testemunha",
+  "asset_participation": "Participação de ativos",
   "Super Representatives": "Super Representantes",
   "Super Representative Candidates": "Candidatos a Super Representantes",
   "loading_representatives": "Carregando Representantes",
@@ -524,7 +524,7 @@ export const messages = {
   "submissing_vote_message_title": "Thank you for voting!",
   "submissing_vote_message_0": "Seus votos são enviados com sucesso, eles entrarão em vigor quando o próximo ciclo de votação começar.",
   "submissing_vote_message_1": "Você pode redistribuir seus votos sempre que quiser",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "submitting_vote_error_message": "Houve um erro na votação. Por favor, tente novamente mais tarde.",
 
 /*
 ##################################################################################
