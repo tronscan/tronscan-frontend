@@ -1,40 +1,38 @@
 import {trim} from "lodash";
 import {Client} from "./api";
 
-export async function doSearch(criteria, type) {
+export async function doSearch(criteria, type = null) {
 
-    criteria = trim(criteria);
+  criteria = trim(criteria);
 
-    if (criteria === "") {
-        return null;
-    }
-
-    let searches = [
-        searchBlockNumber,
-        searchBlockHash,
-        searchTxHash,
-        searchToken,
-        searchAddress
-    ];
-
-    for (let search of searches) {
-
-        try {
-
-            if (type === search.name) {
-                let result = await search(criteria);
-                if (typeof result !== 'undefined') {
-                    return result;
-                }
-                else
-                    return null;
-            }
-
-        } catch (e) {
-        }
-    }
-
+  if (criteria === "") {
     return null;
+  }
+
+  let searches = [
+    searchBlockNumber,
+    searchBlockHash,
+    searchTxHash,
+    searchToken,
+    searchAddress
+  ];
+
+  for (let search of searches) {
+
+    try {
+
+      if (type === null || type === search.name) {
+        let result = await search(criteria);
+        if (typeof result !== 'undefined') {
+          return result;
+        }
+      }
+
+    } catch (e) {
+    }
+  }
+
+  return null;
 }
 
 
