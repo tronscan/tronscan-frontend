@@ -234,7 +234,6 @@ export const messages = {
   "trx_amount": "TRX Miktarı",
   "token_freeze_confirm_message_0": "Dondurma işlemini onaylıyorum ",
   "token_freeze_confirm_message_1": "en az 3 gün süre ile",
-  "tokens_unfrozen": "Tokens Unfrozen",
   "tokens_unfrozen": "Çözülen jeton adeti",
   "success_tokens_unfrozen_message": "Jetonlar başarıyla çözüldü",
   "unable_to_unfreeze": "Çözülemedi",

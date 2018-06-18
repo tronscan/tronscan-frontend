@@ -203,7 +203,6 @@ export const messages = {
   "produced_blocks": "produced blocks",
   "voters": "voters",
   "no_tokens": "Geen Tokens",
-  "no_tokens": "Geen Tokens",
   "issued_token": "Uitgegeven token",
   "progress": "Voortgang",
   "transactions_count": "{transactions, plural, one {transactie} other {transacties}}",
