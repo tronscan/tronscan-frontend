@@ -512,6 +512,7 @@ export const messages = {
   "submissing_vote_message_0": "您已投票成功，将会在新一轮投票中生效。",
   "submissing_vote_message_1": "您可以随时重新分配您的票数",
   "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

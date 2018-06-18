@@ -508,6 +508,7 @@ export const messages = {
   "submissing_vote_message_0": "تم ارسالك كامل تصويتك بنجاح, و سيتم احتسابهم عند بدء جولة التصويت القادمة.",
   "submissing_vote_message_1": "يمكنك اعادة توزيع أصواتك متى شئت",
   "submitting_vote_error_message": "حصل خطأ عند ارسال تصويتك. الرجاء المحاولة لاحقا.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

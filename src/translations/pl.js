@@ -521,6 +521,7 @@ export const messages = {
   "submissing_vote_message_0": "Twoje głosy zostały poprawnie oddane i zaczną obowiązywać od początku kolejnego cyklu głosowania.",
   "submissing_vote_message_1": "W każdym momencie możesz zmienić swoje głosy",
   "submitting_vote_error_message": "Coś poszło nie tak w trakcie zapisywania Twoich głosów. Spróbuj ponownie później.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

@@ -531,6 +531,7 @@ export const messages = {
   "submissing_vote_message_0": "Hun persoonlijke stem met succes is uitgebracht en in de volgende verkiezingscyclus van kracht zal worden.",
   "submissing_vote_message_1": "U mag uw stemmen herverdelen wanneer u maar wilt",
   "submitting_vote_error_message": "Bij het stemmen is een fout opgetreden. Probeer het later nog eens.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

@@ -518,13 +518,14 @@ export const messages = {
   "votes_remaining_message": "رأی باقی مانده است",
   "open_wallet_start_voting_message": "کیسه باز برای شروع رأی گیری",
   "thanks_submitting_vote_message": "متشکرم برای ارسال رای شما",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
+  "need_min_trx_to_vote_message": "شما باید حداقل یک TRX داشته باشید تا بتوانید رای دهید",
+  "to_much_votes_massage": "شما به تعداد زیادی رای می دهید",
+  "all_votes_are_used_message": "همه آرا استفاده می شود",
   "submissing_vote_message_title": "از رای شما سپاسگذاریم.",
   "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "submissing_vote_message_1": "شما می توانید رای خود را در هر زمان که دوست دارید منتشر کنید",
+  "submitting_vote_error_message": "هنگام رای دادن خود اشتباهی رخ داد. لطفا دوباره امتحان کنید. "
+  "loading_super_representatives": "بارگذاری Super Representatives",
 
 /*
 ##################################################################################

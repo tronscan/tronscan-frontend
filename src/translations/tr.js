@@ -531,6 +531,7 @@ export const messages = {
   "submissing_vote_message_0": "Oylarınız başarıyla iletildi, bir sonraki oylama döngüsü başladığında devreye girecekler.",
   "submissing_vote_message_1": "İstediğiniz anda oylarınızı yeniden dağıtabilirsiniz",
   "submitting_vote_error_message": "Oylarınız gönderilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

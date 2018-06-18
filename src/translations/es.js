@@ -527,6 +527,7 @@ export const messages = {
   "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
   "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
   "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################

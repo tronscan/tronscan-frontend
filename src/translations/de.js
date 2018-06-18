@@ -533,6 +533,7 @@ export const messages = {
   "submissing_vote_message_0": "Ihre persönliche Abstimmung wurde erfolgreich übermittelt und wird zum nächste Wahlzyklus wirksam.",
   "submissing_vote_message_1": "Sie haben jedoch jederzeit die Möglichkeit die bereits abgegebenen Stimmen neu zu vergeben.",
   "submitting_vote_error_message": "Bei der Stimmenabgabe ist ein Fehler aufgetreten. Versuchen Sie es bitte später noch einmal.",
+  "loading_super_representatives": "Laden der Super Repräsentanten",
 
 /*
 ##################################################################################
