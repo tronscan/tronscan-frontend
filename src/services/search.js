@@ -2,7 +2,7 @@ import {trim} from "lodash";
 import {Client} from "./api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 
-export async function doSearch(criteria, type) {
+export async function doSearch(criteria, type = null) {
 
   criteria = trim(criteria);
 
@@ -21,18 +21,14 @@ export async function doSearch(criteria, type) {
   for (let search of searches) {
 
     try {
-
-      if (type === search.name) {
+      if (type === null || type === search.name) {
         let result = await search(criteria);
         if (typeof result !== 'undefined') {
           return result;
         }
-        else
-          return null;
       }
-
-    } catch (e) {
     }
+    catch (e) {}
   }
 
   return null;
