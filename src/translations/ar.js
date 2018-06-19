@@ -90,11 +90,11 @@ export const messages = {
   "strong": "قوي",
   "secure": "تأمين",
   "status": "الحالة",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "no_notifications": "لا إخطارات",
+  "enable_desktop_notifications": "تمكين إعلامات سطح المكتب",
+  "desktop_notification_enabled": "إخطارات سطح المكتب ممكن",
+  "notifications_enabled": "الإخطارات ممكن",
+  "contract_type": "نوع العقد",
 
 /*
 ##################################################################################

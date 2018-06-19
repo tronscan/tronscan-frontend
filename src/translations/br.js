@@ -96,8 +96,8 @@ export const messages = {
   "enable_desktop_notifications": "Ativar notificações da área de trabalho",
   "desktop_notification_enabled": "Notificações na área de trabalho ativadas!",
   "notifications_enabled": "Notificações ativadas",
-  "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
+  "contract_type": "tipo de contrato",
+  "voter_percentage": "Porcentagem de eleitores",
 
 /*
 ##################################################################################
@@ -245,7 +245,7 @@ export const messages = {
   "name_changed": "Name changed",
   "successfully_changed_name_to_message": "Nome alterado com sucesso para",
   "unable_to_rename_title": "Incapaz de renomear",
-  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unable_to_rename_message": "Ocorreu um erro ao atualizar o nome da sua conta. Tente novamente mais tarde.",
   "unfreeze_trx_confirm_message": "Tem certeza de que deseja descongelar?",
 
 /*
