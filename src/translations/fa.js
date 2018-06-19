@@ -524,7 +524,7 @@ export const messages = {
   "submissing_vote_message_title": "از رای شما سپاسگذاریم.",
   "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
   "submissing_vote_message_1": "شما می توانید رای خود را در هر زمان که دوست دارید منتشر کنید",
-  "submitting_vote_error_message": "هنگام رای دادن خود اشتباهی رخ داد. لطفا دوباره امتحان کنید. "
+  "submitting_vote_error_message": "هنگام رای دادن خود اشتباهی رخ داد. لطفا دوباره امتحان کنید. ",
   "loading_super_representatives": "بارگذاری Super Representatives",
 
 /*
