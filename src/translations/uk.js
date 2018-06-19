@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.3-18062018                                                  #
-#         Update Date: 18.06.2018                                                #
+#         Version: 1.3-19062018                                                  #
+#         Update Date: 19.06.2018                                                #
 #         Language: Ukrainian                                                    #
-#         Status: first Version                                                  #
-#         Number of checks: 2                                                    #
+#         Status: second Version                                                 #
+#         Number of checks: 4                                                    #
 #         Participants: ghostwg                                                  #
 #                                                                                #
 ##################################################################################
@@ -468,17 +468,17 @@ export const messages = {
   "no_url_error": "Web посилання необхідне",
   "past_starttime_error": "Початкова дата в минулому",
   "no_transactions": "Немає транзакцій",
-  "errors_in_form": "У формі є помилки",
-  "token_link_message_0": "Токен буде доступний на",
-  "token_link_message_1": "Сторінка токенів",
-  "token_link_message_2": "за кілька хвилин",
-  "description_error_message_0": "Опис не може перевищувати 200 символів",
-  "token_creation_error": "Під час спроби створення токену сталася помилка",
-  "tokenname_error_message_0": "Ім'я не може бути довшим, ніж 32 символи",
-  "tokenname_error_message_1": "Ім'я може містити лише символи a-z",
-  "abbreviation_required": "Абревіатура обов'язкова",
-  "abbreviation_error_message_0": "Абревіатура не може перевищувати 5 символів",
-  "abbreviation_error_message_1": "Абревіатура може містити лише символи a-z",
+  "errors_in_form": "Наявні помилки в формі",
+  "token_link_message_0": "Токен буде наявний на",
+  "token_link_message_1": "Сторінці токенів",
+  "token_link_message_2": "за декілька хвилин",
+  "description_error_message_0": "Опис має бути не більше 200 символів",
+  "token_creation_error": "Сталася помилка під час створення токену",
+  "tokenname_error_message_0": "Ім'я має містити не більше 32 символів",
+  "tokenname_error_message_1": "Ім'я має містити тільки букви латинського алфавіту",
+  "abbreviation_required": "Аббревіатура необхідна",
+  "abbreviation_error_message_0": "Аббревіатура має бути не більше 5 символів",
+  "abbreviation_error_message_1": "Аббревіатура має містити тільки букви латинського алфавіту",
 
 /*
 ##################################################################################
