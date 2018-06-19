@@ -18,7 +18,7 @@ export const messages = {
 #         Version: 1.2-19062018-2                                                #
 #         Update Date: 19.06.2018                                                #
 #         language: Spanish                                                      #
-#         Status: Third Draft                                                   #
+#         Status: Third Draft                                                    #
 #         Number of checks: 7                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
