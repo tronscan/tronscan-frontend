@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-16062018-2                                                #
-#         Update Date: 16.06.2018                                                #
+#         Version: 1.2-19062018-2                                                #
+#         Update Date: 19.06.2018                                                #
 #         language: Spanish                                                      #
-#         Status: Second Draft                                                   #
-#         Number of checks: 6                                                    #
+#         Status: Third Draft                                                   #
+#         Number of checks: 7                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -96,7 +96,7 @@ export const messages = {
   "enable_desktop_notifications": "Habilitar notificaciones de escritorio",
   "desktop_notification_enabled": "Notificaciones de Escritorio Habilitadas!",
   "notifications_enabled": "Notificaciones Habilitadas",
-  "contract_type": "Contract Type",
+  "contract_type": "Tipo de Contrato",
 
 /*
 ##################################################################################
@@ -347,8 +347,8 @@ export const messages = {
   "for": "por",
   "insufficient_trx": "TRX insuficientes",
   "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "ends": "finalidades",
+  "starts": "inicios",
 
 /*
 ##################################################################################
@@ -540,7 +540,7 @@ export const messages = {
   "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
   "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
   "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "Cargando Súper Representantes",
 
 /*
 ##################################################################################
