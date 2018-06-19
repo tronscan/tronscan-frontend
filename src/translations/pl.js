@@ -94,6 +94,8 @@ export const messages = {
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -460,6 +462,17 @@ export const messages = {
   "no_url_error": "Adres strony internetowej jest wymagany",
   "past_starttime_error": "Data początkowa jest datą z przeszłości",
   "no_transactions": "Brak transakcji",
+  "errors_in_form": "Maska wprowadzania danych zawiera błąd",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Opis nie może przekraczać 200 znaków.",
+  "token_creation_error": "Wystąpił błąd podczas próby utworzenia tokena.",
+  "tokenname_error_message_0": "Nazwa nie może być dłuższa niż 32 znaki.",
+  "tokenname_error_message_1": "Nazwa może zawierać wyłącznie znaki a-Z.",
+  "abbreviation_required": "Wymagane jest podanie skrótu.",
+  "abbreviation_error_message_0": "Skrót nie może być dłuższy niż 5 znaków.",
+  "abbreviation_error_message_1": "Skrót może zawierać wyłącznie znaki a-Z.",
 
 /*
 ##################################################################################

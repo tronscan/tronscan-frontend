@@ -96,6 +96,7 @@ export const messages = {
   "enable_desktop_notifications": "Activer les notifications de bureau",
   "desktop_notification_enabled": "Desktop Notification a été activé !",
   "notifications_enabled": "Notification activée",
+  "contract_type": "Contract Type",
 
 /*
 ##################################################################################
@@ -384,6 +385,7 @@ export const messages = {
   "percentage": "pourcentage",
   "loading_token": "chargement du jeton",
   "search_address_or_url": "Recherche d'adresse ou d'URL",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -460,6 +462,17 @@ export const messages = {
   "past_starttime_error": "La date de début est antérieure à la date du jour",
   "no_transactions": "Aucune transaction",
   "no_transfers": "Aucun transfert",
+  "errors_in_form": "Il y a des erreurs dans le formulaire",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "La description ne doit pas dépasser 200 caractères.",
+  "token_creation_error": "Une erreur s'est produite lors de la création du jeton.",
+  "tokenname_error_message_0": "Le nom ne doit pas dépasser 32 caractères.",
+  "tokenname_error_message_1": "Le nom ne peut contenir que des caractères a-Z.",
+  "abbreviation_required": "L'abréviation est requise.",
+  "abbreviation_error_message_0": "L'abréviation ne doit pas dépasser 5 caractères.",
+  "abbreviation_error_message_1": "L'abréviation ne peut contenir que des caractères a-Z.",
 
 /*
 ##################################################################################

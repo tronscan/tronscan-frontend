@@ -96,6 +96,7 @@ export const messages = {
   "enable_desktop_notifications": "Habilitar notificaciones de escritorio",
   "desktop_notification_enabled": "Notificaciones de Escritorio Habilitadas!",
   "notifications_enabled": "Notificaciones Habilitadas",
+  "contract_type": "Contract Type",
 
 /*
 ##################################################################################
@@ -386,6 +387,7 @@ export const messages = {
   "quantity": "cantidad",
   "percentage": "Porcentaje",
   "loading_token": "Cargando Token",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -461,6 +463,17 @@ export const messages = {
   "past_starttime_error": "La fecha de inicio ya ha transcurrido",
   "no_transactions": "No han ocurrido transacciones",
   "no_transfers": "No han ocurrido transferencias",
+  "errors_in_form": "There are errors in the form",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "La descripción no puede tener más de 200 caracteres",
+  "token_creation_error": "Se ha producido un error al intentar crear el token",
+  "tokenname_error_message_0": "El nombre no puede tener más de 32 caracteres",
+  "tokenname_error_message_1": "El nombre sólo puede contener caracteres de la a-Z",
+  "abbreviation_required": "Se requiere abreviatura",
+  "abbreviation_error_message_0": "La abreviatura no puede tener más de 5 caracteres",
+  "abbreviation_error_message_1": "La abreviatura sólo puede contener los caracteres a-Z",
 
 /*
 ##################################################################################

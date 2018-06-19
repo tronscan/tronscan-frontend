@@ -96,6 +96,7 @@ export const messages = {
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
 
 /*
 ##################################################################################
@@ -385,6 +386,7 @@ export const messages = {
   "quantity": "کمیت",
   "percentage": "درصد",
   "loading_token": "بارگزاری توکن",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -459,6 +461,17 @@ export const messages = {
   "past_starttime_error": "تاریخ شروع گذشته است",
   "no_transactions": "بدون تراکنش",
   "no_transfers": "بدون انتقال",
+  "errors_in_form": "خطا در فرم وجود دارد",
+  "token_link_message_0": "این نشانه در دسترس خواهد بود",
+  "token_link_message_1": "صفحه توکن",
+  "token_link_message_2": "در چند دقیقه",
+  "description_error_message_0": "توصیف ممکن است طولانی تر از 200 کاراکتر باشد",
+  "token_creation_error": "هنگام تلاش برای ایجاد نشانگر خطایی رخ داد",
+  "tokenname_error_message_0": "نام ممکن است بیش از 32 حرف باشد",
+  "tokenname_error_message_1": "نام ممکن است فقط شامل a-z باشد",
+  "abbreviation_required": "اختصار مورد نیاز است",
+  "abbreviation_error_message_0": "اختصار ممکن است طولانی تر از 5 حرف باشد",
+  "abbreviation_error_message_1": "اختصار ممکن است فقط شامل عناصر a-z باشد",
 
 /*
 ##################################################################################

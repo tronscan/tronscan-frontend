@@ -96,6 +96,8 @@ export const messages = {
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -465,6 +467,17 @@ export const messages = {
   "past_starttime_error": "Başlangıç, geçmiş tarihli olamaz",
   "no_transactions": "İşlem yok",
   "no_transfers": "Aktarım yok",
+  "errors_in_form": "Formda hatalar var",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Açıklama 200 karakterden uzun olamaz",
+  "token_creation_error": "Jetonu oluşturmaya çalışırken bir hata oluştu",
+  "tokenname_error_message_0": "İsim 32 karakterden uzun olamaz",
+  "tokenname_error_message_1": "Ad sadece A-Z karakterleri içerebilir",
+  "abbreviation_required": "Kısaltma gerekli",
+  "abbreviation_error_message_0": "Kısaltma 5 karakterden uzun olamaz",
+  "abbreviation_error_message_1": "Kısaltma sadece a-Z karakterleri içerebilir",
 
 /*
 ##################################################################################

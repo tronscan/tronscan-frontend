@@ -350,12 +350,12 @@ class Navigation extends PureComponent {
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-tachometer-alt mr-2"/>
-                          <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> Bandwidth
+                          <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> {tu("bandwidth")}
                         </Link>
                         <Link className="dropdown-item"
                               to={"/blockchain/transactions?address=" + account.address}>
                           <i className="fa fa-exchange-alt mr-2"/>
-                          <FormattedNumber value={totalTransactions} /> Transactions
+                          <FormattedNumber value={totalTransactions} /> {tu("transactions")}
                         </Link>
                         <li className="dropdown-divider"/>
 

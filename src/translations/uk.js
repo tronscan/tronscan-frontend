@@ -94,6 +94,8 @@ export const messages = {
   "enable_desktop_notifications": "Увімкнути сповіщення на робочому столі",
   "desktop_notification_enabled": "Увімкнено сповіщення на робочому столі!",
   "notifications_enabled": "Сповіщення ввімкнено",
+  "contract_type": "Contract Type",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -466,6 +468,17 @@ export const messages = {
   "no_url_error": "Web посилання необхідне",
   "past_starttime_error": "Початкова дата в минулому",
   "no_transactions": "Немає транзакцій",
+  "errors_in_form": "У формі є помилки",
+  "token_link_message_0": "Токен буде доступний на",
+  "token_link_message_1": "Сторінка токенів",
+  "token_link_message_2": "за кілька хвилин",
+  "description_error_message_0": "Опис не може перевищувати 200 символів",
+  "token_creation_error": "Під час спроби створення токену сталася помилка",
+  "tokenname_error_message_0": "Ім'я не може бути довшим, ніж 32 символи",
+  "tokenname_error_message_1": "Ім'я може містити лише символи a-z",
+  "abbreviation_required": "Абревіатура обов'язкова",
+  "abbreviation_error_message_0": "Абревіатура не може перевищувати 5 символів",
+  "abbreviation_error_message_1": "Абревіатура може містити лише символи a-z",
 
 /*
 ##################################################################################

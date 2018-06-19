@@ -96,6 +96,8 @@ export const messages = {
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
+  "voter_percentage": "Percentage kiezers",
 
 /*
 ##################################################################################
@@ -465,6 +467,17 @@ export const messages = {
   "past_starttime_error": "De opgegeven startdatum ligt in het verleden",
   "no_transactions": "Geen Transacties",
   "no_transfers": "Geen Transfers",
+  "errors_in_form": "Het invoermasker bevat een fout",
+  "token_link_message_0": "De loper is opgeslagen op de ",
+  "token_link_message_1": "Tokens aanblik",
+  "token_link_message_2": "binnen enkele minuten beschikbaar zijn",
+  "description_error_message_0": "De beschrijving van het loper mag niet meer dan 200 tekens bevatten.",
+  "token_creation_error": "Er is een fout opgetreden bij het aanmaken van het token.",
+  "tokenname_error_message_0": "De naam mag niet langer zijn dan 32 tekens.",
+  "tokenname_error_message_1": "De naam mag alleen tekens van a tot Z bevatten.",
+  "abbreviation_required": "Een token is vereist",
+  "abbreviation_error_message_0": "De symbolische afkorting mag niet langer zijn dan 5 tekens.",
+  "abbreviation_error_message_1": "De afkorting token mag alleen tekens van a tot Z bevatten.",
 
 /*
 ##################################################################################

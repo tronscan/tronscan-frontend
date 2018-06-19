@@ -94,6 +94,7 @@ export const messages = {
   "enable_desktop_notifications": "Desktop-Benachrichtigungen aktivieren",
   "desktop_notification_enabled": "Desktop Benachrichtigung wurde aktiviert!",
   "notifications_enabled": "Benachrichtigung aktiviert",
+  "contract_type": "Vertragsart",
 
 /*
 ##################################################################################
@@ -396,6 +397,7 @@ export const messages = {
   "quantity": "Anzahl",
   "percentage": "Prozentsatz",
   "loading_token": "Laden des Tokens",
+  "voter_percentage": "Wähleranteil in Prozent",
 
 /*
 ##################################################################################
@@ -472,6 +474,17 @@ export const messages = {
   "no_url_error": "Eine Web URL ist erforderlich",
   "past_starttime_error": "Das Startdatum liegt in der Vergangenheit.",
   "no_transactions": "Keine Transaktionen vorhanden",
+  "errors_in_form": "Die Eingabemaske enthält einen Fehler",
+  "token_link_message_0": "Das Token wird auf der ",
+  "token_link_message_1": "Tokens Seite",
+  "token_link_message_2": "in ein paar Minuten Verfügbar sein",
+  "description_error_message_0": "Die Beschreibung des Tokens darf nicht länger als 200 Zeichen sein.",
+  "token_creation_error": "Bei der Erstellung des Tokens ist ein Fehler aufgetreten.",
+  "tokenname_error_message_0": "Der Name darf nicht mehr als 32 Zeichen lang sein.",
+  "tokenname_error_message_1": "Der Name darf nur Zeichen von a-Z enthalten",
+  "abbreviation_required": "Ein Tokenkürzel ist erforderlich",
+  "abbreviation_error_message_0": "Das Tokenkürzel darf nicht mehr als 5 Zeichen lang sein.",
+  "abbreviation_error_message_1": "Das Tokenkürzel darf nur Zeichen von a-Z enthalten",
 
 /*
 ##################################################################################

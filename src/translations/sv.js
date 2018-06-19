@@ -96,6 +96,8 @@ export const messages = {
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -451,6 +453,17 @@ export const messages = {
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
   "no_transfers": "Inga överföringar",
+  "errors_in_form": "There are errors in the form",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Description may not be longer then 200 characters",
+  "token_creation_error": "An error occurred while trying to create the token",
+  "tokenname_error_message_0": "Name may not be longer then 32 characters",
+  "tokenname_error_message_1": "Name may only contain a-Z characters",
+  "abbreviation_required": "Abbreviation is required",
+  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
+  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
 
 /*
 ##################################################################################
