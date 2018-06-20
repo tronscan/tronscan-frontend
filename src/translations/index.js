@@ -13,6 +13,7 @@ import * as messages_it from "./it.js";
 import * as messages_pl from "./pl.js";
 import * as messages_ar from "./ar.js";
 import * as messages_uk from "./uk.js";
+import * as messages_ro from "./ro.js";
 
 import {addLocaleData} from 'react-intl';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -29,6 +30,7 @@ import itLocaleData from 'react-intl/locale-data/it';
 import plLocaleData from 'react-intl/locale-data/pl';
 import arLocaleData from 'react-intl/locale-data/ar';
 import ukLocaleData from 'react-intl/locale-data/uk';
+import roLocaleData from 'react-intl/locale-data/ro';
 
 addLocaleData([
   ...nlLocaleData,
@@ -45,6 +47,7 @@ addLocaleData([
   ...plLocaleData,
   ...arLocaleData,
   ...ukLocaleData,
+  ...roLocaleData,
 ]);
 
 export const languages = {
@@ -63,4 +66,5 @@ export const languages = {
     'pl': messages_pl.messages,
     'ar': messages_ar.messages,
     'uk': messages_uk.messages,
+    'ro': messages_ro.messages,
 };

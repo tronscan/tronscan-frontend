@@ -39,6 +39,7 @@ const initialState = {
     fr: "Français",
     es: "Español",
     tr: "Türkçe",
+    ro: "Românesc",
   },
   activeLanguage: 'en',
   account: {
