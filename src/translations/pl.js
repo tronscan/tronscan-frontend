@@ -91,10 +91,10 @@ export const messages = {
   "secure": "bezpieczne",
   "status": "pozycja",
   "no_notifications": "Brak powiadomień",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "enable_desktop_notifications": "Włącz powiadomienia na Twoim pulpicie",
+  "desktop_notification_enabled": "Powiadomienia na pulpicie zostały włączone!",
+  "notifications_enabled": "Powiadomienia włączone",
+  "contract_type": "Typ kontraktu",
 
 /*
 ##################################################################################
@@ -163,10 +163,10 @@ export const messages = {
   "blocks_missed": "Pominiętych bloków",
   "productivity": "produktywność",
   "rewards": "nagród",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "token_created": "Token stworzony",
+  "witness": "Reprezentant",
+  "asset_participation": "Udział w aktywie",
+  "loading_transaction": "Wczytuję transakcję",
 
 /*
 ##################################################################################
@@ -190,9 +190,9 @@ export const messages = {
 */
   "set_name": "Ustaw nazwę",
   "unique_account_message": "Nazwę użytkownika ustawisz tylko raz!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Nazawa jest za krótka",
+  "name_to_long": "Nazwa jest za długa",
+  "permitted_characters_message": "Nazwa może zawierać jedynie następujące znaki: a-z A-Z 0-9",
   "change_name": "Zmień nazwę",
   "account_name": "Nazwa konta",
   "show_qr_code": "Pokaż kod QR",
@@ -297,11 +297,11 @@ export const messages = {
   "trx_produced": "Potwierdzonych transakcji",
   "do_not_send_1": "Nie wysyłaj TRX ze swojego własnego portfela lub portfela giełdy na powyższy adres znajdujący się w sieci testnet!",
   "go_to_votelist": "Przejdź do listy głosujących",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
-  "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "understand_tron_sr_message_0": "Rozumiem jak zostać Reprezentantem TRON i potwierdzam wydanie",
+  "understand_tron_sr_message_1": "jako opłaty za rejestrację.",
+  "invalid_url": "Nieprawidłowy adres URL",
+  "apply_representative_error_message_0": "Coś poszło nie tak podczas aplikowania na Reprezentanta.",
+  "apply_representative_error_message_1": "Upewnij się, że posiadasz odpowiedniąilość TRX do pokrycia opłaty lub spróbuj ponownie później.",
 
 /*
 ##################################################################################
@@ -352,10 +352,10 @@ export const messages = {
   "how_much_buy_message": "Ile tokenów chcesz zakupić?",
   "buy_confirm_message_1": "Na pewno chcesz dokonać zakupu",
   "for": "za",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "insufficient_trx": "Niewystarczająca ilość TRX",
+  "not_enouth_trx_message": "Nie posiadasz wystarczającej ilość TRX aby kupić taką ilość tokenów",
+  "ends": "kończy się",
+  "starts": "rozpoczyna się",
 
 /*
 ##################################################################################
@@ -394,7 +394,7 @@ export const messages = {
   "quantity": "ilość",
   "percentage": "Procent",
   "loading_token": "Wczytuję Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Procent wszystkich głosów",
 
 /*
 ##################################################################################
@@ -466,9 +466,9 @@ export const messages = {
   "past_starttime_error": "Data początkowa jest datą z przeszłości",
   "no_transactions": "Brak transakcji",
   "errors_in_form": "Maska wprowadzania danych zawiera błąd",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
+  "token_link_message_0": "Token będzie dostępny na",
+  "token_link_message_1": "stronie tokenów",
+  "token_link_message_2": "w ciągu kilku najbliższych minut.",
   "description_error_message_0": "Opis nie może przekraczać 200 znaków.",
   "token_creation_error": "Wystąpił błąd podczas próby utworzenia tokena.",
   "tokenname_error_message_0": "Nazwa nie może być dłuższa niż 32 znaki.",
@@ -491,7 +491,7 @@ export const messages = {
   "loading_representatives": "Wczytuję Reprezentantów",
   "address_not_super_representative": "Ten adres nie należy do Super Reprezentanta",
   "unable_load_representatives_page_message": "Nie udało się wczytać strony. Powodem takiej sytuacji może być podanie nieprawidłowego adresu, wskazanie adresu, który nie należy do Reprezentanta lub Reprezentant jeszcze nie skonfigurował tej strony.",
-  "loading_representative": "Loading Representative", 
+  "loading_super_representatives": "Wczytuję Super Reprezentantów",
 
 /*
 ##################################################################################

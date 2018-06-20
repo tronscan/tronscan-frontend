@@ -163,8 +163,8 @@ export const messages = {
   "blocks_missed": "Bloques Perdidos",
   "productivity": "productividad",
   "rewards": "recompensas",
-  "token_created": "Token created",
-  "witness": "Witness",
+  "token_created": "Token creado",
+  "witness": "Testigos",
   "asset_participation": "Asset participation",
   "loading_transaction": "Carga de transacciones",
 
