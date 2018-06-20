@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-12062018-1                                                #
-#         Update Date: 12.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Chinese                                                      #
 #         Status: Second Draft                                                   #
 #         Number of checks: 2                                                    #
@@ -43,8 +43,6 @@ export const messages = {
   "blocks": "区块",
   "block": "区块",
   "name": "名称",
-  "balance": "余额",
-  "bandwidth": "带宽",
   "website": "网址",
   "address": "地址",
   "sign_out": "退出",
@@ -54,26 +52,26 @@ export const messages = {
   "login": "登录",
   "height": "高度",
   "age": "年龄",
-  "produced by": "出块者",
   "bytes": "字节",
-  "created": "创建时间",
-  "Contract": "合约",
+  "produced by": "出块者",
+  "contract": "合约",
   "from": "发送人",
   "to": "接收人",
   "value": "价值",
   "total_accounts": "总账户数量",
   "submit": "提交",
+  "send": "发送",
   "receive": "接收",
   "supply": "持有量",
   "view": "查看",
   "view_all": "查看全部",
   "create": "创建",
   "country": "地区",
-  "send": "发送",
   "amount": "数额",
   "my_vote": "我的投票",
   "submit_votes": "确认投票",
   "accounts": "账户",
+  "created": "创建时间",
   "exchange": "交易所",
   "next": "下一步",
   "copied_to_clipboard": "已复制到剪贴板",
@@ -82,7 +80,7 @@ export const messages = {
   "error": "错误",
   "unlock_keyFile": "Unlock KeyFile",
   "enter_password_message": "你必须输入你的密码",
-  "password_incorrect":"密码错误",
+  "password_incorrect": "密码错误",
   "try_again": "再试一次",
   "wallet_unlocked": "Wallet Unlocked",
   "weak": "弱",
@@ -96,7 +94,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -113,14 +110,15 @@ export const messages = {
   "statistics": "数据",
   "markets": "市场信息",
   "tools": "工具",
+  "transaction_viewer": "查看交易",
+  "node_tester": "测试节点",
+  "system": "系统",
   "news": "新闻",
   "help": "帮助",
   "nodes": "节点",
   "votes": "投票",
   "account": "账户",
-  "transaction_viewer": "查看交易",
-  "node_tester": "测试节点",
-  "system": "系统",
+  "tokens": "通证",
   "overview": "概况",
   "participate": "参与",
 
@@ -136,7 +134,7 @@ export const messages = {
   "block_height": "区块高度",
   "online_nodes": "线上节点",
   "pice_per_1000trx": "价格（每1000TRX）",
-  "vote_for_supre_representatives": "为超级代表投票",
+  "vote_for_super_representatives": "为超级代表投票",
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
@@ -154,13 +152,20 @@ export const messages = {
   "last_page": "尾页",
   "page": "第",
   "of": "共",
-  "last_block": "上一区块",
-  "total_supply": "发行量",
   "most_nodes": "最多节点",
-  "loading_nodes" : "加载中节点",
+  "loading_nodes": "加载中节点",
   "Hostname": "主机名",
   "Last Update": "最近一次更新",
   "first_node_sync_message": "等待第一次节点同步，请几分钟后再次尝试。",
+  "last_block": "上一区块",
+  "blocks_produced": "出块数量",
+  "blocks_missed": "丢失区块数量",
+  "productivity": "效率",
+  "rewards": "奖励",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -190,21 +195,22 @@ export const messages = {
   "change_name": "更换名字",
   "account_name": "用户名",
   "show_qr_code": "显示二维码",
+  "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
+  "bandwidth": "带宽",
+  "balance": "余额",
+  "tron_power": "Tron Power",
+  "transactions": "交易",
+"no_transfers": "无转账",
+  "no_tokens": "无通证",
   "free_bandwidth": "免费带宽",
   "expires": "失效",
   "have_been_added_to_your_account": "已添加至账户！",
   "information_message_1": "申请TRX后，您可以领取10000TRX，用于在测试网进行测试。",
   "information_message_2": "每个账户只能领取10次TRX.",
   "request_trx_for_testing": "申请测试TRX",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
-  "transactions": "交易",
-  "tokens": "通证",
   "token_balances": "通证余额",
   "produced_blocks": "出块数目",
   "voters": "选民",
-  "no_tokens": "无通证",
-  "issued_token": "已发行通证",
   "progress": "进展",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "发行者",
@@ -214,6 +220,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "暂时无法领取测试TRX,请稍后再试。",
   "not_enough_trx": "TRX余额不足",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "send_to_following_address": "对以下地址转账",
 
 /*
 ##################################################################################
@@ -222,17 +229,18 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-   "freeze" : "冻结",
+  "freeze" : "冻结",
   "unfreeze" : "解冻",
-  "frozen_supply": "冻结数额",
   "freeze_trx_least": "至少需要1TRX才能成功冻结。",
   "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
   "freeze_trx_premessage_0": `再次冻结/锁定TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以为超级代表投票。`,
-  "freeze_trx_premessage_1": ` 冻结通证将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
   "freeze_trx_premessage_link": "为超级代表投票。",
+  "freeze_trx_premessage_1": ` 冻结通证将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
+
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
+  "frozen_supply": "冻结数额",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -276,9 +284,7 @@ export const messages = {
   "successful_send": "转账成功！",
   "confirm_transaction": "确认交易",
   "last_confirmed": "最终确定",
-  "blocks_produced": "出块数量",
   "trx_produced": "生成交易数量",
-  "blocks_missed": "丢失区块数量",
   "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
   "go_to_votelist": "前往投票列表",
   "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
@@ -295,9 +301,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "通证名称",
-  "create_token": "发行通证",
   "token_message": "通证名称",
+  "token_abbr": "通证缩写",
   "abbr_message": "通证缩写",
+  "total_supply": "发行量",
+  "issued_token": "已发行通证",
+  "create_token": "发行通证",
   "description": "描述",
   "description_url": "网站URL",
   "quote_token_amount": "二级通证数额",
@@ -329,8 +338,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "您想购买多少数量的通证？",
   "buy_confirm_message_0": "是否确定购买？",
+  "how_much_buy_message": "您想购买多少数量的通证？",
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
   "insufficient_trx": "Insufficient TRX",
@@ -375,6 +384,7 @@ export const messages = {
   "quantity": "数量",
   "percentage": "百分比",
   "loading_token": "通证加载中",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -402,7 +412,6 @@ export const messages = {
   "issue_a_token": "发行通证",
   "issue_token": "发行通证",
   "token_name": "通证名称",
-  "token_abbr": "通证缩写",
   "total_issued": "认购量",
   "registered": "注册日期",
   "abbreviation": "缩写",
@@ -411,7 +420,7 @@ export const messages = {
   "supply_message": "进入流通的通证数量",
   "description_message": "发行通证目的简述",
   "url_message": "用户可以查询到更多通证信息的网站",
-  "exchange_rate_message_0" : "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
+  "exchange_rate_message_0": "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
   "exchange_rate_message_1": "参与者可以获得",
   "exchange_rate_message_2": "每",
   "exchange_rate_message_3": "TRX",
@@ -447,7 +456,6 @@ export const messages = {
   "no_url_error": "请填写网站URL",
   "past_starttime_error": "开始日期早于今日日期",
   "no_transactions": "无交易",
-  "no_transfers": "无转账",
   "errors_in_form": "There are errors in the form",
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
@@ -469,16 +477,12 @@ export const messages = {
 */
   "highest_productivity": "出块效率最高y",
   "lowest_productivity": "出块效率最低",
-  "productivity": "效率",
-  "rewards": "奖励",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
   "Super Representatives": "超级代表",
   "Super Representative Candidates": "超级代表候选人",
   "loading_representatives": "超级代表加载中",
   "address_not_super_representative": "本地址非超级代表",
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
+  "loading_representative": "Loading Representative", 
 
 /*
 ##################################################################################
@@ -606,15 +610,14 @@ export const messages = {
   "save_keystore_file": "保存私钥库文件",
   "download_keystore_file": "下载密钥",
   "do_not_lose_it": "请勿遗失！",
+  "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。", 
   "do_not_share_it": "请勿向他人分享！",
-  "make_a_backup": "请制作备份！",
-  "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。",
   "do_not_share_it_message_0": "如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。",
+  "make_a_backup": "请制作备份！",
   "make_a_backup_message_0": "以防您的电脑故障。",
   "save_private_key": "请保管好您的私钥",
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
-  "send_to_following_address": "对以下地址转账",
 
 };

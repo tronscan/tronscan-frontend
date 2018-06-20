@@ -15,12 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.3-17062018                                                  #
-#         Update Date: 17.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Arabic                                                       #
 #         Status: First Version                                                  #
-#         Number of checks: 1                                                    #
-#         Participants: mcfarhat						                                     #
+#         Number of checks: 2                                                    #
+#         Participants: mcfarhat                                                 #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -166,6 +166,7 @@ export const messages = {
   "token_created": "تم إنشاء الرمز المميز",
   "witness": "الشاهد",
   "asset_participation": "مشاركة الأصول",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -475,6 +476,7 @@ export const messages = {
   "loading_representatives": "تحميل الممثلين",
   "address_not_super_representative": "هذا العنوان غير صالح لممثل مميز",
   "unable_load_representatives_page_message": "لم نتمكن من تحميل الصفحة, و هذا يحصل في حال كان العنوان غير صالح, أو ليس لممثل, أو أن الممثل لم يهيّء هذه الصفحة بعد",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

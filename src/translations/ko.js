@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Korean                                                       #
 #         Status: first draft                                                    #
 #         Number of checks: 0                                                    #
@@ -43,8 +43,6 @@ export const messages = {
   "blocks": "블록",
   "block": "블록",
   "name": "이름",
-  "balance": "잔액",
-  "bandwidth": "bandwidth",
   "website": "website",
   "address": "주소",
   "sign_out": "로그아웃",
@@ -54,35 +52,35 @@ export const messages = {
   "login": "로그인",
   "height": "높이",
   "age": "age",
-  "produced by": "produced by",
   "bytes": "Bytes",
-  "created": "created",
-  "Contract": "Contract",
+  "produced by": "produced by",
+  "contract": "Contract",
   "from": "보내는 주소",
   "to": "받는 주소",
   "value": "value",
   "total_accounts": "Total Accounts",
   "submit": "제출",
+  "send": "보내기",
   "receive": "받기",
   "supply": "supply",
   "view": "보기",
   "view_all":"View all",
   "create": "생성",
   "country": "지역",
-  "send": "보내기",
   "amount": "수량",
   "my_vote": "나의 투표",
   "submit_votes": "투표 제출",
   "accounts": "계정",
+  "created": "created",
   "exchange": "Exchange",
-  "next" : "next",
+  "next": "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
   "reset": "Reset",
   "error": "Error",
   "unlock_keyFile": "Unlock KeyFile",
   "enter_password_message": "You must enter your password!",
-  "password_incorrect":"Password Incorrect",
+  "password_incorrect": "Password Incorrect",
   "try_again": "Try Again",
   "wallet_unlocked": "Wallet Unlocked",
   "weak": "weak",
@@ -96,7 +94,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -113,14 +110,15 @@ export const messages = {
   "statistics": "Statistics",
   "markets": "Markets",
   "tools": "Tools",
+  "transaction_viewer": "Transaction Viewer",
+  "node_tester": "Node Tester",
+  "system": "System",
   "news": "News",
   "help": "Help",
   "nodes": "노드",
   "votes": "투표수",
   "account": "계정",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
-  "system": "System",
+  "tokens": "토큰",
   "overview": "Overview",
   "participate": "참여하기",
 
@@ -154,13 +152,20 @@ export const messages = {
   "last_page": "last page",
   "page": "page",
   "of": "of",
-  "last_block": "마지막 블록",
-  "total_supply": "총 공급",
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "last_block": "마지막 블록",
+  "blocks_produced": "생성된 블록",
+  "blocks_missed": "유실된 블록",
+  "productivity": "productivity",
+  "rewards": "rewards",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -190,21 +195,22 @@ export const messages = {
   "change_name": "Change Name",
   "account_name": "Account Name",
   "show_qr_code": "Show QR Code",
+  "do_not_send_2": "TRX를 귀하의 지갑이나 거래소에서 위의 테스트넷 계정 주소로 보내지 마십시오!",
+  "bandwidth": "bandwidth",
+  "balance": "잔액",
+  "tron_power": "Tron Power",
+  "transactions": "transactions",
+  "no_transfers": "No Transfers",
+  "no_tokens": "No Tokens",
   "free_bandwidth": "Free Bandwidth",
   "expires": "expires",
   "have_been_added_to_your_account": "have been added to your account!",
   "information_message_1": "TRX를 요청할 때 10000 TRX를 받습니다. TRX는 테스트 네트워크에서 테스트하는 데 사용할 수 있습니다.",
   "information_message_2": "TRX는 계정 당 한 번만 요청할 수 있습니다.",
   "request_trx_for_testing": "테스트용 TRX 요청",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "TRX를 귀하의 지갑이나 거래소에서 위의 테스트넷 계정 주소로 보내지 마십시오!",
-  "transactions": "거래",
-  "tokens": "토큰",
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
   "progress": "progress",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "발행자",
@@ -214,6 +220,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "send_to_following_address": "Send to the following address",
 
 /*
 ##################################################################################
@@ -222,19 +229,19 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "freeze",
-  "unfreeze" : "unfreeze",
-  "frozen_supply": "Frozen Supply",
+  "freeze": "freeze",
+  "unfreeze": "unfreeze",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
   "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
    For example, with Tron Power you can `,
+  "freeze_trx_premessage_link": "vote for Super Representatives.",
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
+  "frozen_supply": "Frozen Supply",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -290,9 +297,7 @@ export const messages = {
   "successful_send": "전송 성공!",
   "confirm_transaction": "거래 확인",
   "last_confirmed": "마지막 확인",
-  "blocks_produced": "생성된 블록",
   "trx_produced": "Transactions Produced",
-  "blocks_missed": "유실된 블록",
   "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
   "go_to_votelist": "Go to votelist",
   "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
@@ -309,9 +314,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "토큰 이름",
-  "create_token": "토큰 생성",
   "token_message": "Name for the token",
+  "token_abbr": "token Abbreviation",
   "abbr_message": "Abbreviation for the token",
+  "total_supply": "총 공급",
+  "issued_token": "issued token",
+  "create_token": "토큰 생성",
   "description": "토큰 설명",
   "description_url": "토큰 설명 주소",
   "quote_token_amount": "견적 토큰 금액",
@@ -343,8 +351,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
   "buy_confirm_message_0": "Are you sure?",
+  "how_much_buy_message": "How much tokens do you want to buy?",
   "buy_confirm_message_1": "Are you sure you want to buy",
   "for": "for",
   "insufficient_trx": "Insufficient TRX",
@@ -383,13 +391,14 @@ export const messages = {
   "search_address": "주소 검색",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
-  "nr_of_Transfers": "Nr. of Transfers",
+  "nr_of_Transfers": "Number of Transfers",
   "not_signed_in": "You will need to log in to make use of this functionality",
   "loading_map": "Loading Map",
   "loading_accounts": "loading Accounts",
   "quantity": "quantity",
   "percentage": "Percentage",
   "loading_token": "Loading Token",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -417,7 +426,6 @@ export const messages = {
   "issue_a_token": "토큰 발행",
   "issue_token": "토큰 발행",
   "token_name": "토큰 이름",
-  "token_abbr": "token Abbreviation",
   "total_issued": "Total issued",
   "registered": "Registered",
   "abbreviation": "Abbreviations",
@@ -426,7 +434,7 @@ export const messages = {
   "supply_message": "Total amount of tokens which will be in circulation",
   "description_message": "A short description of the purpose of the token",
   "url_message": "A website where users can find more information about the token",
-  "exchange_rate_message_0" : "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
+  "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
   "exchange_rate_message_1": "Participants will receive",
   "exchange_rate_message_2": "for every",
   "exchange_rate_message_3": "TRX",
@@ -465,7 +473,6 @@ export const messages = {
   "no_url_error": "Web URL is required",
   "past_starttime_error": "The starting date is in the past",
   "no_transactions": "No Transactions",
-  "no_transfers": "No Transfers",
   "errors_in_form": "There are errors in the form",
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
@@ -487,16 +494,12 @@ export const messages = {
 */
   "highest_productivity": "Highest Productivity",
   "lowest_productivity": "Lowest Productivity",
-  "productivity": "productivity",
-  "rewards": "rewards",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
@@ -624,15 +627,14 @@ export const messages = {
   "save_keystore_file": "Save Your Keystore File",
   "download_keystore_file": "Download Encrypted Key",
   "do_not_lose_it": "Do not lose it!",
-  "do_not_share_it": "Do not share it!",
-  "make_a_backup": "Make a backup!",
   "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
+  "do_not_share_it": "Do not share it!",
   "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
+  "make_a_backup": "Make a backup!",
   "make_a_backup_message_0": "Just in case your laptop is set on fire.",
   "save_private_key": "Save Your Private Key",
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
 
 };

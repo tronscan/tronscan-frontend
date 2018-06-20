@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.3-12062018                                                  #
-#         Update Date: 12.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: English                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
 #                                                                                #
 ##################################################################################
@@ -166,6 +166,7 @@ export const messages = {
   "token_created": "Token created",
   "witness": "Witness",
   "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -264,7 +265,7 @@ export const messages = {
   "apply_for_delegate": "apply for delegate",
   "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
   "your_personal_website_address": "your personal website address",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
+  "apply_for_delegate_predescription": `Every token holder has the opportunity to become a TRON Super Representative.
    However, for the network and community to operate more smoothly and effectively,
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
@@ -499,6 +500,7 @@ export const messages = {
   "loading_representatives": "Loading Representatives",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

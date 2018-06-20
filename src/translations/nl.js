@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-10062018-1                                                #
-#         Update Date: 10.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Dutch                                                        #
 #         Status: First Draft                                                    #
 #         Number of checks: 1                                                    #
@@ -44,8 +44,6 @@ export const messages = {
   "blocks": "blokken",
   "block": "blok",
   "name": "naam",
-  "balance": "balans",
-  "bandwidth": "bandbreedte",
   "website": "webpagina",
   "address": "adres",
   "sign_out": "uitloggen",
@@ -55,35 +53,35 @@ export const messages = {
   "login": "inloggen",
   "height": "height",
   "age": "age",
-  "produced by": "geproduceerd door",
   "bytes": "bytes",
-  "created": "gemaakt",
-  "Contract": "Contract",
+  "produced by": "geproduceerd door",
+  "contract": "Contract",
   "from": "van",
   "to": "naar",
   "value": "waarde",
   "total_accounts": "Totaal accounts",
   "submit": "bevestig",
+  "send": "versturen",
   "receive": "ontvang",
   "supply": "lever",
   "view": "bekijken",
-  "view_all":"View all",
+  "view_all": "View all",
   "create": "nieuw",
   "country": "land",
-  "send": "versturen",
   "amount": "hoeveelheid",
   "my_vote": "mijn stem",
   "submit_votes": "Bevestig stemmen",
   "accounts": "accounts",
+  "created": "gemaakt",
   "exchange": "Exchange",
-  "next" : "next",
+  "next": "next",
   "copied_to_clipboard": "Kopieerd naar klembord",
   "cancel": "Annuleren",
   "reset": "Reset",
   "error": "Fout",
   "unlock_keyFile": "Unlock KeyFile",
   "enter_password_message": "U moet uw wachtwoord invoeren!",
-  "password_incorrect":"Wachtwoord onjuist",
+  "password_incorrect": "Wachtwoord onjuist",
   "try_again": "Nogmaals proberen",
   "wallet_unlocked": "Wallet Unlocked",
   "weak": "weak",
@@ -97,7 +95,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Percentage kiezers",
 
 /*
 ##################################################################################
@@ -114,14 +111,15 @@ export const messages = {
   "statistics": "Statistieken",
   "markets": "Markten",
   "tools": "Gereedschap",
+  "transaction_viewer": "Transaction Viewer",
+  "node_tester": "Node Tester",
+  "system": "Systeem",
   "news": "Nieuws",
   "help": "Help",
   "nodes": "Nodes",
   "votes": "stemmen",
   "account": "Account",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
-  "system": "Systeem",
+  "tokens": "tokens",
   "overview": "Overzicht",
   "participate": "Doe mee",
 
@@ -155,13 +153,20 @@ export const messages = {
   "last_page": "laatste pagina",
   "page": "pagina",
   "of": "van",
-  "last_block": "laatste blok",
-  "total_supply": "totale voorraad",
   "most_nodes": "Meeste nodes",
-  "loading_nodes" : "Nodes worden geladen",
+  "loading_nodes": "Nodes worden geladen",
   "Hostname": "Hostname",
   "Last Update": "Laatste Update",
   "first_node_sync_message": "Wacht op eerste node sync, probeer het over enkele minuten nogmaals.",
+  "last_block": "laatste blok",
+  "blocks_produced": "Geproduceerde Blokken",
+  "blocks_missed": "Gemiste Blokken",
+  "productivity": "productiviteit",
+  "rewards": "beloning",
+  "token_created": "gecreëerde Token",
+  "witness": "Getuigen/Accountant",
+  "asset_participation": "Vermogensbelegging",
+  "loading_transaction": "Transacties laden",
 
 /*
 ##################################################################################
@@ -191,21 +196,22 @@ export const messages = {
   "change_name": "Wijzigen Naam",
   "account_name": "Account Naam",
   "show_qr_code": "Toon QR Code",
+  "do_not_send_2": "Verstuur geen TRX van je portemonnee of exchange naar het bovenstaande testnet adres!",
+  "bandwidth": "bandbreedte",
+  "balance": "balans",
+  "tron_power": "Tron Power",
+  "transactions": "transacties",
+  "no_transfers": "Geen Transfers",
+  "no_tokens": "Geen Tokens",
   "free_bandwidth": "Gratis Bandbreedte",
   "expires": "verloopt",
   "have_been_added_to_your_account": "zijn toegevoegd aan je account!",
   "information_message_1": "Wanneer je TRX aanvraagt, ontvangt 10000 TRX om mee te kunnen testen op het testnet.",
   "information_message_2": "Je kunt per account slechts 10 keer TRX aanvragen.",
   "request_trx_for_testing": "Vraag TRX aan om mee te kunnen testen",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "Verstuur geen TRX van je portemonnee of exchange naar het bovenstaande testnet adres!",
-  "transactions": "transacties",
-  "tokens": "tokens",
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
-  "no_tokens": "Geen Tokens",
-  "issued_token": "Uitgegeven token",
   "progress": "Voortgang",
   "transactions_count": "{transactions, plural, one {transactie} other {transacties}}",
   "issuer": "uitgever",
@@ -215,6 +221,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "send_to_following_address": "Verstuur naar het volgende adres",
 
 /*
 ##################################################################################
@@ -223,19 +230,19 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "bevriezen",
-  "unfreeze" : "ondooi",
-  "frozen_supply": "Bevroren voorraad",
+  "freeze": "bevriezen",
+  "unfreeze": "ondooi",
   "freeze_trx_least": "Je hebt tenminsten 1 TRX nodig om te kunnen bevriezen",
   "unable_unfreeze_trx_message": "TRX ontdooien niet gelukt. Dit zou kunnen komen doordat de minimale bevriesperiode nog niet is berijkt.",
   "freeze_trx_premessage_0": `TRX kan bevroren/vastgezet worden om Tron Power te verwerven en andere functies te activeren.
    Bijvoorbeeld, met Tron Power kun je `,
+  "freeze_trx_premessage_link": "stem op een Super Vertegenwoordiger.",
   "freeze_trx_premessage_1": ` Bevroren token "staan vast" voor een periode van 3 dagen. Gedurende deze periode kunnen de bevroren TRX niet verhandeld worden.
    Na deze periode kun je de TRX ontdooien en de tokens verhandelen.`,
-  "freeze_trx_premessage_link": "stem op een Super Vertegenwoordiger.",
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
+  "frozen_supply": "Bevroren voorraad",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -290,10 +297,9 @@ export const messages = {
   "require_account_to_send": "Om munten te kunnen versturen dien je ingelogd zijn",
   "require_account_to_receive": "Om munten te kunnen ontvangen dien je ingelogd zijn",
   "successful_send": "Versturen gelukt!",
+  "confirm_transaction": "Bevestig transactie",
   "last_confirmed": "Laatst bevestigd",
-  "blocks_produced": "Geproduceerde Blokken",
   "trx_produced": "Geproduceerde Transacties",
-  "blocks_missed": "Gemiste Blokken",
   "do_not_send_1": "Verstuur geen TRX van je portemonnee of exchange naar je testnetadres!",
   "go_to_votelist": "Go to votelist",
   "understand_tron_sr_message_0": "Ik begrijp de rol en verantwoordelijkheden van een TRON-vertegenwoordiger en accepteer hierbij betaling van een vergoeding van ",
@@ -310,9 +316,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "Naam van de token",
-  "create_token": "Maak Token",
   "token_message": "Naam van de token",
+  "token_abbr": "token Abbreviation",
   "abbr_message": "Afkorting voor de token",
+  "total_supply": "totale voorraad",
+  "issued_token": "Uitgegeven token",
+  "create_token": "Maak Token",
   "description": "Omschrijving",
   "description_url": "Omschrijving URL",
   "quote_token_amount": "Quote Token Amount",
@@ -344,8 +353,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "Hoeveel tokens wil je kopen?",
   "buy_confirm_message_0": "Weet je het zeker?",
+  "how_much_buy_message": "Hoeveel tokens wil je kopen?",
   "buy_confirm_message_1": "Weet u zeker dat u de jeton koopt? U ontvangt ",
   "for": "voor",
   "insufficient_trx": "Niet genoeg TRX beschikbaar",
@@ -363,7 +372,7 @@ export const messages = {
   "address_warning": "Voer alleen een geldig TRON portemonnee adres in. Een ongeldig adres kan tot verlies van TRX leiden.",
   "search_address_or_url": "Zoek op adres of URL",
   "the_lunch_test": "The launch of testnet aims to test all the features of our blockchain explorer and wallet.",
-  "plese_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
+  "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
   "dear_users": "Dear users,",
@@ -390,6 +399,7 @@ export const messages = {
   "quantity": "quantity",
   "percentage": "Percentage",
   "loading_token": "Loading Token",
+  "voter_percentage": "Percentage kiezers",
 
 /*
 ##################################################################################
@@ -417,7 +427,6 @@ export const messages = {
   "issue_a_token": "Maak een token",
   "issue_token": "Maak Token",
   "token_name": "token naam",
-  "token_abbr": "token afkorting",
   "total_issued": "Totaal uitgegeven",
   "registered": "Geregistreerd",
   "abbreviation": "Afkortingen",
@@ -440,7 +449,7 @@ export const messages = {
   "start_date": "Begindatum",
   "end_date": "Einddatum",
   "token_spend_confirm": "Ik bevestig dat ik op de hoogte ben van het feit dat het maken van de gehele voorraad van mijn tokens 1024 TRX kost.",
-  "token_issue_guide_message_1":`Issuing a token on the Tron Protocol can be done
+  "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
   "token_issue_guide_message_2":`When a token is issued it will be shown on the token overview page.
     Users can then participate within the participation period and exchange their TRX for tokens.`,
@@ -466,7 +475,6 @@ export const messages = {
   "no_url_error": "Er is geen website opgegeven",
   "past_starttime_error": "De opgegeven startdatum ligt in het verleden",
   "no_transactions": "Geen Transacties",
-  "no_transfers": "Geen Transfers",
   "errors_in_form": "Het invoermasker bevat een fout",
   "token_link_message_0": "De loper is opgeslagen op de ",
   "token_link_message_1": "Tokens aanblik",
@@ -488,16 +496,12 @@ export const messages = {
 */
   "highest_productivity": "Hoogste Productiviteit",
   "lowest_productivity": "Laagste Productiviteit",
-  "productivity": "productiviteit",
-  "rewards": "beloning",
-  "token_created": "gecreëerde Token",
-  "witness": "Getuigen/Accountant",
-  "asset_participation": "Vermogensbelegging",
   "Super Representatives": "Super Vertegenwoordiger",
   "Super Representative Candidates": "Super Vertegenwoordiger Kandidaten",
   "loading_representatives": "Vertegenwoordigers worden geladen",
   "address_not_super_representative": "Dit adres is geen Super Vertegenwoordiger",
   "unable_load_representatives_page_message": "Niet mogelijk de pagina te laden. Dit kan gebeuren doordat het adres ongeldig is, niet van een vertegenwoordiger of de vertegenwoordiger heeft deze pagina nog niet ingesteld",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
@@ -563,7 +567,6 @@ export const messages = {
   "transaction_success": "Transactie gelukt",
   "transaction_error_message": "Er is iets misgegaan tijdens het broadcasten van deze transactie",
   "transaction_error": "Transactie Fout",
-  "confirm_transaction": "Bevestig transactie",
   "confirm_transaction_message": "Weet je zeker dat je deze transcatie wilt versturen?",
   "broadcast_transaction_to_network": "Broadcast Transactie naar het Netwerk",
 
@@ -626,15 +629,14 @@ export const messages = {
   "save_keystore_file": "Sla je Keystore bestand op",
   "download_keystore_file": "Download Versleutelde Key",
   "do_not_lose_it": "Niet verliezen!",
-  "do_not_share_it": "Niet delen!",
-  "make_a_backup": "Maak een backup!",
   "do_not_lose_it_message_0": "Tron Foundation kan je niet helpen met het herstellen van een verloren key.",
+  "do_not_share_it": "Niet delen!",
   "do_not_share_it_message_0": "Je fondsen kunnen gestolen worden wanneer je dit bestand op een kwaadaardige site gebruikt.",
+  "make_a_backup": "Maak een backup!",
   "make_a_backup_message_0": "In geval dat je laptop in brand vliegt.",
   "save_private_key": "Sla je Private Key op",
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
-  "send_to_following_address": "Verstuur naar het volgende adres",
 
 };

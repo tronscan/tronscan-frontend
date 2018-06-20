@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-16062018                                                  #
-#         Update Date: 16.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Turkish                                                      #
 #         Status: first Version                                                  #
 #         Number of checks: 4                                                    #
@@ -44,8 +44,6 @@ export const messages = {
   "blocks": "bloklar",
   "block": "blok",
   "name": "isim",
-  "balance": "bakiye",
-  "bandwidth": "bantgenişliği",
   "website": "web sitesi",
   "address": "adres",
   "sign_out": "çıkış",
@@ -55,26 +53,26 @@ export const messages = {
   "login": "giriş",
   "height": "yükseklik",
   "age": "yaş",
-  "produced by": "üreten",
   "bytes": "bayt",
-  "created": "yaratıldı",
-  "Contract": "Sözleşme",
+  "produced by": "üreten",
+  "contract": "Sözleşme",
   "from": "gönderen",
   "to": "alıcı",
   "value": "değer",
   "total_accounts": "Toplam Hesaplar",
   "submit": "gönder",
+  "send": "aktar",
   "receive": "al",
   "supply": "arz",
   "view": "görüntüle",
   "view_all": "Hepsini görüntüle",
   "create": "yarat",
   "country": "bölge",
-  "send": "aktar",
   "amount": "meblağ",
   "my_vote": "benim oyum",
   "submit_votes": "oyları gönder",
   "accounts": "hesaplar",
+  "created": "yaratıldı",
   "exchange": "Borsa",
   "next": "sonraki",
   "copied_to_clipboard": "Hafızaya kopyalandı",
@@ -83,7 +81,7 @@ export const messages = {
   "error": "Hata",
   "unlock_keyFile": "Anahtar dosyasının kilidini çöz",
   "enter_password_message": "Parolanızı girmeniz gerekmektedir!",
-  "password_incorrect":"Girilen parola yanlış",
+  "password_incorrect": "Girilen parola yanlış",
   "try_again": "Tekrar deneyin",
   "wallet_unlocked": "Cüzdan açıldı",
   "weak": "zayıf",
@@ -97,7 +95,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -114,14 +111,15 @@ export const messages = {
   "statistics": "İstatistikler",
   "markets": "Piyasalar",
   "tools": "Araçlar",
+  "transaction_viewer": "İşlem görüntüleyicisi",
+  "node_tester": "Düğüm Test Edicisi",
+  "system": "Sistem",
   "news": "Haberler",
   "help": "Yardım",
   "nodes": "Düğümler",
   "votes": "Oylar",
   "account": "Hesap",
-  "transaction_viewer": "İşlem görüntüleyicisi",
-  "node_tester": "Düğüm Test Edicisi",
-  "system": "Sistem",
+  "tokens": "jetonlar",
   "overview": "Genel bakış",
   "participate": "Katıl",
 
@@ -155,13 +153,20 @@ export const messages = {
   "last_page": "son sayfa",
   "page": "sayfa",
   "of": "/",
-  "last_block": "son blok",
-  "total_supply": "toplam arz",
   "most_nodes": "En çok düğüm",
   "loading_nodes": "Düğümler yükleniyor",
   "Hostname": "Host adı",
   "Last Update": "Son Güncelleme",
   "first_node_sync_message": "İlk düğümün eşleşmesi bekleniyor, lütfen birkaç dakika içinde tekrar deneyin.",
+  "last_block": "son blok",
+  "blocks_produced": "Üretilen Bloklar",
+  "blocks_missed": "Kaçırılan Bloklar",
+  "productivity": "üretkenlik",
+  "rewards": "ödüller",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -191,21 +196,22 @@ export const messages = {
   "change_name": "İsmi Değiştir",
   "account_name": "Hesap İsmi",
   "show_qr_code": "Kare kodu görüntüle",
+  "do_not_send_2": "Kendi cüzdanınızdan ya da bir borsadan yukarıdaki test ağı adresine TRX göndermeyin!",
+  "bandwidth": "bantgenişliği",
+  "balance": "bakiye",
+  "tron_power": "Tron Power",
+  "transactions": "işlemler",
+  "no_transfers": "Aktarım yok",
+  "no_tokens": "Jeton bulunmuyor",
   "free_bandwidth": "Boştaki Bantgenişliği",
   "expires": "sonlanır",
   "have_been_added_to_your_account": "hesabınıza eklendi!",
   "information_message_1": "TRX talep ettiğinizde, test ağında denemek üzere 10000 TRX alırsınız.",
   "information_message_2": "Bir hesap sadece 10 kere TRX talep edilebilir.",
   "request_trx_for_testing": "Test etmek için TRX talep et",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "Kendi cüzdanınızdan ya da bir borsadan yukarıdaki test ağı adresine TRX göndermeyin!",
-  "transactions": "işlemler",
-  "tokens": "jetonlar",
   "token_balances": "Jeton bakiyeleri",
   "produced_blocks": "üretilen bloklar",
   "voters": "Oy verenler",
-  "no_tokens": "Jeton bulunmuyor",
-  "issued_token": "tanımlanan jeton",
   "progress": "gelişim",
   "transactions_count": "{transactions, plural, one {işlem} other {işlemler}}",
   "issuer": "tanımlayan",
@@ -215,6 +221,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Deneme amaçlı TRX geçici olarak mevcut değil. Lütfen daha sonra tekrar deneyiniz.",
   "not_enough_trx": "Yeterli TRX bulunamadı",
   "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
+  "send_to_following_address": "Şu adrese gönder",
 
 /*
 ##################################################################################
@@ -225,7 +232,6 @@ export const messages = {
 */
   "freeze": "dondur",
   "unfreeze": "çöz",
-  "frozen_supply": "Dondurulmuş Kaynak",
   "freeze_trx_least": "Dondurabilmeniz için en az 1 TRX bulunması gerekmektedir",
   "unable_unfreeze_trx_message": "TRX çözülemiyor. Böyle olmasının sebebi en kısa dondurma süresine henüz ulaşılmamış olması olabilir.",
   "freeze_trx_premessage_0": `Tron Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
@@ -236,6 +242,7 @@ export const messages = {
   "trx_amount": "TRX Miktarı",
   "token_freeze_confirm_message_0": "Dondurma işlemini onaylıyorum ",
   "token_freeze_confirm_message_1": "en az 3 gün süre ile",
+  "frozen_supply": "Dondurulmuş Kaynak",
   "tokens_unfrozen": "Çözülen jeton adeti",
   "success_tokens_unfrozen_message": "Jetonlar başarıyla çözüldü",
   "unable_to_unfreeze": "Çözülemedi",
@@ -291,9 +298,7 @@ export const messages = {
   "successful_send": "Gönderim başarılı!",
   "confirm_transaction": "işlemi onayla",
   "last_confirmed": "Son Onay",
-  "blocks_produced": "Üretilen Bloklar",
   "trx_produced": "Üretilen İşlemler",
-  "blocks_missed": "Kaçırılan Bloklar",
   "do_not_send_1": "Kendi cüzdanınızdan ya da bir borsadan kendi test ağı adresinize TRX göndermeyin!",
   "go_to_votelist": "Oylama listesine git",
   "understand_tron_sr_message_0": "Nasıl süper temsilci olunacağını anladım ve bunun için bir ücret ödeyeceğimi",
@@ -310,9 +315,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "Jeton'un ismi",
-  "create_token": "Jeton Üret",
   "token_message": "Jeton için isim",
+  "token_abbr": "jeton Kısaltması",
   "abbr_message": "Jeton adının kısaltması",
+  "total_supply": "toplam arz",
+  "issued_token": "tanımlanan jeton",
+  "create_token": "Jeton Üret",
   "description": "Tanım",
   "description_url": "Tanım web adresi",
   "quote_token_amount": "Jeton miktarının kotası",
@@ -344,8 +352,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "Ne kadar jeton almak istiyorsunuz?",
   "buy_confirm_message_0": "Emin misiniz?",
+  "how_much_buy_message": "Ne kadar jeton almak istiyorsunuz?",
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
   "for": "için",
   "insufficient_trx": "Insufficient TRX",
@@ -390,6 +398,7 @@ export const messages = {
   "quantity": "miktar",
   "percentage": "Yüzde",
   "loading_token": "Jeton yükleniyor",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -417,7 +426,6 @@ export const messages = {
   "issue_a_token": "Bir Jeton üret",
   "issue_token": "Jeton Üret",
   "token_name": "jeton adı",
-  "token_abbr": "jeton Kısaltması",
   "total_issued": "Toplam üretilen",
   "registered": "Kayıtlı",
   "abbreviation": "Kısaltmalar",
@@ -466,7 +474,6 @@ export const messages = {
   "no_url_error": "Web adresi gereklidir",
   "past_starttime_error": "Başlangıç, geçmiş tarihli olamaz",
   "no_transactions": "İşlem yok",
-  "no_transfers": "Aktarım yok",
   "errors_in_form": "Formda hatalar var",
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
@@ -488,16 +495,12 @@ export const messages = {
 */
   "highest_productivity": "En Yüksek Üretkenlik",
   "lowest_productivity": "En Düşük Üretkenlik",
-  "productivity": "üretkenlik",
-  "rewards": "ödüller",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
   "Super Representatives": "Süper Temsilciler",
   "Super Representative Candidates": "Süper Temsilci Adayları",
   "loading_representatives": "Temsilciler Yükleniyor",
   "address_not_super_representative": "Bu adres bir Süper Temsilci değil",
   "unable_load_representatives_page_message": "Sayfa yüklenemedi, bunun sebebi adresin geçersiz olması olabileceği gibi, bir Süper Temslcilye ait olmaması ya da temsilcinin henüz bu sayfayı ayarlamamış olması olabilir.",
+  "loading_representative": "Loading Representative", 
 
 /*
 ##################################################################################
@@ -625,15 +628,14 @@ export const messages = {
   "save_keystore_file": "Anahtar Deposu Dosyanızı Kaydedin",
   "download_keystore_file": "Şifrelenmiş Anahtarı İndirin",
   "do_not_lose_it": "Kaybetmeyin!",
-  "do_not_share_it": "Paylaşmayın!",
-  "make_a_backup": "Yedekleyin!",
   "do_not_lose_it_message_0": "Kayıp bir anahtarı bulmanıza Tron Vakfı yardım edemez.",
+  "do_not_share_it": "Paylaşmayın!",
   "do_not_share_it_message_0": "Eğer bu dosyayı kötücül bir sitede kullanırsanız varlıklarınız çalınabilir.",
+  "make_a_backup": "Yedekleyin!",
   "make_a_backup_message_0": "Laptop'unuzun yanma ihtimaline karşın",
   "save_private_key": "Özel Anahtarınızı Kaydedin",
   "print_paper_wallet": "Kağıt Cüzdan Bastırın",
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
-  "send_to_following_address": "Şu adrese gönder",
 
 };

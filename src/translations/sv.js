@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-16062018-1                                                #
-#         Update Date: 16.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 4                                                    #
@@ -44,8 +44,6 @@ export const messages = {
   "blocks": "block",
   "block": "block",
   "name": "namn",
-  "balance": "balans",
-  "bandwidth": "bandbredd",
   "website": "hemsida",
   "address": "address",
   "sign_out": "logga ut",
@@ -55,28 +53,28 @@ export const messages = {
   "login": "login",
   "height": "höjd",
   "age": "ålder",
-  "produced by": "skapad av",
   "bytes": "bytes",
-  "created": "skapad",
-  "Contract": "Kontrakt",
+  "produced by": "skapad av",
+  "contract": "Kontrakt",
   "from": "från",
   "to": "till",
   "value": "värde",
   "total_accounts": "Konton Totalt",
   "submit": "skicka",
+  "send": "skicka",
   "receive": "ta emot",
   "supply": "tillgång",
   "view": "vy",
-  "view_all":"View all",
+  "view_all": "View all",
   "create": "skapa",
   "country": "region",
-  "send": "skicka",
   "amount": "belopp",
   "my_vote": "min röst",
   "submit_votes": "skicka röst",
   "accounts": "konton",
+  "created": "skapad",
   "exchange": "Börs",
-  "next" : "Nästa",
+  "next": "Nästa",
   "copied_to_clipboard": "Kopierad till utklipp",
   "cancel": "avboka",
   "reset": "återställa",
@@ -97,7 +95,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -114,14 +111,15 @@ export const messages = {
   "statistics": "Statestik",
   "markets": "Marknader",
   "tools": "Verktyg",
+  "transaction_viewer": "Transaktions Vy",
+  "node_tester": "Nod Testare",
+  "system": "System",
   "news": "Nyheter",
   "help": "Hjälp",
   "nodes": "Noder",
   "votes": "Röster",
   "account": "Konto",
-  "transaction_viewer": "Transaktions Vy",
-  "node_tester": "Nod Testare",
-  "system": "System",
+  "tokens": "tokens",
   "overview": "Översikt",
   "participate": "Deltaga",
 
@@ -141,6 +139,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -154,13 +153,20 @@ export const messages = {
   "last_page": "sista sidan",
   "page": "sida",
   "of": "av",
-  "last_block": "senaste blocket",
-  "total_supply": "total tillgång",
   "most_nodes": "Flesta Noder",
   "loading_nodes": "laddar Noder",
   "Hostname": "Hostnamn",
   "Last Update": "Senast Uppdaterat",
   "first_node_sync_message": "Väntar på att första noden ska synka, var vänlig testa igen om några minuter.",
+  "last_block": "senaste blocket",
+  "blocks_produced": "Block Producerade",
+  "blocks_missed": "Missade Block",
+  "productivity": "produktivitet",
+  "rewards": "belöningar",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -190,21 +196,22 @@ export const messages = {
   "change_name": "Byt Namn",
   "account_name": "Kontonamn",
   "show_qr_code": "Visa QR Kod",
+  "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
+  "bandwidth": "bandbredd",
+  "balance": "balans",
+  "tron_power": "Tron Power",
+  "transactions": "transaktioner",
+  "no_transfers": "Inga överföringar",
+  "no_tokens": "Inga Tokens",
   "free_bandwidth": "Gratis Bandbredd",
   "expires": "förfaller",
   "have_been_added_to_your_account": "har lagts till i ditt konto!",
   "information_message_1": "När du efterfråga TRX så kommer du att få 1000 TRX som du kan använda för testning på testnet.",
   "information_message_2": "Du kan bara efterfråga TRX 10 gånger per konto.",
   "request_trx_for_testing": "Efterfråga TRX för testning",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
-  "transactions": "transaktioner",
-  "tokens": "tokens",
   "token_balances": "token balanser",
   "produced_blocks": "producerade blocks",
   "voters": "röstare",
-  "no_tokens": "Inga Tokens",
-  "issued_token": "utfärdade token",
   "progress": "progress",
   "transactions_count": "{transaktioner, plural, one {transaktion} other {transaktioner}}",
   "issuer": "utgivare",
@@ -214,6 +221,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Test TRX är för tillfället oåtkomligt. Var vänlig försök igen senare.",
   "not_enough_trx": "Inte tillräckligt med TRX",
   "information_message_3": "Förfrågan om TRX lyckades. Om du inte fick någon TRX så är det för att det inte finns några test TRX just nu. Du bör försöka igen vid en senare tidpunkt.",
+  "send_to_following_address": "Skicka till följande address",
 
 /*
 ##################################################################################
@@ -222,16 +230,16 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "freeze" : "frysa",
-  "unfreeze" : "frigöra",
-  "frozen_supply": "Frusna Tillgångar",
+  "freeze": "frysa",
+  "unfreeze": "frigöra",
   "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
   "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna Tron Power och aktivera ytterligare funktioner. Med Tron Power kan du till exempel",
-  "freeze_trx_premessage_1": "Frysta tokens är låsta för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
   "freeze_trx_premessage_link": "rösta på Super Representatives.",
+  "freeze_trx_premessage_1": "Frysta tokens är låsta för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
   "trx_amount": "TRX Antal",
   "token_freeze_confirm_message_0": "Jag bekräftar att frysa ",
   "token_freeze_confirm_message_1": "i minst 3 dagar",
+  "frozen_supply": "Frusna Tillgångar",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Framgångsrikt frosna tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -284,9 +292,7 @@ export const messages = {
   "successful_send": "Lyckad sändning!",
   "confirm_transaction": "konfirmera transaktion",
   "last_confirmed": "Senast Konfimerad",
-  "blocks_produced": "Block Producerade",
   "trx_produced": "Transanktioner Producerade",
-  "blocks_missed": "Missade Block",
   "do_not_send_1": "Skicka inte TRX från din egna plånbok eller börs till till din testnet address!.",
   "go_to_votelist": "Gå till röst listan",
   "understand_tron_sr_message_0": "Jag förstår hur man blir en TRON representative och jag godkänner att spendera en",
@@ -304,7 +310,11 @@ export const messages = {
 */
   "name_of_the_token": "Tokens namn",
   "token_message": "Namn för token",
-  "abbr_message" : "Abbreviation för token",
+  "token_abbr": "token Förkortning",
+  "abbr_message": "Abbreviation för token",
+  "total_supply": "total tillgång",
+  "issued_token": "utfärdade token",
+  "create_token": "Skapa en Token",
   "description": "Beskrivning",
   "description_url": "Beskrivning URL",
   "quote_token_amount": "Notera Token belopp",
@@ -324,7 +334,7 @@ export const messages = {
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
   "An_error_occurred": "Ett fel inträffade",
-  "create_token": "Skapa en Token",
+  "create_a_token": "Create a token",
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
@@ -336,14 +346,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-    "how_much_buy_message": "Hur mycket tokens vill du köpa?",
-    "buy_confirm_message_0": "Är du säker?",
-    "buy_confirm_message_1": "Är du säker på att du vill köpa",
-    "for": "för",
-    "insufficient_trx": "Otillräcklig TRX",
-    "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
-    "ends": "ends",
-    "starts": "starts",
+  "buy_confirm_message_0": "Är du säker?",
+  "how_much_buy_message": "Hur mycket tokens vill du köpa?",
+  "buy_confirm_message_1": "Är du säker på att du vill köpa",
+  "for": "för",
+  "insufficient_trx": "Otillräcklig TRX",
+  "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################
@@ -382,6 +392,7 @@ export const messages = {
   "quantity": "kvantitet",
   "percentage": "Procent",
   "loading_token": "Laddar Token",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -409,7 +420,6 @@ export const messages = {
   "issue_a_token": "Utfärda en Token",
   "issue_token": "Utfärda Token",
   "token_name": "token namn",
-  "token_abbr": "token Förkortning",
   "total_issued": "Totalt utfärdade",
   "registered": "Registrerad",
   "abbreviation": "Förkortningar",
@@ -418,7 +428,7 @@ export const messages = {
   "supply_message": "Totala antalet tokens som kommer vara i cirkulation",
   "description_message": "Kort beskrivning av syfte med token",
   "url_message": "En webbsida där användare kan hitta mer information om din token",
-  "exchange_rate_message_0" : "Ange priset för en enda token genom att definiera hur många token en deltagare kommer att få för varje TRX de spenderar.",
+  "exchange_rate_message_0": "Ange priset för en enda token genom att definiera hur många token en deltagare kommer att få för varje TRX de spenderar.",
   "exchange_rate_message_1": "Deltagare kommer att få",
   "exchange_rate_message_2": "för varje",
   "exchange_rate_message_3": "TRX",
@@ -452,7 +462,6 @@ export const messages = {
   "no_url_error": "Webb URL är nödvändig",
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
-  "no_transfers": "Inga överföringar",
   "errors_in_form": "There are errors in the form",
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
@@ -474,16 +483,12 @@ export const messages = {
 */
   "highest_productivity": "Högsta produktivitet",
   "lowest_productivity": "Lägsta produktivitet",
-  "productivity": "produktivitet",
-  "rewards": "belöningar",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Kandidater",
   "loading_representatives": "Laddar Representatives",
   "address_not_super_representative": "Den här adressen är inte en Super Representative",
   "unable_load_representatives_page_message": "Det gick inte att ladda sidan, detta kan hända när en address är ogiltig, adressen inte är en  representative eller representative har inte konfigurerat sidan ännu.",
+  "loading_representative": "Loading Representative", 
 
 /*
 ##################################################################################
@@ -513,7 +518,7 @@ export const messages = {
   "open_team_page": "Öppna Team Sida",
   "warning_votes": "Minst 1 Tron Power är nödvändig för att börja rösta. Tron Power fås gengom att frysa TRX på",
   "account_page": "Account Page",
-  "loading_votes" : "Loading Votes",
+  "loading_votes": "Loading Votes",
   "3_day_ranking": "3 Days Ranking",
   "live_ranking": "Live Ranking",
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
@@ -611,15 +616,14 @@ export const messages = {
   "save_keystore_file": "Spara din Keystore-fil",
   "download_keystore_file": "Ladda ner Krypterad nyckel",
   "do_not_lose_it": "Förlora den inte!",
-  "do_not_share_it": "Dela den inte!",
-  "make_a_backup": "Skapa en backup!",
   "do_not_lose_it_message_0": "Tron Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
+  "do_not_share_it": "Dela den inte!",
   "do_not_share_it_message_0": "Dina pengar kan bli stulna om du använder den här filen på en skadlig webbplats.",
+  "make_a_backup": "Skapa en backup!",
   "make_a_backup_message_0": "ifall din dator fattar eld.",
   "save_private_key": "Spara din privata nyckel",
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Gå till kontosidan",
-  "send_to_following_address": "Skicka till följande address",
 
 };

@@ -86,7 +86,7 @@ class Transaction extends React.Component {
         {
           loading ? <div className="card">
             <TronLoader>
-              Loading Transaction
+              tu{("loading_transaction")}
             </TronLoader>
           </div> :
             <div className="row">

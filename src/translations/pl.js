@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.2-16062018                                                  #
-#         Update Date: 16.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Polish                                                       #
 #         Status: In verification                                                #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Karol Stańczak                                           #
 #                                                                                #
 ##################################################################################
@@ -95,7 +95,6 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
-  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -167,6 +166,7 @@ export const messages = {
   "token_created": "Token created",
   "witness": "Witness",
   "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -265,7 +265,7 @@ export const messages = {
   "apply_for_delegate": "głoś swoją kandydaturę na delegata",
   "apply_super_representative_candidate": "Zgłoś swoją kandydaturę na Super Reprezentanta",
   "your_personal_website_address": "adres Twojej strony internetowej",
-  "apply_for_delegate_predescription":`Każdy posiadacz tokenów ma okazję aby zgłosić swoją kandydaturę na Super Reprezentanta TRON.
+  "apply_for_delegate_predescription": `Każdy posiadacz tokenów ma okazję aby zgłosić swoją kandydaturę na Super Reprezentanta TRON.
    Jednakże, aby sieć i społeczność działały sprawniej i efektywniej, stworzyliśmy zestaw specjalnych standardów i wymagań dla kandydatów, dzięki którym będą mogli stać się rekomendowanymi Super Reprezentantami. Będziemy promować rekomendowanych SR, aby zwiększyć ich szanse na wybór. Lista nowych, rekomendowanych Super Reprezentantów jest uaktualniana i publikowana raz w tygodniu.`,
   "apply_for_delegate_description": `
    Posiadacze TRX mogą złożyć swoją kandydaturę na Super Reprezentantów z poziomu swojego konta. Tam również jest dostępna opcja głosowania na innych kandydantów.
@@ -352,6 +352,8 @@ export const messages = {
   "how_much_buy_message": "Ile tokenów chcesz zakupić?",
   "buy_confirm_message_1": "Na pewno chcesz dokonać zakupu",
   "for": "za",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
   "ends": "ends",
   "starts": "starts",
 
@@ -392,6 +394,7 @@ export const messages = {
   "quantity": "ilość",
   "percentage": "Procent",
   "loading_token": "Wczytuję Token",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -488,6 +491,7 @@ export const messages = {
   "loading_representatives": "Wczytuję Reprezentantów",
   "address_not_super_representative": "Ten adres nie należy do Super Reprezentanta",
   "unable_load_representatives_page_message": "Nie udało się wczytać strony. Powodem takiej sytuacji może być podanie nieprawidłowego adresu, wskazanie adresu, który nie należy do Reprezentanta lub Reprezentant jeszcze nie skonfigurował tej strony.",
+  "loading_representative": "Loading Representative", 
 
 /*
 ##################################################################################

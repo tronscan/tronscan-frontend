@@ -286,7 +286,7 @@ class Representative extends React.Component {
             {
               loading ? <div className="card">
                   <TronLoader>
-                    Loading Representative {address.address}
+                    {tu("loading_representative")} {address.address}
                   </TronLoader>
                 </div> :
                 <Fragment>

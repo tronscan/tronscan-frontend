@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-15062018-1                                                #
-#         Update Date: 15.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: German                                                       #
 #         Status: Approved Version                                               #
 #         Number of checks: 5                                                    #
@@ -81,7 +81,7 @@ export const messages = {
   "error": "Fehler",
   "unlock_keyFile": "Passwortdatei entschlüsseln",
   "enter_password_message": "Bitte geben Sie ein Passwort ein!",
-  "password_incorrect":"falsches Passwort",
+  "password_incorrect": "falsches Passwort",
   "try_again": "Erneut versuchen",
   "wallet_unlocked": "Das Wallet wurde erfolgreich entsperrt",
   "weak": "schwach",
@@ -166,6 +166,7 @@ export const messages = {
   "token_created": "erstellte Token",
   "witness": "Zeuge/Prüfer",
   "asset_participation": "Asset-Beteiligung",
+  "loading_transaction": "Laden der Transaktionen",
 
 /*
 ##################################################################################
@@ -497,9 +498,10 @@ export const messages = {
   "lowest_productivity": "Niedrigste Produktivität",
   "Super Representatives": "Super Repräsentant",
   "Super Representative Candidates": "Super Repräsentanten Anwärter",
-  "loading_representatives": "Laden der Repräsentant Kanidaten",
+  "loading_representatives": "Laden der Repräsentanten",
   "address_not_super_representative": "Diese Adresse gehört keinem Super Repräsentant",
   "unable_load_representatives_page_message": "Seite kann nicht geladen werden, evtl. ist die hinterlegte Adresse ungültig oder die Webseite wurde noch nicht durch den Repräsentant konfiguriert.",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
