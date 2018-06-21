@@ -299,7 +299,7 @@ export const messages = {
   // infomessage - receive trx eg. 10 trx have been added to your account!
   "have_been_added_to_your_account": "have been added to your account!",
   // infomessage - Testnet informessage - receive 10000 TRX for testing
-  "information_message_1": "When requesting TRX you will receive 10000 TRX which you can use for testing on the testnet.",
+  "information_message_1": "Mainnet cannot request testing trx, please contact Tron to get test trx.",
   // infomessage - Testnet informessage - limitation
   "information_message_2": "You may only request TRX 10 times per account.",
   // button description - Request TRX for testing
