@@ -18,8 +18,8 @@ export const messages = {
 #         Version: 1.5-21062018                                                  #
 #         Update Date: 21.06.2018                                                #
 #         Language: Polish                                                       #
-#         Status: In verification                                                #
-#         Number of checks: 4                                                    #
+#         Status: Second Version                                                 #
+#         Number of checks: 5                                                    #
 #         Participants: Karol Stańczak                                           #
 #                                                                                #
 ##################################################################################
@@ -86,10 +86,10 @@ export const messages = {
   "wallet_unlocked": "Portfel odblokowany",
   "weak": "słaby",
   "okay": "w porządku",
-  "good": "dobry",
-  "strong": "mocne",
+  "good": "dobre",
+  "strong": "silne",
   "secure": "bezpieczne",
-  "too_short": "zbyt krótki",
+  "too_short": "za krótkie",
   "status": "pozycja",
   "no_notifications": "Brak powiadomień",
   "enable_desktop_notifications": "Włącz powiadomienia na Twoim pulpicie",
