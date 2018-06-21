@@ -491,7 +491,7 @@ export const messages = {
   "loading_representatives": "Wczytuję Reprezentantów",
   "address_not_super_representative": "Ten adres nie należy do Super Reprezentanta",
   "unable_load_representatives_page_message": "Nie udało się wczytać strony. Powodem takiej sytuacji może być podanie nieprawidłowego adresu, wskazanie adresu, który nie należy do Reprezentanta lub Reprezentant jeszcze nie skonfigurował tej strony.",
-  "loading_super_representatives": "Wczytuję Super Reprezentantów",
+  "loading_representatives": "Wczytuję Reprezentantów",
 
 /*
 ##################################################################################
