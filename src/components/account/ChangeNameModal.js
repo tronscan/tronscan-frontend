@@ -22,15 +22,15 @@ class ChangeNameModal extends Component {
     let {name} = this.state;
 
     if (name.length < 8) {
-      return [false, "Name is to short"]
+      return [false, tu("name_to_short")]
     }
 
     if (name.length > 32) {
-      return [ false, "Name is to long"];
+      return [ false, tu("name_to_long")];
     }
 
     if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-      return [false, "Name may only contain a-z A-Z 0-9"];
+      return [false, tu("permitted_characters_message")];
     }
 
     return [true];

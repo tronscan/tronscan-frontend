@@ -169,7 +169,7 @@ const style = {
     fontSize: 18,
     lineHeight: `${height}px`,
     borderRadius: '6px',
-    width: '25px'
+    width: '45px'
   },
   votes: {
     fontSize: 18,

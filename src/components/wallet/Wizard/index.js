@@ -2,7 +2,7 @@
 import {connect} from "react-redux";
 import React from "react";
 import {find} from "lodash";
-import {tu} from "../../../utils/i18n";
+import {tu,t} from "../../../utils/i18n";
 import {generateAccount} from "@tronscan/client/src/utils/account";
 import {encryptKey, encryptString} from "../../../services/secureKey";
 import {downloadStringAsFile} from "../../../services/file";
@@ -188,7 +188,7 @@ class Wizard extends React.PureComponent {
                     minLength={8}
                     changeCallback={this.onPasswordChanged}
                     minScore={2}
-                    scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                    scoreWords={[t("weak"), t("okay"), t("good"), t("strong"), t("secure")]}
                     inputProps={{
                       // type: "text",
                       name: "password_input",
