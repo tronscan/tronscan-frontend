@@ -206,7 +206,7 @@ export const messages = {
   "free_bandwidth": "Free Bandwidth",
   "expires": "expires",
   "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "When requesting TRX you will receive 10000 TRX which you can use for testing on the testnet.",
+  "information_message_1": "Mainnet cannot request testing trx, please contact Tron to get test trx.",
   "information_message_2": "You may only request TRX 10 times per account.",
   "request_trx_for_testing": "Request TRX for testing",
   "token_balances": "token balances",

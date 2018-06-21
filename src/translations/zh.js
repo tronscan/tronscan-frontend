@@ -205,7 +205,7 @@ export const messages = {
   "free_bandwidth": "免费带宽",
   "expires": "失效",
   "have_been_added_to_your_account": "已添加至账户！",
-  "information_message_1": "申请TRX后，您可以领取10000TRX，用于在测试网进行测试。",
+  "information_message_1": "主网不能申请测试币，请联系波场工作人员申请测试币。",
   "information_message_2": "每个账户只能领取10次TRX.",
   "request_trx_for_testing": "申请测试TRX",
   "token_balances": "通证余额",

@@ -39,7 +39,7 @@ class Live extends React.Component {
         {
           label: tu("transactions"),
           icon: 'fa fa-exchange-alt',
-          id: 'transaction',
+          id: 'transfer',
         },
         {
           label: tu("votes"),
@@ -138,7 +138,10 @@ class Live extends React.Component {
             <AddressLink address={event.transferFromAddress} truncate={false} />{' '}
             <i className="fa fa-arrow-right"/>{' '}
             <AddressLink address={event.transferToAddress} truncate={false} /><br/>
-            <FormattedNumber value={event.amount / ONE_TRX}/> {event.tokenName}
+            <FormattedNumber
+              maximumFractionDigits={7}
+              minimunFractionDigits={7}
+              value={event.amount / ONE_TRX}/> {event.tokenName}
           </Row>
         );
 
