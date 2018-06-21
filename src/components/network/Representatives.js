@@ -57,7 +57,7 @@ class Representatives extends Component {
             <tr>
               <th className="text-right d-none d-lg-table-cell">#</th>
               <th>{tu("name")}</th>
-              <th className="text-right text-nowrap">{tu("Status")}</th>
+              <th className="text-right text-nowrap">{tu("status")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>

@@ -146,7 +146,7 @@ export default function Contract({contract}) {
         </Fragment>
       );
 
-      default: 
+      default:
       return (
         <Fragment>
           <div className="card-body">
@@ -160,7 +160,6 @@ export default function Contract({contract}) {
   }
 
   return (
-
     <div className="card-body">
       {JSON.stringify(contract)}
     </div>

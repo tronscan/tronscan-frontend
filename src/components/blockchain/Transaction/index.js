@@ -86,7 +86,7 @@ class Transaction extends React.Component {
         {
           loading ? <div className="card">
             <TronLoader>
-              Loading Transaction
+              tu{("loading_transaction")}
             </TronLoader>
           </div> :
             <div className="row">
@@ -100,7 +100,7 @@ class Transaction extends React.Component {
                   <table className="table table-hover m-0">
                     <tbody>
                       <tr>
-                        <th>{tu("Status")}:</th>
+                        <th>{tu("status")}:</th>
                         <td>
                           {
                             transaction.confirmed ?

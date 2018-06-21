@@ -87,9 +87,9 @@ export default class Votes extends React.Component {
           <tr>
             { showVoter && <th>{tu("voter")}</th> }
             { showCandidate && <th>{tu("candidate")}</th> }
-            <th className="text-right" style={{width: 125 }}>{tu("Votes")}</th>
-            <th className="text-right" style={{width: 150 }}>{tu("Voter Percentage")}</th>
-            <th className="text-right" style={{width: 100 }}>{tu("Percentage")}</th>
+            <th className="text-right" style={{width: 125 }}>{tu("votes")}</th>
+            <th className="text-right" style={{width: 150 }}>{tu("voter_percentage")}</th>
+            <th className="text-right" style={{width: 100 }}>{tu("percentage")}</th>
           </tr>
           </thead>
           <tbody>
