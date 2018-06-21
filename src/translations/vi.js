@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-21062018                                                  #
+#         Update Date: 21.06.2018                                                #
 #         Language: Vietnamese                                                   #
 #         Status: First Version                                                  #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Quoc Nguyen                                              #
 #                                                                                #
 ##################################################################################
@@ -83,18 +83,18 @@ export const messages = {
   "enter_password_message": "Bạn phải nhập mật khẩu của bạn!",
   "password_incorrect": "Mật khẩu không đúng",
   "try_again": "Thử lại",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "Mở khóa ví",
   "weak": "Yếu",
   "okay": "đuợc",
   "good": "tốt",
   "strong": "mạnh",
   "secure": "đảm bảo",
   "status": "trạng thái",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "no_notifications": "Không có thông báo",
+  "enable_desktop_notifications": "Bật thông báo trên màn hình",
+  "desktop_notification_enabled": "Đã bật thông báo trên màn hình!",
+  "notifications_enabled": "Đã bật thông báo",
+  "contract_type": "Loại hợp đồng",
 
 /*
 ##################################################################################
@@ -163,10 +163,10 @@ export const messages = {
   "blocks_missed": "Các khối bị nhỡ",
   "productivity": "năng suất",
   "rewards": "phần thưởng",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "token_created": "Đã tạo mã token",
+  "witness": "Nhân chứng",
+  "asset_participation": "Góp phần vào tài sản",
+  "loading_transaction": "Đang tải giao dịch",
 
 /*
 ##################################################################################
@@ -190,9 +190,9 @@ export const messages = {
 */
   "set_name": "Đặt tên",
   "unique_account_message": "Bạn chỉ có thể đặt tên tài khoản của mình một lần!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Tên viết tắt",
+  "name_to_long": "Tên đầy đủ",
+  "permitted_characters_message": "Tên chỉ có thể chứa a-z A-Z 0-9",
   "change_name": "Đổi tên",
   "account_name": "Tên tài khoản",
   "show_qr_code": "Hiển thị mã QR",
@@ -282,7 +282,7 @@ export const messages = {
   "create_account_confirm_1": "Tôi hiểu rằng nếu tôi quên/mất mật khẩu, tôi sẽ không bao giờ có thể truy cập vào tài sản của mình",
   "create_account_confirm_2": "Tôi hiểu rằng nếu tôi quên/mất mật khẩu thì không ai có thể giúp tôi khôi phục nó",
   "create_account_confirm_3": "Tôi đã viết mật khẩu trên giấy",
-  "vote_thanks": "Thanks for submitting your vote!",
+  "vote_thanks": "Cảm ơn bạn đã gửi phiếu bầu của mình!",
   "recent_transactions": "giao dịch gần đây",
   "newest_account": "tài khoản mới",
   "representatives": "đại diện",
@@ -298,11 +298,11 @@ export const messages = {
   "trx_produced": "Giao dịch được tạo",
   "do_not_send_1": "Không gửi TRX từ ví của bạn hoặc trao đổi với địa chỉ trên mạng testnet của bạn!",
   "go_to_votelist": "Chuyển đến danh sách bỏ phiếu",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
-  "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "understand_tron_sr_message_0": "Tôi hiểu cách trở thành đại diện TRON và tôi xác nhận sẽ chi khoản",
+  "understand_tron_sr_message_1": "phí.",
+  "invalid_url": "URL không hợp lệ",
+  "apply_representative_error_message_0": "Đã xảy ra sự cố khi cố gắng đăng ký trở thành đại diện.",
+  "apply_representative_error_message_1": "Đảm bảo bạn có đủ TRX cho khoản phí này hoặc thử lại sau.",
 
 /*
 ##################################################################################
@@ -353,10 +353,10 @@ export const messages = {
   "how_much_buy_message": "Bạn muốn mua bao nhiêu mã token?",
   "buy_confirm_message_1": "Bạn có chắc bạn muốn mua",
   "for": "cho",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "insufficient_trx": "Không đủ TRX",
+  "not_enouth_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
+  "ends": "kết thúc",
+  "starts": "bắt đầu",
 
 /*
 ##################################################################################
@@ -472,16 +472,16 @@ export const messages = {
   "past_starttime_error": "Ngày bắt đầu là ngày trong quá khứ",
   "no_transactions": "Không có giao dịch",
   "errors_in_form": "Có lỗi trong biểu mẫu",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
+  "token_link_message_0": "Mã token sẽ có sẵn trên",
+  "token_link_message_1": "Trang mã token",
+  "token_link_message_2": "trong vài phút",
+  "description_error_message_0": "Mô tả không thể dài hơn 200 ký tự",
+  "token_creation_error": "Đã xảy ra lỗi khi cố gắng tạo mã token",
+  "tokenname_error_message_0": "Tên không thể dài hơn 32 ký tự",
+  "tokenname_error_message_1": "Tên chỉ có thể chứa ký tự a-Z",
   "abbreviation_required": "Tên viết tắt là bắt buộc",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "abbreviation_error_message_0": "Tên viết tắt không thể dài hơn 5 ký tự",
+  "abbreviation_error_message_1": "Tên viết tắt chỉ có thể chứa ký tự a-Z",
 
 /*
 ##################################################################################
