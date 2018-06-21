@@ -33,6 +33,7 @@ const initialState = {
     fa: "فارسی",
     ar: "العربية",
     ko: "한국어",
+    vi: "Tiếng Việt",
     uk: "українська",
     br: "Português Brasil",
     it: "Italiano",
