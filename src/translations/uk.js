@@ -89,6 +89,7 @@ export const messages = {
   "good": "добре",
   "strong": "сильний",
   "secure": "безпечно",
+  "too_short": "занадто короткий",
   "status": "статус",
   "no_notifications": "Немає сповіщень",
   "enable_desktop_notifications": "Увімкнути сповіщення на робочому столі",
@@ -495,7 +496,7 @@ export const messages = {
   "loading_representatives": "Завантаження представників",
   "address_not_super_representative": "Ця адреса не є адресою Супер-представника",
   "unable_load_representatives_page_message": "Не вдається завантажити сторінку, це може статися, якщо адреса недійсна, адреса не є адресою представника, або представник ще не налаштовував цю сторінку",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

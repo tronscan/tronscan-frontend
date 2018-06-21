@@ -89,6 +89,7 @@ export const messages = {
   "good": "tốt",
   "strong": "mạnh",
   "secure": "đảm bảo",
+  "too_short": "quá ngắn",
   "status": "trạng thái",
   "no_notifications": "Không có thông báo",
   "enable_desktop_notifications": "Bật thông báo trên màn hình",

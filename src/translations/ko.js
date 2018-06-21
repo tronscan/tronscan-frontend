@@ -89,6 +89,7 @@ export const messages = {
   "good": "좋음",
   "strong": "강함",
   "secure": "안전",
+  "too_short": "너무 짧아",
   "status": "상태",
   "no_notifications": "알림 없음",
   "enable_desktop_notifications": "Enable Desktop Notifications",

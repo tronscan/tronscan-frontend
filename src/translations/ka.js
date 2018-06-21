@@ -89,6 +89,7 @@ export const messages = {
   "good": "კარგი",
   "strong": "ძლიერი",
   "secure": "უსაფრთხო",
+  "too_short": "ძალიან მოკლე",
   "status": "სტატუსი",
   "no_notifications": "შეტყობინებები არ არის",
   "enable_desktop_notifications": "ჩართეთ სამუშაო მაგიდის შეტყობინებები",

@@ -89,6 +89,7 @@ export const messages = {
   "good": "Bra",
   "strong": "stark",
   "secure": "säkra",
+  "too_short": "för kort",
   "status": "status",
   "no_notifications": "Inga notifikationer",
   "enable_desktop_notifications": "Aktivera skrivbordsmeddelanden",

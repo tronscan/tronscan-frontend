@@ -88,6 +88,7 @@ export const messages = {
   "good": "良好",
   "strong": "强大",
   "secure": "安全",
+  "too_short": "太短",
   "status": "status",
   "no_notifications": "No notifications",
   "enable_desktop_notifications": "Enable Desktop Notifications",
@@ -482,7 +483,7 @@ export const messages = {
   "loading_representatives": "超级代表加载中",
   "address_not_super_representative": "本地址非超级代表",
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
@@ -610,7 +611,7 @@ export const messages = {
   "save_keystore_file": "保存私钥库文件",
   "download_keystore_file": "下载密钥",
   "do_not_lose_it": "请勿遗失！",
-  "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。", 
+  "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。",
   "do_not_share_it": "请勿向他人分享！",
   "do_not_share_it_message_0": "如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。",
   "make_a_backup": "请制作备份！",
