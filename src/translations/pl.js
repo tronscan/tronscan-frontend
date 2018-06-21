@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-21062018                                                  #
+#         Update Date: 21.06.2018                                                #
 #         Language: Polish                                                       #
 #         Status: In verification                                                #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Karol Stańczak                                           #
 #                                                                                #
 ##################################################################################
@@ -52,7 +52,7 @@ export const messages = {
   "register": "Zarejestruj się",
   "login": "Logowanie",
   "height": "numer",
-  "age": "wiek",
+  "age": "wyprodukowany",
   "bytes": "bytów",
   "produced by": "wyprodukowany przez",
   "contract": "Kontrakt",
@@ -71,7 +71,7 @@ export const messages = {
   "amount": "ilość",
   "my_vote": "moje głosy",
   "submit_votes": "zapisz głosy",
-  "accounts": "kont",
+  "accounts": "konta",
   "created": "utworzony",
   "exchange": "Giełda",
   "next": "dalej",
@@ -87,7 +87,7 @@ export const messages = {
   "weak": "słaby",
   "okay": "w porządku",
   "good": "dobry",
-  "strong": "silny",
+  "strong": "mocne",
   "secure": "bezpieczne",
   "status": "pozycja",
   "no_notifications": "Brak powiadomień",
@@ -130,7 +130,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Zdecentralizujmy Sieć",
+  "tron_main_message": "Razem zdecentralizujmy sieć",
   "transactions_last_hour": "Transakcji w ostatniej godzinie",
   "block_height": "Numer bloku",
   "online_nodes": "Aktywnych węzłów",
@@ -198,7 +198,7 @@ export const messages = {
   "show_qr_code": "Pokaż kod QR",
   "do_not_send_2": "Nie wysyłaj TRX ze swojego własnego portfela lub portfela giełdy na powyższy adres znajdujący się w sieci testnet!",
   "bandwidth": "transfer",
-  "balance": "jednostek",
+  "balance": "Saldo konta",
   "tron_power": "Tron Power",
   "transactions": "transakcje",
   "no_transfers": "Brak transakcji",
@@ -209,8 +209,8 @@ export const messages = {
   "information_message_1": "W przypadku wysłania wniosku o uzyskanie TRX, otrzymasz 10 000 TRX które możesz użyć do celów testowych w sieci testnet.",
   "information_message_2": "Możesz zawnioskować o TRX maksymalnie 10 razy na dane konto.",
   "request_trx_for_testing": "Zawnioskuj o TRX do testów",
-  "token_balances": "stany środków tokenów",
-  "produced_blocks": "wyprodukowanych bloków",
+  "token_balances": "Posiadane tokeny",
+  "produced_blocks": "wyprodukowane bloki",
   "voters": "głosujący",
   "progress": "stan",
   "transactions_count": "{transactions, plural, one {transakcja} other {transakcje}}",
@@ -314,7 +314,7 @@ export const messages = {
   "token_message": "Nazwa identyfikująca token pośród innych",
   "token_abbr": "Skrócona nazwa tokenu",
   "abbr_message": "Dwu, trzy lub czteroliterowy skrócona nazwa tokenu",
-  "total_supply": "w cyrkulacji",
+  "total_supply": "Maksymalna ilość tokenów",
   "issued_token": "wydanie tokenu",
   "create_token": "Utwórz token",
   "description": "Opis",
@@ -388,7 +388,7 @@ export const messages = {
   "token_transactions": "Transakcje tokenu",
   "token_holders": "Posiadacze tokenu",
   "nr_of_Transfers": "Ilość transferów",
-  "not_signed_in": "Musisz się zalogować aby móc skorzystać z tej funkjonalności",
+  "not_signed_in": "Musisz się zalogować aby móc skorzystać z tej funkcjonalności",
   "loading_map": "Wczytuję mapę",
   "loading_accounts": "wczytuję Konta",
   "quantity": "ilość",
@@ -422,9 +422,9 @@ export const messages = {
   "issue_a_token": "Wydaj token",
   "issue_token": "Wydaj token",
   "token_name": "nazwa tokenu",
-  "total_issued": "W sumie w cyrkulacji",
-  "registered": "Zarejestrowanych",
-  "abbreviation": "Skróty",
+  "total_issued": "Aktualnie w cyrkulacji",
+  "registered": "Posiadaczy",
+  "abbreviation": "Skrót",
   "exchange_rate": "Kurs wymiany",
   "token_price": "Cena tokenu",
   "supply_message": "Łączna ilość tokenów, które będą w cyrkulacji.",
@@ -518,7 +518,7 @@ export const messages = {
   "total_votes": "W sumie głosów",
   "most_ranks": "Najwięcej zdobytych pozycji w tej rundzie",
   "view_live_ranking": "Zobacz ranking na żywo",
-  "open_team_page": "Otwórz stronę Zespołu",
+  "open_team_page": "Prezentacja kandydata",
   "warning_votes": "W celu oddania głosu wymagane jest posiadanie co najmniej 1 TRON Power. TRON Power zyskasz zamrażając swoje TRX.",
   "account_page": "Konto",
   "loading_votes": "Wczytuję głosy",
@@ -621,7 +621,7 @@ export const messages = {
   "do_not_lose_it": "Nie zgub go!",
   "do_not_lose_it_message_0": "Fundacja Tron nie będzie w stanie Ci pomóc w odzyskaniu utraconego klucza.",
   "do_not_share_it": "Nie dziel się tym plikiem z nikim innym!",
-  "do_not_share_it_message_0": "Twoje środki mogą zostać utraconone, jeżeli użyjesz tego pliku na podejrzanej stronie.",
+  "do_not_share_it_message_0": "Twoje środki mogą zostać utracone, jeżeli użyjesz tego pliku na podejrzanej stronie.",
   "make_a_backup": "Zrób kopię zapasową!",
   "make_a_backup_message_0": "Na wszelki wypadek jak by Twój laptop zechciał spłonąć",
   "save_private_key": "Zapisz swój klucz prywatny",
