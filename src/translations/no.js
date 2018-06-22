@@ -1,0 +1,636 @@
+
+export const messages = {
+/*
+##################################################################################
+#                                                                                #
+#  $$$$$$$$\                                                                     #
+#  \__$$  __|                                                                    #
+#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+#                                                                                #
+##################################################################################
+#                                                                                #
+#         Template for translating the tronscan.org website                      #
+#         Version: 1.5-22062018                                                  #
+#         Update Date: 22.06.2018                                                #
+#         Language: Norwegian                                                    #
+#         Status: first Version                                                  #
+#         Number of checks: 1                                                    #
+#         Participants: Ronny Askeland                                           #
+#                                                                                #
+##################################################################################
+#                                                                                #
+# description and structure of the template                                      #
+#                                                                                #
+# "<name of the variable>": "<corresponding translation>"                        #
+#                                                                                #
+# Note: please concentrate only on the value <corresponding translation>         #
+#                                                                                #
+##################################################################################
+#                                                                                #
+# global section                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "ok": "OK",
+  "app_title": "Tron Protokoll",
+  "password": "passord",
+  "money_price": "pris",
+  "price": "pris",
+  "blocks": "blokker",
+  "block": "blokk",
+  "name": "navn",
+  "website": "webside",
+  "address": "adresse",
+  "sign_out": "logg ut",
+  "sign_in": "logg inn",
+  "register_login": "Registrer deg / Logg inn",
+  "register": "registrer deg",
+  "login": "logg inn",
+  "height": "høyde",
+  "age": "alder",
+  "bytes": "bytes",
+  "produced by": "produsert av",
+  "contract": "Kontrakt",
+  "from": "fra",
+  "to": "til",
+  "value": "verdi",
+  "total_accounts": "Totale antall kontoer",
+  "submit": "send inn",
+  "send": "send",
+  "receive": "motta",
+  "supply": "beholdning",
+  "view": "se",
+  "view_all": "Se alle",
+  "create": "opprette",
+  "country": "region",
+  "amount": "beløp",
+  "my_vote": "min stemme",
+  "submit_votes": "send stemme",
+  "accounts": "kontoer",
+  "created": "opprettet",
+  "exchange": "Børs",
+  "next": "neste",
+  "copied_to_clipboard": "Kopiert til utklippstavle",
+  "cancel": "Avbryt",
+  "reset": "Reset",
+  "error": "Error",
+  "unlock_keyFile": "Lås opp nøkkelfil",
+  "enter_password_message": "Vennligst skriv inn ditt passord!",
+  "password_incorrect": "Feil passord",
+  "try_again": "Prøv igjen",
+  "wallet_unlocked": "Wallet Unlocked",
+  "weak": "weak",
+  "okay": "okay",
+  "good": "good",
+  "strong": "strong",
+  "secure": "secure",
+  "too_short": "too short",
+  "status": "status",
+  "no_notifications": "No notifications",
+  "enable_desktop_notifications": "Enable Desktop Notifications",
+  "desktop_notification_enabled": "Desktop Notifications Enabled!",
+  "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
+  "filters": "Filters",
+
+/*
+##################################################################################
+#                                                                                #
+# navigation section                                                             #
+#                                                                                #
+##################################################################################
+*/
+  "blockchain": "Blokkchain",
+  "wallet": "Lommebok",
+  "home": "Hjem",
+  "transfers": "Overføringer",
+  "live": "Nåværende overføringer",
+  "statistics": "Statistikk",
+  "markets": "Markeder",
+  "tools": "Verktøy",
+  "transaction_viewer": "Se Overføringer",
+  "node_tester": "Node Tester",
+  "system": "System",
+  "news": "Nyheter",
+  "help": "Hjelp",
+  "nodes": "Noder",
+  "votes": "Stemmer",
+  "account": "Konto",
+  "tokens": "Tokener",
+  "overview": "Oversikt over tokens",
+  "participate": "Delta / Kjøp",
+
+/*
+##################################################################################
+#                                                                                #
+# home dashboard                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "tron_main_message": "Desentralisere Web / internett",
+  "transactions_last_hour": "Transaksjoner siste time",
+  "block_height": "Blokkhøyde",
+  "online_nodes": "Noder på nett",
+  "pice_per_1000trx": "Pris (per 1000TRX)",
+  "vote_for_super_representatives": "Stemme på Super Representanter",
+  "view_super_representatives": "Se Super Representanter",
+  "create_new_wallet": "Opprette ny lommebok",
+  "view_tokens": "Se Tokener",
+
+/*
+##################################################################################
+#                                                                                #
+# tableinformations and statistics                                               #
+#                                                                                #
+##################################################################################
+*/
+  "first_page": "side 1",
+  "previous_page": "forrige side",
+  "next_page": "neste side",
+  "last_page": "siste side",
+  "page": "side",
+  "of": "av",
+  "most_nodes": "Flest Noder",
+  "loading_nodes": "laster Noder",
+  "Hostname": "Vert navn",
+  "Last Update": "Siste oppdatering",
+  "first_node_sync_message": "Venter på synkronisering av første node, vennligst prøv igjen om noen minutter.",
+  "last_block": "siste blokk",
+  "blocks_produced": "Blokker Produsert",
+  "blocks_missed": "Blokker Tapt",
+  "productivity": "produktivitet",
+  "rewards": "belønninger",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain - statistics                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "addresses": "adresser",
+  "trx_transferred_past_hour": "TRX overført den siste timen",
+  "transactions_past_hour": "Transaksjoner siste time",
+  "average_blocksize": "Gjennomsnittlig Blokk Størrelse",
+  "rich_list": "Liste",
+
+/*
+##################################################################################
+#                                                                                #
+# account section                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "set_name": "Angi Navn",
+  "unique_account_message": "Kontonavn kan kun angis en gang!",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "change_name": "Forandre navn",
+  "account_name": "Konto navn",
+  "show_qr_code": "Vis QR Kode",
+  "do_not_send_2": "Du er på testnettet, ikke send TRX fra lommeboken din eller en exchange / børs til konto adressen ovenfor!",
+  "bandwidth": "båndbredde",
+  "balance": "balanse",
+  "tron_power": "Tron Power",
+  "transactions": "transaksjoner",
+  "no_transfers": "Ingen overføringer",
+  "no_tokens": "Ingen Tokener",
+  "free_bandwidth": "Fri Båndbredde",
+  "expires": "utgår",
+  "have_been_added_to_your_account": "har blitt lagt til din konto!",
+  "information_message_1": "Ved forespørsel om TRX vil du motta 10000 TRX som du kan bruke til testing på testnettet.",
+  "information_message_2": "Du kan kun forespørre om TRX 10 ganger pr konto.",
+  "request_trx_for_testing": "Forspørsel om TRX for testing",
+  "token_balances": "token balanse",
+  "produced_blocks": "produserte blokker",
+  "voters": "stemmegivere",
+  "progress": "fremdrift",
+  "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
+  "issuer": "utsteder",
+  "network": "nettverk",
+  "current": "nåværende",
+  "trx_received": "TRX mottatt",
+  "test_trx_temporarily_unavailable_message": "TRX for testing midlertidig ikke tilgjengelig, vennligst prøv igjen senere.",
+  "not_enough_trx": "Ikke nok TRX",
+  "information_message_3": "Forespørsel om TRX mottatt. Om du ikke har mottatt noen TRX er det ikke TRX  for testing tilgjengelig nå, prøv isåfall igjen litt senere.",
+  "send_to_following_address": "Send til følgende adresse",
+
+/*
+##################################################################################
+#                                                                                #
+# account freeze                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "freeze": "frys",
+  "unfreeze": "frigi",
+  "freeze_trx_least": "Du trenger minst 1 TRX for å kunne fryse",
+  "unable_unfreeze_trx_message": "Kunne ikke frigi TRX. Dette kan skyldes at minste frys perioden ikke er nådd.",
+  "freeze_trx_premessage_0": `TRX kan fryses/låses for å få Tron Power og aktivere tilleggsfunksjoner.
+   For example, with Tron Power you can `,
+  "freeze_trx_premessage_link": "stem på Super Representanter.",
+  "freeze_trx_premessage_1": ` Frossede tokener er "låst" for en periode på 3 dager. I denne perioden kan ikke de låste TRX handles med.
+   Etter denne perioden kan dine TRX frigis og handles med.`,
+  "trx_amount": "TRX beløp",
+  "token_freeze_confirm_message_0": "Bekreft for å fryse TRX ",
+  "token_freeze_confirm_message_1": "for minimum en periode på 3 dager",
+  "frozen_supply": "Låst Beholdning",
+  "tokens_unfrozen": "Tokener Frigitt",
+  "success_tokens_unfrozen_message": "Frigivelse av tokener var vellykket",
+  "unable_to_unfreeze": "Kunne ikke frigi",
+  "Unable_tokens_unfrozen_message": "Kunne ikke frigi tokener.",
+  "tokens_frozen": "Tokener Fryst",
+  "successfully_frozen": "Vellykket frysing/låsing av tokener",
+  "name_changed": "Navn endret",
+  "successfully_changed_name_to_message": "Vellykket endring av navn til",
+  "unable_to_rename_title": "Kunne ikke endre navn",
+  "unable_to_rename_message": "Noe gikk galt ved oppdatering av kontonavnet ditt, vennligst prøv igjen senere",
+  "unfreeze_trx_confirm_message": "Er du sikker på du vil frigi / låse opp dine TRX?",
+
+/*
+##################################################################################
+#                                                                                #
+# account superdelegates                                                         #
+#                                                                                #
+##################################################################################
+*/
+  "apply_for_delegate": "Søk for å bli representant",
+  "apply_super_representative_candidate": "Søknad om å bli Super Representant",
+  "your_personal_website_address": "din personlige nettside adresse",
+  "apply_for_delegate_predescription":`Alle token holdere har muligheten til å bli en TRON Super Representant.
+   Men, for at nettverket og samfunnet skal kunne operere optimalt og effektivt,
+   har vi laget et sett av standarder og reguleringer for kvalifiserte kandidater for å bli anbefalte  Super Representanter. Vi vil fremme anbefalte SRs for å øke deres sjanser til å bli valgt. Nye anbefalte Super Representanter blir oppdatert og lagt ut en gang i uken.`,
+  "apply_for_delegate_description": `
+   TRX holdere kan søke om å bli en super representant ved å bruke konto behandlings funksjonen og stemme på kandidatene.
+   Hver konto kan oppdatere nåværende stemme informasjon og har også muligheten til å stemme på flere kandidater.
+   Maks antall stemmer er mindre eller det samme som antallet TRX hver bruker har på gitt tidspunkt.
+   (Du kan stemme mindre eller det samme beløpet som du har med TRX).
+   Resultatet av stemmene vil baseres på den endelige stemme informasjonen for hver konto i hver stemme syklus / periode. Hvor perioden er fra Kl 24:00 til 24:00 neste dag. TRX holdere med flest stemmer vil bli super representanter.
+   Hver transaksjon gjort i nettverket kreves å bli validert av aller Super Representantene. Dette vil føre til at de opparbeider seg bonuser i form av TRX.
+   TRX blir ikke konsumert / brukt i søknadsprosessen til Super Representant applikasjonene og stemmegivningen.`,
+  "unknown_error": "en ukjent feil har oppstått",
+  "representative_understand": "Jeg forstår hvordan bli en TRON representative",
+  "generate_account": "Klikk for å generere din konto adresse og passord",
+  "create_account_confirm_1": "Jeg forstår at om jeg glemmer / mister mitt passord vil jeg miste tilgangen til mine eiendeler",
+  "create_account_confirm_2": "Jeg forstår at om jeg glemmer / mister mitt passord vil det ikke være mulighet til å hente dette tilbake eller resette det",
+  "create_account_confirm_3": "jeg har skrevet ned passordet mitt på papir",
+  "vote_thanks": "Takk for din stemme!",
+  "recent_transactions": "siste transaksjoner",
+  "newest_account": "nyeste konto",
+  "representatives": "representanter",
+  "most_votes": "flest stemmer",
+  "start_end_time": "Start / Slutt Tid",
+  "scan_qr_code": "Skann koden med en QR Kode skanner",
+  "receive_trx": "motta TRX",
+  "require_account_to_send": "Du må være logget inn for å sende mynter",
+  "require_account_to_receive": "Du må være logget inn for å motta mynter",
+  "successful_send": "Sending vellykket!",
+  "confirm_transaction": "bekreft transaksjon",
+  "last_confirmed": "Siste Bekreftet",
+  "trx_produced": "Transaksjon Produsert",
+  "do_not_send_1": "Ikke send TRX fra din lommebok eller børs / exchange til din testnett adresse!",
+  "go_to_votelist": "Gå til stemmelisten",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
+  "invalid_url": "Invalid URL",
+  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+
+/*
+##################################################################################
+#                                                                                #
+# token creation formular                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "name_of_the_token": "Navn på token",
+  "token_message": "Navn på token",
+  "token_abbr": "token Forkortelse",
+  "abbr_message": "Forkortelse for tokenen",
+  "total_supply": "total beholdning",
+  "issued_token": "utstedt token",
+  "create_token": "Opprette Token",
+  "description": "Beskrivelse",
+  "description_url": "URL Beskrivelse",
+  "quote_token_amount": "Skriv Token Beløp",
+  "base_token_amount": "Basis Token Beløp",
+  "creating_a_token": "Opprette en token",
+  "available": "tilgjengelig",
+  "testnet": "Testnett",
+  "days_to_freeze": "Dager å fryse",
+  "trx_token_fee_message": "Det kreves 1024 TRX for å utstede en ny token",
+  "trx_token_account_limit": "Du kan kun opprette en token per konto",
+  "trx_token_wallet_requirement": "Du må åpne en lommebok for å kunne opprette en token",
+  "invalid_address": "invalid adresse",
+  "insufficient_tokens": "Ikke nok tokener",
+  "fill_a_valid_number": "Vennligst skriv et gyldig beløp",
+  "fill_a_valid_address": "Vennligst skriv en gyldig adresse",
+  "make_another_transaction": "Opprett en ny transaksjon",
+  "token_exchange_confirm": "Jeg bekrefter å bruke {trxAmount} til distribusjonen av tokener, og får da totalt {tokenAmount} tokens.",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "En ukjent feil oppstod, vennligst prøv igjen om noen minutter",
+  "An_error_occurred": "En feil oppstod",
+  "create_a_token": "Opprette en token",
+  "not_started_yet": "Ikke startet ennå",
+  "participated": "Din deltakelse var vellykket!",
+  "participated_error": "En feil oppstod",
+
+/*
+##################################################################################
+#                                                                                #
+# token participate                                                              #
+#                                                                                #
+##################################################################################
+*/
+  "buy_confirm_message_0": "Er du sikker?",
+  "how_much_buy_message": "Hvor mange tokener ønsker du å kjøpe?",
+  "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
+  "for": "for",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "ends": "ends",
+  "starts": "starts",
+
+/*
+##################################################################################
+#                                                                                #
+# global messages                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "address_warning": "Oppi kun en gyldig TRON lommebok adresse. Feil adresse kan føre til tap av TRX.",
+  "search_address_or_url": "Søk etter adresse eller URL",
+  "the_lunch_test": "Ved lanseringen av testnettet får vi testet alle funksjonene i vår blokkchain explorer og lommebok.",
+  "please_keep_in_mind": "Vennligst vær oppmerksom på at din registrerte konto adresse bare er til bruk for testnettet og at det da ikke må sendes TRX til denne adressen.",
+  "tron_foundation": "TRON Foundation",
+  "trx_for_testing": "TRX for testing vil bli sendt til din test konto så snart du har gjort en vellykket søknad fra konto siden din.",
+  "dear_users": "Kjære brukere,",
+  "finished": "Ferdig",
+  "token": "token",
+  "url": "url",
+  "need_to_login": "Du må være innlogget for å få tilgang til din konto side",
+  "thanks_for_applying": "Takk for din søknad!",
+  "to_much_votes": "For mange stemmer",
+  "no_trx_remaining": "Ingen TRX igjen",
+  "produced_by": "Produsert av {witnessAddress}",
+  "show_more": "Vis {countriesLength} Mer",
+  "vote_guide_message": `Bruk dine TRX til å stemme på Super Representanter..
+   For hver TRX du har på din konto har du en stemme å gi.
+   Dine TRX vil ikke bli brukt . Du kan stemme på de forskjellige representantene så mange ganger du ønsker.
+   De endelige stemmene vil bli talt opp og listene med representanter vil bli oppdatert kl 00.00.`,
+  "search_address": "Søk etter adresse",
+  "token_transactions": "Token Transaksjoner",
+  "token_holders": "Token Holdere",
+  "nr_of_Transfers": "Antall Overføringer",
+  "not_signed_in": "Du må logge inn for å bruke denne funksjonen",
+  "loading_map": "Laster Kart",
+  "loading_accounts": "laster Kontoer",
+  "quantity": "beholdning",
+  "percentage": "Prosent",
+  "loading_token": "Laster Token",
+  "voter_percentage": "Voter Percentage",
+
+/*
+##################################################################################
+#                                                                                #
+# transaction information                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "no_transactions_found": "Ingen transaksjoner funnet",
+  "no_tokens_found": "Ingen tokener funnet",
+  "no_blocks_found": "Ingen blokker funnet",
+  "no_votes_found": "Ingen stemmer funnet",
+  "no_voters_found": "Ingen stemmegivere funnet",
+  "waiting_for_transactions": "Venter på transaksjoner",
+  "loading_address": "Laster Adresse",
+
+/*
+##################################################################################
+#                                                                                #
+# token creation - default messages                                              #
+#                                                                                #
+##################################################################################
+*/
+  "details": "detaljer",
+  "issue_a_token": "Utstede en Token",
+  "issue_token": "Utstede Token",
+  "token_name": "token navn",
+  "total_issued": "Totalt utstedt",
+  "registered": "Registrert",
+  "abbreviation": "Forkortelser",
+  "exchange_rate": "Vekslingskurs",
+  "token_price": "Token Pris",
+  "supply_message": "Totale antall tokener som vil være i sirkulasjon",
+  "description_message": "En kort beskrivelse av formålet med tokenen",
+  "url_message": "En nettside der brukere kan finne mer informasjon om tokenen",
+  "exchange_rate_message_0": "Spesifiser prisen på en enkelt token ved å definere hvor mange tokener en deltaker vil motta for hver TRX de bruker.",
+  "exchange_rate_message_1": "Deltakere vil motta",
+  "exchange_rate_message_2": "for hver",
+  "exchange_rate_message_3": "TRX",
+  "participation_message_0": "Spesifiser deltakelses perioden som tokens vil bli utstedt. I deltakelses perioden kan brukere veksle TRX for ",
+  "participation_message_1": " tokener.",
+  "frozen_supply_message_0": `En del av beholdningen kan fryses/låses. Du oppgir beløpet og fryser det for minimum 1 dag. Etter at minimum dager for låsingen av tokenene er nådd kan du manuelt frigi den låste beholdningen. Det kreves ikke at en fryser beholdningen.`,
+  "token_issued_successfully": "Vellykket utstedelse av token",
+  "participation": "deltakelse",
+  "start_date": "Start Dato",
+  "end_date": "Slutt Dato",
+  "token_spend_confirm": "Jeg bekrevter herved at ved å utstede en total beholdning av et token, vil det koste meg et engangsbeløp på 1024 TRX.",
+  "token_issue_guide_message_1": `Å utstede en token på Tron Protokollen kan gjøres av hvilken som helst som innehar minst 1024 TRX på sin konto.`,
+  "token_issue_guide_message_2":`Når en token er utstedt vil du kunne se den på siden for token oversikt.
+    Brukere kan så delta innenfor deltakelsesperioden og veksle deres TRX for tokens.`,
+  "token_issue_guide_message_3":`Etter å ha utstedt token vil du på din konto motta antall tokener lik den totale beholdningen.
+    Når andre brukere veksler deres TRX for tokens så vil tokenene bli trukket fra din konto og du vil da motta TRX tilsvarende den spesifiserte vekslings raten.`,
+
+/*
+##################################################################################
+#                                                                                #
+# token creation - error messages                                                #
+#                                                                                #
+##################################################################################
+*/
+  "date_error": "Sluttdatoen er tidligere eller lik startdatoen",
+  "no_name_error": "Navn kreves",
+  "no_supply_error": "Den totale beholdningen må minst være 1",
+  "coin_value_error": "Token beløp må være minst 1",
+  "tron_value_error": "Beløpet av TRX per myn må være minst 1",
+  "invalid_starttime_error": "Oppgitt startdato er ikke gyldig",
+  "invalid_endtime_error": "Oppgitt sluttdato er ikke gyldig",
+  "no_description_error": "Beskrivelse kreves",
+  "no_url_error": "Web URL kreves",
+  "past_starttime_error": "Startdatoen er i fortiden",
+  "no_transactions": "Ingen transaksjoner",
+  "errors_in_form": "There are errors in the form",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Description may not be longer than 200 characters",
+  "token_creation_error": "An error occurred while trying to create the token",
+  "tokenname_error_message_0": "Name may not be longer than 32 characters",
+  "tokenname_error_message_1": "Name may only contain a-Z characters",
+  "abbreviation_required": "Abbreviation is required",
+  "abbreviation_error_message_0": "Abbreviation may not be longer than 5 characters",
+  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+
+/*
+##################################################################################
+#                                                                                #
+# representatives section                                                        #
+#                                                                                #
+##################################################################################
+*/
+  "highest_productivity": "Høyest Produktivitet",
+  "lowest_productivity": "Lavest Produktivitet",
+  "Super Representatives": "Super Representanter",
+  "Super Representative Candidate": "Super Representant kandidater",
+  "loading_representatives": "Laster Representanter",
+  "address_not_super_representative": "Denne adressen er ikke en Super Representant",
+  "unable_load_representatives_page_message": "Kan ikke laste siden, årsak til dette kan være at adressen er ugyldig, adressen ikke er en representant eller at representanten ikke har konfigurert denne siden ennå",
+  "loading_representative": "Loading Representative",
+
+/*
+##################################################################################
+#                                                                                #
+# markets section                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "average_price_usd": "Gjennomsnittlig pris i USD",
+  "average_volume_usd": "Gjennomsnittlig volum i USD",
+  "Trade Volume": "Handels Volum",
+  "rank": "rankering",
+  "pair": "par",
+  "volume": "Volum",
+
+/*
+##################################################################################
+#                                                                                #
+# votes section                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "next_round": "Neste runde",
+  "total_votes": "Totale stemmer",
+  "most_ranks": "Høyest rangering denne runden",
+  "view_live_ranking": "Se direkte Rangering",
+  "open_team_page": "Åpne lag siden",
+  "warning_votes": "Minst 1 Tron Power kreves for å starte stemmingen. Tron Power oppnåes ved å fryse /låse TRX på",
+  "account_page": "Konto Siden",
+  "loading_votes": "Laster stemmer",
+  "3_day_ranking": "3 Dagers Rangering",
+  "live_ranking": "Direkte Rangering",
+  "live_ranking_msg": "Oppdaterers hvert 15 sekund. Nye stemmer kan ta opptil 1-2 minutter før de blir talt med",
+  "candidate": "Kandidat",
+  "current_votes": "Nåværende stemmer",
+  "click_to_start_voting": "Klikk for å starte stemmegivningen",
+  "votes_remaining_message": "Gjenstående stemmer",
+  "open_wallet_start_voting_message": "Åpne lommeboken for å starte stemmegivningen",
+  "thanks_submitting_vote_message": "Takk for din stemme!",
+  "need_min_trx_to_vote_message": "Du trenger minst 1 TRX for å stemme",
+  "to_much_votes_massage": "Du bruker for mange stemmer!",
+  "all_votes_are_used_message": "Alle stemmer er brukt!",
+  "submissing_vote_message_title": "Takk for at du stemmer!",
+  "submissing_vote_message_0": "Dine stemmer er vellykket sendt, de blir talt med når den neste stemme syklusen starter.",
+  "submissing_vote_message_1": "Du kan distribuere dine stemmer når som helst",
+  "submitting_vote_error_message": "Noe gikk feil ved innsending av stemmer. Vennligst prøv igjen senere.",
+  "loading_super_representatives": "Loading Super Representatives",
+
+/*
+##################################################################################
+#                                                                                #
+# transaction Viewer                                                             #
+#                                                                                #
+##################################################################################
+*/
+  "info_tx_viewer": "Her kan du lime inn en hex for å sjekke innholdet i en transaksjon. Transaksjonen kan så kringkastes til nettverket",
+  "load_tx": "Hent Transaksjon",
+  "tx_qrcode": "Transaksjon QR Kode",
+  "load_tx_qrcode": "Hent Transaksjon fra QR kode",
+  "transaction_load_error": "Feil ved lasting av Transaksjon",
+  "transaction_load_error_message": "Noe gikk feil ved henting av transaksjon. Sørg for at HEX er i korrekt format",
+  "transaction_success_message": "Vellykket kringkasting av transaksjon til nettverket",
+  "transaction_success": "Transaksjon Vellykket",
+  "transaction_error_message": "Noe gikk galt ved kringkasting av transaksjon",
+  "transaction_error": "Transaksjons Feil",
+  "confirm_transaction_message": "Er du sikker du vil sende transaksjonen?",
+  "broadcast_transaction_to_network": "Kringkast Transaksjonen til Nettverket",
+
+/*
+##################################################################################
+#                                                                                #
+# tools node tester                                                              #
+#                                                                                #
+##################################################################################
+*/
+  "node_tester_msg": "Skriv inn nodens IP for å teste GRPC tilkoblingen",
+  "node_tester_stop": "Stop testing",
+  "node_tester_test": "Test GRPC",
+  "node_tester_rt": "Respons Tid",
+  "confirmed_block": "Bekreftet Blokk",
+  "loading": "loading...",
+
+/*
+##################################################################################
+#                                                                                #
+# tools scanner                                                                  #
+#                                                                                #
+##################################################################################
+*/
+  "no_webcam_found": "Ingen webkamera funnet",
+  "trying_enable_webcam_message_0": "Feil ved starting av webkamera.",
+  "trying_enable_webcam_message_1": "Sørg for at de nødvendige tillatelser for kamera er riktig.",
+
+/*
+##################################################################################
+#                                                                                #
+# help section                                                                   #
+#                                                                                #
+##################################################################################
+*/
+  "what_is_tron": "Hva er TRON",
+  "tron_explorer_api": "Tron Explorer API",
+  "tron_architechure": "TRON Arkitektur",
+  "tron_protobuf_doc": "TRON Protobuf Dokumentasjon",
+  "report_an_error": "Send inn feil / forslag til feilretting",
+
+/*
+##################################################################################
+#                                                                                #
+# wallet section                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "open_wallet": "Åpne lommebok",
+  "private_key": "Privat Nøkkel",
+  "keystore_file": "Lagringsfil for nøkkel",
+  "select_file": "Velgt Fil",
+  "login_mobile": "Logg inn med mobil enhet",
+  "create_wallet": "opprett lommebok",
+  "no_open_wallet": "Ingen åpen lommebok å vise",
+  "new_wallet": "Ny lommebok",
+  "password_encr_key_message_0": "Dette passordet krypterer din private nøkkel. Du kan ikke generere dine nøkler med dette.",
+  "password_encr_key_message_1": "Du vil trenge dette passordet og din private nøkkel for å låse opp din lommebok.",
+  "strong_password_info": "Det kreves et sterkt passord",
+  "save_keystore_file": "Lagre din lagringsfil for nøkkel",
+  "download_keystore_file": "Last ned Kryptert Nøkkel",
+  "do_not_lose_it": "Ikke mist den!",
+  "do_not_lose_it_message_0": "Tron Foundation kan ikke hjelpe deg med å hente tilbake en tapt nøkkel.",
+  "do_not_share_it": "Ikke del den!",
+  "do_not_share_it_message_0": "Dine verdier / beholdning kan bli stjålet om du bruker denne filen på en ondsinnet side.",
+  "make_a_backup": "Lag en backup!",
+  "make_a_backup_message_0": "I tilfellet din laptop tar fyr eller blir ødelagt.",
+  "save_private_key": "Lagre din private nøkkel",
+  "print_paper_wallet": "Skriv ut Papir Lommebok",
+  "new_wallet_ready_message": "Din nye lommebok er klar",
+  "go_to_account_page": "Gå til konto siden",
+
+};
