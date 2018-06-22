@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "სამუშაო მაგიდის შეტყობინებები ჩართულია!",
   "notifications_enabled": "შეტყობინებები ჩართულია",
   "contract_type": "კონტრაქტის ტიპი",
+  "filters": "Filters",
 
 /*
 ##################################################################################

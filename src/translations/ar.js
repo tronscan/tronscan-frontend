@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "إخطارات سطح المكتب ممكن",
   "notifications_enabled": "الإخطارات ممكن",
   "contract_type": "نوع العقد",
+  "filters": "Filters",
 
 /*
 ##################################################################################

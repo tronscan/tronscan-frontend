@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Đã bật thông báo trên màn hình!",
   "notifications_enabled": "Đã bật thông báo",
   "contract_type": "Loại hợp đồng",
+  "filters": "Filters",
 
 /*
 ##################################################################################

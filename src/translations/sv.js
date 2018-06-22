@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Skrivbordsmeddelanden aktiverade",
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
+  "filters": "Filters",
 
 /*
 ##################################################################################

@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Увімкнено сповіщення на робочому столі!",
   "notifications_enabled": "Сповіщення ввімкнено",
   "contract_type": "Тип контракту",
+  "filters": "Filters",
 
 /*
 ##################################################################################

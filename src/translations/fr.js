@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notification a été activé !",
   "notifications_enabled": "Notification activée",
   "contract_type": "Contract Type",
+  "filters": "Filtres",
 
 /*
 ##################################################################################

@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Notificări Desktop autorizate!",
   "notifications_enabled": "Notificări autorizate",
   "contract_type": "Tip Contract",
+  "filters": "Filters",
 
 /*
 ##################################################################################

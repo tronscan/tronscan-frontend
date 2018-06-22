@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Desktop meldingen ingeschakeld!",
   "notifications_enabled": "Meldingen ingeschakeld",
   "contract_type": "Contract Type",
+  "filters": "Filters",
 
 /*
 ##################################################################################
@@ -442,7 +443,7 @@ export const messages = {
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "Bepaal de deelnameperiode waarin tokens zullen worden uitgegeven. Deelnemers kunnen gedurende deze deelnameperiode TRX inwisselen voor ",
   "participation_message_1": " tokens.",
-  "frozen_supply_message_0": `Een deel van de voorraad kan vastgezet worden. De minimale period voor vastzetten 
+  "frozen_supply_message_0": `Een deel van de voorraad kan vastgezet worden. De minimale period voor vastzetten
    is 1 dag. De vastgezetten voorraad kan handmatig ontgrendeld worden zodra de minimale periode is bereikt.
    Het is niet verplicht om (een deel van) de voorraad vast te zetten.`,
   "token_issued_successfully": "Token aangemaakt",
@@ -455,7 +456,7 @@ export const messages = {
   "token_issue_guide_message_2":`Als een token is uitgegeven wordt deze getoond op de overzichtspagina.
     Gebruikers kunnen in de deelname periode hun TRX inwisselen voor tokens.`,
   "token_issue_guide_message_3":` Na het uitgeven van een token ontvangt u een aantal tokens dat gelijk is aan de totale voorraad in uw account.
-    Zodra andere gebruikers TRX inwisselen zullen de tokens van uw account worden afgeschreven. Er zullen TRX op uw account worden bijgeschreven 
+    Zodra andere gebruikers TRX inwisselen zullen de tokens van uw account worden afgeschreven. Er zullen TRX op uw account worden bijgeschreven
 	tegen de wisselkoers van de token.`,
 
 /*

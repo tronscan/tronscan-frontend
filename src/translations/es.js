@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Notificaciones de escritorio activadas!",
   "notifications_enabled": "Notificaciones activadas",
   "contract_type": "Tipo de contrato",
+  "filters": "Filtros",
 
 /*
 ##################################################################################
@@ -525,7 +526,7 @@ export const messages = {
   "most_ranks": "Mayor Ascenso",
   "view_live_ranking": "Ver Ranking en vivo",
   "open_team_page": "Abrir página de equipo",
-  "warning_votes": "Se requiere al menos 1 Tron Power para votar. El Tron Power se obtiene al congelar TRX en el",
+  "warning_votes": "Se requiere al menos 1 Tron Power para votar. El Tron Power se obtiene al congelar TRX en la",
   "account_page": "Página de cuenta",
   "loading_votes": "Cargando votos",
   "3_day_ranking": "Clasificación de 3 días",

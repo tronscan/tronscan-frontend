@@ -96,6 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Notifiche Desktop Attivate!",
   "notifications_enabled": "Notifiche abilitate",
   "contract_type": "Tipo di contratto",
+  "filters": "Filtri",
 
 /*
 ##################################################################################
