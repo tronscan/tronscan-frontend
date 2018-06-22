@@ -89,6 +89,7 @@ export const messages = {
   "good": "iyi",
   "strong": "kuvvetli",
   "secure": "güvenli",
+  "too_short": "çok kısa",
   "status": "durum",
   "no_notifications": "No notifications",
   "enable_desktop_notifications": "Enable Desktop Notifications",
@@ -500,7 +501,7 @@ export const messages = {
   "loading_representatives": "Temsilciler Yükleniyor",
   "address_not_super_representative": "Bu adres bir Süper Temsilci değil",
   "unable_load_representatives_page_message": "Sayfa yüklenemedi, bunun sebebi adresin geçersiz olması olabileceği gibi, bir Süper Temslcilye ait olmaması ya da temsilcinin henüz bu sayfayı ayarlamamış olması olabilir.",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

@@ -89,12 +89,13 @@ export const messages = {
   "good": "valida",
   "strong": "robusto",
   "secure": "sicuro",
+  "too_short": "troppo breve",
   "status": "status",
   "no_notifications": "Nessuna notifica",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "enable_desktop_notifications": "Attiva notifiche desktop",
+  "desktop_notification_enabled": "Notifiche Desktop Attivate!",
+  "notifications_enabled": "Notifiche abilitate",
+  "contract_type": "Tipo di contratto",
 
 /*
 ##################################################################################
@@ -189,9 +190,9 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Imposta Nome",
-  "unique_account_message": "You may only set your account name once!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
+  "unique_account_message": "Puoi impostare il nome del tuo account solo una volta!",
+  "name_to_short": "Il nome immesso è troppo breve!",
+  "name_to_long": "Il nome immesso è troppo lungo!",
   "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "Cambia Nome",
   "account_name": "Nome account",
@@ -241,17 +242,17 @@ export const messages = {
   "token_freeze_confirm_message_0": "Confermo il congelamento",
   "token_freeze_confirm_message_1": "per almeno 3 giorni",
   "frozen_supply": "Fornitura Congelata",
-  "tokens_unfrozen": "Tokens Unfrozen",
+  "tokens_unfrozen": "Gettone non congelato",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
   "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
   "tokens_frozen": "Tokens Frozen",
   "successfully_frozen": "Successfully frozen",
-  "name_changed": "Name changed",
+  "name_changed": "Nome cambiato",
   "successfully_changed_name_to_message": "Successfully changed name to",
-  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_title": "Impossibile rinominare",
   "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "unfreeze_trx_confirm_message": "Sei sicuro di voler scongelare TRX?",
 
 /*
 ##################################################################################
@@ -351,7 +352,7 @@ export const messages = {
   "how_much_buy_message": "Quanti token vuoi comprare?",
   "buy_confirm_message_1": "Sei sicuro di voler acquistare",
   "for": "per",
-  "insufficient_trx": "Insufficient TRX",
+  "insufficient_trx": "TRX Insufficiente",
   "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
   "ends": "finisce",
   "starts": "inizia",
@@ -393,7 +394,7 @@ export const messages = {
   "quantity": "quantitá",
   "percentage": "Percentuale",
   "loading_token": "Caricamento Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Percentuale votante",
 
 /*
 ##################################################################################
@@ -494,7 +495,7 @@ export const messages = {
   "loading_representatives": "Caricamento Rappresentanti",
   "address_not_super_representative": "Questo indirizzo non é un Super Rappresentante",
   "unable_load_representatives_page_message": "Impossibile caricare la pagina, questo può accadere se l'indirizzo non è valido, l'indirizzo non è di un rappresentante o il rappresentante non ha ancora configurato questa pagina",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Caricamento Rappresentanti",
 
 /*
 ##################################################################################

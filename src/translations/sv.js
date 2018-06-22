@@ -89,12 +89,13 @@ export const messages = {
   "good": "Bra",
   "strong": "stark",
   "secure": "säkra",
+  "too_short": "för kort",
   "status": "status",
   "no_notifications": "Inga notifikationer",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "enable_desktop_notifications": "Aktivera skrivbordsmeddelanden",
+  "desktop_notification_enabled": "Skrivbordsmeddelanden aktiverade",
+  "notifications_enabled": "Anmälningar aktiverade",
+  "contract_type": "Kontraktstyp",
 
 /*
 ##################################################################################
@@ -163,10 +164,10 @@ export const messages = {
   "blocks_missed": "Missade Block",
   "productivity": "produktivitet",
   "rewards": "belöningar",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "token_created": "Token skapad",
+  "witness": "Bevittna",
+  "asset_participation": "Kapitalandel",
+  "loading_transaction": "Laddar transaktion",
 
 /*
 ##################################################################################
@@ -175,7 +176,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "addresses": "addresses",
+  "addresses": "adresser",
   "trx_transferred_past_hour": "TRX överförda den senaste timmen",
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
@@ -352,8 +353,8 @@ export const messages = {
   "for": "för",
   "insufficient_trx": "Otillräcklig TRX",
   "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
-  "ends": "ends",
-  "starts": "starts",
+  "ends": "avsluta",
+  "starts": "börjar",
 
 /*
 ##################################################################################
@@ -462,15 +463,15 @@ export const messages = {
   "no_url_error": "Webb URL är nödvändig",
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
-  "errors_in_form": "There are errors in the form",
+  "errors_in_form": "Det finns fel i formuläret",
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
   "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
+  "description_error_message_0": "Beskrivning kan inte vara längre än 200 tecken",
+  "token_creation_error": "Det uppstod ett fel vid skapandet av token.",
+  "tokenname_error_message_0": "Namnet får inte vara längre än 32 tecken",
+  "tokenname_error_message_1": "Namnet måste innehålla endast tecken från a-Z",
+  "abbreviation_required": "Förkortning krävs",
   "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
   "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
 
@@ -488,7 +489,7 @@ export const messages = {
   "loading_representatives": "Laddar Representatives",
   "address_not_super_representative": "Den här adressen är inte en Super Representative",
   "unable_load_representatives_page_message": "Det gick inte att ladda sidan, detta kan hända när en address är ogiltig, adressen inte är en  representative eller representative har inte konfigurerat sidan ännu.",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Laddar Representant",
 
 /*
 ##################################################################################
@@ -521,7 +522,7 @@ export const messages = {
   "loading_votes": "Loading Votes",
   "3_day_ranking": "3 Days Ranking",
   "live_ranking": "Live Ranking",
-  "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
+  "live_ranking_msg": "Uppdateras var 15 e sekund. Nya röster kan ta upp till 1-2 minuter innan de räknas",
   "candidate": "Kandidat",
   "current_votes": "Nuvarande Röster",
   "click_to_start_voting": "Klicka här för att börja rösta",
@@ -535,7 +536,7 @@ export const messages = {
   "submissing_vote_message_0": "Dina röster har skickats in, de träder i kraft när nästa röstcykel börjar.",
   "submissing_vote_message_1": "Du kan omfördela dina röster när som helst.",
   "submitting_vote_error_message": "Något gick fel när du skickade in dina röster. Vänligen försök igen senare.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "Laddar superrepresentanter",
 
 /*
 ##################################################################################
