@@ -55,7 +55,7 @@ class Home extends Component {
         previousBlockHeight: prevState.stats.blockHeight,
         previousTransactionPerHour: prevState.stats.transactionPerHour,
         onlineNodes: total,
-        blockHeight: blocks[0].number,
+        blockHeight: blocks[0] ? blocks[0].number : 0,
         transactionPerHour: totalTransactions,
       },
     }));
