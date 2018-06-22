@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-22062018                                                  #
+#         Update Date: 22.06.2018                                                #
 #         language: Spanish                                                      #
 #         Status: Third Draft                                                    #
 #         Number of checks: 7                                                    #
@@ -84,18 +84,18 @@ export const messages = {
   "password_incorrect": "Contraseña incorrecta",
   "try_again": "Inténtelo de nuevo",
   "wallet_unlocked": "Cartera Desbloqueada",
-  "weak": "flojo",
-  "okay": "okay",
-  "good": "bueno",
-  "strong": "vigoroso",
-  "secure": "seguro",
-  "too_short": "demasiado corto",
+  "weak": "débil",
+  "okay": "aceptable",
+  "good": "buena",
+  "strong": "fuerte",
+  "secure": "segura",
+  "too_short": "demasiado corta",
   "status": "estado",
-  "no_notifications": "No hay notificaciones",
-  "enable_desktop_notifications": "Habilitar notificaciones de escritorio",
-  "desktop_notification_enabled": "Notificaciones de Escritorio Habilitadas!",
-  "notifications_enabled": "Notificaciones Habilitadas",
-  "contract_type": "Tipo de Contrato",
+  "no_notifications": "Sin notificaciones",
+  "enable_desktop_notifications": "Activar notificaciones de escritorio",
+  "desktop_notification_enabled": "Notificaciones de escritorio activadas!",
+  "notifications_enabled": "Notificaciones activadas",
+  "contract_type": "Tipo de contrato",
 
 /*
 ##################################################################################
@@ -166,7 +166,7 @@ export const messages = {
   "rewards": "recompensas",
   "token_created": "Token creado",
   "witness": "Testigos",
-  "asset_participation": "Asset participation",
+  "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
 
 /*
@@ -471,17 +471,17 @@ export const messages = {
   "no_url_error": "Es necesaria una dirección Web",
   "past_starttime_error": "La fecha de inicio ya ha transcurrido",
   "no_transactions": "No han ocurrido transacciones",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "La descripción no puede tener más de 200 caracteres",
-  "token_creation_error": "Se ha producido un error al intentar crear el token",
-  "tokenname_error_message_0": "El nombre no puede tener más de 32 caracteres",
-  "tokenname_error_message_1": "El nombre sólo puede contener caracteres de la a-Z",
-  "abbreviation_required": "Se requiere abreviatura",
-  "abbreviation_error_message_0": "La abreviatura no puede tener más de 5 caracteres",
-  "abbreviation_error_message_1": "La abreviatura sólo puede contener los caracteres a-Z",
+  "errors_in_form": "Hay errores en el formulario",
+  "token_link_message_0": "El token estará disponible en la",
+  "token_link_message_1": "página de Tokens",
+  "token_link_message_2": "en unos minutos",
+  "description_error_message_0": "La descripción no puede contener más de 200 caracteres",
+  "token_creation_error": "Se produjo un error al intentar crear el token",
+  "tokenname_error_message_0": "El nombre no puede contener más de 32 caracteres",
+  "tokenname_error_message_1": "El nombre sólo puede contener caracteres a-Z",
+  "abbreviation_required": "Es necesaria una abreviatura",
+  "abbreviation_error_message_0": "La abreviatura no puede contener más de 5 caracteres",
+  "abbreviation_error_message_1": "La abreviatura sólo puede contener caracteres a-Z",
 
 /*
 ##################################################################################

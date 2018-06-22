@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-22062018                                                  #
+#         Update Date: 22.06.2018                                                #
 #         Language: English                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
 #                                                                                #
 ##################################################################################
@@ -479,12 +479,12 @@ export const messages = {
   "token_link_message_0": "The token will be available on the",
   "token_link_message_1": "Tokens page",
   "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
+  "description_error_message_0": "Description may not be longer than 200 characters",
   "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
+  "tokenname_error_message_0": "Name may not be longer than 32 characters",
   "tokenname_error_message_1": "Name may only contain a-Z characters",
   "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
+  "abbreviation_error_message_0": "Abbreviation may not be longer than 5 characters",
   "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
 
 /*
