@@ -47,51 +47,49 @@ class System extends Component {
     return (
       <main className="container header-overlap">
         {modal}
-        <div className="card">
-          <table className="table table-hover m-0">
-            <tbody>
-            <tr>
-              <td colSpan="2" className="bg-secondary text-white">Tronscan</td>
-            </tr>
-            <tr>
-              <th style={{width: 300}}>{tu("Sync")}:</th>
-              <td>
-                <FormattedNumber value={sync.sync.progress} maximumFractionDigits={2}/>%
-              </td>
-            </tr>
-            <tr>
-              <th>{tu("block")}:</th>
-              <td>
-                <BlockNumberLink number={sync.database.block}>{sync.database.block}</BlockNumberLink>
-              </td>
-            </tr>
-            <tr>
-              <th>{tu("confirmed_block")}:</th>
-              <td>
-                <BlockNumberLink number={sync.database.unconfirmedBlock - 1}>{sync.database.unconfirmedBlock - 1}</BlockNumberLink>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" className="bg-secondary text-white">Full Node</td>
-            </tr>
-            <tr>
-              <th>{tu("block")}:</th>
-              <td>
-                {sync.full.block}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" className="bg-secondary text-white">Solidity Node</td>
-            </tr>
-            <tr>
-              <th>{tu("block")}:</th>
-              <td>
-                {sync.solidity.block}
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <table className="table table-hover m-0 bg-white">
+          <tbody>
+          <tr>
+            <td colSpan="2" className="bg-dark text-white border-top-0">Tronscan</td>
+          </tr>
+          <tr>
+            <th style={{width: 300}}>{tu("Sync")}:</th>
+            <td>
+              <FormattedNumber value={sync.sync.progress} maximumFractionDigits={2}/>%
+            </td>
+          </tr>
+          <tr>
+            <th>{tu("block")}:</th>
+            <td>
+              <BlockNumberLink number={sync.database.block}>{sync.database.block}</BlockNumberLink>
+            </td>
+          </tr>
+          <tr>
+            <th>{tu("confirmed_block")}:</th>
+            <td>
+              <BlockNumberLink number={sync.database.unconfirmedBlock - 1}>{sync.database.unconfirmedBlock - 1}</BlockNumberLink>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="2" className="bg-dark text-white">Full Node</td>
+          </tr>
+          <tr>
+            <th>{tu("block")}:</th>
+            <td>
+              {sync.full.block}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="2" className="bg-dark text-white">Solidity Node</td>
+          </tr>
+          <tr>
+            <th>{tu("block")}:</th>
+            <td>
+              {sync.solidity.block}
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </main>
     );
   }

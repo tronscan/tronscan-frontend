@@ -321,7 +321,7 @@ export const messages = {
   "trx_token_wallet_requirement": "发行通证需要首先打开钱包",
   "invalid_address": "无效地址",
   "insufficient_tokens": "通证不足",
-  "fill_a_valid_number": "请填写有效的电话号码",
+  "fill_a_valid_number": "请填写有效的数值",
   "fill_a_valid_address": "请填写有效的地址",
   "make_another_transaction": "发起其他交易",
   "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证,总计获得{通证数额} 个代币.",
