@@ -307,6 +307,10 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Ceva nu a mers bine în timp ce încercați să aplicați pentru reprezentare.",
   "apply_representative_error_message_1": "Asigurați-vă că aveți destul TRX pentru taxă, sau încercați mai tarziu.",
+  "open_external_link":"Deschideți un link extern",
+  "private_key_untrusted_website_message_0": "Nu introduceți niciodată cheia privată pe un website nesigur.",
+  "no_official_tron_website": "acesta nu este un site oficial Tron.",
+  "continue_to_external_website": "Continuați către site-ul extern",
 
 /*
 ##################################################################################

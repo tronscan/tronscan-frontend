@@ -303,6 +303,10 @@ export const messages = {
   "invalid_url": "URL non valido",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
 
 /*
 ##################################################################################

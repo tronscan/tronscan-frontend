@@ -304,6 +304,10 @@ export const messages = {
   "invalid_url": "Недійсна URL-адреса",
   "apply_representative_error_message_0": "Помилка під час спроби подати заявку на представника.",
   "apply_representative_error_message_1": "Переконайтеся, що у вас є достатньо TRX за плату, або повторіть спробу пізніше.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
 
 /*
 ##################################################################################

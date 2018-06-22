@@ -308,6 +308,10 @@ export const messages = {
   "invalid_url": "Geçersiz URL",
   "apply_representative_error_message_0": "Temsilci başvurusu yaparken bir şeyler yanlış gitti.",
   "apply_representative_error_message_1": "Ücret için yeteri kadar TRX bulunduğunuzdan emin olun, ya da tekrar deneyin.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
 
 /*
 ##################################################################################

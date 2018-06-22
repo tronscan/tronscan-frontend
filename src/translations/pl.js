@@ -304,6 +304,10 @@ export const messages = {
   "invalid_url": "Nieprawidłowy adres URL",
   "apply_representative_error_message_0": "Coś poszło nie tak podczas aplikowania na Reprezentanta.",
   "apply_representative_error_message_1": "Upewnij się, że posiadasz odpowiedniąilość TRX do pokrycia opłaty lub spróbuj ponownie później.",
+  "open_external_link":"Otwierasz zewnętrzny adres URL",
+  "private_key_untrusted_website_message_0": "Nigdy, pod żadnym pozorem nie podawaj swojego klucza prywatnego na nieznanej Ci stronie",
+  "no_official_tron_website": "strona nie jest powiązana z Fundacją TRON.",
+  "continue_to_external_website": "Kontynuuj mimo wszystko i przejdź dalej",
 
 /*
 ##################################################################################

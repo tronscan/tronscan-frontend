@@ -305,6 +305,10 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Noe gikk galt med søknaden for å bli representant",
   "apply_representative_error_message_1": "Sørg for at du har nok TRX til avgiften, eller forsøk igjen senere.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
 
 /*
 ##################################################################################

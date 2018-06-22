@@ -306,6 +306,10 @@ export const messages = {
   "invalid_url": "URL no válida",
   "apply_representative_error_message_0": "Algo salió mal al aplicar la solicitud para ser representante.",
   "apply_representative_error_message_1": "Asegúrese de tener suficiente TRX para la tasa, o inténtelo de nuevo más tarde.",
+  "open_external_link":"Estás abriendo un enlace externo",
+  "private_key_untrusted_website_message_0": "Nunca ingrese su clave privada en un sitio web que no sea de confianza.",
+  "no_official_tron_website": "no es un sitio oficial de Tron.",
+  "continue_to_external_website": "Continuar hacia el sitio externo",
 
 /*
 ##################################################################################

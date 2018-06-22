@@ -19,8 +19,8 @@ export const messages = {
 #         Update Date: 20.06.2018                                                #
 #         Language: French                                                       #
 #         Status: Second Draft                                                   #
-#         Number of checks: 4                                                    #
-#         Participants: El Petito Nicolas, Dev Obs                               #
+#         Number of checks: 5                                                    #
+#         Participants: El Petito Nicolas, Dev Obs, PMD3VSolution                #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -306,6 +306,10 @@ export const messages = {
   "invalid_url": "URL invalide",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
   "apply_representative_error_message_1": "Assurez-vous d'avoir assez de TRX pour les frais, ou réessayez plus tard.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
 
 /*
 ##################################################################################

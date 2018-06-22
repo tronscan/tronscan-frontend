@@ -307,6 +307,10 @@ export const messages = {
   "invalid_url": "Ungültige URL",
   "apply_representative_error_message_0": "Bei der Bewerbung als Representant ist ein Fehler aufgetreten.",
   "apply_representative_error_message_1": "Stellen Sie sicher, dass Sie ausreichend TRX für die Anmeldegebühr auf Ihrem Konto haben, oder versuchen Sie es später noch einmal.",
+  "open_external_link":"Sie öffnen einen externen Link",
+  "private_key_untrusted_website_message_0": "Geben Sie niemals Ihren privaten Schlüssel auf einer nicht vertrauenswürdigen Website ein.",
+  "no_official_tron_website": "ist keine offizielle Tron-Webseite.",
+  "continue_to_external_website": "Weiter zur externen Webseite",
 
 /*
 ##################################################################################

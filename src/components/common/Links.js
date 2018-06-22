@@ -6,7 +6,7 @@ import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {ContextMenu, ContextMenuTrigger} from "react-contextmenu";
 import QRImageCode from "./QRImageCode";
 import SendModal from "../transfer/Send/SendModal";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {Truncate} from "./text";
 import {CopyText} from "./Copy";
 
@@ -163,19 +163,19 @@ export class ExternalLink extends React.PureComponent {
       modal: (
         <Modal className="modal-dialog-centered" fade={false} isOpen={true} toggle={this.hideModal} >
           <ModalHeader className="text-center">
-            You are opening an external link
+            {tu("open_external_link")}
           </ModalHeader>
           <ModalBody className="text-center p-3" onClick={this.hideModal}>
-            <span className="font-weight-bold text-truncate d-block">{url}</span> is not an official Tron site.
-            Never enter your private key on an untrusted website.
+            <span className="font-weight-bold text-truncate d-block">{url}</span> {t("no_official_tron_website")} &nbsp;
+               {tu("private_key_untrusted_website_message_0")}
           </ModalBody>
           <ModalFooter>
             <a className="btn btn-primary"
                href={url}
                onClick={this.hideModal}
-               target="_blank">Continue to external site</a>
+               target="_blank">{tu("continue_to_external_website")}</a>
             &nbsp;
-            <Button color="secondary" onClick={this.hideModal}>Cancel</Button>
+            <Button color="secondary" onClick={this.hideModal}>{tu("cancel")}</Button>
           </ModalFooter>
         </Modal>
       )
