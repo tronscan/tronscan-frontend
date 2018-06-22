@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-22062018                                                  #
+#         Update Date: 22.06.2018                                                #
 #         Language: Ukrainian                                                    #
 #         Status: second Version                                                 #
 #         Number of checks: 4                                                    #
@@ -95,7 +95,7 @@ export const messages = {
   "enable_desktop_notifications": "Увімкнути сповіщення на робочому столі",
   "desktop_notification_enabled": "Увімкнено сповіщення на робочому столі!",
   "notifications_enabled": "Сповіщення ввімкнено",
-  "contract_type": "Contract Type",
+  "contract_type": "Тип контракту",
 
 /*
 ##################################################################################
@@ -167,7 +167,7 @@ export const messages = {
   "token_created": "Токен створено",
   "witness": "Свідок",
   "asset_participation": "Участь активів",
-  "loading_transaction": "Loading Transaction",
+  "loading_transaction": "Завантаження транзакції",
 
 /*
 ##################################################################################
@@ -395,7 +395,7 @@ export const messages = {
   "quantity": "кількість",
   "percentage": "Відсоток",
   "loading_token": "Завантаження токену",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Відсоток голосування",
 
 /*
 ##################################################################################
@@ -496,7 +496,7 @@ export const messages = {
   "loading_representatives": "Завантаження представників",
   "address_not_super_representative": "Ця адреса не є адресою Супер-представника",
   "unable_load_representatives_page_message": "Не вдається завантажити сторінку, це може статися, якщо адреса недійсна, адреса не є адресою представника, або представник ще не налаштовував цю сторінку",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Завантаження представника",
 
 /*
 ##################################################################################
