@@ -59,7 +59,7 @@ export const messages = {
   "from": "gönderen",
   "to": "alıcı",
   "value": "değer",
-  "total_accounts": "Toplam Hesaplar",
+  "total_accounts": "Toplam Hesap adeti",
   "submit": "gönder",
   "send": "aktar",
   "receive": "al",
@@ -91,12 +91,12 @@ export const messages = {
   "secure": "güvenli",
   "too_short": "çok kısa",
   "status": "durum",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
-  "filters": "Filters",
+  "no_notifications": "Bildirim Yok",
+  "enable_desktop_notifications": "Masaüstü Bildirimlerini Aç",
+  "desktop_notification_enabled": "Masaüstü Bildirimleri Açıldı!",
+  "notifications_enabled": "Bildirimler Açıldı",
+  "contract_type": "Sözleşme Tipi",
+  "filters": "Süzgeçler",
 
 /*
 ##################################################################################
@@ -136,7 +136,7 @@ export const messages = {
   "transactions_last_hour": "Son saatte yapılan işlem adeti",
   "block_height": "Blok yüksekliği",
   "online_nodes": "Çevrimiçi Düğüm Adeti",
-  "pice_per_1000trx": "Fiyat (1000TRX başına)",
+  "pice_per_1000trx": "Fiyat (1000 TRX başına)",
   "vote_for_super_representatives": "Süper Temsilcileri Oyla",
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
@@ -165,10 +165,10 @@ export const messages = {
   "blocks_missed": "Kaçırılan Bloklar",
   "productivity": "üretkenlik",
   "rewards": "ödüller",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "token_created": "Jeton Yaratıldı",
+  "witness": "Şahit",
+  "asset_participation": "Varlık Katılımı",
+  "loading_transaction": "İşlem Yükleniyor",
 
 /*
 ##################################################################################
@@ -192,9 +192,9 @@ export const messages = {
 */
   "set_name": "İsim belirle",
   "unique_account_message": "Hesap isminizi bir defa belirleyebilirsiniz!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "İsim çok kısa",
+  "name_to_long": "İsim çok uzun",
+  "permitted_characters_message": "İsim sadece a-z A-Z 0-9 içerebilir",
   "change_name": "İsmi Değiştir",
   "account_name": "Hesap İsmi",
   "show_qr_code": "Kare kodu görüntüle",
@@ -223,7 +223,7 @@ export const messages = {
   "test_trx_temporarily_unavailable_message": "Deneme amaçlı TRX geçici olarak mevcut değil. Lütfen daha sonra tekrar deneyiniz.",
   "not_enough_trx": "Yeterli TRX bulunamadı",
   "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
-  "send_to_following_address": "Şu adrese gönder",
+  "send_to_following_address": "Alıcı'nın adresi",
 
 /*
 ##################################################################################
@@ -234,7 +234,7 @@ export const messages = {
 */
   "freeze": "dondur",
   "unfreeze": "çöz",
-  "freeze_trx_least": "Dondurabilmeniz için en az 1 TRX bulunması gerekmektedir",
+  "freeze_trx_least": "Dondurabilmek için en az 1 TRX gerekmektedir",
   "unable_unfreeze_trx_message": "TRX çözülemiyor. Böyle olmasının sebebi en kısa dondurma süresine henüz ulaşılmamış olması olabilir.",
   "freeze_trx_premessage_0": `Tron Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
    Örneğin, Tron Power ile `,
@@ -244,17 +244,17 @@ export const messages = {
   "trx_amount": "TRX Miktarı",
   "token_freeze_confirm_message_0": "Dondurma işlemini onaylıyorum ",
   "token_freeze_confirm_message_1": "en az 3 gün süre ile",
-  "frozen_supply": "Dondurulmuş Kaynak",
-  "tokens_unfrozen": "Çözülen jeton adeti",
+  "frozen_supply": "Dondurulmuş durumdaki Kaynaklar",
+  "tokens_unfrozen": "Çözülmüş Jeton Adeti",
   "success_tokens_unfrozen_message": "Jetonlar başarıyla çözüldü",
   "unable_to_unfreeze": "Çözülemedi",
   "Unable_tokens_unfrozen_message": "Jetonlar çözülemedi.",
-  "tokens_frozen": "Dondurulan jeton adeti",
-  "successfully_frozen": "Başarıyla donduruldu",
-  "name_changed": "İsim değişti",
-  "successfully_changed_name_to_message": "İsim başarı ile değiştirildi. Yeni isim:",
-  "unable_to_rename_title": "İsim değiştirilemedi",
-  "unable_to_rename_message": "Hesap isminiz değiştirilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz",
+  "tokens_frozen": "Dondurulmuş Jeton Adeti",
+  "successfully_frozen": "Başarı ile donduruldu",
+  "name_changed": "Hesap adı değişti",
+  "successfully_changed_name_to_message": "Hesap adı başarı ile değişti. Yeni isim",
+  "unable_to_rename_title": "Hesap adı değiştirilemedi",
+  "unable_to_rename_message": "Hesap adınız güncellenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz",
   "unfreeze_trx_confirm_message": "TRX çözmek istediğinizden emin misiniz?",
 
 /*
@@ -306,8 +306,8 @@ export const messages = {
   "understand_tron_sr_message_0": "Nasıl süper temsilci olunacağını anladım ve bunun için bir ücret ödeyeceğimi",
   "understand_tron_sr_message_1": "onaylıyorum.",
   "invalid_url": "Geçersiz URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "Temsilci başvurusu yaparken bir şeyler yanlış gitti.",
+  "apply_representative_error_message_1": "Ücret için yeteri kadar TRX bulunduğunuzdan emin olun, ya da tekrar deneyin.",
 
 /*
 ##################################################################################
@@ -320,7 +320,7 @@ export const messages = {
   "token_message": "Jeton için isim",
   "token_abbr": "jeton Kısaltması",
   "abbr_message": "Jeton adının kısaltması",
-  "total_supply": "toplam arz",
+  "total_supply": "arz edilen adet",
   "issued_token": "tanımlanan jeton",
   "create_token": "Jeton Üret",
   "description": "Tanım",
@@ -358,10 +358,10 @@ export const messages = {
   "how_much_buy_message": "Ne kadar jeton almak istiyorsunuz?",
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
   "for": "için",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "insufficient_trx": "Yetersiz TRX",
+  "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
+  "ends": "bitiş",
+  "starts": "başlangıç",
 
 /*
 ##################################################################################
@@ -370,8 +370,8 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "address_warning": "Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
-  "search_address_or_url": "Adres ya da URL için arat",
+  "address_warning":"Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
+  "search_address_or_url": "Adres ya da URL ile arat",
   "the_lunch_test": "Test ağının başlatılması ile, blokzinciri tarayıcımızın ve cüzdanımızın bütün özelliklerinin test edilmesi hedeflenmektedir.",
   "plese_keep_in_mind": "Kayıtlı hesabınız yalnızca test ağında kullanıldığı için test ağındaki hesap adresinize kendi cüzdanınızdan ya da bir borsadan TRX göndermemeniz gerektiğini lütfen unutmayın.",
   "tron_foundation": "TRON Vakfı",
@@ -400,7 +400,7 @@ export const messages = {
   "quantity": "miktar",
   "percentage": "Yüzde",
   "loading_token": "Jeton yükleniyor",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Oylayan Yüzdesi",
 
 /*
 ##################################################################################
@@ -455,8 +455,8 @@ export const messages = {
   "token_issue_guide_message_2":`Bir jeton üretilir üretilmez jetonlara genel bakış sayfasında görünecektir.
    Kullanıcılar katılım süresi boyunca katılım sağlayarak TRX'leri ile jeton alabilirler.`,
   "token_issue_guide_message_3":`Jeton üretildikten sonra hesabınıza toplam arzı kadar miktarda jeton gelecektir.
-    Diğer kullanıcılar TRX ile jeton aldıklarında, jetonlar hesabınızdan çekilir
-    ve siz tanımlı jeton fiyatı üzerinden TRX alırsınız.`,
+   Diğer kullanıcılar TRX ile jeton aldıklarında, jetonlar hesabınızdan çekilir
+   ve siz tanımlı jeton fiyatı üzerinden TRX alırsınız.`,
 
 /*
 ##################################################################################
@@ -477,9 +477,9 @@ export const messages = {
   "past_starttime_error": "Başlangıç, geçmiş tarihli olamaz",
   "no_transactions": "İşlem yok",
   "errors_in_form": "Formda hatalar var",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
+  "token_link_message_0": "Jeton'a Jetonlar sayfasından",
+  "token_link_message_1": "birkaç dakika içerisinde",
+  "token_link_message_2": "erişilebilecektir",
   "description_error_message_0": "Açıklama 200 karakterden uzun olamaz",
   "token_creation_error": "Jetonu oluşturmaya çalışırken bir hata oluştu",
   "tokenname_error_message_0": "İsim 32 karakterden uzun olamaz",
@@ -502,7 +502,7 @@ export const messages = {
   "loading_representatives": "Temsilciler Yükleniyor",
   "address_not_super_representative": "Bu adres bir Süper Temsilci değil",
   "unable_load_representatives_page_message": "Sayfa yüklenemedi, bunun sebebi adresin geçersiz olması olabileceği gibi, bir Süper Temslcilye ait olmaması ya da temsilcinin henüz bu sayfayı ayarlamamış olması olabilir.",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Temsilci Yükleniyor",
 
 /*
 ##################################################################################
@@ -549,7 +549,7 @@ export const messages = {
   "submissing_vote_message_0": "Oylarınız başarıyla iletildi, bir sonraki oylama döngüsü başladığında devreye girecekler.",
   "submissing_vote_message_1": "İstediğiniz anda oylarınızı yeniden dağıtabilirsiniz",
   "submitting_vote_error_message": "Oylarınız gönderilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "Süper Temilsilciler Yükleniyor",
 
 /*
 ##################################################################################
