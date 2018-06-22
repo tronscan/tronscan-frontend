@@ -89,6 +89,7 @@ export const messages = {
   "good": "gut",
   "strong": "stark",
   "secure": "sicher",
+  "too_short": "zu kurz",
   "status": "status",
   "no_notifications": "Keine Benachrichtigungen",
   "enable_desktop_notifications": "Desktop-Benachrichtigungen aktivieren",

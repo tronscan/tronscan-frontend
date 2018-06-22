@@ -84,11 +84,12 @@ export const messages = {
   "password_incorrect": "رمز عبور اشتباه است",
   "try_again": "دوباره امتحان کنید",
   "wallet_unlocked": "Wallet Unlocked",
-  "weak": "weak",
-  "okay": "okay",
-  "good": "good",
-  "strong": "strong",
-  "secure": "secure",
+  "weak": "ضعیف",
+  "okay": "باشه",
+  "good": "خوب",
+  "strong": "قوی",
+  "secure": "امن است",
+  "too_short": "خیلی کوتاه",
   "status": "status",
   "no_notifications": "No notifications",
   "enable_desktop_notifications": "Enable Desktop Notifications",
@@ -495,7 +496,7 @@ export const messages = {
   "loading_representatives": "بارگزاری نمایندگان",
   "address_not_super_representative": "این آدرس یک نماینده ممتاز نیست",
   "unable_load_representatives_page_message": "صفحه قابل بارگزاری نیست، ممکن است این اتفاق اگر آدرس نامعتبر باشد، بیفتد ، آدرس نماینده ممتاز نیست یا نماینده این صفحه را پیکربندی نکرده است",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

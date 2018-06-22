@@ -35,6 +35,7 @@ const initialState = {
     ko: "한국어",
     vi: "Tiếng Việt",
     uk: "українська",
+    ka: "ქართული",
     br: "Português Brasil",
     it: "Italiano",
     fr: "Français",

@@ -89,6 +89,7 @@ export const messages = {
   "good": "good",
   "strong": "strong",
   "secure": "secure",
+  "too_short": "too short",
   "status": "status",
   "no_notifications": "No notifications",
   "enable_desktop_notifications": "Enable Desktop Notifications",
