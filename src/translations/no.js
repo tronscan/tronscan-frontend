@@ -19,7 +19,7 @@ export const messages = {
 #         Update Date: 22.06.2018                                                #
 #         Language: Norwegian                                                    #
 #         Status: first Version                                                  #
-#         Number of checks: 1                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Ronny Askeland                                           #
 #                                                                                #
 ##################################################################################
@@ -83,20 +83,20 @@ export const messages = {
   "enter_password_message": "Vennligst skriv inn ditt passord!",
   "password_incorrect": "Feil passord",
   "try_again": "Prøv igjen",
-  "wallet_unlocked": "Wallet Unlocked",
-  "weak": "weak",
-  "okay": "okay",
-  "good": "good",
-  "strong": "strong",
-  "secure": "secure",
-  "too_short": "too short",
+  "wallet_unlocked": "Lommebok opplåst",
+  "weak": "svak",
+  "okay": "ok",
+  "good": "god",
+  "strong": "sterk",
+  "secure": "sikker",
+  "too_short": "for kort",
   "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
-  "filters": "Filters",
+  "no_notifications": "Ingen meldinger",
+  "enable_desktop_notifications": "Slå på skrivebord meldinger",
+  "desktop_notification_enabled": "Skrivebord Meldinger På!",
+  "notifications_enabled": "Meldinger slått på",
+  "contract_type": "Kontrakt Type",
+  "filters": "Filtre",
 
 /*
 ##################################################################################
@@ -165,10 +165,10 @@ export const messages = {
   "blocks_missed": "Blokker Tapt",
   "productivity": "produktivitet",
   "rewards": "belønninger",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "token_created": "Token opprettet",
+  "witness": "Vitne",
+  "asset_participation": "Asset deltakelse",
+  "loading_transaction": "Henter Transaksjon",
 
 /*
 ##################################################################################
@@ -192,9 +192,9 @@ export const messages = {
 */
   "set_name": "Angi Navn",
   "unique_account_message": "Kontonavn kan kun angis en gang!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Navnet er for kort",
+  "name_to_long": "Navnet er for kort",
+  "permitted_characters_message": "Navnet kan kun inneholde a-z A-Z 0-9",
   "change_name": "Forandre navn",
   "account_name": "Konto navn",
   "show_qr_code": "Vis QR Kode",
@@ -300,11 +300,11 @@ export const messages = {
   "trx_produced": "Transaksjon Produsert",
   "do_not_send_1": "Ikke send TRX fra din lommebok eller børs / exchange til din testnett adresse!",
   "go_to_votelist": "Gå til stemmelisten",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_0": "Jeg forstår hvordan jeg kan bli en TRON representativ og bekrefter å betale",
+  "understand_tron_sr_message_1": "avgift.",
   "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "Noe gikk galt med søknaden for å bli representant",
+  "apply_representative_error_message_1": "Sørg for at du har nok TRX til avgiften, eller forsøk igjen senere.",
 
 /*
 ##################################################################################
@@ -355,10 +355,10 @@ export const messages = {
   "how_much_buy_message": "Hvor mange tokener ønsker du å kjøpe?",
   "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
   "for": "for",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "insufficient_trx": "Ikke nok TRX",
+  "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
+  "ends": "slutter",
+  "starts": "starter",
 
 /*
 ##################################################################################
@@ -397,7 +397,7 @@ export const messages = {
   "quantity": "beholdning",
   "percentage": "Prosent",
   "loading_token": "Laster Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Stemme Prosent",
 
 /*
 ##################################################################################
@@ -469,17 +469,17 @@ export const messages = {
   "no_url_error": "Web URL kreves",
   "past_starttime_error": "Startdatoen er i fortiden",
   "no_transactions": "Ingen transaksjoner",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer than 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer than 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer than 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "errors_in_form": "Det er feil i skjemaet",
+  "token_link_message_0": "Tokenene vil være tilgjengelig på",
+  "token_link_message_1": "Tokens siden",
+  "token_link_message_2": "om noen minutter",
+  "description_error_message_0": "Beskrivelse kan ikke være lenger enn 200 tegn",
+  "token_creation_error": "En feil oppstod ved opprettelse av tokenen",
+  "tokenname_error_message_0": "Navn kan ikke være lenger enn 32 tegn",
+  "tokenname_error_message_1": "Navn kan kun inneholde a-Z bokstaver / tegn",
+  "abbreviation_required": "Forkortelse kreves",
+  "abbreviation_error_message_0": "Forkortelsen kan ikke være lenger enn 5 bokstaver",
+  "abbreviation_error_message_1": "Forkortelsen kan kun inneholde a-Z bokstaver",
 
 /*
 ##################################################################################
@@ -495,7 +495,7 @@ export const messages = {
   "loading_representatives": "Laster Representanter",
   "address_not_super_representative": "Denne adressen er ikke en Super Representant",
   "unable_load_representatives_page_message": "Kan ikke laste siden, årsak til dette kan være at adressen er ugyldig, adressen ikke er en representant eller at representanten ikke har konfigurert denne siden ennå",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Henter Representant",
 
 /*
 ##################################################################################
@@ -542,7 +542,7 @@ export const messages = {
   "submissing_vote_message_0": "Dine stemmer er vellykket sendt, de blir talt med når den neste stemme syklusen starter.",
   "submissing_vote_message_1": "Du kan distribuere dine stemmer når som helst",
   "submitting_vote_error_message": "Noe gikk feil ved innsending av stemmer. Vennligst prøv igjen senere.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "Henter Super Representanter",
 
 /*
 ##################################################################################
