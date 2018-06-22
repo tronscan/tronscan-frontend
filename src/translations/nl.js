@@ -73,7 +73,7 @@ export const messages = {
   "submit_votes": "Bevestig stemmen",
   "accounts": "accounts",
   "created": "gemaakt",
-  "exchange": "Exchange", /* can be translated as "Handelsbeurs" */
+  "exchange": "Exchange",
   "next": "volgende",
   "copied_to_clipboard": "Gekopiëerd naar klembord",
   "cancel": "Annuleren",
@@ -180,7 +180,7 @@ export const messages = {
   "trx_transferred_past_hour": "Overgedragen TRX gedurende het laatste uur",
   "transactions_past_hour": "Transacties gedurende het laatste uur",
   "average_blocksize": "Gemiddelde Blokgrootte",
-  "rich_list": "Rich List", /* What is the context of this word? This is still English but I need to understand in which context it is used to give a proper Dutch translation */
+  "rich_list": "Rich lijst",
 
 /*
 ##################################################################################
