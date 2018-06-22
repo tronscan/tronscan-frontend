@@ -25,4 +25,4 @@ yarn-error.log*
 build-desktop
 build-native
 
-update-to-dev.sh
+update-to-*

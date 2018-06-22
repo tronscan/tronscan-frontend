@@ -89,6 +89,7 @@ export const messages = {
   "good": "bien",
   "strong": "solide",
   "secure": "certain",
+  "too_short": "trop court",
   "status": "statut",
   "no_notifications": "Aucune notification",
   "enable_desktop_notifications": "Activer les notifications de bureau",
@@ -497,7 +498,7 @@ export const messages = {
   "loading_representatives": "chargement des Représentants",
   "address_not_super_representative": "cette adresse ne correspond pas à un Super Représentant",
   "unable_load_representatives_page_message": "Impossible de charger la page, cela peut arriver si l'adresse n'est pas valide, l'adresse ne correspond pas à un représentant ou bien ce dernier n'a pas encore configuré cette page",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

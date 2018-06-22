@@ -89,6 +89,7 @@ export const messages = {
   "good": "bun",
   "strong": "puternic",
   "secure": "sigur",
+  "too_short": "prea scurt",
   "status": "status",
   "no_notifications": "nici o notificare",
   "enable_desktop_notifications": "autorizați notificări desktop",

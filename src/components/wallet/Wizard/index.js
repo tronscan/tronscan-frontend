@@ -186,6 +186,7 @@ class Wizard extends React.PureComponent {
                   <label>{tu("password")}</label>
                   <ReactPasswordStrength
                     minLength={8}
+                    tooShortWord={t("too_short")}
                     changeCallback={this.onPasswordChanged}
                     minScore={2}
                     scoreWords={[t("weak"), t("okay"), t("good"), t("strong"), t("secure")]}

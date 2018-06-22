@@ -89,6 +89,7 @@ export const messages = {
   "good": "Boa",
   "strong": "Forte",
   "secure": "seguro",
+  "too_short": "curto demais",
   "status": "estado",
   "no_notifications": "Nenhuma notificação",
   "enable_desktop_notifications": "Ativar notificações da área de trabalho",
@@ -161,7 +162,7 @@ export const messages = {
   "last_block": "último bloco",
   "blocks_produced": "Blocos Produzidos",
   "blocks_missed": "Blocos Perdidos",
-  "productivity": "Produtividade", 
+  "productivity": "Produtividade",
   "rewards": "Ganhos",
   "token_created": "Token criado",
   "witness": "Testemunha",
@@ -495,7 +496,7 @@ export const messages = {
   "loading_representatives": "Carregando Representantes",
   "address_not_super_representative": "Este endereço não é de um Super Representante",
   "unable_load_representatives_page_message": "Não foi possível carregar a página. Isso pode acontecer se o endereço for inválido ou não for de um representante, ou se este ainda não tiver configurado a página.",
-  "loading_representative": "Loading Representative", 
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################

@@ -89,6 +89,7 @@ export const messages = {
   "good": "جيد",
   "strong": "قوي",
   "secure": "تأمين",
+  "too_short": "قصير جدا",
   "status": "الحالة",
   "no_notifications": "لا إخطارات",
   "enable_desktop_notifications": "تمكين إعلامات سطح المكتب",
