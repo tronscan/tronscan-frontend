@@ -19,7 +19,7 @@ export const messages = {
 #         Update Date: 20.06.2018                                                #
 #         Language: Dutch                                                        #
 #         Status: Second Draft                                                   #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Rovak,CryptoSpaces,PMD3VSolution,aritmeester             #
 #                                                                                #
 ##################################################################################
@@ -309,10 +309,10 @@ export const messages = {
   "invalid_url": "Ongeldige URL",
   "apply_representative_error_message_0": "Er is een fout opgetreden tijdens het kandidaat stellen.",
   "apply_representative_error_message_1": "Zorg ervoor dat u genoeg TRX in uw account heeft om registratiekosten te dekken, of probeer het later nogmaals.",
-  "open_external_link":"You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
-  "continue_to_external_website": "Continue to external site",
+  "open_external_link":"Je opent een externe website",
+  "private_key_untrusted_website_message_0": "Voer nooit je privé sleutel in op een niet vertrouwde website.",
+  "no_official_tron_website": "is geen officiële Tron site.",
+  "continue_to_external_website": "Ga verder naar externe website",
 
 /*
 ##################################################################################
