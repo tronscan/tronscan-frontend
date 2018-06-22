@@ -12,12 +12,9 @@ class Paging extends React.PureComponent {
     super();
     this.state = {
       page: 1,
-      pageValue: 1,
       pageSize:40,
       pageSizeOptions:[20,40,60,80]
     };
-
-    this.pageInput = React.createRef();
   }
 
   changePage = (page) => {
@@ -34,34 +31,29 @@ class Paging extends React.PureComponent {
   };
 
   onKeyDown = (e) => {
-    let {pageValue} = this.state;
-
-    if (e.keyCode === KEY_ENTER) {
-      this.changePage(pageValue);
-    }
+    let page = this.setPage(e);
+    if (e.keyCode === KEY_ENTER)
+      this.changePage(page);
   };
-
-  setPage = (page) => {
+  onBlur = (e) => {
+    let page = this.setPage(e);
+    this.changePage(page);
+  }
+  setPage = (e) => {
     let {total} = this.props;
     let {pageSize} = this.state;
     let totalPages = Math.ceil(total / pageSize);
-
-    page = parseInt(page);
+    let page = parseInt(e.target.value);
 
     if (isNaN(page))
       page = 1;
-
-    if (page <= 0) {
+    else if (page <= 0)
       page = 1;
-    } else if (page > totalPages) {
+    else if (page > totalPages)
       page = totalPages;
-    }
 
-    this.setState({
-      pageValue: page,
-    });
-  };
-
+    return page
+  }
   renderButton(page) {
     let {url} = this.props;
 
@@ -85,7 +77,7 @@ class Paging extends React.PureComponent {
   render() {
 
     let {total, className, loading = false} = this.props;
-    let {page, pageSize, pageSizeOptions, pageValue} = this.state;
+    let {page, pageSize, pageSizeOptions} = this.state;
 
     let totalPages = Math.ceil(total / pageSize);
     totalPages = totalPages <= 0 ? 1 : totalPages;
@@ -115,27 +107,13 @@ class Paging extends React.PureComponent {
           </li>
         </ul>
         <ul className="pagination p-0 my-0 mx-auto">
-          <li className="mx-auto page-item" onClick={() => this.pageInput.current.focus()}>
+          <li className="mx-auto page-item" >
             {
               loading ?
                 <span className="page-link no-hover" style={{padding: 13 }}>
                   <BarLoader/>
                 </span> :
-                <span className="page-link">
-                  {tu("page")}{' '}
-                  <AutosizeInput
-                    ref={this.pageInput}
-                    className=""
-                    inputClassName="border-0"
-                    placeholder={page}
-                    value={pageValue}
-                    onBlur={() => this.changePage(pageValue)}
-                    onFocus={ev => ev.target.select()}
-                    onChange={e => this.setPage(e.target.value)}
-                    onKeyDown={this.onKeyDown} />{' '}
-                  {tu("of")}{' '}
-                  {totalPages}
-                </span>
+                  <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.onKeyDown(event)}} onBlur={(event)=>{this.onBlur(event)}} /> {tu("of")} {totalPages}</span>
             }
           </li>
         </ul>
@@ -157,8 +135,7 @@ class Paging extends React.PureComponent {
           <li className="page-item">
             <a className="page-link" href="javascript:">
               <span className="d-none d-sm-inline-block">{tu("page_size")}:</span>
-              <select className="ml-sm-1"
-                      style={styles.pageSize}
+              <select className="ml-sm-2 selectForPaging"
                       onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
                  {
                    pageSizeOptions.map((size,index) => (
