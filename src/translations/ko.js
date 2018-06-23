@@ -323,18 +323,18 @@ export const messages = {
   "success": "성공",
   "successfully_appied_sr_canidate_message_0": "성공적으로 슈퍼 대표(SR) 후보에 신청하였습니다.",
   "successfully_appied_sr_canidate_message_1": "계정이 곧 업그레이드 될 것입니다.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
-
+  "landing_page": "랜딩 페이지",
+  "show_more_information_publish_sr_page": "페이지 등록하는 방법 자세히 알아보기",
+  "create_sr_landing_page_message_0": "슈퍼 대표(SR)는 랜딩 페이지를 만들어서 팀에 대한 더 많은 정보와 계획을 공유할 수 있습니다",
+  "set_github_url_message_0": "이미 깃헙(Github) 템플릿을 구성하셨나요? 그렇다면 아래 버튼을 눌러 URL을 입력해주십시오",
+  "set_github_link": "깃헙(Github) 링크 설정",
+  "could_not_claim_rewards": "보상을 청구하지 못했습니다",
+  "claim_rewards_error_message": "보상을 청구하는 중에 문제가 생겼습니다. 나중에 다시 시도해주십시오.",
+  "rewards_claimed": "보상을 청구하였습니다!",
+  "successfully_claimed_rewards":  "성공적으로 보상을 청구하였습니다",
+  "claim_rewards": "보상 청구"
+  "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
+  
 /*
 ##################################################################################
 #                                                                                #
