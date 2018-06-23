@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-22062018                                                  #
-#         Update Date: 22.06.2018                                                #
+#         Version: 1.5-23062018                                                  #
+#         Update Date: 23.06.2018                                                #
 #         Language: Norwegian                                                    #
 #         Status: first Version                                                  #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Ronny Askeland                                           #
 #                                                                                #
 ##################################################################################
@@ -256,8 +256,8 @@ export const messages = {
   "unable_to_rename_title": "Kunne ikke endre navn",
   "unable_to_rename_message": "Noe gikk galt ved oppdatering av kontonavnet ditt, vennligst prøv igjen senere",
   "unfreeze_trx_confirm_message": "Er du sikker på du vil frigi / låse opp dine TRX?",
-  "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "unfreeze_assets": "lås opp eiendeler / tokener",
+  "sure_to_unfreeze_unlocked_tokens_message": "Er du sikker på at du ønsker å låse opp dine tokener?",
 
 /*
 ##################################################################################
@@ -311,21 +311,21 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Aldri oppgi din private nøkkel på en nettside du ikke stoler på.",
   "no_official_tron_website": "er ikke en offisiell Tron nettside.",
   "continue_to_external_website": "Fortsett til ekstern side",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username": "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
+  "url_changed": "URL endret",
+  "successfully_changed_website_message": "Vellykket endring av nettside til",
+  "unable_to_change_website_title": "Kan ikke endre URL",
+  "unable_to_change_website_message": "Noe gikk galt med oppdatering av nettsiden, vennligst prøv igjen senere",
+  "successfully_linked_github": "Vellykket tilkobling til Github!",
+  "github_linked": "Tilkoblet Github!",
+  "unable_to_link_github_message": "Kunne ikke koble til Github, sørg for at ditt brukernavn er riktig!",
+  "could_not_link_github": "Kunne ikke koble til Github",
+  "enter_your_github_username": "Skriv inn ditt Github brukernavn",
+  "link_to_github": "Lenke til Github",
+  "link_github": "Koble til Github",
+  "you_must_enter_a_url": "Du må skrive inn en adresse / URL",
+  "success": "Suksess",
+  "successfully_appied_sr_canidate_message_0": "Du har vellykket søkt om å bli Super Representant Kandidat.",
+  "successfully_appied_sr_canidate_message_1": "Din konto vil bli oppgradert snart.",
 
 /*
 ##################################################################################
