@@ -328,6 +328,17 @@ export const messages = {
   "success": "Erfolgreich",
   "successfully_appied_sr_canidate_message_0": "Sie haben sich erfolgreich als Super Repräsentaten beworben.",
   "successfully_appied_sr_canidate_message_1": "Ihr persönliches Konto wird in Kürze aktualisiert.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Weitere Informationen zur Veröffentlichung einer eigenen Landing Page finden Sie hier",
+  "create_sr_landing_page_message_0": "Super Repräsentanten können eine Landing Page erstellen auf der Sie mehr Informationen über Ihr Team und Ihre Pläne veröffentlichen können.",
+  "set_github_url_message_0": "Wenn Sie Ihr Github-Template bereits erstellt und angepasst haben können Sie über die folgende Schaltfläche eine URL definieren und das Template somit Verknüpfen.",
+  "set_github_link": "Github-Link definieren",
+  "could_not_claim_rewards": "Eine Prämie/Belohnung konnte nicht ermittelt werden.",
+  "claim_rewards_error_message": "Beim Einfordern der Prämie/Belohnung ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
+  "rewards_claimed": "Prämie/Belohnung angefordert!",
+  "successfully_claimed_rewards":  "Prämie/Belohnung Erfolgreich erhalten",
+  "claim_rewards": "Prämien einfordern",
+  "sr_receive_reward_message_0": "Als Repräsentat erhalten Sie eine Prämie/Belohnung für das Erstellung von Blöcken(Blockchain). Diese Prämie kann alle 24 Stunden in Anspruch genommen werden.",
 
 /*
 ##################################################################################

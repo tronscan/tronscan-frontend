@@ -328,6 +328,17 @@ export const messages = {
   "success": "Succes",
   "successfully_appied_sr_canidate_message_0": "Ați aplicat cu succes pentru Super Reprezentant.",
   "successfully_appied_sr_canidate_message_1": "În câteva momente, contul dumneavoastră va fi upgradat.",
+  "landing_page": "Pagină Intrare",
+  "show_more_information_publish_sr_page": "Arată mai multe informații despre cum să publici o pagină",
+  "create_sr_landing_page_message_0": "Super Reprezentanții pot crea o pagină de intrare în care pot prezenta informații despre echipa și planurile lor",
+  "set_github_url_message_0": "Ați configurat deja template-ul de Github? Atunci setați URL-ul folosind butonul de mai jos",
+  "set_github_link": "Setați Link-ul Github",
+  "could_not_claim_rewards": "Nu s-au putut primi recompense",
+  "claim_rewards_error_message": "Ceva nu a mers bine în timp ce s-au solicitat recompense, vă rugăm încercați mai târziu.",
+  "rewards_claimed": "Recompensă primită!",
+  "successfully_claimed_rewards":  "S-au primit recompense cu succes",
+  "claim_rewards": "Solicitare Recompensă",
+  "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
 
 /*
 ##################################################################################

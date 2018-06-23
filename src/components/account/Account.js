@@ -332,16 +332,16 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="Rewards Claimed!" onConfirm={this.hideModal}>
-            Successfully claimed rewards
+          <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
+              {tu("successfully_claimed_rewards")}
           </SweetAlert>
         )
       });
     } else {
       this.setState({
         modal: (
-          <SweetAlert danger title="Could not claim rewards" onConfirm={this.hideModal}>
-            Something went wrong while trying to claim rewards, please try again later.<br/>
+          <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+            {tu("claim_rewards_error_message")}<br/>
             {code}
           </SweetAlert>
         )
@@ -875,25 +875,23 @@ class Account extends Component {
                       {tu("Super Representative")}
                     </h5>
                     <p className="card-text">
-                      As a representative you receive rewards for producing blocks. These rewards
-                      can be claimed every 24 hours
+                      {tu("sr_receive_reward_message_0")}
                     </p>
                     <button className="btn btn-success mr-2" onClick={this.claimRewards}>
-                      Claim Rewards
+                      {tu("claim_rewards")}
                       <i className="fa fa-hand-holding-usd ml-2"/>
                     </button>
                   </div>
                   <div className="card-body border-top">
                     <h5 className="card-title text-center">
-                      {tu("Landing Page")}
+                      {tu("landing_page")}
                     </h5>
                     <p className="card-text text-center">
-                      Super Representatives can create a landing page on which they
-                      can share more information about their team and plans
+                      {tu("create_sr_landing_page_message_0")}
                     </p>
                     <p className="text-center">
                       <a className="btn btn-primary mr-2" target="_blank" href="https://github.com/tronscan/tronsr-template#readme">
-                        Show more Information on how to publish a page
+                        {tu("show_more_information_publish_sr_page")}
                         <i className="fa fa-question ml-2"/>
                       </a>
                     </p>
@@ -901,11 +899,11 @@ class Account extends Component {
                       !this.hasGithubLink() &&
                         <Fragment>
                           <p className="card-text text-center">
-                            Did you already configure your Github template? Then set the URL by using the button below
+                            {tu("set_github_url_message_0")}
                           </p>
                           <p className="text-center">
                             <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
-                              Set Github Link
+                              {tu("set_github_link")}
                               <i className="fab fa-github ml-2"/>
                             </button>
                           </p>
