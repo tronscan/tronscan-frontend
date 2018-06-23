@@ -332,9 +332,9 @@ export const messages = {
   "claim_rewards_error_message": "보상을 청구하는 중에 문제가 생겼습니다. 나중에 다시 시도해주십시오.",
   "rewards_claimed": "보상을 청구하였습니다!",
   "successfully_claimed_rewards":  "성공적으로 보상을 청구하였습니다",
-  "claim_rewards": "보상 청구"
+  "claim_rewards": "보상 청구",
   "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
-  
+
 /*
 ##################################################################################
 #                                                                                #
