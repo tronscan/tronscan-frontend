@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-23062018                                                  #
-#         Update Date: 23.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         Language: Portuguese - Brazil                                          #
 #         Status: Second Draft                                                   #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: gguelber, Monitor Livre                                  #
 #                                                                                #
 ##################################################################################
@@ -256,8 +256,8 @@ export const messages = {
   "unable_to_rename_title": "Não é possível renomear",
   "unable_to_rename_message": "Ocorreu um erro ao atualizar o nome da sua conta. Tente novamente mais tarde.",
   "unfreeze_trx_confirm_message": "Tem certeza de que deseja descongelar TRX?",
-  "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "unfreeze_assets": "Descongelar Ativos",
+  "sure_to_unfreeze_unlocked_tokens_message": "Você tem certeza que deseja descongelar os tokens desbloqueados?",
 
 /*
 ##################################################################################
@@ -314,32 +314,32 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Nunca insira sua chave privada em um website não confiável.",
   "no_official_tron_website": "não é um site oficial Tron.",
   "continue_to_external_website": "Continuar para site externo",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username": "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "url_changed": "URL modificada",
+  "successfully_changed_website_message": "Website modificado com sucesso para ",
+  "unable_to_change_website_title": "Não é possível modificar a URL",
+  "unable_to_change_website_message": "Algo deu errado ao tentar atualizar o website, tente novamente mais tarde",
+  "successfully_linked_github": "Ligação com o Github feita com sucesso!",
+  "github_linked": "Ligado ao Github!",
+  "unable_to_link_github_message": "Não foi possível fazer a ligação com o Github, certifique-se de que seu nome de usuário está correto!",
+  "could_not_link_github": "Não foi possivel ligar ao Github",
+  "enter_your_github_username": "Insira seu nome de usuário do Github",
+  "link_to_github": "Ligar ao Github",
+  "link_github": "Ligar Github",
+  "you_must_enter_a_url": "Você deve inserir uma URL",
+  "success": "Sucesso",
+  "successfully_appied_sr_canidate_message_0": "Candidatura para Super Representante realizada com sucesso.",
+  "successfully_appied_sr_canidate_message_1": "Sua conta será atualizada em breve.",
+  "landing_page": "Página de Captura",
+  "show_more_information_publish_sr_page": "Mostrar mais informações sobre como publicar uma página",
+  "create_sr_landing_page_message_0": "Super Representantes podem criar uma página de captura na qual poderão compartilhar maiores informações sobre sua equipe e planos",
+  "set_github_url_message_0": "Você já configurou o seu modelo do Github? Use o botão abaixo para inserir uma URL",
+  "set_github_link": "Definir Link do Github",
+  "could_not_claim_rewards": "Não foi possível resgatar recompensas",
+  "claim_rewards_error_message": "Algo deu errado ao tentar resgatar recompensas, tente novamente mais tarde",
+  "rewards_claimed": "Recompensas Resgatadas!",
+  "successfully_claimed_rewards":  "Recompensas resgatadas com sucesso",
+  "claim_rewards": "Resgatar Recompensas",
+  "sr_receive_reward_message_0": "Como representante, você recebe recompensas para produzir blocos. Estas recompensas podem ser resgatadas a cada 24 horas",
 
 /*
 ##################################################################################
