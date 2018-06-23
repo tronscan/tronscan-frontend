@@ -302,10 +302,10 @@ export const messages = {
   "invalid_url": "잘못된 URL",
   "apply_representative_error_message_0": "대표 신청을 시도하는 중에 에러가 났습니다.",
   "apply_representative_error_message_1": "수수료를 내기 위한 TRX가 충분한지 확인하고 다시 시도해주십시오.",
-  "open_external_link":"You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
-  "continue_to_external_website": "Continue to external site",
+  "open_external_link":"귀하가 외부 링크에 접속 시도를 하고 있습니다",
+  "private_key_untrusted_website_message_0": "절대로 신뢰하지 않는 웹사이트에 개인키를 입력하지 마십시오.",
+  "no_official_tron_website": "는(은) 공식 트론 사이트가 아닙니다.",
+  "continue_to_external_website": "외부 사이트로 계속 진행",
 
 /*
 ##################################################################################
