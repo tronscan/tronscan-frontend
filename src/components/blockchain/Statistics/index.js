@@ -10,6 +10,8 @@ import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
+import PieReact from "../../common/PieChart";
+import LineReact from "../../common/LineChart";
 
 const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
 

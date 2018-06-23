@@ -5456,6 +5456,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet-echarts@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/leaflet-echarts/-/leaflet-echarts-0.2.1.tgz#36dd23061ac171c89cf5f66fe6fb5e233bf18af3"
+
 leaflet.gridlayer.googlemutant@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/leaflet.gridlayer.googlemutant/-/leaflet.gridlayer.googlemutant-0.6.4.tgz#4a47ce941becad175e3b6355f26464bc2236ac10"
@@ -7414,6 +7418,12 @@ react-error-overlay@^4.0.0:
 react-flip-move@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-3.0.2.tgz#2f6f16ca6cb0a8490fba15a98b3440a76127e825"
+
+react-input-autosize@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-intl@^2.4.0:
   version "2.4.0"

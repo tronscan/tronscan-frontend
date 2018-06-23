@@ -3,6 +3,8 @@ import React, {Fragment, PureComponent} from 'react'
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
+import tronLogoTestNet from "../images/tron-logo-testnet.png";
+import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
@@ -15,7 +17,7 @@ import {AddressLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
 import {IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
-import {doSearch} from "../services/search"
+import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -40,13 +42,6 @@ class Navigation extends PureComponent {
     this.state = {
       privateKey: '',
       search: "",
-      searchType:'searchBlockNumber',
-      searchTypes: {
-        searchBlockNumber:  tu("block"),
-        searchTxHash:       'TX',
-        searchToken:        'Token',
-        searchAddress:      tu("address"),
-      },
       popup: null,
       notifications: [],
     };
@@ -174,13 +169,15 @@ class Navigation extends PureComponent {
 
   doSearch = async () => {
 
-    let {search, searchType} = this.state;
-    let result = await doSearch(search, searchType);
+    let {search} = this.state;
+    let type = getSearchType(search);
+
+    let result = await doSearch(search, type);
     if (result === true) {
-      this.setState({search: "",});
+      this.setState({search: ""});
     } else if (result !== null) {
       window.location.hash = result;
-      this.setState({search: "",});
+      this.setState({search: ""});
     } else {
       toastr.warning('Warning', 'Record not found!');
     }
@@ -248,8 +245,18 @@ class Navigation extends PureComponent {
   };
 
   getLogo = () => {
-      let {theme} = this.props;
-      switch(theme) {
+    let {theme} = this.props;
+
+    if (IS_TESTNET) {
+      switch (theme) {
+        case "light":
+          return tronLogoTestNet;
+        default:
+          return tronLogoInvertedTestNet;
+      }
+    } else {
+
+      switch (theme) {
         case "tron":
           return tronLogoBlue;
         case "light":
@@ -257,6 +264,7 @@ class Navigation extends PureComponent {
         default:
           return logo;
       }
+    }
   };
 
   loginWithMobileDevice = () => {
@@ -555,17 +563,6 @@ class Navigation extends PureComponent {
 
             <div className="ml-auto py-3 hidden-mobile nav-searchbar">
               <div className="input-group">
-                  <select
-                      className="form-control mr-1"
-                      style={styles.searchType}
-                      onChange={(ev) => this.setState({ searchType: ev.target.value }) }
-                      value={searchType}>
-                      {
-                          Object.entries(searchTypes).map(([type, label]) => (
-                              <option value={type}>{label}</option>
-                          ))
-                      }
-                  </select>
                 <input type="text"
                        className="form-control p-2 bg-white border-0 box-shadow-none"
                        style={styles.search}

@@ -13,7 +13,6 @@ import {TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
-import {addSeconds} from "date-fns";
 import {Link} from "react-router-dom";
 import {WidgetIcon} from "../common/Icon";
 import VoteStats from "../blockchain/Statistics/VoteStats";

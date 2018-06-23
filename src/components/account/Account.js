@@ -9,7 +9,7 @@ import {TRXPrice} from "../common/Price";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, TokenLink} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {ONE_TRX} from "../../constants";
+import {IS_TESTNET, ONE_TRX} from "../../constants";
 import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import ApplyForDelegate from "./ApplyForDelegate";
@@ -21,6 +21,7 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import Transfers from "../common/Transfers";
 import TestNetRequest from "./TestNetRequest";
+import Transactions from "../common/Transactions";
 
 class Account extends Component {
 
@@ -29,7 +30,6 @@ class Account extends Component {
 
     this.state = {
       modal: null,
-      showRequest: true,
       showFreezeBalance: false,
       sr: null,
       issuedAsset: null,
@@ -247,7 +247,7 @@ class Account extends Component {
     let {wallet} = this.props;
 
     return (
-      <Transfers
+      <Transactions
         theadClass="thead-light"
         showTotal={false}
         autoRefresh={30000}
@@ -617,7 +617,7 @@ class Account extends Component {
 
   render() {
 
-    let {showRequest, modal, sr, issuedAsset, showBandwidth} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
 
     if (!wallet.isOpen || !currentWallet) {
@@ -699,7 +699,7 @@ class Account extends Component {
                       <td>
                         {currentWallet.name || "-"}
                         {
-                          trim(currentWallet.name) === "" &&
+                          (trim(currentWallet.name) === "" && currentWallet.balance > 0) &&
                             <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
                               {tu("set_name")}
                             </a>
@@ -956,7 +956,7 @@ class Account extends Component {
             </div>
         }
         {
-          showRequest && <div className="row mt-3">
+          IS_TESTNET && <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body text-center">
