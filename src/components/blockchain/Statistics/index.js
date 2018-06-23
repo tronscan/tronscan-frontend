@@ -10,6 +10,8 @@ import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
+import PieReact from "../../common/PieChart";
+import LineReact from "../../common/LineChart";
 
 const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
 
@@ -173,7 +175,7 @@ class Statistics extends React.Component {
     render() {
 
         let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
-
+console.log(transactionValueStats);
         return (
             <main className="container header-overlap">
                 <div className="row">
@@ -182,17 +184,7 @@ class Statistics extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title text-center">{tu("Top")} {accounts.length} {tu("addresses")}</h5>
                                 <div style={{height: 300}}>
-                                    {
-                                        accounts.length === 0 ?
-                                        <TronLoader/> :
-                                        < ResponsiveContainer >
-                                        {/*{this.renderTreeMap()}*/}
-                                        {/*/!*<SimpleTreemap/>*!/*/}
-                                          <PieChart>
-                                          <Pie data={accounts} fill="#82ca9d" label />
-                                          </PieChart>
-                                        </ResponsiveContainer>
-                                    }
+                                  <PieReact style={{height: 300}}/>
                                 </div>
                             </div>
                         </div>
@@ -202,40 +194,7 @@ class Statistics extends React.Component {
                             <div className="card-body">
                                 <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
                                 <div style={{height: 300}}>
-                                    {
-                                        transactionValueStats.length === 0 ?
-                                            <TronLoader/> :
-                                            <ResponsiveContainer>
-                                                <AreaChart data={transactionValueStats} isAnimationActive={false}>
-                                                    <defs>
-                                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <XAxis dataKey="timestamp"/>
-                                                    <YAxis/>
-                                                    {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                    <Tooltip/>
-                                                    {/*<Legend />*/}
-                                                    <Area name="Transaction Value"
-                                                          type="natural"
-                                                          dataKey="value"
-                                                          stroke={styles.line.stroke}
-                                                          strokeWidth={1}
-                                                          activeDot={{r: 8}}
-                                                          fillOpacity={1}
-                                                          fill="url(#colorUv)"
-                                                          isAnimationActive={false}/>
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                    }
+                                  <LineReact style={{height: 300}}/>
                                 </div>
                             </div>
                         </div>
