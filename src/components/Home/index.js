@@ -451,7 +451,7 @@ class Home extends Component {
                   <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}</Link></li>
                   <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
                   <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
+                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> {tu("view_tokens")}</Link></li>
                 </ul>
               </div>
             </div>

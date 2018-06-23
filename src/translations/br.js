@@ -63,7 +63,7 @@ export const messages = {
   "submit": "enviar",
   "send": "enviar",
   "receive": "receber",
-  "supply": "Quantidade",
+  "supply": "Suprimento",
   "view": "visualizar",
   "view_all": "Visualizar Todos",
   "create": "novo",
