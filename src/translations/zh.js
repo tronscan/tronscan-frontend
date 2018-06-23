@@ -156,7 +156,7 @@ export const messages = {
   "page_size":"每页记录数",
   "last_block": "上一区块",
   "total_supply": "发行量",
-  
+
   "most_nodes": "最多节点",
   "loading_nodes": "加载中节点",
   "Hostname": "主机名",
