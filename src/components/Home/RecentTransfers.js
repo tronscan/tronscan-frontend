@@ -76,11 +76,11 @@ class RecentTransfers extends Component {
                 <div className="media-body mb-0 d-flex">
                   <div className="text-left">
                     <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 20)}...</TransactionHashLink><br/>
-                    <AddressLink address={transfer.transferFromAddress}  truncate={false}>
+                    <AddressLink wrapClassName="d-inline-block" address={transfer.transferFromAddress} truncate={false}>
                       {transfer.transferFromAddress.substr(0, 12)}...
                     </AddressLink>
                     <i className="fas fa-arrow-right mr-1 ml-1"/>
-                    <AddressLink address={transfer.transferToAddress}  truncate={false}>
+                    <AddressLink wrapClassName="d-inline-block" address={transfer.transferToAddress} truncate={false}>
                       {transfer.transferToAddress.substr(0, 12)}...
                     </AddressLink>
                   </div>

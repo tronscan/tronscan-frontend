@@ -33,7 +33,7 @@ class ReceiveModal extends React.PureComponent {
           <ModalHeader className="text-center" toggle={this.hideModal}>{tu("receive")}</ModalHeader>
           <ModalBody className="text-center">
             <h5 className="py-2">{tu("send_to_following_address")}</h5>
-            <p>
+
               <div className="input-group mb-3">
                 <input type="text"
                        readOnly={true}
@@ -47,7 +47,7 @@ class ReceiveModal extends React.PureComponent {
                   </CopyToClipboard>
                 </div>
               </div>
-            </p>
+
             <hr/>
             <QRCode size={512} style={{ width: '100%', height: 'auto' }} value={wallet.address} /><br/>
           </ModalBody>

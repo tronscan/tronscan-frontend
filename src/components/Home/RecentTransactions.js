@@ -64,13 +64,14 @@ class RecentTransactions extends Component {
               <div className="media">
                 <div className="media-body mb-0 d-flex">
                   <div className="text-left">
-                    <TransactionHashLink hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink><br/>
-                    <AddressLink address={transaction.transferFromAddress}  truncate={false}>
-                      {transaction.transferFromAddress.substr(0, 12)}...
+                    <TransactionHashLink hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink>
+                    <br/>
+                    <AddressLink wrapClass="d-inline-block" address={transaction.transferFromAddress}>
+                      {transaction.transferFromAddress}...
                     </AddressLink>
                     <i className="fas fa-arrow-right mr-1 ml-1"/>
-                    <AddressLink address={transaction.transferToAddress}  truncate={false}>
-                      {transaction.transferToAddress.substr(0, 12)}...
+                    <AddressLink  wrapClass="d-inline-block" address={transaction.transferToAddress}>
+                      {transaction.transferToAddress}
                     </AddressLink>
                   </div>
                   <div className="ml-auto text-right">

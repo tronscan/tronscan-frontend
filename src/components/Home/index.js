@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {doSearch} from "../../services/search";
+import {doSearch, getSearchType} from "../../services/search";
 import {clearConstellations, constellationPreset} from "../../lib/constellation/constellation";
 import CountUp from 'react-countup';
 import {Client} from "../../services/api";
@@ -13,6 +13,8 @@ import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+import {toastr} from "react-redux-toastr";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -55,7 +57,7 @@ class Home extends Component {
         previousBlockHeight: prevState.stats.blockHeight,
         previousTransactionPerHour: prevState.stats.transactionPerHour,
         onlineNodes: total,
-        blockHeight: blocks[0].number,
+        blockHeight: blocks[0] ? blocks[0].number : 0,
         transactionPerHour: totalTransactions,
       },
     }));
@@ -63,7 +65,9 @@ class Home extends Component {
 
   doSearch = async () => {
     let {search} = this.state;
-    let result = await doSearch(search);
+    let type = getSearchType(search);
+
+    let result = await doSearch(search, type);
     if (result !== null) {
       this.setState({
         hasFound: true,
@@ -82,8 +86,10 @@ class Home extends Component {
           isShaking: false,
         });
       }, 1000);
+
+      toastr.warning('Warning', 'Record not found!');
     }
-  };
+  }
 
   onSearchKeyDown = (ev) => {
     if (ev.keyCode === KEY_ENTER) {

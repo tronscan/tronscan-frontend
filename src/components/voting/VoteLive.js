@@ -2,8 +2,6 @@ import React from "react";
 import {TimeAgo} from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {filter, find, isNaN, isNumber, keyBy, last, random, range, sortBy, sumBy, trim} from "lodash";
-import {connect} from "react-redux";
-import {reloadWallet} from "../../actions/wallet";
 import {withTimers} from "../utils/timing";
 import FlipMove from "react-flip-move";
 import Avatar from "../common/Avatar";

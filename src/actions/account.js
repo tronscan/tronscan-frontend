@@ -22,7 +22,7 @@ export const setTotalTransactions = (totalTransactions = 0) => ({
 });
 
 export const loadRecentTransactions = (address) => async (dispatch) => {
-  let {transfers, total} = await Client.getTransfers({
+  let {transfers, total} = await Client.getTransactions({
     limit: 10,
     address,
     sort: '-timestamp',

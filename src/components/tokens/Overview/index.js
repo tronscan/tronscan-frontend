@@ -4,7 +4,6 @@ import {filter, find, includes, sortBy, round} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {tu,t} from "../../../utils/i18n";
-import {TextField} from "../../../utils/formHelper";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {ExternalLink, TokenLink} from "../../common/Links";
@@ -12,7 +11,6 @@ import Avatar from "../../common/Avatar";
 import {Sticky, StickyContainer} from "react-sticky";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Paging from "../../common/Paging";
-import {checkPageChanged} from "../../../utils/PagingUtils";
 import {NumberField} from "../../common/Fields";
 
 class TokenOverview extends Component {
@@ -35,8 +33,6 @@ class TokenOverview extends Component {
       },
       confirmVisible: false,
       total: 0,
-      pageSize: 25,
-      page: 0,
       tokens: [],
     };
   }
@@ -126,21 +122,18 @@ class TokenOverview extends Component {
     return activeToken.name === token.name;
   }
 
-  loadPage = async (page = 0) => {
+  loadPage = async (page = 1,pageSize=40) => {
 
     this.setState({ loading: true });
-
-    let {pageSize} = this.state;
 
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       status: "ico",
     });
 
     this.setState({
-      page,
       loading: false,
       tokens,
       total,
@@ -152,8 +145,11 @@ class TokenOverview extends Component {
   }
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadPage);
+    //checkPageChanged(this, this.loadPage);
   }
+  onChange = (page,pageSize) => {
+    this.loadPage(page,pageSize);
+  };
 
   isValid = () => {
     let {amount} = this.state;
@@ -361,7 +357,7 @@ class TokenOverview extends Component {
 
   render() {
 
-    let {alert, loading, total, pageSize, page} = this.state;
+    let {alert, loading, total} = this.state;
     let {match} = this.props;
 
     return (
@@ -373,7 +369,7 @@ class TokenOverview extends Component {
                 ({style, isSticky}) => (
                   <div className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")} style={{zIndex: 1000, ...style}}>
                     <div className="col-sm-12">
-                      <Paging loading={loading} url={match.url} total={total} pageSize={pageSize} page={page}  />
+                      <Paging onChange={this.onChange} loading={loading} url={match.url} total={total} />
                     </div>
                   </div>
                 )

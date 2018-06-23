@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './styles/main.scss';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import "./scripts.js";
-import App from './components/App';
-// import registerServiceWorker from './registerServiceWorker';
-import {unregister} from './registerServiceWorker';
-
+import AppCmp from './components/AppCmp';
+import {IS_DESKTOP} from "./constants";
+import "./app";
 
 // eslint-disable-next-line
 const consoleError = console.error.bind(console);
+
 // eslint-disable-next-line
 console.error = (message, ...args) => {
   if (
@@ -22,7 +22,8 @@ console.error = (message, ...args) => {
   consoleError(message, ...args);
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
-unregister();
+ReactDOM.render(<AppCmp />, document.getElementById('root'));
 
+if (IS_DESKTOP) {
+  require("./desktop/bootstrap");
+}
