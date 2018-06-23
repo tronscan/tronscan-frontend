@@ -151,8 +151,7 @@ class SendForm extends React.Component {
 
   componentDidMount() {
     this.refreshTokenBalances();
-
-    this.setAddress(this.props.to);
+    //this.setAddress(this.props.to);
   }
 
   refreshTokenBalances = () => {

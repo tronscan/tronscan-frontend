@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018                                                  #
-#         Update Date: 11.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: English                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
 #                                                                                #
 ##################################################################################
@@ -40,14 +40,12 @@ export const messages = {
   "app_title": "Tron Protocol",
   "password": "password",
   "money_price": "price",
+  "price": "price",
   "blocks": "blocks",
   "block": "block",
-  "balance": "balance",
-  "bandwidth": "bandwidth",
   "name": "name",
   "website": "website",
   "address": "address",
-  "price": "price",
   "sign_out": "sign out",
   "sign_in": "sign in",
   "register_login": "Register / Log-in",
@@ -55,32 +53,49 @@ export const messages = {
   "login": "login",
   "height": "height",
   "age": "age",
-  "produced by": "produced by",
   "bytes": "bytes",
-  "created": "created",
-  "Contract": "Contract",
+  "produced by": "produced by",
+  "contract": "Contract",
   "from": "from",
   "to": "to",
   "value": "value",
   "total_accounts": "Total Accounts",
   "submit": "submit",
+  "send": "send",
   "receive": "receive",
   "supply": "supply",
   "view": "view",
   "view_all": "View all",
   "create": "create",
   "country": "region",
-  "send": "send",
   "amount": "amount",
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
+  "created": "created",
   "exchange": "Exchange",
   "next": "next",
   "copied_to_clipboard": "Copied to clipboard",
   "cancel": "Cancel",
   "reset": "Reset",
   "error": "Error",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "You must enter your password!",
+  "password_incorrect": "Password Incorrect",
+  "try_again": "Try Again",
+  "wallet_unlocked": "Wallet Unlocked",
+  "weak": "weak",
+  "okay": "okay",
+  "good": "good",
+  "strong": "strong",
+  "secure": "secure",
+  "too_short": "too short",
+  "status": "status",
+  "no_notifications": "No notifications",
+  "enable_desktop_notifications": "Enable Desktop Notifications",
+  "desktop_notification_enabled": "Desktop Notifications Enabled!",
+  "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
 
 /*
 ##################################################################################
@@ -97,14 +112,15 @@ export const messages = {
   "statistics": "Statistics",
   "markets": "Markets",
   "tools": "Tools",
+  "transaction_viewer": "Transaction Viewer",
+  "node_tester": "Node Tester",
+  "system": "System",
   "news": "News",
   "help": "Help",
   "nodes": "Nodes",
   "votes": "Votes",
   "account": "Account",
-  "transaction_viewer": "Transaction Viewer",
-  "node_tester": "Node Tester",
-  "system": "System",
+  "tokens": "Tokens",
   "overview": "Overview",
   "participate": "Participate",
 
@@ -138,13 +154,20 @@ export const messages = {
   "last_page": "last page",
   "page": "page",
   "of": "of",
-  "last_block": "last block",
-  "total_supply": "total supply",
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hostname",
   "Last Update": "Last Update",
   "first_node_sync_message": "Waiting for first node sync, please try again in a few minutes.",
+  "last_block": "last block",
+  "blocks_produced": "Blocks Produced",
+  "blocks_missed": "Blocks Missed",
+  "productivity": "productivity",
+  "rewards": "rewards",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
 
 /*
 ##################################################################################
@@ -167,22 +190,29 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Set Name",
+  "unique_account_message": "You may only set your account name once!",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "change_name": "Change Name",
+  "account_name": "Account Name",
   "show_qr_code": "Show QR Code",
+  "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
+  "bandwidth": "bandwidth",
+  "balance": "balance",
+  "tron_power": "Tron Power",
+  "transactions": "transactions",
+  "no_transfers": "No Transfers",
+  "no_tokens": "No Tokens",
   "free_bandwidth": "Free Bandwidth",
   "expires": "expires",
   "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "When requesting TRX you will receive 10000 TRX which you can use for testing on the testnet.",
+  "information_message_1": "Mainnet cannot request testing trx, please contact Tron to get test trx.",
   "information_message_2": "You may only request TRX 10 times per account.",
   "request_trx_for_testing": "Request TRX for testing",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
-  "transactions": "transactions",
-  "tokens": "tokens",
   "token_balances": "token balances",
   "produced_blocks": "produced blocks",
   "voters": "voters",
-  "no_tokens": "No Tokens",
-  "issued_token": "issued token",
   "progress": "progress",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "issuer",
@@ -191,6 +221,8 @@ export const messages = {
   "trx_received": "TRX received",
   "test_trx_temporarily_unavailable_message": "Test TRX is temporarily unavailable. Please try again later.",
   "not_enough_trx": "Not enough TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "send_to_following_address": "Send to the following address",
 
 /*
 ##################################################################################
@@ -201,17 +233,28 @@ export const messages = {
 */
   "freeze": "freeze",
   "unfreeze": "unfreeze",
-  "frozen_supply": "Frozen Supply",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
   "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
    For example, with Tron Power you can `,
+  "freeze_trx_premessage_link": "vote for Super Representatives.",
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
-  "freeze_trx_premessage_link": "vote for Super Representatives.",
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
+  "frozen_supply": "Frozen Supply",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
+  "unable_to_unfreeze": "Unable to unfreeze",
+  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
+  "tokens_frozen": "Tokens Frozen",
+  "successfully_frozen": "Successfully frozen",
+  "name_changed": "Name changed",
+  "successfully_changed_name_to_message": "Successfully changed name to",
+  "unable_to_rename_title": "Unable to rename",
+  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
+  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
 
 /*
 ##################################################################################
@@ -223,7 +266,7 @@ export const messages = {
   "apply_for_delegate": "apply for delegate",
   "apply_super_representative_candidate": "Apply to be a Super Representative Candidate",
   "your_personal_website_address": "your personal website address",
-  "apply_for_delegate_predescription":`Every token holder has the opportunity to become a TRON Super Representative.
+  "apply_for_delegate_predescription": `Every token holder has the opportunity to become a TRON Super Representative.
    However, for the network and community to operate more smoothly and effectively,
    we have created a set of standards and regulations for eligible candidates to become
    recommended Super Representatives. We will promote recommended SRs to increase their
@@ -234,7 +277,7 @@ export const messages = {
    The maximum number of votes is less than or equal to the number of TRX users hold each time.
    (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
    The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
+   voting cycle of which the time is from 00:00:00 p.m. am to 11:59:59 pm. TRX holders with the most votes will become super delegate.
    Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
    TRX will not be consumed in the process of super delegate application and voting.`,
   "unknown_error": "an unknown error occurred",
@@ -256,11 +299,14 @@ export const messages = {
   "successful_send": "Succesfully send!",
   "confirm_transaction": "confirm transaction",
   "last_confirmed": "Last Confirmed",
-  "blocks_produced": "Blocks Produced",
   "trx_produced": "Transactions Produced",
-  "blocks_missed": "Blocks Missed",
   "do_not_send_1": "Do not send TRX from your own wallet or exchange to your testnet address!",
   "go_to_votelist": "Go to votelist",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
+  "invalid_url": "Invalid URL",
+  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
 
 /*
 ##################################################################################
@@ -270,9 +316,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "Name of the token",
-  "create_token": "Create Token",
   "token_message": "Name for the token",
+  "token_abbr": "token Abbreviation",
   "abbr_message": "Abbreviation for the token",
+  "total_supply": "total supply",
+  "issued_token": "issued token",
+  "create_token": "Create Token",
   "description": "Description",
   "description_url": "Description URL",
   "quote_token_amount": "Quote Token Amount",
@@ -304,10 +353,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "how_much_buy_message": "How much tokens do you want to buy?",
   "buy_confirm_message_0": "Are you sure?",
+  "how_much_buy_message": "How much tokens do you want to buy?",
   "buy_confirm_message_1": "Are you sure you want to buy",
   "for": "for",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################
@@ -322,7 +375,7 @@ export const messages = {
   "please_keep_in_mind": "Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your own wallet or exchange to the account address of testnet.",
   "tron_foundation": "TRON Foundation",
   "trx_for_testing": "TRX for testing will be sent to your testing account once you successfully apply through account management.",
-  "dear_users,": "Dear users,",
+  "dear_users": "Dear users,",
   "finished": "Finished",
   "token": "token",
   "url": "url",
@@ -346,6 +399,7 @@ export const messages = {
   "quantity": "quantity",
   "percentage": "Percentage",
   "loading_token": "Loading Token",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -373,7 +427,6 @@ export const messages = {
   "issue_a_token": "Issue a Token",
   "issue_token": "Issue Token",
   "token_name": "token name",
-  "token_abbr": "token Abbreviation",
   "total_issued": "Total issued",
   "registered": "Registered",
   "abbreviation": "Abbreviations",
@@ -422,7 +475,17 @@ export const messages = {
   "no_url_error": "Web URL is required",
   "past_starttime_error": "The starting date is in the past",
   "no_transactions": "No Transactions",
-  "no_transfers": "No Transfers",
+  "errors_in_form": "There are errors in the form",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Description may not be longer then 200 characters",
+  "token_creation_error": "An error occurred while trying to create the token",
+  "tokenname_error_message_0": "Name may not be longer then 32 characters",
+  "tokenname_error_message_1": "Name may only contain a-Z characters",
+  "abbreviation_required": "Abbreviation is required",
+  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
+  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
 
 /*
 ##################################################################################
@@ -431,15 +494,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "Highest Productivity",
-  "Lowest Productivity": "Lowest Productivity",
-  "productivity": "productivity",
-  "rewards": "rewards",
+  "highest_productivity": "Highest Productivity",
+  "lowest_productivity": "Lowest Productivity",
   "Super Representatives": "Super Representatives",
   "Super Representative Candidates": "Super Representative Candidates",
   "loading_representatives": "Loading Representatives",
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
@@ -486,6 +548,7 @@ export const messages = {
   "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
   "submissing_vote_message_1": "You may redistribute your votes anytime you like",
   "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "loading_super_representatives": "Loading Super Representatives",
 
 /*
 ##################################################################################
@@ -514,7 +577,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "node_tester_msg": "Insert the IP of you node to test GRPC connection",
+  "node_tester_msg": "Insert the IP of your node to test GRPC connection",
   "node_tester_stop": "Stop testing",
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Response Time",
@@ -566,15 +629,14 @@ export const messages = {
   "save_keystore_file": "Save Your Keystore File",
   "download_keystore_file": "Download Encrypted Key",
   "do_not_lose_it": "Do not lose it!",
-  "do_not_share_it": "Do not share it!",
-  "make_a_backup": "Make a backup!",
   "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
+  "do_not_share_it": "Do not share it!",
   "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
+  "make_a_backup": "Make a backup!",
   "make_a_backup_message_0": "Just in case your laptop is set on fire.",
   "save_private_key": "Save Your Private Key",
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-  "send_to_following_address": "Send to the following address",
 
 };

@@ -37,32 +37,32 @@ class Live extends React.Component {
       filters: {},
       filterButtons: [
         {
-          label: 'Transactions',
+          label: tu("transactions"),
           icon: 'fa fa-exchange-alt',
-          id: 'transaction',
+          id: 'transfer',
         },
         {
-          label: 'Votes',
+          label: tu("votes"),
           icon: 'fa fa-bullhorn',
           id: 'vote',
         },
         {
-          label: 'Asset Participation',
+          label: tu("asset_participation"),
           icon: 'fa fa-arrow-right',
           id: 'asset-participate',
         },
         {
-          label: 'Token Created',
+          label: tu("token_created"),
           icon: 'fa fa-plus-circle',
           id: 'asset-create',
         },
         {
-          label: 'Witness',
+          label: tu("witness"),
           icon: 'fa fa-eye',
           id: 'witness-create',
         },
         {
-          label: 'Account',
+          label: tu("account"),
           icon: 'fa fa-user',
           id: 'account-name-changed',
         },
@@ -138,7 +138,10 @@ class Live extends React.Component {
             <AddressLink address={event.transferFromAddress} truncate={false} />{' '}
             <i className="fa fa-arrow-right"/>{' '}
             <AddressLink address={event.transferToAddress} truncate={false} /><br/>
-            <FormattedNumber value={event.amount / ONE_TRX}/> {event.tokenName}
+            <FormattedNumber
+              maximumFractionDigits={7}
+              minimunFractionDigits={7}
+              value={event.amount / ONE_TRX}/> {event.tokenName}
           </Row>
         );
 

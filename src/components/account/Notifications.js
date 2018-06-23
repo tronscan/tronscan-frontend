@@ -6,6 +6,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {channel} from "../../services/api";
 import {connect} from "react-redux";
 import {reloadWallet} from "../../actions/wallet";
+import {tu} from "../../utils/i18n";
 
 function Notification({ account, notification }) {
 
@@ -147,8 +148,8 @@ class Notifications extends React.Component {
     if (await requestNotifyPermissions()) {
       this.setState({
         modal: (
-          <SweetAlert success title="Notifications Enabled" onConfirm={() => this.setState({ modal: null, })}>
-            Desktop Notifications Enabled!
+          <SweetAlert success title={tu("notifications_enabled")} onConfirm={() => this.setState({ modal: null, })}>
+            {tu("desktop_notification_enabled")}
           </SweetAlert>
         )
       });
@@ -177,7 +178,7 @@ class Notifications extends React.Component {
         <ul className="dropdown-menu dropdown-menu-right">
           {
             notifications.length === 0 &&
-            <h6 className="dropdown-header text-center">No notifications</h6>
+            <h6 className="dropdown-header text-center">{tu("no_notifications")}</h6>
           }
           {
             notifications.length > 0 &&
@@ -192,7 +193,7 @@ class Notifications extends React.Component {
           {
             this.shouldRequestForPermission() &&
               <a href="javascript:;" className="dropdown-item" onClick={this.enableDesktopNotifications}>
-                Enable Desktop Notifications
+                {tu("enable_desktop_notifications")}
               </a>
           }
         </ul>

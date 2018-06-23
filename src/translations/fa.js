@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.1-11062018-1                                                #
-#         Update Date: 11.06.2018                                                #
+#         Version: 1.5-20062018                                                  #
+#         Update Date: 20.06.2018                                                #
 #         Language: Persian                                                      #
 #         Status: Second Draft                                                   #
-#         Number of checks: 2                                                    #
+#         Number of checks: 3                                                    #
 #         Participants: Mr.Babak(patoghfa)                                       #
 #                                                                                #
 ##################################################################################
@@ -40,14 +40,12 @@ export const messages = {
   "app_title": "Tron Protocol",
   "password": "رمز ورود",
   "money_price": "قیمت پول",
+  "price": "قیمت",
   "blocks": "بلوک ها",
   "block": "بلوک",
-  "balance": "مانده حساب",
-  "bandwidth": "پهنای باند",
   "name": "نام",
   "website": "وب سایت",
   "address": "آدرس",
-  "price": "قیمت",
   "sign_out": "خروج",
   "sign_in": "ورود",
   "register_login": "ثبت نام / ورود",
@@ -55,32 +53,49 @@ export const messages = {
   "login": "ورود",
   "height": "ارتفاع",
   "age": "سن",
-  "produced by": "تولید شده توسط",
   "bytes": "بایت",
-  "created": "ایجاد شده",
-  "Contract": "قرارداد",
+  "produced by": "تولید شده توسط",
+  "contract": "قرارداد",
   "from": "از",
   "to": "به آدرس",
   "value": "مقدار",
   "total_accounts": "کل حساب ها",
   "submit": "ارسال",
+  "send": "ارسال",
   "receive": "دریافت",
   "supply": "عرضه",
   "view": "نمایش",
   "view_all": "نمایش همه",
   "create": "ایجاد",
   "country": "کشور",
-  "send": "ارسال",
   "amount": "مقدار",
   "my_vote": "رای من",
   "submit_votes": "آرای ارسالی",
   "accounts": "حساب ها",
+  "created": "ایجاد شده",
   "exchange": "مبادله",
   "next": "بعدی",
   "copied_to_clipboard": "به حافظه کپی شد",
-  "cancel": "Cancel",
-  "reset": "Reset",
-  "error": "Error",
+  "cancel": "لغو",
+  "reset": "بازنشانی",
+  "error": "خطا",
+  "unlock_keyFile": "Unlock KeyFile",
+  "enter_password_message": "شما باید رمز عبور خود را وارد کنید",
+  "password_incorrect": "رمز عبور اشتباه است",
+  "try_again": "دوباره امتحان کنید",
+  "wallet_unlocked": "Wallet Unlocked",
+  "weak": "ضعیف",
+  "okay": "باشه",
+  "good": "خوب",
+  "strong": "قوی",
+  "secure": "امن است",
+  "too_short": "خیلی کوتاه",
+  "status": "status",
+  "no_notifications": "No notifications",
+  "enable_desktop_notifications": "Enable Desktop Notifications",
+  "desktop_notification_enabled": "Desktop Notifications Enabled!",
+  "notifications_enabled": "Notifications Enabled",
+  "contract_type": "Contract Type",
 
 /*
 ##################################################################################
@@ -97,14 +112,15 @@ export const messages = {
   "statistics": "آمار",
   "markets": "بازار ها",
   "tools": "ابزار",
+  "transaction_viewer": "ناظر تراکنش",
+  "node_tester": "تست کننده نود",
+  "system": "سیستم",
   "news": "اخبار",
   "help": "راهنمایی",
   "nodes": "نود ها",
   "votes": "رای ها",
   "account": "حساب",
-  "transaction_viewer": "ناظر تراکنش",
-  "node_tester": "تست کننده نود",
-  "system": "سیستم",
+  "tokens": "توکن ها",
   "overview": "خلاصه ای",
   "participate": "مشارکت",
 
@@ -138,13 +154,21 @@ export const messages = {
   "last_page": "صفحه آخر",
   "page": "صفحه",
   "of": "از",
-  "last_block": "آخرین بلوک",
-  "total_supply": "کل عرضه",
   "most_nodes": "بیشترین نود ها",
   "loading_nodes": "نود های بارگزاری شده",
   "Hostname": "نام میزبان",
   "Last Update": "اخرین بروزرسانی",
   "first_node_sync_message": "در انتظار همگام سازی اولین نود، لطفا چند دقیقه دیگر دوباره امتحان کنید",
+  "last_block": "آخرین بلوک",
+  "blocks_produced": "بلوک های ایجاد شده ",
+  "blocks_missed": "بلوک های از دست رفته",
+  "productivity": "بهره وری",
+  "rewards": "پاداش ها",
+  "token_created": "Token created",
+  "witness": "Witness",
+  "asset_participation": "Asset participation",
+  "loading_transaction": "Loading Transaction",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -166,22 +190,29 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "تنظیم نام",
+  "unique_account_message": "شما فقط می توانید نام حساب خود را یک بار تنظیم کنید",
+  "name_to_short": "Name is to short",
+  "name_to_long": "Name is to long",
+  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "change_name": "تغییر نام",
+  "account_name": "نام کاربری",
   "show_qr_code": "نمایش کد QR",
+  "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
+  "bandwidth": "پهنای باند",
+  "balance": "مانده حساب",
+  "tron_power": "Tron Power",
+  "transactions": "تراکنش ها",
+  "no_transfers": "بدون انتقال",
+  "no_tokens": "بدون توکن",
   "free_bandwidth": "پهنای باند رایگان",
   "expires": "انقضاء",
   "have_been_added_to_your_account": "به حساب شما افزوده شده است!",
   "information_message_1": "بعد از درخواست ترون شما 10000 ترون برای تست در شبکه دریافت میکنید",
   "information_message_2": " شما به ازای هر حساب فقط یک بار میتوانید ترون درخواست کنید ",
   "request_trx_for_testing": "درخواست ترون برای تست",
-  "tron_power": "Tron Power",
-  "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
-  "transactions": "تراکنش ها",
-  "tokens": "توکن ها",
   "token_balances": "موجودی توکن",
   "produced_blocks": "بلوک های تولید شده",
   "voters": "رای دهندگان",
-  "no_tokens": "بدون توکن",
-  "issued_token": "توکن صادر شده",
   "progress": "پیشرفت",
   "transactions_count": "{transactions, plural, one {transaction} other {transactions}}",
   "issuer": "صادر کننده",
@@ -189,7 +220,9 @@ export const messages = {
   "current": "در حال حاضر",
   "trx_received": "TRX دریافت شد",
   "test_trx_temporarily_unavailable_message": "تست تی آرایکس به طور موقت در دسترس نیست لطفا بعدا دوباره امتحان کنید",
-  "not_enough_trx": "Not enough TRX",
+  "not_enough_trx": " کافی نیست TRX",
+  "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
+  "send_to_following_address": "ارسال به آدرس زیر",
 
 /*
 ##################################################################################
@@ -200,17 +233,28 @@ export const messages = {
 */
   "freeze": "مسدود",
   "unfreeze": "آزاد",
-  "frozen_supply": "موجودی مسدود",
   "freeze_trx_least": "شما حداقل به یک تی آرایکس برای مسدود کردن نیاز دارید",
   "unable_unfreeze_trx_message": "تی آرایکس را نمیشود آزاد کرد این امر می تواند ناشی از آن باشد که حداقل دوره ی مسدودی هنوز به دست نیامده است.",
   "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو Tron و فعال کردن ویژگی های اضافی باشد.
     به عنوان مثال، با قدرت Tron شما می توانید `,
+  "freeze_trx_premessage_link": "به نمایندگان ممتاز رای دهید",
   "freeze_trx_premessage_1": ` توکن های مسدود به مدت 3 روز "قفل شده اند". در این دوره تی آرایکس های مسدود قابل خرید و فروش نیستند.
    بعد از این دوره شما می توانید تی آرایکس ها را آزاد کنید و توکن ها رو بفروشید.`,
-  "freeze_trx_premessage_link": "به نمایندگان ممتاز رای دهید",
   "trx_amount": "مقدار TRX",
   "token_freeze_confirm_message_0": "تایید مسدود سازی ",
   "token_freeze_confirm_message_1": "برای حداقل 3 روز",
+  "frozen_supply": "موجودی مسدود",
+  "tokens_unfrozen": "Tokens Unfrozen",
+  "success_tokens_unfrozen_message": "نشانه های موفقیت آمیز باز کردن",
+  "unable_to_unfreeze": "نمیتونم بریزم",
+  "Unable_tokens_unfrozen_message": "قادر به فشرده سازی نشانه ها نیست",
+  "tokens_frozen": "نشانه های منجمد",
+  "successfully_frozen": "نشانه های منجمد",
+  "name_changed": "نام تغییر کرد",
+  "successfully_changed_name_to_message": "تغییر نام به صورت موفقیت آمیز بود",
+  "unable_to_rename_title": "قادر به تغییر نام نیست",
+  "unable_to_rename_message": "در هنگام بهروزرسانی نام حسابتان، چیزی اشتباه رفت، لطفا بعدا دوباره امتحان کنید",
+  "unfreeze_trx_confirm_message": "آیا مطمئن هستید که می خواهید TRX را آزاد کنید؟",
 
 /*
 ##################################################################################
@@ -253,11 +297,14 @@ export const messages = {
   "successful_send": "با موفقیت پرداخت شد",
   "confirm_transaction": "تایید تراکنش",
   "last_confirmed": "آخرین تایید ",
-  "blocks_produced": "بلوک های ایجاد شده ",
   "trx_produced": "تراکنش های ایجاد شده",
-  "blocks_missed": "بلوک های از دست رفته",
   "do_not_send_1": "لطفا هیچ ترونی از آدرس کیف پول یا اکسچنج به این حساب واریز نکنید",
   "go_to_votelist": "برو به لیست رای",
+  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_1": "fee.",
+  "invalid_url": "Invalid URL",
+  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
 
 /*
 ##################################################################################
@@ -267,9 +314,12 @@ export const messages = {
 ##################################################################################
 */
   "name_of_the_token": "نام توکن",
-  "create_token": "ایجاد توکن",
   "token_message": "نام برای توکن",
+  "token_abbr": "علامت اختصاری توکن",
   "abbr_message": "نام اختصاری برای توکن",
+  "total_supply": "کل عرضه",
+  "issued_token": "توکن صادر شده",
+  "create_token": "ایجاد توکن",
   "description": "توضیحات",
   "description_url": "آدرس سایت توضیحات",
   "quote_token_amount": "مقدار کافی توکن",
@@ -283,6 +333,8 @@ export const messages = {
   "trx_token_wallet_requirement": "شما باید یک کیف پول باز کنید تا بتوانید یک توکن ایجاد کنید",
   "invalid_address": "آدرس غیر معتبر است",
   "insufficient_tokens": "عدم وجود توکن کافی",
+  "fill_a_valid_number": "Please fill a valid number",
+  "fill_a_valid_address": "Please fill a valid address",
   "make_another_transaction": "تراکنش دیگری انجام دهید",
   "token_exchange_confirm": "تایید تراکنش توکن",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
@@ -299,10 +351,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
+  "buy_confirm_message_0": "شما مطمئن هستید؟",
   "how_much_buy_message": "شما چقدر توکن می خواهید خرید کنید؟",
-  "buy_confirm_message_0": "Are you sure?",
-  "buy_confirm_message_1": "Are you sure you want to buy",
-  "for": "for",
+  "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
+  "for": "برای",
+  "insufficient_trx": "Insufficient TRX",
+  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
+  "ends": "ends",
+  "starts": "starts",
 
 /*
 ##################################################################################
@@ -317,7 +373,7 @@ export const messages = {
   "please_keep_in_mind": "لطفا توجه داشته باشید، که از آنجا که آدرس حساب ثبت شده شما فقط برای شبکه تست استفاده می شود، تی آر ایکس را از کیف پول خود و یا اکسچنج به آدرس حساب شبکه تست ارسال نکنید",
   "tron_foundation": "بنیاد ترون",
   "trx_for_testing": "0",
-  "dear_users,": "کاربران عزیز",
+  "dear_users": "کاربران عزیز",
   "finished": "پایان یافته",
   "token": "توکن",
   "url": "آدرس اینترنتی",
@@ -341,6 +397,7 @@ export const messages = {
   "quantity": "کمیت",
   "percentage": "درصد",
   "loading_token": "بارگزاری توکن",
+  "voter_percentage": "Voter Percentage",
 
 /*
 ##################################################################################
@@ -368,7 +425,6 @@ export const messages = {
   "issue_a_token": "صدور یک توکن",
   "issue_token": "صدور توکن",
   "token_name": "نام توکن",
-  "token_abbr": "علامت اختصاری توکن",
   "total_issued": "مجموع صادر شده",
   "registered": "ثبت شده",
   "abbreviation": "علامت اختصاری",
@@ -414,7 +470,17 @@ export const messages = {
   "no_url_error": "آدرس وب سایت لازم است",
   "past_starttime_error": "تاریخ شروع گذشته است",
   "no_transactions": "بدون تراکنش",
-  "no_transfers": "بدون انتقال",
+  "errors_in_form": "خطا در فرم وجود دارد",
+  "token_link_message_0": "این نشانه در دسترس خواهد بود",
+  "token_link_message_1": "صفحه توکن",
+  "token_link_message_2": "در چند دقیقه",
+  "description_error_message_0": "توصیف ممکن است طولانی تر از 200 کاراکتر باشد",
+  "token_creation_error": "هنگام تلاش برای ایجاد نشانگر خطایی رخ داد",
+  "tokenname_error_message_0": "نام ممکن است بیش از 32 حرف باشد",
+  "tokenname_error_message_1": "نام ممکن است فقط شامل a-z باشد",
+  "abbreviation_required": "اختصار مورد نیاز است",
+  "abbreviation_error_message_0": "اختصار ممکن است طولانی تر از 5 حرف باشد",
+  "abbreviation_error_message_1": "اختصار ممکن است فقط شامل عناصر a-z باشد",
 
 /*
 ##################################################################################
@@ -423,15 +489,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "Highest Productivity": "بالاترین بهره وری",
-  "Lowest Productivity": "پایین ترین بهره وری",
-  "productivity": "بهره وری",
-  "rewards": "پاداش ها",
+  "highest_productivity": "بالاترین بهره وری",
+  "lowest_productivity": "پایین ترین بهره وری",
   "Super Representatives": "نمایندگان ممتاز",
   "Super Representative Candidates": "کاندیدهای نماینده ممتاز",
   "loading_representatives": "بارگزاری نمایندگان",
   "address_not_super_representative": "این آدرس یک نماینده ممتاز نیست",
   "unable_load_representatives_page_message": "صفحه قابل بارگزاری نیست، ممکن است این اتفاق اگر آدرس نامعتبر باشد، بیفتد ، آدرس نماینده ممتاز نیست یا نماینده این صفحه را پیکربندی نکرده است",
+  "loading_representative": "Loading Representative",
 
 /*
 ##################################################################################
@@ -467,17 +532,18 @@ export const messages = {
   "live_ranking_msg": "هر 15 ثانیه بروزرسانی می کند. رأی های جدید ممکن است قبل از شمارش، 1-2 دقیقه طول بکشد",
   "candidate": "کاندید",
   "current_votes": "رأی فعلی",
-  "click_to_start_voting": "Click here to Start Voting",
-  "votes_remaining_message": "Votes Remaining",
-  "open_wallet_start_voting_message": "Open wallet to start voting",
-  "thanks_submitting_vote_message": "Thanks for submitting your vote!",
-  "need_min_trx_to_vote_message": "You need at least 1 TRX to be able to vote",
-  "to_much_votes_massage": "You spend to much votes!",
-  "all_votes_are_used_message": "All votes are used!",
-  "submissing_vote_message_title": "Thank you for voting!",
+  "click_to_start_voting": "برای شروع رأی گیری اینجا را کلیک کنید",
+  "votes_remaining_message": "رأی باقی مانده است",
+  "open_wallet_start_voting_message": "کیسه باز برای شروع رأی گیری",
+  "thanks_submitting_vote_message": "متشکرم برای ارسال رای شما",
+  "need_min_trx_to_vote_message": "شما باید حداقل یک TRX داشته باشید تا بتوانید رای دهید",
+  "to_much_votes_massage": "شما به تعداد زیادی رای می دهید",
+  "all_votes_are_used_message": "همه آرا استفاده می شود",
+  "submissing_vote_message_title": "از رای شما سپاسگذاریم.",
   "submissing_vote_message_0": "Your votes are successfully submitted, they will take effect when the next voting cycle starts.",
-  "submissing_vote_message_1": "You may redistribute your votes anytime you like",
-  "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
+  "submissing_vote_message_1": "شما می توانید رای خود را در هر زمان که دوست دارید منتشر کنید",
+  "submitting_vote_error_message": "هنگام رای دادن خود اشتباهی رخ داد. لطفا دوباره امتحان کنید. ",
+  "loading_super_representatives": "بارگذاری Super Representatives",
 
 /*
 ##################################################################################
@@ -558,15 +624,14 @@ export const messages = {
   "save_keystore_file": "فایل Keystore خود را ذخیره کنید",
   "download_keystore_file": "کلید رمزگذاری را دانلود کنید",
   "do_not_lose_it": "از دستش نده!",
-  "do_not_share_it": "آن را به اشتراک نگذارید!",
-  "make_a_backup": "تهیه نسخه پشتیبان!",
   "do_not_lose_it_message_0": "بنیاد ترون نمی تواند به شما در بازیابی کلید گم شده کمک کند.",
+  "do_not_share_it": "آن را به اشتراک نگذارید!",
   "do_not_share_it_message_0": "اگر از این فایل در یک سایت مخرب استفاده کنید، ممکن است پول شما دزدیده شود.",
+  "make_a_backup": "تهیه نسخه پشتیبان!",
   "make_a_backup_message_0": "فقط در صورتی که لپ تاپ شما محافظ داشته باشد.",
   "save_private_key": "کلید خصوصی خود را ذخیره کنید",
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
-  "send_to_following_address": "ارسال به آدرس زیر",
 
 };

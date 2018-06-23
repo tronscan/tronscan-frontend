@@ -4,11 +4,10 @@ import {loadWitnesses} from "../../actions/network";
 import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {FormattedNumber} from "react-intl";
-import _, {maxBy, sortBy} from "lodash";
+import _, {filter, maxBy, sortBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
-import {BLOCK_REWARD, SR_MAX_COUNT} from "../../constants";
+import {SR_MAX_COUNT} from "../../constants";
 import {WidgetIcon} from "../common/Icon";
-import {TRXPrice} from "../common/Price";
 
 class Representatives extends Component {
 
@@ -25,7 +24,9 @@ class Representatives extends Component {
       productivity: (w.producedTotal / (w.producedTotal + w.missedTotal)) * 100,
     }));
 
-    return sortBy(witnesses, w => w.votes * -1).map((w, index) => ({ ...w, index }));
+    return sortBy(filter(witnesses, w => w.producer), w => w.votes * -1)
+      .concat(sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1))
+      .map((w, index) => ({ ...w, index }));
   }
 
   isinSync (account) {
@@ -34,9 +35,7 @@ class Representatives extends Component {
     return account.latestBlockNumber > maxBlockNumber - SR_MAX_COUNT;
   }
 
-  renderWitnesses() {
-
-    let witnesses = this.getWitnesses();
+  renderWitnesses(witnesses) {
 
     if (witnesses.length === 0) {
       return (
@@ -48,8 +47,8 @@ class Representatives extends Component {
       );
     }
 
-    let superRepresentatives = witnesses.slice(0, SR_MAX_COUNT);
-    let candidateRepresentatives = witnesses.slice(SR_MAX_COUNT);
+    let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
+    let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
 
     return (
       <div className="card border-0">
@@ -58,12 +57,12 @@ class Representatives extends Component {
             <tr>
               <th className="text-right d-none d-lg-table-cell">#</th>
               <th>{tu("name")}</th>
-              <th className="text-right text-nowrap">{tu("Status")}</th>
+              <th className="text-right text-nowrap">{tu("status")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
+              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("transactions")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("rewards")}</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +119,7 @@ class Representatives extends Component {
                   <h3 className="text-success">
                     <FormattedNumber value={mostProductive.productivity}/>%
                   </h3>
-                  {tu("Highest Productivity")}<br/>
+                  {tu("highest_productivity")}<br/>
                   <AddressLink address={mostProductive.address}>
                     {mostProductive.name || mostProductive.url}
                   </AddressLink>
@@ -135,7 +134,7 @@ class Representatives extends Component {
                   <h3 className="text-danger">
                     <FormattedNumber value={leastProductive.productivity}/>%
                   </h3>
-                  {tu("Lowest Productivity")}<br/>
+                  {tu("lowest_productivity")}<br/>
                   <AddressLink address={leastProductive.address}>
                     {leastProductive.name || leastProductive.url}
                   </AddressLink>
@@ -146,7 +145,7 @@ class Representatives extends Component {
         }
         <div className="row mt-3">
           <div className="col-md-12">
-            {this.renderWitnesses()}
+            {this.renderWitnesses(witnesses)}
           </div>
         </div>
       </main>
@@ -159,7 +158,16 @@ function Row({account, showSync = true}) {
     <tr key={account.address}>
       <td className="text-right d-none d-lg-table-cell">{account.index + 1}</td>
       <td>
-        <AddressLink address={account.address}>{account.name || account.url}</AddressLink>
+        {
+          account.name ?
+            <Fragment>
+              <AddressLink address={account.address}>
+                {account.name}<br/>
+                <span className="small text-muted">{account.url}</span>
+              </AddressLink>
+            </Fragment>  :
+            <AddressLink address={account.address} >{account.url}</AddressLink>
+        }
       </td>
       {
         showSync ?
@@ -180,6 +188,9 @@ function Row({account, showSync = true}) {
       <td className="text-right d-none d-md-table-cell">
         <FormattedNumber value={account.missedTotal} />
       </td>
+      <td className="text-right d-none d-md-table-cell text-nowrap">
+        <FormattedNumber value={account.producedTrx} />
+      </td>
       <td className="text-right d-none d-sm-table-cell">
         {
           account.producedTotal > 0 ? (
@@ -192,9 +203,6 @@ function Row({account, showSync = true}) {
           ) : '-'
         }
 
-      </td>
-      <td className="text-right d-none d-md-table-cell text-nowrap">
-        <TRXPrice amount={account.producedTotal * BLOCK_REWARD} />
       </td>
     </tr>
   )

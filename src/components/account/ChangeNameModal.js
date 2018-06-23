@@ -18,15 +18,15 @@ class ChangeNameModal extends Component {
     let {name} = this.state;
 
     if (name.length < 8) {
-      return [false, "Name is to short"]
+      return [false, tu("name_to_short")]
     }
 
     if (name.length > 32) {
-      return [ false, "Name is to long"];
+      return [ false, tu("name_to_long")];
     }
 
     if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-      return [false, "Name may only contain a-z A-Z 0-9"];
+      return [false, tu("permitted_characters_message")];
     }
 
     return [true];
@@ -62,10 +62,10 @@ class ChangeNameModal extends Component {
 
     return (
       <Modal isOpen={true} toggle={this.cancel} fade={false} size="lg" className="modal-dialog-centered">
-        <ModalHeader className="text-center" toggle={this.cancel}>Set Name</ModalHeader>
+        <ModalHeader className="text-center" toggle={this.cancel}>{tu("set_name")}</ModalHeader>
         <ModalBody>
           <p className="text-center">
-            <label className="text-danger">You may only set your account name once!</label>
+            <label className="text-danger">{tu("unique_account_message")}</label>
             <input className={"form-control text-center " + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
                    type="text"
                    placeholder="Account Name"
@@ -80,7 +80,7 @@ class ChangeNameModal extends Component {
               <button
                 disabled={disabled || !isValid}
                 className="btn btn-success"
-                onClick={this.confirm}>{tu("Change Name")}</button>
+                onClick={this.confirm}>{tu("change_name")}</button>
             </p>
           </div>
         </ModalBody>
@@ -100,4 +100,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangeNameModal)
-

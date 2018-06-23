@@ -30,6 +30,7 @@ import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
 import OpenWallet from "./components/wallet/Access/index";
+import LaunchStatus from "./components/LaunchStatus";
 
 export const routes = [
   {
@@ -253,6 +254,12 @@ export const routes = [
         label: "report_an_error",
       },
     ]
+  },
+  {
+    path: "/launch",
+    label: "launch",
+    showInMenu: false,
+    component: LaunchStatus
   },
   {
     path: "/wallet/new",

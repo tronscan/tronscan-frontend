@@ -93,7 +93,7 @@ export default class Transactions extends React.Component {
           <tr>
             <th className="" style={{width: 125 }}>{tu("age")}</th>
             <th className="">{tu("hash")}</th>
-            <th className="" style={{width: 125 }}>{tu("contractType")}</th>
+            <th className="" style={{width: 125 }}>{tu("contract_type")}</th>
           </tr>
           </thead>
           <tbody>

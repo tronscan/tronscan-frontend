@@ -108,7 +108,8 @@ export default class TestNetRequest extends React.Component {
   canRequest = () => {
     let {verificationCode, waitingForTrx} = this.state;
 
-    return !waitingForTrx && !!verificationCode;
+    //return !waitingForTrx && !!verificationCode;
+    return false;
   };
 
   render() {
@@ -124,8 +125,7 @@ export default class TestNetRequest extends React.Component {
         {
           success ?
             <Alert color="success">
-              Successfully requested TRX. If you did not receive any TRX then
-              there is no test TRX available right now and you should try again at a later time.
+              {tu("information_message_3")}
             </Alert> :
             <React.Fragment>
               <p className="d-flex justify-content-center">
@@ -136,7 +136,7 @@ export default class TestNetRequest extends React.Component {
                   expiredCallback={this.onExpired}
                   verifyCallback={this.onVerify} />
               </p>
-              <button className="btn btn-primary"
+              <button className="btn btn-secondary"
                       onClick={this.requestTrx}
                       disabled={!this.canRequest()}>
                 {tu("request_trx_for_testing")}
