@@ -427,7 +427,7 @@ class VoteOverview extends React.Component {
         {
           loading ? <div className="card mt-2">
               <TronLoader>
-                Loading Super Representatives
+                {tu("loading_super_representatives")}
               </TronLoader>
             </div> :
             <div className="row mt-2">

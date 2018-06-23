@@ -144,7 +144,7 @@ class Block extends React.Component {
                 <table className="table table-hover m-0">
                   <tbody>
                   <tr>
-                    <th>{tu("Status")}:</th>
+                    <th>{tu("status")}:</th>
                     <td>
                       {
                         block.confirmed ?

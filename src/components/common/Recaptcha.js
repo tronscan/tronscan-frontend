@@ -103,16 +103,18 @@ export default class Recaptcha extends Component {
   }
 
   renderGrecaptcha = () => {
-    this.state.widget = grecaptcha.render(this.props.elementID, {
-      sitekey: this.props.sitekey,
-      callback: (this.props.verifyCallback) ? this.props.verifyCallback : undefined,
-      theme: this.props.theme,
-      type: this.props.type,
-      size: this.props.size,
-      tabindex: this.props.tabindex,
-      hl: this.props.hl,
-      badge: this.props.badge,
-      'expired-callback': (this.props.expiredCallback) ? this.props.expiredCallback : undefined,
+    this.setState({
+      widget: grecaptcha.render(this.props.elementID, {
+          sitekey: this.props.sitekey,
+          callback: this.props.verifyCallback || undefined,
+          theme: this.props.theme,
+          type: this.props.type,
+          size: this.props.size,
+          tabindex: this.props.tabindex,
+          hl: this.props.hl,
+          badge: this.props.badge,
+          'expired-callback': this.props.expiredCallback || undefined,
+      })
     });
 
     if (this.props.onloadCallback) {

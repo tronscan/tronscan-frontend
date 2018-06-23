@@ -97,7 +97,7 @@ class TokenCreate extends Component {
         this.setState({
           submitMessage: (
             <Alert color="warning" className="text-center">
-              An error occurred while trying to create the token
+              {tu("token_creation_error")}
             </Alert>
           )
         });
@@ -138,25 +138,25 @@ class TokenCreate extends Component {
       if (name.length === 0) {
         newErrors.name = tu("no_name_error");
       } else if (name.length > 32) {
-        newErrors.name = tu("Name may not be longer then 32 characters");
+        newErrors.name = tu("tokenname_error_message_0");
       } else if (!/^[a-zA-Z]+$/i.test(name)) {
-        newErrors.name = tu("Name may only contain a-Z characters");
+        newErrors.name = tu("tokenname_error_message_1");
       }
 
       abbr = trim(abbr);
 
       if (abbr.length === 0) {
-        newErrors.abbr = tu("Abbreviation is required");
+        newErrors.abbr = tu("abbreviation_required");
       } else if (abbr.length > 5) {
-        newErrors.abbr = tu("Abbreviation may not be longer then 5 characters");
+        newErrors.abbr = tu("abbreviation_error_message_0");
       } else if (!/^[a-zA-Z]+$/i.test(abbr)) {
-        newErrors.abbr = tu("Abbreviation may only contain a-Z characters");
+        newErrors.abbr = tu("abbreviation_error_message_1");
       }
 
       if (description.length === 0) {
         newErrors.description = tu("no_description_error");
       } else if (description.length > 200) {
-        newErrors.description = tu("Description may not be longer then 200 characters");
+        newErrors.description = tu("description_error_message_0");
       }
     }
 
@@ -311,9 +311,9 @@ class TokenCreate extends Component {
       return (
         <Alert color="success" className="text-center">
           {tu("token_issued_successfully")}<br/>
-          The token will be available on the{' '}
-          <Link to="/tokens/list">Tokens page</Link>{' '}
-          in a few minutes
+          {tu("token_link_message_0")}{' '}
+          <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
+          {tu("token_link_message_2")}
         </Alert>
       );
     }
@@ -430,7 +430,7 @@ class TokenCreate extends Component {
     if (!loading && confirmed && !valid) {
       submitMessage = (
         <Alert color="warning" className="text-center">
-          There are errors in the form
+          {tu("errors_in_form")}
         </Alert>
       );
     }
