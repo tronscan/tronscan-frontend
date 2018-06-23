@@ -333,6 +333,38 @@ tr a {
   color: #2c2c2c;
 }
 
+.mainnet-countdown-element{
+  min-height: 500px;
+  .mainnet-content{
+    padding-top: 60px;
+    a {
+      color: $red;
+    }
+    .countdown {
+      font-size: 80px;
+      color: $red;
+    }
+  }
+}
+
+.mainnet-stage-element {
+  min-height: 500px;
+  .mainnet-content{
+    padding-top: 0px;
+    a {
+      color: $red;
+    }
+    .mainnet-stage-item{
+      font-size: 18px;
+
+      .completed {
+        padding-right: 20px;
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
 
 .navbar-login
 {

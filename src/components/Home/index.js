@@ -207,6 +207,158 @@ class Home extends Component {
 
 
 
+        <div className="pt-5 pb-5 mainnet-countdown-element bg-white">
+          <div className="container">
+            <div className="mainnet-content">
+              <div className="col-md-12 text-center">
+                <h1>Countdown Mainnet</h1>
+              </div>
+              <div className="col-md-12 text-center countdown">
+                80 : 20 : 11
+              </div>
+              <div className="col-md-12 text-center pt-5 pb-5">
+                  <a href="#stage-1">
+                    <i className="fa fa-arrow-circle-down fa-4x "/>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section id="stage-1">
+        <div  className="pt-5 pb-5 mainnet-stage-element bg-light-grey">
+          <div className="container">
+            <div className="mainnet-content">
+              <div className="col-md-12">
+                <div className="card-body text-center ">
+                  <i className="fa fa-user-astronaut fa-5x"/>
+                  <h2 className="mt-3">GR Election</h2>
+                  <p className="">
+                    Genesis Representatives Elections
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-5 offset-4">
+                <div className="mainnet-stage-item">
+                  <span className="completed">Network Rehearsal Recovery</span>
+                  <span className="text-success float-right">Completed</span>
+                </div>
+                <div className="mainnet-stage-item">
+                  <span className="completed">Mainnet launches 1st rehearsal</span>
+                  <span className="text-success float-right">Completed</span>
+                </div>
+                <div className="mainnet-stage-item">
+                  <span className="completed">Mainnet launches 2nd rehearsal</span>
+                  <span className="text-success float-right">Completed</span>
+                </div>
+              </div>
+              <div className="col-md-12 text-center pt-5 pb-5 text-danger">
+                <a href="#stage-2">
+                  <i className="fa fa-arrow-circle-down fa-4x "/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+
+        <div id="stage-2" className="pt-5 pb-5 mainnet-stage-element bg-white">
+          <div className="container">
+            <div className="mainnet-content">
+              <div className="col-md-12">
+                <div className="card-body text-center ">
+                  <i className="fa fa-shield-alt fa-5x"/>
+                  <h2 className="mt-3">Guardian Phase</h2>
+                  <p className="">
+                    Network Guardians
+                  </p>
+                </div>
+                <div className="col-md-6 offset-4">
+                  <div className=" mainnet-stage-item">
+                    <span className="">Launch of the Guardian Network, waiting for Genesis</span>
+                    <span className="text-success"></span>
+                  </div>
+                  <div className=" mainnet-stage-item">
+                    <span className="">Designated GBN (Genesis Boot Node)</span>
+                    <span className="text-success"></span>
+                  </div>
+                </div>
+                <div className="col-md-12 text-center  pt-5 pb-5">
+                  <a href="#stage-3">
+                    <i className="fa fa-arrow-circle-down fa-4x "/>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stage-3" className="pt-5 pb-5 mainnet-stage-element bg-light-grey">
+          <div className="container">
+            <div className="mainnet-content">
+              <div className="col-md-12">
+                <div className="card-body text-center ">
+                  <i className="fa fa-burn fa-5x"/>
+                  <h2 className="mt-3">Genesis Phase</h2>
+                  <p className="">
+                    Launch of Mainnet
+                  </p>
+                </div>
+                <div className="col-md-6 offset-4">
+                  <div className="mainnet-stage-item">
+                    <span className="">GBN produces Genesis Block</span>
+                    <span className="text-success"></span>
+                  </div>
+                  <div className="mainnet-stage-item">
+                    <span className="">GBN sets network launching parameters and notifies other GRs</span>
+                    <span className="text-success"></span>
+                  </div>
+                  <div className="mainnet-stage-item">
+                    <span className="">GBN launches; GRs sync data</span>
+                    <span className="text-success"></span>
+                  </div>
+                  <div className="mainnet-stage-item">
+                    <span className="">Start of exchange integration with TRON’s mainnet</span>
+                    <span className="text-success"></span>
+                  </div>
+                  <div className="mainnet-stage-item">
+                    <span className="">SRs start voting</span>
+                    <span className="text-success"></span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-12 text-center pt-5 pb-5">
+                <a href="#stage-final">
+                  <i className="fa fa-arrow-circle-down fa-4x "/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stage-final" className="pt-5 pb-5 mainnet-stage-element bg-white">
+          <div className="container">
+            <div className="mainnet-content">
+              <div className="col-md-12">
+                <div className="card-body text-center ">
+                  <i className="fa fa-book fa-5x"/>
+                  <h2 className="mt-3">Constitutionalism</h2>
+                  <p className="">
+                    Entering the Constitutional Era
+                  </p>
+                </div>
+                <div className="col-md-6 offset-4">
+                  <div className="mainnet-stage-item">
+                    <span className="">Begin of the Constitutional Era after SRs replace all GRs</span>
+                    <span className="text-success"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div className="py-5">
           <div className="container">
             <div className="row pt-5 pb-5">
