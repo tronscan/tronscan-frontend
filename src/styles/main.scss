@@ -168,7 +168,7 @@ tr a {
 
 .page-link {
   color: #333333;
-
+  padding: 0.5rem 0.5rem;
   :hover{
     color: $dark-red;
     transition: color 0.1s ease-in;
@@ -598,4 +598,17 @@ tr a {
   display: table-cell;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.inputForPaging {
+  height: 20px;
+  width: 60px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  position: relative;
+}
+.selectForPaging {
+  margin-top:-5px;
+  margin-bottom:-5px;
 }

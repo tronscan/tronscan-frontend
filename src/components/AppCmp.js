@@ -8,7 +8,7 @@ import {loadSyncStatus, login, loginWithAddress} from "../actions/app";
 
 import ReduxToastr from 'react-redux-toastr'
 
-class App extends Component {
+class AppCmp extends Component {
 
     constructor() {
         super();
@@ -60,4 +60,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default AppCmp;

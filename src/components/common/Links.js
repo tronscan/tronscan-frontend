@@ -9,6 +9,7 @@ import SendModal from "../transfer/Send/SendModal";
 import {tu,t} from "../../utils/i18n";
 import {Truncate} from "./text";
 import {CopyText} from "./Copy";
+import {App} from "../../app";
 
 export const WitnessLink = ({address}) => (
   <Link to={`/witness/${address}`}>{address}</Link>
@@ -28,6 +29,7 @@ export class AddressLink extends React.PureComponent {
       isOpen: false,
       showSend: false,
       modal: null,
+      random: sampleSize('abcdefghijklmnopqrstufwxyzABCDEFGHIJKLMNOPQRSTUFWXYZ1234567890', 12).join(''),
     };
   }
 
@@ -85,16 +87,14 @@ export class AddressLink extends React.PureComponent {
 
   render() {
 
-    let {address = null, width = -1, children, showQrCode = false, includeCopy = false, truncate = true, className = "", ...props} = this.props;
-    let {modal} = this.state;
+    let {address = null, width = -1, children, showQrCode = false, wrapClassName, includeCopy = false, truncate = true, className = "", ...props} = this.props;
+    let {modal, random} = this.state;
 
     let style = {};
 
     if (width !== -1) {
       style.maxWidth = width;
     }
-
-    let random = sampleSize('abcdefghijklmnopqrstufwxyzABCDEFGHIJKLMNOPQRSTUFWXYZ1234567890', 12).join('');
 
     let wrap = (
       <Fragment>
@@ -108,7 +108,6 @@ export class AddressLink extends React.PureComponent {
         {
           includeCopy &&
           <CopyText text={address} className="ml-1"/>
-
         }
       </Fragment>
     );
@@ -122,7 +121,7 @@ export class AddressLink extends React.PureComponent {
     }
 
     return (
-      <Fragment>
+      <span className={wrapClassName}>
         {modal}
         <ContextMenuTrigger id={random}>
           {wrap}
@@ -133,7 +132,7 @@ export class AddressLink extends React.PureComponent {
           </a>
         }
         {this.renderContextMenu(random)}
-      </Fragment>
+      </span>
     )
   }
 }
@@ -151,6 +150,30 @@ export class ExternalLink extends React.PureComponent {
   hideModal = () => {
     this.setState({ modal: null });
   };
+
+  renderExternalLink() {
+    let {url} = this.props;
+
+    let urlHandler = App.getExternalLinkHandler();
+    if (urlHandler) {
+      return (
+        <a className="btn btn-primary"
+           href="javascript:;"
+           onClick={() => {
+             urlHandler(url);
+             this.hideModal();
+           }}
+           target="_blank">Continue to external site</a>
+      );
+    } else {
+      return (
+        <a className="btn btn-primary"
+           href={url}
+           onClick={this.hideModal}
+           target="_blank">Continue to external site</a>
+      );
+    }
+  }
 
   onClickUrl = (ev) => {
 
@@ -170,10 +193,7 @@ export class ExternalLink extends React.PureComponent {
                {tu("private_key_untrusted_website_message_0")}
           </ModalBody>
           <ModalFooter>
-            <a className="btn btn-primary"
-               href={url}
-               onClick={this.hideModal}
-               target="_blank">{tu("continue_to_external_website")}</a>
+            {this.renderExternalLink()}
             &nbsp;
             <Button color="secondary" onClick={this.hideModal}>{tu("cancel")}</Button>
           </ModalFooter>

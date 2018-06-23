@@ -137,7 +137,7 @@ class Block extends React.Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title text-center m-0">
-                    <fa className="fa fa-cube mr-2"/>
+                    <i className="fa fa-cube mr-2"></i>
                     {tu("block")} #{block.number}
                   </h5>
                 </div>
