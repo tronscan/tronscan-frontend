@@ -418,7 +418,6 @@ class Account extends Component {
 
   updateName = async (name) => {
     let {account, currentWallet} = this.props;
-    console.log(currentWallet.address, name);
     let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
 
     if (success) {
