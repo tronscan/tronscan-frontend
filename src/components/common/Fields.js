@@ -9,7 +9,6 @@ export class NumberField extends React.Component {
       let number = ev.target.value;
       number = parseFloat(number);
       if (isNaN(number)) {
-        console.log(number);
         number = '';
       } else {
         number = round(number, decimals);
