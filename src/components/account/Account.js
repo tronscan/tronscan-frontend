@@ -311,10 +311,11 @@ class Account extends Component {
         <SweetAlert
           info
           showCancel
-          confirmBtnText="Unfreeze Assets"
+          confirmBtnText={tu("unfreeze_assets")}
           confirmBtnBsStyle="danger"
           cancelBtnBsStyle="default"
-          title="Are you sure you want to unfreeze unlocked tokens?"
+          cancelBtnText={tu("cancel")}
+          title={tu("sure_to_unfreeze_unlocked_tokens_message")}
           onConfirm={this.unfreezeAssets}
           onCancel={this.hideModal}
         >
@@ -447,8 +448,8 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="URL changed" onConfirm={this.hideModal}>
-            Successfully changed website to <b>{url}</b>
+          <SweetAlert success title={tu("url_changed")} onConfirm={this.hideModal}>
+            {tu("successfully_changed_website_message")} <b>{url}</b>
           </SweetAlert>
         )
       });
@@ -457,8 +458,8 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title="Unable to change URL" onConfirm={this.hideModal}>
-            Something went wrong while updating the website, please try again later
+          <SweetAlert warning title={tu("unable_to_change_website_title")} onConfirm={this.hideModal}>
+            {tu("unable_to_change_website_message")}
           </SweetAlert>
         )
       })
@@ -482,17 +483,18 @@ class Account extends Component {
           input
           showCancel
           cancelBtnBsStyle="default"
-          confirmBtnText="Link Github"
-          title="Link to Github"
+          cancelBtnText={tu("cancel")}
+          confirmBtnText={tu("link_github")}
+          title={tu("link_to_github")}
           placeHolder="github username or https://github.com/{username}/tronsr-template"
           onCancel={this.hideModal}
-          validationMsg="You must enter a URL"
+          validationMsg={tu("you_must_enter_a_url")}
           onConfirm={ async (name) => {
             if (await this.detectGithubUrl(name)) {
               this.setState({
                 modal: (
-                  <SweetAlert success title="Github linked!" onConfirm={this.hideModal}>
-                    Successfully linked to Github!
+                  <SweetAlert success title={tu("github_linked")} onConfirm={this.hideModal}>
+                    {tu("successfully_linked_github")}
                   </SweetAlert>
                 )
               });
@@ -502,16 +504,16 @@ class Account extends Component {
                   <SweetAlert
                     danger
                     showCancel
-                    title="Could not link Github"
+                    title={tu("could_not_link_github")}
                     onCancel={this.hideModal}
                     onConfirm={this.changeGithubURL}>
-                    Could not link to Github, make sure your username is correct!
+                    {tu("unable_to_link_github_message")}
                   </SweetAlert>
                 )
               });
             }
           }}>
-          Input your Github username
+          {tu("enter_your_github_username")}
         </SweetAlert>
       )
     });
@@ -587,9 +589,9 @@ class Account extends Component {
             setTimeout(() => this.props.reloadWallet(), 1200);
             this.setState({
               modal: (
-                <SweetAlert success title="Success" onConfirm={this.hideModal}>
-                  Successfully applied to be Super Representative Candidate.<br/>
-                  Your account will be upgraded shortly.
+                <SweetAlert success title={tu("success")} onConfirm={this.hideModal}>
+                  {tu("successfully_appied_sr_canidate_message_0")} <br/>
+                  {tu("successfully_appied_sr_canidate_message_1")}
                 </SweetAlert>
               )
             });

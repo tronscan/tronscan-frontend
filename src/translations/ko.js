@@ -254,6 +254,8 @@ export const messages = {
   "unable_to_rename_title": "이름 변경 불가",
   "unable_to_rename_message": "계정 이름 업데이트에 실패하였습니다. 다음에 다시 시도해주십시오",
   "unfreeze_trx_confirm_message": "정말로 TRX를 동결 해제합니까?",
+  "unfreeze_assets": "미동결 자산",
+  "sure_to_unfreeze_unlocked_tokens_message": "잠금 해제 된 토큰을 정말로 동결 해제하시겠습니까?",
 
 /*
 ##################################################################################
@@ -306,6 +308,21 @@ export const messages = {
   "private_key_untrusted_website_message_0": "절대로 신뢰하지 않는 웹사이트에 개인키를 입력하지 마십시오.",
   "no_official_tron_website": "는(은) 공식 트론 사이트가 아닙니다.",
   "continue_to_external_website": "외부 사이트로 계속 진행",
+  "url_changed": "URL 변경 완료",
+  "successfully_changed_website_message": "성공적으로 다음과 같이 웹 사이트를 업데이트 하였습니다: ",
+  "unable_to_change_website_title": "URL을 변경할 수 없습니다",
+  "unable_to_change_website_message": "웹 사이트 주소를 업데이트 하는 중에 에러가 발생했습니다. 다음에 다시 해주십시오",
+  "successfully_linked_github": "깃헙(Github)에 성공적으로 연결되었습니다!",
+  "github_linked": "깃헙(Github) 연결 완료!",
+  "unable_to_link_github_message": "깃헙(Github)에 연결하지 못했습니다. 유저네임이 올바른지 확인해주세요!",
+  "could_not_link_github": "깃헙(Github)에 연결하지 못했습니다",
+  "enter_your_github_username":   "깃헙(Github) 유저네임을 입력해주십시오",
+  "link_to_github": "깃헙(Github) 연결",
+  "link_github": "깃헙(Github) 링크",
+  "you_must_enter_a_url": "반드시 URL을 입력해주어야 합니다",
+  "success": "성공",
+  "successfully_appied_sr_canidate_message_0": "성공적으로 슈퍼 대표(SR) 후보에 신청하였습니다.",
+  "successfully_appied_sr_canidate_message_1": "계정이 곧 업그레이드 될 것입니다.",
 
 /*
 ##################################################################################

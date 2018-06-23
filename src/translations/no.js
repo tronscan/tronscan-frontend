@@ -256,6 +256,8 @@ export const messages = {
   "unable_to_rename_title": "Kunne ikke endre navn",
   "unable_to_rename_message": "Noe gikk galt ved oppdatering av kontonavnet ditt, vennligst prøv igjen senere",
   "unfreeze_trx_confirm_message": "Er du sikker på du vil frigi / låse opp dine TRX?",
+  "unfreeze_assets": "Unfreeze Assets",
+  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
 
 /*
 ##################################################################################
@@ -309,6 +311,21 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Aldri oppgi din private nøkkel på en nettside du ikke stoler på.",
   "no_official_tron_website": "er ikke en offisiell Tron nettside.",
   "continue_to_external_website": "Fortsett til ekstern side",
+  "url_changed": "URL changed",
+  "successfully_changed_website_message": "Successfully changed website to ",
+  "unable_to_change_website_title": "Unable to change URL",
+  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
+  "successfully_linked_github": "Successfully linked to Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
+  "could_not_link_github": "Could not link Github",
+  "enter_your_github_username": "Enter your Github username",
+  "link_to_github": "Link to Github",
+  "link_github": "Link Github",
+  "you_must_enter_a_url": "You must enter a URL",
+  "success": "Success",
+  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
 
 /*
 ##################################################################################

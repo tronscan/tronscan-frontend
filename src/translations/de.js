@@ -256,6 +256,8 @@ export const messages = {
   "unable_to_rename_title": "Namensänderung nicht möglich",
   "unable_to_rename_message": "Beim Aktualisieren Ihres Kontonamens ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
   "unfreeze_trx_confirm_message": "Sind Sie sicher, dass Sie TRX auftauen wollen?",
+  "unfreeze_assets": "Freigeben von Vermögenswerten",
+  "sure_to_unfreeze_unlocked_tokens_message": "Sind Sie sicher, dass Sie die entsperrte Token auftauen wollen?",
 
 /*
  ##################################################################################
@@ -311,6 +313,21 @@ export const messages = {
   "private_key_untrusted_website_message_0": "Geben Sie niemals Ihren privaten Schlüssel auf einer nicht vertrauenswürdigen Website ein.",
   "no_official_tron_website": "ist keine offizielle Tron-Webseite.",
   "continue_to_external_website": "Weiter zur externen Webseite",
+  "url_changed": "URL wurde erfolgreich geändert",
+  "successfully_changed_website_message": "Die Webseite wurde erfolgreich in folgender Adresse geändert ",
+  "unable_to_change_website_title": "Die URL kann nicht angepasst werden",
+  "unable_to_change_website_message": "Beim Aktualisieren der Website ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
+  "successfully_linked_github": "Erfolgreich verbunden mit Github!",
+  "github_linked": "Github verknüpft!",
+  "unable_to_link_github_message": "Es konnte keine Verknüpfung zu Github hergestellt werden, bitte überprüfen Sie Ihr Passwort!",
+  "could_not_link_github": "Verbindung zu Github konnte nicht hergestellt werden",
+  "enter_your_github_username": "Geben Sie Ihren Github Benutzername ein.",
+  "link_to_github": "Link zu Github",
+  "link_github": "Github Link",
+  "you_must_enter_a_url": "Bitte gehen Sie eine URL ein.",
+  "success": "Erfolgreich",
+  "successfully_appied_sr_canidate_message_0": "Sie haben sich erfolgreich als Super Repräsentaten beworben.",
+  "successfully_appied_sr_canidate_message_1": "Ihr persönliches Konto wird in Kürze aktualisiert.",
 
 /*
 ##################################################################################
