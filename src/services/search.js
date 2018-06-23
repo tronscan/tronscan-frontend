@@ -9,19 +9,19 @@ export async function doSearch(criteria, type = null) {
     return null;
   }
 
-  let searches = [
+  let searches = {
     searchBlockNumber,
     searchBlockHash,
     searchTxHash,
     searchToken,
     searchAddress
-  ];
+  };
 
-  for (let search of searches) {
+  for (let [searchName, search] of Object.entries(searches)) {
 
     try {
 
-      if (type === null || type === search.name) {
+      if (type === null || type === searchName) {
         let result = await search(criteria);
         if (typeof result !== 'undefined') {
           return result;
