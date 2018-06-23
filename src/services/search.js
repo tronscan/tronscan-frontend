@@ -1,11 +1,11 @@
-import {trim} from "lodash";
+import {trim, isUndefined} from "lodash";
 import {Client} from "./api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 
 export async function doSearch(criteria, type = null) {
 
   criteria = trim(criteria);
-  console.log(criteria);
+
   if (criteria === "") {
     return null;
   }
@@ -24,7 +24,7 @@ export async function doSearch(criteria, type = null) {
 
       if (type === null || type === searchName) {
         let result = await search(criteria);
-        if (typeof result !== 'undefined') {
+        if (!isUndefined(result)) {
           return result;
         }
       }
