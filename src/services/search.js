@@ -5,32 +5,29 @@ import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 export async function doSearch(criteria, type = null) {
 
   criteria = trim(criteria);
-
+  console.log(criteria);
   if (criteria === "") {
     return null;
   }
 
-  let searches = [
-    searchBlockNumber,
-    searchBlockHash,
-    searchTxHash,
-    searchToken,
-    searchAddress
-  ];
+  let searches = {
+    searchBlockNumber: searchBlockNumber,
+    searchBlockHash: searchBlockHash,
+    searchTxHash: searchTxHash,
+    searchToken: searchToken,
+    searchAddress: searchAddress
+  };
 
-  for (let search of searches) {
-
-    try {
-      if (type === null || type === search.name) {
-        let result = await search(criteria);
-        if (typeof result !== 'undefined') {
-          return result;
-        }
-      }
+  try {
+    let result = await searches[type](criteria);
+    if (typeof result !== 'undefined') {
+      return result;
     }
-    catch (e) {}
   }
-
+  catch (e) {
+    console.log(e);
+  }
+  
   return null;
 }
 
