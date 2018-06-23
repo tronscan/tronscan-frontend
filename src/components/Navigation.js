@@ -3,6 +3,8 @@ import React, {Fragment, PureComponent} from 'react'
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
+import tronLogoTestNet from "../images/tron-logo-testnet.png";
+import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
@@ -19,7 +21,7 @@ import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
 import {decryptString, validatePrivateKey} from "../services/secureKey";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {isAddressValid, pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
@@ -242,8 +244,18 @@ class Navigation extends PureComponent {
   };
 
   getLogo = () => {
-      let {theme} = this.props;
-      switch(theme) {
+    let {theme} = this.props;
+
+    if (IS_TESTNET) {
+      switch (theme) {
+        case "light":
+          return tronLogoTestNet;
+        default:
+          return tronLogoInvertedTestNet;
+      }
+    } else {
+
+      switch (theme) {
         case "tron":
           return tronLogoBlue;
         case "light":
@@ -251,6 +263,7 @@ class Navigation extends PureComponent {
         default:
           return logo;
       }
+    }
   };
 
   loginWithMobileDevice = () => {
