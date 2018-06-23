@@ -1,14 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
-import MediaQuery from 'react-responsive';
 import {tu} from "../utils/i18n";
-import {BarLoader, TronLoader} from "./common/loaders";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter, round} from "lodash";
 import {AddressLink} from "./common/Links";
 import Paging from "./common/Paging";
-import {checkPageChanged} from "../utils/PagingUtils";
 import {Client} from "../services/api";
 import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
 import {Sticky, StickyContainer} from "react-sticky";
@@ -23,9 +20,7 @@ class Accounts extends Component {
     this.state = {
       loading: true,
       searchString: "",
-      page: 0,
       accounts: [],
-      pageSize: 50,
       total: 0,
     }
   }
@@ -34,16 +29,14 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async () => {
+  loadAccounts = async (page = 1,pageSize=40) => {
 
     this.setState({ loading: true });
-
-    let {pageSize, page} = this.state;
 
     let {accounts, total} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
     });
 
     this.setState({
@@ -54,9 +47,11 @@ class Accounts extends Component {
   };
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadAccounts);
+    //checkPageChanged(this, this.loadAccounts);
   }
-
+  onChange = (page,pageSize) => {
+    this.loadAccounts(page,pageSize);
+  };
   onSearchFieldChangeHandler = (e) => {
     this.setState({
       searchString: e.target.value,
@@ -129,7 +124,7 @@ class Accounts extends Component {
   render() {
 
     let {match} = this.props;
-    let {accounts, pageSize, total, page, loading} = this.state;
+    let {accounts, total, loading} = this.state;
 
     return (
       <main className="container header-overlap pb-3">
@@ -155,7 +150,7 @@ class Accounts extends Component {
                     {
                       ({style}) => (
                         <div className="card-body bg-white py-3 border-bottom" style={{zIndex: 100, ...style}}>
-                          <Paging url={match.url} total={total} pageSize={pageSize} page={page} loading={loading} />
+                          <Paging onChange={this.onChange} url={match.url} total={total} loading={loading} />
                         </div>
                       )
                     }

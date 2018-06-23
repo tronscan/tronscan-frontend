@@ -5,15 +5,11 @@ import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import {random, range} from "lodash";
 import TimeAgo from "react-timeago";
-import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import {ONE_TRX} from "../../constants";
 import {getQueryParams} from "../../utils/url";
-import {checkPageChanged} from "../../utils/PagingUtils";
 import Paging from "../common/Paging";
 import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "../common/Price";
 import {Truncate} from "../common/text";
 import {ContractTypes} from "../../utils/protocol";
 
@@ -24,9 +20,7 @@ class Transactions extends React.Component {
 
     this.state = {
       transactions: [],
-      page: 0,
       total: 0,
-      pageSize: 50,
     };
   }
 
@@ -35,13 +29,14 @@ class Transactions extends React.Component {
   }
 
   componentDidUpdate() {
-    checkPageChanged(this, this.loadTransactions);
+    //checkPageChanged(this, this.loadTransactions);
   }
-
-  loadTransactions = async (page = 0) => {
+  onChange = (page,pageSize) => {
+    this.loadTransactions(page,pageSize);
+  };
+  loadTransactions = async (page = 1, pageSize=40) => {
 
     let {location} = this.props;
-    let {pageSize} = this.state;
 
     this.setState({ loading: true });
 
@@ -59,7 +54,7 @@ class Transactions extends React.Component {
     let {transactions, total} = await Client.getTransactions({
       sort: '-timestamp',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       ...searchParams,
     });
 
@@ -72,7 +67,7 @@ class Transactions extends React.Component {
 
   render() {
 
-    let {transactions, page, total, pageSize, loading} = this.state;
+    let {transactions, total, loading} = this.state;
     let {match} = this.props;
 
     return (
@@ -87,7 +82,7 @@ class Transactions extends React.Component {
                       {
                         ({style}) => (
                           <div style={{ zIndex: 100, ...style }} className="card-body bg-white py-3 border-bottom">
-                            <Paging loading={loading} url={match.url} total={total} pageSize={pageSize} page={page}  />
+                            <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}   />
                           </div>
                         )
                       }

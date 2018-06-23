@@ -117,6 +117,7 @@ class Notifications extends React.Component {
           ...trx,
         }, ...state.notifications.slice(0, 9)]
       }));
+      this.props.reloadWallet();
     });
 
 

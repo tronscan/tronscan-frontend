@@ -21,6 +21,7 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import Transfers from "../common/Transfers";
 import TestNetRequest from "./TestNetRequest";
+import Transactions from "../common/Transactions";
 
 class Account extends Component {
 
@@ -247,12 +248,12 @@ class Account extends Component {
     let {account} = this.props;
 
     return (
-      <Transfers
+      <Transactions
         theadClass="thead-light"
         showTotal={false}
         autoRefresh={30000}
         EmptyState={() => <p className="text-center">No transactions yet</p>}
-        filter={{address: account.address, limit: 10}}/>
+        filter={{address: account.address}}/>
     )
   }
 

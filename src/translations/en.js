@@ -154,6 +154,9 @@ export const messages = {
   "last_page": "last page",
   "page": "page",
   "of": "of",
+  // the records each page displays ->20,40,60,80
+  "page_size":"page size",
+  // information field - statistics - in which country are the most nodes e.g. USA ... Most Nodes
   "most_nodes": "Most Nodes",
   "loading_nodes": "loading Nodes",
   "Hostname": "Hostname",
