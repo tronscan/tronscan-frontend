@@ -189,8 +189,8 @@ class Nodes extends Component {
                   </thead>
                   <tbody>
                     {
-                      nodes.map(node => (
-                        <tr>
+                      nodes.map((node, index) => (
+                        <tr key={index}>
                           <td>{node.ip}</td>
                           <td className="text-nowrap d-none d-lg-table-cell">
                             <div className="text-truncate" style={{ maxWidth: 300 }}>

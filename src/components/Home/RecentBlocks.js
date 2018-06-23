@@ -65,7 +65,10 @@ class RecentBlocks extends Component {
                           </Link>
                         </div>
                         <div className="text-gray-dark break-word">
-                          Produced by <AddressLink address={block.witnessAddress} truncate={false}>{block.witnessAddress.substr(0, 12)}...</AddressLink>
+                          Produced by{' '}
+                          <AddressLink address={block.witnessAddress} truncate={false}>
+                            {block.witnessAddress.substr(0, 12)}...
+                          </AddressLink>
                         </div>
 
                       </div>
