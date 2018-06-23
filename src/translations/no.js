@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-23062018                                                  #
-#         Update Date: 23.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         Language: Norwegian                                                    #
 #         Status: first Version                                                  #
 #         Number of checks: 4                                                    #
@@ -326,18 +326,17 @@ export const messages = {
   "success": "Suksess",
   "successfully_appied_sr_canidate_message_0": "Du har vellykket søkt om å bli Super Representant Kandidat.",
   "successfully_appied_sr_canidate_message_1": "Din konto vil bli oppgradert snart.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
-
+  "landing_page": "Destinasjonsside",
+  "show_more_information_publish_sr_page": "Vis mer informasjon om hvordan å publisere en side",
+  "create_sr_landing_page_message_0": "Super Representanter kan opprette en destinasjonsside hvor de kan dele informasjon om teamet og planene deres",
+  "set_github_url_message_0": "Har du allerede konfigurert din Github mal? Da kan du opprette URL koblingen ved å trykke på knappen nedenfor",
+  "set_github_link": "Opprett Github Lenke",
+  "could_not_claim_rewards": "Kunne ikke hente belønninger",
+  "claim_rewards_error_message": "Noe gikk galt ved henting av belønninger, vennligst prøv igjen senere.",
+  "rewards_claimed": "Belønning krevet!",
+  "successfully_claimed_rewards":  "Vellykket krevet belønning",
+  "claim_rewards": "Krev Belønninger",
+  "sr_receive_reward_message_0": "Som en representant kan du motta belønninger for å produsere blokker. Disse belønningene kan kreves en gang i døgnet.",
 /*
 ##################################################################################
 #                                                                                #
