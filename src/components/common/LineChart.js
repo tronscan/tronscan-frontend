@@ -42,5 +42,5 @@ export class LineReact extends React.Component {
   }
 }
 
-export default PieReact
+export default LineReact
 
