@@ -16,344 +16,307 @@ import LineReact from "../../common/LineChart";
 const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
 
 
-function CustomizedContent({ root, depth, x, y, width, height, index, payload, colors, rank, name }) {
+function CustomizedContent({root, depth, x, y, width, height, index, payload, colors, rank, name}) {
 
-    return (
-        <g onClick={() => alert('clicked')}>
-            <rect
-                x={x}
-                y={y}
-                width={width}
-                height={height}
-                style={{
-                    fill: depth < 2 ? colors[Math.floor(index / root.children.length * 6)] : 'none',
-                    stroke: '#fff',
-                    strokeWidth: 2 / (depth + 1e-10),
-                    strokeOpacity: 1 / (depth + 1e-10),
-                }}
-            />
-            {
-                depth !== 10 ?
-                    <text
-                        x={x + width / 2}
-                        y={y + height / 2 + 7}
-                        textAnchor="middle"
-                        fill="#fff"
-                        fontSize={14}
-                    >
-                        {name}
-                    </text>
-                    : null
-            }
-            {
-                depth !== 2  ?
-                    <text
-                        x={x + 4}
-                        y={y + 18}
-                        fill="#fff"
-                        fontSize={16}
-                        fillOpacity={0.9}
-                    >
-                        {index + 1}
-                    </text>
-                    : null
-            }
-        </g>
-    );
+  return (
+      <g onClick={() => alert('clicked')}>
+        <rect
+            x={x}
+            y={y}
+            width={width}
+            height={height}
+            style={{
+              fill: depth < 2 ? colors[Math.floor(index / root.children.length * 6)] : 'none',
+              stroke: '#fff',
+              strokeWidth: 2 / (depth + 1e-10),
+              strokeOpacity: 1 / (depth + 1e-10),
+            }}
+        />
+        {
+          depth !== 10 ?
+              <text
+                  x={x + width / 2}
+                  y={y + height / 2 + 7}
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize={14}
+              >
+                {name}
+              </text>
+              : null
+        }
+        {
+          depth !== 2 ?
+              <text
+                  x={x + 4}
+                  y={y + 18}
+                  fill="#fff"
+                  fontSize={16}
+                  fillOpacity={0.9}
+              >
+                {index + 1}
+              </text>
+              : null
+        }
+      </g>
+  );
 }
 
 function SimpleTreemap({data}) {
-    return (
-        <Treemap
-            width={1000}
-            height={500}
-            className="treemap-accounts"
-            data={data}
-            isAnimationActive={false}
-            dataKey="size"
-            // ratio={4/3}
-            stroke="#fff"
-            fill="#8884d8"
-            content={<CustomizedContent colors={COLORS}/>}
-        />
-    );
+  return (
+      <Treemap
+          width={1000}
+          height={500}
+          className="treemap-accounts"
+          data={data}
+          isAnimationActive={false}
+          dataKey="size"
+          // ratio={4/3}
+          stroke="#fff"
+          fill="#8884d8"
+          content={<CustomizedContent colors={COLORS}/>}
+      />
+  );
 }
 
 
 class Statistics extends React.Component {
 
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.state = {
-            accounts: [],
-            transactionStats: [],
-            blockStats: [],
-            transactionValueStats:[]
-        };
-    }
+    this.state = {
+      accounts: [],
+      transactionStats: [],
+      blockStats: [],
+      transactionValueStats: []
+    };
+  }
 
-    componentDidMount() {
-        this.loadAccounts();
-        this.loadStats();
-    }
+  componentDidMount() {
+    this.loadAccounts();
+    this.loadStats();
+  }
 
-    async loadAccounts() {
+  async loadAccounts() {
 
-        let {accounts} = await Client.getAccounts({
-            limit: 35,
-            sort: '-balance',
-        });
+    let {accounts} = await Client.getAccounts({
+      limit: 35,
+      sort: '-balance',
+    });
 
-        this.setState({
-            accounts: filter(accounts, account => !includes(tronAddresses, account.address))
-                .slice(0, 25)
-                .map(account => ({
-                    name: account.address,
-                    value: account.balance / ONE_TRX,
-                }))
-        });
-    }
-
-
-    async loadStats() {
-
-        let {intl} = this.props;
-
-        let {stats} = await Client.getTransferStats({
-            groupby: 'timestamp',
-            interval: 'hour',
-        });
-
-        let {stats: blockStats} = await Client.getBlockStats({
-            info: `avg-block-size`,
-        });
+    this.setState({
+      accounts: filter(accounts, account => !includes(tronAddresses, account.address))
+          .slice(0, 25)
+          .map(account => ({
+            name: account.address,
+            value: account.balance / ONE_TRX,
+          }))
+    });
+  }
 
 
-        let transactionTotalStats = stats.total.map(row => ({
-            timestamp: intl.formatTime(row.timestamp),
-            value: row.value,
-        }));
+  async loadStats() {
 
-        let valueStats = stats.value.map(row => ({
-            timestamp: intl.formatTime(row.timestamp),
-            value: row.value / ONE_TRX,
-        }));
+    let {intl} = this.props;
 
-        blockStats = blockStats.map(row => ({
-            timestamp: intl.formatTime(row.timestamp),
-            value: row.value,
-        }));
+    let {stats} = await Client.getTransferStats({
+      groupby: 'timestamp',
+      interval: 'hour',
+    });
 
-        this.setState({
-            transactionStats: transactionTotalStats,
-            transactionValueStats: valueStats,
-            blockStats,
-        });
-    }
+    let {stats: blockStats} = await Client.getBlockStats({
+      info: `avg-block-size`,
+    });
 
-    renderTreeMap() {
 
-        let {accounts} = this.state;
+    let transactionTotalStats = stats.total.map(row => ({
+      timestamp: intl.formatTime(row.timestamp),
+      value: row.value,
+    }));
 
-        let addresses = [
-            {
-                name: 'Tron Foundation',
-                children: filter(accounts, account => includes(tronAddresses, account.address)),
-            },
-            {
-                name: 'Other',
-                children: filter(accounts, account => !includes(tronAddresses, account.address)),
-            },
-        ];
+    let valueStats = stats.value.map(row => ({
+      timestamp: intl.formatTime(row.timestamp),
+      value: row.value / ONE_TRX,
+    }));
 
-        return (
-            <SimpleTreemap data={addresses}/>
-        );
-    }
+    blockStats = blockStats.map(row => ({
+      timestamp: intl.formatTime(row.timestamp),
+      value: row.value,
+    }));
 
-    render() {
+    this.setState({
+      transactionStats: transactionTotalStats,
+      transactionValueStats: valueStats,
+      blockStats,
+    });
+  }
 
-        let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+  renderTreeMap() {
 
-        return (
-            <main className="container header-overlap">
-                <div className="row">
-                    <div className="col-md-6 mt-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title text-center">{tu("Top")} {accounts.length} {tu("addresses")}</h5>
-                                <div style={{height: 300}}>
-                                    {
-                                        accounts.length === 0 ?
-                                        <TronLoader/> :
-                                        < ResponsiveContainer >
-                                        {/*{this.renderTreeMap()}*/}
-                                        {/*/!*<SimpleTreemap/>*!/*/}
-                                          <PieChart>
-                                          <Pie data={accounts} fill="#82ca9d" label />
-                                          </PieChart>
-                                        </ResponsiveContainer>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 mt-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
-                                <div style={{height: 300}}>
-                                    {
-                                        transactionValueStats.length === 0 ?
-                                            <TronLoader/> :
-                                            <ResponsiveContainer>
-                                                <AreaChart data={transactionValueStats} isAnimationActive={false}>
-                                                    <defs>
-                                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor={styles.line.stroke}
-                                                                  stopOpacity={0.8}/>
-                                                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <XAxis dataKey="timestamp"/>
-                                                    <YAxis/>
-                                                    {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                    <Tooltip/>
-                                                    {/*<Legend />*/}
-                                                    <Area name="Transaction Value"
-                                                          type="natural"
-                                                          dataKey="value"
-                                                          stroke={styles.line.stroke}
-                                                          strokeWidth={1}
-                                                          activeDot={{r: 8}}
-                                                          fillOpacity={1}
-                                                          fill="url(#colorUv)"
-                                                          isAnimationActive={false}/>
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    let {accounts} = this.state;
+
+    let addresses = [
+      {
+        name: 'Tron Foundation',
+        children: filter(accounts, account => includes(tronAddresses, account.address)),
+      },
+      {
+        name: 'Other',
+        children: filter(accounts, account => !includes(tronAddresses, account.address)),
+      },
+    ];
+
+    return (
+        <SimpleTreemap data={addresses}/>
+    );
+  }
+
+  render() {
+
+    let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+
+    return (
+        <main className="container header-overlap">
+          <div className="row">
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title text-center">{tu("Top")} {accounts.length} {tu("addresses")}</h5>
+                  <div style={{height: 300}}>
+                    {
+                      accounts.length === 0 ?
+                          <TronLoader/> :
+                          <PieReact style={{height: 300}} data={accounts}/>
+                    }
+                  </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-6 mt-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="text-center">{tu("transactions_past_hour")}</h5>
-                                <div style={{height: 300}}>
-                                    {
-                                        transactionStats.length === 0 ?
-                                        <TronLoader/> :
-                                        <ResponsiveContainer>
-                                            <AreaChart data={transactionStats} isAnimationActive={false}>
-                                                <defs>
-                                                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                        <stop offset="5%" stopColor={styles.line.stroke}
-                                                              stopOpacity={0.8}/>
-                                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                    </linearGradient>
-                                                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                        <stop offset="5%" stopColor={styles.line.stroke}
-                                                              stopOpacity={0.8}/>
-                                                        <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                    </linearGradient>
-                                                </defs>
-                                                <XAxis dataKey="timestamp"/>
-                                                <YAxis/>
-                                                {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                <Tooltip/>
-                                                {/*<Legend />*/}
-                                                <Area name="Transactions"
-                                                      type="natural"
-                                                      dataKey="value"
-                                                      stroke={styles.line.stroke}
-                                                      strokeWidth={1}
-                                                      activeDot={{r: 8}}
-                                                      fillOpacity={1}
-                                                      fill="url(#colorUv)"
-                                                      isAnimationActive={false}/>
-                                            </AreaChart>
-                                        </ResponsiveContainer>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 mt-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="text-center">{tu("average_blocksize")} ({tu("bytes")})</h5>
-                                <div style={{height: 300}}>
-                                    {
-                                        blockStats.length ===0 ?
-                                        <TronLoader/> :
-                                        <ResponsiveContainer>
-                                            <AreaChart data={blockStats} isAnimationActive={false}>
-                                                <defs>
-                                                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                                        <stop offset="5%" stopColor={styles.line.stroke}
-                                                              stopOpacity={0.8}/>
-                                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                                    </linearGradient>
-                                                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                        <stop offset="5%" stopColor={styles.line.stroke}
-                                                              stopOpacity={0.8}/>
-                                                        <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                                    </linearGradient>
-                                                </defs>
-                                                <XAxis dataKey="timestamp"/>
-                                                <YAxis/>
-                                                {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                                                <Tooltip/>
-                                                {/*<Legend />*/}
-                                                <Area name="Block Size"
-                                                      type="natural"
-                                                      dataKey="value"
-                                                      stroke={styles.line.stroke}
-                                                      strokeWidth={1}
-                                                      activeDot={{r: 8}}
-                                                      fillOpacity={1}
-                                                      fill="url(#colorUv)"
-                                                      isAnimationActive={false}/>
-                                            </AreaChart>
-                                        </ResponsiveContainer>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
+                  <div style={{height: 300}}>
+                    {
+                      transactionValueStats.length === 0 ?
+                          <TronLoader/> :
+                          <LineReact style={{height: 300}} data={transactionValueStats}/>
+                    }
+                  </div>
                 </div>
-                <div className="row mt-3">
-                    <div className="col-md-12">
-                        <RichList />
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="text-center">{tu("transactions_past_hour")}</h5>
+                  <div style={{height: 300}}>
+                    {
+                      transactionStats.length === 0 ?
+                          <TronLoader/> :
+                          <ResponsiveContainer>
+                            <AreaChart data={transactionStats} isAnimationActive={false}>
+                              <defs>
+                                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor={styles.line.stroke}
+                                        stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                                </linearGradient>
+                                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor={styles.line.stroke}
+                                        stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                                </linearGradient>
+                              </defs>
+                              <XAxis dataKey="timestamp"/>
+                              <YAxis/>
+                              {/*<CartesianGrid strokeDasharray="3 3"/>*/}
+                              <Tooltip/>
+                              {/*<Legend />*/}
+                              <Area name="Transactions"
+                                    type="natural"
+                                    dataKey="value"
+                                    stroke={styles.line.stroke}
+                                    strokeWidth={1}
+                                    activeDot={{r: 8}}
+                                    fillOpacity={1}
+                                    fill="url(#colorUv)"
+                                    isAnimationActive={false}/>
+                            </AreaChart>
+                          </ResponsiveContainer>
+                    }
+                  </div>
                 </div>
-            </main>
-        );
-    }
+              </div>
+            </div>
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="text-center">{tu("average_blocksize")} ({tu("bytes")})</h5>
+                  <div style={{height: 300}}>
+                    {
+                      blockStats.length === 0 ?
+                          <TronLoader/> :
+                          <ResponsiveContainer>
+                            <AreaChart data={blockStats} isAnimationActive={false}>
+                              <defs>
+                                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor={styles.line.stroke}
+                                        stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                                </linearGradient>
+                                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor={styles.line.stroke}
+                                        stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                                </linearGradient>
+                              </defs>
+                              <XAxis dataKey="timestamp"/>
+                              <YAxis/>
+                              {/*<CartesianGrid strokeDasharray="3 3"/>*/}
+                              <Tooltip/>
+                              {/*<Legend />*/}
+                              <Area name="Block Size"
+                                    type="natural"
+                                    dataKey="value"
+                                    stroke={styles.line.stroke}
+                                    strokeWidth={1}
+                                    activeDot={{r: 8}}
+                                    fillOpacity={1}
+                                    fill="url(#colorUv)"
+                                    isAnimationActive={false}/>
+                            </AreaChart>
+                          </ResponsiveContainer>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <RichList/>
+            </div>
+          </div>
+        </main>
+    );
+  }
 }
 
 
 function mapStateToProps(state) {
-    return {
-    };
+  return {};
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 const styles = {
-    line: {
-        stroke: '#343a40',
-    }
+  line: {
+    stroke: '#343a40',
+  }
 };
 
 

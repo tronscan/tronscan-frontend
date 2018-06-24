@@ -16,21 +16,28 @@ export class LineReact extends React.Component {
     }
   }
 
-  initPie(id) {
+  initLine(id) {
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+
+
+    this.props.data.map((val)=>{
+      config.lineChart.xAxis.data.push(val.timestamp);
+      config.lineChart.series[0].data.push(val.value);
+    })
+
     myChart.setOption(config.lineChart);
+
   }
 
   componentDidMount() {
-
-
-    this.initPie(this.state.lineId);
+    this.initLine(this.state.lineId);
   }
 
   componentDidUpdate() {
+    this.initLine(this.state.lineId);
   }
 
   render() {
