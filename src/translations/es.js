@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-22062018                                                  #
-#         Update Date: 22.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         language: Spanish                                                      #
-#         Status: Third Draft                                                    #
-#         Number of checks: 7                                                    #
+#         Status: Approved Draft                                                 #
+#         Number of checks: 8                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -225,9 +225,9 @@ export const messages = {
   "not_enough_trx": "No hay suficiente TRX",
   "information_message_3": "Solicitud de TRX realizada con éxito. Si no recibió ningún TRX, se debe a que no es posible realizar pruebas en este momento y debe volver a intentarlo más tarde.",
   "send_to_following_address": "Enviar a la siguiente dirección",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Cambiar Sitio Web",
+  "you_must_enter_url": "Debe de introducir una URL",
+  "specify_the_url":  "Por favor especifique la URL",
 
 /*
 ##################################################################################
