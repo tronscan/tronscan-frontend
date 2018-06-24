@@ -196,13 +196,13 @@ export const routes = [
     icon: "fa fa-wrench",
     routes: [
       {
-        label: "transaction viewer",
+        label: "transaction_viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
         component: TransactionViewerAsync,
       },
       {
-        label: "node tester",
+        label: "node_tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
         component: NodeTester,
@@ -227,7 +227,7 @@ export const routes = [
     icon: "fa fa-question",
     component: null,
     routes: [
-      'Tron',
+      'TRON',
       {
         url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
         label: "what_is_tron",

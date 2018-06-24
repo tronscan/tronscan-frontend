@@ -421,7 +421,7 @@ class Home extends Component {
                 &nbsp;
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
-                <h5>Tron</h5>
+                <h5>TRON</h5>
                 <ul className="list-unstyled quick-links">
                   <li><a href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</a></li>
                   <li><a href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</a></li>
