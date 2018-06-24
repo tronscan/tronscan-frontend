@@ -18,8 +18,8 @@ export const messages = {
 #         Version: 1.5-24062018                                                  #
 #         Update Date: 24.06.2018                                                #
 #         Language: Korean                                                       #
-#         Status: second draft                                                   #
-#         Number of checks: 3                                                    #
+#         Status: third draft                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: VoidRays                                                 #
 #                                                                                #
 ##################################################################################
@@ -473,9 +473,8 @@ export const messages = {
   "participation": "참여",
   "start_date": "시작 일자",
   "end_date": "종료 일자",
-  "token_spend_confirm": "나는 토큰의 총 공급을 만드는데 한 번 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`Tron 프로토콜에서 토큰을 발행하는 것은
-   계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
+  "token_spend_confirm": "나는 토큰의 총 공급량을 만드는데 한 번의 총 1024 TRX의 비용이 들었음을 확인합니다.",
+  "token_issue_guide_message_1":`TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
   "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
   "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
