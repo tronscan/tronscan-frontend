@@ -76,7 +76,7 @@ class Paging extends React.PureComponent {
 
   render() {
 
-    let {total, className, loading = false} = this.props;
+    let {total, className, loading = false, showPageSize = true} = this.props;
     let {page, pageSize, pageSizeOptions} = this.state;
 
     let totalPages = Math.ceil(total / pageSize);
@@ -96,13 +96,13 @@ class Paging extends React.PureComponent {
           <li className={"page-item " + (showFirst && "invisible")}>
             <FirstButton>
               <i className="fas fa-fast-backward mr-sm-2" />
-              <span className="d-none d-sm-inline-block">{tu("first_page")}</span>
+              <span className="d-none d-lg-inline-block">{tu("first_page")}</span>
             </FirstButton>
           </li>
           <li className={"page-item " + (showFirst && "invisible")}>
             <PreviousButton>
               <i className="fas fa-backward mr-sm-2" />
-              <span className="d-none d-sm-inline-block">{tu("previous_page")}</span>
+              <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
             </PreviousButton>
           </li>
         </ul>
@@ -120,32 +120,35 @@ class Paging extends React.PureComponent {
         <ul className="pagination p-0 my-0 ">
           <li className={"page-item " + (showLast && " invisible")}>
             <NextButton>
-              <span className="d-none d-sm-inline-block">{tu("next_page")}</span>
+              <span className="d-none d-lg-inline-block">{tu("next_page")}</span>
               <i className="fas fa-forward ml-sm-2" />
             </NextButton>
           </li>
           <li className={"page-item " + (showLast && " invisible")}>
             <LastButton>
-              <span className="d-none d-sm-inline-block">{tu("last_page")}</span>
+              <span className="d-none d-lg-inline-block">{tu("last_page")}</span>
               <i className="fas fa-fast-forward ml-sm-2" />
             </LastButton>
           </li>
         </ul>
-        <ul className="pagination p-0 my-0 ml-1">
-          <li className="page-item">
-            <a className="page-link" href="javascript:">
-              <span className="d-none d-sm-inline-block">{tu("page_size")}:</span>
-              <select className="ml-sm-2 selectForPaging"
-                      onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
-                 {
-                   pageSizeOptions.map((size,index) => (
-                     <option key={index} value={size}>{size}</option>
-                   ))
-                 }
-              </select>
-            </a>
-          </li>
-        </ul>
+        {
+          showPageSize &&
+            <ul className="pagination p-0 my-0 ml-1">
+              <li className="page-item">
+                <a className="page-link" href="javascript:">
+                  <span className="d-none d-md-inline-block">{tu("page_size")}:</span>
+                  <select className="ml-sm-2 border-0 bg-white"
+                          onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
+                    {
+                      pageSizeOptions.map((size,index) => (
+                        <option key={index} value={size}>{size}</option>
+                      ))
+                    }
+                  </select>
+                </a>
+              </li>
+            </ul>
+        }
       </div>
     );
   }

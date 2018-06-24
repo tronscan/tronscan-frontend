@@ -216,6 +216,31 @@ export class ExternalLink extends React.PureComponent {
   }
 }
 
+export function HrefLink({href, children, ...props}) {
+
+  let urlHandler = App.getExternalLinkHandler();
+  if (urlHandler) {
+    return (
+      <a className="btn btn-primary"
+         href="javascript:;"
+         onClick={() => urlHandler(href) }
+         target="_blank"
+         {...props}>
+        {children}
+      </a>
+    );
+  } else {
+    return (
+      <a className="btn btn-primary"
+         href={href}
+         target="_blank"
+         {...props}>
+        {children}
+      </a>
+    );
+  }
+}
+
 export const BlockHashLink = ({hash}) => (
   <Link to={`/block/${hash}`}>{hash}</Link>
 );
