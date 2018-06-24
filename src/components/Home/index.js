@@ -314,9 +314,9 @@ class Home extends Component {
             <div className="row pt-5 pb-5">
               <div className="col-md-7">
                 <div className="mb-3 border-0">
-                  <h5>Desktop Explorer BETA is here!</h5>
+                  <h5>Desktop Explorer is here!</h5>
                   <p>
-                    <span className="font-weight-bold">The BETA version is out!</span>{' '}
+                    <span className="font-weight-bold">1.0 version is out!</span>{' '}
                     Use all your favorite features of Tronscan in the desktop version. By using the Desktop
                     version you are safe from malicious websites or browser extensions which may read your private key.
                   </p>
