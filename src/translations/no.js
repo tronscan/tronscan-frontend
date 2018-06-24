@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "Ikke nok TRX",
   "information_message_3": "Forespørsel om TRX mottatt. Om du ikke har mottatt noen TRX er det ikke TRX  for testing tilgjengelig nå, prøv isåfall igjen litt senere.",
   "send_to_following_address": "Send til følgende adresse",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

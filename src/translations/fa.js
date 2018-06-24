@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": " کافی نیست TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   "send_to_following_address": "ارسال به آدرس زیر",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

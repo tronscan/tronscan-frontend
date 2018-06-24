@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "Yeterli TRX bulunamadı",
   "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
   "send_to_following_address": "Alıcı'nın adresi",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

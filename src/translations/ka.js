@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "არასაკმარისი TRX",
   "information_message_3": "TRX წარმატებით მოთხოვნილია. თუ არ მიიღებთ რაიმე TRX, მაშინ რაიმე  ხელმისაწვდომი TRX-ის ტესტი არ არის, და თქვენ უნდა კვლავ სცადოთ მოგვიანებით.  ",
   "send_to_following_address": "გააგზავნეთ შემდეგ მისამართზე",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

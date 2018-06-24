@@ -569,12 +569,12 @@ class Account extends Component {
           input
           showCancel
           cancelBtnBsStyle="default"
-          title="Change Website"
+          title={tu("change_website")}
           placeHolder="https://"
           onCancel={this.hideModal}
-          validationMsg="You must enter a URL"
+          validationMsg={tu("you_must_enter_url")}
           onConfirm={(name) => this.updateWebsite(name)}>
-          Please specify the URL
+          {tu("specify_the_url")}
         </SweetAlert>
       )
     });
@@ -712,11 +712,11 @@ class Account extends Component {
                 {
                   currentWallet.representative.enabled &&
                     <tr>
-                      <th>{tu("Website")}:</th>
+                      <th>{tu("website")}:</th>
                       <td>
                         <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
                         <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
-                          Change Website
+                          {tu("change_website")}
                         </a>
 
                       </td>

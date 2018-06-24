@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "TRX가 충분하지 않습니다",
   "information_message_3": "성공적으로 TRX를 요청하였습니다. 만약 TRX를 받지 못했다면 테스트용 TRX가 남아있지 않은 것이니, 다음에 다시 시도해주십시오.",
   "send_to_following_address": "다음과 같은 주소에 전송하십시오",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

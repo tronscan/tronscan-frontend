@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "لا يوجد تركس كافي",
   "information_message_3": "طلبت تركس بنجاح. اذا لم تستلم أي تركس معناه أنه لا يوجد تركس للتجربة حاليا و يجب المحاولة في وقت لاحق.",
   "send_to_following_address": "أرسل الى العنوان التالي",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

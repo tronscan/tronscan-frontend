@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "Nu există destul TRX",
   "information_message_3": "Ați cerut cu succes TRX. Dacă nu ați primit TRX înseamnă că deocamdată nu există TRX de testare și ar trebui să încercați din nou mai tarziu.",
   "send_to_following_address": "Trimiteți la adresa următoare",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "Nie wystarczająca ilość TRX",
   "information_message_3": "Twój wniosek o przyznanie testowych TRX został zapisany. Jeżeli w przeciągu najbliższych kilku chwil nie znajdą się one na Twoim koncie, oznacza to, że są obecnie niedostępne. W takiej sytuacji spróbuj zawnioskować ponownie później.",
   "send_to_following_address": "Wyślij na następujący adres",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################

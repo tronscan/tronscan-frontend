@@ -225,6 +225,9 @@ export const messages = {
   "not_enough_trx": "Недостатньо TRX",
   "information_message_3": "Запит на отримання ТRX успішний. Якщо ви не отримали TRX, значить відсутні тестові TRX, які можливо отримати прямо зараз, і вам слід спробувати ще раз пізніше.",
   "send_to_following_address": "Надіслати на наступні адреси",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################
