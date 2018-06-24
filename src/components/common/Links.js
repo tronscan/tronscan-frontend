@@ -221,8 +221,7 @@ export function HrefLink({href, children, ...props}) {
   let urlHandler = App.getExternalLinkHandler();
   if (urlHandler) {
     return (
-      <a className="btn btn-primary"
-         href="javascript:;"
+      <a href="javascript:;"
          onClick={() => urlHandler(href) }
          target="_blank"
          {...props}>
@@ -231,8 +230,7 @@ export function HrefLink({href, children, ...props}) {
     );
   } else {
     return (
-      <a className="btn btn-primary"
-         href={href}
+      <a href={href}
          target="_blank"
          {...props}>
         {children}

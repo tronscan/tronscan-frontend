@@ -937,7 +937,7 @@ class Account extends Component {
                         <tr>
                           <th>{tu("Github Link")}:</th>
                           <td>
-                            <a href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</a>
+                            <HrefLink href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                             <a href="javascript:;" className="float-right text-primary" onClick={this.changeGithubURL}>
                               {tu("Change Github Link")}
                             </a>

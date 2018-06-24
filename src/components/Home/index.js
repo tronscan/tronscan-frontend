@@ -15,6 +15,7 @@ import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {toastr} from "react-redux-toastr";
+import {HrefLink} from "../common/Links";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -327,11 +328,11 @@ class Home extends Component {
                     The Desktop app is available for Windows, Linux and Mac
                   </p>
                   <div className="mt-3">
-                    <a href="https://github.com/tronscan/tronscan-desktop/releases">
+                    <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">
                       <button className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
                         Download here
                       </button>
-                    </a>
+                    </HrefLink>
                   </div>
                 </div>
               </div>
@@ -423,26 +424,25 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>Tron</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><a href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</a></li>
-                  <li><a href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</a></li>
-                  <li><a href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</a>
-                  </li>
-                  <li><a href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</a></li>
-                  <li><a href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</a></li>
+                  <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
+                  <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
+                  <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
+                  <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
+                  <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>Development</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><a href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</a></li>
-                  <li><a href="https://github.com/tronprotocol/java-tron"><i
-                    className="fa fa-angle-right"/> java-tron</a></li>
+                  <li><HrefLink href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</HrefLink></li>
+                  <li><HrefLink href="https://github.com/tronprotocol/java-tron"><i
+                    className="fa fa-angle-right"/> java-tron</HrefLink></li>
                   <li>
-                    <a href="https://github.com/tronprotocol/Documentation">
+                    <HrefLink href="https://github.com/tronprotocol/Documentation">
                       <i className="fa fa-angle-right"/> Documentation
-                    </a>
+                    </HrefLink>
                   </li>
-                  <li><a href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</a></li>
+                  <li><HrefLink href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</HrefLink></li>
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
@@ -459,16 +459,16 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                 <ul className="list-unstyled list-inline social text-center">
                   <li className="list-inline-item">
-                    <a href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></a>
+                    <HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></a>
+                    <HrefLink href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></a>
+                    <HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></a>
+                    <HrefLink href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></HrefLink>
                   </li>
                 </ul>
               </div>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {HrefLink} from "../common/Links";
 
 class News extends Component {
 
@@ -33,14 +34,14 @@ class News extends Component {
                       in different languages. Take a look at the pages of some of the early adopters:
                     </p>
                     <ul className="pt-2">
-                      <li><a href="https://tronscan.org/#/representative/27d5JV5sJH2ERb7Kddcp5p2n2yR2zuKCAQs">Sky People</a></li>
-                      <li><a href="https://tronscan.org/#/representative/27WK11uSBUjxmnbtQ3AArs1hLpUkPg4WAJF">CryptoChain Brazil</a></li>
-                      <li><a href="https://tronscan.org/#/representative/27WDUwfv7FzWmNuj4rbrmRjxQvgHnC46Kcf">CryptoGuyInZA</a></li>
+                      <li><HrefLink href="https://tronscan.org/#/representative/27d5JV5sJH2ERb7Kddcp5p2n2yR2zuKCAQs">Sky People</HrefLink></li>
+                      <li><HrefLink href="https://tronscan.org/#/representative/27WK11uSBUjxmnbtQ3AArs1hLpUkPg4WAJF">CryptoChain Brazil</HrefLink></li>
+                      <li><HrefLink href="https://tronscan.org/#/representative/27WDUwfv7FzWmNuj4rbrmRjxQvgHnC46Kcf">CryptoGuyInZA</HrefLink></li>
                     </ul>
                     <p>
                       If you are interested in publishing a page yourself then read the tutorial on the Github project {' '}
-                      <a href="https://github.com/tronscan/tronsr-template#readme">Tronscan SR Template</a> to get started.
-                      Or watch the excellent walkthrough that <a href="https://twitter.com/cryptoguyinza">CryptoGuyInZA</a> made
+                      <HrefLink href="https://github.com/tronscan/tronsr-template#readme">Tronscan SR Template</HrefLink> to get started.
+                      Or watch the excellent walkthrough that <HrefLink href="https://twitter.com/cryptoguyinza">CryptoGuyInZA</HrefLink> made
                     </p>
                     <p className="d-flex justify-content-center">
                       <iframe width="560"
