@@ -233,6 +233,12 @@ export const routes = [
         label: "what_is_tron",
       },
       '-',
+      'Tronscan',
+      {
+        url: "https://t.me/tronscan",
+        label: "Telegram Updates",
+      },
+      '-',
       "Development",
       {
         url: "https://api.tronscan.org",
