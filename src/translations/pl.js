@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-21062018                                                  #
-#         Update Date: 21.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         Language: Polish                                                       #
 #         Status: Second Version                                                 #
 #         Number of checks: 5                                                    #
@@ -155,7 +155,7 @@ export const messages = {
   "last_page": "ostatnia strona",
   "page": "strona",
   "of": "z",
-  "page_size": "page size",
+  "page_size": "ilość wyników",
   "most_nodes": "Najwięcej węzłów",
   "loading_nodes": "wczytuję Węzły",
   "Hostname": "Nazwa hosta",
@@ -225,9 +225,9 @@ export const messages = {
   "not_enough_trx": "Nie wystarczająca ilość TRX",
   "information_message_3": "Twój wniosek o przyznanie testowych TRX został zapisany. Jeżeli w przeciągu najbliższych kilku chwil nie znajdą się one na Twoim koncie, oznacza to, że są obecnie niedostępne. W takiej sytuacji spróbuj zawnioskować ponownie później.",
   "send_to_following_address": "Wyślij na następujący adres",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Zmień adres strony",
+  "you_must_enter_url": "Wpisz poprawny adres URL",
+  "specify_the_url":  "Musisz wpisać adres URL",
 
 /*
 ##################################################################################
