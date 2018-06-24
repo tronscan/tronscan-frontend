@@ -392,7 +392,7 @@ class TokenCreate extends Component {
       return (
         <main className="container pb-3 token-create header-overlap">
           <div className="row">
-            <div className="col-sm-8">
+            <div className="col-sm-12">
               <div className="card">
                 <div className="card-body">
                   <div className="text-center p-3">
