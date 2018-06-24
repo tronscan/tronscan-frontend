@@ -96,7 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Skrivbordsmeddelanden aktiverade",
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
-  "filters": "Filters",
+  "filters": "filtrera",
 
 /*
 ##################################################################################
@@ -225,9 +225,9 @@ export const messages = {
   "not_enough_trx": "Inte tillräckligt med TRX",
   "information_message_3": "Förfrågan om TRX lyckades. Om du inte fick någon TRX så är det för att det inte finns några test TRX just nu. Du bör försöka igen vid en senare tidpunkt.",
   "send_to_following_address": "Skicka till följande address",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Ändra webbplats",
+  "you_must_enter_url": "Du måste ange en webbadress",
+  "specify_the_url":  "Ange webbadressen",
 
 /*
 ##################################################################################
@@ -258,7 +258,7 @@ export const messages = {
   "unable_to_rename_message": "Något gick fel när du uppdaterade ditt kontonamn, snälla försök igen senare",
   "unfreeze_trx_confirm_message": "Är du säker på att du vill frigöra TRX?",
   "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "sure_to_unfreeze_unlocked_tokens_message": "Är du säker på att du vill frigöra olåsta tokens?",
 
 /*
 ##################################################################################
@@ -331,12 +331,12 @@ export const messages = {
   "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
   "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
   "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
+  "set_github_link": "Ange Github Link",
+  "could_not_claim_rewards": "Kunde inte hävda belöningar",
+  "claim_rewards_error_message": "Något gick fel när du försökte hävda belöningar, snälla försök igen senare.",
+  "rewards_claimed": "Belöningar krävde!",
+  "successfully_claimed_rewards":  "Framgångsrikt anspråk på belöningar",
+  "claim_rewards": "Krav på belöningar",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
 
 /*
