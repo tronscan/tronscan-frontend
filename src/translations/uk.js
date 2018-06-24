@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "остання сторінка",
   "page": "сторінка",
   "of": "з",
+  "page_size": "page size",
   "most_nodes": "Більшість Вузлів",
   "loading_nodes": "завантаження Вузлів",
   "Hostname": "Ім'я хосту",

@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "siste side",
   "page": "side",
   "of": "av",
+  "page_size": "page size",
   "most_nodes": "Flest Noder",
   "loading_nodes": "laster Noder",
   "Hostname": "Vert navn",

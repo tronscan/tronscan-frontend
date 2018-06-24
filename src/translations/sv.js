@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "sista sidan",
   "page": "sida",
   "of": "av",
+  "page_size": "page size",
   "most_nodes": "Flesta Noder",
   "loading_nodes": "laddar Noder",
   "Hostname": "Hostnamn",

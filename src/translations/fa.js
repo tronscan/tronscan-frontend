@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "صفحه آخر",
   "page": "صفحه",
   "of": "از",
+  "page_size": "page size",
   "most_nodes": "بیشترین نود ها",
   "loading_nodes": "نود های بارگزاری شده",
   "Hostname": "نام میزبان",

@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "ბოლო გვერდი",
   "page": "გვერდი",
   "of": "ვისი",
+  "page_size": "page size",
   "most_nodes": "კვანძების უმეტესობა",
   "loading_nodes": "მიმდინარეობს კვანძების ჩატვირთვა",
   "Hostname": "ჰოსტის დასახელება",

@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "laatste pagina",
   "page": "pagina",
   "of": "van",
+  "page_size": "page size",
   "most_nodes": "Meeste nodes",
   "loading_nodes": "Nodes worden geladen",
   "Hostname": "Machinenaam",

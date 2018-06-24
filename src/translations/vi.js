@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "trang cuối",
   "page": "trang",
   "of": "của",
+  "page_size": "page size",
   "most_nodes": "Nhiều nút nhất",
   "loading_nodes": "đang tải nút",
   "Hostname": "Tên máy chủ",

@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "letzte Seite",
   "page": "Seite",
   "of": "von",
+  "page_size": "Einträge pro Seite",
   "most_nodes": "Meiste Anzahl an Knoten",
   "loading_nodes": "Laden der Knoten",
   "Hostname": "Hostname",

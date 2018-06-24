@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "ultima pagina",
   "page": "pagina",
   "of": "di",
+  "page_size": "page size",
   "most_nodes": "Piú Nodi",
   "loading_nodes": "caricamento nodi",
   "Hostname": "nome Host",

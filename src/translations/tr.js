@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "son sayfa",
   "page": "sayfa",
   "of": "/",
+  "page_size": "page size",
   "most_nodes": "En çok düğüm",
   "loading_nodes": "Düğümler yükleniyor",
   "Hostname": "Host adı",

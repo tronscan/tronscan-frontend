@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "última página",
   "page": "página",
   "of": "de",
+  "page_size": "Entradas por página",
   "most_nodes": "Mayoría de Nodos",
   "loading_nodes": "cargando Nodos",
   "Hostname": "Nombre del host",

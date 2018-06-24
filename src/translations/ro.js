@@ -155,6 +155,7 @@ export const messages = {
   "last_page": "ultima pagină",
   "page": "pagina",
   "of": "din",
+  "page_size": "page size",
   "most_nodes": "Cele mai multe Noduri",
   "loading_nodes": "încărcare Noduri",
   "Hostname": "Numegazdă",
