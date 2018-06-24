@@ -175,7 +175,7 @@ class Statistics extends React.Component {
   render() {
 
     let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
-
+console.log(transactionStats);
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -217,36 +217,7 @@ class Statistics extends React.Component {
                     {
                       transactionStats.length === 0 ?
                           <TronLoader/> :
-                          <ResponsiveContainer>
-                            <AreaChart data={transactionStats} isAnimationActive={false}>
-                              <defs>
-                                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor={styles.line.stroke}
-                                        stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                </linearGradient>
-                                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor={styles.line.stroke}
-                                        stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                </linearGradient>
-                              </defs>
-                              <XAxis dataKey="timestamp"/>
-                              <YAxis/>
-                              {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                              <Tooltip/>
-                              {/*<Legend />*/}
-                              <Area name="Transactions"
-                                    type="natural"
-                                    dataKey="value"
-                                    stroke={styles.line.stroke}
-                                    strokeWidth={1}
-                                    activeDot={{r: 8}}
-                                    fillOpacity={1}
-                                    fill="url(#colorUv)"
-                                    isAnimationActive={false}/>
-                            </AreaChart>
-                          </ResponsiveContainer>
+                          <LineReact style={{height: 300}} data={transactionStats}/>
                     }
                   </div>
                 </div>
@@ -260,36 +231,7 @@ class Statistics extends React.Component {
                     {
                       blockStats.length === 0 ?
                           <TronLoader/> :
-                          <ResponsiveContainer>
-                            <AreaChart data={blockStats} isAnimationActive={false}>
-                              <defs>
-                                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor={styles.line.stroke}
-                                        stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                </linearGradient>
-                                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor={styles.line.stroke}
-                                        stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
-                                </linearGradient>
-                              </defs>
-                              <XAxis dataKey="timestamp"/>
-                              <YAxis/>
-                              {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-                              <Tooltip/>
-                              {/*<Legend />*/}
-                              <Area name="Block Size"
-                                    type="natural"
-                                    dataKey="value"
-                                    stroke={styles.line.stroke}
-                                    strokeWidth={1}
-                                    activeDot={{r: 8}}
-                                    fillOpacity={1}
-                                    fill="url(#colorUv)"
-                                    isAnimationActive={false}/>
-                            </AreaChart>
-                          </ResponsiveContainer>
+                          <LineReact style={{height: 300}} data={blockStats}/>
                     }
                   </div>
                 </div>

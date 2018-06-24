@@ -22,7 +22,8 @@ export class LineReact extends React.Component {
       myChart = echarts.init(document.getElementById(id));
     }
 
-
+    config.lineChart.xAxis.data=[];
+    config.lineChart.series[0].data=[];
     this.props.data.map((val)=>{
       config.lineChart.xAxis.data.push(val.timestamp);
       config.lineChart.series[0].data.push(val.value);

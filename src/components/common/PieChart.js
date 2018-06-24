@@ -22,6 +22,7 @@ export class PieReact extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    config.pieChart.series[0].data=[];
     config.pieChart.series[0].data = this.props.data;
     myChart.setOption(config.pieChart);
   }
