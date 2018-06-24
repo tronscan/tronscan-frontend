@@ -730,18 +730,22 @@ class Account extends Component {
                     </tr>
                 }
                 <tr>
-                  <th>{tu("address")}:</th>
+                  <th style={{ width: 150 }}>{tu("address")}:</th>
                   <td>
-                    <AddressLink address={account.address} includeCopy={true}/><br/>
-                    {
-                      IS_TESTNET &&
-                        <span className="text-danger">
-                          ({tu("do_not_send_2")})
-                        </span>
-                    }
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
                       {tu("show_qr_code")}
                     </a>
+
+                    <div className="float-left" style={{ width: 300 }}>
+                      <AddressLink address={account.address} includeCopy={true}/>
+                    </div>
+
+                    {
+                      IS_TESTNET &&
+                        <p className="text-danger">
+                          ({tu("do_not_send_2")})
+                        </p>
+                    }
                   </td>
                 </tr>
                 <tr>
