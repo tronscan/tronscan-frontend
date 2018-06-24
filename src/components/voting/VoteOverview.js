@@ -9,7 +9,7 @@ import Countdown from "react-countdown-now";
 import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
 import {Alert} from "reactstrap";
-import {TronLoader} from "../common/loaders";
+import {BarLoader, TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
@@ -54,6 +54,7 @@ class VoteOverview extends React.Component {
     this.state = {
       votingEnabled: false,
       votesSubmitted: false,
+      submittingVotes: false,
       loading: false,
       votes: {},
       searchCriteria: "",
@@ -212,7 +213,7 @@ class VoteOverview extends React.Component {
   };
 
   renderVotingBar() {
-    let {votingEnabled, votesSubmitted} = this.state;
+    let {votingEnabled, votesSubmitted, submittingVotes } = this.state;
     let {account} = this.props;
 
     let {trxBalance} = this.getVoteStatus();
@@ -238,6 +239,14 @@ class VoteOverview extends React.Component {
         <div className="text-center">
           {tu("warning_votes")}{' '}
           <Link to="/account" className="text-primary">{tu("account_page")}</Link>
+        </div>
+      );
+    }
+
+    if (submittingVotes) {
+      return (
+        <div className="d-flex justify-content-center p-3" style={{lineHeight: '36px'}}>
+          <BarLoader width={160} />
         </div>
       );
     }
@@ -293,6 +302,8 @@ class VoteOverview extends React.Component {
     let {account} = this.props;
     let {votes} = this.state;
 
+    this.setState({ submittingVotes: true, });
+
     let witnessVotes = {};
 
     for (let address of Object.keys(votes)) {
@@ -307,6 +318,7 @@ class VoteOverview extends React.Component {
 
       this.setState({
         votesSubmitted: true,
+        submittingVotes: false,
         votingEnabled: false,
         modal: (
           <SweetAlert success title={tu("submissing_vote_message_title")} onConfirm={this.hideModal}>
@@ -317,6 +329,9 @@ class VoteOverview extends React.Component {
       });
     } else {
       this.setState({
+        votesSubmitted: true,
+        submittingVotes: false,
+        votingEnabled: false,
         modal: (
           <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
              {tu("submitting_vote_error_message")}

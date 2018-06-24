@@ -276,6 +276,15 @@ class Account extends Component {
       modal: (
         <FreezeBalanceModal
           onHide={this.hideModal}
+          onError={() => {
+            this.setState({
+              modal: (
+                <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
+                  Something went wrong while trying to freeze TRX
+                </SweetAlert>
+              )
+            });
+          }}
           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
         />
       )
