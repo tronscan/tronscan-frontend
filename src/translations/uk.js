@@ -96,7 +96,7 @@ export const messages = {
   "desktop_notification_enabled": "Увімкнено сповіщення на робочому столі!",
   "notifications_enabled": "Сповіщення ввімкнено",
   "contract_type": "Тип контракту",
-  "filters": "Filters",
+  "filters": "Фільтри",
 
 /*
 ##################################################################################
@@ -155,7 +155,7 @@ export const messages = {
   "last_page": "остання сторінка",
   "page": "сторінка",
   "of": "з",
-  "page_size": "page size",
+  "page_size": "Записи на сторінці",
   "most_nodes": "Більшість Вузлів",
   "loading_nodes": "завантаження Вузлів",
   "Hostname": "Ім'я хосту",
@@ -193,9 +193,9 @@ export const messages = {
 */
   "set_name": "Встановити Ім'я",
   "unique_account_message": "Ви можете вказати ім'я свого облікового запису лише один раз!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Прізвище коротке",
+  "name_to_long": "Ім'я має бути довгим",
+  "permitted_characters_message": "Ім'я може містити лише a-z A-Z 0-9",
   "change_name": "Змінити ім'я",
   "account_name": "Назва облікового запису",
   "show_qr_code": "Показати QR код",
@@ -225,9 +225,9 @@ export const messages = {
   "not_enough_trx": "Недостатньо TRX",
   "information_message_3": "Запит на отримання ТRX успішний. Якщо ви не отримали TRX, значить відсутні тестові TRX, які можливо отримати прямо зараз, і вам слід спробувати ще раз пізніше.",
   "send_to_following_address": "Надіслати на наступні адреси",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Змінити веб-сайт",
+  "you_must_enter_url": "Ви повинні ввести URL-адресу",
+  "specify_the_url":  "Будь ласка, вкажіть URL-адресу",
 
 /*
 ##################################################################################
