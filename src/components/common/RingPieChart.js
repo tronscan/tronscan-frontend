@@ -6,6 +6,9 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
+import 'echarts/lib/component/legend/ScrollableLegendModel.js'
+import 'echarts/lib/component/legend/ScrollableLegendView.js'
+import 'echarts/lib/component/legend/scrollableLegendAction.js'
 
 export class RingPieReact extends React.Component {
 

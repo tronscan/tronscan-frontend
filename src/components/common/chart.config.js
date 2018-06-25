@@ -49,9 +49,10 @@ module.exports = {
   ringPieChart: {
 
     legend: {
+      type: 'scroll',
       orient: 'vertical',
       x: 'right',
-      selected:{'Bancor Network':false,'Gatecoin':false}
+      selected:{'Bancor Network':false,'Gatecoin':false,'BitFlip':false,'Braziliex':false,'Cobinhood':false,'CoinExchange':false,'CoinFalcon':false,'Cryptomate':false,'Gatecoin':false,'IDEX':false,'LiteBit.eu':false,'Stocks.Exchange':false,'Tidex':false}
     },
     tooltip: {
       trigger: 'item',
