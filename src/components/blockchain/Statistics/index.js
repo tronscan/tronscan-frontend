@@ -201,7 +201,7 @@ console.log(transactionStats);
                     {
                       transactionValueStats.length === 0 ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionValueStats}/>
+                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']}/>
                     }
                   </div>
                 </div>
@@ -217,7 +217,7 @@ console.log(transactionStats);
                     {
                       transactionStats.length === 0 ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionStats}/>
+                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']}/>
                     }
                   </div>
                 </div>
@@ -231,7 +231,7 @@ console.log(transactionStats);
                     {
                       blockStats.length === 0 ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={blockStats}/>
+                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']}/>
                     }
                   </div>
                 </div>

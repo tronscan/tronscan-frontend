@@ -1,10 +1,13 @@
 import React from 'react'
+import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import config from './chart.config.js'
 
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
+import {connect} from "react-redux";
+import {loadPriceData} from "../../actions/markets";
 
 export class LineReact extends React.Component {
 
@@ -17,16 +20,29 @@ export class LineReact extends React.Component {
   }
 
   initLine(id) {
+    let {intl, keysData, data, format} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
 
-    config.lineChart.xAxis.data=[];
-    config.lineChart.series[0].data=[];
-    this.props.data.map((val)=>{
-      config.lineChart.xAxis.data.push(val.timestamp);
-      config.lineChart.series[0].data.push(val.value);
+    config.lineChart.xAxis.data = [];
+    config.lineChart.series[0].data = [];
+    data.map((val) => {
+
+      if (format[keysData[0]]) {
+        if (format.date) {
+          config.lineChart.xAxis.data.push(intl.formatDate(val[keysData[0]] * 1000));
+        }
+        else {
+          config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
+        }
+      }
+      else
+        config.lineChart.xAxis.data.push(val[keysData[0]]);
+
+
+      config.lineChart.series[0].data.push(val[keysData[1]]);
     })
 
     myChart.setOption(config.lineChart);
@@ -50,5 +66,10 @@ export class LineReact extends React.Component {
   }
 }
 
-export default LineReact
+function mapStateToProps(state) {
+  return {}
+}
 
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(LineReact));
