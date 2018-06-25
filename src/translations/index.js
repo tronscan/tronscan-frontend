@@ -17,6 +17,7 @@ import * as messages_ro from "./ro.js";
 import * as messages_vi from "./vi.js";
 import * as messages_ka from "./ka.js";
 import * as messages_no from "./no.js";
+import * as messages_cs from "./cs.js";
 
 import {addLocaleData} from 'react-intl';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -37,6 +38,7 @@ import roLocaleData from 'react-intl/locale-data/ro';
 import viLocaleData from 'react-intl/locale-data/vi';
 import kaLocaleData from 'react-intl/locale-data/ka';
 import noLocaleData from 'react-intl/locale-data/no';
+import csLocaleData from 'react-intl/locale-data/cs';
 
 addLocaleData([
   ...nlLocaleData,
@@ -56,6 +58,7 @@ addLocaleData([
   ...roLocaleData,
   ...viLocaleData,
   ...kaLocaleData,
+  ...csLocaleData,
   ...noLocaleData,
 ]);
 
@@ -79,4 +82,5 @@ export const languages = {
     'vi': messages_vi.messages,
     'ka': messages_ka.messages,
     'no': messages_no.messages,
+    'cs': messages_cs.messages,
 };
