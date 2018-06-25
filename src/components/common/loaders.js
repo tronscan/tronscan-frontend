@@ -3,9 +3,9 @@ import * as Spinners from "react-spinners";
 
 const DEFAULT_COLOR = "#343a40";
 
-export function BarLoader(props = {}) {
+export function BarLoader({ width = 60, ...props} = {}) {
     return (
-        <Spinners.BarLoader color={DEFAULT_COLOR} loading={true} height={5} width={60} {...props} />
+        <Spinners.BarLoader color={DEFAULT_COLOR} loading={true} height={5} width={width} {...props} />
     )
 }
 
