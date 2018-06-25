@@ -708,7 +708,7 @@ class Account extends Component {
                       <td>
                         {currentWallet.name || "-"}
                         {
-                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0) &&
+                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
                             <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
                               {tu("set_name")}
                             </a>
