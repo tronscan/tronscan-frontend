@@ -604,7 +604,7 @@ class TokenCreate extends Component {
                       </p>
                     </div>
                     <div className="form-row">
-                      <div className="form-group col-md-6">
+                      <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("start_date")}</label>
                         <DateTimePicker
                           onChange={(data) => this.setState({ startTime: data.toDate() }) }
@@ -613,7 +613,7 @@ class TokenCreate extends Component {
                           input={false}/>
                         {ErrorLabel(errors.startDate)}
                       </div>
-                      <div className="form-group col-md-6">
+                      <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("end_date")}</label>
                         <DateTimePicker
                           onChange={(data) => this.setState({ endTime: data.toDate() }) }

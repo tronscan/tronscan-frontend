@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {tu,t} from "../../utils/i18n";
+import {t, tu} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import FreezeBalanceModal from "./FreezeBalanceModal";
-import {AddressLink, TokenLink} from "../common/Links";
+import {AddressLink, ExternalLink, HrefLink, TokenLink} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {IS_TESTNET, ONE_TRX} from "../../constants";
 import {Client} from "../../services/api";
@@ -19,7 +19,6 @@ import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
-import Transfers from "../common/Transfers";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 
@@ -251,6 +250,7 @@ class Account extends Component {
         theadClass="thead-light"
         showTotal={false}
         autoRefresh={30000}
+        pagingProps={{ showPageSize: false }}
         EmptyState={() => <p className="text-center">No transactions yet</p>}
         filter={{address: account.address}}/>
     )
@@ -276,6 +276,15 @@ class Account extends Component {
       modal: (
         <FreezeBalanceModal
           onHide={this.hideModal}
+          onError={() => {
+            this.setState({
+              modal: (
+                <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
+                  Something went wrong while trying to freeze TRX
+                </SweetAlert>
+              )
+            });
+          }}
           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
         />
       )
@@ -723,15 +732,22 @@ class Account extends Component {
                     </tr>
                 }
                 <tr>
-                  <th>{tu("address")}:</th>
+                  <th style={{ width: 150 }}>{tu("address")}:</th>
                   <td>
-                    <AddressLink address={account.address} includeCopy={true}/><br/>
-                    <span className="text-danger">
-                      ({tu("do_not_send_2")})
-                    </span>
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
                       {tu("show_qr_code")}
                     </a>
+
+                    <div className="float-left" style={{ width: 300 }}>
+                      <AddressLink address={account.address} includeCopy={true}/>
+                    </div>
+
+                    {
+                      IS_TESTNET &&
+                        <p className="text-danger">
+                          ({tu("do_not_send_2")})
+                        </p>
+                    }
                   </td>
                 </tr>
                 <tr>
@@ -877,10 +893,21 @@ class Account extends Component {
                     <p className="card-text">
                       {tu("sr_receive_reward_message_0")}
                     </p>
-                    <button className="btn btn-success mr-2" onClick={this.claimRewards}>
+                    <button className="btn btn-success mr-2"
+                            onClick={this.claimRewards}
+                            disabled={currentWallet.representative.allowance === 0}>
                       {tu("claim_rewards")}
                       <i className="fa fa-hand-holding-usd ml-2"/>
                     </button>
+                    {
+                      currentWallet.representative.allowance > 0 ?
+                        <p className="m-0 mt-3 text-success">
+                          Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance} className="font-weight-bold"/>
+                        </p> :
+                        <p className="m-0 mt-3 font-weight-bold text-danger">
+                          No rewards to claim
+                        </p>
+                    }
                   </div>
                   <div className="card-body border-top">
                     <h5 className="card-title text-center">
@@ -890,10 +917,10 @@ class Account extends Component {
                       {tu("create_sr_landing_page_message_0")}
                     </p>
                     <p className="text-center">
-                      <a className="btn btn-primary mr-2" target="_blank" href="https://github.com/tronscan/tronsr-template#readme">
+                      <HrefLink className="btn btn-primary mr-2" href="https://github.com/tronscan/tronsr-template#readme">
                         {tu("show_more_information_publish_sr_page")}
                         <i className="fa fa-question ml-2"/>
-                      </a>
+                      </HrefLink>
                     </p>
                     {
                       !this.hasGithubLink() &&
@@ -917,7 +944,7 @@ class Account extends Component {
                         <tr>
                           <th>{tu("Github Link")}:</th>
                           <td>
-                            <a href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</a>
+                            <HrefLink href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                             <a href="javascript:;" className="float-right text-primary" onClick={this.changeGithubURL}>
                               {tu("Change Github Link")}
                             </a>

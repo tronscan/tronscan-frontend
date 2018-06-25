@@ -14,6 +14,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
+import {IS_DESKTOP} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "dark"),
@@ -145,8 +146,10 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_PK: {
 
-      Lockr.set("account_key", action.privateKey);
-      Lockr.rm("account_address");
+      if (IS_DESKTOP) {
+        Lockr.set("account_key", action.privateKey);
+        Lockr.rm("account_address");
+      }
 
       return {
         ...state,
@@ -160,8 +163,10 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_ADDRESS: {
 
-      Lockr.rm("account_key");
-      Lockr.set("account_address", action.address);
+      if (IS_DESKTOP) {
+        Lockr.rm("account_key");
+        Lockr.set("account_address", action.address);
+      }
 
       return {
         ...state,

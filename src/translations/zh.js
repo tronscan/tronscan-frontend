@@ -515,7 +515,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "highest_productivity": "出块效率最高y",
+  "highest_productivity": "出块效率最高",
   "lowest_productivity": "出块效率最低",
   "Super Representatives": "超级代表",
   "Super Representative Candidates": "超级代表候选人",
