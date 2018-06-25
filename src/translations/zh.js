@@ -89,13 +89,13 @@ export const messages = {
   "strong": "强大",
   "secure": "安全",
   "too_short": "太短",
-  "status": "status",
-  "no_notifications": "No notifications",
+  "status": "状态",
+  "no_notifications": "没有通知",
   "enable_desktop_notifications": "Enable Desktop Notifications",
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
-  "filters": "Filters",
+  "contract_type": "合同类型",
+  "filters": "过滤器",
 
 /*
 ##################################################################################
@@ -166,9 +166,9 @@ export const messages = {
   "productivity": "效率",
   "rewards": "奖励",
   "token_created": "Token created",
-  "witness": "Witness",
+  "witness": "见证",
   "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "loading_transaction": "加载交易",
 
 /*
 ##################################################################################
