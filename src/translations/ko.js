@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Korean                                                       #
 #         Status: third draft                                                    #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: VoidRays                                                 #
 #                                                                                #
 ##################################################################################
@@ -630,7 +630,7 @@ export const messages = {
 ##################################################################################
 */
   "what_is_tron": "트론의 정의",
-  "tron_explorer_api": "트론 탐색기",
+  "tron_explorer_api": "트론 탐색기 API",
   "tron_architechure": "트론 아키텍처",
   "tron_protobuf_doc": "트론 프로토콜 버퍼 문서(Protobuf)",
   "report_an_error": "버그 제보 및 건의",
