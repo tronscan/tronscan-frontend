@@ -52,7 +52,7 @@ export const messages = {
   "register": "Registrieren",
   "login": "Anmelden",
   "height": "Größe",
-  "age": "alter",
+  "age": "Zeitpunkt",
   "bytes": "bytes",
   "produced by": "erstellt von",
   "contract": "Vertrag",
