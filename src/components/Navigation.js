@@ -37,7 +37,7 @@ class Navigation extends PureComponent {
     this.fileRef = React.createRef();
 
     this.id = 0;
-
+    this.loginFlag=false;
     this.state = {
       privateKey: '',
       search: "",
@@ -45,7 +45,14 @@ class Navigation extends PureComponent {
       notifications: [],
     };
   }
+  componentDidUpdate() {
+    let { account, wallet } = this.props;
+    if(account.isLoggedIn && wallet.isOpen && !this.loginFlag){
+      toastr.info('Success', 'Login success');
+      this.loginFlag=true;
+    }
 
+  }
   setLanguage = (language) => {
     this.props.setLanguage(language);
   };
@@ -151,6 +158,8 @@ class Navigation extends PureComponent {
 
   logout = () => {
     this.props.logout();
+    this.loginFlag=false;
+    toastr.info('Success', 'Logout success');
   };
 
   componentWillUnmount() {
