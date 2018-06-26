@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Turkish                                                      #
-#         Status: first Version                                                  #
-#         Number of checks: 4                                                    #
+#         Status: second Version                                                 #
+#         Number of checks: 5                                                    #
 #         Participants: ahm37k(Ahmet)                                            #
 #                                                                                #
 ##################################################################################
@@ -260,8 +260,8 @@ export const messages = {
   "unable_to_rename_title": "Hesap adı değiştirilemedi",
   "unable_to_rename_message": "Hesap adınız güncellenirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz",
   "unfreeze_trx_confirm_message": "TRX çözmek istediğinizden emin misiniz?",
-  "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "unfreeze_assets": "Varlıkları Çöz",
+  "sure_to_unfreeze_unlocked_tokens_message": "Jetonları çözmek istediğinize emin misiniz?",
 
 /*
 ##################################################################################
@@ -314,36 +314,36 @@ export const messages = {
   "invalid_url": "Geçersiz URL",
   "apply_representative_error_message_0": "Temsilci başvurusu yaparken bir şeyler yanlış gitti.",
   "apply_representative_error_message_1": "Ücret için yeteri kadar TRX bulunduğunuzdan emin olun, ya da tekrar deneyin.",
-  "open_external_link":"You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
-  "continue_to_external_website": "Continue to external site",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username":  "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "open_external_link": "Bir dış bağlantıyı açmaktasınız",
+  "private_key_untrusted_website_message_0": "Güvenli olmayan bir web sitesi hiç bir zaman özel anahtarınızı girmeyiniz.",
+  "no_official_tron_website": "resmi bir Tron sitesi değildir.",
+  "continue_to_external_website": "Dış siteye devam et",
+  "url_changed": "URL değiştirildi",
+  "successfully_changed_website_message": "Website başarıyla şuna değiştirildi ",
+  "unable_to_change_website_title": "URL değiştirilemedi",
+  "unable_to_change_website_message": "Website güncellenirken bir şeyler yanlış gitti, lütfen tekrar deneyiniz",
+  "successfully_linked_github": "GitHub başarıyla bağlandı!",
+  "github_linked": "Github bağlandı!",
+  "unable_to_link_github_message": "GitHub ile bağlantı kurulamadı, lütfen kullanıcı adından emin olunuz!",
+  "could_not_link_github": "GitHub bağlanamadı",
+  "enter_your_github_username":  "GitHub kullanıcı adınızı giriniz",
+  "link_to_github": "GitHub ile bağla",
+  "link_github": "GitHub Bağla",
+  "you_must_enter_a_url": "Bir URL girmelisiniz",
+  "success": "Başarılı",
+  "successfully_appied_sr_canidate_message_0": "Süper Temsilci Adaylığına başarıyla başvuruldu.",
+  "successfully_appied_sr_canidate_message_1": "Hesabınız kısa süre içinde güncellenecektir.",
+  "landing_page": "Başlangıç Sayfası",
+  "show_more_information_publish_sr_page": "Bir sayfanın nasıl yayınlanacağı hakkında daha fazla bilgi göster",
+  "create_sr_landing_page_message_0": "Süper Temsilciler bir başlangıç sayfayı belirleyerek takımları ve planları hakkında daha fazla bilgi paylaşabilirler",
+  "set_github_url_message_0": "Zaten Github şablonunuzu yapılandırdınız mı? O zaman URL'yi aşağıdaki düğme ile tanımlayınız",
+  "set_github_link": "Github Bağlantısını Ayarla",
+  "could_not_claim_rewards": "Ödüller talep edilemedi",
+  "claim_rewards_error_message": "Ödüller talep edilirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz",
+  "rewards_claimed": "Ödüller talep edildi!",
+  "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
+  "claim_rewards": "Ödül Talebi",
+  "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
 
 /*
 ##################################################################################
@@ -396,8 +396,8 @@ export const messages = {
   "for": "için",
   "insufficient_trx": "Yetersiz TRX",
   "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
-  "ends": "bitiş",
-  "starts": "başlangıç",
+  "ends": "biter",
+  "starts": "başlar",
 
 /*
 ##################################################################################
