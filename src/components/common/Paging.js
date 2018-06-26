@@ -137,7 +137,7 @@ class Paging extends React.PureComponent {
               <li className="page-item">
                 <a className="page-link" href="javascript:">
                   <span className="d-none d-md-inline-block">{tu("page_size")}:</span>
-                  <select className="ml-sm-2 border-0 bg-white"
+                  <select className="ml-sm-2 border-0 bg-white selectForPaging"
                           onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
                     {
                       pageSizeOptions.map((size,index) => (

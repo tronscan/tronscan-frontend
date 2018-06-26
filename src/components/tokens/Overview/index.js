@@ -61,7 +61,8 @@ class TokenOverview extends Component {
 
   getTokenState = (token) => {
     let now = new Date().getTime();
-    if (token.endTime < now || token.percentage === 100) {
+
+    if (token.endTime < now || token.issuedPercentage === 100) {
       return 'finished';
     }
 
