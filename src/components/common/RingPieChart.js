@@ -45,7 +45,7 @@ export class RingPieReact extends React.Component {
       pairData.push({name:sortObj[index].pair,value:sortObj[index].volume});
       if(temp.indexOf(sortObj[index].name)<0) {
         temp.push(sortObj[index].name)
-        exchanges.push({name: sortObj[index].name, value: 0});
+        exchanges.push({name: sortObj[index].name, value: 0, subCount:[]});
       }
     }
 
@@ -53,22 +53,28 @@ export class RingPieReact extends React.Component {
       for (let idx in sortObj) {
         if (sortObj[idx].name === exchanges[index].name) {
           exchanges[index].value = exchanges[index].value + sortObj[idx].volume;
+          exchanges[index].subCount.push({name:sortObj[idx].pair,value:sortObj[idx].volume});
         }
       }
     }
-    console.log(exchanges);
-    console.log(pairData);
+
+    exchanges.sort(compare("value"));
+    let finalExchanges=exchanges.slice(exchanges.length-10,exchanges.length);
+    let finalPairData=[]
+    for(let index in finalExchanges){
+      finalPairData.push(...finalExchanges[index].subCount);
+    }
+    console.log(finalPairData);
     config.ringPieChart.series[0].data=[];
     config.ringPieChart.series[1].data = [];
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    console.log(temp);
       config.ringPieChart.legend.data=temp;
 
-      config.ringPieChart.series[0].data=exchanges;
-      config.ringPieChart.series[1].data = pairData;
+      config.ringPieChart.series[0].data=finalExchanges;
+      config.ringPieChart.series[1].data = finalPairData;
 
 
     myChart.setOption(config.ringPieChart);

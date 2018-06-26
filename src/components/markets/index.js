@@ -81,7 +81,7 @@ class Markets extends React.Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("Trade Volume")}</h5>
+                  <h5 className="card-title text-center">{tu("Trade Volume")}{' Top 10'}</h5>
                   <RingPieReact style={{height: 700}} data={markets}/>
                 </div>
               </div>
