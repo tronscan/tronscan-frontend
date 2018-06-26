@@ -76,6 +76,7 @@ export default class LedgerBridge {
     console.log("START LISTENER");
 
     ipcMain.on(LEDGER_SIGNATURE_REQUEST, async (event, arg) => {
+      console.log(`LedgerBridge:${LEDGER_SIGNATURE_REQUEST}`);
       let {transaction} = JSON.parse(arg);
       try {
         let response = await this.signTransaction(transaction);
@@ -86,6 +87,7 @@ export default class LedgerBridge {
           hex: response,
         });
       } catch(e) {
+        console.log(`LedgerBridge:${LEDGER_SIGNATURE_REQUEST}:ERROR`, e);
         if (e.statusText === 'CONDITIONS_OF_USE_NOT_SATISFIED') {
           this.sendToWeb(LEDGER_SIGNATURE_RESPONSE, {
             success: false,
@@ -101,6 +103,7 @@ export default class LedgerBridge {
     });
 
     ipcMain.on(LEDGER_CONNECTION_CHECK, async () => {
+      console.log(`LedgerBridge:${LEDGER_CONNECTION_CHECK}`);
       try {
         let address = await this.getAddress();
         this.sendToWeb(LEDGER_CONNECTION_STATUS, {

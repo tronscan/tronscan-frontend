@@ -1,4 +1,5 @@
 import LedgerBridge from "./src/Ledger/LedgerBridge";
+
 const {app, BrowserWindow, protocol, Menu} = require('electron');
 const path = require('path');
 const url = require('url');

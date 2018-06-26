@@ -18,6 +18,9 @@
 const { splitPath, foreach } = require("./utils");
 
 const CLA = 0xE0;
+const PATH_SIZE = 4;
+const PATHS_LENGTH_SIZE = 1;
+const CHUNK_SIZE = 150;
 
 /**
  * Tron API
@@ -92,39 +95,74 @@ export default class Trx {
    */
   async signTransaction(
     path,
-    rawTxHex,
-    sha256 = false,
-    contractType,
+    rawTxHex
   ) {
-    let paths = splitPath(path);
 
-    // Prepend contractType if sha256
-    if (sha256) {
-      let hexContractType = contractType.toString(16);
-      if (hexContractType.length === 1) {
-        hexContractType = "0" + hexContractType;
+    let paths = splitPath(path);
+    let rawTx = new Buffer(rawTxHex, "hex");
+
+    let buffers = [];
+    let offset = 0;
+
+    console.log("GOT SIGN REQUEST");
+
+    while (offset !== rawTx.length) {
+      let maxChunkSize = offset === 0 ?
+        CHUNK_SIZE - PATHS_LENGTH_SIZE - (paths.length * PATH_SIZE)
+        : CHUNK_SIZE;
+
+      let chunkSize = offset + maxChunkSize > rawTx.length
+          ? rawTx.length - offset
+          : maxChunkSize;
+
+      let buffer = new Buffer(
+        offset === 0 ? 1 + paths.length * PATH_SIZE + chunkSize : chunkSize
+      );
+
+      if (offset === 0) {
+        buffer[0] = paths.length;
+        paths.forEach((element, index) => {
+          buffer.writeUInt32BE(element, 1 + 4 * index);
+        });
+        rawTx.copy(buffer, PATHS_LENGTH_SIZE + PATH_SIZE * paths.length, offset, offset + chunkSize);
+      } else {
+        rawTx.copy(buffer, 0, offset, offset + chunkSize);
       }
 
-      rawTxHex = hexContractType + rawTxHex;
+      buffers.push(buffer);
+      offset += chunkSize;
     }
 
-    let rawTx = new Buffer(rawTxHex, "hex");
-    let buffer = new Buffer(1 + paths.length * 4 + rawTx.length);
-    buffer[0] = paths.length;
-    paths.forEach((element, index) => {
-      buffer.writeUInt32BE(element, 1 + 4 * index);
-    });
-    let copyResponse = rawTx.copy(buffer, 1 + 4 * paths.length, 0, rawTx.length);
-    console.log("signTransaction", {
-      paths,
-      buffer,
-      rawTx,
-      rawTxHex,
-      copyResponse,
-      sha256,
-    });
+    if (buffers.length === 1) {
+      buffers = [
+        [0x10, buffers[0]]
+      ];
+    } else if (buffers.length > 1) {
+      buffers = buffers.map((p, i) => {
+        let startByte;
+        if (i === 0) {
+          startByte = 0x00;
+        } else if (buffers.length > 1 && i === buffers.length - 1) {
+          startByte = 0x90;
+        } else {
+          startByte = 0x80;
+        }
 
-    return await this.transport.send(CLA, sha256 ? 0x07 : 0x04, 0x00, 0x00, buffer);
+        return [startByte, p];
+      });
+    }
+
+    console.log("CHUNKS", buffers.length);
+
+    let response;
+    return foreach(buffers, ([startByte, data]) => {
+      console.log("SENDING", startByte, data.length, data.toString("hex"));
+      return this.transport
+        .send(CLA, 0x04, startByte, 0x00, data)
+        .then(apduResponse => {
+          response = apduResponse;
+        });
+    }).then(() => response);
   }
 
   /**
@@ -161,8 +199,7 @@ eth.signPersonalMessage("44'/60'/0'/0'/0", Buffer.from("test").toString("hex")).
     let response;
     while (offset !== message.length) {
       let maxChunkSize = offset === 0 ? 150 - 1 - paths.length * 4 - 4 : 150;
-      let chunkSize =
-        offset + maxChunkSize > message.length
+      let chunkSize = offset + maxChunkSize > message.length
           ? message.length - offset
           : maxChunkSize;
       let buffer = new Buffer(

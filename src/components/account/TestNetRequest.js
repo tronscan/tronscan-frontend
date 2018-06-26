@@ -37,14 +37,14 @@ export default class TestNetRequest extends React.Component {
   };
 
   requestTrx = async () => {
-    let {account, onRequested} = this.props;
+    let {wallet, onRequested} = this.props;
     let {verificationCode} = this.state;
 
     this.setState({waitingForTrx: true});
 
     try {
 
-      let address = account.address;
+      let address = wallet.address;
 
       let {data} = await xhr.post(`${API_URL}/api/testnet/request-coins`, {
         address,

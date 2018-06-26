@@ -21,14 +21,15 @@ export class NumberField extends React.Component {
       }
       onChange(number);
     }
-
   };
+
   onKeyDownCheck = (event) => {
-    if (String.fromCharCode(event.which)==='E') {
+    if (String.fromCharCode(event.which) === 'E') {
       event.preventDefault();
       return false;
     }
-  }
+  };
+
   render() {
 
     let {onChange, ...props} = this.props;

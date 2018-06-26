@@ -1,5 +1,5 @@
-const path = require('path');
 const paths = require('./paths');
+const webpack = require('webpack');
 
 module.exports = {
   target: 'node',
@@ -31,4 +31,7 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+
+  ]
 };

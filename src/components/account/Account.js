@@ -735,17 +735,15 @@ class Account extends Component {
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
                       {tu("show_qr_code")}
                     </a>
-                    <AddressLink address={currentWallet.address} includeCopy={true}/><br/>
-
                     <div className="float-left" style={{ width: 300 }}>
                       <AddressLink address={currentWallet.address} includeCopy={true}/>
                     </div>
-
                     {
                       IS_TESTNET &&
-                        <p className="text-danger">
+                        <div className="text-danger">
+                          <br/>
                           ({tu("do_not_send_2")})
-                        </p>
+                        </div>
                     }
                   </td>
                 </tr>
@@ -992,7 +990,7 @@ class Account extends Component {
                     {tu("testnet")}
                   </h5>
                   <TestNetRequest
-                    account={account}
+                    wallet={currentWallet}
                     onRequested={() => setTimeout(() => this.reloadTokens(), 1500)}/>
                 </div>
               </div>

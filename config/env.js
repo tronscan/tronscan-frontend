@@ -80,6 +80,7 @@ function getClientEnvironment(publicUrl) {
         API_URL: process.env.API_URL || `https://api.tronscan.org`,
         NET: process.env.NET || `mainnet`,
         DESKTOP: process.env.DESKTOP || `false`,
+        DEV: process.env.DEV || `false`,
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
