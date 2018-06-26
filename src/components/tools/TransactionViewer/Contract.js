@@ -4,7 +4,6 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
 
-
 export default function Contract({contract}) {
 
   switch (contract.contractType.toUpperCase()) {
@@ -90,7 +89,7 @@ export default function Contract({contract}) {
           </div>
           <table className="table">
             <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
-            <Field label="Frozen Balance">{contract.frozenBalance}</Field>
+            <Field label="Frozen Balance">{contract.frozenBalance / ONE_TRX}</Field>
             <Field label="Frozen Days">{contract.frozenDuration}</Field>
           </table>
         </Fragment>
