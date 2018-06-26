@@ -22,20 +22,6 @@ function createWindow () {
   let ledgerBridge = new LedgerBridge(win);
   ledgerBridge.startListener();
 
-  // const menuTemplate = [
-  //   {
-  //     label: 'Ledger',
-  //     submenu: [
-  //       {
-  //         label: 'Start Listener',
-  //         click: async () => {
-  //           ledgerBridge.startListener();
-  //         }
-  //       },
-  //     ]
-  //   }
-  // ];
-  // const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(null);
 
   // win.setMenu(null);
@@ -43,11 +29,10 @@ function createWindow () {
 
   // and load the index.html of the app.
 
-  win.webContents.openDevTools();
   if (process.env.DEV === 'true') {
     win.loadURL("http://localhost:3000");
+    win.webContents.openDevTools()
   } else {
-
     win.loadURL(url.format({
       pathname: 'index.html',
       protocol: 'file:',

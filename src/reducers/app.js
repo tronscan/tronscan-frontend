@@ -14,6 +14,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
+import {IS_DESKTOP} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "dark"),

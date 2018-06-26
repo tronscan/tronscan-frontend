@@ -93,6 +93,7 @@ class SendForm extends React.Component {
           title="Confirm transaction"
           onConfirm={this.send}
           onCancel={this.hideModal}
+          style={{marginLeft:'-240px',marginTop:'-195px'}}
         >
           Are you sure you want to transfer<br/>
           <span className="font-weight-bold">{' '}

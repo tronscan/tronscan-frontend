@@ -60,15 +60,18 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {currentWallet} = this.props;
+    let {currentWallet, onError} = this.props;
     let {amount} = this.state;
 
     this.setState({ loading: true });
 
     let {success} = await Client.freezeBalance(currentWallet.address, amount * ONE_TRX, 3)(currentWallet.key);
-
-    this.confirmModal({ amount });
-    this.setState({ loading: false });
+    if (success) {
+      this.confirmModal({ amount });
+      this.setState({ loading: false });
+    } else {
+      onError && onError();
+    }
   };
 
   render() {

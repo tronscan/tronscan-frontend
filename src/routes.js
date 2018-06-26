@@ -24,13 +24,13 @@ import {
 } from "./components/async";
 import TokenList from "./components/tokens/Overview/TokenList";
 import Representative from "./components/Representative";
-import News from "./components/News";
+import News from "./components/Pages/News";
 import NodeTester from "./components/tools/NodeTester";
 import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
 import OpenWallet from "./components/wallet/Access/index";
-import LaunchStatus from "./components/LaunchStatus";
+import Faq from "./components/Pages/Faq";
 
 export const routes = [
   {
@@ -197,13 +197,13 @@ export const routes = [
     icon: "fa fa-wrench",
     routes: [
       {
-        label: "transaction viewer",
+        label: "transaction_viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
         component: TransactionViewerAsync,
       },
       {
-        label: "node tester",
+        label: "node_tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
         component: NodeTester,
@@ -234,6 +234,17 @@ export const routes = [
         label: "what_is_tron",
       },
       '-',
+      'Tronscan',
+      {
+        label: "Frequently Asked Questions",
+        component: Faq,
+        path: "/help/faq",
+      },
+      {
+        url: "https://t.me/tronscan",
+        label: "Telegram Updates",
+      },
+      '-',
       "Development",
       {
         url: "https://api.tronscan.org",
@@ -254,12 +265,6 @@ export const routes = [
         label: "report_an_error",
       },
     ]
-  },
-  {
-    path: "/launch",
-    label: "launch",
-    showInMenu: false,
-    component: LaunchStatus
   },
   {
     path: "/wallet/new",

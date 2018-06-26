@@ -11,7 +11,7 @@ import {loadWalletFromAddressReadOnly, loadWalletFromLedger} from "../actions/wa
 import {Client} from "../services/api";
 import LedgerSigner from "../hw/ledger/LedgerSigner";
 
-class App extends Component {
+class AppCmp extends Component {
 
   constructor() {
     super();
@@ -71,4 +71,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppCmp;

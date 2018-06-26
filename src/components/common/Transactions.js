@@ -30,20 +30,20 @@ export default class Transactions extends React.Component {
     this.loadTransactions();
   }
 
-  onChange = (page,pageSize) => {
-    this.loadTransactions(page,pageSize);
+  onChange = (page, pageSize) => {
+    this.loadTransactions(page, pageSize);
   };
 
-  loadTransactions = async (page = 1,pageSize=40) => {
+  loadTransactions = async (page = 1, pageSize = 40) => {
 
     let {filter} = this.props;
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     let {transactions, total} = await Client.getTransactions({
       sort: '-timestamp',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
       ...filter,
     });
 
@@ -57,7 +57,7 @@ export default class Transactions extends React.Component {
   render() {
 
     let {transactions, total, loading, EmptyState = null} = this.state;
-    let {theadClass = "thead-dark"} = this.props;
+    let {theadClass = "thead-dark", pagingProps = {}} = this.props;
 
     if (!loading && transactions.length === 0) {
       if (!EmptyState) {
@@ -65,28 +65,26 @@ export default class Transactions extends React.Component {
           <div className="p-3 text-center">{tu("no_transactions")}</div>
         );
       }
-      return <EmptyState />;
+      return <EmptyState/>;
     }
 
     return (
       <StickyContainer>
-
-            <Sticky>
-              {
-                ({style}) => (
-                  <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                    <Paging onChange={this.onChange} total={total} loading={loading}/>
-                  </div>
-                )
-              }
-            </Sticky>
-
+        <Sticky>
+          {
+            ({style}) => (
+              <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
+                <Paging onChange={this.onChange} total={total} loading={loading} {...pagingProps} />
+              </div>
+            )
+          }
+        </Sticky>
         <table className="table table-hover m-0 border-top-0">
           <thead className={theadClass}>
           <tr>
-            <th className="" style={{width: 125 }}>{tu("age")}</th>
+            <th className="" style={{width: 125}}>{tu("age")}</th>
             <th className="">{tu("hash")}</th>
-            <th className="" style={{width: 125 }}>{tu("contract_type")}</th>
+            <th className="" style={{width: 125}}>{tu("contract_type")}</th>
           </tr>
           </thead>
           <tbody>
@@ -94,7 +92,7 @@ export default class Transactions extends React.Component {
             transactions.map((transaction) => (
               <tr key={transaction.hash}>
                 <td className="text-nowrap">
-                  <TimeAgo date={transaction.timestamp} />
+                  <TimeAgo date={transaction.timestamp}/>
                 </td>
                 <td className="">
                   <Truncate>

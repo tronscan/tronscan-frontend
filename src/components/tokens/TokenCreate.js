@@ -392,7 +392,7 @@ class TokenCreate extends Component {
       return (
         <main className="container pb-3 token-create header-overlap">
           <div className="row">
-            <div className="col-sm-8">
+            <div className="col-sm-12">
               <div className="card">
                 <div className="card-body">
                   <div className="text-center p-3">
@@ -604,7 +604,7 @@ class TokenCreate extends Component {
                       </p>
                     </div>
                     <div className="form-row">
-                      <div className="form-group col-md-6">
+                      <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("start_date")}</label>
                         <DateTimePicker
                           onChange={(data) => this.setState({ startTime: data.toDate() }) }
@@ -613,7 +613,7 @@ class TokenCreate extends Component {
                           input={false}/>
                         {ErrorLabel(errors.startDate)}
                       </div>
-                      <div className="form-group col-md-6">
+                      <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("end_date")}</label>
                         <DateTimePicker
                           onChange={(data) => this.setState({ endTime: data.toDate() }) }

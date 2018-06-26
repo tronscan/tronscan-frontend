@@ -7,7 +7,7 @@
     "@fortawesome/react-fontawesome": "^0.0.19",
     "@ledgerhq/hw-transport": "^4.13.0",
     "@ledgerhq/hw-transport-node-hid": "^4.13.0",
-    "@tronscan/client": "^0.2.4",
+    "@tronscan/client": "^0.2.5",
     "@tweenjs/tween.js": "^17.2.0",
     "aes-js": "^3.1.1",
     "animate.css": "^3.6.1",
@@ -134,6 +134,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "start:testnet": "NET=testnet API_URL=https://testapi.tronscan.org yarn start",
     "build": "node scripts/build.js",
     "desktop:build": "GENERATE_SOURCEMAP=false API_URL=https://api.tronscan.org DESKTOP=true yarn run build && NODE_ENV=production yarn webpack --config config/webpack.config.desktop.js",
     "desktop:prepare": "rm -rf ./build-native && mkdir build-native",
@@ -142,6 +143,7 @@
     "desktop:build:linux": "electron-packager ./build-native Tronscan --platform=linux --out=build-desktop --overwrite",
     "desktop:build:mac": "electron-packager ./build-native Tronscan --platform=darwin --out=build-desktop  --overwrite",
     "desktop:start": "DEV=true electron ./desktop",
+    "desktop:start:test": "DEV=true electron ./desktop",
     "desktop:build:full": "yarn desktop:prepare && yarn desktop:build && yarn desktop:copy-sources && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
     "test": "node scripts/test.js --env=jsdom",
     "deploy": "gh-pages -d build"
