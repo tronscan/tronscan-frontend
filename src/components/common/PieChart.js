@@ -17,13 +17,20 @@ export class PieReact extends React.Component {
   }
 
   initPie(id) {
-
+    let { data }=this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.pieChart.series[0].data=[];
-    config.pieChart.series[0].data = this.props.data;
+    config.pieChart.series[0].data = [];
+    config.pieChart.title.text="";
+
+    if (data && data.length > 0) {
+      config.pieChart.series[0].data = data;
+    }
+    if(data && data.length===0){
+      config.pieChart.title.text="No data";
+    }
     myChart.setOption(config.pieChart);
   }
 

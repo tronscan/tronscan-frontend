@@ -1,5 +1,9 @@
 module.exports = {
   pieChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
     tooltip: {
       trigger: 'item',
       formatter: "{b}<br> {c} ({d}%)"
@@ -23,6 +27,10 @@ module.exports = {
     ]
   },
   lineChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
     grid: {
       left: '3%',
       right: '3%',
@@ -47,7 +55,10 @@ module.exports = {
   },
 
   ringPieChart: {
-
+    title : {
+      text: '',
+      x:'center'
+    },
     legend: {
       type: 'scroll',
       orient: 'vertical',

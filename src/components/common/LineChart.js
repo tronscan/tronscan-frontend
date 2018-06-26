@@ -25,26 +25,30 @@ export class LineReact extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    config.lineChart.title.text='';
     config.lineChart.xAxis.data = [];
     config.lineChart.series[0].data = [];
-    data.map((val) => {
+    if(data && data.length>0) {
+      data.map((val) => {
 
-      if (format[keysData[0]]) {
-        if (format.date) {
-          config.lineChart.xAxis.data.push(intl.formatDate(val[keysData[0]] * 1000));
+        if (format && format[keysData[0]]) {
+          if (format.date) {
+            config.lineChart.xAxis.data.push(intl.formatDate(val[keysData[0]] * 1000));
+          }
+          else {
+            config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
+          }
         }
-        else {
-          config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
-        }
-      }
-      else
-        config.lineChart.xAxis.data.push(val[keysData[0]]);
+        else
+          config.lineChart.xAxis.data.push(val[keysData[0]]);
 
 
-      config.lineChart.series[0].data.push(val[keysData[1]]);
-    })
-
+        config.lineChart.series[0].data.push(val[keysData[1]]);
+      })
+    }
+    if(data && data.length===0){
+      config.lineChart.title.text="No data";
+    }
     myChart.setOption(config.lineChart);
 
   }

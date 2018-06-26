@@ -86,10 +86,10 @@ class Statistics extends React.Component {
     super();
 
     this.state = {
-      accounts: [],
-      transactionStats: [],
-      blockStats: [],
-      transactionValueStats: []
+      accounts: null,
+      transactionStats: null,
+      blockStats: null,
+      transactionValueStats: null
     };
   }
 
@@ -175,17 +175,16 @@ class Statistics extends React.Component {
   render() {
 
     let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
-console.log(transactionStats);
     return (
         <main className="container header-overlap">
           <div className="row">
             <div className="col-md-6 mt-3">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("Top")} {accounts.length} {tu("addresses")}</h5>
+                  <h5 className="card-title text-center">{tu("Top")} {accounts !== null ? accounts.length : 0} {tu("addresses")}</h5>
                   <div style={{height: 300}}>
                     {
-                      accounts.length === 0 ?
+                      accounts === null ?
                           <TronLoader/> :
                           <PieReact style={{height: 300}} data={accounts}/>
                     }
@@ -199,7 +198,7 @@ console.log(transactionStats);
                   <h5 className="text-center">{tu("trx_transferred_past_hour")}</h5>
                   <div style={{height: 300}}>
                     {
-                      transactionValueStats.length === 0 ?
+                      transactionValueStats === null ?
                           <TronLoader/> :
                           <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']}/>
                     }
@@ -215,7 +214,7 @@ console.log(transactionStats);
                   <h5 className="text-center">{tu("transactions_past_hour")}</h5>
                   <div style={{height: 300}}>
                     {
-                      transactionStats.length === 0 ?
+                      transactionStats === null ?
                           <TronLoader/> :
                           <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']}/>
                     }
@@ -229,7 +228,7 @@ console.log(transactionStats);
                   <h5 className="text-center">{tu("average_blocksize")} ({tu("bytes")})</h5>
                   <div style={{height: 300}}>
                     {
-                      blockStats.length === 0 ?
+                      blockStats === null ?
                           <TronLoader/> :
                           <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']}/>
                     }
