@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-25062018                                                  #
-#         Update Date: 25.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Italian                                                      #
 #         Status: second draft                                                   #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: FabioHC,Andrea1980,PMD3VSolution                         #
 #                                                                                #
 ##################################################################################
@@ -225,9 +225,9 @@ export const messages = {
   "not_enough_trx": "TRX non sufficienti",
   "information_message_3": "TRX richiesti non successo. Se non hai ricevuto alcun TRX allora non c'è alcun TRX di test disponibile al momento, dovresti provare di nuovo più tardi.",
   "send_to_following_address": "Invia al seguente indirizzo",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Cambia sito web",
+  "you_must_enter_url": "Devi inserire un URL",
+  "specify_the_url":  "Per favore, specifica l'URL",
 
 /*
 ##################################################################################
