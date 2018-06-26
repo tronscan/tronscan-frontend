@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-22062018                                                  #
-#         Update Date: 22.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Ukrainian                                                    #
 #         Status: second Version                                                 #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: ghostwg                                                  #
 #                                                                                #
 ##################################################################################
@@ -65,7 +65,7 @@ export const messages = {
   "receive": "отримати",
   "supply": "запас",
   "view": "перегляд",
-  "view_all": "Подивитись все",
+  "view_all": "Перегляд",
   "create": "Створити",
   "country": "Регіон",
   "amount": "кількість",
@@ -156,7 +156,7 @@ export const messages = {
   "last_page": "остання сторінка",
   "page": "сторінка",
   "of": "з",
-  "page_size": "Записи на сторінці",
+  "page_size": "Записів",
   "most_nodes": "Більшість Вузлів",
   "loading_nodes": "завантаження Вузлів",
   "Hostname": "Ім'я хосту",
