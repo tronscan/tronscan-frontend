@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "알림 기능이 활성화되었습니다",
   "contract_type": "컨트랙트 타입",
   "filters": "필터",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "Đã bật thông báo",
   "contract_type": "Loại hợp đồng",
   "filters": "Bộ lọc",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

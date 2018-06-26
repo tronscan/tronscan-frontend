@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "Bildirimler Açıldı",
   "contract_type": "Sözleşme Tipi",
   "filters": "Süzgeçler",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

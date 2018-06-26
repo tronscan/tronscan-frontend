@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "Meldingen ingeschakeld",
   "contract_type": "Contract Type",
   "filters": "Filters",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

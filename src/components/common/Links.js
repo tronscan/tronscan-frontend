@@ -78,7 +78,7 @@ export class AddressLink extends React.PureComponent {
           </a>
           <a className="dropdown-item" href="javascript:" onClick={this.renderSend}>
             <i className="fas fa-exchange-alt mr-2"/>
-            {tu("Send tokens")}
+            {tu("send_tokens")}
           </a>
         </Fragment>
       </ContextMenu>

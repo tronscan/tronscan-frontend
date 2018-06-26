@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "تم تمكين الأشعارات",
   "contract_type": "نوع العقد",
   "filters": "تصفيه",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

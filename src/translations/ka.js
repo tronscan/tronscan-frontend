@@ -97,6 +97,7 @@ export const messages = {
   "notifications_enabled": "შეტყობინებები ჩართულია",
   "contract_type": "კონტრაქტის ტიპი",
   "filters": "ფილტრები",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################

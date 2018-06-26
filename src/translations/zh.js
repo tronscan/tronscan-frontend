@@ -96,6 +96,7 @@ export const messages = {
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "合同类型",
   "filters": "过滤器",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
