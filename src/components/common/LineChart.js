@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import config from './chart.config.js'
 
 import echarts from 'echarts/lib/echarts'
@@ -7,7 +7,6 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 import {connect} from "react-redux";
-import {loadPriceData} from "../../actions/markets";
 
 export class LineReact extends React.Component {
 

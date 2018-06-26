@@ -74,7 +74,7 @@ export class RingPieReact extends React.Component {
       for (let index in finalExchanges) {
         finalPairData.push(...finalExchanges[index].subCount);
       }
-      console.log(finalPairData);
+
       config.ringPieChart.series[0].data = [];
       config.ringPieChart.series[1].data = [];
 
