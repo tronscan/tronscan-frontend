@@ -129,7 +129,8 @@ export default function Contract({contract}) {
                   {
                     contract.votes.map(vote => (
                       <li>
-                        <AddressLink address={vote.voteAddress} truncate={false} />: {vote.voteCount}
+                        <AddressLink address={vote.voteAddress} truncate={false} />
+                        {"counts"} : {vote.voteCount}
                       </li>
                     ))
                   }
