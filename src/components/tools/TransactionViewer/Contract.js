@@ -45,7 +45,23 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
-
+    case "PARTICIPATEASSETISSUECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">ParticipateAssetIssueContract</h5>
+              <p>
+                Participate token between addresses
+              </p>
+            </div>
+            <table className="table">
+              <Field label="From"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="To"><AddressLink address={contract.toAddress} /></Field>
+              <Field label="Amount">{contract.amount}</Field>
+              <Field label="Token">{contract.token}</Field>
+            </table>
+          </Fragment>
+      );
     case "WITNESSUPDATECONTRACT":
       return (
         <Fragment>
