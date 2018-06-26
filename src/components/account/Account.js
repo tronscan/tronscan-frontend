@@ -708,7 +708,7 @@ class Account extends Component {
                       <td>
                         {currentWallet.name || "-"}
                         {
-                          (trim(currentWallet.name) === "" && currentWallet.balance > 0) &&
+                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
                             <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
                               {tu("set_name")}
                             </a>
@@ -901,7 +901,7 @@ class Account extends Component {
                     {
                       currentWallet.representative.allowance > 0 ?
                         <p className="m-0 mt-3 text-success">
-                          Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance} className="font-weight-bold"/>
+                          Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
                         </p> :
                         <p className="m-0 mt-3 font-weight-bold text-danger">
                           No rewards to claim
