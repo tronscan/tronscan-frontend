@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {Alert} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {ONE_TRX} from "../../constants";
+import {IS_DESKTOP, ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
 import {WidgetIcon} from "../common/Icon";
@@ -505,7 +505,7 @@ class VoteOverview extends React.Component {
                                 <AddressLink className="small text-muted" address={candidate.address}/>
                               </div>
                               {
-                                candidate.hasPage && <div className="ml-0 ml-sm-auto">
+                                (!IS_DESKTOP && candidate.hasPage) && <div className="ml-0 ml-sm-auto">
                                   <Link className="btn btn-lg btn-block btn-outline-secondary mt-1" to={`/representative/${candidate.address}`}>
                                     {tu("open_team_page")}
                                     <i className="fas fa-users ml-2"/>

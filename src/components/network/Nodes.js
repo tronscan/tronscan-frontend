@@ -10,6 +10,7 @@ import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
 import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
+import {IS_DESKTOP} from "../../constants";
 
 class Nodes extends Component {
 
@@ -166,13 +167,16 @@ class Nodes extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <NodeMapAsync nodes={nodes} countries={countries}/>
+          {
+            !IS_DESKTOP &&
+              <div className="row mt-3">
+                <div className="col-md-12">
+                  <div className="card">
+                    <NodeMapAsync nodes={nodes} countries={countries}/>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          }
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">

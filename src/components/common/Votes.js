@@ -4,7 +4,6 @@ import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {AddressLink, ExternalLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import {TronLoader} from "./loaders";
 import {FormattedNumber} from "react-intl";
 
 export default class Votes extends React.Component {
@@ -113,7 +112,7 @@ export default class Votes extends React.Component {
                   <FormattedNumber value={vote.votes} />&nbsp;
                 </td>
                 <td className="text-nowrap text-right">
-                  <FormattedNumber value={(vote.votes / (vote.voterAvailableVotes + vote.votes)) * 100} minimumFractionDigits={2} />%
+                  <FormattedNumber value={(vote.votes / vote.voterAvailableVotes) * 100} minimumFractionDigits={2} />%
                 </td>
                 <td className="text-nowrap text-right">
                   <FormattedNumber value={(vote.votes / totalVotes) * 100} minimumFractionDigits={2} />%

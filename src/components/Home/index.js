@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
@@ -13,9 +13,9 @@ import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
-import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
+import {IS_DESKTOP} from "../../constants";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -90,7 +90,7 @@ class Home extends Component {
 
       toastr.warning('Warning', 'Record not found!');
     }
-  }
+  };
 
   onSearchKeyDown = (ev) => {
     if (ev.keyCode === KEY_ENTER) {
@@ -101,10 +101,6 @@ class Home extends Component {
   componentDidMount() {
     constellationPreset(this.$ref, "Hot Sparks");
     this.load();
-
-    // this.props.setInterval(() => {
-    //   this.load();
-    // }, 6000);
   }
 
   componentWillUnmount() {
@@ -124,8 +120,6 @@ class Home extends Component {
   render() {
 
     let {search, isShaking, hasFound, stats} = this.state;
-
-    console.log(stats);
 
     return (
       <main className="home pb-0">
@@ -212,180 +206,165 @@ class Home extends Component {
           </div>
         </div>
 
+        {
+          !IS_DESKTOP &&
+            <Fragment>
+              <SRNews/>
 
-
-       
-
-        <SRNews/>
-
-
-
-        <div className="bg-light-grey py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <h5>Desktop Explorer is here!</h5>
-                  <p>
-                    <span className="font-weight-bold">1.0 version is out!</span>{' '}
-                    Use all your favorite features of Tronscan in the desktop version. By using the Desktop
-                    version you are safe from malicious websites or browser extensions which may read your private key.
-                  </p>
-                  <p>
-                    More features will be coming in the future for even better Desktop Integration.
-                  </p>
-                  <p>
-                    The Desktop app is available for Windows, Linux and Mac
-                  </p>
-                  <div className="mt-3">
-                    <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">
-                      <button className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
-                        Download here
-                      </button>
-                    </HrefLink>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-5 text-md-right text-sm-center">
-                <img src={require("../../images/frontpage/Tron_windows.png")}/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-
-              <div className="col-md-5 text-left text-sm-center">
-
-                <img src={require("../../images/frontpage/representatives.png")} />
-              </div>
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <div >
-                    <h5>Super Representatives Nodes</h5>
-                    <p>
-                      Super Representatives are the backbone of the network which will handle transactions, produce nodes and
-                      receive rewards for being part of the top 27. Every 6 hours the votes will be counted and new Super Representatives
-                      will be selected.
-                    </p>
-                    <p>
-                      View the health of the network, check if your node is properly synced and see which node has
-                      the best productivity.
-                    </p>
-                    <div className="mt-3">
-                      <Link className="btn btn-tron btn-block col-xm-7 col-sm-4 float-right" to="/representatives">
-                        View Representatives
-                      </Link>
+              <div className="bg-light-grey py-5 pt-5">
+                <div className="container homepage-filler">
+                  <div className="row pt-5 pb-5">
+                    <div className="col-md-7">
+                      <div className="mb-3 border-0">
+                        <h5>Desktop Explorer is here!</h5>
+                        <p>
+                          <span className="font-weight-bold">1.0 version is out!</span>{' '}
+                          Use all your favorite features of Tronscan in the desktop version. By using the Desktop
+                          version you are safe from malicious websites or browser extensions which may read your private key.
+                        </p>
+                        <p>
+                          More features will be coming in the future for even better Desktop Integration.
+                        </p>
+                        <p>
+                          The Desktop app is available for Windows, Linux and Mac
+                        </p>
+                        <div className="mt-3">
+                          <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">
+                            <button className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
+                              Download here
+                            </button>
+                          </HrefLink>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-5 text-md-right text-sm-center">
+                      <img src={require("../../images/frontpage/Tron_windows.png")}/>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
+              <div className="bg-white py-5 pt-5">
+                <div className="container homepage-filler">
+                  <div className="row pt-5 pb-5">
 
-        <div className="bg-light-grey py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <h5>The Tron Explorer Wallet</h5>
-                  <p className="mt-3">
-                    Open your wallet on the Tron Explorer and make use of all the features on the Tron Network.
-                    Vote for Super Representatives, transfer tokens to another account or gain Tron Power? It can all be
-                    done right here on Tronscan.
-                  </p>
-                  {/*<p>*/}
-                  {/*Be instantly notified of transactions happening on your wallet by enabling Desktop Notifications.*/}
-                  {/*</p>*/}
-                  <p>
-                    <span className="font-weight-bold">Upcoming Feature!</span> Open your wallet on Tron Explorer
-                    without needing to share your Private Key in the browser!
-                  </p>
-                  <div className="mt-3">
-                    <Link to="/wallet/new" className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
-                      Create Wallet
-                    </Link>
+                    <div className="col-md-5 text-left text-sm-center">
+
+                      <img src={require("../../images/frontpage/representatives.png")} />
+                    </div>
+                    <div className="col-md-7">
+                      <div className="mb-3 border-0">
+                        <div >
+                          <h5>Super Representatives Nodes</h5>
+                          <p>
+                            Super Representatives are the backbone of the network which will handle transactions, produce nodes and
+                            receive rewards for being part of the top 27. Every 6 hours the votes will be counted and new Super Representatives
+                            will be selected.
+                          </p>
+                          <p>
+                            View the health of the network, check if your node is properly synced and see which node has
+                            the best productivity.
+                          </p>
+                          <div className="mt-3">
+                            <Link className="btn btn-tron btn-block col-xm-7 col-sm-4 float-right" to="/representatives">
+                              View Representatives
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-5 text-md-right text-sm-center">
-                <img src={require("../../images/frontpage/wallet-preview.png")}/>
-              </div>
-            </div>
-          </div>
-        </div>
 
+              <div className="bg-light-grey py-5 pt-5">
+                <div className="container homepage-filler">
+                  <div className="row pt-5 pb-5">
+                    <div className="col-md-7">
+                      <div className="mb-3 border-0">
+                        <h5>The Tron Explorer Wallet</h5>
+                        <p className="mt-3">
+                          Open your wallet on the Tron Explorer and make use of all the features on the Tron Network.
+                          Vote for Super Representatives, transfer tokens to another account or gain Tron Power? It can all be
+                          done right here on Tronscan.
+                        </p>
+                        <div className="mt-3">
+                          <Link to="/wallet/new" className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
+                            Create Wallet
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-5 text-md-right text-sm-center">
+                      <img src={require("../../images/frontpage/wallet-preview.png")}/>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        {/*<div className="bg-super-dark text-center">*/}
-          {/*<video className="video pt-1 pb-1" no-controls autoPlay loop src={require("../../video/Hologram_Planet_by_nuva.mp4")}></video>*/}
-        {/*</div>*/}
-
-
-        <div className="pt-5 home-footer">
-          <div className="container">
-            <div className="row text-center text-xs-center text-sm-left text-md-left">
-              <div className="col-md-2">
-                &nbsp;
+              <div className="pt-5 home-footer">
+                <div className="container">
+                  <div className="row text-center text-xs-center text-sm-left text-md-left">
+                    <div className="col-md-2">
+                      &nbsp;
+                    </div>
+                    <div className="col-xs-12 col-sm-4 col-md-3">
+                      <h5>TRON</h5>
+                      <ul className="list-unstyled quick-links">
+                        <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
+                        <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
+                        <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
+                        <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
+                        <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
+                      </ul>
+                    </div>
+                    <div className="col-xs-12 col-sm-4 col-md-3">
+                      <h5>Development</h5>
+                      <ul className="list-unstyled quick-links">
+                        <li><HrefLink href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</HrefLink></li>
+                        <li><HrefLink href="https://github.com/tronprotocol/java-tron"><i
+                          className="fa fa-angle-right"/> java-tron</HrefLink></li>
+                        <li>
+                          <HrefLink href="https://github.com/tronprotocol/Documentation">
+                            <i className="fa fa-angle-right"/> Documentation
+                          </HrefLink>
+                        </li>
+                        <li><HrefLink href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</HrefLink></li>
+                      </ul>
+                    </div>
+                    <div className="col-xs-12 col-sm-4 col-md-3">
+                      <h5>Quick links</h5>
+                      <ul className="list-unstyled quick-links">
+                        <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}</Link></li>
+                        <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
+                        <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
+                        <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                      <ul className="list-unstyled list-inline social text-center">
+                        <li className="list-inline-item">
+                          <HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></HrefLink>
+                        </li>
+                        <li className="list-inline-item">
+                          <HrefLink href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></HrefLink>
+                        </li>
+                        <li className="list-inline-item">
+                          <HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>
+                        </li>
+                        <li className="list-inline-item">
+                          <HrefLink href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></HrefLink>
+                        </li>
+                      </ul>
+                    </div>
+                    <hr/>
+                  </div>
+                </div>
               </div>
-              <div className="col-xs-12 col-sm-4 col-md-3">
-                <h5>TRON</h5>
-                <ul className="list-unstyled quick-links">
-                  <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
-                  <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
-                  <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
-                  <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
-                  <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
-                </ul>
-              </div>
-              <div className="col-xs-12 col-sm-4 col-md-3">
-                <h5>Development</h5>
-                <ul className="list-unstyled quick-links">
-                  <li><HrefLink href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</HrefLink></li>
-                  <li><HrefLink href="https://github.com/tronprotocol/java-tron"><i
-                    className="fa fa-angle-right"/> java-tron</HrefLink></li>
-                  <li>
-                    <HrefLink href="https://github.com/tronprotocol/Documentation">
-                      <i className="fa fa-angle-right"/> Documentation
-                    </HrefLink>
-                  </li>
-                  <li><HrefLink href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</HrefLink></li>
-                </ul>
-              </div>
-              <div className="col-xs-12 col-sm-4 col-md-3">
-                <h5>Quick links</h5>
-                <ul className="list-unstyled quick-links">
-                  <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}</Link></li>
-                  <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
-                  <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
-                </ul>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                <ul className="list-unstyled list-inline social text-center">
-                  <li className="list-inline-item">
-                    <HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></HrefLink>
-                  </li>
-                  <li className="list-inline-item">
-                    <HrefLink href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></HrefLink>
-                  </li>
-                  <li className="list-inline-item">
-                    <HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>
-                  </li>
-                  <li className="list-inline-item">
-                    <HrefLink href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></HrefLink>
-                  </li>
-                </ul>
-              </div>
-              <hr/>
-            </div>
-          </div>
-        </div>
+            </Fragment>
+        }
       </main>
     )
   }
@@ -398,8 +377,8 @@ const styles = {
   },
   list: {
     fontSize: 18,
-  }
-}
+  },
+};
 
 function mapStateToProps(state) {
   return {
