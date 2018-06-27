@@ -77,6 +77,21 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
+    case "WITNESSCREATECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">WitnessCreateContract</h5>
+              <p>
+                Create a witness
+              </p>
+            </div>
+            <table className="table">
+              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="URL">{contract.url}</Field>
+            </table>
+          </Fragment>
+      );
 
     case "ACCOUNTUPDATECONTRACT":
       return (

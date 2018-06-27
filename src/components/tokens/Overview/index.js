@@ -349,7 +349,7 @@ class TokenOverview extends Component {
     this.setState({
       alert: (
         <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
-          Successfully received x tokens
+          Successfully received {token.name} tokens
         </SweetAlert>
       )
     });
