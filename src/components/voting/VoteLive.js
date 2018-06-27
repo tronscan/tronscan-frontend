@@ -10,6 +10,8 @@ import {AddressLink} from "../common/Links";
 import palette from "google-palette";
 import VoteStats from "../blockchain/Statistics/VoteStats";
 import {tu} from "../../utils/i18n"
+import MultiLineReact from "../common/MultiLineChart";
+
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -43,6 +45,7 @@ class VoteLive extends React.Component {
     super();
     this.state = {
       candidates: [],
+      data:[],
       votes: {},
       colors: palette('mpn65', 20),
     };
@@ -57,6 +60,8 @@ class VoteLive extends React.Component {
       this.loadVotes();
       this.loadCandidates();
     }, 15000);
+
+    this.loadData();
   }
 
   loadCandidates = async () => {
@@ -77,10 +82,17 @@ class VoteLive extends React.Component {
       votes,
     });
   };
+  loadData = async () => {
+
+    let data = await Client.getVoteStats();
+    this.setState({
+      data,
+    });
+  }
 
   render() {
 
-    let {candidates, colors, votes} = this.state;
+    let {candidates, colors, votes, data} = this.state;
 
     candidates = candidates.map(c => ({
       ...c,
@@ -98,7 +110,8 @@ class VoteLive extends React.Component {
           <div className="card-header text-center">
             {tu("3_day_ranking")}
           </div>
-          <VoteStats colors={colors} />
+          {/*<MultiLineReact style={{height: 300}} newCandidates={newCandidates} data={data}/>*/}
+          <VoteStats colors={colors} newCandidates={newCandidates}/>
         </div>
         <div className="card mt-3">
           <div className="card-header text-center">
