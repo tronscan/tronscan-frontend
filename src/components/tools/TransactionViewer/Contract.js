@@ -108,6 +108,20 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
+    case "WITHDRAWBALANCECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">WithDrawBalanceContract</h5>
+              <p>
+                Withdraw balance
+              </p>
+            </div>
+            <table className="table">
+              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+            </table>
+          </Fragment>
+      );
 
     case "FREEZEBALANCECONTRACT":
       return (
@@ -185,7 +199,7 @@ export default function Contract({contract}) {
           <div className="card-body">
             <h5 className="card-title text-center">#</h5>
             <p>
-              #
+              contract no found
             </p>
           </div>
         </Fragment>
