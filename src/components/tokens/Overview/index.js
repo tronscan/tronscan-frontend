@@ -61,7 +61,8 @@ class TokenOverview extends Component {
 
   getTokenState = (token) => {
     let now = new Date().getTime();
-    if (token.endTime < now || token.percentage === 100) {
+
+    if (token.endTime < now || token.issuedPercentage === 100) {
       return 'finished';
     }
 
@@ -348,7 +349,7 @@ class TokenOverview extends Component {
     this.setState({
       alert: (
         <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
-          Successfully received x tokens
+          Successfully received {token.name} tokens
         </SweetAlert>
       )
     });
@@ -364,17 +365,22 @@ class TokenOverview extends Component {
       <Fragment>
         {alert}
           <StickyContainer className="container header-overlap pb-3">
-            <Sticky>
-              {
-                ({style, isSticky}) => (
-                  <div className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")} style={{zIndex: 1000, ...style}}>
-                    <div className="col-sm-12">
-                      <Paging onChange={this.onChange} loading={loading} url={match.url} total={total} />
-                    </div>
-                  </div>
-                )
-              }
-            </Sticky>
+            {
+              total > 0 &&
+              <Sticky>
+                {
+                  ({style, isSticky}) => (
+                      <div
+                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}
+                          style={{zIndex: 1000, ...style}}>
+                        <div className="col-sm-12">
+                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
+                        </div>
+                      </div>
+                  )
+                }
+              </Sticky>
+            }
             <div className="row mt-3">
               <div className="col-sm-12">
                 {this.renderGrid()}

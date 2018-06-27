@@ -1,5 +1,9 @@
 module.exports = {
   pieChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
     tooltip: {
       trigger: 'item',
       formatter: "{b}<br> {c} ({d}%)"
@@ -10,7 +14,7 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: '55%',
-        center: ['50%', '50%'],
+        center: ['50%', '55%'],
         data: [],
         itemStyle: {
           emphasis: {
@@ -22,31 +26,76 @@ module.exports = {
       }
     ]
   },
-  lineChart:{
+  lineChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
+    grid: {
+      left: '3%',
+      right: '3%',
+      bottom: '5%',
+      containLabel: true
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
     xAxis: {
       type: 'category',
-      data: ["11:56 AM","11:57 AM","11:58 AM","11:59 AM",
-        "12:00 AM","12:01 AM","12:02 AM","12:03 AM","12:04 AM",
-        "12:05 AM","12:06 AM","12:07 AM","12:08 AM","12:09 AM",
-        "12:10 AM","12:11 AM","12:12 AM","12:13 AM","12:14 AM",
-        "12:15 AM","12:16 AM","12:17 AM","12:18 AM","12:19 AM",
-        "12:20 AM","12:21 AM","12:22 AM","12:23 AM","12:24 AM",
-        "12:25 AM","12:26 AM","12:27 AM","12:28 AM","12:29 AM",
-        "12:30 AM","12:31 AM","12:32 AM","12:33 AM","12:34 AM",
-        "12:35 AM"]
+      data: []
     },
     yAxis: {
       type: 'value'
     },
     series: [{
-      data: [0.002502, 0.003253, 0.003289, 0.003178, 0.003157, 0.003009, 0.003301, 0.003465,0.003257,0.003358,0.003406,
-        0.003543,0.003434,0.003508,0.003346,0.003039,0.003576,
-        100000.003445,0.00334,0.003472,0.00322,0.003185,0.003232,0.00333,
-        0.003522,0.003275,0.003566,0.003527,0.003272,0.003565,
-        0.003335,0.003325,100000.003228,0.003496,0.003242,0.0033,
-        0.003596,0.003474],
+      data: [],
       type: 'line',
       smooth: true
     }]
+  },
+
+  ringPieChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
+    legend: {
+      type: 'scroll',
+      orient: 'vertical',
+      x: 'right',
+      selected:{'Bancor Network':false,'Gatecoin':false,'BitFlip':false,'Braziliex':false,'Cobinhood':false,'CoinExchange':false,'CoinFalcon':false,'Cryptomate':false,'Gatecoin':false,'IDEX':false,'LiteBit.eu':false,'Stocks.Exchange':false,'Tidex':false}
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{b}: {c} ({d}%)"
+    },
+
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        selectedMode: 'single',
+        radius: [0, '30%'],
+        center:['50%','50%'],
+        label: {
+          normal: {
+            position: 'inner'
+          }
+        },
+        labelLine: {
+          normal: {
+            show: false
+          }
+        },
+        data: []
+      },
+      {
+        name: '',
+        type: 'pie',
+        radius: ['40%', '55%'],
+        center:['50%','50%'],
+        data: []
+      }
+    ]
   }
 };
