@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "სამუშაო მაგიდის შეტყობინებები ჩართულია!",
   "notifications_enabled": "შეტყობინებები ჩართულია",
   "contract_type": "კონტრაქტის ტიპი",
+  "filters": "ფილტრები",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "ბოლო გვერდი",
   "page": "გვერდი",
   "of": "ვისი",
+  "page_size": "page size",
   "most_nodes": "კვანძების უმეტესობა",
   "loading_nodes": "მიმდინარეობს კვანძების ჩატვირთვა",
   "Hostname": "ჰოსტის დასახელება",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "არასაკმარისი TRX",
   "information_message_3": "TRX წარმატებით მოთხოვნილია. თუ არ მიიღებთ რაიმე TRX, მაშინ რაიმე  ხელმისაწვდომი TRX-ის ტესტი არ არის, და თქვენ უნდა კვლავ სცადოთ მოგვიანებით.  ",
   "send_to_following_address": "გააგზავნეთ შემდეგ მისამართზე",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################
@@ -255,6 +261,8 @@ export const messages = {
   "unable_to_rename_title": "გადარქმევა შეუძლებელია",
   "unable_to_rename_message": "თქვენი ანგარიშის ნომრის განახლებისას, რაღაცა არასწორად წავიდა, გთხოვთ, სცადეთ მოგვიანებით.",
   "unfreeze_trx_confirm_message": "დარწმუნებული ხართ, რომ გინდათ TRX-ის გაყინვა?",
+  "unfreeze_assets": "აქტივებზე გაყინვის მოხსნა",
+  "sure_to_unfreeze_unlocked_tokens_message": "დარწმუნებული ხართ რომ გსურთ ტოკენების გახსნისთვის გაყინვის მოხსნა?",
 
 /*
 ##################################################################################
@@ -299,6 +307,36 @@ export const messages = {
   "invalid_url": "უმოქმედო URL",
   "apply_representative_error_message_0": "წარმომადგენლად მიმართვის მცდელობისას, რაღაცა არასწორად წავიდა.",
   "apply_representative_error_message_1": "დარწმუნდით, რომ საკმარისი TRX-ის ოდენობა გაქვთ გადასახადისთვის, და კვლავ სცადეთ.",
+  "open_external_link":"თქვენ გახსნით გარე ბმულს",
+  "private_key_untrusted_website_message_0": "არასდროს შეიყვანეთ თქვენი პირადი გასაღები არასანდო ვებსაიტზე.",
+  "no_official_tron_website": "არ არის ოფიციალური Tron საიტი.",
+  "continue_to_external_website": "გააგრძელეთ გარე საიტი",
+  "url_changed": "URL შეიცვალა",
+  "successfully_changed_website_message": "ვებსაიტი წარმატებით შეიცვალა ..... ",
+  "unable_to_change_website_title": "ვერ ვცვლი URL-ს",
+  "unable_to_change_website_message": "ვებსაიტიწ განახლებისას რაღაცა არასწორად წავიდა, გთხოვთ კვლავ სცადოთ მოგვიანებით",
+  "successfully_linked_github": "წარმატებით მიება Github-ს!",
+  "github_linked": "Github მიბმულია!",
+  "unable_to_link_github_message": "ვერ ვებმევი Githubს, დარწმუნდით, რომ თქვენი მომხმარებლის სახელი სწორია!",
+  "could_not_link_github": "ვერ მოვახერხე Github-ზე მიბმა",
+  "enter_your_github_username":   "შეიყვანეთ თქვენი Github-ის სამომხმარებლო სახელი",
+  "link_to_github": " Github-ზე მიბმა ",
+  "link_github": "Github-ზე მიბმა",
+  "you_must_enter_a_url": "თქვენ უნდა შეიყვანოთ URL",
+  "success": "წარმატება",
+  "successfully_appied_sr_canidate_message_0": "სუპერ წარმომადგენლის კანდიდატის წარმატებული მიმართვა.",
+  "successfully_appied_sr_canidate_message_1": "თქვენი ანგარიში განახლდება ცოტა ხანში.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
+  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
+  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
+  "set_github_link": "Set Github Link",
+  "could_not_claim_rewards": "Could not claim rewards",
+  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
+  "rewards_claimed": "Rewards Claimed!",
+  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "claim_rewards": "Claim Rewards",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
 
 /*
 ##################################################################################

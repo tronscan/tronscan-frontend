@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-22062018                                                  #
-#         Update Date: 22.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Ukrainian                                                    #
 #         Status: second Version                                                 #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: ghostwg                                                  #
 #                                                                                #
 ##################################################################################
@@ -65,7 +65,7 @@ export const messages = {
   "receive": "отримати",
   "supply": "запас",
   "view": "перегляд",
-  "view_all": "Подивитись все",
+  "view_all": "Перегляд",
   "create": "Створити",
   "country": "Регіон",
   "amount": "кількість",
@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Увімкнено сповіщення на робочому столі!",
   "notifications_enabled": "Сповіщення ввімкнено",
   "contract_type": "Тип контракту",
+  "filters": "Фільтри",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "остання сторінка",
   "page": "сторінка",
   "of": "з",
+  "page_size": "Записів",
   "most_nodes": "Більшість Вузлів",
   "loading_nodes": "завантаження Вузлів",
   "Hostname": "Ім'я хосту",
@@ -191,9 +194,9 @@ export const messages = {
 */
   "set_name": "Встановити Ім'я",
   "unique_account_message": "Ви можете вказати ім'я свого облікового запису лише один раз!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Прізвище коротке",
+  "name_to_long": "Ім'я має бути довгим",
+  "permitted_characters_message": "Ім'я може містити лише a-z A-Z 0-9",
   "change_name": "Змінити ім'я",
   "account_name": "Назва облікового запису",
   "show_qr_code": "Показати QR код",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "Недостатньо TRX",
   "information_message_3": "Запит на отримання ТRX успішний. Якщо ви не отримали TRX, значить відсутні тестові TRX, які можливо отримати прямо зараз, і вам слід спробувати ще раз пізніше.",
   "send_to_following_address": "Надіслати на наступні адреси",
+  "change_website": "Змінити веб-сайт",
+  "you_must_enter_url": "Ви повинні ввести URL-адресу",
+  "specify_the_url":  "Будь ласка, вкажіть URL-адресу",
 
 /*
 ##################################################################################
@@ -253,6 +259,9 @@ export const messages = {
   "unable_to_rename_title": "Перейменування неможливе",
   "unable_to_rename_message": "Щось пішло не так в процесі оновлення назви Вашого облікового запису, спробуйте пізніше ще раз",
   "unfreeze_trx_confirm_message": "Ви дійсно бажаєте розморозити TRX?",
+  "unfreeze_assets": "Розморозити активи",
+  "sure_to_unfreeze_unlocked_tokens_message": "Ви впевнені, що хочете розморозити розблоковані токени?",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -303,6 +312,36 @@ export const messages = {
   "invalid_url": "Недійсна URL-адреса",
   "apply_representative_error_message_0": "Помилка під час спроби подати заявку на представника.",
   "apply_representative_error_message_1": "Переконайтеся, що у вас є достатньо TRX за плату, або повторіть спробу пізніше.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
+  "url_changed": "URL changed",
+  "successfully_changed_website_message": "Successfully changed website to ",
+  "unable_to_change_website_title": "Неможливо змінити URL-адресу",
+  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
+  "successfully_linked_github": "Successfully linked to Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
+  "could_not_link_github": "Could not link Github",
+  "enter_your_github_username":  "Введіть ім'я користувача Github",
+  "link_to_github": "Link to Github",
+  "link_github": "Link Github",
+  "you_must_enter_a_url": "Ви повинні ввести URL-адресу",
+  "success": "Success",
+  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
+  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
+  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
+  "set_github_link": "Set Github Link",
+  "could_not_claim_rewards": "Could not claim rewards",
+  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
+  "rewards_claimed": "Rewards Claimed!",
+  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "claim_rewards": "Claim Rewards",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
 
 /*
 ##################################################################################
