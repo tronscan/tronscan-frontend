@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-21062018                                                  #
-#         Update Date: 21.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         Language: Vietnamese                                                   #
 #         Status: First Version                                                  #
-#         Number of checks: 3                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Quoc Nguyen                                              #
 #                                                                                #
 ##################################################################################
@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Đã bật thông báo trên màn hình!",
   "notifications_enabled": "Đã bật thông báo",
   "contract_type": "Loại hợp đồng",
+  "filters": "Bộ lọc",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "trang cuối",
   "page": "trang",
   "of": "của",
+  "page_size": "page size",
   "most_nodes": "Nhiều nút nhất",
   "loading_nodes": "đang tải nút",
   "Hostname": "Tên máy chủ",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "Không đủ TRX",
   "information_message_3": "Đã yêu cầu TRX thành công. Nếu bạn không nhận được bất kỳ TRX nào thì hiện tại không có TRX thử nghiệm nào và bạn nên thử lại sau.",
   "send_to_following_address": "Gửi đến địa chỉ sau",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################
@@ -253,6 +259,9 @@ export const messages = {
   "unable_to_rename_title": "Không thể đổi tên",
   "unable_to_rename_message": "Đã xảy ra sự cố khi cập nhật tên tài khoản của bạn, vui lòng thử lại sau",
   "unfreeze_trx_confirm_message": "Bạn có chắc chắn muốn giải phóng TRX không?",
+  "unfreeze_assets": "Hủy đóng băng tài sản",
+  "sure_to_unfreeze_unlocked_tokens_message": "Bạn có chắc chắn muốn hủy đóng băng mã token đã mở khóa không?",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -304,7 +313,36 @@ export const messages = {
   "invalid_url": "URL không hợp lệ",
   "apply_representative_error_message_0": "Đã xảy ra sự cố khi cố gắng đăng ký trở thành đại diện.",
   "apply_representative_error_message_1": "Đảm bảo bạn có đủ TRX cho khoản phí này hoặc thử lại sau.",
-
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
+  "url_changed": "URL đã thay đổi",
+  "successfully_changed_website_message": "Đã thay đổi thành công trang web thành ",
+  "unable_to_change_website_title": "Không thể thay đổi URL",
+  "unable_to_change_website_message": "Đã xảy ra sự cố khi cập nhật trang web, vui lòng thử lại sau",
+  "successfully_linked_github": "Đã liên kết thành công với Github!",
+  "github_linked": "Liên kết Github!",
+  "unable_to_link_github_message": "Không thể liên kết với Github, đảm bảo tên người dùng của bạn chính xác!",
+  "could_not_link_github": "Không thể liên kết Github",
+  "enter_your_github_username":  "Nhập tên người dùng Github của bạn",
+  "link_to_github": "Liên kết đến Github",
+  "link_github": "Liên kết Github",
+  "you_must_enter_a_url": "Bạn phải nhập URL",
+  "success": "Thành công",
+  "successfully_appied_sr_canidate_message_0": "Đăng ký thành công trở thành ứng cử viên Siêu Đại Diện.",
+  "successfully_appied_sr_canidate_message_1": "Tài khoản của bạn sẽ sớm được nâng cấp.",
+  "landing_page": "Trang đích",
+  "show_more_information_publish_sr_page": "Hiển thị thêm thông tin về cách xuất bản trang",
+  "create_sr_landing_page_message_0": "Siêu Đại Diện có thể tạo trang đích mà họ có thể chia sẻ thêm thông tin về nhóm và kế hoạch của họ",
+  "set_github_url_message_0": "Bạn đã cấu hình cho mẫu Github của mình chưa? Sau đó, đặt URL bằng cách sử dụng nút bên dưới",
+  "set_github_link": "Đặt liên kết Github",
+  "could_not_claim_rewards": "Không thể nhận phần thưởng",
+  "claim_rewards_error_message": "Đã xảy ra lỗi khi cố gắng nhận phần thưởng, vui lòng thử lại sau.",
+  "rewards_claimed": "Phần thưởng đã được xác nhận!",
+  "successfully_claimed_rewards":  "Phần thưởng đã nhận được thành công",
+  "claim_rewards": "Nhận phần thưởng",
+  "sr_receive_reward_message_0": "Là một đại diện bạn nhận được phần thưởng cho việc sản xuất các khối. Những phần thưởng này có thể được xác nhận sau mỗi 24 giờ",
 /*
 ##################################################################################
 #                                                                                #
