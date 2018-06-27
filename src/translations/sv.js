@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Skrivbordsmeddelanden aktiverade",
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
+  "filters": "filtrera",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "sista sidan",
   "page": "sida",
   "of": "av",
+  "page_size": "page size",
   "most_nodes": "Flesta Noder",
   "loading_nodes": "laddar Noder",
   "Hostname": "Hostnamn",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "Inte tillräckligt med TRX",
   "information_message_3": "Förfrågan om TRX lyckades. Om du inte fick någon TRX så är det för att det inte finns några test TRX just nu. Du bör försöka igen vid en senare tidpunkt.",
   "send_to_following_address": "Skicka till följande address",
+  "change_website": "Ändra webbplats",
+  "you_must_enter_url": "Du måste ange en webbadress",
+  "specify_the_url":  "Ange webbadressen",
 
 /*
 ##################################################################################
@@ -252,6 +258,8 @@ export const messages = {
   "unable_to_rename_title": "Kan inte byta namn",
   "unable_to_rename_message": "Något gick fel när du uppdaterade ditt kontonamn, snälla försök igen senare",
   "unfreeze_trx_confirm_message": "Är du säker på att du vill frigöra TRX?",
+  "unfreeze_assets": "Unfreeze Assets",
+  "sure_to_unfreeze_unlocked_tokens_message": "Är du säker på att du vill frigöra olåsta tokens?",
 
 /*
 ##################################################################################
@@ -301,6 +309,36 @@ export const messages = {
   "invalid_url": "Ogiltig webbadress",
   "apply_representative_error_message_0": "Något gick fel när du försökte ansöka om representant.",
   "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
+  "open_external_link":"Du öppnar en extern länk",
+  "private_key_untrusted_website_message_0": "Ange aldrig din privata nyckel på en otillförlitlig webbplats.",
+  "no_official_tron_website": "är inte en officiell Tron webbplats.",
+  "continue_to_external_website": "Fortsätt till extern webbplats",
+  "url_changed": "URL ändrats",
+  "successfully_changed_website_message": "Har ändrats webbplatsen till",
+  "unable_to_change_website_title": "Det gick inte att ändra webbadressen",
+  "unable_to_change_website_message": "Något gick fel när du uppdaterade webbplatsen, försök igen senare",
+  "successfully_linked_github": "Framgångsrikt kopplad till Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Det gick inte att länka till Github, se till att ditt användarnamn är korrekt!",
+  "could_not_link_github": "Kunde inte länka Github",
+  "enter_your_github_username": "Ange ditt Github användarnamn",
+  "link_to_github": "Länk till Github",
+  "link_github": "Länk Github",
+  "you_must_enter_a_url": "Du måste ange en webbadress",
+  "success": "Framgång",
+  "successfully_appied_sr_canidate_message_0": "Framgångsrikt ansökt om att vara Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Ditt konto kommer att uppgraderas inom kort.",
+  "landing_page": "Landningssida",
+  "show_more_information_publish_sr_page": "Visa mer Information om hur man publicerar en sida",
+  "create_sr_landing_page_message_0": "Superrepresentanter kan skapa en målsida där de kan dela mer information om deras lag och planer",
+  "set_github_url_message_0": "Har du redan konfigurerat din Github-mall? Ange sedan webbadressen med hjälp av knappen nedan",
+  "set_github_link": "Ange Github Link",
+  "could_not_claim_rewards": "Kunde inte hävda belöningar",
+  "claim_rewards_error_message": "Något gick fel när du försökte hävda belöningar, snälla försök igen senare.",
+  "rewards_claimed": "Belöningar krävde!",
+  "successfully_claimed_rewards":  "Framgångsrikt anspråk på belöningar",
+  "claim_rewards": "Krav på belöningar",
+  "sr_receive_reward_message_0": "Som representant får du belöningar för att producera block. Dessa belöningar kan hävdas var 24: e timme",
 
 /*
 ##################################################################################

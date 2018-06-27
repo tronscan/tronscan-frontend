@@ -3,7 +3,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {AddressLink, ExternalLink} from "./Links";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 
 export default class Votes extends React.Component {
@@ -61,7 +61,7 @@ export default class Votes extends React.Component {
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
         return (
-          <div className="p-3 text-center">No Votes</div>
+          <div className="p-3 text-center">{t("no_votes_found")}</div>
         );
       }
       return <EmptyState />;

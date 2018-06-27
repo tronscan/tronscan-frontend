@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Korean                                                       #
-#         Status: first draft                                                    #
-#         Number of checks: 1                                                    #
+#         Status: third draft                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: VoidRays                                                 #
 #                                                                                #
 ##################################################################################
@@ -83,19 +83,21 @@ export const messages = {
   "enter_password_message": "암호를 반드시 입력해야합니다!",
   "password_incorrect": "암호 불일치",
   "try_again": "다시 시도해보십시오",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "지갑 언락 완료",
   "weak": "약함",
   "okay": "괜찮음",
   "good": "좋음",
   "strong": "강함",
   "secure": "안전",
-  "too_short": "너무 짧아",
+  "too_short": "너무 짧음",
   "status": "상태",
   "no_notifications": "알림 없음",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "enable_desktop_notifications": "데스크톱 알리미 활성화하기",
+  "desktop_notification_enabled": "데스크톱 알리미가 활성화 되었습니다!",
+  "notifications_enabled": "알림 기능이 활성화되었습니다",
+  "contract_type": "컨트랙트 타입",
+  "filters": "필터",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "마지막 페이지",
   "page": "페이지",
   "of": "of",
+  "page_size": "page size",
   "most_nodes": "최다 노드",
   "loading_nodes": "노드 로딩 중",
   "Hostname": "호스트네임",
@@ -162,12 +165,12 @@ export const messages = {
   "last_block": "마지막 블록",
   "blocks_produced": "생성된 블록",
   "blocks_missed": "유실된 블록",
-  "productivity": "productivity",
-  "rewards": "rewards",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "productivity": "생산성",
+  "rewards": "보상",
+  "token_created": "토큰 생성",
+  "witness": "증인",
+  "asset_participation": "자산 참여",
+  "loading_transaction": "트랜잭션 로딩 중",
 
 /*
 ##################################################################################
@@ -198,15 +201,15 @@ export const messages = {
   "account_name": "계정 이름",
   "show_qr_code": "QR코드 보기",
   "do_not_send_2": "TRX를 귀하의 지갑이나 거래소에서 위의 테스트넷 계정 주소로 보내지 마십시오!",
-  "bandwidth": "bandwidth",
+  "bandwidth": "대역폭",
   "balance": "잔액",
   "tron_power": "트론 파워",
   "transactions": "트랜잭션",
-  "no_transfers": "No Transfers",
+  "no_transfers": "전송 기록 없음",
   "no_tokens": "토큰 없음",
   "free_bandwidth": "무료 대역폭",
   "expires": "만료일",
-  "have_been_added_to_your_account": "have been added to your account!",
+  "have_been_added_to_your_account": "가 계정에 추가되었습니다!",
   "information_message_1": "TRX를 요청할 때 10000 TRX를 받습니다. TRX는 테스트 네트워크에서 테스트하는 데 사용할 수 있습니다.",
   "information_message_2": "TRX는 계정당 한 번만 요청할 수 있습니다.",
   "request_trx_for_testing": "테스트용 TRX 요청",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "TRX가 충분하지 않습니다",
   "information_message_3": "성공적으로 TRX를 요청하였습니다. 만약 TRX를 받지 못했다면 테스트용 TRX가 남아있지 않은 것이니, 다음에 다시 시도해주십시오.",
   "send_to_following_address": "다음과 같은 주소에 전송하십시오",
+  "change_website": "웹 사이트 주소 변경",
+  "you_must_enter_url": "URL을 반드시 입력해야합니다",
+  "specify_the_url":  "URL을 지정해주세요",
 
 /*
 ##################################################################################
@@ -253,6 +259,8 @@ export const messages = {
   "unable_to_rename_title": "이름 변경 불가",
   "unable_to_rename_message": "계정 이름 업데이트에 실패하였습니다. 다음에 다시 시도해주십시오",
   "unfreeze_trx_confirm_message": "정말로 TRX를 동결 해제합니까?",
+  "unfreeze_assets": "미동결 자산",
+  "sure_to_unfreeze_unlocked_tokens_message": "잠금 해제 된 토큰을 정말로 동결 해제하시겠습니까?",
 
 /*
 ##################################################################################
@@ -296,11 +304,41 @@ export const messages = {
   "trx_produced": "Transactions Produced",
   "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
   "go_to_votelist": "Go to votelist",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
-  "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "understand_tron_sr_message_0": "나는 어떻게 트론 네트워크의 대표가 되는지에 대해 이해했고, 다음과 같은",
+  "understand_tron_sr_message_1": "수수료를 낼 것을 확인하였습니다.",
+  "invalid_url": "잘못된 URL",
+  "apply_representative_error_message_0": "대표 신청을 시도하는 중에 에러가 났습니다.",
+  "apply_representative_error_message_1": "수수료를 내기 위한 TRX가 충분한지 확인하고 다시 시도해주십시오.",
+  "open_external_link":"귀하가 외부 링크에 접속 시도를 하고 있습니다",
+  "private_key_untrusted_website_message_0": "절대로 신뢰하지 않는 웹사이트에 개인키를 입력하지 마십시오.",
+  "no_official_tron_website": "는(은) 공식 트론 사이트가 아닙니다.",
+  "continue_to_external_website": "외부 사이트로 계속 진행",
+  "url_changed": "URL 변경 완료",
+  "successfully_changed_website_message": "성공적으로 다음과 같이 웹 사이트를 업데이트 하였습니다: ",
+  "unable_to_change_website_title": "URL을 변경할 수 없습니다",
+  "unable_to_change_website_message": "웹 사이트 주소를 업데이트 하는 중에 에러가 발생했습니다. 다음에 다시 해주십시오",
+  "successfully_linked_github": "깃헙(Github)에 성공적으로 연결되었습니다!",
+  "github_linked": "깃헙(Github) 연결 완료!",
+  "unable_to_link_github_message": "깃헙(Github)에 연결하지 못했습니다. 유저네임이 올바른지 확인해주세요!",
+  "could_not_link_github": "깃헙(Github)에 연결하지 못했습니다",
+  "enter_your_github_username":   "깃헙(Github) 유저네임을 입력해주십시오",
+  "link_to_github": "깃헙(Github) 연결",
+  "link_github": "깃헙(Github) 링크",
+  "you_must_enter_a_url": "반드시 URL을 입력해주어야 합니다",
+  "success": "성공",
+  "successfully_appied_sr_canidate_message_0": "성공적으로 슈퍼 대표(SR) 후보에 신청하였습니다.",
+  "successfully_appied_sr_canidate_message_1": "계정이 곧 업그레이드 될 것입니다.",
+  "landing_page": "랜딩 페이지",
+  "show_more_information_publish_sr_page": "페이지 등록하는 방법 자세히 알아보기",
+  "create_sr_landing_page_message_0": "슈퍼 대표(SR)는 랜딩 페이지를 만들어서 팀에 대한 더 많은 정보와 계획을 공유할 수 있습니다",
+  "set_github_url_message_0": "이미 깃헙(Github) 템플릿을 구성하셨나요? 그렇다면 아래 버튼을 눌러 URL을 입력해주십시오",
+  "set_github_link": "깃헙(Github) 링크 설정",
+  "could_not_claim_rewards": "보상을 청구하지 못했습니다",
+  "claim_rewards_error_message": "보상을 청구하는 중에 문제가 생겼습니다. 나중에 다시 시도해주십시오.",
+  "rewards_claimed": "보상을 청구하였습니다!",
+  "successfully_claimed_rewards":  "성공적으로 보상을 청구하였습니다",
+  "claim_rewards": "보상 청구",
+  "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
 
 /*
 ##################################################################################
@@ -311,7 +349,7 @@ export const messages = {
 */
   "name_of_the_token": "토큰 이름",
   "token_message": "토큰의 이름",
-  "token_abbr": "token Abbreviation",
+  "token_abbr": "토큰 기호",
   "abbr_message": "토큰의 기호 또는 약어",
   "total_supply": "총 공급",
   "issued_token": "발행된 토큰",
@@ -366,16 +404,15 @@ export const messages = {
   "address_warning": "유효한 TRON 지갑 주소만 입력하십시오. 잘못된 주소는 TRX 손실을 초래할 수 있습니다.",
   "search_address_or_url": "주소 또는 URL 검색",
   "the_lunch_test": "테스트넷의 출시는 블록 체인 탐색기와 지갑의 모든 기능을 테스트하는 것을 목표로합니다.",
-  "please_keep_in_mind": `Please keep in mind, that since your registered account address is only used for testnet, do not send TRX from your
-  own wallet or exchange to the account address of testnet.`,
-  "tron_foundation": "TRON Foundation",
+  "please_keep_in_mind": `명심하십시오. 현재 생성한 계정 주소는 오로지 테스트넷을 위한 것입니다. 절대 테스트넷의 주소로 실제 거래소의 TRX나 지갑의 TRX를 전송하지 마십시오.`,
+  "tron_foundation": "TRON 재단",
   "trx_for_testing": "계정 관리를 통해 성공적으로 신청하면 테스트용 TRX가 테스트 계정으로 전송됩니다.",
   "dear_users": "친애하는 사용자,",
   "finished": "종료",
   "token": "토큰",
   "url": "토큰 정보 안내 주소",
   "need_to_login": "계정 페이지에 액세스하려면 로그인해야합니다.",
-  "thanks_for_applying": "Thanks for applying!",
+  "thanks_for_applying": "신청해주셔서 감사합니다!",
   "to_much_votes": "To much votes",
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
   "produced_by": "{witnessAddress}에 의해 생성됨",
@@ -385,16 +422,16 @@ export const messages = {
    TRX는 소비되지 않습니다. 원하는대로 여러 대표에게 여러 번 투표 할 수 있습니다.
    최종 투표는 24시에 집계되며 대표단 명단이 업데이트됩니다.`,
   "search_address": "주소 검색",
-  "token_transactions": "Token Transactions",
+  "token_transactions": "토큰 트랜잭션",
   "token_holders": "토큰 소지자",
   "nr_of_Transfers": "전송 작업 개수",
-  "not_signed_in": "You will need to log in to make use of this functionality",
-  "loading_map": "Loading Map",
-  "loading_accounts": "loading Accounts",
-  "quantity": "quantity",
-  "percentage": "Percentage",
-  "loading_token": "Loading Token",
-  "voter_percentage": "Voter Percentage",
+  "not_signed_in": "이 기능을 사용하기 위해서는 먼저 로그인 해야합니다",
+  "loading_map": "지도 로딩 중",
+  "loading_accounts": "계정 로딩 중",
+  "quantity": "수량",
+  "percentage": "비율",
+  "loading_token": "토큰 로딩 중",
+  "voter_percentage": "투표자 비율",
 
 /*
 ##################################################################################
@@ -408,8 +445,8 @@ export const messages = {
   "no_blocks_found": "블록 없음",
   "no_votes_found": "투표 없음",
   "no_voters_found": "투표자 없음",
-  "waiting_for_transactions": "Waiting for transactions",
-  "loading_address": "Loading Address",
+  "waiting_for_transactions": "트랜잭션 기다리는 중",
+  "loading_address": "주소 로딩 중",
 
 /*
 ##################################################################################
@@ -441,9 +478,8 @@ export const messages = {
   "participation": "참여",
   "start_date": "시작 일자",
   "end_date": "종료 일자",
-  "token_spend_confirm": "나는 토큰의 총 공급을 만드는데 한 번 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`Tron 프로토콜에서 토큰을 발행하는 것은
-   계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
+  "token_spend_confirm": "나는 토큰의 총 공급량을 만드는데 한 번의 총 1024 TRX의 비용이 들었음을 확인합니다.",
+  "token_issue_guide_message_1":`TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
   "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
   "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
@@ -456,28 +492,28 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "date_error": "The end date is earlier or the same as the starting date",
-  "no_name_error": "Name is required",
-  "no_supply_error": "Total Supply must be at least 1",
-  "coin_value_error": "Token amount must be at least 1",
-  "tron_value_error": "The amount of TRX per coin must be at least 1",
-  "invalid_starttime_error": "The provided starting date is invalid",
-  "invalid_endtime_error": "The provided ending date is invalid",
-  "no_description_error": "Description is required",
-  "no_url_error": "Web URL is required",
-  "past_starttime_error": "The starting date is in the past",
-  "no_transactions": "No Transactions",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "date_error": "종료 일자가 시작 일자보다 더 앞서거나 같은 날짜입니다",
+  "no_name_error": "이름 입력은 필수입니다",
+  "no_supply_error": "총 공급 수량은 최소 1입니다",
+  "coin_value_error": "토큰 수량은 최소 1입니다",
+  "tron_value_error": "TRX 수량은 최소 1입니다",
+  "invalid_starttime_error": "입력한 시작 일자가 유효하지 않습니다",
+  "invalid_endtime_error": "입력한 종료 일자가 유효하지 않습니다",
+  "no_description_error": "토큰 설명 입력은 필수입니다",
+  "no_url_error": "웹 URL 주소 입력은 필수입니다",
+  "past_starttime_error": "시작 일자가 과거의 날짜로 지정되어있습니다",
+  "no_transactions": "트랜잭션 기록 없음",
+  "errors_in_form": "양식에 입력한 내용에 문제가 있습니다",
+  "token_link_message_0": "해당 토큰은",
+  "token_link_message_1": "토큰 페이지",
+  "token_link_message_2": "에서 몇 분 내로 이용 가능해질 것입니다",
+  "description_error_message_0": "토큰 설명의 최대 길이는 200개 글자입니다",
+  "token_creation_error": "토큰 생성 시도 중에 에러가 발생하였습니다",
+  "tokenname_error_message_0": "이름의 최대 길이는 32개 글자입니다",
+  "tokenname_error_message_1": "이름은 알파벳으로만 구성되어야 합니다",
+  "abbreviation_required": "기호 입력은 필수입니다",
+  "abbreviation_error_message_0": "기호는 다섯 글자보다 길면 안됩니다",
+  "abbreviation_error_message_1": "기호는 알파벳으로만 구성되어야 합니다",
 
 /*
 ##################################################################################
@@ -486,14 +522,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "highest_productivity": "Highest Productivity",
-  "lowest_productivity": "Lowest Productivity",
-  "Super Representatives": "Super Representatives",
-  "Super Representative Candidates": "Super Representative Candidates",
-  "loading_representatives": "Loading Representatives",
-  "address_not_super_representative": "This address is not a Super Representative",
-  "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
-  "loading_representative": "Loading Representative",
+  "highest_productivity": "최고의 생산성",
+  "lowest_productivity": "최저의 생산성",
+  "Super Representatives": "슈퍼 대표",
+  "Super Representative Candidates": "슈퍼 대표 후보",
+  "loading_representatives": "대표 목록 로딩 중",
+  "address_not_super_representative": "이 주소는 슈퍼 대표가 아닙니다",
+  "unable_load_representatives_page_message": "페이지 로드에 실패하였습니다. 주소가 유효하지 않은 주소이거나 대표가 아닌 경우일 수 있습니다. 또는 해당 대표가 이 페이지에 아직 설정되어있지 않았을 수도 있습니다",
+  "loading_representative": "대표 로딩 중",
 
 /*
 ##################################################################################
@@ -523,7 +559,7 @@ export const messages = {
   "open_team_page": "후보 페이지 열기",
   "warning_votes": "투표하기 위해서는 최소 1 트론 파워(TP)가 필요합니다. 트론 파워는 TRX를 동결시켜 얻을 수 있고 다음에서 할 수 있습니다:",
   "account_page": "계정 페이지",
-  "loading_votes": "Loading Votes",
+  "loading_votes": "투표 페이지 로딩 중",
   "3_day_ranking": "3일간 순위",
   "live_ranking": "실시간 순위",
   "live_ranking_msg": "매 15초마다 새로고침됩니다. 최근 투표들은 집계되기까지 1~2분 걸릴 수 있습니다.",
@@ -540,7 +576,7 @@ export const messages = {
   "submissing_vote_message_0": "표를 정상적으로 제출하였습니다. 표는 다음 투표 사이클이 시작될 때 반영될 것입니다.",
   "submissing_vote_message_1": "투표 수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
   "submitting_vote_error_message": "표를 제출하는것에 실패하였습니다. 나중에 다시 시도해주십시오.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "슈퍼 대표 목록 로딩 중",
 
 /*
 ##################################################################################
@@ -583,9 +619,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "no_webcam_found": "No webcam found",
-  "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
-  "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
+  "no_webcam_found": "웹캠 발견되지 않음",
+  "trying_enable_webcam_message_0": "웹캠을 활성화하지 못했습니다.",
+  "trying_enable_webcam_message_1": "카메라 장치에 권한이 주어졌는지 확인해보십시오.",
 
 /*
 ##################################################################################
@@ -595,7 +631,7 @@ export const messages = {
 ##################################################################################
 */
   "what_is_tron": "트론의 정의",
-  "tron_explorer_api": "트론 탐색기",
+  "tron_explorer_api": "트론 탐색기 API",
   "tron_architechure": "트론 아키텍처",
   "tron_protobuf_doc": "트론 프로토콜 버퍼 문서(Protobuf)",
   "report_an_error": "버그 제보 및 건의",
@@ -611,9 +647,9 @@ export const messages = {
   "private_key": "개인키(Private Key)",
   "keystore_file": "키스토어(Keystore) 파일",
   "select_file": "파일 선택",
-  "login_mobile": "Login with a mobile device",
+  "login_mobile": "모바일 장치로 로그인",
   "create_wallet": "지갑 만들기",
-  "no_open_wallet": "No open wallet to view",
+  "no_open_wallet": "보기 위해 오픈된 지갑이 없습니다",
   "new_wallet": "새 지갑",
   "password_encr_key_message_0": "이 암호로 사용자의 개인키를 암호화합니다. 이것이 키를 생성하는 시드(Seed)처럼 작동하는 것은 아닙니다.",
   "password_encr_key_message_1": "사용자가 지갑에 접근하기 위해서는 이 암호와 개인키가 필요하게 될 것입니다.",

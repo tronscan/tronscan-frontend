@@ -6,7 +6,7 @@ import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {ContextMenu, ContextMenuTrigger} from "react-contextmenu";
 import QRImageCode from "./QRImageCode";
 import SendModal from "../transfer/Send/SendModal";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {Truncate} from "./text";
 import {CopyText} from "./Copy";
 import {App} from "../../app";
@@ -78,7 +78,7 @@ export class AddressLink extends React.PureComponent {
           </a>
           <a className="dropdown-item" href="javascript:" onClick={this.renderSend}>
             <i className="fas fa-exchange-alt mr-2"/>
-            {tu("Send tokens")}
+            {tu("send_tokens")}
           </a>
         </Fragment>
       </ContextMenu>
@@ -186,16 +186,16 @@ export class ExternalLink extends React.PureComponent {
       modal: (
         <Modal className="modal-dialog-centered" fade={false} isOpen={true} toggle={this.hideModal} >
           <ModalHeader className="text-center">
-            You are opening an external link
+            {tu("open_external_link")}
           </ModalHeader>
           <ModalBody className="text-center p-3" onClick={this.hideModal}>
-            <span className="font-weight-bold text-truncate d-block">{url}</span> is not an official Tron site.
-            Never enter your private key on an untrusted website.
+            <span className="font-weight-bold text-truncate d-block">{url}</span> {t("no_official_tron_website")} &nbsp;
+               {tu("private_key_untrusted_website_message_0")}
           </ModalBody>
           <ModalFooter>
             {this.renderExternalLink()}
             &nbsp;
-            <Button color="secondary" onClick={this.hideModal}>Cancel</Button>
+            <Button color="secondary" onClick={this.hideModal}>{tu("cancel")}</Button>
           </ModalFooter>
         </Modal>
       )

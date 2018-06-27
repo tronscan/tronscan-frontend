@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Desktop Notifications Enabled!",
   "notifications_enabled": "Notifications Enabled",
   "contract_type": "Contract Type",
+  "filters": "Filters",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "صفحه آخر",
   "page": "صفحه",
   "of": "از",
+  "page_size": "page size",
   "most_nodes": "بیشترین نود ها",
   "loading_nodes": "نود های بارگزاری شده",
   "Hostname": "نام میزبان",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": " کافی نیست TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   "send_to_following_address": "ارسال به آدرس زیر",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################
@@ -255,6 +261,8 @@ export const messages = {
   "unable_to_rename_title": "قادر به تغییر نام نیست",
   "unable_to_rename_message": "در هنگام بهروزرسانی نام حسابتان، چیزی اشتباه رفت، لطفا بعدا دوباره امتحان کنید",
   "unfreeze_trx_confirm_message": "آیا مطمئن هستید که می خواهید TRX را آزاد کنید؟",
+  "unfreeze_assets": "Unfreeze Assets",
+  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
 
 /*
 ##################################################################################
@@ -305,6 +313,36 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
+  "url_changed": "URL changed",
+  "successfully_changed_website_message": "Successfully changed website to ",
+  "unable_to_change_website_title": "Unable to change URL",
+  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
+  "successfully_linked_github": "Successfully linked to Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
+  "could_not_link_github": "Could not link Github",
+  "enter_your_github_username":  "Enter your Github username",
+  "link_to_github": "Link to Github",
+  "link_github": "Link Github",
+  "you_must_enter_a_url": "You must enter a URL",
+  "success": "Success",
+  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
+  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
+  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
+  "set_github_link": "Set Github Link",
+  "could_not_claim_rewards": "Could not claim rewards",
+  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
+  "rewards_claimed": "Rewards Claimed!",
+  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "claim_rewards": "Claim Rewards",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
 
 /*
 ##################################################################################

@@ -7,7 +7,7 @@
     "@fortawesome/react-fontawesome": "^0.0.19",
     "@ledgerhq/hw-transport": "^4.13.0",
     "@ledgerhq/hw-transport-node-hid": "^4.13.0",
-    "@tronscan/client": "^0.2.5",
+    "@tronscan/client": "^0.2.6",
     "@tweenjs/tween.js": "^17.2.0",
     "aes-js": "^3.1.1",
     "animate.css": "^3.6.1",
