@@ -4,7 +4,6 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
 
-
 export default function Contract({contract}) {
 
   switch (contract.contractType.toUpperCase()) {
@@ -46,7 +45,23 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
-
+    case "PARTICIPATEASSETISSUECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">ParticipateAssetIssueContract</h5>
+              <p>
+                Participate token between addresses
+              </p>
+            </div>
+            <table className="table">
+              <Field label="From"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="To"><AddressLink address={contract.toAddress} /></Field>
+              <Field label="Amount">{contract.amount}</Field>
+              <Field label="Token">{contract.token}</Field>
+            </table>
+          </Fragment>
+      );
     case "WITNESSUPDATECONTRACT":
       return (
         <Fragment>
@@ -61,6 +76,21 @@ export default function Contract({contract}) {
             <Field label="URL">{contract.url}</Field>
           </table>
         </Fragment>
+      );
+    case "WITNESSCREATECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">WitnessCreateContract</h5>
+              <p>
+                Create a witness
+              </p>
+            </div>
+            <table className="table">
+              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="URL">{contract.url}</Field>
+            </table>
+          </Fragment>
       );
 
     case "ACCOUNTUPDATECONTRACT":
@@ -78,6 +108,20 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
+    case "WITHDRAWBALANCECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">WithDrawBalanceContract</h5>
+              <p>
+                Withdraw balance
+              </p>
+            </div>
+            <table className="table">
+              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+            </table>
+          </Fragment>
+      );
 
     case "FREEZEBALANCECONTRACT":
       return (
@@ -90,7 +134,7 @@ export default function Contract({contract}) {
           </div>
           <table className="table">
             <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
-            <Field label="Frozen Balance">{contract.frozenBalance}</Field>
+            <Field label="Frozen Balance">{contract.frozenBalance / ONE_TRX}</Field>
             <Field label="Frozen Days">{contract.frozenDuration}</Field>
           </table>
         </Fragment>
@@ -114,7 +158,8 @@ export default function Contract({contract}) {
                   {
                     contract.votes.map(vote => (
                       <li>
-                        <AddressLink address={vote.voteAddress} truncate={false} />: {vote.voteCount}
+                        <AddressLink address={vote.voteAddress} truncate={false} />
+                        {"counts"} : {vote.voteCount}
                       </li>
                     ))
                   }
@@ -154,7 +199,7 @@ export default function Contract({contract}) {
           <div className="card-body">
             <h5 className="card-title text-center">#</h5>
             <p>
-              #
+              contract no found
             </p>
           </div>
         </Fragment>

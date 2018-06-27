@@ -4,7 +4,6 @@ import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {AddressLink, ExternalLink} from "./Links";
 import {tu} from "../../utils/i18n";
-import {TronLoader} from "./loaders";
 import {FormattedNumber} from "react-intl";
 
 export default class Votes extends React.Component {

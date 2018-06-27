@@ -31,6 +31,7 @@ import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
 import OpenWallet from "./components/wallet/Access/index";
 import Faq from "./components/Pages/Faq";
+import {IS_DESKTOP} from "./constants";
 
 export const routes = [
   {
@@ -108,12 +109,6 @@ export const routes = [
     showInMenu: false,
   },
   {
-    path: "/representative/:id",
-    label: "representative",
-    component: Representative,
-    showInMenu: false,
-  },
-  {
     path: "/tokens",
     label: "tokens",
     icon: "fas fa-coins",
@@ -143,29 +138,6 @@ export const routes = [
     component: TokenDetail,
     showInMenu: false,
   },
-  // {
-  //   path: "/accounts",
-  //   label: "accounts",
-  //   icon: "fa fa-users",
-  //   component: Accounts,
-  //   routes: [
-  //     {
-  //       label: "accounts",
-  //       path: "/accounts/overview",
-  //       component: Accounts
-  //     },
-  //     {
-  //       label: "statistics",
-  //       path: "/accounts/stats",
-  //       component: Statistics
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: "/receive",
-  //   label: "receive",
-  //   component: Receive
-  // },
   {
     path: "/markets",
     label: "markets",
@@ -217,18 +189,12 @@ export const routes = [
     ]
   },
   {
-    path: "/news",
-    label: "news",
-    icon: "fa fa-newspaper",
-    component: News
-  },
-  {
     path: "/help",
     label: "help",
     icon: "fa fa-question",
     component: null,
     routes: [
-      'Tron',
+      'TRON',
       {
         url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
         label: "what_is_tron",
@@ -267,25 +233,36 @@ export const routes = [
     ]
   },
   {
-    path: "/wallet/new",
-    label: "wallet",
-    showInMenu: false,
-    component: WalletWizardAsync,
-  },
-  {
     path: "/wallet/open",
     label: "open wallet",
     showInMenu: false,
     component: OpenWallet,
   },
-  {
-    path: "/",
-    label: "home",
-    showInMenu: false,
-    showSubMenu: false,
-    showSubHeader: false,
-    component: Home,
-  },
 ];
+
+if (!IS_DESKTOP) {
+  routes.push({
+    path: "/representative/:id",
+    label: "representative",
+    component: Representative,
+    showInMenu: false,
+  });
+
+  routes.push({
+    path: "/news",
+    label: "news",
+    icon: "fa fa-newspaper",
+    component: News
+  });
+}
+
+routes.push({
+  path: "/",
+  label: "home",
+  showInMenu: false,
+  showSubMenu: false,
+  showSubHeader: false,
+  component: Home,
+});
 
 export const flatRoutes = flatten(routes.map(route => [...(route.routes || []), route]));

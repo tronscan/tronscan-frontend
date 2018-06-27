@@ -495,7 +495,7 @@ class TokenCreate extends Component {
                     </div>
                     <div className="form-row">
                       <div className="form-group col-md-12">
-                        <label>{tu("Website URL")} *</label>
+                        <label>{tu("Website URL")} </label>
                         <TextField type="text" cmp={this} field="url" placeholder="http://" />
                         <small className="form-text text-muted">
                           {tu("url_message")}
