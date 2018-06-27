@@ -36,21 +36,22 @@ class Transfers extends React.Component {
     }
   }
 
-  onChange = ({page}) => {
-    this.load(page);
+  onChange = (page,pageSize) => {
+    this.load(page,pageSize);
   };
 
-  load = async (page = 0) => {
+  load = async (page = 1,pageSize=40) => {
 
     let {filter} = this.props;
-    let {pageSize, showTotal} = this.state;
+
+    let {showTotal} = this.state;
 
     this.setState({ loading: true });
 
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       count: showTotal ? true : null,
       ...filter,
     });
