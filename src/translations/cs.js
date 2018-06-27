@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-25062018                                                  #
-#         Update Date: 25.06.2018                                                #
+#         Version: 1.5-27062018                                                  #
+#         Update Date: 27.06.2018                                                #
 #         Language: Czech                                                        #
 #         Status: First Version                                                  #
-#         Number of checks: 1                                                    #
+#         Number of checks: 4                                                    #
 #         Participants: Wistan Sound                                             #
 #                                                                                #
 ##################################################################################
@@ -83,20 +83,20 @@ export const messages = {
   "enter_password_message": "Musíš zadat heslo!",
   "password_incorrect":"Nesprávné heslo",
   "try_again": "Zkus to znovu",
-  "wallet_unlocked": "Wallet Unlocked",
-  "weak": "weak",
-  "okay": "okay",
-  "good": "good",
-  "strong": "strong",
-  "secure": "secure",
-  "too_short": "too short",
-  "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
-  "filters": "Filters",
+  "wallet_unlocked": "Penìženka odemèena",
+  "weak": "slabé",
+  "okay": "ok",
+  "good": "dobré",
+  "strong": "silné",
+  "secure": "bezpeèné",
+  "too_short": "pøíliš krátké",
+  "status": "stav",
+  "no_notifications": "Žádná oznámení",
+  "enable_desktop_notifications": "Povolit oznámení",
+  "desktop_notification_enabled": "Oznámení povolena!",
+  "notifications_enabled": "Oznámení povolena",
+  "contract_type": "Typ smlouvy",
+  "filters": "Filtry",
   "send_tokens": "Send Tokens",
 
 /*
@@ -156,7 +156,7 @@ export const messages = {
   "last_page": "poslední stránka",
   "page": "stránka",
   "of": "ze",
-  "page_size": "page size",
+  "page_size": "velikost stránky",
   "most_nodes": "vìtšina nódù",
   "loading_nodes": "naèítám nódy",
   "Hostname": "Hostname",
@@ -167,10 +167,10 @@ export const messages = {
   "blocks_missed": "Chybìjící bloky",
   "productivity": "produktivita",
   "rewards": "odmìna",
-  "token_created": "Token created",
+  "token_created": "Token vytvoøen",
   "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "asset_participation": "Zastoupená aktiva",
+  "loading_transaction": "Naèítám transakci",
 
 /*
 ##################################################################################
@@ -194,9 +194,9 @@ export const messages = {
 */
   "set_name": "Nastavit název",
   "unique_account_message": "Název úètu mùžete nastavit jen jednou!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "Název je moc krátký",
+  "name_to_long": "Název je moc dlouhý",
+  "permitted_characters_message": "Název mùže obsahovat pouze a-z A-Z 0-9",
   "change_name": "Zmìna názvu",
   "account_name": "Název úètu",
   "show_qr_code": "Zobrazit QR kód",
@@ -226,9 +226,9 @@ export const messages = {
   "not_enough_trx": "Málo TRX",
   "information_message_3": "TRX úspìšnì vyžádáno. Pokud jste neobdrželi žádné TRX, není v souèasné dobì k dispozici žádný TRX k testování a mìli byste to zkusit pozdìji.",
   "send_to_following_address": "Poslat na následující adresu",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Zmìnit webovou stránku",
+  "you_must_enter_url": "Musíte zadat URL",
+  "specify_the_url":  "Prosím, upøesnìte URL",
 
 /*
 ##################################################################################
@@ -261,8 +261,8 @@ export const messages = {
   "unable_to_rename_title": "Nemožné pøejmenovat",
   "unable_to_rename_message": "Bìhem zmìny názvu úètu došlo k neoèekávané chybì, prosím zkuste to pozdìji znovu",
   "unfreeze_trx_confirm_message": "Opravdu chcete rozmrazit TRX?",
-  "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "unfreeze_assets": "Rozmrazit tokeny",
+  "sure_to_unfreeze_unlocked_tokens_message": "Urèitì chcete rozmrazit odemèené tokeny?",
 
 /*
 ##################################################################################
@@ -307,41 +307,41 @@ export const messages = {
   "trx_produced": "Vytvoøeno transakcí",
   "do_not_send_1": "Neposílejte TRX ze své penìženky ani z burzy na vaši adresu na testovací síti!",
   "go_to_votelist": "Pøejít na hlasovací seznam",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
-  "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
-  "open_external_link": "You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
-  "continue_to_external_website": "Continue to external site",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username": "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "understand_tron_sr_message_0": "Chápu, co znamená být TRON reprezentantem a potvrzuji, že zaplatím",
+  "understand_tron_sr_message_1": "poplatek.",
+  "invalid_url": "Neplatná URL",
+  "apply_representative_error_message_0": "Pøi podání pøihlášky na reprezentanta došlo k neznámé chybì.",
+  "apply_representative_error_message_1": "Zkontrolujte, zda máte dostatek TRX na poplatek, v opaèném pøípadì to zkuste pozdìji.",
+  "open_external_link": "Sppouštíte externí odkaz",
+  "private_key_untrusted_website_message_0": "Nikdy nevkládejte soukromý klíè na nedùvìryhodném webu.",
+  "no_official_tron_website": "není oficiální Tron web.",
+  "continue_to_external_website": "Pokraèovat na externí web",
+  "url_changed": "URL zmìnìna",
+  "successfully_changed_website_message": "Webová stránka úspìšnì zmìnìna na ",
+  "unable_to_change_website_title": "Zmìna URL není možná",
+  "unable_to_change_website_message": "Pøi aktualizci webové stránky došlo k neznámé chybì. Zkuste to prosím pozdìji.",
+  "successfully_linked_github": "Úspìšnì propojeno s Github!",
+  "github_linked": "Github propojen!",
+  "unable_to_link_github_message": "Propojení s Github není možné, zkontrolujte správnost uživatelského jména!",
+  "could_not_link_github": "Propojení s Github se nepovedlo",
+  "enter_your_github_username": "Zadejte své Github uživatelské jméno",
+  "link_to_github": "Propojit s Github",
+  "link_github": "Propojit Github",
+  "you_must_enter_a_url": "Musíte zadat URL",
+  "success": "Úspìch",
+  "successfully_appied_sr_canidate_message_0": "Pøihláška kandidáta na Super reprezentanta úspìšnì podána.",
+  "successfully_appied_sr_canidate_message_1": "Váš úèet bude zanedlouho upgradován.",
+  "landing_page": "Domovská stránka",
+  "show_more_information_publish_sr_page": "Zobrazit více informací jak publikovat stránku",
+  "create_sr_landing_page_message_0": "Super Reprezentanti si mohou vytvoøit domovskou stránku, na které mohou zveøejnit více informací o svém týmu a plánech",
+  "set_github_url_message_0": "Nakonfiguroval jste už svou Github šablonu? Pak tedy nastavte svou URL pomocí tlaèítka níže",
+  "set_github_link": "Nastavit Github odkaz",
+  "could_not_claim_rewards": "Nebylo možné vyžádat si odmìny",
+  "claim_rewards_error_message": "Pøi vyžádání odmìn došlo k neznámé chybì. Prosím, zkuste to pozdìji.",
+  "rewards_claimed": "Odmìny vyžádány!",
+  "successfully_claimed_rewards":  "Odmìny úspìšnì vyžádány",
+  "claim_rewards": "Vyžádat si odmìny",
+  "sr_receive_reward_message_0": "Jako reprezentantovi vám náleží odmìna za generování blokù. O tuto odmìnu mùžete žádat každých 24 hodin",
 
 /*
 ##################################################################################
@@ -392,10 +392,10 @@ export const messages = {
   "how_much_buy_message": "Kolik tokenù chcete nakoupit?",
   "buy_confirm_message_1": "Urèitì chcete koupit",
   "for": "za",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
+  "insufficient_trx": "Nedostateèné množství TRX",
+  "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
+  "ends": "konèí",
+  "starts": "zaèíná",
 
 /*
 ##################################################################################
@@ -506,17 +506,17 @@ export const messages = {
   "no_url_error": "Vyžadována URL webu",
   "past_starttime_error": "Poèáteèní datum je v minulosti",
   "no_transactions": "Žádné transakce",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer than 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer than 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer than 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "errors_in_form": "Ve formuláøi jsou chyby",
+  "token_link_message_0": "Token bude dostupný na",
+  "token_link_message_1": "stránce s tokeny",
+  "token_link_message_2": "bìhem pár minut",
+  "description_error_message_0": "Popis nesmí být delší než 200 znakù",
+  "token_creation_error": "Pøi vytvoøení tokenu došlo k chybì",
+  "tokenname_error_message_0": "Název nesmí být delší než 32 znakù",
+  "tokenname_error_message_1": "Název mùže obsahovat pouze znaky a-Z",
+  "abbreviation_required": "Zadat zkratku je povinné",
+  "abbreviation_error_message_0": "Zkratka nesmí být delší než 5 znakù",
+  "abbreviation_error_message_1": "Zkraatka mùže obsahovat pouze znaky a-Z",
 
 /*
 ##################################################################################
@@ -532,7 +532,7 @@ export const messages = {
   "loading_representatives": "Naèítám Reprezentanty",
   "address_not_super_representative": "Tato adresa nepatøí Super Reprezentantovi",
   "unable_load_representatives_page_message": "Nemohu naèíst stránku, to se mùže stát, pokud je adresa neplatná, nebo nepatøí reprezentantovi, nebo si reprezentant tuto stránku ještì nenakonfiguroval",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Naèítám reprezentanta",
 
 /*
 ##################################################################################
