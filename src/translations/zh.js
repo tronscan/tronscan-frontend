@@ -78,23 +78,23 @@ export const messages = {
   "cancel": "取消",
   "reset": "清零",
   "error": "错误",
-  "unlock_keyFile": "Unlock KeyFile",
+  "unlock_keyFile": "解锁秘钥文件",
   "enter_password_message": "你必须输入你的密码",
   "password_incorrect": "密码错误",
   "try_again": "再试一次",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "钱包解锁",
   "weak": "弱",
   "okay": "行",
   "good": "良好",
   "strong": "强大",
   "secure": "安全",
   "too_short": "太短",
-  "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "status": "状态",
+  "no_notifications": "没有通知",
+  "enable_desktop_notifications": "启用桌面通知",
+  "desktop_notification_enabled": "桌面通知启用!",
+  "notifications_enabled": "通知启用",
+  "contract_type": "合约类型",
 
 /*
 ##################################################################################
@@ -167,10 +167,10 @@ export const messages = {
   "blocks_missed": "丢失区块数量",
   "productivity": "效率",
   "rewards": "奖励",
-  "token_created": "Token created",
+  "token_created": "通证已创建",
   "witness": "Witness",
   "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "loading_transaction": "正在加载交易",
 
 /*
 ##################################################################################
@@ -203,7 +203,7 @@ export const messages = {
   "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
   "bandwidth": "带宽",
   "balance": "余额",
-  "tron_power": "Tron Power",
+  "tron_power": "投票权",
   "transactions": "交易",
 "no_transfers": "无转账",
   "no_tokens": "无通证",
@@ -387,9 +387,9 @@ export const messages = {
   "loading_map": "地图加载中",
   "loading_accounts": "账户加载中",
   "quantity": "数量",
-  "percentage": "百分比",
+  "percentage": "总百分比",
   "loading_token": "通证加载中",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "自占百分比",
 
 /*
 ##################################################################################
@@ -625,4 +625,17 @@ export const messages = {
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
 
+  /*
+##################################################################################
+#                                                                                #
+# blockchain block                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "hash":"哈希值",
+  "time":"时间",
+  "parenthash":"父哈希",
+  "witness":"超级代表",
+  "size":"大小",
 };
+

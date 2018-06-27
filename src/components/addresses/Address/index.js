@@ -214,7 +214,7 @@ class Address extends React.Component {
                         address.representative.enabled &&
                         <Fragment>
                           <tr>
-                            <th>{tu("Website")}:</th>
+                            <th>{tu("website")}:</th>
                             <td>
                               <ExternalLink url={address.representative.url}/>
                             </td>
@@ -262,7 +262,7 @@ class Address extends React.Component {
                         </td>
                       </tr>
                       <tr>
-                        <th>{tu("Tron Power")}:</th>
+                        <th>{tu("tron_power")}:</th>
                         <td>
                           <ul className="list-unstyled m-0">
                             <li>
