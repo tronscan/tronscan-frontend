@@ -97,5 +97,36 @@ module.exports = {
         data: []
       }
     ]
-  }
+  },
+  multiLineChart: {
+    title : {
+      text: '',
+      x:'center'
+    },
+    legend: {
+      type: 'scroll',
+      data:[]
+    },
+    grid: {
+      left: '3%',
+      right: '3%',
+      bottom: '5%',
+      containLabel: true
+    },
+    tooltip: {
+      trigger: 'axis'
+     // position:function(p){   //其中p为当前鼠标的位置
+     //   return [p[0] + 10, p[1] - 10];
+    //  }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: []
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: []
+  },
 };

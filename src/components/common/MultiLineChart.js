@@ -8,7 +8,11 @@ import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 import {connect} from "react-redux";
 import {keyBy, max, sortBy} from "lodash";
-import {Client} from "../../services/api";
+import _ from "lodash";
+import 'echarts/lib/component/legend'
+import 'echarts/lib/component/legend/ScrollableLegendModel.js'
+import 'echarts/lib/component/legend/ScrollableLegendView.js'
+import 'echarts/lib/component/legend/scrollableLegendAction.js'
 
 export class MultiLineReact extends React.Component {
 
@@ -19,74 +23,109 @@ export class MultiLineReact extends React.Component {
       lineId: 'line' + id
     }
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    if(_.isEmpty(this.props.data)){
+      //return false
+    }
+    if (_.isEqual(this.props.data, nextProps.data)) {
+      return false
+    }
 
+    return true
+  }
   initLine(id) {
+
     let {intl, data, newCandidates} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.lineChart.title.text='';
-    config.lineChart.xAxis.data = [];
-    config.lineChart.series[0].data = [];
-
-
-    if(data && data.length>0) {
+    config.multiLineChart.title.text = '';
+    config.multiLineChart.xAxis.data = [];
+    config.multiLineChart.series = [];
+    config.multiLineChart.legend.data=[];
+    if (data && data.length > 0) {
       let stats = {};
       let addresses = {};
-
       for (let row of data) {
         if (!stats[row.timestamp]) {
           stats[row.timestamp] = [];
         }
-
         stats[row.timestamp].push({
           address: row.address,
           votes: row.votes,
         });
-
         addresses[row.address] = true;
       }
 
-      let rawXAxis = Object.keys(stats)
-      let xAxis = [];
+      let latestTimestamp = max(Object.keys(stats));
+      let highestAddresses = keyBy(sortBy(stats[latestTimestamp], s => s.votes * -1));
+      let rowStats = [];
 
-      for (let index in rawXAxis) {
-        xAxis.push(intl.formatTime(parseInt(rawXAxis[index])));
+      for (let [key, value] of Object.entries(stats)) {
+        let row = {
+          timestamp: key,
+          datetime: intl.formatTime(parseInt(key)),
+        };
+        for (let entry of value) {
+          if (typeof highestAddresses[entry.address] !== 'undefined') {
+            row[entry.address] = entry.votes;
+          }
+        }
+        rowStats.push(row);
       }
+
+      rowStats = sortBy(rowStats, s => s.timestamp);
+
+      let xAxis = [];
+      for (let index in rowStats) {
+        xAxis.push(rowStats[index].datetime);
+      }
+
       let yAxis = [];
+      let flag=false;
 
       for (let candy in newCandidates) {
         let temp = [];
         for (let stat in stats) {
-
           for (let ss in stats[stat]) {
             if (stats[stat][ss].address === newCandidates[candy].address) {
               temp.push(stats[stat][ss].votes);
-
+              flag=true;
+              break;
             }
           }
+          if(!flag)
+            temp.push(0);
+          if(flag)
+            flag=false;
         }
-        yAxis.push({key: newCandidates[candy].address, url:newCandidates[candy].url, data: temp});
+        temp=temp.slice(0,temp.length-2);
+
+        yAxis.push({key: newCandidates[candy].address, url: newCandidates[candy].url, data: temp});
       }
-      console.log(yAxis);
 
+      let newYAxis = yAxis.slice(0, 10);
 
-      let latestTimestamp = max(Object.keys(stats));
+      config.multiLineChart.xAxis.data = xAxis.slice(2,xAxis.length);
 
-      let highestAddresses = keyBy(sortBy(stats[latestTimestamp], s => s.votes * -1).slice(0, 27), s => s.address);
+      newYAxis.map((val, index) => {
+        config.multiLineChart.legend.data.push(val.url);
+        config.multiLineChart.series.push({
+          name: val.url,
+          data: val.data,
+          type: 'line',
+          smooth: true
+        })
 
-
-      config.lineChart.xAxis.data=xAxis;
-
-      yAxis.map((val) => {
-       // config.lineChart.series[0].data.push(val[keysData[1]]);
       })
     }
-    if(data && data.length===0){
-      config.lineChart.title.text="No data";
+
+    if (data && data.length === 0) {
+      config.multiLineChart.title.text = "No data";
     }
-    myChart.setOption(config.lineChart);
+
+    myChart.setOption(config.multiLineChart);
 
   }
 

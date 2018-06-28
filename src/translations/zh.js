@@ -552,7 +552,7 @@ export const messages = {
   "warning_votes": "投票需要至少1单位Tron Power，Tron Power 可以通过在(账户页面)冻结TRX获得。",
   "account_page": "账户页面",
   "loading_votes": "投票加载中",
-  "3_day_ranking": "三日投票排名",
+  "3_day_ranking": "三日投票排名(Top 10)",
   "live_ranking": "实时排名",
   "live_ranking_msg": "票数每15秒刷新，新增票数可能需要1-2分钟才会计入总票数。",
   "candidate": "候选人",
