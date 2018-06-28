@@ -24,12 +24,12 @@ import {
 } from "./components/async";
 import TokenList from "./components/tokens/Overview/TokenList";
 import Representative from "./components/Representative";
-import News from "./components/News";
+import News from "./components/Pages/News";
 import NodeTester from "./components/tools/NodeTester";
 import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
-import LaunchStatus from "./components/LaunchStatus";
+import Faq from "./components/Pages/Faq";
 
 export const routes = [
   {
@@ -233,6 +233,17 @@ export const routes = [
         label: "what_is_tron",
       },
       '-',
+      'Tronscan',
+      {
+        label: "Frequently Asked Questions",
+        component: Faq,
+        path: "/help/faq",
+      },
+      {
+        url: "https://t.me/tronscan",
+        label: "Telegram Updates",
+      },
+      '-',
       "Development",
       {
         url: "https://api.tronscan.org",
@@ -253,12 +264,6 @@ export const routes = [
         label: "report_an_error",
       },
     ]
-  },
-  {
-    path: "/launch",
-    label: "launch",
-    showInMenu: false,
-    component: LaunchStatus
   },
   {
     path: "/wallet/new",

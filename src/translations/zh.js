@@ -78,23 +78,25 @@ export const messages = {
   "cancel": "取消",
   "reset": "清零",
   "error": "错误",
-  "unlock_keyFile": "Unlock KeyFile",
+  "unlock_keyFile": "解锁秘钥文件",
   "enter_password_message": "你必须输入你的密码",
   "password_incorrect": "密码错误",
   "try_again": "再试一次",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "钱包解锁",
   "weak": "弱",
   "okay": "行",
   "good": "良好",
   "strong": "强大",
   "secure": "安全",
   "too_short": "太短",
-  "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
+  "status": "状态",
+  "no_notifications": "没有通知",
+  "enable_desktop_notifications": "启用桌面通知",
+  "desktop_notification_enabled": "桌面通知启用!",
+  "notifications_enabled": "通知启用",
+  "contract_type": "合同类型",
+  "filters": "过滤器",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -153,10 +155,7 @@ export const messages = {
   "last_page": "尾页",
   "page": "第",
   "of": "共",
-  "page_size":"每页记录数",
-  "last_block": "上一区块",
-  "total_supply": "发行量",
-
+  "page_size": "每页记录数",
   "most_nodes": "最多节点",
   "loading_nodes": "加载中节点",
   "Hostname": "主机名",
@@ -167,10 +166,10 @@ export const messages = {
   "blocks_missed": "丢失区块数量",
   "productivity": "效率",
   "rewards": "奖励",
-  "token_created": "Token created",
-  "witness": "Witness",
+  "token_created": "通证已创建",
+  "witness": "超级代表",
   "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
+  "loading_transaction": "交易加载中",
 
 /*
 ##################################################################################
@@ -194,18 +193,18 @@ export const messages = {
 */
   "set_name": "设置名称",
   "unique_account_message": "您只能设置一次您的帐户名称",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "名字太短",
+  "name_to_long": "名字太长",
+  "permitted_characters_message": "名字只能包含 a-z A-Z 0-9",
   "change_name": "更换名字",
   "account_name": "用户名",
   "show_qr_code": "显示二维码",
   "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
   "bandwidth": "带宽",
   "balance": "余额",
-  "tron_power": "Tron Power",
+  "tron_power": "投票权",
   "transactions": "交易",
-"no_transfers": "无转账",
+  "no_transfers": "无转账",
   "no_tokens": "无通证",
   "free_bandwidth": "免费带宽",
   "expires": "失效",
@@ -226,6 +225,9 @@ export const messages = {
   "not_enough_trx": "TRX余额不足",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   "send_to_following_address": "对以下地址转账",
+  "change_website": "Change Website",
+  "you_must_enter_url": "You must enter a URL",
+  "specify_the_url":  "Please specify the URL",
 
 /*
 ##################################################################################
@@ -246,17 +248,19 @@ export const messages = {
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
   "frozen_supply": "冻结数额",
-  "tokens_unfrozen": "Tokens Unfrozen",
-  "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
-  "unable_to_unfreeze": "Unable to unfreeze",
-  "Unable_tokens_unfrozen_message": "Unable to unfreeze tokens.",
-  "tokens_frozen": "Tokens Frozen",
-  "successfully_frozen": "Successfully frozen",
+  "tokens_unfrozen": "解冻通证",
+  "success_tokens_unfrozen_message": "成功解冻通证",
+  "unable_to_unfreeze": "无法解冻",
+  "Unable_tokens_unfrozen_message": "无法解冻通证.",
+  "tokens_frozen": "通证冻结",
+  "successfully_frozen": "成功冻结",
   "name_changed": "名称已更改",
-  "successfully_changed_name_to_message": "Successfully changed name to",
+  "successfully_changed_name_to_message": "成功更改名字",
   "unable_to_rename_title": "无法重命名",
-  "unable_to_rename_message": "Something went wrong while updating your account name, please try again later",
-  "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
+  "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
+  "unfreeze_trx_confirm_message": "确定要解冻TRX?",
+  "unfreeze_assets": "Unfreeze Assets",
+  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
 
 /*
 ##################################################################################
@@ -292,11 +296,41 @@ export const messages = {
   "trx_produced": "生成交易数量",
   "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
   "go_to_votelist": "前往投票列表",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
+  "understand_tron_sr_message_0": "我知道怎么成为超级代表，我确认",
   "understand_tron_sr_message_1": "fee.",
   "invalid_url": "无效的网址",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_0": "当你试图申请超级代表时出错了.",
+  "apply_representative_error_message_1": "确保有足够的TRX来支付费用或者稍后再尝试.",
+  "open_external_link":"You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
+  "url_changed": "URL changed",
+  "successfully_changed_website_message": "Successfully changed website to ",
+  "unable_to_change_website_title": "Unable to change URL",
+  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
+  "successfully_linked_github": "Successfully linked to Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
+  "could_not_link_github": "Could not link Github",
+  "enter_your_github_username": "Enter your Github username",
+  "link_to_github": "Link to Github",
+  "link_github": "Link Github",
+  "you_must_enter_a_url": "You must enter a URL",
+  "success": "Success",
+  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
+  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
+  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
+  "set_github_link": "Set Github Link",
+  "could_not_claim_rewards": "Could not claim rewards",
+  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
+  "rewards_claimed": "Rewards Claimed!",
+  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "claim_rewards": "Claim Rewards",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
 
 /*
 ##################################################################################
@@ -347,11 +381,11 @@ export const messages = {
   "how_much_buy_message": "您想购买多少数量的通证？",
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
-
+  "insufficient_trx": "TRX数量不足",
+  "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
+  "ends": "结束",
+  "starts": "开始",
+  "can_be_unlocked_in":"将解锁于",
 /*
 ##################################################################################
 #                                                                                #
@@ -387,9 +421,9 @@ export const messages = {
   "loading_map": "地图加载中",
   "loading_accounts": "账户加载中",
   "quantity": "数量",
-  "percentage": "百分比",
+  "percentage": "总百分比",
   "loading_token": "通证加载中",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "自占百分比",
 
 /*
 ##################################################################################
@@ -454,7 +488,7 @@ export const messages = {
   "no_name_error": "请填写名称",
   "no_supply_error": "发行总量至少为1",
   "coin_value_error": "单位通证数量对应的TRX价值至少为1",
-  "tron_value_error": "The amount of TRX per coin must be at least 1",
+  "tron_value_error": "TRX的数量至少为1",
   "invalid_starttime_error": "所填写的开始日期无效",
   "invalid_endtime_error": "所填写的结束日期无效",
   "no_description_error": "请填写描述",
@@ -480,14 +514,14 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "highest_productivity": "出块效率最高y",
+  "highest_productivity": "出块效率最高",
   "lowest_productivity": "出块效率最低",
   "Super Representatives": "超级代表",
   "Super Representative Candidates": "超级代表候选人",
   "loading_representatives": "超级代表加载中",
   "address_not_super_representative": "本地址非超级代表",
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "超级代表加载中",
 
 /*
 ##################################################################################
@@ -625,4 +659,17 @@ export const messages = {
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
 
+  /*
+##################################################################################
+#                                                                                #
+# blockchain block                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "hash":"哈希值",
+  "time":"时间",
+  "parenthash":"父哈希",
+  "witness":"超级代表",
+  "size":"大小",
 };
+

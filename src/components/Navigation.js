@@ -13,7 +13,7 @@ import {enableFlag, login, logout, setActiveCurrency, setLanguage, setTheme} fro
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
-import {AddressLink} from "./common/Links"
+import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
 import {IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
@@ -37,7 +37,7 @@ class Navigation extends PureComponent {
     this.fileRef = React.createRef();
 
     this.id = 0;
-
+    this.loginFlag=false;
     this.state = {
       privateKey: '',
       search: "",
@@ -45,7 +45,14 @@ class Navigation extends PureComponent {
       notifications: [],
     };
   }
+  componentDidUpdate() {
+    let { account, wallet } = this.props;
+    if(account.isLoggedIn && wallet.isOpen && !this.loginFlag){
+      toastr.info('Success', 'Login success');
+      this.loginFlag=true;
+    }
 
+  }
   setLanguage = (language) => {
     this.props.setLanguage(language);
   };
@@ -151,6 +158,8 @@ class Navigation extends PureComponent {
 
   logout = () => {
     this.props.logout();
+    this.loginFlag=false;
+    toastr.info('Success', 'Logout success');
   };
 
   componentWillUnmount() {
@@ -484,15 +493,14 @@ class Navigation extends PureComponent {
 
                             if (!isUndefined(subRoute.url)) {
                               return (
-                                <a
+                                <HrefLink
                                   key={subRoute.url}
                                   className="dropdown-item text-uppercase"
-                                  target="_blank"
                                   href={subRoute.url}>
                                   {subRoute.icon && <i className={subRoute.icon + " mr-2"}/>}
                                   {tu(subRoute.label)}
                                   {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                </a>
+                                </HrefLink>
                               );
                             }
 

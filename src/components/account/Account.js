@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {tu,t} from "../../utils/i18n";
+import {t, tu} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import xhr from "axios";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import FreezeBalanceModal from "./FreezeBalanceModal";
-import {AddressLink, TokenLink} from "../common/Links";
+import {AddressLink, ExternalLink, HrefLink, TokenLink} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {IS_TESTNET, ONE_TRX} from "../../constants";
 import {Client} from "../../services/api";
@@ -19,7 +19,6 @@ import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
-import Transfers from "../common/Transfers";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 
@@ -251,6 +250,7 @@ class Account extends Component {
         theadClass="thead-light"
         showTotal={false}
         autoRefresh={30000}
+        pagingProps={{ showPageSize: false }}
         EmptyState={() => <p className="text-center">No transactions yet</p>}
         filter={{address: account.address}}/>
     )
@@ -276,6 +276,15 @@ class Account extends Component {
       modal: (
         <FreezeBalanceModal
           onHide={this.hideModal}
+          onError={() => {
+            this.setState({
+              modal: (
+                <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
+                  Something went wrong while trying to freeze TRX
+                </SweetAlert>
+              )
+            });
+          }}
           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
         />
       )
@@ -311,10 +320,11 @@ class Account extends Component {
         <SweetAlert
           info
           showCancel
-          confirmBtnText="Unfreeze Assets"
+          confirmBtnText={tu("unfreeze_assets")}
           confirmBtnBsStyle="danger"
           cancelBtnBsStyle="default"
-          title="Are you sure you want to unfreeze unlocked tokens?"
+          cancelBtnText={tu("cancel")}
+          title={tu("sure_to_unfreeze_unlocked_tokens_message")}
           onConfirm={this.unfreezeAssets}
           onCancel={this.hideModal}
         >
@@ -331,16 +341,16 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="Rewards Claimed!" onConfirm={this.hideModal}>
-            Successfully claimed rewards
+          <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
+              {tu("successfully_claimed_rewards")}
           </SweetAlert>
         )
       });
     } else {
       this.setState({
         modal: (
-          <SweetAlert danger title="Could not claim rewards" onConfirm={this.hideModal}>
-            Something went wrong while trying to claim rewards, please try again later.<br/>
+          <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
+            {tu("claim_rewards_error_message")}<br/>
             {code}
           </SweetAlert>
         )
@@ -447,8 +457,8 @@ class Account extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title="URL changed" onConfirm={this.hideModal}>
-            Successfully changed website to <b>{url}</b>
+          <SweetAlert success title={tu("url_changed")} onConfirm={this.hideModal}>
+            {tu("successfully_changed_website_message")} <b>{url}</b>
           </SweetAlert>
         )
       });
@@ -457,8 +467,8 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title="Unable to change URL" onConfirm={this.hideModal}>
-            Something went wrong while updating the website, please try again later
+          <SweetAlert warning title={tu("unable_to_change_website_title")} onConfirm={this.hideModal}>
+            {tu("unable_to_change_website_message")}
           </SweetAlert>
         )
       })
@@ -482,17 +492,18 @@ class Account extends Component {
           input
           showCancel
           cancelBtnBsStyle="default"
-          confirmBtnText="Link Github"
-          title="Link to Github"
+          cancelBtnText={tu("cancel")}
+          confirmBtnText={tu("link_github")}
+          title={tu("link_to_github")}
           placeHolder="github username or https://github.com/{username}/tronsr-template"
           onCancel={this.hideModal}
-          validationMsg="You must enter a URL"
+          validationMsg={tu("you_must_enter_a_url")}
           onConfirm={ async (name) => {
             if (await this.detectGithubUrl(name)) {
               this.setState({
                 modal: (
-                  <SweetAlert success title="Github linked!" onConfirm={this.hideModal}>
-                    Successfully linked to Github!
+                  <SweetAlert success title={tu("github_linked")} onConfirm={this.hideModal}>
+                    {tu("successfully_linked_github")}
                   </SweetAlert>
                 )
               });
@@ -502,16 +513,16 @@ class Account extends Component {
                   <SweetAlert
                     danger
                     showCancel
-                    title="Could not link Github"
+                    title={tu("could_not_link_github")}
                     onCancel={this.hideModal}
                     onConfirm={this.changeGithubURL}>
-                    Could not link to Github, make sure your username is correct!
+                    {tu("unable_to_link_github_message")}
                   </SweetAlert>
                 )
               });
             }
           }}>
-          Input your Github username
+          {tu("enter_your_github_username")}
         </SweetAlert>
       )
     });
@@ -567,12 +578,12 @@ class Account extends Component {
           input
           showCancel
           cancelBtnBsStyle="default"
-          title="Change Website"
+          title={tu("change_website")}
           placeHolder="https://"
           onCancel={this.hideModal}
-          validationMsg="You must enter a URL"
+          validationMsg={tu("you_must_enter_url")}
           onConfirm={(name) => this.updateWebsite(name)}>
-          Please specify the URL
+          {tu("specify_the_url")}
         </SweetAlert>
       )
     });
@@ -587,9 +598,9 @@ class Account extends Component {
             setTimeout(() => this.props.reloadWallet(), 1200);
             this.setState({
               modal: (
-                <SweetAlert success title="Success" onConfirm={this.hideModal}>
-                  Successfully applied to be Super Representative Candidate.<br/>
-                  Your account will be upgraded shortly.
+                <SweetAlert success title={tu("success")} onConfirm={this.hideModal}>
+                  {tu("successfully_appied_sr_canidate_message_0")} <br/>
+                  {tu("successfully_appied_sr_canidate_message_1")}
                 </SweetAlert>
               )
             });
@@ -699,7 +710,7 @@ class Account extends Component {
                       <td>
                         {currentWallet.name || "-"}
                         {
-                          (trim(currentWallet.name) === "" && currentWallet.balance > 0) &&
+                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
                             <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
                               {tu("set_name")}
                             </a>
@@ -710,26 +721,33 @@ class Account extends Component {
                 {
                   currentWallet.representative.enabled &&
                     <tr>
-                      <th>{tu("Website")}:</th>
+                      <th>{tu("website")}:</th>
                       <td>
                         <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
                         <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
-                          Change Website
+                          {tu("change_website")}
                         </a>
 
                       </td>
                     </tr>
                 }
                 <tr>
-                  <th>{tu("address")}:</th>
+                  <th style={{ width: 150 }}>{tu("address")}:</th>
                   <td>
-                    <AddressLink address={account.address} includeCopy={true}/><br/>
-                    <span className="text-danger">
-                      ({tu("do_not_send_2")})
-                    </span>
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
                       {tu("show_qr_code")}
                     </a>
+
+                    <div className="float-left" style={{ width: 300 }}>
+                      <AddressLink address={account.address} includeCopy={true}/>
+                    </div>
+
+                    {
+                      IS_TESTNET &&
+                        <p className="text-danger">
+                          ({tu("do_not_send_2")})
+                        </p>
+                    }
                   </td>
                 </tr>
                 <tr>
@@ -873,37 +891,46 @@ class Account extends Component {
                       {tu("Super Representative")}
                     </h5>
                     <p className="card-text">
-                      As a representative you receive rewards for producing blocks. These rewards
-                      can be claimed every 24 hours
+                      {tu("sr_receive_reward_message_0")}
                     </p>
-                    <button className="btn btn-success mr-2" onClick={this.claimRewards}>
-                      Claim Rewards
+                    <button className="btn btn-success mr-2"
+                            onClick={this.claimRewards}
+                            disabled={currentWallet.representative.allowance === 0}>
+                      {tu("claim_rewards")}
                       <i className="fa fa-hand-holding-usd ml-2"/>
                     </button>
+                    {
+                      currentWallet.representative.allowance > 0 ?
+                        <p className="m-0 mt-3 text-success">
+                          Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX} className="font-weight-bold"/>
+                        </p> :
+                        <p className="m-0 mt-3 font-weight-bold text-danger">
+                          No rewards to claim
+                        </p>
+                    }
                   </div>
                   <div className="card-body border-top">
                     <h5 className="card-title text-center">
-                      {tu("Landing Page")}
+                      {tu("landing_page")}
                     </h5>
                     <p className="card-text text-center">
-                      Super Representatives can create a landing page on which they
-                      can share more information about their team and plans
+                      {tu("create_sr_landing_page_message_0")}
                     </p>
                     <p className="text-center">
-                      <a className="btn btn-primary mr-2" target="_blank" href="https://github.com/tronscan/tronsr-template#readme">
-                        Show more Information on how to publish a page
+                      <HrefLink className="btn btn-primary mr-2" href="https://github.com/tronscan/tronsr-template#readme">
+                        {tu("show_more_information_publish_sr_page")}
                         <i className="fa fa-question ml-2"/>
-                      </a>
+                      </HrefLink>
                     </p>
                     {
                       !this.hasGithubLink() &&
                         <Fragment>
                           <p className="card-text text-center">
-                            Did you already configure your Github template? Then set the URL by using the button below
+                            {tu("set_github_url_message_0")}
                           </p>
                           <p className="text-center">
                             <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
-                              Set Github Link
+                              {tu("set_github_link")}
                               <i className="fab fa-github ml-2"/>
                             </button>
                           </p>
@@ -917,7 +944,7 @@ class Account extends Component {
                         <tr>
                           <th>{tu("Github Link")}:</th>
                           <td>
-                            <a href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</a>
+                            <HrefLink href={"http://github.com/" + sr.githubLink} target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                             <a href="javascript:;" className="float-right text-primary" onClick={this.changeGithubURL}>
                               {tu("Change Github Link")}
                             </a>

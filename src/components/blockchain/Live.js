@@ -209,7 +209,7 @@ class Live extends React.Component {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Filters
+                  {tu("filters")}
                 </h5>
                 <form className="pt-2">
                   {

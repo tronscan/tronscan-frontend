@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Notificări Desktop autorizate!",
   "notifications_enabled": "Notificări autorizate",
   "contract_type": "Tip Contract",
+  "filters": "Filters",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "ultima pagină",
   "page": "pagina",
   "of": "din",
+  "page_size": "page size",
   "most_nodes": "Cele mai multe Noduri",
   "loading_nodes": "încărcare Noduri",
   "Hostname": "Numegazdă",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "Nu există destul TRX",
   "information_message_3": "Ați cerut cu succes TRX. Dacă nu ați primit TRX înseamnă că deocamdată nu există TRX de testare și ar trebui să încercați din nou mai tarziu.",
   "send_to_following_address": "Trimiteți la adresa următoare",
+  "change_website": "Schimbați site-ul web",
+  "you_must_enter_url": "Trebuie să introduceți un URL",
+  "specify_the_url":  "Vă rugăm specificați URL-ul",
 
 /*
 ##################################################################################
@@ -255,6 +261,8 @@ export const messages = {
   "unable_to_rename_title": "Imposibil de redenumit",
   "unable_to_rename_message": "Ceva nu a mers bine în timp ce se updata numele contului, vă rugăm încercați mai târziu",
   "unfreeze_trx_confirm_message": "Sunteți sigur că vreți să dezghețați TRX?",
+  "unfreeze_assets": "Active dezghețate",
+  "sure_to_unfreeze_unlocked_tokens_message": "Sunteți sigur că doriți să dezghețați tokenii activați?",
 
 /*
 ##################################################################################
@@ -306,6 +314,36 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Ceva nu a mers bine în timp ce încercați să aplicați pentru reprezentare.",
   "apply_representative_error_message_1": "Asigurați-vă că aveți destul TRX pentru taxă, sau încercați mai tarziu.",
+  "open_external_link":"Deschideți un link extern",
+  "private_key_untrusted_website_message_0": "Nu introduceți niciodată cheia privată pe un website nesigur.",
+  "no_official_tron_website": "acesta nu este un site oficial Tron.",
+  "continue_to_external_website": "Continuați către site-ul extern",
+  "url_changed": "URL schimbat",
+  "successfully_changed_website_message": "Website schimbat cu succes în ",
+  "unable_to_change_website_title": "Imposibil de schimbat  URL",
+  "unable_to_change_website_message": "Ceva nu a mers bine în timp ce se updata website-ul, vă rugăm încercați mai târziu",
+  "successfully_linked_github": "Sincronizat cu succes la  Github!",
+  "github_linked": "Sincronizat cu Github!",
+  "unable_to_link_github_message": "Nu s-a putut sincroniza cu Github, asigurați-vă că numele de utilizator este corect!",
+  "could_not_link_github": "Nu s-a putut sincroniza cu Github",
+  "enter_your_github_username":  "Introduceți numele de utilizator de Github",
+  "link_to_github": "Legătură către Github",
+  "link_github": "Legătură Github",
+  "you_must_enter_a_url": "Trebuie să introduceți un URL",
+  "success": "Succes",
+  "successfully_appied_sr_canidate_message_0": "Ați aplicat cu succes pentru Super Reprezentant.",
+  "successfully_appied_sr_canidate_message_1": "În câteva momente, contul dumneavoastră va fi upgradat.",
+  "landing_page": "Pagină Intrare",
+  "show_more_information_publish_sr_page": "Arată mai multe informații despre cum să publici o pagină",
+  "create_sr_landing_page_message_0": "Super Reprezentanții pot crea o pagină de intrare în care pot prezenta informații despre echipa și planurile lor",
+  "set_github_url_message_0": "Ați configurat deja template-ul de Github? Atunci setați URL-ul folosind butonul de mai jos",
+  "set_github_link": "Setați Link-ul Github",
+  "could_not_claim_rewards": "Nu s-au putut primi recompense",
+  "claim_rewards_error_message": "Ceva nu a mers bine în timp ce s-au solicitat recompense, vă rugăm încercați mai târziu.",
+  "rewards_claimed": "Recompensă primită!",
+  "successfully_claimed_rewards":  "S-au primit recompense cu succes",
+  "claim_rewards": "Solicitare Recompensă",
+  "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
 
 /*
 ##################################################################################

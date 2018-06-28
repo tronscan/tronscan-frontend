@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-21062018                                                  #
-#         Update Date: 21.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         Language: Polish                                                       #
 #         Status: Second Version                                                 #
 #         Number of checks: 5                                                    #
@@ -96,6 +96,8 @@ export const messages = {
   "desktop_notification_enabled": "Powiadomienia na pulpicie zostały włączone!",
   "notifications_enabled": "Powiadomienia włączone",
   "contract_type": "Typ kontraktu",
+  "filters": "Filtry",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "ostatnia strona",
   "page": "strona",
   "of": "z",
+  "page_size": "ilość wyników",
   "most_nodes": "Najwięcej węzłów",
   "loading_nodes": "wczytuję Węzły",
   "Hostname": "Nazwa hosta",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "Nie wystarczająca ilość TRX",
   "information_message_3": "Twój wniosek o przyznanie testowych TRX został zapisany. Jeżeli w przeciągu najbliższych kilku chwil nie znajdą się one na Twoim koncie, oznacza to, że są obecnie niedostępne. W takiej sytuacji spróbuj zawnioskować ponownie później.",
   "send_to_following_address": "Wyślij na następujący adres",
+  "change_website": "Zmień adres strony",
+  "you_must_enter_url": "Wpisz poprawny adres URL",
+  "specify_the_url":  "Musisz wpisać adres URL",
 
 /*
 ##################################################################################
@@ -255,6 +261,8 @@ export const messages = {
   "unable_to_rename_title": "Nie udało się zmienić nazwy",
   "unable_to_rename_message": "Coś poszło nie tak podczas aktualizowania nazwy Twojego konta, spróbuj ponownie później",
   "unfreeze_trx_confirm_message": "Na pewno chcesz odmrozić swoje TRX?",
+  "unfreeze_assets": "Odblokuj środki",
+  "sure_to_unfreeze_unlocked_tokens_message": "Na pewno chcesz odmrozić odblokowane środki?",
 
 /*
 ##################################################################################
@@ -303,6 +311,36 @@ export const messages = {
   "invalid_url": "Nieprawidłowy adres URL",
   "apply_representative_error_message_0": "Coś poszło nie tak podczas aplikowania na Reprezentanta.",
   "apply_representative_error_message_1": "Upewnij się, że posiadasz odpowiedniąilość TRX do pokrycia opłaty lub spróbuj ponownie później.",
+  "open_external_link":"Otwierasz zewnętrzny adres URL",
+  "private_key_untrusted_website_message_0": "Nigdy, pod żadnym pozorem nie podawaj swojego klucza prywatnego na nieznanej Ci stronie",
+  "no_official_tron_website": "strona nie jest powiązana z Fundacją TRON.",
+  "continue_to_external_website": "Kontynuuj mimo wszystko i przejdź dalej",
+  "url_changed": "Adres URL uległ zmianie",
+  "successfully_changed_website_message": "Zmiana adresu strony zakończona sukcesem na ",
+  "unable_to_change_website_title": "Nie udało się zmienić adresu URL",
+  "unable_to_change_website_message": "Coś poszło nie tak podczas aktualizowania strony, spróbuj ponownie później.",
+  "successfully_linked_github": "Połączenie z kontem Github zakończone sukcesem",
+  "github_linked": "Github został poprawnie połączony!",
+  "unable_to_link_github_message": "Nie udało się połączyć konta Github, upewnij się, że nickname jest poprawny",
+  "could_not_link_github": "Nie udało się połączyć konta Github",
+  "enter_your_github_username":   "Podaj nazwę użytkownika na Github",
+  "link_to_github": "Połącz z Githubem",
+  "link_github": "Połącz Github",
+  "you_must_enter_a_url": "Musisz wpisać adres URL",
+  "success": "Akcja zakończona sukcesem",
+  "successfully_appied_sr_canidate_message_0": "Twoja aplikacja na Super Reprezentanta została zapisana.",
+  "successfully_appied_sr_canidate_message_1": "Twoje konto wkrótce zostanie zaktualizowane",
+  "landing_page": "Strona kandydata",
+  "show_more_information_publish_sr_page": "Pokaż więcej informacji na temat publikacji własnej strony",
+  "create_sr_landing_page_message_0": "Super Reprezentanci mogą opublikować własną stronę startową (kandydata) na której wymienią szczegóły swojej kandydatury, członków zespołu itp.",
+  "set_github_url_message_0": "Czy skonfigurowałeś/aś już swój szablon na Githubie? Jeżeli tak, to skonfiguruj adres niżej",
+  "set_github_link": "Ustaw adres konta na Github",
+  "could_not_claim_rewards": "Przesłanie nagród nie udało się.",
+  "claim_rewards_error_message": "Coś poszło nie tak podczas przesyłania nagród na Twoje konto, spróbuj ponownie później.",
+  "rewards_claimed": "Nagrody zostały odebrane!",
+  "successfully_claimed_rewards":  "Pomyślnie odebrano nagrody",
+  "claim_rewards": "Odbierz nagrody",
+  "sr_receive_reward_message_0": "Jako Reprezentant, otrzymujesz nagrody za produkowanie bloków. Nagrody możesz odbierać co 24 godziny.",
 
 /*
 ##################################################################################
@@ -420,7 +458,7 @@ export const messages = {
 ##################################################################################
 */
   "details": "szczegóły",
-  "issue_a_token": "Wydaj token",
+  "issue_a_token": "Wydaj swój własny token",
   "issue_token": "Wydaj token",
   "token_name": "nazwa tokenu",
   "total_issued": "Aktualnie w cyrkulacji",
@@ -439,7 +477,7 @@ export const messages = {
   "participation_message_1": " tokeny.",
   "frozen_supply_message_0": `Pewna część tokenów w obiegu może zostać zamrożona. Ilość tokenów do zamrożenia może zostać określona i zamrożona na co najmniej 1 dzień. Zamrożona pula może być ręcznie odmrożona po czasie uruchomienia + w momencie kiedy minie wyznaczona data zamrożenia. Zamrażanie tokenów w obiegu nie jest wymagane.`,
   "token_issued_successfully": "Token został poprawnie utworzony",
-  "participation": "wzięcie udziału",
+  "participation": "Dystrybucja tokenów",
   "start_date": "Data początkowa",
   "end_date": "Data końcowa",
   "token_spend_confirm": "Potwierdzam, że tworząc token zostanie mi pobrana jednorazowa opłata w wysokości 1024 TRX.",

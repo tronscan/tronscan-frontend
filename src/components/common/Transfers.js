@@ -81,7 +81,6 @@ class Transfers extends React.Component {
     return (
       <StickyContainer>
         {
-          total > pageSize &&
             <Sticky>
               {
                 ({style}) => (

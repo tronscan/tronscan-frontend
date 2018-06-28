@@ -15,6 +15,7 @@ import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {toastr} from "react-redux-toastr";
+import {HrefLink} from "../common/Links";
 
 const subHours = require('date-fns/sub_hours');
 
@@ -213,97 +214,7 @@ class Home extends Component {
 
 
 
-        <div className="py-5">
-          <div className="container">
-            <div className="row pt-5 pb-5">
-              <div className="col-md-12">
-                <div className="card pb-5">
-                  <div className>
-                    <div className="card-body text-center text-primary">
-                      <i className="fa fa-users fa-3x"/>
-                      <h2 className="mt-3">GR Election</h2>
-                      <p className="text-muted">
-                        Genesis Representatives Elections
-                      </p>
-                    </div>
-                    <ul className="list-group list-group-flush" style={styles.list}>
-                      <li className="list-group-item d-flex">
-                        Network Rehearsal Recovery
-                        <span className="text-success ml-auto">
-                          Completed
-                        </span>
-                      </li>
-                      <li className="list-group-item d-flex">
-                        Mainnet launches 1st rehearsal
-                        <span className="text-success ml-auto">
-                          Completed
-                        </span>
-                      </li>
-                      <li className="list-group-item d-flex">
-                        Mainnet launches 2nd rehearsal
-                        <span className="text-success ml-auto">
-                          Completed
-                        </span>
-                      </li>
-                    </ul>
-                    <div className="card-body text-center text-info">
-                      <i className="fa fa-shield-alt fa-3x"/>
-                      <h2 className="mt-3">Guardian Phase</h2>
-                      <p className="text-muted">
-                        Network Guardians
-                      </p>
-                    </div>
-                    <ul className="list-group list-group-flush" style={styles.list}>
-                      <li className="list-group-item d-flex">
-                        Launch of the Guardian Network, waiting for Genesis
-                      </li>
-                      <li className="list-group-item d-flex">
-                        Designated GBN (Genesis Boot Node)
-                      </li>
-                    </ul>
-                    <div className="card-body text-center text-danger">
-                      <i className="fa fa-burn fa-3x"/>
-                      <h2 className="mt-3">Genesis Phase</h2>
-                      <p className="text-muted">
-                        Launch of Mainnet
-                      </p>
-                    </div>
-                    <ul className="list-group list-group-flush" style={styles.list}>
-                      <li className="list-group-item d-flex">
-                        GBN produces Genesis Block
-                      </li>
-                      <li className="list-group-item d-flex">
-                        GBN sets network launching parameters
-                        and notifies other GRs
-                      </li>
-                      <li className="list-group-item d-flex">
-                        GBN launches; GRs sync data
-                      </li>
-                      <li className="list-group-item d-flex">
-                        Start of exchange integration with TRON’s mainnet
-                      </li>
-                      <li className="list-group-item d-flex">
-                        SRs start voting
-                      </li>
-                    </ul>
-                    <div className="card-body text-center text-success">
-                      <i className="fa fa-book fa-3x"/>
-                      <h2 className="mt-3">Constitutionalism</h2>
-                      <p className="text-muted">
-                        Entering the Constitutional Era
-                      </p>
-                    </div>
-                    <ul className="list-group list-group-flush" style={styles.list}>
-                      <li className="list-group-item d-flex">
-                        Begin of the Constitutional Era after SRs replace all GRs
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+       
 
         <SRNews/>
 
@@ -314,9 +225,9 @@ class Home extends Component {
             <div className="row pt-5 pb-5">
               <div className="col-md-7">
                 <div className="mb-3 border-0">
-                  <h5>Desktop Explorer BETA is here!</h5>
+                  <h5>Desktop Explorer is here!</h5>
                   <p>
-                    <span className="font-weight-bold">The BETA version is out!</span>{' '}
+                    <span className="font-weight-bold">1.0 version is out!</span>{' '}
                     Use all your favorite features of Tronscan in the desktop version. By using the Desktop
                     version you are safe from malicious websites or browser extensions which may read your private key.
                   </p>
@@ -327,11 +238,11 @@ class Home extends Component {
                     The Desktop app is available for Windows, Linux and Mac
                   </p>
                   <div className="mt-3">
-                    <a href="https://github.com/tronscan/tronscan-desktop/releases">
+                    <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">
                       <button className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
                         Download here
                       </button>
-                    </a>
+                    </HrefLink>
                   </div>
                 </div>
               </div>
@@ -423,26 +334,25 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>TRON</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><a href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</a></li>
-                  <li><a href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</a></li>
-                  <li><a href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</a>
-                  </li>
-                  <li><a href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</a></li>
-                  <li><a href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</a></li>
+                  <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
+                  <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
+                  <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
+                  <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
+                  <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
                 <h5>Development</h5>
                 <ul className="list-unstyled quick-links">
-                  <li><a href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</a></li>
-                  <li><a href="https://github.com/tronprotocol/java-tron"><i
-                    className="fa fa-angle-right"/> java-tron</a></li>
+                  <li><HrefLink href="https://github.com/tronprotocol"><i className="fa fa-angle-right"/> Github</HrefLink></li>
+                  <li><HrefLink href="https://github.com/tronprotocol/java-tron"><i
+                    className="fa fa-angle-right"/> java-tron</HrefLink></li>
                   <li>
-                    <a href="https://github.com/tronprotocol/Documentation">
+                    <HrefLink href="https://github.com/tronprotocol/Documentation">
                       <i className="fa fa-angle-right"/> Documentation
-                    </a>
+                    </HrefLink>
                   </li>
-                  <li><a href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</a></li>
+                  <li><HrefLink href="http://wiki.tron.network/en/latest/"><i className="fa fa-angle-right"/> Wiki</HrefLink></li>
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
@@ -451,7 +361,7 @@ class Home extends Component {
                   <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}</Link></li>
                   <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
                   <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
+                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> {tu("view_tokens")}</Link></li>
                 </ul>
               </div>
             </div>
@@ -459,16 +369,16 @@ class Home extends Component {
               <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                 <ul className="list-unstyled list-inline social text-center">
                   <li className="list-inline-item">
-                    <a href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></a>
+                    <HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></a>
+                    <HrefLink href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></a>
+                    <HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <a href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></a>
+                    <HrefLink href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></HrefLink>
                   </li>
                 </ul>
               </div>
