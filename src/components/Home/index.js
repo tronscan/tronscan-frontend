@@ -332,7 +332,7 @@ class Home extends Component {
                 &nbsp;
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
-                <h5>Tron</h5>
+                <h5>TRON</h5>
                 <ul className="list-unstyled quick-links">
                   <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
                   <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
@@ -361,7 +361,7 @@ class Home extends Component {
                   <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}</Link></li>
                   <li><Link to="/representatives"><i className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
                   <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
-                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/>{tu("view_tokens")}</Link></li>
+                  <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> {tu("view_tokens")}</Link></li>
                 </ul>
               </div>
             </div>

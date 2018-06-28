@@ -15,12 +15,12 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-26062018                                                  #
+#         Update Date: 26.06.2018                                                #
 #         Language: Arabic                                                       #
 #         Status: First Version                                                  #
-#         Number of checks: 2                                                    #
-#         Participants: mcfarhat                                                 #
+#         Number of checks: 3                                                    #
+#         Participants: Mohammed Alshamrani, mcfarhat                            #
 #                                                                                #
 ##################################################################################
 #                                                                                #
@@ -69,7 +69,7 @@ export const messages = {
   "create": "أنشئ",
   "country": "المنطقة",
   "amount": "القيمة",
-  "my_vote": "صوتي",
+  "my_vote": "تصويتي",
   "submit_votes": "أرسل الأصوات",
   "accounts": "الحسابات",
   "created": "أنشئ",
@@ -80,7 +80,7 @@ export const messages = {
   "reset": "اعادة تعيين",
   "error": "خطأ",
   "unlock_keyFile": "حرر ملف المفتاح",
-  "enter_password_message": "لا بد من ادخال كلمة المرور!",
+  "enter_password_message": "لابد من ادخال كلمة المرور!",
   "password_incorrect": "كلمة المرور غير صحيحة",
   "try_again": "حاول مجددا",
   "wallet_unlocked": "المحفظة غير مقفلة",
@@ -91,11 +91,13 @@ export const messages = {
   "secure": "تأمين",
   "too_short": "قصير جدا",
   "status": "الحالة",
-  "no_notifications": "لا إخطارات",
-  "enable_desktop_notifications": "تمكين إعلامات سطح المكتب",
-  "desktop_notification_enabled": "إخطارات سطح المكتب ممكن",
-  "notifications_enabled": "الإخطارات ممكن",
+  "no_notifications": "بدون اشعارات",
+  "enable_desktop_notifications": "تمكين اشعارات سطح المكتب",
+  "desktop_notification_enabled": "تم تمكين اشعارات سطح المكتب",
+  "notifications_enabled": "تم تمكين الأشعارات",
   "contract_type": "نوع العقد",
+  "filters": "تصفيه",
+  "send_tokens": "Send Tokens",
 
 /*
 ##################################################################################
@@ -116,7 +118,7 @@ export const messages = {
   "node_tester": "فاحص العقد",
   "system": "النظام",
   "news": "الأخبار",
-  "help": "المساعدة",
+  "help": "مُساعدة",
   "nodes": "العقد",
   "votes": "التصويت",
   "account": "الحساب",
@@ -154,20 +156,21 @@ export const messages = {
   "last_page": "الصفحة الأخيرة",
   "page": "صفحة",
   "of": "من",
+  "page_size": "حجم الصفحه",
   "most_nodes": "أغلب العقد",
   "loading_nodes": "تحميل العقد",
   "Hostname": "اسم المضيف",
   "Last Update": "التحديث الأخير",
   "first_node_sync_message": "بانتظار المزامنة مع العقدة الأولى, الرجاء المحاولة بعد بضع دقائق",
   "last_block": "الكتلة الأخيرة",
-  "blocks_produced": "الكتل المنتجة",
-  "blocks_missed": "الكتل الفائتة",
+  "blocks_produced": "الكُتل المنتجة",
+  "blocks_missed": "الكُتل الفائتة",
   "productivity": "الانتاجية",
   "rewards": "الجوائز",
   "token_created": "تم إنشاء الرمز المميز",
   "witness": "الشاهد",
   "asset_participation": "مشاركة الأصول",
-  "loading_transaction": "Loading Transaction",
+  "loading_transaction": "جاري تحميل المعامله",
 
 /*
 ##################################################################################
@@ -191,10 +194,10 @@ export const messages = {
 */
   "set_name": "الاسم المحدد",
   "unique_account_message": "يمكنك تحديد اسم الحساب مرة واحدة فقط!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
-  "change_name": "عدل الاسم",
+  "name_to_short": "الأسم قصير",
+  "name_to_long": "الأسم طويل",
+  "permitted_characters_message": "الأسم قد يتكون إما من احرف او ارقام",
+  "change_name": "تعديل الاسم",
   "account_name": "اسم الحساب",
   "show_qr_code": "اظهر رمز الاستجابة السريع",
   "do_not_send_2": "لا ترسل تركس من محفظتك الخاصة أو منصة تبادل الى عنوان شبكة التجربة تستنت أعلاه!",
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "لا يوجد تركس كافي",
   "information_message_3": "طلبت تركس بنجاح. اذا لم تستلم أي تركس معناه أنه لا يوجد تركس للتجربة حاليا و يجب المحاولة في وقت لاحق.",
   "send_to_following_address": "أرسل الى العنوان التالي",
+  "change_website": "تغيير الموقع الألكتروني",
+  "you_must_enter_url": "يجب عليك ادخال الرابط ",
+  "specify_the_url":  "يرجى تحديد الرابط المعين",
 
 /*
 ##################################################################################
@@ -252,7 +258,10 @@ export const messages = {
   "successfully_changed_name_to_message": "تم تعديل الاسم بنجاح الى",
   "unable_to_rename_title": "تعديل الاسم غير متاح",
   "unable_to_rename_message": "حصل خطأ عند محاولة تعديل اسم حسابك. الرجاء المحاولة لاحقا.",
-  "unfreeze_trx_confirm_message": "أنت متأكد أنك تريد الغاء تجميد تركس؟",
+  "unfreeze_trx_confirm_message": "هل أنت متأكد من انك تريد الغاء تجميد تركس؟",
+  "unfreeze_assets": "ألغاء الأصول",
+  "sure_to_unfreeze_unlocked_tokens_message": "هل أنت متأكد من انك تريد الغاء تجميد العملات الرقميه الغير مُغلقه؟",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -292,6 +301,36 @@ export const messages = {
   "invalid_url": "URL غير صالح",
   "apply_representative_error_message_0": "حدث خطأ ما أثناء محاولة التقدم بطلب للحصول على ممثل.",
   "apply_representative_error_message_1": "تأكد من أن لديك ما يكفي من TRX مقابل الرسوم ، أو حاول مرة أخرى في وقت لاحق.",
+  "open_external_link": ".انت على وشك فتح رابط خارجي",
+  "private_key_untrusted_website_message_0": "لا تُدخل مفتاحك الخاص مطلقاً على اي موقع الكتروني غير موثوق به",
+  "no_official_tron_website": "هذا ليس موقع الكتروني رسمي لـ ترون",
+  "continue_to_external_website": "المتابعه للموقع الألكتروني الخارجي",
+  "url_changed": "تم تغيير الرابط",
+  "successfully_changed_website_message": "تم بنجاح تغيير الموقع الى ",
+  "unable_to_change_website_title": "غير قادر على تغيير الرابط",
+  "unable_to_change_website_message": "حدث خطأ غير متوقع اثناء تحديث الموقع الألكتروني, يُرجى المحاوله مره اخرى في وقتٍ لاحق",
+  "successfully_linked_github": "!تم بنجاح الربط لموقع جيت هب",
+  "github_linked": "!تم ربط جيت هب",
+  "unable_to_link_github_message": "!لايمكن ربط جيت هب, تأكد من صحة اسم المستخدم الخاص بك",
+  "could_not_link_github": "!لا يمكن ربط جيت هب",
+  "enter_your_github_username": "ادخل اسم مستخدم جيت هب الخاص بك",
+  "link_to_github": "ربط الى جيت هب",
+  "link_github": "ربط جيت هب",
+  "you_must_enter_a_url": "يجب عليك ادخال رابط",
+  "success": "!نجاح",
+  "successfully_appied_sr_canidate_message_0": ".تم التسجيل بنجاح للترشيح في الممثلين المميزين",
+  "successfully_appied_sr_canidate_message_1": "ستتم ترقية حسابك بعد قليل.",
+  "landing_page": "الصفحه المقصوده",
+  "show_more_information_publish_sr_page": "عرض المزيد من المعلومات حول كيفية نشر صفحة",
+  "create_sr_landing_page_message_0": "يمكن للممثلين المتميزين إنشاء صفحة رئيسيه يمكنهم من خلالها مشاركة المزيد من المعلومات حول فريقهم وخططهم",
+  "set_github_url_message_0": "هل قمت بالفعل بتهيئة قالب جيت هب الخاص بك؟ اذاً, قم بتعيين عنوان الرابط باستخدام الزر أدناه",
+  "set_github_link": "قم بتعيين رابط جيت هب",
+  "could_not_claim_rewards": "لا يمكن المطالبة بالمكافآت ",
+  "claim_rewards_error_message": "حدث خطأ أثناء محاولة المطالبة بالمكافآت ، يرجى المحاولة مرة أخرى في وقت لاحق.",
+  "rewards_claimed": "تم الحصول على المكافآت",
+  "successfully_claimed_rewards":  "تم الحصول على المكافآت بنجاح",
+  "claim_rewards": "الحصول على المكافآت ",
+  "sr_receive_reward_message_0": "كممثل مثالي, تحصل على مكافآت لإنتاج كتل. يمكن المطالبة بهذه المكافآت كل 24 ساعة",
 
 /*
 ##################################################################################
@@ -339,11 +378,11 @@ export const messages = {
 ##################################################################################
 */
   "buy_confirm_message_0": "هل أنت متأكد؟",
-  "how_much_buy_message": "كم عدد الرموز التي تريد شراءها؟",
+  "how_much_buy_message": "كم عدد العملات الرقميه التي تريد شراءها؟",
   "buy_confirm_message_1": "هل أنت متأكدأنك تريد شراء",
   "for": "مقابل",
   "insufficient_trx": "غير كافيةTRX",
-  "not_enouth_trx_message": "ليس لديك ما يكفي من TRX لشراء العديد من الرموز",
+  "not_enouth_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
   "ends": "ends",
   "starts": "starts",
 
@@ -359,7 +398,7 @@ export const messages = {
   "the_lunch_test": "اطلاق شبكة التجربة يهدف الى تجربة كل خصائص متصفح البلوكتشين و المحفظة.",
   "please_keep_in_mind": "رجاء تنبّه, و بما أن عنوان حسابك المسجل يستخدم فقط لشبكة التجربة, أن لا ترسل عملة ترون من محفظتك الخاصة أو منصة تبادل الى عنوان حساب شبكة التجربة.",
   "tron_foundation": "مؤسسة ترون",
-  "trx_for_testing": "سيتم ارسال تركس للتجربة الى حسابك التجريبي عندما تقوم بالتقدم بطلب بنجاح عبر ادارة الحساب.",
+  "trx_for_testing": "سيتم ارسال تي ار اكس للتجربة الى حسابك التجريبي عندما تقوم بالتقدم بطلب بنجاح عبر ادارة الحساب.",
   "dear_users": "أعزائي المستخدمين،",
   "finished": "انتهى",
   "token": "رمز",
@@ -367,21 +406,21 @@ export const messages = {
   "need_to_login": "يجب أن تكون مسجل الدخول للوصول إلى صفحة الحساب",
   "thanks_for_applying": "شكرا لتقديم الطلب!",
   "to_much_votes": "عدد الأصوات مفرط",
-  "no_trx_remaining": "لم يتبق تركس",
+  "no_trx_remaining": "لم يتبق تي ار اكس",
   "produced_by": "أنتج عبر {witnessAddress}",
   "show_more": "إظهار {countriesLength} اضافي",
-  "vote_guide_message": "استخدم التركس لديك للتصويت لممثلين مميزين. لديك صوت واحد مقابل كل وحدة تركس في حسابك الخاص. لن تستهلك التركس. يمكنك التصويت مرات متعددة و لممثلين مختلفين كما شئت. سوف يتم تدوين الأصوات النهائية عند الساعة 24 ويتم تحديث قائمة المندوبين.",
+  "vote_guide_message": "استخدم الـ تي ار اكس  لديك للتصويت للممثلين المميزين. لديك صوت واحد مقابل كل واحدة من الـ تي ار اكس في حسابك الخاص. لن تستهلك الـ تي ار اكس. يمكنك التصويت مرات متعددة و لممثلين مختلفين كما شئت. سوف يتم تدوين الأصوات النهائية عند الساعة 24 ويتم تحديث قائمة المندوبين.",
   "search_address": "ابحث عن عنوان",
-  "token_transactions": "عمليات الرمز",
-  "token_holders": "حاملي الرمز",
+  "token_transactions": "عمليات العمله الرقميه",
+  "token_holders": "حاملي العمله الرقميه",
   "nr_of_Transfers": "عدد التحويلات",
   "not_signed_in": "سوف تحتاج لتسجيل الدخول لاستخدام هذه الخاصية",
   "loading_map": "جاري تحميل الخريطة",
   "loading_accounts": "جاري تحميل الحسابات",
   "quantity": "الكمية",
   "percentage": "النسبة",
-  "loading_token": "جاري تحميل الرمز",
-  "voter_percentage": "Voter Percentage",
+  "loading_token": "جاري تحميل العمله الرقميه",
+  "voter_percentage": "نسبة التصويت",
 
 /*
 ##################################################################################
@@ -391,8 +430,8 @@ export const messages = {
 ##################################################################################
 */
   "no_transactions_found": "لا يوجد عمليات",
-  "no_tokens_found": "لا يوجد رموز",
-  "no_blocks_found": "لا يوجد كتل",
+  "no_tokens_found": "لا يوجد عملات الرقميه",
+  "no_blocks_found": "لا يوجد كُتل",
   "no_votes_found": "لا يوجد تصويت",
   "no_voters_found": "لا يوجد مصوتين",
   "waiting_for_transactions": "بانتظار العمليات",
@@ -443,25 +482,25 @@ export const messages = {
   "date_error": "تاريخ الانتهاء يسبق أو يساوي تاريخ البدء",
   "no_name_error": "الاسم مطلوب",
   "no_supply_error": "يجب أن يكون مجموع الكمية المعروضة 1 على الأقل",
-  "coin_value_error": "يجب أن تكون كمية الرمز 1 على الأقل",
-  "tron_value_error": "يجب أن تكون كمية تركس مقابل الرمز الواحد 1 على الأقل",
+  "coin_value_error": "يجب أن تكون كمية العملات الرقميه 1 على الأقل",
+  "tron_value_error": "يجب أن تكون كمية تي ار اكس مقابل الرمز الواحد 1 على الأقل",
   "invalid_starttime_error": "تاريخ البدء غير صالح",
   "invalid_endtime_error": "تاريخ الانتهاء غير صالح",
   "no_description_error": "الوصف مطلوب",
   "no_url_error": "الرابط مطلوب",
   "past_starttime_error": "تاريخ البدء منقضي",
   "no_transactions": "لا يوجد عمليات",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "errors_in_form": "يوجد اخطاء في النموذج",
+  "token_link_message_0": "العمله الرقميه ستكون متاحه في",
+  "token_link_message_1": "صفحة العملات الرقميه",
+  "token_link_message_2": "في بضع دقائق",
+  "description_error_message_0": "يجب ان لا يزيد الوصف عن 200 حرف",
+  "token_creation_error": "حدث خطأ أثناء محاولة إنشاء العمله الرقميه",
+  "tokenname_error_message_0": "يجب ان لا يزيد الأسم عن 32 حرف",
+  "tokenname_error_message_1": "يجب ان يتكون الأسم من حروف فقط",
+  "abbreviation_required": "اختصار الأسم مطلوب",
+  "abbreviation_error_message_0": "يجب ان لا يزيد الأسم المختصر عن 5 حروف",
+  "abbreviation_error_message_1": "يجب ان يتكون الأختصار من حروف فقط",
 
 /*
 ##################################################################################
@@ -477,7 +516,7 @@ export const messages = {
   "loading_representatives": "تحميل الممثلين",
   "address_not_super_representative": "هذا العنوان غير صالح لممثل مميز",
   "unable_load_representatives_page_message": "لم نتمكن من تحميل الصفحة, و هذا يحصل في حال كان العنوان غير صالح, أو ليس لممثل, أو أن الممثل لم يهيّء هذه الصفحة بعد",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "جاري تحميل الممثلين ",
 
 /*
 ##################################################################################
@@ -524,7 +563,7 @@ export const messages = {
   "submissing_vote_message_0": "تم ارسالك كامل تصويتك بنجاح, و سيتم احتسابهم عند بدء جولة التصويت القادمة.",
   "submissing_vote_message_1": "يمكنك اعادة توزيع أصواتك متى شئت",
   "submitting_vote_error_message": "حصل خطأ عند ارسال تصويتك. الرجاء المحاولة لاحقا.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "جاري تحميل الممثلين المميزين",
 
 /*
 ##################################################################################

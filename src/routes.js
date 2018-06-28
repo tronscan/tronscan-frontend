@@ -227,7 +227,7 @@ export const routes = [
     icon: "fa fa-question",
     component: null,
     routes: [
-      'Tron',
+      'TRON',
       {
         url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
         label: "what_is_tron",

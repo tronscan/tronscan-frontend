@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-24062018                                                  #
+#         Update Date: 24.06.2018                                                #
 #         language: Spanish                                                      #
-#         Status: Third Draft                                                    #
-#         Number of checks: 7                                                    #
+#         Status: Approved Draft                                                 #
+#         Number of checks: 8                                                    #
 #         Participants: Jorge Castillo                                           #
 #                                                                                #
 ##################################################################################
@@ -84,18 +84,20 @@ export const messages = {
   "password_incorrect": "Contraseña incorrecta",
   "try_again": "Inténtelo de nuevo",
   "wallet_unlocked": "Cartera Desbloqueada",
-  "weak": "flojo",
-  "okay": "okay",
-  "good": "bueno",
-  "strong": "vigoroso",
-  "secure": "seguro",
-  "too_short": "demasiado corto",
+  "weak": "débil",
+  "okay": "aceptable",
+  "good": "buena",
+  "strong": "fuerte",
+  "secure": "segura",
+  "too_short": "demasiado corta",
   "status": "estado",
-  "no_notifications": "No hay notificaciones",
-  "enable_desktop_notifications": "Habilitar notificaciones de escritorio",
-  "desktop_notification_enabled": "Notificaciones de Escritorio Habilitadas!",
-  "notifications_enabled": "Notificaciones Habilitadas",
-  "contract_type": "Tipo de Contrato",
+  "no_notifications": "Sin notificaciones",
+  "enable_desktop_notifications": "Activar notificaciones de escritorio",
+  "desktop_notification_enabled": "Notificaciones de escritorio activadas!",
+  "notifications_enabled": "Notificaciones activadas",
+  "contract_type": "Tipo de contrato",
+  "filters": "Filtros",
+  "send_tokens": "Enviar tokens",
 
 /*
 ##################################################################################
@@ -154,6 +156,7 @@ export const messages = {
   "last_page": "última página",
   "page": "página",
   "of": "de",
+  "page_size": "Entradas por página",
   "most_nodes": "Mayoría de Nodos",
   "loading_nodes": "cargando Nodos",
   "Hostname": "Nombre del host",
@@ -166,7 +169,7 @@ export const messages = {
   "rewards": "recompensas",
   "token_created": "Token creado",
   "witness": "Testigos",
-  "asset_participation": "Asset participation",
+  "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
 
 /*
@@ -223,6 +226,9 @@ export const messages = {
   "not_enough_trx": "No hay suficiente TRX",
   "information_message_3": "Solicitud de TRX realizada con éxito. Si no recibió ningún TRX, se debe a que no es posible realizar pruebas en este momento y debe volver a intentarlo más tarde.",
   "send_to_following_address": "Enviar a la siguiente dirección",
+  "change_website": "Cambiar Sitio Web",
+  "you_must_enter_url": "Debe de introducir una URL",
+  "specify_the_url":  "Por favor especifique la URL",
 
 /*
 ##################################################################################
@@ -255,6 +261,8 @@ export const messages = {
   "unable_to_rename_title": "No se pudo cambiar el nombre",
   "unable_to_rename_message": "Algo salió mal al actualizar el nombre de su cuenta, por favor, inténtelo de nuevo más tarde",
   "unfreeze_trx_confirm_message": "¿Seguro que desea descongelar TRX?",
+  "unfreeze_assets":"Descongelar Activos",
+  "sure_to_unfreeze_unlocked_tokens_message":"¿Seguro que desea descongelar o desbloquear tokens?",
 
 /*
 ##################################################################################
@@ -305,6 +313,36 @@ export const messages = {
   "invalid_url": "URL no válida",
   "apply_representative_error_message_0": "Algo salió mal al aplicar la solicitud para ser representante.",
   "apply_representative_error_message_1": "Asegúrese de tener suficiente TRX para la tasa, o inténtelo de nuevo más tarde.",
+  "open_external_link":"Estás abriendo un enlace externo",
+  "private_key_untrusted_website_message_0": "Nunca ingrese su clave privada en un sitio web que no sea de confianza.",
+  "no_official_tron_website": "no es un sitio oficial de Tron.",
+  "continue_to_external_website": "Continuar hacia el sitio externo",
+  "url_changed": "URL cambiada",
+  "successfully_changed_website_message": "Sitio web cambiado correctamente a ",
+  "unable_to_change_website_title": "No se puede cambiar la URL",
+  "unable_to_change_website_message": "Se produjo un error al actualizar la página. Inténtelo de nuevo más tarde.",
+  "successfully_linked_github": "¡Vinculado a Github con éxito!",
+  "github_linked": "¡Github vinculado!",
+  "unable_to_link_github_message": "¡No se pudo vincular a Github, asegúrese que su nombre de usuario sea el correcto!",
+  "could_not_link_github": "No se pudo vincular a Github",
+  "enter_your_github_username": "Ingrese su nombre de usuario Github",
+  "link_to_github": "Vincular a Github",
+  "link_github": "Enlace Github",
+  "you_must_enter_a_url": "Debe ingresar una dirección URL",
+  "success": "Éxito",
+  "successfully_appied_sr_canidate_message_0": "Solicitud para ser Candidato Súper Representante enviada con éxito.",
+  "successfully_appied_sr_canidate_message_1": "Su cuenta se actualizará en unos instantes.",
+  "landing_page":"Página de destino",
+  "show_more_information_publish_sr_page":"Mostrar más información sobre cómo publicar una página",
+  "create_sr_landing_page_message_0":"Los Súper Representantes pueden crear una página de destino en la que podrán compartir más información sobre su equipo e ideas",
+  "set_github_url_message_0":"¿Configuró su plantilla Github? Ahora establezca dirección URL usando el botón de abajo",
+  "set_github_link":"Ponga enlace de Github",
+  "could_not_claim_rewards":"No se pudieron demandar recompensas",
+  "claim_rewards_error_message":"Se produjo un error al intentar demandar recompensas. Vuelva a intentarlo más tarde.",
+  "rewards_claimed": "¡Recompensas Solicitadas!",
+  "successfully_claimed_rewards": "Recompensas solicitadas con éxito",
+  "claim_rewards":"Solicitar Recompensas",
+  "sr_receive_reward_message_0":"Como representante, recibirá recompensas por producir bloques. Estas recompensas podrán solicitarse cada 24 horas",
 
 /*
 ##################################################################################
@@ -471,17 +509,17 @@ export const messages = {
   "no_url_error": "Es necesaria una dirección Web",
   "past_starttime_error": "La fecha de inicio ya ha transcurrido",
   "no_transactions": "No han ocurrido transacciones",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "La descripción no puede tener más de 200 caracteres",
-  "token_creation_error": "Se ha producido un error al intentar crear el token",
-  "tokenname_error_message_0": "El nombre no puede tener más de 32 caracteres",
-  "tokenname_error_message_1": "El nombre sólo puede contener caracteres de la a-Z",
-  "abbreviation_required": "Se requiere abreviatura",
-  "abbreviation_error_message_0": "La abreviatura no puede tener más de 5 caracteres",
-  "abbreviation_error_message_1": "La abreviatura sólo puede contener los caracteres a-Z",
+  "errors_in_form": "Hay errores en el formulario",
+  "token_link_message_0": "El token estará disponible en la",
+  "token_link_message_1": "página de Tokens",
+  "token_link_message_2": "en unos minutos",
+  "description_error_message_0": "La descripción no puede contener más de 200 caracteres",
+  "token_creation_error": "Se produjo un error al intentar crear el token",
+  "tokenname_error_message_0": "El nombre no puede contener más de 32 caracteres",
+  "tokenname_error_message_1": "El nombre sólo puede contener caracteres a-Z",
+  "abbreviation_required": "Es necesaria una abreviatura",
+  "abbreviation_error_message_0": "La abreviatura no puede contener más de 5 caracteres",
+  "abbreviation_error_message_1": "La abreviatura sólo puede contener caracteres a-Z",
 
 /*
 ##################################################################################
@@ -525,7 +563,7 @@ export const messages = {
   "most_ranks": "Mayor Ascenso",
   "view_live_ranking": "Ver Ranking en vivo",
   "open_team_page": "Abrir página de equipo",
-  "warning_votes": "Se requiere al menos 1 Tron Power para votar. El Tron Power se obtiene al congelar TRX en el",
+  "warning_votes": "Se requiere al menos 1 Tron Power para votar. El Tron Power se obtiene al congelar TRX en la",
   "account_page": "Página de cuenta",
   "loading_votes": "Cargando votos",
   "3_day_ranking": "Clasificación de 3 días",
