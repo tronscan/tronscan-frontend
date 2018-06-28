@@ -48,8 +48,8 @@ class Navigation extends PureComponent {
   }
 
   componentDidUpdate() {
-    let {account, wallet} = this.props;
-    if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
+    let {wallet} = this.props;
+    if (wallet.isOpen && !this.loginFlag) {
       toastr.info('Success', 'Login success');
       this.loginFlag = true;
     }
