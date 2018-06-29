@@ -275,8 +275,8 @@ export const messages = {
   "claim_rewards": "Aanspraak maken op beloningen",
   "sr_receive_reward_message_0": "Als vertegenwoordiger ontvang je beloning voor geproduceerde blokken. Je kunt iedere 24 uur aanspraak maken op deze beloningen",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
+  "budget_expenses": "Uitgavebudget",
+  "server_configuration": "Server Configuratie",
   "community_plan": "Community Plan",
   "team": "Team",
 
