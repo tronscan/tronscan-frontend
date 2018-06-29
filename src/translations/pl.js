@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
+#         Version: 1.5-29062018                                                  #
+#         Update Date: 29.06.2018                                                #
 #         Language: Polish                                                       #
-#         Status: Second Version                                                 #
-#         Number of checks: 5                                                    #
+#         Status: Third Version                                                  #
+#         Number of checks: 6                                                    #
 #         Participants: Karol Stańczak                                           #
 #                                                                                #
 ##################################################################################
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Powiadomienia włączone",
   "contract_type": "Typ kontraktu",
   "filters": "Filtry",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Wyślij tokeny",
 
 /*
 ##################################################################################
@@ -167,7 +167,7 @@ export const messages = {
   "blocks_missed": "Pominiętych bloków",
   "productivity": "produktywność",
   "rewards": "nagród",
-  "token_created": "Token stworzony",
+  "token_created": "Stworzenie tokenu",
   "witness": "Reprezentant",
   "asset_participation": "Udział w aktywie",
   "loading_transaction": "Wczytuję transakcję",
@@ -566,7 +566,7 @@ export const messages = {
   "warning_votes": "W celu oddania głosu wymagane jest posiadanie co najmniej 1 TRON Power. TRON Power zyskasz zamrażając swoje TRX.",
   "account_page": "Konto",
   "loading_votes": "Wczytuję głosy",
-  "3_day_ranking": "pozostały 3 dni",
+  "3_day_ranking": "Ranking z ostatnich 3 dni",
   "live_ranking": "Ranking na żywo",
   "live_ranking_msg": "Odświeżanie następuje co 15 sekund. Nowe głosy zaliczają się mniej więcej po 1-2 minutach.",
   "candidate": "Kandydat",
