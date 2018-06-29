@@ -343,11 +343,11 @@ export const messages = {
   "successfully_claimed_rewards": "Recompensas solicitadas con éxito",
   "claim_rewards":"Solicitar Recompensas",
   "sr_receive_reward_message_0":"Como representante, recibirá recompensas por producir bloques. Estas recompensas podrán solicitarse cada 24 horas",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "intro": "Introducción",
+  "budget_expenses": "Presupuesto de gastos",
+  "server_configuration": "Configuración del servidor",
+  "community_plan": "Plan Comunitario",
+  "team": "Equipo",
 
 /*
 ##################################################################################
