@@ -31,10 +31,7 @@ export default class SRNews extends Component {
 
   render() {
 
-
     let {items} = this.state;
-
-
 
     return (
       <div className="bg-white py-5">
@@ -70,10 +67,4 @@ export default class SRNews extends Component {
   }
 }
 
-const styles = {
-  list: {
-    overflowY: 'scroll',
-    overflowX: 'none',
-    height: 500,
-  }
-};
+

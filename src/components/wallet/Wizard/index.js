@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React from "react";
-import {find} from "lodash";
 import {tu,t} from "../../../utils/i18n";
 import {generateAccount} from "@tronscan/client/src/utils/account";
 import {encryptKey, encryptString} from "../../../services/secureKey";

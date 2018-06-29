@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {tu} from "../../utils/i18n";
-import {Client} from "../../services/api";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import SweetAlert from "react-bootstrap-sweetalert";
-import {WITNESS_CREATE_COST} from "../../constants";
-import {FormattedNumber} from "react-intl";
 
 class ChangeNameModal extends Component {
 

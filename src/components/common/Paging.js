@@ -1,7 +1,6 @@
 import React from "react";
 import {tu} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
-import AutosizeInput from "react-input-autosize";
 import {connect} from "react-redux";
 import {KEY_ENTER} from "../../utils/constants";
 
@@ -153,14 +152,6 @@ class Paging extends React.PureComponent {
     );
   }
 }
-
-
-const styles = {
-  pageSize: {
-    border: 0,
-    backgroundColor: '#fff',
-  }
-};
 
 function mapStateToProps(state) {
   return {

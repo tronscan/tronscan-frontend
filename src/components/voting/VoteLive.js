@@ -1,43 +1,16 @@
 import React from "react";
-import {TimeAgo} from "react-timeago";
 import {FormattedNumber} from "react-intl";
-import {filter, find, isNaN, isNumber, keyBy, last, random, range, sortBy, sumBy, trim} from "lodash";
+import {sortBy} from "lodash";
 import {withTimers} from "../utils/timing";
 import FlipMove from "react-flip-move";
 import Avatar from "../common/Avatar";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
 import palette from "google-palette";
-import VoteStats from "../blockchain/Statistics/VoteStats";
+
 import {tu} from "../../utils/i18n"
 import MultiLineReact from "../common/MultiLineChart";
 import {TronLoader} from "../common/loaders";
-
-function VoteChange({value, arrow = false}) {
-  if (value > 0) {
-    return (
-        <span className="text-success">
-        <span className="mr-1">+{value}</span>
-          {arrow && <i className="fa fa-arrow-up"/>}
-      </span>
-    )
-  }
-
-  if (value < 0) {
-    return (
-        <span className="text-danger">
-        <span className="mr-1">{value}</span>
-          {arrow && <i className="fa fa-arrow-down"/>}
-      </span>
-    )
-  }
-
-  return (
-      <span>
-      -
-    </span>
-  )
-}
 
 class VoteLive extends React.Component {
 

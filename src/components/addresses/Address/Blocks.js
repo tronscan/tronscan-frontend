@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import React from "react";
-import {isNaN, random, range} from "lodash";
 import TimeAgo from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {BlockNumberLink} from "../../common/Links";
