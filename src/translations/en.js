@@ -572,7 +572,7 @@ export const messages = {
   "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
   "account_page": "Account Page",
   "loading_votes": "Loading Votes",
-  "3_day_ranking": "3 Days Ranking",
+  "3_day_ranking": "3 Days Ranking(Top 10)",
   "live_ranking": "Live Ranking",
   "live_ranking_msg": "Refreshes every 15 seconds. New votes may take up to 1-2 minutes before being counted",
   "candidate": "Candidate",
