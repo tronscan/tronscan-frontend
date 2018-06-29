@@ -339,6 +339,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Framgångsrikt anspråk på belöningar",
   "claim_rewards": "Krav på belöningar",
   "sr_receive_reward_message_0": "Som representant får du belöningar för att producera block. Dessa belöningar kan hävdas var 24: e timme",
+  "intro": "Intro",
+  "budget_expenses": "Budgetkostnader",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Gemenskapsplanen",
+  "team": "Team",
 
 /*
 ##################################################################################

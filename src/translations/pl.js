@@ -341,6 +341,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Pomyślnie odebrano nagrody",
   "claim_rewards": "Odbierz nagrody",
   "sr_receive_reward_message_0": "Jako Reprezentant, otrzymujesz nagrody za produkowanie bloków. Nagrody możesz odbierać co 24 godziny.",
+  "intro": "Wstęp",
+  "budget_expenses": "Wydatki",
+  "server_configuration": "Specyfikacja serwera",
+  "community_plan": "Plan dla społeczności",
+  "team": "Zespół",
 
 /*
 ##################################################################################

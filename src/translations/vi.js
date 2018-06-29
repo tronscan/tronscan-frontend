@@ -343,6 +343,12 @@ export const messages = {
   "successfully_claimed_rewards":  "Phần thưởng đã nhận được thành công",
   "claim_rewards": "Nhận phần thưởng",
   "sr_receive_reward_message_0": "Là một đại diện bạn nhận được phần thưởng cho việc sản xuất các khối. Những phần thưởng này có thể được xác nhận sau mỗi 24 giờ",
+  "intro": "Giới thiệu",
+  "budget_expenses": "Chi phí ngân sách",
+  "server_configuration": "Cấu hình máy chủ",
+  "community_plan": "Kế hoạch cộng đồng",
+  "team": "Đội",
+
 /*
 ##################################################################################
 #                                                                                #
