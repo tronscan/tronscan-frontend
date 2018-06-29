@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-29062018                                                  #
+#         Update Date: 29.06.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: joelstahre                                               #
 #                                                                                #
 ##################################################################################
@@ -378,7 +378,7 @@ export const messages = {
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
   "An_error_occurred": "Ett fel inträffade",
-  "create_a_token": "Create a token",
+  "create_a_token": "Skapa ett token",
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
@@ -436,7 +436,7 @@ export const messages = {
   "quantity": "kvantitet",
   "percentage": "Procent",
   "loading_token": "Laddar Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Voterprocent",
 
 /*
 ##################################################################################
@@ -507,16 +507,16 @@ export const messages = {
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
   "errors_in_form": "Det finns fel i formuläret",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
+  "token_link_message_0": "Token kommer att finnas tillgänglig på",
+  "token_link_message_1": "Tokens sida",
+  "token_link_message_2": "inom några minuter",
   "description_error_message_0": "Beskrivning kan inte vara längre än 200 tecken",
   "token_creation_error": "Det uppstod ett fel vid skapandet av token.",
   "tokenname_error_message_0": "Namnet får inte vara längre än 32 tecken",
   "tokenname_error_message_1": "Namnet måste innehålla endast tecken från a-Z",
   "abbreviation_required": "Förkortning krävs",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "abbreviation_error_message_0": "Förkortning får inte vara längre än 5 tecken",
+  "abbreviation_error_message_1": "Förkortning får endast innehålla a-Z tecken",
 
 /*
 ##################################################################################
