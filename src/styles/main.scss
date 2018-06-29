@@ -616,3 +616,34 @@ tr a {
 th {
   white-space: nowrap;
 }
+
+.marker-cluster-small {
+  background-color: red !important;
+}
+
+.marker-cluster-small div {
+  background-color: red !important;
+}
+
+.marker-cluster-medium {
+  background-color: red !important;
+}
+
+.marker-cluster-medium div {
+  background-color: red !important;
+}
+
+.marker-cluster-large {
+  background-color: red !important;
+}
+
+.marker-cluster-large div {
+  background-color: red !important;
+}
+
+.leaflet-default-icon-path {
+  background-image: url('../images/map/marker-icon-2x.png') !important;
+}
+.leaflet-marker-shadow{
+  background-image: url('../images/map/marker-shadow.png') !important;
+}

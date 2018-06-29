@@ -89,8 +89,8 @@ class Nodes extends Component {
   }
 
   loadNodes = async () => {
-    let {nodes, status} = await Client.getNodes();
-
+    let {nodes, status} = await Client.getNodeLocations();
+console.log(nodes);
     this.setState({
       nodes,
       syncStatus: status,
@@ -99,6 +99,7 @@ class Nodes extends Component {
 
   componentDidMount() {
     this.loadNodes();
+
   }
 
   render() {
