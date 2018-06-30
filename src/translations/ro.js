@@ -344,6 +344,11 @@ export const messages = {
   "successfully_claimed_rewards":  "S-au primit recompense cu succes",
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################

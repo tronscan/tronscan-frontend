@@ -344,6 +344,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Prämie/Belohnung Erfolgreich erhalten",
   "claim_rewards": "Prämien einfordern",
   "sr_receive_reward_message_0": "Als Repräsentat erhalten Sie eine Prämie/Belohnung für das Erstellung von Blöcken(Blockchain). Diese Prämie kann alle 24 Stunden in Anspruch genommen werden.",
+  "intro": "Einleitung",
+  "budget_expenses": "Budget/Ausgaben",
+  "server_configuration": "Server Konfiguration",
+  "community_plan": "Community Plan",
+  "team": "Das Team",
 
 /*
 ##################################################################################

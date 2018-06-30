@@ -345,6 +345,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
   "claim_rewards": "Ödül Talebi",
   "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################

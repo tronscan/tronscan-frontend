@@ -342,6 +342,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Odmìny úspìšnì vyžádány",
   "claim_rewards": "Vyžádat si odmìny",
   "sr_receive_reward_message_0": "Jako reprezentantovi vám náleží odmìna za generování blokù. O tuto odmìnu mùžete žádat každých 24 hodin",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################
