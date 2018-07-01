@@ -346,10 +346,10 @@ export const messages = {
   "claim_rewards": "Resgatar Recompensas",
   "sr_receive_reward_message_0": "Como representante, você recebe recompensas para produzir blocos. Estas recompensas podem ser resgatadas a cada 24 horas",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "budget_expenses": "Despesas Orçamentárias",
+  "server_configuration": "Configuração do Servidor",
+  "community_plan": "Plano para Comunidade",
+  "team": "Equipe",
 
 /*
 ##################################################################################

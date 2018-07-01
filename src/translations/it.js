@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
+#         Version: 1.5-01072018                                                  #
+#         Update Date: 01.07.2018                                                #
 #         Language: Italian                                                      #
 #         Status: second draft                                                   #
 #         Number of checks: 5                                                    #
@@ -340,11 +340,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Ricompense reclamate con successo",
   "claim_rewards": "Ricompense reclamate",
   "sr_receive_reward_message_0": "In qualità di rappresentante ricevi ricompense per la produzione dei blocchi. Queste ricompense possono essere reclamate ogni 24 ore",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "intro": "Introduzione",
+  "budget_expenses": "Budget per le spese",
+  "server_configuration": "Configurazione del server",
+  "community_plan": "Piano comunitario",
+  "team": "Squadra",
 
 /*
 ##################################################################################

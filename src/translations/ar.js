@@ -331,11 +331,11 @@ export const messages = {
   "successfully_claimed_rewards":  "تم الحصول على المكافآت بنجاح",
   "claim_rewards": "الحصول على المكافآت ",
   "sr_receive_reward_message_0": "كممثل مثالي, تحصل على مكافآت لإنتاج كتل. يمكن المطالبة بهذه المكافآت كل 24 ساعة",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "intro": "مقدمة",
+  "budget_expenses": "ميزانية النفقات",
+  "server_configuration": "تكوين الخادم",
+  "community_plan": "خطة المجتمع",
+  "team": "الفريق",
 
 /*
 ##################################################################################
