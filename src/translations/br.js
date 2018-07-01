@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Notificações ativadas",
   "contract_type": "Tipo de Contrato",
   "filters": "filtros",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Enviar Tokens",
 
 /*
 ##################################################################################
@@ -156,7 +156,7 @@ export const messages = {
   "last_page": "última página",
   "page": "página",
   "of": "de",
-  "page_size": "page size",
+  "page_size": "tamanho da página",
   "most_nodes": "Maioria dos Nós",
   "loading_nodes": "Carregando Nós",
   "Hostname": "Nome do Host",
