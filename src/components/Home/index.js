@@ -17,7 +17,7 @@ import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 
-const subHours = require('date-fns/sub_hours');
+const subDays = require("date-fns/sub_days");
 
 class Home extends Component {
 
@@ -47,7 +47,7 @@ class Home extends Component {
 
     let {total: totalTransactions} = await Client.getTransfers({
       limit: 1,
-      date_start: subHours(new Date(), 1),
+      date_start: subDays(new Date(), 1),
     });
 
 
@@ -187,7 +187,7 @@ class Home extends Component {
                 <Link to="/blockchain/transactions"
                       className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTransactionPerHour} end={stats.transactionPerHour} duration={1}/></h2>
-                  <p>{tu("transactions_last_hour")}</p>
+                  <p>Transactions in last day</p>
                 </Link>
               </div>
               <div className="col-md-3">
@@ -214,7 +214,7 @@ class Home extends Component {
 
 
 
-       
+
 
         <SRNews/>
 
