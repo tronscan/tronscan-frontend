@@ -340,6 +340,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Ricompense reclamate con successo",
   "claim_rewards": "Ricompense reclamate",
   "sr_receive_reward_message_0": "In qualità di rappresentante ricevi ricompense per la produzione dei blocchi. Queste ricompense possono essere reclamate ogni 24 ore",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################

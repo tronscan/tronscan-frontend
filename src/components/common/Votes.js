@@ -26,21 +26,20 @@ export default class Votes extends React.Component {
     this.load();
   }
 
-  onChange = ({page}) => {
-    this.load(page);
+  onChange = (page, pageSize) => {
+    this.load(page, pageSize);
   };
 
-  load = async (page = 0) => {
+  load = async (page = 1, pageSize = 40) => {
 
     let {filter} = this.props;
-    let {pageSize} = this.state;
 
     this.setState({ loading: true });
 
     let {votes, total, totalVotes} = await Client.getVotes({
       sort: '-votes',
       limit: pageSize,
-      start: page * pageSize,
+      start: (page-1) * pageSize,
       ...filter,
     });
 

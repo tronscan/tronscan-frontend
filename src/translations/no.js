@@ -342,6 +342,12 @@ export const messages = {
   "successfully_claimed_rewards":  "Vellykket krevet belønning",
   "claim_rewards": "Krev Belønninger",
   "sr_receive_reward_message_0": "Som en representant kan du motta belønninger for å produsere blokker. Disse belønningene kan kreves en gang i døgnet.",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
+
 /*
 ##################################################################################
 #                                                                                #
