@@ -10,6 +10,7 @@ import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
 import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
+import BarReact from "../common/BarChart";
 
 class Nodes extends Component {
 
@@ -90,7 +91,7 @@ class Nodes extends Component {
 
   loadNodes = async () => {
     let {nodes, status} = await Client.getNodeLocations();
-console.log(nodes);
+
     this.setState({
       nodes,
       syncStatus: status,
@@ -107,7 +108,7 @@ console.log(nodes);
 
     let {nodes, syncStatus} = this.state;
     let countries = this.buildNodeList();
-
+console.log(countries);
     if (syncStatus === "waiting_for_first_sync"){
       return (
         <main className="container header-overlap">
@@ -171,6 +172,20 @@ console.log(nodes);
             <div className="col-md-12">
               <div className="card">
                 <NodeMapAsync nodes={nodes} countries={countries}/>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-12 mt-3">
+            <div className="card">
+              <div className="card-body">
+
+                <div style={{height: 300}}>
+                  {
+                    countries === null ?
+                        <TronLoader/> :
+                        <BarReact style={{height: 300}} data={countries}/>
+                  }
+                </div>
               </div>
             </div>
           </div>

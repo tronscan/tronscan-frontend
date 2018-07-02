@@ -190,5 +190,48 @@ module.exports = {
         }
       }
     ]
+  },
+  barChart: {
+    title: {
+      text: 'Ranking'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+
+    grid: {
+      left: 100
+    },
+
+    xAxis: {
+      type: 'value',
+      name: 'Days',
+      axisLabel: {
+        formatter: '{value}'
+      }
+    },
+    yAxis: {
+      type: 'category',
+      inverse: true,
+      data: ['Sunny', 'Cloudy', 'Showers']
+    },
+    series: [
+      {
+        name: 'City Alpha',
+        type: 'bar',
+        data: [165, 170, 30],
+        label: {
+          normal: {
+            show: true,
+            textBorderColor: '#333',
+            textBorderWidth: 2
+          }
+        }
+
+      }
+    ]
   }
 };
