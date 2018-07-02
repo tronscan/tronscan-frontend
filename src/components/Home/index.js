@@ -172,7 +172,7 @@ class Home extends Component {
             </div>
             <div className="row text-center home-stats ">
               <div className="col-md-3">
-                <Link to="/nodes?mode=3d" className="hvr-underline-from-center hvr-underline-white text-muted">
+                <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousOnlineNodes} end={stats.onlineNodes} duration={1}/></h2>
                   <p>{tu("online_nodes")}</p>
                 </Link>
