@@ -2,7 +2,6 @@
 import React from "react";
 import {loadTokens} from "../../../actions/tokens";
 import {connect} from "react-redux";
-import {head} from "lodash";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu, tv} from "../../../utils/i18n";

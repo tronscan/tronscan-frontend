@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {filter, head, trim} from "lodash";
+import {trim} from "lodash";
 import {TronLoader} from "../common/loaders";
 import {ExternalLink} from "../common/Links";
 import {connect} from "react-redux";

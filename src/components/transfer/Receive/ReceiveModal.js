@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React from "react";
-import {find} from "lodash";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRCode from "qrcode.react";
 import {CopyToClipboard} from "react-copy-to-clipboard";

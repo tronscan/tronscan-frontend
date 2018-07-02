@@ -1,13 +1,10 @@
 import React, {Fragment} from "react";
-
-import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import {connect} from "react-redux";
 import {loadPriceData} from "../../actions/markets";
 import {tu} from "../../utils/i18n";
 import MarketOverview from "./MarketOverview";
 import {TronLoader} from "../common/loaders";
-import Chord from "./Chord";
 import {Client} from "../../services/api";
 import LineReact from "../common/LineChart";
 import RingPieReact from "../common/RingPieChart";
@@ -108,12 +105,5 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadPriceData,
 };
-
-const styles = {
-  line: {
-    stroke: '#343a40',
-  }
-};
-
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(Markets));

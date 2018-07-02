@@ -1,5 +1,4 @@
 import React, {Fragment} from "react";
-import ReactDOM from "react-dom";
 import {Link} from "react-router-dom";
 import {sampleSize} from "lodash";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";

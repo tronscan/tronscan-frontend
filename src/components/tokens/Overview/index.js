@@ -1,12 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {filter, find, includes, sortBy, round} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {tu,t} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
-import {ExternalLink, TokenLink} from "../../common/Links";
+import {TokenLink} from "../../common/Links";
 import Avatar from "../../common/Avatar";
 import {Sticky, StickyContainer} from "react-sticky";
 import SweetAlert from "react-bootstrap-sweetalert";

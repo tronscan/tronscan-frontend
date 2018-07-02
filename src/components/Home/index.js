@@ -13,7 +13,6 @@ import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
-import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 
@@ -212,13 +211,7 @@ class Home extends Component {
           </div>
         </div>
 
-
-
-
-
         <SRNews/>
-
-
 
         <div className="bg-light-grey py-5 pt-5">
           <div className="container homepage-filler">

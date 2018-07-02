@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {tu} from "../../utils/i18n";
 import {Client} from "../../services/api";
-import {AddressLink, BlockNumberLink, ExternalLink} from "../common/Links";
-import {TimeAgo} from "react-timeago";
+import {ExternalLink} from "../common/Links";
 import {FormattedNumber} from "react-intl";
 import {TRXPrice} from "../common/Price";
 
