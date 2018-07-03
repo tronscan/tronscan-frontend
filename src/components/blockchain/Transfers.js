@@ -3,7 +3,6 @@ import React, {Fragment} from "react";
 import {tu} from "../../utils/i18n";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
-import {random, range} from "lodash";
 import TimeAgo from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";

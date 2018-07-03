@@ -342,6 +342,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "intro": "Інтро",
+  "budget_expenses": "Витрати бюджету",
+  "server_configuration": "Конфігурація сервера",
+  "community_plan": "Спільний план",
+  "team": "Команда",
 
 /*
 ##################################################################################

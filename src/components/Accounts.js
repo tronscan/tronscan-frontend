@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {loadAccounts} from "../actions/app";
 import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, round} from "lodash";
+import {filter} from "lodash";
 import {AddressLink} from "./common/Links";
 import Paging from "./common/Paging";
 import {Client} from "../services/api";
