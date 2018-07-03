@@ -192,7 +192,7 @@ module.exports = {
     ]
   },
   barChart: {
-
+   // color: ['#3398DB'],
     title: {
       text: 'Ranking'
     },
@@ -204,7 +204,7 @@ module.exports = {
     },
 
     grid: {
-      left: 100
+      left: 150
     },
 
     xAxis: {
@@ -220,16 +220,19 @@ module.exports = {
       data: []
     },
     series: [
+
       {
         name: '',
         type: 'bar',
-        data: [165, 170, 30],
+        data: [],
         label: {
           normal: {
             show: true,
-            textBorderColor: '#333',
-            textBorderWidth: 2
+            textBorderWidth: 0
           }
+        },
+        itemStyle: {
+
         }
 
       }

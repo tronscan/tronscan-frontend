@@ -28,6 +28,27 @@ export class BarReact extends React.Component {
     config.barChart.title.text='';
     config.barChart.yAxis.data = [];
     config.barChart.series[0].data = [];
+    config.barChart.series[0].itemStyle= {
+      normal: {
+        color: new echarts.graphic.LinearGradient(
+            0, 0, 1, 0,
+            [
+              {offset: 0, color: '#ed213a'},
+              {offset: 1, color: '#93291e'}
+            ]
+        )
+      },
+      emphasis: {
+        color: new echarts.graphic.LinearGradient(
+            0, 0, 1, 0,
+            [
+              {offset: 0, color: '#0052d4'},
+              {offset: 1, color: '#0052d4'}
+            ]
+        )
+      }
+    }
+
     if(data && data.length>0) {
       data.map((val) => {
 
