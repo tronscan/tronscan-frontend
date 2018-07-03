@@ -192,6 +192,7 @@ module.exports = {
     ]
   },
   barChart: {
+
     title: {
       text: 'Ranking'
     },
@@ -208,7 +209,7 @@ module.exports = {
 
     xAxis: {
       type: 'value',
-      name: 'Days',
+      name: '',
       axisLabel: {
         formatter: '{value}'
       }
@@ -216,11 +217,11 @@ module.exports = {
     yAxis: {
       type: 'category',
       inverse: true,
-      data: ['Sunny', 'Cloudy', 'Showers']
+      data: []
     },
     series: [
       {
-        name: 'City Alpha',
+        name: '',
         type: 'bar',
         data: [165, 170, 30],
         label: {

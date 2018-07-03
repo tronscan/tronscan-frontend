@@ -168,8 +168,9 @@ export const messages = {
   "rewards": "奖励",
   "token_created": "通证已创建",
   "witness": "超级代表",
-  "asset_participation": "Asset participation",
+  "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
+  "nodes_ranking":"节点排名",
 
 /*
 ##################################################################################
