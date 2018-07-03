@@ -86,6 +86,7 @@ class Accounts extends Component {
           <tr>
             <th>{tu("address")}</th>
             <th className="d-none d-md-table-cell">{tu("supply")}</th>
+            <th className="d-none d-md-table-cell">{tu("power")}</th>
             <th>{tu("balance")}</th>
           </tr>
           </thead>
@@ -93,14 +94,8 @@ class Accounts extends Component {
           {
             accounts.map((account, index) => (
               <tr key={account.address}>
-                {/*<th scope="row">{index + 1}</th>*/}
                 <th>
-                  <div className="show-mobile">
-                      <AddressLink address={account.address} />
-                  </div>
-                  <div className="hidden-mobile">
-                      <AddressLink address={account.address} />
-                  </div>
+                  <AddressLink address={account.address} />
                 </th>
                 <td className="d-none d-md-table-cell text-nowrap">
                   <FormattedNumber
@@ -108,6 +103,9 @@ class Accounts extends Component {
                     minimumFractionDigits={8}
                     maximumFractionDigits={8}
                   /> %
+                </td>
+                <td className="text-nowrap d-none d-md-table-cell">
+                  <FormattedNumber value={account.power / ONE_TRX}/>
                 </td>
                 <td className="text-nowrap">
                   <TRXPrice amount={account.balance / ONE_TRX}/>
@@ -124,7 +122,7 @@ class Accounts extends Component {
   render() {
 
     let {match} = this.props;
-    let {accounts, total, loading} = this.state;
+    let {total, loading} = this.state;
 
     return (
       <main className="container header-overlap pb-3">
