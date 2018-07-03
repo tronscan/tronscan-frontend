@@ -39,12 +39,21 @@ export default class NodeMap extends Component {
       console.log(geoCoord);
       console.log(data);
       var addressPoints = points;
-      var map = L.map(this.$ref);
-      var baseLayers = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemtsaSIsImEiOiJjamhzbjFiZWYwNG9mM3ZwM3BpM2xudjBpIn0.BeVbGjUROg5szZiCmYZfnQ',
-          {
-            maxZoom: 18,
-            minZoom: 2
-          }).addTo(map);
+      var map = L.map(this.$ref,{
+        maxZoom: 18,
+        minZoom: 2,
+        maxBounds: [
+          //south west
+          [-90, -180],
+          //north east
+          [90, 180]
+        ],
+      });
+      var southWest = L.latLng(-90, -120);
+      var northEast = L.latLng(90, 120);
+      var bounds = L.latLngBounds(southWest, northEast);
+
+      var baseLayers = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemtsaSIsImEiOiJjamhzbjFiZWYwNG9mM3ZwM3BpM2xudjBpIn0.BeVbGjUROg5szZiCmYZfnQ').addTo(map);
 
 
       map.setView(L.latLng(0, 13.114129), 1);
