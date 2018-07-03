@@ -538,7 +538,7 @@ export const messages = {
 */
   "average_price_usd": "平均价格（单位：美元）",
   "average_volume_usd": "平均成交量（单位：美元）",
-  "Trade Volume": "交易量",
+  "Trade Volume": "交易量（单位：美元）",
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",
