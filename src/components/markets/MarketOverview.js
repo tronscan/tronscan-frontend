@@ -43,7 +43,7 @@ export default class MarketOverview extends Component {
 
       }
     }
-    markets = markets.sort(compare("rank")).slice(0, 20);
+    markets = markets.sort(compare("rank")).slice(0, 99);
 
     return (
         <div className="card">
