@@ -9,6 +9,7 @@ import Lockr from "lockr";
 import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
+import { BackTop } from 'antd';
 
 class MainWrap extends React.Component {
 
@@ -31,6 +32,7 @@ class MainWrap extends React.Component {
 
     return (
       <React.Fragment>
+        <BackTop/>
         <IntlProvider
           locale={activeLanguage}
           messages={languages[activeLanguage]}>
