@@ -685,9 +685,9 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
+  "time": "hora",
   "parenthash": "parenthash",
-  "witness": "witness",
-  "size": "size",
+  "witness": "testemunha",
+  "size": "tamanho",
 
 };
