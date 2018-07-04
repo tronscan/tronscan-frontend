@@ -171,7 +171,7 @@ export const messages = {
   "witness": "Testigos",
   "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Ranking de Nodos",
 
 /*
 ##################################################################################
@@ -689,9 +689,9 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "witness": "witness",
-  "size": "size",
+  "time": "tiempo",
+  "parenthash": "parent hash",
+  "witness": "testigo",
+  "size": "tamaño",
 
 };
