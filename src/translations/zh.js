@@ -1,40 +1,39 @@
-
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
-#         Language: Chinese                                                      #
-#         Status: Second Draft                                                   #
-#         Number of checks: 2                                                    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.5-20062018                                                  #
+  #         Update Date: 20.06.2018                                                #
+  #         Language: Chinese                                                      #
+  #         Status: Second Draft                                                   #
+  #         Number of checks: 2                                                    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "确定",
   "app_title": "波场协议",
   "password": "密码",
@@ -98,13 +97,13 @@ export const messages = {
   "filters": "过滤器",
   "send_tokens": "Send Tokens",
 
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "区块链",
   "wallet": "钱包",
   "home": "主页",
@@ -125,13 +124,13 @@ export const messages = {
   "overview": "概况",
   "participate": "参与",
 
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "去中心化网络",
   "transactions_last_hour": "过去一小时交易量",
   "block_height": "区块高度",
@@ -142,13 +141,13 @@ export const messages = {
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
 
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "第一页",
   "previous_page": "上一页",
   "next_page": "下一页",
@@ -168,29 +167,30 @@ export const messages = {
   "rewards": "奖励",
   "token_created": "通证已创建",
   "witness": "超级代表",
-  "asset_participation": "Asset participation",
+  "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
+  "nodes_ranking": "节点排名",
 
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "地址",
   "trx_transferred_past_hour": "过去一小时TRX转账额",
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
 
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "设置名称",
   "unique_account_message": "您只能设置一次您的帐户名称",
   "name_to_short": "名字太短",
@@ -227,17 +227,17 @@ export const messages = {
   "send_to_following_address": "对以下地址转账",
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "specify_the_url": "Please specify the URL",
 
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
-  "freeze" : "冻结",
-  "unfreeze" : "解冻",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
+  "freeze": "冻结",
+  "unfreeze": "解冻",
   "freeze_trx_least": "至少需要1TRX才能成功冻结。",
   "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
   "freeze_trx_premessage_0": `再次冻结/锁定TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以为超级代表投票。`,
@@ -262,17 +262,17 @@ export const messages = {
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
 
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "申请成为超级代表",
   "apply_super_representative_candidate": "申请成为超级代表候选人",
   "your_personal_website_address": "个人网页地址",
-  "apply_for_delegate_predescription":`每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。`,
+  "apply_for_delegate_predescription": `每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。`,
   "apply_for_delegate_description": `每个代币持有者都可以通过账户管理页面，申请成为超级代表，或是为候选人投票。每个账户均可以更新投票人信息，可以为多个候选人投票。用户的最高投票数必须少于或者等于持有TRX的数量。（如果持有一定数量的TRX，投票数量则小于或等于相应的TRX数量。）投票结果以每名用户最终投票结果为准，每轮投票时间为00：00至24：00。票数最高的用户可以成为超级代表。波场网络中每个交易都需要经由所有超级代表验证，超级代表可以获得一定奖励。申请超级代表及为其投票不消耗TRX。`,
   "unknown_error": "发生未知错误",
   "representative_understand": "我已了解如何成为波场超级代表",
@@ -297,53 +297,53 @@ export const messages = {
   "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
   "go_to_votelist": "前往投票列表",
   "understand_tron_sr_message_0": "我知道怎么成为超级代表，我确认",
-  "understand_tron_sr_message_1": "fee.",
+  "understand_tron_sr_message_1": "费用.",
   "invalid_url": "无效的网址",
   "apply_representative_error_message_0": "当你试图申请超级代表时出错了.",
   "apply_representative_error_message_1": "确保有足够的TRX来支付费用或者稍后再尝试.",
-  "open_external_link":"You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
-  "continue_to_external_website": "Continue to external site",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username": "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "open_external_link": "你正在打开一个外部链接",
+  "private_key_untrusted_website_message_0": "不要在一个未被信任的网站输入你的私钥.",
+  "no_official_tron_website": "不是官方的Tron站点.",
+  "continue_to_external_website": "继续外部链接",
+  "url_changed": "URL改变",
+  "successfully_changed_website_message": "成功的更改网站到",
+  "unable_to_change_website_title": "改变URL失败",
+  "unable_to_change_website_message": "更新网站时出错了，请稍后重试",
+  "successfully_linked_github": "成功的链接到Github!",
+  "github_linked": "Github已链接!",
+  "unable_to_link_github_message": "不能链接到Github，请确认用户名是正确的！",
+  "could_not_link_github": "不能链接Github",
+  "enter_your_github_username": "输入你的Github用户名",
+  "link_to_github": "链接到Github",
+  "link_github": "链接Github",
+  "you_must_enter_a_url": "你必须输入一个URL",
+  "success": "成功",
+  "successfully_appied_sr_canidate_message_0": "成功申请成为超级代表候选者.",
+  "successfully_appied_sr_canidate_message_1": "你的账户马上就会被更新.",
+  "landing_page": "着陆页面",
+  "show_more_information_publish_sr_page": "展示更多如何发布一个页面的信息",
+  "create_sr_landing_page_message_0": "超级代表可以创建一个展示他们团队和计划的页面",
+  "set_github_url_message_0": "你已经配置你的Github模板了吗? 然后用下面的按钮设置URL",
+  "set_github_link": "设置Github链接",
+  "could_not_claim_rewards": "无法索取报酬",
+  "claim_rewards_error_message": "当索取报酬时出错了，请稍后重试.",
+  "rewards_claimed": "报酬已索取",
+  "successfully_claimed_rewards": "成功索取报酬",
+  "claim_rewards": "索取报酬",
+  "sr_receive_reward_message_0": "作为一个超级代表，生产区块会获得报酬，报酬可以每24小时索取一次",
+  "intro": "介绍",
+  "budget_expenses": "预算花销",
+  "server_configuration": "服务器配置",
+  "community_plan": "社区计划",
+  "team": "团队",
 
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "通证名称",
   "token_message": "通证名称",
   "token_abbr": "通证缩写",
@@ -375,13 +375,13 @@ export const messages = {
   "participated": "成功参与通证发行！",
   "participated_error": "发生错误",
 
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "是否确定购买？",
   "how_much_buy_message": "您想购买多少数量的通证？",
   "buy_confirm_message_1": "是否确定要购买通证",
@@ -390,14 +390,14 @@ export const messages = {
   "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
-  "can_be_unlocked_in":"将解锁于",
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "将解锁于",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "请输入正确的波场钱包地址，输入错误地址可能造成损失。",
   "search_address_or_url": "查询地址或URL",
   "the_lunch_test": "上线测试网的目的在于测试区块浏览器以及钱包的所有功能。",
@@ -430,13 +430,13 @@ export const messages = {
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
 
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "未查询到交易",
   "no_tokens_found": "未查询到通证",
   "no_blocks_found": "未查询到区块",
@@ -445,13 +445,13 @@ export const messages = {
   "waiting_for_transactions": "等待交易结果",
   "loading_address": "地址加载中",
 
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "详情",
   "issue_a_token": "发行通证",
   "issue_token": "发行通证",
@@ -470,25 +470,23 @@ export const messages = {
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "规定通证发行周期，在发行期间，参与者可以用TRX购买",
   "participation_message_1": " 通证.",
-  "frozen_supply_message_0": `可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。`,
+  "frozen_supply_message_0": "可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。",
   "token_issued_successfully": "通证发行成功！",
   "participation": "参与",
   "start_date": "开始日期",
   "end_date": "结束时期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
-  "token_issue_guide_message_1":`用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
-  "token_issue_guide_message_2":`通证发行后，会在通证总览页面进行显示。
-    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
-  "token_issue_guide_message_3":`在发行通证后，您的账户将会收到全部的发行数额。
-    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
+  "token_issue_guide_message_1": "用户账户中有至少1024TRX，就可以在波场协议上发行通证。",
+  "token_issue_guide_message_2": "通证发行后，会在通证总览页面进行显示。之后用户可以在发行期限内参与认购，用TRX兑换通证。",
+  "token_issue_guide_message_3": "在发行通证后，您的账户将会收到全部的发行数额。当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。",
 
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "结束日期早于开始日期，或与开始日期相同",
   "no_name_error": "请填写名称",
   "no_supply_error": "发行总量至少为1",
@@ -500,25 +498,25 @@ export const messages = {
   "no_url_error": "请填写网站URL",
   "past_starttime_error": "开始日期早于今日日期",
   "no_transactions": "无交易",
-  "errors_in_form": "There are errors in the form",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
-  "description_error_message_0": "Description may not be longer then 200 characters",
-  "token_creation_error": "An error occurred while trying to create the token",
-  "tokenname_error_message_0": "Name may not be longer then 32 characters",
-  "tokenname_error_message_1": "Name may only contain a-Z characters",
-  "abbreviation_required": "Abbreviation is required",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "errors_in_form": "表单里有错误",
+  "token_link_message_0": "通证将会可用在",
+  "token_link_message_1": "通证页面",
+  "token_link_message_2": "几分钟后",
+  "description_error_message_0": "描述需要大于200个字符",
+  "token_creation_error": "当创建通证时发生错误",
+  "tokenname_error_message_0": "名字需要大于32个字符",
+  "tokenname_error_message_1": "名字需要包含a-Z字符",
+  "abbreviation_required": "需要缩写",
+  "abbreviation_error_message_0": "缩写需要大于5个字符",
+  "abbreviation_error_message_1": "缩写只能包含a-Z字符",
 
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "出块效率最高",
   "lowest_productivity": "出块效率最低",
   "Super Representatives": "超级代表",
@@ -528,27 +526,27 @@ export const messages = {
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
   "loading_representative": "超级代表加载中",
 
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "平均价格（单位：美元）",
   "average_volume_usd": "平均成交量（单位：美元）",
-  "Trade Volume": "交易量",
+  "Trade Volume": "交易量（单位：美元）",
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",
 
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "下一轮投票",
   "total_votes": "总票数",
   "most_ranks": "排名上升最多",
@@ -573,15 +571,15 @@ export const messages = {
   "submissing_vote_message_0": "您已投票成功，将会在新一轮投票中生效。",
   "submissing_vote_message_1": "您可以随时重新分配您的票数",
   "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "超级代表加载中",
 
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "在此处粘贴十六进制交易哈希值，查看交易内容，随后交易会进行全网广播。",
   "load_tx": "上传交易",
   "tx_qrcode": "交易二维码",
@@ -595,13 +593,13 @@ export const messages = {
   "confirm_transaction_message": "是否确认发送交易？",
   "broadcast_transaction_to_network": "全网交易广播",
 
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "输入节点IP测试GRPC连接状况",
   "node_tester_stop": "请停止测试",
   "node_tester_test": "测试GRPC",
@@ -609,37 +607,37 @@ export const messages = {
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
 
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "未发现网络摄像头",
   "trying_enable_webcam_message_0": "开启网络摄像头时发生错误。",
   "trying_enable_webcam_message_1": "请确认摄像头权限已开启。",
 
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "TRON是什么",
   "tron_explorer_api": "波场浏览器API",
   "tron_architechure": "波场架构",
   "tron_protobuf_doc": "TRON Protobuf文档",
   "report_an_error": "提交BUG/建议",
 
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "打开钱包",
   "private_key": "私钥",
   "keystore_file": "密钥库文件",
@@ -671,9 +669,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "hash":"哈希值",
-  "time":"时间",
-  "parenthash":"父哈希",
-  "witness":"超级代表",
-  "size":"大小",
+  "hash": "哈希值",
+  "time": "时间",
+  "parenthash": "父哈希",
+  "witness": "超级代表",
+  "size": "大小",
 };
