@@ -132,7 +132,9 @@ class Representatives extends Component {
                 <WidgetIcon className="fa fa-arrow-down text-danger" style={{right: -70}}  />
                 <div className="card-body text-center">
                   <h3 className="text-danger">
-                    <FormattedNumber value={leastProductive.productivity}/>%
+                    <FormattedNumber maximumFractionDigits={2}
+                                     minimunFractionDigits={2}
+                                     value={leastProductive.productivity}/>%
                   </h3>
                   {tu("lowest_productivity")}<br/>
                   <AddressLink address={leastProductive.address}>
