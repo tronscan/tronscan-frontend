@@ -108,7 +108,6 @@ class Nodes extends Component {
 
     let {nodes, syncStatus} = this.state;
     let countries = this.buildNodeList();
-    console.log(countries);
     if (syncStatus === "waiting_for_first_sync") {
       return (
           <main className="container header-overlap">

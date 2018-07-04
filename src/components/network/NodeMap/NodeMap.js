@@ -35,9 +35,7 @@ export default class NodeMap extends Component {
         data.push({name: nodes[node].ip, ip: nodes[node].ip});
 
       }
-      console.log(points);
-      console.log(geoCoord);
-      console.log(data);
+
       var addressPoints = points;
       var map = L.map(this.$ref,{
         maxZoom: 18,
@@ -76,7 +74,7 @@ export default class NodeMap extends Component {
 
       config.mapChart.series[0].geoCoord = geoCoord;
       config.mapChart.series[1].markPoint.data = data;
-      console.log(config.mapChart);
+
       overlay.setOption(config.mapChart);
     }
   }
