@@ -44,7 +44,7 @@ const initialState = {
     fr: "Français",
     es: "Español",
     tr: "Türkçe",
-    ro: "Românesc",
+    ro: "Română",
   },
   activeLanguage: 'en',
   account: {
