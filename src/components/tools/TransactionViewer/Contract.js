@@ -57,7 +57,7 @@ export default function Contract({contract}) {
             <table className="table">
               <Field label="From"><AddressLink address={contract.ownerAddress} /></Field>
               <Field label="To"><AddressLink address={contract.toAddress} /></Field>
-              <Field label="Amount">{contract.amount}</Field>
+              <Field label="Amount">{contract.amount / ONE_TRX}</Field>
               <Field label="Token">{contract.token}</Field>
             </table>
           </Fragment>
@@ -140,6 +140,21 @@ export default function Contract({contract}) {
         </Fragment>
       );
 
+    case "UNFREEZEBALANCECONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">UnfreezeBalanceContract</h5>
+              <p>
+                Unfreeze TRX
+              </p>
+            </div>
+            <table className="table">
+              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+            </table>
+          </Fragment>
+      );
+
     case "VOTEWITNESSCONTRACT":
       return (
         <Fragment>
@@ -183,7 +198,7 @@ export default function Contract({contract}) {
             <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
             <Field label="Token Name">{contract.name}</Field>
             <Field label="Total Supply">{contract.totalSupply}</Field>
-            <Field label="TRX Num">{contract.trxNum}</Field>
+            <Field label="TRX Num">{contract.trxNum / ONE_TRX}</Field>
             <Field label="Num">{contract.num}</Field>
             <Field label="Start Time">{contract.startTime}</Field>
             <Field label="End Time">{contract.endTime}</Field>
@@ -199,7 +214,7 @@ export default function Contract({contract}) {
           <div className="card-body">
             <h5 className="card-title text-center">#</h5>
             <p>
-              contract no found
+              contract not found
             </p>
           </div>
         </Fragment>

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from "react";
 import {connect} from "react-redux";
-import {head, keyBy, max, maxBy, sortBy} from "lodash";
+import {keyBy, max, sortBy} from "lodash";
 import {CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis} from "recharts";
 import {Client} from "../../../services/api";
 import {injectIntl} from "react-intl";

@@ -1,8 +1,8 @@
 module.exports = {
   pieChart: {
-    title : {
+    title: {
       text: '',
-      x:'center'
+      x: 'center'
     },
     tooltip: {
       trigger: 'item',
@@ -27,9 +27,9 @@ module.exports = {
     ]
   },
   lineChart: {
-    title : {
+    title: {
       text: '',
-      x:'center'
+      x: 'center'
     },
     grid: {
       left: '3%',
@@ -55,15 +55,29 @@ module.exports = {
   },
 
   ringPieChart: {
-    title : {
+    title: {
       text: '',
-      x:'center'
+      x: 'center'
     },
     legend: {
       type: 'scroll',
       orient: 'vertical',
       x: 'right',
-      selected:{'Bancor Network':false,'Gatecoin':false,'BitFlip':false,'Braziliex':false,'Cobinhood':false,'CoinExchange':false,'CoinFalcon':false,'Cryptomate':false,'Gatecoin':false,'IDEX':false,'LiteBit.eu':false,'Stocks.Exchange':false,'Tidex':false}
+      selected: {
+        'Bancor Network': false,
+        'Gatecoin': false,
+        'BitFlip': false,
+        'Braziliex': false,
+        'Cobinhood': false,
+        'CoinExchange': false,
+        'CoinFalcon': false,
+        'Cryptomate': false,
+        'Gatecoin': false,
+        'IDEX': false,
+        'LiteBit.eu': false,
+        'Stocks.Exchange': false,
+        'Tidex': false
+      }
     },
     tooltip: {
       trigger: 'item',
@@ -76,7 +90,7 @@ module.exports = {
         type: 'pie',
         selectedMode: 'single',
         radius: [0, '30%'],
-        center:['50%','50%'],
+        center: ['50%', '50%'],
         label: {
           normal: {
             position: 'inner'
@@ -93,19 +107,19 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: ['40%', '55%'],
-        center:['50%','50%'],
+        center: ['50%', '50%'],
         data: []
       }
     ]
   },
   multiLineChart: {
-    title : {
+    title: {
       text: '',
-      x:'center'
+      x: 'center'
     },
     legend: {
       type: 'scroll',
-      data:[]
+      data: []
     },
     grid: {
       left: '3%',
@@ -115,9 +129,9 @@ module.exports = {
     },
     tooltip: {
       trigger: 'axis'
-     // position:function(p){   //其中p为当前鼠标的位置
-     //   return [p[0] + 10, p[1] - 10];
-    //  }
+      // position:function(p){   //其中p为当前鼠标的位置
+      //   return [p[0] + 10, p[1] - 10];
+      //  }
     },
     xAxis: {
       type: 'category',
@@ -129,4 +143,99 @@ module.exports = {
     },
     series: []
   },
+  mapChart: {
+    color: ['gold'],
+    series: [
+      {
+        name: '',
+        type: 'map',
+        roam: true,
+        hoverable: false,
+        mapType: 'none',
+        itemStyle: {
+          normal: {
+            borderColor: 'rgba(100,149,237,1)',
+            borderWidth: 0.5,
+            areaStyle: {
+              color: '#1b1b1b'
+            }
+          }
+        },
+        data: [],
+        geoCoord: {}
+      },
+      {
+        name: '',
+        type: 'map',
+        mapType: 'none',
+        data: [],
+        markPoint: {
+          symbol: 'emptyCircle',
+          symbolSize: function (v) {
+            return 10 + v / 10
+          },
+          effect: {
+            show: true,
+            shadowBlur: 0
+          },
+          itemStyle: {
+            normal: {
+              label: {show: false}
+            },
+            emphasis: {
+              label: {position: 'top'}
+            }
+          },
+          data: []
+        }
+      }
+    ]
+  },
+  barChart: {
+   // color: ['#3398DB'],
+    title: {
+      text: 'Ranking'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+
+    grid: {
+      left: 150
+    },
+
+    xAxis: {
+      type: 'value',
+      name: '',
+      axisLabel: {
+        formatter: '{value}'
+      }
+    },
+    yAxis: {
+      type: 'category',
+      inverse: true,
+      data: []
+    },
+    series: [
+
+      {
+        name: '',
+        type: 'bar',
+        data: [],
+        label: {
+          normal: {
+            show: true,
+            textBorderWidth: 0
+          }
+        },
+        itemStyle: {
+
+        }
+
+      }
+    ]
+  }
 };

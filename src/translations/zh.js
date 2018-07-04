@@ -168,8 +168,9 @@ export const messages = {
   "rewards": "奖励",
   "token_created": "通证已创建",
   "witness": "超级代表",
-  "asset_participation": "Asset participation",
+  "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
+  "nodes_ranking":"节点排名",
 
 /*
 ##################################################################################
@@ -537,7 +538,7 @@ export const messages = {
 */
   "average_price_usd": "平均价格（单位：美元）",
   "average_volume_usd": "平均成交量（单位：美元）",
-  "Trade Volume": "交易量",
+  "Trade Volume": "交易量（单位：美元）",
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",

@@ -4,7 +4,7 @@ import {RecaptchaAsync} from "../common/async";
 import xhr from "axios/index";
 import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, ONE_TRX, PUBLIC_URL} from "../../constants";
+import {API_URL, ONE_TRX} from "../../constants";
 import {Alert} from "reactstrap";
 
 export default class TestNetRequest extends React.Component {

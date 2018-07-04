@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {tu} from "../../utils/i18n";
 import {injectIntl} from "react-intl";
-import {loadBlocks, loadTransactions} from "../../actions/blockchain";
+import {loadTransactions} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
 import {ONE_TRX} from "../../constants";
