@@ -738,7 +738,7 @@ class Account extends Component {
                       {tu("show_qr_code")}
                     </a>
 
-                    <div className="float-left" style={{ width: 300 }}>
+                    <div className="float-left" style={{ width: 350 }}>
                       <AddressLink address={account.address} includeCopy={true}/>
                     </div>
 

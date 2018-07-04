@@ -100,14 +100,14 @@ export class MultiLineReact extends React.Component {
           if(flag)
             flag=false;
         }
-        temp=temp.slice(0,temp.length-2);
+        temp=temp.slice(0,temp.length);
 
         yAxis.push({key: newCandidates[candy].address, url: newCandidates[candy].url, data: temp});
       }
 
       let newYAxis = yAxis.slice(0, 10);
 
-      config.multiLineChart.xAxis.data = xAxis.slice(2,xAxis.length);
+      config.multiLineChart.xAxis.data = xAxis;
 
       newYAxis.map((val, index) => {
         config.multiLineChart.legend.data.push(val.url);

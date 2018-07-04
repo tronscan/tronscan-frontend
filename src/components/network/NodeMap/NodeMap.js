@@ -2,142 +2,85 @@
 import React, {Component} from 'react';
 import L from "leaflet";
 
-import "leaflet.markercluster/dist/leaflet.markercluster-src.js";
-import "leaflet.markercluster.placementstrategies/dist/leaflet-markercluster.placementstrategies.js";
-
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-import "leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js";
-import {isUndefined} from "lodash";
-import {MapStyle} from "./MapConfig";
+
+import "leaflet/dist/leaflet-src.js";
+import "leaflet.markercluster/dist/leaflet.markercluster-src.js";
+import "leaflet-echarts/src/leaflet-echarts.js";
+import "leaflet-echarts/lib/echarts.source.js";
+import config from '../../common/chart.config.js'
 
 export default class NodeMap extends Component {
 
-  updateMap = () => {
-    let {nodes} = this.props;
-
-    let colors = [
-      '#e41a1c',
-      '#377eb8',
-      '#4daf4a',
-      '#984ea3',
-      '#ff7f00',
-      '#ffff33',
-    ];
-
-    let circleStyle = function (country) {
-
-      return {
-        fillColor: '#343a40',
-        radius: 12,
-        stroke: true,
-        color: '#FFF',
-        weight: 2.5,
-        opacity: 0.7,
-        fillOpacity: 1,
-        className: 'marker',
-        title: country.name,
-      };
-    };
-
-    let nodesByCountry = {};
-    for (let node of nodes) {
-      let key = `${node.country}-${node.city}`;
-      if (!nodesByCountry[key]) {
-        nodesByCountry[key] = {
-          name: node.country,
-          city: node.city,
-          country: node.country,
-          count: 0,
-          longitude: node.lng,
-          latitude: node.lat,
-          cluster: L.markerClusterGroup({
-            // maxClusterRadius: 10,
-            spiderLegPolylineOptions: {weight: 0},
-            clockHelpingCircleOptions: {
-              weight: .7,
-              opacity: 1,
-              color: 'black',
-              fillColor: '#343a40',
-              dashArray: '10 5'
-            },
-
-            elementsPlacementStrategy: 'concentric',
-            helpingCircles: true,
-
-            spiderfyDistanceSurplus: 25,
-            spiderfyDistanceMultiplier: 1,
-
-            elementsMultiplier: 1.4,
-            firstCircleElements: 8,
-          }),
-        }
-      }
-
-      let country = nodesByCountry[key];
-      if (isUndefined(country.latitude) || isUndefined(country.longitude)) {
-        continue;
-      }
-
-      country.count++;
-
-      let circleMarker = L.circleMarker([
-          country.latitude,
-          country.longitude],
-        circleStyle(country));
-
-      circleMarker.on("click", cm => {
-        // console.log("cm", cm);
-      });
-
-      let toolTip = L.tooltip();
-      toolTip.setContent(`
-        <table>
-            <tr>
-              <td class="font-weight-bold">City:</td>
-              <td>${node.city}</td>
-            </tr>
-            <tr>
-              <td class="font-weight-bold">IP:</td>
-              <td>${node.ip}</td>
-            </tr>
-        </table>`);
-
-      circleMarker.bindTooltip(toolTip);
-
-      country.cluster.addLayer(circleMarker);
-    }
-
-    this.clusters.clearLayers();
-    for (let country of Object.values(nodesByCountry)) {
-      this.clusters.addLayer(country.cluster);
-    }
-  };
-
   componentDidMount() {
-    this.map = L.map(this.$ref)
-      .setView([9.622414142924818, 10.82031250000001], 2);
-    this.clusters = L.layerGroup();
-    this.clusters.addTo(this.map);
 
-    L.gridLayer.googleMutant({
-      styles: MapStyle,
-      maxZoom: 20,
-      type:'roadmap'
-    }).addTo(this.map);
+    let {nodes} = this.props;
+    let points = [];
+    let geoCoord = {};
+    let data = [];
+    config.mapChart.series[0].geoCoord = {};
+    config.mapChart.series[1].markPoint.data = [];
+    if(nodes.length) {
+      for (let node in nodes) {
+        /*  if(nodes[node].city!=='') {
+            points.push([nodes[node].lat,nodes[node].lng,node]);
+            geoCoord[nodes[node].city] = [nodes[node].lng, nodes[node].lat];
+            data.push({name: nodes[node].city, ip: nodes[node].ip});
+          }
+        */
+        points.push([nodes[node].lat, nodes[node].lng, nodes[node].ip]);
+        geoCoord[nodes[node].ip] = [nodes[node].lng, nodes[node].lat];
+        data.push({name: nodes[node].ip, ip: nodes[node].ip});
+
+      }
+
+      var addressPoints = points;
+      var map = L.map(this.$ref,{
+        maxZoom: 18,
+        minZoom: 2,
+        maxBounds: [
+          //south west
+          [-90, -180],
+          //north east
+          [90, 180]
+        ],
+      });
+      var southWest = L.latLng(-90, -120);
+      var northEast = L.latLng(90, 120);
+      var bounds = L.latLngBounds(southWest, northEast);
+
+      var baseLayers = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemtsaSIsImEiOiJjamhzbjFiZWYwNG9mM3ZwM3BpM2xudjBpIn0.BeVbGjUROg5szZiCmYZfnQ').addTo(map);
 
 
-    // this.map.setMaxBounds(this.map.getBounds());
-    this.map.fitBounds(this.map.getBounds());
+      map.setView(L.latLng(0, 13.114129), 1);
+      var markers = L.markerClusterGroup();
 
-    window.globalMap = this.map;
+      for (var i = 0; i < addressPoints.length; i++) {
+        var a = addressPoints[i];
+        var title = a[2];
+        var marker = L.marker(new L.LatLng(a[0], a[1]), {title: title});
+        marker.bindPopup(title);
+        markers.addLayer(marker);
+      }
 
-    this.updateMap();
+      map.addLayer(markers);
+
+      var overlay = new L.echartsLayer(map, echarts);
+      var chartsContainer = overlay.getEchartsContainer();
+      var myChart = overlay.initECharts(chartsContainer);
+      window.onresize = myChart.onresize;
+
+      config.mapChart.series[0].geoCoord = geoCoord;
+      config.mapChart.series[1].markPoint.data = data;
+
+      overlay.setOption(config.mapChart);
+    }
   }
 
   componentDidUpdate() {
-    this.updateMap();
+
   }
 
   render() {
@@ -145,10 +88,10 @@ export default class NodeMap extends Component {
     let {className} = this.props;
 
     return (
-      <div
-        style={{height: 600}}
-        className={className + " map-2d"}
-        ref={(cmp) => this.$ref = cmp}/>
+        <div
+            style={{height: 600}}
+            className={className + " map-2d"}
+            ref={(cmp) => this.$ref = cmp}/>
     )
   }
 }

@@ -150,11 +150,6 @@ class Statistics extends React.Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <RichList/>
-            </div>
-          </div>
         </main>
     );
   }

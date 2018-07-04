@@ -19,7 +19,7 @@ export const NodeMapAsync = asyncComponent({
     require.ensure(
       [],
       (require) => {
-        $script("https://maps.googleapis.com/maps/api/js?key=AIzaSyBzZaa22a_zmiWZA-TBjf2Jsr3zqx_GYpI", () => {
+        $script("", () => {
           resolve(require('./NodeMap'));
         });
       },
