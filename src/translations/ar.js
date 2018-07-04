@@ -628,6 +628,8 @@ export const messages = {
   "tron_architechure": "هندسة ترون",
   "tron_protobuf_doc": "توثيق ترون بروتوبوف (Protobuf)",
   "report_an_error": "بلغ عن مشكلة/مقترح",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################

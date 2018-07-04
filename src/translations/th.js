@@ -628,6 +628,8 @@ export const messages = {
   "tron_architechure": "สถาปัตยกรรมของ TRON",
   "tron_protobuf_doc": "เอกสารของ TRON Protobuf",
   "report_an_error": "ส่งข้อบกพร่อง / ข้อเสนอแนะ",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################

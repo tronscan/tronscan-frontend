@@ -637,6 +637,8 @@ export const messages = {
   "tron_architechure": "ტრონის არქიტექტურა",
   "tron_protobuf_doc": "ტრონის Protobuf დოკუმენტაცია",
   "report_an_error": "დაუშვით ბაგი / წინადადება",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################

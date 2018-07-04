@@ -652,6 +652,8 @@ export const messages = {
   "tron_architechure": "TRON Architectuur",
   "tron_protobuf_doc": "TRON Protobuf Documentatie",
   "report_an_error": "Geef een bug / suggestie door",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################

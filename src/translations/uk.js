@@ -647,6 +647,8 @@ export const messages = {
   "tron_architechure": "TRON Архітектура",
   "tron_protobuf_doc": "TRON Protobuf документація",
   "report_an_error": "Надіслати помилку / пропозицію",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -691,5 +693,5 @@ export const messages = {
     "parenthash": "parenthash",
     "witness": "witness",
     "size": "size",
-    
+
 };
