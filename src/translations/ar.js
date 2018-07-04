@@ -660,4 +660,17 @@ export const messages = {
   "new_wallet_ready_message": "محفظتك الجديدة جاهزة",
   "go_to_account_page": "اذهب الى صفحة الحساب",
 
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "size",
+
 };

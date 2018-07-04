@@ -683,4 +683,17 @@ export const messages = {
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
 
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "size",
+
 };

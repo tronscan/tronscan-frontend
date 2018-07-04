@@ -683,4 +683,17 @@ export const messages = {
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
 
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "size",
+
 };

@@ -676,4 +676,17 @@ export const messages = {
   "new_wallet_ready_message": "Din nye lommebok er klar",
   "go_to_account_page": "Gå til konto siden",
 
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "size",
+
 };

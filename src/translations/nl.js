@@ -668,7 +668,7 @@ export const messages = {
   "create_wallet": "Maak een portemonnee aan",
   "no_open_wallet": "Geen open portemonnee om te tonen",
   "new_wallet": "Nieuwe Portemonnee",
-  "password_encr_key_message_0": "Dit wachtwoord versleuteld jouw privé sleutel. Je wachtwoord doet GEEN dienst als input om persoonlijke sleutels me te genereren.",
+  "password_encr_key_message_0": "Dit wachtwoord versleutelt jouw privé sleutel. Je wachtwoord doet GEEN dienst als input om persoonlijke sleutels mee te genereren.",
   "password_encr_key_message_1": "Je hebt dit wachtwoord en je privé sleutel nodig om je portemonnee te kunnen ontgrendelen.",
   "strong_password_info": "Een sterk wachtwoord is vereist",
   "save_keystore_file": "Sla je versleutelde sleutel op",
@@ -683,5 +683,18 @@ export const messages = {
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tijd",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "grootte",
 
 };

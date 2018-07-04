@@ -665,10 +665,10 @@ export const messages = {
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
 
-  /*
+/*
 ##################################################################################
 #                                                                                #
-# blockchain block                                                                #
+# blockchain block                                                               #
 #                                                                                #
 ##################################################################################
 */
@@ -677,4 +677,5 @@ export const messages = {
   "parenthash":"父哈希",
   "witness":"超级代表",
   "size":"大小",
+  
 };

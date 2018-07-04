@@ -676,4 +676,17 @@ export const messages = {
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
 
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "witness": "witness",
+  "size": "size",
+
 };
