@@ -349,7 +349,7 @@ export const messages = {
   "budget_expenses": "Budget Expenses",
   "server_configuration": "Configurație Server",
   "community_plan": "Planul Comunității",
-  "team": "Echipă"
+  "team": "Echipă",
 
 /*
 ##################################################################################
