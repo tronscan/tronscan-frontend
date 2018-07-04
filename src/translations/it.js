@@ -133,7 +133,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralizare il Web",
+  "tron_main_message": "Decentralizzare il Web",
   "transactions_last_hour": "Transazioni nell'ultima ora",
   "block_height": "Altezza Blocco",
   "online_nodes": "Nodi connessi",
@@ -171,7 +171,7 @@ export const messages = {
   "witness": "Testimone",
   "asset_participation": "Partecipazione Asset",
   "loading_transaction": "Caricamento Transazione",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Classifica Nodi",
 
 /*
 ##################################################################################
@@ -683,9 +683,9 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "witness": "witness",
-  "size": "size",
+  "time": "istante",
+  "parenthash": "hash genitore",
+  "witness": "testimone",
+  "size": "dimensione",
 
 };
