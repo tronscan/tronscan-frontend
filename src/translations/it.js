@@ -171,6 +171,7 @@ export const messages = {
   "witness": "Testimone",
   "asset_participation": "Partecipazione Asset",
   "loading_transaction": "Caricamento Transazione",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################

@@ -171,6 +171,7 @@ export const messages = {
   "witness": "Reprezentant",
   "asset_participation": "Udział w aktywie",
   "loading_transaction": "Wczytuję transakcję",
+  "nodes_ranking": "Ranking węzłów",
 
 /*
 ##################################################################################

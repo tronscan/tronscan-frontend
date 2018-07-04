@@ -171,6 +171,7 @@ export const messages = {
   "witness": "დამოწმება",
   "asset_participation": "აქტივის მონაწილეობა",
   "loading_transaction": "ტრანზაქციის ატვირთვა",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################

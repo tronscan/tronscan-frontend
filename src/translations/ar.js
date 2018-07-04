@@ -171,6 +171,7 @@ export const messages = {
   "witness": "الشاهد",
   "asset_participation": "مشاركة الأصول",
   "loading_transaction": "جاري تحميل المعامله",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################

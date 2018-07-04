@@ -171,6 +171,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################

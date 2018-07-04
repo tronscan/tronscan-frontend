@@ -171,6 +171,7 @@ export const messages = {
   "witness": "Nhân chứng",
   "asset_participation": "Góp phần vào tài sản",
   "loading_transaction": "Đang tải giao dịch",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################

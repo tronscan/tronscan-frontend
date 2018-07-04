@@ -170,7 +170,7 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking":"节点排名",
+  "nodes_ranking": "节点排名",
 
 /*
 ##################################################################################
