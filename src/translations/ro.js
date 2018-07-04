@@ -347,9 +347,9 @@ export const messages = {
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
   "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "server_configuration": "Configurație Server",
+  "community_plan": "Planul Comunității",
+  "team": "Echipă"
 
 /*
 ##################################################################################
@@ -690,9 +690,9 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
+  "time": "timp",
   "parenthash": "parenthash",
   "witness": "witness",
-  "size": "size",
+  "size": "mărime",
 
 };
