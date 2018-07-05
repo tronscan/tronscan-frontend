@@ -142,7 +142,7 @@ export const messages = {
   "view_super_representatives": "슈퍼 대표(SR) 목록보기",
   "create_new_wallet": "새 지갑 만들기",
   "view_tokens": "토큰 보기",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "1일동안 트랜잭션 수",
 
 /*
 ##################################################################################
@@ -342,10 +342,10 @@ export const messages = {
   "claim_rewards": "보상 청구",
   "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "budget_expenses": "예산 지출 계획",
+  "server_configuration": "서버 구성",
+  "community_plan": "커뮤니티 계획",
+  "team": "팀",
 
 /*
 ##################################################################################
@@ -642,8 +642,8 @@ export const messages = {
   "tron_architechure": "트론 아키텍처",
   "tron_protobuf_doc": "트론 프로토콜 버퍼 문서(Protobuf)",
   "report_an_error": "버그 제보 및 건의",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "자주 묻는 질문(FAQ)",
+  "telegram_updates": "트론스캔 공식 텔레그램",
 
 /*
 ##################################################################################
@@ -683,9 +683,10 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "hash": "해시",
+  "time": "시간",
+  "parenthash": "이전 블록 해시",
+  "witness": "증인",
+  "size": "크기",
 
 };
