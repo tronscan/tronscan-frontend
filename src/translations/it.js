@@ -645,7 +645,7 @@ export const messages = {
   "report_an_error": "Segnala un bug / Invia un suggerimento",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
-  
+
 /*
 ##################################################################################
 #                                                                                #
@@ -687,7 +687,6 @@ export const messages = {
   "hash": "hash",
   "time": "istante",
   "parenthash": "hash genitore",
-  "witness": "testimone",
   "size": "dimensione",
 
 };

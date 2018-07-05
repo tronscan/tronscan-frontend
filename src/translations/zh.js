@@ -677,7 +677,6 @@ export const messages = {
   "hash":"哈希值",
   "time":"时间",
   "parenthash":"父哈希",
-  "witness":"超级代表",
   "size":"大小",
 
 };

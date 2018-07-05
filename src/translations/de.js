@@ -697,7 +697,6 @@ export const messages = {
   "hash": "Hash",
   "time": "Zeit",
   "parenthash": "Parenthash",
-  "witness": "Zeuge",
   "size": "Größe",
 
 };
