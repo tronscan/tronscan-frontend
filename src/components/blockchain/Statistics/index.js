@@ -11,7 +11,7 @@ import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
-
+import LineReactTx from "../../common/LineChartTx";
 
 class Statistics extends React.Component {
 
@@ -22,13 +22,15 @@ class Statistics extends React.Component {
       accounts: null,
       transactionStats: null,
       blockStats: null,
-      transactionValueStats: null
+      transactionValueStats: null,
+      txOverviewStats:null
     };
   }
 
   componentDidMount() {
     this.loadAccounts();
     this.loadStats();
+    this.loadTxOverviewStats();
   }
 
   async loadAccounts() {
@@ -40,7 +42,7 @@ class Statistics extends React.Component {
 
     this.setState({
       accounts: filter(accounts, account => !includes(tronAddresses, account.address))
-          .slice(0, 25)
+          .slice(0, 10)
           .map(account => ({
             name: account.address,
             value: account.balance / ONE_TRX,
@@ -61,7 +63,6 @@ class Statistics extends React.Component {
     let {stats: blockStats} = await Client.getBlockStats({
       info: `avg-block-size`,
     });
-
 
     let transactionTotalStats = stats.total.map(row => ({
       timestamp: intl.formatTime(row.timestamp),
@@ -85,11 +86,34 @@ class Statistics extends React.Component {
     });
   }
 
+  async loadTxOverviewStats() {
+    let {txOverviewStats} = await Client.getTxOverviewStats();
+    this.setState({
+      txOverviewStats:txOverviewStats
+    });
+  }
+
   render() {
 
-    let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
     return (
         <main className="container header-overlap">
+          <div className="row">
+            <div className="col-md-12 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title text-center">{tu("TRX_transaction_chart")}</h5>
+                  <div style={{height: 300}}>
+                    {
+                      txOverviewStats === null ?
+                          <TronLoader/> :
+                          <LineReactTx style={{height: 300}} data={txOverviewStats}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-6 mt-3">
               <div className="card">

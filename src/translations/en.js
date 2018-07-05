@@ -185,6 +185,8 @@ export const messages = {
   "transactions_past_hour": "Transactions in the past hour",
   "average_blocksize": "Average Block Size",
   "rich_list": "Rich List",
+  "TRX_transaction_chart":"TRX Transaction Chart",
+  "transactions_per_day":"Transactions Per Day",
 
 /*
 ##################################################################################
