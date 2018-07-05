@@ -35,11 +35,28 @@ class Markets extends React.Component {
     });
   };
 
+  formatTableData = (markets) => {
+    let data=[];
+    if(markets.length) {
+      markets.map((val) => {
+        data.push({
+          key: val.rank,
+          rank: val.rank,
+          name: val.name,
+          pair: val.pair,
+          volumeNative: val.volumeNative,
+        });
+
+      })
+    }
+    return data;
+  }
+
   render() {
 
     let {intl, priceGraph, volumeGraph} = this.props;
     let {markets} = this.state;
-
+    let tableData = this.formatTableData(markets);
     return (
         <main className="container header-overlap pb-3">
           <div className="row">
@@ -86,7 +103,7 @@ class Markets extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
-              <MarketOverview markets={markets}/>
+              <MarketOverview tableData={tableData}/>
             </div>
           </div>
         </main>

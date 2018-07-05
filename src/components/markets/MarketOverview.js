@@ -29,13 +29,13 @@ export default class MarketOverview extends Component {
   }
 
   onSearch = () => {
-    let {markets} = this.props;
+    let {tableData} = this.props;
     const {searchText} = this.state;
     const reg = new RegExp(searchText, 'gi');
     this.setState({
       filterDropdownVisible: false,
       filtered: !!searchText,
-      data: this.data.map((record) => {
+      data: tableData.map((record) => {
         console.log(record);
         const match = record.name.match(reg);
         console.log(match);
@@ -59,12 +59,25 @@ export default class MarketOverview extends Component {
 
 
   setColumn = () => {
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return 1;
+        } else if (obj1[property] < obj2[property]) {
+          return -1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
     const columns = [
       {
         title: 'rank',
         dataIndex: 'rank',
         key: 'rank',
-        sorter: true
+        sorter: compare('rank')
       },
       {
         title: 'name',
@@ -82,10 +95,10 @@ export default class MarketOverview extends Component {
               <Button type="primary" onClick={this.onSearch}>Search</Button>
             </div>
         ),
-        filterIcon: <Icon type="smile-o" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
+        filterIcon: <Icon type="filter" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
         filterDropdownVisible: this.state.filterDropdownVisible,
         onFilterDropdownVisibleChange: (visible) => {
-          console.log(visible);
+
           this.setState({
             filterDropdownVisible: visible,
           }, () => {
@@ -96,7 +109,7 @@ export default class MarketOverview extends Component {
       {
         title: 'pair',
         dataIndex: 'pair',
-        key: 'pair',
+        key: 'pair'
       },
       {
         title: 'volumeNative',
@@ -106,36 +119,16 @@ export default class MarketOverview extends Component {
     ];
     return columns;
   }
-  setData = (markets) => {
-    let data=[];
-    if(markets.length) {
-      markets.map((val) => {
-        data.push({
-          key: val.rank,
-          rank: val.rank,
-          name: val.name,
-          pair: val.pair,
-          volumeNative: val.volumeNative,
-        });
 
-      })
-    }
-  //  this.setState({data: data});
-    return data;
-  }
 
   render() {
     let columns = this.setColumn();
-    let {markets} = this.props;
-    let data = this.state;
-    let tableData;
+    let {tableData} = this.props;
+    let {data} = this.state;
     if(data.length){
       tableData = this.state.data;
     }
-    else{
-      tableData= this.setData(markets);
-    }
-
+/*
     function compare(property) {
       return function (obj1, obj2) {
 
@@ -149,8 +142,8 @@ export default class MarketOverview extends Component {
 
       }
     }
-
-    markets = markets.sort(compare("rank")).slice(0, 99);
+*/
+   // markets = markets.sort(compare("rank")).slice(0, 99);
     //console.log(markets);
 
 
