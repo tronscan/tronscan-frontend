@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Arabic                                                       #
 #         Status: First Version                                                  #
 #         Number of checks: 3                                                    #
@@ -142,7 +142,7 @@ export const messages = {
   "view_super_representatives": "راجع الممثلين المميزين",
   "create_new_wallet": "أنشئ محفظة جديدة",
   "view_tokens": "راجع الرموز",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "العمليات المنجزه في اليوم الأخير",
 
 /*
 ##################################################################################
@@ -670,9 +670,9 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "hash": "التجزئه",
+  "time": "الوقت",
+  "parenthash": "اصل التجزئه",
+  "size": "الحجم",
 
 };
