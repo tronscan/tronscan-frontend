@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-27062018                                                  #
-#         Update Date: 27.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Czech                                                        #
 #         Status: First Version                                                  #
 #         Number of checks: 4                                                    #
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Oznámení povolena",
   "contract_type": "Typ smlouvy",
   "filters": "Filtry",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Odeslat známky",
 
 /*
 ##################################################################################
@@ -171,7 +171,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Hodnocení uzlů",
 
 /*
 ##################################################################################
@@ -686,8 +686,8 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
+  "time": "čas",
   "parenthash": "parenthash",
-  "size": "size",
+  "size": "velikost",
 
 };

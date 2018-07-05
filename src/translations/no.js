@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Norwegian                                                    #
 #         Status: first Version                                                  #
 #         Number of checks: 4                                                    #
@@ -686,8 +686,8 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
+  "time": "tid",
   "parenthash": "parenthash",
-  "size": "size",
+  "size": "størrelse",
 
 };
