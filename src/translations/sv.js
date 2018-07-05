@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-29062018                                                  #
-#         Update Date: 29.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 5                                                    #
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "skicka Tokens",
 
 /*
 ##################################################################################
@@ -639,8 +639,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Anmäl en bug / förslag",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Vanliga frågor",
+  "telegram_updates": "Telegramuppdateringar",
 
 /*
 ##################################################################################
@@ -681,9 +681,9 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
+  "time": "tid",
   "parenthash": "parenthash",
-  "witness": "witness",
-  "size": "size",
+  "witness": "bevittna",
+  "size": "storlek",
 
 };
