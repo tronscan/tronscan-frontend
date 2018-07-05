@@ -142,7 +142,7 @@ export const messages = {
   "view_super_representatives": "Vedi i Super Rappresentanti",
   "create_new_wallet": "Crea un nuovo portafoglio",
   "view_tokens": "Vedi Token",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "Transazioni nell'ultimo giorno",
 
 /*
 ##################################################################################
@@ -201,7 +201,7 @@ export const messages = {
   "permitted_characters_message": "Il nome può contenere solamente i caratteri a-z A-Z 0-9",
   "change_name": "Cambia Nome",
   "account_name": "Nome account",
-  "show_qr_code": "Visuallizza codice QR",
+  "show_qr_code": "Visualizza codice QR",
   "do_not_send_2": "Non inviare TRX dal tuo wallet oppure da un exchange all'indirizzo dell'account della testnet soprastante!",
   "bandwidth": "larghezza di banda",
   "balance": "saldo",
@@ -644,8 +644,8 @@ export const messages = {
   "tron_architechure": "Architettura TRON",
   "tron_protobuf_doc": "Documentazione TRON Protobuf",
   "report_an_error": "Segnala un bug / Invia un suggerimento",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Domande Frequenti",
+  "telegram_updates": "Aggiornamenti Telegram",
 
 /*
 ##################################################################################
