@@ -124,8 +124,6 @@ class Home extends Component {
 
     let {search, isShaking, hasFound, stats} = this.state;
 
-    console.log(stats);
-
     return (
       <main className="home pb-0">
         <div className="container-fluid position-relative d-flex p-3 mx-auto flex-column">

@@ -20,7 +20,7 @@ export class MultiLineReact extends React.Component {
     super(props)
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
-      lineId: 'line' + id
+      lineId: 'multiLine' + id
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
