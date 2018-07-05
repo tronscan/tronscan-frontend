@@ -142,7 +142,7 @@ export const messages = {
   "view_super_representatives": "Ver Super Representantes",
   "create_new_wallet": "Crear Cartera",
   "view_tokens": "Ver Tokens",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "Transacciones en el último día",
 
 /*
 ##################################################################################
@@ -663,7 +663,7 @@ export const messages = {
   "keystore_file": "Archivo Clave Cifrada",
   "select_file": "Seleccione Archivo",
   "login_mobile": "Inicie sesión con un dispositivo móvil",
-  "create_wallet": "crear billetera",
+  "create_wallet": "crear Cartera",
   "no_open_wallet": "No hay una cartera abierta para mostrar",
   "new_wallet": "Nueva Cartera",
   "password_encr_key_message_0": "Esta contraseña cifra su clave privada. Esto no actúa como una semilla para generar sus claves.",
