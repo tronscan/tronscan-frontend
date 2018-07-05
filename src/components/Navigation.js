@@ -591,7 +591,7 @@ class Navigation extends PureComponent {
 const styles = {
   search: {
     fontSize: 13,
-    minWidth: 220,
+    minWidth: 260,
   },
   searchType: {
     fontSize: 13,
