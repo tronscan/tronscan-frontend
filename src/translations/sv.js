@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
+  "transactions_last_day": "Transaktioner på sista dagen",
 
 /*
 ##################################################################################

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Xem Siêu Đại Diện",
   "create_new_wallet": "Tạo ví mới",
   "view_tokens": "Xem mã token",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

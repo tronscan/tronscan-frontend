@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Огляд Супер-представників",
   "create_new_wallet": "Створити новий Гаманець",
   "view_tokens": "Перегляд Токенів",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

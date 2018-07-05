@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "슈퍼 대표(SR) 목록보기",
   "create_new_wallet": "새 지갑 만들기",
   "view_tokens": "토큰 보기",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

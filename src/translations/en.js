@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Vizualizare Super Reprezentanți",
   "create_new_wallet": "Creați un nou Portofel",
   "view_tokens": "Vizualizare Tokeni",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "სუპერ წარმომადგენლის ხილვა",
   "create_new_wallet": "შექმენით ახალი საფულე",
   "view_tokens": "ტოკენების ხილვა",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

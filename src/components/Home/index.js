@@ -186,7 +186,7 @@ class Home extends Component {
                 <Link to="/blockchain/transactions"
                       className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTransactionPerHour} end={stats.transactionPerHour} duration={1}/></h2>
-                  <p>Transactions in last day</p>
+                  <p>{tu("transactions_last_day")}</p>
                 </Link>
               </div>
               <div className="col-md-3">

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "مشاهده نمایندگان ممتاز",
   "create_new_wallet": "ایجاد کیف پول جدید",
   "view_tokens": "مشاهده توکن ها",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

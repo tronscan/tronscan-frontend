@@ -141,6 +141,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################

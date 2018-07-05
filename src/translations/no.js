@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representanter",
   "create_new_wallet": "Opprette ny lommebok",
   "view_tokens": "Se Tokener",
+  "transactions_last_day": "Transaksjoner i siste dag",
 
 /*
 ##################################################################################
