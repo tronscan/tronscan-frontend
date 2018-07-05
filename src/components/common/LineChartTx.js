@@ -38,8 +38,6 @@ export class LineReactTx extends React.Component {
         let temp;
         temp={...val,value:val.totalTransaction};
         config.txOverviewChart.xAxis[0].data.push(intl.formatDate(val.date));
-        console.log(intl.formatDate(val.date));
-
         config.txOverviewChart.series[0].data.push(temp);
       })
     }
