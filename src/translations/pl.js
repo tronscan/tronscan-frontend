@@ -142,7 +142,7 @@ export const messages = {
   "view_super_representatives": "Zobacz Super Reprezentantów",
   "create_new_wallet": "Utwórz portfel",
   "view_tokens": "Zobacz tokeny",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "Transakcji wczoraj",
 
 /*
 ##################################################################################
@@ -685,8 +685,8 @@ export const messages = {
 ##################################################################################
 */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "time": "czas",
+  "parenthash": "nadrzędny hash",
+  "size": "wielkość",
 
 };
