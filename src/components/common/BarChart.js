@@ -20,7 +20,7 @@ export class BarReact extends React.Component {
 
   initBar(id) {
     let {intl, data} = this.props;
-    console.log(data);
+
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
