@@ -3,6 +3,7 @@ import {ONE_TRX} from "../../../constants";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
+import {tu} from "../../../utils/i18n";
 
 export default function Contract({contract}) {
 
@@ -13,16 +14,16 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">TransferContract</h5>
+            <h5 className="card-title text-center">{tu("transfer_contract")}</h5>
             <p>
-              TRX transfer between addresses
+              {tu("TRX_transfer_between_addresses")}
             </p>
           </div>
           <table className="table">
             <tbody>
-              <Field label="From"><AddressLink address={contract.from} /></Field>
-              <Field label="To"><AddressLink address={contract.to} /></Field>
-              <Field label="Amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
+              <Field label="from"><AddressLink address={contract.from} /></Field>
+              <Field label="to"><AddressLink address={contract.to} /></Field>
+              <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
             </tbody>
           </table>
         </Fragment>
@@ -32,16 +33,16 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">TransferAssetContract</h5>
+            <h5 className="card-title text-center">{tu("transfer_asset_contract")}</h5>
             <p>
-              Token transfer between addresses
+              {tu("token_transfer_between_addresses")}
             </p>
           </div>
           <table className="table">
-            <Field label="From"><AddressLink address={contract.from} /></Field>
-            <Field label="To"><AddressLink address={contract.to} /></Field>
-            <Field label="Amount">{contract.amount}</Field>
-            <Field label="Token">{contract.token}</Field>
+            <Field label="from"><AddressLink address={contract.from} /></Field>
+            <Field label="to"><AddressLink address={contract.to} /></Field>
+            <Field label="amount">{contract.amount}</Field>
+            <Field label="token">{contract.token}</Field>
           </table>
         </Fragment>
       );
@@ -49,16 +50,16 @@ export default function Contract({contract}) {
       return (
           <Fragment>
             <div className="card-body">
-              <h5 className="card-title text-center">ParticipateAssetIssueContract</h5>
+              <h5 className="card-title text-center">{tu("participate_asset_issue_contract")}</h5>
               <p>
-                Participate token between addresses
+                {tu("participate_token_between_addresses")}
               </p>
             </div>
             <table className="table">
-              <Field label="From"><AddressLink address={contract.ownerAddress} /></Field>
-              <Field label="To"><AddressLink address={contract.toAddress} /></Field>
-              <Field label="Amount">{contract.amount / ONE_TRX}</Field>
-              <Field label="Token">{contract.token}</Field>
+              <Field label="from"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="to"><AddressLink address={contract.toAddress} /></Field>
+              <Field label="amount">{contract.amount / ONE_TRX}</Field>
+              <Field label="token">{contract.token}</Field>
             </table>
           </Fragment>
       );
@@ -66,13 +67,13 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">WitnessUpdateContract</h5>
+            <h5 className="card-title text-center">{tu("witness_update_contract")}</h5>
             <p>
-              Updates a witness
+              {tu("updates_a_witness")}
             </p>
           </div>
           <table className="table">
-            <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+            <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
             <Field label="URL">{contract.url}</Field>
           </table>
         </Fragment>
@@ -81,13 +82,13 @@ export default function Contract({contract}) {
       return (
           <Fragment>
             <div className="card-body">
-              <h5 className="card-title text-center">WitnessCreateContract</h5>
+              <h5 className="card-title text-center">{tu("witness_create_contract")}</h5>
               <p>
-                Create a witness
+                {tu("create_a_witness")}
               </p>
             </div>
             <table className="table">
-              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
               <Field label="URL">{contract.url}</Field>
             </table>
           </Fragment>
@@ -97,14 +98,14 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">AccountUpdateContract</h5>
+            <h5 className="card-title text-center">{tu("account_update_contract")}</h5>
             <p>
-              Update account name
+              {tu("update_account_name")}
             </p>
           </div>
           <table className="table">
-            <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
-            <Field label="Account Name">{contract.name}</Field>
+            <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
+            <Field label="account_name">{contract.name}</Field>
           </table>
         </Fragment>
       );
@@ -112,13 +113,13 @@ export default function Contract({contract}) {
       return (
           <Fragment>
             <div className="card-body">
-              <h5 className="card-title text-center">WithDrawBalanceContract</h5>
+              <h5 className="card-title text-center">{tu("withdraw_balance_contract")}</h5>
               <p>
-                Withdraw balance
+                {tu("withdraw_balance")}
               </p>
             </div>
             <table className="table">
-              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
             </table>
           </Fragment>
       );
@@ -127,15 +128,15 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">FreezeBalanceContract</h5>
+            <h5 className="card-title text-center">{tu("freeze_balance_contract")}</h5>
             <p>
-              Freeze TRX
+              {tu("freeze_TRX")}
             </p>
           </div>
           <table className="table">
-            <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
-            <Field label="Frozen Balance">{contract.frozenBalance / ONE_TRX}</Field>
-            <Field label="Frozen Days">{contract.frozenDuration}</Field>
+            <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
+            <Field label="frozen_balance">{contract.frozenBalance / ONE_TRX}</Field>
+            <Field label="frozen_days">{contract.frozenDuration}</Field>
           </table>
         </Fragment>
       );
@@ -144,13 +145,13 @@ export default function Contract({contract}) {
       return (
           <Fragment>
             <div className="card-body">
-              <h5 className="card-title text-center">UnfreezeBalanceContract</h5>
+              <h5 className="card-title text-center">{tu("unfreeze_balance_contract")}</h5>
               <p>
-                Unfreeze TRX
+                {tu("unfreeze_TRX")}
               </p>
             </div>
             <table className="table">
-              <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
             </table>
           </Fragment>
       );
@@ -159,22 +160,22 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">VoteWitnessContract</h5>
+            <h5 className="card-title text-center">{tu("vote_witness_contract")}</h5>
             <p>
-              Vote for a Witness
+              {tu("vote_for_a_witness")}
             </p>
           </div>
           <table className="table">
-            <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
+            <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
             <tr>
-              <th>Votes</th>
+              <th>{tu("votes")}</th>
               <td>
                 <ul>
                   {
                     contract.votes.map(vote => (
                       <li>
                         <AddressLink address={vote.voteAddress} truncate={false} />
-                        {"counts"} : {vote.voteCount}
+                        {tu("counts")} : {vote.voteCount}
                       </li>
                     ))
                   }
@@ -189,16 +190,16 @@ export default function Contract({contract}) {
       return (
         <Fragment>
           <div className="card-body">
-            <h5 className="card-title text-center">AssetIssueContract</h5>
+            <h5 className="card-title text-center">{tu("asset_issue_contract")}</h5>
             <p>
-              Issue a new asset
+              {tu("issue_a_new_asset")}
             </p>
           </div>
           <table className="table">
-            <Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>
-            <Field label="Token Name">{contract.name}</Field>
-            <Field label="Total Supply">{contract.totalSupply}</Field>
-            <Field label="TRX Num">{contract.trxNum / ONE_TRX}</Field>
+            <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
+            <Field label="token_name">{contract.name}</Field>
+            <Field label="total_supply">{contract.totalSupply}</Field>
+            <Field label="TRX_num">{contract.trxNum / ONE_TRX}</Field>
             <Field label="Num">{contract.num}</Field>
             <Field label="Start Time">{contract.startTime}</Field>
             <Field label="End Time">{contract.endTime}</Field>

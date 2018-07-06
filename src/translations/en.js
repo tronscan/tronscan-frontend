@@ -62,7 +62,7 @@ export const messages = {
   "submit": "submit",
   "send": "send",
   "receive": "receive",
-  "supply": "supply",
+  "supply": "TRX Held",
   "view": "view",
   "view_all": "View all",
   "create": "create",
@@ -243,7 +243,7 @@ export const messages = {
   "unfreeze": "unfreeze",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
+  "freeze_trx_premessage_0": `TRX can be frozen to gain Tron Power and enable additional features.
    For example, with Tron Power you can `,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
@@ -421,7 +421,7 @@ export const messages = {
   "vote_guide_message": `Use your TRX to vote for Super Representatives.
    For every TRX you hold in your account you have one vote to spend.
    TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+   The number of votes will be updated at 02:00,08:00,14:00,20:00(GMT+8）every day and the list of delegates will be updated.`,
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
@@ -475,7 +475,7 @@ export const messages = {
   "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
   "participation_message_1": " tokens.",
   "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
+   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date and frozen
    days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
   "participation": "participation",
@@ -671,5 +671,55 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new added                                                                      #
+  #                                                                                #
+  ##################################################################################
+  */
+  "transactions_per_day":"Transactions Per Day",
+  "date":"Date",
+  "total_transactions":"Total Transactions",
+  "avg_blockTime":"Avg BlockTime",
+  "avg_blockSize":"Avg BlockSize",
+  "total_BlockCount":"Total BlockCount",
+  "new_address_seen":"New Address Seen",
+  "transfer_contract":"Transfer Contract",
+  "TRX_transfer_between_addresses":"TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses":"Token transfer between addresses",
+  "participate_asset_issue_contract":"Participate Asset Issue Contract",
+  "participate_token_between_addresses":"Participate token between addresses",
+  "witness_update_contract":"Witness Update Contract",
+  "updates_a_witness":"Update a witness",
+  "witness_create_contract":"Witness Create Contract",
+  "create_a_witness":"Create a witness",
+  "account_update_contract":"Account Update Contract",
+  "update_account_name":"Update account name",
+  "withdraw_balance_contract":"Withdraw Balance Contract",
+  "withdraw_balance":"Withdraw balance",
+  "freeze_balance_contract":"Freeze Balance Contract",
+  "freeze_TRX":"Freeze TRX",
+  "unfreeze_balance_contract":"Unfreeze Balance Contract",
+  "unfreeze_TRX":"Unfreeze TRX",
+  "vote_witness_contract":"Vote Witness Contract",
+  "vote_for_a_witness":"Vote for a Witness",
+  "asset_issue_contract":"Asset Issue Contract",
+  "issue_a_new_asset":"Issue a new asset",
+  "from":"From",
+  "to":"To",
+  "amount":"Amount",
+  "token":"Token",
+  "owner_address":"Owner Address",
+  "account_name":"Account Name",
+  "frozen_balance":"Frozen Balance",
+  "frozen_days":"Frozen Days",
+  "votes":"Votes",
+  "counts":"counts",
+  "token_name":"Token Name",
+  "total_supply":"total_supply",
+  "TRX_num":"TRX Num",
 
 };

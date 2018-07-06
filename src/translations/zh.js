@@ -1,3 +1,4 @@
+import {tu} from "../utils/i18n";
 
 export const messages = {
   /*
@@ -94,9 +95,9 @@ export const messages = {
   "enable_desktop_notifications": "启用桌面通知",
   "desktop_notification_enabled": "桌面通知启用!",
   "notifications_enabled": "通知启用",
-  "contract_type": "合同类型",
+  "contract_type": "合约类型",
   "filters": "过滤器",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "发送资产",
 
   /*
   ##################################################################################
@@ -170,7 +171,7 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking":"节点排名",
+  "nodes_ranking": "节点排名",
 
   /*
   ##################################################################################
@@ -184,8 +185,8 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "TRX_transaction_chart":"TRX交易图表",
-  "transactions_per_day":"日交易量",
+  "TRX_transaction_chart": "TRX交易图表",
+  "transactions_per_day": "日交易数目",
 
   /*
   ##################################################################################
@@ -213,7 +214,7 @@ export const messages = {
   "expires": "失效",
   "have_been_added_to_your_account": "已添加至账户！",
   "information_message_1": "主网不能申请测试币，请联系波场工作人员申请测试币。",
-  "information_message_2": "每个账户只能领取10次TRX.",
+  "information_message_2": "每个账户只能领取10次TRX。",
   "request_trx_for_testing": "申请测试TRX",
   "token_balances": "通证余额",
   "produced_blocks": "出块数目",
@@ -224,7 +225,7 @@ export const messages = {
   "network": "网络",
   "current": "当前",
   "trx_received": "已接收TRX",
-  "test_trx_temporarily_unavailable_message": "暂时无法领取测试TRX,请稍后再试。",
+  "test_trx_temporarily_unavailable_message": "暂时无法领取测试TRX，请稍后再试。",
   "not_enough_trx": "TRX余额不足",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   "send_to_following_address": "对以下地址转账",
@@ -243,9 +244,9 @@ export const messages = {
   "unfreeze": "解冻",
   "freeze_trx_least": "至少需要1TRX才能成功冻结。",
   "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
-  "freeze_trx_premessage_0": `再次冻结/锁定TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以为超级代表投票。`,
+  "freeze_trx_premessage_0": `再次冻结TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以`,
   "freeze_trx_premessage_link": "为超级代表投票。",
-  "freeze_trx_premessage_1": ` 冻结通证将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
+  "freeze_trx_premessage_1": ` 冻结的TRX将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
 
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
@@ -261,7 +262,7 @@ export const messages = {
   "successfully_changed_name_to_message": "成功更改名字",
   "unable_to_rename_title": "无法重命名",
   "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
-  "unfreeze_trx_confirm_message": "确定要解冻TRX?",
+  "unfreeze_trx_confirm_message": "确定要解冻TRX？",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
 
@@ -275,10 +276,8 @@ export const messages = {
   "apply_for_delegate": "申请成为超级代表",
   "apply_super_representative_candidate": "申请成为超级代表候选人",
   "your_personal_website_address": "个人网页地址",
-
-  "apply_for_delegate_predescription":"每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
+  "apply_for_delegate_predescription": "每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
   "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表候选人，或是在投票页面为候选人投票。每个用户可以为多个候选人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励32个TRX。27个超级代表和前100名代表候选人也可以根据票数获得节点奖励。申请成为候选人需要一次性扣除9,999TRX的手续费，用户为超级代表候选人投票不消耗TRX。",
-
   "unknown_error": "发生未知错误",
   "representative_understand": "我已了解如何成为波场超级代表",
   "generate_account": "点击生成账户密码及地址",
@@ -301,46 +300,46 @@ export const messages = {
   "trx_produced": "生成交易数量",
   "do_not_send_1": "请勿通过钱包或交易所对测试网地址转账！",
   "go_to_votelist": "前往投票列表",
-  "understand_tron_sr_message_0": "我知道怎么成为超级代表，我确认",
-  "understand_tron_sr_message_1": "费用.",
+  "understand_tron_sr_message_0": "我知道怎么成为超级代表，我确认一次性扣除",
+  "understand_tron_sr_message_1": "的费用。",
   "invalid_url": "无效的网址",
-  "apply_representative_error_message_0": "当你试图申请超级代表时出错了.",
-  "apply_representative_error_message_1": "确保有足够的TRX来支付费用或者稍后再尝试.",
-  "open_external_link": "你正在打开一个外部链接",
-  "private_key_untrusted_website_message_0": "不要在一个未被信任的网站输入你的私钥.",
-  "no_official_tron_website": "不是官方的Tron站点.",
-  "continue_to_external_website": "继续外部链接",
-  "url_changed": "URL改变",
-  "successfully_changed_website_message": "成功的更改网站到",
-  "unable_to_change_website_title": "改变URL失败",
-  "unable_to_change_website_message": "更新网站时出错了，请稍后重试",
-  "successfully_linked_github": "成功的链接到Github!",
-  "github_linked": "Github已链接!",
-  "unable_to_link_github_message": "不能链接到Github，请确认用户名是正确的！",
-  "could_not_link_github": "不能链接Github",
-  "enter_your_github_username": "输入你的Github用户名",
-  "link_to_github": "链接到Github",
-  "link_github": "链接Github",
-  "you_must_enter_a_url": "你必须输入一个URL",
-  "success": "成功",
-  "successfully_appied_sr_canidate_message_0": "成功申请成为超级代表候选者.",
-  "successfully_appied_sr_canidate_message_1": "你的账户马上就会被更新.",
-  "landing_page": "着陆页面",
-  "show_more_information_publish_sr_page": "展示更多如何发布一个页面的信息",
-  "create_sr_landing_page_message_0": "超级代表可以创建一个展示他们团队和计划的页面",
-  "set_github_url_message_0": "你已经配置你的Github模板了吗? 然后用下面的按钮设置URL",
-  "set_github_link": "设置Github链接",
-  "could_not_claim_rewards": "无法索取报酬",
-  "claim_rewards_error_message": "当索取报酬时出错了，请稍后重试.",
-  "rewards_claimed": "报酬已索取",
-  "successfully_claimed_rewards": "成功索取报酬",
-  "claim_rewards": "索取报酬",
-  "sr_receive_reward_message_0": "作为一个超级代表，生产区块会获得报酬，报酬可以每24小时索取一次",
-  "intro": "介绍",
-  "budget_expenses": "预算花销",
-  "server_configuration": "服务器配置",
-  "community_plan": "社区计划",
-  "team": "团队",
+  "apply_representative_error_message_0": "当您试图申请超级代表时出错了。",
+  "apply_representative_error_message_1": "请确保您的账户有足够的TRX来支付费用或者稍后再尝试。",
+  "open_external_link": "You are opening an external link",
+  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
+  "no_official_tron_website": "is not an official Tron site.",
+  "continue_to_external_website": "Continue to external site",
+  "url_changed": "URL changed",
+  "successfully_changed_website_message": "Successfully changed website to ",
+  "unable_to_change_website_title": "Unable to change URL",
+  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
+  "successfully_linked_github": "Successfully linked to Github!",
+  "github_linked": "Github linked!",
+  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
+  "could_not_link_github": "Could not link Github",
+  "enter_your_github_username": "Enter your Github username",
+  "link_to_github": "Link to Github",
+  "link_github": "Link Github",
+  "you_must_enter_a_url": "You must enter a URL",
+  "success": "Success",
+  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
+  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
+  "landing_page": "Landing Page",
+  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
+  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
+  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
+  "set_github_link": "Set Github Link",
+  "could_not_claim_rewards": "Could not claim rewards",
+  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
+  "rewards_claimed": "Rewards Claimed!",
+  "successfully_claimed_rewards": "Successfully claimed rewards",
+  "claim_rewards": "Claim Rewards",
+  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
   /*
   ##################################################################################
@@ -372,7 +371,7 @@ export const messages = {
   "fill_a_valid_number": "请填写有效的数值",
   "fill_a_valid_address": "请填写有效的地址",
   "make_another_transaction": "发起其他交易",
-  "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证,总计获得{通证数额} 个代币.",
+  "token_exchange_confirm": "确认花费 {trx数额} 用于认购通证，总计获得{通证数额} 个代币。",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "发生未知错误，请几分钟后再次尝试",
   "An_error_occurred": "发生错误",
   "create_a_token": "发行通证",
@@ -422,7 +421,7 @@ export const messages = {
   "vote_guide_message": `使用TRX为超级代表投票。
    每一个TRX享有一次投票机会。
    投票不消耗TRX。可以为多个超级代表投票，投票不限次数。
-   最终票数于每天24点统计并更新超级代表名单。`,
+   票数于每天2:00,8:00,14:00,20:00更新，同时代表排序会刷新。`,
   "search_address": "搜索地址",
   "token_transactions": "通证交易",
   "token_holders": "通证持有者",
@@ -474,16 +473,18 @@ export const messages = {
   "exchange_rate_message_2": "每",
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "规定通证发行周期，在发行期间，参与者可以用TRX购买",
-  "participation_message_1": " 通证.",
-  "frozen_supply_message_0": "可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。",
+  "participation_message_1": " 通证。",
+  "frozen_supply_message_0": `可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。`,
   "token_issued_successfully": "通证发行成功！",
   "participation": "参与",
   "start_date": "开始日期",
   "end_date": "结束时期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
-  "token_issue_guide_message_1": "用户账户中有至少1024TRX，就可以在波场协议上发行通证。",
-  "token_issue_guide_message_2": "通证发行后，会在通证总览页面进行显示。之后用户可以在发行期限内参与认购，用TRX兑换通证。",
-  "token_issue_guide_message_3": "在发行通证后，您的账户将会收到全部的发行数额。当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。",
+  "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
+  "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
+    之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
+  "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
+    当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
 
   /*
   ##################################################################################
@@ -503,17 +504,17 @@ export const messages = {
   "no_url_error": "请填写网站URL",
   "past_starttime_error": "开始日期早于今日日期",
   "no_transactions": "无交易",
-  "errors_in_form": "表单里有错误",
-  "token_link_message_0": "通证将会可用在",
-  "token_link_message_1": "通证页面",
-  "token_link_message_2": "几分钟后",
-  "description_error_message_0": "描述需要大于200个字符",
-  "token_creation_error": "当创建通证时发生错误",
-  "tokenname_error_message_0": "名字需要大于32个字符",
-  "tokenname_error_message_1": "名字需要包含a-Z字符",
-  "abbreviation_required": "需要缩写",
-  "abbreviation_error_message_0": "缩写需要大于5个字符",
-  "abbreviation_error_message_1": "缩写只能包含a-Z字符",
+  "errors_in_form": "There are errors in the form",
+  "token_link_message_0": "The token will be available on the",
+  "token_link_message_1": "Tokens page",
+  "token_link_message_2": "in a few minutes",
+  "description_error_message_0": "Description may not be longer then 200 characters",
+  "token_creation_error": "An error occurred while trying to create the token",
+  "tokenname_error_message_0": "Name may not be longer then 32 characters",
+  "tokenname_error_message_1": "Name may only contain a-Z characters",
+  "abbreviation_required": "Abbreviation is required",
+  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
+  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
 
   /*
   ##################################################################################
@@ -576,7 +577,7 @@ export const messages = {
   "submissing_vote_message_0": "您已投票成功，将会在新一轮投票中生效。",
   "submissing_vote_message_1": "您可以随时重新分配您的票数",
   "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
-  "loading_super_representatives": "超级代表加载中",
+  "loading_super_representatives": "Loading Super Representatives",
 
   /*
   ##################################################################################
@@ -679,4 +680,59 @@ export const messages = {
   "parenthash": "父哈希",
   "witness": "超级代表",
   "size": "大小",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new added                                                                      #
+  #                                                                                #
+  ##################################################################################
+  */
+  "transactions_per_day":"日交易数",
+  "date":"日期",
+  "total_transactions":"总交易数",
+  "avg_blockTime":"平均生成区块时间",
+  "avg_blockSize":"平均区块大小",
+  "total_BlockCount":"总区块数",
+  "new_address_seen":"新产生地址数",
+  "transfer_contract":"转账合约",
+  "TRX_transfer_between_addresses":"地址间转账",
+  "transfer_asset_contract": "通证转账合约",
+  "token_transfer_between_addresses":"地址间转账通证",
+  "participate_asset_issue_contract":"参与通证发行合约",
+  "participate_token_between_addresses":"地址间参与通证",
+  "witness_update_contract":"超级代表更新合约",
+  "updates_a_witness":"更新超级代表",
+  "witness_create_contract":"超级代表创建合约",
+  "create_a_witness":"创建超级代表",
+  "account_update_contract":"账户更新合约",
+  "update_account_name":"更新账户名称",
+  "withdraw_balance_contract":"提现合约",
+  "withdraw_balance":"提现",
+  "freeze_balance_contract":"冻结合约",
+  "freeze_TRX":"冻结TRX",
+  "unfreeze_balance_contract":"解冻合约",
+  "unfreeze_TRX":"解冻TRX",
+  "vote_witness_contract":"超级代表投票合约",
+  "vote_for_a_witness":"选举超级代表",
+  "asset_issue_contract":"资产发行合约",
+  "issue_a_new_asset":"发行资产",
+  "from":"来自",
+  "to":"去往",
+  "amount":"数量",
+  "token":"通证",
+  "owner_address":"所有者地址",
+  "account_name":"账户名称",
+  "frozen_balance":"冻结数量",
+  "frozen_days":"冻结天数",
+  "votes":"投票",
+  "counts":"票数",
+  "token_name":"通证名称",
+  "total_supply":"总发行量",
+  "TRX_num":"TRX数目",
+
+
+
+
+
 };
