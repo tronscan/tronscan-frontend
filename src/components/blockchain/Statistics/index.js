@@ -65,17 +65,17 @@ class Statistics extends React.Component {
     });
 
     let transactionTotalStats = stats.total.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
     let valueStats = stats.value.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value / ONE_TRX,
     }));
 
     blockStats = blockStats.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
@@ -96,6 +96,7 @@ class Statistics extends React.Component {
   render() {
 
     let {txOverviewStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -137,7 +138,7 @@ class Statistics extends React.Component {
                     {
                       transactionValueStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -153,7 +154,7 @@ class Statistics extends React.Component {
                     {
                       transactionStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -167,7 +168,7 @@ class Statistics extends React.Component {
                     {
                       blockStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>

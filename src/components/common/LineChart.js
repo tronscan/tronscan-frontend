@@ -27,6 +27,7 @@ export class LineReact extends React.Component {
     config.lineChart.title.text='';
     config.lineChart.xAxis.data = [];
     config.lineChart.series[0].data = [];
+
     if(data && data.length>0) {
       data.map((val) => {
 
@@ -38,13 +39,13 @@ export class LineReact extends React.Component {
             config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
           }
         }
-        else
+        else {
           config.lineChart.xAxis.data.push(val[keysData[0]]);
-
-
+        }
         config.lineChart.series[0].data.push(val[keysData[1]]);
       })
     }
+
     if(data && data.length===0){
       config.lineChart.title.text="No data";
     }
