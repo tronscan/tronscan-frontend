@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-05072018                                                  #
-#         Update Date: 05.07.2018                                                #
+#         Version: 1.5-06072018                                                  #
+#         Update Date: 06.07.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 5                                                    #
@@ -186,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
+  "TRX_transaction_chart": "TRX Transaktionskarta",
+  "transactions_per_day": "Transaktioner per dag",
 
 /*
 ##################################################################################

@@ -186,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################

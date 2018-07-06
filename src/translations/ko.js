@@ -186,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "지난 시간 이후로 시작된 트랜잭션",
   "average_blocksize": "평균 블록 크기",
   "rich_list": "분포 통계",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################

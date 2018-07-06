@@ -186,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "ბოლო საათის ტრანზაქციები",
   "average_blocksize": "საშუალო ბლოკის ზომა",
   "rich_list": "სიმდიდრის სია",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################

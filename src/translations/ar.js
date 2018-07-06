@@ -186,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "العمليات خلال الساعة الأخيرة",
   "average_blocksize": "معدل حجم الكتل",
   "rich_list": "اللائحة الغنية",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
