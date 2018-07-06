@@ -1,3 +1,4 @@
+
 module.exports = {
   pieChart: {
     title: {
@@ -192,7 +193,7 @@ module.exports = {
     ]
   },
   barChart: {
-   // color: ['#3398DB'],
+    // color: ['#3398DB'],
     title: {
       text: 'Ranking'
     },
@@ -231,11 +232,116 @@ module.exports = {
             textBorderWidth: 0
           }
         },
-        itemStyle: {
-
-        }
+        itemStyle: {}
 
       }
     ]
+  },
+  txOverviewChart: {
+    title: {
+      text: '',
+      x: 'center'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        animation: false
+      },
+      formatter: function (datas) {
+        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        return (
+            'Date' + ' : ' + date + '<br/>'+
+            'Total Transaction' + ' : ' + datas[0].data.totalTransaction + '<br/>'+
+            'Avg BlockTime' + ' : ' + datas[0].data.avgBlockTime + '<br/>'+
+            'Avg BlockSize' + ' : ' + datas[0].data.avgBlockSize + '<br/>'+
+            'Total BlockCount' + ' : ' + datas[0].data.totalBlockCount + '<br/>'+
+            'New Address Seen' + ' : ' + datas[0].data.newAddressSeen + '<br/>'
+      )
+
+      }
+    },
+
+    toolbox: {
+      y:-5,
+      feature: {
+        restore: {
+          title:'restore'
+        },
+        saveAsImage: {
+          show:true,
+          title:'save'
+        }
+      }
+    },
+    axisPointer: {
+      link: {
+        xAxisIndex: 'all'
+      }
+    },
+    dataZoom: [{
+      show: true,
+      realtime: true,
+      start: 30,
+      end: 70,
+      xAxisIndex: [0, 1]
+    }, {
+      type: 'inside',
+      realtime: true,
+      start: 30,
+      end: 70,
+      xAxisIndex: [0, 1]
+    }],
+    grid: [{
+      left: 100,
+      right: 40,
+    }, {
+      left: 100,
+      right: 40,
+    }],
+    xAxis: [
+      {
+        type: 'category',
+        boundaryGap: false,
+        axisLine: {
+          onZero: true
+        },
+        data: []
+      },
+      {
+        gridIndex: 1
+      }],
+
+    yAxis: [
+      {
+        name : 'Transactions Per Day',
+        nameGap:20,
+        type: 'value'
+      },
+      {
+        gridIndex: 1
+      }],
+    series: [{
+      name: '',
+      type: 'line',
+      smooth: true,
+      symbol: 'circle',
+      symbolSize: 9,
+      showSymbol: false,
+      lineStyle: {
+        normal: {
+          width: 1
+        }
+      },
+      markPoint: {
+        data: [{
+          type: 'max',
+          name: 'max'
+        }, {
+          type: 'min',
+          name: 'min'
+        }]
+      },
+      data: []
+    }]
   }
 };

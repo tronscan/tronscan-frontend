@@ -572,7 +572,7 @@ class Navigation extends PureComponent {
                        value={search}
                        onKeyDown={this.onSearchKeyDown}
                        onChange={ev => this.setState({search: ev.target.value})}
-                       placeholder="Search Blockchain"/>
+                       placeholder="Search Address, Block, TxHash, Asset"/>
                 <div className="input-group-append">
 
                   <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
@@ -591,7 +591,7 @@ class Navigation extends PureComponent {
 const styles = {
   search: {
     fontSize: 13,
-    minWidth: 220,
+    minWidth: 260,
   },
   searchType: {
     fontSize: 13,
