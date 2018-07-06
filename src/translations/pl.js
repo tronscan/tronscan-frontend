@@ -186,8 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transakcje z ostatniej godziny",
   "average_blocksize": "Średnia wielkość bloku",
   "rich_list": "Lista najbogatszych kont",
-  "TRX_transaction_chart": "TRX Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "TRX_transaction_chart": "Wykres transakcji TRX",
+  "transactions_per_day": "Transakcji dziennie",
 
 /*
 ##################################################################################
@@ -309,7 +309,7 @@ export const messages = {
   "last_confirmed": "Ostatnio potwierdzona",
   "trx_produced": "Potwierdzonych transakcji",
   "do_not_send_1": "Nie wysyłaj TRX ze swojego własnego portfela lub portfela giełdy na powyższy adres znajdujący się w sieci testnet!",
-  "go_to_votelist": "Przejdź do listy głosujących",
+  "go_to_votelist": "Wróć do głosowania",
   "understand_tron_sr_message_0": "Rozumiem jak zostać Reprezentantem TRON i potwierdzam wydanie",
   "understand_tron_sr_message_1": "jako opłaty za rejestrację.",
   "invalid_url": "Nieprawidłowy adres URL",
