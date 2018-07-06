@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "مشاهده نمایندگان ممتاز",
   "create_new_wallet": "ایجاد کیف پول جدید",
   "view_tokens": "مشاهده توکن ها",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -645,6 +649,8 @@ export const messages = {
   "tron_architechure": "معماری TRON",
   "tron_protobuf_doc": "مستندات TRON Protobuf",
   "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -676,5 +682,17 @@ export const messages = {
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
 
 };

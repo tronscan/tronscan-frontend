@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-29062018                                                  #
-#         Update Date: 29.06.2018                                                #
+#         Version: 1.5-06072018                                                  #
+#         Update Date: 06.07.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
 #         Number of checks: 5                                                    #
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "skicka Tokens",
 
 /*
 ##################################################################################
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
+  "transactions_last_day": "Transaktioner på sista dagen",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Bevittna",
   "asset_participation": "Kapitalandel",
   "loading_transaction": "Laddar transaktion",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
+  "TRX_transaction_chart": "TRX Transaktionskarta",
+  "transactions_per_day": "Transaktioner per dag",
 
 /*
 ##################################################################################
@@ -638,6 +642,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Anmäl en bug / förslag",
+  "frequently_asked_questions": "Vanliga frågor",
+  "telegram_updates": "Telegramuppdateringar",
 
 /*
 ##################################################################################
@@ -669,5 +675,17 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Gå till kontosidan",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tid",
+  "parenthash": "parenthash",
+  "size": "storlek",
 
 };

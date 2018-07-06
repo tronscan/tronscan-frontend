@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,7 +172,7 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking":"节点排名",
+  "nodes_ranking": "节点排名",
 
 /*
 ##################################################################################
@@ -636,6 +637,8 @@ export const messages = {
   "tron_architechure": "波场架构",
   "tron_protobuf_doc": "TRON Protobuf文档",
   "report_an_error": "提交BUG/建议",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -668,16 +671,16 @@ export const messages = {
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
 
-  /*
+/*
 ##################################################################################
 #                                                                                #
-# blockchain block                                                                #
+# blockchain block                                                               #
 #                                                                                #
 ##################################################################################
 */
   "hash":"哈希值",
   "time":"时间",
   "parenthash":"父哈希",
-  "witness":"超级代表",
   "size":"大小",
+
 };

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "voir les super représentants",
   "create_new_wallet": "Créer un nouveau portefeuille",
   "view_tokens": "Afficher les jetons",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Asset participation",
   "loading_transaction": "Chargement des transactions",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transactions dans l'heure passée",
   "average_blocksize": "Taille de bloc moyenne",
   "rich_list": "Allocation TRX - Détenteur/quantités",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -647,6 +651,8 @@ export const messages = {
   "tron_architechure": "Architecture de TRON",
   "tron_protobuf_doc": "Documentation TRON Protobuf",
   "report_an_error": "Soumettre un bug / suggestion",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -678,5 +684,17 @@ export const messages = {
   "print_paper_wallet": "Imprimer votre portefeuille papier",
   "new_wallet_ready_message": "Votre nouveau portefeuille est prêt",
   "go_to_account_page": "Aller à la page du compte",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
 
 };
