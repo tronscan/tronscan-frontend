@@ -27,7 +27,11 @@ export default class MarketOverview extends Component {
   onInputChange = (e) => {
     this.setState({searchText: e.target.value});
   }
-
+  onReset = () => {
+    this.setState({searchText: ''}, () => {
+      this.onSearch();
+    });
+  }
   onSearch = () => {
     let {tableData} = this.props;
     const {searchText} = this.state;
@@ -81,6 +85,7 @@ export default class MarketOverview extends Component {
                 onPressEnter={this.onSearch}
             />
             <Button type="primary" onClick={this.onSearch}>Search</Button>
+            <Button className="btn-secondary ml-1" onClick={this.onReset}>Reset</Button>
           </div>
       ),
       filterIcon: <Icon type="filter" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
@@ -116,7 +121,6 @@ export default class MarketOverview extends Component {
 
     }
 
-    console.log(columns);
     return columns;
     /*
     const columns = [

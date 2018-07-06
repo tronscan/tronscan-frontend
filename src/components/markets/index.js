@@ -36,6 +36,7 @@ class Markets extends React.Component {
   };
 
   formatTableData = (markets) => {
+    let {intl} = this.props;
     let data = [];
     markets.sort((a, b) => a.rank - b.rank);
     if (markets.length) {
@@ -45,38 +46,59 @@ class Markets extends React.Component {
           rank: val.rank,
           name: val.name,
           pair: val.pair,
-          volumeNative: val.volumeNative,
+          volumeNative: intl.formatNumber(val.volumeNative)+' TRX',
+          volumePercentage: intl.formatNumber(val.volumePercentage, {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2
+          }) + '%',
+          price: '$' + intl.formatNumber(val.price, {maximumFractionDigits: 8})
         });
 
       })
     }
-    return data;
+    return data.slice(0,99);
   }
 
 
   customizedColumn = () => {
+    let {intl} = this.props;
     let column = [
       {
-        title: 'rank',
+        title: intl.formatMessage({id:'rank'}),
         dataIndex: 'rank',
         key: 'rank',
-        sorter: true
+        sorter: true,
+        width: '5%'
       },
       {
-        title: 'name',
+        title: intl.formatMessage({id:'exchange'}),
         dataIndex: 'name',
         key: 'name',
         filterDropdown: true
       },
       {
-        title: 'pair',
+        title: intl.formatMessage({id:'pair'}),
         dataIndex: 'pair',
-        key: 'pair'
+        key: 'pair',
+        width: '12%'
       },
       {
-        title: 'volumeNative',
+        title: intl.formatMessage({id:'volume'}),
         dataIndex: 'volumeNative',
         key: 'volumeNative',
+        width: '14%'
+      },
+      {
+        title: '%',
+        dataIndex: 'volumePercentage',
+        key: 'volumePercentage',
+        width: '8%'
+      },
+      {
+        title: intl.formatMessage({id:'price'}),
+        dataIndex: 'price',
+        key: 'price',
+        width: '10%'
       }
     ];
 
