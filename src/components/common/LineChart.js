@@ -36,7 +36,10 @@ export class LineReact extends React.Component {
             config.lineChart.xAxis.data.push(intl.formatDate(val[keysData[0]] * 1000));
           }
           else {
-            config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
+            if((val[keysData[0]]+"").length===10)
+              config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]] * 1000));
+            if((val[keysData[0]]+"").length===13)
+              config.lineChart.xAxis.data.push(intl.formatTime(val[keysData[0]]));
           }
         }
         else {
