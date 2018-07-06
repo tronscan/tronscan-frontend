@@ -721,5 +721,8 @@ export const messages = {
   "token_name":"Token Name",
   "total_supply":"total_supply",
   "TRX_num":"TRX Num",
+  "start_time":"Start Time",
+  "end_time":"End Time",
+  "description":"Description",
 
 };

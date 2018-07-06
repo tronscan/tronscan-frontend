@@ -201,9 +201,9 @@ export default function Contract({contract}) {
             <Field label="total_supply">{contract.totalSupply}</Field>
             <Field label="TRX_num">{contract.trxNum / ONE_TRX}</Field>
             <Field label="Num">{contract.num}</Field>
-            <Field label="Start Time">{contract.startTime}</Field>
-            <Field label="End Time">{contract.endTime}</Field>
-            <Field label="Description">{contract.description}</Field>
+            <Field label="start_time">{contract.startTime}</Field>
+            <Field label="end_time">{contract.endTime}</Field>
+            <Field label="description">{contract.description}</Field>
             <Field label="URL"><ExternalLink url={contract.url}/></Field>
           </table>
         </Fragment>

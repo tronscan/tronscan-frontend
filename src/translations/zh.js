@@ -729,7 +729,11 @@ export const messages = {
   "counts":"票数",
   "token_name":"通证名称",
   "total_supply":"总发行量",
-  "TRX_num":"TRX数目",
+  "TRX_num":"TRX Num",
+  "start_time":"开始时间",
+  "end_time":"结束时间",
+  "description":"描述",
+
 
 
 
