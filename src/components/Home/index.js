@@ -156,7 +156,7 @@ class Home extends Component {
                          value={search}
                          onKeyDown={this.onSearchKeyDown}
                          onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder="Search Address, Block Height, Transaction Hash, Asset Name"/>
+                         placeholder="Search Address, Block Height, Transaction Hash, Token Name"/>
 
                   <div className="input-group-append">
                     <button className="btn btn-dark box-shadow-none" onClick={this.doSearch}>

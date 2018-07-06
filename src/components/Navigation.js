@@ -572,7 +572,7 @@ class Navigation extends PureComponent {
                        value={search}
                        onKeyDown={this.onSearchKeyDown}
                        onChange={ev => this.setState({search: ev.target.value})}
-                       placeholder="Search Address, Block, TxHash, Asset"/>
+                       placeholder="Search Address, Block, TxHash, Token"/>
                 <div className="input-group-append">
 
                   <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
