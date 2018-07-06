@@ -36,8 +36,9 @@ class Markets extends React.Component {
   };
 
   formatTableData = (markets) => {
-    let data=[];
-    if(markets.length) {
+    let data = [];
+    markets.sort((a, b) => a.rank - b.rank);
+    if (markets.length) {
       markets.map((val) => {
         data.push({
           key: val.rank,
@@ -52,11 +53,43 @@ class Markets extends React.Component {
     return data;
   }
 
+
+  customizedColumn = () => {
+    let column = [
+      {
+        title: 'rank',
+        dataIndex: 'rank',
+        key: 'rank',
+        sorter: true
+      },
+      {
+        title: 'name',
+        dataIndex: 'name',
+        key: 'name',
+        filterDropdown: true
+      },
+      {
+        title: 'pair',
+        dataIndex: 'pair',
+        key: 'pair'
+      },
+      {
+        title: 'volumeNative',
+        dataIndex: 'volumeNative',
+        key: 'volumeNative',
+      }
+    ];
+
+    return column;
+  }
+
   render() {
 
     let {intl, priceGraph, volumeGraph} = this.props;
     let {markets} = this.state;
     let tableData = this.formatTableData(markets);
+    let column = this.customizedColumn();
+
     return (
         <main className="container header-overlap pb-3">
           <div className="row">
@@ -103,7 +136,7 @@ class Markets extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
-              <MarketOverview tableData={tableData}/>
+              <MarketOverview tableData={tableData} column={column}/>
             </div>
           </div>
         </main>

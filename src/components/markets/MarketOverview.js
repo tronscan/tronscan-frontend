@@ -36,9 +36,7 @@ export default class MarketOverview extends Component {
       filterDropdownVisible: false,
       filtered: !!searchText,
       data: tableData.map((record) => {
-        console.log(record);
         const match = record.name.match(reg);
-        console.log(match);
         if (!match) {
           return null;
         }
@@ -58,7 +56,7 @@ export default class MarketOverview extends Component {
   }
 
 
-  setColumn = () => {
+  setColumn = (column) => {
     function compare(property) {
       return function (obj1, obj2) {
 
@@ -72,6 +70,55 @@ export default class MarketOverview extends Component {
 
       }
     }
+    let filter = {
+      filterDropdown: (
+          <div className="custom-filter-dropdown">
+            <Input
+                ref={ele => this.searchInput = ele}
+                placeholder="Search name"
+                value={this.state.searchText}
+                onChange={this.onInputChange}
+                onPressEnter={this.onSearch}
+            />
+            <Button type="primary" onClick={this.onSearch}>Search</Button>
+          </div>
+      ),
+      filterIcon: <Icon type="filter" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
+      filterDropdownVisible: this.state.filterDropdownVisible,
+      onFilterDropdownVisibleChange: (visible) => {
+
+        this.setState({
+          filterDropdownVisible: visible,
+        }, () => {
+          this.searchInput && this.searchInput.focus()
+        });
+      }
+    }
+
+    let columns=[];
+
+    for(let col of column){
+      if(col.sorter && !col.filterDropdown) {
+        let temp={sorter: compare(col.key)}
+        columns.push({...col,...temp});
+      }
+      else if(!col.sorter && col.filterDropdown){
+        let temp={...filter}
+        columns.push({...col,...temp});
+      }
+      else if(col.sorter && col.filterDropdown){
+        let temp={sorter: compare(col.key), ...filter}
+        columns.push({...col,...temp});
+      }
+      else{
+        columns.push(col);
+      }
+
+    }
+
+    console.log(columns);
+    return columns;
+    /*
     const columns = [
       {
         title: 'rank',
@@ -118,11 +165,13 @@ export default class MarketOverview extends Component {
       }
     ];
     return columns;
+    */
   }
 
 
   render() {
-    let columns = this.setColumn();
+    let column = this.props.column;
+    let columns = this.setColumn(column);
     let {tableData} = this.props;
     let {data} = this.state;
     if(data.length){
