@@ -532,8 +532,8 @@ export const messages = {
   "average_price_usd": "Average Price in USD",
   "average_volume_usd": "Average Volume in USD",
   "Trade Volume": "Trade Volume in USD",
-  "rank": "rank",
-  "pair": "pair",
+  "rank": "Rank",
+  "pair": "Pair",
   "volume": "Volume",
   /*
   ##################################################################################
