@@ -23,7 +23,7 @@ class Statistics extends React.Component {
       transactionStats: null,
       blockStats: null,
       transactionValueStats: null,
-      txOverviewStats:null
+      txOverviewStats: null
     };
   }
 
@@ -88,8 +88,24 @@ class Statistics extends React.Component {
 
   async loadTxOverviewStats() {
     let {txOverviewStats} = await Client.getTxOverviewStats();
+    let temp = [];
+    for (let txs in txOverviewStats) {
+      let tx = parseInt(txs);
+      if (tx === 0)
+        temp.push(txOverviewStats[tx]);
+      else
+        temp.push({
+          date: txOverviewStats[tx].date,
+          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+          newAddressSeen: txOverviewStats[tx].newAddressSeen
+        });
+    }
+
     this.setState({
-      txOverviewStats:txOverviewStats
+      txOverviewStats: temp
     });
   }
 
@@ -138,7 +154,8 @@ class Statistics extends React.Component {
                     {
                       transactionValueStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
+                          <LineReact style={{height: 300}} data={transactionValueStats}
+                                     keysData={['timestamp', 'value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -154,7 +171,8 @@ class Statistics extends React.Component {
                     {
                       transactionStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
+                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -168,7 +186,8 @@ class Statistics extends React.Component {
                     {
                       blockStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']} format={{timestamp: true}}/>
+                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>

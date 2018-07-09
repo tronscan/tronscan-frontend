@@ -170,7 +170,7 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking":"节点排名",
+  "nodes_ranking":"节点排名（以国家/地区划分）",
 
   /*
   ##################################################################################
@@ -688,6 +688,7 @@ export const messages = {
 ##################################################################################
 */
   "transactions_per_day":"日交易数",
+  "transactions_last_day": "过去一天交易量",
   "date":"日期",
   "total_transactions":"总交易数",
   "avg_blockTime":"平均生成区块时间",
@@ -736,6 +737,7 @@ export const messages = {
   "search_description":"搜索地址，区块，交易，通证",
   "search_description1":"搜索地址，区块，交易，通证",
   "transaction":"交易",
+  "total_accounts":"总账户数"
 
 };
 

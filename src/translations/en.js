@@ -167,7 +167,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Nodes Ranking (Rank by country and region)",
   /*
   ##################################################################################
   #                                                                                #
@@ -672,6 +672,7 @@ export const messages = {
 ##################################################################################
 */
   "transactions_per_day": "Transactions Per Day",
+  "transactions_last_day": "Transactions Last Day",
   "date": "Date",
   "total_transactions": "Total Transactions",
   "avg_blockTime": "Avg BlockTime",
@@ -720,4 +721,5 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
+  "total_accounts":"Total Accounts"
 };
