@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Vizualizare Super Reprezentanți",
   "create_new_wallet": "Creați un nou Portofel",
   "view_tokens": "Vizualizare Tokeni",
+  "transactions_last_day": "Tranzacții din ultima zi",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Martor",
   "asset_participation": "Participare capital",
   "loading_transaction": "Încărcare Tranzacție",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Tranzacții în ultima oră",
   "average_blocksize": "Mărimea medie de block",
   "rich_list": "Listă bogați",
+  "TRX_transaction_chart": "Diagramă tranzacții TRX",
+  "transactions_per_day": "Tranzacții pe zi",
 
 /*
 ##################################################################################
@@ -346,9 +350,9 @@ export const messages = {
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
   "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "server_configuration": "Configurație Server",
+  "community_plan": "Planul Comunității",
+  "team": "Echipă",
 
 /*
 ##################################################################################
@@ -647,6 +651,8 @@ export const messages = {
   "tron_architechure": "Arhitectura TRON ",
   "tron_protobuf_doc": "Documentare TRON Protobuf ",
   "report_an_error": "Arată un bug / sugestie",
+  "frequently_asked_questions": "Întrebări frecvente",
+  "telegram_updates": "Update-uri Telegram",
 
 /*
 ##################################################################################
@@ -678,5 +684,17 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "timp",
+  "parenthash": "parenthash",
+  "size": "mărime",
 
 };

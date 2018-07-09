@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Bekijk Super Representatives",
   "create_new_wallet": "Nieuwe portemonee maken",
   "view_tokens": "Bekijk tokens",
+  "transactions_last_day": "Aantal transacties van gisteren",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Getuige/Accountant",
   "asset_participation": "Vermogensbelegging",
   "loading_transaction": "Transacties laden",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transacties gedurende het laatste uur",
   "average_blocksize": "Gemiddelde Blokgrootte",
   "rich_list": "Rich lijst",
+  "TRX_transaction_chart": "TRX Transactie Grafiek",
+  "transactions_per_day": "Transacties Per Dag",
 
 /*
 ##################################################################################
@@ -651,6 +655,8 @@ export const messages = {
   "tron_architechure": "TRON Architectuur",
   "tron_protobuf_doc": "TRON Protobuf Documentatie",
   "report_an_error": "Geef een bug / suggestie door",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -667,7 +673,7 @@ export const messages = {
   "create_wallet": "Maak een portemonnee aan",
   "no_open_wallet": "Geen open portemonnee om te tonen",
   "new_wallet": "Nieuwe Portemonnee",
-  "password_encr_key_message_0": "Dit wachtwoord versleuteld jouw privé sleutel. Je wachtwoord doet GEEN dienst als input om persoonlijke sleutels me te genereren.",
+  "password_encr_key_message_0": "Dit wachtwoord versleutelt jouw privé sleutel. Je wachtwoord doet GEEN dienst als input om persoonlijke sleutels mee te genereren.",
   "password_encr_key_message_1": "Je hebt dit wachtwoord en je privé sleutel nodig om je portemonnee te kunnen ontgrendelen.",
   "strong_password_info": "Een sterk wachtwoord is vereist",
   "save_keystore_file": "Sla je versleutelde sleutel op",
@@ -682,5 +688,17 @@ export const messages = {
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tijd",
+  "parenthash": "parenthash",
+  "size": "grootte",
 
 };

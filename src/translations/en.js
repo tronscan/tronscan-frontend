@@ -141,6 +141,7 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
+  "transactions_last_day": "Transactions in last day",
 
   /*
   ##################################################################################
@@ -640,6 +641,8 @@ export const messages = {
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   "report_an_error": "Submit a bug / suggestion",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
   /*
   ##################################################################################
@@ -671,7 +674,17 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
   /*
   ##################################################################################
   #                                                                                #
@@ -724,5 +737,6 @@ export const messages = {
   "start_time":"Start Time",
   "end_time":"End Time",
   "description":"Description",
+
 
 };

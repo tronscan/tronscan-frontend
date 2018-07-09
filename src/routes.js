@@ -235,13 +235,13 @@ export const routes = [
       '-',
       'Tronscan',
       {
-        label: "Frequently Asked Questions",
+        label: "frequently_asked_questions",
         component: Faq,
         path: "/help/faq",
       },
       {
         url: "https://t.me/tronscan",
-        label: "Telegram Updates",
+        label: "telegram_updates",
       },
       '-',
       "Development",

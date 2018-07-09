@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
+  "transactions_last_day": "Transactions in last day",
 
   /*
   ##################################################################################
@@ -636,6 +637,8 @@ export const messages = {
   "tron_architechure": "波场架构",
   "tron_protobuf_doc": "TRON Protobuf文档",
   "report_an_error": "提交BUG/建议",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
   /*
   ##################################################################################
@@ -668,10 +671,10 @@ export const messages = {
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
 
-  /*
+/*
 ##################################################################################
 #                                                                                #
-# blockchain block                                                                #
+# blockchain block                                                               #
 #                                                                                #
 ##################################################################################
 */
@@ -733,10 +736,6 @@ export const messages = {
   "start_time":"开始时间",
   "end_time":"结束时间",
   "description":"描述",
-
-
-
-
 
 
 };

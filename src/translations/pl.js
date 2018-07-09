@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Zobacz Super Reprezentantów",
   "create_new_wallet": "Utwórz portfel",
   "view_tokens": "Zobacz tokeny",
+  "transactions_last_day": "Transakcji wczoraj",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Reprezentant",
   "asset_participation": "Udział w aktywie",
   "loading_transaction": "Wczytuję transakcję",
+  "nodes_ranking": "Ranking węzłów",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transakcje z ostatniej godziny",
   "average_blocksize": "Średnia wielkość bloku",
   "rich_list": "Lista najbogatszych kont",
+  "TRX_transaction_chart": "Wykres transakcji TRX",
+  "transactions_per_day": "Transakcji dziennie",
 
 /*
 ##################################################################################
@@ -305,7 +309,7 @@ export const messages = {
   "last_confirmed": "Ostatnio potwierdzona",
   "trx_produced": "Potwierdzonych transakcji",
   "do_not_send_1": "Nie wysyłaj TRX ze swojego własnego portfela lub portfela giełdy na powyższy adres znajdujący się w sieci testnet!",
-  "go_to_votelist": "Przejdź do listy głosujących",
+  "go_to_votelist": "Wróć do głosowania",
   "understand_tron_sr_message_0": "Rozumiem jak zostać Reprezentantem TRON i potwierdzam wydanie",
   "understand_tron_sr_message_1": "jako opłaty za rejestrację.",
   "invalid_url": "Nieprawidłowy adres URL",
@@ -641,6 +645,8 @@ export const messages = {
   "tron_architechure": "Architektura TRON",
   "tron_protobuf_doc": "Dokumentacja TRON Protobuf",
   "report_an_error": "Zgłoś błąd / propozycję",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -672,5 +678,17 @@ export const messages = {
   "print_paper_wallet": "Wydrukuj papierową wersję portfela",
   "new_wallet_ready_message": "Twój nowy portfel jest gotowy do użytku",
   "go_to_account_page": "Przejdź do swojego konta",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "czas",
+  "parenthash": "nadrzędny hash",
+  "size": "wielkość",
 
 };

@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Arabic                                                       #
 #         Status: First Version                                                  #
 #         Number of checks: 3                                                    #
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "راجع الممثلين المميزين",
   "create_new_wallet": "أنشئ محفظة جديدة",
   "view_tokens": "راجع الرموز",
+  "transactions_last_day": "العمليات المنجزه في اليوم الأخير",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "الشاهد",
   "asset_participation": "مشاركة الأصول",
   "loading_transaction": "جاري تحميل المعامله",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "العمليات خلال الساعة الأخيرة",
   "average_blocksize": "معدل حجم الكتل",
   "rich_list": "اللائحة الغنية",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -331,11 +335,11 @@ export const messages = {
   "successfully_claimed_rewards":  "تم الحصول على المكافآت بنجاح",
   "claim_rewards": "الحصول على المكافآت ",
   "sr_receive_reward_message_0": "كممثل مثالي, تحصل على مكافآت لإنتاج كتل. يمكن المطالبة بهذه المكافآت كل 24 ساعة",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "intro": "مقدمة",
+  "budget_expenses": "ميزانية النفقات",
+  "server_configuration": "تكوين الخادم",
+  "community_plan": "خطة المجتمع",
+  "team": "الفريق",
 
 /*
 ##################################################################################
@@ -627,6 +631,8 @@ export const messages = {
   "tron_architechure": "هندسة ترون",
   "tron_protobuf_doc": "توثيق ترون بروتوبوف (Protobuf)",
   "report_an_error": "بلغ عن مشكلة/مقترح",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -658,5 +664,17 @@ export const messages = {
   "print_paper_wallet": "اطبع المحفظة على ورق",
   "new_wallet_ready_message": "محفظتك الجديدة جاهزة",
   "go_to_account_page": "اذهب الى صفحة الحساب",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "التجزئه",
+  "time": "الوقت",
+  "parenthash": "اصل التجزئه",
+  "size": "الحجم",
 
 };
