@@ -733,10 +733,13 @@ export const messages = {
   "counts":"counts",
   "token_name":"Token Name",
   "total_supply":"total_supply",
-  "TRX_num":"TRX Num",
+  "TRX_exchange_rate":"TRX Exchange Rate",
   "start_time":"Start Time",
   "end_time":"End Time",
   "description":"Description",
-
+  "contracts":"Contracts",
+  "search_description":"Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1":"Search Address,Block,Transaction,Token",
+  "transaction":"Transaction",
 
 };

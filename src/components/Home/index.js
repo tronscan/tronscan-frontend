@@ -121,7 +121,7 @@ class Home extends Component {
   };
 
   render() {
-
+    let {intl} = this.props;
     let {search, isShaking, hasFound, stats} = this.state;
 
     return (
@@ -156,7 +156,7 @@ class Home extends Component {
                          value={search}
                          onKeyDown={this.onSearchKeyDown}
                          onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder="Search Address, Block Height, Transaction Hash, Token Name"/>
+                         placeholder={intl.formatMessage({id:'search_description'})}/>
 
                   <div className="input-group-append">
                     <button className="btn btn-dark box-shadow-none" onClick={this.doSearch}>

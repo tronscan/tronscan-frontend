@@ -732,10 +732,13 @@ export const messages = {
   "counts":"票数",
   "token_name":"通证名称",
   "total_supply":"总发行量",
-  "TRX_num":"TRX Num",
+  "TRX_exchange_rate":"TRX汇率",
   "start_time":"开始时间",
   "end_time":"结束时间",
   "description":"描述",
-
+  "contracts":"合约",
+  "search_description":"搜索地址，区块，交易，通证",
+  "search_description1":"搜索地址，区块，交易，通证",
+  "transaction":"交易",
 
 };
