@@ -239,7 +239,7 @@ module.exports = {
   },
   txOverviewChart: {
     title: {
-      text: '',
+      text: 'TRX Transaction Chart',
       x: 'center'
     },
     tooltip: {
@@ -292,11 +292,13 @@ module.exports = {
       xAxisIndex: [0, 1]
     }],
     grid: [{
-      left: 100,
-      right: 40,
+      top:80,
+      left: 80,
+      right: 20,
     }, {
-      left: 100,
-      right: 40,
+      top:80,
+      left: 80,
+      right: 20,
     }],
     xAxis: [
       {

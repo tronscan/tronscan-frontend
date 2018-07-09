@@ -103,12 +103,12 @@ class Statistics extends React.Component {
             <div className="col-md-12 mt-3">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("TRX_transaction_chart")}</h5>
-                  <div style={{height: 300}}>
+
+                  <div style={{height: 350}}>
                     {
                       txOverviewStats === null ?
                           <TronLoader/> :
-                          <LineReactTx style={{height: 300}} data={txOverviewStats}/>
+                          <LineReactTx style={{height: 350}} data={txOverviewStats}/>
                     }
                   </div>
                 </div>
