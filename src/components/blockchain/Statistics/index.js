@@ -11,7 +11,8 @@ import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
-import LineReactTx from "../../common/LineChartTx";
+
+import {LineReactAdd,LineReactTx} from "../../common/LineCharts";
 
 class Statistics extends React.Component {
 
@@ -23,7 +24,8 @@ class Statistics extends React.Component {
       transactionStats: null,
       blockStats: null,
       transactionValueStats: null,
-      txOverviewStats: null
+      txOverviewStats: null,
+      addressesStats: null,
     };
   }
 
@@ -89,11 +91,19 @@ class Statistics extends React.Component {
   async loadTxOverviewStats() {
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
+    let addressesTemp = [];
+
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
-      if (tx === 0)
+      if (tx === 0) {
         temp.push(txOverviewStats[tx]);
-      else
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].newAddressSeen,
+          increment: txOverviewStats[tx].newAddressSeen
+        });
+      }
+      else {
         temp.push({
           date: txOverviewStats[tx].date,
           totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
@@ -102,17 +112,24 @@ class Statistics extends React.Component {
           totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
           newAddressSeen: txOverviewStats[tx].newAddressSeen
         });
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+          increment: txOverviewStats[tx].newAddressSeen
+        });
+      }
     }
 
     this.setState({
-      txOverviewStats: temp
+      txOverviewStats: temp,
+      addressesStats: addressesTemp
     });
   }
 
   render() {
 
-    let {txOverviewStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
-
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {intl}=this.props;
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -124,7 +141,23 @@ class Statistics extends React.Component {
                     {
                       txOverviewStats === null ?
                           <TronLoader/> :
-                          <LineReactTx style={{height: 350}} data={txOverviewStats}/>
+                          <LineReactTx style={{height: 350}} data={txOverviewStats} intl={intl}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12 mt-3">
+              <div className="card">
+                <div className="card-body">
+
+                  <div style={{height: 350}}>
+                    {
+                      addressesStats === null ?
+                          <TronLoader/> :
+                          <LineReactAdd style={{height: 350}} data={addressesStats} intl={intl}/>
                     }
                   </div>
                 </div>

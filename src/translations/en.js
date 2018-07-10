@@ -727,5 +727,8 @@ export const messages = {
   "website_url":"Website URL",
   "search":"Search",
   "reset":"Reset",
+  "total_addresses":"Total Addresses",
+  "daily_increment":"Daily Increase",
+  "address_growth_chart":"Address Growth Chart",
 
 };

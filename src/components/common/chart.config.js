@@ -278,8 +278,8 @@ module.exports = {
       }
     },
     dataZoom: [{
-      start: 30,
-      end: 70,
+      start: 60,
+      end: 100,
     },
       {
         type: 'inside'

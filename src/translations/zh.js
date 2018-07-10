@@ -743,5 +743,8 @@ export const messages = {
   "website_url":"网站地址",
   "search":"搜索",
   "reset":"重置",
+  "total_addresses":"总地址数",
+  "daily_increment":"日增长数",
+  "address_growth_chart":"地址增长图表",
 };
 
