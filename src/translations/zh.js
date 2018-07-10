@@ -737,7 +737,11 @@ export const messages = {
   "search_description":"搜索地址，区块，交易，通证",
   "search_description1":"搜索地址，区块，交易，通证",
   "transaction":"交易",
-  "total_accounts":"总账户数"
-
+  "total_accounts":"总账户数",
+  "power":"投票权",
+  "token_transfers":"通证转账",
+  "website_url":"网站地址",
+  "search":"搜索",
+  "reset":"重置",
 };
 

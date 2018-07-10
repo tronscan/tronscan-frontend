@@ -50,7 +50,7 @@ module.exports = {
     series: [{
       data: [],
       type: 'line',
-      smooth: true
+     // smooth: true
     }]
   },
 
@@ -309,15 +309,7 @@ module.exports = {
     series: [{
       name: '',
       type: 'line',
-      smooth: true,
-      symbol: 'circle',
-      symbolSize: 9,
-      showSymbol: false,
-      lineStyle: {
-        normal: {
-          width: 1
-        }
-      },
+
       markPoint: {
         data: [{
           type: 'max',

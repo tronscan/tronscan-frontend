@@ -47,7 +47,7 @@ export default class TokenDetail extends React.Component {
           id: "transactions",
           icon: "fa fa-exchange-alt",
           path: "",
-          label: <span>{tu("Token Transfers")}</span>,
+          label: <span>{tu("token_transfers")}</span>,
           cmp: () => <Transfers filter={{ token: name }} />
         },
         {

@@ -721,5 +721,11 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_accounts":"Total Accounts"
+  "total_accounts":"Total Accounts",
+  "power":"Power",
+  "token_transfers":"Token Transfers",
+  "website_url":"Website URL",
+  "search":"Search",
+  "reset":"Reset",
+
 };
