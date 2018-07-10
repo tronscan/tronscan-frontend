@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-22062018                                                  #
-  #         Update Date: 22.06.2018                                                #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
   #         Language: English                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 4                                                    #
@@ -67,7 +67,7 @@ export const messages = {
   "view_all": "View all",
   "create": "create",
   "country": "region",
-  "amount": "amount",
+  "amount": "Amount",
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
@@ -139,6 +139,7 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
+  "transactions_last_day": "Transactions Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -621,6 +622,8 @@ export const messages = {
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   "report_an_error": "Submit a bug / suggestion",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
   /*
   ##################################################################################
   #                                                                                #
@@ -651,28 +654,24 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-
   /*
-##################################################################################
-#                                                                                #
-# blockchain block                                                                #
-#                                                                                #
-##################################################################################
-*/
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "Hash",
   "time": "Time",
   "parenthash": "Parent Hash",
-  "witness": "Witness",
   "size": "Size",
   /*
-##################################################################################
-#                                                                                #
-# new add                                                                 #
-#                                                                                #
-##################################################################################
-*/
-  "transactions_per_day": "Transactions Per Day",
-  "transactions_last_day": "Transactions Last Day",
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "date": "Date",
   "total_transactions": "Total Transactions",
   "avg_blockTime": "Avg BlockTime",
@@ -701,25 +700,16 @@ export const messages = {
   "vote_for_a_witness": "Vote for a Witness",
   "asset_issue_contract": "Asset Issue Contract",
   "issue_a_new_asset": "Issue a new asset",
-  "from": "From",
-  "to": "To",
-  "amount": "Amount",
-  "token": "Token",
   "owner_address": "Owner Address",
-  "account_name": "Account Name",
   "frozen_balance": "Frozen Balance",
   "frozen_days": "Frozen Days",
-  "votes": "Votes",
   "counts": "counts",
-  "token_name": "Token Name",
-  "total_supply": "total_supply",
   "TRX_exchange_rate": "TRX Exchange Rate",
   "start_time": "Start Time",
   "end_time": "End Time",
-  "description": "Description",
   "contracts": "Contracts",
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_accounts":"Total Accounts"
+  "transaction": "Transaction"
+  
 };
