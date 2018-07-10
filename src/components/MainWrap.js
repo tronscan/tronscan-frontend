@@ -11,6 +11,7 @@ import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {IS_DESKTOP} from "../constants";
 import {LedgerAsync} from "./ledger/async";
+import { BackTop } from 'antd';
 
 class MainWrap extends React.Component {
 
@@ -33,6 +34,7 @@ class MainWrap extends React.Component {
 
     return (
       <React.Fragment>
+        <BackTop/>
         <IntlProvider
           locale={activeLanguage}
           messages={languages[activeLanguage]}>

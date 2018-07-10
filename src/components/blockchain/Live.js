@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 import React from "react";
 import {connect} from "react-redux";
-import {isNaN, random, range} from "lodash";
 import {channel} from "../../services/api";
-import {TRXPrice} from "../common/Price";
 import {FormattedNumber} from "react-intl";
 import {ONE_TRX} from "../../constants";
 import {TronLoader} from "../common/loaders";
@@ -11,7 +9,6 @@ import {AddressLink, TokenLink} from "../common/Links";
 import {tu} from "../../utils/i18n";
 
 const MESSAGE_LIMIT = 30;
-
 
 function Row({ key, icon, children, ...props }) {
 
@@ -258,11 +255,7 @@ class Live extends React.Component {
 }
 
 
-
-
-
 function mapStateToProps(state) {
-
   return {
   };
 }

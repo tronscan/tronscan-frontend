@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Norwegian                                                    #
 #         Status: first Version                                                  #
 #         Number of checks: 4                                                    #
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representanter",
   "create_new_wallet": "Opprette ny lommebok",
   "view_tokens": "Se Tokener",
+  "transactions_last_day": "Transaksjoner i siste dag",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Vitne",
   "asset_participation": "Asset deltakelse",
   "loading_transaction": "Henter Transaksjon",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transaksjoner siste time",
   "average_blocksize": "Gjennomsnittlig Blokk Størrelse",
   "rich_list": "Liste",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -342,6 +346,12 @@ export const messages = {
   "successfully_claimed_rewards":  "Vellykket krevet belønning",
   "claim_rewards": "Krev Belønninger",
   "sr_receive_reward_message_0": "Som en representant kan du motta belønninger for å produsere blokker. Disse belønningene kan kreves en gang i døgnet.",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -637,6 +647,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentasjon",
   "report_an_error": "Send inn feil / forslag til feilretting",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -668,5 +680,17 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Papir Lommebok",
   "new_wallet_ready_message": "Din nye lommebok er klar",
   "go_to_account_page": "Gå til konto siden",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tid",
+  "parenthash": "parenthash",
+  "size": "størrelse",
 
 };

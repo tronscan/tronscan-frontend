@@ -2,7 +2,7 @@ import React from "react";
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
-import {AddressLink, TransactionHashLink} from "./Links";
+import {TransactionHashLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";

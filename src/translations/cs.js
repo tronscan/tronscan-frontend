@@ -15,8 +15,8 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-27062018                                                  #
-#         Update Date: 27.06.2018                                                #
+#         Version: 1.5-05072018                                                  #
+#         Update Date: 05.07.2018                                                #
 #         Language: Czech                                                        #
 #         Status: First Version                                                  #
 #         Number of checks: 4                                                    #
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Oznámení povolena",
   "contract_type": "Typ smlouvy",
   "filters": "Filtry",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Odeslat známky",
 
 /*
 ##################################################################################
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Zobrazit Super Reprezentanty",
   "create_new_wallet": "Vytvoøit novou penìženku",
   "view_tokens": "Zobrazit tokeny",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
+  "nodes_ranking": "Hodnocení uzlů",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transakce za poslední hodinu",
   "average_blocksize": "Prùmìrná velikost bloku",
   "rich_list": "Seznam bohatých",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -342,6 +346,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Odmìny úspìšnì vyžádány",
   "claim_rewards": "Vyžádat si odmìny",
   "sr_receive_reward_message_0": "Jako reprezentantovi vám náleží odmìna za generování blokù. O tuto odmìnu mùžete žádat každých 24 hodin",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################
@@ -638,6 +647,8 @@ export const messages = {
   "tron_architechure": "TRON Architektura",
   "tron_protobuf_doc": "TRON Protobuf Dokumentace",
   "report_an_error": "Odeslat bug / návrh",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -669,5 +680,17 @@ export const messages = {
   "print_paper_wallet": "Vytisknìte si papírovou penìženku",
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "čas",
+  "parenthash": "parenthash",
+  "size": "velikost",
 
 };

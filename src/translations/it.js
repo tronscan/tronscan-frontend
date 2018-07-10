@@ -15,10 +15,10 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
+#         Version: 1.5-03072018                                                  #
+#         Update Date: 03.07.2018                                                #
 #         Language: Italian                                                      #
-#         Status: second draft                                                   #
+#         Status: Approved Version                                               #
 #         Number of checks: 5                                                    #
 #         Participants: FabioHC,Andrea1980,PMD3VSolution                         #
 #                                                                                #
@@ -49,7 +49,7 @@ export const messages = {
   "sign_out": "esci",
   "sign_in": "accedi",
   "register_login": "Registrati / Accedi",
-  "register": "registro",
+  "register": "registrati",
   "login": "accesso",
   "height": "altezza",
   "age": "età",
@@ -76,7 +76,7 @@ export const messages = {
   "exchange": "Exchange",
   "next": "successivo",
   "copied_to_clipboard": "Copiato negli appunti",
-  "cancel": "Annullare",
+  "cancel": "Annulla",
   "reset": "Reimposta",
   "error": "Errore",
   "unlock_keyFile": "Sblocca KeyFile",
@@ -84,11 +84,11 @@ export const messages = {
   "password_incorrect": "Password errata",
   "try_again": "Prova di nuovo",
   "wallet_unlocked": "Portafoglio sbloccato",
-  "weak": "tenue",
-  "okay": "bene",
-  "good": "valida",
-  "strong": "robusto",
-  "secure": "sicuro",
+  "weak": "debole",
+  "okay": "ok",
+  "good": "buona",
+  "strong": "robusta",
+  "secure": "sicura",
   "too_short": "troppo breve",
   "status": "status",
   "no_notifications": "Nessuna notifica",
@@ -122,7 +122,7 @@ export const messages = {
   "nodes": "Nodi",
   "votes": "Voti",
   "account": "Account",
-  "tokens": "token",
+  "tokens": "Token",
   "overview": "Panoramica",
   "participate": "Partecipa",
 
@@ -133,7 +133,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "tron_main_message": "Decentralizare il Web",
+  "tron_main_message": "Decentralizzare il Web",
   "transactions_last_hour": "Transazioni nell'ultima ora",
   "block_height": "Altezza Blocco",
   "online_nodes": "Nodi connessi",
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Vedi i Super Rappresentanti",
   "create_new_wallet": "Crea un nuovo portafoglio",
   "view_tokens": "Vedi Token",
+  "transactions_last_day": "Transazioni nell'ultimo giorno",
 
 /*
 ##################################################################################
@@ -156,21 +157,22 @@ export const messages = {
   "last_page": "ultima pagina",
   "page": "pagina",
   "of": "di",
-  "page_size": "page size",
+  "page_size": "Risultati per pagina",
   "most_nodes": "Con più nodi",
   "loading_nodes": "caricamento nodi",
-  "Hostname": "nome Host",
-  "Last Update": "ultimo aggiornamento",
-  "first_node_sync_message": "In attesa della sincronizzazione del primo nodo, perfavore riprovare tra qualche minuto.",
+  "Hostname": "Nome Host",
+  "Last Update": "Ultimo aggiornamento",
+  "first_node_sync_message": "In attesa della sincronizzazione del primo nodo, si prega di riprovare tra qualche minuto.",
   "last_block": "ultimo blocco",
   "blocks_produced": "Blocchi Prodotti",
   "blocks_missed": "Blocchi persi",
   "productivity": "produttività",
   "rewards": "ricompense",
-  "token_created": "Gettoni creati",
-  "witness": "Testimoni",
+  "token_created": "Token creati",
+  "witness": "Testimone",
   "asset_participation": "Partecipazione Asset",
-  "loading_transaction": "Operazioni di carico",
+  "loading_transaction": "Caricamento Transazione",
+  "nodes_ranking": "Classifica Nodi",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transazioni nell'ora precedente",
   "average_blocksize": "Transazioni nell'ultima ora",
   "rich_list": "Lista Ricchi",
+  "TRX_transaction_chart": "Grafico Transazioni TRX",
+  "transactions_per_day": "Transazioni Al Giorno",
 
 /*
 ##################################################################################
@@ -193,25 +197,25 @@ export const messages = {
 ##################################################################################
 */
   "set_name": "Imposta Nome",
-  "unique_account_message": "Puoi impostare il nome del tuo account solo una volta!",
-  "name_to_short": "Il nome immesso è troppo breve!",
-  "name_to_long": "Il nome immesso è troppo lungo!",
+  "unique_account_message": "Puoi impostare il nome del tuo account solamente una volta!",
+  "name_to_short": "Il nome inserito è troppo breve",
+  "name_to_long": "Il nome inserito è troppo lungo",
   "permitted_characters_message": "Il nome può contenere solamente i caratteri a-z A-Z 0-9",
   "change_name": "Cambia Nome",
   "account_name": "Nome account",
-  "show_qr_code": "Visuallizza codice QR",
-  "do_not_send_2": "Non inviare TRX dal tuo portafoglio o da un sito di cambio alll'indirizzo dell'account sopra riportato della testnet!",
+  "show_qr_code": "Visualizza codice QR",
+  "do_not_send_2": "Non inviare TRX dal tuo wallet oppure da un exchange all'indirizzo dell'account della testnet soprastante!",
   "bandwidth": "larghezza di banda",
   "balance": "saldo",
   "tron_power": "Tron Power",
   "transactions": "transazioni",
-  "no_transfers": "Nessun Trasferimento",
-  "no_tokens": "Nessun gettone",
-  "free_bandwidth": "Larghezza di Banda Libera",
+  "no_transfers": "Nessun trasferimento",
+  "no_tokens": "Nessun token",
+  "free_bandwidth": "Larghezza di banda libera",
   "expires": "scade",
   "have_been_added_to_your_account": "è stato aggiunto al tuo account!",
-  "information_message_1": "Quando richiederai TRX riceverai 10000 TRX che potrai usare per testare nella testnet.",
-  "information_message_2": "Puoi richiedere TRX massimo 10 volte per account.",
+  "information_message_1": "La mainnet non può richiedere TRX di test, per favore contattate Tron per ottenere TRX di test.",
+  "information_message_2": "Puoi richiedere TRX per un massimo di 10 volte per account.",
   "request_trx_for_testing": "Richiedi TRX per i test",
   "token_balances": "saldo token",
   "produced_blocks": "blocchi prodotti",
@@ -222,9 +226,9 @@ export const messages = {
   "network": "rete",
   "current": "attuale",
   "trx_received": "TRX ricevuti",
-  "test_trx_temporarily_unavailable_message": "Test TRX non sono al momento disponibili. Perfavore riprovare più tardi.",
+  "test_trx_temporarily_unavailable_message": "Al momento non sono disponibili TRX di test. Si prega di riprovare più tardi.",
   "not_enough_trx": "TRX non sufficienti",
-  "information_message_3": "TRX richiesti non successo. Se non hai ricevuto alcun TRX allora non c'è alcun TRX di test disponibile al momento, dovresti provare di nuovo più tardi.",
+  "information_message_3": "TRX richiesti con successo. Se non hai ricevuto alcun TRX allora non è disponibile alcun TRX di test al momento, dovresti provare di nuovo più tardi.",
   "send_to_following_address": "Invia al seguente indirizzo",
   "change_website": "Cambia sito web",
   "you_must_enter_url": "Devi inserire un URL",
@@ -239,16 +243,16 @@ export const messages = {
 */
   "freeze": "congelare",
   "unfreeze": "scongelare",
-  "freeze_trx_least": "Devi avere almeno un TRX per avere la possibilità di congelare",
+  "freeze_trx_least": "Devi avere almeno un TRX per poter procedere al congelamento",
   "unable_unfreeze_trx_message": "Impossibile scongelare i TRX. Ciò potrebbe essere causato dal fatto che il periodo di congelamento minimo non è stato ancora raggiunto.",
-  "freeze_trx_premessage_0": `il TRX può essere congelato/bloccato per guadagnare Tron Power e abilitare funzionalità aggiuntive. Per esempio, con Tron Power puoi `,
+  "freeze_trx_premessage_0": `I TRX possono essere congelati/bloccati per guadagnare Tron Power e abilitare funzionalità aggiuntive. Per esempio, con i Tron Power puoi `,
   "freeze_trx_premessage_link": "Vota per i Super Rappresentanti.",
-  "freeze_trx_premessage_1": `I token congelati sono "bloccati" per un periodo di 3 giorni. Durante questo periodo il TRX congelato non può essere scambiato. Dopo questo periodo è possibile scongelare il TRX e scambiare il token.`,
+  "freeze_trx_premessage_1": `I token congelati sono "bloccati" per un periodo di 3 giorni. Durante questo periodo i TRX congelati non possono essere scambiati. Dopo questo periodo è possibile scongelare i TRX e scambiare token.`,
   "trx_amount": "Quantità di TRX",
   "token_freeze_confirm_message_0": "Confermo il congelamento",
   "token_freeze_confirm_message_1": "per almeno 3 giorni",
   "frozen_supply": "Fornitura Congelata",
-  "tokens_unfrozen": "Gettone non congelato",
+  "tokens_unfrozen": "Token scongelati",
   "success_tokens_unfrozen_message": "Token scongelati correttamente",
   "unable_to_unfreeze": "Impossibile scongelare",
   "Unable_tokens_unfrozen_message": "Impossibile scongelare i token.",
@@ -260,7 +264,7 @@ export const messages = {
   "unable_to_rename_message": "Qualcosa è andato storto durante l'aggiornamento del nome, per favore riprova più tardi",
   "unfreeze_trx_confirm_message": "Sei sicuro di voler scongelare TRX?",
   "unfreeze_assets": "Scongela asset",
-  "sure_to_unfreeze_unlocked_tokens_message": "Sei sicuro di voler congelare i token sbloccati?",
+  "sure_to_unfreeze_unlocked_tokens_message": "Sei sicuro di voler scongelare i token sbloccati?",
 
 /*
 ##################################################################################
@@ -269,29 +273,29 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "apply_for_delegate": "richiesta per rappresentanti",
+  "apply_for_delegate": "richiesta per diventare rappresentante",
   "apply_super_representative_candidate": "Richiesta per essere un Super Rappresentante",
-  "your_personal_website_address": "indirizzo del tuo sito web personale",
-  "apply_for_delegate_predescription":`Ogni titolare di token ha l'opportunità di diventare un Super Rappresentante di TRON.
+  "your_personal_website_address": "il tuo sito web personale",
+  "apply_for_delegate_predescription":`Ogni possessore di token ha l'opportunità di diventare un Super Rappresentante di TRON.
    Tuttavia, affinché sia rete che la comunità possano operare in modo più fluido ed efficace,
    abbiamo creato una serie di norme e regolamenti per essere idonei a diventare Super Rappresentanti. Promuoveremo i Super Rappresentanti selezionati per aumentare le possibilità di essere eletti. La lista dei Super Rappresentanti selezionati viene aggiornata una volta a settimana.`,
   "apply_for_delegate_description": `
-   I titolari di TRX possono richiedere di diventare Super Rappresentanti utilizzando la funzione di gestione dell'account e votare per i candidati.
+   I possessori di TRX possono richiedere di diventare Super Rappresentanti utilizzando la funzione di gestione dell'account e votare per i candidati.
    Ogni account può aggiornare le informazioni attuali sugli elettori e inoltre è autorizzato a votare per più candidati.
-   Il numero massimo di voti è inferiore o uguale alla quantità di TRX a disposizione degli utenti.
+   Il numero massimo di voti è inferiore o uguale alla quantità di TRX a disposizione degli utenti ogni volta.
    (Puoi dare una quantità di voti inferiore o uguale al totale di TRX in tuo posseso).
-   Il risultato dei voti verrà calcolato in base alle informazioni informazioni finali su ogni account degli elettori in ciascun ciclo di votazione di cui l'orario è dalle 00:00 alle 23:59. TRX holders with the most votes will become super delegate.
-  Ogni transazione fatta in rete deve essere convalidata da tutti i SuperDelegati, e saranno ottenuti dei bonus.
-  Nessun TRX verrà utilizzato nel processo di richiesta come super rappresentante e per il voto.`,
+   Il risultato dei voti verrà calcolato in base alle informazioni finali su ogni account degli elettori in ciascun ciclo di votazione di cui l'orario è dalle 00:00 alle 23:59. I possessori di TRX con più voti diventeranno Super Rappresentanti.
+  Ogni transazione eseguita nella rete deve essere convalidata da tutti i Super Rappresentanti, quindi saranno ottenuti dei bonus.
+  Nessun TRX verrà utilizzato nel processo di richiesta a Super Rappresentante e per il voto.`,
   "unknown_error": "si è verificato un errore sconosciuto",
-  "representative_understand": "Capisco come essere un rappresentante di TRON",
+  "representative_understand": "Sono a conoscenza di come diventare Rappresentante di TRON",
   "generate_account": "Clicca per generare l'indirizzo e la password del tuo account",
-  "create_account_confirm_1": "Capisco che se dimentico/perdo la mia password non potrò più accedere alle mie risorse",
+  "create_account_confirm_1": "Capisco che se dimentico/perdo la mia password non potrò più accedere ai miei asset",
   "create_account_confirm_2": "Capisco che se dimentico/perdo la mia password nessuno sarà in grado di aiutarmi a recuperarli",
   "create_account_confirm_3": "Ho scritto la mia password su carta",
   "vote_thanks": "Grazie per aver inviato il tuo voto!",
   "recent_transactions": "transazioni recenti",
-  "newest_account": "ultimo account",
+  "newest_account": "account più recente",
   "representatives": "rappresentanti",
   "most_votes": "più voti",
   "start_end_time": "Istante di Inizio / Fine",
@@ -303,21 +307,21 @@ export const messages = {
   "confirm_transaction": "conferma transazione",
   "last_confirmed": "Ultima Confermata",
   "trx_produced": "Transazioni Prodotte",
-  "do_not_send_1": "Non inviare TRX dal tuo portafoglio o da un sito di cambio all'indirizzo del tuo account di testnet!",
+  "do_not_send_1": "Non inviare TRX dal tuo portafoglio o da un sito di cambio all'indirizzo del tuo account della testnet!",
   "go_to_votelist": "Vai alla lista dei voti",
-  "understand_tron_sr_message_0": "Sono a conoscenza di come si diventa un rappresentante TRON e confermo di ",
-  "understand_tron_sr_message_1": "commissioni.",
+  "understand_tron_sr_message_0": "Sono a conoscenza di come si diventa un rappresentante TRON e confermo di spendere ",
+  "understand_tron_sr_message_1": "in commissioni.",
   "invalid_url": "URL non valido",
   "apply_representative_error_message_0": "Qualcosa è andato storto durante la candidatura a rappresentante.",
   "apply_representative_error_message_1": "Assicuratevi di avere TRX sufficienti per le commissioni o riprovare più tardi.",
-  "open_external_link":"Stai per aprire un collegamento esterno",
+  "open_external_link": "Stai per aprire un collegamento esterno",
   "private_key_untrusted_website_message_0": "Non inserite mai la vostra chiave privata su un sito non affidabile.",
   "no_official_tron_website": "non è un sito ufficiale di Tron.",
   "continue_to_external_website": "Continua sul sito esterno",
   "url_changed": "URL cambiato",
   "successfully_changed_website_message": "Sito web cambiato con successo in ",
   "unable_to_change_website_title": "Impossibile cambiare URL",
-  "unable_to_change_website_message": "Qualcosa è andato storto durante l'aggiornamento del sito, si prega di riprovare più tardi",
+  "unable_to_change_website_message": "Qualcosa è andato storto durante l'aggiornamento del sito web, si prega di riprovare più tardi",
   "successfully_linked_github": "Collegato con successo a Github!",
   "github_linked": "Github collegato!",
   "unable_to_link_github_message": "Impossibile collegarsi a Github, assicuratevi che il vostro nome utente sia corretto!",
@@ -338,8 +342,13 @@ export const messages = {
   "claim_rewards_error_message": "Qualcosa è andato storto nel tentativo di reclamare le ricompense, si prega di riprovare più tardi.",
   "rewards_claimed": "Ricompense reclamate!",
   "successfully_claimed_rewards":  "Ricompense reclamate con successo",
-  "claim_rewards": "Ricompense reclamate",
+  "claim_rewards": "Reclama ricompense",
   "sr_receive_reward_message_0": "In qualità di rappresentante ricevi ricompense per la produzione dei blocchi. Queste ricompense possono essere reclamate ogni 24 ore",
+  "intro": "Introduzione",
+  "budget_expenses": "Budget per le spese",
+  "server_configuration": "Configurazione del server",
+  "community_plan": "Piano comunitario",
+  "team": "Squadra",
 
 /*
 ##################################################################################
@@ -354,12 +363,12 @@ export const messages = {
   "abbr_message": "Abbreviazione per il token",
   "total_supply": "fornitura totale",
   "issued_token": "token emessi",
-  "create_token": "Creare Token",
+  "create_token": "Crea Token",
   "description": "Descrizione",
   "description_url": "Descrizione URL",
-  "quote_token_amount": "Quota Quantità Token",
-  "base_token_amount": "Quantità Base Token ",
-  "creating_a_token": "Creare un token",
+  "quote_token_amount": "Quota quantità Token",
+  "base_token_amount": "Quantità base Token ",
+  "creating_a_token": "Crea un token",
   "available": "disponibile",
   "testnet": "Testnet",
   "days_to_freeze": "Giorni da congelare",
@@ -371,8 +380,8 @@ export const messages = {
   "fill_a_valid_number": "Per favore inserire un numero valido",
   "fill_a_valid_address": "Per favore inserire un indirizzo valido",
   "make_another_transaction": "Effettua un'altra transazione",
-  "token_exchange_confirm": "Ho confermato di pagare {trxAmount} alla distribuzione dei token e di ricevere {tokenAmount} token.",
-  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Si è verificato un errore sconosciuto, riprova tra qualche minuto",
+  "token_exchange_confirm": "Ho confermato di pagare {trxAmount} per la distribuzione dei token e di ricevere {tokenAmount} token.",
+  "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Si è verificato un errore sconosciuto, si prega di riprovare tra qualche minuto",
   "An_error_occurred": "Si è verificato un errore",
   "create_a_token": "Crea un token",
   "not_started_yet": "Non ancora iniziato",
@@ -386,7 +395,7 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "buy_confirm_message_0": "Ne sei sicuro?",
+  "buy_confirm_message_0": "Sei sicuro?",
   "how_much_buy_message": "Quanti token vuoi comprare?",
   "buy_confirm_message_1": "Sei sicuro di voler acquistare",
   "for": "per",
@@ -402,12 +411,12 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "address_warning": "Digitare solo un indirizzo valido di un portafoglio TRON. Indirizzi sbagliati possono causare la perdita dei TRX.",
+  "address_warning": "Inserire solamente un indirizzo valido di un wallet TRON. Indirizzi non corretti possono causare la perdita dei TRX.",
   "search_address_or_url": "Cerca per indirizzo o URL",
-  "the_lunch_test": "Il lancio della testnet ha lo scopo di testare tutte le funzionalità del nostro blockchain explorer e portafoglio.",
-  "please_keep_in_mind": "Tieni presente che, dal momento che l'indirizzo dell'account registrato è utilizzato solo per testnet, non inviare TRX dal proprio portafoglio o exchange all'indirizzo dell'account di testnet. ",
+  "the_lunch_test": "Il lancio della testnet ha lo scopo di testare tutte le funzionalità del nostro blockchain explorer e del nostro wallet.",
+  "please_keep_in_mind": "Tieni presente che, dal momento che l'indirizzo dell'account registrato è utilizzato solo per la testnet, non devi inviare TRX dal tuo wallet o da un exchange all'indirizzo dell'account della testnet.",
   "tron_foundation": "Fondazione TRON",
-  "trx_for_testing": "Una volta effettuata con successo la richiesta attraverso la gestione del tuo conto, una quantità di TRX verrà inviata al tuo test conto",
+  "trx_for_testing": "Una volta effettuata con successo la richiesta attraverso la gestione del tuo conto, una quantità di TRX di test verrà inviata al tuo account di testing",
   "dear_users": "Cari utenti,",
   "finished": "Finito",
   "token": "token",
@@ -415,17 +424,17 @@ export const messages = {
   "need_to_login": "Devi avere effettuato l'accesso per accedere alla pagina del tuo conto",
   "thanks_for_applying": "Grazie per la partecipazione!",
   "to_much_votes": "Troppi voti",
-  "no_trx_remaining": "Nessun TRX disponibile",
+  "no_trx_remaining": "Nessun TRX rimasto",
   "produced_by": "Prodotto da {witnessAddress}",
-  "show_more": "Visualizza {countriesLength} di più",
+  "show_more": "Visualizza altri {countriesLength}",
   "vote_guide_message": `Usa i tuoi TRX per votare i Super Rappresentanti.
-   È possibile dare un voto per ogni TRX in possesso.
-   I TRX non veranno consumati. Puoi dare più voti per diversi rappresentanti.
-   I voti finali verranno conteggiati alle 24 in punto e la lista dei delegati verrà aggiornata.`,
+   È possibile dare un voto per ogni TRX posseduto.
+   I TRX non veranno consumati. Puoi votare più volte per i diversi rappresentanti.
+   I voti finali verranno conteggiati a mezzanotte e la lista dei delegati verrà aggiornata.`,
   "search_address": "Cerca per indirizzo",
-  "token_transactions": "Transazioni di Token",
-  "token_holders": "Possessori di Token",
-  "nr_of_Transfers": "Nr. di transazioni",
+  "token_transactions": "Transazioni di token",
+  "token_holders": "Possessori di token",
+  "nr_of_Transfers": "Numero di trasferimenti",
   "not_signed_in": "Devi effettuare il login per poter usare questa funzionalità",
   "loading_map": "Caricamento Mappa",
   "loading_accounts": "Caricamento Accounts",
@@ -447,7 +456,7 @@ export const messages = {
   "no_votes_found": "Nessun voto trovato",
   "no_voters_found": "Nessun elettore trovato",
   "waiting_for_transactions": "In attesa di transazioni",
-  "loading_address": "Caricamento Indirizzo",
+  "loading_address": "Caricamento indirizzo",
 
 /*
 ##################################################################################
@@ -468,26 +477,24 @@ export const messages = {
   "supply_message": "Quantità totale di token che verranno messi in circolazione",
   "description_message": "Una breve descrizione dello scopo del token",
   "url_message": "Un sito web dove gli utenti possono trovare ulteriori informazioni sul token",
-  "exchange_rate_message_0": "Specificare il prezzo di un singolo token definendo quanti gettoni un partecipante riceverà per ogni TRX che spende.",
+  "exchange_rate_message_0": "Specificare il prezzo di un singolo token definendo quanti gettoni un partecipante riceverà per ogni TRX speso.",
   "exchange_rate_message_1": "I partecipanti riceveranno",
   "exchange_rate_message_2": "per ogni",
   "exchange_rate_message_3": "TRX",
   "participation_message_0": "Specifica il periodo di partecipazione durante il quale verranno emessi i token. Durante il periodo di partecipazione gli utenti potranno scambiare TRX per ",
   "participation_message_1": " token.",
-  "frozen_supply_message_0": `una parte della fornitura può essere congelato.
-   La quantità della fornitura può essere specificata e dovrà essere congelata per un minimo di 1 giorno. La quantità congelata può essere sbloccata manualmente dopo che la data di inizio + i giorni congelati è sono stati raggiunti.
-   Il congelamento della fornitura non è necessario.`,
-  "token_issued_successfully": "Token creato con successo",
+  "frozen_supply_message_0": `una parte della fornitura può essere congelata. La quantità della fornitura può essere specificata e dovrà essere congelata per un minimo di 1 giorno.
+  La fornitura congelata può essere sbloccata manualmente dopo che è stata raggiunta la soglia di durata dalla data di inizio più i giorni congelati. Il congelamento della fornitura non è obbligatorio.`,
+  "token_issued_successfully": "Token emesso con successo",
   "participation": "partecipazione",
   "start_date": "Data di inizio",
   "end_date": "Data di fine",
-  "token_spend_confirm": "Confermo che la creazione del token ha un unico costo del totale di 1024 TRX.",
+  "token_spend_confirm": "Confermo che la creazione del token prevede un costo una tantum di 1024 TRX.",
   "token_issue_guide_message_1": "l'emissione di un token sul protocollo Tron può essere fatta da chiunque abbia almeno 1024 TRX nel proprio conto.",
   "token_issue_guide_message_2": `Quando un token viene emesso verrà mostrato nella pagina panoramica del token.
-    Gli utenti possono quindi partecipare entro il periodo di partecipazione e scambiare i loro TRX per il token.`,
-  "token_issue_guide_message_3":`Dopo la creazione del token il tuo conto riceverà la quantità di gettoni pari alla fornitura totale.
-    Quando altri utenti scambieranno i loro TRX per i tuoi token, i token saranno detratti dal tuo account
-    e riceverai una somma di TRX uguale al tasso di cambio specificato.`,
+    Gli utenti possono quindi partecipare all'interno del periodo di partecipazione e scambiare i loro TRX per il token.`,
+  "token_issue_guide_message_3":`Dopo la creazione del token il tuo conto riceverà la quantità di token pari alla fornitura totale.
+    Quando altri utenti scambieranno i loro TRX per i tuoi token, questi saranno detratti dal tuo account e riceverai una somma di TRX uguale al tasso di cambio specificato.`,
 
 /*
 ##################################################################################
@@ -496,28 +503,28 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "date_error": "la data di fine è precedente o la stessa della data di partenza",
+  "date_error": "La data di fine è precedente o uguale alla data di inizio",
   "no_name_error": "Il nome è obbligatorio",
-  "no_supply_error": "La fornitura totale deve essere almeno 1",
-  "coin_value_error": "L'importo del token deve essere almeno 1",
-  "tron_value_error": "la quantità di TRX per un coin deve essere almeno 1",
+  "no_supply_error": "La fornitura totale deve essere almeno di 1",
+  "coin_value_error": "La quantità di token deve essere almeno di 1",
+  "tron_value_error": "la quantità di TRX per gettone deve essere almeno di 1",
   "invalid_starttime_error": "La data di inizio specificata non è valida",
   "invalid_endtime_error": "La data di fine specificata non è valida",
   "no_description_error": "Descrizione obbligatoria",
   "no_url_error": "URL del sito web obbligatorio",
   "past_starttime_error": "La data iniziale è nel passato",
   "no_transactions": "Nessuna Transazione",
-  "errors_in_form": "Ci sono errori nel modulo",
+  "errors_in_form": "Ci sono errori nel modulo di compilazione",
   "token_link_message_0": "Il token sarà disponibile sul",
   "token_link_message_1": "Pagina token",
   "token_link_message_2": "in pochi minuti",
-  "description_error_message_0": "La descrizione non deve essere più lunga di 200 caratteri.",
+  "description_error_message_0": "La descrizione non deve essere più lunga di 200 caratteri",
   "token_creation_error": "Si è verificato un errore durante la creazione del token",
   "tokenname_error_message_0": "Il nome non deve essere più lungo di 32 caratteri",
-  "tokenname_error_message_1": "Il nome può contenere solo caratteri a-Z",
+  "tokenname_error_message_1": "Il nome può contenere solamente i caratteri a-Z",
   "abbreviation_required": "Abbreviazione richiesta",
-  "abbreviation_error_message_0": "L'abbreviazione non deve essere più lunga di 5 caratteri.",
-  "abbreviation_error_message_1": "L'abbreviazione può contenere solo caratteri a-Z.",
+  "abbreviation_error_message_0": "L'abbreviazione non deve essere più lunga di 5 caratteri",
+  "abbreviation_error_message_1": "L'abbreviazione può contenere solamente i caratteri a-Z",
 
 /*
 ##################################################################################
@@ -558,29 +565,29 @@ export const messages = {
 */
   "next_round": "Round Successivo",
   "total_votes": "Voti Totali",
-  "most_ranks": "Posizioni guadagnate maggiormente in questo round",
+  "most_ranks": "Posizioni guadagnate maggiormente in questo ciclo di voto",
   "view_live_ranking": "Guarda la classifica in diretta",
-  "open_team_page": "Apri Pagina Team",
-  "warning_votes": "Almeno l'energia di 1 Tron è richiesta per iniziare a votare. L'energia Tron viene guadagnata congelando TRX sul",
+  "open_team_page": "Apri pagina del Team",
+  "warning_votes": "È richiesto almeno 1 Tron Power per iniziare a votare. I Tron Power sono ottenuti congelando TRX sul",
   "account_page": "Pagina Account",
   "loading_votes": "Caricamento voti",
   "3_day_ranking": "Classifica 3 giorni",
   "live_ranking": "Classifica in tempo reale",
-  "live_ranking_msg": "si aggiorna ogni 15 secondi. I nuovi voti possono richiedere fino a 1-2 minuti prima di essere conteggiati",
+  "live_ranking_msg": "Si aggiorna ogni 15 secondi. I nuovi voti possono richiedere fino a 1-2 minuti prima di essere conteggiati",
   "candidate": "Candidato",
-  "current_votes": "Voti Attuali",
+  "current_votes": "Voti attuali",
   "click_to_start_voting": "Fare clic qui per avviare la votazione",
   "votes_remaining_message": "Voti rimanenti",
-  "open_wallet_start_voting_message": "Portafoglio aperto per iniziare la votazione",
-  "thanks_submitting_vote_message": "Grazie per aver presentato il tuo voto!",
+  "open_wallet_start_voting_message": "Apri il wallet per iniziare la votazione",
+  "thanks_submitting_vote_message": "Grazie per aver inviato il tuo voto!",
   "need_min_trx_to_vote_message": "Per poter votare è necessario almeno 1 TRX",
-  "to_much_votes_massage": "Spendete a molto voti!",
-  "all_votes_are_used_message": "Tutti i voti sono utilizzati!",
+  "to_much_votes_massage": "Esprimeresti troppi voti!",
+  "all_votes_are_used_message": "Tutti i voti sono stati utilizzati!",
   "submissing_vote_message_title": "Grazie per aver votato!",
-  "submissing_vote_message_0": "I tuoi voti sono stati inviati correttamente, avranno effetto quando inizierà il prossimo ciclo.",
+  "submissing_vote_message_0": "I tuoi voti sono stati inviati correttamente, avranno effetto quando inizierà il prossimo ciclo di voto.",
   "submissing_vote_message_1": "Puoi ridistribuire i tuoi voti quando lo desideri",
-  "submitting_vote_error_message": "Qualcosa è andato storto durante la presentazione dei voti. Riprova più tardi.",
-  "loading_super_representatives": "Caricamento dei super rappresentanti",
+  "submitting_vote_error_message": "Qualcosa è andato storto durante l'invio dei voti. Si prega di riprovare più tardi.",
+  "loading_super_representatives": "Caricamento dei Super Rappresentanti",
 
 /*
 ##################################################################################
@@ -594,12 +601,12 @@ export const messages = {
   "tx_qrcode": "Codice QR della Transazione",
   "load_tx_qrcode": "Carica Transazione da Codice QR",
   "transaction_load_error": "Errore caricamento transazione",
-  "transaction_load_error_message": "Qualcosa è andato storto durante il tentativo di caricare la transazione. Assicurati che l'HEX abbia un formato correttot",
-  "transaction_success_message": "Transazione trasmessa con successo alla rete",
+  "transaction_load_error_message": "Qualcosa è andato storto durante il tentativo di caricare la transazione. Assicurati che l'HEX sia specificato in un formato corretto",
+  "transaction_success_message": "Transazione trasmessa in broadcast alla rete con successo",
   "transaction_success": "Transazione avvenuta con successo",
   "transaction_error_message": "Qualcosa è andato storto durante il tentativo di trasmettere la transazione",
   "transaction_error": "Errore Transazione",
-  "confirm_transaction_message": "Sei sicuro che vuoi inviare la transazione?",
+  "confirm_transaction_message": "Sei sicuro di voler inviare la transazione?",
   "broadcast_transaction_to_network": "Trasmissione della transazione alla rete",
 
 /*
@@ -639,6 +646,8 @@ export const messages = {
   "tron_architechure": "Architettura TRON",
   "tron_protobuf_doc": "Documentazione TRON Protobuf",
   "report_an_error": "Segnala un bug / Invia un suggerimento",
+  "frequently_asked_questions": "Domande Frequenti",
+  "telegram_updates": "Aggiornamenti Telegram",
 
 /*
 ##################################################################################
@@ -655,20 +664,32 @@ export const messages = {
   "create_wallet": "crea portafoglio",
   "no_open_wallet": "Nessun portafoglio aperto da visualizzare",
   "new_wallet": "Nuovo Portafoglio",
-  "password_encr_key_message_0": "Questa password cripta la tua chiave privata. Questo non agisce come un seme per generare nuove chiavi.",
+  "password_encr_key_message_0": "Questa password cripta la tua chiave privata. Questa non agisce come un seme per generare nuove chiavi.",
   "password_encr_key_message_1": "Ti serviranno questa password e la tua chiave privata per sbloccare il tuo portafoglio.",
   "strong_password_info": "È richiesta una password complessa",
   "save_keystore_file": "Salva il tuo file Keystore",
   "download_keystore_file": "Scarica la chiave criptata",
   "do_not_lose_it": "Non perderla!",
-  "do_not_lose_it_message_0": "La Fondazione TRON non può aiutarti a recuperare una chiave persa.",
+  "do_not_lose_it_message_0": "La Fondazione Tron non può aiutarti a recuperare una chiave persa.",
   "do_not_share_it": "Non condividerla!",
-  "do_not_share_it_message_0": "I tuoi fondi potrebbero essere rubati se usi questi file su un sito pericoloso.",
+  "do_not_share_it_message_0": "I tuoi fondi porebbero essere rubati se usi questo file su un sito malevolo.",
   "make_a_backup": "Fai un backup!",
-  "make_a_backup_message_0": "Mettiamo il caso che il tuo computer prenda fuoco.",
-  "save_private_key": "Salva la Tua Chiave Privata",
+  "make_a_backup_message_0": "Solo nel caso in cui il tuo computer prenda fuoco.",
+  "save_private_key": "Salva la tua chiave privata",
   "print_paper_wallet": "Stampa il portafoglio su carta",
   "new_wallet_ready_message": "Il tuo nuovo portafoglio è pronto",
   "go_to_account_page": "Vai alla pagina dell'account",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "istante",
+  "parenthash": "hash genitore",
+  "size": "dimensione",
 
 };

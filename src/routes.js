@@ -32,6 +32,7 @@ import {Redirect} from "react-router-dom";
 import OpenWallet from "./components/wallet/Access/index";
 import Faq from "./components/Pages/Faq";
 import {IS_DESKTOP} from "./constants";
+import LedgerHelp from "./components/Pages/LedgerHelp";
 
 export const routes = [
   {
@@ -202,13 +203,24 @@ export const routes = [
       '-',
       'Tronscan',
       {
-        label: "Frequently Asked Questions",
+        label: "frequently_asked_questions",
         component: Faq,
         path: "/help/faq",
       },
       {
+        label: "Ledger",
+        component: LedgerHelp,
+        path: "/help/ledger",
+      },
+      {
         url: "https://t.me/tronscan",
-        label: "Telegram Updates",
+        label: "telegram_updates",
+      },
+      '-',
+      "Community",
+      {
+        url: "https://www.reddit.com/r/tronix",
+        label: "reddit",
       },
       '-',
       "Development",

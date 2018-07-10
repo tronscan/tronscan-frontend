@@ -2,7 +2,6 @@ import {connect} from "react-redux";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import Scanner from "./Scanner";
-import QRCode from "qrcode.react";
 
 class ScanSignatureModal extends React.Component {
 

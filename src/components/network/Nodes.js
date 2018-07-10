@@ -10,6 +10,7 @@ import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
 import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
+import BarReact from "../common/BarChart";
 import {IS_DESKTOP} from "../../constants";
 
 class Nodes extends Component {
@@ -67,30 +68,30 @@ class Nodes extends Component {
 
     if (nodes.length === 0) {
       return (
-        <div className="d-flex justify-content-center p-4">
-          <TronLoader/>
-        </div>
+          <div className="d-flex justify-content-center p-4">
+            <TronLoader/>
+          </div>
       );
     }
 
     return (
-      <ul className="list-group list-group-flush">
-        {
-          shownCountries.map((country, index) => (
-            <li key={country.name} className="list-group-item d-flex">
-              {country.name}
-              <span className="ml-auto">
+        <ul className="list-group list-group-flush">
+          {
+            shownCountries.map((country, index) => (
+                <li key={country.name} className="list-group-item d-flex">
+                  {country.name}
+                  <span className="ml-auto">
                 {country.total}
               </span>
-            </li>
-          ))
-        }
-      </ul>
+                </li>
+            ))
+          }
+        </ul>
     );
   }
 
   loadNodes = async () => {
-    let {nodes, status} = await Client.getNodes();
+    let {nodes, status} = await Client.getNodeLocations();
 
     this.setState({
       nodes,
@@ -100,6 +101,7 @@ class Nodes extends Component {
 
   componentDidMount() {
     this.loadNodes();
+
   }
 
   render() {
@@ -107,68 +109,65 @@ class Nodes extends Component {
 
     let {nodes, syncStatus} = this.state;
     let countries = this.buildNodeList();
-
-    if (syncStatus === "waiting_for_first_sync"){
+    if (syncStatus === "waiting_for_first_sync") {
       return (
-        <main className="container header-overlap">
-          <div className="card">
-            <TronLoader>
-              {tu("first_node_sync_message")}
-            </TronLoader>
-          </div>
-        </main>
+          <main className="container header-overlap">
+            <div className="card">
+              <TronLoader>
+                {tu("first_node_sync_message")}
+              </TronLoader>
+            </div>
+          </main>
       );
     }
 
-    if (nodes.length === 0){
+    if (nodes.length === 0) {
       return (
-        <main className="container header-overlap">
-          <div className="card">
-            <TronLoader>
-              {tu("loading_nodes")}
-            </TronLoader>
-          </div>
-        </main>
+          <main className="container header-overlap">
+            <div className="card">
+              <TronLoader>
+                {tu("loading_nodes")}
+              </TronLoader>
+            </div>
+          </main>
       );
     }
 
     return (
-      show3D ?
-        <GlobeMapAsync nodes={nodes} countries={countries}/> :
-        <main className="container header-overlap">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100 text-center widget-icon">
-                <WidgetIcon className="fa fa-server"  />
-                <div className="card-body">
-                  <h3 className="text-secondary">
-                    {nodes.length}
-                  </h3>
-                  {tu("nodes")}
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6 mt-3 mt-md-0">
-              <div className="card h-100 text-center widget-icon">
-                <WidgetIcon className="fa fa-globe text-primary"  />
-                <div className="card-body">
-                  {
-                    countries.length > 0 ?
-                      <h3 className="text-primary">
-                        {maxBy(countries, c => c.total).name}
-                      </h3> :
-                      <h3 className="text-primary">
-                        Unknown
+        show3D ?
+            <GlobeMapAsync nodes={nodes} countries={countries}/> :
+            <main className="container header-overlap">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="card h-100 text-center widget-icon">
+                    <WidgetIcon className="fa fa-server"/>
+                    <div className="card-body">
+                      <h3 className="text-secondary">
+                        {nodes.length}
                       </h3>
-                  }
-                  {tu("most_nodes")}
+                      {tu("nodes")}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-md-6 mt-3 mt-md-0">
+                  <div className="card h-100 text-center widget-icon">
+                    <WidgetIcon className="fa fa-globe text-primary"/>
+                    <div className="card-body">
+                      {
+                        countries.length > 0 ?
+                            <h3 className="text-primary">
+                              {maxBy(countries, c => c.total).name}
+                            </h3> :
+                            <h3 className="text-primary">
+                              Unknown
+                            </h3>
+                      }
+                      {tu("most_nodes")}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          {
-            !IS_DESKTOP &&
               <div className="row mt-3">
                 <div className="col-md-12">
                   <div className="card">
@@ -176,54 +175,74 @@ class Nodes extends Component {
                   </div>
                 </div>
               </div>
-          }
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <table className="table table-hover table-striped bg-white m-0">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th style={{width: 150}}>{tu("IP")}</th>
-                      <th className="text-nowrap d-none d-lg-table-cell">{tu("Hostname")}</th>
-                      <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("height")}</th>
-                      <th style={{width: 50}} className="text-center text-nowrap">{tu("GRPC")}</th>
-                      <th style={{width: 100}} className="text-center text-nowrap d-none d-md-table-cell">{tu("GRPC m/s")}</th>
-                      <th style={{width: 100}} className="text-right text-nowrap">{tu("Last Update")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      nodes.map((node, index) => (
-                        <tr key={index}>
-                          <td>{node.ip}</td>
-                          <td className="text-nowrap d-none d-lg-table-cell">
-                            <div className="text-truncate" style={{ maxWidth: 300 }}>
-                              {node.hostname}
-                            </div>
-                          </td>
-                          <td className="text-right text-nowrap d-none d-sm-table-cell">
-                            {node.lastBlock === 0 ? '-' : node.lastBlock}
-                            </td>
-                          <td className="text-center text-nowrap d-none d-sm-table-cell">
-                            {node.grpcEnabled ? <span key="no" className="text-success"><i className="fas fa-circle"/></span> : null}
-                          </td>
-                          <td className="text-right text-nowrap">
-                          {
-                            node.grpcEnabled ? (node.grpcResponseTime + ' ms') : '-'
-                          }
-                          </td>
-                          <td className="text-right text-nowrap">
-                            <TimeAgo date={node.lastSeen} />
-                          </td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
+              <div className="row mt-3">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title text-center"> {tu("nodes_ranking")}</h5>
+                      <div style={{height: 500}}>
+                        {
+                          countries === null ?
+                              <TronLoader/> :
+                              <BarReact style={{height: 500}} data={countries}/>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </main>
+              {/*
+              <div className="row mt-3">
+                <div className="col-md-12">
+                  <div className="card">
+                    <table className="table table-hover table-striped bg-white m-0">
+                      <thead className="thead-dark">
+                      <tr>
+                        <th style={{width: 150}}>{tu("IP")}</th>
+                        <th className="text-nowrap d-none d-lg-table-cell">{tu("Hostname")}</th>
+                        <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("height")}</th>
+                        <th style={{width: 50}} className="text-center text-nowrap">{tu("GRPC")}</th>
+                        <th style={{width: 100}}
+                            className="text-center text-nowrap d-none d-md-table-cell">{tu("GRPC m/s")}</th>
+                        <th style={{width: 100}} className="text-right text-nowrap">{tu("Last Update")}</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {
+                        nodes.map((node, index) => (
+                            <tr key={index}>
+                              <td>{node.ip}</td>
+                              <td className="text-nowrap d-none d-lg-table-cell">
+                                <div className="text-truncate" style={{maxWidth: 300}}>
+                                  {node.hostname}
+                                </div>
+                              </td>
+                              <td className="text-right text-nowrap d-none d-sm-table-cell">
+                                {node.lastBlock === 0 ? '-' : node.lastBlock}
+                              </td>
+                              <td className="text-center text-nowrap d-none d-sm-table-cell">
+                                {node.grpcEnabled ? <span key="no" className="text-success"><i
+                                    className="fas fa-circle"/></span> : null}
+                              </td>
+                              <td className="text-right text-nowrap">
+                                {
+                                  node.grpcEnabled ? (node.grpcResponseTime + ' ms') : '-'
+                                }
+                              </td>
+                              <td className="text-right text-nowrap">
+                                <TimeAgo date={node.lastSeen}/>
+                              </td>
+                            </tr>
+                        ))
+                      }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              */
+              }
+            </main>
     )
   }
 }

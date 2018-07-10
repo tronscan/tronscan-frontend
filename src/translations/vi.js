@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Xem Siêu Đại Diện",
   "create_new_wallet": "Tạo ví mới",
   "view_tokens": "Xem mã token",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Nhân chứng",
   "asset_participation": "Góp phần vào tài sản",
   "loading_transaction": "Đang tải giao dịch",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Giao dịch trong giờ qua",
   "average_blocksize": "Kích thước trung bình của khối",
   "rich_list": "Rich List",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -343,6 +347,12 @@ export const messages = {
   "successfully_claimed_rewards":  "Phần thưởng đã nhận được thành công",
   "claim_rewards": "Nhận phần thưởng",
   "sr_receive_reward_message_0": "Là một đại diện bạn nhận được phần thưởng cho việc sản xuất các khối. Những phần thưởng này có thể được xác nhận sau mỗi 24 giờ",
+  "intro": "Giới thiệu",
+  "budget_expenses": "Chi phí ngân sách",
+  "server_configuration": "Cấu hình máy chủ",
+  "community_plan": "Kế hoạch cộng đồng",
+  "team": "Đội",
+
 /*
 ##################################################################################
 #                                                                                #
@@ -642,6 +652,8 @@ export const messages = {
   "tron_architechure": "Cấu trúc TRON",
   "tron_protobuf_doc": "Tà liệu TRON Protobuf",
   "report_an_error": "Gửi lỗi / đề xuất",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -673,5 +685,17 @@ export const messages = {
   "print_paper_wallet": "Ví in giấy",
   "new_wallet_ready_message": "Ví mới của bạn đã sẵn sàng",
   "go_to_account_page": "Chuyển đến trang tài khoản",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
 
 };

@@ -17,7 +17,7 @@ import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {IS_DESKTOP} from "../../constants";
 
-const subHours = require('date-fns/sub_hours');
+const subDays = require("date-fns/sub_days");
 
 class Home extends Component {
 
@@ -28,12 +28,14 @@ class Home extends Component {
       isShaking: false,
       hasFound: false,
       stats: {
+        totalAccounts:0,
+        previousTotalAccounts:0,
         onlineNodes: 0,
         previousOnlineNodes: 0,
         blockHeight: 0,
         previousBlockHeight: 0,
-        transactionPerHour: 0,
-        previousTransactionPerHour: 0,
+        transactionPerDay: 0,
+        previousTransactionPerDay: 0,
       },
     };
   }
@@ -47,19 +49,23 @@ class Home extends Component {
 
     let {total: totalTransactions} = await Client.getTransfers({
       limit: 1,
-      date_start: subHours(new Date(), 1),
+      date_start: subDays(new Date(), 1),
     });
 
-
     let {total} = await Client.getNodeLocations();
+
+    let totalAccounts  = await Client.getAccounts();
+
     this.setState(prevState => ({
       stats: {
+        totalAccounts:totalAccounts.total,
+        previousTotalAccounts:prevState.stats.totalAccounts,
         previousOnlineNodes: prevState.stats.onlineNodes,
         previousBlockHeight: prevState.stats.blockHeight,
-        previousTransactionPerHour: prevState.stats.transactionPerHour,
+        previousTransactionPerDay: prevState.stats.transactionPerDay,
         onlineNodes: total,
         blockHeight: blocks[0] ? blocks[0].number : 0,
-        transactionPerHour: totalTransactions,
+        transactionPerDay: totalTransactions,
       },
     }));
   }
@@ -118,7 +124,7 @@ class Home extends Component {
   };
 
   render() {
-
+    let {intl} = this.props;
     let {search, isShaking, hasFound, stats} = this.state;
 
     return (
@@ -153,7 +159,7 @@ class Home extends Component {
                          value={search}
                          onKeyDown={this.onSearchKeyDown}
                          onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder="Search Address, Block Height, Transaction Hash, Asset Name"/>
+                         placeholder={intl.formatMessage({id:'search_description'})}/>
 
                   <div className="input-group-append">
                     <button className="btn btn-dark box-shadow-none" onClick={this.doSearch}>
@@ -165,31 +171,38 @@ class Home extends Component {
               </div>
             </div>
             <div className="row text-center home-stats ">
-              <div className="col-md-3">
-                <Link to="/nodes?mode=3d" className="hvr-underline-from-center hvr-underline-white text-muted">
+              <div className="col-md-2 offset-md-1">
+                <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousOnlineNodes} end={stats.onlineNodes} duration={1}/></h2>
                   <p>{tu("online_nodes")}</p>
                 </Link>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2 ">
                 <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousBlockHeight} end={stats.blockHeight} duration={1}/></h2>
                   <p>{tu("block_height")}</p>
                 </Link>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2 ">
                 <Link to="/blockchain/transactions"
                       className="hvr-underline-from-center hvr-underline-white text-muted">
-                  <h2><CountUp start={stats.previousTransactionPerHour} end={stats.transactionPerHour} duration={1}/></h2>
-                  <p>{tu("transactions_last_hour")}</p>
+                  <h2><CountUp start={stats.previousTransactionPerDay} end={stats.transactionPerDay} duration={1}/></h2>
+                  <p>{tu("transactions_last_day")}</p>
                 </Link>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2 ">
+                <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
+                  <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
+                  <p>{tu("total_accounts")}</p>
+                </Link>
+              </div>
+              <div className="col-md-2 ">
                 <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><TRXPrice amount={1000} currency="USD"/></h2>
                   <p>{tu("pice_per_1000trx")}</p>
                 </Link>
               </div>
+
             </div>
           </div>
         </div>
@@ -316,6 +329,7 @@ class Home extends Component {
                         <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
                         <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
                         <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
+
                       </ul>
                     </div>
                     <div className="col-xs-12 col-sm-4 col-md-3">

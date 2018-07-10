@@ -1,10 +1,9 @@
 import {Client} from "../../services/api";
 import {tu} from "../../utils/i18n";
 import React, {Fragment} from "react";
-import {AddressLink, ExternalLink} from "../common/Links";
-import {TimeAgo} from "react-timeago";
+import {AddressLink} from "../common/Links";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, find, isNaN, isNumber, last, sortBy, sumBy, trim} from "lodash";
+import {filter, isNaN, sortBy, sumBy, trim} from "lodash";
 import Countdown from "react-countdown-now";
 import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
@@ -415,7 +414,11 @@ class VoteOverview extends React.Component {
                 <h3 className="text-secondary">
                   <FormattedNumber value={totalVotes}/>
                 </h3>
-                <a href="javascript:" onClick={() => this.setState(state => ({ viewStats: !state.viewStats  }))}>{tu("total_votes")}</a>
+                {/*
+                  <a href="javascript:"
+                     onClick={() => this.setState(state => ({viewStats: !state.viewStats}))}>{tu("total_votes")}</a>
+                */}
+                {tu("total_votes")}
               </div>
             </div>
           </div>

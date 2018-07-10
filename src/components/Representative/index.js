@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {filter, head, trim} from "lodash";
+import {trim} from "lodash";
 import {TronLoader} from "../common/loaders";
 import {ExternalLink} from "../common/Links";
 import {connect} from "react-redux";
@@ -123,27 +123,27 @@ class Representative extends React.Component {
       },
       sections: [
         {
-          name: tu("Intro"),
+          name: tu("intro"),
           id: "intro",
           content: <ReactMarkdown source={intro}/>,
         },
         {
-          name: tu("Team"),
+          name: tu("team"),
           id: "team",
           content: <ReactMarkdown source={team}/>,
         },
         {
-          name: tu("Community Plan"),
+          name: tu("community_plan"),
           id: "community-plan",
           content: <ReactMarkdown source={communityPlan}/>,
         },
         {
-          name: tu("Server Configuration"),
+          name: tu("server_configuration"),
           id: "server-configuration",
           content: <ReactMarkdown source={serverConfiguration}/>,
         },
         {
-          name: tu("Budget Expenses"),
+          name: tu("budget_expenses"),
           id: "budget-expenses",
           content: <ReactMarkdown source={budgetExpenses}/>,
         },

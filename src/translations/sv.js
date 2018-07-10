@@ -15,11 +15,11 @@ export const messages = {
 ##################################################################################
 #                                                                                #
 #         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
+#         Version: 1.5-06072018                                                  #
+#         Update Date: 06.07.2018                                                #
 #         Language: Swedish                                                      #
 #         Status: Approved Version                                               #
-#         Number of checks: 4                                                    #
+#         Number of checks: 5                                                    #
 #         Participants: joelstahre                                               #
 #                                                                                #
 ##################################################################################
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Anmälningar aktiverade",
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "skicka Tokens",
 
 /*
 ##################################################################################
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Se Super Representatives",
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
+  "transactions_last_day": "Transaktioner på sista dagen",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Bevittna",
   "asset_participation": "Kapitalandel",
   "loading_transaction": "Laddar transaktion",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
+  "TRX_transaction_chart": "TRX Transaktionskarta",
+  "transactions_per_day": "Transaktioner per dag",
 
 /*
 ##################################################################################
@@ -339,6 +343,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Framgångsrikt anspråk på belöningar",
   "claim_rewards": "Krav på belöningar",
   "sr_receive_reward_message_0": "Som representant får du belöningar för att producera block. Dessa belöningar kan hävdas var 24: e timme",
+  "intro": "Intro",
+  "budget_expenses": "Budgetkostnader",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Gemenskapsplanen",
+  "team": "Team",
 
 /*
 ##################################################################################
@@ -373,7 +382,7 @@ export const messages = {
   "token_exchange_confirm": "Jag har godkänt att spendera {trxAmount} av token distribution, och får totalt {tokenAmount} tokens.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ett okänt fel inträffade, var vänlig försök igen om några minuter",
   "An_error_occurred": "Ett fel inträffade",
-  "create_a_token": "Create a token",
+  "create_a_token": "Skapa ett token",
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
@@ -431,7 +440,7 @@ export const messages = {
   "quantity": "kvantitet",
   "percentage": "Procent",
   "loading_token": "Laddar Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Voterprocent",
 
 /*
 ##################################################################################
@@ -502,16 +511,16 @@ export const messages = {
   "past_starttime_error": "Start datum är tillbaka i tiden",
   "no_transactions": "Inga Transanktioner",
   "errors_in_form": "Det finns fel i formuläret",
-  "token_link_message_0": "The token will be available on the",
-  "token_link_message_1": "Tokens page",
-  "token_link_message_2": "in a few minutes",
+  "token_link_message_0": "Token kommer att finnas tillgänglig på",
+  "token_link_message_1": "Tokens sida",
+  "token_link_message_2": "inom några minuter",
   "description_error_message_0": "Beskrivning kan inte vara längre än 200 tecken",
   "token_creation_error": "Det uppstod ett fel vid skapandet av token.",
   "tokenname_error_message_0": "Namnet får inte vara längre än 32 tecken",
   "tokenname_error_message_1": "Namnet måste innehålla endast tecken från a-Z",
   "abbreviation_required": "Förkortning krävs",
-  "abbreviation_error_message_0": "Abbreviation may not be longer then 5 characters",
-  "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
+  "abbreviation_error_message_0": "Förkortning får inte vara längre än 5 tecken",
+  "abbreviation_error_message_1": "Förkortning får endast innehålla a-Z tecken",
 
 /*
 ##################################################################################
@@ -633,6 +642,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Anmäl en bug / förslag",
+  "frequently_asked_questions": "Vanliga frågor",
+  "telegram_updates": "Telegramuppdateringar",
 
 /*
 ##################################################################################
@@ -664,5 +675,17 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Gå till kontosidan",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tid",
+  "parenthash": "parenthash",
+  "size": "storlek",
 
 };

@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Notificações ativadas",
   "contract_type": "Tipo de Contrato",
   "filters": "filtros",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Enviar Tokens",
 
 /*
 ##################################################################################
@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Visualizar Super Representantes",
   "create_new_wallet": "Criar Nova Carteira",
   "view_tokens": "Visualizar Tokens",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -156,7 +157,7 @@ export const messages = {
   "last_page": "última página",
   "page": "página",
   "of": "de",
-  "page_size": "page size",
+  "page_size": "tamanho da página",
   "most_nodes": "Maioria dos Nós",
   "loading_nodes": "Carregando Nós",
   "Hostname": "Nome do Host",
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Testemunha",
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
+  "nodes_ranking": "Classificação dos Nós",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transações na última hora",
   "average_blocksize": "Tamanho Médio do Bloco",
   "rich_list": "Lista dos Ricos",
+  "TRX_transaction_chart": "Gráfico de Transações TRX ",
+  "transactions_per_day": "Transações Por Dia",
 
 /*
 ##################################################################################
@@ -345,6 +349,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Recompensas resgatadas com sucesso",
   "claim_rewards": "Resgatar Recompensas",
   "sr_receive_reward_message_0": "Como representante, você recebe recompensas para produzir blocos. Estas recompensas podem ser resgatadas a cada 24 horas",
+  "intro": "Intro",
+  "budget_expenses": "Despesas Orçamentárias",
+  "server_configuration": "Configuração do Servidor",
+  "community_plan": "Plano para Comunidade",
+  "team": "Equipe",
 
 /*
 ##################################################################################
@@ -639,6 +648,8 @@ export const messages = {
   "tron_architechure": "Arquitetura TRON",
   "tron_protobuf_doc": "Documentação do TRON Protobuf",
   "report_an_error": "Reportar um erro / sugestão",
+  "frequently_asked_questions": "Perguntas Mais Frequentes",
+  "telegram_updates": "Atualizações no Telegram",
 
 /*
 ##################################################################################
@@ -670,5 +681,17 @@ export const messages = {
   "print_paper_wallet": "Imprimir Carteira de Papel",
   "new_wallet_ready_message": "A sua nova carteira está pronta",
   "go_to_account_page": "Ir para a página da conta",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "hora",
+  "parenthash": "parenthash",
+  "size": "tamanho",
 
 };

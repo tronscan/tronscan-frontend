@@ -1,6 +1,5 @@
 import React from "react";
 
-import {Area, AreaChart, Pie, PieChart, ResponsiveContainer, Tooltip, Treemap, XAxis, YAxis} from "recharts";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
@@ -12,73 +11,7 @@ import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
-
-const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
-
-
-function CustomizedContent({root, depth, x, y, width, height, index, payload, colors, rank, name}) {
-
-  return (
-      <g onClick={() => alert('clicked')}>
-        <rect
-            x={x}
-            y={y}
-            width={width}
-            height={height}
-            style={{
-              fill: depth < 2 ? colors[Math.floor(index / root.children.length * 6)] : 'none',
-              stroke: '#fff',
-              strokeWidth: 2 / (depth + 1e-10),
-              strokeOpacity: 1 / (depth + 1e-10),
-            }}
-        />
-        {
-          depth !== 10 ?
-              <text
-                  x={x + width / 2}
-                  y={y + height / 2 + 7}
-                  textAnchor="middle"
-                  fill="#fff"
-                  fontSize={14}
-              >
-                {name}
-              </text>
-              : null
-        }
-        {
-          depth !== 2 ?
-              <text
-                  x={x + 4}
-                  y={y + 18}
-                  fill="#fff"
-                  fontSize={16}
-                  fillOpacity={0.9}
-              >
-                {index + 1}
-              </text>
-              : null
-        }
-      </g>
-  );
-}
-
-function SimpleTreemap({data}) {
-  return (
-      <Treemap
-          width={1000}
-          height={500}
-          className="treemap-accounts"
-          data={data}
-          isAnimationActive={false}
-          dataKey="size"
-          // ratio={4/3}
-          stroke="#fff"
-          fill="#8884d8"
-          content={<CustomizedContent colors={COLORS}/>}
-      />
-  );
-}
-
+import LineReactTx from "../../common/LineChartTx";
 
 class Statistics extends React.Component {
 
@@ -89,13 +22,15 @@ class Statistics extends React.Component {
       accounts: null,
       transactionStats: null,
       blockStats: null,
-      transactionValueStats: null
+      transactionValueStats: null,
+      txOverviewStats: null
     };
   }
 
   componentDidMount() {
     this.loadAccounts();
     this.loadStats();
+    this.loadTxOverviewStats();
   }
 
   async loadAccounts() {
@@ -107,7 +42,7 @@ class Statistics extends React.Component {
 
     this.setState({
       accounts: filter(accounts, account => !includes(tronAddresses, account.address))
-          .slice(0, 25)
+          .slice(0, 10)
           .map(account => ({
             name: account.address,
             value: account.balance / ONE_TRX,
@@ -129,19 +64,18 @@ class Statistics extends React.Component {
       info: `avg-block-size`,
     });
 
-
     let transactionTotalStats = stats.total.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
     let valueStats = stats.value.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value / ONE_TRX,
     }));
 
     blockStats = blockStats.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
@@ -152,31 +86,51 @@ class Statistics extends React.Component {
     });
   }
 
-  renderTreeMap() {
+  async loadTxOverviewStats() {
+    let {txOverviewStats} = await Client.getTxOverviewStats();
+    let temp = [];
+    for (let txs in txOverviewStats) {
+      let tx = parseInt(txs);
+      if (tx === 0)
+        temp.push(txOverviewStats[tx]);
+      else
+        temp.push({
+          date: txOverviewStats[tx].date,
+          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+          newAddressSeen: txOverviewStats[tx].newAddressSeen
+        });
+    }
 
-    let {accounts} = this.state;
-
-    let addresses = [
-      {
-        name: 'Tron Foundation',
-        children: filter(accounts, account => includes(tronAddresses, account.address)),
-      },
-      {
-        name: 'Other',
-        children: filter(accounts, account => !includes(tronAddresses, account.address)),
-      },
-    ];
-
-    return (
-        <SimpleTreemap data={addresses}/>
-    );
+    this.setState({
+      txOverviewStats: temp
+    });
   }
 
   render() {
 
-    let {transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+
     return (
         <main className="container header-overlap">
+          <div className="row">
+            <div className="col-md-12 mt-3">
+              <div className="card">
+                <div className="card-body">
+
+                  <div style={{height: 350}}>
+                    {
+                      txOverviewStats === null ?
+                          <TronLoader/> :
+                          <LineReactTx style={{height: 350}} data={txOverviewStats}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-6 mt-3">
               <div className="card">
@@ -200,7 +154,8 @@ class Statistics extends React.Component {
                     {
                       transactionValueStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionValueStats}
+                                     keysData={['timestamp', 'value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -216,7 +171,8 @@ class Statistics extends React.Component {
                     {
                       transactionStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -230,16 +186,12 @@ class Statistics extends React.Component {
                     {
                       blockStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <RichList/>
             </div>
           </div>
         </main>
@@ -253,12 +205,5 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {};
-
-const styles = {
-  line: {
-    stroke: '#343a40',
-  }
-};
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))

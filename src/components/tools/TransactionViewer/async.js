@@ -1,6 +1,5 @@
 import React from "react";
 import {asyncComponent} from "react-async-component";
-import {TronLoader} from "../../common/loaders";
 
 export const AddSignatureModalAsync = asyncComponent({
   LoadingComponent: () => (

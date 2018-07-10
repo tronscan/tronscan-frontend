@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Super Repräsentanten Übersicht",
   "create_new_wallet": "Ein neues Wallet erstellen",
   "view_tokens": "Tokenübersicht",
+  "transactions_last_day": "Transaktionen am letzten Tag",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Zeuge/Prüfer",
   "asset_participation": "Asset-Beteiligung",
   "loading_transaction": "Laden der Transaktionen",
+  "nodes_ranking": "Knoten Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transaktionen der letzten Stunde",
   "average_blocksize": "Durchschnittliche Blockgröße",
   "rich_list": "Aufteilung TRX - Inhaber/Mengen",
+  "TRX_transaction_chart": "TRX Transaktions Chart",
+  "transactions_per_day": "Transaktionen pro Tag",
 
 /*
 ##################################################################################
@@ -344,6 +348,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Prämie/Belohnung Erfolgreich erhalten",
   "claim_rewards": "Prämien einfordern",
   "sr_receive_reward_message_0": "Als Repräsentat erhalten Sie eine Prämie/Belohnung für das Erstellung von Blöcken(Blockchain). Diese Prämie kann alle 24 Stunden in Anspruch genommen werden.",
+  "intro": "Einleitung",
+  "budget_expenses": "Budget/Ausgaben",
+  "server_configuration": "Server Konfiguration",
+  "community_plan": "Community Plan",
+  "team": "Das Team",
 
 /*
 ##################################################################################
@@ -647,6 +656,8 @@ export const messages = {
   "tron_architechure": "TRON Architektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Fehler melden / Vorschlag einreichen",
+  "frequently_asked_questions": "Häufig gestellte Fragen (FAQ)",
+  "telegram_updates": "Informationen auf Telegram",
 
 /*
 ##################################################################################
@@ -678,5 +689,17 @@ export const messages = {
   "print_paper_wallet": "Paper-Wallet drucken",
   "new_wallet_ready_message": "Ihre neue Wallet wurde erstellt.",
   "go_to_account_page": "Zur Konto-Seite wechseln",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "Hash",
+  "time": "Zeit",
+  "parenthash": "Parenthash",
+  "size": "Größe",
 
 };

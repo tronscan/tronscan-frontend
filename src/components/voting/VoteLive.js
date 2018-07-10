@@ -1,41 +1,16 @@
 import React from "react";
-import {TimeAgo} from "react-timeago";
 import {FormattedNumber} from "react-intl";
-import {filter, find, isNaN, isNumber, keyBy, last, random, range, sortBy, sumBy, trim} from "lodash";
+import {sortBy} from "lodash";
 import {withTimers} from "../utils/timing";
 import FlipMove from "react-flip-move";
 import Avatar from "../common/Avatar";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
 import palette from "google-palette";
-import VoteStats from "../blockchain/Statistics/VoteStats";
+
 import {tu} from "../../utils/i18n"
-
-function VoteChange({value, arrow = false}) {
-  if (value > 0) {
-    return (
-      <span className="text-success">
-        <span className="mr-1">+{value}</span>
-        { arrow && <i className="fa fa-arrow-up" /> }
-      </span>
-    )
-  }
-
-  if (value < 0) {
-    return (
-      <span className="text-danger">
-        <span className="mr-1">{value}</span>
-        { arrow && <i className="fa fa-arrow-down" /> }
-      </span>
-      )
-  }
-
-  return (
-    <span>
-      -
-    </span>
-  )
-}
+import MultiLineReact from "../common/MultiLineChart";
+import {TronLoader} from "../common/loaders";
 
 class VoteLive extends React.Component {
 
@@ -43,6 +18,7 @@ class VoteLive extends React.Component {
     super();
     this.state = {
       candidates: [],
+      data: null,
       votes: {},
       colors: palette('mpn65', 20),
     };
@@ -51,12 +27,14 @@ class VoteLive extends React.Component {
   componentDidMount() {
 
     this.loadCandidates()
-      .then(() => this.loadVotes());
+        .then(() => this.loadVotes());
 
     this.props.setInterval(() => {
       this.loadVotes();
       this.loadCandidates();
     }, 15000);
+
+    this.loadData();
   }
 
   loadCandidates = async () => {
@@ -77,10 +55,17 @@ class VoteLive extends React.Component {
       votes,
     });
   };
+  loadData = async () => {
+
+    let data = await Client.getVoteStats();
+    this.setState({
+      data,
+    });
+  }
 
   render() {
 
-    let {candidates, colors, votes} = this.state;
+    let {candidates, colors, votes, data} = this.state;
 
     candidates = candidates.map(c => ({
       ...c,
@@ -93,69 +78,77 @@ class VoteLive extends React.Component {
     }));
 
     return (
-      <main className="container header-overlap pb-3">
-        <div className="card">
-          <div className="card-header text-center">
-            {tu("3_day_ranking")}
+        <main className="container header-overlap pb-3">
+          <div className="card">
+            <div className="card-header text-center">
+              {tu("3_day_ranking")}
+            </div>
+            {
+              data === null ?
+              <TronLoader/> :
+              <MultiLineReact style={{height: 400}} newCandidates={newCandidates} data={data}/>
+            }
+            {/*<VoteStats colors={colors} newCandidates={newCandidates}/>*/}
           </div>
-          <VoteStats colors={colors} />
-        </div>
-        <div className="card mt-3">
-          <div className="card-header text-center">
-            {tu("live_ranking")}
-            <div className="small text-center text-muted p-2">
-              {tu("live_ranking_msg")}
+          <div className="card mt-3">
+            <div className="card-header text-center">
+              {tu("live_ranking")}
+              <div className="small text-center text-muted p-2">
+                {tu("live_ranking_msg")}
+              </div>
             </div>
-          </div>
-          <div className="media m-3 mb-0">
-            <div className="font-weight-bold text-center border-1 border-secondary" style={{ width: 25 }}>
-              &nbsp;
+            <div className="media m-3 mb-0">
+              <div className="font-weight-bold text-center border-1 border-secondary" style={{width: 25}}>
+                &nbsp;
+              </div>
+              <div className="mx-2" style={{width: 25}}>
+                &nbsp;
+              </div>
+              <div className="media-body font-weight-bold">
+                {tu("candidate")}
+              </div>
+              <div className="ml-3 text-center font-weight-bold">
+                {tu("current_votes")}
+              </div>
             </div>
-            <div className="mx-2" style={{width: 25}}>
-              &nbsp;
-            </div>
-            <div className="media-body font-weight-bold">
-              {tu("candidate")}
-            </div>
-            <div className="ml-3 text-center font-weight-bold">
-              {tu("current_votes")}
-            </div>
-          </div>
-          <FlipMove
-            duration={700}
-            easing="ease"
-            enterAnimation="elevator"
-            staggerDurationBy={15}
-            staggerDelayBy={20}>
+            <FlipMove
+                duration={700}
+                easing="ease"
+                enterAnimation="elevator"
+                staggerDurationBy={15}
+                staggerDelayBy={20}>
 
-          {
-            newCandidates.map((candidate, index) => (
-              <div key={candidate.address} className="media mx-3 mb-3">
-                <div className="font-weight-bold text-center border-1 border-secondary" style={{color: index < 15 ? '#' + colors[index] : null, ...style.rank}}>
-                    {candidate.rank}
-                </div>
-                <div className="mx-2">
-                  <Avatar value={candidate.address} size={style.avatar.height} />
-                </div>
-                <div className="media-body">
+              {
+                newCandidates.map((candidate, index) => (
+                    <div key={candidate.address} className="media mx-3 mb-3">
+                      <div className="font-weight-bold text-center border-1 border-secondary"
+                           style={{color: index < 15 ? '#' + colors[index] : null, ...style.rank}}>
+                        {candidate.rank}
+                      </div>
+                      <div className="mx-2">
+                        <Avatar value={candidate.address} size={style.avatar.height}/>
+                      </div>
+                      <div className="media-body">
                   <span className="mt-0" style={style.row}>
                     <AddressLink address={candidate.address}>
                       {candidate.name || candidate.url}
                     </AddressLink>
                   </span>
-                </div>
-                <div className="ml-3 text-center">
-                  {/*<div className="text-muted">Votes</div>*/}
-                  <div style={style.votes}>
-                    <FormattedNumber value={candidate.votes} />
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-          </FlipMove>
-        </div>
-      </main>
+                      </div>
+                      <div className="ml-3 text-center">
+                        {/*<div className="text-muted">Votes</div>*/}
+                        <div style={style.votes}>
+                          <code style={{color: '#3E3F3A'}}>
+                            <FormattedNumber value={candidate.votes}/>
+                          </code>
+                        </div>
+                      </div>
+                    </div>
+                ))
+              }
+            </FlipMove>
+          </div>
+        </main>
     );
   }
 }

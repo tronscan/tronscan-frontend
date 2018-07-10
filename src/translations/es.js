@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Ver Super Representantes",
   "create_new_wallet": "Crear Cartera",
   "view_tokens": "Ver Tokens",
+  "transactions_last_day": "Transacciones en el último día",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Testigos",
   "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
+  "nodes_ranking": "Ranking de Nodos",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Transacciones realizadas en la última hora",
   "average_blocksize": "Tamaño promedio de bloque",
   "rich_list": "Riqueza",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -343,6 +347,11 @@ export const messages = {
   "successfully_claimed_rewards": "Recompensas solicitadas con éxito",
   "claim_rewards":"Solicitar Recompensas",
   "sr_receive_reward_message_0":"Como representante, recibirá recompensas por producir bloques. Estas recompensas podrán solicitarse cada 24 horas",
+  "intro": "Introducción",
+  "budget_expenses": "Presupuesto de gastos",
+  "server_configuration": "Configuración del servidor",
+  "community_plan": "Plan Comunitario",
+  "team": "Equipo",
 
 /*
 ##################################################################################
@@ -641,6 +650,8 @@ export const messages = {
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
   "report_an_error": "Informe de un error / sugerencia",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -654,7 +665,7 @@ export const messages = {
   "keystore_file": "Archivo Clave Cifrada",
   "select_file": "Seleccione Archivo",
   "login_mobile": "Inicie sesión con un dispositivo móvil",
-  "create_wallet": "crear billetera",
+  "create_wallet": "crear Cartera",
   "no_open_wallet": "No hay una cartera abierta para mostrar",
   "new_wallet": "Nueva Cartera",
   "password_encr_key_message_0": "Esta contraseña cifra su clave privada. Esto no actúa como una semilla para generar sus claves.",
@@ -672,5 +683,17 @@ export const messages = {
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
   "new_wallet_ready_message": "Tu nueva cartera está lista",
   "go_to_account_page": "Ir a la página de cuenta",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "tiempo",
+  "parenthash": "parent hash",
+  "size": "tamaño",
 
 };

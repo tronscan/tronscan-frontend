@@ -737,7 +737,7 @@ class Account extends Component {
                     <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
                       {tu("show_qr_code")}
                     </a>
-                    <div className="float-left" style={{ width: 300 }}>
+                    <div className="float-left" style={{ width: 350 }}>
                       <AddressLink address={currentWallet.address} includeCopy={true}/>
                     </div>
                     {

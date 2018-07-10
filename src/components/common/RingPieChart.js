@@ -16,7 +16,7 @@ export class RingPieReact extends React.Component {
     super(props)
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
-      pieId: 'pie' + id
+      pieId: 'ringPie' + id
     }
   }
 

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Огляд Супер-представників",
   "create_new_wallet": "Створити новий Гаманець",
   "view_tokens": "Перегляд Токенів",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Свідок",
   "asset_participation": "Участь активів",
   "loading_transaction": "Завантаження транзакції",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -342,6 +346,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "intro": "Інтро",
+  "budget_expenses": "Витрати бюджету",
+  "server_configuration": "Конфігурація сервера",
+  "community_plan": "Спільний план",
+  "team": "Команда",
 
 /*
 ##################################################################################
@@ -641,6 +650,8 @@ export const messages = {
   "tron_architechure": "TRON Архітектура",
   "tron_protobuf_doc": "TRON Protobuf документація",
   "report_an_error": "Надіслати помилку / пропозицію",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -672,5 +683,17 @@ export const messages = {
   "print_paper_wallet": "Роздрукуйте паперовий гаманець",
   "new_wallet_ready_message": "Ваш гаманець готовий",
   "go_to_account_page": "До сторінки облікового запису",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+    "hash": "hash",
+    "time": "time",
+    "parenthash": "parenthash",
+    "size": "size",
 
 };

@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
   "view_tokens": "Jetonları görüntüle",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "Şahit",
   "asset_participation": "Varlık Katılımı",
   "loading_transaction": "İşlem Yükleniyor",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -345,6 +349,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
   "claim_rewards": "Ödül Talebi",
   "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################
@@ -645,6 +654,8 @@ export const messages = {
   "tron_architechure": "TRON Mimarisi",
   "tron_protobuf_doc": "TRON Protobuf Belgeleri",
   "report_an_error": "Bir hata / öneri bildirin",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -676,5 +687,17 @@ export const messages = {
   "print_paper_wallet": "Kağıt Cüzdan Bastırın",
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
 
 };

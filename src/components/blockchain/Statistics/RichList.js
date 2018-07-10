@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Client} from "../../../services/api";
-import {TimeAgo} from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
@@ -24,7 +23,6 @@ export default class RichList extends Component {
 
   async load() {
     let {data, total} = await Client.getRichList();
-
 
     this.setState({
       richList: data,

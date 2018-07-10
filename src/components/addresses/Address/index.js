@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {filter, head} from "lodash";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";

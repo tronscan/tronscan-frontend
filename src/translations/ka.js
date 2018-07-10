@@ -142,6 +142,7 @@ export const messages = {
   "view_super_representatives": "სუპერ წარმომადგენლის ხილვა",
   "create_new_wallet": "შექმენით ახალი საფულე",
   "view_tokens": "ტოკენების ხილვა",
+  "transactions_last_day": "Transactions in last day",
 
 /*
 ##################################################################################
@@ -171,6 +172,7 @@ export const messages = {
   "witness": "დამოწმება",
   "asset_participation": "აქტივის მონაწილეობა",
   "loading_transaction": "ტრანზაქციის ატვირთვა",
+  "nodes_ranking": "Nodes Ranking",
 
 /*
 ##################################################################################
@@ -184,6 +186,8 @@ export const messages = {
   "transactions_past_hour": "ბოლო საათის ტრანზაქციები",
   "average_blocksize": "საშუალო ბლოკის ზომა",
   "rich_list": "სიმდიდრის სია",
+  "TRX_transaction_chart": "TRX Transaction Chart",
+  "transactions_per_day": "Transactions Per Day",
 
 /*
 ##################################################################################
@@ -337,6 +341,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
+  "intro": "Intro",
+  "budget_expenses": "Budget Expenses",
+  "server_configuration": "Server Configuration",
+  "community_plan": "Community Plan",
+  "team": "Team",
 
 /*
 ##################################################################################
@@ -631,6 +640,8 @@ export const messages = {
   "tron_architechure": "ტრონის არქიტექტურა",
   "tron_protobuf_doc": "ტრონის Protobuf დოკუმენტაცია",
   "report_an_error": "დაუშვით ბაგი / წინადადება",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
 
 /*
 ##################################################################################
@@ -662,5 +673,17 @@ export const messages = {
   "print_paper_wallet": "ამობეჭდეთ საფულე ქაღალდზე ",
   "new_wallet_ready_message": "თქვენი ახალი საფულე მზად არის",
   "go_to_account_page": "გადასვლა ანგარიშის გვერდზე",
+
+/*
+##################################################################################
+#                                                                                #
+# blockchain block                                                               #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "hash",
+  "time": "time",
+  "parenthash": "parenthash",
+  "size": "size",
 
 };

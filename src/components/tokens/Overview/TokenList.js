@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {filter, find, includes, sortBy} from "lodash";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
