@@ -29,6 +29,7 @@ export class LineReactAdd extends React.Component {
       myChart = echarts.init(document.getElementById(id));
     }
     config.txOverviewChart.title.text = intl.formatMessage({id:'address_growth_chart'});
+    config.txOverviewChart.title.link = '#/blockchain/stats/addressesStats';
     config.txOverviewChart.xAxis[0].data = [];
     config.txOverviewChart.series[0].data = [];
   //  config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
@@ -94,6 +95,7 @@ export class LineReactTx extends React.Component {
       myChart = echarts.init(document.getElementById(id));
     }
     config.txOverviewChart.title.text = intl.formatMessage({id:'TRX_transaction_chart'});
+    config.txOverviewChart.title.link = '#/blockchain/stats/txOverviewStats';
     config.txOverviewChart.xAxis[0].data = [];
     config.txOverviewChart.series[0].data = [];
     config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});

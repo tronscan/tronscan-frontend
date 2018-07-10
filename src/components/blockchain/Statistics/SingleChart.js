@@ -1,6 +1,5 @@
 import React from "react";
 
-import {Link} from "react-router-dom"
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
@@ -31,6 +30,7 @@ class Statistics extends React.Component {
   }
 
   componentDidMount() {
+
     this.loadAccounts();
     this.loadStats();
     this.loadTxOverviewStats();
@@ -128,110 +128,86 @@ class Statistics extends React.Component {
   }
 
   render() {
-
+    let {match} = this.props;
     let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
     let {intl} = this.props;
     return (
         <main className="container header-overlap">
           <div className="row">
-            <div className="col-md-6 mt-3">
+            <div className="col-md-12 mt-3">
               <div className="card">
                 <div className="card-body">
-
-                  <div style={{height: 350}}>
-                    {
-                      txOverviewStats === null ?
-                          <TronLoader/> :
-                          <LineReactTx style={{height: 350}} data={txOverviewStats} intl={intl}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 350}}>
-                    {
-                      addressesStats === null ?
-                          <TronLoader/> :
-                          <LineReactAdd style={{height: 350}} data={addressesStats} intl={intl}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      accounts === null ?
-                          <TronLoader/> :
-                          <PieReact style={{height: 300}} data={accounts}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      transactionValueStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'trx_transferred_past_hour', href: 'transactionValueStats'}}
-                                     style={{height: 300}} data={transactionValueStats}
-                                     keysData={['timestamp', 'value']} format={{timestamp: true}}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      transactionStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'transactions_past_hour', href: 'transactionStats'}}
-                                     style={{height: 300}} data={transactionStats}
-                                     keysData={['timestamp', 'value']}
-                                     format={{timestamp: true}}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      blockStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'average_blocksize', href: 'blockStats'}} style={{height: 300}}
-                                     data={blockStats}
-                                     keysData={['timestamp', 'value']}
-                                     format={{timestamp: true}}/>
-                    }
-                  </div>
+                  {
+                    match.params.chartName === 'txOverviewStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        txOverviewStats === null ?
+                            <TronLoader/> :
+                            <LineReactTx style={{height: 500}} data={txOverviewStats} intl={intl}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'addressesStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        addressesStats === null ?
+                            <TronLoader/> :
+                            <LineReactAdd style={{height: 500}} data={addressesStats} intl={intl}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'accounts' &&
+                    <div style={{height: 500}}>
+                      {
+                        accounts === null ?
+                            <TronLoader/> :
+                            <PieReact style={{height: 500}} data={accounts}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'transactionValueStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        transactionValueStats === null ?
+                            <TronLoader/> :
+                            <LineReact message={{id: 'trx_transferred_past_hour', href: 'transactionValueStats'}}
+                                       style={{height: 500}} data={transactionValueStats}
+                                       keysData={['timestamp', 'value']} format={{timestamp: true}}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'transactionStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        transactionStats === null ?
+                            <TronLoader/> :
+                            <LineReact message={{id: 'transactions_past_hour', href: 'transactionStats'}}
+                                       style={{height: 500}} data={transactionStats} keysData={['timestamp', 'value']}
+                                       format={{timestamp: true}}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'blockStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        blockStats === null ?
+                            <TronLoader/> :
+                            <LineReact message={{id: 'average_blocksize', href: 'blockStats'}}
+                                       style={{height: 500}} data={blockStats} keysData={['timestamp', 'value']}
+                                       format={{timestamp: true}}/>
+                      }
+                    </div>
+                  }
                 </div>
               </div>
             </div>
           </div>
+
         </main>
     );
   }

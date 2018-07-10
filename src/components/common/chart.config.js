@@ -2,7 +2,9 @@ module.exports = {
   pieChart: {
     title: {
       text: '',
-      x: 'center'
+      x: 'center',
+      link:'',
+      target:'self'
     },
     tooltip: {
       trigger: 'item',
@@ -14,7 +16,7 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: '55%',
-        center: ['50%', '55%'],
+        center: ['50%', '60%'],
         data: [],
         itemStyle: {
           emphasis: {
@@ -29,7 +31,9 @@ module.exports = {
   lineChart: {
     title: {
       text: '',
-      x: 'center'
+      x: 'center',
+      link:'',
+      target:'self'
     },
     grid: {
       left: '5%',
@@ -239,7 +243,9 @@ module.exports = {
   txOverviewChart: {
     title: {
       text: 'TRX Transaction Chart',
-      x: 'center'
+      x: 'center',
+      link:'',
+      target:'self'
     },
     tooltip: {
       trigger: 'axis',

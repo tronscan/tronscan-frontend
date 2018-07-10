@@ -46,7 +46,7 @@ class Markets extends React.Component {
           rank: val.rank,
           name: val.name,
           pair: val.pair,
-          volumeNative: intl.formatNumber(val.volumeNative)+' TRX',
+          volumeNative: intl.formatNumber(val.volumeNative) + ' TRX',
           volumePercentage: intl.formatNumber(val.volumePercentage, {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2
@@ -56,7 +56,7 @@ class Markets extends React.Component {
 
       })
     }
-    return data.slice(0,99);
+    return data.slice(0, 99);
   }
 
 
@@ -64,26 +64,26 @@ class Markets extends React.Component {
     let {intl} = this.props;
     let column = [
       {
-        title: intl.formatMessage({id:'rank'}),
+        title: intl.formatMessage({id: 'rank'}),
         dataIndex: 'rank',
         key: 'rank',
         sorter: true,
         width: '5%'
       },
       {
-        title: intl.formatMessage({id:'exchange'}),
+        title: intl.formatMessage({id: 'exchange'}),
         dataIndex: 'name',
         key: 'name',
         filterDropdown: true
       },
       {
-        title: intl.formatMessage({id:'pair'}),
+        title: intl.formatMessage({id: 'pair'}),
         dataIndex: 'pair',
         key: 'pair',
         width: '12%'
       },
       {
-        title: intl.formatMessage({id:'volume'}),
+        title: intl.formatMessage({id: 'volume'}),
         dataIndex: 'volumeNative',
         key: 'volumeNative',
         width: '14%'
@@ -95,7 +95,7 @@ class Markets extends React.Component {
         width: '8%'
       },
       {
-        title: intl.formatMessage({id:'price'}),
+        title: intl.formatMessage({id: 'price'}),
         dataIndex: 'price',
         key: 'price',
         width: '10%'
@@ -118,12 +118,13 @@ class Markets extends React.Component {
             <div className="col-md-6 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("average_price_usd")}</h5>
+
                   <div style={{height: 300}}>
                     {
                       priceGraph.length === 0 ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={priceGraph} keysData={['time', 'close']}
+                          <LineReact message={{id: 'average_price_usd'}} style={{height: 300}}
+                                     data={priceGraph} keysData={['time', 'close']}
                                      format={{time: true, date: true}}/>
                     }
                   </div>
@@ -133,12 +134,13 @@ class Markets extends React.Component {
             <div className="col-md-6 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("average_volume_usd")}</h5>
+
                   <div style={{height: 300}}>
                     {
                       volumeGraph.length === 0 ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={volumeGraph} keysData={['time', 'volume']}
+                          <LineReact message={{id: 'average_volume_usd'}} style={{height: 300}}
+                                     data={volumeGraph} keysData={['time', 'volume']}
                                      format={{time: true}}/>
                     }
                   </div>
@@ -150,8 +152,8 @@ class Markets extends React.Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("Trade Volume")}{' Top 10'}</h5>
-                  <RingPieReact style={{height: 700}} data={markets}/>
+
+                  <RingPieReact message={{id:'Trade Volume'}} style={{height: 700}} data={markets}/>
                 </div>
               </div>
             </div>

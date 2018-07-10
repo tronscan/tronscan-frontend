@@ -1,4 +1,7 @@
 import React from 'react'
+import {connect} from "react-redux";
+import {injectIntl} from "react-intl";
+
 import config from './chart.config.js'
 
 import echarts from 'echarts/lib/echarts'
@@ -9,6 +12,7 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/legend/ScrollableLegendModel.js'
 import 'echarts/lib/component/legend/ScrollableLegendView.js'
 import 'echarts/lib/component/legend/scrollableLegendAction.js'
+
 
 export class RingPieReact extends React.Component {
 
@@ -21,16 +25,17 @@ export class RingPieReact extends React.Component {
   }
 
   initPie(id) {
-    let {data} = this.props;
+    let {intl, data,message} = this.props;
 
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    config.ringPieChart.title.text=intl.formatMessage({id:message.id})+' Top 10';
+
     config.ringPieChart.series[0].data = [];
     config.ringPieChart.series[1].data = [];
     config.ringPieChart.legend.data = [];
-    config.ringPieChart.title.text="";
 
     function compare(property) {
       return function (obj1, obj2) {
@@ -108,5 +113,12 @@ export class RingPieReact extends React.Component {
   }
 }
 
-export default RingPieReact
+function mapStateToProps(state) {
+  return {}
+}
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(RingPieReact));
+
 

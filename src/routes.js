@@ -17,6 +17,7 @@ import Live from "./components/blockchain/Live";
 import {
   MarketsAsync,
   StatisticsAsync,
+  SingleChartAsync,
   TransactionViewerAsync,
   VoteLiveAsync,
   VoteOverviewAsync,
@@ -74,6 +75,13 @@ export const routes = [
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
         component: StatisticsAsync
+      },
+      {
+        label: "statistics",
+        icon: `fa fa-chart-pie`,
+        path: "/blockchain/stats/:chartName",
+        component: SingleChartAsync,
+        showInMenu: false
       },
       {
         label: "live",
