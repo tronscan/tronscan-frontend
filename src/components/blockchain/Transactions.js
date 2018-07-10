@@ -35,8 +35,8 @@ class Transactions extends React.Component {
   };
   loadTransactions = async (page = 1, pageSize=40) => {
 
-    let {location} = this.props;
-
+    let {location,match} = this.props;
+    console.log(match.params.date);
     this.setState({ loading: true });
 
     let searchParams = {};

@@ -48,7 +48,14 @@ export const routes = [
         icon: 'fas fa-handshake',
         path: "/blockchain/transactions",
         label: "transactions",
+        component: Transactions
+      },
+      {
+        icon: 'fas fa-handshake',
+        path: "/blockchain/transactions/:date",
+        label: "daily_transactions",
         component: Transactions,
+        showInMenu: false
       },
       {
         icon: 'fa fa-exchange-alt',

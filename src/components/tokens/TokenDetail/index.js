@@ -104,8 +104,8 @@ export default class TokenDetail extends React.Component {
                         <th>{tu("Frozen Supply")}:</th>
                         <td>
                           {
-                            token.frozen.map(frozen => (
-                              <div>
+                            token.frozen.map((frozen,index) => (
+                              <div key={index}>
                                 {frozen.amount} {tu("can_be_unlocked_in")}&nbsp;
                                 <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
                               </div>

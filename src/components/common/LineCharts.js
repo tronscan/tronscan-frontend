@@ -15,6 +15,7 @@ export class LineReactAdd extends React.Component {
   constructor(props) {
 
     super(props)
+    this.myChart=null;
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
       lineId: 'lineAdd' + id
@@ -52,7 +53,9 @@ export class LineReactAdd extends React.Component {
     if (data && data.length === 0) {
       config.txOverviewChart.title.text = "No data";
     }
+
     myChart.setOption(config.txOverviewChart);
+    this.myChart=myChart;
 
   }
 
@@ -77,6 +80,7 @@ export class LineReactTx extends React.Component {
 
   constructor(props) {
     super(props)
+    this.myChart=null;
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
       lineId: 'lineTx' + id
@@ -118,11 +122,14 @@ export class LineReactTx extends React.Component {
       config.txOverviewChart.title.text = "No data";
     }
     myChart.setOption(config.txOverviewChart);
-
+    this.myChart=myChart;
   }
 
   componentDidMount() {
     this.initLine(this.state.lineId);
+    this.myChart.on('click',function(params){
+      console.log(params);
+    });
   }
 
   componentDidUpdate() {
