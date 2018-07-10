@@ -1,5 +1,6 @@
 /*eslint-disable no-script-url*/
 import React, {Fragment, PureComponent} from 'react'
+import {injectIntl} from "react-intl";
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
@@ -8,7 +9,7 @@ import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
-import {tu} from "../utils/i18n"
+import {tu,t} from "../utils/i18n"
 import {enableFlag, login, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
@@ -281,6 +282,7 @@ class Navigation extends PureComponent {
 
   render() {
 
+    let {intl} = this.props;
     let {
       languages,
       activeLanguage,
@@ -572,7 +574,7 @@ class Navigation extends PureComponent {
                        value={search}
                        onKeyDown={this.onSearchKeyDown}
                        onChange={ev => this.setState({search: ev.target.value})}
-                       placeholder="Search Address, Block, TxHash, Asset"/>
+                       placeholder={intl.formatMessage({id:"search_description1"})}/>
                 <div className="input-group-append">
 
                   <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
@@ -625,4 +627,4 @@ const mapDispatchToProps = {
   enableFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(withRouter(Navigation))
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(withRouter(injectIntl(Navigation)))

@@ -162,14 +162,14 @@ export class ExternalLink extends React.PureComponent {
              urlHandler(url);
              this.hideModal();
            }}
-           target="_blank">Continue to external site</a>
+           target="_blank">{tu("continue_to_external_website")}</a>
       );
     } else {
       return (
         <a className="btn btn-primary"
            href={url}
            onClick={this.hideModal}
-           target="_blank">Continue to external site</a>
+           target="_blank">{tu("continue_to_external_website")}</a>
       );
     }
   }

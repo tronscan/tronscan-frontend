@@ -23,7 +23,7 @@ class Statistics extends React.Component {
       transactionStats: null,
       blockStats: null,
       transactionValueStats: null,
-      txOverviewStats:null
+      txOverviewStats: null
     };
   }
 
@@ -65,17 +65,17 @@ class Statistics extends React.Component {
     });
 
     let transactionTotalStats = stats.total.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
     let valueStats = stats.value.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value / ONE_TRX,
     }));
 
     blockStats = blockStats.map(row => ({
-      timestamp: intl.formatTime(row.timestamp),
+      timestamp: row.timestamp,
       value: row.value,
     }));
 
@@ -88,26 +88,43 @@ class Statistics extends React.Component {
 
   async loadTxOverviewStats() {
     let {txOverviewStats} = await Client.getTxOverviewStats();
+    let temp = [];
+    for (let txs in txOverviewStats) {
+      let tx = parseInt(txs);
+      if (tx === 0)
+        temp.push(txOverviewStats[tx]);
+      else
+        temp.push({
+          date: txOverviewStats[tx].date,
+          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+          newAddressSeen: txOverviewStats[tx].newAddressSeen
+        });
+    }
+
     this.setState({
-      txOverviewStats:txOverviewStats
+      txOverviewStats: temp
     });
   }
 
   render() {
 
     let {txOverviewStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+
     return (
         <main className="container header-overlap">
           <div className="row">
             <div className="col-md-12 mt-3">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">{tu("TRX_transaction_chart")}</h5>
-                  <div style={{height: 300}}>
+
+                  <div style={{height: 350}}>
                     {
                       txOverviewStats === null ?
                           <TronLoader/> :
-                          <LineReactTx style={{height: 300}} data={txOverviewStats}/>
+                          <LineReactTx style={{height: 350}} data={txOverviewStats}/>
                     }
                   </div>
                 </div>
@@ -137,7 +154,8 @@ class Statistics extends React.Component {
                     {
                       transactionValueStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionValueStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionValueStats}
+                                     keysData={['timestamp', 'value']} format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -153,7 +171,8 @@ class Statistics extends React.Component {
                     {
                       transactionStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={transactionStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>
@@ -167,7 +186,8 @@ class Statistics extends React.Component {
                     {
                       blockStats === null ?
                           <TronLoader/> :
-                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp','value']}/>
+                          <LineReact style={{height: 300}} data={blockStats} keysData={['timestamp', 'value']}
+                                     format={{timestamp: true}}/>
                     }
                   </div>
                 </div>

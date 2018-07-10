@@ -62,7 +62,7 @@ export const messages = {
   "submit": "submit",
   "send": "send",
   "receive": "receive",
-  "supply": "supply",
+  "supply": "TRX Held",
   "view": "view",
   "view_all": "View all",
   "create": "create",
@@ -97,7 +97,6 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Send Tokens",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -124,7 +123,6 @@ export const messages = {
   "tokens": "Tokens",
   "overview": "Overview",
   "participate": "Participate",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -141,7 +139,6 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -170,8 +167,7 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
-  "nodes_ranking": "Nodes Ranking",
-
+  "nodes_ranking": "Nodes Ranking (Rank by country and region)",
   /*
   ##################################################################################
   #                                                                                #
@@ -186,7 +182,6 @@ export const messages = {
   "rich_list": "Rich List",
   "TRX_transaction_chart": "TRX Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -231,7 +226,6 @@ export const messages = {
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
   "specify_the_url": "Please specify the URL",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -243,7 +237,7 @@ export const messages = {
   "unfreeze": "unfreeze",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen/locked to gain Tron Power and enable additional features.
+  "freeze_trx_premessage_0": `TRX can be frozen to gain Tron Power and enable additional features.
    For example, with Tron Power you can `,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
@@ -265,7 +259,6 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -304,7 +297,7 @@ export const messages = {
   "understand_tron_sr_message_1": "fee.",
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
+  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee,or try again later.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
   "no_official_tron_website": "is not an official Tron site.",
@@ -340,7 +333,6 @@ export const messages = {
   "server_configuration": "Server Configuration",
   "community_plan": "Community Plan",
   "team": "Team",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -378,7 +370,6 @@ export const messages = {
   "not_started_yet": "Not started yet",
   "participated": "You successfully participated!",
   "participated_error": "An error occurred",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +412,7 @@ export const messages = {
   "vote_guide_message": `Use your TRX to vote for Super Representatives.
    For every TRX you hold in your account you have one vote to spend.
    TRX will not be consumed. You can vote as many times for the several representatives as you like.
-   The final votes will be tallied at 24 o'clock and the list of delegates will be updated.`,
+   The number of votes will be updated at 02:00,08:00,14:00,20:00(GMT+8）every day and the list of delegates will be updated.`,
   "search_address": "Search for address",
   "token_transactions": "Token Transactions",
   "token_holders": "Token Holders",
@@ -433,7 +424,6 @@ export const messages = {
   "percentage": "Percentage",
   "loading_token": "Loading Token",
   "voter_percentage": "Voter Percentage",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -448,7 +438,6 @@ export const messages = {
   "no_voters_found": "No voters found",
   "waiting_for_transactions": "Waiting for transactions",
   "loading_address": "Loading Address",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -475,7 +464,7 @@ export const messages = {
   "participation_message_0": "Specify the participation period in which tokens will be issued. During the participation period users can exchange TRX for ",
   "participation_message_1": " tokens.",
   "frozen_supply_message_0": `A part of the supply can be frozen. The amount of supply can be specified and must be frozen
-   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date + frozen
+   for a minimum of 1 day. The frozen supply can manually be unfrozen after start date and frozen
    days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
   "participation": "participation",
@@ -489,7 +478,6 @@ export const messages = {
   "token_issue_guide_message_3": `After issuing the token your account will receive the amount of tokens equal to the total supply.
     When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
     receive TRX equal to the specified exchange rate.`,
-
   /*
   ##################################################################################
   #                                                                                #
@@ -519,7 +507,6 @@ export const messages = {
   "abbreviation_required": "Abbreviation is required",
   "abbreviation_error_message_0": "Abbreviation may not be longer than 5 characters",
   "abbreviation_error_message_1": "Abbreviation may only contain a-Z characters",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -535,7 +522,6 @@ export const messages = {
   "address_not_super_representative": "This address is not a Super Representative",
   "unable_load_representatives_page_message": "Unable to load page, this may happen if the address is invalid, the address is not a representative or the representative did not configure this page yet",
   "loading_representative": "Loading Representative",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -546,10 +532,9 @@ export const messages = {
   "average_price_usd": "Average Price in USD",
   "average_volume_usd": "Average Volume in USD",
   "Trade Volume": "Trade Volume in USD",
-  "rank": "rank",
-  "pair": "pair",
+  "rank": "Rank",
+  "pair": "Pair",
   "volume": "Volume",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -582,7 +567,6 @@ export const messages = {
   "submissing_vote_message_1": "You may redistribute your votes anytime you like",
   "submitting_vote_error_message": "Something went wrong while submitting your votes. Please try again later.",
   "loading_super_representatives": "Loading Super Representatives",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -602,7 +586,6 @@ export const messages = {
   "transaction_error": "Transaction Error",
   "confirm_transaction_message": "Are you sure you want to send the transaction?",
   "broadcast_transaction_to_network": "Broadcast Transaction to Network",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -616,7 +599,6 @@ export const messages = {
   "node_tester_rt": "Response Time",
   "confirmed_block": "Confirmed Block",
   "loading": "loading...",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -627,7 +609,6 @@ export const messages = {
   "no_webcam_found": "No webcam found",
   "trying_enable_webcam_message_0": "Error while trying to enable webcam.",
   "trying_enable_webcam_message_1": "Make sure camera permissions are enabled.",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -640,7 +621,6 @@ export const messages = {
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   "report_an_error": "Submit a bug / suggestion",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -672,4 +652,74 @@ export const messages = {
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
 
+  /*
+##################################################################################
+#                                                                                #
+# blockchain block                                                                #
+#                                                                                #
+##################################################################################
+*/
+  "hash": "Hash",
+  "time": "Time",
+  "parenthash": "Parent Hash",
+  "witness": "Witness",
+  "size": "Size",
+  /*
+##################################################################################
+#                                                                                #
+# new add                                                                 #
+#                                                                                #
+##################################################################################
+*/
+  "transactions_per_day": "Transactions Per Day",
+  "transactions_last_day": "Transactions Last Day",
+  "date": "Date",
+  "total_transactions": "Total Transactions",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "New Address Seen",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "Token transfer between addresses",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update a witness",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "Create a witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account name",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "Withdraw balance",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "Freeze TRX",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "Unfreeze TRX",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "Vote for a Witness",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Issue a new asset",
+  "from": "From",
+  "to": "To",
+  "amount": "Amount",
+  "token": "Token",
+  "owner_address": "Owner Address",
+  "account_name": "Account Name",
+  "frozen_balance": "Frozen Balance",
+  "frozen_days": "Frozen Days",
+  "votes": "Votes",
+  "counts": "counts",
+  "token_name": "Token Name",
+  "total_supply": "total_supply",
+  "TRX_exchange_rate": "TRX Exchange Rate",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "description": "Description",
+  "contracts": "Contracts",
+  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1": "Search Address,Block,Transaction,Token",
+  "transaction": "Transaction",
+  "total_accounts":"Total Accounts"
 };

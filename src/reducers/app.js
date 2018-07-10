@@ -36,6 +36,7 @@ const initialState = {
     fa: "فارسی",
     ar: "العربية",
     ko: "한국어",
+    th: "ภาษาไทย",
     vi: "Tiếng Việt",
     uk: "українська",
     ka: "ქართული",
@@ -44,7 +45,7 @@ const initialState = {
     fr: "Français",
     es: "Español",
     tr: "Türkçe",
-    ro: "Românesc",
+    ro: "Română",
   },
   activeLanguage: 'en',
   account: {

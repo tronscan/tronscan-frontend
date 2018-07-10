@@ -9,6 +9,7 @@
     "@tweenjs/tween.js": "^17.2.0",
     "aes-js": "^3.1.1",
     "animate.css": "^3.6.1",
+    "antd": "^3.6.5",
     "autoprefixer": "7.1.6",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "axios": "^0.18.0",

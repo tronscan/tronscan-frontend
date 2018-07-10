@@ -1,4 +1,3 @@
-
 module.exports = {
   pieChart: {
     title: {
@@ -33,8 +32,8 @@ module.exports = {
       x: 'center'
     },
     grid: {
-      left: '3%',
-      right: '3%',
+      left: '5%',
+      right: '7%',
       bottom: '5%',
       containLabel: true
     },
@@ -239,7 +238,7 @@ module.exports = {
   },
   txOverviewChart: {
     title: {
-      text: '',
+      text: 'TRX Transaction Chart',
       x: 'center'
     },
     tooltip: {
@@ -250,26 +249,26 @@ module.exports = {
       formatter: function (datas) {
         let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
         return (
-            'Date' + ' : ' + date + '<br/>'+
-            'Total Transaction' + ' : ' + datas[0].data.totalTransaction + '<br/>'+
-            'Avg BlockTime' + ' : ' + datas[0].data.avgBlockTime + '<br/>'+
-            'Avg BlockSize' + ' : ' + datas[0].data.avgBlockSize + '<br/>'+
-            'Total BlockCount' + ' : ' + datas[0].data.totalBlockCount + '<br/>'+
+            'Date' + ' : ' + date + '<br/>' +
+            'Total Transaction' + ' : ' + datas[0].data.totalTransaction + '<br/>' +
+            'Avg BlockTime' + ' : ' + datas[0].data.avgBlockTime + '<br/>' +
+            'Avg BlockSize' + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
+            'Total BlockCount' + ' : ' + datas[0].data.totalBlockCount + '<br/>' +
             'New Address Seen' + ' : ' + datas[0].data.newAddressSeen + '<br/>'
-      )
+        )
 
       }
     },
 
     toolbox: {
-      y:-5,
+      y: -5,
       feature: {
         restore: {
-          title:'restore'
+          title: 'restore'
         },
         saveAsImage: {
-          show:true,
-          title:'save'
+          show: true,
+          title: 'save'
         }
       }
     },
@@ -279,24 +278,17 @@ module.exports = {
       }
     },
     dataZoom: [{
-      show: true,
-      realtime: true,
       start: 30,
       end: 70,
-      xAxisIndex: [0, 1]
-    }, {
-      type: 'inside',
-      realtime: true,
-      start: 30,
-      end: 70,
-      xAxisIndex: [0, 1]
-    }],
+    },
+      {
+        type: 'inside'
+      }],
     grid: [{
-      left: 100,
-      right: 40,
-    }, {
-      left: 100,
-      right: 40,
+      top: 80,
+      left: '5%',
+      right: 80,
+      containLabel: true
     }],
     xAxis: [
       {
@@ -306,19 +298,13 @@ module.exports = {
           onZero: true
         },
         data: []
-      },
-      {
-        gridIndex: 1
       }],
 
     yAxis: [
       {
-        name : 'Transactions Per Day',
-        nameGap:20,
+        name: 'Transactions Per Day',
+        nameGap: 20,
         type: 'value'
-      },
-      {
-        gridIndex: 1
       }],
     series: [{
       name: '',

@@ -135,7 +135,6 @@ class Representatives extends Component {
                     <FormattedNumber maximumFractionDigits={2}
                                      minimunFractionDigits={2}
                                      value={leastProductive.productivity}/>%
-
                   </h3>
                   {tu("lowest_productivity")}<br/>
                   <AddressLink address={leastProductive.address}>
