@@ -343,6 +343,7 @@ class Home extends Component {
                   <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
                   <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
                   <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
+                  <li><HrefLink href="https://www.reddit.com/r/tronix"><i className="fa fa-angle-right"/> Reddit</HrefLink></li>
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-4 col-md-3">
