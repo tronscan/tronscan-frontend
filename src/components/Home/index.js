@@ -371,6 +371,9 @@ class Home extends Component {
                   <li className="list-inline-item">
                     <HrefLink href="mailto:service@tron.network" target="_blank"><i className="fa fa-envelope"/></HrefLink>
                   </li>
+                  <li className="list-inline-item">
+                    <HrefLink href="https://www.reddit.com/r/Tronix" target="_blank"><i className="fab fa-reddit-alien"/></HrefLink>
+                  </li>
                 </ul>
               </div>
               <hr/>
