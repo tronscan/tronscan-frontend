@@ -544,7 +544,8 @@ export const messages = {
   "pair": "par",
   "volume": "Volume",
   "usd": "USD",
-  "average_price": "average Price",
+  "average_price": "preço médio",
+  "click_the_chart_title_to_find_more":"Click the chart title to find more."
   /*
   ##################################################################################
   #                                                                                #

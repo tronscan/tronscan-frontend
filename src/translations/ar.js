@@ -528,6 +528,7 @@ export const messages = {
   "volume": "الحجم",
   "usd": "دولار أمريكي",
   "average_price": "متوسط السعر",
+  "click_the_chart_title_to_find_more":"Click the chart title to find more."
   /*
   ##################################################################################
   #                                                                                #

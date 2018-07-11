@@ -552,6 +552,7 @@ export const messages = {
   "volume": "Volumen",
   "usd": "USD",
   "average_price": "Durchschnittspreis",
+  "click_the_chart_title_to_find_more": "Klicken Sie auf den Chart-Titel, um mehr Informationen zu erhalten."
   /*
   ##################################################################################
   #                                                                                #

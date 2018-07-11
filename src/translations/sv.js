@@ -538,7 +538,8 @@ export const messages = {
   "pair": "par",
   "volume": "Volym",
   "usd": "usd",
-  "average_price": "average Price",
+  "average_price": "Genomsnittspris",
+  "click_the_chart_title_to_find_more": "Klicka på diagramtiteln för att hitta mer."
   /*
   ##################################################################################
   #                                                                                #

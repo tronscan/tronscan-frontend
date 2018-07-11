@@ -532,6 +532,7 @@ export const messages = {
   "volume": "交易量",
   "usd":"美金",
   "average_price":"平均价格",
+  "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息"
   /*
   ##################################################################################
   #                                                                                #
