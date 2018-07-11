@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
-#         Language: Portuguese - Brazil                                          #
-#         Status: Second Draft                                                   #
-#         Number of checks: 4                                                    #
-#         Participants: gguelber, Monitor Livre                                  #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Portuguese - Brazil                                          #
+  #         Status: Second Draft                                                   #
+  #         Number of checks: 4                                                    #
+  #         Participants: gguelber, Monitor Livre                                  #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
   "app_title": "Protocolo Tron",
   "password": "senha",
@@ -98,14 +98,13 @@ export const messages = {
   "contract_type": "Tipo de Contrato",
   "filters": "filtros",
   "send_tokens": "Enviar Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Carteira",
   "home": "Iníncio",
@@ -125,14 +124,13 @@ export const messages = {
   "tokens": "Tokens",
   "overview": "Visão Geral",
   "participate": "Participar",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentralizar a Rede",
   "transactions_last_hour": "Transações na última hora",
   "block_height": "Altura do Bloco",
@@ -143,14 +141,13 @@ export const messages = {
   "create_new_wallet": "Criar Nova Carteira",
   "view_tokens": "Visualizar Tokens",
   "transactions_last_day": "Transactions in last day",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "primeira página",
   "previous_page": "página anterior",
   "next_page": "próxima página",
@@ -173,14 +170,13 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "endereços",
   "trx_transferred_past_hour": "TRX transferidos na última hora",
   "transactions_past_hour": "Transações na última hora",
@@ -188,14 +184,13 @@ export const messages = {
   "rich_list": "Lista dos Ricos",
   "TRX_transaction_chart": "Gráfico de Transações TRX ",
   "transactions_per_day": "Transações Por Dia",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Definir Nome",
   "unique_account_message": "Você só pode definir o nome da sua conta uma vez!",
   "name_to_short": "Nome é muito curto",
@@ -233,14 +228,13 @@ export const messages = {
   "change_website": "Alterar Website",
   "you_must_enter_url": "Você deve inserir uma URL",
   "specify_the_url":  "Por favor, insira a URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "congelar",
   "unfreeze": "descongelar",
   "freeze_trx_least": "Você precisa de pelo menos 1 TRX para poder congelar",
@@ -267,14 +261,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Tem certeza de que deseja descongelar TRX?",
   "unfreeze_assets": "Descongelar Ativos",
   "sure_to_unfreeze_unlocked_tokens_message": "Você tem certeza que deseja descongelar os tokens desbloqueados?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "candidatar-se a delegado",
   "apply_super_representative_candidate": "Candidatar-se para ser um Super Representante",
   "your_personal_website_address": "seu endereço de website pessoal",
@@ -354,14 +347,13 @@ export const messages = {
   "server_configuration": "Configuração do Servidor",
   "community_plan": "Plano para Comunidade",
   "team": "Equipe",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Nome do token",
   "token_message": "Nome para o token",
   "token_abbr": "Abreviação do token",
@@ -392,14 +384,13 @@ export const messages = {
   "not_started_yet": "Não iniciado ainda",
   "participated": "Participação realizada com sucesso",
   "participated_error": "Ocorreu um erro",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Você tem certeza?",
   "how_much_buy_message": "Quantos tokens você quer comprar?",
   "buy_confirm_message_1": "Tem certeza que quer comprar",
@@ -408,14 +399,14 @@ export const messages = {
   "not_enouth_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
   "ends": "termina",
   "starts": "começa",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Insira apenas endereços de carteira TRON válidos. Endereços incorretos podem causar perda de TRX.",
   "search_address_or_url": "Pesquisar por endereço ou URL",
   "the_lunch_test": "O lançamento da rede de testes visa testar todos os recursos do nosso explorador blockchain e wallet.",
@@ -447,14 +438,13 @@ export const messages = {
   "percentage": "Porcentagem",
   "loading_token": "Carregando Token",
   "voter_percentage": "Porcentagem de Eleitores",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Nenhuma transação encontrada",
   "no_tokens_found": "Nenhum token encontrado",
   "no_blocks_found": "Nenhum Bloco encontrado",
@@ -462,14 +452,13 @@ export const messages = {
   "no_voters_found": "Nenhum eleitor encontrado",
   "waiting_for_transactions": "Aguardando transações",
   "loading_address": "Endereço de carregamento",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "detalhes",
   "issue_a_token": "Emitir um Token",
   "issue_token": "Emitir Token",
@@ -497,14 +486,13 @@ export const messages = {
   "token_issue_guide_message_1": `A emissão de um token no Protocolo Tron pode ser feita por qualquer pessoa que possua pelo menos 1024 TRX na sua conta.`,
   "token_issue_guide_message_2": `Quando um token é emitido ele será mostrado na página de visão geral de token. Os utilizadores podem então participar no período de participação e trocar os seus TRX por tokens.`,
   "token_issue_guide_message_3": `Depois de emitir o token, a sua conta receberá a quantidade de tokens igual ao suprimento total. Quando outros usuários trocarem os seus TRX por tokens, os tokens serão retirados da sua conta e você receberá TRX equivalente à taxa de câmbio especificada.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "A data de término é anterior ou igual a data de início",
   "no_name_error": "Nome é obrigatório",
   "no_supply_error": "O suprimento total deve ser pelo menos 1",
@@ -527,14 +515,13 @@ export const messages = {
   "abbreviation_required": "Abreviação é obrigatória",
   "abbreviation_error_message_0": "Abreviação não pode ser maior que 5 caracteres",
   "abbreviation_error_message_1": "Abreviação somente pode conter caracteres de a-Z",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Maior Produtividade",
   "lowest_productivity": "Menor Produtividade",
   "Super Representatives": "Super Representantes",
@@ -543,28 +530,26 @@ export const messages = {
   "address_not_super_representative": "Este endereço não é um Super Representante",
   "unable_load_representatives_page_message": "Não foi possível carregar a página. Isso pode acontecer se o endereço for inválido, não for de um representante ou se este representante ainda não tiver configurado a página.",
   "loading_representative": "Carregando Representante",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Preço Médio em USD",
   "average_volume_usd": "Volume Médio em USD",
   "Trade Volume": "Volume de Negociação",
   "rank": "classificação",
   "pair": "par",
   "volume": "Volume",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Próximo Turno",
   "total_votes": "Total de Votos",
   "most_ranks": "Melhores Classificados Deste Turno",
@@ -590,14 +575,13 @@ export const messages = {
   "submissing_vote_message_1": "Você pode redistribuir seus votos sempre que quiser",
   "submitting_vote_error_message": "Ocorreu um erro ao enviar seu voto. Por favor, tente novamente mais tarde.",
   "loading_super_representatives": "Carregando Super Representantes",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Coloque aqui o Hex de transação para inspecionar o seu conteúdo de uma transação. A transação pode então ser transmitida para a rede",
   "load_tx": "Carregar Transação",
   "tx_qrcode": "Código QR da Transação",
@@ -610,39 +594,36 @@ export const messages = {
   "transaction_error": "Erro na Transação",
   "confirm_transaction_message": "Tem certeza de que deseja efetuar a transação?",
   "broadcast_transaction_to_network": "Transmitir a Transação para a Rede",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Insira o IP do seu nó para testar a conexão GRPC",
   "node_tester_stop": "Parar o teste",
   "node_tester_test": "Testar GRPC",
   "node_tester_rt": "Tempo de Resposta",
   "confirmed_block": "Bloco Confirmado",
   "loading": "carregando...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Nenhuma webcam encontrada",
   "trying_enable_webcam_message_0": "Erro ao tentar ativar a webcam.",
   "trying_enable_webcam_message_1": "Certifique-se de que as permissões da webcam estão ativadas.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "O que é TRON",
   "tron_explorer_api": "API do Explorador Tron",
   "tron_architechure": "Arquitetura TRON",
@@ -650,14 +631,13 @@ export const messages = {
   "report_an_error": "Reportar um erro / sugestão",
   "frequently_asked_questions": "Perguntas Mais Frequentes",
   "telegram_updates": "Atualizações no Telegram",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Abrir Carteira",
   "private_key": "Chave Privada",
   "keystore_file": "Arquivo de Armazenamento de Chaves",
@@ -681,17 +661,62 @@ export const messages = {
   "print_paper_wallet": "Imprimir Carteira de Papel",
   "new_wallet_ready_message": "A sua nova carteira está pronta",
   "go_to_account_page": "Ir para a página da conta",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "hora",
   "parenthash": "parenthash",
   "size": "tamanho",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Date",
+  "total_transactions": "Total Transactions",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "New Address Seen",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "Token transfer between addresses",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update a witness",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "Create a witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account name",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "Withdraw balance",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "Freeze TRX",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "Unfreeze TRX",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "Vote for a Witness",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Issue a new asset",
+  "owner_address": "Owner Address",
+  "frozen_balance": "Frozen Balance",
+  "frozen_days": "Frozen Days",
+  "counts": "counts",
+  "TRX_exchange_rate": "TRX Exchange Rate",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "contracts": "Contracts",
+  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1": "Search Address,Block,Transaction,Token",
+  "transaction": "Transaction"
 
 };
