@@ -550,6 +550,8 @@ export const messages = {
   "rank": "Rang",
   "pair": "Währungspaar",
   "volume": "Volumen",
+  "usd": "USD",
+  "average_price": "Durchschnittspreis",
   /*
   ##################################################################################
   #                                                                                #
@@ -726,5 +728,5 @@ export const messages = {
   "search_description": "Suche nach Adresse,Blocken,Transaktion Hash,Token Name",
   "search_description1": "Suche nach Adresse,Block,Transaktion,Token",
   "transaction": "Transaktion"
-  
+
 };

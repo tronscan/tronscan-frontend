@@ -539,6 +539,8 @@ export const messages = {
   "rank": "순위",
   "pair": "페어",
   "volume": "볼륨",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

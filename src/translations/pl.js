@@ -540,6 +540,8 @@ export const messages = {
   "rank": "pozycja",
   "pair": "para",
   "volume": "Wolumen",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

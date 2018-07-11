@@ -542,6 +542,8 @@ export const messages = {
   "rank": "rankering",
   "pair": "par",
   "volume": "Volum",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

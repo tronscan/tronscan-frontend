@@ -399,7 +399,7 @@ export const messages = {
   "not_enouth_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
   "ends": "termina",
   "starts": "começa",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "pode ser desbloqueado em",
   /*
   ##################################################################################
   #                                                                                #
@@ -543,6 +543,8 @@ export const messages = {
   "rank": "classificação",
   "pair": "par",
   "volume": "Volume",
+  "usd": "USD",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

@@ -549,6 +549,8 @@ export const messages = {
   "rank": "sıralama",
   "pair": "çifti",
   "volume": "Hacim",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

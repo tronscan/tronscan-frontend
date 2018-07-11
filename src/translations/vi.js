@@ -547,6 +547,8 @@ export const messages = {
   "rank": "xếp hạng",
   "pair": "cặp",
   "volume": "Khối lượng",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #

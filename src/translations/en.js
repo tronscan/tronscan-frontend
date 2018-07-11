@@ -536,6 +536,8 @@ export const messages = {
   "rank": "Rank",
   "pair": "Pair",
   "volume": "Volume",
+  "usd": "usd",
+  "average_price": "average Price",
   /*
   ##################################################################################
   #                                                                                #
@@ -711,5 +713,5 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction"
-  
+
 };
