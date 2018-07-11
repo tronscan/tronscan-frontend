@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Сповіщення ввімкнено",
   "contract_type": "Тип контракту",
   "filters": "Фільтри",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Надіслати токени",
   /*
   ##################################################################################
   #                                                                                #
@@ -140,7 +140,7 @@ export const messages = {
   "view_super_representatives": "Огляд Супер-представників",
   "create_new_wallet": "Створити новий Гаманець",
   "view_tokens": "Перегляд Токенів",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "Операції в останній день",
   /*
   ##################################################################################
   #                                                                                #
@@ -169,7 +169,7 @@ export const messages = {
   "witness": "Свідок",
   "asset_participation": "Участь активів",
   "loading_transaction": "Завантаження транзакції",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Рейтинг вузлів",
   /*
   ##################################################################################
   #                                                                                #
@@ -182,8 +182,8 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
-  "TRX_transaction_chart": "TRX Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "TRX_transaction_chart": "Діаграма транзакцій TRX",
+  "transactions_per_day": "Операції в день",
   /*
   ##################################################################################
   #                                                                                #
@@ -673,10 +673,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "hash": "hash",
-  "time": "time",
+  "hash": "хеш",
+  "time": "час",
   "parenthash": "parenthash",
-  "size": "size",
+  "size": "розмір",
   /*
   ##################################################################################
   #                                                                                #
@@ -684,7 +684,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
+  "date": "Дата",
   "total_transactions": "Total Transactions",
   "avg_blockTime": "Avg BlockTime",
   "avg_blockSize": "Avg BlockSize",
@@ -720,9 +720,9 @@ export const messages = {
   "start_time": "Start Time",
   "end_time": "End Time",
   "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
+  "search_description": "Адреса пошуку, висота блоку, хеш транзакцій, імені токена",
+  "search_description1": "Пошук адреси, блокування, транзакції, токен",
+  "transaction": "Транзакція",
   "total_addresses":"Total Addresses",
   "daily_increment":"Daily Increase",
   "address_growth_chart":"Address Growth Chart",
