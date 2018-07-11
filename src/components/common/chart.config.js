@@ -240,7 +240,7 @@ module.exports = {
       }
     ]
   },
-  txOverviewChart: {
+  overviewChart: {
     title: {
       text: '',
       x: 'center',

@@ -8,6 +8,7 @@ import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/markPoint'
+import {cloneDeep} from "lodash";
 
 
 export class LineReactAdd extends React.Component {
@@ -23,15 +24,17 @@ export class LineReactAdd extends React.Component {
   }
 
   initLine(id) {
+    let _config=cloneDeep(config.overviewChart);
+
     let {intl, data, source} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
     if (source !== 'home') {
-      config.txOverviewChart.title.text = intl.formatMessage({id: 'address_growth_chart'});
-      config.txOverviewChart.title.link = '#/blockchain/stats/addressesStats';
-      config.txOverviewChart.toolbox.feature = {
+      _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+      _config.title.link = '#/blockchain/stats/addressesStats';
+      _config.toolbox.feature = {
         restore: {
           title: 'restore'
         },
@@ -42,15 +45,15 @@ export class LineReactAdd extends React.Component {
       }
     }
     if (source === 'home') {
-      config.txOverviewChart.title.text='';
-      config.txOverviewChart.title.link='';
-      config.txOverviewChart.toolbox.feature = {};
-      config.txOverviewChart.grid[0].top = 40;
+      _config.title.text='';
+      _config.title.link='';
+      _config.toolbox.feature = {};
+      _config.grid[0].top = 40;
     }
-    config.txOverviewChart.xAxis[0].data = [];
-    config.txOverviewChart.series[0].data = [];
-    config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'addresses_amount'});
-    config.txOverviewChart.tooltip.formatter = function (datas) {
+    _config.xAxis[0].data = [];
+    _config.series[0].data = [];
+    _config.yAxis[0].name = intl.formatMessage({id: 'addresses_amount'});
+    _config.tooltip.formatter = function (datas) {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -64,15 +67,15 @@ export class LineReactAdd extends React.Component {
       data.map((val) => {
         let temp;
         temp = {...val, value: val.total};
-        config.txOverviewChart.xAxis[0].data.push(intl.formatDate(val.date));
-        config.txOverviewChart.series[0].data.push(temp);
+        _config.xAxis[0].data.push(intl.formatDate(val.date));
+        _config.series[0].data.push(temp);
       })
     }
     if (data && data.length === 0) {
-      config.txOverviewChart.title.text = "No data";
+      _config.title.text = "No data";
     }
 
-    myChart.setOption(config.txOverviewChart);
+    myChart.setOption(_config);
     this.myChart = myChart;
 
   }
@@ -106,15 +109,18 @@ export class LineReactTx extends React.Component {
   }
 
   initLine(id) {
+    let _config=cloneDeep(config.overviewChart);
+
     let {intl, data, source} = this.props;
+
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
     if (source !== 'home') {
-      config.txOverviewChart.title.text = intl.formatMessage({id: 'TRX_transaction_chart'});
-      config.txOverviewChart.title.link = '#/blockchain/stats/txOverviewStats';
-      config.txOverviewChart.toolbox.feature = {
+      _config.title.text = intl.formatMessage({id: 'TRX_transaction_chart'});
+      _config.title.link = '#/blockchain/stats/txOverviewStats';
+      _config.toolbox.feature = {
         restore: {
           title: 'restore'
         },
@@ -123,7 +129,7 @@ export class LineReactTx extends React.Component {
           title: 'save'
         }
       }
-      config.txOverviewChart.tooltip.formatter = function (datas) {
+      _config.tooltip.formatter = function (datas) {
         let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -135,11 +141,11 @@ export class LineReactTx extends React.Component {
       }
     }
     if (source === 'home') {
-      config.txOverviewChart.title.text='';
-      config.txOverviewChart.title.link='';
-      config.txOverviewChart.toolbox.feature = {};
-      config.txOverviewChart.grid[0].top = 40;
-      config.txOverviewChart.tooltip.formatter = function (datas) {
+      _config.title.text='';
+      _config.title.link='';
+      _config.toolbox.feature = {};
+      _config.grid[0].top = 40;
+      _config.tooltip.formatter = function (datas) {
         let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -147,23 +153,23 @@ export class LineReactTx extends React.Component {
         )
       }
     }
-    config.txOverviewChart.xAxis[0].data = [];
-    config.txOverviewChart.series[0].data = [];
-    config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
+    _config.xAxis[0].data = [];
+    _config.series[0].data = [];
+    _config.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
 
 
     if (data && data.length > 0) {
       data.map((val) => {
         let temp;
         temp = {...val, value: val.totalTransaction};
-        config.txOverviewChart.xAxis[0].data.push(intl.formatDate(val.date));
-        config.txOverviewChart.series[0].data.push(temp);
+        _config.xAxis[0].data.push(intl.formatDate(val.date));
+        _config.series[0].data.push(temp);
       })
     }
     if (data && data.length === 0) {
-      config.txOverviewChart.title.text = "No data";
+      _config.title.text = "No data";
     }
-    myChart.setOption(config.txOverviewChart);
+    myChart.setOption(_config);
     this.myChart = myChart;
   }
 
