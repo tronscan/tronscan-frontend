@@ -15,7 +15,7 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                 #
+  #         Version: 1.6-11072018                                                  #
   #         Update Date: 11.07.2018                                                #
   #         Language: Thai                                                         #
   #         Status: first Draft                                                    #
