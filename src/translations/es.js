@@ -722,12 +722,12 @@ export const messages = {
   "contracts": "Contratos",
   "search_description": "Búsqueda de dirección, Altura de Bloque, Hash de Transacción, Nombre de Token",
   "search_description1": "Búsqueda de dirección, Bloque, Transacción, Token",
-  "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "transaction": "Transacción",
+  "total_addresses":"Direcciones Totales",
+  "daily_increment":"Incremento Diario",
+  "address_growth_chart":"Tabla de Crecimiento de Direcciones",
+  "addresses_amount":"Cantidad de Direcciones",
+  "past_14_days_of_transactions":"Transacciones de los últimos 14 días",
+  "address_growth":"Crecimiento de la Dirección"
 
 };
