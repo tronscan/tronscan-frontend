@@ -79,7 +79,7 @@ export const messages = {
   "cancel": "Anuluj",
   "reset": "Zresetuj",
   "error": "Błąd",
-  "unlock_keyFile": "Odblokuj plik z Kluczem",
+  "unlock_keyFile": "Odblokuj swój portfel",
   "enter_password_message": "Musisz wpisać swoje hasło!",
   "password_incorrect": "Hasło jest nieprawidłowe",
   "try_again": "Spróbuj ponownie",
