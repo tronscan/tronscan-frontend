@@ -31,6 +31,7 @@ import System from "./components/tools/System";
 import Transfers from "./components/blockchain/Transfers";
 import {Redirect} from "react-router-dom";
 import Faq from "./components/Pages/Faq";
+import LedgerHelp from "./components/Pages/LedgerHelp";
 
 export const routes = [
   {
@@ -255,8 +256,19 @@ export const routes = [
         path: "/help/faq",
       },
       {
+        label: "Ledger",
+        component: LedgerHelp,
+        path: "/help/ledger",
+      },
+      {
         url: "https://t.me/tronscan",
         label: "telegram_updates",
+      },
+      '-',
+      "Community",
+      {
+        url: "https://www.reddit.com/r/tronix",
+        label: "reddit",
       },
       '-',
       "Development",
