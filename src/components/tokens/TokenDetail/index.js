@@ -30,7 +30,13 @@ export default class TokenDetail extends React.Component {
 
     this.loadToken(decodeURI(match.params.name));
   }
-
+  componentDidUpdate(prevProps){
+    let {match} = this.props;
+    
+    if (match.params.name !== prevProps.match.params.name) {
+      this.loadToken(decodeURI(match.params.name));
+    }
+  }
   loadToken = async (name) => {
 
     this.setState({ loading: true, token: { name } });
