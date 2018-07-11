@@ -15,7 +15,7 @@ export class LineReactAdd extends React.Component {
   constructor(props) {
 
     super(props)
-    this.myChart=null;
+    this.myChart = null;
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
       lineId: 'lineAdd' + id
@@ -23,22 +23,39 @@ export class LineReactAdd extends React.Component {
   }
 
   initLine(id) {
-    let {intl, data} = this.props;
+    let {intl, data, source} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.txOverviewChart.title.text = intl.formatMessage({id:'address_growth_chart'});
-    config.txOverviewChart.title.link = '#/blockchain/stats/addressesStats';
+    if (source !== 'home') {
+      config.txOverviewChart.title.text = intl.formatMessage({id: 'address_growth_chart'});
+      config.txOverviewChart.title.link = '#/blockchain/stats/addressesStats';
+      config.txOverviewChart.toolbox.feature = {
+        restore: {
+          title: 'restore'
+        },
+        saveAsImage: {
+          show: true,
+          title: 'save'
+        }
+      }
+    }
+    if (source === 'home') {
+      config.txOverviewChart.title.text='';
+      config.txOverviewChart.title.link='';
+      config.txOverviewChart.toolbox.feature = {};
+      config.txOverviewChart.grid[0].top = 40;
+    }
     config.txOverviewChart.xAxis[0].data = [];
     config.txOverviewChart.series[0].data = [];
-  //  config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
+    config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'addresses_amount'});
     config.txOverviewChart.tooltip.formatter = function (datas) {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-          intl.formatMessage({id: 'total_addresses'}) + ' : ' + datas[0].data.total + '<br/>' +
-          intl.formatMessage({id: 'daily_increment'}) + ' : ' + datas[0].data.increment
+          intl.formatMessage({id: 'daily_increment'}) + ' : ' + datas[0].data.increment + '<br/>' +
+          intl.formatMessage({id: 'total_addresses'}) + ' : ' + datas[0].data.total
       )
 
     }
@@ -56,7 +73,7 @@ export class LineReactAdd extends React.Component {
     }
 
     myChart.setOption(config.txOverviewChart);
-    this.myChart=myChart;
+    this.myChart = myChart;
 
   }
 
@@ -81,7 +98,7 @@ export class LineReactTx extends React.Component {
 
   constructor(props) {
     super(props)
-    this.myChart=null;
+    this.myChart = null;
     let id = ('_' + Math.random()).replace('.', '_');
     this.state = {
       lineId: 'lineTx' + id
@@ -89,28 +106,51 @@ export class LineReactTx extends React.Component {
   }
 
   initLine(id) {
-    let {intl, data} = this.props;
+    let {intl, data, source} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.txOverviewChart.title.text = intl.formatMessage({id:'TRX_transaction_chart'});
-    config.txOverviewChart.title.link = '#/blockchain/stats/txOverviewStats';
+    if (source !== 'home') {
+      config.txOverviewChart.title.text = intl.formatMessage({id: 'TRX_transaction_chart'});
+      config.txOverviewChart.title.link = '#/blockchain/stats/txOverviewStats';
+      config.txOverviewChart.toolbox.feature = {
+        restore: {
+          title: 'restore'
+        },
+        saveAsImage: {
+          show: true,
+          title: 'save'
+        }
+      }
+      config.txOverviewChart.tooltip.formatter = function (datas) {
+        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        return (
+            intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
+            intl.formatMessage({id: 'avg_blockSize'}) + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
+            intl.formatMessage({id: 'new_address_seen'}) + ' : ' + datas[0].data.newAddressSeen
+        )
+
+      }
+    }
+    if (source === 'home') {
+      config.txOverviewChart.title.text='';
+      config.txOverviewChart.title.link='';
+      config.txOverviewChart.toolbox.feature = {};
+      config.txOverviewChart.grid[0].top = 40;
+      config.txOverviewChart.tooltip.formatter = function (datas) {
+        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        return (
+            intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+            intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
+        )
+      }
+    }
     config.txOverviewChart.xAxis[0].data = [];
     config.txOverviewChart.series[0].data = [];
     config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
-    config.txOverviewChart.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
-      return (
-          intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-          intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
-          intl.formatMessage({id: 'avg_blockTime'}) + ' : ' + datas[0].data.avgBlockTime + '<br/>' +
-          intl.formatMessage({id: 'avg_blockSize'}) + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
-          intl.formatMessage({id: 'total_BlockCount'}) + ' : ' + datas[0].data.totalBlockCount + '<br/>' +
-          intl.formatMessage({id: 'new_address_seen'}) + ' : ' + datas[0].data.newAddressSeen + '<br/>'
-      )
 
-    }
 
     if (data && data.length > 0) {
       data.map((val) => {
@@ -124,12 +164,12 @@ export class LineReactTx extends React.Component {
       config.txOverviewChart.title.text = "No data";
     }
     myChart.setOption(config.txOverviewChart);
-    this.myChart=myChart;
+    this.myChart = myChart;
   }
 
   componentDidMount() {
     this.initLine(this.state.lineId);
-    this.myChart.on('click',function(params){
+    this.myChart.on('click', function (params) {
       console.log(params);
     });
   }

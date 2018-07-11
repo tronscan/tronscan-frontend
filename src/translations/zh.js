@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -170,7 +169,7 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking":"节点排名（以国家/地区划分）",
+  "nodes_ranking": "节点排名（以国家/地区划分）",
 
   /*
   ##################################################################################
@@ -184,8 +183,8 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "TRX_transaction_chart":"TRX交易图表",
-  "transactions_per_day":"日交易数目",
+  "TRX_transaction_chart": "TRX交易图表",
+  "transactions_per_day": "日交易数目",
 
   /*
   ##################################################################################
@@ -230,7 +229,7 @@ export const messages = {
   "send_to_following_address": "对以下地址转账",
   "change_website": "更改网址",
   "you_must_enter_url": "你必须要输入一个网址",
-  "specify_the_url":  "请指定网址",
+  "specify_the_url": "请指定网址",
 
   /*
   ##################################################################################
@@ -239,8 +238,8 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "freeze" : "冻结",
-  "unfreeze" : "解冻",
+  "freeze": "冻结",
+  "unfreeze": "解冻",
   "freeze_trx_least": "至少需要1TRX才能成功冻结。",
   "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
   "freeze_trx_premessage_0": `再次冻结TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以`,
@@ -275,7 +274,7 @@ export const messages = {
   "apply_for_delegate": "申请成为超级代表",
   "apply_super_representative_candidate": "申请成为超级代表候选人",
   "your_personal_website_address": "个人网页地址",
-  "apply_for_delegate_predescription":"每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
+  "apply_for_delegate_predescription": "每个代币持有者都有机会成为TRON超级代表。然而，为了让网络和社区更加平稳有效地运作，我们制定了一套标准和规定，让符合条件的候选人成为超级代表推荐人。我们以推荐超级代表的形式，增加他们当选的机会。新推荐的超级代表每周更新并发布一次。",
   "apply_for_delegate_description": "每个代币持有者都可以通过账户管理页面，申请成为超级代表候选人，或是在投票页面为候选人投票。每个用户可以为多个候选人投票，最高投票数必须少于或者等于持有TRX的数量。投票结果以每名用户的最终投票结果为准，票数会在每天的02:00(GMT+8)，08:00(GMT+8)，14:00(GMT+8)，20:00(GMT+8)刷新，用户也可以查看实时票数。票数最高的前27名候选人可以成为超级代表，超级代表负责打包交易出块，每次出块奖励32个TRX。27个超级代表和前100名代表候选人也可以根据票数获得节点奖励。申请成为候选人需要一次性扣除9,999TRX的手续费，用户为超级代表候选人投票不消耗TRX。",
   "unknown_error": "发生未知错误",
   "representative_understand": "我已了解如何成为波场超级代表",
@@ -304,7 +303,7 @@ export const messages = {
   "invalid_url": "无效的网址",
   "apply_representative_error_message_0": "当您试图申请超级代表时出错了。",
   "apply_representative_error_message_1": "请确保您的账户有足够的TRX来支付费用或者稍后再尝试。",
-  "open_external_link":"您正在打开外部链接",
+  "open_external_link": "您正在打开外部链接",
   "private_key_untrusted_website_message_0": "请不要在不受信任的网站上输入您的私钥。",
   "no_official_tron_website": "不是波场官方网站",
   "continue_to_external_website": "继续前往外部网站",
@@ -331,7 +330,7 @@ export const messages = {
   "could_not_claim_rewards": "不能申请奖励",
   "claim_rewards_error_message": "在尝试申请奖励时出现问题，请稍后再试。",
   "rewards_claimed": "奖励确认！",
-  "successfully_claimed_rewards":  "成功获得奖励",
+  "successfully_claimed_rewards": "成功获得奖励",
   "claim_rewards": "获得奖励",
   "sr_receive_reward_message_0": "作为代表，您将获得出块奖励。 这些奖励可以每24小时申领一次",
   "intro": "介绍",
@@ -393,7 +392,7 @@ export const messages = {
   "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
-  "can_be_unlocked_in":"将解锁于",
+  "can_be_unlocked_in": "将解锁于",
   /*
   ##################################################################################
   #                                                                                #
@@ -479,10 +478,10 @@ export const messages = {
   "start_date": "开始日期",
   "end_date": "结束时期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
-  "token_issue_guide_message_1":`用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
-  "token_issue_guide_message_2":`通证发行后，会在通证总览页面进行显示。
+  "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
+  "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
     之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
-  "token_issue_guide_message_3":`在发行通证后，您的账户将会收到全部的发行数额。
+  "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
     当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
 
   /*
@@ -674,11 +673,11 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "hash":"哈希值",
-  "time":"时间",
-  "parenthash":"父哈希",
-  "witness":"超级代表",
-  "size":"大小",
+  "hash": "哈希值",
+  "time": "时间",
+  "parenthash": "父哈希",
+  "witness": "超级代表",
+  "size": "大小",
 
   /*
 ##################################################################################
@@ -687,64 +686,67 @@ export const messages = {
 #                                                                                #
 ##################################################################################
 */
-  "transactions_per_day":"日交易数",
+  "transactions_per_day": "日交易数",
   "transactions_last_day": "过去一天交易量",
-  "date":"日期",
-  "total_transactions":"总交易数",
-  "avg_blockTime":"平均生成区块时间",
-  "avg_blockSize":"平均区块大小",
-  "total_BlockCount":"总区块数",
-  "new_address_seen":"新产生地址数",
-  "transfer_contract":"转账合约",
-  "TRX_transfer_between_addresses":"地址间转账",
+  "date": "日期",
+  "total_transactions": "总交易数",
+  "avg_blockTime": "平均生成区块时间",
+  "avg_blockSize": "平均区块大小",
+  "total_BlockCount": "总区块数",
+  "new_address_seen": "新产生地址数",
+  "transfer_contract": "转账合约",
+  "TRX_transfer_between_addresses": "地址间转账",
   "transfer_asset_contract": "通证转账合约",
-  "token_transfer_between_addresses":"地址间转账通证",
-  "participate_asset_issue_contract":"参与通证发行合约",
-  "participate_token_between_addresses":"地址间参与通证",
-  "witness_update_contract":"超级代表更新合约",
-  "updates_a_witness":"更新超级代表",
-  "witness_create_contract":"超级代表创建合约",
-  "create_a_witness":"创建超级代表",
-  "account_update_contract":"账户更新合约",
-  "update_account_name":"更新账户名称",
-  "withdraw_balance_contract":"提现合约",
-  "withdraw_balance":"提现",
-  "freeze_balance_contract":"冻结合约",
-  "freeze_TRX":"冻结TRX",
-  "unfreeze_balance_contract":"解冻合约",
-  "unfreeze_TRX":"解冻TRX",
-  "vote_witness_contract":"超级代表投票合约",
-  "vote_for_a_witness":"选举超级代表",
-  "asset_issue_contract":"资产发行合约",
-  "issue_a_new_asset":"发行资产",
-  "from":"来自",
-  "to":"去往",
-  "amount":"数量",
-  "token":"通证",
-  "owner_address":"所有者地址",
-  "account_name":"账户名称",
-  "frozen_balance":"冻结数量",
-  "frozen_days":"冻结天数",
-  "votes":"投票",
-  "counts":"票数",
-  "token_name":"通证名称",
-  "total_supply":"总发行量",
-  "TRX_exchange_rate":"TRX汇率",
-  "start_time":"开始时间",
-  "end_time":"结束时间",
-  "description":"描述",
-  "contracts":"合约",
-  "search_description":"搜索地址，区块，交易，通证",
-  "search_description1":"搜索地址，区块，交易，通证",
-  "transaction":"交易",
-  "total_accounts":"总账户数",
-  "power":"投票权",
-  "token_transfers":"通证转账",
-  "website_url":"网站地址",
-  "search":"搜索",
-  "reset":"重置",
-  "total_addresses":"总地址数",
-  "daily_increment":"日增长数",
-  "address_growth_chart":"地址增长图表",
+  "token_transfer_between_addresses": "地址间转账通证",
+  "participate_asset_issue_contract": "参与通证发行合约",
+  "participate_token_between_addresses": "地址间参与通证",
+  "witness_update_contract": "超级代表更新合约",
+  "updates_a_witness": "更新超级代表",
+  "witness_create_contract": "超级代表创建合约",
+  "create_a_witness": "创建超级代表",
+  "account_update_contract": "账户更新合约",
+  "update_account_name": "更新账户名称",
+  "withdraw_balance_contract": "提现合约",
+  "withdraw_balance": "提现",
+  "freeze_balance_contract": "冻结合约",
+  "freeze_TRX": "冻结TRX",
+  "unfreeze_balance_contract": "解冻合约",
+  "unfreeze_TRX": "解冻TRX",
+  "vote_witness_contract": "超级代表投票合约",
+  "vote_for_a_witness": "选举超级代表",
+  "asset_issue_contract": "资产发行合约",
+  "issue_a_new_asset": "发行资产",
+  "from": "来自",
+  "to": "去往",
+  "amount": "数量",
+  "token": "通证",
+  "owner_address": "所有者地址",
+  "account_name": "账户名称",
+  "frozen_balance": "冻结数量",
+  "frozen_days": "冻结天数",
+  "votes": "投票",
+  "counts": "票数",
+  "token_name": "通证名称",
+  "total_supply": "总发行量",
+  "TRX_exchange_rate": "TRX汇率",
+  "start_time": "开始时间",
+  "end_time": "结束时间",
+  "description": "描述",
+  "contracts": "合约",
+  "search_description": "搜索地址，区块，交易，通证",
+  "search_description1": "搜索地址，区块，交易，通证",
+  "transaction": "交易",
+  "total_accounts": "总账户数",
+  "power": "投票权",
+  "token_transfers": "通证转账",
+  "website_url": "网站地址",
+  "search": "搜索",
+  "reset": "重置",
+  "total_addresses": "总地址数",
+  "daily_increment": "日增长数",
+  "address_growth_chart": "地址增长图表",
+  "addresses_amount":"地址数",
+  "past_14_days_of_transactions":"过去14天交易量",
+  "address_growth":"地址增长",
 };
 

@@ -242,7 +242,7 @@ module.exports = {
   },
   txOverviewChart: {
     title: {
-      text: 'TRX Transaction Chart',
+      text: '',
       x: 'center',
       link:'',
       target:'self'
@@ -251,18 +251,6 @@ module.exports = {
       trigger: 'axis',
       axisPointer: {
         animation: false
-      },
-      formatter: function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
-        return (
-            'Date' + ' : ' + date + '<br/>' +
-            'Total Transaction' + ' : ' + datas[0].data.totalTransaction + '<br/>' +
-            'Avg BlockTime' + ' : ' + datas[0].data.avgBlockTime + '<br/>' +
-            'Avg BlockSize' + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
-            'Total BlockCount' + ' : ' + datas[0].data.totalBlockCount + '<br/>' +
-            'New Address Seen' + ' : ' + datas[0].data.newAddressSeen + '<br/>'
-        )
-
       }
     },
 
@@ -308,7 +296,7 @@ module.exports = {
 
     yAxis: [
       {
-        name: 'Transactions Per Day',
+        name: '',
         nameGap: 20,
         type: 'value'
       }],

@@ -164,7 +164,9 @@ class Statistics extends React.Component {
               </div>
             </div>
           </div>
-          <div className="row">
+          {
+            /*
+            <div className="row">
             <div className="col-md-6 mt-3">
               <div className="card">
                 <div className="card-body">
@@ -232,6 +234,8 @@ class Statistics extends React.Component {
               </div>
             </div>
           </div>
+          */
+          }
         </main>
     );
   }
