@@ -539,7 +539,7 @@ export const messages = {
   "volume": "Volym",
   "usd": "usd",
   "average_price": "Genomsnittspris",
-  "click_the_chart_title_to_find_more": "Klicka på diagramtiteln för att hitta mer."
+  "click_the_chart_title_to_find_more": "Klicka på diagramtiteln för att hitta mer.",
   /*
   ##################################################################################
   #                                                                                #
@@ -714,6 +714,12 @@ export const messages = {
   "contracts": "Kontrakt",
   "search_description": "Sökadress, Blockhöjd, Transaktionshash, Tokenamn",
   "search_description1": "Sök adress, Blockera, Transaktion, Token",
-  "transaction": "Transaction"
+  "transaction": "Transaction",
+  "total_addresses":"Total Addresses",
+  "daily_increment":"Daily Increase",
+  "address_growth_chart":"Address Growth Chart",
+  "addresses_amount":"Addresses Amount",
+  "past_14_days_of_transactions":"Past 14 days of transactions",
+  "address_growth":"Address Growth"
 
 };

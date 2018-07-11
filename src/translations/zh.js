@@ -532,7 +532,7 @@ export const messages = {
   "volume": "交易量",
   "usd":"美金",
   "average_price":"平均价格",
-  "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息"
+  "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息",
   /*
   ##################################################################################
   #                                                                                #
@@ -707,6 +707,12 @@ export const messages = {
   "contracts":"合约",
   "search_description":"搜索地址，区块，交易，通证",
   "search_description1":"搜索地址，区块，交易，通证",
-  "transaction":"交易"
+  "transaction":"交易",
+  "total_addresses":"Total Addresses",
+  "daily_increment":"Daily Increase",
+  "address_growth_chart":"Address Growth Chart",
+  "addresses_amount":"Addresses Amount",
+  "past_14_days_of_transactions":"Past 14 days of transactions",
+  "address_growth":"Address Growth"
 
 };

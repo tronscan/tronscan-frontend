@@ -552,7 +552,7 @@ export const messages = {
   "volume": "Volumen",
   "usd": "USD",
   "average_price": "Durchschnittspreis",
-  "click_the_chart_title_to_find_more": "Klicken Sie auf den Chart-Titel, um mehr Informationen zu erhalten."
+  "click_the_chart_title_to_find_more": "Klicken Sie auf den Chart-Titel, um mehr Informationen zu erhalten.",
   /*
   ##################################################################################
   #                                                                                #
@@ -721,13 +721,19 @@ export const messages = {
   "owner_address": "Adresse des Eigentümers",
   "frozen_balance": "Frozen Balance",
   "frozen_days": "Frozen Days",
-  "counts": "Zählungen",
+  "counts": "Gesamtanzahl",
   "TRX_exchange_rate": "TRX Wechselkurs",
   "start_time": "Startzeit",
   "end_time": "Endzeit",
   "contracts": "Verträge",
   "search_description": "Suche nach Adresse,Blocken,Transaktion Hash,Token Name",
   "search_description1": "Suche nach Adresse,Block,Transaktion,Token",
-  "transaction": "Transaktion"
+  "transaction": "Transaktion",
+  "total_addresses":"Gesamtanzahl der Adressen",
+  "daily_increment":"Täglicher Anstieg",
+  "address_growth_chart":"Adressstatistik",
+  "addresses_amount":"Anzahl der Adressen",
+  "past_14_days_of_transactions":"Transaktionen der letzten 14 Tage",
+  "address_growth":"Wachstumspotential"
 
 };
