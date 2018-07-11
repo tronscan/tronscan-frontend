@@ -715,11 +715,11 @@ export const messages = {
   "search_description": "Sökadress, Blockhöjd, Transaktionshash, Tokenamn",
   "search_description1": "Sök adress, Blockera, Transaktion, Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses":"Totala adresser",
+  "daily_increment":"Daglig ökning",
+  "address_growth_chart":"Adress tillväxtdiagram",
+  "addresses_amount":"Adresser Belopp",
+  "past_14_days_of_transactions":"Transaktioner under de senaste 14 dagarna",
+  "address_growth":"Tillväxtpotential "
 
 };

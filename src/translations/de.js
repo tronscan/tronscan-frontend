@@ -169,7 +169,7 @@ export const messages = {
   "witness": "Zeuge/Prüfer",
   "asset_participation": "Asset-Beteiligung",
   "loading_transaction": "Laden der Transaktionen",
-  "nodes_ranking": "Knoten Ranking",
+  "nodes_ranking": "Knoten Ranking (aufgelistet nach Land und Region )",
   /*
   ##################################################################################
   #                                                                                #
