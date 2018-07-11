@@ -260,7 +260,11 @@ class Home extends Component {
               <div className="col-md-6 mt-3 mt-md-0 ">
                 <div className="card">
                   <div className="card-header bg-dark text-white d-flex">
-                    <h5 className="m-0 lh-150">{tu("past_14_days_of_transactions")}</h5>
+                    <h5 className="m-0 lh-150">
+                      <Link to="blockchain/stats/txOverviewStats" style={{color:'white'}}>
+                      {tu("past_14_days_of_transactions")}
+                      </Link>
+                    </h5>
                   </div>
                   <div className="card-body">
 
@@ -278,7 +282,11 @@ class Home extends Component {
               <div className="col-md-6 mt-3 mt-md-0 ">
                 <div className="card">
                   <div className="card-header bg-dark text-white d-flex">
-                    <h5 className="m-0 lh-150">{tu("address_growth")}</h5>
+                    <h5 className="m-0 lh-150">
+                      <Link to="blockchain/stats/addressesStats" style={{color:'white'}}>
+                        {tu("address_growth")}
+                      </Link>
+                    </h5>
                   </div>
                   <div className="card-body">
 

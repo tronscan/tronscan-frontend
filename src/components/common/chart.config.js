@@ -245,7 +245,8 @@ module.exports = {
       text: '',
       x: 'center',
       link:'',
-      target:'self'
+      target:'self',
+      
     },
     tooltip: {
       trigger: 'axis',

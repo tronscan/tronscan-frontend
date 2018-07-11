@@ -733,4 +733,5 @@ export const messages = {
   "addresses_amount":"Addresses Amount",
   "past_14_days_of_transactions":"Past 14 days of transactions",
   "address_growth":"Address Growth",
+  "click_the_chart_title_to_find_more":"Click the chart title to find more."
 };

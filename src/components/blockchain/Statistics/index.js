@@ -133,8 +133,14 @@ class Statistics extends React.Component {
     let {intl} = this.props;
     return (
         <main className="container header-overlap">
+          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
+            {tu("click_the_chart_title_to_find_more")}
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div className="row">
-            <div className="col-md-6 mt-3">
+            <div className="col-md-6 ">
               <div className="card">
                 <div className="card-body">
 
@@ -149,7 +155,7 @@ class Statistics extends React.Component {
               </div>
             </div>
 
-            <div className="col-md-6 mt-3">
+            <div className="col-md-6 ">
               <div className="card">
                 <div className="card-body">
 
