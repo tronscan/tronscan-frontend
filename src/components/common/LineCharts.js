@@ -175,9 +175,11 @@ export class LineReactTx extends React.Component {
 
   componentDidMount() {
     this.initLine(this.state.lineId);
-    this.myChart.on('click', function (params) {
-      console.log(params);
+   /* this.myChart.on('click', function (params) {
+      console.log(params.data.date);
+      window.location.href='#/blockchain/transactions/'+params.data.date;
     });
+   */
   }
 
   componentDidUpdate() {
