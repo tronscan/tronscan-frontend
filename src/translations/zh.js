@@ -749,5 +749,7 @@ export const messages = {
   "past_14_days_of_transactions":"过去14天交易量",
   "address_growth":"地址增长",
   "click_the_chart_title_to_find_more":"点击图表标题，查看更多信息",
+  "usd":"美金",
+  "average_price":"平均价格",
 };
 

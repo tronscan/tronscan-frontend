@@ -1,5 +1,5 @@
 import React from "react";
-
+import xhr from "axios/index";
 import {Link} from "react-router-dom"
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
@@ -13,7 +13,8 @@ import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
 
-import {LineReactAdd, LineReactTx} from "../../common/LineCharts";
+import {LineReactAdd, LineReactBlockSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
+import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
 
@@ -27,6 +28,8 @@ class Statistics extends React.Component {
       transactionValueStats: null,
       txOverviewStats: null,
       addressesStats: null,
+      blockSizeStats: null,
+      priceStats: null,
     };
   }
 
@@ -90,10 +93,22 @@ class Statistics extends React.Component {
   }
 
   async loadTxOverviewStats() {
+
+    let today = new Date();
+    let timerToday = today.getTime();
+
+    var birthday = new Date("2017/10/10");
+    var timerBirthday = birthday.getTime();
+    var dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
+
+
+    let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
+
+    let priceStatsTemp = data['Data'];
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
-
+    let blockSizeStatsTemp = [];
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
       if (tx === 0) {
@@ -119,18 +134,25 @@ class Statistics extends React.Component {
           increment: txOverviewStats[tx].newAddressSeen
         });
       }
+      blockSizeStatsTemp.push({
+        date: txOverviewStats[tx].date,
+        avgBlockSize: txOverviewStats[tx].avgBlockSize
+      });
     }
 
     this.setState({
       txOverviewStats: temp,
-      addressesStats: addressesTemp
+      addressesStats: addressesTemp,
+      blockSizeStats: blockSizeStatsTemp,
+      priceStats: priceStatsTemp,
     });
   }
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, priceStats} = this.state;
     let {intl} = this.props;
+
     return (
         <main className="container header-overlap">
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
@@ -164,6 +186,36 @@ class Statistics extends React.Component {
                       addressesStats === null ?
                           <TronLoader/> :
                           <LineReactAdd style={{height: 350}} data={addressesStats} intl={intl}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+
+                  <div style={{height: 350}}>
+                    {
+                      blockSizeStats === null ?
+                          <TronLoader/> :
+                          <LineReactBlockSize style={{height: 350}} data={blockSizeStats} intl={intl}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+
+                  <div style={{height: 350}}>
+                    {
+                      priceStats === null ?
+                          <TronLoader/> :
+                          <LineReactPrice style={{height: 350}} data={priceStats} intl={intl}/>
                     }
                   </div>
                 </div>
@@ -249,9 +301,16 @@ class Statistics extends React.Component {
 
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    priceGraph: state.markets.price
+  };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loadPriceData,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))
+
+
+

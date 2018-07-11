@@ -24,7 +24,7 @@ export class LineReactAdd extends React.Component {
   }
 
   initLine(id) {
-    let _config=cloneDeep(config.overviewChart);
+    let _config = cloneDeep(config.overviewChart);
 
     let {intl, data, source} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
@@ -45,8 +45,8 @@ export class LineReactAdd extends React.Component {
       }
     }
     if (source === 'home') {
-      _config.title.text='';
-      _config.title.link='';
+      _config.title.text = '';
+      _config.title.link = '';
       _config.toolbox.feature = {};
       _config.grid[0].top = 40;
     }
@@ -109,7 +109,7 @@ export class LineReactTx extends React.Component {
   }
 
   initLine(id) {
-    let _config=cloneDeep(config.overviewChart);
+    let _config = cloneDeep(config.overviewChart);
 
     let {intl, data, source} = this.props;
 
@@ -141,8 +141,8 @@ export class LineReactTx extends React.Component {
       }
     }
     if (source === 'home') {
-      _config.title.text='';
-      _config.title.link='';
+      _config.title.text = '';
+      _config.title.link = '';
       _config.toolbox.feature = {};
       _config.grid[0].top = 40;
       _config.tooltip.formatter = function (datas) {
@@ -175,11 +175,11 @@ export class LineReactTx extends React.Component {
 
   componentDidMount() {
     this.initLine(this.state.lineId);
-   /* this.myChart.on('click', function (params) {
-      console.log(params.data.date);
-      window.location.href='#/blockchain/transactions/'+params.data.date;
-    });
-   */
+    /* this.myChart.on('click', function (params) {
+       console.log(params.data.date);
+       window.location.href='#/blockchain/transactions/'+params.data.date;
+     });
+    */
   }
 
   componentDidUpdate() {
@@ -195,4 +195,164 @@ export class LineReactTx extends React.Component {
   }
 }
 
+export class LineReactBlockSize extends React.Component {
 
+  constructor(props) {
+
+    super(props)
+    this.myChart = null;
+    let id = ('_' + Math.random()).replace('.', '_');
+    this.state = {
+      lineId: 'lineBlockSize' + id
+    }
+  }
+
+  initLine(id) {
+    let _config = cloneDeep(config.overviewChart);
+
+    let {intl, data, source} = this.props;
+    let myChart = echarts.getInstanceByDom(document.getElementById(id));
+    if (myChart === undefined) {
+      myChart = echarts.init(document.getElementById(id));
+    }
+
+    _config.title.text = intl.formatMessage({id: 'average_blocksize'});
+    _config.title.link = '#/blockchain/stats/blockSizeStats';
+    _config.toolbox.feature = {
+      restore: {
+        title: 'restore'
+      },
+      saveAsImage: {
+        show: true,
+        title: 'save'
+      }
+    }
+
+    _config.series[0].type = 'bar';
+    _config.series[0].barWidth = '50%';
+    _config.xAxis[0].boundaryGap = true;
+    _config.xAxis[0].data = [];
+    _config.series[0].data = [];
+    _config.yAxis[0].name = intl.formatMessage({id: 'bytes'});
+    _config.tooltip.formatter = function (datas) {
+      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      return (
+          intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+          intl.formatMessage({id: 'average_blocksize'}) + ' : ' + datas[0].data.avgBlockSize
+      )
+
+    }
+
+    if (data && data.length > 0) {
+      data.map((val) => {
+        let temp;
+        temp = {...val, value: val.avgBlockSize};
+        _config.xAxis[0].data.push(intl.formatDate(val.date));
+        _config.series[0].data.push(temp);
+      })
+    }
+    if (data && data.length === 0) {
+      _config.title.text = "No data";
+    }
+
+    myChart.setOption(_config);
+    this.myChart = myChart;
+
+  }
+
+  componentDidMount() {
+    this.initLine(this.state.lineId);
+  }
+
+  componentDidUpdate() {
+    this.initLine(this.state.lineId);
+  }
+
+  render() {
+    return (
+        <div>
+          <div id={this.state.lineId} style={this.props.style}></div>
+        </div>
+    )
+  }
+}
+
+export class LineReactPrice extends React.Component {
+
+  constructor(props) {
+
+    super(props)
+    this.myChart = null;
+    let id = ('_' + Math.random()).replace('.', '_');
+    this.state = {
+      lineId: 'linePrice' + id
+    }
+  }
+
+  initLine(id) {
+    let _config = cloneDeep(config.overviewChart);
+
+    let {intl, data, source} = this.props;
+    let myChart = echarts.getInstanceByDom(document.getElementById(id));
+    if (myChart === undefined) {
+      myChart = echarts.init(document.getElementById(id));
+    }
+
+    _config.title.text = intl.formatMessage({id: 'average_price'});
+    _config.title.link = '#/blockchain/stats/priceStats';
+    _config.toolbox.feature = {
+      restore: {
+        title: 'restore'
+      },
+      saveAsImage: {
+        show: true,
+        title: 'save'
+      }
+    }
+
+
+    _config.xAxis[0].data = [];
+    _config.series[0].data = [];
+    _config.yAxis[0].name = intl.formatMessage({id: 'usd'});
+    _config.tooltip.formatter = function (datas) {
+      let date = new Date(parseInt(datas[0].data.time) * 1000).toLocaleString().split(' ')[0];
+      return (
+          intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+          intl.formatMessage({id: 'average_price'}) + ' : ' + datas[0].data.close
+      )
+
+    }
+
+    if (data && data.length > 0) {
+      data.map((val) => {
+        let temp;
+        temp = {...val, value: val.close};
+        _config.xAxis[0].data.push(intl.formatDate(parseInt(val.time) * 1000));
+        _config.series[0].data.push(temp);
+      })
+    }
+    if (data && data.length === 0) {
+      _config.title.text = "No data";
+    }
+
+    myChart.setOption(_config);
+    this.myChart = myChart;
+
+  }
+
+  componentDidMount() {
+    this.initLine(this.state.lineId);
+  }
+
+  componentDidUpdate() {
+    this.initLine(this.state.lineId);
+  }
+
+  render() {
+    return (
+        <div>
+          <div id={this.state.lineId} style={this.props.style}></div>
+        </div>
+    )
+  }
+}
