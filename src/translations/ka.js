@@ -624,8 +624,8 @@ export const messages = {
   "tron_architechure": "ტრონის არქიტექტურა",
   "tron_protobuf_doc": "ტრონის Protobuf დოკუმენტაცია",
   "report_an_error": "დაუშვით ბაგი / წინადადება",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "ხშირად დასმული შეკითხვები",
+  "telegram_updates": "Telegram განახლებები",
   /*
   ##################################################################################
   #                                                                                #
@@ -664,9 +664,9 @@ export const messages = {
   ##################################################################################
   */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "time": "დრო",
+  "parenthash": "მშობელი",
+  "size": "ზომა",
   /*
   ##################################################################################
   #                                                                                #
@@ -674,10 +674,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
-  "total_transactions": "Total Transactions",
-  "avg_blockTime": "Avg BlockTime",
-  "avg_blockSize": "Avg BlockSize",
+  "date": "თარიღი",
+  "total_transactions": "სულ ტრანზაქციები",
+  "avg_blockTime": "ყოველთვიური დროით",
+  "avg_blockSize": "ბლოკის ბლოკირება",
   "total_BlockCount": "Total BlockCount",
   "new_address_seen": "New Address Seen",
   "transfer_contract": "Transfer Contract",

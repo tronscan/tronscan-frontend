@@ -721,11 +721,11 @@ export const messages = {
   "search_description": "Pesquisar Endereço,Altura do Bloco,Hash da Transação,Nome do Token",
   "search_description1": "Pesquisar Endereço,Bloco,Transação,Token",
   "transaction": "Transação",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses":"Total de Endereços",
+  "daily_increment":"Crescimento Diário",
+  "address_growth_chart":"Gráfico de Crescimento de Endereços",
+  "addresses_amount":"Quantidade de Endereços",
+  "past_14_days_of_transactions":"Transações nos últimos 14 dias",
+  "address_growth":"Crescimento de Endereços"
 
 };

@@ -536,7 +536,7 @@ export const messages = {
   "loading_representatives": "Laden der Repräsentanten",
   "address_not_super_representative": "Diese Adresse gehört keinem Super Repräsentant",
   "unable_load_representatives_page_message": "Seite kann nicht geladen werden, evtl. ist die hinterlegte Adresse ungültig oder die Webseite wurde noch nicht durch den Repräsentant konfiguriert.",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Repräsentanten werden geladen",
   /*
   ##################################################################################
   #                                                                                #
@@ -719,8 +719,8 @@ export const messages = {
   "asset_issue_contract": "Asset-Issue-Vertrag",
   "issue_a_new_asset": "Eine neuen Token ausgeben",
   "owner_address": "Adresse des Eigentümers",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
+  "frozen_balance": "Eingefrorenes Guthaben",
+  "frozen_days": "Eingefroren in Tagen",
   "counts": "Gesamtanzahl",
   "TRX_exchange_rate": "TRX Wechselkurs",
   "start_time": "Startzeit",
