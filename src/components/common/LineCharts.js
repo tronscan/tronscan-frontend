@@ -48,7 +48,7 @@ export class LineReactAdd extends React.Component {
       _config.title.text = '';
       _config.title.link = '';
       _config.toolbox.feature = {};
-      _config.grid[0].top = 40;
+      _config.grid[0].top = 45;
     }
     _config.xAxis[0].data = [];
     _config.series[0].data = [];
@@ -144,7 +144,7 @@ export class LineReactTx extends React.Component {
       _config.title.text = '';
       _config.title.link = '';
       _config.toolbox.feature = {};
-      _config.grid[0].top = 40;
+      _config.grid[0].top = 45;
       _config.tooltip.formatter = function (datas) {
         let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
         return (

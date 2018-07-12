@@ -31,12 +31,12 @@ class TokenList extends Component {
       start: (page - 1) * pageSize,
     });
 
-    function compare(property) {
+    function compare(property1, property2) {
       return function (obj1, obj2) {
 
-        if (obj1[property] > obj2[property]) {
+        if (obj1[property1] / obj1[property2] > obj2[property1] / obj2[property2]) {
           return -1;
-        } else if (obj1[property] < obj2[property]) {
+        } else if (obj1[property1] / obj1[property2] < obj2[property1] / obj2[property2]) {
           return 1;
         } else {
           return 0;
@@ -45,7 +45,7 @@ class TokenList extends Component {
       }
     }
 
-    tokens = tokens.sort(compare('dateCreated'));
+    tokens = tokens.sort(compare('issued', 'totalSupply'));
     this.setState({
       loading: false,
       tokens,
@@ -104,7 +104,7 @@ class TokenList extends Component {
                         tokens.map((token, index) => (
                             <tr key={index}>
                               <td><TokenLink name={token.name}/></td>
-                              <td className="d-none d-md-table-cell"><TokenLink name={token.abbr}/></td>
+                              <td className="d-none d-md-table-cell">{token.abbr}</td>
                               <td><FormattedNumber value={token.totalSupply}/></td>
                               <td className="d-none d-sm-table-cell"><FormattedNumber value={token.issued}/></td>
                               <td className="d-none d-md-table-cell">

@@ -29,8 +29,8 @@ class Home extends Component {
       isShaking: false,
       hasFound: false,
       stats: {
-        totalAccounts:0,
-        previousTotalAccounts:0,
+        totalAccounts: 0,
+        previousTotalAccounts: 0,
         onlineNodes: 0,
         previousOnlineNodes: 0,
         blockHeight: 0,
@@ -50,32 +50,15 @@ class Home extends Component {
       sort: '-number',
     });
 
-    let {total: totalTransactions} = await Client.getTransfers({
-      limit: 1,
-      date_start: subDays(new Date(), 1),
-    });
-
+    /* let {total: totalTransactions} = await Client.getTransfers({
+       limit: 1,
+       date_start: subDays(new Date(), 1),
+     });
+    */
     let {total} = await Client.getNodeLocations();
 
-    let totalAccounts  = await Client.getAccounts();
+    //let totalAccounts = await Client.getAccounts();
 
-    this.setState(prevState => ({
-      stats: {
-        totalAccounts:totalAccounts.total,
-        previousTotalAccounts:prevState.stats.totalAccounts,
-        previousOnlineNodes: prevState.stats.onlineNodes,
-        previousBlockHeight: prevState.stats.blockHeight,
-        previousTransactionPerDay: prevState.stats.transactionPerDay,
-        onlineNodes: total,
-        blockHeight: blocks[0] ? blocks[0].number : 0,
-        transactionPerDay: totalTransactions,
-      },
-    }));
-
-    this.loadTxOverviewStats();
-  }
-
-  async loadTxOverviewStats() {
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -107,12 +90,24 @@ class Home extends Component {
       }
     }
 
-    this.setState({
+
+    this.setState(prevState => ({
       txOverviewStats: temp.slice(temp.length - 14, temp.length),
-      addressesStats: addressesTemp
-    });
+      addressesStats: addressesTemp,
+      stats: {
+        totalAccounts: addressesTemp[addressesTemp.length - 1].total,
+        previousTotalAccounts: prevState.stats.totalAccounts,
+        previousOnlineNodes: prevState.stats.onlineNodes,
+        previousBlockHeight: prevState.stats.blockHeight,
+        previousTransactionPerDay: prevState.stats.transactionPerDay,
+        transactionPerDay: temp[temp.length - 1].totalTransaction,
+        onlineNodes: total,
+        blockHeight: blocks[0] ? blocks[0].number : 0
+      },
+    }));
 
   }
+
 
   doSearch = async () => {
     let {search} = this.state;
@@ -163,7 +158,7 @@ class Home extends Component {
 
   getLogo = () => {
     let {theme} = this.props;
-    switch(theme) {
+    switch (theme) {
       case "tron":
         return require("../../images/tron-banner-tronblue.png");
       default:
@@ -241,7 +236,7 @@ class Home extends Component {
               <div className="col-md-2 ">
                 <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
-                  <p>{tu("total_accounts")}</p>
+                  <p>{tu("total_accounts_last_day")}</p>
                 </Link>
               </div>
               <div className="col-md-2 ">
@@ -507,8 +502,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(Home)))
