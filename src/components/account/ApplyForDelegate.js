@@ -80,7 +80,7 @@ class ApplyForDelegate extends Component {
 
     return (
       <Modal isOpen={true} toggle={this.cancel} fade={false} size="lg" className="modal-dialog-centered">
-        <ModalHeader className="text-center" toggle={this.cancel}>Super Representative</ModalHeader>
+        <ModalHeader className="text-center" toggle={this.cancel}>{tu("Super Representatives")}</ModalHeader>
         <ModalBody>
           <p className="card-text text-center">
             {t("apply_for_delegate_description")}

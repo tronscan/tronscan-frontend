@@ -447,7 +447,7 @@ class TokenCreate extends Component {
                 <form>
                   <fieldset>
                     <legend>
-                      {tu("Details")}
+                      {tu("details")}
                       <i className="fab fa-wpforms float-right"/>
                     </legend>
                     <div className="form-row">
@@ -495,7 +495,7 @@ class TokenCreate extends Component {
                     </div>
                     <div className="form-row">
                       <div className="form-group col-md-12">
-                        <label>{tu("Website URL")} </label>
+                        <label>{tu("website_url")} </label>
                         <TextField type="text" cmp={this} field="url" placeholder="http://" />
                         <small className="form-text text-muted">
                           {tu("url_message")}
