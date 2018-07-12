@@ -57,7 +57,7 @@ export const messages = {
   "from": "发送人",
   "to": "接收人",
   "value": "价值",
-  "total_accounts": "总账户数量",
+  "total_accounts": "实时总账户数",
   "submit": "提交",
   "send": "发送",
   "receive": "接收",
@@ -168,6 +168,7 @@ export const messages = {
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名（以国家/地区划分）",
+  "total_accounts_last_day":"截止上一天总账户数",
   /*
   ##################################################################################
   #                                                                                #

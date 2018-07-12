@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Asset deltakelse",
   "loading_transaction": "Henter Transaksjon",
   "nodes_ranking": "Nodes Ranking",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -730,5 +731,5 @@ export const messages = {
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
   "search": "Search"
-  
+
 };

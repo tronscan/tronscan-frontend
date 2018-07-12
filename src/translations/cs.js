@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

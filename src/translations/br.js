@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

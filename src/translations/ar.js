@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "مشاركة الأصول",
   "loading_transaction": "جاري تحميل المعامله",
   "nodes_ranking": "Nodes Ranking",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
