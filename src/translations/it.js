@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -719,11 +719,11 @@ export const messages = {
   "search_description": "Cerca Indirizzo, Altezza blocco, Hash Transazione, Nome Token",
   "search_description1": "Cerca Indirizzo, Blocco, Transaizone, Token",
   "transaction": "Transazione",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses":"Indirizzi totali",
+  "daily_increment":"Incremento giornaliero",
+  "address_growth_chart":"Grafico incremento indirizzi",
+  "addresses_amount":"Quantità indirizzi",
+  "past_14_days_of_transactions":"Ultimi 14 giorni di transazioni",
+  "address_growth":"Incremento indirizzi"
 
 };
