@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Kapitalandel",
   "loading_transaction": "Laddar transaktion",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Totala konton till sista dagen",
   /*
   ##################################################################################
   #                                                                                #
@@ -394,7 +394,7 @@ export const messages = {
   "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "kan låsa upp i",
   /*
   ##################################################################################
   #                                                                                #
