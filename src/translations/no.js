@@ -609,7 +609,7 @@ export const messages = {
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Respons Tid",
   "confirmed_block": "Bekreftet Blokk",
-  "loading": "loading...",
+  "loading": "lasting...",
   /*
   ##################################################################################
   #                                                                                #
@@ -632,8 +632,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentasjon",
   "report_an_error": "Send inn feil / forslag til feilretting",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Ofte stilte spørsmål",
+  "telegram_updates": "Telegram oppdateringer",
   /*
   ##################################################################################
   #                                                                                #
@@ -726,10 +726,10 @@ export const messages = {
   "address_growth_chart":"Skjema for Adresse Økning",
   "addresses_amount":"Antall Adresser",
   "past_14_days_of_transactions":"Transaksjoner for siste 14 dager",
-  "address_growth":"Adresse Økning"
+  "address_growth":"Adresse Økning",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "Tokenoverføringer",
+  "website_url": "Nettadresse",
+  "search": "Søke"
 
 };
