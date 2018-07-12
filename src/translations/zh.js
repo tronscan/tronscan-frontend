@@ -716,7 +716,6 @@ export const messages = {
   "power": "投票权",
   "token_transfers": "通证转账",
   "website_url": "网站地址",
-  "search": "搜索",
-  "reset": "重置",
+  "search": "搜索"
 
 };

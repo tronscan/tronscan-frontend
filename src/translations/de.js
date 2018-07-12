@@ -738,7 +738,6 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token-Übertragungen",
   "website_url": "Webseiten URL",
-  "search": "Suchen",
-  "reset": "Zurücksetzen"
+  "search": "Suchen"
 
 };

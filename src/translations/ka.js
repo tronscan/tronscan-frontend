@@ -722,7 +722,6 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search",
-  "reset": "Reset"
+  "search": "Search"
 
 };
