@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 5                                                    #
@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Bildirimler Açıldı",
   "contract_type": "Sözleşme Tipi",
   "filters": "Süzgeçler",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Jeton Gönder",
   /*
   ##################################################################################
   #                                                                                #
@@ -140,7 +140,7 @@ export const messages = {
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
   "view_tokens": "Jetonları görüntüle",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "Son gün yapılan işlem",
   /*
   ##################################################################################
   #                                                                                #
@@ -169,7 +169,7 @@ export const messages = {
   "witness": "Şahit",
   "asset_participation": "Varlık Katılımı",
   "loading_transaction": "İşlem Yükleniyor",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Düğüm Sıralaması",
   /*
   ##################################################################################
   #                                                                                #
@@ -182,8 +182,8 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "TRX_transaction_chart": "TRX Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "TRX_transaction_chart": "TRX İşlem Grafiği",
+  "transactions_per_day": "Günlük İşlem Adeti",
   /*
   ##################################################################################
   #                                                                                #
@@ -225,8 +225,8 @@ export const messages = {
   "not_enough_trx": "Yeterli TRX bulunamadı",
   "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
   "send_to_following_address": "Alıcı'nın adresi",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
+  "change_website": "Website'yi değiştir",
+  "you_must_enter_url": "Bir URL girmelisiniz",
   "specify_the_url":  "Please specify the URL",
   /*
   ##################################################################################
@@ -342,11 +342,11 @@ export const messages = {
   "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
   "claim_rewards": "Ödül Talebi",
   "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "intro": "Başlangıç",
+  "budget_expenses": "Bütçe Harcamaları",
+  "server_configuration": "Sunucu Yapılandırması",
+  "community_plan": "Topluluk Planı",
+  "team": "Takım",
   /*
   ##################################################################################
   #                                                                                #
@@ -399,7 +399,7 @@ export const messages = {
   "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
   "ends": "biter",
   "starts": "başlar",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "şu tarihte çözülebilir",
   /*
   ##################################################################################
   #                                                                                #
@@ -551,7 +551,7 @@ export const messages = {
   "volume": "Hacim",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Daha Fazla Bilgil için Grafik Başlığına Tıkla.",
   /*
   ##################################################################################
   #                                                                                #
@@ -638,8 +638,8 @@ export const messages = {
   "tron_architechure": "TRON Mimarisi",
   "tron_protobuf_doc": "TRON Protobuf Belgeleri",
   "report_an_error": "Bir hata / öneri bildirin",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Sıklıkla Sorulan Sorular",
+  "telegram_updates": "Telegram Güncellemeleri",
   /*
   ##################################################################################
   #                                                                                #
@@ -678,9 +678,9 @@ export const messages = {
   ##################################################################################
   */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "time": "zaman",
+  "parenthash": "önceki hash",
+  "size": "boyut",
   /*
   ##################################################################################
   #                                                                                #
@@ -688,50 +688,50 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
-  "total_transactions": "Total Transactions",
-  "avg_blockTime": "Avg BlockTime",
-  "avg_blockSize": "Avg BlockSize",
-  "total_BlockCount": "Total BlockCount",
-  "new_address_seen": "New Address Seen",
-  "transfer_contract": "Transfer Contract",
-  "TRX_transfer_between_addresses": "TRX transfer between addresses",
-  "transfer_asset_contract": "Transfer Asset Contract",
-  "token_transfer_between_addresses": "Token transfer between addresses",
-  "participate_asset_issue_contract": "Participate Asset Issue Contract",
-  "participate_token_between_addresses": "Participate token between addresses",
-  "witness_update_contract": "Witness Update Contract",
-  "updates_a_witness": "Update a witness",
-  "witness_create_contract": "Witness Create Contract",
-  "create_a_witness": "Create a witness",
-  "account_update_contract": "Account Update Contract",
-  "update_account_name": "Update account name",
-  "withdraw_balance_contract": "Withdraw Balance Contract",
-  "withdraw_balance": "Withdraw balance",
-  "freeze_balance_contract": "Freeze Balance Contract",
-  "freeze_TRX": "Freeze TRX",
-  "unfreeze_balance_contract": "Unfreeze Balance Contract",
-  "unfreeze_TRX": "Unfreeze TRX",
-  "vote_witness_contract": "Vote Witness Contract",
-  "vote_for_a_witness": "Vote for a Witness",
-  "asset_issue_contract": "Asset Issue Contract",
-  "issue_a_new_asset": "Issue a new asset",
-  "owner_address": "Owner Address",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
-  "counts": "counts",
-  "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "date": "tarih",
+  "total_transactions": "Toplam İşlem",
+  "avg_blockTime": "Ort. blok süresi",
+  "avg_blockSize": "Ort. blok büyüklüğü",
+  "total_BlockCount": "Toplam blok adeti",
+  "new_address_seen": "Görülen yeni adres",
+  "transfer_contract": "Aktarım Sözleşmesi",
+  "TRX_transfer_between_addresses": "Adresler arası TRX aktarımı",
+  "transfer_asset_contract": "Varlık aktarımı sözleşmesi",
+  "token_transfer_between_addresses": "Adresler arası jeton aktarımı",
+  "participate_asset_issue_contract": "Varlık oluşturma sözleşmesine katılım",
+  "participate_token_between_addresses": "Adresler arası jeton aktarımına katılım",
+  "witness_update_contract": "Tanık güncelleme sözleşmesi",
+  "updates_a_witness": "Bir tanık güncelleme",
+  "witness_create_contract": "Tanık sözleşmesi oluştur",
+  "create_a_witness": "Bir tanık oluştur",
+  "account_update_contract": "Hesap Güncelleme Sözleşmesi",
+  "update_account_name": "Hesap adını güncelle",
+  "withdraw_balance_contract": "Bakiye Çekim Sözleşmesi",
+  "withdraw_balance": "Bakiye'ye çek",
+  "freeze_balance_contract": "Bakiye Dondurma Sözleşmesi",
+  "freeze_TRX": "TRX'i dondur",
+  "unfreeze_balance_contract": "Bakiye Çözme Sözleşmesi",
+  "unfreeze_TRX": "TRX'i çöz",
+  "vote_witness_contract": "Tanık Oylama Sözleşmesi",
+  "vote_for_a_witness": "Bir tanık için oy ver",
+  "asset_issue_contract": "Varlık Oluşturma Sözleşmesi",
+  "issue_a_new_asset": "Yeni bir varlık oluştur",
+  "owner_address": "Sahip Adresi",
+  "frozen_balance": "Dondurulmuş Bakiye",
+  "frozen_days": "Dondurulan Gün",
+  "counts": "sayılır",
+  "TRX_exchange_rate": "TRX Değişim Oranı",
+  "start_time": "Başladığı Saat",
+  "end_time": "Bittiği Saat",
+  "contracts": "Sözleşmeler",
+  "search_description": "Adres, Blok Yüksekliği, İşlem Hash'i, Jeton Adı",
+  "search_description1": "Arama yap Adres,Blok,İşlem,Jeton",
+  "transaction": "İşlem",
+  "total_addresses":"Toplam Adres",
+  "daily_increment":"Günlük Artış",
+  "address_growth_chart":"Adres Gelişim Grafiği",
+  "addresses_amount":"Adres Sayısı",
+  "past_14_days_of_transactions":"Son 14 Gündeki İşlem Adeti",
+  "address_growth":"Adres Gelişimi"
 
 };
