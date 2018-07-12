@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-05072018                                                  #
-#         Update Date: 05.07.2018                                                #
-#         Language: Norwegian                                                    #
-#         Status: first Version                                                  #
-#         Number of checks: 4                                                    #
-#         Participants: Ronny Askeland                                           #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Norwegian                                                    #
+  #         Status: first Version                                                  #
+  #         Number of checks: 4                                                    #
+  #         Participants: Ronny Askeland                                           #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
   "app_title": "Tron Protokoll",
   "password": "passord",
@@ -98,14 +98,13 @@ export const messages = {
   "contract_type": "Kontrakt Type",
   "filters": "Filtre",
   "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blokkchain",
   "wallet": "Lommebok",
   "home": "Hjem",
@@ -125,14 +124,13 @@ export const messages = {
   "tokens": "Tokener",
   "overview": "Oversikt over tokens",
   "participate": "Delta / Kjøp",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Desentralisere Web / internett",
   "transactions_last_hour": "Transaksjoner siste time",
   "block_height": "Blokkhøyde",
@@ -143,14 +141,13 @@ export const messages = {
   "create_new_wallet": "Opprette ny lommebok",
   "view_tokens": "Se Tokener",
   "transactions_last_day": "Transaksjoner i siste dag",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "side 1",
   "previous_page": "forrige side",
   "next_page": "neste side",
@@ -173,14 +170,13 @@ export const messages = {
   "asset_participation": "Asset deltakelse",
   "loading_transaction": "Henter Transaksjon",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adresser",
   "trx_transferred_past_hour": "TRX overført den siste timen",
   "transactions_past_hour": "Transaksjoner siste time",
@@ -188,14 +184,13 @@ export const messages = {
   "rich_list": "Liste",
   "TRX_transaction_chart": "TRX Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Angi Navn",
   "unique_account_message": "Kontonavn kan kun angis en gang!",
   "name_to_short": "Navnet er for kort",
@@ -233,14 +228,13 @@ export const messages = {
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
   "specify_the_url":  "Please specify the URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "frys",
   "unfreeze": "frigi",
   "freeze_trx_least": "Du trenger minst 1 TRX for å kunne fryse",
@@ -267,14 +261,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Er du sikker på du vil frigi / låse opp dine TRX?",
   "unfreeze_assets": "lås opp eiendeler / tokener",
   "sure_to_unfreeze_unlocked_tokens_message": "Er du sikker på at du ønsker å låse opp dine tokener?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "Søk for å bli representant",
   "apply_super_representative_candidate": "Søknad om å bli Super Representant",
   "your_personal_website_address": "din personlige nettside adresse",
@@ -316,7 +309,7 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Noe gikk galt med søknaden for å bli representant",
   "apply_representative_error_message_1": "Sørg for at du har nok TRX til avgiften, eller forsøk igjen senere.",
-  "open_external_link":"Du åpner en ekstern lenke.",
+  "open_external_link": "Du åpner en ekstern lenke.",
   "private_key_untrusted_website_message_0": "Aldri oppgi din private nøkkel på en nettside du ikke stoler på.",
   "no_official_tron_website": "er ikke en offisiell Tron nettside.",
   "continue_to_external_website": "Fortsett til ekstern side",
@@ -351,14 +344,13 @@ export const messages = {
   "server_configuration": "Server Configuration",
   "community_plan": "Community Plan",
   "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Navn på token",
   "token_message": "Navn på token",
   "token_abbr": "token Forkortelse",
@@ -389,14 +381,13 @@ export const messages = {
   "not_started_yet": "Ikke startet ennå",
   "participated": "Din deltakelse var vellykket!",
   "participated_error": "En feil oppstod",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Er du sikker?",
   "how_much_buy_message": "Hvor mange tokener ønsker du å kjøpe?",
   "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
@@ -405,14 +396,14 @@ export const messages = {
   "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
   "ends": "slutter",
   "starts": "starter",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Oppi kun en gyldig TRON lommebok adresse. Feil adresse kan føre til tap av TRX.",
   "search_address_or_url": "Søk etter adresse eller URL",
   "the_lunch_test": "Ved lanseringen av testnettet får vi testet alle funksjonene i vår blokkchain explorer og lommebok.",
@@ -444,14 +435,13 @@ export const messages = {
   "percentage": "Prosent",
   "loading_token": "Laster Token",
   "voter_percentage": "Stemme Prosent",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Ingen transaksjoner funnet",
   "no_tokens_found": "Ingen tokener funnet",
   "no_blocks_found": "Ingen blokker funnet",
@@ -459,14 +449,13 @@ export const messages = {
   "no_voters_found": "Ingen stemmegivere funnet",
   "waiting_for_transactions": "Venter på transaksjoner",
   "loading_address": "Laster Adresse",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "detaljer",
   "issue_a_token": "Utstede en Token",
   "issue_token": "Utstede Token",
@@ -496,14 +485,13 @@ export const messages = {
     Brukere kan så delta innenfor deltakelsesperioden og veksle deres TRX for tokens.`,
   "token_issue_guide_message_3":`Etter å ha utstedt token vil du på din konto motta antall tokener lik den totale beholdningen.
     Når andre brukere veksler deres TRX for tokens så vil tokenene bli trukket fra din konto og du vil da motta TRX tilsvarende den spesifiserte vekslings raten.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "Sluttdatoen er tidligere eller lik startdatoen",
   "no_name_error": "Navn kreves",
   "no_supply_error": "Den totale beholdningen må minst være 1",
@@ -526,14 +514,13 @@ export const messages = {
   "abbreviation_required": "Forkortelse kreves",
   "abbreviation_error_message_0": "Forkortelsen kan ikke være lenger enn 5 bokstaver",
   "abbreviation_error_message_1": "Forkortelsen kan kun inneholde a-Z bokstaver",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Høyest Produktivitet",
   "lowest_productivity": "Lavest Produktivitet",
   "Super Representatives": "Super Representanter",
@@ -542,28 +529,29 @@ export const messages = {
   "address_not_super_representative": "Denne adressen er ikke en Super Representant",
   "unable_load_representatives_page_message": "Kan ikke laste siden, årsak til dette kan være at adressen er ugyldig, adressen ikke er en representant eller at representanten ikke har konfigurert denne siden ennå",
   "loading_representative": "Henter Representant",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Gjennomsnittlig pris i USD",
   "average_volume_usd": "Gjennomsnittlig volum i USD",
   "Trade Volume": "Handels Volum",
   "rank": "rankering",
   "pair": "par",
   "volume": "Volum",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "usd",
+  "average_price": "average Price",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Neste runde",
   "total_votes": "Totale stemmer",
   "most_ranks": "Høyest rangering denne runden",
@@ -589,14 +577,13 @@ export const messages = {
   "submissing_vote_message_1": "Du kan distribuere dine stemmer når som helst",
   "submitting_vote_error_message": "Noe gikk feil ved innsending av stemmer. Vennligst prøv igjen senere.",
   "loading_super_representatives": "Henter Super Representanter",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Her kan du lime inn en hex for å sjekke innholdet i en transaksjon. Transaksjonen kan så kringkastes til nettverket",
   "load_tx": "Hent Transaksjon",
   "tx_qrcode": "Transaksjon QR Kode",
@@ -609,39 +596,36 @@ export const messages = {
   "transaction_error": "Transaksjons Feil",
   "confirm_transaction_message": "Er du sikker du vil sende transaksjonen?",
   "broadcast_transaction_to_network": "Kringkast Transaksjonen til Nettverket",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Skriv inn nodens IP for å teste GRPC tilkoblingen",
   "node_tester_stop": "Stop testing",
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Respons Tid",
   "confirmed_block": "Bekreftet Blokk",
   "loading": "loading...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Ingen webkamera funnet",
   "trying_enable_webcam_message_0": "Feil ved starting av webkamera.",
   "trying_enable_webcam_message_1": "Sørg for at de nødvendige tillatelser for kamera er riktig.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Hva er TRON",
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "TRON Arkitektur",
@@ -649,14 +633,13 @@ export const messages = {
   "report_an_error": "Send inn feil / forslag til feilretting",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Åpne lommebok",
   "private_key": "Privat Nøkkel",
   "keystore_file": "Lagringsfil for nøkkel",
@@ -680,17 +663,72 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Papir Lommebok",
   "new_wallet_ready_message": "Din nye lommebok er klar",
   "go_to_account_page": "Gå til konto siden",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "tid",
   "parenthash": "parenthash",
   "size": "størrelse",
-
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Date",
+  "total_transactions": "Total Transactions",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "New Address Seen",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "Token transfer between addresses",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update a witness",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "Create a witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account name",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "Withdraw balance",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "Freeze TRX",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "Unfreeze TRX",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "Vote for a Witness",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Issue a new asset",
+  "owner_address": "Owner Address",
+  "frozen_balance": "Frozen Balance",
+  "frozen_days": "Frozen Days",
+  "counts": "counts",
+  "TRX_exchange_rate": "TRX Exchange Rate",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "contracts": "Contracts",
+  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1": "Search Address,Block,Transaction,Token",
+  "transaction": "Transaction",
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search"
+  
 };
