@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: VoidRays                                                 #
   #                                                                                #
   ##################################################################################
@@ -679,54 +679,54 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
-  "total_transactions": "Total Transactions",
-  "avg_blockTime": "Avg BlockTime",
-  "avg_blockSize": "Avg BlockSize",
-  "total_BlockCount": "Total BlockCount",
-  "new_address_seen": "New Address Seen",
+  "date": "날짜",
+  "total_transactions": "총 트랜잭션",
+  "avg_blockTime": "평균 블록타임",
+  "avg_blockSize": "평균 블록크기",
+  "total_BlockCount": "총 블록 수",
+  "new_address_seen": "새 주소 발현",
   "transfer_contract": "Transfer Contract",
-  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "TRX_transfer_between_addresses": "주소 간에 TRX 이동",
   "transfer_asset_contract": "Transfer Asset Contract",
-  "token_transfer_between_addresses": "Token transfer between addresses",
+  "token_transfer_between_addresses": "주소 간에 토큰 이동",
   "participate_asset_issue_contract": "Participate Asset Issue Contract",
-  "participate_token_between_addresses": "Participate token between addresses",
+  "participate_token_between_addresses": "주소 간에 토큰 참여",
   "witness_update_contract": "Witness Update Contract",
-  "updates_a_witness": "Update a witness",
+  "updates_a_witness": "증인(SR) 정보 업데이트",
   "witness_create_contract": "Witness Create Contract",
-  "create_a_witness": "Create a witness",
+  "create_a_witness": "증인(SR) 생성",
   "account_update_contract": "Account Update Contract",
-  "update_account_name": "Update account name",
+  "update_account_name": "계정 이름 업데이트",
   "withdraw_balance_contract": "Withdraw Balance Contract",
-  "withdraw_balance": "Withdraw balance",
+  "withdraw_balance": "잔액 출금",
   "freeze_balance_contract": "Freeze Balance Contract",
-  "freeze_TRX": "Freeze TRX",
+  "freeze_TRX": "TRX 동결",
   "unfreeze_balance_contract": "Unfreeze Balance Contract",
-  "unfreeze_TRX": "Unfreeze TRX",
+  "unfreeze_TRX": "TRX 동결 해제",
   "vote_witness_contract": "Vote Witness Contract",
-  "vote_for_a_witness": "Vote for a Witness",
+  "vote_for_a_witness": "증인(SR)에 투표합니다",
   "asset_issue_contract": "Asset Issue Contract",
-  "issue_a_new_asset": "Issue a new asset",
-  "owner_address": "Owner Address",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
-  "counts": "counts",
-  "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_addresses": "Total Addresses",
-  "daily_increment": "Daily Increase",
-  "address_growth_chart": "Address Growth Chart",
-  "addresses_amount": "Addresses Amount",
-  "past_14_days_of_transactions": "Past 14 days of transactions",
-  "address_growth": "Address Growth",
-  "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "issue_a_new_asset": "새 에셋(Asset) 발행",
+  "owner_address": "컨트랙트를 실행한 주소",
+  "frozen_balance": "동결된 잔액",
+  "frozen_days": "동결 기간(단위 1일)",
+  "counts": "카운트",
+  "TRX_exchange_rate": "TRX 교환 비율",
+  "start_time": "시작 날짜",
+  "end_time": "종료 날짜",
+  "contracts": "컨트랙트",
+  "search_description": "주소, 블록번호, 트랜잭션해시, 토큰이름 검색",
+  "search_description1": "주소, 블록, 트랜잭션, 토큰 검색",
+  "transaction": "트랜잭션",
+  "total_addresses":"총 주소 수",
+  "daily_increment":"일일 증가량",
+  "address_growth_chart":"주소 증가 차트",
+  "addresses_amount":"주소 수",
+  "past_14_days_of_transactions":"지난 14일동안 트랜잭션 상황",
+  "address_growth":"주소 증가 상황",
+  "power": "트론파워",
+  "token_transfers": "토큰 전송 목록",
+  "website_url": "웹사이트 URL",
+  "search": "검색"
 
 };
