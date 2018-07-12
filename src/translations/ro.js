@@ -59,7 +59,7 @@ export const messages = {
   "from": "de la",
   "to": "la",
   "value": "valoare",
-  "total_accounts": "total conturi",
+  "total_accounts": "Total Conturi (Timp Real)",
   "submit": "propune",
   "send": "trimite",
   "receive": "primește",
@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Participare capital",
   "loading_transaction": "Încărcare Tranzacție",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day":"Total conturi până în ziua trecută",
   /*
   ##################################################################################
   #                                                                                #
@@ -732,9 +732,9 @@ export const messages = {
   "addresses_amount": "Cantitate Adrese",
   "past_14_days_of_transactions": "Ultimele 14 zile de tranzacții",
   "address_growth": "Adresă Creștere",
-  "power": "Power",
-  "token_transfers": "Token Transfers",
+  "power": "Putere",
+  "token_transfers": "Transfer Tokeni",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Căutare"
 
 };
