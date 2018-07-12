@@ -18,6 +18,22 @@ export const StatisticsAsync = asyncComponent({
   )
 });
 
+export const SingleChartAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader />
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            resolve(require("./blockchain/Statistics/SingleChart.js"));
+          },
+          'Stats',
+      )
+  )
+});
+
 export const MarketsAsync = asyncComponent({
   LoadingComponent: () => (
     <TronLoader />

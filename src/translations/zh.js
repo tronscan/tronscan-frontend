@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -226,7 +225,7 @@ export const messages = {
   "send_to_following_address": "对以下地址转账",
   "change_website": "更改网址",
   "you_must_enter_url": "你必须要输入一个网址",
-  "specify_the_url":  "请指定网址",
+  "specify_the_url": "请指定网址",
   /*
   ##################################################################################
   #                                                                                #
@@ -324,7 +323,7 @@ export const messages = {
   "could_not_claim_rewards": "不能申请奖励",
   "claim_rewards_error_message": "在尝试申请奖励时出现问题，请稍后再试。",
   "rewards_claimed": "奖励确认！",
-  "successfully_claimed_rewards":  "成功获得奖励",
+  "successfully_claimed_rewards": "成功获得奖励",
   "claim_rewards": "获得奖励",
   "sr_receive_reward_message_0": "作为代表，您将获得出块奖励。 这些奖励可以每24小时申领一次",
   "intro": "介绍",
@@ -468,10 +467,10 @@ export const messages = {
   "start_date": "开始日期",
   "end_date": "结束时期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
-  "token_issue_guide_message_1":`用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
-  "token_issue_guide_message_2":`通证发行后，会在通证总览页面进行显示。
+  "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
+  "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
     之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
-  "token_issue_guide_message_3":`在发行通证后，您的账户将会收到全部的发行数额。
+  "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
     当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
   /*
   ##################################################################################

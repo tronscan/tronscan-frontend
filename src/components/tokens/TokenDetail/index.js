@@ -30,7 +30,13 @@ export default class TokenDetail extends React.Component {
 
     this.loadToken(decodeURI(match.params.name));
   }
-
+  componentDidUpdate(prevProps){
+    let {match} = this.props;
+    
+    if (match.params.name !== prevProps.match.params.name) {
+      this.loadToken(decodeURI(match.params.name));
+    }
+  }
   loadToken = async (name) => {
 
     this.setState({ loading: true, token: { name } });
@@ -47,7 +53,7 @@ export default class TokenDetail extends React.Component {
           id: "transactions",
           icon: "fa fa-exchange-alt",
           path: "",
-          label: <span>{tu("Token Transfers")}</span>,
+          label: <span>{tu("token_transfers")}</span>,
           cmp: () => <Transfers filter={{ token: name }} />
         },
         {
@@ -104,8 +110,8 @@ export default class TokenDetail extends React.Component {
                         <th>{tu("Frozen Supply")}:</th>
                         <td>
                           {
-                            token.frozen.map(frozen => (
-                              <div>
+                            token.frozen.map((frozen,index) => (
+                              <div key={index}>
                                 {frozen.amount} {tu("can_be_unlocked_in")}&nbsp;
                                 <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
                               </div>

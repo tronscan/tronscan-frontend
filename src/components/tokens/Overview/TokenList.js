@@ -21,16 +21,31 @@ class TokenList extends Component {
   }
 
 
-  loadPage = async (page = 1,pageSize=40) => {
+  loadPage = async (page = 1, pageSize = 40) => {
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
     });
 
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return -1;
+        } else if (obj1[property] < obj2[property]) {
+          return 1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+
+    tokens = tokens.sort(compare('dateCreated'));
     this.setState({
       loading: false,
       tokens,
@@ -45,33 +60,35 @@ class TokenList extends Component {
   componentDidUpdate() {
     //checkPageChanged(this, this.loadPage);
   }
-  onChange = (page,pageSize) => {
-    this.loadPage(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.loadPage(page, pageSize);
   }
+
   render() {
 
     let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
 
     return (
-      <main className="container header-overlap">
-        {alert}
-        {
-          <div className="row">
-            <div className="col-md-12">
-              <StickyContainer>
-                <div className="card">
-                  <Sticky>
-                    {
-                      ({style}) => (
-                        <div style={{ zIndex: 100, ...style }} className="py-3 bg-white card-body border-bottom">
-                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}  />
-                        </div>
-                      )
-                    }
-                  </Sticky>
-                  <table className="table table-hover m-0 table-striped">
-                    <thead className="thead-dark">
+        <main className="container header-overlap">
+          {alert}
+          {
+            <div className="row">
+              <div className="col-md-12">
+                <StickyContainer>
+                  <div className="card">
+                    <Sticky>
+                      {
+                        ({style}) => (
+                            <div style={{zIndex: 100, ...style}} className="py-3 bg-white card-body border-bottom">
+                              <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
+                            </div>
+                        )
+                      }
+                    </Sticky>
+                    <table className="table table-hover m-0 table-striped">
+                      <thead className="thead-dark">
                       <tr>
                         <th style={{width: 100}}>{tu("name")}</th>
                         <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
@@ -81,32 +98,32 @@ class TokenList extends Component {
                         {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
                         {/*<th style={{width: 150}}>{tu("transactions")}</th>*/}
                       </tr>
-                    </thead>
-                    <tbody>
-                    {
-                      tokens.map((token,index) => (
-                        <tr key={index}>
-                          <td><TokenLink name={token.name} /></td>
-                          <td className="d-none d-md-table-cell"><TokenLink name={token.abbr} /></td>
-                          <td><FormattedNumber value={token.totalSupply} /></td>
-                          <td className="d-none d-sm-table-cell"><FormattedNumber value={token.issued} /></td>
-                          <td className="d-none d-md-table-cell">
-                            <FormattedDate value={token.dateCreated} />{' '}
-                            <FormattedTime value={token.dateCreated} />
-                          </td>
-                          {/*<td><FormattedNumber value={token.addresses} /></td>*/}
-                          {/*<td><FormattedNumber value={token.transactions} /></td>*/}
-                        </tr>
-                      ))
-                    }
-                    </tbody>
-                  </table>
-                </div>
-              </StickyContainer>
+                      </thead>
+                      <tbody>
+                      {
+                        tokens.map((token, index) => (
+                            <tr key={index}>
+                              <td><TokenLink name={token.name}/></td>
+                              <td className="d-none d-md-table-cell"><TokenLink name={token.abbr}/></td>
+                              <td><FormattedNumber value={token.totalSupply}/></td>
+                              <td className="d-none d-sm-table-cell"><FormattedNumber value={token.issued}/></td>
+                              <td className="d-none d-md-table-cell">
+                                <FormattedDate value={token.dateCreated}/>{' '}
+                                <FormattedTime value={token.dateCreated}/>
+                              </td>
+                              {/*<td><FormattedNumber value={token.addresses} /></td>*/}
+                              {/*<td><FormattedNumber value={token.transactions} /></td>*/}
+                            </tr>
+                        ))
+                      }
+                      </tbody>
+                    </table>
+                  </div>
+                </StickyContainer>
+              </div>
             </div>
-          </div>
-        }
-      </main>
+          }
+        </main>
 
     )
   }

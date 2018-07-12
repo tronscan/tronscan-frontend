@@ -84,8 +84,8 @@ export default class MarketOverview extends Component {
                 onChange={this.onInputChange}
                 onPressEnter={this.onSearch}
             />
-            <Button type="primary" onClick={this.onSearch}>Search</Button>
-            <Button className="btn-secondary ml-1" onClick={this.onReset}>Reset</Button>
+            <Button type="primary" onClick={this.onSearch}>{tu("search")}</Button>
+            <Button className="btn-secondary ml-1" onClick={this.onReset}>{tu("reset")}</Button>
           </div>
       ),
       filterIcon: <Icon type="filter" style={{color: this.state.filtered ? '#108ee9' : '#aaa'}}/>,
