@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Second Draft                                                   #
   #         Number of checks: 3                                                    #
@@ -256,7 +256,7 @@ export const messages = {
   "unable_to_rename_title": "无法重命名",
   "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
   "unfreeze_trx_confirm_message": "确定要解冻TRX？",
-  "unfreeze_assets": "Unfreeze Assets",
+  "unfreeze_assets": "解冻资产",
   "sure_to_unfreeze_unlocked_tokens_message": "您确定要解冻通证吗？",
   /*
   ##################################################################################
@@ -708,11 +708,11 @@ export const messages = {
   "search_description":"搜索地址，区块，交易，通证",
   "search_description1":"搜索地址，区块，交易，通证",
   "transaction":"交易",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses":"总地址数",
+  "daily_increment":"日增长数",
+  "address_growth_chart":"地址增长图表",
+  "addresses_amount":"地址数",
+  "past_14_days_of_transactions":"过去14天交易量",
+  "address_growth":"地址增长"
 
 };
