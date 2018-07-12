@@ -309,7 +309,7 @@ export const messages = {
   "invalid_url": "Недійсна URL-адреса",
   "apply_representative_error_message_0": "Помилка під час спроби подати заявку на представника.",
   "apply_representative_error_message_1": "Переконайтеся, що у вас є достатньо TRX за плату, або повторіть спробу пізніше.",
-  "open_external_link":"You are opening an external link",
+  "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
   "no_official_tron_website": "is not an official Tron site.",
   "continue_to_external_website": "Continue to external site",
@@ -723,11 +723,16 @@ export const messages = {
   "search_description": "Адреса пошуку, висота блоку, хеш транзакцій, імені токена",
   "search_description1": "Пошук адреси, блокування, транзакції, токен",
   "transaction": "Транзакція",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

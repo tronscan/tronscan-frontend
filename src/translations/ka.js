@@ -304,7 +304,7 @@ export const messages = {
   "invalid_url": "უმოქმედო URL",
   "apply_representative_error_message_0": "წარმომადგენლად მიმართვის მცდელობისას, რაღაცა არასწორად წავიდა.",
   "apply_representative_error_message_1": "დარწმუნდით, რომ საკმარისი TRX-ის ოდენობა გაქვთ გადასახადისთვის, და კვლავ სცადეთ.",
-  "open_external_link":"თქვენ გახსნით გარე ბმულს",
+  "open_external_link": "თქვენ გახსნით გარე ბმულს",
   "private_key_untrusted_website_message_0": "არასდროს შეიყვანეთ თქვენი პირადი გასაღები არასანდო ვებსაიტზე.",
   "no_official_tron_website": "არ არის ოფიციალური Tron საიტი.",
   "continue_to_external_website": "გააგრძელეთ გარე საიტი",
@@ -537,7 +537,7 @@ export const messages = {
   "volume": "მოცულობა",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -713,11 +713,16 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

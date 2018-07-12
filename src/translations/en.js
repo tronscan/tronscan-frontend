@@ -538,7 +538,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -714,11 +714,16 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

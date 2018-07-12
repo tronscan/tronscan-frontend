@@ -543,7 +543,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -719,11 +719,16 @@ export const messages = {
   "search_description": "Cerca Indirizzo, Altezza blocco, Hash Transazione, Nome Token",
   "search_description1": "Cerca Indirizzo, Blocco, Transaizone, Token",
   "transaction": "Transazione",
-  "total_addresses":"Indirizzi totali",
-  "daily_increment":"Incremento giornaliero",
-  "address_growth_chart":"Grafico incremento indirizzi",
-  "addresses_amount":"Quantità indirizzi",
-  "past_14_days_of_transactions":"Ultimi 14 giorni di transazioni",
-  "address_growth":"Incremento indirizzi"
+  "total_addresses": "Indirizzi totali",
+  "daily_increment": "Incremento giornaliero",
+  "address_growth_chart": "Grafico incremento indirizzi",
+  "addresses_amount": "Quantità indirizzi",
+  "past_14_days_of_transactions": "Ultimi 14 giorni di transazioni",
+  "address_growth": "Incremento indirizzi",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

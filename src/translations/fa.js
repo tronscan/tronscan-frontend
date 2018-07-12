@@ -310,7 +310,7 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
-  "open_external_link":"You are opening an external link",
+  "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
   "no_official_tron_website": "is not an official Tron site.",
   "continue_to_external_website": "Continue to external site",
@@ -546,7 +546,7 @@ export const messages = {
   "volume": "حجم",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -722,11 +722,16 @@ export const messages = {
   "search_description": "آدرس جستجو، ارتفاع بلوک، هشدار تراکنش، نام رمز",
   "search_description1": "جستجو آدرس، بلوک، تراکنش، رونوشت",
   "transaction": "معامله",
-  "total_addresses":"آدرسهای کل",
-  "daily_increment":"افزایش روزانه",
-  "address_growth_chart":"آدرس رشد نمودار",
-  "addresses_amount":"آدرس مبلغ",
-  "past_14_days_of_transactions":"14 روز گذشته معاملات",
-  "address_growth":"رشد آدرس"
+  "total_addresses": "آدرسهای کل",
+  "daily_increment": "افزایش روزانه",
+  "address_growth_chart": "آدرس رشد نمودار",
+  "addresses_amount": "آدرس مبلغ",
+  "past_14_days_of_transactions": "14 روز گذشته معاملات",
+  "address_growth": "رشد آدرس",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

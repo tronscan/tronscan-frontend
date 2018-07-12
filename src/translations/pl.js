@@ -308,7 +308,7 @@ export const messages = {
   "invalid_url": "Nieprawidłowy adres URL",
   "apply_representative_error_message_0": "Coś poszło nie tak podczas aplikowania na Reprezentanta.",
   "apply_representative_error_message_1": "Upewnij się, że posiadasz odpowiedniąilość TRX do pokrycia opłaty lub spróbuj ponownie później.",
-  "open_external_link":"Otwierasz zewnętrzny adres URL",
+  "open_external_link": "Otwierasz zewnętrzny adres URL",
   "private_key_untrusted_website_message_0": "Nigdy, pod żadnym pozorem nie podawaj swojego klucza prywatnego na nieznanej Ci stronie",
   "no_official_tron_website": "strona nie jest powiązana z Fundacją TRON.",
   "continue_to_external_website": "Kontynuuj mimo wszystko i przejdź dalej",
@@ -542,7 +542,7 @@ export const messages = {
   "volume": "Wolumen",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -718,11 +718,16 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

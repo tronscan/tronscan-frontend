@@ -407,7 +407,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "address_warning":"Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
+  "address_warning": "Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
   "search_address_or_url": "Adres ya da URL ile arat",
   "the_lunch_test": "Test ağının başlatılması ile, blokzinciri tarayıcımızın ve cüzdanımızın bütün özelliklerinin test edilmesi hedeflenmektedir.",
   "plese_keep_in_mind": "Kayıtlı hesabınız yalnızca test ağında kullanıldığı için test ağındaki hesap adresinize kendi cüzdanınızdan ya da bir borsadan TRX göndermemeniz gerektiğini lütfen unutmayın.",
@@ -727,11 +727,16 @@ export const messages = {
   "search_description": "Adres, Blok Yüksekliği, İşlem Hash'i, Jeton Adı",
   "search_description1": "Arama yap Adres,Blok,İşlem,Jeton",
   "transaction": "İşlem",
-  "total_addresses":"Toplam Adres",
-  "daily_increment":"Günlük Artış",
-  "address_growth_chart":"Adres Gelişim Grafiği",
-  "addresses_amount":"Adres Sayısı",
-  "past_14_days_of_transactions":"Son 14 Gündeki İşlem Adeti",
-  "address_growth":"Adres Gelişimi"
+  "total_addresses": "Toplam Adres",
+  "daily_increment": "Günlük Artış",
+  "address_growth_chart": "Adres Gelişim Grafiği",
+  "addresses_amount": "Adres Sayısı",
+  "past_14_days_of_transactions": "Son 14 Gündeki İşlem Adeti",
+  "address_growth": "Adres Gelişimi",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

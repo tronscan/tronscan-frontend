@@ -306,7 +306,7 @@ export const messages = {
   "invalid_url": "Ogiltig webbadress",
   "apply_representative_error_message_0": "Något gick fel när du försökte ansöka om representant.",
   "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
-  "open_external_link":"Du öppnar en extern länk",
+  "open_external_link": "Du öppnar en extern länk",
   "private_key_untrusted_website_message_0": "Ange aldrig din privata nyckel på en otillförlitlig webbplats.",
   "no_official_tron_website": "är inte en officiell Tron webbplats.",
   "continue_to_external_website": "Fortsätt till extern webbplats",
@@ -715,11 +715,16 @@ export const messages = {
   "search_description": "Sökadress, Blockhöjd, Transaktionshash, Tokenamn",
   "search_description1": "Sök adress, Blockera, Transaktion, Token",
   "transaction": "Transaction",
-  "total_addresses":"Totala adresser",
-  "daily_increment":"Daglig ökning",
-  "address_growth_chart":"Adress tillväxtdiagram",
-  "addresses_amount":"Adresser Belopp",
-  "past_14_days_of_transactions":"Transaktioner under de senaste 14 dagarna",
-  "address_growth":"Tillväxtpotential "
+  "total_addresses": "Totala adresser",
+  "daily_increment": "Daglig ökning",
+  "address_growth_chart": "Adress tillväxtdiagram",
+  "addresses_amount": "Adresser Belopp",
+  "past_14_days_of_transactions": "Transaktioner under de senaste 14 dagarna",
+  "address_growth": "Tillväxtpotential",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

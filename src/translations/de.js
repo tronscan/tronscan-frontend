@@ -311,7 +311,7 @@ export const messages = {
   "invalid_url": "Ungültige URL",
   "apply_representative_error_message_0": "Bei der Bewerbung als Representant ist ein Fehler aufgetreten.",
   "apply_representative_error_message_1": "Stellen Sie sicher, dass Sie ausreichend TRX für die Anmeldegebühr auf Ihrem Konto haben, oder versuchen Sie es später noch einmal.",
-  "open_external_link":"Sie öffnen einen externen Link",
+  "open_external_link": "Sie öffnen einen externen Link",
   "private_key_untrusted_website_message_0": "Geben Sie niemals Ihren privaten Schlüssel auf einer nicht vertrauenswürdigen Website ein.",
   "no_official_tron_website": "ist keine offizielle Tron-Webseite.",
   "continue_to_external_website": "Weiter zur externen Webseite",
@@ -729,11 +729,16 @@ export const messages = {
   "search_description": "Suche nach Adresse,Blocken,Transaktion Hash,Token Name",
   "search_description1": "Suche nach Adresse,Block,Transaktion,Token",
   "transaction": "Transaktion",
-  "total_addresses":"Gesamtanzahl der Adressen",
-  "daily_increment":"Täglicher Anstieg",
-  "address_growth_chart":"Adressstatistik",
-  "addresses_amount":"Anzahl der Adressen",
-  "past_14_days_of_transactions":"Transaktionen der letzten 14 Tage",
-  "address_growth":"Wachstumspotential"
+  "total_addresses": "Gesamtanzahl der Adressen",
+  "daily_increment": "Täglicher Anstieg",
+  "address_growth_chart": "Adressstatistik",
+  "addresses_amount": "Anzahl der Adressen",
+  "past_14_days_of_transactions": "Transaktionen der letzten 14 Tage",
+  "address_growth": "Wachstumspotential",
+  "power": "Power",
+  "token_transfers": "Token-Übertragungen",
+  "website_url": "Webseiten URL",
+  "search": "Suchen",
+  "reset": "Zurücksetzen"
 
 };

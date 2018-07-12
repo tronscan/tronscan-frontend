@@ -306,7 +306,7 @@ export const messages = {
   "invalid_url": "잘못된 URL",
   "apply_representative_error_message_0": "대표 신청을 시도하는 중에 에러가 났습니다.",
   "apply_representative_error_message_1": "수수료를 내기 위한 TRX가 충분한지 확인하고 다시 시도해주십시오.",
-  "open_external_link":"귀하가 외부 링크에 접속 시도를 하고 있습니다",
+  "open_external_link": "귀하가 외부 링크에 접속 시도를 하고 있습니다",
   "private_key_untrusted_website_message_0": "절대로 신뢰하지 않는 웹사이트에 개인키를 입력하지 마십시오.",
   "no_official_tron_website": "는(은) 공식 트론 사이트가 아닙니다.",
   "continue_to_external_website": "외부 사이트로 계속 진행",
@@ -541,7 +541,7 @@ export const messages = {
   "volume": "볼륨",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -717,11 +717,16 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

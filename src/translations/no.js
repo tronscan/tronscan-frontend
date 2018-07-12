@@ -309,7 +309,7 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Noe gikk galt med søknaden for å bli representant",
   "apply_representative_error_message_1": "Sørg for at du har nok TRX til avgiften, eller forsøk igjen senere.",
-  "open_external_link":"Du åpner en ekstern lenke.",
+  "open_external_link": "Du åpner en ekstern lenke.",
   "private_key_untrusted_website_message_0": "Aldri oppgi din private nøkkel på en nettside du ikke stoler på.",
   "no_official_tron_website": "er ikke en offisiell Tron nettside.",
   "continue_to_external_website": "Fortsett til ekstern side",
@@ -720,11 +720,16 @@ export const messages = {
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_addresses":"Total Addresses",
-  "daily_increment":"Daily Increase",
-  "address_growth_chart":"Address Growth Chart",
-  "addresses_amount":"Addresses Amount",
-  "past_14_days_of_transactions":"Past 14 days of transactions",
-  "address_growth":"Address Growth"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };

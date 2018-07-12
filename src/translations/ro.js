@@ -311,7 +311,7 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Ceva nu a mers bine în timp ce încercați să aplicați pentru reprezentare.",
   "apply_representative_error_message_1": "Asigurați-vă că aveți destul TRX pentru taxă, sau încercați mai tarziu.",
-  "open_external_link":"Deschideți un link extern",
+  "open_external_link": "Deschideți un link extern",
   "private_key_untrusted_website_message_0": "Nu introduceți niciodată cheia privată pe un website nesigur.",
   "no_official_tron_website": "acesta nu este un site oficial Tron.",
   "continue_to_external_website": "Continuați către site-ul extern",
@@ -548,7 +548,7 @@ export const messages = {
   "volume": "Volum",
   "usd": "usd",
   "average_price": "average Price",
-  "click_the_chart_title_to_find_more":"Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -730,6 +730,11 @@ export const messages = {
   "address_growth_chart": "Adresă Diagramă de Creștere",
   "addresses_amount": "Cantitate Adrese",
   "past_14_days_of_transactions": "Ultimele 14 zile de tranzacții",
-  "address_growth": "Adresă Creștere"
+  "address_growth": "Adresă Creștere",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search",
+  "reset": "Reset"
 
 };
