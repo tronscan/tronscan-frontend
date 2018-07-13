@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-13072018                                                  #
+  #         Update Date: 13.07.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 8                                                    #
@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
   /*
   ##################################################################################
   #                                                                                #
@@ -194,9 +194,9 @@ export const messages = {
   */
   "set_name": "Escriba su nombre",
   "unique_account_message": "Sólo puede establecer el nombre de su cuenta una vez!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "El nombre es demasiado corto",
+  "name_to_long": "El nombre es demasiado largo",
+  "permitted_characters_message": "El nombre solo puede contener a-z A-Z 0-9 ",
   "change_name": "Cambiar Nombre",
   "account_name": "Nombre de la cuenta",
   "show_qr_code": "Mostrar código QR",
@@ -398,7 +398,7 @@ export const messages = {
   "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
   "ends": "finalidades",
   "starts": "inicios",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "se puede desbloquear en",
   /*
   ##################################################################################
   #                                                                                #
@@ -436,7 +436,7 @@ export const messages = {
   "quantity": "cantidad",
   "percentage": "Porcentaje",
   "loading_token": "Cargando Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Porcentaje de votantes",
   /*
   ##################################################################################
   #                                                                                #
@@ -546,9 +546,9 @@ export const messages = {
   "rank": "Puesto",
   "pair": "Par",
   "volume": "Volumen",
-  "usd": "usd",
-  "average_price": "average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "usd": "USD",
+  "average_price": "Precio medio",
+  "click_the_chart_title_to_find_more": "Haga clic en el título del gráfico para saber más.",
   /*
   ##################################################################################
   #                                                                                #
@@ -635,8 +635,8 @@ export const messages = {
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
   "report_an_error": "Informe de un error / sugerencia",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Preguntas Frecuentes",
+  "telegram_updates": "Novedades en Telegram",
   /*
   ##################################################################################
   #                                                                                #
@@ -731,8 +731,8 @@ export const messages = {
   "past_14_days_of_transactions": "Transacciones de los últimos 14 días",
   "address_growth": "Crecimiento de la Dirección",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "Transferencias Token",
+  "website_url": "URL del sitio web",
+  "search": "Buscar"
 
 };

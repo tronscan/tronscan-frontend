@@ -530,8 +530,8 @@ export const messages = {
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",
-  "usd": "美金",
-  "average_price": "平均价格",
+  "usd": "美元",
+  "average_price": "TRX平均价格",
   "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息",
   /*
   ##################################################################################

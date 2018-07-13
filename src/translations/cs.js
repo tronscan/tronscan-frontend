@@ -183,7 +183,7 @@ export const messages = {
   "transactions_past_hour": "Transakce za poslední hodinu",
   "average_blocksize": "Prùmìrná velikost bloku",
   "rich_list": "Seznam bohatých",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "TRX_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -543,7 +543,7 @@ export const messages = {
   "rank": "poøadí",
   "pair": "pár",
   "volume": "Objem",
-  "usd": "usd",
+  "usd": "USD",
   "average_price": "Průměrná Cena",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*

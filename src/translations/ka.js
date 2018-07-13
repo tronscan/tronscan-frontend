@@ -183,7 +183,7 @@ export const messages = {
   "transactions_past_hour": "ბოლო საათის ტრანზაქციები",
   "average_blocksize": "საშუალო ბლოკის ზომა",
   "rich_list": "სიმდიდრის სია",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "TRX_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -536,8 +536,8 @@ export const messages = {
   "rank": "რანგი",
   "pair": "წყვილი",
   "volume": "მოცულობა",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################

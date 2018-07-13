@@ -550,8 +550,8 @@ export const messages = {
   "rank": "sıralama",
   "pair": "çifti",
   "volume": "Hacim",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Daha Fazla Bilgil için Grafik Başlığına Tıkla.",
   /*
   ##################################################################################

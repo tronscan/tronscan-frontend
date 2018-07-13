@@ -183,7 +183,7 @@ export const messages = {
   "transactions_past_hour": "지난 시간 이후로 시작된 트랜잭션",
   "average_blocksize": "평균 블록 크기",
   "rich_list": "분포 통계",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "TRX_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -540,8 +540,8 @@ export const messages = {
   "rank": "순위",
   "pair": "페어",
   "volume": "볼륨",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
