@@ -183,7 +183,7 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "TRX_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -545,8 +545,8 @@ export const messages = {
   "rank": "رتبه",
   "pair": "جفت",
   "volume": "حجم",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
