@@ -53,7 +53,7 @@ export const messages = {
   "login": "đăng nhập",
   "height": "chiều cao khối",
   "age": "tuổi của khối",
-  "bytes": "bytes",
+  "bytes": "Bytes",
   "produced by": "sản xuất bởi",
   "contract": "Hợp đồng",
   "from": "from",

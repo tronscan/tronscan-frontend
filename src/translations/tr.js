@@ -53,7 +53,7 @@ export const messages = {
   "login": "giriş",
   "height": "yükseklik",
   "age": "yaş",
-  "bytes": "bayt",
+  "bytes": "Bayt",
   "produced by": "üreten",
   "contract": "Sözleşme",
   "from": "gönderen",

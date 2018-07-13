@@ -53,7 +53,7 @@ export const messages = {
   "login": "logare",
   "height": "înălțime",
   "age": "vârstă",
-  "bytes": "biți",
+  "bytes": "Biți",
   "produced by": "produs de",
   "contract": "Contract",
   "from": "de la",

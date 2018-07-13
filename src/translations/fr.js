@@ -53,7 +53,7 @@ export const messages = {
   "login": "s'identifier",
   "height": "Hauteur",
   "age": "âge",
-  "bytes": "bytes",
+  "bytes": "Bytes",
   "produced by": "produit par",
   "contract": "Contrat",
   "from": "de",

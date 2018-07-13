@@ -53,7 +53,7 @@ export const messages = {
   "login": "entrar",
   "height": "altura",
   "age": "idade",
-  "bytes": "bytes",
+  "bytes": "Bytes",
   "produced by": "produzido por",
   "contract": "Contrato",
   "from": "de",
