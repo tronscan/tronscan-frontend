@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -728,8 +729,8 @@ export const messages = {
   "past_14_days_of_transactions": "Transações nos últimos 14 dias",
   "address_growth": "Crescimento de Endereços",
   "power": "Power",
-  "token_transfers": "Token Transfers",
+  "token_transfers": "Transferências de Token",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Pesquisar"
 
 };

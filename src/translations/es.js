@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 8                                                    #
@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -531,7 +532,7 @@ export const messages = {
   "loading_representatives": "Cargando Representantes",
   "address_not_super_representative": "Esta dirección no es la de un Súper Representante",
   "unable_load_representatives_page_message": "No se puede cargar la página, quizás la dirección no sea válida, la dirección no es la de un representante o el representante aún no ha configurado esta página",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Cargando Representative",
   /*
   ##################################################################################
   #                                                                                #

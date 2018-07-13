@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Meldinger slått på",
   "contract_type": "Kontrakt Type",
   "filters": "Filtre",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Send Tokener",
   /*
   ##################################################################################
   #                                                                                #
@@ -169,7 +169,8 @@ export const messages = {
   "witness": "Vitne",
   "asset_participation": "Asset deltakelse",
   "loading_transaction": "Henter Transaksjon",
-  "nodes_ranking": "Nodes Ranking",
+  "nodes_ranking": "Rankering Noder",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -182,8 +183,8 @@ export const messages = {
   "transactions_past_hour": "Transaksjoner siste time",
   "average_blocksize": "Gjennomsnittlig Blokk Størrelse",
   "rich_list": "Liste",
-  "TRX_transaction_chart": "TRX Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "TRX_transaction_chart": "TRX Transaksjons skjema",
+  "transactions_per_day": "Transaksjoner Per Dag",
   /*
   ##################################################################################
   #                                                                                #
@@ -225,9 +226,9 @@ export const messages = {
   "not_enough_trx": "Ikke nok TRX",
   "information_message_3": "Forespørsel om TRX mottatt. Om du ikke har mottatt noen TRX er det ikke TRX  for testing tilgjengelig nå, prøv isåfall igjen litt senere.",
   "send_to_following_address": "Send til følgende adresse",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "Endre Nettside",
+  "you_must_enter_url": "Du må skrive inn en URL",
+  "specify_the_url":  "Vennligst spesifiser URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -340,9 +341,9 @@ export const messages = {
   "claim_rewards": "Krev Belønninger",
   "sr_receive_reward_message_0": "Som en representant kan du motta belønninger for å produsere blokker. Disse belønningene kan kreves en gang i døgnet.",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
+  "budget_expenses": "Budsjett Kostnader",
+  "server_configuration": "Server Konfigurasjon",
+  "community_plan": "Samfunns Plan",
   "team": "Team",
   /*
   ##################################################################################
@@ -396,7 +397,7 @@ export const messages = {
   "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
   "ends": "slutter",
   "starts": "starter",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "Kan låses opp",
   /*
   ##################################################################################
   #                                                                                #
@@ -608,7 +609,7 @@ export const messages = {
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Respons Tid",
   "confirmed_block": "Bekreftet Blokk",
-  "loading": "loading...",
+  "loading": "lasting...",
   /*
   ##################################################################################
   #                                                                                #
@@ -631,8 +632,8 @@ export const messages = {
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentasjon",
   "report_an_error": "Send inn feil / forslag til feilretting",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Ofte stilte spørsmål",
+  "telegram_updates": "Telegram oppdateringer",
   /*
   ##################################################################################
   #                                                                                #
@@ -681,54 +682,54 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
-  "total_transactions": "Total Transactions",
-  "avg_blockTime": "Avg BlockTime",
-  "avg_blockSize": "Avg BlockSize",
-  "total_BlockCount": "Total BlockCount",
-  "new_address_seen": "New Address Seen",
-  "transfer_contract": "Transfer Contract",
-  "TRX_transfer_between_addresses": "TRX transfer between addresses",
-  "transfer_asset_contract": "Transfer Asset Contract",
-  "token_transfer_between_addresses": "Token transfer between addresses",
-  "participate_asset_issue_contract": "Participate Asset Issue Contract",
-  "participate_token_between_addresses": "Participate token between addresses",
-  "witness_update_contract": "Witness Update Contract",
-  "updates_a_witness": "Update a witness",
-  "witness_create_contract": "Witness Create Contract",
-  "create_a_witness": "Create a witness",
-  "account_update_contract": "Account Update Contract",
-  "update_account_name": "Update account name",
-  "withdraw_balance_contract": "Withdraw Balance Contract",
-  "withdraw_balance": "Withdraw balance",
-  "freeze_balance_contract": "Freeze Balance Contract",
-  "freeze_TRX": "Freeze TRX",
-  "unfreeze_balance_contract": "Unfreeze Balance Contract",
-  "unfreeze_TRX": "Unfreeze TRX",
-  "vote_witness_contract": "Vote Witness Contract",
-  "vote_for_a_witness": "Vote for a Witness",
-  "asset_issue_contract": "Asset Issue Contract",
-  "issue_a_new_asset": "Issue a new asset",
-  "owner_address": "Owner Address",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
-  "counts": "counts",
-  "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_addresses": "Total Addresses",
-  "daily_increment": "Daily Increase",
-  "address_growth_chart": "Address Growth Chart",
-  "addresses_amount": "Addresses Amount",
-  "past_14_days_of_transactions": "Past 14 days of transactions",
-  "address_growth": "Address Growth",
+  "date": "Dato",
+  "total_transactions": "Totale Transaksjoner",
+  "avg_blockTime": "Gjennomsnittlig BlokkTid",
+  "avg_blockSize": "Gjennomsnittlig Blokkstørrelse",
+  "total_BlockCount": "Totale Blokktall",
+  "new_address_seen": "Ny Adresse",
+  "transfer_contract": "Overførings Kontrakt",
+  "TRX_transfer_between_addresses": "TRX overføringer mellom adresser",
+  "transfer_asset_contract": "Overøring av Eiendel / asset kontrakt",
+  "token_transfer_between_addresses": "Tokener overført mellom adresser",
+  "participate_asset_issue_contract": "Gjennomfør Utstedelse av eiendels Kontrakt",
+  "participate_token_between_addresses": "Gjennomfør tokener mellom adresser",
+  "witness_update_contract": "Oppdatering av VitneKontrakt",
+  "updates_a_witness": "Oppdatere Vitne",
+  "witness_create_contract": "Vitne opprettelses Kontrakt",
+  "create_a_witness": "Opprette et vitne",
+  "account_update_contract": "Oppdatering av Konto Kontrakt",
+  "update_account_name": "Oppdater Konto Navn",
+  "withdraw_balance_contract": "Uttak av Balanse Kontrakt",
+  "withdraw_balance": "Uttak av Balanse",
+  "freeze_balance_contract": "Frys Balanse Kontrakt",
+  "freeze_TRX": "Frys TRX",
+  "unfreeze_balance_contract": "Opplåsing av Balanse Kontrakt",
+  "unfreeze_TRX": "Låse opp TRX",
+  "vote_witness_contract": "Stemme på Vitne Kontrakt",
+  "vote_for_a_witness": "Stemme på et vitne",
+  "asset_issue_contract": "Utstedelse av eiendels Kontrakt",
+  "issue_a_new_asset": "Utstede en ny eiendel",
+  "owner_address": "Adresse Eier",
+  "frozen_balance": "Fryst Balanse",
+  "frozen_days": "Dager Fryst",
+  "counts": "Antall",
+  "TRX_exchange_rate": "TRX Vekslings Rate",
+  "start_time": "Start Tid",
+  "end_time": "Slutt Tid",
+  "contracts": "Kontrakter",
+  "search_description": "Søk Adresse,Blokk Høyde,Transaksjon Hash,Token Navn",
+  "search_description1": "Search Adresse,Blokk,Transaksjon,Token",
+  "transaction": "Transaksjon",
+  "total_addresses":"Totale Adresser",
+  "daily_increment":"Daglig Økning",
+  "address_growth_chart":"Skjema for Adresse Økning",
+  "addresses_amount":"Antall Adresser",
+  "past_14_days_of_transactions":"Transaksjoner for siste 14 dager",
+  "address_growth":"Adresse Økning",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
-  
+  "token_transfers": "Tokenoverføringer",
+  "website_url": "Nettadresse",
+  "search": "Søke"
+
 };

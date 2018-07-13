@@ -58,7 +58,7 @@ export const messages = {
   "from": "from",
   "to": "to",
   "value": "value",
-  "total_accounts": "Total Accounts",
+  "total_accounts": "Total Accounts (Real Time)",
   "submit": "submit",
   "send": "send",
   "receive": "receive",
@@ -169,6 +169,7 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
   "nodes_ranking": "Nodes Ranking (Rank by country and region)",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

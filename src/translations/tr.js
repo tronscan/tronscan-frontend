@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Varlık Katılımı",
   "loading_transaction": "İşlem Yükleniyor",
   "nodes_ranking": "Düğüm Sıralaması",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

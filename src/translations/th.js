@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "การเข้าร่วมสินทรัพย์",
   "loading_transaction": "กำลังโหลดธุรกรรม",
   "nodes_ranking": "การจัดอันดับโหนด",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

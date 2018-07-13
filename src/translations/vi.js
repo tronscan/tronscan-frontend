@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Góp phần vào tài sản",
   "loading_transaction": "Đang tải giao dịch",
   "nodes_ranking": "Nodes Ranking",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

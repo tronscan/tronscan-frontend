@@ -170,6 +170,7 @@ export const messages = {
   "asset_participation": "Участь активів",
   "loading_transaction": "Завантаження транзакції",
   "nodes_ranking": "Рейтинг вузлів",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -717,21 +718,21 @@ export const messages = {
   "frozen_days": "Frozen Days",
   "counts": "counts",
   "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
+  "start_time": "Час початку",
+  "end_time": "Кінець часу",
+  "contracts": "Контракти",
   "search_description": "Адреса пошуку, висота блоку, хеш транзакцій, імені токена",
   "search_description1": "Пошук адреси, блокування, транзакції, токен",
   "transaction": "Транзакція",
-  "total_addresses": "Total Addresses",
+  "total_addresses": "Загальна кількість адрес",
   "daily_increment": "Daily Increase",
   "address_growth_chart": "Address Growth Chart",
   "addresses_amount": "Addresses Amount",
   "past_14_days_of_transactions": "Past 14 days of transactions",
-  "address_growth": "Address Growth",
+  "address_growth": "Зростання адреси",
   "power": "Power",
   "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "website_url": "Веб-сайт URL",
+  "search": "Пошук"
 
 };
