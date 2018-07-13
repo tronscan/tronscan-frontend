@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-06072018                                                  #
-#         Update Date: 06.07.2018                                                #
-#         Language: Swedish                                                      #
-#         Status: Approved Version                                               #
-#         Number of checks: 5                                                    #
-#         Participants: joelstahre                                               #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Swedish                                                      #
+  #         Status: Approved Version                                               #
+  #         Number of checks: 5                                                    #
+  #         Participants: joelstahre                                               #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
   "app_title": "Tron protokollet",
   "password": "lösenord",
@@ -98,14 +98,13 @@ export const messages = {
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
   "send_tokens": "skicka Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockkedja",
   "wallet": "Plånbok",
   "home": "Hem",
@@ -125,14 +124,13 @@ export const messages = {
   "tokens": "tokens",
   "overview": "Översikt",
   "participate": "Deltaga",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentralisera Webben",
   "transactions_last_hour": "Transaktioner senaste timmen",
   "block_height": "Block Höjd",
@@ -143,14 +141,13 @@ export const messages = {
   "create_new_wallet": "Skapa en ny plånbok",
   "view_tokens": "Se Tokens",
   "transactions_last_day": "Transaktioner på sista dagen",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "första sidan",
   "previous_page": "föregående sida",
   "next_page": "nästa sida",
@@ -173,14 +170,14 @@ export const messages = {
   "asset_participation": "Kapitalandel",
   "loading_transaction": "Laddar transaktion",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day": "Totala konton till sista dagen",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adresser",
   "trx_transferred_past_hour": "TRX överförda den senaste timmen",
   "transactions_past_hour": "Transaktioner den senaste timmen ",
@@ -188,14 +185,13 @@ export const messages = {
   "rich_list": "Rich List",
   "TRX_transaction_chart": "TRX Transaktionskarta",
   "transactions_per_day": "Transaktioner per dag",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Skriv Namn",
   "unique_account_message": "Du kan bara sätta ditt kontonamn en gång!",
   "name_to_short": "Namnet är kort",
@@ -233,14 +229,13 @@ export const messages = {
   "change_website": "Ändra webbplats",
   "you_must_enter_url": "Du måste ange en webbadress",
   "specify_the_url":  "Ange webbadressen",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "frysa",
   "unfreeze": "frigöra",
   "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
@@ -264,14 +259,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Är du säker på att du vill frigöra TRX?",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Är du säker på att du vill frigöra olåsta tokens?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "ansöka om ombudet",
   "apply_super_representative_candidate": "Ansök om att bli en Super Representative kandidat",
   "your_personal_website_address": "din personliga webbadress",
@@ -313,7 +307,7 @@ export const messages = {
   "invalid_url": "Ogiltig webbadress",
   "apply_representative_error_message_0": "Något gick fel när du försökte ansöka om representant.",
   "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
-  "open_external_link":"Du öppnar en extern länk",
+  "open_external_link": "Du öppnar en extern länk",
   "private_key_untrusted_website_message_0": "Ange aldrig din privata nyckel på en otillförlitlig webbplats.",
   "no_official_tron_website": "är inte en officiell Tron webbplats.",
   "continue_to_external_website": "Fortsätt till extern webbplats",
@@ -348,14 +342,13 @@ export const messages = {
   "server_configuration": "Server Configuration",
   "community_plan": "Gemenskapsplanen",
   "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Tokens namn",
   "token_message": "Namn för token",
   "token_abbr": "token Förkortning",
@@ -386,14 +379,13 @@ export const messages = {
   "not_started_yet": "Inte startat ännu",
   "participated": "Du har framgångsrikt deltagit!",
   "participated_error": "Ett fel inträffade",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Är du säker?",
   "how_much_buy_message": "Hur mycket tokens vill du köpa?",
   "buy_confirm_message_1": "Är du säker på att du vill köpa",
@@ -402,14 +394,14 @@ export const messages = {
   "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "kan låsa upp i",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Ange endast en giltig TRON plånbok adress. Felaktiga adresser kan leda till förlust av TRX.",
   "search_address_or_url": "Sök efter adress eller URL",
   "the_lunch_test": "Lanseringen av testnet syftar till att testa alla funktioner i våran blockchain explorer och plånbok",
@@ -441,14 +433,13 @@ export const messages = {
   "percentage": "Procent",
   "loading_token": "Laddar Token",
   "voter_percentage": "Voterprocent",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Hittade inga transanktioner",
   "no_tokens_found": "Inga token hittades",
   "no_blocks_found": "Inga block hittades",
@@ -456,14 +447,13 @@ export const messages = {
   "no_voters_found": "Inga rösande hittades",
   "waiting_for_transactions": "Väntar på transanktioner",
   "loading_address": "Laddar Address",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "detaljer",
   "issue_a_token": "Utfärda en Token",
   "issue_token": "Utfärda Token",
@@ -491,14 +481,13 @@ export const messages = {
   "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
   "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "Slut datumet är tidigare eller lika med start datum",
   "no_name_error": "Namn är nödvändigt",
   "no_supply_error": "Totala Tillgångar måste vara mins 1",
@@ -521,14 +510,13 @@ export const messages = {
   "abbreviation_required": "Förkortning krävs",
   "abbreviation_error_message_0": "Förkortning får inte vara längre än 5 tecken",
   "abbreviation_error_message_1": "Förkortning får endast innehålla a-Z tecken",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Högsta produktivitet",
   "lowest_productivity": "Lägsta produktivitet",
   "Super Representatives": "Super Representatives",
@@ -537,28 +525,29 @@ export const messages = {
   "address_not_super_representative": "Den här adressen är inte en Super Representative",
   "unable_load_representatives_page_message": "Det gick inte att ladda sidan, detta kan hända när en address är ogiltig, adressen inte är en  representative eller representative har inte konfigurerat sidan ännu.",
   "loading_representative": "Laddar Representant",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Medel Pris i USD",
   "average_volume_usd": "Medel Volym i USD",
   "Trade Volume": "Handelsvolym",
   "rank": "rang",
   "pair": "par",
   "volume": "Volym",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "usd",
+  "average_price": "Genomsnittspris",
+  "click_the_chart_title_to_find_more": "Klicka på diagramtiteln för att hitta mer.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Nästa Runda",
   "total_votes": "Totala Röster",
   "most_ranks": "Högsta Rang Intjänad Denna Runda",
@@ -584,14 +573,13 @@ export const messages = {
   "submissing_vote_message_1": "Du kan omfördela dina röster när som helst.",
   "submitting_vote_error_message": "Något gick fel när du skickade in dina röster. Vänligen försök igen senare.",
   "loading_super_representatives": "Laddar superrepresentanter",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Här kan du klistra in en transaktions hex för att inspektera innehållet i en transaktion. Transanktionen kan sedan sändas till nätverket",
   "load_tx": "Ladda Transanktion",
   "tx_qrcode": "Transanktion QR Kod",
@@ -604,39 +592,36 @@ export const messages = {
   "transaction_error": "Transanktions Fel",
   "confirm_transaction_message": "Är du säker på att du vill skicka denna transanktion?",
   "broadcast_transaction_to_network": "Skicka transanktion över nätverket",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Sätt in IP för din nod för att testa GRPC-anslutningen",
   "node_tester_stop": "Stop testning",
   "node_tester_test": "Test aGRPC",
   "node_tester_rt": "Svarstid",
   "confirmed_block": "Bekräftat block",
   "loading": "laddar...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Ingen webkamera hittades",
   "trying_enable_webcam_message_0": "Fel när webkamera skulle aktiveras",
   "trying_enable_webcam_message_1": "Kontrollera att webkamera rättigheter är aktiverade",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Vad är TRON",
   "tron_explorer_api": "Tron Explorer API",
   "tron_architechure": "TRON Arkitektur",
@@ -644,14 +629,13 @@ export const messages = {
   "report_an_error": "Anmäl en bug / förslag",
   "frequently_asked_questions": "Vanliga frågor",
   "telegram_updates": "Telegramuppdateringar",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Öppna Plånbok",
   "private_key": "Private Nyckel",
   "keystore_file": "Keystore Fil",
@@ -675,17 +659,72 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Gå till kontosidan",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "tid",
   "parenthash": "parenthash",
   "size": "storlek",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Datum",
+  "total_transactions": "Totala transaktioner",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "Ny adress sedd",
+  "transfer_contract": "Överföringskontrakt",
+  "TRX_transfer_between_addresses": "TRX överför mellan adresser",
+  "transfer_asset_contract": "Överför tillgångskontrakt",
+  "token_transfer_between_addresses": "Tokenöverföring mellan adresser",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Vittneuppdateringskontrakt",
+  "updates_a_witness": "Uppdatera ett vittne",
+  "witness_create_contract": "Vittne skapa kontrakt",
+  "create_a_witness": "Skapa ett vittne",
+  "account_update_contract": "Kontouppdateringskontrakt",
+  "update_account_name": "Uppdatera kontonamn",
+  "withdraw_balance_contract": "Dra ut Balansavtalet",
+  "withdraw_balance": "Dra ut balans",
+  "freeze_balance_contract": "Frysbalansavtal",
+  "freeze_TRX": "Frysa TRX",
+  "unfreeze_balance_contract": "frigöra Balans Kontrakt",
+  "unfreeze_TRX": "frigöra TRX",
+  "vote_witness_contract": "Rösta vittne kontrakt",
+  "vote_for_a_witness": "Rösta för ett vittne",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Utfärda en ny tillgång",
+  "owner_address": "Ägare adress",
+  "frozen_balance": "Frysbalans",
+  "frozen_days": "Frozen Days",
+  "counts": "counts",
+  "TRX_exchange_rate": "TRX växelkurs",
+  "start_time": "Starttid",
+  "end_time": "Sluttid",
+  "contracts": "Kontrakt",
+  "search_description": "Sökadress, Blockhöjd, Transaktionshash, Tokenamn",
+  "search_description1": "Sök adress, Blockera, Transaktion, Token",
+  "transaction": "Transaction",
+  "total_addresses": "Totala adresser",
+  "daily_increment": "Daglig ökning",
+  "address_growth_chart": "Adress tillväxtdiagram",
+  "addresses_amount": "Adresser Belopp",
+  "past_14_days_of_transactions": "Transaktioner under de senaste 14 dagarna",
+  "address_growth": "Tillväxtpotential",
+  "power": "Power",
+  "token_transfers": "Tokenöverföringar",
+  "website_url": "webbadress",
+  "search": "Sök"
 
 };

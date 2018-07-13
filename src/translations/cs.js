@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-05072018                                                  #
-#         Update Date: 05.07.2018                                                #
-#         Language: Czech                                                        #
-#         Status: First Version                                                  #
-#         Number of checks: 4                                                    #
-#         Participants: Wistan Sound                                             #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Czech                                                        #
+  #         Status: First Version                                                  #
+  #         Number of checks: 4                                                    #
+  #         Participants: Wistan Sound                                             #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
   "app_title": "Tron Protocol",
   "password": "heslo",
@@ -81,7 +81,7 @@ export const messages = {
   "error": "Chyba",
   "unlock_keyFile": "Odemknout KeyFile",
   "enter_password_message": "Musíš zadat heslo!",
-  "password_incorrect":"Nesprávné heslo",
+  "password_incorrect": "Nesprávné heslo",
   "try_again": "Zkus to znovu",
   "wallet_unlocked": "Penìženka odemèena",
   "weak": "slabé",
@@ -98,14 +98,13 @@ export const messages = {
   "contract_type": "Typ smlouvy",
   "filters": "Filtry",
   "send_tokens": "Odeslat známky",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Penìženka",
   "home": "Domù",
@@ -125,14 +124,13 @@ export const messages = {
   "tokens": "Tokeny",
   "overview": "Pøehled",
   "participate": "Zúèastnit se",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentralizace webu",
   "transactions_last_hour": "Transakce za poslední hodinu",
   "block_height": "Velikost bloku",
@@ -143,14 +141,13 @@ export const messages = {
   "create_new_wallet": "Vytvoøit novou penìženku",
   "view_tokens": "Zobrazit tokeny",
   "transactions_last_day": "Transactions in last day",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "první stránka",
   "previous_page": "pøedchozí stránka",
   "next_page": "následující stránka",
@@ -173,14 +170,14 @@ export const messages = {
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Total Accounts Till Last Day",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adres",
   "trx_transferred_past_hour": "TRX odeslané za poslední hodinu",
   "transactions_past_hour": "Transakce za poslední hodinu",
@@ -188,14 +185,13 @@ export const messages = {
   "rich_list": "Seznam bohatých",
   "TRX_transaction_chart": "TRX Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Nastavit název",
   "unique_account_message": "Název úètu mùžete nastavit jen jednou!",
   "name_to_short": "Název je moc krátký",
@@ -233,14 +229,13 @@ export const messages = {
   "change_website": "Zmìnit webovou stránku",
   "you_must_enter_url": "Musíte zadat URL",
   "specify_the_url":  "Prosím, upøesnìte URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "zmrazit",
   "unfreeze": "rozmrazit",
   "freeze_trx_least": "Ke zmrazení je nutné mít na úètu minimálnì 1 TRX",
@@ -267,14 +262,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Opravdu chcete rozmrazit TRX?",
   "unfreeze_assets": "Rozmrazit tokeny",
   "sure_to_unfreeze_unlocked_tokens_message": "Urèitì chcete rozmrazit odemèené tokeny?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "kandidovat na delegáta",
   "apply_super_representative_candidate": "Podat si žádost o kandidaturu na Super Reprezentanta",
   "your_personal_website_address": "adresa vaší osobní webové stránky",
@@ -351,14 +345,13 @@ export const messages = {
   "server_configuration": "Server Configuration",
   "community_plan": "Community Plan",
   "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Název tokenu",
   "token_message": "Název tokenu",
   "token_abbr": "Zkratka názvu tokenu",
@@ -389,14 +382,13 @@ export const messages = {
   "not_started_yet": "Ještì nezaèal",
   "participated": "Úspìšnì jste se zúèastnil!",
   "participated_error": "Došlo k chybì",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Jste si jistý?",
   "how_much_buy_message": "Kolik tokenù chcete nakoupit?",
   "buy_confirm_message_1": "Urèitì chcete koupit",
@@ -405,14 +397,14 @@ export const messages = {
   "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
   "ends": "konèí",
   "starts": "zaèíná",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Zadejte platnou adresu TRON penìženky. Vložení neplatné adresy povede ke ztrátì TRX.",
   "search_address_or_url": "Vyhledat adresu nebo URL",
   "the_lunch_test": "Spuštìním testovací sítì chceme otestovat všechny funkce prohlížeèe blockchainu i penìženky.",
@@ -444,14 +436,13 @@ export const messages = {
   "percentage": "Procento",
   "loading_token": "Naèítám token",
   "voter_percentage": "Voter Percentage",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Nenalezena žádná transakce",
   "no_tokens_found": "Nenalezen žádný token",
   "no_blocks_found": "Nenalezeny žádné bloky",
@@ -459,14 +450,13 @@ export const messages = {
   "no_voters_found": "Nenalezeny žádní volièi",
   "waiting_for_transactions": "Èekám na transakci",
   "loading_address": "Naèítám adresu",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "podrobnosti",
   "issue_a_token": "Vydat token",
   "issue_token": "Vydat Token",
@@ -496,14 +486,13 @@ export const messages = {
     Uživatelé si následnì bìhem daného odobí mohou vymìnit své TRX za tokeny.`,
   "token_issue_guide_message_3":`Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
     Když ostatní uživatelé vymìní své TRX za vámi vydaný token, budou tokeny odepsány z vašeho úètu a vy obdržíte TRX v hodnotì odpovídající aktuálnímu kursu.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "Koncové datum je døívìjší nebo stejné jako poèáteèní datum",
   "no_name_error": "Požadován název",
   "no_supply_error": "Celkové množství musí být minimálnì 1",
@@ -526,14 +515,13 @@ export const messages = {
   "abbreviation_required": "Zadat zkratku je povinné",
   "abbreviation_error_message_0": "Zkratka nesmí být delší než 5 znakù",
   "abbreviation_error_message_1": "Zkraatka mùže obsahovat pouze znaky a-Z",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Nejvyšší produktivita",
   "lowest_productivity": "Nejnižší produktivita",
   "Super Representatives": "Super Reprezentanti",
@@ -542,28 +530,29 @@ export const messages = {
   "address_not_super_representative": "Tato adresa nepatøí Super Reprezentantovi",
   "unable_load_representatives_page_message": "Nemohu naèíst stránku, to se mùže stát, pokud je adresa neplatná, nebo nepatøí reprezentantovi, nebo si reprezentant tuto stránku ještì nenakonfiguroval",
   "loading_representative": "Naèítám reprezentanta",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Prùmìrná cena v USD",
   "average_volume_usd": "Prùmìrný objem v USD",
   "Trade Volume": "Objem obchodù",
   "rank": "poøadí",
   "pair": "pár",
   "volume": "Objem",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "usd",
+  "average_price": "Průměrná Cena",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Další kolo",
   "total_votes": "Celkové hlasy",
   "most_ranks": "Nejvyšší pøíèka získaná v tomto kole",
@@ -589,14 +578,13 @@ export const messages = {
   "submissing_vote_message_1": "Své hlasy mùžete pøerozdìlit, kdykoliv se vám bude chtít",
   "submitting_vote_error_message": "Bìhem odesílání hlasù došlo k chybì. Prosím, zkuste to pozdìji.",
   "loading_super_representatives": "Loading Super Representatives",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Zde mùžete vložit hex transakce pro kontrolu obsahu transakce. transakce mùže být poté odeslána do sítì",
   "load_tx": "Load Transaction",
   "tx_qrcode": "QR kód transakce",
@@ -609,39 +597,36 @@ export const messages = {
   "transaction_error": "Chyba transakce",
   "confirm_transaction_message": "Opravdu chcete transakci odeslat?",
   "broadcast_transaction_to_network": "Odesílám transakci do sítì",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Vložte IP vašeho nódu za úèelem testování GRPC pøipojení",
   "node_tester_stop": "Ukonèit testování",
   "node_tester_test": "Testovat GRPC",
   "node_tester_rt": "Doba odezvy",
   "confirmed_block": "Potvrzený blok",
   "loading": "naèítám...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Webkamera nenalezena",
   "trying_enable_webcam_message_0": "Chybì pøi pokusu spustit webkameru.",
   "trying_enable_webcam_message_1": "Zajistìte povolení pøístupu k webové kameøe.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Co to je TRON",
   "tron_explorer_api": "API Tron prohlížeèe",
   "tron_architechure": "TRON Architektura",
@@ -649,14 +634,13 @@ export const messages = {
   "report_an_error": "Odeslat bug / návrh",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Otevøít penìženku",
   "private_key": "Soukromý klíè",
   "keystore_file": "Keystore soubor",
@@ -680,17 +664,72 @@ export const messages = {
   "print_paper_wallet": "Vytisknìte si papírovou penìženku",
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "čas",
   "parenthash": "parenthash",
   "size": "velikost",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Date",
+  "total_transactions": "Total Transactions",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "New Address Seen",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "Token transfer between addresses",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update a witness",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "Create a witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account name",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "Withdraw balance",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "Freeze TRX",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "Unfreeze TRX",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "Vote for a Witness",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Issue a new asset",
+  "owner_address": "Owner Address",
+  "frozen_balance": "Frozen Balance",
+  "frozen_days": "Frozen Days",
+  "counts": "counts",
+  "TRX_exchange_rate": "TRX Exchange Rate",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "contracts": "Contracts",
+  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1": "Search Address,Block,Transaction,Token",
+  "transaction": "Transaction",
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search"
 
 };

@@ -14,11 +14,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-20062018                                                  #
-  #         Update Date: 20.06.2018                                                #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 2                                                    #
+  #         Number of checks: 3                                                    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -57,7 +57,7 @@ export const messages = {
   "from": "发送人",
   "to": "接收人",
   "value": "价值",
-  "total_accounts": "总账户数量",
+  "total_accounts": "实时总账户数",
   "submit": "提交",
   "send": "发送",
   "receive": "接收",
@@ -96,7 +96,6 @@ export const messages = {
   "contract_type": "合约类型",
   "filters": "过滤器",
   "send_tokens": "发送资产",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -123,7 +122,6 @@ export const messages = {
   "tokens": "通证",
   "overview": "概况",
   "participate": "参与",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -140,7 +138,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
-
+  "transactions_last_day": "过去一天交易量",
   /*
   ##################################################################################
   #                                                                                #
@@ -170,7 +168,7 @@ export const messages = {
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名（以国家/地区划分）",
-
+  "total_accounts_last_day":"截止上一天总账户数",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,8 +182,7 @@ export const messages = {
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
   "TRX_transaction_chart": "TRX交易图表",
-  "transactions_per_day": "日交易数目",
-
+  "transactions_per_day": "日交易数",
   /*
   ##################################################################################
   #                                                                                #
@@ -199,7 +196,7 @@ export const messages = {
   "name_to_long": "名字太长",
   "permitted_characters_message": "名字只能包含 a-z A-Z 0-9",
   "change_name": "更换名字",
-  "account_name": "用户名",
+  "account_name": "账户名称",
   "show_qr_code": "显示二维码",
   "do_not_send_2": "请勿使用您的钱包或通过交易所对以上测试网地址转账",
   "bandwidth": "带宽",
@@ -230,7 +227,6 @@ export const messages = {
   "change_website": "更改网址",
   "you_must_enter_url": "你必须要输入一个网址",
   "specify_the_url": "请指定网址",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -245,7 +241,6 @@ export const messages = {
   "freeze_trx_premessage_0": `再次冻结TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以`,
   "freeze_trx_premessage_link": "为超级代表投票。",
   "freeze_trx_premessage_1": ` 冻结的TRX将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
-
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
@@ -261,9 +256,8 @@ export const messages = {
   "unable_to_rename_title": "无法重命名",
   "unable_to_rename_message": "更新名字时出现错误，请稍后重试",
   "unfreeze_trx_confirm_message": "确定要解冻TRX？",
-  "unfreeze_assets": "Unfreeze Assets",
+  "unfreeze_assets": "解冻资产",
   "sure_to_unfreeze_unlocked_tokens_message": "您确定要解冻通证吗？",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -338,7 +332,6 @@ export const messages = {
   "server_configuration": "服务器配置",
   "community_plan": "社区计划",
   "team": "团队",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -376,7 +369,6 @@ export const messages = {
   "not_started_yet": "尚未开始",
   "participated": "成功参与通证发行！",
   "participated_error": "发生错误",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -431,7 +423,6 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -446,7 +437,6 @@ export const messages = {
   "no_voters_found": "未查询到投票人",
   "waiting_for_transactions": "等待交易结果",
   "loading_address": "地址加载中",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -483,7 +473,6 @@ export const messages = {
     之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
   "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
     当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
-
   /*
   ##################################################################################
   #                                                                                #
@@ -513,7 +502,6 @@ export const messages = {
   "abbreviation_required": "需要设置一个缩写",
   "abbreviation_error_message_0": "缩写需要不超过5个字符",
   "abbreviation_error_message_1": "缩写只能包含a-Z的字母",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -529,7 +517,6 @@ export const messages = {
   "address_not_super_representative": "本地址非超级代表",
   "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
   "loading_representative": "超级代表加载中",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -543,7 +530,9 @@ export const messages = {
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",
-
+  "usd": "美金",
+  "average_price": "平均价格",
+  "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息",
   /*
   ##################################################################################
   #                                                                                #
@@ -576,7 +565,6 @@ export const messages = {
   "submissing_vote_message_1": "您可以随时重新分配您的票数",
   "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
   "loading_super_representatives": "正在加载超级代表",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -596,7 +584,6 @@ export const messages = {
   "transaction_error": "交易错误",
   "confirm_transaction_message": "是否确认发送交易？",
   "broadcast_transaction_to_network": "全网交易广播",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -610,7 +597,6 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -621,7 +607,6 @@ export const messages = {
   "no_webcam_found": "未发现网络摄像头",
   "trying_enable_webcam_message_0": "开启网络摄像头时发生错误。",
   "trying_enable_webcam_message_1": "请确认摄像头权限已开启。",
-
   /*
   ##################################################################################
   #                                                                                #
@@ -634,7 +619,8 @@ export const messages = {
   "tron_architechure": "波场架构",
   "tron_protobuf_doc": "TRON Protobuf文档",
   "report_an_error": "提交BUG/建议",
-
+  "frequently_asked_questions": "常见问题",
+  "telegram_updates": "Telegram更新",
   /*
   ##################################################################################
   #                                                                                #
@@ -665,29 +651,24 @@ export const messages = {
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
-
   /*
-##################################################################################
-#                                                                                #
-# blockchain block                                                                #
-#                                                                                #
-##################################################################################
-*/
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "哈希值",
   "time": "时间",
   "parenthash": "父哈希",
-  "witness": "超级代表",
   "size": "大小",
-
   /*
-##################################################################################
-#                                                                                #
-# new add                                                                 #
-#                                                                                #
-##################################################################################
-*/
-  "transactions_per_day": "日交易数",
-  "transactions_last_day": "过去一天交易量",
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "date": "日期",
   "total_transactions": "总交易数",
   "avg_blockTime": "平均生成区块时间",
@@ -716,40 +697,26 @@ export const messages = {
   "vote_for_a_witness": "选举超级代表",
   "asset_issue_contract": "资产发行合约",
   "issue_a_new_asset": "发行资产",
-  "from": "来自",
-  "to": "去往",
-  "amount": "数量",
-  "token": "通证",
   "owner_address": "所有者地址",
-  "account_name": "账户名称",
   "frozen_balance": "冻结数量",
   "frozen_days": "冻结天数",
-  "votes": "投票",
   "counts": "票数",
-  "token_name": "通证名称",
-  "total_supply": "总发行量",
   "TRX_exchange_rate": "TRX汇率",
   "start_time": "开始时间",
   "end_time": "结束时间",
-  "description": "描述",
   "contracts": "合约",
   "search_description": "搜索地址，区块，交易，通证",
   "search_description1": "搜索地址，区块，交易，通证",
   "transaction": "交易",
-  "total_accounts": "总账户数",
-  "power": "投票权",
-  "token_transfers": "通证转账",
-  "website_url": "网站地址",
-  "search": "搜索",
-  "reset": "重置",
   "total_addresses": "总地址数",
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
-  "addresses_amount":"地址数",
-  "past_14_days_of_transactions":"过去14天交易量",
-  "address_growth":"地址增长",
-  "click_the_chart_title_to_find_more":"点击图表标题，查看更多信息",
-  "usd":"美金",
-  "average_price":"平均价格",
-};
+  "addresses_amount": "地址数",
+  "past_14_days_of_transactions": "过去14天交易量",
+  "address_growth": "地址增长",
+  "power": "投票权",
+  "token_transfers": "通证转账",
+  "website_url": "网站地址",
+  "search": "搜索"
 
+};
