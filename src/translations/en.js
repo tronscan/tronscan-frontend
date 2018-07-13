@@ -182,7 +182,7 @@ export const messages = {
   "transactions_past_hour": "Transactions in the past hour",
   "average_blocksize": "Average Block Size",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "TRX_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -537,8 +537,8 @@ export const messages = {
   "rank": "Rank",
   "pair": "Pair",
   "volume": "Volume",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
