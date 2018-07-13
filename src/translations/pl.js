@@ -541,8 +541,8 @@ export const messages = {
   "rank": "pozycja",
   "pair": "para",
   "volume": "Wolumen",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################

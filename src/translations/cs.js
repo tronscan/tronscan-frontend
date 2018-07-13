@@ -543,7 +543,7 @@ export const messages = {
   "rank": "poøadí",
   "pair": "pár",
   "volume": "Objem",
-  "usd": "usd",
+  "usd": "USD",
   "average_price": "Průměrná Cena",
   "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
