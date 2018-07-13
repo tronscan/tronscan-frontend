@@ -214,13 +214,13 @@ class Home extends Component {
               </div>
             </div>
             <div className="row text-center home-stats ">
-              <div className="col-md-2 offset-md-1">
+              <div className="col-md-2">
                 <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousOnlineNodes} end={stats.onlineNodes} duration={1}/></h2>
                   <p>{tu("online_nodes")}</p>
                 </Link>
               </div>
-              <div className="col-md-2 ">
+              <div className="col-md-3 ">
                 <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousBlockHeight} end={stats.blockHeight} duration={1}/></h2>
                   <p>{tu("block_height")}</p>
@@ -233,7 +233,7 @@ class Home extends Component {
                   <p>{tu("transactions_last_day")}</p>
                 </Link>
               </div>
-              <div className="col-md-2 ">
+              <div className="col-md-3 ">
                 <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
                   <p>{tu("total_accounts_last_day")}</p>
