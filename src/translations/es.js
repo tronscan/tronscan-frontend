@@ -53,7 +53,7 @@ export const messages = {
   "login": "iniciar sesión",
   "height": "altura",
   "age": "edad",
-  "bytes": "bytes",
+  "bytes": "Bytes",
   "produced by": "producido por",
   "contract": "Contrato",
   "from": "desde",
@@ -657,11 +657,11 @@ export const messages = {
   "strong_password_info": "Se requiere una contraseña segura",
   "save_keystore_file": "Guarde su archivo Clave Cifrada",
   "download_keystore_file": "Descargue su Clave cifrada",
-  "do_not_lose_it": "Recuerde. No la pierda!",
+  "do_not_lose_it": "¡Recuerde, no la pierda!",
   "do_not_lose_it_message_0": "La Fundación Tron no puede ayudarle a recuperar una clave perdida.",
-  "do_not_share_it": "Tampoco la comparta!",
+  "do_not_share_it": "¡Tampoco la comparta!",
   "do_not_share_it_message_0": "¡Ojo! Pueden robar sus fondos si usa este archivo de una manera irresponsable.",
-  "make_a_backup": "Realice una copia de seguridad!",
+  "make_a_backup": "¡Realice una copia de seguridad!",
   "make_a_backup_message_0": "En caso de que su equipo se incendie.",
   "save_private_key": "Guarde su clave privada",
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
@@ -678,6 +678,32 @@ export const messages = {
   "time": "tiempo",
   "parenthash": "parent hash",
   "size": "tamaño",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Guía para Ledger",
+  "requirements": "Requisitos",
+  "using_ledger_steps_message_0": "Para usar Ledger con Tronscan necesita lo siguiente:",
+  "a": "Un",
+  "install_the": "Instale la aplicación ",
+  "app": "",
+  "install_latest_version_message_0": "Instala la última versión de ",
+  "opening_your_wallet": "Acceda a su cartera",
+  "open_the_tronscan_desktop_client": "Abra el cliente de escritorio Tronscan",
+  "click_open_wallet_top_right": "Haga clic en 'Abrir cartera' en la parte superior derecha",
+  "choose_ledger": "Elija Ledger",
+  "connect_unlock_ledger_with_pin": "Conecte y desbloquee su dispositivo con su código PIN",
+  "open_tron_app_on_ledger": "Abra la aplicación Tron en su Ledger",
+  "ledger_connected_tronscan_message_0": "Si su Ledger está conectado correctamente, Tronscan mostrará el mensaje de 'Conectado'",
+  "click_on_open_wallet": "Haga clic en 'Abrir Cartera'",
+  "redirect_to_your_wallet_message": "Será redirigido a su cartera y podrá ver su dirección Tron",
+  "using_ledger_to_sign_transactions": "Usar Ledger para firmar transacciones",
+  "using_ledger_to_sign_transactions_message_0": "Asegúrese de mantener Ledger conectado y la aplicación Tron abierta para firmar transacciones mientras hace uso del cliente de escritorio de Tronscan",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan mostrará una ventana emergente con los detalles de la transacción cuando se requiera una firma de la misma. Se requieren firmas cada vez que se vote, envíe TRX, cambie el nombre de la cuenta, etc...",
   /*
   ##################################################################################
   #                                                                                #

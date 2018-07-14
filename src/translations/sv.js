@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-14072018                                                  #
+  #         Update Date: 14.07.2018                                                #
   #         Language: Swedish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -53,7 +53,7 @@ export const messages = {
   "login": "login",
   "height": "höjd",
   "age": "ålder",
-  "bytes": "bytes",
+  "bytes": "Bytes",
   "produced by": "skapad av",
   "contract": "Kontrakt",
   "from": "från",
@@ -670,6 +670,32 @@ export const messages = {
   "time": "tid",
   "parenthash": "parenthash",
   "size": "storlek",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Krav",
+  "using_ledger_steps_message_0": "Använda Ledger med Tronscan kräver följande steg:",
+  "a": "En",
+  "install_the": "Installera ",
+  "app": "app",
+  "install_latest_version_message_0": "Installera den senaste versionen av ",
+  "opening_your_wallet": "Öppna din wallet",
+  "open_the_tronscan_desktop_client": "Öppna Tronscan Desktop-klienten",
+  "click_open_wallet_top_right": "Klicka på knappen 'Öppna plånbok' längst upp till höger.",
+  "choose_ledger": "Välj Ledger",
+  "connect_unlock_ledger_with_pin": "Anslut och låsa upp din enhet med din PIN-kod",
+  "open_tron_app_on_ledger": "Öppna Tron-appen på din Ledger",
+  "ledger_connected_tronscan_message_0": "Om din Ledger är korrekt ansluten kommer Tronscan att visa 'Connected'",
+  "click_on_open_wallet": "Klicka på 'Open Wallet'",
+  "redirect_to_your_wallet_message": "Du kommer att omdirigeras till din plånbok och du kan se din Tron-adress",
+  "using_ledger_to_sign_transactions": "Använda bokstaven för att skriva transaktioner",
+  "using_ledger_to_sign_transactions_message_0": "Medan du använder Tronscan Desktop appen och signerar transaktionen kontrollerar du att bokstaven är ansluten och Tron-appen är öppen.",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan visar en transaktionssignatur via en popup med transaktionsinformationen, om så krävs. Signering är nödvändig för följande åtgärder: Delta i SR-röst, skicka TRX, ändra kontonamn etc.",
   /*
   ##################################################################################
   #                                                                                #
