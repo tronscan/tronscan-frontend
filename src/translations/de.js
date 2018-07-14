@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Asset-Beteiligung",
   "loading_transaction": "Laden der Transaktionen",
   "nodes_ranking": "Knoten Ranking (aufgelistet nach Land und Region )",
-  "total_accounts_last_day": "Anzahl der Konten (Echtzeit)",
+  "total_accounts_last_day": "Anzahl der Konten (Stand von Gestern)",
   /*
   ##################################################################################
   #                                                                                #

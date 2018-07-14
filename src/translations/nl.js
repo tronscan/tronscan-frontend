@@ -262,22 +262,6 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Weet u zeker dat u de TRX wilt ontgrendelen?",
   "unfreeze_assets": "Fondsen ontgrendelen",
   "sure_to_unfreeze_unlocked_tokens_message": "Weet je zeker dat je tokens wilt ontgrendelen?",
-  "landing_page": "Bestemmingspagina",
-  "show_more_information_publish_sr_page": "Toon meer informatie over hoe je een pagina kunt publiceren",
-  "create_sr_landing_page_message_0": "Super Vertegenswoordigers kunnen een pagina maken waarop ze meer informatie over hun team en plannen kunnen delen",
-  "set_github_url_message_0": "Heb je al een Github template geconfigureerd? Zo ja, gebruik de onderstaande button op de URL in te stellen",
-  "set_github_link": "Github link instellen",
-  "could_not_claim_rewards": "Kan geen aanspraak maken op beloningen",
-  "claim_rewards_error_message": "Er is iets misgegaan bij het aanspraak maken op beloningen, probeer het later nogmaals.",
-  "rewards_claimed": "Belonigen ontvangen!",
-  "successfully_claimed_rewards":  "Met succes belonigen ontvangen",
-  "claim_rewards": "Aanspraak maken op beloningen",
-  "sr_receive_reward_message_0": "Als vertegenwoordiger ontvang je beloning voor geproduceerde blokken. Je kunt iedere 24 uur aanspraak maken op deze beloningen",
-  "intro": "Intro",
-  "budget_expenses": "Uitgavebudget",
-  "server_configuration": "Server Configuratie",
-  "community_plan": "Community Plan",
-  "team": "Team",
   /*
   ##################################################################################
   #                                                                                #
@@ -288,21 +272,8 @@ export const messages = {
   "apply_for_delegate": "Kandidaat stellen als afgevaardigde",
   "apply_super_representative_candidate": "Kandidaat stellen als Super Vertegenwoordiger",
   "your_personal_website_address": "uw persoonlijke website URL",
-  "apply_for_delegate_predescription":`Elke tokenhouder heeft de mogelijkheid om TRON Super Vertegenwoordiger te worden.
-   Echter, voor verkiesbare kandidaten zijn een aantal standaarden en regulaties gecreëerd,
-   om het netwerk en de gemeenschap soepeler en efficiënter te laten lopen,
-   om voorgedragen Super Vertegenwoordig te kunnen worden. Wij zullen de voorgedragen Super Vertegenwoordigers
-   promoten om de kans dat ze worden gekozen te vergroten. Eén keer per week worden nieuw voorgedragen Super
-   Vertegenwoordigers geüpdatet en gepost.`,
-  "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
+  "apply_for_delegate_predescription": `Elke tokenhouder heeft de mogelijkheid om TRON Super Vertegenwoordiger te worden. Echter, voor verkiesbare kandidaten zijn een aantal standaarden en regulaties gecreëerd, om het netwerk en de gemeenschap soepeler en efficiënter te laten lopen, om voorgedragen Super Vertegenwoordig te kunnen worden. Wij zullen de voorgedragen Super Vertegenwoordigers promoten om de kans dat ze worden gekozen te vergroten. Eén keer per week worden nieuw voorgedragen Super Vertegenwoordigers geüpdatet en gepost.`,
+  "apply_for_delegate_description": `TRX holders can apply to become a super delegate by using the account management function, and vote for candidates. Each account can update current voter information and also is allowed to vote for multiple candidates. The maximum number of votes is less than or equal to the number of TRX users hold each time. (If you have certain sum of TRX, you can vote less than or equal to certain number of votes). The result of votes will be calculated based on the final voter information of every account in each voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted. TRX will not be consumed in the process of super delegate application and voting.`,
   "unknown_error": "er is een onbekende fout opgetreden",
   "representative_understand": "Ik begrijp hoe ik een TRON vertegenwoordige kan zijn",
   "generate_account": "Genereer een nieuw account en wachtwoord",
@@ -640,7 +611,7 @@ export const messages = {
   "tron_architechure": "TRON Architectuur",
   "tron_protobuf_doc": "TRON Protobuf Documentatie",
   "report_an_error": "Geef een bug / suggestie door",
-  "frequently_asked_questions": "Frequently Asked Questions",
+  "frequently_asked_questions": "Vaak Voorkomende Vragen",
   "telegram_updates": "Telegram Updates",
   /*
   ##################################################################################
@@ -690,25 +661,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "Ledger Handleiding",
+  "requirements": "Vereisten",
+  "using_ledger_steps_message_0": "De Ledger gebruiken met Tronscan vereist de volgende stappen:",
   "a": "A",
-  "install_the": "Install the ",
+  "install_the": "Installeer de ",
   "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_latest_version_message_0": "Installeer de laatste versie van ",
+  "opening_your_wallet": "Uw portemonnee is aan het openen",
+  "open_the_tronscan_desktop_client": "Open de Tronscan Desktop client",
+  "click_open_wallet_top_right": "Klik op 'Open Portemonnee' rechtsbovenaan",
+  "choose_ledger": "Kies Ledger",
+  "connect_unlock_ledger_with_pin": "Connecteer en open uw toestel met uw PIN code",
+  "open_tron_app_on_ledger": "Open de Tron app op uw Ledger",
+  "ledger_connected_tronscan_message_0": "Indien uw Ledger correct verbonden is, zal Tronscan 'Verbonden' tonen. ",
+  "click_on_open_wallet": "Klik op 'Open Portemonnee'",
+  "redirect_to_your_wallet_message": "U wordt doorgestuurd naar uw portemonnee en vervolgens kunt u uw Tron adres bekijken",
+  "using_ledger_to_sign_transactions": "Gebruik de Ledger om transacties te ondertekenen.",
+  "using_ledger_to_sign_transactions_message_0": "Zorg ervoor dat de Legder verbonden blijft en dat de Tron app open blijft om transacties te ondertekenen met de Legder via de Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan zal een pop-up tevoorschijn laten komen met de transactiedetails wanneer een transactie ondertekening vereist is. Ondertekeningen zijn vereist wanneer u stemt, TRX verzendt, van accountnaam verandert, enz.",
   /*
   ##################################################################################
   #                                                                                #
@@ -757,10 +728,10 @@ export const messages = {
   "transaction": "Transactie",
   "total_addresses": "Totaal Adressen",
   "daily_increment": "Dagelijkse verhoging",
-  "address_growth_chart": "Address Growth Chart",
-  "addresses_amount": "Addresses Amount",
+  "address_growth_chart": "Adressengroei grafiek",
+  "addresses_amount": "Aantal adressen",
   "past_14_days_of_transactions": "Verstreken 14 dagen van transacties",
-  "address_growth": "Address Growth",
+  "address_growth": "Adressengroei",
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
