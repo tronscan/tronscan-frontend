@@ -320,6 +320,22 @@ export const messages = {
   "success": "gelukt",
   "successfully_appied_sr_canidate_message_0": "Je aanmelding als Super Vertegenwoordiger kandidaat is gelukt.",
   "successfully_appied_sr_canidate_message_1": "Je account zal zo spoedig mogelijk bijgewerkt worden.",
+  "landing_page": "Bestemmingspagina",
+  "show_more_information_publish_sr_page": "Toon meer informatie over hoe je een pagina kunt publiceren",
+  "create_sr_landing_page_message_0": "Super Vertegenswoordigers kunnen een pagina maken waarop ze meer informatie over hun team en plannen kunnen delen",
+  "set_github_url_message_0": "Heb je al een Github template geconfigureerd? Zo ja, gebruik de onderstaande button op de URL in te stellen",
+  "set_github_link": "Github link instellen",
+  "could_not_claim_rewards": "Kan geen aanspraak maken op beloningen",
+  "claim_rewards_error_message": "Er is iets misgegaan bij het aanspraak maken op beloningen, probeer het later nogmaals.",
+  "rewards_claimed": "Belonigen ontvangen!",
+  "successfully_claimed_rewards":  "Met succes belonigen ontvangen",
+  "claim_rewards": "Aanspraak maken op beloningen",
+  "sr_receive_reward_message_0": "Als vertegenwoordiger ontvang je beloning voor geproduceerde blokken. Je kunt iedere 24 uur aanspraak maken op deze beloningen",
+  "intro": "Intro",
+  "budget_expenses": "Uitgavebudget",
+  "server_configuration": "Server Configuratie",
+  "community_plan": "Community Plan",
+  "team": "Team",
   /*
   ##################################################################################
   #                                                                                #
