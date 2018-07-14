@@ -97,7 +97,7 @@ export const messages = {
   "notifications_enabled": "Meldingen ingeschakeld",
   "contract_type": "Contract Type",
   "filters": "Filters",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "Verzend Tokens",
   /*
   ##################################################################################
   #                                                                                #
@@ -154,7 +154,7 @@ export const messages = {
   "last_page": "laatste pagina",
   "page": "pagina",
   "of": "van",
-  "page_size": "page size",
+  "page_size": "Paginagrootte ",
   "most_nodes": "Meeste nodes",
   "loading_nodes": "Nodes worden geladen",
   "Hostname": "Machinenaam",
@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Vermogensbelegging",
   "loading_transaction": "Transacties laden",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day":"Totaal aantal accounts",
   /*
   ##################################################################################
   #                                                                                #
@@ -226,8 +226,8 @@ export const messages = {
   "not_enough_trx": "Onvoldoende TRX",
   "information_message_3": "TRX aangevraagd. Indien u geen TRX ontvangen heeft dan is er op dit moment geen test TRX beschikbaar. Probeer het in dat geval later nogmaals.",
   "send_to_following_address": "Verstuur naar het volgende adres",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
+  "change_website": "Verander Website",
+  "you_must_enter_url": "U moet een URL ingeven",
   "specify_the_url":  "Please specify the URL",
   /*
   ##################################################################################
@@ -372,7 +372,7 @@ export const messages = {
   "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "kan ontgrendelt worden in",
   /*
   ##################################################################################
   #                                                                                #
@@ -508,7 +508,7 @@ export const messages = {
   "loading_representatives": "Vertegenwoordigers worden geladen",
   "address_not_super_representative": "Dit adres betreft geen Super Vertegenwoordiger",
   "unable_load_representatives_page_message": "Niet mogelijk de pagina te laden. Dit kan gebeuren doordat het adres ongeldig is, niet van een vertegenwoordiger of de vertegenwoordiger heeft deze pagina nog niet ingesteld",
-  "loading_representative": "Loading Representative",
+  "loading_representative": "Representative aan het laden",
   /*
   ##################################################################################
   #                                                                                #
@@ -523,8 +523,8 @@ export const messages = {
   "pair": "paar",
   "volume": "Volume",
   "usd": "USD",
-  "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "average_price": "Gemiddelde Prijs",
+  "click_the_chart_title_to_find_more": "Klik op de grafiektitel om meer te vinden.",
   /*
   ##################################################################################
   #                                                                                #
@@ -556,7 +556,7 @@ export const messages = {
   "submissing_vote_message_0": "Uw persoonlijke stem is met succes uitgebracht en zal in de volgende verkiezingscyclus van kracht worden.",
   "submissing_vote_message_1": "U mag uw stemmen herverdelen wanneer u maar wilt",
   "submitting_vote_error_message": "Bij het stemmen is een fout opgetreden. Probeer het later nogmaals.",
-  "loading_super_representatives": "Loading Super Representatives",
+  "loading_super_representatives": "Super Representatives aan het laden",
   /*
   ##################################################################################
   #                                                                                #
