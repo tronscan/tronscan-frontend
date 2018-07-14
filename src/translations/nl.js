@@ -15,12 +15,12 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-14072018                                                  #
+  #         Update Date: 14.07.2018                                                #
   #         Language: Dutch                                                        #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 4                                                    #
-  #         Participants: Rovak,CryptoSpaces,PMD3VSolution,aritmeester             #
+  #         Number of checks: 5                                                    #
+  #         Participants: Crypto L,Rovak,CryptoSpaces,PMD3VSolution,aritmeester    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -716,54 +716,54 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "date": "Date",
-  "total_transactions": "Total Transactions",
-  "avg_blockTime": "Avg BlockTime",
-  "avg_blockSize": "Avg BlockSize",
-  "total_BlockCount": "Total BlockCount",
-  "new_address_seen": "New Address Seen",
+  "date": "Datum",
+  "total_transactions": "Totaal Aantal Transacties",
+  "avg_blockTime": "Gemiddelde Block Tijd",
+  "avg_blockSize": "Gemiddelde Block Grootte",
+  "total_BlockCount": "Totaal Block Aantal",
+  "new_address_seen": "Nieuw Adres Gezien",
   "transfer_contract": "Transfer Contract",
-  "TRX_transfer_between_addresses": "TRX transfer between addresses",
-  "transfer_asset_contract": "Transfer Asset Contract",
-  "token_transfer_between_addresses": "Token transfer between addresses",
-  "participate_asset_issue_contract": "Participate Asset Issue Contract",
-  "participate_token_between_addresses": "Participate token between addresses",
+  "TRX_transfer_between_addresses": "TRX transfer tussen adressen",
+  "transfer_asset_contract": "Transfer Activa Contract",
+  "token_transfer_between_addresses": "Token transfer tussen adressen",
+  "participate_asset_issue_contract": "Deelneming Activa Uitgevingscontract",
+  "participate_token_between_addresses": "Deelneming token tussen adressen",
   "witness_update_contract": "Witness Update Contract",
-  "updates_a_witness": "Update a witness",
-  "witness_create_contract": "Witness Create Contract",
-  "create_a_witness": "Create a witness",
+  "updates_a_witness": "Update een witness",
+  "witness_create_contract": "Witness Creëer Contract",
+  "create_a_witness": "Creëer een witness",
   "account_update_contract": "Account Update Contract",
-  "update_account_name": "Update account name",
-  "withdraw_balance_contract": "Withdraw Balance Contract",
-  "withdraw_balance": "Withdraw balance",
-  "freeze_balance_contract": "Freeze Balance Contract",
-  "freeze_TRX": "Freeze TRX",
-  "unfreeze_balance_contract": "Unfreeze Balance Contract",
-  "unfreeze_TRX": "Unfreeze TRX",
-  "vote_witness_contract": "Vote Witness Contract",
-  "vote_for_a_witness": "Vote for a Witness",
-  "asset_issue_contract": "Asset Issue Contract",
-  "issue_a_new_asset": "Issue a new asset",
-  "owner_address": "Owner Address",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
-  "counts": "counts",
-  "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_addresses": "Total Addresses",
-  "daily_increment": "Daily Increase",
+  "update_account_name": "Update account naam",
+  "withdraw_balance_contract": "Terugtrekking Saldo Contract",
+  "withdraw_balance": "Trek saldo terug",
+  "freeze_balance_contract": "Bevries saldo Contract",
+  "freeze_TRX": "Bevries TRX",
+  "unfreeze_balance_contract": "Maak saldo vrij Contract",
+  "unfreeze_TRX": "Vrijmaking van TRX",
+  "vote_witness_contract": "Stem Witness Contract",
+  "vote_for_a_witness": "Stem voor een Witness",
+  "asset_issue_contract": "Activa uitgevingscontract",
+  "issue_a_new_asset": "Geef een nieuwe activa vrij",
+  "owner_address": "Eigenaar's adres",
+  "frozen_balance": "Bevroren Saldo",
+  "frozen_days": "Bevroren Dagen",
+  "counts": "Tellingen",
+  "TRX_exchange_rate": "TRX Wisselkoers",
+  "start_time": "Start Tijd",
+  "end_time": "Eind Tijd",
+  "contracts": "Contracten",
+  "search_description": "Zoek adres,Block Hoogte,Transactie Hash,Token Naam",
+  "search_description1": "Zoek adres,Block,Transactie,Token",
+  "transaction": "Transactie",
+  "total_addresses": "Totaal Adressen",
+  "daily_increment": "Dagelijkse verhoging",
   "address_growth_chart": "Address Growth Chart",
   "addresses_amount": "Addresses Amount",
-  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "past_14_days_of_transactions": "Verstreken 14 dagen van transacties",
   "address_growth": "Address Growth",
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Zoeken"
 
 };
