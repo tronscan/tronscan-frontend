@@ -705,10 +705,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "레코드를 찾을 수 없음!",
+  "warning": "경고",
+  "login_success": "로그인 성공",
+  "logout_success": "로그 아웃 성공",
   /*
   ##################################################################################
   #                                                                                #
