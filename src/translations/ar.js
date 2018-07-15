@@ -692,10 +692,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "لم يتم العثور على السجل!",
+  "warning": "تحذير",
+  "login_success": "النجاح في تسجيل الدخول",
+  "logout_success": "نجاح تسجيل الخروج",
   /*
   ##################################################################################
   #                                                                                #
