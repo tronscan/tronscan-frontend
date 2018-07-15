@@ -115,6 +115,7 @@ class Home extends Component {
   }
 
   doSearch = async () => {
+    let {intl} = this.props;
     let {search} = this.state;
     let type = getSearchType(search);
 
@@ -138,7 +139,7 @@ class Home extends Component {
         });
       }, 1000);
 
-      toastr.warning('Warning', 'Record not found!');
+      toastr.warning(intl.formatMessage({id:'warning'}),intl.formatMessage({id:'record_not_found'}));
     }
   }
 
