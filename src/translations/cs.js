@@ -708,10 +708,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "Záznam nenalezen!",
+  "warning": "Varování",
+  "login_success": "Přihlaste se k úspěchu",
+  "logout_success": "Odhlásit se",
   /*
   ##################################################################################
   #                                                                                #
