@@ -701,10 +701,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "ჩანაწერი ვერ მოიძებნა!",
+  "warning": "გაფრთხილება",
+  "login_success": "შესვლა წარმატება",
+  "logout_success": "გამოსვლის წარმატება",
   /*
   ##################################################################################
   #                                                                                #
