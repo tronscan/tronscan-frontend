@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: ahm37k(Ahmet)                                            #
   #                                                                                #
   ##################################################################################
@@ -689,25 +689,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
-  "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "ledger_guide": "Ledger Rehberi",
+  "requirements": "Gereksinimler",
+  "using_ledger_steps_message_0": "Tron ile Ledger'ı kullanmak için aşağıdaki adımların izlenmesi gerekir:",
+  "a": "Bir",
+  "install_the": "İsmi",
+  "app": "olan uygulamanın yüklenmesi",
+  "install_latest_version_message_0": "Bu uygulamanın son sürümünün yüklenmesi: ",
+  "opening_your_wallet": "Cüzdanınızın açılması",
+  "open_the_tronscan_desktop_client": "Tronscan Desktop uygulamasını açınız",
+  "click_open_wallet_top_right": "Sağ üst köşedeki 'CÜZDAN'I AÇ' kısmına tıklayınız",
+  "choose_ledger": "Ledger'ı tercih etmeniz",
+  "connect_unlock_ledger_with_pin": "Cihazı bağlayıp PIN kodunuz ile cihazın kilidini çözmeniz",
+  "open_tron_app_on_ledger": "Ledger'da Tron app'i açmanız",
+  "ledger_connected_tronscan_message_0": "Ledger düzgün bir şekilde bağlandığında Tronscan ekranında 'Bağlandı' ifadesi görünür",
+  "click_on_open_wallet": "Cüzdan'ı aç 'menüsüne tıklayınız'",
+  "redirect_to_your_wallet_message": "Cüzdanınıza yönlendirilecek ve Tron adresinizi görüntüleyebileceksiniz",
+  "using_ledger_to_sign_transactions": "Ledger'ı kullanarak işlemleri imzalamak",
+  "using_ledger_to_sign_transactions_message_0": "Ledger'ın bağlı olduğundan emin olun. Ledger'daki Tron app ile Tronscan Desktop kullanırken yapılan işlemleri imzalayabileceksiniz",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan imzalanması gereken bir işlem olduğunda, işlem detayları gösteren bir pencere açacaktır. İmzalar oy kullandığınızda, TRX gönderdiğinizde, hesap adını değiştirdiğinizde vb. gerekmektedir.",
   /*
   ##################################################################################
   #                                                                                #
