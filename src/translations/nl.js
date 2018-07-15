@@ -703,10 +703,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "Record niet gevonden!",
+  "warning": "Waarschuwing",
+  "login_success": "Inloggen Succes",
+  "logout_success": "Uitloggen Succes",
   /*
   ##################################################################################
   #                                                                                #
