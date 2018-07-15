@@ -715,10 +715,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "Kayıt bulunamadı!",
+  "warning": "Uyarı",
+  "login_success": "Giriş Başarılı",
+  "logout_success": "Çıkış Başarılı",
   /*
   ##################################################################################
   #                                                                                #
