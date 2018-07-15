@@ -710,10 +710,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "سابقه ای یافت نشد!",
+  "warning": "هشدار",
+  "login_success": "موفق شوید",
+  "logout_success": "خروج از موفقیت",
   /*
   ##################################################################################
   #                                                                                #
@@ -769,6 +769,6 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "جستجو کردن"
 
 };
