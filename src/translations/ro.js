@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Romania                                                      #
-  #         Status: first Version                                                  #
-  #         Number of checks: 2                                                    #
+  #         Status: second Version                                                 #
+  #         Number of checks: 3                                                    #
   #         Participants: Sebi Serbanescu                                          #
   #                                                                                #
   ##################################################################################
@@ -90,14 +90,14 @@ export const messages = {
   "strong": "puternic",
   "secure": "sigur",
   "too_short": "prea scurt",
-  "status": "status",
+  "status": "Stare",
   "no_notifications": "nici o notificare",
   "enable_desktop_notifications": "autorizați notificări desktop",
   "desktop_notification_enabled": "Notificări Desktop autorizate!",
   "notifications_enabled": "Notificări autorizate",
   "contract_type": "Tip Contract",
-  "filters": "Filters",
-  "send_tokens": "Send Tokens",
+  "filters": "Filtre",
+  "send_tokens": "Trimiteți jetoane",
   /*
   ##################################################################################
   #                                                                                #
@@ -154,7 +154,7 @@ export const messages = {
   "last_page": "ultima pagină",
   "page": "pagina",
   "of": "din",
-  "page_size": "page size",
+  "page_size": "Mărimea Paginii",
   "most_nodes": "Cele mai multe Noduri",
   "loading_nodes": "încărcare Noduri",
   "Hostname": "Numegazdă",
@@ -343,7 +343,7 @@ export const messages = {
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
+  "budget_expenses": "Cheltuieli bugetare",
   "server_configuration": "Configurație Server",
   "community_plan": "Planul Comunității",
   "team": "Echipă",
@@ -548,8 +548,8 @@ export const messages = {
   "pair": "pereche",
   "volume": "Volum",
   "usd": "USD",
-  "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "average_price": "Prețul mediu",
+  "click_the_chart_title_to_find_more": "Faceți clic pe titlul diagramei pentru a afla mai multe.",
   /*
   ##################################################################################
   #                                                                                #
@@ -712,10 +712,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "Înregistrarea nu a fost găsită!",
+  "warning": "Avertizare",
+  "login_success": "Conectați-vă cu succes",
+  "logout_success": "Deconectați-vă de succes",
   /*
   ##################################################################################
   #                                                                                #
