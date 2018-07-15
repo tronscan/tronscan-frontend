@@ -772,8 +772,8 @@ export const messages = {
   "past_14_days_of_transactions": "Son 14 Gündeki İşlem Adeti",
   "address_growth": "Adres Gelişimi",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "Jeton Transferleri",
+  "website_url": "Web sitesi URL'si",
+  "search": "Arama"
 
 };
