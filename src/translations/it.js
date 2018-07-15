@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Partecipazione Asset",
   "loading_transaction": "Caricamento Transazione",
   "nodes_ranking": "Classifica Nodi",
-  "total_accounts_last_day":"Total de Contas no Último Dia",
+  "total_accounts_last_day": "Totale conti fino all'ultimo giorno",
   /*
   ##################################################################################
   #                                                                                #
@@ -544,7 +544,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "USD",
   "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Clique no título do gráfico para mais informações",
+  "click_the_chart_title_to_find_more": "Clicca sul titolo del grafico per saperne di più.",
   /*
   ##################################################################################
   #                                                                                #

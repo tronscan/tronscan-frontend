@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total de Contas no Último Dia",
   /*
   ##################################################################################
   #                                                                                #
@@ -546,7 +546,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "USD",
   "average_price": "preço médio",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Clique no título do gráfico para mais informações.",
   /*
   ##################################################################################
   #                                                                                #
