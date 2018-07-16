@@ -1,6 +1,5 @@
 import React from "react";
 import xhr from "axios/index";
-import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";

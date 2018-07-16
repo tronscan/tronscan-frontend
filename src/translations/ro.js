@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Romania                                                      #
-  #         Status: first Version                                                  #
-  #         Number of checks: 2                                                    #
+  #         Status: second Version                                                 #
+  #         Number of checks: 3                                                    #
   #         Participants: Sebi Serbanescu                                          #
   #                                                                                #
   ##################################################################################
@@ -90,14 +90,14 @@ export const messages = {
   "strong": "puternic",
   "secure": "sigur",
   "too_short": "prea scurt",
-  "status": "status",
+  "status": "Stare",
   "no_notifications": "nici o notificare",
   "enable_desktop_notifications": "autorizați notificări desktop",
   "desktop_notification_enabled": "Notificări Desktop autorizate!",
   "notifications_enabled": "Notificări autorizate",
   "contract_type": "Tip Contract",
-  "filters": "Filters",
-  "send_tokens": "Send Tokens",
+  "filters": "Filtre",
+  "send_tokens": "Trimiteți jetoane",
   /*
   ##################################################################################
   #                                                                                #
@@ -154,7 +154,7 @@ export const messages = {
   "last_page": "ultima pagină",
   "page": "pagina",
   "of": "din",
-  "page_size": "page size",
+  "page_size": "Mărimea Paginii",
   "most_nodes": "Cele mai multe Noduri",
   "loading_nodes": "încărcare Noduri",
   "Hostname": "Numegazdă",
@@ -343,7 +343,7 @@ export const messages = {
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
+  "budget_expenses": "Cheltuieli bugetare",
   "server_configuration": "Configurație Server",
   "community_plan": "Planul Comunității",
   "team": "Echipă",
@@ -548,8 +548,8 @@ export const messages = {
   "pair": "pereche",
   "volume": "Volum",
   "usd": "USD",
-  "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "average_price": "Prețul mediu",
+  "click_the_chart_title_to_find_more": "Faceți clic pe titlul diagramei pentru a afla mai multe.",
   /*
   ##################################################################################
   #                                                                                #
@@ -686,25 +686,36 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "Ghidul Registrului",
+  "requirements": "Cerințe",
+  "using_ledger_steps_message_0": "Folosirea Registrului cu Tronscan necesită următorii pași:",
   "a": "A",
-  "install_the": "Install the ",
+  "install_the": "Instalați ",
   "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_latest_version_message_0": "Instalați ultima versiune a ",
+  "opening_your_wallet": "Dechiderea portofelului",
+  "open_the_tronscan_desktop_client": "Deschideți clientul desktop Tronscan",
+  "click_open_wallet_top_right": "Clic pe 'Deschide Portofelul' sus dreapta",
+  "choose_ledger": "Alegeți Registrul",
+  "connect_unlock_ledger_with_pin": "Conectați-vă și descuiați dispozitivul cu codul PIN",
+  "open_tron_app_on_ledger": "Dechideți Tron app în Registru",
+  "ledger_connected_tronscan_message_0": "Dacă Registrul este conectat corect atunci Tronscan va arăta 'Conectat'",
+  "click_on_open_wallet": "Clic pe 'Deschide Portofelul'",
+  "redirect_to_your_wallet_message": "Veți fi redirecționat către portofel și vă veți putea vizualiza adresa Tron",
+  "using_ledger_to_sign_transactions": "Folosirea registrului pentru a semna tranzacții",
+  "using_ledger_to_sign_transactions_message_0": "Asigurați-vă că țineți Registrul conectat și Tron app deschis pentru a semna tranzacții folosind Registrul în timp ce folosiți Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan va arăta un popup cu detaliile tranzacției când se necesită o semnătură de tranzacție. Semnăturile sunt necesare indiferent dacă votați, trimiteți TRX, schimbați numele contului, etc.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Înregistrarea nu a fost găsită!",
+  "warning": "Avertizare",
+  "login_success": "Conectați-vă cu succes",
+  "logout_success": "Deconectați-vă de succes",
   /*
   ##################################################################################
   #                                                                                #
@@ -728,7 +739,6 @@ export const messages = {
   "updates_a_witness": "Updatare witness",
   "witness_create_contract": "Creare Contract Witness",
   "create_a_witness": "Creare Witness",
-
   "account_update_contract": "Updatare Contract de Cont",
   "update_account_name": "Updatare nume de cont",
   "withdraw_balance_contract": "Contract de Retragere Balanță",

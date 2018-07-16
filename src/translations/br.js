@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Portuguese - Brazil                                          #
   #         Status: Second Draft                                                   #
   #         Number of checks: 4                                                    #
@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total de Contas no Último Dia",
   /*
   ##################################################################################
   #                                                                                #
@@ -546,7 +546,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "USD",
   "average_price": "preço médio",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Clique no título do gráfico para mais informações.",
   /*
   ##################################################################################
   #                                                                                #
@@ -683,25 +683,36 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
-  "a": "A",
-  "install_the": "Install the ",
+  "ledger_guide": "Guia para Ledger",
+  "requirements": "Requisitos",
+  "using_ledger_steps_message_0": "Utilizar a Ledger com o Tronscan requer os seguintes passos:",
+  "a": "Uma",
+  "install_the": "Instale o",
   "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_latest_version_message_0": "Instale a última versão do",
+  "opening_your_wallet": "Abrindo sua Carteira",
+  "open_the_tronscan_desktop_client": "Abra o cliente Tronscan Desktop",
+  "click_open_wallet_top_right": "Clique em 'Open Wallet' no canto superior direito",
+  "choose_ledger": "Escolha Ledger",
+  "connect_unlock_ledger_with_pin": "Conecte e desbloqueie seu dispositivo com o seu código PIN",
+  "open_tron_app_on_ledger": "Abra o app Tron app na sua Ledger",
+  "ledger_connected_tronscan_message_0": "Se sua Ledger estiver conectada corretamente, o Tronscan irá mostrar a mensagem 'Connected'",
+  "click_on_open_wallet": "Clique em 'Open Wallet'",
+  "redirect_to_your_wallet_message": "Você será redirecionado para a sua carteira e poderá ver seu endereço Tron",
+  "using_ledger_to_sign_transactions": "Usando a Ledger para assinar transações",
+  "using_ledger_to_sign_transactions_message_0": "Certifique-se de que a Ledger está conectada e o Tron app aberto para assinar transações utilizando a Ledger enquanto usa o Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan irá mostrar uma mensagem popup com os detalhes da transação quando uma assinatura de transação for necessária. Assinaturas são necessárias toda hora que você vota, envia TRX, troca o nome da conta, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Registro não encontrado!",
+  "warning": "Atenção",
+  "login_success": "Login realizado com sucesso",
+  "logout_success": "Logout realizado com sucesso",
   /*
   ##################################################################################
   #                                                                                #

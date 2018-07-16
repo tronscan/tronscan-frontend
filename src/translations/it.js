@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-14072018                                                  #
+  #         Update Date: 14.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: FabioHC,Andrea1980,PMD3VSolution                         #
   #                                                                                #
   ##################################################################################
@@ -170,7 +170,7 @@ export const messages = {
   "asset_participation": "Partecipazione Asset",
   "loading_transaction": "Caricamento Transazione",
   "nodes_ranking": "Classifica Nodi",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Totale conti fino all'ultimo giorno",
   /*
   ##################################################################################
   #                                                                                #
@@ -544,7 +544,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "USD",
   "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Clicca sul titolo del grafico per saperne di più.",
   /*
   ##################################################################################
   #                                                                                #
@@ -681,25 +681,36 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
-  "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "ledger_guide": "Guida Ledger",
+  "requirements": "Requisiti",
+  "using_ledger_steps_message_0": "L'utilizzo del Ledger con Tronscan richiede i seguenti passaggi:",
+  "a": "Un",
+  "install_the": "Installate l'app ",
+  "app": "",
+  "install_latest_version_message_0": "Installate l'ultima versione del ",
+  "opening_your_wallet": "Aprire il vostro wallet",
+  "open_the_tronscan_desktop_client": "Aprite il client Tronscan Desktop",
+  "click_open_wallet_top_right": "Cliccate su 'Open Wallet' in alto a destra",
+  "choose_ledger": "Scegliete Ledger",
+  "connect_unlock_ledger_with_pin": "Connettete e sbloccate il vostro dispositivo con il vostro codice PIN",
+  "open_tron_app_on_ledger": "Aprite l'app Tron sul vostro Ledger",
+  "ledger_connected_tronscan_message_0": "Se il vostro Ledger è connesso correttamente allora Tronscan mostrerà il messaggio 'Connected'",
+  "click_on_open_wallet": "Cliccate su 'Open Wallet'",
+  "redirect_to_your_wallet_message": "Verrete reindirizzati al vostro wallet e potrete vedere il vostro indirizzo Tron",
+  "using_ledger_to_sign_transactions": "Utilizzare il Ledger per firmare transazioni",
+  "using_ledger_to_sign_transactions_message_0": "Assicuratevi di mantenere il Ledger connesso e l'app Tron aperta per firmare le transazioni utilizzando il Ledger mentre si utilizza Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan mostrerà un popup con i dettagli della transazione quando è richiesta una firma per la transazione stessa. Le firme sono sempre richieste quando votate, inviate TRX, cambiate nome dell'account, ecc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Risultato non trovato!",
+  "warning": "Attenzione",
+  "login_success": "Login effettuato con successo",
+  "logout_success": "Logout effettuato con successo",
   /*
   ##################################################################################
   #                                                                                #
