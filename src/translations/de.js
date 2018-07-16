@@ -774,7 +774,7 @@ export const messages = {
   "address_growth_chart": "Adressstatistik",
   "addresses_amount": "Anzahl der Adressen",
   "past_14_days_of_transactions": "Transaktionen der letzten 14 Tage",
-  "address_growth": "Wachstumspotential der Adresse",
+  "address_growth": "Gesamtanzahl der TRX Adressen",
   "power": "Power",
   "token_transfers": "Token-Übertragungen",
   "website_url": "Webseiten URL",
