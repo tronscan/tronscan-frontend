@@ -182,7 +182,7 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "TRX_transaction_chart": "TRX交易图表",
+  "TRX_transaction_chart": "TRX交易数图表",
   "transactions_per_day": "日交易数",
   /*
   ##################################################################################
