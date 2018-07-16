@@ -356,3 +356,85 @@ export class LineReactPrice extends React.Component {
     )
   }
 }
+
+export class LineReactBlockchainSize extends React.Component {
+
+  constructor(props) {
+
+    super(props)
+    this.myChart = null;
+    let id = ('_' + Math.random()).replace('.', '_');
+    this.state = {
+      lineId: 'lineBlockchainSize' + id
+    }
+  }
+
+  initLine(id) {
+    let _config = cloneDeep(config.overviewChart);
+
+    let {intl, data, source} = this.props;
+    let myChart = echarts.getInstanceByDom(document.getElementById(id));
+    if (myChart === undefined) {
+      myChart = echarts.init(document.getElementById(id));
+    }
+
+    _config.title.text = intl.formatMessage({id: 'blockchain_size'});
+    _config.title.link = '#/blockchain/stats/blockchainSizeStats';
+    _config.toolbox.feature = {
+      restore: {
+        title: 'restore'
+      },
+      saveAsImage: {
+        show: true,
+        title: 'save'
+      }
+    }
+
+   // _config.series[0].type = 'line';
+   // _config.series[0].barWidth = '50%';
+   // _config.xAxis[0].boundaryGap = true;
+    _config.xAxis[0].data = [];
+    _config.series[0].data = [];
+    _config.yAxis[0].name = intl.formatMessage({id: 'bytes'});
+    _config.tooltip.formatter = function (datas) {
+      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      return (
+          intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+          intl.formatMessage({id: 'blockchian_size'}) + ' : ' + datas[0].data.blockchainSize
+      )
+
+    }
+
+    if (data && data.length > 0) {
+      data.map((val) => {
+        let temp;
+        temp = {...val, value: val.blockchainSize};
+        _config.xAxis[0].data.push(intl.formatDate(val.date));
+        _config.series[0].data.push(temp);
+      })
+    }
+    if (data && data.length === 0) {
+      _config.title.text = "No data";
+    }
+
+    myChart.setOption(_config);
+    this.myChart = myChart;
+
+  }
+
+  componentDidMount() {
+    this.initLine(this.state.lineId);
+  }
+
+  componentDidUpdate() {
+    this.initLine(this.state.lineId);
+  }
+
+  render() {
+    return (
+        <div>
+          <div id={this.state.lineId} style={this.props.style}></div>
+        </div>
+    )
+  }
+}
