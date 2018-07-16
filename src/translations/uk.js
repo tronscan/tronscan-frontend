@@ -54,6 +54,7 @@ export const messages = {
   "height": "висота",
   "age": "вік",
   "bytes": "байтів",
+  "MByte": "MByte",
   "produced by": "вироблено",
   "contract": "Контакти",
   "from": "від",

@@ -52,6 +52,7 @@ export const messages = {
   "height": "高度",
   "age": "年龄",
   "bytes": "字节",
+  "MByte": "兆字节",
   "produced by": "出块者",
   "contract": "合约",
   "from": "发送人",

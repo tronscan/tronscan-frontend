@@ -54,6 +54,7 @@ export const messages = {
   "height": "หมายเลข",
   "age": "อายุบล็อก",
   "bytes": "ขนาดไบต์",
+  "MByte": "MByte",
   "produced by": "ถูกสร้างโดย",
   "contract": "สัญญา",
   "from": "จาก",

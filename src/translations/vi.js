@@ -54,6 +54,7 @@ export const messages = {
   "height": "chiều cao khối",
   "age": "tuổi của khối",
   "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "sản xuất bởi",
   "contract": "Hợp đồng",
   "from": "from",

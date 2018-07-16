@@ -54,6 +54,7 @@ export const messages = {
   "height": "სიმაღლე",
   "age": "ასაკი",
   "bytes": "ბიტები",
+  "MByte": "MByte",
   "produced by": "წარმოებულია ......მიერ",
   "contract": "კონტრაქტი",
   "from": "-დან",

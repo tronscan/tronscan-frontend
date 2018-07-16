@@ -54,6 +54,7 @@ export const messages = {
   "height": "ارتفاع",
   "age": "سن",
   "bytes": "بایت",
+  "MByte": "MByte",
   "produced by": "تولید شده توسط",
   "contract": "قرارداد",
   "from": "از",

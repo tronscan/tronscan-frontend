@@ -54,6 +54,7 @@ export const messages = {
   "height": "altura",
   "age": "edad",
   "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "producido por",
   "contract": "Contrato",
   "from": "desde",

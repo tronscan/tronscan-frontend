@@ -54,6 +54,7 @@ export const messages = {
   "height": "yükseklik",
   "age": "yaş",
   "bytes": "Bayt",
+  "MByte": "MByte",
   "produced by": "üreten",
   "contract": "Sözleşme",
   "from": "gönderen",

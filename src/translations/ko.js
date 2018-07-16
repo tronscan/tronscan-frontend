@@ -54,6 +54,7 @@ export const messages = {
   "height": "높이",
   "age": "지난 시간",
   "bytes": "바이트",
+  "MByte": "MByte",
   "produced by": "생성자",
   "contract": "컨트랙트",
   "from": "보내는 주소",
