@@ -118,7 +118,7 @@ export class LineReactTx extends React.Component {
       myChart = echarts.init(document.getElementById(id));
     }
     if (source !== 'home') {
-      _config.title.text = intl.formatMessage({id: 'TRX_transaction_chart'});
+      _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
       _config.title.link = '#/blockchain/stats/txOverviewStats';
       _config.toolbox.feature = {
         restore: {
