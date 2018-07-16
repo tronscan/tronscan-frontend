@@ -54,6 +54,7 @@ export const messages = {
   "height": "높이",
   "age": "지난 시간",
   "bytes": "바이트",
+  "MByte": "MByte",
   "produced by": "생성자",
   "contract": "컨트랙트",
   "from": "보내는 주소",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "지난 시간 이후로 시작된 트랜잭션",
   "average_blocksize": "평균 블록 크기",
   "rich_list": "분포 통계",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -672,6 +673,7 @@ export const messages = {
   "time": "시간",
   "parenthash": "이전 블록 해시",
   "size": "크기",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

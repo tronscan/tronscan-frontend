@@ -54,6 +54,7 @@ export const messages = {
   "height": "velikost",
   "age": "stáøí",
   "bytes": "Bytù",
+  "MByte": "MByte",
   "produced by": "vytvoøil",
   "contract": "smlouva",
   "from": "z",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transakce za poslední hodinu",
   "average_blocksize": "Prùmìrná velikost bloku",
   "rich_list": "Seznam bohatých",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -675,6 +676,7 @@ export const messages = {
   "time": "čas",
   "parenthash": "parenthash",
   "size": "velikost",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

@@ -54,6 +54,7 @@ export const messages = {
   "height": "înălțime",
   "age": "vârstă",
   "bytes": "Biți",
+  "MByte": "MByte",
   "produced by": "produs de",
   "contract": "Contract",
   "from": "de la",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Tranzacții în ultima oră",
   "average_blocksize": "Mărimea medie de block",
   "rich_list": "Listă bogați",
-  "TRX_transaction_chart": "Diagramă tranzacții TRX",
+  "tron_transaction_chart": "Diagramă tranzacții Tron",
   "transactions_per_day": "Tranzacții pe zi",
   /*
   ##################################################################################
@@ -679,6 +680,7 @@ export const messages = {
   "time": "timp",
   "parenthash": "parenthash",
   "size": "mărime",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #
@@ -712,10 +714,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Înregistrarea nu a fost găsită!",
+  "record_not_found": "Nu a fost gasită nici o înregistrare!",
   "warning": "Avertizare",
-  "login_success": "Conectați-vă cu succes",
-  "logout_success": "Deconectați-vă de succes",
+  "login_success": "Logare cu succes",
+  "logout_success": "Delogare cu succes",
   /*
   ##################################################################################
   #                                                                                #
