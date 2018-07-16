@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-13072018                                                  #
-  #         Update Date: 13.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 8                                                    #
@@ -54,6 +54,7 @@ export const messages = {
   "height": "altura",
   "age": "edad",
   "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "producido por",
   "contract": "Contrato",
   "from": "desde",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transacciones realizadas en la última hora",
   "average_blocksize": "Tamaño promedio de bloque",
   "rich_list": "Riqueza",
-  "TRX_transaction_chart": "Gráfico de transacciones TRX",
+  "tron_transaction_chart": "Gráfico de transacciones Tron",
   "transactions_per_day": "Transacciones Diarias",
   /*
   ##################################################################################
@@ -678,6 +679,7 @@ export const messages = {
   "time": "tiempo",
   "parenthash": "parent hash",
   "size": "tamaño",
+  "blockchain_size": "tamaño de cadena",
   /*
   ##################################################################################
   #                                                                                #
@@ -711,10 +713,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "¡No se encontraron registros!",
+  "warning": "Advertencia",
+  "login_success": "Inició sesión correctamente",
+  "logout_success": "Cerró sesión con éxito",
   /*
   ##################################################################################
   #                                                                                #

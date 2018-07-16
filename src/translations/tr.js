@@ -54,6 +54,7 @@ export const messages = {
   "height": "yükseklik",
   "age": "yaş",
   "bytes": "Bayt",
+  "MByte": "MByte",
   "produced by": "üreten",
   "contract": "Sözleşme",
   "from": "gönderen",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "TRX_transaction_chart": "TRX İşlem Grafiği",
+  "tron_transaction_chart": "Tron İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
   /*
   ##################################################################################
@@ -682,6 +683,7 @@ export const messages = {
   "time": "zaman",
   "parenthash": "önceki hash",
   "size": "boyut",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

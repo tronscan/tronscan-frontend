@@ -54,6 +54,7 @@ export const messages = {
   "height": "ارتفاع",
   "age": "سن",
   "bytes": "بایت",
+  "MByte": "MByte",
   "produced by": "تولید شده توسط",
   "contract": "قرارداد",
   "from": "از",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -677,6 +678,7 @@ export const messages = {
   "time": "زمان",
   "parenthash": "پدر و مادر",
   "size": "اندازه",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

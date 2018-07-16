@@ -54,6 +54,7 @@ export const messages = {
   "height": "висота",
   "age": "вік",
   "bytes": "байтів",
+  "MByte": "MByte",
   "produced by": "вироблено",
   "contract": "Контакти",
   "from": "від",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
-  "TRX_transaction_chart": "Діаграма транзакцій TRX",
+  "tron_transaction_chart": "Діаграма транзакцій Tron",
   "transactions_per_day": "Операції в день",
   /*
   ##################################################################################
@@ -678,6 +679,7 @@ export const messages = {
   "time": "час",
   "parenthash": "parenthash",
   "size": "розмір",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

@@ -54,6 +54,7 @@ export const messages = {
   "height": "chiều cao khối",
   "age": "tuổi của khối",
   "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "sản xuất bởi",
   "contract": "Hợp đồng",
   "from": "from",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Giao dịch trong giờ qua",
   "average_blocksize": "Kích thước trung bình của khối",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -680,6 +681,7 @@ export const messages = {
   "time": "time",
   "parenthash": "parenthash",
   "size": "size",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

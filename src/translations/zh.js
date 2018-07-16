@@ -52,6 +52,7 @@ export const messages = {
   "height": "高度",
   "age": "年龄",
   "bytes": "字节",
+  "MByte": "兆字节",
   "produced by": "出块者",
   "contract": "合约",
   "from": "发送人",
@@ -138,7 +139,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
-  "transactions_last_day": "过去一天交易量",
+  "transactions_last_day": "过去一天交易数",
   /*
   ##################################################################################
   #                                                                                #
@@ -181,7 +182,7 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "TRX_transaction_chart": "TRX交易图表",
+  "tron_transaction_chart": "Tron交易数图表",
   "transactions_per_day": "日交易数",
   /*
   ##################################################################################
@@ -662,6 +663,7 @@ export const messages = {
   "time": "时间",
   "parenthash": "父哈希",
   "size": "大小",
+  "blockchain_size": "区块链大小",
   /*
   ##################################################################################
   #                                                                                #
@@ -695,10 +697,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "未找到记录!",
+  "warning": "警告",
+  "login_success": "登陆成功",
+  "logout_success": "登出成功",
   /*
   ##################################################################################
   #                                                                                #
@@ -749,7 +751,7 @@ export const messages = {
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
   "addresses_amount": "地址数",
-  "past_14_days_of_transactions": "过去14天交易量",
+  "past_14_days_of_transactions": "过去14天交易数",
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",

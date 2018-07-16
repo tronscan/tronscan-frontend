@@ -54,6 +54,7 @@ export const messages = {
   "height": "height",
   "age": "age",
   "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "geproduceerd door",
   "contract": "Contract",
   "from": "van",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transacties gedurende het laatste uur",
   "average_blocksize": "Gemiddelde Blokgrootte",
   "rich_list": "Rich lijst",
-  "TRX_transaction_chart": "TRX Transactie Grafiek",
+  "tron_transaction_chart": "Tron Transactie Grafiek",
   "transactions_per_day": "Transacties Per Dag",
   /*
   ##################################################################################
@@ -670,6 +671,7 @@ export const messages = {
   "time": "tijd",
   "parenthash": "parenthash",
   "size": "grootte",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #
