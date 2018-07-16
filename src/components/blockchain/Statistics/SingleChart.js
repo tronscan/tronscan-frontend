@@ -1,18 +1,16 @@
 import React from "react";
 import xhr from "axios/index";
-import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
-import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
 
-import {LineReactAdd, LineReactBlockSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
+import {LineReactAdd, LineReactBlockSize, LineReactBlockchainSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
@@ -28,6 +26,7 @@ class Statistics extends React.Component {
       txOverviewStats: null,
       addressesStats: null,
       blockSizeStats: null,
+      blockchainSizeStats: null,
       priceStats: null,
     };
   }
@@ -58,8 +57,6 @@ class Statistics extends React.Component {
 
 
   async loadStats() {
-
-    let {intl} = this.props;
 
     let {stats} = await Client.getTransferStats({
       groupby: 'timestamp',
@@ -108,6 +105,7 @@ class Statistics extends React.Component {
     let temp = [];
     let addressesTemp = [];
     let blockSizeStatsTemp = [];
+    let blockchainSizeStatsTemp = [];
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
       if (tx === 0) {
@@ -137,19 +135,24 @@ class Statistics extends React.Component {
         date: txOverviewStats[tx].date,
         avgBlockSize: txOverviewStats[tx].avgBlockSize
       });
+      blockchainSizeStatsTemp.push({
+        date: txOverviewStats[tx].date,
+        blockchainSize: txOverviewStats[tx].blockchainSize
+      });
     }
 
     this.setState({
       txOverviewStats: temp,
       addressesStats: addressesTemp,
       blockSizeStats: blockSizeStatsTemp,
+      blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
     });
   }
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -183,6 +186,16 @@ class Statistics extends React.Component {
                         blockSizeStats === null ?
                             <TronLoader/> :
                             <LineReactBlockSize style={{height: 500}} data={blockSizeStats} intl={intl}/>
+                      }
+                    </div>
+                  }
+                  {
+                    match.params.chartName === 'blockchainSizeStats' &&
+                    <div style={{height: 500}}>
+                      {
+                        blockchainSizeStats === null ?
+                            <TronLoader/> :
+                            <LineReactBlockchainSize style={{height: 500}} data={blockchainSizeStats} intl={intl}/>
                       }
                     </div>
                   }

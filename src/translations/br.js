@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Portuguese - Brazil                                          #
   #         Status: Second Draft                                                   #
   #         Number of checks: 4                                                    #
@@ -53,7 +53,8 @@ export const messages = {
   "login": "entrar",
   "height": "altura",
   "age": "idade",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "produzido por",
   "contract": "Contrato",
   "from": "de",
@@ -170,7 +171,7 @@ export const messages = {
   "asset_participation": "Participação do ativo",
   "loading_transaction": "Carregando Transação",
   "nodes_ranking": "Classificação dos Nós",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total de Contas no Último Dia",
   /*
   ##################################################################################
   #                                                                                #
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transações na última hora",
   "average_blocksize": "Tamanho Médio do Bloco",
   "rich_list": "Lista dos Ricos",
-  "TRX_transaction_chart": "Gráfico de Transações TRX ",
+  "tron_transaction_chart": "Gráfico de Transações Tron ",
   "transactions_per_day": "Transações Por Dia",
   /*
   ##################################################################################
@@ -546,7 +547,7 @@ export const messages = {
   "volume": "Volume",
   "usd": "USD",
   "average_price": "preço médio",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "click_the_chart_title_to_find_more": "Clique no título do gráfico para mais informações.",
   /*
   ##################################################################################
   #                                                                                #
@@ -676,6 +677,44 @@ export const messages = {
   "time": "hora",
   "parenthash": "parenthash",
   "size": "tamanho",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Guia para Ledger",
+  "requirements": "Requisitos",
+  "using_ledger_steps_message_0": "Utilizar a Ledger com o Tronscan requer os seguintes passos:",
+  "a": "Uma",
+  "install_the": "Instale o",
+  "app": "app",
+  "install_latest_version_message_0": "Instale a última versão do",
+  "opening_your_wallet": "Abrindo sua Carteira",
+  "open_the_tronscan_desktop_client": "Abra o cliente Tronscan Desktop",
+  "click_open_wallet_top_right": "Clique em 'Open Wallet' no canto superior direito",
+  "choose_ledger": "Escolha Ledger",
+  "connect_unlock_ledger_with_pin": "Conecte e desbloqueie seu dispositivo com o seu código PIN",
+  "open_tron_app_on_ledger": "Abra o app Tron app na sua Ledger",
+  "ledger_connected_tronscan_message_0": "Se sua Ledger estiver conectada corretamente, o Tronscan irá mostrar a mensagem 'Connected'",
+  "click_on_open_wallet": "Clique em 'Open Wallet'",
+  "redirect_to_your_wallet_message": "Você será redirecionado para a sua carteira e poderá ver seu endereço Tron",
+  "using_ledger_to_sign_transactions": "Usando a Ledger para assinar transações",
+  "using_ledger_to_sign_transactions_message_0": "Certifique-se de que a Ledger está conectada e o Tron app aberto para assinar transações utilizando a Ledger enquanto usa o Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan irá mostrar uma mensagem popup com os detalhes da transação quando uma assinatura de transação for necessária. Assinaturas são necessárias toda hora que você vota, envia TRX, troca o nome da conta, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Registro não encontrado!",
+  "warning": "Atenção",
+  "login_success": "Login realizado com sucesso",
+  "logout_success": "Logout realizado com sucesso",
   /*
   ##################################################################################
   #                                                                                #

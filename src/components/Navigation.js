@@ -47,9 +47,9 @@ class Navigation extends PureComponent {
     };
   }
   componentDidUpdate() {
-    let { account, wallet } = this.props;
+    let { intl, account, wallet } = this.props;
     if(account.isLoggedIn && wallet.isOpen && !this.loginFlag){
-      toastr.info('Success', 'Login success');
+      toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'login_success'}));
       this.loginFlag=true;
     }
 
@@ -158,9 +158,10 @@ class Navigation extends PureComponent {
   };
 
   logout = () => {
+    let {intl} = this.props;
     this.props.logout();
     this.loginFlag=false;
-    toastr.info('Success', 'Logout success');
+    toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'logout_success'}));
   };
 
   componentWillUnmount() {
@@ -178,6 +179,7 @@ class Navigation extends PureComponent {
 
   doSearch = async () => {
 
+    let {intl} = this.props;
     let {search} = this.state;
     let type = getSearchType(search);
 
@@ -188,7 +190,7 @@ class Navigation extends PureComponent {
       window.location.hash = result;
       this.setState({search: ""});
     } else {
-      toastr.warning('Warning', 'Record not found!');
+      toastr.warning(intl.formatMessage({id:'warning'}), intl.formatMessage({id:'record_not_found'}));
     }
   };
 

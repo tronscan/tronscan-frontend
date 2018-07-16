@@ -31,12 +31,12 @@ class TokenList extends Component {
       start: (page - 1) * pageSize,
     });
 
-    function compare(property1, property2) {
+    function compare(property) {
       return function (obj1, obj2) {
 
-        if (obj1[property1] / obj1[property2] > obj2[property1] / obj2[property2]) {
+        if (obj1[property] > obj2[property]) {
           return -1;
-        } else if (obj1[property1] / obj1[property2] < obj2[property1] / obj2[property2]) {
+        } else if (obj1[property] < obj2[property]) {
           return 1;
         } else {
           return 0;
@@ -45,7 +45,7 @@ class TokenList extends Component {
       }
     }
 
-    tokens = tokens.sort(compare('issued', 'totalSupply'));
+    tokens = tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,

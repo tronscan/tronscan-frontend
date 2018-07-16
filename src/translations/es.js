@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 8                                                    #
@@ -53,7 +53,8 @@ export const messages = {
   "login": "iniciar sesión",
   "height": "altura",
   "age": "edad",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "producido por",
   "contract": "Contrato",
   "from": "desde",
@@ -170,7 +171,7 @@ export const messages = {
   "asset_participation": "Participación de activos",
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
   /*
   ##################################################################################
   #                                                                                #
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transacciones realizadas en la última hora",
   "average_blocksize": "Tamaño promedio de bloque",
   "rich_list": "Riqueza",
-  "TRX_transaction_chart": "Gráfico de transacciones TRX",
+  "tron_transaction_chart": "Gráfico de transacciones Tron",
   "transactions_per_day": "Transacciones Diarias",
   /*
   ##################################################################################
@@ -194,9 +195,9 @@ export const messages = {
   */
   "set_name": "Escriba su nombre",
   "unique_account_message": "Sólo puede establecer el nombre de su cuenta una vez!",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
-  "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
+  "name_to_short": "El nombre es demasiado corto",
+  "name_to_long": "El nombre es demasiado largo",
+  "permitted_characters_message": "El nombre solo puede contener a-z A-Z 0-9 ",
   "change_name": "Cambiar Nombre",
   "account_name": "Nombre de la cuenta",
   "show_qr_code": "Mostrar código QR",
@@ -398,7 +399,7 @@ export const messages = {
   "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
   "ends": "finalidades",
   "starts": "inicios",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "se puede desbloquear en",
   /*
   ##################################################################################
   #                                                                                #
@@ -436,7 +437,7 @@ export const messages = {
   "quantity": "cantidad",
   "percentage": "Porcentaje",
   "loading_token": "Cargando Token",
-  "voter_percentage": "Voter Percentage",
+  "voter_percentage": "Porcentaje de votantes",
   /*
   ##################################################################################
   #                                                                                #
@@ -546,9 +547,9 @@ export const messages = {
   "rank": "Puesto",
   "pair": "Par",
   "volume": "Volumen",
-  "usd": "usd",
-  "average_price": "average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "usd": "USD",
+  "average_price": "Precio medio",
+  "click_the_chart_title_to_find_more": "Haga clic en el título del gráfico para saber más.",
   /*
   ##################################################################################
   #                                                                                #
@@ -635,8 +636,8 @@ export const messages = {
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
   "report_an_error": "Informe de un error / sugerencia",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "Preguntas Frecuentes",
+  "telegram_updates": "Novedades en Telegram",
   /*
   ##################################################################################
   #                                                                                #
@@ -657,11 +658,11 @@ export const messages = {
   "strong_password_info": "Se requiere una contraseña segura",
   "save_keystore_file": "Guarde su archivo Clave Cifrada",
   "download_keystore_file": "Descargue su Clave cifrada",
-  "do_not_lose_it": "Recuerde. No la pierda!",
+  "do_not_lose_it": "¡Recuerde, no la pierda!",
   "do_not_lose_it_message_0": "La Fundación Tron no puede ayudarle a recuperar una clave perdida.",
-  "do_not_share_it": "Tampoco la comparta!",
+  "do_not_share_it": "¡Tampoco la comparta!",
   "do_not_share_it_message_0": "¡Ojo! Pueden robar sus fondos si usa este archivo de una manera irresponsable.",
-  "make_a_backup": "Realice una copia de seguridad!",
+  "make_a_backup": "¡Realice una copia de seguridad!",
   "make_a_backup_message_0": "En caso de que su equipo se incendie.",
   "save_private_key": "Guarde su clave privada",
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
@@ -678,6 +679,44 @@ export const messages = {
   "time": "tiempo",
   "parenthash": "parent hash",
   "size": "tamaño",
+  "blockchain_size": "tamaño de cadena",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Guía para Ledger",
+  "requirements": "Requisitos",
+  "using_ledger_steps_message_0": "Para usar Ledger con Tronscan necesita lo siguiente:",
+  "a": "Un",
+  "install_the": "Instale la aplicación ",
+  "app": "",
+  "install_latest_version_message_0": "Instala la última versión de ",
+  "opening_your_wallet": "Acceda a su cartera",
+  "open_the_tronscan_desktop_client": "Abra el cliente de escritorio Tronscan",
+  "click_open_wallet_top_right": "Haga clic en 'Abrir cartera' en la parte superior derecha",
+  "choose_ledger": "Elija Ledger",
+  "connect_unlock_ledger_with_pin": "Conecte y desbloquee su dispositivo con su código PIN",
+  "open_tron_app_on_ledger": "Abra la aplicación Tron en su Ledger",
+  "ledger_connected_tronscan_message_0": "Si su Ledger está conectado correctamente, Tronscan mostrará el mensaje de 'Conectado'",
+  "click_on_open_wallet": "Haga clic en 'Abrir Cartera'",
+  "redirect_to_your_wallet_message": "Será redirigido a su cartera y podrá ver su dirección Tron",
+  "using_ledger_to_sign_transactions": "Usar Ledger para firmar transacciones",
+  "using_ledger_to_sign_transactions_message_0": "Asegúrese de mantener Ledger conectado y la aplicación Tron abierta para firmar transacciones mientras hace uso del cliente de escritorio de Tronscan",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan mostrará una ventana emergente con los detalles de la transacción cuando se requiera una firma de la misma. Se requieren firmas cada vez que se vote, envíe TRX, cambie el nombre de la cuenta, etc...",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "¡No se encontraron registros!",
+  "warning": "Advertencia",
+  "login_success": "Inició sesión correctamente",
+  "logout_success": "Cerró sesión con éxito",
   /*
   ##################################################################################
   #                                                                                #
@@ -731,8 +770,8 @@ export const messages = {
   "past_14_days_of_transactions": "Transacciones de los últimos 14 días",
   "address_growth": "Crecimiento de la Dirección",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "Transferencias Token",
+  "website_url": "URL del sitio web",
+  "search": "Buscar"
 
 };

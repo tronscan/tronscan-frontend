@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: ahm37k(Ahmet)                                            #
   #                                                                                #
   ##################################################################################
@@ -53,7 +53,8 @@ export const messages = {
   "login": "giriş",
   "height": "yükseklik",
   "age": "yaş",
-  "bytes": "bayt",
+  "bytes": "Bayt",
+  "MByte": "MByte",
   "produced by": "üreten",
   "contract": "Sözleşme",
   "from": "gönderen",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "TRX_transaction_chart": "TRX İşlem Grafiği",
+  "tron_transaction_chart": "Tron İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
   /*
   ##################################################################################
@@ -550,8 +551,8 @@ export const messages = {
   "rank": "sıralama",
   "pair": "çifti",
   "volume": "Hacim",
-  "usd": "usd",
-  "average_price": "average Price",
+  "usd": "USD",
+  "average_price": "Average Price",
   "click_the_chart_title_to_find_more": "Daha Fazla Bilgil için Grafik Başlığına Tıkla.",
   /*
   ##################################################################################
@@ -682,6 +683,44 @@ export const messages = {
   "time": "zaman",
   "parenthash": "önceki hash",
   "size": "boyut",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Rehberi",
+  "requirements": "Gereksinimler",
+  "using_ledger_steps_message_0": "Tron ile Ledger'ı kullanmak için aşağıdaki adımların izlenmesi gerekir:",
+  "a": "Bir",
+  "install_the": "İsmi",
+  "app": "olan uygulamanın yüklenmesi",
+  "install_latest_version_message_0": "Bu uygulamanın son sürümünün yüklenmesi: ",
+  "opening_your_wallet": "Cüzdanınızın açılması",
+  "open_the_tronscan_desktop_client": "Tronscan Desktop uygulamasını açınız",
+  "click_open_wallet_top_right": "Sağ üst köşedeki 'CÜZDAN'I AÇ' kısmına tıklayınız",
+  "choose_ledger": "Ledger'ı tercih etmeniz",
+  "connect_unlock_ledger_with_pin": "Cihazı bağlayıp PIN kodunuz ile cihazın kilidini çözmeniz",
+  "open_tron_app_on_ledger": "Ledger'da Tron app'i açmanız",
+  "ledger_connected_tronscan_message_0": "Ledger düzgün bir şekilde bağlandığında Tronscan ekranında 'Bağlandı' ifadesi görünür",
+  "click_on_open_wallet": "Cüzdan'ı aç 'menüsüne tıklayınız'",
+  "redirect_to_your_wallet_message": "Cüzdanınıza yönlendirilecek ve Tron adresinizi görüntüleyebileceksiniz",
+  "using_ledger_to_sign_transactions": "Ledger'ı kullanarak işlemleri imzalamak",
+  "using_ledger_to_sign_transactions_message_0": "Ledger'ın bağlı olduğundan emin olun. Ledger'daki Tron app ile Tronscan Desktop kullanırken yapılan işlemleri imzalayabileceksiniz",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan imzalanması gereken bir işlem olduğunda, işlem detayları gösteren bir pencere açacaktır. İmzalar oy kullandığınızda, TRX gönderdiğinizde, hesap adını değiştirdiğinizde vb. gerekmektedir.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Kayıt bulunamadı!",
+  "warning": "Uyarı",
+  "login_success": "Giriş Başarılı",
+  "logout_success": "Çıkış Başarılı",
   /*
   ##################################################################################
   #                                                                                #
@@ -735,8 +774,8 @@ export const messages = {
   "past_14_days_of_transactions": "Son 14 Gündeki İşlem Adeti",
   "address_growth": "Adres Gelişimi",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "Jeton Transferleri",
+  "website_url": "Web sitesi URL'si",
+  "search": "Arama"
 
 };

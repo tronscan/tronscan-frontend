@@ -53,7 +53,8 @@ export const messages = {
   "login": "Anmelden",
   "height": "Größe",
   "age": "Zeitpunkt",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "erstellt von",
   "contract": "Vertrag",
   "from": "von",
@@ -183,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transaktionen der letzten Stunde",
   "average_blocksize": "Durchschnittliche Blockgröße",
   "rich_list": "Aufteilung TRX - Inhaber/Mengen",
-  "TRX_transaction_chart": "TRX Transaktions Chart",
+  "tron_transaction_chart": "Tron Transaktions Chart",
   "transactions_per_day": "Transaktionen pro Tag",
   /*
   ##################################################################################
@@ -684,6 +685,44 @@ export const messages = {
   "time": "Zeit",
   "parenthash": "Parenthash",
   "size": "Größe",
+  "blockchain_size": "Blockchain Größe",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Anleitung",
+  "requirements": "Anforderungen",
+  "using_ledger_steps_message_0": "Folgende Anforderungen müssen erfüllt sein, damit Sie Ihren Ledger auf Tronscan verwenden können:",
+  "a": "Sie benötigen ein",
+  "install_the": "Installieren Sie ",
+  "app": "Anwendung",
+  "install_latest_version_message_0": "Installieren Sie die letzte der Version der  ",
+  "opening_your_wallet": "So öffnen Sie Ihr Wallet",
+  "open_the_tronscan_desktop_client": "Öffnen Sie den Tronscan Desktop Client",
+  "click_open_wallet_top_right": "Klicken Sie auf die Schaltfläche 'Wallet Öffnen' auf der rechten oberen Seite.",
+  "choose_ledger": "Wählen Sie den Menüpunkt Ledger aus",
+  "connect_unlock_ledger_with_pin": "Verbinden und entsperren Sie Ihr Gerät mit Ihrem persönlichen PIN-Code.",
+  "open_tron_app_on_ledger": "Öffnen Sie die Tron-App auf Ihrem Ledger.",
+  "ledger_connected_tronscan_message_0": "Wenn Ihr Ledger mit der App verbunden ist wird Ihnen die Meldung 'Connected' dargestellt.",
+  "click_on_open_wallet": "Klicken Sie auf die Schaltfläche 'Wallet öffnen'",
+  "redirect_to_your_wallet_message": "Sie werden zu Ihrer Wallet weitergeleitet und können Ihre Tron-Adresse einsehen.",
+  "using_ledger_to_sign_transactions": "Verwenden Sie Ihren Ledger zum Signieren von Transaktionen",
+  "using_ledger_to_sign_transactions_message_0": "Stellen Sie während der Verwendung der Tronscan Desktop App und während dem Signieren der Transaktion sicher, dass der Ledger verbunden und die Tron-App geöffnet bleibt.",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan zeigt Ihnen wenn erforderlich eine Transaktionssignatur über ein Popup mit den Transaktionsdetails an. Das Signieren ist für folgende Aktionen notwendig: Teilnehmen an der SR Abstimmung, versenden von TRX, ändern vom Kontonamen, etc.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Keine Suchergebnisse gefunden!",
+  "warning": "Warnung",
+  "login_success": "Anmeldung erfolgreich",
+  "logout_success": "Erfolgreich Abgemeldet",
   /*
   ##################################################################################
   #                                                                                #
@@ -735,7 +774,7 @@ export const messages = {
   "address_growth_chart": "Adressstatistik",
   "addresses_amount": "Anzahl der Adressen",
   "past_14_days_of_transactions": "Transaktionen der letzten 14 Tage",
-  "address_growth": "Wachstumspotential",
+  "address_growth": "Wachstumspotential der Adresse",
   "power": "Power",
   "token_transfers": "Token-Übertragungen",
   "website_url": "Webseiten URL",

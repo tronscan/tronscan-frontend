@@ -52,6 +52,7 @@ export const messages = {
   "height": "高度",
   "age": "年龄",
   "bytes": "字节",
+  "MByte": "兆字节",
   "produced by": "出块者",
   "contract": "合约",
   "from": "发送人",
@@ -138,7 +139,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
-  "transactions_last_day": "过去一天交易量",
+  "transactions_last_day": "过去一天交易数",
   /*
   ##################################################################################
   #                                                                                #
@@ -181,7 +182,7 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "TRX_transaction_chart": "TRX交易图表",
+  "tron_transaction_chart": "Tron交易数图表",
   "transactions_per_day": "日交易数",
   /*
   ##################################################################################
@@ -530,8 +531,8 @@ export const messages = {
   "rank": "排名",
   "pair": "交易对",
   "volume": "交易量",
-  "usd": "美金",
-  "average_price": "平均价格",
+  "usd": "美元",
+  "average_price": "TRX平均价格",
   "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息",
   /*
   ##################################################################################
@@ -662,6 +663,44 @@ export const messages = {
   "time": "时间",
   "parenthash": "父哈希",
   "size": "大小",
+  "blockchain_size": "区块链大小",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Requirements",
+  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "a": "A",
+  "install_the": "Install the ",
+  "app": "app",
+  "install_latest_version_message_0": "Install the latest version of ",
+  "opening_your_wallet": "Opening your wallet",
+  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
+  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "choose_ledger": "Choose Ledger",
+  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
+  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
+  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "未找到记录!",
+  "warning": "警告",
+  "login_success": "登陆成功",
+  "logout_success": "登出成功",
   /*
   ##################################################################################
   #                                                                                #
@@ -712,7 +751,7 @@ export const messages = {
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
   "addresses_amount": "地址数",
-  "past_14_days_of_transactions": "过去14天交易量",
+  "past_14_days_of_transactions": "过去14天交易数",
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",

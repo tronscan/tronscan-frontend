@@ -13,7 +13,13 @@ import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
 
-import {LineReactAdd, LineReactBlockSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
+import {
+  LineReactAdd,
+  LineReactBlockSize,
+  LineReactBlockchainSize,
+  LineReactTx,
+  LineReactPrice
+} from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
@@ -29,6 +35,7 @@ class Statistics extends React.Component {
       txOverviewStats: null,
       addressesStats: null,
       blockSizeStats: null,
+      blockchainSizeStats: null,
       priceStats: null,
     };
   }
@@ -109,6 +116,7 @@ class Statistics extends React.Component {
     let temp = [];
     let addressesTemp = [];
     let blockSizeStatsTemp = [];
+    let blockchainSizeStatsTemp = [];
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
       if (tx === 0) {
@@ -138,19 +146,24 @@ class Statistics extends React.Component {
         date: txOverviewStats[tx].date,
         avgBlockSize: txOverviewStats[tx].avgBlockSize
       });
+      blockchainSizeStatsTemp.push({
+        date: txOverviewStats[tx].date,
+        blockchainSize: txOverviewStats[tx].blockchainSize
+      });
     }
 
     this.setState({
       txOverviewStats: temp,
       addressesStats: addressesTemp,
       blockSizeStats: blockSizeStatsTemp,
+      blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
     });
   }
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, priceStats} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats} = this.state;
     let {intl} = this.props;
 
     return (
@@ -210,7 +223,21 @@ class Statistics extends React.Component {
             <div className="col-md-6 mt-3">
               <div className="card">
                 <div className="card-body">
-
+                  <div style={{height: 350}}>
+                    {
+                      blockchainSizeStats === null ?
+                          <TronLoader/> :
+                          <LineReactBlockchainSize style={{height: 350}} data={blockchainSizeStats} intl={intl}/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
                   <div style={{height: 350}}>
                     {
                       priceStats === null ?
