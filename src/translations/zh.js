@@ -14,11 +14,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 3                                                    #
+  #         Number of checks: 4                                                    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -169,7 +169,7 @@ export const messages = {
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名（以国家/地区划分）",
-  "total_accounts_last_day":"截止上一天总账户数",
+  "total_accounts_last_day": "截止上一天总账户数",
   /*
   ##################################################################################
   #                                                                                #
@@ -671,25 +671,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "Ledger使用指南",
+  "requirements": "要求",
+  "using_ledger_steps_message_0": "在波场区块链浏览器上使用Ledger需进行以下步骤",
   "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_the": "安装 ",
+  "app": "APP",
+  "install_latest_version_message_0": "安装最新版本的",
+  "opening_your_wallet": "钱包打开中",
+  "open_the_tronscan_desktop_client": "打开波场区块链浏览器桌面版客户端",
+  "click_open_wallet_top_right": "点击右上角的“打开钱包”",
+  "choose_ledger": "选择Ledger",
+  "connect_unlock_ledger_with_pin": "连接并使用密码解锁设备",
+  "open_tron_app_on_ledger": "在Ledger上打开Tron APP ",
+  "ledger_connected_tronscan_message_0": "如您的Ledger已正常连接，波场区块链浏览器将显示“已连接” ",
+  "click_on_open_wallet": "点击“打开钱包”",
+  "redirect_to_your_wallet_message": "将跳转至您的钱包，可以在钱包查看您的波场地址",
+  "using_ledger_to_sign_transactions": "使用Ledger对交易进行签名",
+  "using_ledger_to_sign_transactions_message_0": "在使用Ledger和桌面版波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持Tron APP处于开启状态",
+  "using_ledger_to_sign_transactions_message_1": "需要对交易签名时，区块链浏览器会弹出窗口，显示交易信息。在投票、发送TRX、更改账户名称等过程中，都需要进行交易签名。",
   /*
   ##################################################################################
   #                                                                                #
