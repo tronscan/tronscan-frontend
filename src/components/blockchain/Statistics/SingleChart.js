@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
-import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
@@ -57,8 +56,6 @@ class Statistics extends React.Component {
 
 
   async loadStats() {
-
-    let {intl} = this.props;
 
     let {stats} = await Client.getTransferStats({
       groupby: 'timestamp',
