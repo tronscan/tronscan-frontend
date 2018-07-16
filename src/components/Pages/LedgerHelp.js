@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {HrefLink} from "../common/Links";
-import {tu,t} from "../../utils/i18n";
+import {tu} from "../../utils/i18n";
 
 export default class LedgerHelp extends Component {
 

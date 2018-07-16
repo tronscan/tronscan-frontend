@@ -713,6 +713,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Keine Suchergebnisse gefunden!",
+  "warning": "Warnung",
+  "login_success": "Anmeldung erfolgreich",
+  "logout_success": "Erfolgreich Abgemeldet",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
