@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         Language: Thai                                                         #
-  #         Status: Second Draft                                                   #
-  #         Number of checks: 4                                                    #
+  #         Status: Approved Draft                                                 #
+  #         Number of checks: 5                                                    #
   #         Participants: CookieArchitect                                          #
   #                                                                                #
   ##################################################################################
@@ -693,10 +693,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "ไม่พบข้อมูล!",
+  "warning": "คำเตือน",
+  "login_success": "เข้าสู่ระบบสำเร็จ",
+  "logout_success": "ออกจากระบบแล้ว",
   /*
   ##################################################################################
   #                                                                                #
