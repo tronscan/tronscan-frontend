@@ -138,7 +138,7 @@ export const messages = {
   "view_super_representatives": "查看超级代表",
   "create_new_wallet": "创建新钱包",
   "view_tokens": "查看通证",
-  "transactions_last_day": "过去一天交易量",
+  "transactions_last_day": "过去一天交易数",
   /*
   ##################################################################################
   #                                                                                #
@@ -696,10 +696,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "未找到记录!",
+  "warning": "警告",
+  "login_success": "登陆成功",
+  "logout_success": "登出成功",
   /*
   ##################################################################################
   #                                                                                #
