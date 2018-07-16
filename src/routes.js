@@ -125,7 +125,7 @@ export const routes = [
     showInMenu: false,
   },
   {
-    path: "/contract/:hash",
+    path: "/contract/:address",
     label: "contract",
     component: SmartContract,
     showInMenu: false,
