@@ -183,7 +183,7 @@ export const messages = {
   "transactions_past_hour": "Transactions in the past hour",
   "average_blocksize": "Average Block Size",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################

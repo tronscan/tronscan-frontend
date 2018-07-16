@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################

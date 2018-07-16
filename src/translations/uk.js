@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
-  "TRX_transaction_chart": "Діаграма транзакцій TRX",
+  "tron_transaction_chart": "Діаграма транзакцій Tron",
   "transactions_per_day": "Операції в день",
   /*
   ##################################################################################

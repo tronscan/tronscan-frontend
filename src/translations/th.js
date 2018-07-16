@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "จำนวนธุรกรรมในชั่วโมงที่แล้ว",
   "average_blocksize": "ขนาดบล็อกโดยเฉลี่ย",
   "rich_list": "รายการผู้ถือครองจำนวนมาก",
-  "TRX_transaction_chart": "แผนภูมิธุรกรรม TRX",
+  "tron_transaction_chart": "แผนภูมิธุรกรรม Tron",
   "transactions_per_day": "จำนวนธุรกรรมต่อวัน",
   /*
   ##################################################################################

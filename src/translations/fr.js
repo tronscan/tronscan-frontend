@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transactions dans l'heure passée",
   "average_blocksize": "Taille de bloc moyenne",
   "rich_list": "Allocation TRX - Détenteur/quantités",
-  "TRX_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "Tron Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################

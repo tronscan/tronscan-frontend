@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "TRX_transaction_chart": "TRX İşlem Grafiği",
+  "tron_transaction_chart": "Tron İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
   /*
   ##################################################################################

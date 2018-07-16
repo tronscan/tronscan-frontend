@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transaksjoner siste time",
   "average_blocksize": "Gjennomsnittlig Blokk Størrelse",
   "rich_list": "Liste",
-  "TRX_transaction_chart": "TRX Transaksjons skjema",
+  "tron_transaction_chart": "Tron Transaksjons skjema",
   "transactions_per_day": "Transaksjoner Per Dag",
   /*
   ##################################################################################

@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaktionskarta",
+  "tron_transaction_chart": "Tron Transaktionskarta",
   "transactions_per_day": "Transaktioner per dag",
   /*
   ##################################################################################
