@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {HrefLink} from "../common/Links";
+import {tu,t} from "../../utils/i18n";
 
 export default class LedgerHelp extends Component {
 
@@ -11,54 +12,54 @@ export default class LedgerHelp extends Component {
           <div className="col-md-12">
             <div className="card">
               <div className="card-body">
-                <h1 className="text-center">Ledger Guide</h1>
-                <h3>Requirements</h3>
-                <p>Using the Ledger with Tronscan requires the following steps:</p>
+                <h1 className="text-center">{tu('ledger_guide')}</h1>
+                <h3>{tu('requirements')}</h3>
+                <p>{tu('using_ledger_steps_message_0')}</p>
                 <ol>
                   <li>
-                    A <HrefLink href="https://www.ledgerwallet.com/products/ledger-nano-s)">Ledger Nano S</HrefLink>
+                    {tu('a')} <HrefLink href="https://www.ledgerwallet.com/products/ledger-nano-s)">Ledger Nano S</HrefLink>
                   </li>
                   <li>
-                    Install the <HrefLink href="https://www.ledgerwallet.com/live">Ledger Live</HrefLink> app
+                    {tu('install_the')}<HrefLink href="https://www.ledgerwallet.com/live"> Ledger Live </HrefLink> {tu('app')}
                   </li>
                   <li>
-                    Install the latest version of <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">Tronscan Desktop</HrefLink>
+                    {tu('install_latest_version_message_0')} <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">Tronscan Desktop</HrefLink>
                   </li>
                 </ol>
-                <h3>Opening your wallet</h3>
+                <h3>{tu('opening_your_wallet')}</h3>
                 <ol>
                   <li>
-                    Open de Tronscan Desktop client
+                    {tu('open_the_tronscan_desktop_client')}
                   </li>
                   <li>
-                    Click &ldquo;Open Wallet&rdquo; at the top right
+                    {tu('click_open_wallet_top_right')}
                   </li>
                   <li>
-                    Choose Ledger
+                    {tu('choose_ledger')}
                   </li>
                   <li>
-                    Connect and unlock your device with your PIN code
+                    {tu('connect_unlock_ledger_with_pin')}
                   </li>
                   <li>
-                    Open the Tron app on your Ledger
+                    {tu('open_tron_app_on_ledger')}
                   </li>
                   <li>
-                    If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo;
+                    {tu('ledger_connected_tronscan_message_0')}
                   </li>
                   <li>
-                    Click on &ldquo;Open Wallet&rdquo;
+                    {tu('click_on_open_wallet')}
                   </li>
                   <li>
-                    You will be redirected to your wallet and you can view your Tron address
+                    {tu('redirect_to_your_wallet_message')}
                   </li>
                 </ol>
-                <h3>Using the ledger to sign transactions</h3>
+                <h3>{tu('using_ledger_to_sign_transactions')}</h3>
                 <ol>
                   <li>
-                    Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop
+                    {tu('using_ledger_to_sign_transactions_message_0')}
                   </li>
                   <li>
-                    Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..
+                    {tu('using_ledger_to_sign_transactions_message_1')}
                   </li>
                 </ol>
               </div>
