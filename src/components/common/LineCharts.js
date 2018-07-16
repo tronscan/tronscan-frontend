@@ -395,12 +395,12 @@ export class LineReactBlockchainSize extends React.Component {
    // _config.xAxis[0].boundaryGap = true;
     _config.xAxis[0].data = [];
     _config.series[0].data = [];
-    _config.yAxis[0].name = intl.formatMessage({id: 'bytes'});
+    _config.yAxis[0].name = intl.formatMessage({id: 'MByte'});
     _config.tooltip.formatter = function (datas) {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-          intl.formatMessage({id: 'blockchian_size'}) + ' : ' + datas[0].data.blockchainSize
+          intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize/1000000
       )
 
     }
@@ -408,7 +408,7 @@ export class LineReactBlockchainSize extends React.Component {
     if (data && data.length > 0) {
       data.map((val) => {
         let temp;
-        temp = {...val, value: val.blockchainSize};
+        temp = {...val, value: val.blockchainSize/1000000};
         _config.xAxis[0].data.push(intl.formatDate(val.date));
         _config.series[0].data.push(temp);
       })
