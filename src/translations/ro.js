@@ -713,10 +713,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Înregistrarea nu a fost găsită!",
+  "record_not_found": "Nu a fost gasită nici o înregistrare!",
   "warning": "Avertizare",
-  "login_success": "Conectați-vă cu succes",
-  "logout_success": "Deconectați-vă de succes",
+  "login_success": "Logare cu succes",
+  "logout_success": "Delogare cu succes",
   /*
   ##################################################################################
   #                                                                                #
