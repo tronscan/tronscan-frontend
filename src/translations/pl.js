@@ -673,6 +673,7 @@ export const messages = {
   "time": "czas",
   "parenthash": "nadrzędny hash",
   "size": "wielkość",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #

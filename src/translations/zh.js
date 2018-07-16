@@ -662,6 +662,7 @@ export const messages = {
   "time": "时间",
   "parenthash": "父哈希",
   "size": "大小",
+  "blockchain_size": "区块链大小",
   /*
   ##################################################################################
   #                                                                                #
@@ -749,7 +750,7 @@ export const messages = {
   "daily_increment": "日增长数",
   "address_growth_chart": "地址增长图表",
   "addresses_amount": "地址数",
-  "past_14_days_of_transactions": "过去14天交易量",
+  "past_14_days_of_transactions": "过去14天交易数",
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",

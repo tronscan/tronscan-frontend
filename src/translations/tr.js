@@ -682,6 +682,7 @@ export const messages = {
   "time": "zaman",
   "parenthash": "önceki hash",
   "size": "boyut",
+  "blockchain_size": "Blockchain Size",
   /*
   ##################################################################################
   #                                                                                #
