@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-13072018                                                  #
-  #         Update Date: 13.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 8                                                    #
@@ -712,10 +712,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "record_not_found": "¡No se encontraron registros!",
+  "warning": "Advertencia",
+  "login_success": "Inició sesión correctamente",
+  "logout_success": "Cerró sesión con éxito",
   /*
   ##################################################################################
   #                                                                                #
