@@ -63,7 +63,7 @@ export const messages = {
   "total_accounts": "Account totali",
   "submit": "invia",
   "send": "invia",
-  "receive": "ricevere",
+  "receive": "Ricevi",
   "supply": "fornitura",
   "view": "vedi",
   "view_all": "Vedi tutto",
@@ -765,7 +765,7 @@ export const messages = {
   "addresses_amount": "Quantità indirizzi",
   "past_14_days_of_transactions": "Ultimi 14 giorni di transazioni",
   "address_growth": "Incremento indirizzi",
-  "power": "Potere",
+  "power": "Power",
   "token_transfers": "Trasferimenti di Token",
   "website_url": "URL Sito Web",
   "search": "Cerca"
