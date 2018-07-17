@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
   "send_tokens": "skicka Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #

@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "ประเภทสัญญา",
   "filters": "ฟิลเตอร์",
   "send_tokens": "ส่งโทเคน",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #

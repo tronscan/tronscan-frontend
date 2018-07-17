@@ -98,6 +98,7 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Send Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #

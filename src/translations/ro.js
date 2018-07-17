@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Tip Contract",
   "filters": "Filtre",
   "send_tokens": "Trimiteți jetoane",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #

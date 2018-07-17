@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Sözleşme Tipi",
   "filters": "Süzgeçler",
   "send_tokens": "Jeton Gönder",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #

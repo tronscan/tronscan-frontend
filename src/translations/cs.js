@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Typ smlouvy",
   "filters": "Filtry",
   "send_tokens": "Odeslat známky",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
