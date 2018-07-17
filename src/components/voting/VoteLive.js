@@ -79,17 +79,6 @@ class VoteLive extends React.Component {
 
     return (
         <main className="container header-overlap pb-3">
-          <div className="card">
-            <div className="card-header text-center">
-              {tu("3_day_ranking")}
-            </div>
-            {
-              data === null ?
-              <TronLoader/> :
-              <MultiLineReact style={{height: 400}} newCandidates={newCandidates} data={data}/>
-            }
-            {/*<VoteStats colors={colors} newCandidates={newCandidates}/>*/}
-          </div>
           <div className="card mt-3">
             <div className="card-header text-center">
               {tu("live_ranking")}
