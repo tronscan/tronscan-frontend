@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Protocol Tron",
+  "app_title": "Protocol TRON",
   "password": "parolă",
   "money_price": "preț",
   "price": "preț",
@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Tranzacții în ultima oră",
   "average_blocksize": "Mărimea medie de block",
   "rich_list": "Listă bogați",
-  "tron_transaction_chart": "Diagramă tranzacții Tron",
+  "tron_transaction_chart": "Diagramă tranzacții TRON",
   "transactions_per_day": "Tranzacții pe zi",
   /*
   ##################################################################################
@@ -204,7 +204,7 @@ export const messages = {
   "do_not_send_2": "Nu trimiteți TRX din propriul portofel sau exchange la adresa de cont de la rețeaua de test!",
   "bandwidth": "lățime de bandă",
   "balance": "balanță",
-  "tron_power": "Putere Tron",
+  "tron_power": "Putere TRON",
   "transactions": "tranzacții",
   "no_transfers": "Nici un Transfer",
   "no_tokens": "Nici un Token",
@@ -241,8 +241,8 @@ export const messages = {
   "unfreeze": "dezghețare",
   "freeze_trx_least": "Aveți nevoie de cel puțin 1 TRX ca să înghețați",
   "unable_unfreeze_trx_message": "Imposibil de dezghețat TRX. Aceast lucru poate fi cauzat de faptul că perioada de înghețare minimă nu a fost atinsă.",
-  "freeze_trx_premessage_0": `TRX poate fi înghețat/blocat pentru a caștiga Tron Power și a debloca caracteristici adiționale.
-   De exemplu, cu Tron Power puteți să `,
+  "freeze_trx_premessage_0": `TRX poate fi înghețat/blocat pentru a caștiga TRON Power și a debloca caracteristici adiționale.
+   De exemplu, cu TRON Power puteți să `,
   "freeze_trx_premessage_link": "votați pentru Super Reprezentanți.",
   "freeze_trx_premessage_1": ` Tokenii înghețați sunt "blocați" pentru o perioadă de 3 zile. În această perioadă TRX-ul înghețat nu poate fi tranzacționat.
    După această perioadă puteți să dezghețați TRX și să tranzacționați tokeni.`,
@@ -315,7 +315,7 @@ export const messages = {
   "apply_representative_error_message_1": "Asigurați-vă că aveți destul TRX pentru taxă, sau încercați mai tarziu.",
   "open_external_link": "Deschideți un link extern",
   "private_key_untrusted_website_message_0": "Nu introduceți niciodată cheia privată pe un website nesigur.",
-  "no_official_tron_website": "acesta nu este un site oficial Tron.",
+  "no_official_tron_website": "acesta nu este un site oficial TRON.",
   "continue_to_external_website": "Continuați către site-ul extern",
   "url_changed": "URL schimbat",
   "successfully_changed_website_message": "Website schimbat cu succes în ",
@@ -486,7 +486,7 @@ export const messages = {
   "start_date": "Dată Start",
   "end_date": "Dată Sfârșit",
   "token_spend_confirm": "Confirm că supply-ul total al tokenilor costă o taxă unică de 1024 TRX.",
-  "token_issue_guide_message_1": `Emiterea unui token pe Tron Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
+  "token_issue_guide_message_1": `Emiterea unui token pe TRON Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
   "token_issue_guide_message_2":`Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
     Utilizatorii pot apoi să participe în perioada de participare şi să schimbe TRXul lor pentru tokeni.`,
   "token_issue_guide_message_3":`După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
@@ -563,7 +563,7 @@ export const messages = {
   "most_ranks": "Cele mai multe ranguri câștigate runda aceasta",
   "view_live_ranking": "Vizualizare Rang Live",
   "open_team_page": "Dechide pagina echipei",
-  "warning_votes": "Cel puțin 1 Tron Putere este necesar pentru a începe votul. Puterea Tron este câștigată înghețând TRX pe",
+  "warning_votes": "Cel puțin 1 TRON Putere este necesar pentru a începe votul. Puterea TRON este câștigată înghețând TRX pe",
   "account_page": "Pagina de Cont",
   "loading_votes": "Încărcare Voturi",
   "3_day_ranking": "Rangul pe 3 zile",
@@ -633,7 +633,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Ce este TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Arhitectura TRON ",
   "tron_protobuf_doc": "Documentare TRON Protobuf ",
   "report_an_error": "Arată un bug / sugestie",
@@ -660,7 +660,7 @@ export const messages = {
   "save_keystore_file": "Salvați-vă fișierul Keystore",
   "download_keystore_file": "Descărcați Cheia Criptată",
   "do_not_lose_it": "Nu o pierdeți!",
-  "do_not_lose_it_message_0": "Fundația Tron nu vă poate ajuta să recuperați o cheie pierdută.",
+  "do_not_lose_it_message_0": "Fundația TRON nu vă poate ajuta să recuperați o cheie pierdută.",
   "do_not_share_it": "Nu o dați și altora!",
   "do_not_share_it_message_0": "Fondurile dumneavoastră pot fi furate dacă folosiți un fișier sau site malware.",
   "make_a_backup": "Faceți o rezervă!",
@@ -700,12 +700,12 @@ export const messages = {
   "click_open_wallet_top_right": "Clic pe 'Deschide Portofelul' sus dreapta",
   "choose_ledger": "Alegeți Registrul",
   "connect_unlock_ledger_with_pin": "Conectați-vă și descuiați dispozitivul cu codul PIN",
-  "open_tron_app_on_ledger": "Dechideți Tron app în Registru",
+  "open_tron_app_on_ledger": "Dechideți TRON app în Registru",
   "ledger_connected_tronscan_message_0": "Dacă Registrul este conectat corect atunci Tronscan va arăta 'Conectat'",
   "click_on_open_wallet": "Clic pe 'Deschide Portofelul'",
-  "redirect_to_your_wallet_message": "Veți fi redirecționat către portofel și vă veți putea vizualiza adresa Tron",
+  "redirect_to_your_wallet_message": "Veți fi redirecționat către portofel și vă veți putea vizualiza adresa TRON",
   "using_ledger_to_sign_transactions": "Folosirea registrului pentru a semna tranzacții",
-  "using_ledger_to_sign_transactions_message_0": "Asigurați-vă că țineți Registrul conectat și Tron app deschis pentru a semna tranzacții folosind Registrul în timp ce folosiți Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Asigurați-vă că țineți Registrul conectat și TRON app deschis pentru a semna tranzacții folosind Registrul în timp ce folosiți Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan va arăta un popup cu detaliile tranzacției când se necesită o semnătură de tranzacție. Semnăturile sunt necesare indiferent dacă votați, trimiteți TRX, schimbați numele contului, etc.",
   /*
   ##################################################################################

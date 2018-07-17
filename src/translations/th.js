@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "จำนวนธุรกรรมในชั่วโมงที่แล้ว",
   "average_blocksize": "ขนาดบล็อกโดยเฉลี่ย",
   "rich_list": "รายการผู้ถือครองจำนวนมาก",
-  "tron_transaction_chart": "แผนภูมิธุรกรรม Tron",
+  "tron_transaction_chart": "แผนภูมิธุรกรรม TRON",
   "transactions_per_day": "จำนวนธุรกรรมต่อวัน",
   /*
   ##################################################################################
@@ -204,7 +204,7 @@ export const messages = {
   "do_not_send_2": "อย่าทำการส่ง หรือแลกเปลี่ยน TRX โดยใช้วอลเล็ทของคุณ กับแอดเดรสบัญชีด้านบนของ Testnet! ",
   "bandwidth": "แบนด์วิดท์",
   "balance": "ยอดคงเหลือ",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "ธุรกรรม",
   "no_transfers": "ไม่มีการโอนย้าย",
   "no_tokens": "ไม่มีโทเคน",

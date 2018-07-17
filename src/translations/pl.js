@@ -184,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transakcje z ostatniej godziny",
   "average_blocksize": "Średnia wielkość bloku",
   "rich_list": "Lista najbogatszych kont",
-  "tron_transaction_chart": "Wykres transakcji Tron",
+  "tron_transaction_chart": "Wykres transakcji TRON",
   "transactions_per_day": "Transakcji dziennie",
   /*
   ##################################################################################
@@ -204,7 +204,7 @@ export const messages = {
   "do_not_send_2": "Nie wysyłaj TRX ze swojego własnego portfela lub portfela giełdy na powyższy adres znajdujący się w sieci testnet!",
   "bandwidth": "transfer",
   "balance": "Saldo konta",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transakcje",
   "no_transfers": "Brak transakcji",
   "no_tokens": "Brak tokenów",
@@ -241,8 +241,8 @@ export const messages = {
   "unfreeze": "odmroź",
   "freeze_trx_least": "Musisz posiadać co najmniej 1 TRX aby móc dokonać zamrożenia",
   "unable_unfreeze_trx_message": "Nie udało się odmrozić TRX. Możliwą przyczyną takiej sytuacji może być to, że minimalny okres zamrożenia jeszcze nie minął.",
-  "freeze_trx_premessage_0": `TRX mogą zostać zamrożone/zablokowane w celu uzyskania Tron Power i uzyskania dostępu do dodatkowych funkcji.
-   Na przykład, posiadając Tron Power możesz `,
+  "freeze_trx_premessage_0": `TRX mogą zostać zamrożone/zablokowane w celu uzyskania TRON Power i uzyskania dostępu do dodatkowych funkcji.
+   Na przykład, posiadając TRON Power możesz `,
   "freeze_trx_premessage_link": "zagłosuj na Super Reprezentantów.",
   "freeze_trx_premessage_1": ` Zamrożone tokeny pozostają "zablokowane" na okres 3 dni. W czasie tego okresu zamrożone TRX nie mogą przesyłane, wypłacane ani handlowane z innymi użytkownikami.
    Po tym okresie będziesz mógł/mogła odblokować swoje TRX i wystawić je na handel.`,
@@ -481,7 +481,7 @@ export const messages = {
   "start_date": "Data początkowa",
   "end_date": "Data końcowa",
   "token_spend_confirm": "Potwierdzam, że tworząc token zostanie mi pobrana jednorazowa opłata w wysokości 1024 TRX.",
-  "token_issue_guide_message_1": `Wydanie tokenu za pośrednictwem protokołu Tron jest możliwe do wykonania przez każdego, kto posiada przynajmniej 1024 TRX na swoim koncie.`,
+  "token_issue_guide_message_1": `Wydanie tokenu za pośrednictwem protokołu TRON jest możliwe do wykonania przez każdego, kto posiada przynajmniej 1024 TRX na swoim koncie.`,
   "token_issue_guide_message_2":`Utworzenie tokenu będzie wiązało się z jego wyświetleniem na stronie głównej tokenów. Użytkownicy mogą brać udział w dystrybucji tokenów i wymieniać swoje TRX za tokeny we wskazanym okresie.`,
   "token_issue_guide_message_3":`Po wydaniu tokenu, Twoje konto zostanie zasilone ilością tokenów równą ustawionej przez Ciebie cyrkulacji.
    W momencie kiedy inni użytkownicy wymienią swoje TRX na Twoje tokeny, odpowiednia ilość utworzonych przez Ciebie tokenów zostanie zabrana z Twojego konta, a w zamian otrzymasz ilość TRX zgodną z ustalonym przez Ciebie kursem wymiany.`,
@@ -654,7 +654,7 @@ export const messages = {
   "save_keystore_file": "Zapisz swój plik z magazynem kluczy",
   "download_keystore_file": "Pobierz zaszyfrowany klucz",
   "do_not_lose_it": "Nie zgub go!",
-  "do_not_lose_it_message_0": "Fundacja Tron nie będzie w stanie Ci pomóc w odzyskaniu utraconego klucza.",
+  "do_not_lose_it_message_0": "Fundacja TRON nie będzie w stanie Ci pomóc w odzyskaniu utraconego klucza.",
   "do_not_share_it": "Nie dziel się tym plikiem z nikim innym!",
   "do_not_share_it_message_0": "Twoje środki mogą zostać utracone, jeżeli użyjesz tego pliku na podejrzanej stronie.",
   "make_a_backup": "Zrób kopię zapasową!",
@@ -694,12 +694,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################
