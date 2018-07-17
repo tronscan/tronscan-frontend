@@ -96,7 +96,7 @@ class News extends Component {
                     </ul>
                     <p>
                       There are still many more features in development which will be announced in the coming weeks.
-                      The explorer will provide integrations with Mobile Tron Wallets, in a future update it will no
+                      The explorer will provide integrations with Mobile TRON Wallets, in a future update it will no
                       longer be required to use your private key in the browser!
                     </p>
                   </div>

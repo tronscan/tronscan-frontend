@@ -229,6 +229,11 @@ export const routes = [
         label: "system",
         component: System
       },
+      {
+        url: "https://github.com/tronscan/tronscan-desktop/releases",
+        icon: "fa fa-download",
+        label: "desktop_explorer"
+      },
     ]
   },
   {

@@ -125,9 +125,7 @@ class VoteLive extends React.Component {
                            style={{color: index < 15 ? '#' + colors[index] : null, ...style.rank}}>
                         {candidate.rank}
                       </div>
-                      <div className="mx-2">
-                        <Avatar value={candidate.address} size={style.avatar.height}/>
-                      </div>
+
                       <div className="media-body">
                   <span className="mt-0" style={style.row}>
                     <AddressLink address={candidate.address}>

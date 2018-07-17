@@ -367,7 +367,7 @@ class Navigation extends PureComponent {
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-bolt mr-2"/>
-                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron {tu("power")}
+                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> TRON {tu("power")}
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-tachometer-alt mr-2"/>
