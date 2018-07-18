@@ -15,6 +15,8 @@ import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
+import {TronLoader} from "../common/loaders";
+import {LineReactAdd, LineReactTx} from "../common/LineCharts";
 
 const subDays = require("date-fns/sub_days");
 
@@ -27,8 +29,8 @@ class Home extends Component {
       isShaking: false,
       hasFound: false,
       stats: {
-        totalAccounts:0,
-        previousTotalAccounts:0,
+        totalAccounts: 0,
+        previousTotalAccounts: 0,
         onlineNodes: 0,
         previousOnlineNodes: 0,
         blockHeight: 0,
@@ -36,6 +38,8 @@ class Home extends Component {
         transactionPerDay: 0,
         previousTransactionPerDay: 0,
       },
+      txOverviewStats: null,
+      addressesStats: null
     };
   }
 
@@ -46,30 +50,67 @@ class Home extends Component {
       sort: '-number',
     });
 
-    let {total: totalTransactions} = await Client.getTransfers({
-      limit: 1,
-      date_start: subDays(new Date(), 1),
-    });
-
+    /* let {total: totalTransactions} = await Client.getTransfers({
+       limit: 1,
+       date_start: subDays(new Date(), 1),
+     });
+    */
     let {total} = await Client.getNodeLocations();
 
-    let totalAccounts  = await Client.getAccounts();
+    //let totalAccounts = await Client.getAccounts();
+
+    let {txOverviewStats} = await Client.getTxOverviewStats();
+    let temp = [];
+    let addressesTemp = [];
+
+    for (let txs in txOverviewStats) {
+      let tx = parseInt(txs);
+      if (tx === 0) {
+        temp.push(txOverviewStats[tx]);
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].newAddressSeen,
+          increment: txOverviewStats[tx].newAddressSeen
+        });
+      }
+      else {
+        temp.push({
+          date: txOverviewStats[tx].date,
+          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          avgBlockTime: txOverviewStats[tx].avgBlockTime,
+          avgBlockSize: txOverviewStats[tx].avgBlockSize,
+          totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
+          newAddressSeen: txOverviewStats[tx].newAddressSeen
+        });
+        addressesTemp.push({
+          date: txOverviewStats[tx].date,
+          total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+          increment: txOverviewStats[tx].newAddressSeen
+        });
+      }
+    }
+
 
     this.setState(prevState => ({
+      txOverviewStats: temp.slice(temp.length - 14, temp.length),
+      addressesStats: addressesTemp,
       stats: {
-        totalAccounts:totalAccounts.total,
-        previousTotalAccounts:prevState.stats.totalAccounts,
+        totalAccounts: addressesTemp[addressesTemp.length - 1].total,
+        previousTotalAccounts: prevState.stats.totalAccounts,
         previousOnlineNodes: prevState.stats.onlineNodes,
         previousBlockHeight: prevState.stats.blockHeight,
         previousTransactionPerDay: prevState.stats.transactionPerDay,
+        transactionPerDay: temp[temp.length - 1].totalTransaction,
         onlineNodes: total,
-        blockHeight: blocks[0] ? blocks[0].number : 0,
-        transactionPerDay: totalTransactions,
+        blockHeight: blocks[0] ? blocks[0].number : 0
       },
     }));
+
   }
 
+
   doSearch = async () => {
+    let {intl} = this.props;
     let {search} = this.state;
     let type = getSearchType(search);
 
@@ -93,7 +134,7 @@ class Home extends Component {
         });
       }, 1000);
 
-      toastr.warning('Warning', 'Record not found!');
+      toastr.warning(intl.formatMessage({id:'warning'}),intl.formatMessage({id:'record_not_found'}));
     }
   }
 
@@ -118,7 +159,7 @@ class Home extends Component {
 
   getLogo = () => {
     let {theme} = this.props;
-    switch(theme) {
+    switch (theme) {
       case "tron":
         return require("../../images/tron-banner-tronblue.png");
       default:
@@ -128,7 +169,7 @@ class Home extends Component {
 
   render() {
     let {intl} = this.props;
-    let {search, isShaking, hasFound, stats} = this.state;
+    let {search, isShaking, hasFound, stats, txOverviewStats, addressesStats} = this.state;
 
     return (
       <main className="home pb-0">
@@ -174,13 +215,13 @@ class Home extends Component {
               </div>
             </div>
             <div className="row text-center home-stats ">
-              <div className="col-md-2 offset-md-1">
+              <div className="col-md-2">
                 <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousOnlineNodes} end={stats.onlineNodes} duration={1}/></h2>
                   <p>{tu("online_nodes")}</p>
                 </Link>
               </div>
-              <div className="col-md-2 ">
+              <div className="col-md-3 ">
                 <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousBlockHeight} end={stats.blockHeight} duration={1}/></h2>
                   <p>{tu("block_height")}</p>
@@ -193,10 +234,10 @@ class Home extends Component {
                   <p>{tu("transactions_last_day")}</p>
                 </Link>
               </div>
-              <div className="col-md-2 ">
+              <div className="col-md-3 ">
                 <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
-                  <p>{tu("total_accounts")}</p>
+                  <p>{tu("total_accounts_last_day")}</p>
                 </Link>
               </div>
               <div className="col-md-2 ">
@@ -211,6 +252,52 @@ class Home extends Component {
         </div>
         <div className="pb-4">
           <div className="container">
+            <div className="row mt-3">
+              <div className="col-md-6 mt-3 mt-md-0 ">
+                <div className="card">
+                  <div className="card-header bg-dark text-white d-flex">
+                    <h5 className="m-0 lh-150">
+                      <Link to="blockchain/stats/txOverviewStats" style={{color:'white'}}>
+                      {tu("past_14_days_of_transactions")}
+                      </Link>
+                    </h5>
+                  </div>
+                  <div className="card-body">
+
+                    <div style={{height: 250}}>
+                      {
+                        txOverviewStats === null ?
+                            <TronLoader/> :
+                            <LineReactTx style={{height: 250}} data={txOverviewStats} intl={intl} source='home'/>
+                      }
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6 mt-3 mt-md-0 ">
+                <div className="card">
+                  <div className="card-header bg-dark text-white d-flex">
+                    <h5 className="m-0 lh-150">
+                      <Link to="blockchain/stats/addressesStats" style={{color:'white'}}>
+                        {tu("address_growth")}
+                      </Link>
+                    </h5>
+                  </div>
+                  <div className="card-body">
+
+                    <div style={{height: 250}}>
+                      {
+                        addressesStats === null ?
+                            <TronLoader/> :
+                            <LineReactAdd style={{height: 250}} data={addressesStats} intl={intl} source='home'/>
+                      }
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row mt-3">
               <div className="col-md-6 mt-3 mt-md-0 text-center">
                 <RecentBlocks/>
@@ -416,8 +503,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(Home)))

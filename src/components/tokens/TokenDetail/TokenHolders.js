@@ -24,8 +24,8 @@ export function TokenHolders({tokenHodlers = [], token}) {
       </thead>
       <tbody>
       {
-        tokenHodlers.map((tokenHodler) => (
-          <tr key={tokenHodler.hash}>
+        tokenHodlers.map((tokenHodler,index) => (
+          <tr key={index}>
             <td>
               <AddressLink address={tokenHodler.address} />
             </td>

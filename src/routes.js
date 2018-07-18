@@ -17,6 +17,7 @@ import Live from "./components/blockchain/Live";
 import {
   MarketsAsync,
   StatisticsAsync,
+  SingleChartAsync,
   TransactionViewerAsync,
   VoteLiveAsync,
   VoteOverviewAsync,
@@ -49,7 +50,14 @@ export const routes = [
         icon: 'fas fa-handshake',
         path: "/blockchain/transactions",
         label: "transactions",
+        component: Transactions
+      },
+      {
+        icon: 'fas fa-handshake',
+        path: "/blockchain/transactions/:date",
+        label: "daily_transactions",
         component: Transactions,
+        showInMenu: false
       },
       {
         icon: 'fa fa-exchange-alt',
@@ -68,6 +76,13 @@ export const routes = [
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
         component: StatisticsAsync
+      },
+      {
+        label: "statistics",
+        icon: `fa fa-chart-pie`,
+        path: "/blockchain/stats/:chartName",
+        component: SingleChartAsync,
+        showInMenu: false
       },
       {
         label: "live",

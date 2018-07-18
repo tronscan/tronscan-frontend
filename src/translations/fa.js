@@ -1,43 +1,43 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
-#         Language: Persian                                                      #
-#         Status: Second Draft                                                   #
-#         Number of checks: 3                                                    #
-#         Participants: Mr.Babak(patoghfa)                                       #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Persian                                                      #
+  #         Status: Second Draft                                                   #
+  #         Number of checks: 3                                                    #
+  #         Participants: Mr.Babak(patoghfa)                                       #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "متوجه شدم",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "رمز ورود",
   "money_price": "قیمت پول",
   "price": "قیمت",
@@ -54,6 +54,7 @@ export const messages = {
   "height": "ارتفاع",
   "age": "سن",
   "bytes": "بایت",
+  "MByte": "MByte",
   "produced by": "تولید شده توسط",
   "contract": "قرارداد",
   "from": "از",
@@ -98,14 +99,14 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "بلاکچین",
   "wallet": "کیف پول",
   "home": "صفحه اصلی",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "توکن ها",
   "overview": "خلاصه ای",
   "participate": "مشارکت",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "غیر متمرکز سازی وب",
   "transactions_last_hour": "تراکنش های یک ساعت اخیر",
   "block_height": "ارتفاع بلوک",
@@ -143,14 +143,13 @@ export const messages = {
   "create_new_wallet": "ایجاد کیف پول جدید",
   "view_tokens": "مشاهده توکن ها",
   "transactions_last_day": "Transactions in last day",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "صفحه نخست",
   "previous_page": "صفحه قبلی",
   "next_page": "صفحه بعدی",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Total Accounts Till Last Day",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "addresses",
   "trx_transferred_past_hour": "تی آر ایکس انتقالی در یک ساعت اخیر",
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "تنظیم نام",
   "unique_account_message": "شما فقط می توانید نام حساب خود را یک بار تنظیم کنید",
   "name_to_short": "Name is to short",
@@ -207,7 +205,7 @@ export const messages = {
   "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
   "bandwidth": "پهنای باند",
   "balance": "مانده حساب",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "تراکنش ها",
   "no_transfers": "بدون انتقال",
   "no_tokens": "بدون توکن",
@@ -233,20 +231,19 @@ export const messages = {
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
   "specify_the_url":  "Please specify the URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "مسدود",
   "unfreeze": "آزاد",
   "freeze_trx_least": "شما حداقل به یک تی آرایکس برای مسدود کردن نیاز دارید",
   "unable_unfreeze_trx_message": "تی آرایکس را نمیشود آزاد کرد این امر می تواند ناشی از آن باشد که حداقل دوره ی مسدودی هنوز به دست نیامده است.",
-  "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو Tron و فعال کردن ویژگی های اضافی باشد.
-    به عنوان مثال، با قدرت Tron شما می توانید `,
+  "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو TRON و فعال کردن ویژگی های اضافی باشد.
+    به عنوان مثال، با قدرت TRON شما می توانید `,
   "freeze_trx_premessage_link": "به نمایندگان ممتاز رای دهید",
   "freeze_trx_premessage_1": ` توکن های مسدود به مدت 3 روز "قفل شده اند". در این دوره تی آرایکس های مسدود قابل خرید و فروش نیستند.
    بعد از این دوره شما می توانید تی آرایکس ها را آزاد کنید و توکن ها رو بفروشید.`,
@@ -267,14 +264,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "آیا مطمئن هستید که می خواهید TRX را آزاد کنید؟",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "درخواست برای نمایندگی",
   "apply_super_representative_candidate": "درخواست کاندیداتوری برای نماینده ممتاز شدن",
   "your_personal_website_address": "وبسایت شخصی شما",
@@ -317,9 +313,9 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
-  "open_external_link":"You are opening an external link",
+  "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -352,14 +348,13 @@ export const messages = {
   "server_configuration": "Server Configuration",
   "community_plan": "Community Plan",
   "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "نام توکن",
   "token_message": "نام برای توکن",
   "token_abbr": "علامت اختصاری توکن",
@@ -390,14 +385,13 @@ export const messages = {
   "not_started_yet": "هنوز شروع نشده",
   "participated": "شما با موفقیت شرکت کردید  ",
   "participated_error": "خطایی رخ داد است",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "شما مطمئن هستید؟",
   "how_much_buy_message": "شما چقدر توکن می خواهید خرید کنید؟",
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
@@ -406,14 +400,14 @@ export const messages = {
   "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
   "ends": "ends",
   "starts": "starts",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "لطفا آدرس معتبر کیف پول ترون را وارد کنید. در غیر اینصورت ممکن است ترون های خود را از دست بدهید",
   "search_address_or_url": "جستجوی آدرس ",
   "the_lunch_test": "هدف از راه اندازی شبکه ی تست بررسی و تست ویژگی های شبکه ی ترون و کیف پول آن است ",
@@ -445,14 +439,13 @@ export const messages = {
   "percentage": "درصد",
   "loading_token": "بارگزاری توکن",
   "voter_percentage": "Voter Percentage",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "هیچ تراکنشی پیدا نشد",
   "no_tokens_found": "هیچ توکنی پیدا نشد",
   "no_blocks_found": "هیچ بلوکی پیدا نشد",
@@ -460,14 +453,13 @@ export const messages = {
   "no_voters_found": "هیچ رای دهنده ای پیدا نشد",
   "waiting_for_transactions": "در انتظار تراکنش ها",
   "loading_address": "بارگزاری آدرس",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "جزئیات",
   "issue_a_token": "صدور یک توکن",
   "issue_token": "صدور توکن",
@@ -493,19 +485,18 @@ export const messages = {
   "start_date": "تاریخ شروع",
   "end_date": "تاریخ پایان",
   "token_spend_confirm": "من تأیید میکنم که باید 1024 ترون را برای ساختن توکن خرج کنم",
-  "token_issue_guide_message_1":`صدور توکن در پروتکل Tron می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
+  "token_issue_guide_message_1":`صدور توکن در پروتکل TRON می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
   "token_issue_guide_message_2":`هنگامی که یک توکن صادر می شود، در صفحه مشاهده توکن نمایش داده می شود.
     سپس کاربران می توانند در دوره مشارکت شرکت کنند و TRX را برای توکن ها مبادله کنند.`,
   "token_issue_guide_message_3":`بعد از صدور توکن، حساب شما مقدار توکن هایی را که برابر با کل عرضه هستند دریافت خواهد کرد.
     هنگامی که دیگر کاربران TRX را برای توکن ها مبادله می کنند، پس از آن، توکن ها از حساب شما خارج خواهند شد و شما می توانید  TRX برابر با نرخ تبادل ارز مشخص شده را دریافت کنید.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "تاریخ پایان زودتر یا همان تاریخ شروع است",
   "no_name_error": "نام لازم است",
   "no_supply_error": "کل عرضه باید حداقل 1 باشد",
@@ -528,14 +519,13 @@ export const messages = {
   "abbreviation_required": "اختصار مورد نیاز است",
   "abbreviation_error_message_0": "اختصار ممکن است طولانی تر از 5 حرف باشد",
   "abbreviation_error_message_1": "اختصار ممکن است فقط شامل عناصر a-z باشد",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "بالاترین بهره وری",
   "lowest_productivity": "پایین ترین بهره وری",
   "Super Representatives": "نمایندگان ممتاز",
@@ -544,28 +534,29 @@ export const messages = {
   "address_not_super_representative": "این آدرس یک نماینده ممتاز نیست",
   "unable_load_representatives_page_message": "صفحه قابل بارگزاری نیست، ممکن است این اتفاق اگر آدرس نامعتبر باشد، بیفتد ، آدرس نماینده ممتاز نیست یا نماینده این صفحه را پیکربندی نکرده است",
   "loading_representative": "Loading Representative",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "میانگین قیمت به دلار",
   "average_volume_usd": "میانگین حجم به دلار",
   "Trade Volume": "حجم خرید و فروش",
   "rank": "رتبه",
   "pair": "جفت",
   "volume": "حجم",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "دور بعدی",
   "total_votes": "کل آرا",
   "most_ranks": "بیشترین رتبه کسب شده در این دوره",
@@ -591,14 +582,13 @@ export const messages = {
   "submissing_vote_message_1": "شما می توانید رای خود را در هر زمان که دوست دارید منتشر کنید",
   "submitting_vote_error_message": "هنگام رای دادن خود اشتباهی رخ داد. لطفا دوباره امتحان کنید. ",
   "loading_super_representatives": "بارگذاری Super Representatives",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "در اینجا می توانید یک تراکنش به صورت hex را برای بازبینی محتویات یک تراکنش وارد کنید. سپس تراکنش می تواند به شبکه ارسال شود",
   "load_tx": "بارگزاری تراکنش",
   "tx_qrcode": "کد QR تراکنش",
@@ -611,54 +601,50 @@ export const messages = {
   "transaction_error": "تراکنش ناموفق",
   "confirm_transaction_message": "آیا مطمئن هستید که می خواهید تراکنش را ارسال کنید؟",
   "broadcast_transaction_to_network": "تراکنش در شبکه منتشر شد",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "برای تست اتصال GRPC، آی پی نود را وارد کنید",
   "node_tester_stop": "توقف تست",
   "node_tester_test": "تست GRPC",
   "node_tester_rt": "زمان پاسخ",
   "confirmed_block": "بلوک تایید شده",
   "loading": "بارگزاری...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "وب کم یافت نشد",
   "trying_enable_webcam_message_0": "هنگام تلاش برای فعال کردن وب کم خطایی رخ داد.",
   "trying_enable_webcam_message_1": "اطمینان حاصل کنید که مجوزهای دوربین فعال هستند.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "TRON چیست",
-  "tron_explorer_api": "مرورگر Tron API",
+  "tron_explorer_api": "مرورگر TRON API",
   "tron_architechure": "معماری TRON",
   "tron_protobuf_doc": "مستندات TRON Protobuf",
   "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "باز کردن کیف پول",
   "private_key": "کلید خصوصی",
   "keystore_file": "فایل Keystore",
@@ -682,17 +668,110 @@ export const messages = {
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
-  "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "hash": "هش",
+  "time": "زمان",
+  "parenthash": "پدر و مادر",
+  "size": "اندازه",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Requirements",
+  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "a": "A",
+  "install_the": "Install the ",
+  "app": "app",
+  "install_latest_version_message_0": "Install the latest version of ",
+  "opening_your_wallet": "Opening your wallet",
+  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
+  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "choose_ledger": "Choose Ledger",
+  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
+  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
+  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
+  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "سابقه ای یافت نشد!",
+  "warning": "هشدار",
+  "login_success": "موفق شوید",
+  "logout_success": "خروج از موفقیت",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "تاریخ",
+  "total_transactions": "معاملات کامل",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "آدرس جدید دیده می شود",
+  "transfer_contract": "قرارداد انتقال",
+  "TRX_transfer_between_addresses": "انتقال TRX بین آدرس ها",
+  "transfer_asset_contract": "قرارداد دارایی انتقال",
+  "token_transfer_between_addresses": "نقل قول بین آدرس ها",
+  "participate_asset_issue_contract": "مشارکت در قرارداد اموال",
+  "participate_token_between_addresses": "مشروط بین آدرس ها",
+  "witness_update_contract": "قرارداد به روز رسانی شاهد",
+  "updates_a_witness": "به روز رسانی یک شاهد",
+  "witness_create_contract": "شاهد ساخت قرارداد",
+  "create_a_witness": "یک شاهد ایجاد کنید",
+  "account_update_contract": "قرارداد به روز رسانی حساب",
+  "update_account_name": "بهروزرسانی نام حساب",
+  "withdraw_balance_contract": "برداشت قرارداد تعادل",
+  "withdraw_balance": "تعادل را بردارید",
+  "freeze_balance_contract": "قرارداد تعادل یخ",
+  "freeze_TRX": "TRX را ببندید",
+  "unfreeze_balance_contract": "لغو قرارداد تعادل",
+  "unfreeze_TRX": "باز کردن TRX",
+  "vote_witness_contract": "رای گیری شاهد قرارداد",
+  "vote_for_a_witness": "رای دادن به یک شاهد",
+  "asset_issue_contract": "قرارداد اموال",
+  "issue_a_new_asset": "موضوع دارایی جدید",
+  "owner_address": "آدرس مالک",
+  "frozen_balance": "تعادل منجمد",
+  "frozen_days": "روزهای منجمد",
+  "counts": "شمارش",
+  "TRX_exchange_rate": "نرخ ارز TRX",
+  "start_time": "زمان شروع",
+  "end_time": "زمان پایان",
+  "contracts": "قراردادها",
+  "search_description": "آدرس جستجو، ارتفاع بلوک، هشدار تراکنش، نام رمز",
+  "search_description1": "جستجو آدرس، بلوک، تراکنش، رونوشت",
+  "transaction": "معامله",
+  "total_addresses": "آدرسهای کل",
+  "daily_increment": "افزایش روزانه",
+  "address_growth_chart": "آدرس رشد نمودار",
+  "addresses_amount": "آدرس مبلغ",
+  "past_14_days_of_transactions": "14 روز گذشته معاملات",
+  "address_growth": "رشد آدرس",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "جستجو کردن"
 
 };

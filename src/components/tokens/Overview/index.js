@@ -133,6 +133,20 @@ class TokenOverview extends Component {
       status: "ico",
     });
 
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return -1;
+        } else if (obj1[property] < obj2[property] ) {
+          return 1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+    tokens=tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,

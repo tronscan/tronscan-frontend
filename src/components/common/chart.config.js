@@ -2,7 +2,9 @@ module.exports = {
   pieChart: {
     title: {
       text: '',
-      x: 'center'
+      x: 'center',
+      link:'',
+      target:'self'
     },
     tooltip: {
       trigger: 'item',
@@ -14,7 +16,7 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: '55%',
-        center: ['50%', '55%'],
+        center: ['50%', '60%'],
         data: [],
         itemStyle: {
           emphasis: {
@@ -29,7 +31,9 @@ module.exports = {
   lineChart: {
     title: {
       text: '',
-      x: 'center'
+      x: 'center',
+      link:'',
+      target:'self'
     },
     grid: {
       left: '5%',
@@ -50,7 +54,7 @@ module.exports = {
     series: [{
       data: [],
       type: 'line',
-      smooth: true
+     // smooth: true
     }]
   },
 
@@ -236,27 +240,18 @@ module.exports = {
       }
     ]
   },
-  txOverviewChart: {
+  overviewChart: {
     title: {
-      text: 'TRX Transaction Chart',
-      x: 'center'
+      text: '',
+      x: 'center',
+      link:'',
+      target:'self',
+      
     },
     tooltip: {
       trigger: 'axis',
       axisPointer: {
         animation: false
-      },
-      formatter: function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
-        return (
-            'Date' + ' : ' + date + '<br/>' +
-            'Total Transaction' + ' : ' + datas[0].data.totalTransaction + '<br/>' +
-            'Avg BlockTime' + ' : ' + datas[0].data.avgBlockTime + '<br/>' +
-            'Avg BlockSize' + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
-            'Total BlockCount' + ' : ' + datas[0].data.totalBlockCount + '<br/>' +
-            'New Address Seen' + ' : ' + datas[0].data.newAddressSeen + '<br/>'
-        )
-
       }
     },
 
@@ -278,8 +273,8 @@ module.exports = {
       }
     },
     dataZoom: [{
-      start: 30,
-      end: 70,
+      start: 60,
+      end: 100,
     },
       {
         type: 'inside'
@@ -302,22 +297,14 @@ module.exports = {
 
     yAxis: [
       {
-        name: 'Transactions Per Day',
+        name: '',
         nameGap: 20,
         type: 'value'
       }],
     series: [{
       name: '',
       type: 'line',
-      smooth: true,
-      symbol: 'circle',
-      symbolSize: 9,
-      showSymbol: false,
-      lineStyle: {
-        normal: {
-          width: 1
-        }
-      },
+
       markPoint: {
         data: [{
           type: 'max',

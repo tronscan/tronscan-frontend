@@ -38,7 +38,7 @@ class Navigation extends PureComponent {
     this.fileRef = React.createRef();
 
     this.id = 0;
-    this.loginFlag=false;
+    this.loginFlag = false;
     this.state = {
       privateKey: '',
       search: "",
@@ -46,11 +46,12 @@ class Navigation extends PureComponent {
       notifications: [],
     };
   }
+
   componentDidUpdate() {
-    let { account, wallet } = this.props;
+    let { intl, account, wallet } = this.props;
     if(account.isLoggedIn && wallet.isOpen && !this.loginFlag){
-      toastr.info('Success', 'Login success');
-      this.loginFlag=true;
+      toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'login_success'}));
+      this.loginFlag = true;
     }
 
   }
@@ -158,10 +159,11 @@ class Navigation extends PureComponent {
   };
 
   logout = () => {
-    this.props.logout();
+    let {intl, logout} = this.props;
+    logout();
     this.loginFlag = false;
     this.setState({ privateKey: '' });
-    toastr.info('Success', 'Logout success');
+    toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'logout_success'}));
   };
 
   componentWillUnmount() {
@@ -179,6 +181,7 @@ class Navigation extends PureComponent {
 
   doSearch = async () => {
 
+    let {intl} = this.props;
     let {search} = this.state;
     let type = getSearchType(search);
 
@@ -189,7 +192,7 @@ class Navigation extends PureComponent {
       window.location.hash = result;
       this.setState({search: ""});
     } else {
-      toastr.warning('Warning', 'Record not found!');
+      toastr.warning(intl.formatMessage({id:'warning'}), intl.formatMessage({id:'record_not_found'}));
     }
   };
 
@@ -366,7 +369,7 @@ class Navigation extends PureComponent {
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-bolt mr-2"/>
-                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron Power
+                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron {tu("power")}
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-tachometer-alt mr-2"/>

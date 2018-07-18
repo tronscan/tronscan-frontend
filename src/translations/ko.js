@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
-#         Language: Korean                                                       #
-#         Status: third draft                                                    #
-#         Number of checks: 5                                                    #
-#         Participants: VoidRays                                                 #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-12072018                                                  #
+  #         Update Date: 12.07.2018                                                #
+  #         Language: Korean                                                       #
+  #         Status: third draft                                                    #
+  #         Number of checks: 6                                                    #
+  #         Participants: VoidRays                                                 #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "확인",
   "app_title": "트론 프로토콜",
   "password": "암호",
@@ -54,6 +54,7 @@ export const messages = {
   "height": "높이",
   "age": "지난 시간",
   "bytes": "바이트",
+  "MByte": "MByte",
   "produced by": "생성자",
   "contract": "컨트랙트",
   "from": "보내는 주소",
@@ -98,14 +99,14 @@ export const messages = {
   "contract_type": "컨트랙트 타입",
   "filters": "필터",
   "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "블록체인",
   "wallet": "지갑",
   "home": "홈",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "토큰",
   "overview": "개요",
   "participate": "참여하기",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "네트워크의 새로운 탈중앙화",
   "transactions_last_hour": "지난 시간 트랜잭션",
   "block_height": "블록 길이",
@@ -143,14 +143,13 @@ export const messages = {
   "create_new_wallet": "새 지갑 만들기",
   "view_tokens": "토큰 보기",
   "transactions_last_day": "1일동안 트랜잭션 수",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "첫 페이지",
   "previous_page": "이전",
   "next_page": "다음",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "자산 참여",
   "loading_transaction": "트랜잭션 로딩 중",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Total Accounts Till Last Day",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "주소",
   "trx_transferred_past_hour": "지난 시간 이후로 전송된 TRX",
   "transactions_past_hour": "지난 시간 이후로 시작된 트랜잭션",
   "average_blocksize": "평균 블록 크기",
   "rich_list": "분포 통계",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "이름 설정",
   "unique_account_message": "계정 이름은 한번만 설정할 수 있습니다!",
   "name_to_short": "이름이 너무 짧습니다",
@@ -233,14 +231,13 @@ export const messages = {
   "change_website": "웹 사이트 주소 변경",
   "you_must_enter_url": "URL을 반드시 입력해야합니다",
   "specify_the_url":  "URL을 지정해주세요",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "동결",
   "unfreeze": "동결 해제",
   "freeze_trx_least": "동결하기 위해서는 최소 1개의 TRX가 필요합니다",
@@ -265,14 +262,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "정말로 TRX를 동결 해제합니까?",
   "unfreeze_assets": "미동결 자산",
   "sure_to_unfreeze_unlocked_tokens_message": "잠금 해제 된 토큰을 정말로 동결 해제하시겠습니까?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "대표 신청",
   "apply_super_representative_candidate": "슈퍼 대표(SR) 후보에 신청하기",
   "your_personal_website_address": "귀하의 개인 웹 사이트 주소",
@@ -313,7 +309,7 @@ export const messages = {
   "invalid_url": "잘못된 URL",
   "apply_representative_error_message_0": "대표 신청을 시도하는 중에 에러가 났습니다.",
   "apply_representative_error_message_1": "수수료를 내기 위한 TRX가 충분한지 확인하고 다시 시도해주십시오.",
-  "open_external_link":"귀하가 외부 링크에 접속 시도를 하고 있습니다",
+  "open_external_link": "귀하가 외부 링크에 접속 시도를 하고 있습니다",
   "private_key_untrusted_website_message_0": "절대로 신뢰하지 않는 웹사이트에 개인키를 입력하지 마십시오.",
   "no_official_tron_website": "는(은) 공식 트론 사이트가 아닙니다.",
   "continue_to_external_website": "외부 사이트로 계속 진행",
@@ -348,14 +344,13 @@ export const messages = {
   "server_configuration": "서버 구성",
   "community_plan": "커뮤니티 계획",
   "team": "팀",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "토큰 이름",
   "token_message": "토큰의 이름",
   "token_abbr": "토큰 기호",
@@ -386,14 +381,13 @@ export const messages = {
   "not_started_yet": "준비중",
   "participated": "당신은 성공적으로 참여했습니다!",
   "participated_error": "에러가 발생했습니다.",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "확실합니까?",
   "how_much_buy_message": "토큰을 얼마나 많이 구매하고 싶습니까?",
   "buy_confirm_message_1": "정말로 다음과 같이 구매하시겠습니까",
@@ -402,14 +396,14 @@ export const messages = {
   "not_enouth_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
   "ends": "ends",
   "starts": "starts",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "유효한 TRON 지갑 주소만 입력하십시오. 잘못된 주소는 TRX 손실을 초래할 수 있습니다.",
   "search_address_or_url": "주소 또는 URL 검색",
   "the_lunch_test": "테스트넷의 출시는 블록 체인 탐색기와 지갑의 모든 기능을 테스트하는 것을 목표로합니다.",
@@ -441,14 +435,13 @@ export const messages = {
   "percentage": "비율",
   "loading_token": "토큰 로딩 중",
   "voter_percentage": "투표자 비율",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "거래 없음",
   "no_tokens_found": "토큰 없음",
   "no_blocks_found": "블록 없음",
@@ -456,14 +449,13 @@ export const messages = {
   "no_voters_found": "투표자 없음",
   "waiting_for_transactions": "트랜잭션 기다리는 중",
   "loading_address": "주소 로딩 중",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "세부 사항",
   "issue_a_token": "토큰 발행",
   "issue_token": "토큰 발행",
@@ -493,14 +485,13 @@ export const messages = {
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
   "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
    다른 사용자가 TRX를 토큰으로 교환하면 토큰이 계정에서 철회되고 지정된 환율과 동일한 TRX를 받게됩니다.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "종료 일자가 시작 일자보다 더 앞서거나 같은 날짜입니다",
   "no_name_error": "이름 입력은 필수입니다",
   "no_supply_error": "총 공급 수량은 최소 1입니다",
@@ -523,14 +514,13 @@ export const messages = {
   "abbreviation_required": "기호 입력은 필수입니다",
   "abbreviation_error_message_0": "기호는 다섯 글자보다 길면 안됩니다",
   "abbreviation_error_message_1": "기호는 알파벳으로만 구성되어야 합니다",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "최고의 생산성",
   "lowest_productivity": "최저의 생산성",
   "Super Representatives": "슈퍼 대표",
@@ -539,28 +529,29 @@ export const messages = {
   "address_not_super_representative": "이 주소는 슈퍼 대표가 아닙니다",
   "unable_load_representatives_page_message": "페이지 로드에 실패하였습니다. 주소가 유효하지 않은 주소이거나 대표가 아닌 경우일 수 있습니다. 또는 해당 대표가 이 페이지에 아직 설정되어있지 않았을 수도 있습니다",
   "loading_representative": "대표 로딩 중",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "평균 가격(USD)",
   "average_volume_usd": "평균 볼륨(USD)",
   "Trade Volume": "거래 볼륨",
   "rank": "순위",
   "pair": "페어",
   "volume": "볼륨",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "다음 선거",
   "total_votes": "총 투표 수",
   "most_ranks": "이번 선거에서 가장 많이 상승",
@@ -586,14 +577,13 @@ export const messages = {
   "submissing_vote_message_1": "투표 수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
   "submitting_vote_error_message": "표를 제출하는것에 실패하였습니다. 나중에 다시 시도해주십시오.",
   "loading_super_representatives": "슈퍼 대표 목록 로딩 중",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "여기서 트랜잭션 HEX값을 입력하여 트랜잭션의 내용을 살펴볼 수 있습니다. 그 이후, 네트워크에 브로드캐스팅도 가능합니다.",
   "load_tx": "트랜잭션 불러오기",
   "tx_qrcode": "트랜잭션 QR코드",
@@ -606,39 +596,36 @@ export const messages = {
   "transaction_error": "트랜잭션 에러",
   "confirm_transaction_message": "정말로 트랜잭션을 보냅니까?",
   "broadcast_transaction_to_network": "트랜잭션을 네트워크에 브로드캐스트하기",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "GRPC 연결을 테스트 하기 위해 노드의 IP를 입력해주십시오",
   "node_tester_stop": "테스트 중지",
   "node_tester_test": "GRPC 테스트",
   "node_tester_rt": "응답 시간",
   "confirmed_block": "컨펌된 블록",
   "loading": "로딩 중...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "웹캠 발견되지 않음",
   "trying_enable_webcam_message_0": "웹캠을 활성화하지 못했습니다.",
   "trying_enable_webcam_message_1": "카메라 장치에 권한이 주어졌는지 확인해보십시오.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "트론의 정의",
   "tron_explorer_api": "트론 탐색기 API",
   "tron_architechure": "트론 아키텍처",
@@ -646,14 +633,13 @@ export const messages = {
   "report_an_error": "버그 제보 및 건의",
   "frequently_asked_questions": "자주 묻는 질문(FAQ)",
   "telegram_updates": "트론스캔 공식 텔레그램",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "지갑 열기",
   "private_key": "개인키(Private Key)",
   "keystore_file": "키스토어(Keystore) 파일",
@@ -677,18 +663,110 @@ export const messages = {
   "print_paper_wallet": "페이퍼 월렛 인쇄",
   "new_wallet_ready_message": "사용자분의 새 지갑이 준비되었습니다",
   "go_to_account_page": "계정 페이지로 가기",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "해시",
   "time": "시간",
   "parenthash": "이전 블록 해시",
-  "witness": "증인",
   "size": "크기",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Requirements",
+  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "a": "A",
+  "install_the": "Install the ",
+  "app": "app",
+  "install_latest_version_message_0": "Install the latest version of ",
+  "opening_your_wallet": "Opening your wallet",
+  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
+  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "choose_ledger": "Choose Ledger",
+  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
+  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
+  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
+  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "레코드를 찾을 수 없음!",
+  "warning": "경고",
+  "login_success": "로그인 성공",
+  "logout_success": "로그 아웃 성공",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "날짜",
+  "total_transactions": "총 트랜잭션",
+  "avg_blockTime": "평균 블록타임",
+  "avg_blockSize": "평균 블록크기",
+  "total_BlockCount": "총 블록 수",
+  "new_address_seen": "새 주소 발현",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "주소 간에 TRX 이동",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "주소 간에 토큰 이동",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "주소 간에 토큰 참여",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "증인(SR) 정보 업데이트",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "증인(SR) 생성",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "계정 이름 업데이트",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "잔액 출금",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "TRX 동결",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "TRX 동결 해제",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "증인(SR)에 투표합니다",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "새 에셋(Asset) 발행",
+  "owner_address": "컨트랙트를 실행한 주소",
+  "frozen_balance": "동결된 잔액",
+  "frozen_days": "동결 기간(단위 1일)",
+  "counts": "카운트",
+  "TRX_exchange_rate": "TRX 교환 비율",
+  "start_time": "시작 날짜",
+  "end_time": "종료 날짜",
+  "contracts": "컨트랙트",
+  "search_description": "주소, 블록번호, 트랜잭션해시, 토큰이름 검색",
+  "search_description1": "주소, 블록, 트랜잭션, 토큰 검색",
+  "transaction": "트랜잭션",
+  "total_addresses":"총 주소 수",
+  "daily_increment":"일일 증가량",
+  "address_growth_chart":"주소 증가 차트",
+  "addresses_amount":"주소 수",
+  "past_14_days_of_transactions":"지난 14일동안 트랜잭션 상황",
+  "address_growth":"주소 증가 상황",
+  "power": "트론파워",
+  "token_transfers": "토큰 전송 목록",
+  "website_url": "웹사이트 URL",
+  "search": "검색"
 
 };

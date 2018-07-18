@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-22062018                                                  #
-  #         Update Date: 22.06.2018                                                #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
   #         Language: English                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 4                                                    #
@@ -36,7 +36,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "password",
   "money_price": "price",
   "price": "price",
@@ -52,13 +52,14 @@ export const messages = {
   "login": "login",
   "height": "height",
   "age": "age",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "produced by",
   "contract": "Contract",
   "from": "from",
   "to": "to",
   "value": "value",
-  "total_accounts": "Total Accounts",
+  "total_accounts": "Total Accounts (Real Time)",
   "submit": "submit",
   "send": "send",
   "receive": "receive",
@@ -67,7 +68,7 @@ export const messages = {
   "view_all": "View all",
   "create": "create",
   "country": "region",
-  "amount": "amount",
+  "amount": "Amount",
   "my_vote": "my vote",
   "submit_votes": "submit votes",
   "accounts": "accounts",
@@ -97,6 +98,7 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Send Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -139,6 +141,7 @@ export const messages = {
   "view_super_representatives": "View Super Representatives",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
+  "transactions_last_day": "Transactions Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -168,6 +171,7 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
   "nodes_ranking": "Nodes Ranking (Rank by country and region)",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #
@@ -180,7 +184,7 @@ export const messages = {
   "transactions_past_hour": "Transactions in the past hour",
   "average_blocksize": "Average Block Size",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -200,14 +204,14 @@ export const messages = {
   "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
   "bandwidth": "bandwidth",
   "balance": "balance",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transactions",
   "no_transfers": "No Transfers",
   "no_tokens": "No Tokens",
   "free_bandwidth": "Free Bandwidth",
   "expires": "expires",
   "have_been_added_to_your_account": "have been added to your account!",
-  "information_message_1": "Mainnet cannot request testing trx, please contact Tron to get test trx.",
+  "information_message_1": "Mainnet cannot request testing trx, please contact TRON to get test trx.",
   "information_message_2": "You may only request TRX 10 times per account.",
   "request_trx_for_testing": "Request TRX for testing",
   "token_balances": "token balances",
@@ -237,8 +241,8 @@ export const messages = {
   "unfreeze": "unfreeze",
   "freeze_trx_least": "You need at least 1 TRX to be able to freeze",
   "unable_unfreeze_trx_message": "Unable to unfreeze TRX. This could be caused because the minimal freeze period hasn't been reached yet.",
-  "freeze_trx_premessage_0": `TRX can be frozen to gain Tron Power and enable additional features.
-   For example, with Tron Power you can `,
+  "freeze_trx_premessage_0": `TRX can be frozen to gain TRON Power and enable additional features.
+   For example, with TRON Power you can `,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
   "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
@@ -300,7 +304,7 @@ export const messages = {
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee,or try again later.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -471,7 +475,7 @@ export const messages = {
   "start_date": "Start Date",
   "end_date": "End Date",
   "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
-  "token_issue_guide_message_1": `Issuing a token on the Tron Protocol can be done
+  "token_issue_guide_message_1": `Issuing a token on the TRON Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
   "token_issue_guide_message_2": `When a token is issued it will be shown on the token overview page.
     Users can then participate within the participation period and exchange their TRX for tokens.`,
@@ -535,6 +539,9 @@ export const messages = {
   "rank": "Rank",
   "pair": "Pair",
   "volume": "Volume",
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
   /*
   ##################################################################################
   #                                                                                #
@@ -547,7 +554,7 @@ export const messages = {
   "most_ranks": "Most Ranks Gained This Round",
   "view_live_ranking": "View Live Ranking",
   "open_team_page": "Open Team Page",
-  "warning_votes": "At least 1 Tron Power is required to start voting. Tron Power is gained by freezing TRX on the",
+  "warning_votes": "At least 1 TRON Power is required to start voting. TRON Power is gained by freezing TRX on the",
   "account_page": "Account Page",
   "loading_votes": "Loading Votes",
   "3_day_ranking": "3 Days Ranking(Top 10)",
@@ -617,10 +624,12 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "What is TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Documentation",
   "report_an_error": "Submit a bug / suggestion",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "telegram_updates": "Telegram Updates",
   /*
   ##################################################################################
   #                                                                                #
@@ -642,7 +651,7 @@ export const messages = {
   "save_keystore_file": "Save Your Keystore File",
   "download_keystore_file": "Download Encrypted Key",
   "do_not_lose_it": "Do not lose it!",
-  "do_not_lose_it_message_0": "Tron Foundation cannot help you recover a lost key.",
+  "do_not_lose_it_message_0": "TRON Foundation cannot help you recover a lost key.",
   "do_not_share_it": "Do not share it!",
   "do_not_share_it_message_0": "Your funds may be stolen if you use this file a malicious site.",
   "make_a_backup": "Make a backup!",
@@ -651,28 +660,62 @@ export const messages = {
   "print_paper_wallet": "Print Paper Wallet",
   "new_wallet_ready_message": "Your new wallet is ready",
   "go_to_account_page": "Go to account page",
-
   /*
-##################################################################################
-#                                                                                #
-# blockchain block                                                                #
-#                                                                                #
-##################################################################################
-*/
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "Hash",
   "time": "Time",
   "parenthash": "Parent Hash",
-  "witness": "Witness",
   "size": "Size",
+  "blockchain_size": "Blockchain Size",
   /*
-##################################################################################
-#                                                                                #
-# new add                                                                 #
-#                                                                                #
-##################################################################################
-*/
-  "transactions_per_day": "Transactions Per Day",
-  "transactions_last_day": "Transactions Last Day",
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Requirements",
+  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "a": "A",
+  "install_the": "Install the ",
+  "app": "app",
+  "install_latest_version_message_0": "Install the latest version of ",
+  "opening_your_wallet": "Opening your wallet",
+  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
+  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "choose_ledger": "Choose Ledger",
+  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
+  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
+  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
+  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Record not found!",
+  "warning": "Warning",
+  "login_success": "Login Success",
+  "logout_success": "Logout Success",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "date": "Date",
   "total_transactions": "Total Transactions",
   "avg_blockTime": "Avg BlockTime",
@@ -701,25 +744,26 @@ export const messages = {
   "vote_for_a_witness": "Vote for a Witness",
   "asset_issue_contract": "Asset Issue Contract",
   "issue_a_new_asset": "Issue a new asset",
-  "from": "From",
-  "to": "To",
-  "amount": "Amount",
-  "token": "Token",
   "owner_address": "Owner Address",
-  "account_name": "Account Name",
   "frozen_balance": "Frozen Balance",
   "frozen_days": "Frozen Days",
-  "votes": "Votes",
   "counts": "counts",
-  "token_name": "Token Name",
-  "total_supply": "total_supply",
   "TRX_exchange_rate": "TRX Exchange Rate",
   "start_time": "Start Time",
   "end_time": "End Time",
-  "description": "Description",
   "contracts": "Contracts",
   "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
   "search_description1": "Search Address,Block,Transaction,Token",
   "transaction": "Transaction",
-  "total_accounts":"Total Accounts"
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search"
+
 };

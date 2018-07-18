@@ -1,43 +1,43 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
-#         Language: Romania                                                      #
-#         Status: first Version                                                  #
-#         Number of checks: 1                                                    #
-#         Participants: Sebi Serbanescu                                          #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
+  #         Language: Romania                                                      #
+  #         Status: second Version                                                 #
+  #         Number of checks: 3                                                    #
+  #         Participants: Sebi Serbanescu                                          #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
-  "app_title": "Protocol Tron",
+  "app_title": "Protocol TRON",
   "password": "parolă",
   "money_price": "preț",
   "price": "preț",
@@ -53,13 +53,14 @@ export const messages = {
   "login": "logare",
   "height": "înălțime",
   "age": "vârstă",
-  "bytes": "biți",
+  "bytes": "Biți",
+  "MByte": "MByte",
   "produced by": "produs de",
   "contract": "Contract",
   "from": "de la",
   "to": "la",
   "value": "valoare",
-  "total_accounts": "total conturi",
+  "total_accounts": "Total Conturi (Timp Real)",
   "submit": "propune",
   "send": "trimite",
   "receive": "primește",
@@ -90,22 +91,22 @@ export const messages = {
   "strong": "puternic",
   "secure": "sigur",
   "too_short": "prea scurt",
-  "status": "status",
+  "status": "Stare",
   "no_notifications": "nici o notificare",
   "enable_desktop_notifications": "autorizați notificări desktop",
   "desktop_notification_enabled": "Notificări Desktop autorizate!",
   "notifications_enabled": "Notificări autorizate",
   "contract_type": "Tip Contract",
-  "filters": "Filters",
-  "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "filters": "Filtre",
+  "send_tokens": "Trimiteți jetoane",
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Portofel",
   "home": "Acasă",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "Tokeni",
   "overview": "Ansamblu",
   "participate": "Participare",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentralizare Web",
   "transactions_last_hour": "Tranzacții din ultima oră",
   "block_height": "Înălțime Block",
@@ -143,21 +143,20 @@ export const messages = {
   "create_new_wallet": "Creați un nou Portofel",
   "view_tokens": "Vizualizare Tokeni",
   "transactions_last_day": "Tranzacții din ultima zi",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "prima pagină",
   "previous_page": "pagina anterioară",
   "next_page": "următoarea pagină",
   "last_page": "ultima pagină",
   "page": "pagina",
   "of": "din",
-  "page_size": "page size",
+  "page_size": "Mărimea Paginii",
   "most_nodes": "Cele mai multe Noduri",
   "loading_nodes": "încărcare Noduri",
   "Hostname": "Numegazdă",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "Participare capital",
   "loading_transaction": "Încărcare Tranzacție",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Total conturi până în ziua trecută",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adrese",
   "trx_transferred_past_hour": "TRX transferat în ultima oră",
   "transactions_past_hour": "Tranzacții în ultima oră",
   "average_blocksize": "Mărimea medie de block",
   "rich_list": "Listă bogați",
-  "TRX_transaction_chart": "Diagramă tranzacții TRX",
+  "tron_transaction_chart": "Diagramă tranzacții TRON",
   "transactions_per_day": "Tranzacții pe zi",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Setare Nume",
   "unique_account_message": "Puteți să setați numele de cont doar o dată!",
   "name_to_short": "Nume prea scurt",
@@ -207,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Nu trimiteți TRX din propriul portofel sau exchange la adresa de cont de la rețeaua de test!",
   "bandwidth": "lățime de bandă",
   "balance": "balanță",
-  "tron_power": "Putere Tron",
+  "tron_power": "Putere TRON",
   "transactions": "tranzacții",
   "no_transfers": "Nici un Transfer",
   "no_tokens": "Nici un Token",
@@ -233,20 +231,19 @@ export const messages = {
   "change_website": "Schimbați site-ul web",
   "you_must_enter_url": "Trebuie să introduceți un URL",
   "specify_the_url":  "Vă rugăm specificați URL-ul",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "înghețare",
   "unfreeze": "dezghețare",
   "freeze_trx_least": "Aveți nevoie de cel puțin 1 TRX ca să înghețați",
   "unable_unfreeze_trx_message": "Imposibil de dezghețat TRX. Aceast lucru poate fi cauzat de faptul că perioada de înghețare minimă nu a fost atinsă.",
-  "freeze_trx_premessage_0": `TRX poate fi înghețat/blocat pentru a caștiga Tron Power și a debloca caracteristici adiționale.
-   De exemplu, cu Tron Power puteți să `,
+  "freeze_trx_premessage_0": `TRX poate fi înghețat/blocat pentru a caștiga TRON Power și a debloca caracteristici adiționale.
+   De exemplu, cu TRON Power puteți să `,
   "freeze_trx_premessage_link": "votați pentru Super Reprezentanți.",
   "freeze_trx_premessage_1": ` Tokenii înghețați sunt "blocați" pentru o perioadă de 3 zile. În această perioadă TRX-ul înghețat nu poate fi tranzacționat.
    După această perioadă puteți să dezghețați TRX și să tranzacționați tokeni.`,
@@ -267,14 +264,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Sunteți sigur că vreți să dezghețați TRX?",
   "unfreeze_assets": "Active dezghețate",
   "sure_to_unfreeze_unlocked_tokens_message": "Sunteți sigur că doriți să dezghețați tokenii activați?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "aplicați pentru delegat",
   "apply_super_representative_candidate": "Aplicați ca să fiți un Candidat Super Reprezentant",
   "your_personal_website_address": "adresa personală de website",
@@ -318,9 +314,9 @@ export const messages = {
   "invalid_url": "Invalid URL",
   "apply_representative_error_message_0": "Ceva nu a mers bine în timp ce încercați să aplicați pentru reprezentare.",
   "apply_representative_error_message_1": "Asigurați-vă că aveți destul TRX pentru taxă, sau încercați mai tarziu.",
-  "open_external_link":"Deschideți un link extern",
+  "open_external_link": "Deschideți un link extern",
   "private_key_untrusted_website_message_0": "Nu introduceți niciodată cheia privată pe un website nesigur.",
-  "no_official_tron_website": "acesta nu este un site oficial Tron.",
+  "no_official_tron_website": "acesta nu este un site oficial TRON.",
   "continue_to_external_website": "Continuați către site-ul extern",
   "url_changed": "URL schimbat",
   "successfully_changed_website_message": "Website schimbat cu succes în ",
@@ -349,18 +345,17 @@ export const messages = {
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
+  "budget_expenses": "Cheltuieli bugetare",
   "server_configuration": "Configurație Server",
   "community_plan": "Planul Comunității",
   "team": "Echipă",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Numele tokenului",
   "token_message": "Nume pentru token",
   "token_abbr": "Abreviere pentru token",
@@ -391,14 +386,13 @@ export const messages = {
   "not_started_yet": "Nu a început încă",
   "participated": "Ați participat cu succes!",
   "participated_error": "A apărut o eroare",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Sunteți sigur?",
   "how_much_buy_message": "Cați tokeni ați dori să cumpărați?",
   "buy_confirm_message_1": "Sunteți sigur că vreți să cumpărați",
@@ -407,14 +401,14 @@ export const messages = {
   "not_enouth_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
   "ends": "sfârșește",
   "starts": "începe",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "poate fi descuiat în",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Introduceți numai o adresă validă de portofel TRON. Adresele incorecte pot duce la pierdere de TRX.",
   "search_address_or_url": "Căutare de adresă sau URL",
   "the_lunch_test": "Lansarea rețelei de test are ca scop testarea caracteristicilor explorerului si portofelului de blockchain.",
@@ -446,14 +440,13 @@ export const messages = {
   "percentage": "Procentaj",
   "loading_token": "Încărcare Token",
   "voter_percentage": "Procentaj Votanți",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Nici o tranzactie găsită",
   "no_tokens_found": "Nici un token găsit",
   "no_blocks_found": "Nici un block găsit",
@@ -461,14 +454,13 @@ export const messages = {
   "no_voters_found": "Nici un votant găsit",
   "waiting_for_transactions": "În aşteptare pentru tranzacţii",
   "loading_address": "Încărcare Adresă",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "detalii",
   "issue_a_token": "Emiteți un Token",
   "issue_token": "Emitere Token",
@@ -495,19 +487,18 @@ export const messages = {
   "start_date": "Dată Start",
   "end_date": "Dată Sfârșit",
   "token_spend_confirm": "Confirm că supply-ul total al tokenilor costă o taxă unică de 1024 TRX.",
-  "token_issue_guide_message_1": `Emiterea unui token pe Tron Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
+  "token_issue_guide_message_1": `Emiterea unui token pe TRON Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
   "token_issue_guide_message_2":`Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
     Utilizatorii pot apoi să participe în perioada de participare şi să schimbe TRXul lor pentru tokeni.`,
   "token_issue_guide_message_3":`După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
     Când alţi utilizatori schimbă TRXul lor pentru tokeni atunci tokenii vor fi retrași din contul dumneavoastră şi veți primi TRX egal cu cursul de schimb specificat.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "data de sfârşit este mai devreme, sau la fel ca data de început",
   "no_name_error": "Numele este necesar",
   "no_supply_error": "Supply-ul total trebuie să fie cel puţin 1",
@@ -530,14 +521,13 @@ export const messages = {
   "abbreviation_required": "Abrevierea este necesară",
   "abbreviation_error_message_0": "Abrevierea nu poate fi mai lungă de 5 caractere",
   "abbreviation_error_message_1": "Abrevierea poate conține numai caractere a-Z ",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Cea mai mare Productivitate",
   "lowest_productivity": "Cea mai mică Productivitate",
   "Super Representatives": "Super Reprezentanți",
@@ -546,34 +536,35 @@ export const messages = {
   "address_not_super_representative": "Această adresă nu este un Super Reprezentant",
   "unable_load_representatives_page_message": "Nu se poate încărca pagina, acest lucru se întâmplă dacă adresa este invalidă, dacă adresa nu este un reprezentant sau reprezentantul nu și-a configurat încă pagina",
   "loading_representative": "Încărcare Reprezentant",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Preț mediu în USD",
   "average_volume_usd": "Volum mediu în USD",
   "Trade Volume": "Volum Tranzacționare",
   "rank": "rang",
   "pair": "pereche",
   "volume": "Volum",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Prețul mediu",
+  "click_the_chart_title_to_find_more": "Faceți clic pe titlul diagramei pentru a afla mai multe.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Runda Următoare",
   "total_votes": "Voturi Totale",
   "most_ranks": "Cele mai multe ranguri câștigate runda aceasta",
   "view_live_ranking": "Vizualizare Rang Live",
   "open_team_page": "Dechide pagina echipei",
-  "warning_votes": "Cel puțin 1 Tron Putere este necesar pentru a începe votul. Puterea Tron este câștigată înghețând TRX pe",
+  "warning_votes": "Cel puțin 1 TRON Putere este necesar pentru a începe votul. Puterea TRON este câștigată înghețând TRX pe",
   "account_page": "Pagina de Cont",
   "loading_votes": "Încărcare Voturi",
   "3_day_ranking": "Rangul pe 3 zile",
@@ -593,14 +584,13 @@ export const messages = {
   "submissing_vote_message_1": "Puteți redistribui voturile oricând doriți",
   "submitting_vote_error_message": "Ceva nu a mers bine în timpul votării. Vă rugăm încercați mai târziu.",
   "loading_super_representatives": "Încărcare Super Reprezentanți",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Aici puteți să faceți paste la un hex de tranzacție pentru a inspecta conținutul tranzacției. Tranzacția poate fi apoi transmisă pe rețea",
   "load_tx": "Încărcare Tranzacție",
   "tx_qrcode": "Tranzacție Cod QR",
@@ -613,54 +603,50 @@ export const messages = {
   "transaction_error": "Eroare tranzacție",
   "confirm_transaction_message": "Sunteți sigur că vreți să trimiteți tranzacția?",
   "broadcast_transaction_to_network": "Emitere Tranzacție pe Rețea",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Inserați IP-ul nodului dumneavostră pentru a testa conexiunea GRPC",
   "node_tester_stop": "Stop testare",
   "node_tester_test": "Testare GRPC",
   "node_tester_rt": "Timp de Răspuns",
   "confirmed_block": "Bloc Confirmat",
   "loading": "încărcare...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Nu a fost găsită cameră web",
   "trying_enable_webcam_message_0": "Eroare în timp ce se încerca pornirea camerei web.",
   "trying_enable_webcam_message_1": "Asigurați-vă că permisiunile de cameră sunt pornite.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Ce este TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Arhitectura TRON ",
   "tron_protobuf_doc": "Documentare TRON Protobuf ",
   "report_an_error": "Arată un bug / sugestie",
   "frequently_asked_questions": "Întrebări frecvente",
   "telegram_updates": "Update-uri Telegram",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Deschidere Portofel",
   "private_key": "Cheie Privată",
   "keystore_file": "Fișier Keystore",
@@ -675,7 +661,7 @@ export const messages = {
   "save_keystore_file": "Salvați-vă fișierul Keystore",
   "download_keystore_file": "Descărcați Cheia Criptată",
   "do_not_lose_it": "Nu o pierdeți!",
-  "do_not_lose_it_message_0": "Fundația Tron nu vă poate ajuta să recuperați o cheie pierdută.",
+  "do_not_lose_it_message_0": "Fundația TRON nu vă poate ajuta să recuperați o cheie pierdută.",
   "do_not_share_it": "Nu o dați și altora!",
   "do_not_share_it_message_0": "Fondurile dumneavoastră pot fi furate dacă folosiți un fișier sau site malware.",
   "make_a_backup": "Faceți o rezervă!",
@@ -684,17 +670,110 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "timp",
   "parenthash": "parenthash",
   "size": "mărime",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ghidul Registrului",
+  "requirements": "Cerințe",
+  "using_ledger_steps_message_0": "Folosirea Registrului cu Tronscan necesită următorii pași:",
+  "a": "A",
+  "install_the": "Instalați ",
+  "app": "app",
+  "install_latest_version_message_0": "Instalați ultima versiune a ",
+  "opening_your_wallet": "Dechiderea portofelului",
+  "open_the_tronscan_desktop_client": "Deschideți clientul desktop Tronscan",
+  "click_open_wallet_top_right": "Clic pe 'Deschide Portofelul' sus dreapta",
+  "choose_ledger": "Alegeți Registrul",
+  "connect_unlock_ledger_with_pin": "Conectați-vă și descuiați dispozitivul cu codul PIN",
+  "open_tron_app_on_ledger": "Dechideți TRON app în Registru",
+  "ledger_connected_tronscan_message_0": "Dacă Registrul este conectat corect atunci Tronscan va arăta 'Conectat'",
+  "click_on_open_wallet": "Clic pe 'Deschide Portofelul'",
+  "redirect_to_your_wallet_message": "Veți fi redirecționat către portofel și vă veți putea vizualiza adresa TRON",
+  "using_ledger_to_sign_transactions": "Folosirea registrului pentru a semna tranzacții",
+  "using_ledger_to_sign_transactions_message_0": "Asigurați-vă că țineți Registrul conectat și TRON app deschis pentru a semna tranzacții folosind Registrul în timp ce folosiți Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan va arăta un popup cu detaliile tranzacției când se necesită o semnătură de tranzacție. Semnăturile sunt necesare indiferent dacă votați, trimiteți TRX, schimbați numele contului, etc.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Nu a fost gasită nici o înregistrare!",
+  "warning": "Avertizare",
+  "login_success": "Logare cu succes",
+  "logout_success": "Delogare cu succes",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Dată",
+  "total_transactions": "Total Tranzacții",
+  "avg_blockTime": "Timp Mediu Bloc",
+  "avg_blockSize": "Mărime medie Bloc",
+  "total_BlockCount": "Total Număr Blocuri",
+  "new_address_seen": "Adresă nouă Vizualizări",
+  "transfer_contract": "Contract de Transfer",
+  "TRX_transfer_between_addresses": "Transfer TRX între adrese",
+  "transfer_asset_contract": "Contract de Transfer Bunuri",
+  "token_transfer_between_addresses": "Transfer Tokeni între adrese",
+  "participate_asset_issue_contract": "Participare bunuri emitere contract",
+  "participate_token_between_addresses": "Participare token între adrese",
+  "witness_update_contract": "Updatare Contract Witness",
+  "updates_a_witness": "Updatare witness",
+  "witness_create_contract": "Creare Contract Witness",
+  "create_a_witness": "Creare Witness",
+  "account_update_contract": "Updatare Contract de Cont",
+  "update_account_name": "Updatare nume de cont",
+  "withdraw_balance_contract": "Contract de Retragere Balanță",
+  "withdraw_balance": "Retragere Balanță",
+  "freeze_balance_contract": "Contract Înghețare Balanță",
+  "freeze_TRX": "Înghețare TRX",
+  "unfreeze_balance_contract": "Contract Dezghețare Balanță",
+  "unfreeze_TRX": "Dezghețare TRX",
+  "vote_witness_contract": "Contract votare witness",
+  "vote_for_a_witness": "Votare pentru un Witness",
+  "asset_issue_contract": "Contract Emitere Bunuri",
+  "issue_a_new_asset": "Emitere de Bun Nou",
+  "owner_address": "Adresă Deținător",
+  "frozen_balance": "Balanță Înghețată",
+  "frozen_days": "Zile Înghețare",
+  "counts": "numărători",
+  "TRX_exchange_rate": "Rată de schimb TRX",
+  "start_time": "Timp Începere",
+  "end_time": "Timp Sfârșit",
+  "contracts": "Contracte",
+  "search_description": "Caută Adresă,Înălțime Bloc,Hash Tranzacție,Nume Token",
+  "search_description1": "Caută Adresă,Bloc,Tranzacție,Token",
+  "transaction": "Tranzacție",
+  "total_addresses": "Total Adrese",
+  "daily_increment": "Creștere zilnică",
+  "address_growth_chart": "Adresă Diagramă de Creștere",
+  "addresses_amount": "Cantitate Adrese",
+  "past_14_days_of_transactions": "Ultimele 14 zile de tranzacții",
+  "address_growth": "Adresă Creștere",
+  "power": "Putere",
+  "token_transfers": "Transfer Tokeni",
+  "website_url": "Website URL",
+  "search": "Căutare"
 
 };

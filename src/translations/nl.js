@@ -1,43 +1,43 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-20062018                                                  #
-#         Update Date: 20.06.2018                                                #
-#         Language: Dutch                                                        #
-#         Status: Second Draft                                                   #
-#         Number of checks: 4                                                    #
-#         Participants: Rovak,CryptoSpaces,PMD3VSolution,aritmeester             #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-14072018                                                  #
+  #         Update Date: 14.07.2018                                                #
+  #         Language: Dutch                                                        #
+  #         Status: Second Draft                                                   #
+  #         Number of checks: 5                                                    #
+  #         Participants: Crypto L,Rovak,CryptoSpaces,PMD3VSolution,aritmeester    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "wachtwoord",
   "money_price": "prijs",
   "price": "prijs",
@@ -53,7 +53,8 @@ export const messages = {
   "login": "inloggen",
   "height": "height",
   "age": "age",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "geproduceerd door",
   "contract": "Contract",
   "from": "van",
@@ -97,15 +98,15 @@ export const messages = {
   "notifications_enabled": "Meldingen ingeschakeld",
   "contract_type": "Contract Type",
   "filters": "Filters",
-  "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "send_tokens": "Verzend Tokens",
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Portemonee",
   "home": "Home",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "tokens",
   "overview": "Overzicht",
   "participate": "Deelnemen",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentraliseer het Web",
   "transactions_last_hour": "Transacties gedurende laatste uur",
   "block_height": "Blokhoogte",
@@ -143,21 +143,20 @@ export const messages = {
   "create_new_wallet": "Nieuwe portemonee maken",
   "view_tokens": "Bekijk tokens",
   "transactions_last_day": "Aantal transacties van gisteren",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "eerste pagina",
   "previous_page": "vorige pagina",
   "next_page": "volgende pagina",
   "last_page": "laatste pagina",
   "page": "pagina",
   "of": "van",
-  "page_size": "page size",
+  "page_size": "Paginagrootte ",
   "most_nodes": "Meeste nodes",
   "loading_nodes": "Nodes worden geladen",
   "Hostname": "Machinenaam",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "Vermogensbelegging",
   "loading_transaction": "Transacties laden",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Totaal aantal accounts",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adres",
   "trx_transferred_past_hour": "Overgedragen TRX gedurende het laatste uur",
   "transactions_past_hour": "Transacties gedurende het laatste uur",
   "average_blocksize": "Gemiddelde Blokgrootte",
   "rich_list": "Rich lijst",
-  "TRX_transaction_chart": "TRX Transactie Grafiek",
+  "tron_transaction_chart": "TRON Transactie Grafiek",
   "transactions_per_day": "Transacties Per Dag",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Stel naam in",
   "unique_account_message": "U mag uw accountnaam slechts één keer instellen!",
   "name_to_short": "De ingevoerde naam is te kort!",
@@ -207,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Verstuur geen TRX van je portemonnee of exchange naar het bovenstaande testnet adres!",
   "bandwidth": "bandbreedte",
   "balance": "saldo",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transacties",
   "no_transfers": "Geen Overschrijvingen",
   "no_tokens": "Geen Tokens",
@@ -230,23 +228,22 @@ export const messages = {
   "not_enough_trx": "Onvoldoende TRX",
   "information_message_3": "TRX aangevraagd. Indien u geen TRX ontvangen heeft dan is er op dit moment geen test TRX beschikbaar. Probeer het in dat geval later nogmaals.",
   "send_to_following_address": "Verstuur naar het volgende adres",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
+  "change_website": "Verander Website",
+  "you_must_enter_url": "U moet een URL ingeven",
   "specify_the_url":  "Please specify the URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "vastzetten",
   "unfreeze": "ontgrendelen",
   "freeze_trx_least": "Je hebt tenminsten 1 TRX nodig om te kunnen vastzetten",
   "unable_unfreeze_trx_message": "Het is niet gelukt de TRX te ontgrendelen. Dit zou kunnen komen doordat de minimale periode voor vastzetten nog niet is bereikt.",
-  "freeze_trx_premessage_0": `TRX kan vastgezet worden om Tron Power te verwerven om daarmee andere functies te activeren.
-   Met Tron Power kun je bijvoorbeeld `,
+  "freeze_trx_premessage_0": `TRX kan vastgezet worden om TRON Power te verwerven om daarmee andere functies te activeren.
+   Met TRON Power kun je bijvoorbeeld `,
   "freeze_trx_premessage_link": "stemmen op een Super Vertegenwoordigers.",
   "freeze_trx_premessage_1": ` Vastgezette tokens staan vastgezet voor een periode van 3 dagen. Gedurende deze periode kunnen de vastgezette TRX niet verhandeld worden.
    Na deze periode kunnen de TRX ontgrendeld worden en kunnen de tokens weer verhandeld worden.`,
@@ -267,48 +264,18 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Weet u zeker dat u de TRX wilt ontgrendelen?",
   "unfreeze_assets": "Fondsen ontgrendelen",
   "sure_to_unfreeze_unlocked_tokens_message": "Weet je zeker dat je tokens wilt ontgrendelen?",
-  "landing_page": "Bestemmingspagina",
-  "show_more_information_publish_sr_page": "Toon meer informatie over hoe je een pagina kunt publiceren",
-  "create_sr_landing_page_message_0": "Super Vertegenswoordigers kunnen een pagina maken waarop ze meer informatie over hun team en plannen kunnen delen",
-  "set_github_url_message_0": "Heb je al een Github template geconfigureerd? Zo ja, gebruik de onderstaande button op de URL in te stellen",
-  "set_github_link": "Github link instellen",
-  "could_not_claim_rewards": "Kan geen aanspraak maken op beloningen",
-  "claim_rewards_error_message": "Er is iets misgegaan bij het aanspraak maken op beloningen, probeer het later nogmaals.",
-  "rewards_claimed": "Belonigen ontvangen!",
-  "successfully_claimed_rewards":  "Met succes belonigen ontvangen",
-  "claim_rewards": "Aanspraak maken op beloningen",
-  "sr_receive_reward_message_0": "Als vertegenwoordiger ontvang je beloning voor geproduceerde blokken. Je kunt iedere 24 uur aanspraak maken op deze beloningen",
-  "intro": "Intro",
-  "budget_expenses": "Uitgavebudget",
-  "server_configuration": "Server Configuratie",
-  "community_plan": "Community Plan",
-  "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "Kandidaat stellen als afgevaardigde",
   "apply_super_representative_candidate": "Kandidaat stellen als Super Vertegenwoordiger",
   "your_personal_website_address": "uw persoonlijke website URL",
-  "apply_for_delegate_predescription":`Elke tokenhouder heeft de mogelijkheid om TRON Super Vertegenwoordiger te worden.
-   Echter, voor verkiesbare kandidaten zijn een aantal standaarden en regulaties gecreëerd,
-   om het netwerk en de gemeenschap soepeler en efficiënter te laten lopen,
-   om voorgedragen Super Vertegenwoordig te kunnen worden. Wij zullen de voorgedragen Super Vertegenwoordigers
-   promoten om de kans dat ze worden gekozen te vergroten. Eén keer per week worden nieuw voorgedragen Super
-   Vertegenwoordigers geüpdatet en gepost.`,
-  "apply_for_delegate_description": `
-   TRX holders can apply to become a super delegate by using the account management function, and vote for candidates.
-   Each account can update current voter information and also is allowed to vote for multiple candidates.
-   The maximum number of votes is less than or equal to the number of TRX users hold each time.
-   (If you have certain sum of TRX, you can vote less than or equal to certain number of votes).
-   The result of votes will be calculated based on the final voter information of every account in each
-   voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.
-   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted.
-   TRX will not be consumed in the process of super delegate application and voting.`,
+  "apply_for_delegate_predescription": `Elke tokenhouder heeft de mogelijkheid om TRON Super Vertegenwoordiger te worden. Echter, voor verkiesbare kandidaten zijn een aantal standaarden en regulaties gecreëerd, om het netwerk en de gemeenschap soepeler en efficiënter te laten lopen, om voorgedragen Super Vertegenwoordig te kunnen worden. Wij zullen de voorgedragen Super Vertegenwoordigers promoten om de kans dat ze worden gekozen te vergroten. Eén keer per week worden nieuw voorgedragen Super Vertegenwoordigers geüpdatet en gepost.`,
+  "apply_for_delegate_description": `TRX holders can apply to become a super delegate by using the account management function, and vote for candidates. Each account can update current voter information and also is allowed to vote for multiple candidates. The maximum number of votes is less than or equal to the number of TRX users hold each time. (If you have certain sum of TRX, you can vote less than or equal to certain number of votes). The result of votes will be calculated based on the final voter information of every account in each voting cycle of which the time is from 00:00 to 24:00. TRX holders with the most votes will become super delegate.   Every transaction made in the network is required to be validated by all SuperDelegates, and some bonuses will be getted. TRX will not be consumed in the process of super delegate application and voting.`,
   "unknown_error": "er is een onbekende fout opgetreden",
   "representative_understand": "Ik begrijp hoe ik een TRON vertegenwoordige kan zijn",
   "generate_account": "Genereer een nieuw account en wachtwoord",
@@ -336,9 +303,9 @@ export const messages = {
   "invalid_url": "Ongeldige URL",
   "apply_representative_error_message_0": "Er is een fout opgetreden tijdens het kandidaat stellen.",
   "apply_representative_error_message_1": "Zorg ervoor dat u genoeg TRX in uw account heeft om registratiekosten te dekken, of probeer het later nogmaals.",
-  "open_external_link":"Je opent een externe website",
+  "open_external_link": "Je opent een externe website",
   "private_key_untrusted_website_message_0": "Voer nooit je privé sleutel in op een niet vertrouwde website.",
-  "no_official_tron_website": "is geen officiële Tron site.",
+  "no_official_tron_website": "is geen officiële TRON site.",
   "continue_to_external_website": "Ga verder naar externe website",
   "url_changed": "URL gewijzigd",
   "successfully_changed_website_message": "Website is succesvol gewijzigd in  ",
@@ -355,14 +322,29 @@ export const messages = {
   "success": "gelukt",
   "successfully_appied_sr_canidate_message_0": "Je aanmelding als Super Vertegenwoordiger kandidaat is gelukt.",
   "successfully_appied_sr_canidate_message_1": "Je account zal zo spoedig mogelijk bijgewerkt worden.",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "landing_page": "Bestemmingspagina",
+  "show_more_information_publish_sr_page": "Toon meer informatie over hoe je een pagina kunt publiceren",
+  "create_sr_landing_page_message_0": "Super Vertegenswoordigers kunnen een pagina maken waarop ze meer informatie over hun team en plannen kunnen delen",
+  "set_github_url_message_0": "Heb je al een Github template geconfigureerd? Zo ja, gebruik de onderstaande button op de URL in te stellen",
+  "set_github_link": "Github link instellen",
+  "could_not_claim_rewards": "Kan geen aanspraak maken op beloningen",
+  "claim_rewards_error_message": "Er is iets misgegaan bij het aanspraak maken op beloningen, probeer het later nogmaals.",
+  "rewards_claimed": "Belonigen ontvangen!",
+  "successfully_claimed_rewards":  "Met succes belonigen ontvangen",
+  "claim_rewards": "Aanspraak maken op beloningen",
+  "sr_receive_reward_message_0": "Als vertegenwoordiger ontvang je beloning voor geproduceerde blokken. Je kunt iedere 24 uur aanspraak maken op deze beloningen",
+  "intro": "Intro",
+  "budget_expenses": "Uitgavebudget",
+  "server_configuration": "Server Configuratie",
+  "community_plan": "Community Plan",
+  "team": "Team",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Naam van de token",
   "token_message": "Naam van de token",
   "token_abbr": "token afkorting",
@@ -393,14 +375,13 @@ export const messages = {
   "not_started_yet": "Nog niet begonnen",
   "participated": "Je neemt deel!",
   "participated_error": "Er is een fout opgetreden",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Weet je het zeker?",
   "how_much_buy_message": "Hoeveel tokens wil je kopen?",
   "buy_confirm_message_1": "Weet je het zeker?",
@@ -409,14 +390,14 @@ export const messages = {
   "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "kan ontgrendelt worden in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Voer alleen een geldig TRON portemonnee adres in. Een ongeldig adres kan leiden tot verlies van TRX.",
   "search_address_or_url": "Zoek op adres of URL",
   "the_lunch_test": "Het doel van de lancering van testnet is om alle onderdelen van onze blockchain verkenner en portemonee te testen.",
@@ -448,14 +429,13 @@ export const messages = {
   "percentage": "Percentage",
   "loading_token": "Token laden",
   "voter_percentage": "Percentage kiezers",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Geen transacties gevonden",
   "no_tokens_found": "Geen tokens gevonden",
   "no_blocks_found": "Geen blokken gevonden",
@@ -463,14 +443,13 @@ export const messages = {
   "no_voters_found": "Geen stemmers gevonden",
   "waiting_for_transactions": "Wacht op transacties",
   "loading_address": "Adres wordt geladen",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "gegevens",
   "issue_a_token": "Maak een token",
   "issue_token": "Maak Token",
@@ -497,21 +476,20 @@ export const messages = {
   "start_date": "Begindatum",
   "end_date": "Einddatum",
   "token_spend_confirm": "Ik bevestig dat ik op de hoogte ben van het feit dat het maken van de gehele voorraad van mijn tokens 1024 TRX kost.",
-  "token_issue_guide_message_1": `Het uitgeven van een token op het Tron Protocol kan gedaan worden
+  "token_issue_guide_message_1": `Het uitgeven van een token op het TRON Protocol kan gedaan worden
     door iedereen die tenminste 1024 TRX beschikbaar heeft.`,
   "token_issue_guide_message_2":`Als een token is uitgegeven wordt deze getoond op de overzichtspagina.
     Gebruikers kunnen in de deelname periode hun TRX inwisselen voor tokens.`,
   "token_issue_guide_message_3":` Na het uitgeven van een token ontvangt u een aantal tokens dat gelijk is aan de totale voorraad in uw account.
     Zodra andere gebruikers TRX inwisselen zullen de tokens van uw account worden afgeschreven. Er zullen TRX op uw account worden bijgeschreven
 	tegen de wisselkoers van de token.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "De einddatum ligt voor of is gelijk aan de startdatum",
   "no_name_error": "Er is geen naam opgegeven",
   "no_supply_error": "Er is een negatieve waarde of nul opgegeven voor de voorraad van deze token",
@@ -534,14 +512,13 @@ export const messages = {
   "abbreviation_required": "Een afkorting is vereist",
   "abbreviation_error_message_0": "De symbolische afkorting mag niet langer zijn dan 5 tekens.",
   "abbreviation_error_message_1": "De afkorting token mag alleen tekens van a tot Z bevatten.",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Hoogste Productiviteit",
   "lowest_productivity": "Laagste Productiviteit",
   "Super Representatives": "Super Vertegenwoordiger",
@@ -549,35 +526,36 @@ export const messages = {
   "loading_representatives": "Vertegenwoordigers worden geladen",
   "address_not_super_representative": "Dit adres betreft geen Super Vertegenwoordiger",
   "unable_load_representatives_page_message": "Niet mogelijk de pagina te laden. Dit kan gebeuren doordat het adres ongeldig is, niet van een vertegenwoordiger of de vertegenwoordiger heeft deze pagina nog niet ingesteld",
-  "loading_representative": "Loading Representative",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "loading_representative": "Representative aan het laden",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Gemiddelde Prijs in USD",
   "average_volume_usd": "Gemiddelde Volume in USD",
   "Trade Volume": "Handelsvolume",
   "rank": "plek",
   "pair": "paar",
   "volume": "Volume",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Gemiddelde Prijs",
+  "click_the_chart_title_to_find_more": "Klik op de grafiektitel om meer te vinden.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Volgende Ronde",
   "total_votes": "Stemmen Totaal",
   "most_ranks": "Meeste Plekken Gewonnen Deze Ronde",
   "view_live_ranking": "Bekijk live stand",
   "open_team_page": "Open Team Pagina",
-  "warning_votes": "Om te kunnen stemmen is Tron Power nodig. Je kunt Tron Power verkrijgen door TRX te vast te zetten op de ",
+  "warning_votes": "Om te kunnen stemmen is TRON Power nodig. Je kunt TRON Power verkrijgen door TRX te vast te zetten op de ",
   "account_page": "Account Pagina",
   "loading_votes": "Stemmen worden geladen",
   "3_day_ranking": "3 Dagen Stand",
@@ -596,15 +574,14 @@ export const messages = {
   "submissing_vote_message_0": "Uw persoonlijke stem is met succes uitgebracht en zal in de volgende verkiezingscyclus van kracht worden.",
   "submissing_vote_message_1": "U mag uw stemmen herverdelen wanneer u maar wilt",
   "submitting_vote_error_message": "Bij het stemmen is een fout opgetreden. Probeer het later nogmaals.",
-  "loading_super_representatives": "Loading Super Representatives",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "loading_super_representatives": "Super Representatives aan het laden",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Hier kunt u een transactie-hex plakken om de inhoud van de transactie te inspecteren. De transactie kan vervolgens naar het netwerk worden verzonden",
   "load_tx": "Transactie laden",
   "tx_qrcode": "Transactie QR Code",
@@ -617,54 +594,50 @@ export const messages = {
   "transaction_error": "Transactie Fout",
   "confirm_transaction_message": "Weet je zeker dat je deze transcatie wilt versturen?",
   "broadcast_transaction_to_network": "Verzend Transactie naar het Netwerk",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Vul het IP van jouw node in om de GRPC verbinding te testen",
   "node_tester_stop": "Stop met testen",
   "node_tester_test": "Start de GRPC-test",
   "node_tester_rt": "Responstijd",
   "confirmed_block": "Bevestigd Blok",
   "loading": "Aan het laden...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Geen webcam gevonden",
   "trying_enable_webcam_message_0": "Er is een fout opgetreden tijdens het activeren van de webcam.",
   "trying_enable_webcam_message_1": "Zorg ervoor dat camera toegang is toegestaan.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Wat is TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architectuur",
   "tron_protobuf_doc": "TRON Protobuf Documentatie",
   "report_an_error": "Geef een bug / suggestie door",
-  "frequently_asked_questions": "Frequently Asked Questions",
+  "frequently_asked_questions": "Vaak Voorkomende Vragen",
   "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Open Portemonnee",
   "private_key": "Privé sleutel",
   "keystore_file": "Versleutelde sleutel",
@@ -679,7 +652,7 @@ export const messages = {
   "save_keystore_file": "Sla je versleutelde sleutel op",
   "download_keystore_file": "Download versleutelde sleutel",
   "do_not_lose_it": "Niet verliezen!",
-  "do_not_lose_it_message_0": "Tron Foundation kan je niet helpen met het herstellen van een verloren privé sleutel.",
+  "do_not_lose_it_message_0": "TRON Foundation kan je niet helpen met het herstellen van een verloren privé sleutel.",
   "do_not_share_it": "Niet delen!",
   "do_not_share_it_message_0": "Je fondsen kunnen gestolen worden wanneer je dit bestand op een kwaadaardige site gebruikt.",
   "make_a_backup": "Maak een reservekopie!",
@@ -688,17 +661,110 @@ export const messages = {
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "tijd",
   "parenthash": "parenthash",
   "size": "grootte",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Handleiding",
+  "requirements": "Vereisten",
+  "using_ledger_steps_message_0": "De Ledger gebruiken met Tronscan vereist de volgende stappen:",
+  "a": "A",
+  "install_the": "Installeer de ",
+  "app": "app",
+  "install_latest_version_message_0": "Installeer de laatste versie van ",
+  "opening_your_wallet": "Uw portemonnee is aan het openen",
+  "open_the_tronscan_desktop_client": "Open de Tronscan Desktop client",
+  "click_open_wallet_top_right": "Klik op 'Open Portemonnee' rechtsbovenaan",
+  "choose_ledger": "Kies Ledger",
+  "connect_unlock_ledger_with_pin": "Connecteer en open uw toestel met uw PIN code",
+  "open_tron_app_on_ledger": "Open de TRON app op uw Ledger",
+  "ledger_connected_tronscan_message_0": "Indien uw Ledger correct verbonden is, zal Tronscan 'Verbonden' tonen. ",
+  "click_on_open_wallet": "Klik op 'Open Portemonnee'",
+  "redirect_to_your_wallet_message": "U wordt doorgestuurd naar uw portemonnee en vervolgens kunt u uw TRON adres bekijken",
+  "using_ledger_to_sign_transactions": "Gebruik de Ledger om transacties te ondertekenen.",
+  "using_ledger_to_sign_transactions_message_0": "Zorg ervoor dat de Legder verbonden blijft en dat de TRON app open blijft om transacties te ondertekenen met de Legder via de Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan zal een pop-up tevoorschijn laten komen met de transactiedetails wanneer een transactie ondertekening vereist is. Ondertekeningen zijn vereist wanneer u stemt, TRX verzendt, van accountnaam verandert, enz.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Record niet gevonden!",
+  "warning": "Waarschuwing",
+  "login_success": "Inloggen Succes",
+  "logout_success": "Uitloggen Succes",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Datum",
+  "total_transactions": "Totaal Aantal Transacties",
+  "avg_blockTime": "Gemiddelde Block Tijd",
+  "avg_blockSize": "Gemiddelde Block Grootte",
+  "total_BlockCount": "Totaal Block Aantal",
+  "new_address_seen": "Nieuw Adres Gezien",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer tussen adressen",
+  "transfer_asset_contract": "Transfer Activa Contract",
+  "token_transfer_between_addresses": "Token transfer tussen adressen",
+  "participate_asset_issue_contract": "Deelneming Activa Uitgevingscontract",
+  "participate_token_between_addresses": "Deelneming token tussen adressen",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update een witness",
+  "witness_create_contract": "Witness Creëer Contract",
+  "create_a_witness": "Creëer een witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account naam",
+  "withdraw_balance_contract": "Terugtrekking Saldo Contract",
+  "withdraw_balance": "Trek saldo terug",
+  "freeze_balance_contract": "Bevries saldo Contract",
+  "freeze_TRX": "Bevries TRX",
+  "unfreeze_balance_contract": "Maak saldo vrij Contract",
+  "unfreeze_TRX": "Vrijmaking van TRX",
+  "vote_witness_contract": "Stem Witness Contract",
+  "vote_for_a_witness": "Stem voor een Witness",
+  "asset_issue_contract": "Activa uitgevingscontract",
+  "issue_a_new_asset": "Geef een nieuwe activa vrij",
+  "owner_address": "Eigenaar's adres",
+  "frozen_balance": "Bevroren Saldo",
+  "frozen_days": "Bevroren Dagen",
+  "counts": "Tellingen",
+  "TRX_exchange_rate": "TRX Wisselkoers",
+  "start_time": "Start Tijd",
+  "end_time": "Eind Tijd",
+  "contracts": "Contracten",
+  "search_description": "Zoek adres,Block Hoogte,Transactie Hash,Token Naam",
+  "search_description1": "Zoek adres,Block,Transactie,Token",
+  "transaction": "Transactie",
+  "total_addresses": "Totaal Adressen",
+  "daily_increment": "Dagelijkse verhoging",
+  "address_growth_chart": "Adressengroei grafiek",
+  "addresses_amount": "Aantal adressen",
+  "past_14_days_of_transactions": "Verstreken 14 dagen van transacties",
+  "address_growth": "Adressengroei",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Zoeken"
 
 };
