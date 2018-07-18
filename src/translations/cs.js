@@ -755,11 +755,11 @@ export const messages = {
   "frozen_days": "Frozen Days",
   "counts": "counts",
   "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
+  "start_time": "Doba spuštění",
+  "end_time": "Čas ukončení",
+  "contracts": "kontrakt",
+  "search_description": "Vyhledávací adresa, Výška bloku, Hash transakcí, Jméno tokenu",
+  "search_description1": "Vyhledávací adresa, Blok, Transakce, Token",
   "transaction": "Transaction",
   "total_addresses": "Total Addresses",
   "daily_increment": "Daily Increase",
@@ -768,8 +768,8 @@ export const messages = {
   "past_14_days_of_transactions": "Past 14 days of transactions",
   "address_growth": "Address Growth",
   "power": "Power",
-  "token_transfers": "Token Transfers",
+  "token_transfers": "Převody Token",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Vyhledávání"
 
 };

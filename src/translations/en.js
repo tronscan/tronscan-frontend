@@ -171,7 +171,7 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
   "nodes_ranking": "Nodes Ranking (Rank by country and region)",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   /*
   ##################################################################################
   #                                                                                #

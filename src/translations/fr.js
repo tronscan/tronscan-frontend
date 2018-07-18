@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-18072018                                                  #
+  #         Update Date: 18.07.2018                                                #
   #         Language: French                                                       #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -762,8 +762,8 @@ export const messages = {
   "start_time": "Start Time",
   "end_time": "End Time",
   "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
+  "search_description": "Recherche par adresse,Blocage,Transaction Hash,Nom du jeton,Nom du jeton",
+  "search_description1": "Recherche par adresse, bloc, transaction, transaction, jeton",
   "transaction": "Transaction",
   "total_addresses": "Total Addresses",
   "daily_increment": "Daily Increase",
@@ -774,6 +774,6 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Recherche"
 
 };

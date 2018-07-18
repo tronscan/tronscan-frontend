@@ -98,7 +98,7 @@ export const messages = {
   "notifications_enabled": "تم تمكين الأشعارات",
   "contract_type": "نوع العقد",
   "filters": "تصفيه",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "إرسال الرموز المميزة",
   "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
@@ -171,8 +171,8 @@ export const messages = {
   "witness": "الشاهد",
   "asset_participation": "مشاركة الأصول",
   "loading_transaction": "جاري تحميل المعامله",
-  "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "nodes_ranking": "ترتيب العقد",
+  "total_accounts_last_day": "مجموع الحسابات حتى اليوم الأخير",
   /*
   ##################################################################################
   #                                                                                #
