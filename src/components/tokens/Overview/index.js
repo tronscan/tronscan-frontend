@@ -149,7 +149,7 @@ class TokenOverview extends Component {
     //checkPageChanged(this, this.loadPage);
   }
   onChange = (page,pageSize) => {
-    this.loadPage(page,pageSize);
+    this.loadPage(page, pageSize);
   };
 
   isValid = () => {
@@ -164,18 +164,36 @@ class TokenOverview extends Component {
 
     this.setState({ loading: true });
 
-    let isSuccess = await Client.participateAsset(
-      currentWallet.address,
-      token.ownerAddress,
-      token.name,
-      amount * token.price)(currentWallet.key);
+    try {
+      let {success} = await Client.participateAsset(
+        currentWallet.address,
+        token.ownerAddress,
+        token.name,
+        amount * token.price)(currentWallet.key);
 
-    this.setState({
-      activeToken: null,
-      confirmedParticipate: true,
-      participateSuccess: isSuccess,
-      loading: false,
-    });
+      if (!success) {
+        return false;
+      }
+
+      this.setState({
+        participateSuccess: true,
+      });
+
+      return true;
+    }
+    catch (e) {
+      return false;
+    }
+    finally {
+      this.setState({
+        loading: false,
+        activeToken: null,
+        confirmedParticipate: true,
+        participateSuccess: false,
+      });
+    }
+
+    return false;
   };
 
   renderGrid() {
@@ -197,11 +215,6 @@ class TokenOverview extends Component {
                     <p className="card-text break-word">
                       {token.description}
                     </p>
-                    {/*<p className="mb-0">*/}
-                      {/*<ExternalLink url={token.url} className="card-link text-primary text-center">*/}
-                        {/*Visit Website*/}
-                      {/*</ExternalLink>*/}
-                    {/*</p>*/}
                   </div>
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item">
@@ -343,15 +356,31 @@ class TokenOverview extends Component {
     );
   }
 
-  confirmTransaction = (token) => {
-    this.setState({
-      alert: (
-        <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
-          Successfully received {token.name} tokens
-        </SweetAlert>
-      )
-    });
-    this.submit(token);
+  confirmTransaction = async (token) => {
+    this.setState({ alert: null });
+
+    let confirmed = await this.submit(token);
+
+    console.log("CONFIRMED", confirmed);
+
+    if (confirmed) {
+      this.setState({
+        alert: (
+          <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
+            Successfully received {token.name} tokens
+          </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        alert: (
+          <SweetAlert warning title="Something went wrong" onConfirm={() => this.setState({ alert: null })}>
+            Something went wrong
+          </SweetAlert>
+        )
+      });
+
+    }
   };
 
   render() {

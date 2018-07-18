@@ -245,6 +245,12 @@ export const routes = [
     ]
   },
   {
+    path: "/wallet/new",
+    label: "wallet",
+    showInMenu: false,
+    component: WalletWizardAsync,
+  },
+  {
     path: "/wallet/open",
     label: "open wallet",
     showInMenu: false,

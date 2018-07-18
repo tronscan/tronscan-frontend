@@ -148,7 +148,7 @@
     "desktop:build:mac": "electron-packager ./build-native Tronscan --platform=darwin --out=build-desktop  --overwrite",
     "desktop:start": "DEV=true electron ./desktop",
     "desktop:start:test": "yarn desktop:copy-hid && DEV=true yarn desktop:compile && DEV=true yarn electron ./build-native",
-    "desktop:build:full": "yarn desktop:prepare && yarn desktop:build && yarn desktop:copy-sources && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
+    "desktop:build:full": "yarn desktop:prepare && yarn desktop:build && yarn desktop:copy-sources && yarn desktop:copy-hid && yarn desktop:build:win && yarn desktop:build:linux && yarn desktop:build:mac",
     "test": "node scripts/test.js --env=jsdom",
     "deploy": "gh-pages -d build"
   },

@@ -17,11 +17,11 @@ class Index extends Component {
     this.state = {
       active: null,
       pages: [
-        {
-          id: "address",
-          label: "Address",
-          icon: require("../../../images/private-key-1.png"),
-        },
+        // {
+        //   id: "address",
+        //   label: "Address",
+        //   icon: require("../../../images/private-key-1.png"),
+        // },
         {
           id: "pk",
           label: "Private Key",

@@ -20,7 +20,7 @@ const { splitPath, foreach } = require("./utils");
 const CLA = 0xE0;
 const PATH_SIZE = 4;
 const PATHS_LENGTH_SIZE = 1;
-const CHUNK_SIZE = 150;
+const CHUNK_SIZE = 233;
 
 /**
  * Tron API
@@ -154,6 +154,8 @@ export default class Trx {
 
     console.log("CHUNKS", buffers.length);
 
+    console.log("FULL SEND", buffers.map(([startByte, data]) => data.toString("hex")).join(""));
+
     let response;
     return foreach(buffers, ([startByte, data]) => {
       console.log("SENDING", startByte, data.length, data.toString("hex"));
@@ -173,67 +175,6 @@ export default class Trx {
       result.arbitraryDataEnabled = response[0] & 0x01;
       result.version = "" + response[1] + "." + response[2] + "." + response[3];
       return result;
-    });
-  }
-
-  /**
-  * You can sign a message according to eth_sign RPC call and retrieve v, r, s given the message and the BIP 32 path of the account to sign.
-  * @example
-eth.signPersonalMessage("44'/60'/0'/0'/0", Buffer.from("test").toString("hex")).then(result => {
-  var v = result['v'] - 27;
-  v = v.toString(16);
-  if (v.length < 2) {
-    v = "0" + v;
-  }
-  console.log("Signature 0x" + result['r'] + result['s'] + v);
-})
-   */
-  signPersonalMessage(
-    path,
-    messageHex
-  ) {
-    let paths = splitPath(path);
-    let offset = 0;
-    let message = new Buffer(messageHex, "hex");
-    let toSend = [];
-    let response;
-    while (offset !== message.length) {
-      let maxChunkSize = offset === 0 ? 150 - 1 - paths.length * 4 - 4 : 150;
-      let chunkSize = offset + maxChunkSize > message.length
-          ? message.length - offset
-          : maxChunkSize;
-      let buffer = new Buffer(
-        offset === 0 ? 1 + paths.length * 4 + 4 + chunkSize : chunkSize
-      );
-      if (offset === 0) {
-        buffer[0] = paths.length;
-        paths.forEach((element, index) => {
-          buffer.writeUInt32BE(element, 1 + 4 * index);
-        });
-        buffer.writeUInt32BE(message.length, 1 + 4 * paths.length);
-        message.copy(
-          buffer,
-          1 + 4 * paths.length + 4,
-          offset,
-          offset + chunkSize
-        );
-      } else {
-        message.copy(buffer, 0, offset, offset + chunkSize);
-      }
-      toSend.push(buffer);
-      offset += chunkSize;
-    }
-    return foreach(toSend, (data, i) =>
-      this.transport
-        .send(0xe0, 0x08, i === 0 ? 0x00 : 0x80, 0x00, data)
-        .then(apduResponse => {
-          response = apduResponse;
-        })
-    ).then(() => {
-      const v = response[0];
-      const r = response.slice(1, 1 + 32).toString("hex");
-      const s = response.slice(1 + 32, 1 + 32 + 32).toString("hex");
-      return { v, r, s };
     });
   }
 }

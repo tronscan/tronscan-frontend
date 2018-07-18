@@ -14,7 +14,7 @@ class SendModal extends React.PureComponent {
     this.state = {
       isOpen,
       modal: (
-        <Modal backdrop={false} isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
           <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
           <ModalBody className="text-center">
             <SendForm to={to} onSend={this.onSend} />
@@ -29,7 +29,6 @@ class SendModal extends React.PureComponent {
     onClose && onClose();
   };
 
-
   onSend = () => {
     this.setState({
       modal: (
@@ -41,7 +40,6 @@ class SendModal extends React.PureComponent {
   render() {
 
     let {wallet} = this.props;
-
     let {modal} = this.state;
 
     if (!wallet.isOpen) {

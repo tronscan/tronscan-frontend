@@ -6,11 +6,9 @@ import React from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {PulseLoader} from "react-spinners";
 
-const SHA256 = require("@tronscan/client/src/utils/crypto").SHA256;
 const LEDGER_SIGNATURE_RESPONSE = require("./constants").LEDGER_SIGNATURE_RESPONSE;
 const LEDGER_SIGNATURE_REQUEST = require("./constants").LEDGER_SIGNATURE_REQUEST;
 const byteArray2hexStr = require("@tronscan/client/src/utils/bytes").byteArray2hexStr;
-const {Transaction} = require("@tronscan/client/src/protocol/core/Tron_pb");
 const {ipcRenderer} = window.require('electron');
 
 export default class LedgerSigner {
@@ -40,6 +38,11 @@ export default class LedgerSigner {
         </ModalHeader>
         <ModalBody className="p-0">
           {contractInfo}
+          {/*<hr/>*/}
+          {/*<p className="p-2">*/}
+            {/*<b>Transaction Hash:</b>{' '}*/}
+            {/*<span className="break-word">{byteArray2hexStr(transaction.getRawData().serializeBinary())}</span>*/}
+          {/*</p>*/}
           <div className="text-center my-1">
             <img src={require("../../images/ledger-nano-s.png")} style={{ height: 50 }}/><br/>
             Confirm the transaction on your ledger
@@ -69,7 +72,6 @@ export default class LedgerSigner {
     );
   }
 
-
   serializeTransaction(transaction) {
 
     let raw = transaction.getRawData();
@@ -77,23 +79,6 @@ export default class LedgerSigner {
     let contractType = contract.getType();
 
     console.log("LedgerSigner -> GOT SIGN REQUEST");
-    //
-    // switch (contractType) {
-    //   case Transaction.Contract.ContractType.TRANSFERASSETCONTRACT:
-    //   case Transaction.Contract.ContractType.TRANSFERCONTRACT:
-    //     return {
-    //       contractType,
-    //       sha256: false,
-    //       hex: byteArray2hexStr(raw.serializeBinary()),
-    //     };
-    //
-    //   default:
-    //     return {
-    //       contractType,
-    //       sha256: true,
-    //       hex: byteArray2hexStr(SHA256(raw.serializeBinary())),
-    //     };
-    // }
 
     return {
       contractType,

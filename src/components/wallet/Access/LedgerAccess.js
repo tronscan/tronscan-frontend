@@ -83,7 +83,7 @@ class LedgerAccess extends Component {
         }
         {
           connected &&
-          <Fragment>
+          <div className="my-3">
             <div className="text-center my-4">
               <b className="text-success">Ledger Connected</b><br/>
               {address}
@@ -92,7 +92,7 @@ class LedgerAccess extends Component {
                     onClick={this.openWallet}>
               {tu("open_wallet")}
             </button>
-          </Fragment>
+          </div>
         }
 
       </div>
