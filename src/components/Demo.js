@@ -168,8 +168,9 @@ class Demo extends Component {
                       <div>
                         <strong style={{whiteSpace: 'nowrap'}}>Total Accounts</strong>
                         <h1 className="text-danger">
+
                           {/* <FormattedNumber value={totalAccounts}/> */}
-                          <CountUp redraw={true} separator="," start={previousTotalAccounts} end={totalAccounts} duration={1}/>
+                          <CountUp redraw={true} separator="," start={0} end={totalAccounts} duration={1}/>
                         </h1>
                       </div>
                     </div>

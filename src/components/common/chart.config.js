@@ -8,7 +8,7 @@ module.exports = {
     },
     tooltip: {
       trigger: 'item',
-      formatter: "{b}<br> {c} ({d}%)"
+      formatter: "{a} <br/>{b} : {c} %"
     },
 
     series: [
@@ -16,7 +16,7 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: '55%',
-        center: ['50%', '60%'],
+        center: ['50%', '65%'],
         data: [],
         itemStyle: {
           emphasis: {
