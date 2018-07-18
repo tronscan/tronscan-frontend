@@ -28,7 +28,7 @@ export class PieReact extends React.Component {
     config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + intl.formatMessage({id: 'voters'}) +intl.formatMessage({id: 'addresses'});
    // config.pieChart.title.link = '#/blockchain/stats/accounts';
     config.pieChart.series[0].data = [];
-console.log(data);
+
     if (data && data.length > 0) {
       config.pieChart.series[0].data = data;
     }

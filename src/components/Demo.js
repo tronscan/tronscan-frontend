@@ -115,7 +115,7 @@ class Demo extends Component {
 
 
   render() {
-    console.log('render');
+
     let {intl} = this.props;
     let {txOverviewStats, volume, totalAccounts, transactionLastDay, previousVolume, previousTotalAccounts, previousTransactionLastDay} = this.state;
     document.getElementsByTagName('body')[0].style.height = '95%';
