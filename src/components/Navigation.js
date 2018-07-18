@@ -159,7 +159,8 @@ class Navigation extends PureComponent {
 
   logout = () => {
     this.props.logout();
-    this.loginFlag=false;
+    this.loginFlag = false;
+    this.setState({ privateKey: '' });
     toastr.info('Success', 'Logout success');
   };
 
