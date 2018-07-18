@@ -57,9 +57,10 @@ class Home extends Component {
     */
     let {total} = await Client.getNodeLocations();
 
-    //let totalAccounts = await Client.getAccounts();
+    let totalAccounts = await Client.getAccounts();
 
     let {txOverviewStats} = await Client.getTxOverviewStats();
+    
     let temp = [];
     let addressesTemp = [];
 
@@ -95,7 +96,7 @@ class Home extends Component {
       txOverviewStats: temp.slice(temp.length - 14, temp.length),
       addressesStats: addressesTemp,
       stats: {
-        totalAccounts: addressesTemp[addressesTemp.length - 1].total,
+        totalAccounts: totalAccounts.total,
         previousTotalAccounts: prevState.stats.totalAccounts,
         previousOnlineNodes: prevState.stats.onlineNodes,
         previousBlockHeight: prevState.stats.blockHeight,
@@ -237,7 +238,7 @@ class Home extends Component {
               <div className="col-md-3 ">
                 <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
-                  <p>{tu("total_accounts_last_day")}</p>
+                  <p>{tu("total_accounts")}</p>
                 </Link>
               </div>
               <div className="col-md-2 ">

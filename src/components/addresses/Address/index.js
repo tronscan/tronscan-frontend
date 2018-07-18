@@ -195,7 +195,7 @@ class Address extends React.Component {
                   <div className="card">
                     {
                       address.representative.enabled &&
-                      <div className="card-header text-center bg-danger font-weight-bold text-white">
+                      <div className="card-header text-center bg-info font-weight-bold text-white">
                         Representative
                       </div>
                     }
