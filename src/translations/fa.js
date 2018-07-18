@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "متوجه شدم",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "رمز ورود",
   "money_price": "قیمت پول",
   "price": "قیمت",
@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Send Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +185,7 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "Rich List",
-  "tron_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -204,7 +205,7 @@ export const messages = {
   "do_not_send_2": "لطفا هیچ ترونی از آدرس ولت یا اکسچنج به این حساب واریز نکنید",
   "bandwidth": "پهنای باند",
   "balance": "مانده حساب",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "تراکنش ها",
   "no_transfers": "بدون انتقال",
   "no_tokens": "بدون توکن",
@@ -241,8 +242,8 @@ export const messages = {
   "unfreeze": "آزاد",
   "freeze_trx_least": "شما حداقل به یک تی آرایکس برای مسدود کردن نیاز دارید",
   "unable_unfreeze_trx_message": "تی آرایکس را نمیشود آزاد کرد این امر می تواند ناشی از آن باشد که حداقل دوره ی مسدودی هنوز به دست نیامده است.",
-  "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو Tron و فعال کردن ویژگی های اضافی باشد.
-    به عنوان مثال، با قدرت Tron شما می توانید `,
+  "freeze_trx_premessage_0": `تی آرایکس می تواند مسدود / قفل شده برای به دست آوردن نیرو TRON و فعال کردن ویژگی های اضافی باشد.
+    به عنوان مثال، با قدرت TRON شما می توانید `,
   "freeze_trx_premessage_link": "به نمایندگان ممتاز رای دهید",
   "freeze_trx_premessage_1": ` توکن های مسدود به مدت 3 روز "قفل شده اند". در این دوره تی آرایکس های مسدود قابل خرید و فروش نیستند.
    بعد از این دوره شما می توانید تی آرایکس ها را آزاد کنید و توکن ها رو بفروشید.`,
@@ -314,7 +315,7 @@ export const messages = {
   "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -484,7 +485,7 @@ export const messages = {
   "start_date": "تاریخ شروع",
   "end_date": "تاریخ پایان",
   "token_spend_confirm": "من تأیید میکنم که باید 1024 ترون را برای ساختن توکن خرج کنم",
-  "token_issue_guide_message_1":`صدور توکن در پروتکل Tron می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
+  "token_issue_guide_message_1":`صدور توکن در پروتکل TRON می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
   "token_issue_guide_message_2":`هنگامی که یک توکن صادر می شود، در صفحه مشاهده توکن نمایش داده می شود.
     سپس کاربران می توانند در دوره مشارکت شرکت کنند و TRX را برای توکن ها مبادله کنند.`,
   "token_issue_guide_message_3":`بعد از صدور توکن، حساب شما مقدار توکن هایی را که برابر با کل عرضه هستند دریافت خواهد کرد.
@@ -631,7 +632,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "TRON چیست",
-  "tron_explorer_api": "مرورگر Tron API",
+  "tron_explorer_api": "مرورگر TRON API",
   "tron_architechure": "معماری TRON",
   "tron_protobuf_doc": "مستندات TRON Protobuf",
   "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
@@ -698,12 +699,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################

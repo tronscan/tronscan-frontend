@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "wachtwoord",
   "money_price": "prijs",
   "price": "prijs",
@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filters",
   "send_tokens": "Verzend Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +185,7 @@ export const messages = {
   "transactions_past_hour": "Transacties gedurende het laatste uur",
   "average_blocksize": "Gemiddelde Blokgrootte",
   "rich_list": "Rich lijst",
-  "tron_transaction_chart": "Tron Transactie Grafiek",
+  "tron_transaction_chart": "TRON Transactie Grafiek",
   "transactions_per_day": "Transacties Per Dag",
   /*
   ##################################################################################
@@ -204,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Verstuur geen TRX van je portemonnee of exchange naar het bovenstaande testnet adres!",
   "bandwidth": "bandbreedte",
   "balance": "saldo",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transacties",
   "no_transfers": "Geen Overschrijvingen",
   "no_tokens": "Geen Tokens",
@@ -241,8 +242,8 @@ export const messages = {
   "unfreeze": "ontgrendelen",
   "freeze_trx_least": "Je hebt tenminsten 1 TRX nodig om te kunnen vastzetten",
   "unable_unfreeze_trx_message": "Het is niet gelukt de TRX te ontgrendelen. Dit zou kunnen komen doordat de minimale periode voor vastzetten nog niet is bereikt.",
-  "freeze_trx_premessage_0": `TRX kan vastgezet worden om Tron Power te verwerven om daarmee andere functies te activeren.
-   Met Tron Power kun je bijvoorbeeld `,
+  "freeze_trx_premessage_0": `TRX kan vastgezet worden om TRON Power te verwerven om daarmee andere functies te activeren.
+   Met TRON Power kun je bijvoorbeeld `,
   "freeze_trx_premessage_link": "stemmen op een Super Vertegenwoordigers.",
   "freeze_trx_premessage_1": ` Vastgezette tokens staan vastgezet voor een periode van 3 dagen. Gedurende deze periode kunnen de vastgezette TRX niet verhandeld worden.
    Na deze periode kunnen de TRX ontgrendeld worden en kunnen de tokens weer verhandeld worden.`,
@@ -304,7 +305,7 @@ export const messages = {
   "apply_representative_error_message_1": "Zorg ervoor dat u genoeg TRX in uw account heeft om registratiekosten te dekken, of probeer het later nogmaals.",
   "open_external_link": "Je opent een externe website",
   "private_key_untrusted_website_message_0": "Voer nooit je privé sleutel in op een niet vertrouwde website.",
-  "no_official_tron_website": "is geen officiële Tron site.",
+  "no_official_tron_website": "is geen officiële TRON site.",
   "continue_to_external_website": "Ga verder naar externe website",
   "url_changed": "URL gewijzigd",
   "successfully_changed_website_message": "Website is succesvol gewijzigd in  ",
@@ -475,7 +476,7 @@ export const messages = {
   "start_date": "Begindatum",
   "end_date": "Einddatum",
   "token_spend_confirm": "Ik bevestig dat ik op de hoogte ben van het feit dat het maken van de gehele voorraad van mijn tokens 1024 TRX kost.",
-  "token_issue_guide_message_1": `Het uitgeven van een token op het Tron Protocol kan gedaan worden
+  "token_issue_guide_message_1": `Het uitgeven van een token op het TRON Protocol kan gedaan worden
     door iedereen die tenminste 1024 TRX beschikbaar heeft.`,
   "token_issue_guide_message_2":`Als een token is uitgegeven wordt deze getoond op de overzichtspagina.
     Gebruikers kunnen in de deelname periode hun TRX inwisselen voor tokens.`,
@@ -554,7 +555,7 @@ export const messages = {
   "most_ranks": "Meeste Plekken Gewonnen Deze Ronde",
   "view_live_ranking": "Bekijk live stand",
   "open_team_page": "Open Team Pagina",
-  "warning_votes": "Om te kunnen stemmen is Tron Power nodig. Je kunt Tron Power verkrijgen door TRX te vast te zetten op de ",
+  "warning_votes": "Om te kunnen stemmen is TRON Power nodig. Je kunt TRON Power verkrijgen door TRX te vast te zetten op de ",
   "account_page": "Account Pagina",
   "loading_votes": "Stemmen worden geladen",
   "3_day_ranking": "3 Dagen Stand",
@@ -624,7 +625,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Wat is TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architectuur",
   "tron_protobuf_doc": "TRON Protobuf Documentatie",
   "report_an_error": "Geef een bug / suggestie door",
@@ -651,7 +652,7 @@ export const messages = {
   "save_keystore_file": "Sla je versleutelde sleutel op",
   "download_keystore_file": "Download versleutelde sleutel",
   "do_not_lose_it": "Niet verliezen!",
-  "do_not_lose_it_message_0": "Tron Foundation kan je niet helpen met het herstellen van een verloren privé sleutel.",
+  "do_not_lose_it_message_0": "TRON Foundation kan je niet helpen met het herstellen van een verloren privé sleutel.",
   "do_not_share_it": "Niet delen!",
   "do_not_share_it_message_0": "Je fondsen kunnen gestolen worden wanneer je dit bestand op een kwaadaardige site gebruikt.",
   "make_a_backup": "Maak een reservekopie!",
@@ -691,12 +692,12 @@ export const messages = {
   "click_open_wallet_top_right": "Klik op 'Open Portemonnee' rechtsbovenaan",
   "choose_ledger": "Kies Ledger",
   "connect_unlock_ledger_with_pin": "Connecteer en open uw toestel met uw PIN code",
-  "open_tron_app_on_ledger": "Open de Tron app op uw Ledger",
+  "open_tron_app_on_ledger": "Open de TRON app op uw Ledger",
   "ledger_connected_tronscan_message_0": "Indien uw Ledger correct verbonden is, zal Tronscan 'Verbonden' tonen. ",
   "click_on_open_wallet": "Klik op 'Open Portemonnee'",
-  "redirect_to_your_wallet_message": "U wordt doorgestuurd naar uw portemonnee en vervolgens kunt u uw Tron adres bekijken",
+  "redirect_to_your_wallet_message": "U wordt doorgestuurd naar uw portemonnee en vervolgens kunt u uw TRON adres bekijken",
   "using_ledger_to_sign_transactions": "Gebruik de Ledger om transacties te ondertekenen.",
-  "using_ledger_to_sign_transactions_message_0": "Zorg ervoor dat de Legder verbonden blijft en dat de Tron app open blijft om transacties te ondertekenen met de Legder via de Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Zorg ervoor dat de Legder verbonden blijft en dat de TRON app open blijft om transacties te ondertekenen met de Legder via de Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan zal een pop-up tevoorschijn laten komen met de transactiedetails wanneer een transactie ondertekening vereist is. Ondertekeningen zijn vereist wanneer u stemt, TRX verzendt, van accountnaam verandert, enz.",
   /*
   ##################################################################################
