@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Giao thức Tron",
+  "app_title": "Giao thức TRON",
   "password": "mật khẩu",
   "money_price": "giá",
   "price": "giá",
@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Loại hợp đồng",
   "filters": "Bộ lọc",
   "send_tokens": "Send Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +185,7 @@ export const messages = {
   "transactions_past_hour": "Giao dịch trong giờ qua",
   "average_blocksize": "Kích thước trung bình của khối",
   "rich_list": "Rich List",
-  "tron_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -204,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Không thể gửi TRX từ ví của bạn hoặc giao dịch với địa chỉ tài khoản trên mạng thử nghiệm!",
   "bandwidth": "băng thông",
   "balance": "số dư",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "giao dịch",
   "no_transfers": "Không có chuyển khoản",
   "no_tokens": "Không có mã token",
@@ -241,7 +242,7 @@ export const messages = {
   "unfreeze": "giải phóng",
   "freeze_trx_least": "Bạn cần ít nhất 1 TRX để có thể đóng băng",
   "unable_unfreeze_trx_message": "Không thể hủy TRX. Điều này có thể là do chưa đủ thời gian đóng băng tối thiểu.",
-  "freeze_trx_premessage_0": "TRX có thể bị đóng băng / khóa để lấy Tron Power và bật các tính năng bổ sung. Ví dụ, với Tron Power bạn có thể",
+  "freeze_trx_premessage_0": "TRX có thể bị đóng băng / khóa để lấy TRON Power và bật các tính năng bổ sung. Ví dụ, với TRON Power bạn có thể",
   "freeze_trx_premessage_link": "bỏ phiếu cho Siêu Đại Diện",
   "freeze_trx_premessage_1": "Mã token bị đóng băng bị khóa trong khoảng thời gian 3 ngày. Trong thời gian này, TRX bị đóng băng không thể giao dịch được. Sau giai đoạn này, bạn có thể giải phóng TRX và giao dịch các mã token.",
   "trx_amount": "Tổng số TRX",
@@ -314,7 +315,7 @@ export const messages = {
   "apply_representative_error_message_1": "Đảm bảo bạn có đủ TRX cho khoản phí này hoặc thử lại sau.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL đã thay đổi",
   "successfully_changed_website_message": "Đã thay đổi thành công trang web thành ",
@@ -485,7 +486,7 @@ export const messages = {
   "start_date": "Ngày bắt đầu",
   "end_date": "Ngày kết thúc",
   "token_spend_confirm": "Tôi xác nhận việc tạo tổng nguồn cung cho mã token tổng chi phí một lần là 1024 TRX.",
-  "token_issue_guide_message_1": `Phát hành một mã token trên Giao thức Tron có thể được thực hiện
+  "token_issue_guide_message_1": `Phát hành một mã token trên Giao thức TRON có thể được thực hiện
     bởi bất kỳ ai có ít nhất 1024 TRX trong tài khoản của họ.`,
   "token_issue_guide_message_2":`Khi một mã token được phát hành, nó sẽ được hiển thị trên trang tổng quan mã token.
     Sau đó, người dùng có thể tham gia trong khoảng thời gian này và trao đổi TRX với mã token.`,
@@ -564,7 +565,7 @@ export const messages = {
   "most_ranks": "Hầu hết các cấp bậc đều đạt được ở vòng này",
   "view_live_ranking": "Xem xếp hạng trực tiếp",
   "open_team_page": "Mở trang nhóm",
-  "warning_votes": "Cần có ít nhất 1 Tron Power để bắt đầu bỏ phiếu. Tron Power có được bằng cách đóng băng TRX trên",
+  "warning_votes": "Cần có ít nhất 1 TRON Power để bắt đầu bỏ phiếu. TRON Power có được bằng cách đóng băng TRX trên",
   "account_page": "Trang tài khoản",
   "loading_votes": "Đang tải phiếu bầu",
   "3_day_ranking": "Xếp hạng 3 ngày",
@@ -634,7 +635,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "TRON là gì",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Cấu trúc TRON",
   "tron_protobuf_doc": "Tà liệu TRON Protobuf",
   "report_an_error": "Gửi lỗi / đề xuất",
@@ -661,7 +662,7 @@ export const messages = {
   "save_keystore_file": "Lưu trữ tệp khóa của bạn",
   "download_keystore_file": "Tải xuống khóa được mã hóa",
   "do_not_lose_it": "Đừng làm mất nó!",
-  "do_not_lose_it_message_0": "Tron Foundation không thể giúp bạn khôi phục khóa bị mất.",
+  "do_not_lose_it_message_0": "TRON Foundation không thể giúp bạn khôi phục khóa bị mất.",
   "do_not_share_it": "Không chia sẻ nó!",
   "do_not_share_it_message_0": "Tiền của bạn có thể bị đánh cắp nếu bạn sử dụng tập tin này và truy cập vào một trang web độc hại.",
   "make_a_backup": "Tạo bản sao lưu!",
@@ -701,12 +702,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################

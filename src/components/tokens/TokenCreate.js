@@ -13,6 +13,7 @@ import "react-datetime/css/react-datetime.css";
 import DateTimePicker from "react-datetime";
 import {Link} from "react-router-dom";
 import {NumberField} from "../common/Fields";
+import 'moment/min/locales';
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -426,6 +427,17 @@ class TokenCreate extends Component {
     let {valid, errors} = this.isValid();
 
     let exchangeRate = numberOfTron / numberOfCoins;
+    let {activeLanguage,language} = this.props;
+
+    if (activeLanguage === "en") {
+      language = 'en-gb';
+    } else if (activeLanguage === "no") {
+      language = 'en-gb';
+    } else if (activeLanguage === "zh") {
+      language = 'zh-cn';
+    } else {
+      language = activeLanguage;
+    }
 
     if (!loading && confirmed && !valid) {
       submitMessage = (
@@ -607,6 +619,7 @@ class TokenCreate extends Component {
                       <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("start_date")}</label>
                         <DateTimePicker
+                          locale={language}
                           onChange={(data) => this.setState({ startTime: data.toDate() }) }
                           isValidDate={this.isValidStartTime}
                           value={startTime}
@@ -616,6 +629,7 @@ class TokenCreate extends Component {
                       <div className="form-group col-sm-12 col-md-12 col-lg-6">
                         <label>{tu("end_date")}</label>
                         <DateTimePicker
+                          locale={language}
                           onChange={(data) => this.setState({ endTime: data.toDate() }) }
                           isValidDate={this.isValidEndTime}
                           value={endTime}
@@ -662,6 +676,7 @@ class TokenCreate extends Component {
 
 function mapStateToProps(state) {
   return {
+    activeLanguage: state.app.activeLanguage,
     tokens: state.tokens.tokens,
     account: state.app.account,
     wallet: state.wallet.current,

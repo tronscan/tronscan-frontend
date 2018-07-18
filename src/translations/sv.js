@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron protokollet",
+  "app_title": "TRON protokollet",
   "password": "lösenord",
   "money_price": "pris",
   "price": "pris",
@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
   "send_tokens": "skicka Tokens",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +185,7 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
-  "tron_transaction_chart": "Tron Transaktionskarta",
+  "tron_transaction_chart": "TRON Transaktionskarta",
   "transactions_per_day": "Transaktioner per dag",
   /*
   ##################################################################################
@@ -204,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "bandwidth": "bandbredd",
   "balance": "balans",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transaktioner",
   "no_transfers": "Inga överföringar",
   "no_tokens": "Inga Tokens",
@@ -240,7 +241,7 @@ export const messages = {
   "freeze": "frysa",
   "unfreeze": "frigöra",
   "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
-  "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna Tron Power och aktivera ytterligare funktioner. Med Tron Power kan du till exempel",
+  "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna TRON Power och aktivera ytterligare funktioner. Med TRON Power kan du till exempel",
   "freeze_trx_premessage_link": "rösta på Super Representatives.",
   "freeze_trx_premessage_1": "Frysta tokens är låsta för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
   "trx_amount": "TRX Antal",
@@ -310,7 +311,7 @@ export const messages = {
   "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
   "open_external_link": "Du öppnar en extern länk",
   "private_key_untrusted_website_message_0": "Ange aldrig din privata nyckel på en otillförlitlig webbplats.",
-  "no_official_tron_website": "är inte en officiell Tron webbplats.",
+  "no_official_tron_website": "är inte en officiell TRON webbplats.",
   "continue_to_external_website": "Fortsätt till extern webbplats",
   "url_changed": "URL ändrats",
   "successfully_changed_website_message": "Har ändrats webbplatsen till",
@@ -479,7 +480,7 @@ export const messages = {
   "start_date": "Start Datum",
   "end_date": "Slut Datum",
   "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
-  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
+  "token_issue_guide_message_1": "Utfärdande av token på TRON Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
   "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
   /*
@@ -554,7 +555,7 @@ export const messages = {
   "most_ranks": "Högsta Rang Intjänad Denna Runda",
   "view_live_ranking": "Se Live Rang",
   "open_team_page": "Öppna Team Sida",
-  "warning_votes": "Minst 1 Tron Power är nödvändig för att börja rösta. Tron Power fås gengom att frysa TRX på",
+  "warning_votes": "Minst 1 TRON Power är nödvändig för att börja rösta. TRON Power fås gengom att frysa TRX på",
   "account_page": "Account Page",
   "loading_votes": "Loading Votes",
   "3_day_ranking": "3 Days Ranking",
@@ -624,7 +625,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Vad är TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Anmäl en bug / förslag",
@@ -651,7 +652,7 @@ export const messages = {
   "save_keystore_file": "Spara din Keystore-fil",
   "download_keystore_file": "Ladda ner Krypterad nyckel",
   "do_not_lose_it": "Förlora den inte!",
-  "do_not_lose_it_message_0": "Tron Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
+  "do_not_lose_it_message_0": "TRON Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
   "do_not_share_it": "Dela den inte!",
   "do_not_share_it_message_0": "Dina pengar kan bli stulna om du använder den här filen på en skadlig webbplats.",
   "make_a_backup": "Skapa en backup!",
@@ -691,12 +692,12 @@ export const messages = {
   "click_open_wallet_top_right": "Klicka på knappen 'Öppna plånbok' längst upp till höger.",
   "choose_ledger": "Välj Ledger",
   "connect_unlock_ledger_with_pin": "Anslut och låsa upp din enhet med din PIN-kod",
-  "open_tron_app_on_ledger": "Öppna Tron-appen på din Ledger",
+  "open_tron_app_on_ledger": "Öppna TRON-appen på din Ledger",
   "ledger_connected_tronscan_message_0": "Om din Ledger är korrekt ansluten kommer Tronscan att visa 'Connected'",
   "click_on_open_wallet": "Klicka på 'Open Wallet'",
-  "redirect_to_your_wallet_message": "Du kommer att omdirigeras till din plånbok och du kan se din Tron-adress",
+  "redirect_to_your_wallet_message": "Du kommer att omdirigeras till din plånbok och du kan se din TRON-adress",
   "using_ledger_to_sign_transactions": "Använda bokstaven för att skriva transaktioner",
-  "using_ledger_to_sign_transactions_message_0": "Medan du använder Tronscan Desktop appen och signerar transaktionen kontrollerar du att bokstaven är ansluten och Tron-appen är öppen.",
+  "using_ledger_to_sign_transactions_message_0": "Medan du använder Tronscan Desktop appen och signerar transaktionen kontrollerar du att bokstaven är ansluten och TRON-appen är öppen.",
   "using_ledger_to_sign_transactions_message_1": "Tronscan visar en transaktionssignatur via en popup med transaktionsinformationen, om så krävs. Signering är nödvändig för följande åtgärder: Delta i SR-röst, skicka TRX, ändra kontonamn etc.",
   /*
   ##################################################################################

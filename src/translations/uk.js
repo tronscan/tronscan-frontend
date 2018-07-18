@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "Пароль",
   "money_price": "ціна",
   "price": "ціна",
@@ -99,6 +99,7 @@ export const messages = {
   "contract_type": "Тип контракту",
   "filters": "Фільтри",
   "send_tokens": "Надіслати токени",
+  "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +185,7 @@ export const messages = {
   "transactions_past_hour": "Транзакції за останню годину",
   "average_blocksize": "Середній розмір блоку",
   "rich_list": "Список Багатіїв",
-  "tron_transaction_chart": "Діаграма транзакцій Tron",
+  "tron_transaction_chart": "Діаграма транзакцій TRON",
   "transactions_per_day": "Операції в день",
   /*
   ##################################################################################
@@ -204,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Не відправляйте TRX з вашого власного гаманця або біржі на зазначену адресу облікового запису тест-мережі!",
   "bandwidth": "пропускна здатність",
   "balance": "баланс",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "транзакції",
   "no_transfers": "Переводи відсутні",
   "no_tokens": "Токени відсутні",
@@ -241,7 +242,7 @@ export const messages = {
   "unfreeze": "розморозити",
   "freeze_trx_least": "Вам потрібен як мінімум 1 TRX для заморозки",
   "unable_unfreeze_trx_message": "Неможливо розморозити TRX. Це може бути викликано тим, що мінімальний період заморожування ще не досягнуто.",
-  "freeze_trx_premessage_0": `TRX можна заморозити/заблокувати, щоб отримати Tron Power та використати додаткові функції. Наприклад, з Tron Power ви можете `,
+  "freeze_trx_premessage_0": `TRX можна заморозити/заблокувати, щоб отримати TRON Power та використати додаткові функції. Наприклад, з TRON Power ви можете `,
   "freeze_trx_premessage_link": "голосувати за Супер-представників.",
   "freeze_trx_premessage_1": ` Заморожені токени "заблоковані" протягом 3 днів. Протягом цього періоду заморожі TRX не можливо продати. Після цього періоду ви можете розморозити і продавати TRX.`,
   "trx_amount": "Кількість TRX ",
@@ -313,7 +314,7 @@ export const messages = {
   "apply_representative_error_message_1": "Переконайтеся, що у вас є достатньо TRX за плату, або повторіть спробу пізніше.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -483,7 +484,7 @@ export const messages = {
   "start_date": "Дата початку",
   "end_date": "Дата кінця",
   "token_spend_confirm": "Я підтверджую, що створення загального обсягу токенов дорівнює в цілому 1024 TRX",
-  "token_issue_guide_message_1": `Випуск токена на Протоколі Tron можливо
+  "token_issue_guide_message_1": `Випуск токена на Протоколі TRON можливо
     для кожного, хто має хоча б 1024 TRX на своєму акаунті..`,
   "token_issue_guide_message_2":`Коли токен випущений, це повинно бути відображено на сторінці огляду токена.
    Потім користувачі можуть брати участь під час періоду участі і обміну TRX на токени.`,
@@ -562,7 +563,7 @@ export const messages = {
   "most_ranks": "Вищий рейтинг за раунд",
   "view_live_ranking": "Подивитися рейтинг наживу",
   "open_team_page": "Відкрити сторінку у команди",
-  "warning_votes": "Хоча б 1 Tron Power потрібно для початку голосування. Tron Power досягається заморожуванням TRX на",
+  "warning_votes": "Хоча б 1 TRON Power потрібно для початку голосування. TRON Power досягається заморожуванням TRX на",
   "account_page": "Сторінці Облікового запису",
   "loading_votes": "Завантаження голосів",
   "3_day_ranking": "Рейтинг за 3 дні",
@@ -632,7 +633,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Що таке TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Архітектура",
   "tron_protobuf_doc": "TRON Protobuf документація",
   "report_an_error": "Надіслати помилку / пропозицію",
@@ -659,7 +660,7 @@ export const messages = {
   "save_keystore_file": "Зберегти файл ключа",
   "download_keystore_file": "Завантажити файл ключа",
   "do_not_lose_it": "Не згубіть його!",
-  "do_not_lose_it_message_0": "Tron Foundation не зможе допомогти Вам його відновити.",
+  "do_not_lose_it_message_0": "TRON Foundation не зможе допомогти Вам його відновити.",
   "do_not_share_it": "Не діліться ним!",
   "do_not_share_it_message_0": "Ваші кошти можуть бути викрадені, якщо ви використуєте цей файл на зловмисному сайті",
   "make_a_backup": "Створіть резервну копію!",
@@ -699,12 +700,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################
