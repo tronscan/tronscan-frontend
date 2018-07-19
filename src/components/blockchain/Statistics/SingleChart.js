@@ -10,7 +10,13 @@ import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
 
-import {LineReactAdd, LineReactBlockSize, LineReactBlockchainSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
+import {
+  LineReactAdd,
+  LineReactBlockSize,
+  LineReactBlockchainSize,
+  LineReactTx,
+  LineReactPrice
+} from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
@@ -148,6 +154,8 @@ class Statistics extends React.Component {
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
     });
+    //addressesTemp.sort
+
   }
 
   render() {
@@ -155,8 +163,16 @@ class Statistics extends React.Component {
     let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
     return (
         <main className="container header-overlap">
+          <div className="alert alert-light d-flex" role="alert">
+            <div>
+              This is a light alert—check it out!
+            </div>
+            <div className="ml-auto">
+              This is a light alert—check it out!
+            </div>
+          </div>
           <div className="row">
-            <div className="col-md-12 mt-3">
+            <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
                   {
