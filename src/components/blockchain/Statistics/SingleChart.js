@@ -169,15 +169,16 @@ class Statistics extends React.Component {
 
       }
     }
-
+console.log(temp);
     let higest = {date: '', increment: ''};
     let lowest = {date: '', increment: ''};
     let addr = addressesTemp.sort(compare('increment'));
+   // let tx=temp.sort(compare('totalTransaction'));
     higest.date = addr[addr.length - 1].date;
     higest.increment = addr[addr.length - 1].increment;
     lowest.date = addr[0].date;
     lowest.increment = addr[0].increment;
-    this.setState({summit: [higest, lowest]});
+    this.setState({summit: {address:[{date:addr[addr.length - 1].date,increment:addr[addr.length - 1].increment}, {date:addr[0].date,increment:addr[0].increment}]}});
   }
 
 
@@ -190,10 +191,10 @@ class Statistics extends React.Component {
           <div className="alert alert-light" role="alert">
             <div className="row">
             <div className="col-md-6 text-center">
-              {summit && ("Highest increase of " + summit[0].increment + " was recorded on " + intl.formatDate(summit[0].date))}
+              {summit && summit['address'] && ("Highest increase of " + summit['address'][0].increment + " was recorded on " + intl.formatDate(summit['address'][0].date))}
             </div>
             <div className="col-md-6 text-center">
-              {summit && ("Lowest increase of " + summit[1].increment + " was recorded on " + intl.formatDate(summit[1].date))}
+              {summit && summit['address'] && ("Lowest increase of " + summit['address'][1].increment + " was recorded on " + intl.formatDate(summit['address'][1].date))}
             </div>
           </div>
           </div>
