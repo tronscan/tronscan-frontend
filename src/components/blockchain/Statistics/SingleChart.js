@@ -9,7 +9,7 @@ import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
-
+import {cloneDeep} from "lodash";
 import {
   LineReactAdd,
   LineReactBlockSize,
@@ -169,16 +169,84 @@ class Statistics extends React.Component {
 
       }
     }
-console.log(temp);
+
     let higest = {date: '', increment: ''};
     let lowest = {date: '', increment: ''};
-    let addr = addressesTemp.sort(compare('increment'));
-   // let tx=temp.sort(compare('totalTransaction'));
-    higest.date = addr[addr.length - 1].date;
-    higest.increment = addr[addr.length - 1].increment;
-    lowest.date = addr[0].date;
-    lowest.increment = addr[0].increment;
-    this.setState({summit: {address:[{date:addr[addr.length - 1].date,increment:addr[addr.length - 1].increment}, {date:addr[0].date,increment:addr[0].increment}]}});
+    let addr = cloneDeep(addressesTemp).sort(compare('increment'));
+    let tx = cloneDeep(temp).sort(compare('totalTransaction'));
+    let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
+    let pr = cloneDeep(priceStatsTemp).sort(compare('close'));
+    for (let p in pr) {
+      pr[p] = {date: pr[p].time, ...pr[p]};
+    }
+    let _bcs = [];
+
+    for (let b in blockchainSizeStatsTemp) {
+      let _b = parseInt(b);
+      if (_b === 0) {
+        _bcs.push({
+          date: blockchainSizeStatsTemp[0].date,
+          blockchainSize: blockchainSizeStatsTemp[0].blockchainSize / 1000000
+        });
+      }
+      else {
+        _bcs.push({
+          date: blockchainSizeStatsTemp[_b].date,
+          blockchainSize: (blockchainSizeStatsTemp[_b].blockchainSize - blockchainSizeStatsTemp[_b - 1].blockchainSize) / 1000000
+        })
+      }
+    }
+    let bcs = _bcs.sort(compare('blockchainSize'));
+
+    this.setState({
+      summit: {
+        addressesStats_sort: [
+          {
+            date: addr[addr.length - 1].date,
+            increment: addr[addr.length - 1].increment
+          },
+          {
+            date: addr[0].date,
+            increment: addr[0].increment
+          }],
+        txOverviewStats_sort: [
+          {
+            date: tx[tx.length - 1].date,
+            increment: tx[tx.length - 1].totalTransaction
+          },
+          {
+            date: tx[0].date,
+            increment: tx[0].totalTransaction
+          }],
+        blockSizeStats_sort: [
+          {
+            date: bs[bs.length - 1].date,
+            increment: bs[bs.length - 1].avgBlockSize
+          },
+          {
+            date: bs[0].date,
+            increment: bs[0].avgBlockSize
+          }],
+        blockchainSizeStats_sort: [
+          {
+            date: bcs[bcs.length - 1].date,
+            increment: bcs[bcs.length - 1].blockchainSize
+          },
+          {
+            date: bcs[0].date,
+            increment: bcs[0].blockchainSize
+          }],
+        priceStats_sort: [
+          {
+            date: pr[pr.length - 1].date,
+            increment: pr[pr.length - 1].close
+          },
+          {
+            date: pr[0].date,
+            increment: pr[0].close
+          }]
+      }
+    });
   }
 
 
@@ -190,13 +258,14 @@ console.log(temp);
 
           <div className="alert alert-light" role="alert">
             <div className="row">
-            <div className="col-md-6 text-center">
-              {summit && summit['address'] && ("Highest increase of " + summit['address'][0].increment + " was recorded on " + intl.formatDate(summit['address'][0].date))}
+
+              <div className="col-md-6 text-center">
+                {summit && summit[match.params.chartName + '_sort'] && ("Highest increase of " + summit[match.params.chartName + '_sort'][0].increment + " was recorded on " + intl.formatDate(summit[match.params.chartName + '_sort'][0].date))}
+              </div>
+              <div className="col-md-6 text-center">
+                {summit && summit[match.params.chartName + '_sort'] && ("Lowest increase of " + summit[match.params.chartName + '_sort'][1].increment + " was recorded on " + intl.formatDate(summit[match.params.chartName + '_sort'][1].date))}
+              </div>
             </div>
-            <div className="col-md-6 text-center">
-              {summit && summit['address'] && ("Lowest increase of " + summit['address'][1].increment + " was recorded on " + intl.formatDate(summit['address'][1].date))}
-            </div>
-          </div>
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -310,14 +379,21 @@ console.log(temp);
 }
 
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
   return {
     priceGraph: state.markets.price
   };
 }
 
-const mapDispatchToProps = {
-  loadPriceData,
-};
+const
+    mapDispatchToProps = {
+      loadPriceData,
+    };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))
+export default connect(mapStateToProps, mapDispatchToProps)
+
+(
+    injectIntl(Statistics)
+)
