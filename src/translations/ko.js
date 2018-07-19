@@ -553,7 +553,7 @@ export const messages = {
   ##################################################################################
   */
   "next_round": "다음 선거",
-  "total_votes": "총 투표 수",
+  "total_votes": "총 득표수",
   "most_ranks": "이번 선거에서 가장 많이 상승",
   "view_live_ranking": "실시간 순위 보기",
   "open_team_page": "후보 페이지 열기",
@@ -564,7 +564,7 @@ export const messages = {
   "live_ranking": "실시간 순위",
   "live_ranking_msg": "매 15초마다 새로고침됩니다. 최근 투표들은 집계되기까지 1~2분 걸릴 수 있습니다.",
   "candidate": "후보",
-  "current_votes": "현재 투표 수",
+  "current_votes": "현재 투표수",
   "click_to_start_voting": "투표 시작하기",
   "votes_remaining_message": "투표 가능한 개수",
   "open_wallet_start_voting_message": "지갑 열어서 투표 시작하기",
@@ -574,7 +574,7 @@ export const messages = {
   "all_votes_are_used_message": "모든 표가 모두 사용 중입니다!",
   "submissing_vote_message_title": "투표해주셔서 감사합니다!",
   "submissing_vote_message_0": "표를 정상적으로 제출하였습니다. 표는 다음 투표 사이클이 시작될 때 반영될 것입니다.",
-  "submissing_vote_message_1": "투표 수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
+  "submissing_vote_message_1": "투표수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
   "submitting_vote_error_message": "표를 제출하는것에 실패하였습니다. 나중에 다시 시도해주십시오.",
   "loading_super_representatives": "슈퍼 대표 목록 로딩 중",
   /*
