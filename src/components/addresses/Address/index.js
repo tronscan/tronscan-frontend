@@ -267,7 +267,7 @@ class Address extends React.Component {
                           </div>
                         }
                         <div className="row">
-                          <div className={producer && address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
+                          <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
                             <table className="table m-0">
                               <tbody>
                               <tr>
@@ -351,8 +351,8 @@ class Address extends React.Component {
                               </tbody>
                             </table>
                           </div>
-                          <div className={address.representative.enabled && producer ? 'col-md-6 mt-3 mt-md-0' : ''}>
-                            {producer && address.representative.enabled &&
+                          <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
+                            {address.representative.enabled &&
                             <PieReact style={{height: 340}} data={votes}/>
                             }
                           </div>
