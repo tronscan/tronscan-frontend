@@ -34,6 +34,7 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
+      summit: null
     };
   }
 
@@ -154,22 +155,47 @@ class Statistics extends React.Component {
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
     });
-    //addressesTemp.sort
 
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return 1;
+        } else if (obj1[property] < obj2[property]) {
+          return -1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+
+    let higest = {date: '', increment: ''};
+    let lowest = {date: '', increment: ''};
+    let addr = addressesTemp.sort(compare('increment'));
+    higest.date = addr[addr.length - 1].date;
+    higest.increment = addr[addr.length - 1].increment;
+    lowest.date = addr[0].date;
+    lowest.increment = addr[0].increment;
+    this.setState({summit: [higest, lowest]});
   }
+
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, summit} = this.state;
     return (
         <main className="container header-overlap">
-          <div className="alert alert-light d-flex" role="alert">
-            <div>
-              This is a light alert—check it out!
+
+          <div className="alert alert-light" role="alert">
+            <div className="row">
+            <div className="col-md-6 text-center">
+              {summit && ("Highest increase of " + summit[0].increment + " was recorded on " + intl.formatDate(summit[0].date))}
             </div>
-            <div className="ml-auto">
-              This is a light alert—check it out!
+            <div className="col-md-6 text-center">
+              {summit && ("Lowest increase of " + summit[1].increment + " was recorded on " + intl.formatDate(summit[1].date))}
             </div>
+          </div>
           </div>
           <div className="row">
             <div className="col-md-12">
