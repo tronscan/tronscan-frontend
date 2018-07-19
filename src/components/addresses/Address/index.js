@@ -267,7 +267,7 @@ class Address extends React.Component {
                           </div>
                         }
                         <div className="row">
-                          <div className={producer ? 'col-md-6' : 'col-md-12'}>
+                          <div className={producer ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
                             <table className="table m-0">
                               <tbody>
                               {
@@ -351,7 +351,7 @@ class Address extends React.Component {
                               </tbody>
                             </table>
                           </div>
-                          <div className={producer ? 'col-md-6' : ''}>
+                          <div className={producer ? 'col-md-6 mt-3 mt-md-0' : ''}>
                             {producer &&
                             <PieReact style={{height: 340}} data={votes}/>
                             }

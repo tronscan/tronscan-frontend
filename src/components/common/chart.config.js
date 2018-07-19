@@ -16,7 +16,7 @@ module.exports = {
         name: '',
         type: 'pie',
         radius: '55%',
-        center: ['50%', '65%'],
+        center: ['50%', '60%'],
         data: [],
         itemStyle: {
           emphasis: {
