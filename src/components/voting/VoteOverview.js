@@ -285,6 +285,7 @@ class VoteOverview extends React.Component {
   };
 
   cancelVotes = () => {
+    this.loadCurrentVotes(this.props.account.address);
     this.setState({
       votingEnabled: false,
       searchCriteria: "",
