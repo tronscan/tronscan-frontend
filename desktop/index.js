@@ -23,7 +23,25 @@ function createWindow () {
   let ledgerBridge = new LedgerBridge(win);
   ledgerBridge.startListener();
 
-  Menu.setApplicationMenu(null);
+
+  let template = [{
+    label: "Application",
+    submenu: [
+      { role: "quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+    ]}, {
+    label: "Edit",
+    submenu: [
+      { role: "undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+      { role: "redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+      { type: "separator" },
+      { role: "cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+      { role: "copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+      { role: "paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+      { role: "selectall", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+    ]}
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   // win.setMenu(null);
   win.maximize();
