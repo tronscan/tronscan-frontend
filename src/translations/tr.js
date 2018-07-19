@@ -1,41 +1,41 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-26062018                                                  #
-#         Update Date: 26.06.2018                                                #
-#         Language: Turkish                                                      #
-#         Status: second Version                                                 #
-#         Number of checks: 5                                                    #
-#         Participants: ahm37k(Ahmet)                                            #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-15072018                                                  #
+  #         Update Date: 15.07.2018                                                #
+  #         Language: Turkish                                                      #
+  #         Status: second Version                                                 #
+  #         Number of checks: 6                                                    #
+  #         Participants: ahm37k(Ahmet)                                            #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "TAMAM",
   "app_title": "TRON Protokolü",
   "password": "parola",
@@ -53,7 +53,8 @@ export const messages = {
   "login": "giriş",
   "height": "yükseklik",
   "age": "yaş",
-  "bytes": "bayt",
+  "bytes": "Bayt",
+  "MByte": "MByte",
   "produced by": "üreten",
   "contract": "Sözleşme",
   "from": "gönderen",
@@ -97,15 +98,15 @@ export const messages = {
   "notifications_enabled": "Bildirimler Açıldı",
   "contract_type": "Sözleşme Tipi",
   "filters": "Süzgeçler",
-  "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "send_tokens": "Jeton Gönder",
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blokzinciri",
   "wallet": "Cüzdan",
   "home": "Genel",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "jetonlar",
   "overview": "Genel bakış",
   "participate": "Katıl",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "İnterneti merkezi olmaktan çıkart",
   "transactions_last_hour": "Son saatte yapılan işlem adeti",
   "block_height": "Blok yüksekliği",
@@ -142,15 +142,14 @@ export const messages = {
   "view_super_representatives": "Süper Temsilcileri görüntüle",
   "create_new_wallet": "Yeni cüzdan oluştur",
   "view_tokens": "Jetonları görüntüle",
-  "transactions_last_day": "Transactions in last day",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  "transactions_last_day": "Son gün yapılan işlem",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "ilk sayfa",
   "previous_page": "önceki sayfa",
   "next_page": "sonraki sayfa",
@@ -172,30 +171,29 @@ export const messages = {
   "witness": "Şahit",
   "asset_participation": "Varlık Katılımı",
   "loading_transaction": "İşlem Yükleniyor",
-  "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "nodes_ranking": "Düğüm Sıralaması",
+  "total_accounts_last_day":"Total Accounts Till Last Day",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "adresler",
   "trx_transferred_past_hour": "Son bir saatte aktarılan TRX miktarı",
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "TRX_transaction_chart": "TRX Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "tron_transaction_chart": "TRON İşlem Grafiği",
+  "transactions_per_day": "Günlük İşlem Adeti",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "İsim belirle",
   "unique_account_message": "Hesap isminizi bir defa belirleyebilirsiniz!",
   "name_to_short": "İsim çok kısa",
@@ -207,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Kendi cüzdanınızdan ya da bir borsadan yukarıdaki test ağı adresine TRX göndermeyin!",
   "bandwidth": "bantgenişliği",
   "balance": "bakiye",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "işlemler",
   "no_transfers": "Aktarım yok",
   "no_tokens": "Jeton bulunmuyor",
@@ -230,23 +228,22 @@ export const messages = {
   "not_enough_trx": "Yeterli TRX bulunamadı",
   "information_message_3": "TRX başarılı bir şekilde talep edildi. Eğer ulaşmaz ise, şu anda test TRX'i bulunmamaktadır ve sonraki bir vakitte tekrar denemeniz gerekmektedir.",
   "send_to_following_address": "Alıcı'nın adresi",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
+  "change_website": "Website'yi değiştir",
+  "you_must_enter_url": "Bir URL girmelisiniz",
   "specify_the_url":  "Please specify the URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "dondur",
   "unfreeze": "çöz",
   "freeze_trx_least": "Dondurabilmek için en az 1 TRX gerekmektedir",
   "unable_unfreeze_trx_message": "TRX çözülemiyor. Böyle olmasının sebebi en kısa dondurma süresine henüz ulaşılmamış olması olabilir.",
-  "freeze_trx_premessage_0": `Tron Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
-   Örneğin, Tron Power ile `,
+  "freeze_trx_premessage_0": `TRON Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
+   Örneğin, TRON Power ile `,
   "freeze_trx_premessage_1": `Dondurulmuş jetonlar 3 gün süre ile kilitlenmiş durumdadır. Donmuş durumdaki TRX bu süre içerisinde alınıp satılamaz.
    Bu süre sonunda TRX'i çözüp jeton alıp satabilirsiniz.`,
   "freeze_trx_premessage_link": "Süper Temsilciler için oy verebililrsiniz.",
@@ -267,14 +264,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "TRX çözmek istediğinizden emin misiniz?",
   "unfreeze_assets": "Varlıkları Çöz",
   "sure_to_unfreeze_unlocked_tokens_message": "Jetonları çözmek istediğinize emin misiniz?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "temsilci olmak için başvur",
   "apply_super_representative_candidate": "Süper Temsilci Adayı olmak için başvur",
   "your_personal_website_address": "kişisel web sitesi adresiniz",
@@ -321,7 +317,7 @@ export const messages = {
   "apply_representative_error_message_1": "Ücret için yeteri kadar TRX bulunduğunuzdan emin olun, ya da tekrar deneyin.",
   "open_external_link": "Bir dış bağlantıyı açmaktasınız",
   "private_key_untrusted_website_message_0": "Güvenli olmayan bir web sitesi hiç bir zaman özel anahtarınızı girmeyiniz.",
-  "no_official_tron_website": "resmi bir Tron sitesi değildir.",
+  "no_official_tron_website": "resmi bir TRON sitesi değildir.",
   "continue_to_external_website": "Dış siteye devam et",
   "url_changed": "URL değiştirildi",
   "successfully_changed_website_message": "Website başarıyla şuna değiştirildi ",
@@ -349,19 +345,18 @@ export const messages = {
   "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
   "claim_rewards": "Ödül Talebi",
   "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "intro": "Başlangıç",
+  "budget_expenses": "Bütçe Harcamaları",
+  "server_configuration": "Sunucu Yapılandırması",
+  "community_plan": "Topluluk Planı",
+  "team": "Takım",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Jeton'un ismi",
   "token_message": "Jeton için isim",
   "token_abbr": "jeton Kısaltması",
@@ -392,14 +387,13 @@ export const messages = {
   "not_started_yet": "Henüz başlamadı",
   "participated": "Katılımınız başarılı oldu!",
   "participated_error": "Bir hata oluştu",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Emin misiniz?",
   "how_much_buy_message": "Ne kadar jeton almak istiyorsunuz?",
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
@@ -408,15 +402,15 @@ export const messages = {
   "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
   "ends": "biter",
   "starts": "başlar",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
-  "address_warning":"Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
+  "can_be_unlocked_in": "şu tarihte çözülebilir",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
+  "address_warning": "Sadece geçerli TRON cüzdan adresleri giriniz. Doğru olmayan adresler TRX kaybına sebep olabilir.",
   "search_address_or_url": "Adres ya da URL ile arat",
   "the_lunch_test": "Test ağının başlatılması ile, blokzinciri tarayıcımızın ve cüzdanımızın bütün özelliklerinin test edilmesi hedeflenmektedir.",
   "plese_keep_in_mind": "Kayıtlı hesabınız yalnızca test ağında kullanıldığı için test ağındaki hesap adresinize kendi cüzdanınızdan ya da bir borsadan TRX göndermemeniz gerektiğini lütfen unutmayın.",
@@ -447,14 +441,13 @@ export const messages = {
   "percentage": "Yüzde",
   "loading_token": "Jeton yükleniyor",
   "voter_percentage": "Oylayan Yüzdesi",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "İşlem bulunmadı",
   "no_tokens_found": "Jeton bulunmadı",
   "no_blocks_found": "Blok bulunmadı",
@@ -462,14 +455,13 @@ export const messages = {
   "no_voters_found": "Oylayıcı bulunmadı",
   "waiting_for_transactions": "İşlemler için bekleniyor",
   "loading_address": "Adresler yükleniyor",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "detaylar",
   "issue_a_token": "Bir Jeton üret",
   "issue_token": "Jeton Üret",
@@ -496,21 +488,20 @@ export const messages = {
   "start_date": "Başlama Tarihi",
   "end_date": "Bitiş Tarihi",
   "token_spend_confirm": "Jeton arzının tamamnını yaratmanın bir defalık toplam 1024 TRX ücrete tabi olduğunu onaylarım.",
-  "token_issue_guide_message_1": `Tron Protokolünde jeton üretimi
+  "token_issue_guide_message_1": `TRON Protokolünde jeton üretimi
    hesabında en az 1024 TRX bulunan herkes tarafından yapılabilir.`,
   "token_issue_guide_message_2":`Bir jeton üretilir üretilmez jetonlara genel bakış sayfasında görünecektir.
    Kullanıcılar katılım süresi boyunca katılım sağlayarak TRX'leri ile jeton alabilirler.`,
   "token_issue_guide_message_3":`Jeton üretildikten sonra hesabınıza toplam arzı kadar miktarda jeton gelecektir.
    Diğer kullanıcılar TRX ile jeton aldıklarında, jetonlar hesabınızdan çekilir
    ve siz tanımlı jeton fiyatı üzerinden TRX alırsınız.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "Bitiş tarihi başlangıç tarihiyle aynı ya da daha önce",
   "no_name_error": "İsim bilgisi gereklidir",
   "no_supply_error": "Toplam arz miktarı en az 1 olmalıdır",
@@ -533,14 +524,13 @@ export const messages = {
   "abbreviation_required": "Kısaltma gerekli",
   "abbreviation_error_message_0": "Kısaltma 5 karakterden uzun olamaz",
   "abbreviation_error_message_1": "Kısaltma sadece a-Z karakterleri içerebilir",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "En Yüksek Üretkenlik",
   "lowest_productivity": "En Düşük Üretkenlik",
   "Super Representatives": "Süper Temsilciler",
@@ -549,34 +539,35 @@ export const messages = {
   "address_not_super_representative": "Bu adres bir Süper Temsilci değil",
   "unable_load_representatives_page_message": "Sayfa yüklenemedi, bunun sebebi adresin geçersiz olması olabileceği gibi, bir Süper Temslcilye ait olmaması ya da temsilcinin henüz bu sayfayı ayarlamamış olması olabilir.",
   "loading_representative": "Temsilci Yükleniyor",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "USD Cinsi Ortalama Fiyat",
   "average_volume_usd": "USD Cinsi Ortalama Hacim",
   "Trade Volume": "Alışveriş hacmi",
   "rank": "sıralama",
   "pair": "çifti",
   "volume": "Hacim",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Daha Fazla Bilgil için Grafik Başlığına Tıkla.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Bir sonraki tur",
   "total_votes": "Toplam oy",
   "most_ranks": "Bu turda elde edilen en yüksek sıra",
   "view_live_ranking": "Canlı sıralamayı görüntüle",
   "open_team_page": "Takım sayfasını aç",
-  "warning_votes": "Oy vermeye başlamak için en az 1 Tron Power gereklidir. Tron Power TRX dondurularak şurada",
+  "warning_votes": "Oy vermeye başlamak için en az 1 TRON Power gereklidir. TRON Power TRX dondurularak şurada",
   "account_page": "Hesap Sayfası",
   "loading_votes": "Oylar yükleniyor",
   "3_day_ranking": "3 günlük sıralama",
@@ -596,14 +587,13 @@ export const messages = {
   "submissing_vote_message_1": "İstediğiniz anda oylarınızı yeniden dağıtabilirsiniz",
   "submitting_vote_error_message": "Oylarınız gönderilirken bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyiniz.",
   "loading_super_representatives": "Süper Temilsilciler Yükleniyor",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Buraya bir işlem hex'ini yapıştırarak işlemin içeriğini inceleyebilirsiniz. Böylelikle işlem ağa yayınlanabilir.",
   "load_tx": "İşlemi Yükle",
   "tx_qrcode": "İşlem Kare Kodu",
@@ -616,54 +606,50 @@ export const messages = {
   "transaction_error": "İşlem Hatalı",
   "confirm_transaction_message": "İşlemi göndermek istediğinizden emin misiniz?",
   "broadcast_transaction_to_network": "İşlemi Ağa Yayınla",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Düğümünüzün IP adresini girerek GRPC bağlantısını test edin",
   "node_tester_stop": "Testi sonlandır",
   "node_tester_test": "GRPC'yi test et",
   "node_tester_rt": "Cevaplama süresi",
   "confirmed_block": "Doğrulanan Blok",
   "loading": "yükleniyor...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Webcam bulunamadı",
   "trying_enable_webcam_message_0": "Webcam etkileştirilmeye çalışılırken bir hata oluştu.",
   "trying_enable_webcam_message_1": "Kamera izinlerinin verildiğinden emin olunuz.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "TRON nedir",
-  "tron_explorer_api": "Tron Gezgini API",
+  "tron_explorer_api": "TRON Gezgini API",
   "tron_architechure": "TRON Mimarisi",
   "tron_protobuf_doc": "TRON Protobuf Belgeleri",
   "report_an_error": "Bir hata / öneri bildirin",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  "frequently_asked_questions": "Sıklıkla Sorulan Sorular",
+  "telegram_updates": "Telegram Güncellemeleri",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Cüzdan Aç",
   "private_key": "Özel Anahtar",
   "keystore_file": "Anahtar Depo Dosyası",
@@ -678,7 +664,7 @@ export const messages = {
   "save_keystore_file": "Anahtar Deposu Dosyanızı Kaydedin",
   "download_keystore_file": "Şifrelenmiş Anahtarı İndirin",
   "do_not_lose_it": "Kaybetmeyin!",
-  "do_not_lose_it_message_0": "Kayıp bir anahtarı bulmanıza Tron Vakfı yardım edemez.",
+  "do_not_lose_it_message_0": "Kayıp bir anahtarı bulmanıza TRON Vakfı yardım edemez.",
   "do_not_share_it": "Paylaşmayın!",
   "do_not_share_it_message_0": "Eğer bu dosyayı kötücül bir sitede kullanırsanız varlıklarınız çalınabilir.",
   "make_a_backup": "Yedekleyin!",
@@ -687,17 +673,110 @@ export const messages = {
   "print_paper_wallet": "Kağıt Cüzdan Bastırın",
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
-  "time": "time",
-  "parenthash": "parenthash",
-  "size": "size",
+  "time": "zaman",
+  "parenthash": "önceki hash",
+  "size": "boyut",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Rehberi",
+  "requirements": "Gereksinimler",
+  "using_ledger_steps_message_0": "TRON ile Ledger'ı kullanmak için aşağıdaki adımların izlenmesi gerekir:",
+  "a": "Bir",
+  "install_the": "İsmi",
+  "app": "olan uygulamanın yüklenmesi",
+  "install_latest_version_message_0": "Bu uygulamanın son sürümünün yüklenmesi: ",
+  "opening_your_wallet": "Cüzdanınızın açılması",
+  "open_the_tronscan_desktop_client": "Tronscan Desktop uygulamasını açınız",
+  "click_open_wallet_top_right": "Sağ üst köşedeki 'CÜZDAN'I AÇ' kısmına tıklayınız",
+  "choose_ledger": "Ledger'ı tercih etmeniz",
+  "connect_unlock_ledger_with_pin": "Cihazı bağlayıp PIN kodunuz ile cihazın kilidini çözmeniz",
+  "open_tron_app_on_ledger": "Ledger'da TRON app'i açmanız",
+  "ledger_connected_tronscan_message_0": "Ledger düzgün bir şekilde bağlandığında Tronscan ekranında 'Bağlandı' ifadesi görünür",
+  "click_on_open_wallet": "Cüzdan'ı aç 'menüsüne tıklayınız'",
+  "redirect_to_your_wallet_message": "Cüzdanınıza yönlendirilecek ve TRON adresinizi görüntüleyebileceksiniz",
+  "using_ledger_to_sign_transactions": "Ledger'ı kullanarak işlemleri imzalamak",
+  "using_ledger_to_sign_transactions_message_0": "Ledger'ın bağlı olduğundan emin olun. Ledger'daki TRON app ile Tronscan Desktop kullanırken yapılan işlemleri imzalayabileceksiniz",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan imzalanması gereken bir işlem olduğunda, işlem detayları gösteren bir pencere açacaktır. İmzalar oy kullandığınızda, TRX gönderdiğinizde, hesap adını değiştirdiğinizde vb. gerekmektedir.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Kayıt bulunamadı!",
+  "warning": "Uyarı",
+  "login_success": "Giriş Başarılı",
+  "logout_success": "Çıkış Başarılı",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "tarih",
+  "total_transactions": "Toplam İşlem",
+  "avg_blockTime": "Ort. blok süresi",
+  "avg_blockSize": "Ort. blok büyüklüğü",
+  "total_BlockCount": "Toplam blok adeti",
+  "new_address_seen": "Görülen yeni adres",
+  "transfer_contract": "Aktarım Sözleşmesi",
+  "TRX_transfer_between_addresses": "Adresler arası TRX aktarımı",
+  "transfer_asset_contract": "Varlık aktarımı sözleşmesi",
+  "token_transfer_between_addresses": "Adresler arası jeton aktarımı",
+  "participate_asset_issue_contract": "Varlık oluşturma sözleşmesine katılım",
+  "participate_token_between_addresses": "Adresler arası jeton aktarımına katılım",
+  "witness_update_contract": "Tanık güncelleme sözleşmesi",
+  "updates_a_witness": "Bir tanık güncelleme",
+  "witness_create_contract": "Tanık sözleşmesi oluştur",
+  "create_a_witness": "Bir tanık oluştur",
+  "account_update_contract": "Hesap Güncelleme Sözleşmesi",
+  "update_account_name": "Hesap adını güncelle",
+  "withdraw_balance_contract": "Bakiye Çekim Sözleşmesi",
+  "withdraw_balance": "Bakiye'ye çek",
+  "freeze_balance_contract": "Bakiye Dondurma Sözleşmesi",
+  "freeze_TRX": "TRX'i dondur",
+  "unfreeze_balance_contract": "Bakiye Çözme Sözleşmesi",
+  "unfreeze_TRX": "TRX'i çöz",
+  "vote_witness_contract": "Tanık Oylama Sözleşmesi",
+  "vote_for_a_witness": "Bir tanık için oy ver",
+  "asset_issue_contract": "Varlık Oluşturma Sözleşmesi",
+  "issue_a_new_asset": "Yeni bir varlık oluştur",
+  "owner_address": "Sahip Adresi",
+  "frozen_balance": "Dondurulmuş Bakiye",
+  "frozen_days": "Dondurulan Gün",
+  "counts": "sayılır",
+  "TRX_exchange_rate": "TRX Değişim Oranı",
+  "start_time": "Başladığı Saat",
+  "end_time": "Bittiği Saat",
+  "contracts": "Sözleşmeler",
+  "search_description": "Adres, Blok Yüksekliği, İşlem Hash'i, Jeton Adı",
+  "search_description1": "Arama yap Adres,Blok,İşlem,Jeton",
+  "transaction": "İşlem",
+  "total_addresses": "Toplam Adres",
+  "daily_increment": "Günlük Artış",
+  "address_growth_chart": "Adres Gelişim Grafiği",
+  "addresses_amount": "Adres Sayısı",
+  "past_14_days_of_transactions": "Son 14 Gündeki İşlem Adeti",
+  "address_growth": "Adres Gelişimi",
+  "power": "Power",
+  "token_transfers": "Jeton Transferleri",
+  "website_url": "Web sitesi URL'si",
+  "search": "Arama"
 
 };

@@ -5,9 +5,9 @@ import {filter, isUndefined} from "lodash";
 import {doSearch} from "../services/search";
 
 
-function Badge({value}) {
+/*function Badge({value}) {
   return <span className="badge badge-pill bg-light align-text-bottom">{value}</span>;
-}
+}*/
 
 export default class Content extends Component {
 
@@ -40,9 +40,8 @@ export default class Content extends Component {
 
   render() {
 
-    let {search} = this.state;
-    let {router} = this.props;
-
+    //let {search} = this.state;
+    //let {router} = this.props;
     // let location = router.location ? router.location.key : "";
 
     return (

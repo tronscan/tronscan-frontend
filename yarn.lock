@@ -40,6 +40,10 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
+"@tronscan/client@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.7.tgz#0d0f3c38da409117247f992d7230ce5812abdb80"
+
 "@ledgerhq/hw-transport-node-hid@^4.13.0":
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport-node-hid/-/hw-transport-node-hid-4.13.0.tgz#86306ff10c860d8bbd002db3f4618078460e4b9a"
@@ -52,25 +56,6 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport/-/hw-transport-4.13.0.tgz#463043200c96c91379318052ad4dbe8c80d95cf5"
   dependencies:
     events "^2.0.0"
-
-"@tronscan/client@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.6.tgz#791d03f4c59b0c70cac03054968eefeb7a60a8f2"
-  dependencies:
-    axios "^0.18.0"
-    babel-plugin-transform-class-properties "^6.24.1"
-    babel-plugin-transform-object-rest-spread "^6.26.0"
-    babel-preset-env "^1.7.0"
-    babel-preset-es2015 "^6.24.1"
-    base-58 "^0.0.1"
-    chai "^4.1.2"
-    crypto-js "^3.1.9-1"
-    elliptic "^6.4.0"
-    google-protobuf "^3.5.0"
-    js-sha3 "^0.7.0"
-    mocha "^5.1.0"
-    nano-time "^1.0.0"
-    qs "^6.5.1"
 
 "@tweenjs/tween.js@^17.2.0":
   version "17.2.0"

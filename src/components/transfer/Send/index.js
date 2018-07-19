@@ -4,7 +4,6 @@ import React from "react";
 import * as qs from "query-string";
 import {tu} from "../../../utils/i18n";
 import {Link} from "react-router-dom";
-import {find} from "lodash";
 import SendForm from "./SendForm";
 
 class Send extends React.Component {

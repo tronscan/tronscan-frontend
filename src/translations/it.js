@@ -1,43 +1,43 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-03072018                                                  #
-#         Update Date: 03.07.2018                                                #
-#         Language: Italian                                                      #
-#         Status: Approved Version                                               #
-#         Number of checks: 5                                                    #
-#         Participants: FabioHC,Andrea1980,PMD3VSolution                         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-14072018                                                  #
+  #         Update Date: 14.07.2018                                                #
+  #         Language: Italian                                                      #
+  #         Status: Approved Version                                               #
+  #         Number of checks: 6                                                    #
+  #         Participants: FabioHC,Andrea1980,PMD3VSolution                         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
-  "app_title": "Protocollo Tron",
+  "app_title": "Protocollo TRON",
   "password": "password",
   "money_price": "prezzo",
   "price": "prezzo",
@@ -53,7 +53,8 @@ export const messages = {
   "login": "accesso",
   "height": "altezza",
   "age": "età",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "prodotto da",
   "contract": "Contratto",
   "from": "da",
@@ -62,7 +63,7 @@ export const messages = {
   "total_accounts": "Account totali",
   "submit": "invia",
   "send": "invia",
-  "receive": "ricevere",
+  "receive": "Ricevi",
   "supply": "fornitura",
   "view": "vedi",
   "view_all": "Vedi tutto",
@@ -98,18 +99,18 @@ export const messages = {
   "contract_type": "Tipo di contratto",
   "filters": "Filtri",
   "send_tokens": "Gettoni Invio",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Portafoglio",
   "home": "Home",
-  "transfers": "Trasferisci",
+  "transfers": "Trasferimenti",
   "live": "In tempo reale",
   "statistics": "Statistiche",
   "markets": "Mercati",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "Token",
   "overview": "Panoramica",
   "participate": "Partecipa",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Decentralizzare il Web",
   "transactions_last_hour": "Transazioni nell'ultima ora",
   "block_height": "Altezza Blocco",
@@ -143,14 +143,13 @@ export const messages = {
   "create_new_wallet": "Crea un nuovo portafoglio",
   "view_tokens": "Vedi Token",
   "transactions_last_day": "Transazioni nell'ultimo giorno",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "prima pagina",
   "previous_page": "pagina precedente",
   "next_page": "pagina successiva",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "Partecipazione Asset",
   "loading_transaction": "Caricamento Transazione",
   "nodes_ranking": "Classifica Nodi",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day": "Totale conti fino all'ultimo giorno",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "indirizzi",
   "trx_transferred_past_hour": "TRX trasferiti nell'ultima ora",
   "transactions_past_hour": "Transazioni nell'ora precedente",
   "average_blocksize": "Transazioni nell'ultima ora",
   "rich_list": "Lista Ricchi",
-  "TRX_transaction_chart": "Grafico Transazioni TRX",
+  "tron_transaction_chart": "Grafico Transazioni TRON",
   "transactions_per_day": "Transazioni Al Giorno",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Imposta Nome",
   "unique_account_message": "Puoi impostare il nome del tuo account solamente una volta!",
   "name_to_short": "Il nome inserito è troppo breve",
@@ -207,14 +205,14 @@ export const messages = {
   "do_not_send_2": "Non inviare TRX dal tuo wallet oppure da un exchange all'indirizzo dell'account della testnet soprastante!",
   "bandwidth": "larghezza di banda",
   "balance": "saldo",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transazioni",
   "no_transfers": "Nessun trasferimento",
   "no_tokens": "Nessun token",
   "free_bandwidth": "Larghezza di banda libera",
   "expires": "scade",
   "have_been_added_to_your_account": "è stato aggiunto al tuo account!",
-  "information_message_1": "La mainnet non può richiedere TRX di test, per favore contattate Tron per ottenere TRX di test.",
+  "information_message_1": "La mainnet non può richiedere TRX di test, per favore contattate TRON per ottenere TRX di test.",
   "information_message_2": "Puoi richiedere TRX per un massimo di 10 volte per account.",
   "request_trx_for_testing": "Richiedi TRX per i test",
   "token_balances": "saldo token",
@@ -233,20 +231,19 @@ export const messages = {
   "change_website": "Cambia sito web",
   "you_must_enter_url": "Devi inserire un URL",
   "specify_the_url":  "Per favore, specifica l'URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
-  "freeze": "congelare",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
+  "freeze": "congela",
   "unfreeze": "scongelare",
   "freeze_trx_least": "Devi avere almeno un TRX per poter procedere al congelamento",
   "unable_unfreeze_trx_message": "Impossibile scongelare i TRX. Ciò potrebbe essere causato dal fatto che il periodo di congelamento minimo non è stato ancora raggiunto.",
-  "freeze_trx_premessage_0": `I TRX possono essere congelati/bloccati per guadagnare Tron Power e abilitare funzionalità aggiuntive. Per esempio, con i Tron Power puoi `,
-  "freeze_trx_premessage_link": "Vota per i Super Rappresentanti.",
+  "freeze_trx_premessage_0": `I TRX possono essere congelati/bloccati per guadagnare TRON Power e abilitare funzionalità aggiuntive. Per esempio, con i TRON Power puoi `,
+  "freeze_trx_premessage_link": "votare per i Super Rappresentanti.",
   "freeze_trx_premessage_1": `I token congelati sono "bloccati" per un periodo di 3 giorni. Durante questo periodo i TRX congelati non possono essere scambiati. Dopo questo periodo è possibile scongelare i TRX e scambiare token.`,
   "trx_amount": "Quantità di TRX",
   "token_freeze_confirm_message_0": "Confermo il congelamento",
@@ -265,14 +262,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Sei sicuro di voler scongelare TRX?",
   "unfreeze_assets": "Scongela asset",
   "sure_to_unfreeze_unlocked_tokens_message": "Sei sicuro di voler scongelare i token sbloccati?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "richiesta per diventare rappresentante",
   "apply_super_representative_candidate": "Richiesta per essere un Super Rappresentante",
   "your_personal_website_address": "il tuo sito web personale",
@@ -316,7 +312,7 @@ export const messages = {
   "apply_representative_error_message_1": "Assicuratevi di avere TRX sufficienti per le commissioni o riprovare più tardi.",
   "open_external_link": "Stai per aprire un collegamento esterno",
   "private_key_untrusted_website_message_0": "Non inserite mai la vostra chiave privata su un sito non affidabile.",
-  "no_official_tron_website": "non è un sito ufficiale di Tron.",
+  "no_official_tron_website": "non è un sito ufficiale di TRON.",
   "continue_to_external_website": "Continua sul sito esterno",
   "url_changed": "URL cambiato",
   "successfully_changed_website_message": "Sito web cambiato con successo in ",
@@ -349,14 +345,13 @@ export const messages = {
   "server_configuration": "Configurazione del server",
   "community_plan": "Piano comunitario",
   "team": "Squadra",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Nome del token",
   "token_message": "Nome per il token",
   "token_abbr": "Abbreviazione del token",
@@ -387,14 +382,13 @@ export const messages = {
   "not_started_yet": "Non ancora iniziato",
   "participated": "Hai partecipato con successo!",
   "participated_error": "Si è verificato un errore",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Sei sicuro?",
   "how_much_buy_message": "Quanti token vuoi comprare?",
   "buy_confirm_message_1": "Sei sicuro di voler acquistare",
@@ -403,14 +397,14 @@ export const messages = {
   "not_enouth_trx_message": "Non hai abbastanza TRX per poter comprare i token specificati",
   "ends": "finisce",
   "starts": "inizia",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "possono essere sbloccati in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Inserire solamente un indirizzo valido di un wallet TRON. Indirizzi non corretti possono causare la perdita dei TRX.",
   "search_address_or_url": "Cerca per indirizzo o URL",
   "the_lunch_test": "Il lancio della testnet ha lo scopo di testare tutte le funzionalità del nostro blockchain explorer e del nostro wallet.",
@@ -442,14 +436,13 @@ export const messages = {
   "percentage": "Percentuale",
   "loading_token": "Caricamento Token",
   "voter_percentage": "Percentuale votante",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Nessuna transazione trovata",
   "no_tokens_found": "Nessun token trovato",
   "no_blocks_found": "Nessun blocco trovato",
@@ -457,14 +450,13 @@ export const messages = {
   "no_voters_found": "Nessun elettore trovato",
   "waiting_for_transactions": "In attesa di transazioni",
   "loading_address": "Caricamento indirizzo",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "dettagli",
   "issue_a_token": "Emetti un Token",
   "issue_token": "Emetti Token",
@@ -490,19 +482,18 @@ export const messages = {
   "start_date": "Data di inizio",
   "end_date": "Data di fine",
   "token_spend_confirm": "Confermo che la creazione del token prevede un costo una tantum di 1024 TRX.",
-  "token_issue_guide_message_1": "l'emissione di un token sul protocollo Tron può essere fatta da chiunque abbia almeno 1024 TRX nel proprio conto.",
+  "token_issue_guide_message_1": "L'emissione di un token sul protocollo TRON può essere eseguita da chiunque possieda almeno 1024 TRX nel proprio conto.",
   "token_issue_guide_message_2": `Quando un token viene emesso verrà mostrato nella pagina panoramica del token.
     Gli utenti possono quindi partecipare all'interno del periodo di partecipazione e scambiare i loro TRX per il token.`,
   "token_issue_guide_message_3":`Dopo la creazione del token il tuo conto riceverà la quantità di token pari alla fornitura totale.
     Quando altri utenti scambieranno i loro TRX per i tuoi token, questi saranno detratti dal tuo account e riceverai una somma di TRX uguale al tasso di cambio specificato.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "La data di fine è precedente o uguale alla data di inizio",
   "no_name_error": "Il nome è obbligatorio",
   "no_supply_error": "La fornitura totale deve essere almeno di 1",
@@ -525,14 +516,13 @@ export const messages = {
   "abbreviation_required": "Abbreviazione richiesta",
   "abbreviation_error_message_0": "L'abbreviazione non deve essere più lunga di 5 caratteri",
   "abbreviation_error_message_1": "L'abbreviazione può contenere solamente i caratteri a-Z",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Maggiore produttività",
   "lowest_productivity": "Minore produttività",
   "Super Representatives": "Super Rappresentanti",
@@ -541,34 +531,35 @@ export const messages = {
   "address_not_super_representative": "Questo indirizzo non è un Super Rappresentante",
   "unable_load_representatives_page_message": "Impossibile caricare la pagina, questo può accadere se l'indirizzo non è valido, l'indirizzo non è di un rappresentante o il rappresentante non ha ancora configurato questa pagina",
   "loading_representative": "Caricamento Rappresentanti",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Prezzo medio in USD",
   "average_volume_usd": "Volume medio in USD",
   "Trade Volume": "Volume di scambio",
   "rank": "posizione",
   "pair": "coppia",
   "volume": "Volume",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Clicca sul titolo del grafico per saperne di più.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Round Successivo",
   "total_votes": "Voti Totali",
   "most_ranks": "Posizioni guadagnate maggiormente in questo ciclo di voto",
   "view_live_ranking": "Guarda la classifica in diretta",
   "open_team_page": "Apri pagina del Team",
-  "warning_votes": "È richiesto almeno 1 Tron Power per iniziare a votare. I Tron Power sono ottenuti congelando TRX sul",
+  "warning_votes": "È richiesto almeno 1 TRON Power per iniziare a votare. I TRON Power sono ottenuti congelando TRX sul",
   "account_page": "Pagina Account",
   "loading_votes": "Caricamento voti",
   "3_day_ranking": "Classifica 3 giorni",
@@ -588,14 +579,13 @@ export const messages = {
   "submissing_vote_message_1": "Puoi ridistribuire i tuoi voti quando lo desideri",
   "submitting_vote_error_message": "Qualcosa è andato storto durante l'invio dei voti. Si prega di riprovare più tardi.",
   "loading_super_representatives": "Caricamento dei Super Rappresentanti",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Qui puoi incollare l'HEX di una transazione per controllare il contenuto della transazione. La transazione può quindi essere trasmessa in broadcast alla rete",
   "load_tx": "Carica Transazione",
   "tx_qrcode": "Codice QR della Transazione",
@@ -608,54 +598,50 @@ export const messages = {
   "transaction_error": "Errore Transazione",
   "confirm_transaction_message": "Sei sicuro di voler inviare la transazione?",
   "broadcast_transaction_to_network": "Trasmissione della transazione alla rete",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Inserisci l'indirizzo IP del tuo nodo per testare la connessione GRPC",
   "node_tester_stop": "Stop test",
   "node_tester_test": "Test GRPC",
   "node_tester_rt": "Tempo di risposta",
   "confirmed_block": "Blocco Confermato",
   "loading": "caricamento...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Nessuna webcam trovata",
   "trying_enable_webcam_message_0": "Errore durante il tentativo di attivare la webcam.",
   "trying_enable_webcam_message_1": "Assicurati che le autorizzazioni della videocamera siano abilitate.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "Cos'è TRON",
-  "tron_explorer_api": "API Tron Explorer",
+  "tron_explorer_api": "API TRON Explorer",
   "tron_architechure": "Architettura TRON",
   "tron_protobuf_doc": "Documentazione TRON Protobuf",
   "report_an_error": "Segnala un bug / Invia un suggerimento",
   "frequently_asked_questions": "Domande Frequenti",
   "telegram_updates": "Aggiornamenti Telegram",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Apri Portafoglio",
   "private_key": "Chiave Privata",
   "keystore_file": "File Keystore",
@@ -670,7 +656,7 @@ export const messages = {
   "save_keystore_file": "Salva il tuo file Keystore",
   "download_keystore_file": "Scarica la chiave criptata",
   "do_not_lose_it": "Non perderla!",
-  "do_not_lose_it_message_0": "La Fondazione Tron non può aiutarti a recuperare una chiave persa.",
+  "do_not_lose_it_message_0": "La Fondazione TRON non può aiutarti a recuperare una chiave persa.",
   "do_not_share_it": "Non condividerla!",
   "do_not_share_it_message_0": "I tuoi fondi porebbero essere rubati se usi questo file su un sito malevolo.",
   "make_a_backup": "Fai un backup!",
@@ -679,17 +665,110 @@ export const messages = {
   "print_paper_wallet": "Stampa il portafoglio su carta",
   "new_wallet_ready_message": "Il tuo nuovo portafoglio è pronto",
   "go_to_account_page": "Vai alla pagina dell'account",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "istante",
   "parenthash": "hash genitore",
   "size": "dimensione",
+  "blockchain_size": "Dimensione della catena del blocco",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Guida Ledger",
+  "requirements": "Requisiti",
+  "using_ledger_steps_message_0": "L'utilizzo del Ledger con Tronscan richiede i seguenti passaggi:",
+  "a": "Un",
+  "install_the": "Installate l'app ",
+  "app": "",
+  "install_latest_version_message_0": "Installate l'ultima versione del ",
+  "opening_your_wallet": "Aprire il vostro wallet",
+  "open_the_tronscan_desktop_client": "Aprite il client Tronscan Desktop",
+  "click_open_wallet_top_right": "Cliccate su 'Open Wallet' in alto a destra",
+  "choose_ledger": "Scegliete Ledger",
+  "connect_unlock_ledger_with_pin": "Connettete e sbloccate il vostro dispositivo con il vostro codice PIN",
+  "open_tron_app_on_ledger": "Aprite l'app TRON sul vostro Ledger",
+  "ledger_connected_tronscan_message_0": "Se il vostro Ledger è connesso correttamente allora Tronscan mostrerà il messaggio 'Connected'",
+  "click_on_open_wallet": "Cliccate su 'Open Wallet'",
+  "redirect_to_your_wallet_message": "Verrete reindirizzati al vostro wallet e potrete vedere il vostro indirizzo TRON",
+  "using_ledger_to_sign_transactions": "Utilizzare il Ledger per firmare transazioni",
+  "using_ledger_to_sign_transactions_message_0": "Assicuratevi di mantenere il Ledger connesso e l'app TRON aperta per firmare le transazioni utilizzando il Ledger mentre si utilizza Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan mostrerà un popup con i dettagli della transazione quando è richiesta una firma per la transazione stessa. Le firme sono sempre richieste quando votate, inviate TRX, cambiate nome dell'account, ecc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Risultato non trovato!",
+  "warning": "Attenzione",
+  "login_success": "Login effettuato con successo",
+  "logout_success": "Logout effettuato con successo",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Data",
+  "total_transactions": "Transazioni Totali",
+  "avg_blockTime": "Tempo medio dei blocchi",
+  "avg_blockSize": "Dimensione media dei blocchi",
+  "total_BlockCount": "Numero totale dei blocchi",
+  "new_address_seen": "Nuovi indirizzi visti",
+  "transfer_contract": "Contratto di trasferimento",
+  "TRX_transfer_between_addresses": "Trasferimento di TRX tra indirizzi",
+  "transfer_asset_contract": "Contratto di trasferimento asset",
+  "token_transfer_between_addresses": "Trasferimento di token tra indirizzi",
+  "participate_asset_issue_contract": "Participa al contratto di emissione dell'asset",
+  "participate_token_between_addresses": "Participa al token tra indirizzi",
+  "witness_update_contract": "Contratto di aggiornamento del testimone",
+  "updates_a_witness": "Aggiorna un testimone",
+  "witness_create_contract": "Contratto di creazione del testimone",
+  "create_a_witness": "Crea un testimone",
+  "account_update_contract": "Contratto di aggiornamento dell'account",
+  "update_account_name": "Aggiorna il nome dell'account",
+  "withdraw_balance_contract": "Contratto di prelievo del saldo",
+  "withdraw_balance": "Preleva saldo",
+  "freeze_balance_contract": "Contratto di congelamento del saldo",
+  "freeze_TRX": "Congela TRX",
+  "unfreeze_balance_contract": "Contratto di scongelamento del saldo",
+  "unfreeze_TRX": "Scongela TRX",
+  "vote_witness_contract": "Contratto di voto per testimoni",
+  "vote_for_a_witness": "Vota per un testimone",
+  "asset_issue_contract": "Contratto di emissione di asset",
+  "issue_a_new_asset": "Emetti un nuovo asset",
+  "owner_address": "Indirizzo del proprietario",
+  "frozen_balance": "Saldo congelato",
+  "frozen_days": "Giorni da congelare",
+  "counts": "Quantità",
+  "TRX_exchange_rate": "Tasso di cambio TRX",
+  "start_time": "Istante iniziale",
+  "end_time": "Istante finale",
+  "contracts": "Contratti",
+  "search_description": "Cerca Indirizzo, Altezza blocco, Hash Transazione, Nome Token",
+  "search_description1": "Cerca Indirizzo, Blocco, Transaizone, Token",
+  "transaction": "Transazione",
+  "total_addresses": "Indirizzi totali",
+  "daily_increment": "Incremento giornaliero",
+  "address_growth_chart": "Grafico incremento indirizzi",
+  "addresses_amount": "Quantità indirizzi",
+  "past_14_days_of_transactions": "Ultimi 14 giorni di transazioni",
+  "address_growth": "Incremento indirizzi",
+  "power": "Power",
+  "token_transfers": "Trasferimenti di Token",
+  "website_url": "URL Sito Web",
+  "search": "Cerca"
 
 };

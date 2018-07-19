@@ -216,7 +216,7 @@ class VoteOverview extends React.Component {
 
   renderVotingBar() {
     let {votingEnabled, votesSubmitted, submittingVotes } = this.state;
-    let {wallet} = this.props;
+    let {intl, wallet} = this.props;
 
     let {trxBalance} = this.getVoteStatus();
 
@@ -259,7 +259,7 @@ class VoteOverview extends React.Component {
           <div>
             <input type="text"
                    className="form-control"
-                   placeholder="Search..."
+                   placeholder={intl.formatMessage({id:'search'})}
                    onChange={(ev) => this.onSearchChange(ev.target.value)} />
           </div>
           <div className="ml-auto">

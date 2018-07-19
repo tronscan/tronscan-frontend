@@ -49,9 +49,9 @@ class Navigation extends PureComponent {
   }
 
   componentDidUpdate() {
-    let {wallet} = this.props;
+    let { intl, wallet } = this.props;
     if (wallet.isOpen && !this.loginFlag) {
-      toastr.info('Success', 'Login success');
+      toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'login_success'}));
       this.loginFlag = true;
     }
   }
@@ -160,9 +160,11 @@ class Navigation extends PureComponent {
   };
 
   logout = () => {
-    this.props.logout();
+    let {intl, logout} = this.props;
+    logout();
     this.loginFlag = false;
-    toastr.info('Success', 'Logout success');
+    this.setState({ privateKey: '' });
+    toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'logout_success'}));
   };
 
   componentWillUnmount() {
@@ -180,6 +182,7 @@ class Navigation extends PureComponent {
 
   doSearch = async () => {
 
+    let {intl} = this.props;
     let {search} = this.state;
     let type = getSearchType(search);
 
@@ -190,7 +193,7 @@ class Navigation extends PureComponent {
       window.location.hash = result;
       this.setState({search: ""});
     } else {
-      toastr.warning('Warning', 'Record not found!');
+      toastr.warning(intl.formatMessage({id:'warning'}), intl.formatMessage({id:'record_not_found'}));
     }
   };
 
@@ -365,7 +368,7 @@ class Navigation extends PureComponent {
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-bolt mr-2"/>
-                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron Power
+                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron {tu("power")}
                         </Link>
                         <Link className="dropdown-item" to="/account">
                           <i className="fa fa-tachometer-alt mr-2"/>

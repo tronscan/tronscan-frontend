@@ -1,43 +1,43 @@
 
 export const messages = {
-/*
-##################################################################################
-#                                                                                #
-#  $$$$$$$$\                                                                     #
-#  \__$$  __|                                                                    #
-#     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
-#     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
-#     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
-#     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
-#     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
-#     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
-#                                                                                #
-##################################################################################
-#                                                                                #
-#         Template for translating the tronscan.org website                      #
-#         Version: 1.5-24062018                                                  #
-#         Update Date: 24.06.2018                                                #
-#         Language: Vietnamese                                                   #
-#         Status: First Version                                                  #
-#         Number of checks: 4                                                    #
-#         Participants: Quoc Nguyen                                              #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# description and structure of the template                                      #
-#                                                                                #
-# "<name of the variable>": "<corresponding translation>"                        #
-#                                                                                #
-# Note: please concentrate only on the value <corresponding translation>         #
-#                                                                                #
-##################################################################################
-#                                                                                #
-# global section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  #  $$$$$$$$\                                                                     #
+  #  \__$$  __|                                                                    #
+  #     $$ | $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$$\  $$$$$$$\$$$$$$\  $$$$$$$\     #
+  #     $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$  _____\____$$\ $$  __$$\    #
+  #     $$ |$$ |  \__|$$ /  $$ |$$ |  $$ |\$$$$$$\  $$ /     $$$$$$$ |$$ |  $$ |   #
+  #     $$ |$$ |      $$ |  $$ |$$ |  $$ | \____$$\ $$ |    $$  __$$ |$$ |  $$ |   #
+  #     $$ |$$ |      \$$$$$$  |$$ |  $$ |$$$$$$$  |\$$$$$$$\$$$$$$$ |$$ |  $$ |   #
+  #     \__|\__|       \______/ \__|  \__|\_______/  \_______\_______|\__|  \__    #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  #         Template for translating the tronscan.org website                      #
+  #         Version: 1.6-11072018                                                  #
+  #         Update Date: 11.07.2018                                                #
+  #         Language: Vietnamese                                                   #
+  #         Status: First Version                                                  #
+  #         Number of checks: 4                                                    #
+  #         Participants: Quoc Nguyen                                              #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # description and structure of the template                                      #
+  #                                                                                #
+  # "<name of the variable>": "<corresponding translation>"                        #
+  #                                                                                #
+  # Note: please concentrate only on the value <corresponding translation>         #
+  #                                                                                #
+  ##################################################################################
+  #                                                                                #
+  # global section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "ok": "OK",
-  "app_title": "Giao thức Tron",
+  "app_title": "Giao thức TRON",
   "password": "mật khẩu",
   "money_price": "giá",
   "price": "giá",
@@ -53,7 +53,8 @@ export const messages = {
   "login": "đăng nhập",
   "height": "chiều cao khối",
   "age": "tuổi của khối",
-  "bytes": "bytes",
+  "bytes": "Bytes",
+  "MByte": "MByte",
   "produced by": "sản xuất bởi",
   "contract": "Hợp đồng",
   "from": "from",
@@ -98,14 +99,14 @@ export const messages = {
   "contract_type": "Loại hợp đồng",
   "filters": "Bộ lọc",
   "send_tokens": "Send Tokens",
-
-/*
-##################################################################################
-#                                                                                #
-# navigation section                                                             #
-#                                                                                #
-##################################################################################
-*/
+  "desktop_explorer": "Desktop Explorer",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # navigation section                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "blockchain": "Blockchain",
   "wallet": "Ví",
   "home": "Trang chủ",
@@ -125,14 +126,13 @@ export const messages = {
   "tokens": "Mã token",
   "overview": "Tổng quan",
   "participate": "Tham gia",
-
-/*
-##################################################################################
-#                                                                                #
-# home dashboard                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # home dashboard                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "tron_main_message": "Phân cấp Web",
   "transactions_last_hour": "Số giao dịch giờ trước",
   "block_height": "Chiều cao khối",
@@ -143,14 +143,13 @@ export const messages = {
   "create_new_wallet": "Tạo ví mới",
   "view_tokens": "Xem mã token",
   "transactions_last_day": "Transactions in last day",
-
-/*
-##################################################################################
-#                                                                                #
-# tableinformations and statistics                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tableinformations and statistics                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "first_page": "trang đầu",
   "previous_page": "trang trước",
   "next_page": "trang tiếp",
@@ -173,29 +172,28 @@ export const messages = {
   "asset_participation": "Góp phần vào tài sản",
   "loading_transaction": "Đang tải giao dịch",
   "nodes_ranking": "Nodes Ranking",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain - statistics                                                        #
-#                                                                                #
-##################################################################################
-*/
+  "total_accounts_last_day":"Total Accounts Till Last Day",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - statistics                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "addresses": "địa chỉ",
   "trx_transferred_past_hour": "TRX được chuyển trong giờ qua",
   "transactions_past_hour": "Giao dịch trong giờ qua",
   "average_blocksize": "Kích thước trung bình của khối",
   "rich_list": "Rich List",
-  "TRX_transaction_chart": "TRX Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
-
-/*
-##################################################################################
-#                                                                                #
-# account section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "set_name": "Đặt tên",
   "unique_account_message": "Bạn chỉ có thể đặt tên tài khoản của mình một lần!",
   "name_to_short": "Tên viết tắt",
@@ -207,7 +205,7 @@ export const messages = {
   "do_not_send_2": "Không thể gửi TRX từ ví của bạn hoặc giao dịch với địa chỉ tài khoản trên mạng thử nghiệm!",
   "bandwidth": "băng thông",
   "balance": "số dư",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "giao dịch",
   "no_transfers": "Không có chuyển khoản",
   "no_tokens": "Không có mã token",
@@ -233,19 +231,18 @@ export const messages = {
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
   "specify_the_url":  "Please specify the URL",
-
-/*
-##################################################################################
-#                                                                                #
-# account freeze                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account freeze                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "freeze": "đóng băng",
   "unfreeze": "giải phóng",
   "freeze_trx_least": "Bạn cần ít nhất 1 TRX để có thể đóng băng",
   "unable_unfreeze_trx_message": "Không thể hủy TRX. Điều này có thể là do chưa đủ thời gian đóng băng tối thiểu.",
-  "freeze_trx_premessage_0": "TRX có thể bị đóng băng / khóa để lấy Tron Power và bật các tính năng bổ sung. Ví dụ, với Tron Power bạn có thể",
+  "freeze_trx_premessage_0": "TRX có thể bị đóng băng / khóa để lấy TRON Power và bật các tính năng bổ sung. Ví dụ, với TRON Power bạn có thể",
   "freeze_trx_premessage_link": "bỏ phiếu cho Siêu Đại Diện",
   "freeze_trx_premessage_1": "Mã token bị đóng băng bị khóa trong khoảng thời gian 3 ngày. Trong thời gian này, TRX bị đóng băng không thể giao dịch được. Sau giai đoạn này, bạn có thể giải phóng TRX và giao dịch các mã token.",
   "trx_amount": "Tổng số TRX",
@@ -265,14 +262,13 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Bạn có chắc chắn muốn giải phóng TRX không?",
   "unfreeze_assets": "Hủy đóng băng tài sản",
   "sure_to_unfreeze_unlocked_tokens_message": "Bạn có chắc chắn muốn hủy đóng băng mã token đã mở khóa không?",
-
-/*
-##################################################################################
-#                                                                                #
-# account superdelegates                                                         #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # account superdelegates                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
   "apply_for_delegate": "đăng ký trở thành đại diện",
   "apply_super_representative_candidate": "Đăng ký trở thành ứng cử viên Siêu Đại Diện",
   "your_personal_website_address": "địa chỉ trang web cá nhân của bạn",
@@ -317,9 +313,9 @@ export const messages = {
   "invalid_url": "URL không hợp lệ",
   "apply_representative_error_message_0": "Đã xảy ra sự cố khi cố gắng đăng ký trở thành đại diện.",
   "apply_representative_error_message_1": "Đảm bảo bạn có đủ TRX cho khoản phí này hoặc thử lại sau.",
-  "open_external_link":"You are opening an external link",
+  "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL đã thay đổi",
   "successfully_changed_website_message": "Đã thay đổi thành công trang web thành ",
@@ -352,14 +348,13 @@ export const messages = {
   "server_configuration": "Cấu hình máy chủ",
   "community_plan": "Kế hoạch cộng đồng",
   "team": "Đội",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation formular                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation formular                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "name_of_the_token": "Tên mã token",
   "token_message": "Tên cho mã token",
   "token_abbr": "Tên viết tắt mã token",
@@ -390,14 +385,13 @@ export const messages = {
   "not_started_yet": "Chưa bắt đầu",
   "participated": "Bạn đã tham gia thành công!",
   "participated_error": "Đã xảy ra lỗi",
-
-/*
-##################################################################################
-#                                                                                #
-# token participate                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token participate                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "buy_confirm_message_0": "Bạn có chắc không?",
   "how_much_buy_message": "Bạn muốn mua bao nhiêu mã token?",
   "buy_confirm_message_1": "Bạn có chắc bạn muốn mua",
@@ -406,14 +400,14 @@ export const messages = {
   "not_enouth_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
   "ends": "kết thúc",
   "starts": "bắt đầu",
-
-/*
-##################################################################################
-#                                                                                #
-# global messages                                                                #
-#                                                                                #
-##################################################################################
-*/
+  "can_be_unlocked_in": "can be unlocked in",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # global messages                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "address_warning": "Chỉ nhập địa chỉ ví TRON hợp lệ. Địa chỉ không chính xác có thể dẫn đến mất TRX.",
   "search_address_or_url": "Tìm kiếm địa chỉ hoặc URL",
   "the_lunch_test": "Sự ra mắt của testnet nhằm mục đích kiểm tra tất cả các tính năng của trình khám phá blockchain và ví của chúng tôi.",
@@ -445,14 +439,13 @@ export const messages = {
   "percentage": "Tỷ lệ phần trăm",
   "loading_token": "Đang tải mã token",
   "voter_percentage": "Voter Percentage",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction information                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction information                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_transactions_found": "Không tìm thấy giao dịch nào",
   "no_tokens_found": "Không tìm thấy mã token",
   "no_blocks_found": "Không tìm thấy khối nào",
@@ -460,14 +453,13 @@ export const messages = {
   "no_voters_found": "Không tìm thấy người bỏ phiếu",
   "waiting_for_transactions": "Đang chờ giao dịch",
   "loading_address": "Đang tải địa chỉ",
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - default messages                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - default messages                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "details": "chi tiết",
   "issue_a_token": "Phát hành mã token",
   "issue_token": "Mã token phát hành",
@@ -494,21 +486,20 @@ export const messages = {
   "start_date": "Ngày bắt đầu",
   "end_date": "Ngày kết thúc",
   "token_spend_confirm": "Tôi xác nhận việc tạo tổng nguồn cung cho mã token tổng chi phí một lần là 1024 TRX.",
-  "token_issue_guide_message_1": `Phát hành một mã token trên Giao thức Tron có thể được thực hiện
+  "token_issue_guide_message_1": `Phát hành một mã token trên Giao thức TRON có thể được thực hiện
     bởi bất kỳ ai có ít nhất 1024 TRX trong tài khoản của họ.`,
   "token_issue_guide_message_2":`Khi một mã token được phát hành, nó sẽ được hiển thị trên trang tổng quan mã token.
     Sau đó, người dùng có thể tham gia trong khoảng thời gian này và trao đổi TRX với mã token.`,
   "token_issue_guide_message_3":`Sau khi phát hành mã token, tài khoản của bạn sẽ nhận được số lượng mã token bằng tổng số nguồn cung.
     Khi những người dùng khác trao đổi TRX của họ với mã token thì mã token sẽ bị rút khỏi tài khoản của bạn và bạn sẽ
     nhận TRX bằng với tỷ giá quy định.`,
-
-/*
-##################################################################################
-#                                                                                #
-# token creation - error messages                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # token creation - error messages                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "date_error": "Ngày kết thúc sớm hơn hoặc bằng ngày bắt đầu",
   "no_name_error": "Tên là bắt buộc",
   "no_supply_error": "Tổng cung phải ít nhất là 1",
@@ -531,14 +522,13 @@ export const messages = {
   "abbreviation_required": "Tên viết tắt là bắt buộc",
   "abbreviation_error_message_0": "Tên viết tắt không thể dài hơn 5 ký tự",
   "abbreviation_error_message_1": "Tên viết tắt chỉ có thể chứa ký tự a-Z",
-
-/*
-##################################################################################
-#                                                                                #
-# representatives section                                                        #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # representatives section                                                        #
+  #                                                                                #
+  ##################################################################################
+  */
   "highest_productivity": "Năng suất cao nhất",
   "lowest_productivity": "Năng suất thấp nhất",
   "Super Representatives": "Siêu Đại Diện",
@@ -547,34 +537,35 @@ export const messages = {
   "address_not_super_representative": "Địa chỉ này không phải là Siêu đại diện",
   "unable_load_representatives_page_message": "Không thể tải trang, điều này có thể xảy ra nếu địa chỉ không hợp lệ, địa chỉ không phải là đại diện hoặc người đại diện chưa định cấu hình trang này",
   "loading_representative": "Đang tải Đại diện",
-
-/*
-##################################################################################
-#                                                                                #
-# markets section                                                                #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # markets section                                                                #
+  #                                                                                #
+  ##################################################################################
+  */
   "average_price_usd": "Giá trung bình tính bằng USD",
   "average_volume_usd": "Khối lượng trung bình tính bằng USD",
   "Trade Volume": "Khối lượng giao dịch",
   "rank": "xếp hạng",
   "pair": "cặp",
   "volume": "Khối lượng",
-
-/*
-##################################################################################
-#                                                                                #
-# votes section                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  "usd": "USD",
+  "average_price": "Average Price",
+  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # votes section                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "next_round": "Vòng tiếp theo",
   "total_votes": "Tổng số phiếu bầu",
   "most_ranks": "Hầu hết các cấp bậc đều đạt được ở vòng này",
   "view_live_ranking": "Xem xếp hạng trực tiếp",
   "open_team_page": "Mở trang nhóm",
-  "warning_votes": "Cần có ít nhất 1 Tron Power để bắt đầu bỏ phiếu. Tron Power có được bằng cách đóng băng TRX trên",
+  "warning_votes": "Cần có ít nhất 1 TRON Power để bắt đầu bỏ phiếu. TRON Power có được bằng cách đóng băng TRX trên",
   "account_page": "Trang tài khoản",
   "loading_votes": "Đang tải phiếu bầu",
   "3_day_ranking": "Xếp hạng 3 ngày",
@@ -594,14 +585,13 @@ export const messages = {
   "submissing_vote_message_1": "Bạn có thể phân phối lại phiếu bầu của mình bất kỳ lúc nào bạn thích",
   "submitting_vote_error_message": "Đã xảy ra sự cố khi gửi phiếu bầu của bạn. Vui lòng thử lại sau.",
   "loading_super_representatives": "Đang tải Đại diện Siêu",
-
-/*
-##################################################################################
-#                                                                                #
-# transaction Viewer                                                             #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # transaction Viewer                                                             #
+  #                                                                                #
+  ##################################################################################
+  */
   "info_tx_viewer": "Ở đây bạn có thể dán một giao dịch hex để kiểm tra các nội dung của một giao dịch. Giao dịch sau đó có thể được truyền đến mạng",
   "load_tx": "Tải giao dịch",
   "tx_qrcode": "Mã QR giao dịch",
@@ -614,54 +604,50 @@ export const messages = {
   "transaction_error": "Lỗi giao dịch",
   "confirm_transaction_message": "Bạn có chắc chắn muốn gửi giao dịch không?",
   "broadcast_transaction_to_network": "Truyền các giao dịch tới mạng",
-
-/*
-##################################################################################
-#                                                                                #
-# tools node tester                                                              #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools node tester                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
   "node_tester_msg": "Chèn IP của nút của bạn để kiểm tra kết nối GRPC",
   "node_tester_stop": "Ngừng thử nghiệm",
   "node_tester_test": "Kiểm tra GRPC",
   "node_tester_rt": "Thời gian đáp ứng",
   "confirmed_block": "Xác nhận khối",
   "loading": "đang tải...",
-
-/*
-##################################################################################
-#                                                                                #
-# tools scanner                                                                  #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # tools scanner                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
   "no_webcam_found": "Không tìm thấy webcam",
   "trying_enable_webcam_message_0": "Lỗi khi cố bật webcam.",
   "trying_enable_webcam_message_1": "Đảm bảo cho phép máy ảnh được bật.",
-
-/*
-##################################################################################
-#                                                                                #
-# help section                                                                   #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # help section                                                                   #
+  #                                                                                #
+  ##################################################################################
+  */
   "what_is_tron": "TRON là gì",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Cấu trúc TRON",
   "tron_protobuf_doc": "Tà liệu TRON Protobuf",
   "report_an_error": "Gửi lỗi / đề xuất",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
-
-/*
-##################################################################################
-#                                                                                #
-# wallet section                                                                 #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # wallet section                                                                 #
+  #                                                                                #
+  ##################################################################################
+  */
   "open_wallet": "Khóa cá nhân",
   "private_key": "Khóa cá nhân",
   "keystore_file": "Tệp lưu trữ khóa",
@@ -676,7 +662,7 @@ export const messages = {
   "save_keystore_file": "Lưu trữ tệp khóa của bạn",
   "download_keystore_file": "Tải xuống khóa được mã hóa",
   "do_not_lose_it": "Đừng làm mất nó!",
-  "do_not_lose_it_message_0": "Tron Foundation không thể giúp bạn khôi phục khóa bị mất.",
+  "do_not_lose_it_message_0": "TRON Foundation không thể giúp bạn khôi phục khóa bị mất.",
   "do_not_share_it": "Không chia sẻ nó!",
   "do_not_share_it_message_0": "Tiền của bạn có thể bị đánh cắp nếu bạn sử dụng tập tin này và truy cập vào một trang web độc hại.",
   "make_a_backup": "Tạo bản sao lưu!",
@@ -685,17 +671,110 @@ export const messages = {
   "print_paper_wallet": "Ví in giấy",
   "new_wallet_ready_message": "Ví mới của bạn đã sẵn sàng",
   "go_to_account_page": "Chuyển đến trang tài khoản",
-
-/*
-##################################################################################
-#                                                                                #
-# blockchain block                                                               #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain block                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
   "hash": "hash",
   "time": "time",
   "parenthash": "parenthash",
   "size": "size",
+  "blockchain_size": "Blockchain Size",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ledger help page                                                               #
+  #                                                                                #
+  ##################################################################################
+  */
+  "ledger_guide": "Ledger Guide",
+  "requirements": "Requirements",
+  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "a": "A",
+  "install_the": "Install the ",
+  "app": "app",
+  "install_latest_version_message_0": "Install the latest version of ",
+  "opening_your_wallet": "Opening your wallet",
+  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
+  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "choose_ledger": "Choose Ledger",
+  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
+  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
+  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
+  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # userinfo - popup notification                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "record_not_found": "Record not found!",
+  "warning": "Warning",
+  "login_success": "Login Success",
+  "logout_success": "Logout Success",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables                                                                  #
+  #                                                                                #
+  ##################################################################################
+  */
+  "date": "Date",
+  "total_transactions": "Total Transactions",
+  "avg_blockTime": "Avg BlockTime",
+  "avg_blockSize": "Avg BlockSize",
+  "total_BlockCount": "Total BlockCount",
+  "new_address_seen": "New Address Seen",
+  "transfer_contract": "Transfer Contract",
+  "TRX_transfer_between_addresses": "TRX transfer between addresses",
+  "transfer_asset_contract": "Transfer Asset Contract",
+  "token_transfer_between_addresses": "Token transfer between addresses",
+  "participate_asset_issue_contract": "Participate Asset Issue Contract",
+  "participate_token_between_addresses": "Participate token between addresses",
+  "witness_update_contract": "Witness Update Contract",
+  "updates_a_witness": "Update a witness",
+  "witness_create_contract": "Witness Create Contract",
+  "create_a_witness": "Create a witness",
+  "account_update_contract": "Account Update Contract",
+  "update_account_name": "Update account name",
+  "withdraw_balance_contract": "Withdraw Balance Contract",
+  "withdraw_balance": "Withdraw balance",
+  "freeze_balance_contract": "Freeze Balance Contract",
+  "freeze_TRX": "Freeze TRX",
+  "unfreeze_balance_contract": "Unfreeze Balance Contract",
+  "unfreeze_TRX": "Unfreeze TRX",
+  "vote_witness_contract": "Vote Witness Contract",
+  "vote_for_a_witness": "Vote for a Witness",
+  "asset_issue_contract": "Asset Issue Contract",
+  "issue_a_new_asset": "Issue a new asset",
+  "owner_address": "Owner Address",
+  "frozen_balance": "Frozen Balance",
+  "frozen_days": "Frozen Days",
+  "counts": "counts",
+  "TRX_exchange_rate": "TRX Exchange Rate",
+  "start_time": "Start Time",
+  "end_time": "End Time",
+  "contracts": "Contracts",
+  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
+  "search_description1": "Search Address,Block,Transaction,Token",
+  "transaction": "Transaction",
+  "total_addresses": "Total Addresses",
+  "daily_increment": "Daily Increase",
+  "address_growth_chart": "Address Growth Chart",
+  "addresses_amount": "Addresses Amount",
+  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "address_growth": "Address Growth",
+  "power": "Power",
+  "token_transfers": "Token Transfers",
+  "website_url": "Website URL",
+  "search": "Search"
 
 };

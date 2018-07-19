@@ -155,7 +155,7 @@ class TransactionViewer extends Component {
           showInput &&
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title text-center">Transaction HEX</h5>
+                <h5 className="card-title text-center">{tu("transaction")} HEX</h5>
                 <p className="text-center">
                   {tu("info_tx_viewer")}
                 </p>

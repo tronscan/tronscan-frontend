@@ -83,7 +83,7 @@ export default class Votes extends React.Component {
         <table className="table table-hover m-0 border-top-0">
           <thead className="thead-dark">
           <tr>
-            { showVoter && <th>{tu("voter")}</th> }
+            { showVoter && <th>{tu("voters")}</th> }
             { showCandidate && <th>{tu("candidate")}</th> }
             <th className="text-right" style={{width: 125 }}>{tu("votes")}</th>
             <th className="text-right" style={{width: 150 }}>{tu("voter_percentage")}</th>
