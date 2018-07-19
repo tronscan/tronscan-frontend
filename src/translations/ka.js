@@ -98,7 +98,7 @@ export const messages = {
   "notifications_enabled": "შეტყობინებები ჩართულია",
   "contract_type": "კონტრაქტის ტიპი",
   "filters": "ფილტრები",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "პირადი სიმბოლოები",
   "desktop_explorer": "Desktop Explorer",
   /*
   ##################################################################################
@@ -156,7 +156,7 @@ export const messages = {
   "last_page": "ბოლო გვერდი",
   "page": "გვერდი",
   "of": "ვისი",
-  "page_size": "page size",
+  "page_size": "გვერდი ზომა",
   "most_nodes": "კვანძების უმეტესობა",
   "loading_nodes": "მიმდინარეობს კვანძების ჩატვირთვა",
   "Hostname": "ჰოსტის დასახელება",
@@ -171,8 +171,8 @@ export const messages = {
   "witness": "დამოწმება",
   "asset_participation": "აქტივის მონაწილეობა",
   "loading_transaction": "ტრანზაქციის ატვირთვა",
-  "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "nodes_ranking": "კვანძების რანჟირება",
+  "total_accounts_last_day": "სულ ანგარიშები ბოლო დღეს",
   /*
   ##################################################################################
   #                                                                                #
@@ -186,7 +186,7 @@ export const messages = {
   "average_blocksize": "საშუალო ბლოკის ზომა",
   "rich_list": "სიმდიდრის სია",
   "tron_transaction_chart": "TRON Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "transactions_per_day": "ტრანზაქციები ერთ დღეში",
   /*
   ##################################################################################
   #                                                                                #
@@ -228,9 +228,9 @@ export const messages = {
   "not_enough_trx": "არასაკმარისი TRX",
   "information_message_3": "TRX წარმატებით მოთხოვნილია. თუ არ მიიღებთ რაიმე TRX, მაშინ რაიმე  ხელმისაწვდომი TRX-ის ტესტი არ არის, და თქვენ უნდა კვლავ სცადოთ მოგვიანებით.  ",
   "send_to_following_address": "გააგზავნეთ შემდეგ მისამართზე",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "შეცვალეთ საიტი",
+  "you_must_enter_url": "თქვენ უნდა შეიყვანოთ URL",
+  "specify_the_url": "გთხოვთ მიუთითოთ URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -326,7 +326,7 @@ export const messages = {
   "success": "წარმატება",
   "successfully_appied_sr_canidate_message_0": "სუპერ წარმომადგენლის კანდიდატის წარმატებული მიმართვა.",
   "successfully_appied_sr_canidate_message_1": "თქვენი ანგარიში განახლდება ცოტა ხანში.",
-  "landing_page": "Landing Page",
+  "landing_page": "სადესანტო გვერდი",
   "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
   "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
   "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
@@ -739,30 +739,30 @@ export const messages = {
   "freeze_TRX": "Freeze TRX",
   "unfreeze_balance_contract": "Unfreeze Balance Contract",
   "unfreeze_TRX": "Unfreeze TRX",
-  "vote_witness_contract": "Vote Witness Contract",
-  "vote_for_a_witness": "Vote for a Witness",
-  "asset_issue_contract": "Asset Issue Contract",
-  "issue_a_new_asset": "Issue a new asset",
-  "owner_address": "Owner Address",
-  "frozen_balance": "Frozen Balance",
-  "frozen_days": "Frozen Days",
-  "counts": "counts",
+  "vote_witness_contract": "მოწმე საკონტრაქტო ხელშეკრულება",
+  "vote_for_a_witness": "დავეთანხმე მოწმეზე",
+  "asset_issue_contract": "ქონებრივი მდგომარეობის ხელშეკრულება",
+  "issue_a_new_asset": "ახალი აქტივის გაცემა",
+  "owner_address": "მფლობელი მისამართი",
+  "frozen_balance": "გაყინული ბალანსი",
+  "frozen_days": "გაყინული დღეები",
+  "counts": "ითვლის",
   "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
-  "transaction": "Transaction",
-  "total_addresses": "Total Addresses",
-  "daily_increment": "Daily Increase",
-  "address_growth_chart": "Address Growth Chart",
-  "addresses_amount": "Addresses Amount",
-  "past_14_days_of_transactions": "Past 14 days of transactions",
+  "start_time": "დაწყების დრო",
+  "end_time": "როის დასასრული",
+  "contracts": "კონტრაქტები",
+  "search_description": "შევსება, ბლოკირება, ტრანსკასტური სახელწოდება, ნიშნად სახელი",
+  "search_description1": "შევსება, ბლოკი, ტრანსკასტირება, ნიშნად",
+  "transaction": "ტრანზაქცია",
+  "total_addresses": "სულ მისამართები",
+  "daily_increment": "ყოველდღიური ზრდა",
+  "address_growth_chart": "მისამართი ზრდის გრაფიკი",
+  "addresses_amount": "მისამართები თანხა",
+  "past_14_days_of_transactions": "გარიგების 14 დღიანი ვადა",
   "address_growth": "Address Growth",
   "power": "Power",
-  "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
-  "search": "Search"
+  "token_transfers": "ნიშნად გადარიცხვები",
+  "website_url": "საიტი URL",
+  "search": "ძიება"
 
 };
