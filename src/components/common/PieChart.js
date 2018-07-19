@@ -41,7 +41,7 @@ export class PieReact extends React.Component {
       config.pieChart.series[0].data = data;
     }
     if (data && data.length === 0) {
-      config.pieChart.title.text = "No data";
+      config.pieChart.title.text = "";
     }
     myChart.setOption(config.pieChart);
   }
