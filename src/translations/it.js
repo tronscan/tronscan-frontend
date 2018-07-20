@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-14072018                                                  #
-  #         Update Date: 14.07.2018                                                #
+  #         Version: 1.6-10072018                                                  #
+  #         Update Date: 20.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -173,15 +173,15 @@ export const messages = {
   "loading_transaction": "Caricamento Transazione",
   "nodes_ranking": "Classifica Nodi",
   "total_accounts_last_day": "Totale conti fino all'ultimo giorno",
-  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "chart_tip": "Trascinate la barra dei dati per ingrandire e rimpicciolire",
   "link_test_server": "Testnet",
-  "highest": "Highest ",
-  "lowest": "Lowest ",
-  "increase": "increase ",
-  "number": "number ",
-  "_of": "of",
-  "was_recorded_on": "was recorded on",
-  "rank_real_time": "Rank (Real time)",
+  "highest": "Il maggior ",
+  "lowest": "Il minor ",
+  "increase": "incremento ",
+  "number": "numero ",
+  "_of": "di",
+  "was_recorded_on": "è stato registrato il",
+  "rank_real_time": "Grado (in tempo reale)",
   /*
   ##################################################################################
   #                                                                                #
