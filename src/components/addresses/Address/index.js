@@ -270,12 +270,15 @@ class Address extends React.Component {
                           <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
                             <table className="table m-0">
                               <tbody>
-                              <tr>
-                                <th>{tu("rank")}:</th>
-                                <td>
-                                  {rank}
-                                </td>
-                              </tr>
+                              {
+                                rank &&
+                                <tr>
+                                  <th>{tu("rank")}:</th>
+                                  <td>
+                                    {rank}
+                                  </td>
+                                </tr>
+                              }
                               {
                                 address.representative.enabled &&
                                 <Fragment>
@@ -338,20 +341,27 @@ class Address extends React.Component {
                                   </ul>
                                 </td>
                               </tr>
-                              <tr>
-                                <th>{tu("total_votes")}:</th>
-                                <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <FormattedNumber value={totalVotes}/>
-                                    </li>
-                                  </ul>
-                                </td>
-                              </tr>
+                              {
+                                totalVotes &&
+                                <tr>
+                                  <th>{tu("total_votes")}:</th>
+                                  <td>
+                                    <ul className="list-unstyled m-0">
+                                      <li>
+                                        <FormattedNumber value={totalVotes}/>
+                                      </li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                              }
                               </tbody>
                             </table>
                           </div>
                           <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
+                            {
+                              address.representative.enabled &&
+                              <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
+                            }
                             {address.representative.enabled &&
                             <PieReact style={{height: 340}} data={votes}/>
                             }

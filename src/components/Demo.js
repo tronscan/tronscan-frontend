@@ -47,10 +47,9 @@ class Demo extends Component {
     */
 
 
-    let vol = await xhr.get("https://min-api.cryptocompare.com/data/exchange/histoday?fsym=TRX&tsym=USD&limit=1");
+    let vol = await xhr.get("https://api.coinmarketcap.com/v1/ticker/tron/");
 
-    let volume = vol.data['Data'][1].volume;
-
+    let volume = vol.data[0]["24h_volume_usd"];
 
     let totalAccounts = await Client.getAccounts();
 
@@ -190,9 +189,9 @@ class Demo extends Component {
                         marginLeft: '10px'
                       }}/>
                       <div>
-                        <strong style={{whiteSpace: 'nowrap'}}>Volume Last Day（$）</strong>
+                        <strong style={{whiteSpace: 'nowrap'}}>Volume (24H)（$）</strong>
                         <h1 className="text-danger">
-                          <FormattedNumber maximumFractionDigits={0} minimunFractionDigits={0} value={volume}/>
+                          <CountUp redraw={true} separator="," start={0} end={volume} duration={1}/>
                         </h1>
                       </div>
                     </div>

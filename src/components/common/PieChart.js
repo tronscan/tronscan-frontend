@@ -7,6 +7,7 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 import {connect} from "react-redux";
+import {cloneDeep} from "lodash";
 
 export class PieReact extends React.Component {
 
@@ -19,15 +20,16 @@ export class PieReact extends React.Component {
   }
 
   initPie(id) {
+    let _config=cloneDeep(config);
     let {intl, data} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
     let length = data !== null ? data.length : 0;
-    config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + ' ' + intl.formatMessage({id: 'voters'}) + ' ' + intl.formatMessage({id: 'addresses'});
+    //_config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + ' ' + intl.formatMessage({id: 'voters'}) + ' ' + intl.formatMessage({id: 'addresses'});
     // config.pieChart.title.link = '#/blockchain/stats/accounts';
-    config.pieChart.tooltip.formatter = function (datas) {
+    _config.pieChart.tooltip.formatter = function (datas) {
       return (
           //   intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           //   intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
@@ -35,15 +37,15 @@ export class PieReact extends React.Component {
       )
     }
 
-    config.pieChart.series[0].data = [];
+    _config.pieChart.series[0].data = [];
 
     if (data && data.length > 0) {
-      config.pieChart.series[0].data = data;
+      _config.pieChart.series[0].data = data;
     }
     if (data && data.length === 0) {
-      config.pieChart.title.text = "";
+      _config.pieChart.title.text = "";
     }
-    myChart.setOption(config.pieChart);
+    myChart.setOption(_config.pieChart);
   }
 
 
