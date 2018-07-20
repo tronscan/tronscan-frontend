@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "Laddar transaktion",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
+  "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
+  "link_test_server": "kroppsvätskor",
   /*
   ##################################################################################
   #                                                                                #

@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "جاري تحميل المعامله",
   "nodes_ranking": "ترتيب العقد",
   "total_accounts_last_day": "مجموع الحسابات حتى اليوم الأخير",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
   /*
   ##################################################################################
   #                                                                                #

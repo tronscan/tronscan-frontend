@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "Laden der Transaktionen",
   "nodes_ranking": "Knoten Ranking (aufgelistet nach Land und Region )",
   "total_accounts_last_day": "Anzahl der Konten (Stand von Gestern)",
+  "chart_tip": "Nutzen Sie Datenzoombereich zum Vergrößern und Verkleinern der Ansicht.",
+  "link_test_server": "Testnetz",
   /*
   ##################################################################################
   #                                                                                #

@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "ტრანზაქციის ატვირთვა",
   "nodes_ranking": "კვანძების რანჟირება",
   "total_accounts_last_day": "სულ ანგარიშები ბოლო დღეს",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
   /*
   ##################################################################################
   #                                                                                #

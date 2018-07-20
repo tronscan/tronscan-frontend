@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
   "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
   /*
   ##################################################################################
   #                                                                                #

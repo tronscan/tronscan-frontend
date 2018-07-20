@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "Încărcare Tranzacție",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day":"Total conturi până în ziua trecută",
+  "chart_tip": "Trage zona de zoom date pentru a face zoom in sau zoom out",
+  "link_test_server": "Rețea de test",
   /*
   ##################################################################################
   #                                                                                #

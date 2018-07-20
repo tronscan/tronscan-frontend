@@ -173,6 +173,8 @@ export const messages = {
   "loading_transaction": "트랜잭션 로딩 중",
   "nodes_ranking": "노드 랭킹",
   "total_accounts_last_day":"마지막 날까지의 총 계정 수",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
   /*
   ##################################################################################
   #                                                                                #
