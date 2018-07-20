@@ -175,6 +175,13 @@ export const messages = {
   "total_accounts_last_day":"마지막 날까지의 총 계정 수",
   "chart_tip": "데이터 확대 영역을 드래그하여 줌 인/아웃 할 수 있습니다",
   "link_test_server": "테스트넷",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #

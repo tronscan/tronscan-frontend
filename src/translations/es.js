@@ -175,6 +175,13 @@ export const messages = {
   "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
   "chart_tip": "Arrastre el área de ampliación de datos para acercar y alejar la imagen",
   "link_test_server": "Testnet",
+  "highest": "Más alto ",
+  "lowest": "Más bajo ",
+  "increase": "crecimiento ",  
+  "number": "número ",
+  "_of": "de",
+  "was_recorded_on": "se registró el ",
+  "rank_real_time": "Clasificación (Tiempo Real)",
   /*
   ##################################################################################
   #                                                                                #

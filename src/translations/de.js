@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-20072018                                                  #
+  #         Update Date: 20.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -175,6 +175,13 @@ export const messages = {
   "total_accounts_last_day": "Anzahl der Konten (Stand von Gestern)",
   "chart_tip": "Nutzen Sie Datenzoombereich zum Vergrößern und Verkleinern der Ansicht.",
   "link_test_server": "Testnetz",
+  "highest": "Höchstes ",
+  "lowest": "Niedrigstes ",
+  "increase": "aufstocken ",
+  "number": "Anzahl ",
+  "_of": "von",
+  "was_recorded_on": "wurde aufgenommen am ",
+  "rank_real_time": "Abstimmung (Echtzeit)",
   /*
   ##################################################################################
   #                                                                                #

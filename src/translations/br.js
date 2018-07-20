@@ -175,6 +175,13 @@ export const messages = {
   "total_accounts_last_day": "Total de Contas no Último Dia",
   "chart_tip": "Arraste a área de foco de dados para aproximar e afastar",
   "link_test_server": "Rede de Testes",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #

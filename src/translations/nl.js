@@ -175,6 +175,13 @@ export const messages = {
   "total_accounts_last_day":"Totaal aantal accounts",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
+  "highest": "Hoogst ",
+  "lowest": "Laagste ",
+  "increase": "uitbouwing ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "opgenomen op",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
