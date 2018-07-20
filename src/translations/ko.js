@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-18072018                                                  #
+  #         Update Date: 18.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
   #         Number of checks: 6                                                    #
@@ -99,7 +99,7 @@ export const messages = {
   "contract_type": "컨트랙트 타입",
   "filters": "필터",
   "send_tokens": "Send Tokens",
-  "desktop_explorer": "Desktop Explorer",
+  "desktop_explorer": "데스크톱 버전 탐색기",
   /*
   ##################################################################################
   #                                                                                #
@@ -156,23 +156,23 @@ export const messages = {
   "last_page": "마지막 페이지",
   "page": "페이지",
   "of": "of",
-  "page_size": "page size",
+  "page_size": "페이지 크기",
   "most_nodes": "최다 노드",
   "loading_nodes": "노드 로딩 중",
   "Hostname": "호스트네임",
   "Last Update": "마지막 업데이트",
   "first_node_sync_message": "노드의 첫 동기화를 기다립니다. 몇분 후 다시 시도해주십시오.",
   "last_block": "마지막 블록",
-  "blocks_produced": "생성된 블록",
-  "blocks_missed": "유실된 블록",
+  "blocks_produced": "생성한 블록 개수",
+  "blocks_missed": "놓친 블록 개수",
   "productivity": "생산성",
   "rewards": "보상",
   "token_created": "토큰 생성",
   "witness": "증인",
   "asset_participation": "자산 참여",
   "loading_transaction": "트랜잭션 로딩 중",
-  "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "nodes_ranking": "노드 랭킹",
+  "total_accounts_last_day":"마지막 날까지의 총 계정 수",
   /*
   ##################################################################################
   #                                                                                #
@@ -185,8 +185,8 @@ export const messages = {
   "transactions_past_hour": "지난 시간 이후로 시작된 트랜잭션",
   "average_blocksize": "평균 블록 크기",
   "rich_list": "분포 통계",
-  "tron_transaction_chart": "TRON Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "tron_transaction_chart": "트론 트랜잭션 차트",
+  "transactions_per_day": "일일 트랜잭션 개수",
   /*
   ##################################################################################
   #                                                                                #
@@ -543,8 +543,8 @@ export const messages = {
   "pair": "페어",
   "volume": "볼륨",
   "usd": "USD",
-  "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "average_price": "평균 가격",
+  "click_the_chart_title_to_find_more": "차트 제목을 클릭하면 더 자세히 볼 수 있습니다.",
   /*
   ##################################################################################
   #                                                                                #
@@ -553,7 +553,7 @@ export const messages = {
   ##################################################################################
   */
   "next_round": "다음 선거",
-  "total_votes": "총 투표 수",
+  "total_votes": "총 득표수",
   "most_ranks": "이번 선거에서 가장 많이 상승",
   "view_live_ranking": "실시간 순위 보기",
   "open_team_page": "후보 페이지 열기",
@@ -564,7 +564,7 @@ export const messages = {
   "live_ranking": "실시간 순위",
   "live_ranking_msg": "매 15초마다 새로고침됩니다. 최근 투표들은 집계되기까지 1~2분 걸릴 수 있습니다.",
   "candidate": "후보",
-  "current_votes": "현재 투표 수",
+  "current_votes": "현재 투표수",
   "click_to_start_voting": "투표 시작하기",
   "votes_remaining_message": "투표 가능한 개수",
   "open_wallet_start_voting_message": "지갑 열어서 투표 시작하기",
@@ -574,7 +574,7 @@ export const messages = {
   "all_votes_are_used_message": "모든 표가 모두 사용 중입니다!",
   "submissing_vote_message_title": "투표해주셔서 감사합니다!",
   "submissing_vote_message_0": "표를 정상적으로 제출하였습니다. 표는 다음 투표 사이클이 시작될 때 반영될 것입니다.",
-  "submissing_vote_message_1": "투표 수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
+  "submissing_vote_message_1": "투표수를 재조정하고 싶다면 언제든지 하고 싶을 때 할 수 있습니다.",
   "submitting_vote_error_message": "표를 제출하는것에 실패하였습니다. 나중에 다시 시도해주십시오.",
   "loading_super_representatives": "슈퍼 대표 목록 로딩 중",
   /*
@@ -674,7 +674,7 @@ export const messages = {
   "time": "시간",
   "parenthash": "이전 블록 해시",
   "size": "크기",
-  "blockchain_size": "Blockchain Size",
+  "blockchain_size": "블록체인 크기",
   /*
   ##################################################################################
   #                                                                                #
@@ -682,25 +682,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
-  "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "ledger_guide": "레저(Ledger) 가이드",
+  "requirements": "요구사항",
+  "using_ledger_steps_message_0": "트론스캔에서 레저를 사용하기 위해서는 다음과 같은 내용들이 필요합니다:",
+  "a": "",
+  "install_the": "설치: ",
+  "app": "프로그램",
+  "install_latest_version_message_0": "최신 버전 설치: ",
+  "opening_your_wallet": "지갑 불러오기",
+  "open_the_tronscan_desktop_client": "트론스캔(Tronscan) 데스크톱 클라이언트를 실행합니다",
+  "click_open_wallet_top_right": "오른쪽 상단에 있는 '지갑 열기'를 클릭하세요",
+  "choose_ledger": "레저를 선택합니다",
+  "connect_unlock_ledger_with_pin": "장치를 연결하고 PIN번호를 입력하여 잠금상태를 해제합니다",
+  "open_tron_app_on_ledger": "레저에서 트론 앱을 실행하세요",
+  "ledger_connected_tronscan_message_0": "레저가 정상적으로 연결되었다면 트론스캔에 '연결됨(Connected)'가 나타날 것입니다",
+  "click_on_open_wallet": "'지갑 열기'를 클릭하세요",
+  "redirect_to_your_wallet_message": "사용자의 지갑으로 자동 전환 및 이동되며 사용자의 지갑 주소를 볼 수 있게 될 것입니다",
+  "using_ledger_to_sign_transactions": "레저를 사용하여 트랜잭션 서명하기",
+  "using_ledger_to_sign_transactions_message_0": "레저가 연결된 상태인지 확인하고 트론스캔 데스크톱을 사용하는 동안 레저를 이용해 트론 앱에서 트랜잭션에 서명을 진행하세요",
+  "using_ledger_to_sign_transactions_message_1": "트랜잭션 서명이 필요할 때 트론스캔이 트랜잭션의 세부 내용을 팝업으로 알려줄 것입니다. 서명은 사용자가 투표, TRX전송, 계정 이름 변경 등의 행위를 할 때마다 필요합니다.",
   /*
   ##################################################################################
   #                                                                                #
