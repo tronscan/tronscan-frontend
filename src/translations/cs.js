@@ -100,6 +100,7 @@ export const messages = {
   "filters": "Filtry",
   "send_tokens": "Odeslat známky",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Zpráva",
   /*
   ##################################################################################
   #                                                                                #

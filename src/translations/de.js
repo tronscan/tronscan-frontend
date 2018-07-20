@@ -100,6 +100,7 @@ export const messages = {
   "filters": "Filter",
   "send_tokens": "Token senden",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Nachricht",
   /*
   ##################################################################################
   #                                                                                #
@@ -388,7 +389,7 @@ export const messages = {
   "fill_a_valid_number": "Bitte geben Sie eine gültige Nummer ein.",
   "fill_a_valid_address": "Bitte geben Sie eine gültige Adresse ein",
   "make_another_transaction": "Eine weitere Transaktion ausführen",
-  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token ausgebe, ich erhalte dafür {tokenAmount} Token.",
+  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token bezahle, ich erhalte dafür {tokenAmount} Token.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ein unbekannter Fehler ist aufgetreten, bitte versuchen Sie es in ein paar Minuten erneut.",
   "An_error_occurred": "Es ist ein Fehler aufgetreten.",
   "create_a_token": "erstellen eines Tokens",

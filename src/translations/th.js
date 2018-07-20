@@ -100,6 +100,7 @@ export const messages = {
   "filters": "ฟิลเตอร์",
   "send_tokens": "ส่งโทเคน",
   "desktop_explorer": "Desktop Explorer",
+  "message": "ข่าวสาร",
   /*
   ##################################################################################
   #                                                                                #

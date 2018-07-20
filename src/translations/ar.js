@@ -100,6 +100,7 @@ export const messages = {
   "filters": "تصفيه",
   "send_tokens": "إرسال الرموز المميزة",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
   /*
   ##################################################################################
   #                                                                                #

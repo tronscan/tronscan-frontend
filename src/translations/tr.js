@@ -100,6 +100,7 @@ export const messages = {
   "filters": "Süzgeçler",
   "send_tokens": "Jeton Gönder",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Mesaj",
   /*
   ##################################################################################
   #                                                                                #

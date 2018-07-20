@@ -100,6 +100,7 @@ export const messages = {
   "filters": "Filters",
   "send_tokens": "Verzend Tokens",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
   /*
   ##################################################################################
   #                                                                                #

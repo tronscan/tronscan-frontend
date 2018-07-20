@@ -98,6 +98,7 @@ export const messages = {
   "filters": "过滤器",
   "send_tokens": "发送资产",
   "desktop_explorer": "桌面浏览器",
+  "message": "Message",
   /*
   ##################################################################################
   #                                                                                #

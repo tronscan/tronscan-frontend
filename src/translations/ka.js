@@ -100,6 +100,7 @@ export const messages = {
   "filters": "ფილტრები",
   "send_tokens": "პირადი სიმბოლოები",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
   /*
   ##################################################################################
   #                                                                                #

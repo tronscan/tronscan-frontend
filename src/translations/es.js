@@ -100,6 +100,7 @@ export const messages = {
   "filters": "Filtros",
   "send_tokens": "Enviar tokens",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Mensaje",
   /*
   ##################################################################################
   #                                                                                #
@@ -177,7 +178,7 @@ export const messages = {
   "link_test_server": "Testnet",
   "highest": "Más alto ",
   "lowest": "Más bajo ",
-  "increase": "crecimiento ",  
+  "increase": "crecimiento ",
   "number": "número ",
   "_of": "de",
   "was_recorded_on": "se registró el ",
