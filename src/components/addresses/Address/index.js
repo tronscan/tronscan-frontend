@@ -273,7 +273,7 @@ class Address extends React.Component {
                               {
                                 rank &&
                                 <tr>
-                                  <th>{tu("rank")}:</th>
+                                  <th>{tu("rank_real_time")}:</th>
                                   <td>
                                     {rank}
                                   </td>

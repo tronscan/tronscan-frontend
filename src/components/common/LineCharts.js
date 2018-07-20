@@ -57,7 +57,7 @@ export class LineReactAdd extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'addresses_amount'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'daily_increment'}) + ' : ' + datas[0].data.increment + '<br/>' +
@@ -136,7 +136,7 @@ export class LineReactTx extends React.Component {
         }
       }
       _config.tooltip.formatter = function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        let date = intl.formatDate((parseInt(datas[0].data.date)));
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
@@ -243,7 +243,7 @@ export class LineReactBlockSize extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'bytes'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'average_blocksize'}) + ' : ' + datas[0].data.avgBlockSize
@@ -325,7 +325,7 @@ export class LineReactPrice extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'usd'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.time) * 1000).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.time) * 1000));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'average_price'}) + ' : ' + datas[0].data.close
@@ -409,7 +409,7 @@ export class LineReactBlockchainSize extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'MByte'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize / 1000000

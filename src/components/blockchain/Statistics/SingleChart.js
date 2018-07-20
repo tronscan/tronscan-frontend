@@ -18,6 +18,7 @@ import {
   LineReactPrice
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
+import {t} from "../../../utils/i18n";
 
 class Statistics extends React.Component {
 
@@ -238,11 +239,11 @@ class Statistics extends React.Component {
           }],
         priceStats_sort: [
           {
-            date: pr[pr.length - 1].date,
+            date: pr[pr.length - 1].date * 1000,
             increment: pr[pr.length - 1].close
           },
           {
-            date: pr[0].date,
+            date: pr[0].date * 1000,
             increment: pr[0].close
           }]
       }
@@ -253,6 +254,13 @@ class Statistics extends React.Component {
   render() {
     let {match, intl} = this.props;
     let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, summit} = this.state;
+    let unit;
+    if (match.params.chartName === 'blockSizeStats' ||
+        match.params.chartName === 'addressesStats') {
+      unit = 'increase';
+    } else {
+      unit = 'number';
+    }
     return (
         <main className="container header-overlap">
 
@@ -260,10 +268,22 @@ class Statistics extends React.Component {
             <div className="row">
 
               <div className="col-md-6 text-center">
-                {summit && summit[match.params.chartName + '_sort'] && ("Highest increase of " + summit[match.params.chartName + '_sort'][0].increment + " was recorded on " + intl.formatDate(summit[match.params.chartName + '_sort'][0].date))}
+                {
+                  summit && summit[match.params.chartName + '_sort'] &&
+                  <span>{t('highest')}{t(unit)}{t('_of')}
+                    <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
+                  </span>
+                }
               </div>
               <div className="col-md-6 text-center">
-                {summit && summit[match.params.chartName + '_sort'] && ("Lowest increase of " + summit[match.params.chartName + '_sort'][1].increment + " was recorded on " + intl.formatDate(summit[match.params.chartName + '_sort'][1].date))}
+                {
+                  summit && summit[match.params.chartName + '_sort'] &&
+                  <span>{t('lowest')}{t(unit)}{t('_of')}
+                    <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
+                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
+                  </span>
+                }
               </div>
             </div>
           </div>
@@ -297,7 +317,8 @@ class Statistics extends React.Component {
                       {
                         blockSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockSize source='singleChart' style={{height: 500}} data={blockSizeStats} intl={intl}/>
+                            <LineReactBlockSize source='singleChart' style={{height: 500}} data={blockSizeStats}
+                                                intl={intl}/>
                       }
                     </div>
                   }
@@ -307,7 +328,8 @@ class Statistics extends React.Component {
                       {
                         blockchainSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockchainSize source='singleChart' style={{height: 500}} data={blockchainSizeStats} intl={intl}/>
+                            <LineReactBlockchainSize source='singleChart' style={{height: 500}}
+                                                     data={blockchainSizeStats} intl={intl}/>
                       }
                     </div>
                   }
