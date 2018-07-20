@@ -580,9 +580,9 @@ export const messages = {
   "need_min_trx_to_vote_message": "Necesita al menos 1 TRX para poder votar",
   "to_much_votes_massage": "Votaste demasiado!",
   "all_votes_are_used_message": "¡Se han consumido todos los votos posibles!",
-  "submissing_vote_message_title": "Muchísimas gracias por votar!",
+  "submissing_vote_message_title": "¡Gracias por enviar su voto!",
   "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
-  "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
+  "submissing_vote_message_1": "Podrás redistribuir tus votos cuando quieras",
   "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
   "loading_super_representatives": "Cargando Súper Representantes",
   /*
