@@ -245,8 +245,7 @@ export const messages = {
   "freeze_trx_premessage_0": `TRX mogą zostać zamrożone/zablokowane w celu uzyskania TRON Power i uzyskania dostępu do dodatkowych funkcji.
    Na przykład, posiadając TRON Power możesz `,
   "freeze_trx_premessage_link": "zagłosuj na Super Reprezentantów.",
-  "freeze_trx_premessage_1": ` Zamrożone tokeny pozostają "zablokowane" na okres 3 dni. W czasie tego okresu zamrożone TRX nie mogą przesyłane, wypłacane ani handlowane z innymi użytkownikami.
-   Po tym okresie będziesz mógł/mogła odblokować swoje TRX i wystawić je na handel.`,
+  "freeze_trx_premessage_1": ` Zamrożone TRX pozostają "zablokowane" na minimalny okres 3 dni. W tym czasie nie ma możliwości ich przesyłania, wypłacania ani handlowania z innymi użytkownikami. Jeżeli po 3 dniu zdecydujesz się odmrozić swoje TRX (ale nie musisz tego robić, bo mogą dalej pozostać zamrożone), to oddane przez Ciebie głosy tracą ważność i aby ponownie zagłosować musisz je znów zamrozić. `,
   "trx_amount": "Ilość TRX",
   "token_freeze_confirm_message_0": "Potwierdzam zamrożenie ",
   "token_freeze_confirm_message_1": "na okres co najmniej 3 dni.",
