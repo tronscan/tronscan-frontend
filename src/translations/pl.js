@@ -173,7 +173,7 @@ export const messages = {
   "loading_transaction": "Wczytuję transakcję",
   "nodes_ranking": "Ranking węzłów",
   "total_accounts_last_day": "W sumie kont do wczoraj",
-  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "chart_tip": "Przeciągnij dane po planszy aby przybliżyć i oddalić widok",
   "link_test_server": "Testnet",
   /*
   ##################################################################################
