@@ -294,7 +294,7 @@ module.exports = {
       }
     },
     dataZoom: [{
-      start: 60,
+      start: 0,
       end: 100,
     },
       {

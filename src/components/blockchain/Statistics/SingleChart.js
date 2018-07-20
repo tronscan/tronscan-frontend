@@ -277,7 +277,7 @@ class Statistics extends React.Component {
                       {
                         txOverviewStats === null ?
                             <TronLoader/> :
-                            <LineReactTx style={{height: 500}} data={txOverviewStats} intl={intl}/>
+                            <LineReactTx source='singleChart' style={{height: 500}} data={txOverviewStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -287,7 +287,7 @@ class Statistics extends React.Component {
                       {
                         addressesStats === null ?
                             <TronLoader/> :
-                            <LineReactAdd style={{height: 500}} data={addressesStats} intl={intl}/>
+                            <LineReactAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -297,7 +297,7 @@ class Statistics extends React.Component {
                       {
                         blockSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockSize style={{height: 500}} data={blockSizeStats} intl={intl}/>
+                            <LineReactBlockSize source='singleChart' style={{height: 500}} data={blockSizeStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -307,7 +307,7 @@ class Statistics extends React.Component {
                       {
                         blockchainSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockchainSize style={{height: 500}} data={blockchainSizeStats} intl={intl}/>
+                            <LineReactBlockchainSize source='singleChart' style={{height: 500}} data={blockchainSizeStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -317,7 +317,7 @@ class Statistics extends React.Component {
                       {
                         priceStats === null ?
                             <TronLoader/> :
-                            <LineReactPrice style={{height: 500}} data={priceStats} intl={intl}/>
+                            <LineReactPrice source='singleChart' style={{height: 500}} data={priceStats} intl={intl}/>
                       }
                     </div>
                   }

@@ -31,6 +31,9 @@ export class LineReactAdd extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
       _config.title.link = '#/blockchain/stats/addressesStats';
@@ -116,6 +119,9 @@ export class LineReactTx extends React.Component {
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
+    }
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
     }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
@@ -215,7 +221,9 @@ export class LineReactBlockSize extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'average_blocksize'});
     _config.title.link = '#/blockchain/stats/blockSizeStats';
     _config.toolbox.feature = {
@@ -297,7 +305,9 @@ export class LineReactPrice extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'average_price'});
     _config.title.link = '#/blockchain/stats/priceStats';
     _config.toolbox.feature = {
@@ -377,7 +387,9 @@ export class LineReactBlockchainSize extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'blockchain_size'});
     _config.title.link = '#/blockchain/stats/blockchainSizeStats';
     _config.toolbox.feature = {
@@ -390,9 +402,9 @@ export class LineReactBlockchainSize extends React.Component {
       }
     }
 
-   // _config.series[0].type = 'line';
-   // _config.series[0].barWidth = '50%';
-   // _config.xAxis[0].boundaryGap = true;
+    // _config.series[0].type = 'line';
+    // _config.series[0].barWidth = '50%';
+    // _config.xAxis[0].boundaryGap = true;
     _config.xAxis[0].data = [];
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'MByte'});
@@ -400,7 +412,7 @@ export class LineReactBlockchainSize extends React.Component {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-          intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize/1000000
+          intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize / 1000000
       )
 
     }
@@ -408,7 +420,7 @@ export class LineReactBlockchainSize extends React.Component {
     if (data && data.length > 0) {
       data.map((val) => {
         let temp;
-        temp = {...val, value: val.blockchainSize/1000000};
+        temp = {...val, value: val.blockchainSize / 1000000};
         _config.xAxis[0].data.push(intl.formatDate(val.date));
         _config.series[0].data.push(temp);
       })

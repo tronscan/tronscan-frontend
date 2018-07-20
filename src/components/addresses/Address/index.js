@@ -313,7 +313,7 @@ class Address extends React.Component {
                               </tr>
 
                               <tr>
-                                <th>{tu("transactions")}:</th>
+                                <th>{tu("transfers")}:</th>
                                 <td>
                                   <i className="fa fa-arrow-down text-success"/>&nbsp;
                                   <span>{stats.transactions_in}</span>&nbsp;

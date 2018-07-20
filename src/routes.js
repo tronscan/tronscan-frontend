@@ -235,6 +235,11 @@ export const routes = [
         icon: "fa fa-download",
         label: "desktop_explorer"
       },
+      {
+        url: "https://test.tronscan.org/#/",
+        icon: "fa fa-link",
+        label: "link_test_server"
+      }
     ]
   },
   {
