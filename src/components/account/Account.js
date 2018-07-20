@@ -674,7 +674,7 @@ class Account extends Component {
                 <h3 className="text-warning">
                   <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX} />
                 </h3>
-                Tron {tu("power")}
+                TRON {tu("power")}
               </div>
             </div>
           </div>

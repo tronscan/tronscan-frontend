@@ -1,5 +1,13 @@
 module.exports = {
   pieChart: {
+    color: [
+      '#98C8EB',
+      '#1A3964',
+      '#2A4994',
+      '#3665B0',
+      '#205097',
+      '#3A69C4'
+    ],
     title: {
       text: '',
       x: 'center',
@@ -8,23 +16,36 @@ module.exports = {
     },
     tooltip: {
       trigger: 'item',
-      formatter: "{b}<br> {c} ({d}%)"
+      formatter: "{a} <br/>{b} : {c} %"
     },
 
     series: [
       {
         name: '',
         type: 'pie',
-        radius: '55%',
+        radius: ['45%', '70%'],
         center: ['50%', '60%'],
         data: [],
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+        "label": {
+          "normal": {
+            "show": true,
+            "formatter": "{c}%"
+          },
+          "emphasis": {
+            "show": true
           }
-        }
+        },
+        "labelLine": {
+          "normal": {
+            "show": true,
+            "smooth": false,
+            "length": 20,
+            "length2": 10
+          },
+          "emphasis": {
+            "show": true
+          }
+        },
       }
     ]
   },

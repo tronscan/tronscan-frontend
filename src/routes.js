@@ -13,6 +13,7 @@ import Address from "./components/addresses/Address";
 import Transactions from "./components/blockchain/Transactions";
 import TokenDetail from "./components/tokens/TokenDetail";
 import Home from "./components/Home";
+import Demo from "./components/Demo";
 import Live from "./components/blockchain/Live";
 import {
   MarketsAsync,
@@ -229,6 +230,11 @@ export const routes = [
         label: "system",
         component: System
       },
+      {
+        url: "https://github.com/tronscan/tronscan-desktop/releases",
+        icon: "fa fa-download",
+        label: "desktop_explorer"
+      },
     ]
   },
   {
@@ -299,6 +305,14 @@ export const routes = [
     component: WalletWizardAsync,
   },
   {
+    path: "/demo",
+    label: "demo",
+    showInMenu: false,
+    showSubMenu: false,
+    showSubHeader: false,
+    component: Demo,
+  },
+  {
     path: "/",
     label: "home",
     showInMenu: false,
@@ -306,6 +320,7 @@ export const routes = [
     showSubHeader: false,
     component: Home,
   },
+
 ];
 
 export const flatRoutes = flatten(routes.map(route => [...(route.routes || []), route]));

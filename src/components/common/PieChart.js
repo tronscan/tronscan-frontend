@@ -25,15 +25,23 @@ export class PieReact extends React.Component {
       myChart = echarts.init(document.getElementById(id));
     }
     let length = data !== null ? data.length : 0;
-    config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + intl.formatMessage({id: 'addresses'});
-    config.pieChart.title.link = '#/blockchain/stats/accounts';
+    config.pieChart.title.text = intl.formatMessage({id: 'Top'}) + length + ' ' + intl.formatMessage({id: 'voters'}) + ' ' + intl.formatMessage({id: 'addresses'});
+    // config.pieChart.title.link = '#/blockchain/stats/accounts';
+    config.pieChart.tooltip.formatter = function (datas) {
+      return (
+          //   intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+          //   intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
+          datas.data.name + '<br/>' + intl.formatMessage({id: 'votes'}) +' : '+ datas.data.votes + ' (' + datas.data.value + '%)'
+      )
+    }
+
     config.pieChart.series[0].data = [];
 
     if (data && data.length > 0) {
       config.pieChart.series[0].data = data;
     }
     if (data && data.length === 0) {
-      config.pieChart.title.text = "No data";
+      config.pieChart.title.text = "";
     }
     myChart.setOption(config.pieChart);
   }

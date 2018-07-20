@@ -28,11 +28,28 @@ export class LineReactTx extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.txOverviewChart.title.text = intl.formatMessage({id:'TRX_transaction_chart'});
-    config.txOverviewChart.xAxis[0].data = [];
-    config.txOverviewChart.series[0].data = [];
-    config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
-    config.txOverviewChart.tooltip.formatter = function (datas) {
+    config.overviewChart.toolbox.feature = {};
+    config.overviewChart.dataZoom = [];
+    config.overviewChart.series[0].smooth = true;
+    config.overviewChart.series[0].markPoint.symbolSize = 80;
+    config.overviewChart.series[0].lineStyle = {
+      normal: {
+        type: 'solid',
+        color: "red",
+        width: 5
+      }
+    };
+    config.overviewChart.grid[0].top = 120;
+    // config.overviewChart.title.text = intl.formatMessage({id: 'TRON Transactions Chart'});
+    config.overviewChart.xAxis[0].data = [];
+    config.overviewChart.series[0].data = [];
+    config.overviewChart.yAxis[0].name = intl.formatMessage({id: 'Transactions Per Day'});
+    config.overviewChart.yAxis[0].nameGap = 40;
+    config.overviewChart.yAxis[0].nameTextStyle = {
+      fontWeight: 'bolder',
+      fontSize:'15'
+    };
+    config.overviewChart.tooltip.formatter = function (datas) {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -49,14 +66,14 @@ export class LineReactTx extends React.Component {
       data.map((val) => {
         let temp;
         temp = {...val, value: val.totalTransaction};
-        config.txOverviewChart.xAxis[0].data.push(intl.formatDate(val.date));
-        config.txOverviewChart.series[0].data.push(temp);
+        config.overviewChart.xAxis[0].data.push(intl.formatDate(val.date));
+        config.overviewChart.series[0].data.push(temp);
       })
     }
     if (data && data.length === 0) {
-      config.txOverviewChart.title.text = "No data";
+      config.overviewChart.title.text = "No data";
     }
-    myChart.setOption(config.txOverviewChart);
+    myChart.setOption(config.overviewChart);
 
   }
 
