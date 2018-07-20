@@ -34,9 +34,9 @@ class News extends Component {
                       in different languages. Take a look at the pages of some of the early adopters:
                     </p>
                     <ul className="pt-2">
-                      <li><HrefLink href="https://tronscan.org/#/representative/27d5JV5sJH2ERb7Kddcp5p2n2yR2zuKCAQs">Sky People</HrefLink></li>
-                      <li><HrefLink href="https://tronscan.org/#/representative/27WK11uSBUjxmnbtQ3AArs1hLpUkPg4WAJF">CryptoChain Brazil</HrefLink></li>
-                      <li><HrefLink href="https://tronscan.org/#/representative/27WDUwfv7FzWmNuj4rbrmRjxQvgHnC46Kcf">CryptoGuyInZA</HrefLink></li>
+                      <li><HrefLink href="#/address/TGj1Ej1qRzL9feLTLhjwgxXF4Ct6GTWg2U">Sky People</HrefLink></li>
+                      <li><HrefLink href="#/address/TKSXDA8HfE9E1y39RczVQ1ZascUEtaSToF">CryptoChain Brazil</HrefLink></li>
+                      <li><HrefLink href="#/address/TTcYhypP8m4phDhN6oRexz2174zAerjEWP">CryptoGuyInZA</HrefLink></li>
                     </ul>
                     <p>
                       If you are interested in publishing a page yourself then read the tutorial on the Github project {' '}
