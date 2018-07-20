@@ -249,13 +249,13 @@ class Address extends React.Component {
                         {
                           address.representative.enabled && !producer &&
                           <div className="card-header text-center bg-info font-weight-bold text-white">
-                            Representative
+                            {tu("representatives")}
                           </div>
                         }
                         {
                           address.representative.enabled && producer &&
                           <div className="card-header text-center bg-danger font-weight-bold text-white">
-                            Representative
+                            {tu("representatives")}
                           </div>
                         }
                         {
