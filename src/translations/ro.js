@@ -175,13 +175,13 @@ export const messages = {
   "total_accounts_last_day":"Total conturi până în ziua trecută",
   "chart_tip": "Trage zona de zoom date pentru a face zoom in sau zoom out",
   "link_test_server": "Rețea de test",
-  "highest": "Highest ",
-  "lowest": "Lowest ",
-  "increase": "increase ",
-  "number": "number ",
-  "_of": "of",
-  "was_recorded_on": "was recorded on",
-  "rank_real_time": "Rank (Real time)",
+  "highest": "Cel mai mare ",
+  "lowest": "Cel mai mic ",
+  "increase": "creștere ",
+  "number": "număr ",
+  "_of": "de ",
+  "was_recorded_on": "s-a înregistrat pe ",
+  "rank_real_time": "Rang (Timp real)",
   /*
   ##################################################################################
   #                                                                                #
