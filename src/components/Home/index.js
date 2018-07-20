@@ -57,9 +57,10 @@ class Home extends Component {
     */
     let {total} = await Client.getNodeLocations();
 
-    //let totalAccounts = await Client.getAccounts();
+    let totalAccounts = await Client.getAccounts();
 
     let {txOverviewStats} = await Client.getTxOverviewStats();
+    
     let temp = [];
     let addressesTemp = [];
 
@@ -95,7 +96,7 @@ class Home extends Component {
       txOverviewStats: temp.slice(temp.length - 14, temp.length),
       addressesStats: addressesTemp,
       stats: {
-        totalAccounts: addressesTemp[addressesTemp.length - 1].total,
+        totalAccounts: totalAccounts.total,
         previousTotalAccounts: prevState.stats.totalAccounts,
         previousOnlineNodes: prevState.stats.onlineNodes,
         previousBlockHeight: prevState.stats.blockHeight,
@@ -237,7 +238,7 @@ class Home extends Component {
               <div className="col-md-3 ">
                 <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                   <h2><CountUp start={stats.previousTotalAccounts} end={stats.totalAccounts} duration={1}/></h2>
-                  <p>{tu("total_accounts_last_day")}</p>
+                  <p>{tu("total_accounts")}</p>
                 </Link>
               </div>
               <div className="col-md-2 ">
@@ -250,7 +251,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div className="pb-4">
+        <div className="pb-5">
           <div className="container">
             <div className="row mt-3">
               <div className="col-md-6 mt-3 mt-md-0 ">
@@ -309,112 +310,6 @@ class Home extends Component {
           </div>
         </div>
 
-        <SRNews/>
-
-        <div className="bg-light-grey py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <h5>Desktop Explorer is here!</h5>
-                  <p>
-                    <span className="font-weight-bold">1.0 version is out!</span>{' '}
-                    Use all your favorite features of Tronscan in the desktop version. By using the Desktop
-                    version you are safe from malicious websites or browser extensions which may read your private key.
-                  </p>
-                  <p>
-                    More features will be coming in the future for even better Desktop Integration.
-                  </p>
-                  <p>
-                    The Desktop app is available for Windows, Linux and Mac
-                  </p>
-                  <div className="mt-3">
-                    <HrefLink href="https://github.com/tronscan/tronscan-desktop/releases">
-                      <button className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
-                        Download here
-                      </button>
-                    </HrefLink>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-5 text-md-right text-sm-center">
-                <img src={require("../../images/frontpage/Tron_windows.png")}/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-
-              <div className="col-md-5 text-left text-sm-center">
-
-                <img src={require("../../images/frontpage/representatives.png")} />
-              </div>
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <div >
-                    <h5>Super Representatives Nodes</h5>
-                    <p>
-                      Super Representatives are the backbone of the network which will handle transactions, produce nodes and
-                      receive rewards for being part of the top 27. Every 6 hours the votes will be counted and new Super Representatives
-                      will be selected.
-                    </p>
-                    <p>
-                      View the health of the network, check if your node is properly synced and see which node has
-                      the best productivity.
-                    </p>
-                    <div className="mt-3">
-                      <Link className="btn btn-tron btn-block col-xm-7 col-sm-4 float-right" to="/representatives">
-                        View Representatives
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="bg-light-grey py-5 pt-5">
-          <div className="container homepage-filler">
-            <div className="row pt-5 pb-5">
-              <div className="col-md-7">
-                <div className="mb-3 border-0">
-                  <h5>The Tron Explorer Wallet</h5>
-                  <p className="mt-3">
-                    Open your wallet on the Tron Explorer and make use of all the features on the Tron Network.
-                    Vote for Super Representatives, transfer tokens to another account or gain Tron Power? It can all be
-                    done right here on Tronscan.
-                  </p>
-                  {/*<p>*/}
-                  {/*Be instantly notified of transactions happening on your wallet by enabling Desktop Notifications.*/}
-                  {/*</p>*/}
-                  <p>
-                    <span className="font-weight-bold">Upcoming Feature!</span> Open your wallet on Tron Explorer
-                    without needing to share your Private Key in the browser!
-                  </p>
-                  <div className="mt-3">
-                    <Link to="/wallet/new" className="btn btn-tron btn-block col-xm-6 col-sm-3 ">
-                      Create Wallet
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-5 text-md-right text-sm-center">
-                <img src={require("../../images/frontpage/wallet-preview.png")}/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        {/*<div className="bg-super-dark text-center">*/}
-          {/*<video className="video pt-1 pb-1" no-controls autoPlay loop src={require("../../video/Hologram_Planet_by_nuva.mp4")}></video>*/}
-        {/*</div>*/}
-
 
         <div className="pt-5 home-footer">
           <div className="container">
@@ -426,7 +321,7 @@ class Home extends Component {
                 <h5>TRON</h5>
                 <ul className="list-unstyled quick-links">
                   <li><HrefLink href="https://stateoftrondapps.com/"><i className="fa fa-angle-right"/> DApps</HrefLink></li>
-                  <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> Tron Labs</HrefLink></li>
+                  <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> TRON Labs</HrefLink></li>
                   <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fa fa-angle-right"/> Facebook</HrefLink></li>
                   <li><HrefLink href="https://twitter.com/tronfoundation"><i className="fa fa-angle-right"/> Twitter</HrefLink></li>
                   <li><HrefLink href="https://tronfoundation.slack.com/"><i className="fa fa-angle-right"/> Slack</HrefLink></li>
@@ -458,7 +353,7 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+              <div className="col-xs-12 col-sm-12 col-md-12">
                 <ul className="list-unstyled list-inline social text-center">
                   <li className="list-inline-item">
                     <HrefLink href="https://www.facebook.com/tronfoundation/"><i className="fab fa-facebook"/></HrefLink>

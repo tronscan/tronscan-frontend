@@ -175,7 +175,7 @@ class Statistics extends React.Component {
             </button>
           </div>
           <div className="row">
-            <div className="col-md-6 ">
+            <div className="col-md-6 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
 
@@ -190,7 +190,7 @@ class Statistics extends React.Component {
               </div>
             </div>
 
-            <div className="col-md-6 ">
+            <div className="col-md-6 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
 

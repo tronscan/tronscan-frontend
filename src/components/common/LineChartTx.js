@@ -11,6 +11,7 @@ import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/markPoint'
 
 import {connect} from "react-redux";
+import {cloneDeep} from "lodash";
 
 export class LineReactTx extends React.Component {
 
@@ -23,16 +24,34 @@ export class LineReactTx extends React.Component {
   }
 
   initLine(id) {
+    let _config=cloneDeep(config);
     let {intl, data} = this.props;
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.txOverviewChart.title.text = intl.formatMessage({id:'TRX_transaction_chart'});
-    config.txOverviewChart.xAxis[0].data = [];
-    config.txOverviewChart.series[0].data = [];
-    config.txOverviewChart.yAxis[0].name = intl.formatMessage({id: 'transactions_per_day'});
-    config.txOverviewChart.tooltip.formatter = function (datas) {
+    _config.overviewChart.toolbox.feature = {};
+    _config.overviewChart.dataZoom = [];
+    _config.overviewChart.series[0].smooth = true;
+    _config.overviewChart.series[0].markPoint.symbolSize = 80;
+    _config.overviewChart.series[0].lineStyle = {
+      normal: {
+        type: 'solid',
+        color: "red",
+        width: 5
+      }
+    };
+    _config.overviewChart.grid[0].top = 120;
+    // config.overviewChart.title.text = intl.formatMessage({id: 'TRON Transactions Chart'});
+    _config.overviewChart.xAxis[0].data = [];
+    _config.overviewChart.series[0].data = [];
+    _config.overviewChart.yAxis[0].name = intl.formatMessage({id: 'Transactions Per Day'});
+    _config.overviewChart.yAxis[0].nameGap = 40;
+    _config.overviewChart.yAxis[0].nameTextStyle = {
+      fontWeight: 'bolder',
+      fontSize:'15'
+    };
+    _config.overviewChart.tooltip.formatter = function (datas) {
       let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -49,14 +68,14 @@ export class LineReactTx extends React.Component {
       data.map((val) => {
         let temp;
         temp = {...val, value: val.totalTransaction};
-        config.txOverviewChart.xAxis[0].data.push(intl.formatDate(val.date));
-        config.txOverviewChart.series[0].data.push(temp);
+        _config.overviewChart.xAxis[0].data.push(intl.formatDate(val.date));
+        _config.overviewChart.series[0].data.push(temp);
       })
     }
     if (data && data.length === 0) {
-      config.txOverviewChart.title.text = "No data";
+      _config.overviewChart.title.text = "No data";
     }
-    myChart.setOption(config.txOverviewChart);
+    myChart.setOption(_config.overviewChart);
 
   }
 
