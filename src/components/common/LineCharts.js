@@ -152,7 +152,7 @@ export class LineReactTx extends React.Component {
       _config.toolbox.feature = {};
       _config.grid[0].top = 45;
       _config.tooltip.formatter = function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        let date = intl.formatDate((parseInt(datas[0].data.date)));
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction

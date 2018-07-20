@@ -255,7 +255,7 @@ class Statistics extends React.Component {
     let {match, intl} = this.props;
     let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, summit} = this.state;
     let unit;
-    if (match.params.chartName === 'blockSizeStats' ||
+    if (match.params.chartName === 'blockchainSizeStats' ||
         match.params.chartName === 'addressesStats') {
       unit = 'increase';
     } else {
