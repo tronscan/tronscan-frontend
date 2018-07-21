@@ -99,6 +99,7 @@ export const messages = {
   "send_tokens": "发送资产",
   "desktop_explorer": "桌面浏览器",
   "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #

@@ -3,12 +3,13 @@ import {Link} from "react-router-dom";
 import {sampleSize} from "lodash";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {ContextMenu, ContextMenuTrigger} from "react-contextmenu";
-import QRImageCode from "./QRImageCode";
 import SendModal from "../transfer/Send/SendModal";
 import {tu,t} from "../../utils/i18n";
 import {Truncate} from "./text";
 import {CopyText} from "./Copy";
 import {App} from "../../app";
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import QRCode from "qrcode.react";
 
 export const WitnessLink = ({address}) => (
   <Link to={`/witness/${address}`}>{address}</Link>
@@ -43,9 +44,24 @@ export class AddressLink extends React.PureComponent {
     this.setState({
       modal: (
         <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} >
-          <ModalHeader toggle={this.hideModal}/>
-          <ModalBody className="text-center p-0" onClick={this.hideModal}>
-            <QRImageCode value={address} size={500} style={{width: '100%'}} />
+          <ModalHeader toggle={this.hideModal}>QR CODE</ModalHeader>
+          <ModalBody className="text-center">
+            <h5 className="py-2">{tu("wallet_address")}</h5>
+              <div className="input-group mb-3">
+                <input type="text"
+                       readOnly={true}
+                       className="form-control"
+                       value={address}/>
+                <div className="input-group-append">
+                  <CopyToClipboard text={address}>
+                    <button className="btn btn-outline-secondary" type="button">
+                      <i className="fa fa-paste"/>
+                    </button>
+                  </CopyToClipboard>
+                </div>
+              </div>
+            <hr/>
+            <QRCode size={512} style={{ width: '100%', height: 'auto' }} value={address} /><br/>
           </ModalBody>
         </Modal>
       )
@@ -73,7 +89,7 @@ export class AddressLink extends React.PureComponent {
         <Fragment>
           <a className="dropdown-item" href="javascript:" onClick={this.renderModal}>
             <i className="fas fa-qrcode mr-2"/>
-            {tu("QR Code")}
+            {tu("show_qr_code")}
           </a>
           <a className="dropdown-item" href="javascript:" onClick={this.renderSend}>
             <i className="fas fa-exchange-alt mr-2"/>

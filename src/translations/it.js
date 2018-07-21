@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "Gettoni Invio",
   "desktop_explorer": "Desktop Explorer",
   "message": "Messaggio",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #

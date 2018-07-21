@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "토큰 전송하기",
   "desktop_explorer": "데스크톱 버전 탐색기",
   "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #

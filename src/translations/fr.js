@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "Envoyer des jetons",
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #

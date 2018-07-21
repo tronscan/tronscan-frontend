@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "Odeslat známky",
   "desktop_explorer": "Desktop Explorer",
   "message": "Zpráva",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #

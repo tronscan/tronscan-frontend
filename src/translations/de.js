@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-20072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-21072018                                                  #
+  #         Update Date: 21.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "Token senden",
   "desktop_explorer": "Desktop Explorer",
   "message": "Nachricht",
+  "wallet_address": "Wallet-Adresse",
   /*
   ##################################################################################
   #                                                                                #

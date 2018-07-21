@@ -101,6 +101,7 @@ export const messages = {
   "send_tokens": "ส่งโทเคน",
   "desktop_explorer": "Desktop Explorer",
   "message": "ข่าวสาร",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
