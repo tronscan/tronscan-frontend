@@ -136,7 +136,7 @@ export const messages = {
   */
   "tron_main_message": "Децентрализируй  Интернет",
   "transactions_last_hour": "Транзакции за прошедший час",
-  "block_height": "Высота  Блока",
+  "block_height": "Размер Блока",
   "online_nodes": "Ноды в сети",
   "pice_per_1000trx": "Цена (за 1000TRX)",
   "vote_for_super_representatives": "Голосовать за Супер Представителей",
