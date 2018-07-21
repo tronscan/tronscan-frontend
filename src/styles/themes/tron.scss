@@ -49,6 +49,7 @@ $tronBlue: rgba(21,171,195,1.0);
       background: #000;
       color: $tronBlue;
       border: 1px solid $tronBlue;
+      z-index: 100;
     }
 
     input {
