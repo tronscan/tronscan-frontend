@@ -606,6 +606,7 @@ export const messages = {
   "node_tester_rt": "เวลาตอบสนอง",
   "confirmed_block": "บล็อกที่ได้รับการยืนยันแล้ว",
   "loading": "กำลังโหลด...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

@@ -617,6 +617,7 @@ export const messages = {
   "node_tester_rt": "Responstijd",
   "confirmed_block": "Bevestigd Blok",
   "loading": "Aan het laden...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

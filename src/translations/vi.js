@@ -627,6 +627,7 @@ export const messages = {
   "node_tester_rt": "Thời gian đáp ứng",
   "confirmed_block": "Xác nhận khối",
   "loading": "đang tải...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

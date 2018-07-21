@@ -629,6 +629,7 @@ export const messages = {
   "node_tester_rt": "Cevaplama süresi",
   "confirmed_block": "Doğrulanan Blok",
   "loading": "yükleniyor...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

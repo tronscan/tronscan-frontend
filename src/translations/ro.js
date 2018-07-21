@@ -626,6 +626,7 @@ export const messages = {
   "node_tester_rt": "Timp de Răspuns",
   "confirmed_block": "Bloc Confirmat",
   "loading": "încărcare...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

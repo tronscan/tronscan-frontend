@@ -622,6 +622,7 @@ export const messages = {
   "node_tester_rt": "Doba odezvy",
   "confirmed_block": "Potvrzený blok",
   "loading": "naèítám...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

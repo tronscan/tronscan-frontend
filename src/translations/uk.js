@@ -625,6 +625,7 @@ export const messages = {
   "node_tester_rt": "Час відповіді",
   "confirmed_block": "Підтверджений блок",
   "loading": "завантаження...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

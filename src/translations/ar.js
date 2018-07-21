@@ -606,6 +606,7 @@ export const messages = {
   "node_tester_rt": "وقت الاستجابة",
   "confirmed_block": "كتلة مؤكدة",
   "loading": "جاري التحميل...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

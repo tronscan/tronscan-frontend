@@ -631,6 +631,7 @@ export const messages = {
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",
+  "connection_node": "Verbindung zum Knoten herstellen",
   /*
   ##################################################################################
   #                                                                                #

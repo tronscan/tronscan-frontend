@@ -612,6 +612,7 @@ export const messages = {
   "node_tester_rt": "Время отклика",
   "confirmed_block": "Подтвержденный блок",
   "loading": "загрузка...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -677,7 +678,7 @@ export const messages = {
   "time": "Время",
   "parenthash": " Parenthash",
   "size": "Размер",
-  "blockchain_size": "Blockchain Size",
+  "blockchain_size": "Размер блокировки",
   /*
   ##################################################################################
   #                                                                                #

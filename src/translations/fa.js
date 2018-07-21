@@ -624,6 +624,7 @@ export const messages = {
   "node_tester_rt": "زمان پاسخ",
   "confirmed_block": "بلوک تایید شده",
   "loading": "بارگزاری...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

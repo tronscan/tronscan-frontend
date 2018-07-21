@@ -615,6 +615,7 @@ export const messages = {
   "node_tester_rt": "საპასუხო დრო",
   "confirmed_block": "დამოწმებული ბლოკი",
   "loading": "ჩატვირთვა...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

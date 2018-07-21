@@ -609,6 +609,7 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

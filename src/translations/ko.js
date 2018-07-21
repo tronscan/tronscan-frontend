@@ -619,6 +619,7 @@ export const messages = {
   "node_tester_rt": "응답 시간",
   "confirmed_block": "컨펌된 블록",
   "loading": "로딩 중...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
