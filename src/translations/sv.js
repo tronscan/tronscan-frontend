@@ -100,6 +100,8 @@ export const messages = {
   "filters": "filtrera",
   "send_tokens": "skicka Tokens",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Laddar transaktion",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
+  "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
+  "link_test_server": "kroppsvätskor",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -607,6 +618,7 @@ export const messages = {
   "node_tester_rt": "Svarstid",
   "confirmed_block": "Bekräftat block",
   "loading": "laddar...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

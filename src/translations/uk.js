@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Фільтри",
   "send_tokens": "Надіслати токени",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Завантаження транзакції",
   "nodes_ranking": "Рейтинг вузлів",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -615,6 +626,7 @@ export const messages = {
   "node_tester_rt": "Час відповіді",
   "confirmed_block": "Підтверджений блок",
   "loading": "завантаження...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

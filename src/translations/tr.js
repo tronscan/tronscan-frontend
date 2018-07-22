@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Süzgeçler",
   "send_tokens": "Jeton Gönder",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Mesaj",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "İşlem Yükleniyor",
   "nodes_ranking": "Düğüm Sıralaması",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -619,6 +630,7 @@ export const messages = {
   "node_tester_rt": "Cevaplama süresi",
   "confirmed_block": "Doğrulanan Blok",
   "loading": "yükleniyor...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

@@ -142,8 +142,8 @@ class NodeTester extends Component {
             <div className="card mt-3">
               <table className="table table-hover table-striped bg-white m-0">
                 <thead className="thead-dark">
-                <tr>
-                  <th></th>
+                <tr align="center">
+                  <th>{tu("connection_node")}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -160,7 +160,7 @@ class NodeTester extends Component {
               <table className="table table-hover table-striped bg-white m-0">
                 <thead className="thead-dark">
                 <tr>
-                  <th>{tu("Message")}</th>
+                  <th>{tu("message")}</th>
                   <th style={{width: 200}}>{tu("node_tester_rt")}</th>
                 </tr>
                 </thead>

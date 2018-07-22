@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-21072018                                                  #
+  #         Update Date: 21.07.2018                                                #
   #         Language: Persian                                                      #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 3                                                    #
+  #         Number of checks: 5                                                    #
   #         Participants: Mr.Babak(patoghfa)                                       #
   #                                                                                #
   ##################################################################################
@@ -84,22 +84,24 @@ export const messages = {
   "enter_password_message": "شما باید رمز عبور خود را وارد کنید",
   "password_incorrect": "رمز عبور اشتباه است",
   "try_again": "دوباره امتحان کنید",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "کیف پول باز شده است",
   "weak": "ضعیف",
   "okay": "باشه",
   "good": "خوب",
   "strong": "قوی",
   "secure": "امن است",
   "too_short": "خیلی کوتاه",
-  "status": "status",
-  "no_notifications": "No notifications",
-  "enable_desktop_notifications": "Enable Desktop Notifications",
-  "desktop_notification_enabled": "Desktop Notifications Enabled!",
-  "notifications_enabled": "Notifications Enabled",
-  "contract_type": "Contract Type",
-  "filters": "Filters",
-  "send_tokens": "Send Tokens",
-  "desktop_explorer": "Desktop Explorer",
+  "status": "وضعیت",
+  "no_notifications": "بدون اطلاعیه ای",
+  "enable_desktop_notifications": "اعلانهای دسکتاپ را فعال کنید",
+  "desktop_notification_enabled": "اعلان دسکتاپ فعال شد",
+  "notifications_enabled": "اعلان فعال است",
+  "contract_type": "نوع قرارداد",
+  "filters": "فیلترها",
+  "send_tokens": "ارسال توکن ها",
+  "desktop_explorer": "جستجوگر دسکتاپ",
+  "message": "پیام",
+  "wallet_address": "آدرس کیف پول",
   /*
   ##################################################################################
   #                                                                                #
@@ -142,7 +144,7 @@ export const messages = {
   "view_super_representatives": "مشاهده نمایندگان ممتاز",
   "create_new_wallet": "ایجاد کیف پول جدید",
   "view_tokens": "مشاهده توکن ها",
-  "transactions_last_day": "Transactions in last day",
+  "transactions_last_day": "تراکنش ها در روز گذشته",
   /*
   ##################################################################################
   #                                                                                #
@@ -167,12 +169,21 @@ export const messages = {
   "blocks_missed": "بلوک های از دست رفته",
   "productivity": "بهره وری",
   "rewards": "پاداش ها",
-  "token_created": "Token created",
-  "witness": "Witness",
-  "asset_participation": "Asset participation",
-  "loading_transaction": "Loading Transaction",
-  "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "token_created": "توکن ایجاد شد",
+  "witness": "گواهی",
+  "asset_participation": "مشارکت دارایی",
+  "loading_transaction": "بارگزاری تراکنش",
+  "nodes_ranking": "رتبه بندی نود ها",
+  "total_accounts_last_day":"کل حساب ها تا آخرین روز",
+  "chart_tip": "منطقه زوم داده را برای بزرگنمایی و کوچکنمایی بکشید",
+  "link_test_server": "Testnet",
+  "highest": "بالاترین ",
+  "lowest": "پایین ترین ",
+  "increase": "افزایش دادن ",
+  "number": "عدد ",
+  "_of": "از",
+  "was_recorded_on": "در تاریخ ثبت شد",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -180,13 +191,13 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "addresses": "addresses",
+  "addresses": "آدرس ها",
   "trx_transferred_past_hour": "تی آر ایکس انتقالی در یک ساعت اخیر",
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
-  "rich_list": "Rich List",
-  "tron_transaction_chart": "TRON Transaction Chart",
-  "transactions_per_day": "Transactions Per Day",
+  "rich_list": "لیست غنی",
+  "TRX_transaction_chart": "نمودار تراکنش تی آرایکس",
+  "transactions_per_day": "تراکنش روزانه",
   /*
   ##################################################################################
   #                                                                                #
@@ -196,8 +207,8 @@ export const messages = {
   */
   "set_name": "تنظیم نام",
   "unique_account_message": "شما فقط می توانید نام حساب خود را یک بار تنظیم کنید",
-  "name_to_short": "Name is to short",
-  "name_to_long": "Name is to long",
+  "name_to_short": "نام کوتاه است",
+  "name_to_long": "نام طولانی است",
   "permitted_characters_message": "Name may only contain a-z A-Z 0-9",
   "change_name": "تغییر نام",
   "account_name": "نام کاربری",
@@ -228,9 +239,9 @@ export const messages = {
   "not_enough_trx": " کافی نیست TRX",
   "information_message_3": "Successfully requested TRX. If you did not receive any TRX then there is no test TRX available right now and you should try again at a later time.",
   "send_to_following_address": "ارسال به آدرس زیر",
-  "change_website": "Change Website",
-  "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "change_website": "تغییر وب سایت",
+  "you_must_enter_url": "شما باید آدرس سایت را وارد کنید",
+  "specify_the_url":  "لطفا آدرس سایت را مشخص کنید",
   /*
   ##################################################################################
   #                                                                                #
@@ -262,8 +273,8 @@ export const messages = {
   "unable_to_rename_title": "قادر به تغییر نام نیست",
   "unable_to_rename_message": "در هنگام بهروزرسانی نام حسابتان، چیزی اشتباه رفت، لطفا بعدا دوباره امتحان کنید",
   "unfreeze_trx_confirm_message": "آیا مطمئن هستید که می خواهید TRX را آزاد کنید؟",
-  "unfreeze_assets": "Unfreeze Assets",
-  "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "unfreeze_assets": "فعال کردن دارایی ها",
+  "sure_to_unfreeze_unlocked_tokens_message": "آیا مطمئن هستید که میخواهید توکن های قفل نشده را فعال کنید؟",
   /*
   ##################################################################################
   #                                                                                #
@@ -308,46 +319,46 @@ export const messages = {
   "trx_produced": "تراکنش های ایجاد شده",
   "do_not_send_1": "لطفا هیچ ترونی از آدرس کیف پول یا اکسچنج به این حساب واریز نکنید",
   "go_to_votelist": "برو به لیست رای",
-  "understand_tron_sr_message_0": "I understand how to be a TRON representative and I confirm to spend a",
-  "understand_tron_sr_message_1": "fee.",
-  "invalid_url": "Invalid URL",
-  "apply_representative_error_message_0": "Something went wrong while trying to apply for representative.",
-  "apply_representative_error_message_1": "Make sure you have enough TRX for the fee, or try again later.",
-  "open_external_link": "You are opening an external link",
-  "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official TRON site.",
-  "continue_to_external_website": "Continue to external site",
-  "url_changed": "URL changed",
-  "successfully_changed_website_message": "Successfully changed website to ",
-  "unable_to_change_website_title": "Unable to change URL",
-  "unable_to_change_website_message": "Something went wrong while updating the website, please try again later",
-  "successfully_linked_github": "Successfully linked to Github!",
-  "github_linked": "Github linked!",
-  "unable_to_link_github_message": "Could not link to Github, make sure your username is correct!",
-  "could_not_link_github": "Could not link Github",
-  "enter_your_github_username":  "Enter your Github username",
-  "link_to_github": "Link to Github",
-  "link_github": "Link Github",
-  "you_must_enter_a_url": "You must enter a URL",
-  "success": "Success",
-  "successfully_appied_sr_canidate_message_0": "Successfully applied to be Super Representative Candidate.",
-  "successfully_appied_sr_canidate_message_1": "Your account will be upgraded shortly.",
-  "landing_page": "Landing Page",
-  "show_more_information_publish_sr_page": "Show more Information on how to publish a page",
-  "create_sr_landing_page_message_0": "Super Representatives can create a landing page on which they can share more information about their team and plans",
-  "set_github_url_message_0": "Did you already configure your Github template? Then set the URL by using the button below",
-  "set_github_link": "Set Github Link",
-  "could_not_claim_rewards": "Could not claim rewards",
-  "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
-  "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
-  "claim_rewards": "Claim Rewards",
-  "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
-  "intro": "Intro",
-  "budget_expenses": "Budget Expenses",
-  "server_configuration": "Server Configuration",
-  "community_plan": "Community Plan",
-  "team": "Team",
+  "understand_tron_sr_message_0": "من درک می کنم که چگونه یک نماینده ترون باشم و تایید می کنم که بپردازم ",
+  "understand_tron_sr_message_1": "هزینه را.",
+  "invalid_url": "آدرس اینترنتی نامعتبر",
+  "apply_representative_error_message_0": "هنگام تلاش برای اعمال کردن نماینده چیز اشتباهی رخ داد.",
+  "apply_representative_error_message_1": "اطمینان حاصل کنید که تی آرایکس به اندازه کافی برای هزینه دارید یا بعدا دوباره امتحان کنید.",
+  "open_external_link": "شما یک لینک خارجی را باز میکنید",
+  "private_key_untrusted_website_message_0": "هرگز کلید خصوصی خود را در یک وب سایت غیرقابل اعتماد وارد نکنید.",
+  "no_official_tron_website": "سایت رسمی ترون نیست",
+  "continue_to_external_website": "ادامه به سایت خارجی",
+  "url_changed": "آدرس اینترنتی تغییر کرد",
+  "successfully_changed_website_message": "وب سایت به صورت موفقیت آمیز تغییر کرد به ",
+  "unable_to_change_website_title": "تغییر آدرس اینترنتی امکان پذیر نیست",
+  "unable_to_change_website_message": "هنگام به روزرسانی وبسایت اشتباه رخ داد، لطفا بعدا دوباره امتحان کنید",
+  "successfully_linked_github": "با موفقیت به گیت هاب پیوند داده شد",
+  "github_linked": "گیت هاب پیوند شد",
+  "unable_to_link_github_message": "نمی توان به گیت هاب پیوند داد، مطمئن شوید که نام کاربری شما درست است!",
+  "could_not_link_github": "گیت هاب را نمی توان پیوند داد",
+  "enter_your_github_username":  "نام کاربری گیت هاب را وارد نمایید",
+  "link_to_github": "پیوند به گیت هاب",
+  "link_github": "پیوند گیت هاب",
+  "you_must_enter_a_url": "شما باید آدرس اینترنتی را وارد نمایید",
+  "success": "موفق",
+  "successfully_appied_sr_canidate_message_0": "به طور موفقیت آمیز به عنوان کاندید نماینده ممتاز اعمال شد.",
+  "successfully_appied_sr_canidate_message_1": "حساب شما به زودی ارتقا خواهد یافت.",
+  "landing_page": "صفحه فرود",
+  "show_more_information_publish_sr_page": "نمایش اطلاعات بیشتر در مورد نحوه انتشار یک صفحه",
+  "create_sr_landing_page_message_0": "نمایندگان ممتاز می توانند یک صفحه فرود ایجاد کنند که در آن می توانند اطلاعات بیشتری در مورد تیم و برنامه های خود به اشتراک بگذارند",
+  "set_github_url_message_0": "آیا قبلا قالب گیت هاب خود را پیکربندی کرده اید؟ سپس آدرس اینترنتی را با استفاده از دکمه زیر تنظیم کنید",
+  "set_github_link": "تنظیم لینک گیت هاب",
+  "could_not_claim_rewards": "نمیتوان اعمال پاداش کرد",
+  "claim_rewards_error_message": "هنگام تلاش برای اعمال پاداش، چیزی اشتباه رخ داد، لطفا بعدا دوباره امتحان کنید.",
+  "rewards_claimed": "پاداش اعمال شد!",
+  "successfully_claimed_rewards":  "پاداش موفقیت آمیز بود",
+  "claim_rewards": "پاداش اعمالی",
+  "sr_receive_reward_message_0": "به عنوان یک نماینده شما پاداش برای تولید بلوک دریافت می کنید. این پاداش ها می تواند هر 24 ساعت اعمال شود",
+  "intro": "معرفی",
+  "budget_expenses": "هزینه های بودجه",
+  "server_configuration": "پیکربندی سرور",
+  "community_plan": "طرح اجتماعی",
+  "team": "تیم",
   /*
   ##################################################################################
   #                                                                                #
@@ -375,8 +386,8 @@ export const messages = {
   "trx_token_wallet_requirement": "شما باید یک کیف پول باز کنید تا بتوانید یک توکن ایجاد کنید",
   "invalid_address": "آدرس غیر معتبر است",
   "insufficient_tokens": "عدم وجود توکن کافی",
-  "fill_a_valid_number": "Please fill a valid number",
-  "fill_a_valid_address": "Please fill a valid address",
+  "fill_a_valid_number": "لطفا با شماره معتبر پر کنید",
+  "fill_a_valid_address": "لطفا با آدرس معتبر پر کنید",
   "make_another_transaction": "تراکنش دیگری انجام دهید",
   "token_exchange_confirm": "تایید تراکنش توکن",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "یک مشکل ناشناخته ایجاد شده لطفا بعدا تلاش کنید",
@@ -396,11 +407,11 @@ export const messages = {
   "how_much_buy_message": "شما چقدر توکن می خواهید خرید کنید؟",
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
   "for": "برای",
-  "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "You do not have enough TRX to buy so many tokens",
-  "ends": "ends",
-  "starts": "starts",
-  "can_be_unlocked_in": "can be unlocked in",
+  "insufficient_trx": "تی آرایکس کافی نیست",
+  "not_enouth_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
+  "ends": "انتها",
+  "starts": "ابتدا",
+  "can_be_unlocked_in": "می تواند باز شود",
   /*
   ##################################################################################
   #                                                                                #
@@ -548,8 +559,8 @@ export const messages = {
   "pair": "جفت",
   "volume": "حجم",
   "usd": "USD",
-  "average_price": "Average Price",
-  "click_the_chart_title_to_find_more": "Click the chart title to find more.",
+  "average_price": "میانگین قیمت",
+  "click_the_chart_title_to_find_more": "برای پیدا کردن بیشتر روی عنوان نمودار کلیک کنید",
   /*
   ##################################################################################
   #                                                                                #
@@ -614,6 +625,7 @@ export const messages = {
   "node_tester_rt": "زمان پاسخ",
   "confirmed_block": "بلوک تایید شده",
   "loading": "بارگزاری...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -636,8 +648,8 @@ export const messages = {
   "tron_architechure": "معماری TRON",
   "tron_protobuf_doc": "مستندات TRON Protobuf",
   "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "سوالات متداول",
+  "telegram_updates": "به روز رسانی ها در تلگرام",
   /*
   ##################################################################################
   #                                                                                #
@@ -687,25 +699,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "راهنمای لجر Ledger",
+  "requirements": "الزامات",
+  "using_ledger_steps_message_0": "استفاده از لجر با سایت ترون اسکن نیاز به مراحل زیر است:",
   "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_the": "نصب ",
+  "app": "برنامه",
+  "install_latest_version_message_0": "نصب آخرین ورژن ",
+  "opening_your_wallet": "باز کردن کیف پول خودتان",
+  "open_the_tronscan_desktop_client": "برنامه دسکتاپ ترون اسکن را باز کنید",
+  "click_open_wallet_top_right": "روی ؛ باز کردن کیف پول ؛ در سمت راست بالا کلیک کنید",
+  "choose_ledger": "لجر را انتخاب کنید",
+  "connect_unlock_ledger_with_pin": "اتصال شوید و دستگاه خود را با کد پین خودتان باز کنید",
+  "open_tron_app_on_ledger": "برنامه ترون را در لجر خودتان باز کنید",
+  "ledger_connected_tronscan_message_0": "اگر لجر شما به درستی وصل شده باشد، ترون اسکن نشان داده خواهد شد ؛ متصل شد ",
+  "click_on_open_wallet": "روی ؛ باز کردن کیف پول  کلیک کنید",
+  "redirect_to_your_wallet_message": "شما به کیف پول خود هدایت می شوید و می توانید آدرس ترون خود را مشاهده کنید",
+  "using_ledger_to_sign_transactions": "با استفاده از لجر تراکنش ها را امضاء کنید",
+  "using_ledger_to_sign_transactions_message_0": "اطمینان حاصل کنید که لجر را متصل کرده و برنامه ترون را با استفاده از لجر در هنگام استفاده از  برنامه دسکتاپ ترون اسکن امضا کنید",
+  "using_ledger_to_sign_transactions_message_1": "ترون اسکن یک پنجره با جزئیات تراکنش را وقتی نشان می دهد که یک امضا تراکنش مورد نیاز است. امضاها در زمان هایی مورد نیاز است که شما رای می دهید، تی آرایکس ارسال می کنید، نام حساب را تغییر می هید، و غیره.",
   /*
   ##################################################################################
   #                                                                                #

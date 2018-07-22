@@ -19,6 +19,7 @@ import * as messages_ka from "./ka.js";
 import * as messages_no from "./no.js";
 import * as messages_cs from "./cs.js";
 import * as messages_th from "./th.js";
+import * as messages_ru from "./ru.js";
 
 import {addLocaleData} from 'react-intl';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -41,6 +42,7 @@ import kaLocaleData from 'react-intl/locale-data/ka';
 import noLocaleData from 'react-intl/locale-data/no';
 import csLocaleData from 'react-intl/locale-data/cs';
 import thLocaleData from 'react-intl/locale-data/th';
+import ruLocaleData from 'react-intl/locale-data/ru';
 
 addLocaleData([
   ...nlLocaleData,
@@ -63,6 +65,7 @@ addLocaleData([
   ...csLocaleData,
   ...noLocaleData,
   ...thLocaleData,
+  ...ruLocaleData,
 ]);
 
 export const languages = {
@@ -87,4 +90,5 @@ export const languages = {
     'no': messages_no.messages,
     'cs': messages_cs.messages,
     'th': messages_th.messages,
+    'ru': messages_ru.messages,
 };

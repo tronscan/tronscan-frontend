@@ -30,6 +30,7 @@ const initialState = {
     de: "Deutsch",
     sv: "Svenska",
     no: "Norsk",
+    ru: "Pусский",
     pl: "Polski",
     cs: "Ceský",
     zh: "简体中文",

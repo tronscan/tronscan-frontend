@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filtros",
   "send_tokens": "Enviar tokens",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Mensaje",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
   "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
+  "chart_tip": "Arrastre el área de ampliación de datos para acercar y alejar la imagen",
+  "link_test_server": "Testnet",
+  "highest": "Más alto ",
+  "lowest": "Más bajo ",
+  "increase": "crecimiento ",
+  "number": "número ",
+  "_of": "de",
+  "was_recorded_on": "se registró el ",
+  "rank_real_time": "Clasificación (Tiempo Real)",
   /*
   ##################################################################################
   #                                                                                #
@@ -578,9 +589,9 @@ export const messages = {
   "need_min_trx_to_vote_message": "Necesita al menos 1 TRX para poder votar",
   "to_much_votes_massage": "Votaste demasiado!",
   "all_votes_are_used_message": "¡Se han consumido todos los votos posibles!",
-  "submissing_vote_message_title": "Muchísimas gracias por votar!",
+  "submissing_vote_message_title": "¡Gracias por enviar su voto!",
   "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
-  "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
+  "submissing_vote_message_1": "Podrás redistribuir tus votos cuando quieras",
   "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
   "loading_super_representatives": "Cargando Súper Representantes",
   /*
@@ -615,6 +626,7 @@ export const messages = {
   "node_tester_rt": "Tiempo de respuesta",
   "confirmed_block": "Bloque confirmado",
   "loading": "cargando...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

@@ -98,8 +98,10 @@ export const messages = {
   "notifications_enabled": "알림 기능이 활성화되었습니다",
   "contract_type": "컨트랙트 타입",
   "filters": "필터",
-  "send_tokens": "Send Tokens",
+  "send_tokens": "토큰 전송하기",
   "desktop_explorer": "데스크톱 버전 탐색기",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "트랜잭션 로딩 중",
   "nodes_ranking": "노드 랭킹",
   "total_accounts_last_day":"마지막 날까지의 총 계정 수",
+  "chart_tip": "데이터 확대 영역을 드래그하여 줌 인/아웃 할 수 있습니다",
+  "link_test_server": "테스트넷",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -303,7 +314,7 @@ export const messages = {
   "last_confirmed": "마지막 확인",
   "trx_produced": "Transactions Produced",
   "do_not_send_1": "TRX를 귀하의 지갑이나 거래소에서 귀하의 테스트넷 주소로 보내지 마십시오!",
-  "go_to_votelist": "Go to votelist",
+  "go_to_votelist": "투표소로 이동",
   "understand_tron_sr_message_0": "나는 어떻게 트론 네트워크의 대표가 되는지에 대해 이해했고, 다음과 같은",
   "understand_tron_sr_message_1": "수수료를 낼 것을 확인하였습니다.",
   "invalid_url": "잘못된 URL",
@@ -391,12 +402,12 @@ export const messages = {
   "buy_confirm_message_0": "확실합니까?",
   "how_much_buy_message": "토큰을 얼마나 많이 구매하고 싶습니까?",
   "buy_confirm_message_1": "정말로 다음과 같이 구매하시겠습니까",
-  "for": "for",
+  "for": "을 다음으로 구매:",
   "insufficient_trx": "불충분한 TRX",
   "not_enouth_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
-  "ends": "ends",
-  "starts": "starts",
-  "can_be_unlocked_in": "can be unlocked in",
+  "ends": "마감 기한은",
+  "starts": "시작일은",
+  "can_be_unlocked_in": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",
   /*
   ##################################################################################
   #                                                                                #
@@ -609,6 +620,7 @@ export const messages = {
   "node_tester_rt": "응답 시간",
   "confirmed_block": "컨펌된 블록",
   "loading": "로딩 중...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

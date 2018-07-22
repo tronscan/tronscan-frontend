@@ -98,6 +98,8 @@ export const messages = {
   "filters": "过滤器",
   "send_tokens": "发送资产",
   "desktop_explorer": "桌面浏览器",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -171,6 +173,15 @@ export const messages = {
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名（以国家/地区划分）",
   "total_accounts_last_day": "截止上一天总账户数",
+  "chart_tip": "拖拽数据窗口来放大或缩小",
+  "link_test_server": "测试网",
+  "highest":"最大 ",
+  "lowest":"最小 ",
+  "increase":"增长 ",
+  "number":"数值 ",
+  "_of":"是 ",
+  "was_recorded_on":"记录于 ",
+  "rank_real_time":"排名 (实时) ",
   /*
   ##################################################################################
   #                                                                                #
@@ -599,6 +610,7 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

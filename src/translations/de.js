@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-21072018                                                  #
+  #         Update Date: 21.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filter",
   "send_tokens": "Token senden",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Nachricht",
+  "wallet_address": "Wallet-Adresse",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Laden der Transaktionen",
   "nodes_ranking": "Knoten Ranking (aufgelistet nach Land und Region )",
   "total_accounts_last_day": "Anzahl der Konten (Stand von Gestern)",
+  "chart_tip": "Nutzen Sie Datenzoombereich zum Vergrößern und Verkleinern der Ansicht.",
+  "link_test_server": "Testnetz",
+  "highest": "Höchstes ",
+  "lowest": "Niedrigstes ",
+  "increase": "aufstocken ",
+  "number": "Anzahl ",
+  "_of": "von",
+  "was_recorded_on": "wurde aufgenommen am ",
+  "rank_real_time": "Abstimmung (Echtzeit)",
   /*
   ##################################################################################
   #                                                                                #
@@ -379,7 +390,7 @@ export const messages = {
   "fill_a_valid_number": "Bitte geben Sie eine gültige Nummer ein.",
   "fill_a_valid_address": "Bitte geben Sie eine gültige Adresse ein",
   "make_another_transaction": "Eine weitere Transaktion ausführen",
-  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token ausgebe, ich erhalte dafür {tokenAmount} Token.",
+  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token bezahle, ich erhalte dafür {tokenAmount} Token.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ein unbekannter Fehler ist aufgetreten, bitte versuchen Sie es in ein paar Minuten erneut.",
   "An_error_occurred": "Es ist ein Fehler aufgetreten.",
   "create_a_token": "erstellen eines Tokens",
@@ -621,6 +632,7 @@ export const messages = {
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",
+  "connection_node": "Verbindung zum Knoten herstellen",
   /*
   ##################################################################################
   #                                                                                #
