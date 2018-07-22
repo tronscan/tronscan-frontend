@@ -84,7 +84,7 @@ export const messages = {
   "enter_password_message": "شما باید رمز عبور خود را وارد کنید",
   "password_incorrect": "رمز عبور اشتباه است",
   "try_again": "دوباره امتحان کنید",
-  "wallet_unlocked": "Wallet Unlocked",
+  "wallet_unlocked": "کیف پول باز شده است",
   "weak": "ضعیف",
   "okay": "باشه",
   "good": "خوب",
@@ -100,8 +100,8 @@ export const messages = {
   "filters": "فیلترها",
   "send_tokens": "ارسال توکن ها",
   "desktop_explorer": "Desktop Explorer",
-  "message": "Message",
-  "wallet_address": "Wallet Address",
+  "message": "پیام",
+  "wallet_address": "آدرس کیف پول",
   /*
   ##################################################################################
   #                                                                                #
@@ -699,25 +699,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "راهنمای لجر Ledger",
+  "requirements": "الزامات",
+  "using_ledger_steps_message_0": "استفاده از لجر با سایت ترون اسکن نیاز به مراحل زیر است:",
   "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_the": "نصب ",
+  "app": "برنامه",
+  "install_latest_version_message_0": "نصب آخرین ورژن ",
+  "opening_your_wallet": "باز کردن کیف پول خودتان",
+  "open_the_tronscan_desktop_client": "برنامه دسکتاپ ترون اسکن را باز کنید",
+  "click_open_wallet_top_right": "روی ؛ باز کردن کیف پول ؛ در سمت راست بالا کلیک کنید",
+  "choose_ledger": "لجر را انتخاب کنید",
+  "connect_unlock_ledger_with_pin": "اتصال شوید و دستگاه خود را با کد پین خودتان باز کنید",
+  "open_tron_app_on_ledger": "برنامه ترون را در لجر خودتان باز کنید",
+  "ledger_connected_tronscan_message_0": "اگر لجر شما به درستی وصل شده باشد، ترون اسکن نشان داده خواهد شد ؛ متصل شد ",
+  "click_on_open_wallet": "روی ؛ باز کردن کیف پول  کلیک کنید",
+  "redirect_to_your_wallet_message": "شما به کیف پول خود هدایت می شوید و می توانید آدرس ترون خود را مشاهده کنید",
+  "using_ledger_to_sign_transactions": "با استفاده از لجر تراکنش ها را امضاء کنید",
+  "using_ledger_to_sign_transactions_message_0": "اطمینان حاصل کنید که لجر را متصل کرده و برنامه ترون را با استفاده از لجر در هنگام استفاده از  برنامه دسکتاپ ترون اسکن امضا کنید",
+  "using_ledger_to_sign_transactions_message_1": "ترون اسکن یک پنجره با جزئیات تراکنش را وقتی نشان می دهد که یک امضا تراکنش مورد نیاز است. امضاها در زمان هایی مورد نیاز است که شما رای می دهید، تی آرایکس ارسال می کنید، نام حساب را تغییر می هید، و غیره.",
   /*
   ##################################################################################
   #                                                                                #
