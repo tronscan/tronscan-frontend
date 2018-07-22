@@ -67,7 +67,10 @@ module.exports = {
     },
     xAxis: {
       type: 'category',
-      data: []
+      data: [],
+      axisTick: {
+        alignWithLabel: true
+      }
     },
     yAxis: {
       type: 'value'
