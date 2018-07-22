@@ -99,7 +99,7 @@ export const messages = {
   "contract_type": "نوع قرارداد",
   "filters": "فیلترها",
   "send_tokens": "ارسال توکن ها",
-  "desktop_explorer": "Desktop Explorer",
+  "desktop_explorer": "جستجوگر دسکتاپ",
   "message": "پیام",
   "wallet_address": "آدرس کیف پول",
   /*
@@ -191,7 +191,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "addresses": "addresses",
+  "addresses": "آدرس ها",
   "trx_transferred_past_hour": "تی آر ایکس انتقالی در یک ساعت اخیر",
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
