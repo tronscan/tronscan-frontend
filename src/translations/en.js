@@ -37,9 +37,9 @@ export const messages = {
   */
   "ok": "OK",
   "app_title": "TRON Protocol",
-  "password": "password",
-  "money_price": "price",
-  "price": "price",
+  "password": "Password",
+  "money_price": "Price",
+  "price": "Price",
   "blocks": "blocks",
   "block": "block",
   "name": "name",
