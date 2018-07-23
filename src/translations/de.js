@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-21072018                                                  #
+  #         Update Date: 21.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron Protokoll",
+  "app_title": "TRON Protokoll",
   "password": "Passwort",
   "money_price": "Preis",
   "price": "Preis",
@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Vertragsart",
   "filters": "Filter",
   "send_tokens": "Token senden",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Nachricht",
+  "wallet_address": "Wallet-Adresse",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "Laden der Transaktionen",
   "nodes_ranking": "Knoten Ranking (aufgelistet nach Land und Region )",
   "total_accounts_last_day": "Anzahl der Konten (Stand von Gestern)",
+  "chart_tip": "Nutzen Sie Datenzoombereich zum Vergrößern und Verkleinern der Ansicht.",
+  "link_test_server": "Testnetz",
+  "highest": "Höchstes ",
+  "lowest": "Niedrigstes ",
+  "increase": "aufstocken ",
+  "number": "Anzahl ",
+  "_of": "von",
+  "was_recorded_on": "wurde aufgenommen am ",
+  "rank_real_time": "Abstimmung (Echtzeit)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Transaktionen der letzten Stunde",
   "average_blocksize": "Durchschnittliche Blockgröße",
   "rich_list": "Aufteilung TRX - Inhaber/Mengen",
-  "tron_transaction_chart": "Tron Transaktions Chart",
+  "tron_transaction_chart": "TRON Transaktions Chart",
   "transactions_per_day": "Transaktionen pro Tag",
   /*
   ##################################################################################
@@ -201,10 +213,10 @@ export const messages = {
   "change_name": "Name ändern",
   "account_name": "Kontoname",
   "show_qr_code": "QR Code anzeigen",
-  "do_not_send_2": "Senden Sie bitte keine TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten Tron Testnetz Adresse!",
+  "do_not_send_2": "Senden Sie bitte keine TRX von Ihrer ERC20 Wallet oder von einer Exchange zu der oben dargestellten TRON Testnetz Adresse!",
   "bandwidth": "Bandbreite",
   "balance": "Guthaben",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "Transaktionen",
   "no_transfers": "Keine Transaktionen vorhanden",
   "no_tokens": "keine Token vorhanden",
@@ -241,8 +253,8 @@ export const messages = {
   "unfreeze": "freigeben",
   "freeze_trx_least": "Sie benötigen mindestens 1 TRX um es einfrieren zu können",
   "unable_unfreeze_trx_message": "TRX kann nicht aufgetaut werden. Dies könnte daran liegen, dass die Mindestsperrdauer noch nicht überschritten ist.",
-  "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um Tron Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
-   Mit Tron Power können Sie zum Beispiel `,
+  "freeze_trx_premessage_0": `TRX kann eingefroren/verriegelt werden um TRON Power zu gewinnen und zusätzliche Funktionen zu aktivieren.
+   Mit TRON Power können Sie zum Beispiel `,
   "freeze_trx_premessage_link": "für einen Super-Repräsentanten abstimmen.",
   "freeze_trx_premessage_1": ` Eingefrorene Token werden mindestens für einen Zeitraum von 3 Tagen "gesperrt". Während dieser Zeit kann mit den eingefrorenen TRX nicht gehandelt werden.
    Nach Ablauf der Frist können Sie Ihr Guthaben wieder auftauen und verwenden.`,
@@ -280,7 +292,7 @@ export const messages = {
    Einmal pro Woche werden neue geeignete Super Repräsentanten bestimmt und veröffentlicht.`,
   "apply_for_delegate_description": `
    TRX-Inhaber können sich als Super-Repräsentant bewerben, informationen dazu finden Sie unter Ihrem persönlichen Konto.
-   Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes Tron Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
+   Stimmen Sie ab und wählen Sie für einen Kandidaten. Jedes TRON Konto kann Wählerinformationen veröffentlichen, ein Benutzer kann für mehrere
    Kandidaten gleichzeitig abstimmen. Die maximal mögliche Anzahl an Stimmrechten entsprechen der Summe Ihrer TRX.
    Das Abstimmungsergebnis wird auf der Grundlage der endgültigen Abstimmung jedes einzelnen Kontos berechnet.
    Der Abstimmungszyklus ist täglich von 00:00 bis 24:00 Uhr. TRX-Inhaber mit den meisten Stimmen werden zum Super-Repräsentant gewählt.
@@ -306,7 +318,7 @@ export const messages = {
   "confirm_transaction": "Bestätigung der Transaktion",
   "last_confirmed": "Zuletzt bestätigt",
   "trx_produced": "Produzierte Transaktionen",
-  "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der Tron Testnetz Adresse!",
+  "do_not_send_1": "Senden Sie bitte keine TRX Token von Ihrer ERC20 Wallet oder von einer Exchange zu der TRON Testnetz Adresse!",
   "go_to_votelist": "Zurück zur Voteliste",
   "understand_tron_sr_message_0": "Ich habe die Funktion und die Aufgaben eines TRON-Repräsentanten verstanden und akzeptiere hiermit die Zahlung einer Gebühr in Höhe von  ",
   "understand_tron_sr_message_1": ".",
@@ -315,7 +327,7 @@ export const messages = {
   "apply_representative_error_message_1": "Stellen Sie sicher, dass Sie ausreichend TRX für die Anmeldegebühr auf Ihrem Konto haben, oder versuchen Sie es später noch einmal.",
   "open_external_link": "Sie öffnen einen externen Link",
   "private_key_untrusted_website_message_0": "Geben Sie niemals Ihren privaten Schlüssel auf einer nicht vertrauenswürdigen Website ein.",
-  "no_official_tron_website": "ist keine offizielle Tron-Webseite.",
+  "no_official_tron_website": "ist keine offizielle TRON-Webseite.",
   "continue_to_external_website": "Weiter zur externen Webseite",
   "url_changed": "URL wurde erfolgreich geändert",
   "successfully_changed_website_message": "Die Webseite wurde erfolgreich in folgender Adresse geändert ",
@@ -378,7 +390,7 @@ export const messages = {
   "fill_a_valid_number": "Bitte geben Sie eine gültige Nummer ein.",
   "fill_a_valid_address": "Bitte geben Sie eine gültige Adresse ein",
   "make_another_transaction": "Eine weitere Transaktion ausführen",
-  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token ausgebe, ich erhalte dafür {tokenAmount} Token.",
+  "token_exchange_confirm": "Hiermit bestätige ich, dass ich {trxAmount} für die Erwerb der Token bezahle, ich erhalte dafür {tokenAmount} Token.",
   "An_unknown_error_occurred,_please_try_again_in_a_few_minutes": "Ein unbekannter Fehler ist aufgetreten, bitte versuchen Sie es in ein paar Minuten erneut.",
   "An_error_occurred": "Es ist ein Fehler aufgetreten.",
   "create_a_token": "erstellen eines Tokens",
@@ -488,7 +500,7 @@ export const messages = {
   "start_date": "Start Datum",
   "end_date": "End Datum",
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
-  "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des Tron-Protokolls kann durch jeden Benutzer erfolgen,
+  "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des TRON-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
   "token_issue_guide_message_2":`Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
    Die Benutzer können innerhalb des definierten Zeitraums teilnehmen und ihre TRX gegen Token eintauschen.`,
@@ -567,7 +579,7 @@ export const messages = {
   "most_ranks": "Höchster Rang in dieser Runde",
   "view_live_ranking": "Live-Ranking ansehen",
   "open_team_page": "Teamseite öffnen",
-  "warning_votes": "Sie benötigen mindestens 1 Tron Power um an der Abstimmung teilnehmen zu können. Tron Power wird durch das Einfrieren von TRX auf Ihrem Konto gutgeschrieben.",
+  "warning_votes": "Sie benötigen mindestens 1 TRON Power um an der Abstimmung teilnehmen zu können. TRON Power wird durch das Einfrieren von TRX auf Ihrem Konto gutgeschrieben.",
   "account_page": "Kontoeinstellungen",
   "loading_votes": "Stimmen werden geladen",
   "3_day_ranking": "3 Tage Ranking",
@@ -620,6 +632,7 @@ export const messages = {
   "node_tester_rt": "Antwortzeit",
   "confirmed_block": "bestätigter Block",
   "loading": "verarbeiten...",
+  "connection_node": "Verbindung zum Knoten herstellen",
   /*
   ##################################################################################
   #                                                                                #
@@ -638,7 +651,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Informationen zu TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Fehler melden / Vorschlag einreichen",
@@ -665,9 +678,9 @@ export const messages = {
   "save_keystore_file": "Speichern Sie Ihre Keystore-Datei",
   "download_keystore_file": "Download Verschlüsselte Schlüsselinformationen",
   "do_not_lose_it": "Verlieren Sie es nicht!",
-  "do_not_lose_it_message_0": "Die Tron Foundation kann Ihnen nicht bei der Wiederherstellung eines verlorenen gegangenen Schlüssels helfen.",
+  "do_not_lose_it_message_0": "Die TRON Foundation kann Ihnen nicht bei der Wiederherstellung eines verlorenen gegangenen Schlüssels helfen.",
   "do_not_share_it": "Teilen Sie es nicht!",
-  "do_not_share_it_message_0": "Veröffentlichen oder teilen Sie die Datei nicht mit anderen Personen und nutzen Sie für den Zugriff auf Ihre Wallet ausschließlich die offizielle Tron Webseite. Andernfalls kann es zum Verlust Ihres Guthaben kommen.",
+  "do_not_share_it_message_0": "Veröffentlichen oder teilen Sie die Datei nicht mit anderen Personen und nutzen Sie für den Zugriff auf Ihre Wallet ausschließlich die offizielle TRON Webseite. Andernfalls kann es zum Verlust Ihres Guthaben kommen.",
   "make_a_backup": "Erstellen Sie ein Backup!",
   "make_a_backup_message_0": "Nur für den Fall, dass Ihr Laptop zerstört wird und Sie nicht mehr auf Ihre Daten zugreifen können.",
   "save_private_key": "Speichern des privaten Schlüssels",
@@ -701,16 +714,16 @@ export const messages = {
   "app": "Anwendung",
   "install_latest_version_message_0": "Installieren Sie die letzte der Version der  ",
   "opening_your_wallet": "So öffnen Sie Ihr Wallet",
-  "open_the_tronscan_desktop_client": "Öffnen Sie den Tronscan Desktop Client",
+  "open_the_tronscan_desktop_client": "Öffnen Sie den TRONscan Desktop Client",
   "click_open_wallet_top_right": "Klicken Sie auf die Schaltfläche 'Wallet Öffnen' auf der rechten oberen Seite.",
   "choose_ledger": "Wählen Sie den Menüpunkt Ledger aus",
   "connect_unlock_ledger_with_pin": "Verbinden und entsperren Sie Ihr Gerät mit Ihrem persönlichen PIN-Code.",
-  "open_tron_app_on_ledger": "Öffnen Sie die Tron-App auf Ihrem Ledger.",
+  "open_tron_app_on_ledger": "Öffnen Sie die TRON-App auf Ihrem Ledger.",
   "ledger_connected_tronscan_message_0": "Wenn Ihr Ledger mit der App verbunden ist wird Ihnen die Meldung 'Connected' dargestellt.",
   "click_on_open_wallet": "Klicken Sie auf die Schaltfläche 'Wallet öffnen'",
-  "redirect_to_your_wallet_message": "Sie werden zu Ihrer Wallet weitergeleitet und können Ihre Tron-Adresse einsehen.",
+  "redirect_to_your_wallet_message": "Sie werden zu Ihrer Wallet weitergeleitet und können Ihre TRON-Adresse einsehen.",
   "using_ledger_to_sign_transactions": "Verwenden Sie Ihren Ledger zum Signieren von Transaktionen",
-  "using_ledger_to_sign_transactions_message_0": "Stellen Sie während der Verwendung der Tronscan Desktop App und während dem Signieren der Transaktion sicher, dass der Ledger verbunden und die Tron-App geöffnet bleibt.",
+  "using_ledger_to_sign_transactions_message_0": "Stellen Sie während der Verwendung der Tronscan Desktop App und während dem Signieren der Transaktion sicher, dass der Ledger verbunden und die TRON-App geöffnet bleibt.",
   "using_ledger_to_sign_transactions_message_1": "Tronscan zeigt Ihnen wenn erforderlich eine Transaktionssignatur über ein Popup mit den Transaktionsdetails an. Das Signieren ist für folgende Aktionen notwendig: Teilnehmen an der SR Abstimmung, versenden von TRX, ändern vom Kontonamen, etc.",
   /*
   ##################################################################################
@@ -774,7 +787,7 @@ export const messages = {
   "address_growth_chart": "Adressstatistik",
   "addresses_amount": "Anzahl der Adressen",
   "past_14_days_of_transactions": "Transaktionen der letzten 14 Tage",
-  "address_growth": "Wachstumspotential der Adresse",
+  "address_growth": "Gesamtanzahl der TRX Adressen",
   "power": "Power",
   "token_transfers": "Token-Übertragungen",
   "website_url": "Webseiten URL",

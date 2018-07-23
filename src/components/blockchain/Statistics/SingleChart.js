@@ -9,9 +9,16 @@ import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
 import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
-
-import {LineReactAdd, LineReactBlockSize, LineReactBlockchainSize, LineReactTx, LineReactPrice} from "../../common/LineCharts";
+import {cloneDeep} from "lodash";
+import {
+  LineReactAdd,
+  LineReactBlockSize,
+  LineReactBlockchainSize,
+  LineReactTx,
+  LineReactPrice
+} from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
+import {t} from "../../../utils/i18n";
 
 class Statistics extends React.Component {
 
@@ -28,6 +35,7 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
+      summit: null
     };
   }
 
@@ -148,15 +156,139 @@ class Statistics extends React.Component {
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
     });
+
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return 1;
+        } else if (obj1[property] < obj2[property]) {
+          return -1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+
+    let higest = {date: '', increment: ''};
+    let lowest = {date: '', increment: ''};
+    let addr = cloneDeep(addressesTemp).sort(compare('increment'));
+    let tx = cloneDeep(temp).sort(compare('totalTransaction'));
+    let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
+    let pr = cloneDeep(priceStatsTemp).sort(compare('close'));
+    for (let p in pr) {
+      pr[p] = {date: pr[p].time, ...pr[p]};
+    }
+    let _bcs = [];
+
+    for (let b in blockchainSizeStatsTemp) {
+      let _b = parseInt(b);
+      if (_b === 0) {
+        _bcs.push({
+          date: blockchainSizeStatsTemp[0].date,
+          blockchainSize: blockchainSizeStatsTemp[0].blockchainSize / 1000000
+        });
+      }
+      else {
+        _bcs.push({
+          date: blockchainSizeStatsTemp[_b].date,
+          blockchainSize: (blockchainSizeStatsTemp[_b].blockchainSize - blockchainSizeStatsTemp[_b - 1].blockchainSize) / 1000000
+        })
+      }
+    }
+    let bcs = _bcs.sort(compare('blockchainSize'));
+
+    this.setState({
+      summit: {
+        addressesStats_sort: [
+          {
+            date: addr[addr.length - 1].date,
+            increment: addr[addr.length - 1].increment
+          },
+          {
+            date: addr[0].date,
+            increment: addr[0].increment
+          }],
+        txOverviewStats_sort: [
+          {
+            date: tx[tx.length - 1].date,
+            increment: tx[tx.length - 1].totalTransaction
+          },
+          {
+            date: tx[0].date,
+            increment: tx[0].totalTransaction
+          }],
+        blockSizeStats_sort: [
+          {
+            date: bs[bs.length - 1].date,
+            increment: bs[bs.length - 1].avgBlockSize
+          },
+          {
+            date: bs[0].date,
+            increment: bs[0].avgBlockSize
+          }],
+        blockchainSizeStats_sort: [
+          {
+            date: bcs[bcs.length - 1].date,
+            increment: bcs[bcs.length - 1].blockchainSize
+          },
+          {
+            date: bcs[0].date,
+            increment: bcs[0].blockchainSize
+          }],
+        priceStats_sort: [
+          {
+            date: pr[pr.length - 1].date * 1000,
+            increment: pr[pr.length - 1].close
+          },
+          {
+            date: pr[0].date * 1000,
+            increment: pr[0].close
+          }]
+      }
+    });
   }
+
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, summit} = this.state;
+    let unit;
+    if (match.params.chartName === 'blockchainSizeStats' ||
+        match.params.chartName === 'addressesStats') {
+      unit = 'increase';
+    } else {
+      unit = 'number';
+    }
     return (
         <main className="container header-overlap">
+
+          <div className="alert alert-light" role="alert">
+            <div className="row">
+
+              <div className="col-md-6 text-center">
+                {
+                  summit && summit[match.params.chartName + '_sort'] &&
+                  <span>{t('highest')}{t(unit)}{t('_of')}
+                    <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
+                  </span>
+                }
+              </div>
+              <div className="col-md-6 text-center">
+                {
+                  summit && summit[match.params.chartName + '_sort'] &&
+                  <span>{t('lowest')}{t(unit)}{t('_of')}
+                    <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
+                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
           <div className="row">
-            <div className="col-md-12 mt-3">
+            <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
                   {
@@ -165,7 +297,7 @@ class Statistics extends React.Component {
                       {
                         txOverviewStats === null ?
                             <TronLoader/> :
-                            <LineReactTx style={{height: 500}} data={txOverviewStats} intl={intl}/>
+                            <LineReactTx source='singleChart' style={{height: 500}} data={txOverviewStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -175,7 +307,7 @@ class Statistics extends React.Component {
                       {
                         addressesStats === null ?
                             <TronLoader/> :
-                            <LineReactAdd style={{height: 500}} data={addressesStats} intl={intl}/>
+                            <LineReactAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -185,7 +317,8 @@ class Statistics extends React.Component {
                       {
                         blockSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockSize style={{height: 500}} data={blockSizeStats} intl={intl}/>
+                            <LineReactBlockSize source='singleChart' style={{height: 500}} data={blockSizeStats}
+                                                intl={intl}/>
                       }
                     </div>
                   }
@@ -195,7 +328,8 @@ class Statistics extends React.Component {
                       {
                         blockchainSizeStats === null ?
                             <TronLoader/> :
-                            <LineReactBlockchainSize style={{height: 500}} data={blockchainSizeStats} intl={intl}/>
+                            <LineReactBlockchainSize source='singleChart' style={{height: 500}}
+                                                     data={blockchainSizeStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -205,7 +339,7 @@ class Statistics extends React.Component {
                       {
                         priceStats === null ?
                             <TronLoader/> :
-                            <LineReactPrice style={{height: 500}} data={priceStats} intl={intl}/>
+                            <LineReactPrice source='singleChart' style={{height: 500}} data={priceStats} intl={intl}/>
                       }
                     </div>
                   }
@@ -267,14 +401,21 @@ class Statistics extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
   return {
     priceGraph: state.markets.price
   };
 }
 
-const mapDispatchToProps = {
-  loadPriceData,
-};
+const
+    mapDispatchToProps = {
+      loadPriceData,
+    };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Statistics))
+export default connect(mapStateToProps, mapDispatchToProps)
+
+(
+    injectIntl(Statistics)
+)

@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron Protocol",
+  "app_title": "TRON Protocol",
   "password": "heslo",
   "money_price": "cena",
   "price": "cena",
@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Typ smlouvy",
   "filters": "Filtry",
   "send_tokens": "Odeslat známky",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Zpráva",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Transakce za poslední hodinu",
   "average_blocksize": "Prùmìrná velikost bloku",
   "rich_list": "Seznam bohatých",
-  "tron_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "Neposílejte TRX ze své penìženky nebo z burzy na výše uvedenou adresu úètu na testovací síti!",
   "bandwidth": "šíøka pásma",
   "balance": "zùstatek",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transakce",
   "no_transfers": "Žádné transfery",
   "no_tokens": "Žádné tokeny",
@@ -241,8 +253,8 @@ export const messages = {
   "unfreeze": "rozmrazit",
   "freeze_trx_least": "Ke zmrazení je nutné mít na úètu minimálnì 1 TRX",
   "unable_unfreeze_trx_message": "Rozmrazení TRX nemožné. To mùže být zpùsobeno tím, že ještì neubìhla požadovaná doba od posledního zmrazení.",
-  "freeze_trx_premessage_0": `TRX mùžete zmrazit za úèelem získání Tron Power a uvolnìní dalších funkcí.
-   For example, with Tron Power you can `,
+  "freeze_trx_premessage_0": `TRX mùžete zmrazit za úèelem získání TRON Power a uvolnìní dalších funkcí.
+   For example, with TRON Power you can `,
   "freeze_trx_premessage_link": "hlasovat pro Super Reprezentanty.",
   "freeze_trx_premessage_1": ` Zmrazené tokeny jsou "zamèené" na dobu 3 dnù. Bìhem této doby není možné se zmrazenými TRX obchodovat.
    Po uplynutí této doby mùžete TRX rozmrazit a opìt s nimi obchodovat.`,
@@ -313,7 +325,7 @@ export const messages = {
   "apply_representative_error_message_1": "Zkontrolujte, zda máte dostatek TRX na poplatek, v opaèném pøípadì to zkuste pozdìji.",
   "open_external_link": "Sppouštíte externí odkaz",
   "private_key_untrusted_website_message_0": "Nikdy nevkládejte soukromý klíè na nedùvìryhodném webu.",
-  "no_official_tron_website": "není oficiální Tron web.",
+  "no_official_tron_website": "není oficiální TRON web.",
   "continue_to_external_website": "Pokraèovat na externí web",
   "url_changed": "URL zmìnìna",
   "successfully_changed_website_message": "Webová stránka úspìšnì zmìnìna na ",
@@ -482,7 +494,7 @@ export const messages = {
   "start_date": "Poèáteèní datum",
   "end_date": "Koncové datum",
   "token_spend_confirm": "Beru na vìdomí, že za celkové množství vydaných tokenù bude úètován jednorázový poplatek 1024 TRX.",
-  "token_issue_guide_message_1": `Token na Tron protokolu mùže vydat každý, kdo má na úètu alespoò 1024 TRX.`,
+  "token_issue_guide_message_1": `Token na TRON protokolu mùže vydat každý, kdo má na úètu alespoò 1024 TRX.`,
   "token_issue_guide_message_2":`Jakmile je token vydán, zobrazí se na stránce s pøehledem tokenù.
     Uživatelé si následnì bìhem daného odobí mohou vymìnit své TRX za tokeny.`,
   "token_issue_guide_message_3":`Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
@@ -559,7 +571,7 @@ export const messages = {
   "most_ranks": "Nejvyšší pøíèka získaná v tomto kole",
   "view_live_ranking": "Zobrazit live poøadí",
   "open_team_page": "Otevøít stránku týmmu",
-  "warning_votes": "K zahájení hlasování je zapotøebí minimálnì 1 Tron Power. Tron Power získáte zmrazením TRX na",
+  "warning_votes": "K zahájení hlasování je zapotøebí minimálnì 1 TRON Power. TRON Power získáte zmrazením TRX na",
   "account_page": "Úèet",
   "loading_votes": "Naèítám hlasy",
   "3_day_ranking": "Poøadí za 3 dny",
@@ -611,6 +623,7 @@ export const messages = {
   "node_tester_rt": "Doba odezvy",
   "confirmed_block": "Potvrzený blok",
   "loading": "naèítám...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -629,7 +642,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Co to je TRON",
-  "tron_explorer_api": "API Tron prohlížeèe",
+  "tron_explorer_api": "API TRON prohlížeèe",
   "tron_architechure": "TRON Architektura",
   "tron_protobuf_doc": "TRON Protobuf Dokumentace",
   "report_an_error": "Odeslat bug / návrh",
@@ -656,7 +669,7 @@ export const messages = {
   "save_keystore_file": "Uložte si váš Keystore soubor",
   "download_keystore_file": "Stáhnout šifrovaný klíè",
   "do_not_lose_it": "Neztrate ho!",
-  "do_not_lose_it_message_0": "Nadace Tron vám nepomùže s obnovou ztraceného klíèe.",
+  "do_not_lose_it_message_0": "Nadace TRON vám nepomùže s obnovou ztraceného klíèe.",
   "do_not_share_it": "Nikomu ho neukazujte!",
   "do_not_share_it_message_0": "Pokud použijete tento soubor na škodlivém webu, mùžete o všechny mince pøijít.",
   "make_a_backup": "Vytvoøte si zálohu!",
@@ -696,12 +709,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################
@@ -754,11 +767,11 @@ export const messages = {
   "frozen_days": "Frozen Days",
   "counts": "counts",
   "TRX_exchange_rate": "TRX Exchange Rate",
-  "start_time": "Start Time",
-  "end_time": "End Time",
-  "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
+  "start_time": "Doba spuštění",
+  "end_time": "Čas ukončení",
+  "contracts": "kontrakt",
+  "search_description": "Vyhledávací adresa, Výška bloku, Hash transakcí, Jméno tokenu",
+  "search_description1": "Vyhledávací adresa, Blok, Transakce, Token",
   "transaction": "Transaction",
   "total_addresses": "Total Addresses",
   "daily_increment": "Daily Increase",
@@ -767,8 +780,8 @@ export const messages = {
   "past_14_days_of_transactions": "Past 14 days of transactions",
   "address_growth": "Address Growth",
   "power": "Power",
-  "token_transfers": "Token Transfers",
+  "token_transfers": "Převody Token",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Vyhledávání"
 
 };

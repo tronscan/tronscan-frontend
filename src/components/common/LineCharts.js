@@ -31,6 +31,9 @@ export class LineReactAdd extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
       _config.title.link = '#/blockchain/stats/addressesStats';
@@ -54,7 +57,7 @@ export class LineReactAdd extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'addresses_amount'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'daily_increment'}) + ' : ' + datas[0].data.increment + '<br/>' +
@@ -117,6 +120,9 @@ export class LineReactTx extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
       _config.title.link = '#/blockchain/stats/txOverviewStats';
@@ -130,7 +136,7 @@ export class LineReactTx extends React.Component {
         }
       }
       _config.tooltip.formatter = function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        let date = intl.formatDate((parseInt(datas[0].data.date)));
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
@@ -146,7 +152,7 @@ export class LineReactTx extends React.Component {
       _config.toolbox.feature = {};
       _config.grid[0].top = 45;
       _config.tooltip.formatter = function (datas) {
-        let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+        let date = intl.formatDate((parseInt(datas[0].data.date)));
         return (
             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
@@ -215,7 +221,9 @@ export class LineReactBlockSize extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'average_blocksize'});
     _config.title.link = '#/blockchain/stats/blockSizeStats';
     _config.toolbox.feature = {
@@ -235,7 +243,7 @@ export class LineReactBlockSize extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'bytes'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'average_blocksize'}) + ' : ' + datas[0].data.avgBlockSize
@@ -297,7 +305,9 @@ export class LineReactPrice extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'average_price'});
     _config.title.link = '#/blockchain/stats/priceStats';
     _config.toolbox.feature = {
@@ -315,7 +325,7 @@ export class LineReactPrice extends React.Component {
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'usd'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.time) * 1000).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.time) * 1000));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
           intl.formatMessage({id: 'average_price'}) + ' : ' + datas[0].data.close
@@ -377,7 +387,9 @@ export class LineReactBlockchainSize extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-
+    if(source==='singleChart'){
+      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+    }
     _config.title.text = intl.formatMessage({id: 'blockchain_size'});
     _config.title.link = '#/blockchain/stats/blockchainSizeStats';
     _config.toolbox.feature = {
@@ -390,17 +402,17 @@ export class LineReactBlockchainSize extends React.Component {
       }
     }
 
-   // _config.series[0].type = 'line';
-   // _config.series[0].barWidth = '50%';
-   // _config.xAxis[0].boundaryGap = true;
+    // _config.series[0].type = 'line';
+    // _config.series[0].barWidth = '50%';
+    // _config.xAxis[0].boundaryGap = true;
     _config.xAxis[0].data = [];
     _config.series[0].data = [];
     _config.yAxis[0].name = intl.formatMessage({id: 'MByte'});
     _config.tooltip.formatter = function (datas) {
-      let date = new Date(parseInt(datas[0].data.date)).toLocaleString().split(' ')[0];
+      let date = intl.formatDate((parseInt(datas[0].data.date)));
       return (
           intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-          intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize/1000000
+          intl.formatMessage({id: 'blockchain_size'}) + ' : ' + datas[0].data.blockchainSize / 1000000
       )
 
     }
@@ -408,7 +420,7 @@ export class LineReactBlockchainSize extends React.Component {
     if (data && data.length > 0) {
       data.map((val) => {
         let temp;
-        temp = {...val, value: val.blockchainSize/1000000};
+        temp = {...val, value: val.blockchainSize / 1000000};
         _config.xAxis[0].data.push(intl.formatDate(val.date));
         _config.series[0].data.push(temp);
       })

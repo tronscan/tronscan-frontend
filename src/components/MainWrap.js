@@ -39,7 +39,10 @@ class MainWrap extends React.Component {
           <ConnectedRouter history={reduxHistory}>
             <React.Fragment>
               { flags.mobileLogin && <SignModal /> }
-              <Navigation/>
+              {
+                (router.location && router.location.pathname!=='/demo') &&
+                <Navigation/>
+              }
               <Content router={router} />
             </React.Fragment>
           </ConnectedRouter>

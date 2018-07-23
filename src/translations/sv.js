@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-14072018                                                  #
-  #         Update Date: 14.07.2018                                                #
+  #         Version: 1.6-18072018                                                  #
+  #         Update Date: 18.07.2018                                                #
   #         Language: Swedish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Tron protokollet",
+  "app_title": "TRON protokollet",
   "password": "lösenord",
   "money_price": "pris",
   "price": "pris",
@@ -45,12 +45,12 @@ export const messages = {
   "block": "block",
   "name": "namn",
   "website": "hemsida",
-  "address": "address",
+  "address": "adress",
   "sign_out": "logga ut",
   "sign_in": "logga in",
   "register_login": "Registrera / Logga in",
   "register": "registrera",
-  "login": "login",
+  "login": "logga in",
   "height": "höjd",
   "age": "ålder",
   "bytes": "Bytes",
@@ -66,7 +66,7 @@ export const messages = {
   "receive": "ta emot",
   "supply": "tillgång",
   "view": "vy",
-  "view_all": "View all",
+  "view_all": "Visa alla",
   "create": "skapa",
   "country": "region",
   "amount": "belopp",
@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Kontraktstyp",
   "filters": "filtrera",
   "send_tokens": "skicka Tokens",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "Laddar transaktion",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
+  "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
+  "link_test_server": "kroppsvätskor",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Transaktioner den senaste timmen ",
   "average_blocksize": "Medel Block Storlek",
   "rich_list": "Rich List",
-  "tron_transaction_chart": "Tron Transaktionskarta",
+  "tron_transaction_chart": "TRON Transaktionskarta",
   "transactions_per_day": "Transaktioner per dag",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "Skicka inte TRX från din egna plånbok eller börs till ovanstående konto för testnet!.",
   "bandwidth": "bandbredd",
   "balance": "balans",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transaktioner",
   "no_transfers": "Inga överföringar",
   "no_tokens": "Inga Tokens",
@@ -217,7 +229,7 @@ export const messages = {
   "token_balances": "token balanser",
   "produced_blocks": "producerade blocks",
   "voters": "röstare",
-  "progress": "progress",
+  "progress": "framsteg",
   "transactions_count": "{transaktioner, plural, one {transaktion} other {transaktioner}}",
   "issuer": "utgivare",
   "network": "nätverk",
@@ -240,7 +252,7 @@ export const messages = {
   "freeze": "frysa",
   "unfreeze": "frigöra",
   "freeze_trx_least": "Du behöver minst 1 TRX för att frysa",
-  "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna Tron Power och aktivera ytterligare funktioner. Med Tron Power kan du till exempel",
+  "freeze_trx_premessage_0": "TRX kan vara fryst/låst för att vinna TRON Power och aktivera ytterligare funktioner. Med TRON Power kan du till exempel",
   "freeze_trx_premessage_link": "rösta på Super Representatives.",
   "freeze_trx_premessage_1": "Frysta tokens är låsta för en period på 3 dagar. Under denna period kan inte frysta TRX handlas. Efter denna period kan du frigöra TRX och handla tokens.",
   "trx_amount": "TRX Antal",
@@ -249,7 +261,7 @@ export const messages = {
   "frozen_supply": "Frusna Tillgångar",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Framgångsrikt frosna tokens",
-  "unable_to_unfreeze": "Unable to unfreeze",
+  "unable_to_unfreeze": "Kan inte frysas",
   "Unable_tokens_unfrozen_message": "Kan inte frigöra tokens.",
   "tokens_frozen": "Tokens Frosna",
   "successfully_frozen": "Framfyllt med framgång",
@@ -310,7 +322,7 @@ export const messages = {
   "apply_representative_error_message_1": "Se till att du har tillräckligt med TRX för avgiften, eller försök igen senare.",
   "open_external_link": "Du öppnar en extern länk",
   "private_key_untrusted_website_message_0": "Ange aldrig din privata nyckel på en otillförlitlig webbplats.",
-  "no_official_tron_website": "är inte en officiell Tron webbplats.",
+  "no_official_tron_website": "är inte en officiell TRON webbplats.",
   "continue_to_external_website": "Fortsätt till extern webbplats",
   "url_changed": "URL ändrats",
   "successfully_changed_website_message": "Har ändrats webbplatsen till",
@@ -340,7 +352,7 @@ export const messages = {
   "sr_receive_reward_message_0": "Som representant får du belöningar för att producera block. Dessa belöningar kan hävdas var 24: e timme",
   "intro": "Intro",
   "budget_expenses": "Budgetkostnader",
-  "server_configuration": "Server Configuration",
+  "server_configuration": "Server Konfiguration",
   "community_plan": "Gemenskapsplanen",
   "team": "Team",
   /*
@@ -479,7 +491,7 @@ export const messages = {
   "start_date": "Start Datum",
   "end_date": "Slut Datum",
   "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
-  "token_issue_guide_message_1": "Utfärdande av token på Tron Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
+  "token_issue_guide_message_1": "Utfärdande av token på TRON Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
   "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
   /*
@@ -554,9 +566,9 @@ export const messages = {
   "most_ranks": "Högsta Rang Intjänad Denna Runda",
   "view_live_ranking": "Se Live Rang",
   "open_team_page": "Öppna Team Sida",
-  "warning_votes": "Minst 1 Tron Power är nödvändig för att börja rösta. Tron Power fås gengom att frysa TRX på",
-  "account_page": "Account Page",
-  "loading_votes": "Loading Votes",
+  "warning_votes": "Minst 1 TRON Power är nödvändig för att börja rösta. TRON Power fås gengom att frysa TRX på",
+  "account_page": "Kontosida",
+  "loading_votes": "Laddar omröstningar",
   "3_day_ranking": "3 Days Ranking",
   "live_ranking": "Live Ranking",
   "live_ranking_msg": "Uppdateras var 15 e sekund. Nya röster kan ta upp till 1-2 minuter innan de räknas",
@@ -606,6 +618,7 @@ export const messages = {
   "node_tester_rt": "Svarstid",
   "confirmed_block": "Bekräftat block",
   "loading": "laddar...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -624,7 +637,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Vad är TRON",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Arkitektur",
   "tron_protobuf_doc": "TRON Protobuf Dokumentation",
   "report_an_error": "Anmäl en bug / förslag",
@@ -651,14 +664,14 @@ export const messages = {
   "save_keystore_file": "Spara din Keystore-fil",
   "download_keystore_file": "Ladda ner Krypterad nyckel",
   "do_not_lose_it": "Förlora den inte!",
-  "do_not_lose_it_message_0": "Tron Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
+  "do_not_lose_it_message_0": "TRON Foundation kan inte hjälpa dig återskapa din förlorade nyckel.",
   "do_not_share_it": "Dela den inte!",
   "do_not_share_it_message_0": "Dina pengar kan bli stulna om du använder den här filen på en skadlig webbplats.",
   "make_a_backup": "Skapa en backup!",
   "make_a_backup_message_0": "ifall din dator fattar eld.",
   "save_private_key": "Spara din privata nyckel",
   "print_paper_wallet": "Skriv ut Pappersplånboken",
-  "new_wallet_ready_message": "Your new wallet is ready",
+  "new_wallet_ready_message": "Din nya plånbok är klar",
   "go_to_account_page": "Gå till kontosidan",
   /*
   ##################################################################################
@@ -691,12 +704,12 @@ export const messages = {
   "click_open_wallet_top_right": "Klicka på knappen 'Öppna plånbok' längst upp till höger.",
   "choose_ledger": "Välj Ledger",
   "connect_unlock_ledger_with_pin": "Anslut och låsa upp din enhet med din PIN-kod",
-  "open_tron_app_on_ledger": "Öppna Tron-appen på din Ledger",
+  "open_tron_app_on_ledger": "Öppna TRON-appen på din Ledger",
   "ledger_connected_tronscan_message_0": "Om din Ledger är korrekt ansluten kommer Tronscan att visa 'Connected'",
   "click_on_open_wallet": "Klicka på 'Open Wallet'",
-  "redirect_to_your_wallet_message": "Du kommer att omdirigeras till din plånbok och du kan se din Tron-adress",
+  "redirect_to_your_wallet_message": "Du kommer att omdirigeras till din plånbok och du kan se din TRON-adress",
   "using_ledger_to_sign_transactions": "Använda bokstaven för att skriva transaktioner",
-  "using_ledger_to_sign_transactions_message_0": "Medan du använder Tronscan Desktop appen och signerar transaktionen kontrollerar du att bokstaven är ansluten och Tron-appen är öppen.",
+  "using_ledger_to_sign_transactions_message_0": "Medan du använder Tronscan Desktop appen och signerar transaktionen kontrollerar du att bokstaven är ansluten och TRON-appen är öppen.",
   "using_ledger_to_sign_transactions_message_1": "Tronscan visar en transaktionssignatur via en popup med transaktionsinformationen, om så krävs. Signering är nödvändig för följande åtgärder: Delta i SR-röst, skicka TRX, ändra kontonamn etc.",
   /*
   ##################################################################################
@@ -706,9 +719,9 @@ export const messages = {
   ##################################################################################
   */
   "record_not_found": "Record not found!",
-  "warning": "Warning",
-  "login_success": "Login Success",
-  "logout_success": "Logout Success",
+  "warning": "Varning",
+  "login_success": "Logga in framgång",
+  "logout_success": "Logga ut framgång",
   /*
   ##################################################################################
   #                                                                                #
@@ -720,14 +733,14 @@ export const messages = {
   "total_transactions": "Totala transaktioner",
   "avg_blockTime": "Avg BlockTime",
   "avg_blockSize": "Avg BlockSize",
-  "total_BlockCount": "Total BlockCount",
+  "total_BlockCount": "Totalt BlockCount",
   "new_address_seen": "Ny adress sedd",
   "transfer_contract": "Överföringskontrakt",
   "TRX_transfer_between_addresses": "TRX överför mellan adresser",
   "transfer_asset_contract": "Överför tillgångskontrakt",
   "token_transfer_between_addresses": "Tokenöverföring mellan adresser",
-  "participate_asset_issue_contract": "Participate Asset Issue Contract",
-  "participate_token_between_addresses": "Participate token between addresses",
+  "participate_asset_issue_contract": "Deltagande av tillgångsprocessavtal",
+  "participate_token_between_addresses": "Delta i token mellan adresser",
   "witness_update_contract": "Vittneuppdateringskontrakt",
   "updates_a_witness": "Uppdatera ett vittne",
   "witness_create_contract": "Vittne skapa kontrakt",
@@ -747,14 +760,14 @@ export const messages = {
   "owner_address": "Ägare adress",
   "frozen_balance": "Frysbalans",
   "frozen_days": "Frozen Days",
-  "counts": "counts",
+  "counts": "antal",
   "TRX_exchange_rate": "TRX växelkurs",
   "start_time": "Starttid",
   "end_time": "Sluttid",
   "contracts": "Kontrakt",
   "search_description": "Sökadress, Blockhöjd, Transaktionshash, Tokenamn",
   "search_description1": "Sök adress, Blockera, Transaktion, Token",
-  "transaction": "Transaction",
+  "transaction": "Transaktion",
   "total_addresses": "Totala adresser",
   "daily_increment": "Daglig ökning",
   "address_growth_chart": "Adress tillväxtdiagram",

@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Sözleşme Tipi",
   "filters": "Süzgeçler",
   "send_tokens": "Jeton Gönder",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Mesaj",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "İşlem Yükleniyor",
   "nodes_ranking": "Düğüm Sıralaması",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Son bir saatte yapılan işlem adeti",
   "average_blocksize": "Ortalama Blok Boyutu",
   "rich_list": "Varlıklılar Listesi",
-  "tron_transaction_chart": "Tron İşlem Grafiği",
+  "tron_transaction_chart": "TRON İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "Kendi cüzdanınızdan ya da bir borsadan yukarıdaki test ağı adresine TRX göndermeyin!",
   "bandwidth": "bantgenişliği",
   "balance": "bakiye",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "işlemler",
   "no_transfers": "Aktarım yok",
   "no_tokens": "Jeton bulunmuyor",
@@ -241,8 +253,8 @@ export const messages = {
   "unfreeze": "çöz",
   "freeze_trx_least": "Dondurabilmek için en az 1 TRX gerekmektedir",
   "unable_unfreeze_trx_message": "TRX çözülemiyor. Böyle olmasının sebebi en kısa dondurma süresine henüz ulaşılmamış olması olabilir.",
-  "freeze_trx_premessage_0": `Tron Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
-   Örneğin, Tron Power ile `,
+  "freeze_trx_premessage_0": `TRON Power kazanmak ve farklı faydalar edinmek için TRX dondurulabilir/kilitlenebilir.
+   Örneğin, TRON Power ile `,
   "freeze_trx_premessage_1": `Dondurulmuş jetonlar 3 gün süre ile kilitlenmiş durumdadır. Donmuş durumdaki TRX bu süre içerisinde alınıp satılamaz.
    Bu süre sonunda TRX'i çözüp jeton alıp satabilirsiniz.`,
   "freeze_trx_premessage_link": "Süper Temsilciler için oy verebililrsiniz.",
@@ -316,7 +328,7 @@ export const messages = {
   "apply_representative_error_message_1": "Ücret için yeteri kadar TRX bulunduğunuzdan emin olun, ya da tekrar deneyin.",
   "open_external_link": "Bir dış bağlantıyı açmaktasınız",
   "private_key_untrusted_website_message_0": "Güvenli olmayan bir web sitesi hiç bir zaman özel anahtarınızı girmeyiniz.",
-  "no_official_tron_website": "resmi bir Tron sitesi değildir.",
+  "no_official_tron_website": "resmi bir TRON sitesi değildir.",
   "continue_to_external_website": "Dış siteye devam et",
   "url_changed": "URL değiştirildi",
   "successfully_changed_website_message": "Website başarıyla şuna değiştirildi ",
@@ -487,7 +499,7 @@ export const messages = {
   "start_date": "Başlama Tarihi",
   "end_date": "Bitiş Tarihi",
   "token_spend_confirm": "Jeton arzının tamamnını yaratmanın bir defalık toplam 1024 TRX ücrete tabi olduğunu onaylarım.",
-  "token_issue_guide_message_1": `Tron Protokolünde jeton üretimi
+  "token_issue_guide_message_1": `TRON Protokolünde jeton üretimi
    hesabında en az 1024 TRX bulunan herkes tarafından yapılabilir.`,
   "token_issue_guide_message_2":`Bir jeton üretilir üretilmez jetonlara genel bakış sayfasında görünecektir.
    Kullanıcılar katılım süresi boyunca katılım sağlayarak TRX'leri ile jeton alabilirler.`,
@@ -566,7 +578,7 @@ export const messages = {
   "most_ranks": "Bu turda elde edilen en yüksek sıra",
   "view_live_ranking": "Canlı sıralamayı görüntüle",
   "open_team_page": "Takım sayfasını aç",
-  "warning_votes": "Oy vermeye başlamak için en az 1 Tron Power gereklidir. Tron Power TRX dondurularak şurada",
+  "warning_votes": "Oy vermeye başlamak için en az 1 TRON Power gereklidir. TRON Power TRX dondurularak şurada",
   "account_page": "Hesap Sayfası",
   "loading_votes": "Oylar yükleniyor",
   "3_day_ranking": "3 günlük sıralama",
@@ -618,6 +630,7 @@ export const messages = {
   "node_tester_rt": "Cevaplama süresi",
   "confirmed_block": "Doğrulanan Blok",
   "loading": "yükleniyor...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -636,7 +649,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "TRON nedir",
-  "tron_explorer_api": "Tron Gezgini API",
+  "tron_explorer_api": "TRON Gezgini API",
   "tron_architechure": "TRON Mimarisi",
   "tron_protobuf_doc": "TRON Protobuf Belgeleri",
   "report_an_error": "Bir hata / öneri bildirin",
@@ -663,7 +676,7 @@ export const messages = {
   "save_keystore_file": "Anahtar Deposu Dosyanızı Kaydedin",
   "download_keystore_file": "Şifrelenmiş Anahtarı İndirin",
   "do_not_lose_it": "Kaybetmeyin!",
-  "do_not_lose_it_message_0": "Kayıp bir anahtarı bulmanıza Tron Vakfı yardım edemez.",
+  "do_not_lose_it_message_0": "Kayıp bir anahtarı bulmanıza TRON Vakfı yardım edemez.",
   "do_not_share_it": "Paylaşmayın!",
   "do_not_share_it_message_0": "Eğer bu dosyayı kötücül bir sitede kullanırsanız varlıklarınız çalınabilir.",
   "make_a_backup": "Yedekleyin!",
@@ -693,7 +706,7 @@ export const messages = {
   */
   "ledger_guide": "Ledger Rehberi",
   "requirements": "Gereksinimler",
-  "using_ledger_steps_message_0": "Tron ile Ledger'ı kullanmak için aşağıdaki adımların izlenmesi gerekir:",
+  "using_ledger_steps_message_0": "TRON ile Ledger'ı kullanmak için aşağıdaki adımların izlenmesi gerekir:",
   "a": "Bir",
   "install_the": "İsmi",
   "app": "olan uygulamanın yüklenmesi",
@@ -703,12 +716,12 @@ export const messages = {
   "click_open_wallet_top_right": "Sağ üst köşedeki 'CÜZDAN'I AÇ' kısmına tıklayınız",
   "choose_ledger": "Ledger'ı tercih etmeniz",
   "connect_unlock_ledger_with_pin": "Cihazı bağlayıp PIN kodunuz ile cihazın kilidini çözmeniz",
-  "open_tron_app_on_ledger": "Ledger'da Tron app'i açmanız",
+  "open_tron_app_on_ledger": "Ledger'da TRON app'i açmanız",
   "ledger_connected_tronscan_message_0": "Ledger düzgün bir şekilde bağlandığında Tronscan ekranında 'Bağlandı' ifadesi görünür",
   "click_on_open_wallet": "Cüzdan'ı aç 'menüsüne tıklayınız'",
-  "redirect_to_your_wallet_message": "Cüzdanınıza yönlendirilecek ve Tron adresinizi görüntüleyebileceksiniz",
+  "redirect_to_your_wallet_message": "Cüzdanınıza yönlendirilecek ve TRON adresinizi görüntüleyebileceksiniz",
   "using_ledger_to_sign_transactions": "Ledger'ı kullanarak işlemleri imzalamak",
-  "using_ledger_to_sign_transactions_message_0": "Ledger'ın bağlı olduğundan emin olun. Ledger'daki Tron app ile Tronscan Desktop kullanırken yapılan işlemleri imzalayabileceksiniz",
+  "using_ledger_to_sign_transactions_message_0": "Ledger'ın bağlı olduğundan emin olun. Ledger'daki TRON app ile Tronscan Desktop kullanırken yapılan işlemleri imzalayabileceksiniz",
   "using_ledger_to_sign_transactions_message_1": "Tronscan imzalanması gereken bir işlem olduğunda, işlem detayları gösteren bir pencere açacaktır. İmzalar oy kullandığınızda, TRX gönderdiğinizde, hesap adını değiştirdiğinizde vb. gerekmektedir.",
   /*
   ##################################################################################

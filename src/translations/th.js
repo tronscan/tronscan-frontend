@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "ประเภทสัญญา",
   "filters": "ฟิลเตอร์",
   "send_tokens": "ส่งโทเคน",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "ข่าวสาร",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "กำลังโหลดธุรกรรม",
   "nodes_ranking": "การจัดอันดับโหนด",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "จำนวนธุรกรรมในชั่วโมงที่แล้ว",
   "average_blocksize": "ขนาดบล็อกโดยเฉลี่ย",
   "rich_list": "รายการผู้ถือครองจำนวนมาก",
-  "tron_transaction_chart": "แผนภูมิธุรกรรม Tron",
+  "tron_transaction_chart": "แผนภูมิธุรกรรม TRON",
   "transactions_per_day": "จำนวนธุรกรรมต่อวัน",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "อย่าทำการส่ง หรือแลกเปลี่ยน TRX โดยใช้วอลเล็ทของคุณ กับแอดเดรสบัญชีด้านบนของ Testnet! ",
   "bandwidth": "แบนด์วิดท์",
   "balance": "ยอดคงเหลือ",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "ธุรกรรม",
   "no_transfers": "ไม่มีการโอนย้าย",
   "no_tokens": "ไม่มีโทเคน",
@@ -595,6 +607,7 @@ export const messages = {
   "node_tester_rt": "เวลาตอบสนอง",
   "confirmed_block": "บล็อกที่ได้รับการยืนยันแล้ว",
   "loading": "กำลังโหลด...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

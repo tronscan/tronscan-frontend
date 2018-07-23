@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-18072018                                                  #
+  #         Update Date: 18.07.2018                                                #
   #         Language: French                                                       #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Protocole Tron",
+  "app_title": "Protocole TRON",
   "password": "mot de passe",
   "money_price": "prix",
   "price": "prix",
@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Contract Type",
   "filters": "Filtres",
   "send_tokens": "Envoyer des jetons",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "Chargement des transactions",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Transactions dans l'heure passée",
   "average_blocksize": "Taille de bloc moyenne",
   "rich_list": "Allocation TRX - Détenteur/quantités",
-  "tron_transaction_chart": "Tron Transaction Chart",
+  "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "n'envoyez pas de TRX depuis votre porte-feuille ou un site d'échange à l'adresse de compte ci-dessus de testnet!",
   "bandwidth": "bande passante",
   "balance": "solde",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transactions",
   "no_transfers": "Aucun transfert",
   "no_tokens": "Pas de jetons",
@@ -241,7 +253,7 @@ export const messages = {
   "unfreeze" : "débloquer",
   "freeze_trx_least": "Vous avez besoin d'au moins 1 TRX pour pouvoir en geler",
   "unable_unfreeze_trx_message": "Impossible de débloquer les TRX. Cela pourrait être dû au fait que la période de gel minimale n'a pas encore été atteinte.",
-  "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du Tron Power et activer des fonctionnalités supplémentaires. Par exemple, avec Tron Power vous pouvez",
+  "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du TRON Power et activer des fonctionnalités supplémentaires. Par exemple, avec TRON Power vous pouvez",
   "freeze_trx_premessage_link": "vote pour les Super Représentants.",
   "freeze_trx_premessage_1": "Les jetons gelés sont verrouillés pour une période de 3 jours. Durant cette période, les TRX gelés ne peuvent pas être échangé. Après cette période, vous pouvez débloquer les TRX et échanger les jetons.",
   "trx_amount": "montant TRX",
@@ -314,7 +326,7 @@ export const messages = {
   "apply_representative_error_message_1": "Assurez-vous d'avoir assez de TRX pour les frais, ou réessayez plus tard.",
   "open_external_link": "You are opening an external link",
   "private_key_untrusted_website_message_0": "Never enter your private key on an untrusted website.",
-  "no_official_tron_website": "is not an official Tron site.",
+  "no_official_tron_website": "is not an official TRON site.",
   "continue_to_external_website": "Continue to external site",
   "url_changed": "URL changed",
   "successfully_changed_website_message": "Successfully changed website to ",
@@ -484,7 +496,7 @@ export const messages = {
   "start_date": "Date de début",
   "end_date": "Date de fin",
   "token_spend_confirm": "Je confirme que la création de l'offre totale de jetons aura pour coût unique 1024 TRX.",
-  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole Tron peut être faite
+  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole TRON peut être faite
    par n'importe qui qui a au moins 1024 TRX dans son compte.`,
   "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
    Les utilisateurs peuvent alors participer à la période de participation et échanger leur TRX contre des jetons.`,
@@ -563,7 +575,7 @@ export const messages = {
   "most_ranks": "Meilleure progression pendant ce tour",
   "view_live_ranking": "Voir le classement en direct",
   "open_team_page": "Ouvrir la page de l'équipe",
-  "warning_votes": "Au moins 1 Tron Power est nécessaire pour commencer à voter. Tron Power est obtenu en gelant des TRX dans la",
+  "warning_votes": "Au moins 1 TRON Power est nécessaire pour commencer à voter. TRON Power est obtenu en gelant des TRX dans la",
   "account_page": "page de votre compte",
   "loading_votes": "chargement des Votes",
   "3_day_ranking": "Classement de 3 jours",
@@ -615,6 +627,7 @@ export const messages = {
   "node_tester_rt": "Temps de réponse",
   "confirmed_block": "Blocs confirmés",
   "loading": "chargement...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -633,7 +646,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "Qu'est-ce que c'est TRON?",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Architecture de TRON",
   "tron_protobuf_doc": "Documentation TRON Protobuf",
   "report_an_error": "Soumettre un bug / suggestion",
@@ -660,7 +673,7 @@ export const messages = {
   "save_keystore_file": "Sauvegarder votre fichier Keystore",
   "download_keystore_file": "Télécharger la clé chiffrée",
   "do_not_lose_it": "Ne le perdez pas!",
-  "do_not_lose_it_message_0": "La fondation Tron ne pourra vous aider pour récupérer votre clé.",
+  "do_not_lose_it_message_0": "La fondation TRON ne pourra vous aider pour récupérer votre clé.",
   "do_not_share_it": "Ne le perdez pas!",
   "do_not_share_it_message_0": "Vos fonds peuvent être volés si vous utilisez ce fichier sur un site malveillant.",
   "make_a_backup": "Faites-en une sauvegarde!",
@@ -700,12 +713,12 @@ export const messages = {
   "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
+  "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
   "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
+  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################
@@ -761,8 +774,8 @@ export const messages = {
   "start_time": "Start Time",
   "end_time": "End Time",
   "contracts": "Contracts",
-  "search_description": "Search Address,Block Height,Transaction Hash,Token Name",
-  "search_description1": "Search Address,Block,Transaction,Token",
+  "search_description": "Recherche par adresse,Blocage,Transaction Hash,Nom du jeton,Nom du jeton",
+  "search_description1": "Recherche par adresse, bloc, transaction, transaction, jeton",
   "transaction": "Transaction",
   "total_addresses": "Total Addresses",
   "daily_increment": "Daily Increase",
@@ -773,6 +786,6 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Recherche"
 
 };

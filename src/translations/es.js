@@ -37,7 +37,7 @@ export const messages = {
   ##################################################################################
   */
   "ok": "OK",
-  "app_title": "Protocolo Tron",
+  "app_title": "Protocolo TRON",
   "password": "contraseña",
   "money_price": "precio",
   "price": "precio",
@@ -99,6 +99,9 @@ export const messages = {
   "contract_type": "Tipo de contrato",
   "filters": "Filtros",
   "send_tokens": "Enviar tokens",
+  "desktop_explorer": "Desktop Explorer",
+  "message": "Mensaje",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -172,6 +175,15 @@ export const messages = {
   "loading_transaction": "Carga de transacciones",
   "nodes_ranking": "Ranking de Nodos",
   "total_accounts_last_day": "Cuentas totales hasta el día de hoy",
+  "chart_tip": "Arrastre el área de ampliación de datos para acercar y alejar la imagen",
+  "link_test_server": "Testnet",
+  "highest": "Más alto ",
+  "lowest": "Más bajo ",
+  "increase": "crecimiento ",
+  "number": "número ",
+  "_of": "de",
+  "was_recorded_on": "se registró el ",
+  "rank_real_time": "Clasificación (Tiempo Real)",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,7 +196,7 @@ export const messages = {
   "transactions_past_hour": "Transacciones realizadas en la última hora",
   "average_blocksize": "Tamaño promedio de bloque",
   "rich_list": "Riqueza",
-  "tron_transaction_chart": "Gráfico de transacciones Tron",
+  "tron_transaction_chart": "Gráfico de transacciones TRON",
   "transactions_per_day": "Transacciones Diarias",
   /*
   ##################################################################################
@@ -204,7 +216,7 @@ export const messages = {
   "do_not_send_2": "No envíe TRX desde su cartera o desde un Exchange a la dirección de la red de pruebas!",
   "bandwidth": "ancho de banda",
   "balance": "saldo",
-  "tron_power": "Tron Power",
+  "tron_power": "TRON Power",
   "transactions": "transacciones",
   "no_transfers": "No han ocurrido transferencias",
   "no_tokens": "Sin Tokens disponibles",
@@ -241,8 +253,8 @@ export const messages = {
   "unfreeze": "descongelar",
   "freeze_trx_least": "Necesitas al menos 1 TRX para poder congelar",
   "unable_unfreeze_trx_message": "No ha sido posible descongelar TRX. Posiblemente no haya transcurrido el período mínimo de congelación.",
-  "freeze_trx_premessage_0": `TRX se puede congelar / bloquear para obtener Tron Power y así poder habilitar funciones adicionales.
-   Por ejemplo, con Tron Power se puede `,
+  "freeze_trx_premessage_0": `TRX se puede congelar / bloquear para obtener TRON Power y así poder habilitar funciones adicionales.
+   Por ejemplo, con TRON Power se puede `,
   "freeze_trx_premessage_link": "Votar los candidatos a Super Representantes.",
   "freeze_trx_premessage_1": ` Los tokens congelados permanecen "bloqueados" por un tiempo de 3 días. Durante este período, no podrá comercializar con TRX.
    Transcurrido ese tiempo puede descongelar los TRX y comercializar de nuevo con ellos.`,
@@ -314,7 +326,7 @@ export const messages = {
   "apply_representative_error_message_1": "Asegúrese de tener suficiente TRX para la tasa, o inténtelo de nuevo más tarde.",
   "open_external_link": "Estás abriendo un enlace externo",
   "private_key_untrusted_website_message_0": "Nunca ingrese su clave privada en un sitio web que no sea de confianza.",
-  "no_official_tron_website": "no es un sitio oficial de Tron.",
+  "no_official_tron_website": "no es un sitio oficial de TRON.",
   "continue_to_external_website": "Continuar hacia el sitio externo",
   "url_changed": "URL cambiada",
   "successfully_changed_website_message": "Sitio web cambiado correctamente a ",
@@ -485,7 +497,7 @@ export const messages = {
   "start_date": "Fecha de inicio",
   "end_date": "Fecha de finalización",
   "token_spend_confirm": "Acepto crear el Token y entiendo que cuesta un total de 1024 TRX.",
-  "token_issue_guide_message_1":`Siempre que posea al menos 1024 TRX en su cuenta, podrá crear un Token en el protocolo Tron.`,
+  "token_issue_guide_message_1":`Siempre que posea al menos 1024 TRX en su cuenta, podrá crear un Token en el protocolo TRON.`,
   "token_issue_guide_message_2":`Siempre que se crea un token, se mostrará en la página de descripción general.
     Los usuarios pueden colaborar en el período de participación e intercambiar su TRX por Tokens.`,
   "token_issue_guide_message_3":`Después de emitir el token, su cuenta recibirá una cantidad de Tokens igual al suministro total que se haya establecido.
@@ -562,7 +574,7 @@ export const messages = {
   "most_ranks": "Mayor Ascenso",
   "view_live_ranking": "Ver Ranking en vivo",
   "open_team_page": "Abrir página de equipo",
-  "warning_votes": "Se requiere al menos 1 Tron Power para votar. El Tron Power se obtiene al congelar TRX en la",
+  "warning_votes": "Se requiere al menos 1 TRON Power para votar. El TRON Power se obtiene al congelar TRX en la",
   "account_page": "Página de cuenta",
   "loading_votes": "Cargando votos",
   "3_day_ranking": "Clasificación de 3 días",
@@ -576,10 +588,10 @@ export const messages = {
   "thanks_submitting_vote_message": "Gracias por enviar su voto!",
   "need_min_trx_to_vote_message": "Necesita al menos 1 TRX para poder votar",
   "to_much_votes_massage": "Votaste demasiado!",
-  "all_votes_are_used_message": "Se han consumido todo los votos posibles!",
-  "submissing_vote_message_title": "Muchísimas gracias por votar!",
+  "all_votes_are_used_message": "¡Se han consumido todos los votos posibles!",
+  "submissing_vote_message_title": "¡Gracias por enviar su voto!",
   "submissing_vote_message_0": "Sus votos se enviaron con éxito, entrarán en vigor cuando comience el siguiente ciclo de votación.",
-  "submissing_vote_message_1": "Puedrás redistribuir tus votos cuando quieras",
+  "submissing_vote_message_1": "Podrás redistribuir tus votos cuando quieras",
   "submitting_vote_error_message": "Algo salió mal al enviar sus votos. Por favor, inténtelo de nuevo más tarde.",
   "loading_super_representatives": "Cargando Súper Representantes",
   /*
@@ -614,6 +626,7 @@ export const messages = {
   "node_tester_rt": "Tiempo de respuesta",
   "confirmed_block": "Bloque confirmado",
   "loading": "cargando...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -632,7 +645,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "¿Qué es TRON?",
-  "tron_explorer_api": "Tron Explorer API",
+  "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "Arquitectura de TRON",
   "tron_protobuf_doc": "Documentación de TRON Protobuf",
   "report_an_error": "Informe de un error / sugerencia",
@@ -659,7 +672,7 @@ export const messages = {
   "save_keystore_file": "Guarde su archivo Clave Cifrada",
   "download_keystore_file": "Descargue su Clave cifrada",
   "do_not_lose_it": "¡Recuerde, no la pierda!",
-  "do_not_lose_it_message_0": "La Fundación Tron no puede ayudarle a recuperar una clave perdida.",
+  "do_not_lose_it_message_0": "La Fundación TRON no puede ayudarle a recuperar una clave perdida.",
   "do_not_share_it": "¡Tampoco la comparta!",
   "do_not_share_it_message_0": "¡Ojo! Pueden robar sus fondos si usa este archivo de una manera irresponsable.",
   "make_a_backup": "¡Realice una copia de seguridad!",
@@ -699,12 +712,12 @@ export const messages = {
   "click_open_wallet_top_right": "Haga clic en 'Abrir cartera' en la parte superior derecha",
   "choose_ledger": "Elija Ledger",
   "connect_unlock_ledger_with_pin": "Conecte y desbloquee su dispositivo con su código PIN",
-  "open_tron_app_on_ledger": "Abra la aplicación Tron en su Ledger",
+  "open_tron_app_on_ledger": "Abra la aplicación TRON en su Ledger",
   "ledger_connected_tronscan_message_0": "Si su Ledger está conectado correctamente, Tronscan mostrará el mensaje de 'Conectado'",
   "click_on_open_wallet": "Haga clic en 'Abrir Cartera'",
-  "redirect_to_your_wallet_message": "Será redirigido a su cartera y podrá ver su dirección Tron",
+  "redirect_to_your_wallet_message": "Será redirigido a su cartera y podrá ver su dirección TRON",
   "using_ledger_to_sign_transactions": "Usar Ledger para firmar transacciones",
-  "using_ledger_to_sign_transactions_message_0": "Asegúrese de mantener Ledger conectado y la aplicación Tron abierta para firmar transacciones mientras hace uso del cliente de escritorio de Tronscan",
+  "using_ledger_to_sign_transactions_message_0": "Asegúrese de mantener Ledger conectado y la aplicación TRON abierta para firmar transacciones mientras hace uso del cliente de escritorio de Tronscan",
   "using_ledger_to_sign_transactions_message_1": "Tronscan mostrará una ventana emergente con los detalles de la transacción cuando se requiera una firma de la misma. Se requieren firmas cada vez que se vote, envíe TRX, cambie el nombre de la cuenta, etc...",
   /*
   ##################################################################################
@@ -768,7 +781,7 @@ export const messages = {
   "address_growth_chart": "Tabla de Crecimiento de Direcciones",
   "addresses_amount": "Cantidad de Direcciones",
   "past_14_days_of_transactions": "Transacciones de los últimos 14 días",
-  "address_growth": "Crecimiento de la Dirección",
+  "address_growth": "Desarrollo de las Direcciones",
   "power": "Power",
   "token_transfers": "Transferencias Token",
   "website_url": "URL del sitio web",

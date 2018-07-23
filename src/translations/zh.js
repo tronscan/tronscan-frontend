@@ -14,11 +14,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-12072018                                                  #
-  #         Update Date: 12.07.2018                                                #
+  #         Version: 1.6-16072018                                                  #
+  #         Update Date: 16.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 3                                                    #
+  #         Number of checks: 4                                                    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -97,6 +97,9 @@ export const messages = {
   "contract_type": "合约类型",
   "filters": "过滤器",
   "send_tokens": "发送资产",
+  "desktop_explorer": "桌面浏览器",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -169,7 +172,16 @@ export const messages = {
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名（以国家/地区划分）",
-  "total_accounts_last_day":"截止上一天总账户数",
+  "total_accounts_last_day": "截止上一天总账户数",
+  "chart_tip": "拖拽数据窗口来放大或缩小",
+  "link_test_server": "测试网",
+  "highest":"最大 ",
+  "lowest":"最小 ",
+  "increase":"增长 ",
+  "number":"数值 ",
+  "_of":"是 ",
+  "was_recorded_on":"记录于 ",
+  "rank_real_time":"排名 (实时) ",
   /*
   ##################################################################################
   #                                                                                #
@@ -182,7 +194,7 @@ export const messages = {
   "transactions_past_hour": "过去一小时交易数目",
   "average_blocksize": "平均区块大小",
   "rich_list": "富豪榜",
-  "tron_transaction_chart": "Tron交易数图表",
+  "tron_transaction_chart": "TRON交易数图表",
   "transactions_per_day": "日交易数",
   /*
   ##################################################################################
@@ -239,7 +251,7 @@ export const messages = {
   "unfreeze": "解冻",
   "freeze_trx_least": "至少需要1TRX才能成功冻结。",
   "unable_unfreeze_trx_message": "解冻失败，可能尚未达到最低冻结期限。",
-  "freeze_trx_premessage_0": `再次冻结TRX获得Tron Power并解锁其他功能。例如，使用Tron Power可以`,
+  "freeze_trx_premessage_0": `再次冻结TRX获得TRON Power并解锁其他功能。例如，使用TRON Power可以`,
   "freeze_trx_premessage_link": "为超级代表投票。",
   "freeze_trx_premessage_1": ` 冻结的TRX将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
   "trx_amount": "TRX数额",
@@ -546,7 +558,7 @@ export const messages = {
   "most_ranks": "排名上升最多",
   "view_live_ranking": "查看实时排名",
   "open_team_page": "查看团队页面",
-  "warning_votes": "投票需要至少1单位Tron Power，Tron Power 可以通过在(账户页面)冻结TRX获得。",
+  "warning_votes": "投票需要至少1单位TRON Power，TRON Power 可以通过在(账户页面)冻结TRX获得。",
   "account_page": "账户页面",
   "loading_votes": "投票加载中",
   "3_day_ranking": "三日投票排名(Top 10)",
@@ -598,6 +610,7 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
@@ -671,25 +684,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": "Ledger Guide",
-  "requirements": "Requirements",
-  "using_ledger_steps_message_0": "Using the Ledger with Tronscan requires the following steps:",
+  "ledger_guide": "Ledger使用指南",
+  "requirements": "要求",
+  "using_ledger_steps_message_0": "在波场区块链浏览器上使用Ledger需进行以下步骤",
   "a": "A",
-  "install_the": "Install the ",
-  "app": "app",
-  "install_latest_version_message_0": "Install the latest version of ",
-  "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
-  "choose_ledger": "Choose Ledger",
-  "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
-  "open_tron_app_on_ledger": "Open the Tron app on your Ledger",
-  "ledger_connected_tronscan_message_0": "If your Ledger is connected properly then Tronscan will show &ldquo;Connected&rdquo",
-  "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
-  "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your Tron address",
-  "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the Tron app open to sign transactions using the Ledger while using Tronscan Desktop",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
+  "install_the": "安装 ",
+  "app": "APP",
+  "install_latest_version_message_0": "安装最新版本的",
+  "opening_your_wallet": "钱包打开中",
+  "open_the_tronscan_desktop_client": "打开波场区块链浏览器桌面版客户端",
+  "click_open_wallet_top_right": "点击右上角的“打开钱包”",
+  "choose_ledger": "选择Ledger",
+  "connect_unlock_ledger_with_pin": "连接并使用密码解锁设备",
+  "open_tron_app_on_ledger": "在Ledger上打开TRON APP ",
+  "ledger_connected_tronscan_message_0": "如您的Ledger已正常连接，波场区块链浏览器将显示“已连接” ",
+  "click_on_open_wallet": "点击“打开钱包”",
+  "redirect_to_your_wallet_message": "将跳转至您的钱包，可以在钱包查看您的波场地址",
+  "using_ledger_to_sign_transactions": "使用Ledger对交易进行签名",
+  "using_ledger_to_sign_transactions_message_0": "在使用Ledger和桌面版波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持TRON APP处于开启状态",
+  "using_ledger_to_sign_transactions_message_1": "需要对交易签名时，区块链浏览器会弹出窗口，显示交易信息。在投票、发送TRX、更改账户名称等过程中，都需要进行交易签名。",
   /*
   ##################################################################################
   #                                                                                #

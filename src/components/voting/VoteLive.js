@@ -79,17 +79,6 @@ class VoteLive extends React.Component {
 
     return (
         <main className="container header-overlap pb-3">
-          <div className="card">
-            <div className="card-header text-center">
-              {tu("3_day_ranking")}
-            </div>
-            {
-              data === null ?
-              <TronLoader/> :
-              <MultiLineReact style={{height: 400}} newCandidates={newCandidates} data={data}/>
-            }
-            {/*<VoteStats colors={colors} newCandidates={newCandidates}/>*/}
-          </div>
           <div className="card mt-3">
             <div className="card-header text-center">
               {tu("live_ranking")}
@@ -125,9 +114,7 @@ class VoteLive extends React.Component {
                            style={{color: index < 15 ? '#' + colors[index] : null, ...style.rank}}>
                         {candidate.rank}
                       </div>
-                      <div className="mx-2">
-                        <Avatar value={candidate.address} size={style.avatar.height}/>
-                      </div>
+
                       <div className="media-body">
                   <span className="mt-0" style={style.row}>
                     <AddressLink address={candidate.address}>
