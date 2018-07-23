@@ -221,7 +221,7 @@ export const messages = {
   "no_transfers": "Keine Transaktionen vorhanden",
   "no_tokens": "keine Token vorhanden",
   "free_bandwidth": "Freie Bandbreite",
-  "expires": "abgelaufen",
+  "expires": "Läuft ab",
   "have_been_added_to_your_account": "wurden Ihrem Konto hinzugefügt!",
   "information_message_1": "Wenn Sie TRX Testcoins anfordern, erhalten Sie 10000 TRX die Sie zum Testen des Testnetzes verwenden können.",
   "information_message_2": "Sie können TRX nur 10 Mal pro Konto anfordern.",
