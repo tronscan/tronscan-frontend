@@ -100,6 +100,8 @@ export const messages = {
   "filters": "تصفيه",
   "send_tokens": "إرسال الرموز المميزة",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "جاري تحميل المعامله",
   "nodes_ranking": "ترتيب العقد",
   "total_accounts_last_day": "مجموع الحسابات حتى اليوم الأخير",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -596,6 +607,7 @@ export const messages = {
   "node_tester_rt": "وقت الاستجابة",
   "confirmed_block": "كتلة مؤكدة",
   "loading": "جاري التحميل...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

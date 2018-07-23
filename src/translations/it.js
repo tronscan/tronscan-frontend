@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-14072018                                                  #
-  #         Update Date: 14.07.2018                                                #
+  #         Version: 1.6-10072018                                                  #
+  #         Update Date: 20.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filtri",
   "send_tokens": "Gettoni Invio",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Messaggio",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Caricamento Transazione",
   "nodes_ranking": "Classifica Nodi",
   "total_accounts_last_day": "Totale conti fino all'ultimo giorno",
+  "chart_tip": "Trascinate la barra dei dati per ingrandire e rimpicciolire",
+  "link_test_server": "Testnet",
+  "highest": "Il maggior ",
+  "lowest": "Il minor ",
+  "increase": "incremento ",
+  "number": "numero ",
+  "_of": "di",
+  "was_recorded_on": "è stato registrato il",
+  "rank_real_time": "Grado (in tempo reale)",
   /*
   ##################################################################################
   #                                                                                #
@@ -611,6 +622,7 @@ export const messages = {
   "node_tester_rt": "Tempo di risposta",
   "confirmed_block": "Blocco Confermato",
   "loading": "caricamento...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

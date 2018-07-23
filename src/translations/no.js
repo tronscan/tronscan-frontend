@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-20072018                                                  #
+  #         Update Date: 20.07.2018                                                #
   #         Language: Norwegian                                                    #
   #         Status: first Version                                                  #
   #         Number of checks: 4                                                    #
@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filtre",
   "send_tokens": "Send Tokener",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Budskap",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Henter Transaksjon",
   "nodes_ranking": "Rankering Noder",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Høyeste ",
+  "lowest": "Lavest ",
+  "increase": "øke ",
+  "number": "Antall ",
+  "_of": "av",
+  "was_recorded_on": "ble registrert på",
+  "rank_real_time": "Rang (Realtid)",
   /*
   ##################################################################################
   #                                                                                #
@@ -612,6 +623,7 @@ export const messages = {
   "node_tester_rt": "Respons Tid",
   "confirmed_block": "Bekreftet Blokk",
   "loading": "lasting...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

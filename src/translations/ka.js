@@ -100,6 +100,8 @@ export const messages = {
   "filters": "ფილტრები",
   "send_tokens": "პირადი სიმბოლოები",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "ტრანზაქციის ატვირთვა",
   "nodes_ranking": "კვანძების რანჟირება",
   "total_accounts_last_day": "სულ ანგარიშები ბოლო დღეს",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -605,6 +616,7 @@ export const messages = {
   "node_tester_rt": "საპასუხო დრო",
   "confirmed_block": "დამოწმებული ბლოკი",
   "loading": "ჩატვირთვა...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

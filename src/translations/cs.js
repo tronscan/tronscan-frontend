@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filtry",
   "send_tokens": "Odeslat známky",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Zpráva",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
   "total_accounts_last_day":"Total Accounts Till Last Day",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Highest ",
+  "lowest": "Lowest ",
+  "increase": "increase ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "was recorded on",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -612,6 +623,7 @@ export const messages = {
   "node_tester_rt": "Doba odezvy",
   "confirmed_block": "Potvrzený blok",
   "loading": "naèítám...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #

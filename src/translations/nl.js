@@ -100,6 +100,8 @@ export const messages = {
   "filters": "Filters",
   "send_tokens": "Verzend Tokens",
   "desktop_explorer": "Desktop Explorer",
+  "message": "Message",
+  "wallet_address": "Wallet Address",
   /*
   ##################################################################################
   #                                                                                #
@@ -173,6 +175,15 @@ export const messages = {
   "loading_transaction": "Transacties laden",
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day":"Totaal aantal accounts",
+  "chart_tip": "Drag the data zoom area to zoom in and zoom out",
+  "link_test_server": "Testnet",
+  "highest": "Hoogst ",
+  "lowest": "Laagste ",
+  "increase": "uitbouwing ",
+  "number": "number ",
+  "_of": "of",
+  "was_recorded_on": "opgenomen op",
+  "rank_real_time": "Rank (Real time)",
   /*
   ##################################################################################
   #                                                                                #
@@ -607,6 +618,7 @@ export const messages = {
   "node_tester_rt": "Responstijd",
   "confirmed_block": "Bevestigd Blok",
   "loading": "Aan het laden...",
+  "connection_node": "Connecting to Node",
   /*
   ##################################################################################
   #                                                                                #
