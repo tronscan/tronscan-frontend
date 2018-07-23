@@ -8,7 +8,6 @@ import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
-import SRNews from "./SRNews";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../utils/timing";
 import RecentTransfers from "./RecentTransfers";

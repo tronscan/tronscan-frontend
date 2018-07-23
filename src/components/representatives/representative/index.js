@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
 import {trim} from "lodash";
-import {TronLoader} from "../common/loaders";
-import {ExternalLink} from "../common/Links";
+import {TronLoader} from "../../common/loaders";
+import {ExternalLink} from "../../common/Links";
 import {connect} from "react-redux";
-import {Client} from "../../services/api";
-import {tu} from "../../utils/i18n";
+import {Client} from "../../../services/api";
+import {tu} from "../../../utils/i18n";
 import ReactMarkdown from 'react-markdown';
 import xhr from "axios";
 import Scrollspy from "react-scrollspy";
