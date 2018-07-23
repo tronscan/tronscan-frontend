@@ -14,10 +14,10 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-23072018                                                  #
+  #         Update Date: 23.07.2018                                                #
   #         Language: Chinese                                                      #
-  #         Status: Second Draft                                                   #
+  #         Status: Approved Draft                                                   #
   #         Number of checks: 4                                                    #
   #                                                                                #
   ##################################################################################
@@ -98,7 +98,7 @@ export const messages = {
   "filters": "过滤器",
   "send_tokens": "发送资产",
   "desktop_explorer": "桌面浏览器",
-  "message": "Message",
+  "message": "信息",
   "wallet_address": "Wallet Address",
   /*
   ##################################################################################
@@ -610,7 +610,7 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
-  "connection_node": "Connecting to Node",
+  "connection_node": "链接节点",
   /*
   ##################################################################################
   #                                                                                #
