@@ -94,7 +94,8 @@ class Transaction extends React.Component {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title text-center m-0">
-                      {transaction.hash}
+                      <i className="fa fa-hashtag mr-1"></i>
+                      {tu("hash")} #{transaction.hash}
                     </h5>
                   </div>
                   <table className="table table-hover m-0">
