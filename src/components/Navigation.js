@@ -515,7 +515,7 @@ class Navigation extends PureComponent {
                                 key={subRoute.path}
                                 className="dropdown-item text-uppercase"
                                 to={subRoute.path}>
-                                {subRoute.icon && <i className={subRoute.icon + " mr-2"}/>}
+                                {subRoute.icon && <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
                                 {tu(subRoute.label)}
                                 {subRoute.badge && <Badge value={subRoute.badge}/>}
                               </Link>

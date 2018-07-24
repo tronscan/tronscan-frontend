@@ -121,7 +121,8 @@ module.exports = {
         center: ['50%', '50%'],
         label: {
           normal: {
-            position: 'inner'
+            position: 'inner',
+            show: false
           }
         },
         labelLine: {
