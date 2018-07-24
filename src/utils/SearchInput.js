@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../utils/i18n";
+import {tu} from "./i18n";
 import {Table, Input, Button, Icon} from 'antd';
 import $ from 'jquery';
 

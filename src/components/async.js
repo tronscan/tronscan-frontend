@@ -372,3 +372,39 @@ export const NodesAsync = asyncComponent({
   )
 });
 
+export const LiveAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./blockchain/Live"));
+            });
+          },
+          'Live',
+      )
+  )
+});
+
+export const TokenDetailAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./tokens/TokenDetail/index"));
+            });
+          },
+          'TokenDetail',
+      )
+  )
+});
+

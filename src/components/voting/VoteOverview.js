@@ -17,7 +17,7 @@ import {WidgetIcon} from "../common/Icon";
 import VoteStats from "../blockchain/Statistics/VoteStats";
 import palette from "google-palette";
 import {Truncate} from "../common/text";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
 
 function VoteChange({value, arrow = false}) {

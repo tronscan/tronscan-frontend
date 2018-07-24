@@ -8,7 +8,7 @@ import {AddressLink} from "../common/Links";
 import TimeAgo from "react-timeago";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 
 
 class RecentBlocks extends Component {

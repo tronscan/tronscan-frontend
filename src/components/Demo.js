@@ -1,26 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {doSearch, getSearchType} from "../services/search";
-import {clearConstellations, constellationPreset} from "../lib/constellation/constellation";
 import CountUp from 'react-countup';
 import {Client} from "../services/api";
-import {Link} from "react-router-dom";
-import {TRXPrice} from "./common/Price";
-import RecentBlocks from "./Home/RecentBlocks";
-import {KEY_ENTER} from "../utils/constants";
-import {withTimers} from "./utils/timing";
-import RecentTransfers from "./Home/RecentTransfers";
-import {tu} from "../utils/i18n";
-import {toastr} from "react-redux-toastr";
-import {HrefLink} from "./common/Links";
+import {withTimers} from "../utils/timing";
 import {TronLoader} from "./common/loaders";
 import {LineReactAdd, LineReactTx} from "./common/LineChartTx";
-import {ONE_TRX} from "../constants";
 import xhr from "axios/index";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 
-const subDays = require("date-fns/sub_days");
 
 class Demo extends Component {
 

@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import {KEY_ENTER} from "../../utils/constants";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";

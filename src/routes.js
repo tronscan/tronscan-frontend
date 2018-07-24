@@ -2,11 +2,8 @@ import React from "react";
 import {filter, flatten} from "lodash";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
-import SmartContract from "./components/blockchain/Contract";
 import Address from "./components/addresses/Address";
-import TokenDetail from "./components/tokens/TokenDetail";
 import Home from "./components/Home";
-import Live from "./components/blockchain/Live";
 import {
   MarketsAsync,
   StatisticsAsync,
@@ -27,7 +24,9 @@ import {
   TokenListAsync,
   TokensCreateAsync,
   AccountsAsync,
-  NodesAsync
+  NodesAsync,
+  LiveAsync,
+  TokenDetailAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
@@ -90,7 +89,7 @@ export const routes = [
         label: "live",
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
-        component: Live
+        component: LiveAsync
       },
     ]
   },
@@ -116,12 +115,6 @@ export const routes = [
     path: "/transaction/:hash",
     label: "transaction",
     component: Transaction,
-    showInMenu: false,
-  },
-  {
-    path: "/contract/:address",
-    label: "contract",
-    component: SmartContract,
     showInMenu: false,
   },
   {
@@ -163,7 +156,7 @@ export const routes = [
   {
     path: "/token/:name",
     label: "token",
-    component: TokenDetail,
+    component: TokenDetailAsync,
     showInMenu: false,
   },
 
