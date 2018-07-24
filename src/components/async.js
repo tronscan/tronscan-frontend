@@ -15,7 +15,7 @@ export const StatisticsAsync = asyncComponent({
           [],
           (require) => {
             $script("", () => {
-              resolve(require("./blockchain/Statistics"));
+              resolve(require("./blockchain/Statistics/index.js"));
             });
           },
           'Stats',

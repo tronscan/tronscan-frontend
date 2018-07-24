@@ -5,10 +5,9 @@ import {loadNodes} from "../../actions/network";
 import {filter, maxBy, sortBy, sumBy} from "lodash";
 import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
-import {GlobeMapAsync, NodeMapAsync} from "./NodeMap/async";
+import {NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
 import {Client} from "../../services/api";
-import TimeAgo from "react-timeago";
 import {WidgetIcon} from "../common/Icon";
 import BarReact from "../common/BarChart";
 
@@ -100,11 +99,9 @@ class Nodes extends Component {
 
   componentDidMount() {
     this.loadNodes();
-
   }
 
   render() {
-    let {showAllCountries, size, show3D} = this.state;
 
     let {nodes, syncStatus} = this.state;
     let countries = this.buildNodeList();
@@ -133,8 +130,6 @@ class Nodes extends Component {
     }
 
     return (
-        show3D ?
-            <GlobeMapAsync nodes={nodes} countries={countries}/> :
             <main className="container header-overlap">
               <div className="row">
                 <div className="col-md-6">
