@@ -21,7 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea
-package-lock.json
 build-desktop
 build-native
 

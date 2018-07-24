@@ -76,7 +76,7 @@ export class RingPieReact extends React.Component {
       exchanges.sort(compare("value"));
       let finalExchanges = exchanges.slice(exchanges.length - 10, exchanges.length);
       let finalPairData = []
-      let labelDate = {
+      let labelData = {
         show:false
       }
       for (let index in finalExchanges) {
@@ -89,7 +89,7 @@ export class RingPieReact extends React.Component {
 
       config.ringPieChart.series[0].data = finalExchanges;
       config.ringPieChart.series[1].data = finalPairData;
-      config.ringPieChart.series[0].label = labelDate
+      config.ringPieChart.series[0].label = labelData
 
     }
     if(data && data.length===0){

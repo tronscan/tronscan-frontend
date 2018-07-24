@@ -110,7 +110,6 @@ class Account extends Component {
               </td>
               <td className="text-right">
                 <FormattedNumber value={token.balance}/>
-
               </td>
             </tr>
           ))
