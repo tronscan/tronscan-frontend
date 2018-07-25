@@ -1,9 +1,5 @@
 import React, {Component} from "react";
 import {tu} from "../../utils/i18n";
-import {Client} from "../../services/api";
-import {ExternalLink} from "../common/Links";
-import {FormattedNumber} from "react-intl";
-import {TRXPrice} from "../common/Price";
 import {Table, Input, Button, Icon} from 'antd';
 
 export default class MarketOverview extends Component {

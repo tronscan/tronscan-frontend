@@ -168,6 +168,7 @@ module.exports = {
                 "transform-class-properties",
                 "transform-async-to-generator",
                 "transform-object-rest-spread",
+                ['import', [{ libraryName: "antd", style: 'css' }]]
               ],
               presets: [
                 "es2015",
@@ -397,7 +398,7 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new commonsChunkPlugin({
       name: 'vendors',
       minChunks: function (module) {
