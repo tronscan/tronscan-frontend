@@ -133,13 +133,13 @@ class Live extends React.Component {
         return (
 
             <Row key={event.id} icon="fa-exchange-alt">
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
+              <div className="row">
+                <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
                     <b>{tu("token_transfer")}</b>
                   </h5>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("asset")}{': '}
                   {
                     event.tokenName === 'TRX' ?
@@ -154,10 +154,10 @@ class Live extends React.Component {
                   }
                   {' '}{event.tokenName}
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true}/>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={false}/>
                 </div>
               </div>
@@ -168,19 +168,19 @@ class Live extends React.Component {
         return (
 
             <Row key={event.id} icon="fa-bullhorn">
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
+              <div className="row">
+                <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
                     <b>{tu("voting")}</b>
                   </h5>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("voter")}{': '}<AddressLink address={event.voterAddress} truncate={false}/>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("representatives")}{': '}<AddressLink address={event.candidateAddress} truncate={false}/>
                 </div>
               </div>
@@ -191,19 +191,19 @@ class Live extends React.Component {
         return (
 
             <Row key={event.id} icon="fa-arrow-right">
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
+              <div className="row">
+                <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
                     <b>{tu("asset_participation")}</b>
                   </h5>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("token_name")}{': '}<b>{event.tokenName}</b>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false}/>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("bought")}{': '}{event.amount} {event.tokenName}
                 </div>
               </div>
@@ -213,16 +213,16 @@ class Live extends React.Component {
       case "asset-create":
         return (
             <Row key={event.id} icon="fa-plus-circle">
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
+              <div className="row">
+                <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
                     <b>{tu("token_creation")}</b>
                   </h5>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("token_name")}{': '}<b><TokenLink name={event.name}/></b>
                 </div>
-                <div class="col-sm-9">
+                <div className="col-sm-9">
                   {tu("address")}{': '}<AddressLink address={event.ownerAddress}
                                                     truncate={false}/>{' '}{t("created_token")}{' '}<TokenLink
                     name={event.name}/>
@@ -234,13 +234,13 @@ class Live extends React.Component {
       case "witness-create":
         return (
             <Row key={event.id} icon="fa-user">
-              <div class="row">
-                <div class="col-xs-8 col-sm-6">
+              <div className="row">
+                <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
                     <b>{tu("sr_canditature")}</b>
                   </h5>
                 </div>
-                <div class="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-6">
                   {tu("address")}{': '}<AddressLink address={event.ownerAddress}
                                                     truncate={false}/>{' '}{t("applied_for_super_representative")}
                 </div>
