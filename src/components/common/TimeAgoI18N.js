@@ -4,7 +4,7 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import time_nl from 'react-timeago/lib/language-strings/nl';
 import time_en from 'react-timeago/lib/language-strings/en';
-import time_zh from 'react-timeago/lib/language-strings/zh-TW';
+import time_zh from 'react-timeago/lib/language-strings/zh-CN';
 import time_fa from 'react-timeago/lib/language-strings/fa';
 import time_ko from 'react-timeago/lib/language-strings/ko';
 import time_br from 'react-timeago/lib/language-strings/pt-br';
