@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-25072018                                                  #
+  #         Update Date: 25.07.2018                                                #
   #         Language: Portuguese - Brazil                                          #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 4                                                    #
+  #         Number of checks: 5                                                    #
   #         Participants: gguelber, Monitor Livre                                  #
   #                                                                                #
   ##################################################################################
@@ -735,15 +735,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "candidatado a Super Representante",
+  "sr_candidature": "Candidatura a Super Representante",
+  "created_token": "token criado",
+  "token_creation": "Criação de Token",
+  "bought": "comprou",
+  "voter": "eleitor",
+  "voting": "votando",
+  "asset": "ativo",
+  "token_transfer": "Transferência de Token",
   /*
   ##################################################################################
   #                                                                                #
