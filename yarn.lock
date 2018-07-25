@@ -9,12 +9,27 @@
     "@babel/types" "7.0.0-beta.32"
     lodash "^4.2.0"
 
+"@babel/helper-module-imports@^7.0.0-beta.34":
+  version "7.0.0-beta.54"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.54.tgz#c2d8e14ff034225bf431356db77ef467b8d35aac"
+  dependencies:
+    "@babel/types" "7.0.0-beta.54"
+    lodash "^4.17.5"
+
 "@babel/types@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.32.tgz#c317d0ecc89297b80bbcb2f50608e31f6452a5ff"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.2.0"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@7.0.0-beta.54":
+  version "7.0.0-beta.54"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.54.tgz#025ad68492fed542c13f14c579a44c848e531063"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
 "@fortawesome/fontawesome-common-types@^0.1.6":
@@ -787,6 +802,12 @@ babel-plugin-emotion@^8.0.12, babel-plugin-emotion@^8.0.6:
     find-root "^1.1.0"
     source-map "^0.5.7"
     touch "^1.0.0"
+
+babel-plugin-import@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.8.0.tgz#260deddd78f6fea0d110e1d106ba72a518d3c88c"
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0-beta.34"
 
 babel-plugin-istanbul@^4.0.0:
   version "4.1.5"

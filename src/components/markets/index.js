@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {connect} from "react-redux";
 import {loadPriceData} from "../../actions/markets";
-import {tu} from "../../utils/i18n";
 import MarketOverview from "./MarketOverview";
 import {TronLoader} from "../common/loaders";
 import {Client} from "../../services/api";

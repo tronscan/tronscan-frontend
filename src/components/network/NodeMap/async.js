@@ -27,23 +27,3 @@ export const NodeMapAsync = asyncComponent({
     )
   )
 });
-
-export const GlobeMapAsync = asyncComponent({
-  LoadingComponent: () => (
-    <div className="card">
-      <TronLoader>
-        {tu("loading_map")}
-      </TronLoader>
-    </div>
-  ),
-  resolve: () => new Promise(resolve =>
-    // Webpack's code splitting API w/naming
-    require.ensure(
-      [],
-      (require) => {
-        resolve(require('./GlobeMap'));
-      },
-      'GlobeMap'
-    )
-  )
-});
