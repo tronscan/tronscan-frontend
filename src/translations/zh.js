@@ -14,11 +14,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-23072018                                                  #
-  #         Update Date: 23.07.2018                                                #
+  #         Version: 1.6-24072018                                                  #
+  #         Update Date: 24.07.2018                                                #
   #         Language: Chinese                                                      #
-  #         Status: Approved Draft                                                   #
-  #         Number of checks: 4                                                    #
+  #         Status: Approved Version                                               #
+  #         Number of checks: 5                                                    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -714,6 +714,23 @@ export const messages = {
   "warning": "警告",
   "login_success": "登陆成功",
   "logout_success": "登出成功",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "申请成为超级代表",
+  "sr_candidature": "超级代表候选人",
+  "created_token": "创建的通证",
+  "token_creation": "通证创建",
+  "bought": "买",
+  "asset_participation": "参与发行通证",
+  "voter": "投票人",
+  "voting": "投票",
+  "asset": "资产",
+  "token_transfer": "通证转账",
   /*
   ##################################################################################
   #                                                                                #

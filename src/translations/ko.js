@@ -15,12 +15,12 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-25072018                                                  #
+  #         Update Date: 25.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
-  #         Number of checks: 6                                                    #
-  #         Participants: VoidRays                                                 #
+  #         Number of checks: 7                                                    #
+  #         Participants: VoidRays,dakeshi                                         #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -724,6 +724,23 @@ export const messages = {
   "warning": "경고",
   "login_success": "로그인 성공",
   "logout_success": "로그 아웃 성공",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "슈퍼 대표 지원자",
+  "sr_candidature": "슈퍼 대표 후보",
+  "created_token": "생성된 토큰",
+  "token_creation": "토큰 생성",
+  "bought": "매수",
+  "asset_participation": "자산 공개 참여",
+  "voter": "투표자",
+  "voting": "투표",
+  "asset": "자산",
+  "token_transfer": "토큰 전송",
   /*
   ##################################################################################
   #                                                                                #

@@ -737,6 +737,23 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "applied for Super Representative",
+  "sr_candidature": "Super Representative Candidature",
+  "created_token": "created token",
+  "token_creation": "Token Creation",
+  "bought": "bought",
+  "asset_participation": "Asset Participation",
+  "voter": "voter",
+  "voting": "voting",
+  "asset": "asset",
+  "token_transfer": "Token Transfer",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################

@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-21072018                                                  #
-  #         Update Date: 21.07.2018                                                #
+  #         Version: 1.6-24072018                                                  #
+  #         Update Date: 24.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: PMD3VSolution,DrKaradenizli,DrKara                       #
   #                                                                                #
   ##################################################################################
@@ -51,7 +51,7 @@ export const messages = {
   "register_login": "Registrieren / Anmelden",
   "register": "Registrieren",
   "login": "Anmelden",
-  "height": "Größe",
+  "height": "Blocknummer",
   "age": "Zeitpunkt",
   "bytes": "Bytes",
   "MByte": "MByte",
@@ -736,6 +736,23 @@ export const messages = {
   "warning": "Warnung",
   "login_success": "Anmeldung erfolgreich",
   "logout_success": "Erfolgreich Abgemeldet",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "bewirbt sich als Super Repräsentant",
+  "sr_candidature": "Super Repräsentant Kandidatur",
+  "created_token": "erstellt den Token",
+  "token_creation": "Token Erstellung",
+  "bought": "gekauft",
+  "asset_participation": "Asset-Beteiligung",
+  "voter": "Wähler",
+  "voting": "Stimmabgabe",
+  "asset": "Kapital",
+  "token_transfer": "Token Übertragung",
   /*
   ##################################################################################
   #                                                                                #
