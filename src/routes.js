@@ -9,10 +9,8 @@ import Account from "./components/account/Account";
 import Blocks from "./components/blockchain/Blocks";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
-import SmartContract from "./components/blockchain/Contract";
 import Address from "./components/addresses/Address";
 import Transactions from "./components/blockchain/Transactions";
-import Contracts from "./components/blockchain/Contracts";
 import TokenDetail from "./components/tokens/TokenDetail";
 import Home from "./components/Home";
 import Demo from "./components/Demo";
@@ -75,12 +73,6 @@ export const routes = [
         component: Accounts,
       },
       {
-        path: "/blockchain/contracts",
-        label: "contracts",
-        icon: "fa fa-file",
-        component: Contracts,
-      },
-      {
         label: "statistics",
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
@@ -123,12 +115,6 @@ export const routes = [
     path: "/transaction/:hash",
     label: "transaction",
     component: Transaction,
-    showInMenu: false,
-  },
-  {
-    path: "/contract/:address",
-    label: "contract",
-    component: SmartContract,
     showInMenu: false,
   },
   {
