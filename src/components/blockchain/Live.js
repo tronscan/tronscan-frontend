@@ -237,7 +237,7 @@ class Live extends React.Component {
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
-                    <b>{tu("sr_canditature")}</b>
+                    <b>{tu("sr_candidature")}</b>
                   </h5>
                 </div>
                 <div className="col-xs-8 col-sm-6">
