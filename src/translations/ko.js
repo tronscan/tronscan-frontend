@@ -15,12 +15,12 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-25072018                                                  #
+  #         Update Date: 25.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
-  #         Number of checks: 6                                                    #
-  #         Participants: VoidRays                                                 #
+  #         Number of checks: 7                                                    #
+  #         Participants: VoidRays,dakeshi                                         #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -177,13 +177,13 @@ export const messages = {
   "total_accounts_last_day":"마지막 날까지의 총 계정 수",
   "chart_tip": "데이터 확대 영역을 드래그하여 줌 인/아웃 할 수 있습니다",
   "link_test_server": "테스트넷",
-  "highest": "Highest ",
-  "lowest": "Lowest ",
-  "increase": "increase ",
-  "number": "number ",
-  "_of": "of",
-  "was_recorded_on": "was recorded on",
-  "rank_real_time": "Rank (Real time)",
+  "highest": "최고 ",
+  "lowest": "최저 ",
+  "increase": "증가 ",
+  "number": "건수 ",
+  "_of": "는",
+  "was_recorded_on": "을 기록했습니다",
+  "rank_real_time": "순위 (실시간)",
   /*
   ##################################################################################
   #                                                                                #
@@ -620,7 +620,7 @@ export const messages = {
   "node_tester_rt": "응답 시간",
   "confirmed_block": "컨펌된 블록",
   "loading": "로딩 중...",
-  "connection_node": "Connecting to Node",
+  "connection_node": "노드 연결하기",
   /*
   ##################################################################################
   #                                                                                #
@@ -724,6 +724,22 @@ export const messages = {
   "warning": "경고",
   "login_success": "로그인 성공",
   "logout_success": "로그 아웃 성공",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "슈퍼 대표 지원자",
+  "sr_candidature": "슈퍼 대표 후보",
+  "created_token": "생성된 토큰",
+  "token_creation": "토큰 생성",
+  "bought": "매수",
+  "voter": "투표자",
+  "voting": "투표",
+  "asset": "자산",
+  "token_transfer": "토큰 전송",
   /*
   ##################################################################################
   #                                                                                #

@@ -32,7 +32,7 @@ class NodeTester extends Component {
 
   isValid = (ip, port) => {
     let isValidIp = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip);
-    let isValidPort = !isNaN(parseInt(port)) && port > 0;
+    let isValidPort = !isNaN(parseInt(port,10)) && port > 0;
 
     return isValidIp && isValidPort;
   };
@@ -83,7 +83,7 @@ class NodeTester extends Component {
     let port = trim(ev.target.value);
 
     if (port !== '') {
-      port = parseInt(port);
+      port = parseInt(port,10);
       port = isNaN(port) ? 0 : port;
     }
 

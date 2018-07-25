@@ -37,9 +37,9 @@ export const messages = {
   */
   "ok": "OK",
   "app_title": "TRON Protocol",
-  "password": "password",
-  "money_price": "price",
-  "price": "price",
+  "password": "Password",
+  "money_price": "Price",
+  "price": "Price",
   "blocks": "blocks",
   "block": "block",
   "name": "name",
@@ -721,6 +721,22 @@ export const messages = {
   "warning": "Warning",
   "login_success": "Login Success",
   "logout_success": "Logout Success",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "applied for Super Representative",
+  "sr_candidature": "Super Representative Candidature",
+  "created_token": "created token",
+  "token_creation": "Token Creation",
+  "bought": "bought",
+  "voter": "voter",
+  "voting": "voting",
+  "asset": "asset",
+  "token_transfer": "Token Transfer",
   /*
   ##################################################################################
   #                                                                                #

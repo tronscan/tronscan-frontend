@@ -6,7 +6,7 @@ import {FormattedNumber} from "react-intl";
 import {ONE_TRX} from "../../constants";
 import {TronLoader} from "../common/loaders";
 import {AddressLink, TokenLink} from "../common/Links";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 
 const MESSAGE_LIMIT = 30;
 
@@ -131,55 +131,111 @@ class Live extends React.Component {
     switch (event.type) {
       case "transfer":
         return (
-            <Row key={event.id} icon="fa-exchange-alt">
-              <AddressLink address={event.transferFromAddress} truncate={false}/>{' '}
-              <i className="fa fa-arrow-right"/>{' '}
-              <AddressLink address={event.transferToAddress} truncate={false}/><br/>
-              {
-                event.tokenName === 'TRX' ?
-                    <FormattedNumber
-                        maximumFractionDigits={7}
-                        minimunFractionDigits={7}
-                        value={event.amount / ONE_TRX}/> :
-                    <FormattedNumber
-                        maximumFractionDigits={7}
-                        minimunFractionDigits={7}
-                        value={event.amount}/>
-              }
-              {" " + event.tokenName}
-            </Row>
+
+          <Row key={event.id} icon="fa-exchange-alt">
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                <h5 className="card-title text-left">
+                  <b>{tu("token_transfer")}</b>
+                </h5>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("asset")}{': '}
+                  <b><FormattedNumber
+                  maximumFractionDigits={7}
+                  minimunFractionDigits={7}
+                  value={event.amount / ONE_TRX}/>
+                  {' '}{event.tokenName}</b>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true} />
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={false} />
+              </div>
+            </div>
+          </Row>
         );
 
       case "vote":
         return (
-            <Row key={event.id} icon="fa-bullhorn">
-              <AddressLink address={event.voterAddress} truncate={false}/>{' '}
-              gave {' '}
-              <b><FormattedNumber value={event.votes}/></b>{' '}
-              to {' '}
-              <AddressLink address={event.candidateAddress} truncate={false}/>
-            </Row>
+
+          <Row key={event.id} icon="fa-bullhorn">
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                <h5 className="card-title text-left">
+                  <b>{tu("voting")}</b>
+                </h5>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("voter")}{': '}<AddressLink address={event.voterAddress} truncate={false} />
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("representatives")}{': '}<AddressLink address={event.candidateAddress} truncate={false} />
+              </div>
+            </div>
+          </Row>
         );
 
       case "asset-participate":
         return (
-            <Row key={event.id} icon="fa-arrow-right">
-              <AddressLink address={event.ownerAddress} truncate={false}/> bought {event.amount} {event.tokenName}
-            </Row>
+
+          <Row key={event.id} icon="fa-arrow-right">
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                <h5 className="card-title text-left">
+                  <b>{tu("asset_participation")}</b>
+                </h5>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("token_name")}{': '}<b>{event.tokenName}</b>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("bought")}{': '}{event.amount} {event.tokenName}/>
+              </div>
+            </div>
+          </Row>
         );
 
       case "asset-create":
         return (
-            <Row key={event.id} icon="fa-plus-circle">
-              <AddressLink address={event.ownerAddress} truncate={false}/> created token <TokenLink name={event.name}/>
-            </Row>
+          <Row key={event.id} icon="fa-plus-circle">
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                <h5 className="card-title text-left">
+                  <b>{tu("token_creation")}</b>
+                </h5>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("token_name")}{': '}<b><TokenLink name={event.name} /></b>
+              </div>
+              <div class="col-sm-9">
+                  {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("created_token")}{' '}<TokenLink name={event.name} />
+              </div>
+            </div>
+          </Row>
         );
 
       case "witness-create":
         return (
-            <Row key={event.id} icon="fa-user">
-              <AddressLink address={event.address} truncate={false}/> applied for Super Representative
-            </Row>
+          <Row key={event.id} icon="fa-user">
+            <div class="row">
+              <div class="col-xs-8 col-sm-6">
+                <h5 className="card-title text-left">
+                  <b>{tu("sr_canditature")}</b>
+                </h5>
+              </div>
+              <div class="col-xs-8 col-sm-6">
+                  {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("applied_for_super_representative")}
+              </div>
+            </div>
+          </Row>
         );
     }
 

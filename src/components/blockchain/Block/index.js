@@ -170,7 +170,7 @@ class Block extends React.Component {
                       <td>
                         <FormattedDate value={block.timestamp} />&nbsp;
                         <FormattedTime value={block.timestamp} />&nbsp;
-                        (<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)
+                        {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
                       </td>
                     </tr>
                   }
