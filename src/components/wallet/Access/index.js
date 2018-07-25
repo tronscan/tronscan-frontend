@@ -35,7 +35,7 @@ class Index extends Component {
         {
           id: "ledger",
           label: "Ledger",
-          icon: require("../../../images/ledger-icon.jpg"),
+          icon: require("../../../images/ledger-icon.png"),
         },
         {
           id: "trezor",
