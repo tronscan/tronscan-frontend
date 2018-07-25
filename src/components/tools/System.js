@@ -47,6 +47,7 @@ class System extends Component {
     return (
       <main className="container header-overlap">
         {modal}
+        <div class="card">
         <table className="table table-hover m-0 bg-white">
           <tbody>
           <tr>
@@ -90,6 +91,7 @@ class System extends Component {
           </tr>
           </tbody>
         </table>
+        </div>
       </main>
     );
   }
