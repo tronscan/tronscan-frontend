@@ -10,15 +10,17 @@ import {tu, t} from "../../utils/i18n";
 
 const MESSAGE_LIMIT = 30;
 
-function Row({key, icon, children, ...props}) {
+function Row({valdata, icon, children, ...props}) {
 
   return (
-      <div className="media text-muted my-1" key={key} {...props}>
-        <i className={"fa fa-lg mx-2 fa-2x " + icon}/>
-        <div className="media-body mb-0 lh-125 ">
-          {children}
+      <li className="list-group-item p-1">
+        <div className="media text-muted my-1" key={valdata} {...props}>
+          <i className={"fa fa-lg mx-2 fa-2x " + icon}/>
+          <div className="media-body mb-0 lh-125 ">
+            {children}
+          </div>
         </div>
-      </div>
+      </li>
   );
 }
 
@@ -198,13 +200,13 @@ class Live extends React.Component {
                   </h5>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("token_name")}{': '}<b>{event.tokenName}</b>
+                  {tu("token_name")}{': '}<b>{event.name}</b>
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false}/>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("bought")}{': '}{event.amount} {event.tokenName}
+                  {tu("bought")}{': '}{event.amount} {event.name}
                 </div>
               </div>
             </Row>
@@ -284,7 +286,7 @@ class Live extends React.Component {
                   </h5>
                   <form className="pt-2">
                     {
-                      filterButtons.map(filterButton => (<label className="form-check">
+                      filterButtons.map(filterButton => (<label key={filterButton.id} className="form-check">
                             <input className="form-check-input"
                                    type="checkbox"
                                    checked={filters[filterButton.id]}
@@ -313,9 +315,7 @@ class Live extends React.Component {
                       <ul className="list-group list-group-flush">
                         {
                           events.map(row => (
-                              <li className="list-group-item p-1">
-                                {this.buildRow(row)}
-                              </li>
+                                this.buildRow(row)
                           ))
                         }
                       </ul>
