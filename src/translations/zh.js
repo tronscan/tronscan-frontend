@@ -726,7 +726,6 @@ export const messages = {
   "created_token": "创建的通证",
   "token_creation": "通证创建",
   "bought": "买",
-  "asset_participation": "参与发行通证",
   "voter": "投票人",
   "voting": "投票",
   "asset": "资产",

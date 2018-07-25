@@ -748,7 +748,6 @@ export const messages = {
   "created_token": "erstellt den Token",
   "token_creation": "Token Erstellung",
   "bought": "gekauft",
-  "asset_participation": "Asset-Beteiligung",
   "voter": "Wähler",
   "voting": "Stimmabgabe",
   "asset": "Kapital",

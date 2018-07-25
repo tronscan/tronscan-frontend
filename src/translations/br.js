@@ -740,7 +740,6 @@ export const messages = {
   "created_token": "created token",
   "token_creation": "Token Creation",
   "bought": "bought",
-  "asset_participation": "Asset Participation",
   "voter": "voter",
   "voting": "voting",
   "asset": "asset",

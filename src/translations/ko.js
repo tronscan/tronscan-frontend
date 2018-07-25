@@ -736,7 +736,6 @@ export const messages = {
   "created_token": "생성된 토큰",
   "token_creation": "토큰 생성",
   "bought": "매수",
-  "asset_participation": "자산 공개 참여",
   "voter": "투표자",
   "voting": "투표",
   "asset": "자산",
