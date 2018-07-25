@@ -139,18 +139,18 @@ class Live extends React.Component {
                 </h5>
               </div>
               <div class="col-xs-8 col-sm-6">
-                     {tu("asset")}{': '}
-                     <b><FormattedNumber
-                     maximumFractionDigits={7}
-                     minimunFractionDigits={7}
-                     value={event.amount / ONE_TRX}/>
-                     {' '}{event.tokenName}</b>
+                  {tu("asset")}{': '}
+                  <b><FormattedNumber
+                  maximumFractionDigits={7}
+                  minimunFractionDigits={7}
+                  value={event.amount / ONE_TRX}/>
+                  {' '}{event.tokenName}</b>
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true} />
+                  {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true} />
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={false} />
+                  {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={false} />
               </div>
             </div>
           </Row>
@@ -166,13 +166,13 @@ class Live extends React.Component {
                 </h5>
               </div>
               <div class="col-xs-8 col-sm-6">
-                     {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
+                  {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("voter")}{': '}<AddressLink address={event.voterAddress} truncate={false} />
+                  {tu("voter")}{': '}<AddressLink address={event.voterAddress} truncate={false} />
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("representatives")}{': '}<AddressLink address={event.candidateAddress} truncate={false} />
+                  {tu("representatives")}{': '}<AddressLink address={event.candidateAddress} truncate={false} />
               </div>
             </div>
           </Row>
@@ -188,13 +188,13 @@ class Live extends React.Component {
                 </h5>
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("token_name")}{': '}<b>{event.tokenName}</b>
+                  {tu("token_name")}{': '}<b>{event.tokenName}</b>
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />
+                  {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("bought")}{': '}{event.amount} {event.tokenName}/>
+                  {tu("bought")}{': '}{event.amount} {event.tokenName}/>
               </div>
             </div>
           </Row>
@@ -213,7 +213,7 @@ class Live extends React.Component {
                   {tu("token_name")}{': '}<b><TokenLink name={event.name} /></b>
               </div>
               <div class="col-sm-9">
-                {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("created_token")}{' '}<TokenLink name={event.name} />
+                  {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("created_token")}{' '}<TokenLink name={event.name} />
               </div>
             </div>
           </Row>
@@ -229,7 +229,7 @@ class Live extends React.Component {
                 </h5>
               </div>
               <div class="col-xs-8 col-sm-6">
-                {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("applied_for_super_representative")}
+                  {tu("address")}{': '}<AddressLink address={event.ownerAddress} truncate={false} />{' '}{t("applied_for_super_representative")}
               </div>
             </div>
           </Row>
