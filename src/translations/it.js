@@ -735,15 +735,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
+  "applied_for_super_representative": "effettuata richiesta per diventare Super Rappresentante",
+  "sr_candidature": "Candidatura a Super Rappresentante",
+  "created_token": "token creato",
+  "token_creation": "Creazione Token",
+  "bought": "acquistato",
+  "voter": "elettore",
+  "voting": "voto",
   "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "token_transfer": "Trasferimento di Token",
   /*
   ##################################################################################
   #                                                                                #
