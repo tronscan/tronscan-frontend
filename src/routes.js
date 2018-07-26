@@ -32,6 +32,9 @@ import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
 import Representative from "./components/representatives/representative";
+import Contracts from "./components/blockchain/Contracts";
+import SmartContract from "./components/blockchain/Contract";
+
 import {Redirect} from "react-router-dom";
 
 export const routes = [
@@ -73,6 +76,12 @@ export const routes = [
         component: AccountsAsync,
       },
       {
+        path: "/blockchain/contracts",
+        label: "contracts",
+        icon: "fa fa-file",
+        component: Contracts,
+      },
+      {
         label: "statistics",
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
@@ -90,7 +99,7 @@ export const routes = [
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
         component: LiveAsync
-      },
+      }
     ]
   },
   {
@@ -121,6 +130,12 @@ export const routes = [
     path: "/address/:id",
     label: "address",
     component: Address,
+    showInMenu: false,
+  },
+  {
+    path: "/contract/:id",
+    label: "contract",
+    component: SmartContract,
     showInMenu: false,
   },
   {
