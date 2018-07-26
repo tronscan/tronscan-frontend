@@ -90,11 +90,11 @@ class TokenList extends Component {
                     <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
-                        <th style={{width: 100}}>{tu("name")}</th>
+                        <th className="text-nowrap">{tu("name")}</th>
                         <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
-                        <th style={{width: 150}}>{tu("total_supply")}</th>
-                        <th className="d-none d-sm-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
-                        <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("registered")}</th>
+                        <th className="d-none d-md-table-cell" >{tu("total_supply")}</th>
+                        <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
+                        <th className="text-nowrap" style={{width: 150}}>{tu("registered")}</th>
                         {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
                         {/*<th style={{width: 150}}>{tu("transactions")}</th>*/}
                       </tr>
@@ -103,11 +103,11 @@ class TokenList extends Component {
                       {
                         tokens.map((token, index) => (
                             <tr key={index}>
-                              <td><TokenLink name={token.name}/></td>
+                              <td className="text-nowrap"><TokenLink name={token.name}/></td>
                               <td className="d-none d-md-table-cell">{token.abbr}</td>
-                              <td><FormattedNumber value={token.totalSupply}/></td>
-                              <td className="d-none d-sm-table-cell"><FormattedNumber value={token.issued}/></td>
-                              <td className="d-none d-md-table-cell">
+                              <td className="d-none d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
+                              <td className="d-none d-md-table-cell"><FormattedNumber value={token.issued}/></td>
+                              <td className="text-nowrap">
                                 <FormattedDate value={token.dateCreated}/>{' '}
                                 <FormattedTime value={token.dateCreated}/>
                               </td>
