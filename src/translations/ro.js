@@ -184,8 +184,8 @@ export const messages = {
   "_of": "de ",
   "was_recorded_on": "s-a înregistrat pe ",
   "rank_real_time": "Rang (Timp real)",
-  "volume_24": "24 Hour Trading Volume",
-  "billion_usd": "Billion USD",
+  "volume_24": "Volum Tranzacționare 24 de ore",
+  "billion_usd": "Miliard USD",
   /*
   ##################################################################################
   #                                                                                #
@@ -740,15 +740,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "aplicat pentru Super Reprezentanți",
+  "sr_candidature": "Candidatură Super Reprezentanți",
+  "created_token": "token creat",
+  "token_creation": "Creare Token",
+  "bought": "cumpărat",
+  "voter": "votant",
+  "voting": "votare",
+  "asset": "bun",
+  "token_transfer": "Transfer Token",
   /*
   ##################################################################################
   #                                                                                #
