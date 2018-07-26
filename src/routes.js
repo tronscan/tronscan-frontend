@@ -1,20 +1,9 @@
 import React from "react";
 import {filter, flatten} from "lodash";
-import Accounts from "./components/Accounts";
-import Nodes from "./components/network/Nodes";
-import Representatives from "./components/network/Representatives";
-import TokensCreate from "./components/tokens/TokenCreate";
-import TokenOverview from "./components/tokens/Overview";
-import Account from "./components/account/Account";
-import Blocks from "./components/blockchain/Blocks";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
 import Address from "./components/addresses/Address";
-import Transactions from "./components/blockchain/Transactions";
-import TokenDetail from "./components/tokens/TokenDetail";
 import Home from "./components/Home";
-import Demo from "./components/Demo";
-import Live from "./components/blockchain/Live";
 import {
   MarketsAsync,
   StatisticsAsync,
@@ -22,17 +11,28 @@ import {
   TransactionViewerAsync,
   VoteLiveAsync,
   VoteOverviewAsync,
-  WalletWizardAsync
+  WalletWizardAsync,
+  RepresentativesAsync,
+  AccountAsync,
+  NodeTesterAsync,
+  SystemAsync,
+  DemoAsync,
+  FaqAsync,
+  LedgerHelpAsync,
+  NewsAsync,
+  TokenOverviewAsync,
+  TokenListAsync,
+  TokensCreateAsync,
+  AccountsAsync,
+  NodesAsync,
+  LiveAsync,
+  TokenDetailAsync
 } from "./components/async";
-import TokenList from "./components/tokens/Overview/TokenList";
-import Representative from "./components/Representative";
-import News from "./components/Pages/News";
-import NodeTester from "./components/tools/NodeTester";
-import System from "./components/tools/System";
+import Blocks from "./components/blockchain/Blocks";
+import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
+import Representative from "./components/representatives/representative";
 import {Redirect} from "react-router-dom";
-import Faq from "./components/Pages/Faq";
-import LedgerHelp from "./components/Pages/LedgerHelp";
 
 export const routes = [
   {
@@ -70,7 +70,7 @@ export const routes = [
         path: "/blockchain/accounts",
         label: "accounts",
         icon: "fa fa-users",
-        component: Accounts,
+        component: AccountsAsync,
       },
       {
         label: "statistics",
@@ -89,7 +89,7 @@ export const routes = [
         label: "live",
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
-        component: Live
+        component: LiveAsync
       },
     ]
   },
@@ -97,13 +97,13 @@ export const routes = [
     label: "nodes",
     icon: 'fa fa-server',
     path: "/nodes",
-    component: Nodes,
+    component: NodesAsync,
   },
   {
     label: "representatives",
     path: "/representatives",
     icon: "fa fa-rocket",
-    component: Representatives
+    component: RepresentativesAsync
   },
   {
     path: "/block/:id",
@@ -133,55 +133,33 @@ export const routes = [
     path: "/tokens",
     label: "tokens",
     icon: "fas fa-coins",
-    component: TokenOverview,
+    component: TokenOverviewAsync,
     routes: [
       {
         label: "overview",
         path: "/tokens/list",
         icon: 'fa fa-list',
-        component: TokenList
+        component: TokenListAsync
       },{
         label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
-        component: TokenOverview
+        component: TokenOverviewAsync
       },{
         label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
-        component: TokensCreate
+        component: TokensCreateAsync
       },
     ]
   },
   {
     path: "/token/:name",
     label: "token",
-    component: TokenDetail,
+    component: TokenDetailAsync,
     showInMenu: false,
   },
-  // {
-  //   path: "/accounts",
-  //   label: "accounts",
-  //   icon: "fa fa-users",
-  //   component: Accounts,
-  //   routes: [
-  //     {
-  //       label: "accounts",
-  //       path: "/accounts/overview",
-  //       component: Accounts
-  //     },
-  //     {
-  //       label: "statistics",
-  //       path: "/accounts/stats",
-  //       component: Statistics
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: "/receive",
-  //   label: "receive",
-  //   component: Receive
-  // },
+
   {
     path: "/markets",
     label: "markets",
@@ -205,7 +183,7 @@ export const routes = [
     path: "/account",
     label: "account",
     showInMenu: false,
-    component: Account,
+    component: AccountAsync,
   },
   {
     path: "/tools",
@@ -222,13 +200,13 @@ export const routes = [
         label: "node_tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
-        component: NodeTester,
+        component: NodeTesterAsync,
       },
       {
         path: "/tools/system",
         icon: "fa fa-database",
         label: "system",
-        component: System
+        component: SystemAsync
       },
       {
         url: "https://github.com/tronscan/tronscan-desktop/releases",
@@ -246,7 +224,7 @@ export const routes = [
     path: "/news",
     label: "news",
     icon: "fa fa-newspaper",
-    component: News
+    component: NewsAsync
   },
   {
     path: "/help",
@@ -263,12 +241,12 @@ export const routes = [
       'Tronscan',
       {
         label: "frequently_asked_questions",
-        component: Faq,
+        component: FaqAsync,
         path: "/help/faq",
       },
       {
         label: "Ledger",
-        component: LedgerHelp,
+        component: LedgerHelpAsync,
         path: "/help/ledger",
       },
       {
@@ -315,7 +293,7 @@ export const routes = [
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
-    component: Demo,
+    component: DemoAsync,
   },
   {
     path: "/",

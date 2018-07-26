@@ -14,10 +14,9 @@ import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
 import {WidgetIcon} from "../common/Icon";
-import VoteStats from "../blockchain/Statistics/VoteStats";
 import palette from "google-palette";
 import {Truncate} from "../common/text";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
 
 function VoteChange({value, arrow = false}) {
@@ -382,13 +381,6 @@ class VoteOverview extends React.Component {
     return (
       <main className="container header-overlap">
         {modal}
-        {
-          viewStats &&
-            <div className="card mb-3">
-              {/*<h5 className="card-title text-center">Stats</h5>*/}
-              <VoteStats colors={colors} />
-            </div>
-        }
         <div className="row">
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 text-center widget-icon">

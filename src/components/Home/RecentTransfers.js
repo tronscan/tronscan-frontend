@@ -9,7 +9,7 @@ import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 import TimeAgo from "react-timeago";
 import {Link} from "react-router-dom";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import {Client} from "../../services/api";
 
 

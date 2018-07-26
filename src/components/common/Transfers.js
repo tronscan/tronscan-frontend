@@ -8,7 +8,7 @@ import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
-import {withTimers} from "../utils/timing";
+import {withTimers} from "../../utils/timing";
 import {FormattedNumber} from "react-intl";
 
 class Transfers extends React.Component {

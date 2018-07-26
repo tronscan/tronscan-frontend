@@ -1,6 +1,5 @@
 import React from "react";
 import xhr from "axios/index";
-import {Link} from "react-router-dom"
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
@@ -8,22 +7,19 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
-import RichList from "./RichList";
 import {TronLoader} from "../../common/loaders";
-import PieReact from "../../common/PieChart";
-import LineReact from "../../common/LineChart";
 
 import {
   LineReactAdd,
   LineReactBlockSize,
   LineReactBlockchainSize,
   LineReactTx,
-  LineReactPrice
+  LineReactPrice,
+  LineReactVolumeUsd
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
-
   constructor() {
     super();
 
@@ -37,6 +33,7 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
+      volume:null
     };
   }
 
@@ -100,7 +97,7 @@ class Statistics extends React.Component {
   }
 
   async loadTxOverviewStats() {
-
+    let {intl} = this.props;
     let today = new Date();
     let timerToday = today.getTime();
 
@@ -112,6 +109,17 @@ class Statistics extends React.Component {
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
 
     let priceStatsTemp = data['Data'];
+
+    let volumeData = await xhr.get("https://graphs2.coinmarketcap.com/currencies/tron/");
+    let volumeUSD = volumeData.data.volume_usd
+    let volume = volumeUSD.map(function (v,i) {
+        return {
+            time:v[0],
+            volume_billion:v[1]/Math.pow(10,9),
+            volume_usd:intl.formatNumber(v[1]) + ' USD'
+        }
+    })
+
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -158,12 +166,13 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
+      volume:volume
     });
   }
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume} = this.state;
     let {intl} = this.props;
 
     return (
@@ -248,79 +257,20 @@ class Statistics extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
-          {
-            /*
-            <div className="row">
             <div className="col-md-6 mt-3">
               <div className="card">
                 <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      accounts === null ?
-                          <TronLoader/> :
-                          <PieReact style={{height: 300}} data={accounts}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      transactionValueStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'trx_transferred_past_hour', href: 'transactionValueStats'}}
-                                     style={{height: 300}} data={transactionValueStats}
-                                     keysData={['timestamp', 'value']} format={{timestamp: true}}/>
-                    }
+                  <div style={{height: 350}}>
+                      {
+                          volume === null ?
+                              <TronLoader/> :
+                              <LineReactVolumeUsd style={{height: 350}} data={volume} intl={intl}/>
+                      }
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      transactionStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'transactions_past_hour', href: 'transactionStats'}}
-                                     style={{height: 300}} data={transactionStats}
-                                     keysData={['timestamp', 'value']}
-                                     format={{timestamp: true}}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 mt-3">
-              <div className="card">
-                <div className="card-body">
-
-                  <div style={{height: 300}}>
-                    {
-                      blockStats === null ?
-                          <TronLoader/> :
-                          <LineReact message={{id: 'average_blocksize', href: 'blockStats'}} style={{height: 300}}
-                                     data={blockStats}
-                                     keysData={['timestamp', 'value']}
-                                     format={{timestamp: true}}/>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          */
-          }
         </main>
     );
   }
