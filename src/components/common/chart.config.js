@@ -281,6 +281,7 @@ module.exports = {
     },
 
     toolbox: {
+      x2:5,
       y: -5,
       feature: {
         restore: {
