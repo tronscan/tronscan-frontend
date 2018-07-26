@@ -184,6 +184,8 @@ export const messages = {
   "_of": "از",
   "was_recorded_on": "در تاریخ ثبت شد",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
   /*
   ##################################################################################
   #                                                                                #

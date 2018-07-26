@@ -184,6 +184,8 @@ export const messages = {
   "_of": "de ",
   "was_recorded_on": "s-a înregistrat pe ",
   "rank_real_time": "Rang (Timp real)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
   /*
   ##################################################################################
   #                                                                                #

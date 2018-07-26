@@ -184,6 +184,8 @@ export const messages = {
   "_of": "는",
   "was_recorded_on": "을 기록했습니다",
   "rank_real_time": "순위 (실시간)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
   /*
   ##################################################################################
   #                                                                                #

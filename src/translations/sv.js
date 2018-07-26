@@ -184,6 +184,8 @@ export const messages = {
   "_of": "av",
   "was_recorded_on": "spelades in på",
   "rank_real_time": "Rank (realtid)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
   /*
   ##################################################################################
   #                                                                                #

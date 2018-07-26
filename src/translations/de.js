@@ -184,6 +184,8 @@ export const messages = {
   "_of": "von",
   "was_recorded_on": "wurde aufgenommen am ",
   "rank_real_time": "Abstimmung (Echtzeit)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
   /*
   ##################################################################################
   #                                                                                #
