@@ -401,7 +401,7 @@ export const messages = {
   "not_enouth_trx_message": "не достаточно TRX, для покупки такого количества Токенов",
   "ends": "заканчивается через",
   "starts": "начинается через",
-  "can_be_unlocked_in": "будет разблокировано через",  
+  "can_be_unlocked_in": "будет разблокировано через",
   /*
   ##################################################################################
   #                                                                                #
@@ -461,15 +461,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "details": "подробная информация",
-  "issue_a_token": "выпустить токен",
-  "issue_token": "Выпуск токена",
-  "token_name": "Название токена",
-  "total_issued": " Общая сумма выпуска",
-  "registered": "Зарегистрирован",
-  "abbreviation": "Аббревиатура",
+  "details": "Детали",
+  "issue_a_token": "Создание Токена",
+  "issue_token": "Выпуск Токена",
+  "token_name": "название Токена",
+  "total_issued": "уже создано",
+  "registered": "зарегистрирован",
+  "abbreviation": "Аббривиатура",
   "exchange_rate": "Обменный курс",
-  "token_price": " Цена Токена",
+  "token_price": "Стоимость Токена",
   "supply_message": " Общее количество токенов, которые будут находиться в обращении",
   "description_message": " Краткое описание назначения токена",
   "url_message": " Веб-сайт, на котором пользователи могут найти дополнительные сведения о токене",
@@ -525,14 +525,14 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "highest_productivity": "Более высокая продуктивность",
-  "lowest_productivity": "Более низкая продуктивность",
+  "highest_productivity": "наибольная Продуктивность",
+  "lowest_productivity": "наименьшая Продуктивность",
   "Super Representatives": "Супер Представители",
-  "Super Representative Candidates": "Кандидаты в суперпредставителей",
-  "loading_representatives": "Загрузка представителей",
-  "address_not_super_representative": " Этот адрес не является супер представителем",
-  "unable_load_representatives_page_message": " Не удается загрузить страницу, это может произойти, если адрес является недопустимым, адрес не является представителем или представитель еще не настроил эту страницу",
-  "loading_representative": "Загрузка представителя",
+  "Super Representative Candidates": "Кандидаты в Супер Представители",
+  "loading_representatives": "посмотреть Представителя",
+  "address_not_super_representative": "Это Адрес данного Супер Представителя",
+  "unable_load_representatives_page_message": "не удается загрузить Сайт, или Ссылка не верна, или данная Страница еще не работает",
+  "loading_representative": "посмотреть Кандидата",
   /*
   ##################################################################################
   #                                                                                #
@@ -540,15 +540,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "average_price_usd": "Средняя цена в USD",
-  "average_volume_usd": "Средний объем в USD",
-  "Trade Volume": "Объем торговли в USD",
-  "rank": "Ранг",
-  "pair": "Пара",
+  "average_price_usd": "средняя цена в USD",
+  "average_volume_usd": "средний объем в USD",
+  "Trade Volume": "Объем Транзакций в USD",
+  "rank": "Рейтинг",
+  "pair": "торгующаяся пара",
   "volume": "Объем",
   "usd": "USD",
-  "average_price": "Средняя цена",
-  "click_the_chart_title_to_find_more": " Нажмите на заголовок диаграммы, чтобы узнать больше.",
+  "average_price": "средняя цена",
+  "click_the_chart_title_to_find_more": "нажмите на Заголовок Диаграммы, для просмотра полной иформации",
   /*
   ##################################################################################
   #                                                                                #
@@ -607,12 +607,12 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "node_tester_msg": "Введите IP-адрес узла для проверки соединения GRPC",
-  "node_tester_stop": " Остановить тестирование",
-  "node_tester_test": "Тестирование GRPC",
-  "node_tester_rt": "Время отклика",
-  "confirmed_block": "Подтвержденный блок",
-  "loading": "загрузка...",
+  "node_tester_msg": "задайте действующий IP testingАдресс для тестовой проверки GRPC",
+  "node_tester_stop": "Остановить Тест",
+  "node_tester_test": "Начать Тест GRPC",
+  "node_tester_rt": "Время Ответа",
+  "confirmed_block": "подвержденный Блок",
+  "loading": "Загрузка",
   "connection_node": "Connecting to Node",
   /*
   ##################################################################################
@@ -621,9 +621,9 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "no_webcam_found": " Веб-камера не найдена",
-  "trying_enable_webcam_message_0": " Ошибка при попытке включить веб камеру.",
-  "trying_enable_webcam_message_1": " Убедитесь, что разрешения камеры включены.",
+  "no_webcam_found": "Web Камера не найдена",
+  "trying_enable_webcam_message_0": "Ошибка при подключении Web Камеры",
+  "trying_enable_webcam_message_1": "Убедитесь, что прибор имеет разрешение на использование Камеры.",
   /*
   ##################################################################################
   #                                                                                #
@@ -631,13 +631,13 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "what_is_tron": "Что такое TRON",
-  "tron_explorer_api": "Tron эксплорер API",
-  "tron_architechure": "Архитектура TRON ",
-  "tron_protobuf_doc": "Документация Буферного протокола TRON ",
-  "report_an_error": " Отправить сообщение об ошибке / предложение ",
-  "frequently_asked_questions": "Часто задаваемые вопросы",
-  "telegram_updates": "После Обновления",
+  "what_is_tron": "Информация о Tron",
+  "tron_explorer_api": "Tron Explorer API",
+  "tron_architechure": "TRON Architecture",
+  "tron_protobuf_doc": "Документация Protobuf ",
+  "report_an_error": "сообщить об   Ошибке/Предложении",
+  "frequently_asked_questions": "часто задаваемые Вопросы",
+  "telegram_updates": "информация на Telegram",
   /*
   ##################################################################################
   #                                                                                #
@@ -678,8 +678,8 @@ export const messages = {
   "hash": "hash",
   "time": "Время",
   "parenthash": " Parenthash",
-  "size": "Размер",
-  "blockchain_size": "Размер блокировки",
+  "size": "последний Блок",
+  "blockchain_size": "размер Blockchain",
   /*
   ##################################################################################
   #                                                                                #
@@ -687,25 +687,25 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "ledger_guide": " руководтсво  к Ledger ",
-  "requirements": "Требования",
-  "using_ledger_steps_message_0": "Использование Ledger с Tronscan требует следующих шагов:",
-  "a": "A",
-  "install_the": "Установить ",
-  "app": "приложение",
-  "install_latest_version_message_0": "Установите последнюю версию",
-  "opening_your_wallet": "Откройте ваш кошелек",
-  "open_the_tronscan_desktop_client": "Откройте Tronscan клиент на рабочем столе",
-  "click_open_wallet_top_right": "Нажмите 'Открыть кошелек' в правом верхнем углу",
-  "choose_ledger": "Выберите Ledger",
-  "connect_unlock_ledger_with_pin": "Откройте и разблокируйте ваш девайс с PIN кодом",
-  "open_tron_app_on_ledger": "Откройте Tron приложение на вашем Ledger",
-  "ledger_connected_tronscan_message_0": "Если ваш Ledger подключен правильно тогда Tronscan покажет 'Подключено'",
-  "click_on_open_wallet": "Нажмите 'Открыть кошелек' в правом верхнем углу",
-  "redirect_to_your_wallet_message": " Вы будете перенаправлены на Ваш кошелек, и вы сможете просмотреть свой адрес Tron",
-  "using_ledger_to_sign_transactions": "Используйте ledger чтобы произвести транзакций",
-  "using_ledger_to_sign_transactions_message_0": "Убедитесь, что Ledger подключен и приложение Tron  открыто, чтобы произвести транзакцию используйте Ledger когда используете Tronscan на рабочем столе",
-  "using_ledger_to_sign_transactions_message_1": "Tronscan покажет всплывающее окно с деталями транзакции ,когда вы голосуете, отправляете TRX, меняете имя учетной записи и т. д.. ",
+  "ledger_guide": "Руководство Ledger",
+    "requirements": "Требования",
+    "using_ledger_steps_message_0": "Вы должны выполнить следующии требования, для применения Ledger на Tronscan",
+    "a": "в первыую очередь Вам нужно",
+    "install_the": "Установите",
+    "app": ",Преложение",
+    "install_latest_version_message_0": "установите последнюю версию",
+    "opening_your_wallet": "откройте Ваш wallet",
+    "open_the_tronscan_desktop_client": "откройте Tronscan Desktop",
+    "click_open_wallet_top_right": "нажмите на кнопку Открыть Wallet в верху справа",
+    "choose_ledger": "выберите раздел меню Ledger",
+    "connect_unlock_ledger_with_pin": "соединитесь и разблокируйте Ваше устройство с помощью пин кода",
+    "open_tron_app_on_ledger": "откройте приложение Tron на Вашем Ledger",
+    "ledger_connected_tronscan_message_0": "если Ваш ledger соединился с приложением TronЮ то вы увидите сообщение: соединение выполнено",
+    "click_on_open_wallet": "нажмите на кнопку «Открыть Wallet»",
+    "redirect_to_your_wallet_message": "Вы будуту перенаправлены на Ваш Wallet и сможете увидеть ваш Tron Адрес",
+    "using_ledger_to_sign_transactions": "Использование Ledger для подписи транзакций",
+    "using_ledger_to_sign_transactions_message_0": "Убидитесь, что Ledger подключен и приложение Tron открыто, во время использования Tronscan Desktop и для подписывания транзакций",
+    "using_ledger_to_sign_transactions_message_1": "Tronscan подскажет Вам о необходимости подписания транзакции через всплывающее окно с информацией о транзакции. Подписи требуются при голосовании,отправки TRX, изменения имени аккаунта и т.д.",
   /*
   ##################################################################################
   #                                                                                #
@@ -775,19 +775,19 @@ export const messages = {
   "TRX_exchange_rate": "TRX обменный курс",
   "start_time": "Время начала",
   "end_time": "Время окончания",
-  "contracts": "Контракты",
-  "search_description": "Поиск адреса, Номер кадра, транзакция Hash ,название токена",
-  "search_description1": "Поиск адреса ,блока, транзакции, токена",
-  "transaction": "Транзакция",
-  "total_addresses": "Всего адресов",
-  "daily_increment": "Дневной прирост",
-  "address_growth_chart": "Диаграмма прироста адресов",
-  "addresses_amount": "Количество адресов",
-  "past_14_days_of_transactions": "Транзакции за последние 14 дней",
-  "address_growth": "Прирост адресов",
-  "power": "Мощь",
-  "token_transfers": "Трансфер токена",
-  "website_url": "Ссылка на сайт",
+  "contracts": "Договоры"
+  "search_description": "поиск по Адресу,Блоку,Транзакции Hash, названию Токена",
+  "search_description1": "Поиск Адреса, Блока, Транзакции, Токена",
+  "transaction": "транзакция",
+  "total_addresses": "всего адресов",
+  "daily_increment": "прирост за День",
+  "address_growth_chart": "статистика адресов",
+  "addresses_amount": "Колличество адресов",  
+  "past_14_days_of_transactions": "Трнзакции за последние 14 дней",
+  "address_growth": "всего Адресов TRX",
+  "power": "Power",
+  "token_transfers": "трансфер Токена",
+  "website_url": "Website URL",
   "search": "Поиск"
 
 };
