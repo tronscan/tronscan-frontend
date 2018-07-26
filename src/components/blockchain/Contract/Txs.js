@@ -47,7 +47,7 @@ export default class Transactions extends React.Component {
       start: (page - 1) * pageSize,
       ...filter,
     });
-console.log(transactions);
+console.log(this.props);
     this.setState({
       transactions:transactions.data,
       loading: false,
