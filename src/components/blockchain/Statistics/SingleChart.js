@@ -113,7 +113,7 @@ class Statistics extends React.Component {
     let priceStatsTemp = data['Data'];
 
     let volumeData = await xhr.get("https://graphs2.coinmarketcap.com/currencies/tron/");
-    let volumeUSD = volumeData.data.volume_usd
+    let volumeUSD = volumeData.data.volume_usd;
     let volume = volumeUSD.map(function (v,i) {
         return {
             time:v[0],

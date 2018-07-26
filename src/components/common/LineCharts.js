@@ -487,7 +487,7 @@ export class LineReactVolumeUsd extends React.Component {
         this.myChart = null;
         let id = ('_' + Math.random()).replace('.', '_');
         this.state = {
-            lineId: 'ineReactvolumeUsd' + id
+            lineId: 'lineReactVolumeUsd' + id
         }
     }
 
