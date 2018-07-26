@@ -100,7 +100,7 @@ class Paging extends React.PureComponent {
           </li>
           <li className={"page-item " + (showFirst && "invisible")}>
             <PreviousButton>
-              <i className="fas fa-backward mr-sm-2" />
+              <i className="fas fa-step-backward mr-sm-2" />
               <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
             </PreviousButton>
           </li>
@@ -120,7 +120,7 @@ class Paging extends React.PureComponent {
           <li className={"page-item " + (showLast && " invisible")}>
             <NextButton>
               <span className="d-none d-lg-inline-block">{tu("next_page")}</span>
-              <i className="fas fa-forward ml-sm-2" />
+              <i className="fas fa-step-forward ml-sm-2" />
             </NextButton>
           </li>
           <li className={"page-item " + (showLast && " invisible")}>
@@ -132,11 +132,11 @@ class Paging extends React.PureComponent {
         </ul>
         {
           showPageSize &&
-            <ul className="pagination p-0 my-0 ml-1">
-              <li className="page-item">
+            <ul className="pagination  p-0 my-0 ml-1">
+              <li className="page-item input-group">
                 <a className="page-link" href="javascript:">
                   <span className="d-none d-md-inline-block">{tu("page_size")}:</span>
-                  <select className="ml-sm-2 border-0 bg-white selectForPaging"
+                  <select className="ml-sm-2 border-0 bg-white selectForPaging custom-select" id="inputGroupSelect"
                           onChange={(ev) => this.changePageSize(ev.target.value) }  value={pageSize}>
                     {
                       pageSizeOptions.map((size,index) => (
