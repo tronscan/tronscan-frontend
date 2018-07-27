@@ -281,6 +281,7 @@ module.exports = {
     },
 
     toolbox: {
+      x2:5,
       y: -5,
       feature: {
         restore: {
@@ -306,7 +307,7 @@ module.exports = {
       }],
     grid: [{
       top: 80,
-      left: '5%',
+      left: '10%',
       right: 80,
       containLabel: true
     }],

@@ -34,6 +34,15 @@ export class LineReactAdd extends React.Component {
     }
     if(source==='singleChart'){
       _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+        _config.toolbox.feature = {
+          restore: {
+              title: 'restore'
+          },
+          saveAsImage: {
+              show: true,
+              title: 'save'
+          }
+        }
     }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
@@ -41,10 +50,6 @@ export class LineReactAdd extends React.Component {
       _config.toolbox.feature = {
         restore: {
           title: 'restore'
-        },
-        saveAsImage: {
-          show: true,
-          title: 'save'
         }
       }
     }
@@ -123,6 +128,15 @@ export class LineReactTx extends React.Component {
     }
     if(source==='singleChart'){
       _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+      _config.toolbox.feature = {
+        restore: {
+            title: 'restore'
+        },
+        saveAsImage: {
+            show: true,
+            title: 'save'
+        }
+      }
     }
     if (source !== 'home') {
       _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
@@ -130,10 +144,6 @@ export class LineReactTx extends React.Component {
       _config.toolbox.feature = {
         restore: {
           title: 'restore'
-        },
-        saveAsImage: {
-          show: true,
-          title: 'save'
         }
       }
       _config.tooltip.formatter = function (datas) {
@@ -224,18 +234,22 @@ export class LineReactBlockSize extends React.Component {
     }
     if(source==='singleChart'){
       _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+        _config.toolbox.feature = {
+            saveAsImage: {
+                show: true,
+                title: 'save'
+            }
+        }
+    }else{
+        _config.toolbox.feature = {
+            restore: {
+                title: 'restore'
+            }
+        }
     }
     _config.title.text = intl.formatMessage({id: 'average_blocksize'});
     _config.title.link = '#/blockchain/stats/blockSizeStats';
-    _config.toolbox.feature = {
-      restore: {
-        title: 'restore'
-      },
-      saveAsImage: {
-        show: true,
-        title: 'save'
-      }
-    }
+
 
     _config.series[0].type = 'bar';
     _config.series[0].barWidth = '50%';
@@ -308,18 +322,22 @@ export class LineReactPrice extends React.Component {
     }
     if(source==='singleChart'){
       _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+        _config.toolbox.feature = {
+            saveAsImage: {
+                show: true,
+                title: 'save'
+            }
+        }
+    }else{
+        _config.toolbox.feature = {
+            restore: {
+                title: 'restore'
+            }
+        }
     }
     _config.title.text = intl.formatMessage({id: 'average_price'});
     _config.title.link = '#/blockchain/stats/priceStats';
-    _config.toolbox.feature = {
-      restore: {
-        title: 'restore'
-      },
-      saveAsImage: {
-        show: true,
-        title: 'save'
-      }
-    }
+
 
 
     _config.xAxis[0].data = [];
@@ -388,20 +406,28 @@ export class LineReactBlockchainSize extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    if(source==='singleChart'){
-      _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
-    }
+
     _config.title.text = intl.formatMessage({id: 'blockchain_size'});
     _config.title.link = '#/blockchain/stats/blockchainSizeStats';
-    _config.toolbox.feature = {
-      restore: {
-        title: 'restore'
-      },
-      saveAsImage: {
-        show: true,
-        title: 'save'
+      if(source==='singleChart'){
+          _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+          _config.toolbox.feature = {
+              restore: {
+                  title: 'restore'
+              },
+              saveAsImage: {
+                  show: true,
+                  title: 'save'
+              }
+          }
+      }else{
+          _config.toolbox.feature = {
+              restore: {
+                  title: 'restore'
+              }
+          }
       }
-    }
+
 
     // _config.series[0].type = 'line';
     // _config.series[0].barWidth = '50%';
@@ -450,4 +476,93 @@ export class LineReactBlockchainSize extends React.Component {
         </div>
     )
   }
+}
+
+
+export class LineReactVolumeUsd extends React.Component {
+
+    constructor(props) {
+
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineReactVolumeUsd' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewChart);
+
+        let {intl, data, source} = this.props;
+        let myChart = echarts.getInstanceByDom(document.getElementById(id));
+        if (myChart === undefined) {
+            myChart = echarts.init(document.getElementById(id));
+        }
+        _config.title.text = intl.formatMessage({id: 'volume_24'});
+        _config.title.link = '#/blockchain/stats/volumeStats';
+        if(source==='singleChart'){
+            _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+            _config.toolbox.feature = {
+                restore: {
+                    title: 'restore'
+                },
+                saveAsImage: {
+                    show: true,
+                    title: 'save'
+                }
+            }
+        }else{
+            _config.toolbox.feature = {
+                restore: {
+                    title: 'restore'
+                }
+            }
+        }
+
+
+        _config.xAxis[0].data = [];
+        _config.series[0].data = [];
+        _config.yAxis[0].name = intl.formatMessage({id: 'billion_usd'});
+        _config.tooltip.formatter = function (datas) {
+            let date = intl.formatDate((parseInt(datas[0].data.time)));
+            let time = intl.formatTime((parseInt(datas[0].data.time)));
+            return (
+                intl.formatMessage({id: 'date'}) + ' : ' + date + ' '+ time + '<br/>' +
+                intl.formatMessage({id: 'volume_24'}) + ' : ' + datas[0].data.volume_usd
+            )
+        }
+
+        if (data && data.length > 0) {
+            data.map((val) => {
+                let temp;
+                temp = {...val, value: val.volume_billion};
+                _config.xAxis[0].data.push(intl.formatDate(parseInt(val.time)));
+                _config.series[0].data.push(temp);
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+
+        myChart.setOption(_config);
+        this.myChart = myChart;
+
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+              <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
 }

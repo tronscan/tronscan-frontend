@@ -384,8 +384,7 @@ class TokenOverview extends Component {
                 {
                   ({style, isSticky}) => (
                       <div
-                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}
-                          style={{zIndex: 1000, ...style}}>
+                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}>
                         <div className="col-sm-12">
                           <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
                         </div>

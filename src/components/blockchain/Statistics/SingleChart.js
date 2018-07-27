@@ -15,7 +15,8 @@ import {
   LineReactBlockSize,
   LineReactBlockchainSize,
   LineReactTx,
-  LineReactPrice
+  LineReactPrice,
+  LineReactVolumeUsd
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
@@ -35,6 +36,7 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
+      volumeStats:null,
       summit: null
     };
   }
@@ -98,6 +100,7 @@ class Statistics extends React.Component {
   }
 
   async loadTxOverviewStats() {
+    let {intl} = this.props;
     let today = new Date();
     let timerToday = today.getTime();
 
@@ -107,8 +110,20 @@ class Statistics extends React.Component {
 
 
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
-
     let priceStatsTemp = data['Data'];
+
+
+    let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
+    let volumeUSD = volumeData.data.volume_usd
+
+    let volume = volumeUSD.map(function (v,i) {
+        return {
+            time:v[0],
+            volume_billion:v[1]/Math.pow(10,9),
+            volume_usd:intl.formatNumber(v[1]) + ' USD',
+            volume_usd_num:v[1]
+        }
+    })
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -155,6 +170,7 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
+      volumeStats:volume
     });
 
     function compare(property) {
@@ -177,8 +193,12 @@ class Statistics extends React.Component {
     let tx = cloneDeep(temp).sort(compare('totalTransaction'));
     let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
     let pr = cloneDeep(priceStatsTemp).sort(compare('close'));
+    let vo = cloneDeep(volume).sort(compare('volume_usd_num'));
     for (let p in pr) {
       pr[p] = {date: pr[p].time, ...pr[p]};
+    }
+    for (let v in vo) {
+        vo[v] = {date: vo[v].time, ...vo[v]};
     }
     let _bcs = [];
 
@@ -245,6 +265,15 @@ class Statistics extends React.Component {
           {
             date: pr[0].date * 1000,
             increment: pr[0].close
+          }],
+        volumeStats_sort: [
+          {
+              date: vo[vo.length - 1].date,
+              increment: vo[vo.length - 1].volume_usd_num
+          },
+          {
+              date: vo[0].date,
+              increment: vo[0].volume_usd_num
           }]
       }
     });
@@ -253,7 +282,7 @@ class Statistics extends React.Component {
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, summit} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts,volumeStats, summit} = this.state;
     let unit;
     if (match.params.chartName === 'blockchainSizeStats' ||
         match.params.chartName === 'addressesStats') {
@@ -389,7 +418,16 @@ class Statistics extends React.Component {
                       }
                     </div>
                   }
-
+                    {
+                        match.params.chartName === 'volumeStats' &&
+                        <div style={{height: 500}}>
+                            {
+                                volumeStats === null ?
+                                    <TronLoader/> :
+                                    <LineReactVolumeUsd source='singleChart' style={{height: 500}} data={volumeStats} intl={intl}/>
+                            }
+                        </div>
+                    }
                 </div>
               </div>
             </div>
