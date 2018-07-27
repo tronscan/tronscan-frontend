@@ -14,11 +14,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-24072018                                                  #
+  #         Update Date: 24.07.2018                                                #
   #         Language: Chinese                                                      #
-  #         Status: Second Draft                                                   #
-  #         Number of checks: 4                                                    #
+  #         Status: Approved Version                                               #
+  #         Number of checks: 5                                                    #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -98,7 +98,7 @@ export const messages = {
   "filters": "过滤器",
   "send_tokens": "发送资产",
   "desktop_explorer": "桌面浏览器",
-  "message": "Message",
+  "message": "信息",
   "wallet_address": "Wallet Address",
   /*
   ##################################################################################
@@ -175,11 +175,11 @@ export const messages = {
   "total_accounts_last_day": "截止上一天总账户数",
   "chart_tip": "拖拽数据窗口来放大或缩小",
   "link_test_server": "测试网",
-  "highest":"最大 ",
-  "lowest":"最小 ",
-  "increase":"增长 ",
-  "number":"数值 ",
-  "_of":"是 ",
+  "highest":"最大",
+  "lowest":"最小",
+  "increase":"增长",
+  "number":"数值",
+  "_of":"是",
   "was_recorded_on":"记录于 ",
   "rank_real_time":"排名 (实时) ",
   /*
@@ -610,7 +610,7 @@ export const messages = {
   "node_tester_rt": "响应时间",
   "confirmed_block": "已确认的区块",
   "loading": "加载中",
-  "connection_node": "Connecting to Node",
+  "connection_node": "链接节点",
   /*
   ##################################################################################
   #                                                                                #
@@ -714,6 +714,22 @@ export const messages = {
   "warning": "警告",
   "login_success": "登陆成功",
   "logout_success": "登出成功",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "申请成为超级代表",
+  "sr_candidature": "超级代表候选人",
+  "created_token": "创建的通证",
+  "token_creation": "通证创建",
+  "bought": "买",
+  "voter": "投票人",
+  "voting": "投票",
+  "asset": "资产",
+  "token_transfer": "通证转账",
   /*
   ##################################################################################
   #                                                                                #

@@ -44,7 +44,7 @@ export default class MarketOverview extends Component {
           ...record,
           name: (
               <span>
-              {record.name.split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i')).map((text, i) => (
+              {record.name.split(new RegExp(`(${searchText})`, 'i')).map((text, i) => (
                   text.toLowerCase() === searchText.toLowerCase()
                       ? <span key={i} className="highlight">{text}</span> : text // eslint-disable-line
               ))}
@@ -246,5 +246,3 @@ export default class MarketOverview extends Component {
     )
   }
 }
-
-

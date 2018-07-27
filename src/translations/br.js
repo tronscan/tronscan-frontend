@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-25072018                                                  #
+  #         Update Date: 25.07.2018                                                #
   #         Language: Portuguese - Brazil                                          #
   #         Status: Second Draft                                                   #
-  #         Number of checks: 4                                                    #
+  #         Number of checks: 5                                                    #
   #         Participants: gguelber, Monitor Livre                                  #
   #                                                                                #
   ##################################################################################
@@ -728,6 +728,22 @@ export const messages = {
   "warning": "Atenção",
   "login_success": "Login realizado com sucesso",
   "logout_success": "Logout realizado com sucesso",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # blockchain - Live                                                              #
+  #                                                                                #
+  ##################################################################################
+  */
+  "applied_for_super_representative": "candidatado a Super Representante",
+  "sr_candidature": "Candidatura a Super Representante",
+  "created_token": "token criado",
+  "token_creation": "Criação de Token",
+  "bought": "comprou",
+  "voter": "eleitor",
+  "voting": "votando",
+  "asset": "ativo",
+  "token_transfer": "Transferência de Token",
   /*
   ##################################################################################
   #                                                                                #

@@ -89,11 +89,11 @@ export class AddressLink extends React.PureComponent {
         <Fragment>
           <a className="dropdown-item" href="javascript:" onClick={this.renderModal}>
             <i className="fas fa-qrcode mr-2"/>
-            {tu("show_qr_code")}
+            {t("show_qr_code")}
           </a>
           <a className="dropdown-item" href="javascript:" onClick={this.renderSend}>
             <i className="fas fa-exchange-alt mr-2"/>
-            {tu("send_tokens")}
+            {t("send_tokens")}
           </a>
         </Fragment>
       </ContextMenu>
