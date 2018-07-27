@@ -14,12 +14,12 @@ import {
   LineReactBlockSize,
   LineReactBlockchainSize,
   LineReactTx,
-  LineReactPrice
+  LineReactPrice,
+  LineReactVolumeUsd
 } from "../../common/LineCharts";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
-
   constructor() {
     super();
 
@@ -33,6 +33,7 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
+      volume:null
     };
   }
 
@@ -96,7 +97,7 @@ class Statistics extends React.Component {
   }
 
   async loadTxOverviewStats() {
-
+    let {intl} = this.props;
     let today = new Date();
     let timerToday = today.getTime();
 
@@ -108,6 +109,17 @@ class Statistics extends React.Component {
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
 
     let priceStatsTemp = data['Data'];
+
+    let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
+    let volumeUSD = volumeData.data.volume_usd
+    let volume = volumeUSD.map(function (v,i) {
+        return {
+            time:v[0],
+            volume_billion:v[1]/Math.pow(10,9),
+            volume_usd:intl.formatNumber(v[1]) + ' USD'
+        }
+    })
+
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -154,12 +166,13 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
+      volume:volume
     });
   }
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume} = this.state;
     let {intl} = this.props;
 
     return (
@@ -240,6 +253,19 @@ class Statistics extends React.Component {
                           <TronLoader/> :
                           <LineReactPrice style={{height: 350}} data={priceStats} intl={intl}/>
                     }
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <div style={{height: 350}}>
+                      {
+                          volume === null ?
+                              <TronLoader/> :
+                              <LineReactVolumeUsd style={{height: 350}} data={volume} intl={intl}/>
+                      }
                   </div>
                 </div>
               </div>
