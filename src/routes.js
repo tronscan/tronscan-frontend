@@ -8,6 +8,7 @@ import {
   MarketsAsync,
   StatisticsAsync,
   SingleChartAsync,
+  VerifyContractCodeAsync,
   TransactionViewerAsync,
   VoteLiveAsync,
   VoteOverviewAsync,
@@ -208,8 +209,8 @@ export const routes = [
       {
         label: "verify_contract_code",
         path: "/tools/verify-contract-code",
-        icon: "fa fa-eye",
-        component: TransactionViewerAsync,
+        icon: "fa fa-check-square",
+        component: VerifyContractCodeAsync,
       },
       {
         label: "transaction_viewer",

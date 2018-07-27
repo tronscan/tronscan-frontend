@@ -78,6 +78,23 @@ export const WalletWizardAsync = asyncComponent({
   )
 });
 
+export const VerifyContractCodeAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./tools/VerifyContractCode"));
+            });
+          },
+          'VerifyContractCode',
+      )
+  )
+});
 
 export const TransactionViewerAsync = asyncComponent({
   LoadingComponent: () => (
@@ -407,4 +424,7 @@ export const TokenDetailAsync = asyncComponent({
       )
   )
 });
+
+
+
 
