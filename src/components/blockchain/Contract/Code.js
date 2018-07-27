@@ -15,7 +15,8 @@ export default class Code extends React.Component {
   }
 
   componentDidMount() {
-    this.ace.editor.setValue("1234");
+    this.ace.editor.setValue("");
+    this.ace.editor.clearSelection();
   }
 
   onChange = (newValue, e) => {
@@ -61,16 +62,15 @@ export default class Code extends React.Component {
                 <CopyText text={ace} className="ml-auto ml-1"/>
               </div>
               <ReactAce
-                  mode="javascript"
+                  mode="text"
                   theme="eclipse"
-                  setReadOnly={false}
+                  setReadOnly={true}
                   onChange={this.onChange}
                   style={{height: '400px'}}
                   ref={instance => {
                     this.ace = instance;
                   }}
               />
-
 
             </div>
           </div>
