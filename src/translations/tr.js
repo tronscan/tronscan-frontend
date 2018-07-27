@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-27072018                                                  #
+  #         Update Date: 27.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 6                                                    #
@@ -743,15 +743,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "Süper Temsilcilik için başvuruldu",
+  "sr_candidature": "Süper Temsilci Adaylığı",
+  "created_token": "jeton oluşturuldu",
+  "token_creation": "Jeton Oluşturma",
+  "bought": "satın alındı",
+  "voter": "oylayan",
+  "voting": "oylanıyor",
+  "asset": "varlık",
+  "token_transfer": "Jeton Aktarımı",
   /*
   ##################################################################################
   #                                                                                #
