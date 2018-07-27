@@ -112,8 +112,10 @@ class Statistics extends React.Component {
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
     let priceStatsTemp = data['Data'];
 
-    let volumeData = await xhr.get("https://graphs2.coinmarketcap.com/currencies/tron/");
-    let volumeUSD = volumeData.data.volume_usd;
+
+    let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
+    let volumeUSD = volumeData.data.volume_usd
+
     let volume = volumeUSD.map(function (v,i) {
         return {
             time:v[0],
