@@ -42,13 +42,9 @@ class Markets extends React.Component {
     let timerBirthday = birthday.getTime();
     let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
-
-
     let priceStatsTemp = data['Data'];
-
+    
     let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
-
-    console.log('volumeData',volumeData)
     let volumeUSD = volumeData.data.volume_usd
     let volume = volumeUSD.map(function (v,i) {
       return {
