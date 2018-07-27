@@ -52,7 +52,7 @@ class SmartContract extends React.Component {
 
 
     let contract = await Client.getContractOverview(id);
-console.log(contract);
+
     this.setState(prevProps => ({
       loading: false,
       contract:contract.data,
@@ -78,7 +78,7 @@ console.log(contract);
           icon: "fa fa-bullhorn",
           path: "/code",
           label: <span>{tu("code")}</span>,
-          cmp: () => <Code filter={{candidate: id}} />,
+          cmp: () => <Code filter={{address: id}} />,
         },
       }
     }));
@@ -88,7 +88,7 @@ console.log(contract);
 
     let {contract, tabs, loading} = this.state;
     let {match} = this.props;
-console.log(contract);
+
     if (!contract) {
       return null;
     }

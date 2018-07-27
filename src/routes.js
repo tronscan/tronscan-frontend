@@ -206,6 +206,12 @@ export const routes = [
     icon: "fa fa-wrench",
     routes: [
       {
+        label: "verify_contract_code",
+        path: "/tools/verify-contract-code",
+        icon: "fa fa-eye",
+        component: TransactionViewerAsync,
+      },
+      {
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
