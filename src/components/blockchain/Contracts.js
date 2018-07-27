@@ -117,7 +117,7 @@ class Contracts extends React.Component {
                                 <td className="d-none d-md-table-cell">
                                   {
                                     contract.isSetting &&
-                                    <i class="fa fa-cog"></i>
+                                    <i className="fa fa-cog"></i>
                                   }
                                 </td>
                                 <td className="d-none d-md-table-cell">

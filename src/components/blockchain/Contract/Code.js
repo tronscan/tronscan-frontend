@@ -1,5 +1,8 @@
 import React from "react";
-import {tu} from "../../../utils/i18n";
+import ReactAce from 'react-ace-editor';
+import {CopyText} from "../../common/Copy";
+import {tu, tv} from "../../../utils/i18n";
+
 
 export default class Code extends React.Component {
 
@@ -7,30 +10,72 @@ export default class Code extends React.Component {
     super(props);
 
     this.state = {
-
+      ace: ""
     };
   }
 
   componentDidMount() {
+    this.ace.editor.setValue("1234");
+  }
 
+  onChange = (newValue, e) => {
+    console.log(newValue, e);
+
+    const editor = this.ace.editor;
+    console.log(editor.getValue());
   }
 
   render() {
-
+    let {ace} = this.state;
     return (
-        <table className="table table-hover m-0 border-top-0">
-          <thead className={theadClass}>
-          <tr>
-            <th className="" style={{width: 150}}>{tu("hash")}</th>
-            <th className="">{tu("block")}</th>
-            <th className="">{tu("age")}</th>
-            <th className="">{tu("from")}</th>
-            <th className="">{tu("to")}</th>
-            <th className="">{tu("value")}</th>
-            <th className="">{tu("fee")}</th>
-          </tr>
-          </thead>
-          <tbody>
+        <main className="container">
+
+          <div className="row">
+            <div className="col-md-12 ">
+              <br/>
+              <strong><i className="fa fa-check"></i> Contract Source Code Verified (Exact match)</strong>
+              <table className="table table-hover mt-3">
+                <tbody>
+
+                <tr>
+                  <th>{tu("contract_name")}:</th>
+                  <td style={{width: '80%'}}>
+                    {"TokenERC20"}
+                  </td>
+                </tr>
+                <tr>
+                  <th>{tu("compiler_version")}:</th>
+                  <td style={{width: '80%'}}>
+                    {"v0.4.21+commit.dfe3193c"}
+                  </td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12 ">
+              <div className="d-flex mb-1">
+                <span>Contract Source Code</span>
+                <CopyText text={ace} className="ml-auto ml-1"/>
+              </div>
+              <ReactAce
+                  mode="javascript"
+                  theme="eclipse"
+                  setReadOnly={false}
+                  onChange={this.onChange}
+                  style={{height: '400px'}}
+                  ref={instance => {
+                    this.ace = instance;
+                  }}
+              />
+
+
+            </div>
+          </div>
+        </main>
+
     )
   }
 }
