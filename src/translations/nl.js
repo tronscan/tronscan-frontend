@@ -186,6 +186,9 @@ export const messages = {
   "rank_real_time": "Rank (Real time)",
   "volume_24": "24 Hour Trading Volume",
   "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",  
   /*
   ##################################################################################
   #                                                                                #

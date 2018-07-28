@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-25072018                                                  #
-  #         Update Date: 25.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
   #         Number of checks: 7                                                    #
@@ -184,8 +184,11 @@ export const messages = {
   "_of": "는",
   "was_recorded_on": "을 기록했습니다",
   "rank_real_time": "순위 (실시간)",
-  "volume_24": "24 Hour Trading Volume",
-  "billion_usd": "Billion USD",
+  "volume_24": "24시간 거래 볼륨",
+  "billion_usd": "(단위) 10억 USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #

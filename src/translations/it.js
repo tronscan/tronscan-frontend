@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-10072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -186,6 +186,9 @@ export const messages = {
   "rank_real_time": "Grado (in tempo reale)",
   "volume_24": "24 Hour Trading Volume",
   "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #

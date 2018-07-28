@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-20072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Norwegian                                                    #
   #         Status: first Version                                                  #
   #         Number of checks: 4                                                    #
@@ -186,6 +186,9 @@ export const messages = {
   "rank_real_time": "Rang (Realtid)",
   "volume_24": "24 Hour Trading Volume",
   "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #

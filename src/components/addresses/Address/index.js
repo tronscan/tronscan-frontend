@@ -46,7 +46,7 @@ class Address extends React.Component {
           label: <span>{tu("transfers")}</span>,
           cmp: () => (
               <TronLoader>
-                Loading Transfers
+                {tu("loading_transfers")}
               </TronLoader>
           )
         },
@@ -57,7 +57,7 @@ class Address extends React.Component {
           label: <span>{tu("transactions")}</span>,
           cmp: () => (
               <TronLoader>
-                Loading Transactions
+                {tu("loading_transactions")}
               </TronLoader>
           )
         },
