@@ -99,15 +99,16 @@ class Address extends React.Component {
   }
 
   async loadMedia(address) {
-    let media = await Client.getAddressMedia(address);
-
-    if (media.success) {
-      this.setState({
-        media: {
-          image: media.image,
-        }
-      });
-    }
+    try  {
+      let media = await Client.getAddressMedia(address);
+      if (media.success) {
+        this.setState({
+          media: {
+            image: media.image,
+          }
+        });
+      }
+   } catch(e) {}
   }
 
   async loadAddress(id) {
