@@ -55,7 +55,8 @@ export const messages = {
   "age": "سن",
   "bytes": "بایت",
   "MByte": "MByte",
-  "produced by": "تولید شده توسط",
+  "produced_by": "تولید شده توسط",
+  "block_reward": "Block Reward",
   "contract": "قرارداد",
   "from": "از",
   "to": "به آدرس",
@@ -438,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "تشکر برای درخواست!",
   "to_much_votes": "رای های خیلی زیاد",
   "no_trx_remaining": "تی آر ایکسی باقی نمانده است",
-  "produced_by": "تولید شده توسط {witnessAddress}",
   "show_more": "نمایش {countriesLength} بیشتر",
   "vote_guide_message": `برای رای دادن به نمایندگان ممتاز از تی آر ایکس خود استفاده کنید.
    برای هر تی آر ایکس که در حسابتان نگهداری می کنید، شما یک رای برای استفاده کردن دارید.

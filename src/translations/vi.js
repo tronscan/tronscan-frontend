@@ -55,7 +55,8 @@ export const messages = {
   "age": "tuổi của khối",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "sản xuất bởi",
+  "produced_by": "sản xuất bởi",
+  "block_reward": "Block Reward",
   "contract": "Hợp đồng",
   "from": "from",
   "to": "đến",
@@ -438,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "Cảm ơn vì đã đăng ký!",
   "to_much_votes": "Đến nhiều phiếu bầu",
   "no_trx_remaining": "Không còn TRX",
-  "produced_by": "Được sản xuất bởi {itnessAddress}",
   "show_more": "Hiển thị {countriesLength} khác",
   "vote_guide_message": `Sử dụng TRX của bạn để bỏ phiếu cho Siêu Đại Diện.
    Đối với mỗi TRX bạn giữ trong tài khoản của mình, bạn có một phiếu để sử dụng.

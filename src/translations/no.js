@@ -55,7 +55,8 @@ export const messages = {
   "age": "alder",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produsert av",
+  "produced_by": "produsert av",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "fra",
   "to": "til",
@@ -437,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "Takk for din søknad!",
   "to_much_votes": "For mange stemmer",
   "no_trx_remaining": "Ingen TRX igjen",
-  "produced_by": "Produsert av {witnessAddress}",
   "show_more": "Vis {countriesLength} Mer",
   "vote_guide_message": `Bruk dine TRX til å stemme på Super Representanter..
    For hver TRX du har på din konto har du en stemme å gi.

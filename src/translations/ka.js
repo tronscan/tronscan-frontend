@@ -55,7 +55,8 @@ export const messages = {
   "age": "ასაკი",
   "bytes": "ბიტები",
   "MByte": "MByte",
-  "produced by": "წარმოებულია ......მიერ",
+  "produced_by": "წარმოებულია მიერ",
+  "block_reward": "Block Reward",
   "contract": "კონტრაქტი",
   "from": "-დან",
   "to": "-სკენ",
@@ -432,7 +433,6 @@ export const messages = {
   "thanks_for_applying": "გმადლობთ, მიმართვისთვის!",
   "to_much_votes": "ნამეტანი ბევრი ხმა",
   "no_trx_remaining": "TRX არ დარჩა",
-  "produced_by": "წარმოებულია {witnessAddress}-მიერ",
   "show_more": "მეტი {countriesLength} ჩვენება",
   "vote_guide_message": `გამოიყენეთ თქვენი TRX სუპერ წარმომადგენლად ხმის მისაცემად.
    ყოველი მქონე TRX-სთვის თქვენს გაქვთ ერთი დასახარჯი ხმა.

@@ -55,7 +55,8 @@ export const messages = {
   "age": "vârstă",
   "bytes": "Biți",
   "MByte": "MByte",
-  "produced by": "produs de",
+  "produced_by": "produs de",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "de la",
   "to": "la",
@@ -439,7 +440,6 @@ export const messages = {
   "thanks_for_applying": "Mulțumim pentru aplicare!",
   "to_much_votes": "Prea multe voturi",
   "no_trx_remaining": "Nici un TRX rămas",
-  "produced_by": "Produs de {witnessAddress}",
   "show_more": "Arată {countriesLength} mai mult",
   "vote_guide_message": `Folosiți TRX pentru a vota pentru Super Reprezentanți.
    Pentru fiecare TRX pe care îl ţineţi în contul dumneavoastră aveţi un vot pentru a-l folosi.

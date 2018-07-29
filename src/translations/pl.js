@@ -55,7 +55,8 @@ export const messages = {
   "age": "wyprodukowany",
   "bytes": "Bytów",
   "MByte": "MByte",
-  "produced by": "wyprodukowany przez",
+  "produced_by": "wyprodukowany przez",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "od",
   "to": "do",
@@ -435,7 +436,6 @@ export const messages = {
   "thanks_for_applying": "Dziękujemy za zgłoszenie swojego uczestnictwa!",
   "to_much_votes": "Za mało głosów",
   "no_trx_remaining": "Brak TRX",
-  "produced_by": "Wyprodukowany przez {witnessAddress}",
   "show_more": "Pokaż {countriesLength} więcej",
   "vote_guide_message": `Użyj swoich TRX do oddania głosu na Super Reprezentantów.
    Za każdy TRX, który przetrzymujesz na swoim koncie otrzymujesz jeden głos do rozdysponowania.

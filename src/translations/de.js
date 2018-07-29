@@ -55,7 +55,8 @@ export const messages = {
   "age": "Zeitpunkt",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "erstellt von",
+  "produced_by": "erstellt von",
+  "block_reward": "Block Belohnung",
   "contract": "Vertrag",
   "from": "von",
   "to": "nach",
@@ -440,7 +441,6 @@ export const messages = {
   "thanks_for_applying": "Danke für Ihre Bewerbung!",
   "to_much_votes": "Sie haben die maximale Anzahl an Abstimmungen überschritten",
   "no_trx_remaining": "Kein TRX mehr vorhanden",
-  "produced_by": "Erstellt durch {witnessAddress}",
   "show_more": "Weitere {countriesLength} anzeigen.",
   "vote_guide_message": `Verwenden Sie Ihre TRX um für die Super-Repräsentanten abzustimmen.
    Für jeden TRX, den Sie auf Ihrem Konto haben, erhalten Sie eine Stimme die Sie vergeben können.

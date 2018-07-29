@@ -55,7 +55,8 @@ export const messages = {
   "age": "stáøí",
   "bytes": "Bytù",
   "MByte": "MByte",
-  "produced by": "vytvoøil",
+  "produced_by": "vytvoøil",
+  "block_reward": "Block Reward",
   "contract": "smlouva",
   "from": "z",
   "to": "do",
@@ -437,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "Dìkujeme za podání žádosti!",
   "to_much_votes": "Pøíliš mnoho hlasù",
   "no_trx_remaining": "Žádné TRX k dispozici",
-  "produced_by": "Vytvoøil {witnessAddress}",
   "show_more": "Zobrazit {countriesLength} více",
   "vote_guide_message": `Své TRX použijte k hlasování pro Super Reprezentanty.
    Za každý TRX na svém úètì máte jeden použitelný hlas.

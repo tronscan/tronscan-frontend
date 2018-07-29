@@ -55,7 +55,8 @@ export const messages = {
   "age": "지난 시간",
   "bytes": "바이트",
   "MByte": "MByte",
-  "produced by": "생성자",
+  "produced_by": "생성자",
+  "block_reward": "Block Reward",
   "contract": "컨트랙트",
   "from": "보내는 주소",
   "to": "받는 주소",
@@ -434,7 +435,6 @@ export const messages = {
   "thanks_for_applying": "신청해주셔서 감사합니다!",
   "to_much_votes": "To much votes",
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
-  "produced_by": "{witnessAddress}에 의해 생성됨",
   "show_more": "{countriesLength}개 더보기",
   "vote_guide_message": `TRX를 사용하여 슈퍼 대표(SR)에 투표하십시오.
    귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.

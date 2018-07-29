@@ -55,7 +55,8 @@ export const messages = {
   "age": "yaş",
   "bytes": "Bayt",
   "MByte": "MByte",
-  "produced by": "üreten",
+  "produced_by": "üreten",
+  "block_reward": "Block Reward",
   "contract": "Sözleşme",
   "from": "gönderen",
   "to": "alıcı",
@@ -440,7 +441,6 @@ export const messages = {
   "thanks_for_applying": "Başvurduğunuz için teşekkürler!",
   "to_much_votes": "Şu kadar oy",
   "no_trx_remaining": "TRX kalmadı",
-  "produced_by": "{witnessAddress} tarafından üretildi",
   "show_more": "Fazlasını {countriesLength} Göster",
   "vote_guide_message": `Kendi TRX'lerinizi kullanarak Süper Temsciler için oy verin.
    Hesabınızda tuttuğunuz her TRX başına harcayabileceğiniz bir adet oy bulunmaktadır.
