@@ -18,7 +18,7 @@ export const messages = {
   #         Version: 1.6-28072018                                                  #
   #         Update Date: 28.07.2018                                                #
   #         Language: Swedish                                                      #
-  #         Status: Approved Version                                               #
+  #         Status: Second Version                                                 #
   #         Number of checks: 5                                                    #
   #         Participants: joelstahre                                               #
   #                                                                                #
@@ -176,7 +176,7 @@ export const messages = {
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
   "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
-  "link_test_server": "kroppsvätskor",
+  "link_test_server": "Testnet",
   "highest": "Högsta ",
   "lowest": "Lägst ",
   "increase": "öka ",

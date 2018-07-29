@@ -186,9 +186,9 @@ export const messages = {
   "rank_real_time": "Grado (in tempo reale)",
   "volume_24": "24 Hour Trading Volume",
   "billion_usd": "Billion USD",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "loading_transfers": "Caricamento Trasferimenti",
+  "loading_transactions": "Caricamento Transazioni",
+  "loading_block": "Caricamento Blocco",
   /*
   ##################################################################################
   #                                                                                #
@@ -791,7 +791,7 @@ export const messages = {
   "end_time": "Istante finale",
   "contracts": "Contratti",
   "search_description": "Cerca Indirizzo, Altezza blocco, Hash Transazione, Nome Token",
-  "search_description1": "Cerca Indirizzo, Blocco, Transaizone, Token",
+  "search_description1": "Cerca Indirizzo, Blocco, Transazione, Token",
   "transaction": "Transazione",
   "total_addresses": "Indirizzi totali",
   "daily_increment": "Incremento giornaliero",

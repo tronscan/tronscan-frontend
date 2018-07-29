@@ -15,10 +15,10 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-26072018                                                  #
-  #         Update Date: 26.07.2018                                                #
+  #         Version: 1.6-29072018                                                  #
+  #         Update Date: 29.07.2018                                                #
   #         language: Spanish                                                      #
-  #         Status: Approved Draft                                                 #
+  #         Status: Approved Version                                               #
   #         Number of checks: 9                                                    #
   #         Participants: Jorge Castillo                                           #
   #                                                                                #
@@ -186,9 +186,9 @@ export const messages = {
   "rank_real_time": "Clasificación (Tiempo Real)",
   "volume_24": "24 Hour Trading Volume",
   "billion_usd": "Billion USD",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",  
+  "loading_transfers": "Cargando Transferencias",
+  "loading_transactions": "Cargando Transacciones",
+  "loading_block": "Cargando Bloque",
   /*
   ##################################################################################
   #                                                                                #
