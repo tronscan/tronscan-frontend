@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 28.07.2018                                                #
+  #         Version: 1.6-29072018                                                  #
+  #         Update Date: 29.07.2018                                                #
   #         Language: Polish                                                       #
   #         Status: Third Version                                                  #
   #         Number of checks: 6                                                    #
@@ -177,15 +177,15 @@ export const messages = {
   "total_accounts_last_day": "W sumie kont do wczoraj",
   "chart_tip": "Przeciągnij dane po planszy aby przybliżyć i oddalić widok",
   "link_test_server": "Testnet",
-  "highest": "Highest ",
-  "lowest": "Lowest ",
-  "increase": "increase ",
-  "number": "number ",
-  "_of": "of",
-  "was_recorded_on": "was recorded on",
-  "rank_real_time": "Rank (Real time)",
-  "volume_24": "24 Hour Trading Volume",
-  "billion_usd": "Billion USD",
+  "highest": "Najwięcej ",
+  "lowest": "Najmniej ",
+  "increase": "wzrost ",
+  "number": "liczba ",
+  "_of": "z",
+  "was_recorded_on": "została zarejestrowana",
+  "rank_real_time": "Ranking (w czasie rzeczywistym)",
+  "volume_24": "24 godzinny wolumen handlu",
+  "billion_usd": "Milard(ów) dolarów",
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
@@ -736,15 +736,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "pomyślnie zaaplikowano na Super Representanta",
+  "sr_candidature": "Kandydatura na Super Reprezentanta",
+  "created_token": "utworzono token",
+  "token_creation": "Tworzenie tokenów",
+  "bought": "zakupiono",
+  "voter": "głosujący",
+  "voting": "głosowanie",
+  "asset": "aktywo",
+  "token_transfer": "Transfer tokenów",
   /*
   ##################################################################################
   #                                                                                #
