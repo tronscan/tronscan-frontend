@@ -310,7 +310,7 @@ export const messages = {
   "vote_thanks": "Дякуємо за голосування!",
   "recent_transactions": "останні операції",
   "newest_account": "найновші облікові записи",
-  "representatives": "представноки",
+  "representatives": "представники",
   "most_votes": "більшість голосів",
   "start_end_time": "Час Початку/Кінця",
   "scan_qr_code": "Проскануйте код з QR Code сканером",
