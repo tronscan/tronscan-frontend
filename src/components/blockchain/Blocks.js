@@ -78,7 +78,7 @@ class Blocks extends React.Component {
                       <th style={{width: 100}}>{tu("height")}</th>
                       <th style={{width: 150}}>{tu("age")}</th>
                       <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
-                      <th className="d-none d-sm-table-cell">{tu("produced by")}</th>
+                      <th className="d-none d-sm-table-cell">{tu("produced_by")}</th>
                       <th className="d-none d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th>
                     </tr>
                     </thead>
