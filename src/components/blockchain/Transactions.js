@@ -34,6 +34,7 @@ class Transactions extends React.Component {
   onChange = (page, pageSize) => {
     this.loadTransactions(page, pageSize);
   };
+
   loadTransactions = async (page = 1, pageSize = 40) => {
 
     let {location, match} = this.props;
@@ -81,65 +82,65 @@ class Transactions extends React.Component {
     let {match} = this.props;
 
     return (
-        <main className="container header-overlap pb-3">
-          <div className="row">
-            <div className="col-md-12">
-              <StickyContainer>
-                <div className="card">
-                  {
-                    <Fragment>
-                      <Sticky>
-                        {
-                          ({style}) => (
-                              <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                                <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                              </div>
-                          )
-                        }
-                      </Sticky>
-                      <table className="table table-hover table-striped m-0 transactions-table">
-                        <thead className="thead-dark">
-                        <tr>
-                          <th style={{width: 130}}>#</th>
-                          <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("block")}</th>
-                          <th className="d-none d-lg-table-cell" style={{width: 125}}>{tu("created")}</th>
-                          <th className="d-none d-sm-table-cell">{tu("address")}</th>
-                          <th className="d-none d-md-table-cell" style={{width: 125}}>{tu("contract")}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                          transactions.map((trx) => (
-                              <tr key={trx.hash}>
-                                <th>
-                                  <Truncate>
-                                    <TransactionHashLink hash={trx.hash}>{trx.hash}</TransactionHashLink>
-                                  </Truncate>
-                                </th>
-                                <td className="d-none d-md-table-cell">
-                                  <BlockNumberLink number={trx.block}/>
-                                </td>
-                                <td className="text-nowrap d-none d-lg-table-cell">
-                                  <TimeAgo date={trx.timestamp}/>
-                                </td>
-                                <td className="d-none d-sm-table-cell">
-                                  <AddressLink address={trx.ownerAddress}/>
-                                </td>
-                                <td className="d-none d-md-table-cell">
-                                  {ContractTypes[trx.contractType]}
-                                </td>
-                              </tr>
-                          ))
-                        }
-                        </tbody>
-                      </table>
-                    </Fragment>
-                  }
-                </div>
-              </StickyContainer>
-            </div>
+      <main className="container header-overlap pb-3">
+        <div className="row">
+          <div className="col-md-12">
+            <StickyContainer>
+              <div className="card">
+                {
+                  <Fragment>
+                    <Sticky>
+                      {
+                        ({style}) => (
+                          <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
+                            <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
+                          </div>
+                        )
+                      }
+                    </Sticky>
+                    <table className="table table-hover table-striped m-0 transactions-table">
+                      <thead className="thead-dark">
+                      <tr>
+                        <th style={{width: 130}}>#</th>
+                        <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("block")}</th>
+                        <th className="d-none d-lg-table-cell" style={{width: 125}}>{tu("created")}</th>
+                        <th className="d-none d-sm-table-cell">{tu("address")}</th>
+                        <th className="d-none d-md-table-cell" style={{width: 125}}>{tu("contract")}</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {
+                        transactions.map((trx) => (
+                          <tr key={trx.hash}>
+                            <th>
+                              <Truncate>
+                                <TransactionHashLink hash={trx.hash}>{trx.hash}</TransactionHashLink>
+                              </Truncate>
+                            </th>
+                            <td className="d-none d-md-table-cell">
+                              <BlockNumberLink number={trx.block}/>
+                            </td>
+                            <td className="text-nowrap d-none d-lg-table-cell">
+                              <TimeAgo date={trx.timestamp}/>
+                            </td>
+                            <td className="d-none d-sm-table-cell">
+                              <AddressLink address={trx.ownerAddress}/>
+                            </td>
+                            <td className="d-none d-md-table-cell">
+                              {ContractTypes[trx.contractType]}
+                            </td>
+                          </tr>
+                        ))
+                      }
+                      </tbody>
+                    </table>
+                  </Fragment>
+                }
+              </div>
+            </StickyContainer>
           </div>
-        </main>
+        </div>
+      </main>
     )
   }
 }
