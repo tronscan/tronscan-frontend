@@ -54,7 +54,7 @@ export const messages = {
   "bytes": "字节",
   "MByte": "兆字节",
   "produced_by": "出块者",
-  "block_reward": "Block Reward",
+  "block_reward": "区块奖励",
   "contract": "合约",
   "from": "发送人",
   "to": "接收人",
@@ -185,9 +185,9 @@ export const messages = {
   "rank_real_time":"排名 (实时) ",
   "volume_24": "24小时交易量",
   "billion_usd": "十亿美元",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "loading_transfers": "正在加载转账记录",
+  "loading_transactions": "正在加载交易记录",
+  "loading_block": "正在加载区块",
   /*
   ##################################################################################
   #                                                                                #
