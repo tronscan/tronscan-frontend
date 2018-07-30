@@ -785,6 +785,8 @@ export const messages = {
   "power": "投票权",
   "token_transfers": "通证转账",
   "website_url": "网站地址",
-  "search": "搜索"
-
+  "search": "搜索",
+  "inter_tnxl":"合约内部交易",
+  "inter_a_total":"共找到",
+  "inter_transactions_found":"个内部交易"
 };

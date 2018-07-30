@@ -792,6 +792,11 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Search",
+  "inter_tnxl":"Contract Interal Txns",
+  "inter_a_total":"A Total Of",
+  "inter_transactions_found":"Internal Transactions found",
+  "parent_hash":"ParentHash",
+  "inter_type":"Type"
 
 };
