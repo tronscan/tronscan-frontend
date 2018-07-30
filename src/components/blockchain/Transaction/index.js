@@ -11,8 +11,6 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import Contract from "../../tools/TransactionViewer/Contract";
 import {ContractTypes} from "../../../utils/protocol";
-import TimeAgoI18N from "../../common/TimeAgoI18N";
-
 
 class Transaction extends React.Component {
 
