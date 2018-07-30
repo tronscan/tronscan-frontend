@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-25072018                                                  #
-  #         Update Date: 25.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Portuguese - Brazil                                          #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "idade",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produzido por",
+  "produced_by": "produzido por",
+  "block_reward": "Block Reward",
   "contract": "Contrato",
   "from": "de",
   "to": "para",
@@ -99,9 +100,9 @@ export const messages = {
   "contract_type": "Tipo de Contrato",
   "filters": "filtros",
   "send_tokens": "Enviar Tokens",
-  "desktop_explorer": "Desktop Explorer",
-  "message": "Message",
-  "wallet_address": "Wallet Address",
+  "desktop_explorer": "Explorador da Área de Trabalho",
+  "message": "Mensagem",
+  "wallet_address": "Endereço da Carteira",
   /*
   ##################################################################################
   #                                                                                #
@@ -177,13 +178,18 @@ export const messages = {
   "total_accounts_last_day": "Total de Contas no Último Dia",
   "chart_tip": "Arraste a área de foco de dados para aproximar e afastar",
   "link_test_server": "Rede de Testes",
-  "highest": "Highest ",
-  "lowest": "Lowest ",
-  "increase": "increase ",
-  "number": "number ",
-  "_of": "of",
-  "was_recorded_on": "was recorded on",
-  "rank_real_time": "Rank (Real time)",
+  "highest": "Maior ",
+  "lowest": "Menor ",
+  "increase": "aumento ",
+  "number": "número ",
+  "_of": "de",
+  "was_recorded_on": "foi registrado em",
+  "rank_real_time": "Classificação (Tempo real)",
+  "volume_24": "Volume de Negociação em 24 Horas",
+  "billion_usd": "Bilhões USD",
+  "loading_transfers": "Carregando Transferências",
+  "loading_transactions": "Carregando Transações",
+  "loading_block": "Carregando Bloco",
   /*
   ##################################################################################
   #                                                                                #
@@ -435,7 +441,6 @@ export const messages = {
   "thanks_for_applying": "Obrigado por se inscrever!",
   "to_much_votes": "Votos em excesso",
   "no_trx_remaining": "Não há TRX restante",
-  "produced_by": "Produzido por {witnessAddress}",
   "show_more": "Mostrar {countriesLength} Mais",
   "vote_guide_message": `Use seu TRX para votar nos Super Representantes.
    Para cada TRX que você possui, você tem direiro a um voto para gastar.
@@ -624,7 +629,7 @@ export const messages = {
   "node_tester_rt": "Tempo de Resposta",
   "confirmed_block": "Bloco Confirmado",
   "loading": "carregando...",
-  "connection_node": "Connecting to Node",
+  "connection_node": "Conectando ao Node",
   /*
   ##################################################################################
   #                                                                                #

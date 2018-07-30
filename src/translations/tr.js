@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 6                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "yaş",
   "bytes": "Bayt",
   "MByte": "MByte",
-  "produced by": "üreten",
+  "produced_by": "üreten",
+  "block_reward": "Block Reward",
   "contract": "Sözleşme",
   "from": "gönderen",
   "to": "alıcı",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -435,7 +441,6 @@ export const messages = {
   "thanks_for_applying": "Başvurduğunuz için teşekkürler!",
   "to_much_votes": "Şu kadar oy",
   "no_trx_remaining": "TRX kalmadı",
-  "produced_by": "{witnessAddress} tarafından üretildi",
   "show_more": "Fazlasını {countriesLength} Göster",
   "vote_guide_message": `Kendi TRX'lerinizi kullanarak Süper Temsciler için oy verin.
    Hesabınızda tuttuğunuz her TRX başına harcayabileceğiniz bir adet oy bulunmaktadır.
@@ -741,15 +746,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "Süper Temsilcilik için başvuruldu",
+  "sr_candidature": "Süper Temsilci Adaylığı",
+  "created_token": "jeton oluşturuldu",
+  "token_creation": "Jeton Oluşturma",
+  "bought": "satın alındı",
+  "voter": "oylayan",
+  "voting": "oylanıyor",
+  "asset": "varlık",
+  "token_transfer": "Jeton Aktarımı",
   /*
   ##################################################################################
   #                                                                                #

@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../utils/i18n";
+import {tu, t} from "../../utils/i18n";
 import {BarLoader} from "./loaders";
 import {connect} from "react-redux";
 import {KEY_ENTER} from "../../utils/constants";
@@ -112,7 +112,7 @@ class Paging extends React.PureComponent {
                 <span className="page-link no-hover" style={{padding: 13 }}>
                   <BarLoader/>
                 </span> :
-                  <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.onKeyDown(event)}} onBlur={(event)=>{this.onBlur(event)}} /> {tu("of")} {totalPages}</span>
+                  <span className="page-link">{tu("page")} <input className='inputForPaging' type='text' placeholder={page} onKeyDown={(event)=>{this.onKeyDown(event)}} onBlur={(event)=>{this.onBlur(event)}} /> {t("of")} {totalPages}</span>
             }
           </li>
         </ul>

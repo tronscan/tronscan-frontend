@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Ukrainian                                                    #
   #         Status: second Version                                                 #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "вік",
   "bytes": "байтів",
   "MByte": "MByte",
-  "produced by": "вироблено",
+  "produced_by": "вироблено",
+  "block_reward": "Block Reward",
   "contract": "Контакти",
   "from": "від",
   "to": "до",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -305,7 +311,7 @@ export const messages = {
   "vote_thanks": "Дякуємо за голосування!",
   "recent_transactions": "останні операції",
   "newest_account": "найновші облікові записи",
-  "representatives": "представноки",
+  "representatives": "представники",
   "most_votes": "більшість голосів",
   "start_end_time": "Час Початку/Кінця",
   "scan_qr_code": "Проскануйте код з QR Code сканером",
@@ -432,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "Дякуємо за подачу заявки!",
   "to_much_votes": "Велика кількість голосів",
   "no_trx_remaining": "TRX не залишилося",
-  "produced_by": "Вироблено {witnessAddress}",
   "show_more": "Показати {countriesLength} більше",
   "vote_guide_message": `Використовуйте TRX для голосування за Супер-Представників.
    За кожен TRX який є в обліковому записі, Ви отримуєте один голос для голосування.

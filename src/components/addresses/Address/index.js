@@ -46,7 +46,7 @@ class Address extends React.Component {
           label: <span>{tu("transfers")}</span>,
           cmp: () => (
               <TronLoader>
-                Loading Transfers
+                {tu("loading_transfers")}
               </TronLoader>
           )
         },
@@ -57,7 +57,7 @@ class Address extends React.Component {
           label: <span>{tu("transactions")}</span>,
           cmp: () => (
               <TronLoader>
-                Loading Transactions
+                {tu("loading_transactions")}
               </TronLoader>
           )
         },
@@ -99,15 +99,16 @@ class Address extends React.Component {
   }
 
   async loadMedia(address) {
-    let media = await Client.getAddressMedia(address);
-
-    if (media.success) {
-      this.setState({
-        media: {
-          image: media.image,
-        }
-      });
-    }
+    try  {
+      let media = await Client.getAddressMedia(address);
+      if (media.success) {
+        this.setState({
+          media: {
+            image: media.image,
+          }
+        });
+      }
+   } catch(e) {}
   }
 
   async loadAddress(id) {

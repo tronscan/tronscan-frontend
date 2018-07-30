@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Georgian                                                     #
   #         Status: First Version                                                  #
   #         Number of checks: 2                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "ასაკი",
   "bytes": "ბიტები",
   "MByte": "MByte",
-  "produced by": "წარმოებულია ......მიერ",
+  "produced_by": "წარმოებულია მიერ",
+  "block_reward": "Block Reward",
   "contract": "კონტრაქტი",
   "from": "-დან",
   "to": "-სკენ",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -427,7 +433,6 @@ export const messages = {
   "thanks_for_applying": "გმადლობთ, მიმართვისთვის!",
   "to_much_votes": "ნამეტანი ბევრი ხმა",
   "no_trx_remaining": "TRX არ დარჩა",
-  "produced_by": "წარმოებულია {witnessAddress}-მიერ",
   "show_more": "მეტი {countriesLength} ჩვენება",
   "vote_guide_message": `გამოიყენეთ თქვენი TRX სუპერ წარმომადგენლად ხმის მისაცემად.
    ყოველი მქონე TRX-სთვის თქვენს გაქვთ ერთი დასახარჯი ხმა.

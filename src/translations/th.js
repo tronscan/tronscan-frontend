@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Thai                                                         #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "อายุบล็อก",
   "bytes": "ขนาดไบต์",
   "MByte": "MByte",
-  "produced by": "ถูกสร้างโดย",
+  "produced_by": "ถูกสร้างโดย",
+  "block_reward": "Block Reward",
   "contract": "สัญญา",
   "from": "จาก",
   "to": "ไปยัง",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +427,6 @@ export const messages = {
   "thanks_for_applying": "ขอบคุณสำหรับการสมัครใช้งาน!",
   "to_much_votes": "คะแนนเสียงมากเกินไป",
   "no_trx_remaining": "ไม่มี TRX เหลือแล้ว",
-  "produced_by": "ผลิตโดย {witnessAddress}",
   "show_more": "แสดง {countriesLength} เพิ่มเติม",
   "vote_guide_message": "ใช้ TRX ของคุณเพื่อลงคะแนนเสียงเลือกตั้ง Super Representative คุณจะสามารถลงคะแนนเสียงเลืิอกตั้งได้หนึ่งคะแนน ต่อแต่ละ TRX ที่คุณมีในบัญชี TRX จะไม่ถูกใช้โดยตรง คุณสามารถลงคะแนนเสียงเลือกตั้งได้หลายครั้ง และได้หลายผู้สมัคร เท่าที่คุณต้องการ คะแนนสุดท้ายจะถูกนับ ณ เวลา 24 นาฬิกา และรายชื่อ Super Representative จะได้รับการปรับปรุง",
   "search_address": "ค้นหาแอดเดรส",

@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Romania                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 3                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "vârstă",
   "bytes": "Biți",
   "MByte": "MByte",
-  "produced by": "produs de",
+  "produced_by": "produs de",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "de la",
   "to": "la",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "de ",
   "was_recorded_on": "s-a înregistrat pe ",
   "rank_real_time": "Rang (Timp real)",
+  "volume_24": "Volum Tranzacționare 24 de ore",
+  "billion_usd": "Miliard USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -434,7 +440,6 @@ export const messages = {
   "thanks_for_applying": "Mulțumim pentru aplicare!",
   "to_much_votes": "Prea multe voturi",
   "no_trx_remaining": "Nici un TRX rămas",
-  "produced_by": "Produs de {witnessAddress}",
   "show_more": "Arată {countriesLength} mai mult",
   "vote_guide_message": `Folosiți TRX pentru a vota pentru Super Reprezentanți.
    Pentru fiecare TRX pe care îl ţineţi în contul dumneavoastră aveţi un vot pentru a-l folosi.
@@ -738,15 +743,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "aplicat pentru Super Reprezentanți",
+  "sr_candidature": "Candidatură Super Reprezentanți",
+  "created_token": "token creat",
+  "token_creation": "Creare Token",
+  "bought": "cumpărat",
+  "voter": "votant",
+  "voting": "votare",
+  "asset": "bun",
+  "token_transfer": "Transfer Token",
   /*
   ##################################################################################
   #                                                                                #

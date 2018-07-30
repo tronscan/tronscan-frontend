@@ -15,10 +15,10 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Swedish                                                      #
-  #         Status: Approved Version                                               #
+  #         Status: Second Version                                                 #
   #         Number of checks: 5                                                    #
   #         Participants: joelstahre                                               #
   #                                                                                #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "ålder",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "skapad av",
+  "produced_by": "skapad av",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "från",
   "to": "till",
@@ -176,7 +177,7 @@ export const messages = {
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
   "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
-  "link_test_server": "kroppsvätskor",
+  "link_test_server": "Testnet",
   "highest": "Högsta ",
   "lowest": "Lägst ",
   "increase": "öka ",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "av",
   "was_recorded_on": "spelades in på",
   "rank_real_time": "Rank (realtid)",
+  "volume_24": "24 Timme Trading Volume",
+  "billion_usd": "Miljard USD",
+  "loading_transfers": "Laddar överföringar",
+  "loading_transactions": "Laddar transaktioner",
+  "loading_block": "Laddar block",
   /*
   ##################################################################################
   #                                                                                #
@@ -429,7 +435,6 @@ export const messages = {
   "thanks_for_applying": "Tack för ansökningen",
   "to_much_votes": "För mycket röster",
   "no_trx_remaining": "Inga TRX kvar",
-  "produced_by": "Producerad av {witnessAddress}",
   "show_more": "Visa {countriesLength} Mer",
   "vote_guide_message": `Använd dina TRX för att rösta för Super Representatives.
    För varje TRX du håller i ditt konto har du en röst att spendera.

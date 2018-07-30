@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: French                                                       #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "âge",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produit par",
+  "produced_by": "produit par",
+  "block_reward": "Block Reward",
   "contract": "Contrat",
   "from": "de",
   "to": "vers",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "Merci d'avoir postulé!",
   "to_much_votes": "Trop de votes",
   "no_trx_remaining": "Pas de TRX restant",
-  "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
   "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
    Pour chaque TRX que vous détenez dans votre compte, vous avez un vote à dépenser.

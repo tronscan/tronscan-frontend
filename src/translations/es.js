@@ -15,11 +15,11 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-29072018                                                  #
+  #         Update Date: 29.07.2018                                                #
   #         language: Spanish                                                      #
-  #         Status: Approved Draft                                                 #
-  #         Number of checks: 8                                                    #
+  #         Status: Approved Version                                               #
+  #         Number of checks: 9                                                    #
   #         Participants: Jorge Castillo                                           #
   #                                                                                #
   ##################################################################################
@@ -55,7 +55,8 @@ export const messages = {
   "age": "edad",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "producido por",
+  "produced_by": "producido por",
+  "block_reward": "Block Reward",
   "contract": "Contrato",
   "from": "desde",
   "to": "para",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "de",
   "was_recorded_on": "se registró el ",
   "rank_real_time": "Clasificación (Tiempo Real)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Cargando Transferencias",
+  "loading_transactions": "Cargando Transacciones",
+  "loading_block": "Cargando Bloque",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "Gracias por presentarse!",
   "to_much_votes": "Demasiados votos",
   "no_trx_remaining": "No quedan TRX",
-  "produced_by": "Producido por {witnessAddress}",
   "show_more": "Mostrar {countriesLength} más",
   "vote_guide_message": `Utilice sus TRX para votar a los Súper Representantes.
    Puede votar tantas veces como TRX tenga disponibles en su cuenta.
@@ -692,7 +697,7 @@ export const messages = {
   "time": "tiempo",
   "parenthash": "parent hash",
   "size": "tamaño",
-  "blockchain_size": "tamaño de cadena",
+  "blockchain_size": "Tamaño de cadena",
   /*
   ##################################################################################
   #                                                                                #
@@ -737,15 +742,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "solicitó ser Súper Representante",
+  "sr_candidature": "Candidatura a Súper Representante",
+  "created_token": "token creado",
+  "token_creation": "Creación de Token",
+  "bought": "compró",
+  "voter": "votante",
+  "voting": "votación",
+  "asset": "activo",
+  "token_transfer": "Transferencia Token",
   /*
   ##################################################################################
   #                                                                                #

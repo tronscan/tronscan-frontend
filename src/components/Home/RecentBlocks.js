@@ -62,11 +62,11 @@ class RecentBlocks extends Component {
                             <i className="fas fa-exchange-alt mr-1"/>
                             <Link to={`/blockchain/transactions?block=${block.number}`}>
                               <FormattedNumber value={block.nrOfTrx}/>{' '}
-                              transactions
+                              {tu("transactions")}
                             </Link>
                           </div>
                           <div className="text-gray-dark break-word">
-                            Produced by{' '}
+                            {tu("produced_by")}{' '}
                             <AddressLink address={block.witnessAddress} truncate={false}>
                               {block.witnessAddress.substr(0, 12)}...
                             </AddressLink>
@@ -78,7 +78,7 @@ class RecentBlocks extends Component {
                             <TimeAgo date={block.timestamp}/>
                           </div>
                           <div className="text-gray-dark break-word mt-auto">
-                            Block Reward: <TRXPrice amount={32}/>
+                            {tu("block_reward")}: <TRXPrice amount={32}/>
                           </div>
                         </div>
                       </div>

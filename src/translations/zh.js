@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-24072018                                                  #
-  #         Update Date: 24.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -53,7 +53,8 @@ export const messages = {
   "age": "年龄",
   "bytes": "字节",
   "MByte": "兆字节",
-  "produced by": "出块者",
+  "produced_by": "出块者",
+  "block_reward": "Block Reward",
   "contract": "合约",
   "from": "发送人",
   "to": "接收人",
@@ -182,6 +183,11 @@ export const messages = {
   "_of":"是",
   "was_recorded_on":"记录于 ",
   "rank_real_time":"排名 (实时) ",
+  "volume_24": "24小时交易量",
+  "billion_usd": "十亿美元",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -419,7 +425,6 @@ export const messages = {
   "thanks_for_applying": "感谢您的申请！",
   "to_much_votes": "票数过多",
   "no_trx_remaining": "无TRX余额",
-  "produced_by": "出块者：{超级代表地址}",
   "show_more": "展示{国家长度} 更多内容",
   "vote_guide_message": `使用TRX为超级代表投票。
    每一个TRX享有一次投票机会。

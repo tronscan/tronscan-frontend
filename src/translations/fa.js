@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-21072018                                                  #
-  #         Update Date: 21.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Persian                                                      #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "سن",
   "bytes": "بایت",
   "MByte": "MByte",
-  "produced by": "تولید شده توسط",
+  "produced_by": "تولید شده توسط",
+  "block_reward": "Block Reward",
   "contract": "قرارداد",
   "from": "از",
   "to": "به آدرس",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "از",
   "was_recorded_on": "در تاریخ ثبت شد",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "تشکر برای درخواست!",
   "to_much_votes": "رای های خیلی زیاد",
   "no_trx_remaining": "تی آر ایکسی باقی نمانده است",
-  "produced_by": "تولید شده توسط {witnessAddress}",
   "show_more": "نمایش {countriesLength} بیشتر",
   "vote_guide_message": `برای رای دادن به نمایندگان ممتاز از تی آر ایکس خود استفاده کنید.
    برای هر تی آر ایکس که در حسابتان نگهداری می کنید، شما یک رای برای استفاده کردن دارید.

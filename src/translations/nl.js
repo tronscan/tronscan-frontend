@@ -55,7 +55,8 @@ export const messages = {
   "age": "age",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "geproduceerd door",
+  "produced_by": "geproduceerd door",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "van",
   "to": "naar",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "opgenomen op",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -423,7 +429,6 @@ export const messages = {
   "thanks_for_applying": "Hartelijk dank voor uw voordracht!",
   "to_much_votes": "U hebt het maximum aantal stemmen overschreden",
   "no_trx_remaining": "Geen TRX meer beschikbaar",
-  "produced_by": "Gemaakt door {witnessAddress}",
   "show_more": "Toon {countriesLength} meer",
   "vote_guide_message": `Gebruik uw TRX om op de super-vertegenwoordigers te stemmen.
    Voor elke TRX die u in uw account heeft, ontvangt u een stem die u kunt toewijzen.

@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-13072018                                                  #
-  #         Update Date: 13.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 2807.2018                                                 #
   #         Language: Arabic                                                       #
   #         Status: First Version                                                  #
   #         Number of checks: 3                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "العمر",
   "bytes": "بايت",
   "MByte": "MByte",
-  "produced by": "إنتاج",
+  "produced_by": "إنتاج",
+  "block_reward": "Block Reward",
   "contract": "العقد",
   "from": "من",
   "to": "إلى",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +427,6 @@ export const messages = {
   "thanks_for_applying": "شكرا لتقديم الطلب!",
   "to_much_votes": "عدد الأصوات مفرط",
   "no_trx_remaining": "لم يتبق تي ار اكس",
-  "produced_by": "أنتج عبر {witnessAddress}",
   "show_more": "إظهار {countriesLength} اضافي",
   "vote_guide_message": "استخدم الـ تي ار اكس  لديك للتصويت للممثلين المميزين. لديك صوت واحد مقابل كل واحدة من الـ تي ار اكس في حسابك الخاص. لن تستهلك الـ تي ار اكس. يمكنك التصويت مرات متعددة و لممثلين مختلفين كما شئت. سوف يتم تدوين الأصوات النهائية عند الساعة 24 ويتم تحديث قائمة المندوبين.",
   "search_address": "ابحث عن عنوان",

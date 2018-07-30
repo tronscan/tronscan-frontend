@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-10072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Italian                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "età",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "prodotto da",
+  "produced_by": "prodotto da",
+  "block_reward": "Block Reward",
   "contract": "Contratto",
   "from": "da",
   "to": "a",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "di",
   "was_recorded_on": "è stato registrato il",
   "rank_real_time": "Grado (in tempo reale)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Caricamento Trasferimenti",
+  "loading_transactions": "Caricamento Transazioni",
+  "loading_block": "Caricamento Blocco",
   /*
   ##################################################################################
   #                                                                                #
@@ -430,7 +436,6 @@ export const messages = {
   "thanks_for_applying": "Grazie per la partecipazione!",
   "to_much_votes": "Troppi voti",
   "no_trx_remaining": "Nessun TRX rimasto",
-  "produced_by": "Prodotto da {witnessAddress}",
   "show_more": "Visualizza altri {countriesLength}",
   "vote_guide_message": `Usa i tuoi TRX per votare i Super Rappresentanti.
    È possibile dare un voto per ogni TRX posseduto.
@@ -733,15 +738,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
+  "applied_for_super_representative": "effettuata richiesta per diventare Super Rappresentante",
+  "sr_candidature": "Candidatura a Super Rappresentante",
+  "created_token": "token creato",
+  "token_creation": "Creazione Token",
+  "bought": "acquistato",
+  "voter": "elettore",
+  "voting": "voto",
   "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "token_transfer": "Trasferimento di Token",
   /*
   ##################################################################################
   #                                                                                #
@@ -786,7 +791,7 @@ export const messages = {
   "end_time": "Istante finale",
   "contracts": "Contratti",
   "search_description": "Cerca Indirizzo, Altezza blocco, Hash Transazione, Nome Token",
-  "search_description1": "Cerca Indirizzo, Blocco, Transaizone, Token",
+  "search_description1": "Cerca Indirizzo, Blocco, Transazione, Token",
   "transaction": "Transazione",
   "total_addresses": "Indirizzi totali",
   "daily_increment": "Incremento giornaliero",

@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: English                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 4                                                    #
@@ -54,7 +54,8 @@ export const messages = {
   "age": "age",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produced by",
+  "produced_by": "produced by",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "from",
   "to": "to",
@@ -183,6 +184,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -422,7 +428,6 @@ export const messages = {
   "thanks_for_applying": "Thanks for applying!",
   "to_much_votes": "To many votes",
   "no_trx_remaining": "No TRX remaining",
-  "produced_by": "Produced by {witnessAddress}",
   "show_more": "Show {countriesLength} More",
   "vote_guide_message": `Use your TRX to vote for Super Representatives.
    For every TRX you hold in your account you have one vote to spend.

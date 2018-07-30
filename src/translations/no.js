@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-20072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Norwegian                                                    #
   #         Status: first Version                                                  #
   #         Number of checks: 4                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "alder",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produsert av",
+  "produced_by": "produsert av",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "fra",
   "to": "til",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "av",
   "was_recorded_on": "ble registrert på",
   "rank_real_time": "Rang (Realtid)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -432,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "Takk for din søknad!",
   "to_much_votes": "For mange stemmer",
   "no_trx_remaining": "Ingen TRX igjen",
-  "produced_by": "Produsert av {witnessAddress}",
   "show_more": "Vis {countriesLength} Mer",
   "vote_guide_message": `Bruk dine TRX til å stemme på Super Representanter..
    For hver TRX du har på din konto har du en stemme å gi.

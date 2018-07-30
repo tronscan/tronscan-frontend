@@ -82,26 +82,26 @@ export default class Transactions extends React.Component {
         <table className="table table-hover m-0 border-top-0">
           <thead className={theadClass}>
           <tr>
-            <th className="" style={{width: 125}}>{tu("age")}</th>
-            <th className="">{tu("hash")}</th>
-            <th className="" style={{width: 125}}>{tu("contract_type")}</th>
+            <th className="d-none d-md-table-cell" style={{width: 125}}>{tu("age")}</th>
+            <th className="text-nowrap">{tu("hash")}</th>
+            <th className="text-nowrap text-right" style={{width: 125}}>{tu("contract_type")}</th>
           </tr>
           </thead>
           <tbody>
           {
             transactions.map((transaction) => (
               <tr key={transaction.hash}>
-                <td className="text-nowrap">
+                <td className="d-none d-md-table-cell">
                   <TimeAgo date={transaction.timestamp}/>
                 </td>
-                <td className="">
+                <td className="text-nowrap">
                   <Truncate>
                     <TransactionHashLink hash={transaction.hash}>
                       {transaction.hash}
                     </TransactionHashLink>
                   </Truncate>
                 </td>
-                <td className="">
+                <td className="text-nowrap text-right">
                   {ContractTypes[transaction.contractType]}
                 </td>
               </tr>

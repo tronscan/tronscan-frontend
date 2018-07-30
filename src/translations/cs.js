@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Czech                                                        #
   #         Status: First Version                                                  #
   #         Number of checks: 4                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "stáøí",
   "bytes": "Bytù",
   "MByte": "MByte",
-  "produced by": "vytvoøil",
+  "produced_by": "vytvoøil",
+  "block_reward": "Block Reward",
   "contract": "smlouva",
   "from": "z",
   "to": "do",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -432,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "Dìkujeme za podání žádosti!",
   "to_much_votes": "Pøíliš mnoho hlasù",
   "no_trx_remaining": "Žádné TRX k dispozici",
-  "produced_by": "Vytvoøil {witnessAddress}",
   "show_more": "Zobrazit {countriesLength} více",
   "vote_guide_message": `Své TRX použijte k hlasování pro Super Reprezentanty.
    Za každý TRX na svém úètì máte jeden použitelný hlas.

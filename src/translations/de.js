@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-24072018                                                  #
-  #         Update Date: 24.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "Zeitpunkt",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "erstellt von",
+  "produced_by": "erstellt von",
+  "block_reward": "Block Belohnung",
   "contract": "Vertrag",
   "from": "von",
   "to": "nach",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "von",
   "was_recorded_on": "wurde aufgenommen am ",
   "rank_real_time": "Abstimmung (Echtzeit)",
+  "volume_24": "24 Stunden Handelsvolumen",
+  "billion_usd": "Milliarden USD",
+  "loading_transfers": "Laden der Übertragungen",
+  "loading_transactions": "Laden der Transaktionen",
+  "loading_block": "Laden vom Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -435,7 +441,6 @@ export const messages = {
   "thanks_for_applying": "Danke für Ihre Bewerbung!",
   "to_much_votes": "Sie haben die maximale Anzahl an Abstimmungen überschritten",
   "no_trx_remaining": "Kein TRX mehr vorhanden",
-  "produced_by": "Erstellt durch {witnessAddress}",
   "show_more": "Weitere {countriesLength} anzeigen.",
   "vote_guide_message": `Verwenden Sie Ihre TRX um für die Super-Repräsentanten abzustimmen.
    Für jeden TRX, den Sie auf Ihrem Konto haben, erhalten Sie eine Stimme die Sie vergeben können.

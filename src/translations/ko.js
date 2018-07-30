@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-25072018                                                  #
-  #         Update Date: 25.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
   #         Number of checks: 7                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "지난 시간",
   "bytes": "바이트",
   "MByte": "MByte",
-  "produced by": "생성자",
+  "produced_by": "생성자",
+  "block_reward": "Block Reward",
   "contract": "컨트랙트",
   "from": "보내는 주소",
   "to": "받는 주소",
@@ -184,6 +185,11 @@ export const messages = {
   "_of": "는",
   "was_recorded_on": "을 기록했습니다",
   "rank_real_time": "순위 (실시간)",
+  "volume_24": "24시간 거래 볼륨",
+  "billion_usd": "(단위) 10억 USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
   /*
   ##################################################################################
   #                                                                                #
@@ -429,7 +435,6 @@ export const messages = {
   "thanks_for_applying": "신청해주셔서 감사합니다!",
   "to_much_votes": "To much votes",
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
-  "produced_by": "{witnessAddress}에 의해 생성됨",
   "show_more": "{countriesLength}개 더보기",
   "vote_guide_message": `TRX를 사용하여 슈퍼 대표(SR)에 투표하십시오.
    귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.
