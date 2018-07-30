@@ -75,31 +75,32 @@ class Transfers extends React.Component {
           <div className="p-3 text-center">{tu("no_transfers")}</div>
         );
       }
+
       return <EmptyState />;
     }
 
     return (
       <StickyContainer>
         {
-            <Sticky>
-              {
-                ({style}) => (
-                  <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                    <Paging onChange={this.onChange} total={total} loading={loading} pageSize={pageSize} page={page}/>
-                  </div>
-                )
-              }
-            </Sticky>
+          <Sticky>
+            {
+              ({style}) => (
+                <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
+                  <Paging onChange={this.onChange} total={total} loading={loading} pageSize={pageSize} page={page}/>
+                </div>
+              )
+            }
+          </Sticky>
         }
         <table className="table table-hover m-0 border-top-0">
           <thead className={theadClass}>
-            <tr>
-              <th className="d-none d-lg-table-cell" style={{width: 125 }}>{tu("age")}</th>
-              <th className="d-none d-lg-table-cell" style={{width: 125 }}>{tu("hash")}</th>
-              <th className="d-none d-md-table-cell">{tu("from")}</th>
-              <th>{tu("to")}</th>
-              <th className="text-right" style={{width: 125 }}>{tu("amount")}</th>
-            </tr>
+          <tr>
+            <th className="d-none d-lg-table-cell" style={{width: 125 }}>{tu("age")}</th>
+            <th className="d-none d-lg-table-cell" style={{width: 125 }}>{tu("hash")}</th>
+            <th className="d-none d-md-table-cell">{tu("from")}</th>
+            <th>{tu("to")}</th>
+            <th className="text-right" style={{width: 125 }}>{tu("amount")}</th>
+          </tr>
           </thead>
           <tbody>
           {

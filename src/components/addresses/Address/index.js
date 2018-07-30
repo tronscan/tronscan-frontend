@@ -9,13 +9,13 @@ import {ONE_TRX} from "../../../constants";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {TronLoader} from "../../common/loaders";
-import Blocks from "./Blocks";
 import Transactions from "../../common/Transactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy} from "lodash";
+import Blocks from "../../common/Blocks";
 
 class Address extends React.Component {
 
@@ -128,7 +128,7 @@ class Address extends React.Component {
 
     let stats = await Client.getAddressStats(id);
 
-    let {blocks, total} = await Client.getBlocks({
+    let {total: totalProducedBlocks} = await Client.getBlocks({
       producer: id,
       limit: 1,
     });
@@ -136,7 +136,7 @@ class Address extends React.Component {
     this.setState(prevProps => ({
       loading: false,
       address,
-      blocksProduced: total,
+      blocksProduced: totalProducedBlocks,
       stats,
       tabs: {
         ...prevProps.tabs,
@@ -166,7 +166,7 @@ class Address extends React.Component {
           icon: "fa fa-cube",
           path: "/blocks",
           label: <span>{tu("produced_blocks")}</span>,
-          cmp: () => <Blocks blocks={blocks}/>,
+          cmp: () => <Blocks filter={{producer: id}} />,
         },
         votes: {
           id: "votes",
@@ -174,8 +174,8 @@ class Address extends React.Component {
           path: "/votes",
           label: <span>{tu("votes")}</span>,
           cmp: () => <Votes
-              filter={{voter: id}}
-              showVoter={false}
+            filter={{voter: id}}
+            showVoter={false}
           />,
         },
         voters: {
@@ -184,8 +184,8 @@ class Address extends React.Component {
           path: "/voters",
           label: <span>{tu("voters")}</span>,
           cmp: () => <Votes
-              filter={{candidate: id}}
-              showCandidate={false}
+            filter={{candidate: id}}
+            showCandidate={false}
           />,
         },
       }
@@ -236,170 +236,170 @@ class Address extends React.Component {
     }
 
     return (
-        <main className="container header-overlap">
-          <div className="row">
-            <div className="col-md-12 ">
-              {
-                loading ? <div className="card">
-                      <TronLoader>
-                        {tu("loading_address")} {address.address}
-                      </TronLoader>
-                    </div> :
-                    <Fragment>
-                      <div className="card">
-                        {
-                          address.representative.enabled && !producer &&
-                          <div className="card-header text-center bg-info font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          address.representative.enabled && producer &&
-                          <div className="card-header text-center bg-danger font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          media &&
-                          <div className="card-body">
-                            <div className="text-center">
-                              <img style={{maxWidth: '100%'}} src={media.image}/>
-                            </div>
-                          </div>
-                        }
-                        <div className="row">
-                          <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
-                            <table className="table m-0">
-                              <tbody>
+      <main className="container header-overlap">
+        <div className="row">
+          <div className="col-md-12 ">
+            {
+              loading ? <div className="card">
+                  <TronLoader>
+                    {tu("loading_address")} {address.address}
+                  </TronLoader>
+                </div> :
+                <Fragment>
+                  <div className="card">
+                    {
+                      address.representative.enabled && !producer &&
+                      <div className="card-header text-center bg-info font-weight-bold text-white">
+                        {tu("representatives")}
+                      </div>
+                    }
+                    {
+                      address.representative.enabled && producer &&
+                      <div className="card-header text-center bg-danger font-weight-bold text-white">
+                        {tu("representatives")}
+                      </div>
+                    }
+                    {
+                      media &&
+                      <div className="card-body">
+                        <div className="text-center">
+                          <img style={{maxWidth: '100%'}} src={media.image}/>
+                        </div>
+                      </div>
+                    }
+                    <div className="row">
+                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
+                        <table className="table m-0">
+                          <tbody>
+                          {
+                            rank &&
+                            <tr>
+                              <th>{tu("rank_real_time")}:</th>
+                              <td>
+                                {rank}
+                              </td>
+                            </tr>
+                          }
+                          {
+                            address.representative.enabled &&
+                            <Fragment>
                               {
-                                rank &&
+                                address.name &&
                                 <tr>
-                                  <th>{tu("rank_real_time")}:</th>
+                                  <th>{tu("name")}:</th>
                                   <td>
-                                    {rank}
+                                    {address.name}
                                   </td>
                                 </tr>
                               }
-                              {
-                                address.representative.enabled &&
-                                <Fragment>
-                                  {
-                                    address.name &&
-                                    <tr>
-                                      <th>{tu("name")}:</th>
-                                      <td>
-                                        {address.name}
-                                      </td>
-                                    </tr>
-                                  }
-                                  <tr>
-                                    <th>{tu("website")}:</th>
-                                    <td>
-                                      <ExternalLink url={address.representative.url}/>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th>{tu("blocks_produced")}:</th>
-                                    <td>
-                                      <FormattedNumber value={blocksProduced}/>
-                                    </td>
-                                  </tr>
-                                </Fragment>
-                              }
                               <tr>
-                                <th>{tu("address")}:</th>
+                                <th>{tu("website")}:</th>
                                 <td>
-                                  <AddressLink address={address.address} includeCopy={true}/>
+                                  <ExternalLink url={address.representative.url}/>
                                 </td>
                               </tr>
+                              <tr>
+                                <th>{tu("blocks_produced")}:</th>
+                                <td>
+                                  <FormattedNumber value={blocksProduced}/>
+                                </td>
+                              </tr>
+                            </Fragment>
+                          }
+                          <tr>
+                            <th>{tu("address")}:</th>
+                            <td>
+                              <AddressLink address={address.address} includeCopy={true}/>
+                            </td>
+                          </tr>
 
-                              <tr>
-                                <th>{tu("transfers")}:</th>
-                                <td>
-                                  <i className="fa fa-arrow-down text-success"/>&nbsp;
-                                  <span>{stats.transactions_in}</span>&nbsp;
-                                  <i className="fa fa-arrow-up  text-danger"/>&nbsp;
-                                  <span>{stats.transactions_out}</span>&nbsp;
-                                </td>
-                              </tr>
-                              <tr>
-                                <th>{tu("balance")}:</th>
-                                <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <TRXPrice amount={address.balance / ONE_TRX}/>
-                                    </li>
-                                  </ul>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th>{tu("tron_power")}:</th>
-                                <td>
-                                  <ul className="list-unstyled m-0">
-                                    <li>
-                                      <FormattedNumber value={address.frozen.total / ONE_TRX}/>
-                                    </li>
-                                  </ul>
-                                </td>
-                              </tr>
-                              {
-                                totalVotes &&
-                                <tr>
-                                  <th>{tu("total_votes")}:</th>
-                                  <td>
-                                    <ul className="list-unstyled m-0">
-                                      <li>
-                                        <FormattedNumber value={totalVotes}/>
-                                      </li>
-                                    </ul>
-                                  </td>
-                                </tr>
-                              }
-                              </tbody>
-                            </table>
-                          </div>
-                          <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
-                            {
-                              address.representative.enabled &&
-                              <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
-                            }
-                            {address.representative.enabled &&
-                            <PieReact style={{height: 340}} data={votes}/>
-                            }
-                          </div>
-                        </div>
-                      </div>
-                      <div className="card mt-3">
-                        <div className="card-header">
-                          <ul className="nav nav-tabs card-header-tabs">
-                            {
-                              Object.values(tabs).map(tab => (
-                                  <li key={tab.id} className="nav-item">
-                                    <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
-                                      <i className={tab.icon + " mr-2"}/>
-                                      {tab.label}
-                                    </NavLink>
+                          <tr>
+                            <th>{tu("transfers")}:</th>
+                            <td>
+                              <i className="fa fa-arrow-down text-success"/>&nbsp;
+                              <span>{stats.transactions_in}</span>&nbsp;
+                              <i className="fa fa-arrow-up  text-danger"/>&nbsp;
+                              <span>{stats.transactions_out}</span>&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("balance")}:</th>
+                            <td>
+                              <ul className="list-unstyled m-0">
+                                <li>
+                                  <TRXPrice amount={address.balance / ONE_TRX}/>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("tron_power")}:</th>
+                            <td>
+                              <ul className="list-unstyled m-0">
+                                <li>
+                                  <FormattedNumber value={address.frozen.total / ONE_TRX}/>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          {
+                            totalVotes &&
+                            <tr>
+                              <th>{tu("total_votes")}:</th>
+                              <td>
+                                <ul className="list-unstyled m-0">
+                                  <li>
+                                    <FormattedNumber value={totalVotes}/>
                                   </li>
-                              ))
-                            }
-                          </ul>
-                        </div>
-                        <div className="card-body p-0">
-                          <Switch>
-                            {
-                              Object.values(tabs).map(tab => (
-                                  <Route key={tab.id} exact path={match.url + tab.path}
-                                         render={(props) => (<tab.cmp block={address}/>)}/>
-                              ))
-                            }
-                          </Switch>
-                        </div>
+                                </ul>
+                              </td>
+                            </tr>
+                          }
+                          </tbody>
+                        </table>
                       </div>
-                    </Fragment>
-              }
-            </div>
+                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
+                        {
+                          address.representative.enabled &&
+                          <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
+                        }
+                        {address.representative.enabled &&
+                        <PieReact style={{height: 340}} data={votes}/>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card mt-3">
+                    <div className="card-header">
+                      <ul className="nav nav-tabs card-header-tabs">
+                        {
+                          Object.values(tabs).map(tab => (
+                            <li key={tab.id} className="nav-item">
+                              <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
+                                <i className={tab.icon + " mr-2"}/>
+                                {tab.label}
+                              </NavLink>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                    <div className="card-body p-0">
+                      <Switch>
+                        {
+                          Object.values(tabs).map(tab => (
+                            <Route key={tab.id} exact path={match.url + tab.path}
+                                   render={(props) => (<tab.cmp block={address}/>)}/>
+                          ))
+                        }
+                      </Switch>
+                    </div>
+                  </div>
+                </Fragment>
+            }
           </div>
-        </main>
+        </div>
+      </main>
     )
   }
 }
