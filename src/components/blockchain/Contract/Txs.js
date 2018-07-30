@@ -37,7 +37,7 @@ export default class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 40) => {
 
-    let {filter} = this.props;
+    let {filter, isInternal = false} = this.props;
 
     this.setState({loading: true});
 
@@ -47,9 +47,9 @@ export default class Transactions extends React.Component {
       start: (page - 1) * pageSize,
       ...filter,
     });
-console.log(this.props);
+
     this.setState({
-      transactions:transactions.data,
+      transactions: transactions.data,
       loading: false,
     });
   };
@@ -57,7 +57,7 @@ console.log(this.props);
   render() {
 
     let {transactions, total, loading, EmptyState = null} = this.state;
-    let {theadClass = "thead-dark", pagingProps = {}} = this.props;
+    let {theadClass = "thead-dark", pagingProps = {}, isInternal = false} = this.props;
 
     if (!loading && transactions.length === 0) {
       if (!EmptyState) {
@@ -82,13 +82,20 @@ console.log(this.props);
           <table className="table table-hover m-0 border-top-0">
             <thead className={theadClass}>
             <tr>
-              <th className="" style={{width: 150}}>{tu("hash")}</th>
+              {
+                !isInternal && <th className="" style={{width: 150}}>{tu("hash")}</th>
+              }
+              {
+                isInternal && <th className="" style={{width: 150}}>{tu("parenthash")}</th>
+              }
               <th className="">{tu("block")}</th>
               <th className="">{tu("age")}</th>
               <th className="">{tu("from")}</th>
               <th className="">{tu("to")}</th>
               <th className="">{tu("value")}</th>
-              <th className="">{tu("fee")}</th>
+              {
+                !isInternal && <th className="">{tu("fee")}</th>
+              }
             </tr>
             </thead>
             <tbody>
@@ -118,10 +125,12 @@ console.log(this.props);
                     <td className="text-nowrap">
                       <FormattedNumber value={transaction.value}/>
                     </td>
-                    <td className="text-nowrap">
-                      <FormattedNumber value={transaction.txFee}/>
-                    </td>
-
+                    {
+                      !isInternal &&
+                      <td className="text-nowrap">
+                        <FormattedNumber value={transaction.txFee}/>
+                      </td>
+                    }
                   </tr>
               ))
             }
