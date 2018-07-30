@@ -14,7 +14,7 @@ import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "../common/Price";
 import {Truncate} from "../common/text";
 import {filter} from "lodash";
-class Transfers extends React.Component {
+class Contractinter extends React.Component {
 
     constructor() {
         super();
@@ -94,16 +94,16 @@ class Transfers extends React.Component {
         let interData = this.state.data
         let interArr = []
 
-        for (let [key, value] of Object.entries(getQueryParams(location))) {
-            switch (key) {
-                case "address":
-                case "block":
-                    searchParams[key] = value;
-                    break;
-            }
-        }
-
-        let {transfers, total} = await Client.getTransfers({
+        // for (let [key, value] of Object.entries(getQueryParams(location))) {
+        //     switch (key) {
+        //         case "address":
+        //         case "block":
+        //             searchParams[key] = value;
+        //             break;
+        //     }
+        // }
+        //
+        let {total} = await Client.getTransfers({
             sort: '-timestamp',
             limit: pageSize,
             start: (page-1) * pageSize,
@@ -125,7 +125,7 @@ class Transfers extends React.Component {
             newArr = Array.from(new Set(b))
         }
         this.setState({
-            transfers,
+            transfers:newArr,
             loading: false,
             total
         });
@@ -173,7 +173,7 @@ class Transfers extends React.Component {
                                             <tbody>
                                             {
                                                 transfers.map((trx, index) => (
-                                                    <tr key={trx.transactionHash}>
+                                                    <tr key={trx.parentHash}>
 
                                                         <td className="d-none d-md-table-cell">
                                                             <BlockNumberLink number={trx.block}/>
@@ -231,4 +231,4 @@ const mapDispatchToProps = {
     loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transfers);
+export default connect(mapStateToProps, mapDispatchToProps)(Contractinter);
