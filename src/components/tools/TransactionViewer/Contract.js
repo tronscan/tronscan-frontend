@@ -46,6 +46,7 @@ export default function Contract({contract}) {
           </table>
         </Fragment>
       );
+
     case "PARTICIPATEASSETISSUECONTRACT":
       return (
           <Fragment>
@@ -56,9 +57,9 @@ export default function Contract({contract}) {
               </p>
             </div>
             <table className="table">
-              <Field label="from"><AddressLink address={contract.ownerAddress} /></Field>
-              <Field label="to"><AddressLink address={contract.toAddress} /></Field>
-              <Field label="amount">{contract.amount / ONE_TRX}</Field>
+              <Field label="To"><AddressLink address={contract.ownerAddress} /></Field>
+              <Field label="Issuer"><AddressLink address={contract.toAddress} /></Field>
+              <Field label="amount">{contract.amount}</Field>
               <Field label="token">{contract.token}</Field>
             </table>
           </Fragment>
