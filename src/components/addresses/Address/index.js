@@ -176,6 +176,7 @@ class Address extends React.Component {
           cmp: () => <Votes
             filter={{voter: id}}
             showVoter={false}
+            showVoterPercentage={false}
           />,
         },
         voters: {

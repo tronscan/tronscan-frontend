@@ -55,7 +55,7 @@ export default class Votes extends React.Component {
   render() {
 
     let {votes, page, total, pageSize, totalVotes, loading, emptyState: EmptyState = null} = this.state;
-    let {showCandidate = true, showVoter = true } = this.props;
+    let {showCandidate = true, showVoter = true, showVoterPercentage = true } = this.props;
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
@@ -86,7 +86,7 @@ export default class Votes extends React.Component {
             { showVoter && <th className="text-nowrap">{tu("voters")}</th> }
             { showCandidate && <th className="text-nowrap">{tu("candidate")}</th> }
             <th className="text-nowrap" style={{width: 125 }}>{tu("votes")}</th>
-            <th className="d-none d-md-table-cell" style={{width: 150 }}>{tu("voter_percentage")}</th>
+            { showVoterPercentage && <th className="d-none d-md-table-cell" style={{width: 150 }}>{tu("voter_percentage")}</th> }
             <th className="d-none d-md-table-cell" style={{width: 100 }}>{tu("percentage")}</th>
           </tr>
           </thead>
@@ -110,9 +110,12 @@ export default class Votes extends React.Component {
                 <td className="text-nowrap">
                   <FormattedNumber value={vote.votes} />&nbsp;
                 </td>
-                <td className="d-none d-md-table-cell">
-                  <FormattedNumber value={(vote.votes / (vote.voterAvailableVotes)) * 100} minimumFractionDigits={2} />%
-                </td>
+                {
+                  showVoterPercentage &&
+                    <td className="d-none d-md-table-cell">
+                      <FormattedNumber value={(vote.votes / (vote.voterAvailableVotes)) * 100} minimumFractionDigits={2} />%
+                    </td>
+                }
                 <td className="d-none d-md-table-cell">
                   <FormattedNumber value={(vote.votes / totalVotes) * 100} minimumFractionDigits={2} />%
                 </td>
