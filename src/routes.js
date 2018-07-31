@@ -31,7 +31,7 @@ import {
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
-import InterTnxl from "./components/blockchain/Contractinter";
+import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import {Redirect} from "react-router-dom";
 
@@ -95,8 +95,8 @@ export const routes = [
       {
         label: "inter_tnxl",
         icon: `fa fa-random`,
-        path: "/blockchain/Contractinter",
-        component: InterTnxl
+        path: "/blockchain/ContractInter",
+        component: ContractInter
       }
 
     ]
