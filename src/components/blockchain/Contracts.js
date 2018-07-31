@@ -83,8 +83,8 @@ class Contracts extends React.Component {
                           </th>
                           <th className="d-none d-lg-table-cell">{tu("compiler")}</th>
                           <th className="d-none d-sm-table-cell">{tu("balance")}</th>
-                          <th className="d-none d-md-table-cell">{tu("txCount")}</th>
-                          <th className="d-none d-md-table-cell">{tu("trxAmount")}
+                          <th className="d-none d-md-table-cell">{tu("tx_count")}</th>
+                          <th className="d-none d-md-table-cell">{tu("value")}
                           </th>
                           <th className="d-none d-sm-table-cell">{tu("setting")}</th>
                           <th className="d-none d-sm-table-cell">{tu("date_verified")}</th>
