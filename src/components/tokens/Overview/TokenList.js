@@ -23,7 +23,7 @@ class TokenList extends Component {
       filter: {},
     };
 
-    let nameQuery = trim(getQueryParam(props.location, "search", 0));
+    let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
       this.state.filter.name = `%${nameQuery}%`;
     }
@@ -68,18 +68,21 @@ class TokenList extends Component {
   }
 
   setSearch = () => {
-    let nameQuery = trim(getQueryParam(this.props.location, "search", 0));
+    let nameQuery = trim(getQueryParam(this.props.location, "search"));
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
           name: `%${nameQuery}%`,
         }
       });
+    } else {
+      this.setState({
+        filter: {},
+      });
     }
   };
 
   componentDidUpdate(prevProps, prevState) {
-       console.log("check", prevProps, prevState);
     if (this.props.location !== prevProps.location) {
       this.setSearch();
     }
