@@ -37,7 +37,7 @@ export class NumberField extends React.Component {
     let {onChange, ...props} = this.props;
 
     return (
-      <input type="number" onKeyDown={this.onKeyDownCheck} onChange={this.onChange} {...props} />
+      <input type="text" onKeyDown={this.onKeyDownCheck} onChange={this.onChange} {...props} />
     )
   }
 
