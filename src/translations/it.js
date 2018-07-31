@@ -414,7 +414,7 @@ export const messages = {
   "not_enouth_trx_message": "Non hai abbastanza TRX per poter comprare i token specificati",
   "ends": "finisce",
   "starts": "inizia",
-  "can_be_unlocked_in": "possono essere sbloccati",
+  "can_be_unlocked": "possono essere sbloccati",
   /*
   ##################################################################################
   #                                                                                #

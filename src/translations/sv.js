@@ -413,7 +413,7 @@ export const messages = {
   "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-  "can_be_unlocked_in": "kan låsa upp",
+  "can_be_unlocked": "kan låsa upp",
   /*
   ##################################################################################
   #                                                                                #

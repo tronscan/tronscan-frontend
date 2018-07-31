@@ -416,7 +416,7 @@ export const messages = {
   "not_enouth_trx_message": "У вас недостатньо TRX, щоб купити так багато токенів",
   "ends": "кінці",
   "starts": "починається",
-  "can_be_unlocked_in": "can be unlocked",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #

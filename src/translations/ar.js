@@ -405,7 +405,7 @@ export const messages = {
   "not_enouth_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
   "ends": "ends",
   "starts": "starts",
-  "can_be_unlocked_in": "can be unlocked",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
