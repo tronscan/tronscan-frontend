@@ -34,7 +34,9 @@ class Contracts extends React.Component {
   onChange = (page, pageSize) => {
     this.loadContracts(page, pageSize);
   };
-
+  search = () => {
+    console.log("searching");
+  }
   loadContracts = async (page = 1, pageSize = 40) => {
 
     let result = await Client.getContracts({
@@ -79,7 +81,8 @@ class Contracts extends React.Component {
                         <thead className="thead-dark">
                         <tr>
                           <th style={{width: 150}}>{tu("address")}</th>
-                          <th className="d-none d-md-table-cell">{tu("contract_name")} <SearchInput></SearchInput>
+                          <th className="d-none d-md-table-cell">{tu("contract_name")}
+                          <SearchInput search={this.search}></SearchInput>
                           </th>
                           <th className="d-none d-lg-table-cell">{tu("compiler")}</th>
                           <th className="d-none d-sm-table-cell">{tu("balance")}</th>

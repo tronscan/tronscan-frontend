@@ -30,6 +30,7 @@ export default class SearchInput extends React.Component {
   }
   onSearch = () => {
     //$('#dropdownMenuButton').dropdown("toggle");
+    this.props.search();
     console.log("search...");
   }
   onPressEnter = () => {
