@@ -187,9 +187,9 @@ export const messages = {
   "rank_real_time": "Rang (Timp real)",
   "volume_24": "Volum Tranzacționare 24 de ore",
   "billion_usd": "Miliard USD",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "loading_transfers": "Încărcare Transferuri",
+  "loading_transactions": "Încărcare Tranzacții",
+  "loading_block": "Încărcare Bloc",
   /*
   ##################################################################################
   #                                                                                #
