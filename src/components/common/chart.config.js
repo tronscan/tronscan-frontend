@@ -307,7 +307,7 @@ module.exports = {
       }],
     grid: [{
       top: 80,
-      left: '5%',
+      left: '10%',
       right: 80,
       containLabel: true
     }],

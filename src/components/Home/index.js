@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
 import {clearConstellations, constellationPreset} from "../../lib/constellation/constellation";
@@ -37,9 +38,10 @@ class Home extends Component {
   }
 
   async loadNodes() {
-    let {total} = await Client.getNodeLocations();
+   // let {total} = await Client.getNodeLocations();
+    let {data} = await xhr.get("https://tron.network/api/v2/node/nodemap");
     this.setState({
-      onlineNodes: total
+      onlineNodes: data.data.length
     })
   }
 

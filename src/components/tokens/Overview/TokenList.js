@@ -3,25 +3,34 @@ import {connect} from "react-redux";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
+import {trim} from "lodash";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
 import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
+import {getQueryParam} from "../../../utils/url";
 
 class TokenList extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
 
     this.state = {
       tokens: [],
       loading: false,
       total: 0,
+      filter: {},
     };
+
+    let nameQuery = trim(getQueryParam(props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.state.filter.name = `%${nameQuery}%`;
+    }
   }
 
-
   loadPage = async (page = 1, pageSize = 40) => {
+    let {filter} = this.state;
 
     this.setState({loading: true});
 
@@ -29,6 +38,7 @@ class TokenList extends Component {
       sort: '-name',
       limit: pageSize,
       start: (page - 1) * pageSize,
+      ...filter,
     });
 
     function compare(property) {
@@ -57,13 +67,35 @@ class TokenList extends Component {
     this.loadPage();
   }
 
-  componentDidUpdate() {
-    //checkPageChanged(this, this.loadPage);
+  setSearch = () => {
+    let nameQuery = trim(getQueryParam(this.props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.setState({
+        filter: {
+          name: `%${nameQuery}%`,
+        }
+      });
+    } else {
+      this.setState({
+        filter: {},
+      });
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location !== prevProps.location) {
+      this.setSearch();
+    }
+
+    if (this.state.filter !== prevState.filter) {
+      console.log("SEARCH CHANGED!");
+      this.loadPage();
+    }
   }
 
   onChange = (page, pageSize) => {
     this.loadPage(page, pageSize);
-  }
+  };
 
   render() {
 

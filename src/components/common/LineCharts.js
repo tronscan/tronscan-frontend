@@ -526,8 +526,9 @@ export class LineReactVolumeUsd extends React.Component {
         _config.yAxis[0].name = intl.formatMessage({id: 'billion_usd'});
         _config.tooltip.formatter = function (datas) {
             let date = intl.formatDate((parseInt(datas[0].data.time)));
+            let time = intl.formatTime((parseInt(datas[0].data.time)));
             return (
-                intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                intl.formatMessage({id: 'date'}) + ' : ' + date + ' '+ time + '<br/>' +
                 intl.formatMessage({id: 'volume_24'}) + ' : ' + datas[0].data.volume_usd
             )
         }
