@@ -411,7 +411,7 @@ export const messages = {
   "not_enouth_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
   "ends": "დასრულებები",
   "starts": "სტარტები",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked_in": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -676,6 +676,16 @@ export const messages = {
   "print_paper_wallet": "ამობეჭდეთ საფულე ქაღალდზე ",
   "new_wallet_ready_message": "თქვენი ახალი საფულე მზად არის",
   "go_to_account_page": "გადასვლა ანგარიშის გვერდზე",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

@@ -670,6 +670,16 @@ export const messages = {
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
+  "login_first" :"请先登录钱包",
+  "contract_name": "合约名称",
+  "compiler": "编译器版本",
+  "tx_count": "交易数",
+  "setting": "设置",
+  "date_verified": "验证日期",
+  "compiler_version": "编译器版本",
+  "creator": "合约开发者",
+  "verify_contract_code": "验证合约代码",
+  "buy_tokens": "购买通证",
   /*
   ##################################################################################
   #                                                                                #

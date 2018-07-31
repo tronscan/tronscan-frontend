@@ -417,7 +417,7 @@ export const messages = {
   "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
   "ends": "finalidades",
   "starts": "inicios",
-  "can_be_unlocked_in": "se puede desbloquear en",
+  "can_be_unlocked_in": "se puede desbloquear",
   /*
   ##################################################################################
   #                                                                                #
@@ -686,6 +686,16 @@ export const messages = {
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
   "new_wallet_ready_message": "Tu nueva cartera está lista",
   "go_to_account_page": "Ir a la página de cuenta",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

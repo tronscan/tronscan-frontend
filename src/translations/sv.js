@@ -413,7 +413,7 @@ export const messages = {
   "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-  "can_be_unlocked_in": "kan låsa upp i",
+  "can_be_unlocked_in": "kan låsa upp",
   /*
   ##################################################################################
   #                                                                                #
@@ -678,6 +678,16 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Din nya plånbok är klar",
   "go_to_account_page": "Gå till kontosidan",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #
