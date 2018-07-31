@@ -59,7 +59,7 @@ export default function Contract({contract}) {
             <table className="table">
               <Field label="To"><AddressLink address={contract.ownerAddress} /></Field>
               <Field label="Issuer"><AddressLink address={contract.toAddress} /></Field>
-              <Field label="amount">{contract.amount}</Field>
+              <Field label="amount">{contract.amount / ONE_TRX}</Field>
               <Field label="token">{contract.token}</Field>
             </table>
           </Fragment>

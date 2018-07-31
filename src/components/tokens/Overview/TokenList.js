@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
+import {trim} from "lodash";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
 import Paging from "../../common/Paging";
@@ -14,14 +15,18 @@ class TokenList extends Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
       tokens: [],
       loading: false,
       total: 0,
-      filter: {
-        name: `%${getQueryParam(props.location, "search", 0)}%`
-      },
+      filter: {},
     };
+
+    let nameQuery = trim(getQueryParam(props.location, "search", 0));
+    if (nameQuery.length > 0) {
+      this.state.filter.name = `%${nameQuery}%`;
+    }
   }
 
   loadPage = async (page = 1, pageSize = 40) => {
@@ -63,14 +68,14 @@ class TokenList extends Component {
   }
 
   setSearch = () => {
-    let search = getQueryParam(this.props.location, "search", 0);
-    console.log("TOKEN SEARCH", search);
-
-    this.setState({
-      filter: {
-        name: `%${search}%`,
-      }
-    });
+    let nameQuery = trim(getQueryParam(this.props.location, "search", 0));
+    if (nameQuery.length > 0) {
+      this.setState({
+        filter: {
+          name: `%${nameQuery}%`,
+        }
+      });
+    }
   };
 
   componentDidUpdate(prevProps, prevState) {

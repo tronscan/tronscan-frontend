@@ -419,7 +419,7 @@ export const messages = {
   "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
   "ends": "biter",
   "starts": "başlar",
-  "can_be_unlocked_in": "şu tarihte çözülebilir",
+  "can_be_unlocked": "şu tarihte çözülebilir",
   /*
   ##################################################################################
   #                                                                                #

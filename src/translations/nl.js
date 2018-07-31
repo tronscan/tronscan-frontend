@@ -407,7 +407,7 @@ export const messages = {
   "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
-  "can_be_unlocked_in": "kan ontgrendelt worden in",
+  "can_be_unlocked": "kan ontgrendelt worden in",
   /*
   ##################################################################################
   #                                                                                #

@@ -403,7 +403,7 @@ export const messages = {
   "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
-  "can_be_unlocked_in": "将解锁于",
+  "can_be_unlocked": "将解锁于",
   /*
   ##################################################################################
   #                                                                                #

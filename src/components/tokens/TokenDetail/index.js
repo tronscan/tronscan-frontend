@@ -1,18 +1,20 @@
 import React from "react";
 import {Client} from "../../../services/api";
 import Avatar from "../../common/Avatar";
-import {tu} from "../../../utils/i18n";
-import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
+import {t, tu} from "../../../utils/i18n";
+import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {TokenHolders} from "./TokenHolders";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import {addDays, getTime} from "date-fns";
 import Transfers from "../../common/Transfers";
+import {ONE_TRX} from "../../../constants";
+import {NumberField} from "../../common/Fields";
+import {connect} from "react-redux";
+import SweetAlert from "react-bootstrap-sweetalert";
 
-
-export default class TokenDetail extends React.Component {
-
+class TokenDetail extends React.Component {
 
   constructor() {
     super();
@@ -21,28 +23,29 @@ export default class TokenDetail extends React.Component {
       loading: true,
       token: {},
       tabs: [],
+      buyAmount: 0,
+      alert: null,
     };
   }
 
   componentDidMount() {
-
     let {match} = this.props;
-
     this.loadToken(decodeURI(match.params.name));
   }
+
   componentDidUpdate(prevProps){
     let {match} = this.props;
-    
+
     if (match.params.name !== prevProps.match.params.name) {
       this.loadToken(decodeURI(match.params.name));
     }
   }
+
   loadToken = async (name) => {
 
     this.setState({ loading: true, token: { name } });
 
     let token = await Client.getToken(name);
-
     let {addresses, total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
@@ -67,13 +70,117 @@ export default class TokenDetail extends React.Component {
     });
   };
 
+  buyTokens = (token) => {
+    let {buyAmount} = this.state;
+    let {wallet} = this.props;
+
+    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+
+    if (( wallet.balance / ONE_TRX) < tokenCosts) {
+      this.setState({
+        alert: (
+          <SweetAlert
+            warning
+            title={tu("insufficient_trx")}
+            onConfirm={() => this.setState({ alert: null })}
+          >
+            {tu("not_enouth_trx_message")}
+          </SweetAlert>
+        ),
+      });
+    } else {
+      this.setState({
+        alert: (
+          <SweetAlert
+            info
+            showCancel
+            confirmBtnText={tu("confirm_transaction")}
+            confirmBtnBsStyle="success"
+            cancelBtnText={tu("cancel")}
+            cancelBtnBsStyle="default"
+            title={tu("buy_confirm_message_0")}
+            onConfirm={() => this.confirmTransaction(token)}
+            onCancel={() => this.setState({ alert: null })}
+          >
+            {tu("buy_confirm_message_1")}<br/>
+            {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+          </SweetAlert>
+        ),
+      });
+    }
+  };
+
+  submit = async (token) => {
+
+    let {wallet, account} = this.props;
+    let {buyAmount} = this.state;
+
+    let isSuccess = await Client.participateAsset(
+      wallet.address,
+      token.ownerAddress,
+      token.name,
+      buyAmount * token.price)(account.key);
+
+    if (isSuccess) {
+      this.setState({
+        activeToken: null,
+        confirmedParticipate: true,
+        participateSuccess: isSuccess,
+        buyAmount: 0,
+      });
+
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  confirmTransaction = async (token) => {
+
+    this.setState({
+      alert: (
+        <SweetAlert
+          showConfirm={false}
+          showCancel={false}
+          cancelBtnBsStyle="default"
+          title="One moment please.."
+        >
+          Requesting tokens...
+        </SweetAlert>
+      ),
+    });
+
+    if (await this.submit(token)) {
+      this.setState({
+        alert: (
+          <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
+            Successfully received {token.name} tokens
+          </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        alert: (
+          <SweetAlert danger title="Error" onConfirm={() => this.setState({ alert: null })}>
+            Something went wrong...
+          </SweetAlert>
+        )
+      });
+    }
+  };
+
+  isBuyValid = () => {
+    return (this.state.buyAmount > 0);
+  };
+
   render() {
 
-    let {match} = this.props;
-    let {token, tabs, loading} = this.state;
+    let {match, wallet} = this.props;
+    let {token, tabs, loading, buyAmount, alert} = this.state;
 
     return (
       <main className="container header-overlap">
+        {alert}
         {
           loading ? <div className="card">
             <TronLoader>
@@ -110,9 +217,9 @@ export default class TokenDetail extends React.Component {
                         <th>{tu("Frozen Supply")}:</th>
                         <td>
                           {
-                            token.frozen.map((frozen,index) => (
+                            token.frozen.map((frozen, index) => (
                               <div key={index}>
-                                {frozen.amount} {tu("can_be_unlocked_in")}&nbsp;
+                                {frozen.amount} {tu("can_be_unlocked")}&nbsp;
                                 <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
                               </div>
                             ))
@@ -152,6 +259,43 @@ export default class TokenDetail extends React.Component {
                         <FormattedNumber value={token.totalTransactions} />
                       </td>
                     </tr>
+                    <tr>
+                      <th>{tu("progress")}:</th>
+                      <td>
+                        <div className="progress mt-1">
+                          <div className="progress-bar bg-success" style={{width: token.percentage + '%'}}/>
+                        </div>
+                      </td>
+                    </tr>
+                    {
+                      wallet &&
+                        <tr>
+                          <th>{tu("buy_tokens")}:</th>
+                          <td>
+                            <div className="text-muted text-center">
+                              {tu("how_much_buy_message")}<br/>
+                              {tu("price")}: {(token.price / ONE_TRX)} TRX
+                            </div>
+                            <div className="input-group mt-3">
+                              <NumberField
+                                className="form-control"
+                                value={buyAmount}
+                                max={token.remaining}
+                                min={1}
+                                onChange={value => this.setState({ buyAmount: value })}
+                              />
+                              <div className="input-group-append">
+                                <button className="btn btn-success"
+                                        type="button"
+                                        disabled={!this.isBuyValid()}
+                                        onClick={() => this.buyTokens(token)}>
+                                  <i className="fa fa-check"/>
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                    }
                     </tbody>
                   </table>
                 </div>
@@ -189,3 +333,18 @@ export default class TokenDetail extends React.Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    tokens: state.tokens.tokens,
+    wallet: state.wallet.current,
+    account: state.app.account,
+  };
+}
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenDetail));
