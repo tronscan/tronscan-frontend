@@ -417,7 +417,7 @@ export const messages = {
   "not_enouth_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
   "ends": "fins",
   "starts": "démarrages",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #

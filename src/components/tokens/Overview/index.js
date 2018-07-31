@@ -194,8 +194,6 @@ class TokenOverview extends Component {
 
     this.setState({ loading: true });
 
-    console.log("participate", token);
-
     let isSuccess = await Client.participateAsset(
       account.address,
       token.ownerAddress,

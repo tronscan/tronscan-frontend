@@ -5,6 +5,7 @@ export class NumberField extends React.Component {
 
   onChange = (ev) => {
     let {onChange, decimals = 6, min = null, max = null} = this.props;
+
     if (onChange) {
       let number = ev.target.value;
       number = parseFloat(number);
@@ -23,12 +24,14 @@ export class NumberField extends React.Component {
     }
 
   };
+
   onKeyDownCheck = (event) => {
     if (String.fromCharCode(event.which)==='E') {
       event.preventDefault();
       return false;
     }
-  }
+  };
+
   render() {
 
     let {onChange, ...props} = this.props;

@@ -417,7 +417,7 @@ export const messages = {
   "not_enouth_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
   "ends": "kết thúc",
   "starts": "bắt đầu",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #

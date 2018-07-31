@@ -22,6 +22,7 @@ class SendForm extends React.Component {
       to: props.to || "",
       token: "",
       amount: '',
+      note: '',
       sendStatus: 'waiting',
       isLoading: false,
       toAccount: null,
@@ -44,7 +45,7 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount} = this.state;
+    let {to, token, amount, note} = this.state;
     let {account, onSend} = this.props;
 
     this.setState({ isLoading: true, modal: null });
@@ -53,7 +54,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.send(token, account.address, to, amount)(account.key);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -235,10 +236,14 @@ class SendForm extends React.Component {
     })
   };
 
+  setNote = (note) => {
+    this.setState({ note });
+  };
+
   render() {
 
     let {tokenBalances} = this.props;
-    let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
     let isAmountValid = this.isAmountValid();
@@ -316,6 +321,19 @@ class SendForm extends React.Component {
             <div className="invalid-feedback">
               { tu("fill_a_valid_number") }
               {/* tu("insufficient_tokens") */}
+            </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <label>{tu("note")}</label>
+          <div className="input-group mb-3">
+            <textarea
+                   onChange={(ev) => this.setNote(ev.target.value)}
+                   className={"form-control"}
+                   value={note} />
+            <div className="invalid-feedback">
+              { tu("fill_a_valid_address") }
+              {/* tu("invalid_address") */}
             </div>
           </div>
         </div>
