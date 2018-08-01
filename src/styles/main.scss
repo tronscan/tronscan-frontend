@@ -717,39 +717,117 @@ th {
 
 ._confirm_button{
   margin-right:0px !important;
-
 }
-
 
 // New token stuff
 .token-cards {
   background-color: gray;
-  transition: background-color 1s ease;
+  transition: background-color 0.5s ease;
   background-color: $red;
   color: #FFFFFF;
-  padding: 10px 15px;
+  border: 1px solid $red;
+  background-size: cover;
   min-height: 200px;
   background-image: url('../images/token-card-bg.png') !important;
+    .token-cards-top {
+      padding: 10px 15px;
+    }
 
-  .token-cards-header {
-    font-size: 18px;
-    min-height: 30px;
-    .token-procentage {font-size: 14px;}
+    .token-cards-header {
+      font-size: 18px;
+      min-height: 30px;
+
+    }
+    .token-procentage {
+      font-size: 14px;
+    }
+    .token-title{
+      padding: 5px 0px 5px 0px;
+    }
+    .token-description {
+      font-size: 12px;
+      height: 80px;
+    }
+    .progress-bar-container {
+      width: 100%;
+      display: inline-block;
+        .progress-bar {
+          color: #fff;
+          background-color: #fff;
+        }
+        .progress {
+          border-radius: 0px;
+
+        }
+        .token-amounts{
+          display: none;
+        }
+        .token-procentage {
+          display: none;
+        }
+    }
+  .bottom-center {
+    min-height: 40px;
+  .token-time {
+    padding-top: 18px;
   }
-  .token-description {
-    font-size: 13px;
-    height: 120px;
+
+  }
+  .token-info {
+    display: none;
   }
 }
 
 .token-cards:hover {
   color: #333;
+  font-weight: 200 !important;
   background-color: #f6f8fa;
   background-image: url('../images/token-card-bg-hover.png') !important;
-  transition: color 1s ease;
-  transition: background-color 1s ease;
-  transition: background-image 1s ease;
-
+  transition: color 0.5s ease;
+  transition: background-color 0.5s ease;
   border: 1px solid;
   border-color: #b5b5b5;
+    .token-title {
+      .token-procentage {
+        display: none;
+      }
+    }
+    .token-time {
+      display: none;
+    }
+    .token-info {
+      display: inline-block;
+
+    }
+    .token-info {
+      height: 40px;
+      text-align: center;
+      width: 100%;
+      background-color: #2c2d2d;
+      padding-top: 10px;
+      color: #fff;
+    }
+    .progress-bar-container {
+      .progress {
+        display: none;
+      }
+      .token-amounts{
+        display: inline-block;
+        font-size: 12px;
+      }
+      .progress-bar {
+        color: $red;
+        background-color: $red;
+        transition: color 0.5s ease;
+        transition: background-color 0.5s ease;
+      }
+      .token-procentage {
+        display: inline-block;
+        font-size: 12px;
+        padding-top: 9px;
+      }
+    }
+  .bottom-center{
+    display: none;
+  }
 }

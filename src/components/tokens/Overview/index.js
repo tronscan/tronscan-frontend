@@ -222,40 +222,75 @@ class TokenOverview extends Component {
             <Fragment key={index + "-" + token.name}>
               <div className="col-12 col-sm-6 col-lg-4 mb-3 ">
                 <div className="token-cards">
-                  <div className="token-cards-header">
-                    <div>
-                      <span className="float-left token-title">{token.name}</span>
-                      <span className="float-right token-procentage">{Math.ceil(token.issuedPercentage)}%</span>
+                  <div className="token-cards-top">
+                    <div className="token-cards-header">
+
+
+                          <div className="progress-bar-container">
+                            <div className="progress mt-1">
+                              <div className="progress-bar " style={{width: token.issuedPercentage + '%'}}/>
+                            </div>
+                            <div className="token-amounts">
+                              <span className="">
+                                <FormattedNumber value={token.issued} className="text-success"/>&nbsp;
+                              </span>
+                                  /&nbsp;
+                                  <span className="">
+                                <FormattedNumber value={token.availableSupply}/>
+                              </span>
+
+                            </div>
+                            <div className="float-right token-procentage">
+                              {Math.ceil(token.issuedPercentage)}%
+                            </div>
+                          </div>
+
+
+                        <div className="token-title">
+                          <span>
+                            {token.name}
+                          </span>
+                          <span className="float-right token-procentage">
+                            {Math.ceil(token.issuedPercentage)}%
+                          </span>
+                        </div>
+
                     </div>
-                  </div>
-                  <div className="token-description">
-                    {token.description}
-                  </div>
-                  <div>
-                    <div className="bottom-center">
-                      <div className="">
-                        {
-                          this.getTokenState(token) === 'active' &&
-                          <div className="text-center">
-                            {tu("ends")}&nbsp;
-                            <FormattedRelative value={token.endTime} units="day"/>
-                          </div>
-                        }
-                        {
-                          this.getTokenState(token) === 'finished' &&
-                          <div className="text-center" disabled={true}>
-                            {tu("finished")}
-                          </div>
-                        }
-                        {
-                          this.getTokenState(token) === 'waiting' &&
-                          <div className="text-center">
-                            {tu("starts")} <FormattedRelative value={token.endTime}/>
-                          </div>
-                        }
+                    <div className="token-description">
+                      {token.description}
+                    </div>
+                    <div>
+                      <div className="bottom-center">
+                        <div className="">
+                          {
+                            this.getTokenState(token) === 'active' &&
+                            <div className="text-center token-time">
+                              {tu("ends")}&nbsp;
+                              <FormattedRelative value={token.endTime} units="day"/>
+                            </div>
+                          }
+                          {
+                            this.getTokenState(token) === 'finished' &&
+                            <div className="text-center token-time" disabled={true}>
+                              {tu("finished")}
+                            </div>
+                          }
+                          {
+                            this.getTokenState(token) === 'waiting' &&
+                            <div className="text-center token-time">
+                              {tu("starts")} <FormattedRelative value={token.endTime}/>
+                            </div>
+                          }
+                        </div>
+
                       </div>
                     </div>
                   </div>
+                  <a href="#">
+                    <div className="token-info">
+                      More info
+                    </div>
+                  </a>
                 </div>
               </div>
 
