@@ -37,6 +37,23 @@ class TokenOverview extends Component {
   }
 
   toggleToken(token) {
+    let {account} = this.props;
+    if(!account.isLoggedIn){
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                confirmBtnText={tu("confirm")}
+                confirmBtnCssClass="_confirm_button"
+                title={tu("login_first")}
+                onConfirm={() => this.setState({ alert: null })}
+            >
+
+            </SweetAlert>
+        ),
+      });
+      return
+    }
     this.setState({
       activeToken: token,
       amount: 0,
@@ -86,7 +103,7 @@ class TokenOverview extends Component {
             title={tu("insufficient_trx")}
             onConfirm={() => this.setState({ alert: null })}
           >
-            {tu("not_enouth_trx_message")}
+            {tu("not_enough_trx_message")}
           </SweetAlert>
         ),
       });
@@ -177,8 +194,6 @@ class TokenOverview extends Component {
 
     this.setState({ loading: true });
 
-    console.log("participate", token);
-
     let isSuccess = await Client.participateAsset(
       account.address,
       token.ownerAddress,
@@ -257,7 +272,7 @@ class TokenOverview extends Component {
                     </li>
                   </ul>
                   {
-                    (account.isLoggedIn && this.getTokenState(token) === 'active') && (
+                    ( this.getTokenState(token) === 'active') && (
                       !this.containsToken(token) ?
                         <div className="card-footer bg-transparent border-top-0">
                           {
@@ -379,15 +394,14 @@ class TokenOverview extends Component {
         {alert}
           <StickyContainer className="container header-overlap pb-3">
             {
-              total > 0 &&
+             // total > 0 &&
               <Sticky>
                 {
-                  ({style, isSticky}) => (
-                      <div
-                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}>
-                        <div className="col-sm-12">
+                  ({style}) => (
+                      <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
+
                           <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                        </div>
+
                       </div>
                   )
                 }

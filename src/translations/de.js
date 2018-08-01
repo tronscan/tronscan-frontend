@@ -415,10 +415,10 @@ export const messages = {
   "buy_confirm_message_1": "Sind Sie sich beim Kauf des Tokens auch wirklich sicher? Sie erhalten ",
   "for": "für",
   "insufficient_trx": "Nicht ausreichend TRX vorhanden",
-  "not_enouth_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
+  "not_enough_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
   "ends": "endet",
   "starts": "started",
-  "can_be_unlocked_in": "Kann freigegeben werden in",
+  "can_be_unlocked": "Kann freigegeben werden.",
   /*
   ##################################################################################
   #                                                                                #
@@ -692,6 +692,16 @@ export const messages = {
   "print_paper_wallet": "Paper-Wallet drucken",
   "new_wallet_ready_message": "Ihre neue Wallet wurde erstellt.",
   "go_to_account_page": "Zur Konto-Seite wechseln",
+  "login_first": "Bitte melden Sie sich am Wallet an.",
+  "contract_name": "Vertragsname",
+  "compiler": "Compiler",
+  "tx_count": "Tx Anzahl",
+  "setting": "Einstellungen",
+  "date_verified": "Verifiziertes Datum",
+  "compiler_version": "Compiler Version",
+  "creator": "Ersteller",
+  "verify_contract_code": "Vertragscode verifizieren",
+  "buy_tokens": "Token kaufen",
   /*
   ##################################################################################
   #                                                                                #

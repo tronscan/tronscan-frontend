@@ -88,7 +88,7 @@ class Address extends React.Component {
   async loadVotes(address) {
     let votes = await xhr.get("https://api.tronscan.org/api/vote?sort=-votes&limit=40&start=0&candidate=" + address);
 
-    let data = votes.data.data.slice(0, 10);
+    let data = votes.data.data.slice(-10);
     let totalVotes = votes.data.totalVotes;
     for (let d in data) {
       data[d].name = data[d].voterAddress;
@@ -361,7 +361,7 @@ class Address extends React.Component {
                       </div>
                       <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
                         {
-                          address.representative.enabled &&
+                          address.representative.enabled && votes.length &&
                           <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
                         }
                         {address.representative.enabled &&

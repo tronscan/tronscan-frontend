@@ -77,7 +77,7 @@ class Markets extends React.Component {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2
           }) + '%',
-          price: '$' + intl.formatNumber(val.price, {maximumFractionDigits: 8})
+          price: '$' + intl.formatNumber(val.price, {maximumFractionDigits: 4})
         });
 
       })

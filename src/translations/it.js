@@ -411,10 +411,10 @@ export const messages = {
   "buy_confirm_message_1": "Sei sicuro di voler acquistare",
   "for": "per",
   "insufficient_trx": "TRX insufficienti",
-  "not_enouth_trx_message": "Non hai abbastanza TRX per poter comprare i token specificati",
+  "not_enough_trx_message": "Non hai abbastanza TRX per poter comprare i token specificati",
   "ends": "finisce",
   "starts": "inizia",
-  "can_be_unlocked_in": "possono essere sbloccati in",
+  "can_be_unlocked": "possono essere sbloccati",
   /*
   ##################################################################################
   #                                                                                #
@@ -682,6 +682,16 @@ export const messages = {
   "print_paper_wallet": "Stampa il portafoglio su carta",
   "new_wallet_ready_message": "Il tuo nuovo portafoglio è pronto",
   "go_to_account_page": "Vai alla pagina dell'account",
+  "login_first": "Entra nel Wallet prima",
+  "contract_name": "Nome del contratto",
+  "compiler": "Compilatore",
+  "tx_count": "Tx Count",
+  "setting": "Impostazione",
+  "date_verified": "Verificato in data",
+  "compiler_version": "Versione del compilatore",
+  "creator": "Creatore",
+  "verify_contract_code": "Verifica Codice Contratto",
+  "buy_tokens": "Compra Token",
   /*
   ##################################################################################
   #                                                                                #
@@ -693,7 +703,7 @@ export const messages = {
   "time": "istante",
   "parenthash": "hash genitore",
   "size": "dimensione",
-  "blockchain_size": "Dimensione della catena del blocco",
+  "blockchain_size": "Dimensione della blockchain",
   /*
   ##################################################################################
   #                                                                                #

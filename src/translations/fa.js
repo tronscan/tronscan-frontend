@@ -414,10 +414,10 @@ export const messages = {
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
   "for": "برای",
   "insufficient_trx": "تی آرایکس کافی نیست",
-  "not_enouth_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
+  "not_enough_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
   "ends": "انتها",
   "starts": "ابتدا",
-  "can_be_unlocked_in": "می تواند باز شود",
+  "can_be_unlocked": "می تواند باز شود",
   /*
   ##################################################################################
   #                                                                                #
@@ -685,6 +685,16 @@ export const messages = {
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

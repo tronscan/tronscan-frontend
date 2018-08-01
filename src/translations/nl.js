@@ -404,10 +404,10 @@ export const messages = {
   "buy_confirm_message_1": "Weet je het zeker?",
   "for": "voor",
   "insufficient_trx": "Niet genoeg TRX beschikbaar",
-  "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
+  "not_enough_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
-  "can_be_unlocked_in": "kan ontgrendelt worden in",
+  "can_be_unlocked": "kan ontgrendelt worden",
   /*
   ##################################################################################
   #                                                                                #
@@ -678,6 +678,16 @@ export const messages = {
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

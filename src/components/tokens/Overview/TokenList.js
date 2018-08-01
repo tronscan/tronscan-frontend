@@ -3,25 +3,31 @@ import {connect} from "react-redux";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
+import {trim} from "lodash";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
 import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
+import SearchInput from "../../../utils/SearchInput";
 
 class TokenList extends Component {
 
   constructor(props) {
     super(props);
 
+
     this.state = {
       tokens: [],
       loading: false,
       total: 0,
-      filter: {
-        name: `%${getQueryParam(props.location, "search", 0)}%`
-      },
+      filter: {},
     };
+
+    let nameQuery = trim(getQueryParam(props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.state.filter.name = `%${nameQuery}%`;
+    }
   }
 
   loadPage = async (page = 1, pageSize = 40) => {
@@ -63,22 +69,24 @@ class TokenList extends Component {
   }
 
   setSearch = () => {
-    let search = getQueryParam(this.props.location, "search", 0);
-    console.log("TOKEN SEARCH", search);
-
-    this.setState({
-      filter: {
-        name: `%${search}%`,
-      }
-    });
+    let nameQuery = trim(getQueryParam(this.props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.setState({
+        filter: {
+          name: `%${nameQuery}%`,
+        }
+      });
+    } else {
+      this.setState({
+        filter: {},
+      });
+    }
   };
 
   componentDidUpdate(prevProps, prevState) {
-       console.log("check", prevProps, prevState);
     if (this.props.location !== prevProps.location) {
       this.setSearch();
     }
-
     if (this.state.filter !== prevState.filter) {
       console.log("SEARCH CHANGED!");
       this.loadPage();
@@ -88,7 +96,27 @@ class TokenList extends Component {
   onChange = (page, pageSize) => {
     this.loadPage(page, pageSize);
   };
+  searchName = (name) => {
 
+    if (name.length > 0) {
+      this.setState({
+        filter: {
+          name: `%${name}%`,
+        }
+      });
+    }
+    else {
+
+      if(window.location.hash!=='#/tokens/list')
+        window.location.hash = '#/tokens/list';
+      else{
+        this.setState({
+          filter: {},
+        });
+      }
+    }
+
+  }
   render() {
 
     let {tokens, alert, loading, total} = this.state;
@@ -114,7 +142,9 @@ class TokenList extends Component {
                     <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
-                        <th className="text-nowrap">{tu("name")}</th>
+                        <th className="text-nowrap">{tu("name")}
+                          <SearchInput search={this.searchName}></SearchInput>
+                        </th>
                         <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
                         <th className="d-none d-md-table-cell" >{tu("total_supply")}</th>
                         <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>

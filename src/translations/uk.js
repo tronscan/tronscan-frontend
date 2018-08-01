@@ -413,10 +413,10 @@ export const messages = {
   "buy_confirm_message_1": "Ви дійсно бажаєте купити",
   "for": "для",
   "insufficient_trx": "Недостатньо TRX",
-  "not_enouth_trx_message": "У вас недостатньо TRX, щоб купити так багато токенів",
+  "not_enough_trx_message": "У вас недостатньо TRX, щоб купити так багато токенів",
   "ends": "кінці",
   "starts": "починається",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -686,6 +686,16 @@ export const messages = {
   "print_paper_wallet": "Роздрукуйте паперовий гаманець",
   "new_wallet_ready_message": "Ваш гаманець готовий",
   "go_to_account_page": "До сторінки облікового запису",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #
