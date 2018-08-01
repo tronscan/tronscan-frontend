@@ -667,6 +667,16 @@ export const messages = {
   "print_paper_wallet": "ทำการพิมพ์ Paper wallet",
   "new_wallet_ready_message": "วอลเล็ทใหม่ของคุณพร้อมใช้งานแล้ว",
   "go_to_account_page": "ไปยังหน้าบัญชี",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

@@ -418,7 +418,7 @@ export const messages = {
   "not_enouth_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
   "ends": "sfârșește",
   "starts": "începe",
-  "can_be_unlocked": "poate fi descuiat în",
+  "can_be_unlocked": "poate fi descuiat",
   /*
   ##################################################################################
   #                                                                                #
@@ -687,6 +687,16 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
+  "login_first": "Logați-vă întâi la Portofel  ",
+  "contract_name": "Nume Contract",
+  "compiler": "Compilator",
+  "tx_count": "Numărătoare Tx",
+  "setting": "Setare",
+  "date_verified": "Dată Verificată",
+  "compiler_version": "Versiune Compilator",
+  "creator": "Creator",
+  "verify_contract_code": "Verificați codul de contract",
+  "buy_tokens": "Cumpărare Tokeni",
   /*
   ##################################################################################
   #                                                                                #
