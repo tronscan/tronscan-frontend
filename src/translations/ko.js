@@ -85,7 +85,7 @@ export const messages = {
   "enter_password_message": "암호를 반드시 입력해야합니다!",
   "password_incorrect": "암호 불일치",
   "try_again": "다시 시도해보십시오",
-  "wallet_unlocked": "지갑 언락 완료",
+  "wallet_unlocked": "지갑 잠금 해제 완료",
   "weak": "약함",
   "okay": "괜찮음",
   "good": "좋음",
