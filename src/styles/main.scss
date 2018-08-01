@@ -362,7 +362,6 @@ tr a {
     border-color: #343a40;
   }
 }
-
 .position-stretch {
   left: 0;
   bottom: 0;
@@ -719,4 +718,38 @@ th {
 ._confirm_button{
   margin-right:0px !important;
 
+}
+
+
+// New token stuff
+.token-cards {
+  background-color: gray;
+  transition: background-color 1s ease;
+  background-color: $red;
+  color: #FFFFFF;
+  padding: 10px 15px;
+  min-height: 200px;
+  background-image: url('../images/token-card-bg.png') !important;
+
+  .token-cards-header {
+    font-size: 18px;
+    min-height: 30px;
+    .token-procentage {font-size: 14px;}
+  }
+  .token-description {
+    font-size: 13px;
+    height: 120px;
+  }
+}
+
+.token-cards:hover {
+  color: #333;
+  background-color: #f6f8fa;
+  background-image: url('../images/token-card-bg-hover.png') !important;
+  transition: color 1s ease;
+  transition: background-color 1s ease;
+  transition: background-image 1s ease;
+
+  border: 1px solid;
+  border-color: #b5b5b5;
 }
