@@ -87,7 +87,6 @@ class TokenList extends Component {
     if (this.props.location !== prevProps.location) {
       this.setSearch();
     }
-
     if (this.state.filter !== prevState.filter) {
       console.log("SEARCH CHANGED!");
       this.loadPage();
@@ -107,9 +106,14 @@ class TokenList extends Component {
       });
     }
     else {
-      this.setState({
-        filter: {},
-      });
+
+      if(window.location.hash!=='#/tokens/list')
+        window.location.hash = '#/tokens/list';
+      else{
+        this.setState({
+          filter: {},
+        });
+      }
     }
 
   }
