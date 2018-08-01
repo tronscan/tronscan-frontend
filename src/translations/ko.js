@@ -410,7 +410,7 @@ export const messages = {
   "buy_confirm_message_1": "정말로 다음과 같이 구매하시겠습니까",
   "for": "을 다음으로 구매:",
   "insufficient_trx": "불충분한 TRX",
-  "not_enouth_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
+  "not_enough_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
   "ends": "마감 기한은",
   "starts": "시작일은",
   "can_be_unlocked": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",

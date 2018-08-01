@@ -408,7 +408,7 @@ export const messages = {
   "buy_confirm_message_1": "დარწმუნებული ხართ, რომ ყიდვა გსურთ",
   "for": "-სთვის",
   "insufficient_trx": "არასაკმარისი TRX",
-  "not_enouth_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
+  "not_enough_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
   "ends": "დასრულებები",
   "starts": "სტარტები",
   "can_be_unlocked": "can be unlocked",

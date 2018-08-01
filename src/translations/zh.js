@@ -400,7 +400,7 @@ export const messages = {
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
   "insufficient_trx": "TRX数量不足",
-  "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
+  "not_enough_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
   "can_be_unlocked": "将解锁于",

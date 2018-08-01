@@ -416,7 +416,7 @@ export const messages = {
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
   "for": "için",
   "insufficient_trx": "Yetersiz TRX",
-  "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
+  "not_enough_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
   "ends": "biter",
   "starts": "başlar",
   "can_be_unlocked": "şu tarihte çözülebilir",

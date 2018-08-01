@@ -414,7 +414,7 @@ export const messages = {
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
   "for": "برای",
   "insufficient_trx": "تی آرایکس کافی نیست",
-  "not_enouth_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
+  "not_enough_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
   "ends": "انتها",
   "starts": "ابتدا",
   "can_be_unlocked": "می تواند باز شود",

@@ -413,7 +413,7 @@ export const messages = {
   "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
   "for": "for",
   "insufficient_trx": "Ikke nok TRX",
-  "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
+  "not_enough_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
   "ends": "slutter",
   "starts": "starter",
   "can_be_unlocked": "Kan låses opp",

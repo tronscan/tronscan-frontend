@@ -402,7 +402,7 @@ export const messages = {
   "buy_confirm_message_1": "Вы уверены, что хотите купить",
   "for": "для",
   "insufficient_trx": "недостаточно TRX",
-  "not_enouth_trx_message": "не достаточно TRX, для покупки такого количества Токенов",
+  "not_enough_trx_message": "не достаточно TRX, для покупки такого количества Токенов",
   "ends": "заканчивается через",
   "starts": "начинается через",
   "can_be_unlocked": "будет разблокировано через",

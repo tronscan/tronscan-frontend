@@ -103,7 +103,7 @@ class TokenOverview extends Component {
             title={tu("insufficient_trx")}
             onConfirm={() => this.setState({ alert: null })}
           >
-            {tu("not_enouth_trx_message")}
+            {tu("not_enough_trx_message")}
           </SweetAlert>
         ),
       });
@@ -401,7 +401,7 @@ class TokenOverview extends Component {
                       <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
 
                           <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                        
+
                       </div>
                   )
                 }
