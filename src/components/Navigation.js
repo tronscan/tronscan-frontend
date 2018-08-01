@@ -116,6 +116,7 @@ class Navigation extends PureComponent {
           placeHolder="Password"
           onCancel={this.hideModal}
           validationMsg={tu("enter_password_message")}
+          confirmBtnText={tu("ok")}
           onConfirm={(password) => this.unlockKeyFile(password, contents)}>
           {tu("password")}
         </SweetAlert>
@@ -138,7 +139,8 @@ class Navigation extends PureComponent {
         popup: (
           <SweetAlert
             success title={tu("wallet_unlocked")}
-            onConfirm={this.hideModal} />
+            onConfirm={this.hideModal}
+            confirmBtnText={tu("ok")} />
         )
       });
        this.props.login(privateKey);
