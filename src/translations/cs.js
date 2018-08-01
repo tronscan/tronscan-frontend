@@ -413,7 +413,7 @@ export const messages = {
   "buy_confirm_message_1": "Urèitì chcete koupit",
   "for": "za",
   "insufficient_trx": "Nedostateèné množství TRX",
-  "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
+  "not_enough_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
   "ends": "konèí",
   "starts": "zaèíná",
   "can_be_unlocked": "can be unlocked",

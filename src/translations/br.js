@@ -416,7 +416,7 @@ export const messages = {
   "buy_confirm_message_1": "Tem certeza que quer comprar",
   "for": "por",
   "insufficient_trx": "TRX insuficiente",
-  "not_enouth_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
+  "not_enough_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
   "ends": "termina",
   "starts": "começa",
   "can_be_unlocked": "pode ser desbloqueado",

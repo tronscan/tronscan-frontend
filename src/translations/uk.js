@@ -413,8 +413,8 @@ export const messages = {
   "buy_confirm_message_1": "Ви дійсно бажаєте купити",
   "for": "для",
   "insufficient_trx": "Недостатньо TRX",
-  "not_enouth_trx_message": "У вас недостатньо TRX, щоб купити так багато токенів",
-  "ends": "закінчується",
+  "not_enough_trx_message": "У вас недостатньо TRX, щоб купити так багато токенів",
+  "ends": "кінці",
   "starts": "починається",
   "can_be_unlocked": "може бути розблоковано",
   /*

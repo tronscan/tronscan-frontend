@@ -402,7 +402,7 @@ export const messages = {
   "buy_confirm_message_1": "คุณแน่ใจหรือไม่ว่าต้องการซื้อ",
   "for": "สำหรับ",
   "insufficient_trx": "TRX ไม่เพียงพอ",
-  "not_enouth_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
+  "not_enough_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
   "ends": "สิ้นสุด",
   "starts": "เริ่ม",
   "can_be_unlocked": "สามารถปลดล็อกได้ภายใน",

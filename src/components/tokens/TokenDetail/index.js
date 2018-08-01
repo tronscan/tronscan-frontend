@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
 import Avatar from "../../common/Avatar";
 import {t, tu} from "../../../utils/i18n";
@@ -72,19 +72,33 @@ class TokenDetail extends React.Component {
 
   buyTokens = (token) => {
     let {buyAmount} = this.state;
-    let {wallet} = this.props;
+    let {currentWallet, wallet} = this.props;
+
+    if (!wallet.isOpen) {
+      this.setState({
+        alert: (
+          <SweetAlert
+            warning
+            title="Open wallet"
+            onConfirm={() => this.setState({alert: null})}>
+            Open a wallet to participate
+          </SweetAlert>
+        ),
+      });
+      return;
+    }
 
     let tokenCosts = buyAmount * (token.price / ONE_TRX);
 
-    if (( wallet.balance / ONE_TRX) < tokenCosts) {
+    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
         alert: (
           <SweetAlert
             warning
             title={tu("insufficient_trx")}
-            onConfirm={() => this.setState({ alert: null })}
+            onConfirm={() => this.setState({alert: null})}
           >
-            {tu("not_enouth_trx_message")}
+            {tu("not_enough_trx_message")}
           </SweetAlert>
         ),
       });
@@ -100,7 +114,7 @@ class TokenDetail extends React.Component {
             cancelBtnBsStyle="default"
             title={tu("buy_confirm_message_0")}
             onConfirm={() => this.confirmTransaction(token)}
-            onCancel={() => this.setState({ alert: null })}
+            onCancel={() => this.setState({alert: null})}
           >
             {tu("buy_confirm_message_1")}<br/>
             {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
@@ -112,11 +126,11 @@ class TokenDetail extends React.Component {
 
   submit = async (token) => {
 
-    let {wallet, account} = this.props;
+    let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
 
     let isSuccess = await Client.participateAsset(
-      wallet.address,
+      currentWallet.address,
       token.ownerAddress,
       token.name,
       buyAmount * token.price)(account.key);
@@ -199,103 +213,102 @@ class TokenDetail extends React.Component {
                   </div>
                   <table className="table m-0">
                     <tbody>
-                    <tr>
-                      <th style={{width: 250}}>{tu("website")}:</th>
-                      <td>
-                        <ExternalLink url={token.url} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th style={{width: 250}}>{tu("total_supply")}:</th>
-                      <td>
-                        <FormattedNumber value={token.totalSupply} />
-                      </td>
-                    </tr>
-                    {
-                      token.frozen.length > 0 &&
                       <tr>
-                        <th>{tu("Frozen Supply")}:</th>
+                        <th style={{width: 250}}>{tu("website")}:</th>
                         <td>
-                          {
-                            token.frozen.map((frozen, index) => (
-                              <div key={index}>
-                                {frozen.amount} {tu("can_be_unlocked")}&nbsp;
-                                <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
-                              </div>
-                            ))
-                          }
+                          <ExternalLink url={token.url} />
                         </td>
                       </tr>
-                    }
-                    <tr>
-                      <th>{tu("issuer")}:</th>
-                      <td>
-                        <AddressLink address={token.ownerAddress} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("start_date")}:</th>
-                      <td>
-                        <FormattedDate value={token.startTime} />{' '}
-                        <FormattedTime value={token.startTime} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("end_date")}:</th>
-                      <td>
-                        <FormattedDate value={token.endTime} />{' '}
-                        <FormattedTime value={token.endTime} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("token_holders")}:</th>
-                      <td>
-                        <FormattedNumber value={token.nrOfTokenHolders} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("nr_of_Transfers")}:</th>
-                      <td>
-                        <FormattedNumber value={token.totalTransactions} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("progress")}:</th>
-                      <td>
-                        <div className="progress mt-1">
-                          <div className="progress-bar bg-success" style={{width: token.percentage + '%'}}/>
-                        </div>
-                      </td>
-                    </tr>
-                    {
-                      wallet &&
+                      <tr>
+                        <th style={{width: 250}}>{tu("total_supply")}:</th>
+                        <td>
+                          <FormattedNumber value={token.totalSupply} />
+                        </td>
+                      </tr>
+                      {
+                        token.frozen.length > 0 &&
                         <tr>
-                          <th>{tu("buy_tokens")}:</th>
+                          <th>{tu("Frozen Supply")}:</th>
                           <td>
-                            <div className="text-muted text-center">
-                              {tu("how_much_buy_message")}<br/>
-                              {tu("price")}: {(token.price / ONE_TRX)} TRX
-                            </div>
-                            <div className="input-group mt-3">
-                              <NumberField
-                                className="form-control"
-                                value={buyAmount}
-                                max={token.remaining}
-                                min={1}
-                                onChange={value => this.setState({ buyAmount: value })}
-                              />
-                              <div className="input-group-append">
-                                <button className="btn btn-success"
-                                        type="button"
-                                        disabled={!this.isBuyValid()}
-                                        onClick={() => this.buyTokens(token)}>
-                                  <i className="fa fa-check"/>
-                                </button>
-                              </div>
-                            </div>
+                            {
+                              token.frozen.map((frozen, index) => (
+                                <div key={index}>
+                                  {frozen.amount} {tu("can_be_unlocked")}&nbsp;
+                                  <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
+                                </div>
+                              ))
+                            }
                           </td>
                         </tr>
-                    }
+                      }
+                      <tr>
+                        <th>{tu("issuer")}:</th>
+                        <td>
+                          <AddressLink address={token.ownerAddress} />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("start_date")}:</th>
+                        <td>
+                          <FormattedDate value={token.startTime} />{' '}
+                          <FormattedTime value={token.startTime} />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("end_date")}:</th>
+                        <td>
+                          <FormattedDate value={token.endTime} />{' '}
+                          <FormattedTime value={token.endTime} />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("token_holders")}:</th>
+                        <td>
+                          <FormattedNumber value={token.nrOfTokenHolders} />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("nr_of_Transfers")}:</th>
+                        <td>
+                          <FormattedNumber value={token.totalTransactions} />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("progress")}:</th>
+                        <td>
+                          <div className="progress mt-1">
+                            <div className="progress-bar bg-success" style={{width: (100 - token.percentage) + '%'}}/>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("price")}:</th>
+                        <td>
+                          <FormattedNumber value={(token.price / ONE_TRX)} /> TRX
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("participate")}:</th>
+                        <td>
+                          <div className="input-group">
+                            <NumberField
+                              className="form-control"
+                              value={buyAmount}
+                              max={token.remaining}
+                              min={1}
+                              onChange={value => this.setState({buyAmount: value})}
+                            />
+                            <div className="input-group-append">
+                              <button className="btn btn-success"
+                                      type="button"
+                                      disabled={!this.isBuyValid()}
+                                      onClick={() => this.buyTokens(token)}>
+                                Participate
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -338,7 +351,8 @@ class TokenDetail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
-    wallet: state.wallet.current,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
     account: state.app.account,
   };
 }

@@ -400,7 +400,7 @@ export const messages = {
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
   "insufficient_trx": "TRX数量不足",
-  "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
+  "not_enough_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
   "can_be_unlocked": "将解锁于",
@@ -484,7 +484,7 @@ export const messages = {
   "token_issued_successfully": "通证发行成功！",
   "participation": "参与",
   "start_date": "开始日期",
-  "end_date": "结束时期",
+  "end_date": "结束日期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
   "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
   "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。

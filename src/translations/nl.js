@@ -404,7 +404,7 @@ export const messages = {
   "buy_confirm_message_1": "Weet je het zeker?",
   "for": "voor",
   "insufficient_trx": "Niet genoeg TRX beschikbaar",
-  "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
+  "not_enough_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
   "can_be_unlocked": "kan ontgrendelt worden",

@@ -402,7 +402,7 @@ export const messages = {
   "buy_confirm_message_1": "هل أنت متأكدأنك تريد شراء",
   "for": "مقابل",
   "insufficient_trx": "غير كافيةTRX",
-  "not_enouth_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
+  "not_enough_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
   "ends": "ends",
   "starts": "starts",
   "can_be_unlocked": "can be unlocked",

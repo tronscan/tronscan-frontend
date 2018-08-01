@@ -410,7 +410,7 @@ export const messages = {
   "buy_confirm_message_1": "Är du säker på att du vill köpa",
   "for": "för",
   "insufficient_trx": "Otillräcklig TRX",
-  "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
+  "not_enough_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
   "can_be_unlocked": "kan låsa upp",

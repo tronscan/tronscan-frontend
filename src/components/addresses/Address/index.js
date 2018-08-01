@@ -361,7 +361,7 @@ class Address extends React.Component {
                       </div>
                       <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
                         {
-                          address.representative.enabled &&
+                          address.representative.enabled && votes.length &&
                           <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
                         }
                         {address.representative.enabled &&
