@@ -690,6 +690,16 @@ export const messages = {
   "print_paper_wallet": "Kağıt Cüzdan Bastırın",
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
+  "login_first": "Öncelikle cüzdana giriş yapınız",
+  "contract_name": "Sözleşme Adı",
+  "compiler": "Derleyici",
+  "tx_count": "Tx Sayısı",
+  "setting": "Ayar",
+  "date_verified": "Tarih Doğrulandı",
+  "compiler_version": "Derleyici Sürümü",
+  "creator": "Oluşturan",
+  "verify_contract_code": "Sözleşme Kodunu Doğrula",
+  "buy_tokens": "Jeton Satın Al",
   /*
   ##################################################################################
   #                                                                                #

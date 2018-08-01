@@ -667,6 +667,16 @@ export const messages = {
   "print_paper_wallet": "распечатайте пароль на бумаге",
   "new_wallet_ready_message": "Ваш новый Wallet создан",
   "go_to_account_page": "назад на страницу Аккаунта",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

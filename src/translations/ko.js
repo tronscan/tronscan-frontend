@@ -85,7 +85,7 @@ export const messages = {
   "enter_password_message": "암호를 반드시 입력해야합니다!",
   "password_incorrect": "암호 불일치",
   "try_again": "다시 시도해보십시오",
-  "wallet_unlocked": "지갑 언락 완료",
+  "wallet_unlocked": "지갑 잠금 해제 완료",
   "weak": "약함",
   "okay": "괜찮음",
   "good": "좋음",
@@ -680,6 +680,16 @@ export const messages = {
   "print_paper_wallet": "페이퍼 월렛 인쇄",
   "new_wallet_ready_message": "사용자분의 새 지갑이 준비되었습니다",
   "go_to_account_page": "계정 페이지로 가기",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #
