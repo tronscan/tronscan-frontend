@@ -9,6 +9,7 @@ import {Client} from "../../../services/api";
 import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
+import SearchInput from "../../../utils/SearchInput";
 
 class TokenList extends Component {
 
@@ -96,7 +97,22 @@ class TokenList extends Component {
   onChange = (page, pageSize) => {
     this.loadPage(page, pageSize);
   };
+  searchName = (name) => {
 
+    if (name.length > 0) {
+      this.setState({
+        filter: {
+          name: `%${name}%`,
+        }
+      });
+    }
+    else {
+      this.setState({
+        filter: {},
+      });
+    }
+
+  }
   render() {
 
     let {tokens, alert, loading, total} = this.state;
@@ -122,7 +138,9 @@ class TokenList extends Component {
                     <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
-                        <th className="text-nowrap">{tu("name")}</th>
+                        <th className="text-nowrap">{tu("name")}
+                          <SearchInput search={this.searchName}></SearchInput>
+                        </th>
                         <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
                         <th className="d-none d-md-table-cell" >{tu("total_supply")}</th>
                         <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
