@@ -18,6 +18,11 @@ import {
   LineReactPrice,
   LineReactVolumeUsd
 } from "../../common/LineCharts";
+
+import {
+    RepresentativesRingPieReact
+} from "../../common/RingPieChart";
+
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
 
@@ -37,17 +42,24 @@ class Statistics extends React.Component {
       blockchainSizeStats: null,
       priceStats: null,
       volumeStats:null,
-      summit: null
+      summit: null,
+      pieChart:null,
+      pieData:[{"address":"TYVJ8JuQ6ctzCa2u79MFmvvNQ1U2tYQEUM","name":"","url":"http://tronone.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGzz8gjYiYRqpfmDwnLxfgPuLVNmpCswVp","name":"Sesameseed","url":"https://www.sesameseed.org","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TEKUPpjTMKWw9LJZ9YJ4enhCjAmVXSL7M6","name":"lianjinshu","url":"http://www.lianjinshu.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TDGmmTC7xDgQGwH4FYRGuE7SFH2MePHYeH","name":"TeamTronics","url":"https://www.teamtronics.org","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TPRxUBEakukBMwTScCHgvCPSBYk5UhfboJ","name":"","url":"http://www.cryptodiva.io/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TTcYhypP8m4phDhN6oRexz2174zAerjEWP","name":"CryptoGuyInZA","url":"https://www.cryptoguyinza.co.za/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGj1Ej1qRzL9feLTLhjwgxXF4Ct6GTWg2U","name":"Skypeople","url":"http://www.skypeople.co.kr","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TVMP5r12ymtNerq5KB4E8zAgLDmg2FqsEG","name":"CryptoGirls","url":"https://www.cryptogirls.ro/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TMAbjAuefZqzJAyGhkn4AbWa3jinzcZtGc","name":"MLG-Global","url":"https://mlgblockchain.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TFA1qpUkQ1yBDw4pgZKx25wEZAqkjGoZo1","name":"JustinSunTron","url":"https://twitter.com/justinsuntron","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TRXDEXMoaAprSGJSwKanEUBqfQjvQEDuaw","name":"TrxDexCom","url":"https://TrxDex.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TSNbzxac4WhxN91XvaUfPTKP2jNT18mP6T","name":"BitTorrent","url":"https://www.bittorrent.com/","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TY65QiDt4hLTMpf3WRzcX357BnmdxT2sw9","name":"uTorrent","url":"https://www.utorrent.com/","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TKSXDA8HfE9E1y39RczVQ1ZascUEtaSToF","name":"CryptoChain","url":"http://cryptochain.network","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TV6qcwSp38uESiDczxxb7zbJX1h2LfDs78","name":"","url":"https://tronstronics.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TLTDZBcPoJ8tZ6TTEeEqEvwYFk2wgotSfD","name":"","url":"http://TronGr27.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"THKJYuUmMKKARNf7s2VT51g5uPY6KEqnat","name":"","url":"http://TronGr1.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TZHvwiw9cehbMxrtTbmAexm9oPo4eFFvLS","name":"","url":"http://TronGr15.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TWm3id3mrQ42guf7c4oVpYExyTYnEGy3JL","name":"","url":"http://TronGr9.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TVDmPWGYxgi5DNeW8hXrzrhY8Y6zgxPNg4","name":"","url":"http://TronGr2.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TK6V5Pw2UWQWpySnZyCDZaAvu1y48oRgXN","name":"","url":"http://TronGr6.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TX3ZceVew6yLC5hWTXnjrUFtiFfUDGKGty","name":"","url":"http://TronGr18.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGK6iAKgBmHeQyp5hn3imB71EDnFPkXiPR","name":"","url":"http://TronGr16.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TNGoca1VHC6Y5Jd2B1VFpFEhizVk92Rz85","name":"","url":"http://TronGr12.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TDarXEG2rAD57oa7JTK785Yb2Et32UzY32","name":"","url":"http://TronGr4.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TDbNE1VajxjpgM5p7FyGNDASt3UVoFbiD3","name":"","url":"http://TronGr26.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TCf5cqLffPccEY7hcsabiFnMfdipfyryvr","name":"","url":"http://TronGr20.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434}]
+
     };
   }
 
   componentDidMount() {
-
     this.loadAccounts();
     this.loadStats();
     this.loadTxOverviewStats();
   }
 
+  async getPiechart(){
+      let {intl} = this.props;
+      //let {data} = await xhr.get("http://172.16.20.198:9000/api/witness/maintenance-statistic");
+
+  }
   async loadAccounts() {
 
     let {accounts} = await Client.getAccounts({
@@ -104,9 +116,9 @@ class Statistics extends React.Component {
     let today = new Date();
     let timerToday = today.getTime();
 
-    var birthday = new Date("2017/10/10");
-    var timerBirthday = birthday.getTime();
-    var dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
+    let birthday = new Date("2017/10/10");
+    let timerBirthday = birthday.getTime();
+    let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
 
 
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
@@ -124,6 +136,23 @@ class Statistics extends React.Component {
             volume_usd_num:v[1]
         }
     })
+
+    let piedata = this.state.pieData;
+    let pieChartData = [];
+    if (piedata.length > 0) {
+        piedata.map((val,i) => {
+            pieChartData.push({
+                key: i+1,
+                name: val.name?val.name:val.url,
+                volumeValue: intl.formatNumber(val.blockProduced),
+                volumePercentage: intl.formatNumber(val.percentage*100, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                }) + '%',
+            });
+
+        })
+    }
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -170,7 +199,8 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
-      volumeStats:volume
+      volumeStats:volume,
+      pieChart: pieChartData
     });
 
     function compare(property) {
@@ -282,7 +312,7 @@ class Statistics extends React.Component {
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts,volumeStats, summit} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts,volumeStats,pieChart, summit} = this.state;
     let unit;
     if (match.params.chartName === 'blockchainSizeStats' ||
         match.params.chartName === 'addressesStats') {
@@ -292,30 +322,32 @@ class Statistics extends React.Component {
     }
     return (
         <main className="container header-overlap">
+            {
+                pieChart === null  &&
+                <div className="alert alert-light" role="alert">
+                  <div className="row">
 
-          <div className="alert alert-light" role="alert">
-            <div className="row">
-
-              <div className="col-md-6 text-center">
-                {
-                  summit && summit[match.params.chartName + '_sort'] &&
-                  <span>{t('highest')}{t(unit)}{t('_of')}
-                    <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
-                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
+                    <div className="col-md-6 text-center">
+                        {
+                            summit && summit[match.params.chartName + '_sort'] &&
+                            <span>{t('highest')}{t(unit)}{t('_of')}
+                              <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                                {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
                   </span>
-                }
-              </div>
-              <div className="col-md-6 text-center">
-                {
-                  summit && summit[match.params.chartName + '_sort'] &&
-                  <span>{t('lowest')}{t(unit)}{t('_of')}
-                    <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
-                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
+                        }
+                    </div>
+                    <div className="col-md-6 text-center">
+                        {
+                            summit && summit[match.params.chartName + '_sort'] &&
+                            <span>{t('lowest')}{t(unit)}{t('_of')}
+                              <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
+                                {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
                   </span>
-                }
-              </div>
-            </div>
-          </div>
+                        }
+                    </div>
+                  </div>
+                </div>
+            }
           <div className="row">
             <div className="col-md-12">
               <div className="card">
@@ -418,13 +450,24 @@ class Statistics extends React.Component {
                       }
                     </div>
                   }
+                  {
+                      match.params.chartName === 'volumeStats' &&
+                      <div style={{height: 500}}>
+                          {
+                              volumeStats === null ?
+                                  <TronLoader/> :
+                                  <LineReactVolumeUsd source='singleChart' style={{height: 500}} data={volumeStats} intl={intl}/>
+                          }
+                      </div>
+                  }
                     {
-                        match.params.chartName === 'volumeStats' &&
-                        <div style={{height: 500}}>
+                        match.params.chartName === 'pieChart' &&
+                        <div>
                             {
-                                volumeStats === null ?
+                                pieChart === null ?
                                     <TronLoader/> :
-                                    <LineReactVolumeUsd source='singleChart' style={{height: 500}} data={volumeStats} intl={intl}/>
+                                    <RepresentativesRingPieReact source='singleChart' message={{id:'calculation_of_calculation_of_force'}} intl={intl} data={pieChart}  style={{height: 500}}/>
+
                             }
                         </div>
                     }
