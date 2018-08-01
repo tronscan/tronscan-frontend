@@ -187,9 +187,9 @@ export const messages = {
   "rank_real_time": "Ranking (w czasie rzeczywistym)",
   "volume_24": "24 godzinny wolumen handlu",
   "billion_usd": "Milard(ów) dolarów",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "loading_transfers": "Wczytuję Transfery",
+  "loading_transactions": "Wczytuję Transakcje",
+  "loading_block": "Wczytuję Blok",
   /*
   ##################################################################################
   #                                                                                #
@@ -680,16 +680,16 @@ export const messages = {
   "print_paper_wallet": "Wydrukuj papierową wersję portfela",
   "new_wallet_ready_message": "Twój nowy portfel jest gotowy do użytku",
   "go_to_account_page": "Przejdź do swojego konta",
-  "login_first": "Login to the Wallet first",
-  "contract_name": "Contract Name",
-  "compiler": "Compiler",
-  "tx_count": "Tx Count",
-  "setting": "Setting",
-  "date_verified": "Date Verified",
-  "compiler_version": "Compiler Version",
-  "creator": "Creator",
-  "verify_contract_code": "Verify Contract Code",
-  "buy_tokens": "Buy Tokens",
+  "login_first": "Najpierw zaloguj się do Portfela",
+  "contract_name": "Nazwa kontraktu",
+  "compiler": "Kompilator",
+  "tx_count": "Ilość transakcji",
+  "setting": "Ustawienia",
+  "date_verified": "Data weryfikacji",
+  "compiler_version": "Wersja kompilera",
+  "creator": "Twórca",
+  "verify_contract_code": "Zweryfikuj kod kontraktu",
+  "buy_tokens": "Kup tokeny",
   /*
   ##################################################################################
   #                                                                                #
