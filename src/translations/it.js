@@ -682,16 +682,16 @@ export const messages = {
   "print_paper_wallet": "Stampa il portafoglio su carta",
   "new_wallet_ready_message": "Il tuo nuovo portafoglio è pronto",
   "go_to_account_page": "Vai alla pagina dell'account",
-  "login_first": "Login to the Wallet first",
-  "contract_name": "Contract Name",
-  "compiler": "Compiler",
+  "login_first": "Entra nel Wallet prima",
+  "contract_name": "Nome del contratto",
+  "compiler": "Compilatore",
   "tx_count": "Tx Count",
-  "setting": "Setting",
-  "date_verified": "Date Verified",
-  "compiler_version": "Compiler Version",
-  "creator": "Creator",
-  "verify_contract_code": "Verify Contract Code",
-  "buy_tokens": "Buy Tokens",
+  "setting": "Impostazione",
+  "date_verified": "Verificato in data",
+  "compiler_version": "Versione del compilatore",
+  "creator": "Creatore",
+  "verify_contract_code": "Verifica Codice Contratto",
+  "buy_tokens": "Compra Token",
   /*
   ##################################################################################
   #                                                                                #
@@ -703,7 +703,7 @@ export const messages = {
   "time": "istante",
   "parenthash": "hash genitore",
   "size": "dimensione",
-  "blockchain_size": "Dimensione della catena del blocco",
+  "blockchain_size": "Dimensione della blockchain",
   /*
   ##################################################################################
   #                                                                                #
