@@ -44,7 +44,7 @@ export default class NodeMap extends Component {
       let northEast = L.latLng(90, 120);
       let bounds = L.latLngBounds(southWest, northEast);
 
-      let baseLayers = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemtsaSIsImEiOiJjamhzbjFiZWYwNG9mM3ZwM3BpM2xudjBpIn0.BeVbGjUROg5szZiCmYZfnQ').addTo(map);
+      let baseLayers = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidHJvbm5ldHdvcmsiLCJhIjoiY2prODN1cms2MDEwbzNxcHE3bzJkdTZ6ayJ9.QyBCtvwwMp8RK7V3kTbr_Q').addTo(map);
 
 
       map.setView(L.latLng(0, 13.114129), 1);
