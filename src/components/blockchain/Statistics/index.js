@@ -45,7 +45,6 @@ class Statistics extends React.Component {
     this.loadAccounts();
     this.loadStats();
     this.loadTxOverviewStats();
-    this.getPiechart();
   }
 
   async loadAccounts() {
@@ -65,28 +64,6 @@ class Statistics extends React.Component {
     });
   }
 
-  async getPiechart(){
-        let {intl} = this.props;
-        let {statisticData} = await Client.getStatisticData()
-        let pieChartData = [];
-        if (statisticData.length > 0) {
-            statisticData.map((val,i) => {
-                pieChartData.push({
-                    key: i+1,
-                    name: val.name?val.name:val.url,
-                    volumeValue: intl.formatNumber(val.blockProduced),
-                    volumePercentage: intl.formatNumber(val.percentage*100, {
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                    }) + '%',
-                });
-
-            })
-        }
-        this.setState({
-            pieChart: pieChartData
-        });
-  }
 
   async loadStats() {
 
@@ -146,7 +123,25 @@ class Statistics extends React.Component {
             volume_usd:intl.formatNumber(v[1]) + ' USD'
         }
     })
+    let {statisticData} = await Client.getStatisticData()
+    let pieChartData = [];
+    if (statisticData.length > 0) {
+        statisticData.map((val,i) => {
+            pieChartData.push({
+                key: i+1,
+                name: val.name?val.name:val.url,
+                volumeValue: intl.formatNumber(val.blockProduced),
+                volumePercentage: intl.formatNumber(val.percentage*100, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                }) + '%',
+            });
 
+        })
+    }
+      this.setState({
+          pieChart: pieChartData
+      });
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];

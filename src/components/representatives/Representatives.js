@@ -178,7 +178,7 @@ class Representatives extends Component {
                 </div>
             }
             {
-                pieChart !== null &&<div className="col-md-6 mt-3">
+                 <div className="col-md-6 mt-3">
                     <div className="card">
                         <div className="card-body">
                             <div style={{height: 330}}>
