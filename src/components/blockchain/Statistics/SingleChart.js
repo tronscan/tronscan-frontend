@@ -43,9 +43,7 @@ class Statistics extends React.Component {
       priceStats: null,
       volumeStats:null,
       summit: null,
-      pieChart:null,
-      pieData:[{"address":"TYVJ8JuQ6ctzCa2u79MFmvvNQ1U2tYQEUM","name":"","url":"http://tronone.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGzz8gjYiYRqpfmDwnLxfgPuLVNmpCswVp","name":"Sesameseed","url":"https://www.sesameseed.org","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TEKUPpjTMKWw9LJZ9YJ4enhCjAmVXSL7M6","name":"lianjinshu","url":"http://www.lianjinshu.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TDGmmTC7xDgQGwH4FYRGuE7SFH2MePHYeH","name":"TeamTronics","url":"https://www.teamtronics.org","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TPRxUBEakukBMwTScCHgvCPSBYk5UhfboJ","name":"","url":"http://www.cryptodiva.io/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TTcYhypP8m4phDhN6oRexz2174zAerjEWP","name":"CryptoGuyInZA","url":"https://www.cryptoguyinza.co.za/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGj1Ej1qRzL9feLTLhjwgxXF4Ct6GTWg2U","name":"Skypeople","url":"http://www.skypeople.co.kr","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TVMP5r12ymtNerq5KB4E8zAgLDmg2FqsEG","name":"CryptoGirls","url":"https://www.cryptogirls.ro/","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TMAbjAuefZqzJAyGhkn4AbWa3jinzcZtGc","name":"MLG-Global","url":"https://mlgblockchain.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TFA1qpUkQ1yBDw4pgZKx25wEZAqkjGoZo1","name":"JustinSunTron","url":"https://twitter.com/justinsuntron","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TRXDEXMoaAprSGJSwKanEUBqfQjvQEDuaw","name":"TrxDexCom","url":"https://TrxDex.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TSNbzxac4WhxN91XvaUfPTKP2jNT18mP6T","name":"BitTorrent","url":"https://www.bittorrent.com/","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TY65QiDt4hLTMpf3WRzcX357BnmdxT2sw9","name":"uTorrent","url":"https://www.utorrent.com/","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TKSXDA8HfE9E1y39RczVQ1ZascUEtaSToF","name":"CryptoChain","url":"http://cryptochain.network","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TV6qcwSp38uESiDczxxb7zbJX1h2LfDs78","name":"","url":"https://tronstronics.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TLTDZBcPoJ8tZ6TTEeEqEvwYFk2wgotSfD","name":"","url":"http://TronGr27.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"THKJYuUmMKKARNf7s2VT51g5uPY6KEqnat","name":"","url":"http://TronGr1.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TZHvwiw9cehbMxrtTbmAexm9oPo4eFFvLS","name":"","url":"http://TronGr15.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TWm3id3mrQ42guf7c4oVpYExyTYnEGy3JL","name":"","url":"http://TronGr9.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TVDmPWGYxgi5DNeW8hXrzrhY8Y6zgxPNg4","name":"","url":"http://TronGr2.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TK6V5Pw2UWQWpySnZyCDZaAvu1y48oRgXN","name":"","url":"http://TronGr6.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TX3ZceVew6yLC5hWTXnjrUFtiFfUDGKGty","name":"","url":"http://TronGr18.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TGK6iAKgBmHeQyp5hn3imB71EDnFPkXiPR","name":"","url":"http://TronGr16.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TNGoca1VHC6Y5Jd2B1VFpFEhizVk92Rz85","name":"","url":"http://TronGr12.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TDarXEG2rAD57oa7JTK785Yb2Et32UzY32","name":"","url":"http://TronGr4.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434},{"address":"TDbNE1VajxjpgM5p7FyGNDASt3UVoFbiD3","name":"","url":"http://TronGr26.com","blockProduced":251,"total":6784,"percentage":0.03699882075471698},{"address":"TCf5cqLffPccEY7hcsabiFnMfdipfyryvr","name":"","url":"http://TronGr20.com","blockProduced":252,"total":6784,"percentage":0.03714622641509434}]
-
+      pieChart:null
     };
   }
 
@@ -137,10 +135,10 @@ class Statistics extends React.Component {
         }
     })
 
-    let piedata = this.state.pieData;
+    let {statisticData} = await Client.getStatisticData()
     let pieChartData = [];
-    if (piedata.length > 0) {
-        piedata.map((val,i) => {
+    if (statisticData.length > 0) {
+        statisticData.map((val,i) => {
             pieChartData.push({
                 key: i+1,
                 name: val.name?val.name:val.url,
@@ -323,17 +321,16 @@ class Statistics extends React.Component {
     return (
         <main className="container header-overlap">
             {
-                pieChart === null  &&
+                match.params.chartName !== 'pieChart'?
                 <div className="alert alert-light" role="alert">
                   <div className="row">
-
                     <div className="col-md-6 text-center">
                         {
                             summit && summit[match.params.chartName + '_sort'] &&
                             <span>{t('highest')}{t(unit)}{t('_of')}
                               <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
                                 {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
-                  </span>
+                            </span>
                         }
                     </div>
                     <div className="col-md-6 text-center">
@@ -342,11 +339,12 @@ class Statistics extends React.Component {
                             <span>{t('lowest')}{t(unit)}{t('_of')}
                               <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
                                 {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
-                  </span>
+                            </span>
                         }
                     </div>
                   </div>
                 </div>
+                :null
             }
           <div className="row">
             <div className="col-md-12">
