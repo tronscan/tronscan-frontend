@@ -285,11 +285,11 @@ class TokenOverview extends Component {
                       </div>
                     </div>
                   </div>
-                  <a href="#">
+                  <TokenLink  name={token.name}>
                     <div className="token-info">
                       More info
                     </div>
-                  </a>
+                  </TokenLink>
                 </div>
               </div>
 
