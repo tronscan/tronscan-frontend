@@ -49,7 +49,7 @@ module.exports = {
       }
     ]
   },
-  representpieChart: {
+  representPieChart: {
         color: [
             '#98C8EB',
             '#1A3964',

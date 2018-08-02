@@ -128,14 +128,14 @@ export class RepresentativesRingPieReact extends React.Component {
         if (myChart === undefined) {
             myChart = echarts.init(document.getElementById(id));
         }
-        config.representpieChart.title.text=intl.formatMessage({id:message.id});
+        config.representPieChart.title.text=intl.formatMessage({id:message.id});
 
-        config.representpieChart.series[0].data = [];
-        config.representpieChart.legend.data = [];
-        config.representpieChart.title.link = '#/blockchain/stats/pieChart';
+        config.representPieChart.series[0].data = [];
+        config.representPieChart.legend.data = [];
+        config.representPieChart.title.link = '#/blockchain/stats/pieChart';
         if(source==='singleChart'){
-            config.representpieChart.legend.show = true;
-            config.representpieChart.toolbox.feature = {
+            config.representPieChart.legend.show = true;
+            config.representPieChart.toolbox.feature = {
                 restore: {
                     title: 'restore'
                 },
@@ -145,8 +145,8 @@ export class RepresentativesRingPieReact extends React.Component {
                 }
             }
         }else{
-            config.representpieChart.legend.show = false;
-            config.representpieChart.toolbox.feature = {
+            config.representPieChart.legend.show = false;
+            config.representPieChart.toolbox.feature = {
                 restore: {
                     title: 'restore'
                 }
@@ -179,15 +179,15 @@ export class RepresentativesRingPieReact extends React.Component {
 
             exchanges.sort(compare("value")).reverse();
 
-            config.representpieChart.series[0].data = [];
-            config.representpieChart.legend.data = temp;
-            config.representpieChart.series[0].data = exchanges;
+            config.representPieChart.series[0].data = [];
+            config.representPieChart.legend.data = temp;
+            config.representPieChart.series[0].data = exchanges;
 
         }
         if(data && data.length===0){
-            config.representpieChart.title.text="No data";
+            config.representPieChart.title.text="No data";
         }
-        myChart.setOption(config.representpieChart);
+        myChart.setOption(config.representPieChart);
     }
 
 
