@@ -83,8 +83,6 @@ export class RingPieReact extends React.Component {
       config.ringPieChart.series[1].data = [];
 
       config.ringPieChart.legend.data = temp;
-      console.log('finalExchanges',finalExchanges)
-      console.log('finalPairData',finalPairData)
       config.ringPieChart.series[0].data = finalExchanges;
       config.ringPieChart.series[1].data = finalPairData;
 
