@@ -843,3 +843,13 @@ th {
     display: none;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .token-cards:hover {
+    color: #000;
+
+  }
+  .token-cards {
+    font-weight: normal;
+  }
+}
