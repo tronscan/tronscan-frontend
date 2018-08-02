@@ -292,13 +292,16 @@ class TokenDetail extends React.Component {
                           <th>{tu("participate")}:</th>
                           <td>
                             <div className="input-group">
-                              <NumberField
-                                  className="form-control"
-                                  value={buyAmount}
-                                  max={token.remaining}
-                                  min={1}
-                                  onChange={value => this.setState({buyAmount: value})}
-                              />
+                              {
+                                token.remaining!==0 &&
+                                <NumberField
+                                    className="form-control"
+                                    value={buyAmount}
+                                    max={token.remaining}
+                                    min={1}
+                                    onChange={value => this.setState({buyAmount: value})}
+                                />
+                              }
                               <div className="input-group-append">
                                 <button className="btn btn-success"
                                         type="button"

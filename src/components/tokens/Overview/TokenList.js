@@ -10,6 +10,7 @@ import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
+import {toastr} from 'react-redux-toastr'
 
 class TokenList extends Component {
 
@@ -32,7 +33,7 @@ class TokenList extends Component {
 
   loadPage = async (page = 1, pageSize = 40) => {
     let {filter} = this.state;
-
+    let {intl} = this.props;
     this.setState({loading: true});
 
     let {tokens, total} = await Client.getTokens({
@@ -41,6 +42,10 @@ class TokenList extends Component {
       start: (page - 1) * pageSize,
       ...filter,
     });
+
+    if (tokens.length === 0) {
+      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
+    }
 
     function compare(property) {
       return function (obj1, obj2) {
@@ -107,9 +112,9 @@ class TokenList extends Component {
     }
     else {
 
-      if(window.location.hash!=='#/tokens/list')
+      if (window.location.hash !== '#/tokens/list')
         window.location.hash = '#/tokens/list';
-      else{
+      else {
         this.setState({
           filter: {},
         });
@@ -117,6 +122,7 @@ class TokenList extends Component {
     }
 
   }
+
   render() {
 
     let {tokens, alert, loading, total} = this.state;
@@ -146,7 +152,7 @@ class TokenList extends Component {
                           <SearchInput search={this.searchName}></SearchInput>
                         </th>
                         <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
-                        <th className="d-none d-md-table-cell" >{tu("total_supply")}</th>
+                        <th className="d-none d-md-table-cell">{tu("total_supply")}</th>
                         <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
                         <th className="text-nowrap" style={{width: 150}}>{tu("registered")}</th>
                         {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
