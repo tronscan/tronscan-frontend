@@ -82,7 +82,6 @@ class Markets extends React.Component {
 
       })
     }
-    console.log('markets',data)
     return data.slice(0, 99);
   }
 
