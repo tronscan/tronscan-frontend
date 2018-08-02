@@ -87,7 +87,7 @@ class FreezeBalanceModal extends React.PureComponent {
         <ModalBody className="text-center">
           <form>
             <div className="form-group">
-              <div className="text-left">{tu("trx_balance_tips")} <span style={{fontWeight:800}}>{trxBalance}</span></div>
+              <div className="text-left">{tu("current_power")}: <span style={{fontWeight:800}}>{trxBalance}</span></div>
               <label>{tu("trx_amount")}</label>
 
               <NumberField
