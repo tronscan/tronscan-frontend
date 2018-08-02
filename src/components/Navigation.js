@@ -376,10 +376,10 @@ class Navigation extends PureComponent {
               </ul>
             </li> :
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+              <a className="nav-link dropdown-toggle nav_open_wallet" data-toggle="dropdown" href="javascript:">
                 {tu("open_wallet")}
               </a>
-              <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
+              <ul className="dropdown-menu dropdown-menu-right nav_login_wallet" style={{width: 320}}>
                 <li className="px-3">
                   <div className="form-group text-center">
                     <label>{tu("private_key")}</label>
