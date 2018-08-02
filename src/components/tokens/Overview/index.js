@@ -213,7 +213,7 @@ class TokenOverview extends Component {
     let {amount, tokens} = this.state;
 
     return (
-      <div className="row">
+      <div className="row pt-3">
 
 
 
@@ -227,6 +227,9 @@ class TokenOverview extends Component {
                           <div className="progress-bar-container">
                             <div className="progress mt-1">
                               <div className="progress-bar " style={{width: token.issuedPercentage + '%'}}/>
+                            </div>
+                            <div className="float-right token-card-percentage">
+                              {Math.ceil(token.issuedPercentage)}%
                             </div>
                             <div className="token-amounts">
                               <span className="">
@@ -248,9 +251,7 @@ class TokenOverview extends Component {
                           <span>
                             {token.name}
                           </span>
-                          <span className="float-right token-procentage">
-                            {Math.ceil(token.issuedPercentage)}%
-                          </span>
+
                         </div>
 
                     </div>

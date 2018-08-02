@@ -28,4 +28,16 @@
   }
 
 }
+.token-cards{
+  background-color: #24292e !important;
+  border: 1px solid #24292e !important;
+  .token-info {
+    background-color: #24292e !important;
+  }
+}
+
+.token-cards:hover {
+  background-color: #D2D1D1 !important;
+  color: #333 !important;
+}
 

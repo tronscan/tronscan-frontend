@@ -758,8 +758,9 @@ th {
         }
         .progress {
           border-radius: 5px;
-          background-color: #bbb;
+          background-color: #bbbbbb;
           height: 10px;
+          width: 85%;
         }
         .token-amounts{
           display: none;
@@ -767,6 +768,11 @@ th {
         .token-procentage {
           display: none;
         }
+      .token-card-percentage {
+        display: inline-block;
+        font-size: 12px;
+        margin-top: -12px;
+      }
     }
   .bottom-center {
     min-height: 40px;
@@ -828,6 +834,10 @@ th {
         font-size: 12px;
         padding-top: 9px;
       }
+      .token-card-percentage {
+        display: none;
+      }
+
     }
   .bottom-center{
     display: none;
