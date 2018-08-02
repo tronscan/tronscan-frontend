@@ -18,6 +18,11 @@ import {
   LineReactPrice,
   LineReactVolumeUsd
 } from "../../common/LineCharts";
+
+import {
+    RepresentativesRingPieReact
+} from "../../common/RingPieChart";
+
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
 
@@ -37,17 +42,22 @@ class Statistics extends React.Component {
       blockchainSizeStats: null,
       priceStats: null,
       volumeStats:null,
-      summit: null
+      summit: null,
+      pieChart:null
     };
   }
 
   componentDidMount() {
-
     this.loadAccounts();
     this.loadStats();
     this.loadTxOverviewStats();
   }
 
+  async getPiechart(){
+      let {intl} = this.props;
+      //let {data} = await xhr.get("http://172.16.20.198:9000/api/witness/maintenance-statistic");
+
+  }
   async loadAccounts() {
 
     let {accounts} = await Client.getAccounts({
@@ -104,9 +114,9 @@ class Statistics extends React.Component {
     let today = new Date();
     let timerToday = today.getTime();
 
-    var birthday = new Date("2017/10/10");
-    var timerBirthday = birthday.getTime();
-    var dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
+    let birthday = new Date("2017/10/10");
+    let timerBirthday = birthday.getTime();
+    let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
 
 
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
@@ -124,6 +134,23 @@ class Statistics extends React.Component {
             volume_usd_num:v[1]
         }
     })
+
+    let {statisticData} = await Client.getStatisticData()
+    let pieChartData = [];
+    if (statisticData.length > 0) {
+        statisticData.map((val,i) => {
+            pieChartData.push({
+                key: i+1,
+                name: val.name?val.name:val.url,
+                volumeValue: intl.formatNumber(val.blockProduced),
+                volumePercentage: intl.formatNumber(val.percentage*100, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                }) + '%',
+            });
+
+        })
+    }
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -170,7 +197,8 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
-      volumeStats:volume
+      volumeStats:volume,
+      pieChart: pieChartData
     });
 
     function compare(property) {
@@ -282,7 +310,7 @@ class Statistics extends React.Component {
 
   render() {
     let {match, intl} = this.props;
-    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts,volumeStats, summit} = this.state;
+    let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts,volumeStats,pieChart, summit} = this.state;
     let unit;
     if (match.params.chartName === 'blockchainSizeStats' ||
         match.params.chartName === 'addressesStats') {
@@ -292,30 +320,32 @@ class Statistics extends React.Component {
     }
     return (
         <main className="container header-overlap">
-
-          <div className="alert alert-light" role="alert">
-            <div className="row">
-
-              <div className="col-md-6 text-center">
-                {
-                  summit && summit[match.params.chartName + '_sort'] &&
-                  <span>{t('highest')}{t(unit)}{t('_of')}
-                    <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
-                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
-                  </span>
-                }
-              </div>
-              <div className="col-md-6 text-center">
-                {
-                  summit && summit[match.params.chartName + '_sort'] &&
-                  <span>{t('lowest')}{t(unit)}{t('_of')}
-                    <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
-                    {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
-                  </span>
-                }
-              </div>
-            </div>
-          </div>
+            {
+                match.params.chartName !== 'pieChart'?
+                <div className="alert alert-light" role="alert">
+                  <div className="row">
+                    <div className="col-md-6 text-center">
+                        {
+                            summit && summit[match.params.chartName + '_sort'] &&
+                            <span>{t('highest')}{t(unit)}{t('_of')}
+                              <strong>{' ' + summit[match.params.chartName + '_sort'][0].increment + ' '}</strong>
+                                {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][0].date)}
+                            </span>
+                        }
+                    </div>
+                    <div className="col-md-6 text-center">
+                        {
+                            summit && summit[match.params.chartName + '_sort'] &&
+                            <span>{t('lowest')}{t(unit)}{t('_of')}
+                              <strong>{' ' + summit[match.params.chartName + '_sort'][1].increment + ' '}</strong>
+                                {t('was_recorded_on')} {intl.formatDate(summit[match.params.chartName + '_sort'][1].date)}
+                            </span>
+                        }
+                    </div>
+                  </div>
+                </div>
+                :null
+            }
           <div className="row">
             <div className="col-md-12">
               <div className="card">
@@ -418,13 +448,24 @@ class Statistics extends React.Component {
                       }
                     </div>
                   }
+                  {
+                      match.params.chartName === 'volumeStats' &&
+                      <div style={{height: 500}}>
+                          {
+                              volumeStats === null ?
+                                  <TronLoader/> :
+                                  <LineReactVolumeUsd source='singleChart' style={{height: 500}} data={volumeStats} intl={intl}/>
+                          }
+                      </div>
+                  }
                     {
-                        match.params.chartName === 'volumeStats' &&
-                        <div style={{height: 500}}>
+                        match.params.chartName === 'pieChart' &&
+                        <div>
                             {
-                                volumeStats === null ?
+                                pieChart === null ?
                                     <TronLoader/> :
-                                    <LineReactVolumeUsd source='singleChart' style={{height: 500}} data={volumeStats} intl={intl}/>
+                                    <RepresentativesRingPieReact source='singleChart' message={{id:'calculation_of_calculation_of_force'}} intl={intl} data={pieChart}  style={{height: 500}}/>
+
                             }
                         </div>
                     }

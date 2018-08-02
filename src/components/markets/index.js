@@ -6,7 +6,7 @@ import MarketOverview from "./MarketOverview";
 import {TronLoader} from "../common/loaders";
 import {Client} from "../../services/api";
 import LineReact from "../common/LineChart";
-import RingPieReact from "../common/RingPieChart";
+import {RingPieReact} from "../common/RingPieChart";
 import {
     LineReactPrice,
     LineReactVolumeUsd
@@ -191,7 +191,7 @@ class Markets extends React.Component {
               <div className="card">
                 <div className="card-body">
 
-                  <RingPieReact message={{id:'Trade Volume'}} style={{height: 700}} data={markets}/>
+                  <RingPieReact message={{id:'Trade Volume'}} style={{height: 700}} data={markets} intl={intl}/>
                 </div>
               </div>
             </div>

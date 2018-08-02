@@ -17,6 +17,9 @@ import {
   LineReactPrice,
   LineReactVolumeUsd
 } from "../../common/LineCharts";
+import {
+  RepresentativesRingPieReact
+} from "../../common/RingPieChart";
 import {loadPriceData} from "../../../actions/markets";
 
 class Statistics extends React.Component {
@@ -33,7 +36,8 @@ class Statistics extends React.Component {
       blockSizeStats: null,
       blockchainSizeStats: null,
       priceStats: null,
-      volume:null
+      volume:null,
+      pieChart:null
     };
   }
 
@@ -41,6 +45,7 @@ class Statistics extends React.Component {
     this.loadAccounts();
     this.loadStats();
     this.loadTxOverviewStats();
+    this.getPiechart();
   }
 
   async loadAccounts() {
@@ -60,6 +65,28 @@ class Statistics extends React.Component {
     });
   }
 
+  async getPiechart(){
+        let {intl} = this.props;
+        let {statisticData} = await Client.getStatisticData()
+        let pieChartData = [];
+        if (statisticData.length > 0) {
+            statisticData.map((val,i) => {
+                pieChartData.push({
+                    key: i+1,
+                    name: val.name?val.name:val.url,
+                    volumeValue: intl.formatNumber(val.blockProduced),
+                    volumePercentage: intl.formatNumber(val.percentage*100, {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                    }) + '%',
+                });
+
+            })
+        }
+        this.setState({
+            pieChart: pieChartData
+        });
+  }
 
   async loadStats() {
 
@@ -172,7 +199,7 @@ class Statistics extends React.Component {
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume,pieChart} = this.state;
     let {intl} = this.props;
 
     return (
@@ -270,6 +297,22 @@ class Statistics extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 mt-3">
+              <div className="card">
+                <div className="card-body">
+                  <div style={{height: 350}}>
+                      {
+                          pieChart === null ?
+                              <TronLoader/> :
+                              <RepresentativesRingPieReact message={{id:'calculation_of_calculation_of_force'}} intl={intl} data={pieChart} style={{height: 300}}/>
+                      }
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </main>
     );
