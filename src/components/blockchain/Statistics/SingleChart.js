@@ -464,7 +464,7 @@ class Statistics extends React.Component {
                             {
                                 pieChart === null ?
                                     <TronLoader/> :
-                                    <RepresentativesRingPieReact source='singleChart' message={{id:'calculation_of_calculation_of_force'}} intl={intl} data={pieChart}  style={{height: 500}}/>
+                                    <RepresentativesRingPieReact source='singleChart' message={{id:'produce_distribution'}} intl={intl} data={pieChart}  style={{height: 500}}/>
 
                             }
                         </div>
