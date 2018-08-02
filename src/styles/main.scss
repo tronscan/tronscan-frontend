@@ -725,6 +725,7 @@ th {
   transition: background-color 0.5s ease;
   background-color: $red;
   color: #FFFFFF;
+  border-radius: 2px;
   border: 1px solid $red;
   background-size: cover;
   min-height: 200px;
@@ -756,8 +757,9 @@ th {
           background-color: #fff;
         }
         .progress {
-          border-radius: 0px;
-
+          border-radius: 5px;
+          background-color: #bbb;
+          height: 10px;
         }
         .token-amounts{
           display: none;

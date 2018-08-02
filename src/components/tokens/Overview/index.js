@@ -220,12 +220,10 @@ class TokenOverview extends Component {
         {
           tokens.map((token, index) => (
             <Fragment key={index + "-" + token.name}>
-              <div className="col-12 col-sm-6 col-lg-4 mb-3 ">
+              <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 ">
                 <div className="token-cards">
                   <div className="token-cards-top">
                     <div className="token-cards-header">
-
-
                           <div className="progress-bar-container">
                             <div className="progress mt-1">
                               <div className="progress-bar " style={{width: token.issuedPercentage + '%'}}/>
