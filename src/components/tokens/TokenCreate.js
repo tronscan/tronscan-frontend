@@ -84,8 +84,9 @@ class TokenCreate extends Component {
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
+              confirmBtnText={intl.formatMessage({id: 'confirm'})}
               confirmBtnBsStyle="success"
+              cancelBtnText={intl.formatMessage({id: 'cancel'})}
               cancelBtnBsStyle="default"
               title={intl.formatMessage({id: 'confirm_token_issue'})}
               onConfirm={this.submit}
