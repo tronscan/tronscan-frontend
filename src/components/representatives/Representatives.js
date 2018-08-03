@@ -129,10 +129,10 @@ class Representatives extends Component {
 
     return (
       <main className="container header-overlap pb-3">
-        <div className="row">
-            {
-                witnesses.length > 0 && <div className="col-md-6">
-                    <div className="mt-3 mt-md-3">
+        {
+          witnesses.length > 0 &&
+          <div className="row">
+                    <div className="col-md-4 mt-3 mt-md-3">
                         <div className="card h-100 widget-icon">
                             <WidgetIcon className="fa fa-user-tie text-secondary"  />
                             <div className="card-body text-center">
@@ -144,7 +144,7 @@ class Representatives extends Component {
                         </div>
                     </div>
 
-                    <div className="mt-3 mt-md-3">
+                    <div className="col-md-4 mt-3 mt-md-3">
                         <div className="card h-100">
                             <div className="card-body text-center widget-icon">
                                 <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}  />
@@ -159,7 +159,7 @@ class Representatives extends Component {
                         </div>
                     </div>
 
-                    <div className="mt-3 mt-md-3">
+                    <div className="col-md-4 mt-3 mt-md-3">
                         <div className="card h-100 widget-icon">
                             <WidgetIcon className="fa fa-arrow-down text-danger" style={{bottom: 10}}  />
                             <div className="card-body text-center">
@@ -177,7 +177,7 @@ class Representatives extends Component {
                     </div>
                 </div>
             }
-            {
+            {/*
                  <div className="col-md-6 mt-3">
                     <div className="card">
                         <div className="card-body">
@@ -191,9 +191,9 @@ class Representatives extends Component {
                         </div>
                     </div>
                 </div>
+                */
             }
 
-        </div>
 
         <div className="row mt-3">
           <div className="col-md-12">

@@ -134,7 +134,7 @@ class Statistics extends React.Component {
             volume_usd_num:v[1]
         }
     })
-
+/*
     let {statisticData} = await Client.getStatisticData()
     let pieChartData = [];
     if (statisticData.length > 0) {
@@ -151,6 +151,7 @@ class Statistics extends React.Component {
 
         })
     }
+    */
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -198,7 +199,7 @@ class Statistics extends React.Component {
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
       volumeStats:volume,
-      pieChart: pieChartData
+     // pieChart: pieChartData
     });
 
     function compare(property) {
@@ -459,6 +460,7 @@ class Statistics extends React.Component {
                       </div>
                   }
                     {
+                      /*
                         match.params.chartName === 'pieChart' &&
                         <div>
                             {
@@ -468,6 +470,7 @@ class Statistics extends React.Component {
 
                             }
                         </div>
+                       */
                     }
                 </div>
               </div>
