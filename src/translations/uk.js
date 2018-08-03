@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Повідомлення",
   "wallet_address": "Адреса гаманця",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Завантаження трансферів",
   "loading_transactions": "Завантаження трансакцій",
   "loading_block": "Завантаження блоку",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #

@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Cargando Transferencias",
   "loading_transactions": "Cargando Transacciones",
   "loading_block": "Cargando Bloque",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
