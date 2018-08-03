@@ -82,7 +82,7 @@ class FreezeBalanceModal extends React.PureComponent {
     return (
       <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered" >
         <ModalHeader className="text-center" toggle={this.hideModal}>
-          {tu("Freeze Balance")}
+          {tu("freeze")}
         </ModalHeader>
         <ModalBody className="text-center">
           <form>
@@ -111,7 +111,7 @@ class FreezeBalanceModal extends React.PureComponent {
                       onClick={this.freeze}
                 >
                 <i className="fa fa-snowflake mr-2"/>
-                {tu("Freeze Balance")}
+                {tu("freeze")}
               </button>
             </p>
           </form>
