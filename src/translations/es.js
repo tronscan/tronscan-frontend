@@ -103,7 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
-  "confirm": "Confirm",
+  "confirm": "Confirmar",
   /*
   ##################################################################################
   #                                                                                #
