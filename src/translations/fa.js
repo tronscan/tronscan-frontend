@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "جستجوگر دسکتاپ",
   "message": "پیام",
   "wallet_address": "آدرس کیف پول",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #

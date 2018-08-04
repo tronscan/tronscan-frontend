@@ -398,7 +398,7 @@ class TokenOverview extends Component {
               <Sticky>
                 {
                   ({style}) => (
-                      <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
+                      <div style={{zIndex: 100, padding: 10, ...style}} className="card bg-white py-3 border">
 
                           <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
 
