@@ -119,7 +119,7 @@ class Paging extends React.PureComponent {
                        <BarLoader/>
                     </span> :
                     <span className="page-link">
-                      {tu("page")}
+                      {tu("page")}{' '}
                       <input className='inputForPaging' type='text'
                              placeholder={page}
                              onKeyDown={(event) => {
@@ -128,7 +128,7 @@ class Paging extends React.PureComponent {
                              onBlur={(event) => {
                                this.onBlur(event)
                              }}/>
-                      {t("of")} {totalPages}
+                      {' '}{t("of")} {totalPages}
                     </span>
               }
             </li>
