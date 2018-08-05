@@ -7,7 +7,7 @@ import {filter, isNaN, sortBy, sumBy, trim} from "lodash";
 import Countdown from "react-countdown-now";
 import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
-import {Alert} from "reactstrap";
+import {Alert, Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX} from "../../constants";
@@ -264,6 +264,7 @@ class VoteOverview extends React.Component {
           <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
           <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
           <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
+          <button className="btn btn-success ml-1" onClick={this.autoSubmitVotes}>{tu("auto_vote")}</button>
         </div>
       );
     }
@@ -295,6 +296,48 @@ class VoteOverview extends React.Component {
     this.setState({
       modal: null,
     });
+  };
+
+  autoSubmitVotes = () => {
+
+    let {wallet} = this.props;
+    let {votes} = this.state;
+    let currentWallet = wallet.current;
+    let frozen = currentWallet.frozenTrx / ONE_TRX;
+
+    this.setState({
+      modal: (
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} size="lg">
+          <ModalHeader className="text-center" toggle={this.hideModal}>Auto Distribute Votes</ModalHeader>
+          <ModalBody>
+            Available Frozen: {currentWallet.balance / ONE_TRX} <br/>
+            <table className="table">
+              <thead>
+                <tr>
+                  <td>Candidate</td>
+                  <td>Percentage</td>
+                  <td>Votes</td>
+                </tr>
+              </thead>
+              <tbody>
+              {
+                Object.entries(votes).map(([address, votes]) => (
+                  <tr>
+                    <td>{address}</td>
+                    <td>{(votes / frozen) * 100} %</td>
+                    <td>{((currentWallet.balance / ONE_TRX) / 100) * ((votes / frozen) * 100) }</td>
+                  </tr>
+                ))
+              }
+              </tbody>
+            </table>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="success" onClick={this.submitAutoVotes}>Submit</Button>
+          </ModalFooter>
+        </Modal>
+      )
+    })
   };
 
   submitVotes = async () => {
