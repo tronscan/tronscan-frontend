@@ -123,7 +123,7 @@ class Statistics extends React.Component {
             volume_usd:intl.formatNumber(v[1]) + ' USD'
         }
     })
-    /*
+
     let {statisticData} = await Client.getStatisticData()
     let pieChartData = [];
     if (statisticData.length > 0) {
@@ -140,10 +140,6 @@ class Statistics extends React.Component {
 
         })
     }
-      this.setState({
-          pieChart: pieChartData
-      });
-      */
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -190,7 +186,8 @@ class Statistics extends React.Component {
       blockSizeStats: blockSizeStatsTemp,
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
-      volume:volume
+      volume:volume,
+      pieChart: pieChartData
     });
   }
 
@@ -296,25 +293,23 @@ class Statistics extends React.Component {
             </div>
           </div>
           {
-            /*
+
             <div className="row">
               <div className="col-md-6 mt-3">
                 <div className="card">
                   <div className="card-body">
                     <div style={{height: 350}}>
-                      {
-                        pieChart === null ?
-                            <TronLoader/> :
-                            <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
-                                                         data={pieChart} style={{height: 300}}/>
-                      }
+                        {
+                            pieChart === null ?
+                                <TronLoader/> :
+                                <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
+                                                             data={pieChart} style={{height: 300}}/>
+                        }
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-            */
           }
         </main>
     );
