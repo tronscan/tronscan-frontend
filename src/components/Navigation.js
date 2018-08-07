@@ -29,6 +29,7 @@ import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
+import {BarLoader} from "./common/loaders";
 
 class Navigation extends PureComponent {
 
@@ -116,6 +117,7 @@ class Navigation extends PureComponent {
           placeHolder="Password"
           onCancel={this.hideModal}
           validationMsg={tu("enter_password_message")}
+          confirmBtnText={tu("ok")}
           onConfirm={(password) => this.unlockKeyFile(password, contents)}>
           {tu("password")}
         </SweetAlert>
@@ -138,7 +140,8 @@ class Navigation extends PureComponent {
         popup: (
           <SweetAlert
             success title={tu("wallet_unlocked")}
-            onConfirm={this.hideModal} />
+            onConfirm={this.hideModal}
+            confirmBtnText={tu("ok")} />
         )
       });
        this.props.login(privateKey);
@@ -268,7 +271,6 @@ class Navigation extends PureComponent {
           return tronLogoInvertedTestNet;
       }
     } else {
-
       switch (theme) {
         case "tron":
           return tronLogoBlue;
@@ -284,23 +286,166 @@ class Navigation extends PureComponent {
     console.log("LOGIN WITH MOBILE");
   };
 
+  renderWallet() {
+
+    let {
+      account,
+      totalTransactions = 0,
+      flags,
+      wallet,
+    } = this.props;
+
+    if (wallet.isLoading) {
+      return (
+        <li className="nav-item">
+          <a className="nav-link" href="javascript:;">
+            Loading Wallet...
+          </a>
+        </li>
+      );
+
+    }
+
+    return (
+      <Fragment>
+        {
+          (account.isLoggedIn && wallet.isOpen) ?
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                {tu("wallet")}
+              </a>
+              <ul className="dropdown-menu dropdown-menu-right">
+                <li className="px-1 py-1">
+                  <div className="row" style={{width: 305}}>
+                    <div className="col-lg-2">
+                      <Avatar size={45} value={account.address}/>
+                    </div>
+                    <div className="col-lg-10">
+                      <b>{wallet.current.name || tu("account")}</b>
+                      <br/>
+                      <AddressLink
+                        address={account.address}
+                        className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
+                    </div>
+                  </div>
+                  <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
+                </li>
+                {
+                  wallet.current.representative.enabled && (
+                    <li className="dropdown-item text-danger text-center">
+                      Representative
+                    </li>
+                  )
+                }
+                <li className="dropdown-divider"/>
+                <Link className="dropdown-item" to="/account">
+                  <i className="fa fa-credit-card mr-2"/>
+                  <FormattedNumber value={wallet.current.balance / ONE_TRX} /> TRX
+                </Link>
+                <Link className="dropdown-item" to="/account">
+                  <i className="fa fa-bolt mr-2"/>
+                  <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> TRON {tu("power")}
+                </Link>
+                <Link className="dropdown-item" to="/account">
+                  <i className="fa fa-tachometer-alt mr-2"/>
+                  <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> {tu("bandwidth")}
+                </Link>
+                <Link className="dropdown-item"
+                      to={"/blockchain/transactions?address=" + account.address}>
+                  <i className="fa fa-exchange-alt mr-2"/>
+                  <FormattedNumber value={totalTransactions} /> {tu("transactions")}
+                </Link>
+                <li className="dropdown-divider"/>
+
+                <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                  <i className="fa fa-paper-plane mr-2"/>
+                  {tu("send")}
+                </a>
+                <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                  <i className="fa fa-qrcode mr-2"/>
+                  {tu("receive")}
+                </a>
+                {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
+                {/*<i className="fa fa-qrcode mr-2"/>*/}
+                {/*Receive*/}
+                {/*</Link>*/}
+                <li className="dropdown-divider"/>
+                <li className="px-2 pt-1">
+                  <button className="btn btn-danger btn-block" onClick={this.logout}>{tu("sign_out")}</button>
+                </li>
+              </ul>
+            </li> :
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                {tu("open_wallet")}
+              </a>
+              <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
+                <li className="px-3">
+                  <div className="form-group text-center">
+                    <label>{tu("private_key")}</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      onChange={ev => this.setState({ privateKey: ev.target.value })}
+                      placeholder=""/>
+                  </div>
+                  <button className="btn btn-success btn-block"
+                          disabled={!this.isLoginValid()}
+                          onClick={this.login}>
+                    {tu("sign_in")}
+                  </button>
+                </li>
+                <li className="dropdown-divider"/>
+                <li className="px-3">
+                  <div className="form-group text-center">
+                    <label>{tu("keystore_file")}</label>
+                    <button className="btn btn-success btn-block" onClick={this.selectFile}>
+                      {tu("select_file")}
+                    </button>
+                    <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} accept=".txt" />
+                  </div>
+
+                </li>
+                <li className="dropdown-divider"/>
+                {
+                  flags.mobileLogin &&
+                  <Fragment>
+                    <li className="px-3">
+                      <div className="form-group text-center">
+                        <label>{tu("Mobile Login")}</label>
+                        <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
+                          {tu("login_mobile")}
+                        </button>
+                      </div>
+                    </li>
+                    <li className="dropdown-divider"/>
+                  </Fragment>
+                }
+                <li className="px-3 py-2">
+                  <Link className="btn btn-primary btn-block" to="/wallet/new">
+                    {tu("create_wallet")}
+                  </Link>
+                </li>
+              </ul>
+            </li>
+        }
+      </Fragment>
+    )
+  }
+
   render() {
 
     let {intl} = this.props;
     let {
       languages,
       activeLanguage,
-      account,
-      tokenBalances,
-      totalTransactions = 0,
       currencyConversions,
       activeCurrency,
-      flags,
       wallet,
       syncStatus,
     } = this.props;
 
-    let {search, searchType, searchTypes, popup, notifications} = this.state;
+    let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -327,134 +472,10 @@ class Navigation extends PureComponent {
           }
           <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
             <ul className="navbar-nav navbar-right">
-
               {
                 wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
               }
-              {
-                (account.isLoggedIn && wallet.isOpen)
-                  ?
-                  <Fragment>
-                    <li className="nav-item dropdown">
-                      <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                        {tu("wallet")}
-                      </a>
-                      <ul className="dropdown-menu dropdown-menu-right">
-                        <li className="px-1 py-1">
-                          <div className="row" style={{width: 305}}>
-                            <div className="col-lg-2">
-                              <Avatar size={45} value={account.address}/>
-                            </div>
-                            <div className="col-lg-10">
-                              <b>{wallet.current.name || tu("account")}</b>
-                              <br/>
-                                <AddressLink
-                                  address={account.address}
-                                  className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
-                            </div>
-                          </div>
-                          <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
-                        </li>
-                        {
-                          wallet.current.representative.enabled && (
-                            <li className="dropdown-item text-danger text-center">
-                              Representative
-                            </li>
-                          )
-                        }
-                        <li className="dropdown-divider"/>
-                        <Link className="dropdown-item" to="/account">
-                          <i className="fa fa-credit-card mr-2"/>
-                          <FormattedNumber value={wallet.current.balance / ONE_TRX} /> TRX
-                        </Link>
-                        <Link className="dropdown-item" to="/account">
-                          <i className="fa fa-bolt mr-2"/>
-                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> TRON {tu("power")}
-                        </Link>
-                        <Link className="dropdown-item" to="/account">
-                          <i className="fa fa-tachometer-alt mr-2"/>
-                          <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> {tu("bandwidth")}
-                        </Link>
-                        <Link className="dropdown-item"
-                              to={"/blockchain/transactions?address=" + account.address}>
-                          <i className="fa fa-exchange-alt mr-2"/>
-                          <FormattedNumber value={totalTransactions} /> {tu("transactions")}
-                        </Link>
-                        <li className="dropdown-divider"/>
-
-                        <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
-                          <i className="fa fa-paper-plane mr-2"/>
-                          {tu("send")}
-                        </a>
-                        <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
-                          <i className="fa fa-qrcode mr-2"/>
-                          {tu("receive")}
-                        </a>
-                        {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
-                          {/*<i className="fa fa-qrcode mr-2"/>*/}
-                          {/*Receive*/}
-                        {/*</Link>*/}
-                        <li className="dropdown-divider"/>
-                        <li className="px-2 pt-1">
-                          <button className="btn btn-danger btn-block" onClick={this.logout}>{tu("sign_out")}</button>
-                        </li>
-                      </ul>
-                    </li>
-                  </Fragment> :
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
-                      {tu("open_wallet")}
-                    </a>
-                    <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
-                      <li className="px-3">
-                        <div className="form-group text-center">
-                          <label>{tu("private_key")}</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            onChange={ev => this.setState({ privateKey: ev.target.value })}
-                            placeholder=""/>
-                        </div>
-                        <button className="btn btn-success btn-block"
-                                disabled={!this.isLoginValid()}
-                                onClick={this.login}>
-                          {tu("sign_in")}
-                        </button>
-                      </li>
-                      <li className="dropdown-divider"/>
-                      <li className="px-3">
-                        <div className="form-group text-center">
-                          <label>{tu("keystore_file")}</label>
-                          <button className="btn btn-success btn-block" onClick={this.selectFile}>
-                            {tu("select_file")}
-                          </button>
-                          <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} accept=".txt" />
-                        </div>
-
-                      </li>
-                      <li className="dropdown-divider"/>
-                      {
-                        flags.mobileLogin &&
-                          <Fragment>
-                            <li className="px-3">
-                              <div className="form-group text-center">
-                                <label>{tu("Mobile Login")}</label>
-                                <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
-                                  {tu("login_mobile")}
-                                </button>
-                              </div>
-                            </li>
-                            <li className="dropdown-divider"/>
-                          </Fragment>
-                      }
-                      <li className="px-3 py-2">
-                        <Link className="btn btn-primary btn-block" to="/wallet/new">
-                          {tu("create_wallet")}
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-              }
+              {this.renderWallet()}
             </ul>
           </div>
         </div>

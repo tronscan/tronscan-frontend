@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "جستجوگر دسکتاپ",
   "message": "پیام",
   "wallet_address": "آدرس کیف پول",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -414,7 +419,7 @@ export const messages = {
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
   "for": "برای",
   "insufficient_trx": "تی آرایکس کافی نیست",
-  "not_enouth_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
+  "not_enough_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
   "ends": "انتها",
   "starts": "ابتدا",
   "can_be_unlocked": "می تواند باز شود",
@@ -685,6 +690,16 @@ export const messages = {
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

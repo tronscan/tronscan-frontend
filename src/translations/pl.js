@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Przesłanie",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -187,9 +188,13 @@ export const messages = {
   "rank_real_time": "Ranking (w czasie rzeczywistym)",
   "volume_24": "24 godzinny wolumen handlu",
   "billion_usd": "Milard(ów) dolarów",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "loading_transfers": "Wczytuję Transfery",
+  "loading_transactions": "Wczytuję Transakcje",
+  "loading_block": "Wczytuję Blok",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -411,10 +416,10 @@ export const messages = {
   "buy_confirm_message_1": "Na pewno chcesz dokonać zakupu",
   "for": "za",
   "insufficient_trx": "Niewystarczająca ilość TRX",
-  "not_enouth_trx_message": "Nie posiadasz wystarczającej ilość TRX aby kupić taką ilość tokenów",
+  "not_enough_trx_message": "Nie posiadasz wystarczającej ilość TRX aby kupić taką ilość tokenów",
   "ends": "kończy się",
   "starts": "rozpoczyna się",
-  "can_be_unlocked": "może zostać odmrożone za",
+  "can_be_unlocked": "może zostać odmrożone",
   /*
   ##################################################################################
   #                                                                                #
@@ -680,6 +685,16 @@ export const messages = {
   "print_paper_wallet": "Wydrukuj papierową wersję portfela",
   "new_wallet_ready_message": "Twój nowy portfel jest gotowy do użytku",
   "go_to_account_page": "Przejdź do swojego konta",
+  "login_first": "Najpierw zaloguj się do Portfela",
+  "contract_name": "Nazwa kontraktu",
+  "compiler": "Kompilator",
+  "tx_count": "Ilość transakcji",
+  "setting": "Ustawienia",
+  "date_verified": "Data weryfikacji",
+  "compiler_version": "Wersja kompilera",
+  "creator": "Twórca",
+  "verify_contract_code": "Zweryfikuj kod kontraktu",
+  "buy_tokens": "Kup tokeny",
   /*
   ##################################################################################
   #                                                                                #

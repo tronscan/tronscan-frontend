@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Budskap",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -413,7 +418,7 @@ export const messages = {
   "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
   "for": "for",
   "insufficient_trx": "Ikke nok TRX",
-  "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
+  "not_enough_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
   "ends": "slutter",
   "starts": "starter",
   "can_be_unlocked": "Kan låses opp",
@@ -683,6 +688,16 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Papir Lommebok",
   "new_wallet_ready_message": "Din nye lommebok er klar",
   "go_to_account_page": "Gå til konto siden",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

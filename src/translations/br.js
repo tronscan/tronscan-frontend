@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Explorador da Área de Trabalho",
   "message": "Mensagem",
   "wallet_address": "Endereço da Carteira",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Carregando Transferências",
   "loading_transactions": "Carregando Transações",
   "loading_block": "Carregando Bloco",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -416,10 +421,10 @@ export const messages = {
   "buy_confirm_message_1": "Tem certeza que quer comprar",
   "for": "por",
   "insufficient_trx": "TRX insuficiente",
-  "not_enouth_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
+  "not_enough_trx_message": "Você não tem TRX suficiente para comprar tantos tokens",
   "ends": "termina",
   "starts": "começa",
-  "can_be_unlocked": "pode ser desbloqueado em",
+  "can_be_unlocked": "pode ser desbloqueado",
   /*
   ##################################################################################
   #                                                                                #
@@ -684,6 +689,16 @@ export const messages = {
   "print_paper_wallet": "Imprimir Carteira de Papel",
   "new_wallet_ready_message": "A sua nova carteira está pronta",
   "go_to_account_page": "Ir para a página da conta",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

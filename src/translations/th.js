@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "ข่าวสาร",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -402,7 +407,7 @@ export const messages = {
   "buy_confirm_message_1": "คุณแน่ใจหรือไม่ว่าต้องการซื้อ",
   "for": "สำหรับ",
   "insufficient_trx": "TRX ไม่เพียงพอ",
-  "not_enouth_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
+  "not_enough_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
   "ends": "สิ้นสุด",
   "starts": "เริ่ม",
   "can_be_unlocked": "สามารถปลดล็อกได้ภายใน",
@@ -667,6 +672,16 @@ export const messages = {
   "print_paper_wallet": "ทำการพิมพ์ Paper wallet",
   "new_wallet_ready_message": "วอลเล็ทใหม่ของคุณพร้อมใช้งานแล้ว",
   "go_to_account_page": "ไปยังหน้าบัญชี",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

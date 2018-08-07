@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-29072018                                                  #
-  #         Update Date: 29.07.2018                                                #
+  #         Version: 1.6-04082018                                                  #
+  #         Update Date: 04.08.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 9                                                    #
@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmar",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Cargando Transferencias",
   "loading_transactions": "Cargando Transacciones",
   "loading_block": "Cargando Bloque",
+  "current_power":"Power Actual",
+  "produce_distribution":"Gráfico de Producción de Bloque",
+  "confirm_token_issue":"Confirmar Emisión de Token",
+  "_to":"para",
   /*
   ##################################################################################
   #                                                                                #
@@ -414,10 +419,10 @@ export const messages = {
   "buy_confirm_message_1": "¿Seguro que desea adquirir",
   "for": "por",
   "insufficient_trx": "TRX insuficientes",
-  "not_enouth_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
+  "not_enough_trx_message": "No dispone de suficientes TRX para comprar tantos Tokens",
   "ends": "finalidades",
   "starts": "inicios",
-  "can_be_unlocked": "se puede desbloquear en",
+  "can_be_unlocked": "se puede desbloquear",
   /*
   ##################################################################################
   #                                                                                #
@@ -686,6 +691,16 @@ export const messages = {
   "print_paper_wallet": "Imprimir su dirección de cartera en papel",
   "new_wallet_ready_message": "Tu nueva cartera está lista",
   "go_to_account_page": "Ir a la página de cuenta",
+  "login_first": "Primero ingrese a su Cartera",
+  "contract_name": "Nombre del Contrato",
+  "compiler": "Compilador",
+  "tx_count": "Tx Total",
+  "setting": "Configuración",
+  "date_verified": "Fecha Verificada",
+  "compiler_version": "Versión del Compilador",
+  "creator": "Creador",
+  "verify_contract_code": "Verificar el Código del Contrato",
+  "buy_tokens": "Comprar Tokens",
   /*
   ##################################################################################
   #                                                                                #

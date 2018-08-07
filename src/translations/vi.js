@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -414,7 +419,7 @@ export const messages = {
   "buy_confirm_message_1": "Bạn có chắc bạn muốn mua",
   "for": "cho",
   "insufficient_trx": "Không đủ TRX",
-  "not_enouth_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
+  "not_enough_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
   "ends": "kết thúc",
   "starts": "bắt đầu",
   "can_be_unlocked": "can be unlocked",
@@ -688,6 +693,16 @@ export const messages = {
   "print_paper_wallet": "Ví in giấy",
   "new_wallet_ready_message": "Ví mới của bạn đã sẵn sàng",
   "go_to_account_page": "Chuyển đến trang tài khoản",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

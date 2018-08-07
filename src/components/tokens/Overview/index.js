@@ -103,7 +103,7 @@ class TokenOverview extends Component {
             title={tu("insufficient_trx")}
             onConfirm={() => this.setState({ alert: null })}
           >
-            {tu("not_enouth_trx_message")}
+            {tu("not_enough_trx_message")}
           </SweetAlert>
         ),
       });
@@ -373,12 +373,11 @@ class TokenOverview extends Component {
              // total > 0 &&
               <Sticky>
                 {
-                  ({style, isSticky}) => (
-                      <div
-                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}>
-                        <div className="col-sm-12">
+                  ({style}) => (
+                      <div style={{zIndex: 100, padding: 10, ...style}} className="card bg-white py-3 border">
+
                           <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                        </div>
+
                       </div>
                   )
                 }

@@ -1,8 +1,9 @@
-import {SET_NODES, SET_WITNESSES} from "../actions/network";
+import {SET_NODES, SET_WITNESSES,SET_STATISTIC_DATA} from "../actions/network";
 
 const initialState = {
   witnesses: [],
   nodes: [],
+  statisticData:[]
 };
 
 export function networkReducer(state = initialState, action) {
@@ -18,6 +19,12 @@ export function networkReducer(state = initialState, action) {
       return {
         ...state,
         nodes: action.nodes,
+      };
+    }
+    case SET_STATISTIC_DATA: {
+      return {
+        ...state,
+        statisticData: action.statisticData,
       };
     }
     default:

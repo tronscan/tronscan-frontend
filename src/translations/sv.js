@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Meddelande",
   "wallet_address": "Plånbokadress",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Laddar överföringar",
   "loading_transactions": "Laddar transaktioner",
   "loading_block": "Laddar block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -410,10 +415,10 @@ export const messages = {
   "buy_confirm_message_1": "Är du säker på att du vill köpa",
   "for": "för",
   "insufficient_trx": "Otillräcklig TRX",
-  "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
+  "not_enough_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-  "can_be_unlocked": "kan låsa upp i",
+  "can_be_unlocked": "kan låsa upp",
   /*
   ##################################################################################
   #                                                                                #
@@ -678,6 +683,16 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Din nya plånbok är klar",
   "go_to_account_page": "Gå till kontosidan",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

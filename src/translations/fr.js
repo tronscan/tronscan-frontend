@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -414,7 +419,7 @@ export const messages = {
   "buy_confirm_message_1": "Etes-vous sûr de vouloir acheter",
   "for": "à",
   "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
+  "not_enough_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
   "ends": "fins",
   "starts": "démarrages",
   "can_be_unlocked": "can be unlocked",
@@ -687,6 +692,16 @@ export const messages = {
   "print_paper_wallet": "Imprimer votre portefeuille papier",
   "new_wallet_ready_message": "Votre nouveau portefeuille est prêt",
   "go_to_account_page": "Aller à la page du compte",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

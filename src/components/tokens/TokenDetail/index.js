@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
 import Avatar from "../../common/Avatar";
 import {t, tu} from "../../../utils/i18n";
@@ -33,7 +33,7 @@ class TokenDetail extends React.Component {
     this.loadToken(decodeURI(match.params.name));
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.name !== prevProps.match.params.name) {
@@ -43,10 +43,10 @@ class TokenDetail extends React.Component {
 
   loadToken = async (name) => {
 
-    this.setState({ loading: true, token: { name } });
+    this.setState({loading: true, token: {name}});
 
     let token = await Client.getToken(name);
-    let {addresses, total: totalAddresses} = await Client.getTokenHolders(name);
+    let {total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
       loading: false,
@@ -57,14 +57,14 @@ class TokenDetail extends React.Component {
           icon: "fa fa-exchange-alt",
           path: "",
           label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{ token: name }} />
+          cmp: () => <Transfers filter={{token: name}}/>
         },
         {
           id: "holders",
           icon: "fa fa-user",
           path: "/holders",
           label: <span>{totalAddresses} {tu("token_holders")}</span>,
-          cmp: () => <TokenHolders tokenHodlers={addresses} token={token} />
+          cmp: () => <TokenHolders filter={{token: name}} token={{totalSupply: token.totalSupply}}/>
         },
       ]
     });
@@ -72,39 +72,53 @@ class TokenDetail extends React.Component {
 
   buyTokens = (token) => {
     let {buyAmount} = this.state;
-    let {wallet} = this.props;
+    let {currentWallet, wallet} = this.props;
+
+    if (!wallet.isOpen) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                title="Open wallet"
+                onConfirm={() => this.setState({alert: null})}>
+              Open a wallet to participate
+            </SweetAlert>
+        ),
+      });
+      return;
+    }
 
     let tokenCosts = buyAmount * (token.price / ONE_TRX);
 
-    if (( wallet.balance / ONE_TRX) < tokenCosts) {
+    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
         alert: (
-          <SweetAlert
-            warning
-            title={tu("insufficient_trx")}
-            onConfirm={() => this.setState({ alert: null })}
-          >
-            {tu("not_enouth_trx_message")}
-          </SweetAlert>
+            <SweetAlert
+                warning
+                title={tu("insufficient_trx")}
+                onConfirm={() => this.setState({alert: null})}
+            >
+              {tu("not_enough_trx_message")}
+            </SweetAlert>
         ),
       });
     } else {
       this.setState({
         alert: (
-          <SweetAlert
-            info
-            showCancel
-            confirmBtnText={tu("confirm_transaction")}
-            confirmBtnBsStyle="success"
-            cancelBtnText={tu("cancel")}
-            cancelBtnBsStyle="default"
-            title={tu("buy_confirm_message_0")}
-            onConfirm={() => this.confirmTransaction(token)}
-            onCancel={() => this.setState({ alert: null })}
-          >
-            {tu("buy_confirm_message_1")}<br/>
-            {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
-          </SweetAlert>
+            <SweetAlert
+                info
+                showCancel
+                confirmBtnText={tu("confirm_transaction")}
+                confirmBtnBsStyle="success"
+                cancelBtnText={tu("cancel")}
+                cancelBtnBsStyle="default"
+                title={tu("buy_confirm_message_0")}
+                onConfirm={() => this.confirmTransaction(token)}
+                onCancel={() => this.setState({alert: null})}
+            >
+              {tu("buy_confirm_message_1")}<br/>
+              {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+            </SweetAlert>
         ),
       });
     }
@@ -112,14 +126,14 @@ class TokenDetail extends React.Component {
 
   submit = async (token) => {
 
-    let {wallet, account} = this.props;
+    let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
 
     let isSuccess = await Client.participateAsset(
-      wallet.address,
-      token.ownerAddress,
-      token.name,
-      buyAmount * token.price)(account.key);
+        currentWallet.address,
+        token.ownerAddress,
+        token.name,
+        buyAmount * token.price)(account.key);
 
     if (isSuccess) {
       this.setState({
@@ -139,31 +153,31 @@ class TokenDetail extends React.Component {
 
     this.setState({
       alert: (
-        <SweetAlert
-          showConfirm={false}
-          showCancel={false}
-          cancelBtnBsStyle="default"
-          title="One moment please.."
-        >
-          Requesting tokens...
-        </SweetAlert>
+          <SweetAlert
+              showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title="One moment please.."
+          >
+            Requesting tokens...
+          </SweetAlert>
       ),
     });
 
     if (await this.submit(token)) {
       this.setState({
         alert: (
-          <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
-            Successfully received {token.name} tokens
-          </SweetAlert>
+            <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({alert: null})}>
+              Successfully received {token.name} tokens
+            </SweetAlert>
         )
       });
     } else {
       this.setState({
         alert: (
-          <SweetAlert danger title="Error" onConfirm={() => this.setState({ alert: null })}>
-            Something went wrong...
-          </SweetAlert>
+            <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
+              Something went wrong...
+            </SweetAlert>
         )
       });
     }
@@ -179,157 +193,160 @@ class TokenDetail extends React.Component {
     let {token, tabs, loading, buyAmount, alert} = this.state;
 
     return (
-      <main className="container header-overlap">
-        {alert}
-        {
-          loading ? <div className="card">
-            <TronLoader>
-              {tu("loading_token")} {token.name}
-            </TronLoader>
-          </div> :
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="card">
-                  <div className="card-body">
-                    <Avatar value={token.name} className="float-right"/>
-                    <h5 className="card-title">
-                      {token.name}
-                    </h5>
-                    <p className="card-text">{token.description}</p>
-                  </div>
-                  <table className="table m-0">
-                    <tbody>
-                    <tr>
-                      <th style={{width: 250}}>{tu("website")}:</th>
-                      <td>
-                        <ExternalLink url={token.url} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th style={{width: 250}}>{tu("total_supply")}:</th>
-                      <td>
-                        <FormattedNumber value={token.totalSupply} />
-                      </td>
-                    </tr>
-                    {
-                      token.frozen.length > 0 &&
-                      <tr>
-                        <th>{tu("Frozen Supply")}:</th>
-                        <td>
-                          {
-                            token.frozen.map((frozen, index) => (
-                              <div key={index}>
-                                {frozen.amount} {tu("can_be_unlocked")}&nbsp;
-                                <FormattedRelative value={getTime(addDays(new Date(token.startTime), frozen.days))} />
-                              </div>
-                            ))
-                          }
-                        </td>
-                      </tr>
-                    }
-                    <tr>
-                      <th>{tu("issuer")}:</th>
-                      <td>
-                        <AddressLink address={token.ownerAddress} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("start_date")}:</th>
-                      <td>
-                        <FormattedDate value={token.startTime} />{' '}
-                        <FormattedTime value={token.startTime} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("end_date")}:</th>
-                      <td>
-                        <FormattedDate value={token.endTime} />{' '}
-                        <FormattedTime value={token.endTime} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("token_holders")}:</th>
-                      <td>
-                        <FormattedNumber value={token.nrOfTokenHolders} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("nr_of_Transfers")}:</th>
-                      <td>
-                        <FormattedNumber value={token.totalTransactions} />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("progress")}:</th>
-                      <td>
-                        <div className="progress mt-1">
-                          <div className="progress-bar bg-success" style={{width: token.percentage + '%'}}/>
-                        </div>
-                      </td>
-                    </tr>
-                    {
-                      wallet &&
+        <main className="container header-overlap">
+          {alert}
+          {
+            loading ? <div className="card">
+                  <TronLoader>
+                    {tu("loading_token")} {token.name}
+                  </TronLoader>
+                </div> :
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <Avatar value={token.name} className="float-right"/>
+                        <h5 className="card-title">
+                          {token.name}
+                        </h5>
+                        <p className="card-text">{token.description}</p>
+                      </div>
+                      <table className="table m-0">
+                        <tbody>
                         <tr>
-                          <th>{tu("buy_tokens")}:</th>
+                          <th style={{width: 250}}>{tu("website")}:</th>
                           <td>
-                            <div className="text-muted text-center">
-                              {tu("how_much_buy_message")}<br/>
-                              {tu("price")}: {(token.price / ONE_TRX)} TRX
+                            <ExternalLink url={token.url}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style={{width: 250}}>{tu("total_supply")}:</th>
+                          <td>
+                            <FormattedNumber value={token.totalSupply}/>
+                          </td>
+                        </tr>
+                        {
+                          token.frozen.length > 0 &&
+                          <tr>
+                            <th>{tu("Frozen Supply")}:</th>
+                            <td>
+                              {
+                                token.frozen.map((frozen, index) => (
+                                    <div key={index}>
+                                      {frozen.amount} {tu("can_be_unlocked")}&nbsp;
+                                      <FormattedRelative
+                                          value={getTime(addDays(new Date(token.startTime), frozen.days))}/>
+                                    </div>
+                                ))
+                              }
+                            </td>
+                          </tr>
+                        }
+                        <tr>
+                          <th>{tu("issuer")}:</th>
+                          <td>
+                            <AddressLink address={token.ownerAddress}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("start_date")}:</th>
+                          <td>
+                            <FormattedDate value={token.startTime}/>{' '}
+                            <FormattedTime value={token.startTime}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("end_date")}:</th>
+                          <td>
+                            <FormattedDate value={token.endTime}/>{' '}
+                            <FormattedTime value={token.endTime}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("token_holders")}:</th>
+                          <td>
+                            <FormattedNumber value={token.nrOfTokenHolders}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("nr_of_Transfers")}:</th>
+                          <td>
+                            <FormattedNumber value={token.totalTransactions}/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("progress")}:</th>
+                          <td>
+                            <div className="progress mt-1">
+                              <div className="progress-bar bg-success" style={{width: (100 - token.percentage) + '%'}}/>
                             </div>
-                            <div className="input-group mt-3">
-                              <NumberField
-                                className="form-control"
-                                value={buyAmount}
-                                max={token.remaining}
-                                min={1}
-                                onChange={value => this.setState({ buyAmount: value })}
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("price")}:</th>
+                          <td>
+                            <FormattedNumber value={(token.price / ONE_TRX)}/> TRX
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>{tu("participate")}:</th>
+                          <td>
+                            <div className="input-group">
+                              {
+                                token.remaining!==0 &&
+                                <NumberField
+                                    className="form-control"
+                                    value={buyAmount}
+                                    max={token.remaining}
+                                    min={1}
+                                    onChange={value => this.setState({buyAmount: value})}
+                                />
+                              }
                               <div className="input-group-append">
                                 <button className="btn btn-success"
                                         type="button"
                                         disabled={!this.isBuyValid()}
                                         onClick={() => this.buyTokens(token)}>
-                                  <i className="fa fa-check"/>
+                                  Participate
                                 </button>
                               </div>
                             </div>
                           </td>
                         </tr>
-                    }
-                    </tbody>
-                  </table>
-                </div>
+                        </tbody>
+                      </table>
+                    </div>
 
-                <div className="card mt-3">
-                  <div className="card-header">
-                    <ul className="nav nav-tabs card-header-tabs">
-                      {
-                        tabs.map(tab => (
-                          <li key={tab.id} className="nav-item">
-                            <NavLink exact to={match.url + tab.path} className="nav-link text-dark" >
-                              <i className={tab.icon + " mr-2"} />
-                              {tab.label}
-                            </NavLink>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div>
-                  <div className="card-body p-0">
-                    <Switch>
-                      {
-                        tabs.map(tab => (
-                          <Route key={tab.id} exact path={match.url + tab.path} render={() => (<tab.cmp />)} />
-                        ))
-                      }
-                    </Switch>
+                    <div className="card mt-3">
+                      <div className="card-header">
+                        <ul className="nav nav-tabs card-header-tabs">
+                          {
+                            tabs.map(tab => (
+                                <li key={tab.id} className="nav-item">
+                                  <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
+                                    <i className={tab.icon + " mr-2"}/>
+                                    {tab.label}
+                                  </NavLink>
+                                </li>
+                            ))
+                          }
+                        </ul>
+                      </div>
+                      <div className="card-body p-0">
+                        <Switch>
+                          {
+                            tabs.map(tab => (
+                                <Route key={tab.id} exact path={match.url + tab.path} render={() => (<tab.cmp/>)}/>
+                            ))
+                          }
+                        </Switch>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-        }
+          }
 
-      </main>
+        </main>
     )
   }
 }
@@ -338,13 +355,12 @@ class TokenDetail extends React.Component {
 function mapStateToProps(state) {
   return {
     tokens: state.tokens.tokens,
-    wallet: state.wallet.current,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
     account: state.app.account,
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenDetail));

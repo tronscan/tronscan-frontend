@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Zpráva",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -413,7 +418,7 @@ export const messages = {
   "buy_confirm_message_1": "Urèitì chcete koupit",
   "for": "za",
   "insufficient_trx": "Nedostateèné množství TRX",
-  "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
+  "not_enough_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
   "ends": "konèí",
   "starts": "zaèíná",
   "can_be_unlocked": "can be unlocked",
@@ -683,6 +688,16 @@ export const messages = {
   "print_paper_wallet": "Vytisknìte si papírovou penìženku",
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

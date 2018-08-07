@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmare",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Încărcare Transferuri",
   "loading_transactions": "Încărcare Tranzacții",
   "loading_block": "Încărcare Bloc",
+  "current_power": "Putere Curentă",
+  "produce_distribution": "Diagramă Producție Blocuri",
+  "confirm_token_issue": "Confirmare Emitere Token",
+  "_to": "la",
   /*
   ##################################################################################
   #                                                                                #
@@ -415,10 +420,10 @@ export const messages = {
   "buy_confirm_message_1": "Sunteți sigur că vreți să cumpărați",
   "for": "pentru",
   "insufficient_trx": "TRX insuficient",
-  "not_enouth_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
+  "not_enough_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
   "ends": "sfârșește",
   "starts": "începe",
-  "can_be_unlocked": "poate fi descuiat în",
+  "can_be_unlocked": "poate fi descuiat",
   /*
   ##################################################################################
   #                                                                                #
@@ -687,6 +692,16 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
+  "login_first": "Logați-vă întâi la Portofel  ",
+  "contract_name": "Nume Contract",
+  "compiler": "Compilator",
+  "tx_count": "Numărătoare Tx",
+  "setting": "Setare",
+  "date_verified": "Dată Verificată",
+  "compiler_version": "Versiune Compilator",
+  "creator": "Creator",
+  "verify_contract_code": "Verificați codul de contract",
+  "buy_tokens": "Cumpărare Tokeni",
   /*
   ##################################################################################
   #                                                                                #
