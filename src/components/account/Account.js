@@ -30,6 +30,7 @@ class Account extends Component {
     this.state = {
       modal: null,
       showFreezeBalance: false,
+      showBuyTokens: false,
       sr: null,
       issuedAsset: null,
       showBandwidth: false,
@@ -628,7 +629,7 @@ class Account extends Component {
 
   render() {
 
-    let {modal, sr, issuedAsset, showBandwidth} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
 
     if (!wallet.isOpen || !currentWallet) {
@@ -758,6 +759,31 @@ class Account extends Component {
                 </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
+                <h5 className="card-title text-center m-0">
+                  Buy TRON
+                </h5>
+                <p>
+                  {
+                    !showBuyTokens && <button className="btn btn-dark my-3" onClick={() => this.setState(state => ({ showBuyTokens: !state.showBuyTokens }))}>
+                      Buy TRON using Changelly
+                      <i className="fa fa-credit-card ml-2"/>
+                    </button>
+                  }
+                </p>
+                {
+                  showBuyTokens && <iframe
+                    src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"} height="500" className="changelly" scrolling="no"
+                    style={{overflowY: 'hidden', border: 'none', width: '100%' }}> Can't load widget
+                  </iframe>
+                }
+              </div>
             </div>
           </div>
         </div>
