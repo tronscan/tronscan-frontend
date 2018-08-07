@@ -98,7 +98,8 @@ class Transaction extends React.Component {
                       {tu("hash")} {transaction.hash}
                     </h5>
                   </div>
-                  <table className="table table-hover m-0">
+                  <div className="table-responsive">
+                    <table className="table table-hover m-0">
                     <tbody>
                       <tr>
                         <th>{tu("status")}:</th>
@@ -145,6 +146,7 @@ class Transaction extends React.Component {
                     }
                     </tbody>
                   </table>
+                  </div>
                 </div>
 
                 <div className="card mt-3">

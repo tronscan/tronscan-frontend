@@ -92,20 +92,22 @@ class Paging extends React.PureComponent {
 
     return (
         <div className="d-flex">
-          <ul className={"pagination p-0 my-0 " + className}>
-            <li className={"page-item " + (showFirst && "invisible")}>
-              <FirstButton>
-                <i className="fas fa-fast-backward mr-sm-2"/>
-                <span className="d-none d-lg-inline-block">{tu("first_page")}</span>
-              </FirstButton>
-            </li>
-            <li className={"page-item " + (showFirst && "invisible")}>
-              <PreviousButton>
-                <i className="fas fa-step-backward mr-sm-2"/>
-                <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
-              </PreviousButton>
-            </li>
-          </ul>
+          {
+              className && <ul className={"pagination p-0 my-0 " + className}>
+                <li className={"page-item " + (showFirst && "invisible")}>
+                  <FirstButton>
+                    <i className="fas fa-fast-backward mr-sm-2"/>
+                    <span className="d-none d-lg-inline-block">{tu("first_page")}</span>
+                  </FirstButton>
+                </li>
+                <li className={"page-item " + (showFirst && "invisible")}>
+                  <PreviousButton>
+                    <i className="fas fa-step-backward mr-sm-2"/>
+                    <span className="d-none d-lg-inline-block">{tu("previous_page")}</span>
+                  </PreviousButton>
+                </li>
+              </ul>
+          }
           <ul className="pagination p-0 my-0 mx-auto">
             <li className="mx-auto page-item">
               {

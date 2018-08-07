@@ -81,40 +81,43 @@ class Accounts extends Component {
 
     return (
       <Fragment>
-        <table className="table table-striped m-0">
-          <thead className="thead-dark">
-          <tr>
-            <th>{tu("address")}</th>
-            <th className="d-none d-md-table-cell">{tu("supply")}</th>
-            <th className="d-none d-md-table-cell">{tu("power")}</th>
-            <th>{tu("balance")}</th>
-          </tr>
-          </thead>
-          <tbody>
-          {
-            accounts.map((account, index) => (
-              <tr key={account.address}>
-                <th>
-                  <AddressLink address={account.address} />
-                </th>
-                <td className="d-none d-md-table-cell text-nowrap">
-                  <FormattedNumber
-                    value={(((account.balance / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
-                    minimumFractionDigits={8}
-                    maximumFractionDigits={8}
-                  /> %
-                </td>
-                <td className="text-nowrap d-none d-md-table-cell">
-                  <FormattedNumber value={account.power / ONE_TRX}/>
-                </td>
-                <td className="text-nowrap">
-                  <TRXPrice amount={account.balance / ONE_TRX}/>
-                </td>
-              </tr>
-            ))
-          }
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped m-0">
+            <thead className="thead-dark">
+            <tr>
+              <th>{tu("address")}</th>
+              <th className="d-md-table-cell">{tu("supply")}</th>
+              <th className="d-md-table-cell">{tu("power")}</th>
+              <th>{tu("balance")}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {
+                accounts.map((account, index) => (
+                    <tr key={account.address}>
+                      <th>
+                        <AddressLink address={account.address} />
+                      </th>
+                      <td className="d-md-table-cell text-nowrap">
+                        <FormattedNumber
+                            value={(((account.balance / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
+                            minimumFractionDigits={8}
+                            maximumFractionDigits={8}
+                        /> %
+                      </td>
+                      <td className="text-nowrap d-md-table-cell">
+                        <FormattedNumber value={account.power / ONE_TRX}/>
+                      </td>
+                      <td className="text-nowrap">
+                        <TRXPrice amount={account.balance / ONE_TRX}/>
+                      </td>
+                    </tr>
+                ))
+            }
+            </tbody>
+          </table>
+        </div>
+
       </Fragment>
     )
   }
