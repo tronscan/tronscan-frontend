@@ -135,7 +135,7 @@ export class RepresentativesRingPieReact extends React.Component {
             return (
                 intl.formatMessage({id: 'witness'}) + ' : ' + datas.name + '<br/>' +
                 intl.formatMessage({id: 'produced_blocks'}) + ' : ' + datas.value + '<br/>' +
-                intl.formatMessage({id: 'percentage'}) + ' : ' + datas.percent + '%'
+                intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
             )
 
         }
