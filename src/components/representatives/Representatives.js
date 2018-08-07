@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {loadWitnesses} from "../../actions/network";
+import {loadWitnesses, loadStatisticData} from "../../actions/network";
 import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {FormattedNumber} from "react-intl";
@@ -10,24 +10,16 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
 import {WidgetIcon} from "../common/Icon";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
-import {Client} from "../../services/api";
 
 class Representatives extends Component {
-  constructor() {
-    super();
-    this.state = {
-      pieChart: null
-    };
-  }
 
   componentDidMount() {
     this.props.loadWitnesses();
-    this.getPiechart();
+    this.props.loadStatisticData();
   }
 
   getWitnesses() {
     let {witnesses} = this.props;
-
     witnesses = witnesses.map(w => ({
       ...w,
       inSync: this.isinSync(w),
@@ -45,9 +37,9 @@ class Representatives extends Component {
     return account.latestBlockNumber > maxBlockNumber - SR_MAX_COUNT;
   }
 
-  getPiechart = async () => {
+  getPiechart() {
     let {intl} = this.props;
-    let {statisticData} = await Client.getStatisticData()
+    let {statisticData} = this.props;
     let pieChartData = [];
     if (statisticData.length > 0) {
       statisticData.map((val, i) => {
@@ -63,9 +55,7 @@ class Representatives extends Component {
 
       })
     }
-    this.setState({
-      pieChart: pieChartData
-    });
+    return pieChartData
   }
 
   renderWitnesses(witnesses) {
@@ -119,8 +109,8 @@ class Representatives extends Component {
 
   render() {
     let {intl} = this.props;
-    let {pieChart} = this.state;
     let witnesses = this.getWitnesses();
+    let pieChart = this.getPiechart();
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
 
     let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];
@@ -131,71 +121,71 @@ class Representatives extends Component {
 
     return (
         <main className="container header-overlap pb-3">
-          {
-            witnesses.length > 0 &&
-            <div className="row">
-              <div className="col-md-4 mt-3 mt-md-3">
-                <div className="card h-100 widget-icon">
-                  <WidgetIcon className="fa fa-user-tie text-secondary"/>
-                  <div className="card-body text-center">
-                    <h3 className="text-primary">
-                      <FormattedNumber value={witnesses.length}/>
-                    </h3>
-                    {tu("representatives")}
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mt-3 mt-md-3">
-                <div className="card h-100">
-                  <div className="card-body text-center widget-icon">
-                    <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}/>
-                    <h3 className="text-success">
-                      <FormattedNumber value={mostProductive.productivity}/>%
-                    </h3>
-                    {tu("highest_productivity")}<br/>
-                    <AddressLink address={mostProductive.address}>
-                      {mostProductive.name || mostProductive.url}
-                    </AddressLink>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mt-3 mt-md-3">
-                <div className="card h-100 widget-icon">
-                  <WidgetIcon className="fa fa-arrow-down text-danger" style={{bottom: 10}}/>
-                  <div className="card-body text-center">
-                    <h3 className="text-danger">
-                      <FormattedNumber maximumFractionDigits={2}
-                                       minimunFractionDigits={2}
-                                       value={leastProductive.productivity}/>%
-                    </h3>
-                    {tu("lowest_productivity")}<br/>
-                    <AddressLink address={leastProductive.address}>
-                      {leastProductive.name || leastProductive.url}
-                    </AddressLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          }
-          {/*
-                 <div className="col-md-6 mt-3">
-                    <div className="card">
-                        <div className="card-body">
-                            <div style={{height: 330}}>
-                                {
-                                    pieChart === null ?
-                                        <TronLoader/> :
-                                        <RepresentativesRingPieReact message={{id:'produce_distribution'}} intl={intl} data={pieChart} style={{height: 300}}/>
-                                }
-                            </div>
+          <div className={witnesses.length === 0 || pieChart.length === 0 ? 'card' : ''}>
+            {
+              witnesses.length === 0 || pieChart.length === 0 ?
+                  <TronLoader/> :
+                  <div className="row ">
+                    <div className="col-md-6">
+                      <div className="mt-3 mt-md-3">
+                        <div className="card h-100 widget-icon">
+                          <WidgetIcon className="fa fa-user-tie text-secondary"/>
+                          <div className="card-body text-center">
+                            <h3 className="text-primary">
+                              <FormattedNumber value={witnesses.length}/>
+                            </h3>
+                            {tu("representatives")}
+                          </div>
                         </div>
-                    </div>
-                </div>
-                */
-          }
+                      </div>
 
+                      <div className="mt-3 mt-md-3">
+                        <div className="card h-100">
+                          <div className="card-body text-center widget-icon">
+                            <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}/>
+                            <h3 className="text-success">
+                              <FormattedNumber value={mostProductive.productivity}/>%
+                            </h3>
+                            {tu("highest_productivity")}<br/>
+                            <AddressLink address={mostProductive.address}>
+                              {mostProductive.name || mostProductive.url}
+                            </AddressLink>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 mt-md-3">
+                        <div className="card h-100 widget-icon">
+                          <WidgetIcon className="fa fa-arrow-down text-danger" style={{bottom: 10}}/>
+                          <div className="card-body text-center">
+                            <h3 className="text-danger">
+                              <FormattedNumber maximumFractionDigits={2}
+                                               minimunFractionDigits={2}
+                                               value={leastProductive.productivity}/>%
+                            </h3>
+                            {tu("lowest_productivity")}<br/>
+                            <AddressLink address={leastProductive.address}>
+                              {leastProductive.name || leastProductive.url}
+                            </AddressLink>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6 mt-3">
+                      <div className="card">
+                        <div className="card-body">
+                          <div style={{height: 330}}>
+                            {
+                              <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
+                                                           data={pieChart} style={{height: 300}}/>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            }
+          </div>
 
           <div className="row mt-3">
             <div className="col-md-12">
@@ -211,16 +201,16 @@ function Row({account, showSync = true}) {
   return (
       <tr key={account.address}>
         <td className="text-right d-none d-lg-table-cell">{account.index + 1}</td>
-        <td style={{width:'100%'}}>
+        <td>
           {
             account.name ?
-                <div class="_context_right_click">
+                <div className="_context_right_click">
                   <AddressLink address={account.address}>
                     {account.name}<br/>
                     <span className="small text-muted">{account.url}</span>
                   </AddressLink>
                 </div> :
-                <div class="_context_right_click">
+                <div className="_context_right_click">
                   <AddressLink address={account.address}>{account.url}</AddressLink>
                 </div>
           }
@@ -267,11 +257,13 @@ function Row({account, showSync = true}) {
 function mapStateToProps(state) {
   return {
     witnesses: state.network.witnesses,
+    statisticData: state.network.statisticData
   };
 }
 
 const mapDispatchToProps = {
   loadWitnesses,
+  loadStatisticData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(Representatives));
