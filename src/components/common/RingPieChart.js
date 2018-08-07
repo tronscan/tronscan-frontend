@@ -123,16 +123,22 @@ export class RepresentativesRingPieReact extends React.Component {
 
     initPie(id) {
         let {intl, data,message,source} = this.props;
-
         let myChart = echarts.getInstanceByDom(document.getElementById(id));
         if (myChart === undefined) {
             myChart = echarts.init(document.getElementById(id));
         }
         config.representPieChart.title.text=intl.formatMessage({id:message.id});
-
         config.representPieChart.series[0].data = [];
         config.representPieChart.legend.data = [];
         config.representPieChart.title.link = '#/blockchain/stats/pieChart';
+        config.representPieChart.tooltip.formatter = function (datas) {
+            return (
+                intl.formatMessage({id: 'witness'}) + ' : ' + datas.name + '<br/>' +
+                intl.formatMessage({id: 'produced_blocks'}) + ' : ' + datas.value + '<br/>' +
+                intl.formatMessage({id: 'percentage'}) + ' : ' + datas.percent + '%'
+            )
+
+        }
         if(source==='singleChart'){
             config.representPieChart.legend.show = true;
             config.representPieChart.toolbox.feature = {
@@ -148,7 +154,12 @@ export class RepresentativesRingPieReact extends React.Component {
             config.representPieChart.legend.show = false;
             config.representPieChart.toolbox.feature = {
                 restore: {
+                    show: false,
                     title: 'restore'
+                },
+                saveAsImage: {
+                    show: false,
+                    title: 'save'
                 }
             }
         }

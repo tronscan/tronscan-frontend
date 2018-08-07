@@ -127,6 +127,7 @@ module.exports = {
       x: 'center',
       link:'',
       target:'self'
+
     },
     grid: {
       left: '5%',
@@ -343,6 +344,12 @@ module.exports = {
       x: 'center',
       link:'',
       target:'self',
+      padding: [
+            0,
+            0,
+            10,
+            0
+        ]
       
     },
     tooltip: {
