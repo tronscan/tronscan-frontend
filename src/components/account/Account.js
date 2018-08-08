@@ -701,7 +701,8 @@ class Account extends Component {
                 currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
               }
-              <table className="table m-0">
+              <div className="table-responsive">
+                <table className="table m-0">
                 <tbody>
                 {
                   wallet.isOpen &&
@@ -758,6 +759,7 @@ class Account extends Component {
                 </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
