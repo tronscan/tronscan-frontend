@@ -765,31 +765,6 @@ class Account extends Component {
         <div className="row mt-3">
           <div className="col-md-12">
             <div className="card">
-              <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
-                <h5 className="card-title text-center m-0">
-                  Buy TRON
-                </h5>
-                <p>
-                  {
-                    !showBuyTokens && <button className="btn btn-dark my-3" onClick={() => this.setState(state => ({ showBuyTokens: !state.showBuyTokens }))}>
-                      Buy TRON using Changelly
-                      <i className="fa fa-credit-card ml-2"/>
-                    </button>
-                  }
-                </p>
-                {
-                  showBuyTokens && <iframe
-                    src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"} height="500" className="changelly" scrolling="no"
-                    style={{overflowY: 'hidden', border: 'none', width: '100%' }}> Can't load widget
-                  </iframe>
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
               <div className="card-body px-0 border-0">
                 <h5 className="card-title text-center m-0">
                   {tu("tokens")}
@@ -1024,6 +999,31 @@ class Account extends Component {
             </div>
           </div>
         }
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
+                <h5 className="card-title text-center m-0">
+                  Buy TRON
+                </h5>
+                <p>
+                  {
+                    !showBuyTokens && <button className="btn btn-primary my-3" onClick={() => this.setState(state => ({ showBuyTokens: !state.showBuyTokens }))}>
+                      Buy TRON using Changelly
+                      <i className="fa fa-credit-card ml-2"/>
+                    </button>
+                  }
+                </p>
+                {
+                  showBuyTokens && <iframe
+                    src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"} height="500" className="changelly" scrolling="no"
+                    style={{overflowY: 'hidden', border: 'none', width: '100%' }}> Can't load widget
+                  </iframe>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     )
   }
