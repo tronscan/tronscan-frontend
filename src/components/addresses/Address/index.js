@@ -269,7 +269,9 @@ class Address extends React.Component {
                       </div>
                     }
                     <div className="row">
+
                       <div className="col-md-12">
+
                         <table className="table m-0">
                           <tbody>
                           {
@@ -358,6 +360,7 @@ class Address extends React.Component {
                           }
                           </tbody>
                         </table>
+
                       </div>
                       {
                         /*
