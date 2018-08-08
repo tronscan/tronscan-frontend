@@ -2,6 +2,7 @@ import {Client} from "../services/api";
 import {setTokenBalances} from "./account";
 
 export const SET_ACTIVE_WALLET = 'SET_ACTIVE_WALLET';
+export const SET_WALLET_LOADING = 'SET_WALLET_LOADING';
 
 export const setActiveWallet = (wallet) => ({
   type: SET_ACTIVE_WALLET,
@@ -18,3 +19,8 @@ export const reloadWallet = () => async (dispatch, getState) => {
     dispatch(setTokenBalances(balances, frozen));
   }
 };
+
+export const setWalletLoading = (loading = true) => ({
+  type: SET_WALLET_LOADING,
+  loading,
+});

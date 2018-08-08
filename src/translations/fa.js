@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-21072018                                                  #
-  #         Update Date: 21.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Persian                                                      #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "سن",
   "bytes": "بایت",
   "MByte": "MByte",
-  "produced by": "تولید شده توسط",
+  "produced_by": "تولید شده توسط",
+  "block_reward": "Block Reward",
   "contract": "قرارداد",
   "from": "از",
   "to": "به آدرس",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "جستجوگر دسکتاپ",
   "message": "پیام",
   "wallet_address": "آدرس کیف پول",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "از",
   "was_recorded_on": "در تاریخ ثبت شد",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -408,10 +419,10 @@ export const messages = {
   "buy_confirm_message_1": "مطمئنید که میخواهید خرید کنید",
   "for": "برای",
   "insufficient_trx": "تی آرایکس کافی نیست",
-  "not_enouth_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
+  "not_enough_trx_message": "تی آرایکس کافی برای خرید بسیاری از توکن ها را ندارید",
   "ends": "انتها",
   "starts": "ابتدا",
-  "can_be_unlocked_in": "می تواند باز شود",
+  "can_be_unlocked": "می تواند باز شود",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +444,6 @@ export const messages = {
   "thanks_for_applying": "تشکر برای درخواست!",
   "to_much_votes": "رای های خیلی زیاد",
   "no_trx_remaining": "تی آر ایکسی باقی نمانده است",
-  "produced_by": "تولید شده توسط {witnessAddress}",
   "show_more": "نمایش {countriesLength} بیشتر",
   "vote_guide_message": `برای رای دادن به نمایندگان ممتاز از تی آر ایکس خود استفاده کنید.
    برای هر تی آر ایکس که در حسابتان نگهداری می کنید، شما یک رای برای استفاده کردن دارید.
@@ -680,6 +690,16 @@ export const messages = {
   "print_paper_wallet": "چاپ کیف پول کاغذی",
   "new_wallet_ready_message": "کیف پول جدید شما آماده است",
   "go_to_account_page": "رفتن به صفحه حساب کاربری",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

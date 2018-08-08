@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-24072018                                                  #
-  #         Update Date: 24.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -53,7 +53,8 @@ export const messages = {
   "age": "年龄",
   "bytes": "字节",
   "MByte": "兆字节",
-  "produced by": "出块者",
+  "produced_by": "出块者",
+  "block_reward": "区块奖励",
   "contract": "合约",
   "from": "发送人",
   "to": "接收人",
@@ -100,6 +101,7 @@ export const messages = {
   "desktop_explorer": "桌面浏览器",
   "message": "信息",
   "wallet_address": "Wallet Address",
+  "confirm": "确认",
   /*
   ##################################################################################
   #                                                                                #
@@ -182,6 +184,15 @@ export const messages = {
   "_of":"是",
   "was_recorded_on":"记录于 ",
   "rank_real_time":"排名 (实时) ",
+  "volume_24": "24小时交易量",
+  "billion_usd": "十亿美元",
+  "loading_transfers": "正在加载转账记录",
+  "loading_transactions": "正在加载交易记录",
+  "loading_block": "正在加载区块",
+  "current_power": "当前投票权",
+  "produce_distribution": "算力分配图",
+  "confirm_token_issue": "确认通证发行",
+  "_to": "至",
   /*
   ##################################################################################
   #                                                                                #
@@ -394,10 +405,10 @@ export const messages = {
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
   "insufficient_trx": "TRX数量不足",
-  "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
+  "not_enough_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
-  "can_be_unlocked_in": "将解锁于",
+  "can_be_unlocked": "将解锁于",
   /*
   ##################################################################################
   #                                                                                #
@@ -419,7 +430,6 @@ export const messages = {
   "thanks_for_applying": "感谢您的申请！",
   "to_much_votes": "票数过多",
   "no_trx_remaining": "无TRX余额",
-  "produced_by": "出块者：{超级代表地址}",
   "show_more": "展示{国家长度} 更多内容",
   "vote_guide_message": `使用TRX为超级代表投票。
    每一个TRX享有一次投票机会。
@@ -479,7 +489,7 @@ export const messages = {
   "token_issued_successfully": "通证发行成功！",
   "participation": "参与",
   "start_date": "开始日期",
-  "end_date": "结束时期",
+  "end_date": "结束日期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
   "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
   "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
@@ -665,6 +675,16 @@ export const messages = {
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
+  "login_first" :"请先登录钱包",
+  "contract_name": "合约名称",
+  "compiler": "编译器版本",
+  "tx_count": "交易数",
+  "setting": "设置",
+  "date_verified": "验证日期",
+  "compiler_version": "编译器版本",
+  "creator": "合约开发者",
+  "verify_contract_code": "验证合约代码",
+  "buy_tokens": "购买通证",
   /*
   ##################################################################################
   #                                                                                #

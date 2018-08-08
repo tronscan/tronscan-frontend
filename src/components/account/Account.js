@@ -670,7 +670,7 @@ class Account extends Component {
 
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 text-center widget-icon">
-              <i className="icon-big fa fa-bolt fa-10x" style={{color: '#ffc107'}}/>
+              <i className="icon-big fa fa-bolt fa-7x" style={{color: '#ffc107'}}/>
               <div className="card-body">
                 <h3 className="text-warning">
                   <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX} />
@@ -1051,12 +1051,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(Account)
 
 const styles = {
   iconEntropy: {
-    right: -100,
+    right: 0,
   },
   tronBalance: {
     position: 'absolute',
-    right: -60,
-    bottom: -75,
-    height: 200,
+    right: 0,
+    bottom: 0,
+    height: 100,
   }
 };

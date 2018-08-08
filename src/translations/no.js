@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-20072018                                                  #
-  #         Update Date: 20.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Norwegian                                                    #
   #         Status: first Version                                                  #
   #         Number of checks: 4                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "alder",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produsert av",
+  "produced_by": "produsert av",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "fra",
   "to": "til",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Budskap",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "av",
   "was_recorded_on": "ble registrert på",
   "rank_real_time": "Rang (Realtid)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -407,10 +418,10 @@ export const messages = {
   "buy_confirm_message_1": "Er du sikker du ønsker å kjøpe",
   "for": "for",
   "insufficient_trx": "Ikke nok TRX",
-  "not_enouth_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
+  "not_enough_trx_message": "Du har ikke nok TRX til å kjøpe så mange tokener",
   "ends": "slutter",
   "starts": "starter",
-  "can_be_unlocked_in": "Kan låses opp",
+  "can_be_unlocked": "Kan låses opp",
   /*
   ##################################################################################
   #                                                                                #
@@ -432,7 +443,6 @@ export const messages = {
   "thanks_for_applying": "Takk for din søknad!",
   "to_much_votes": "For mange stemmer",
   "no_trx_remaining": "Ingen TRX igjen",
-  "produced_by": "Produsert av {witnessAddress}",
   "show_more": "Vis {countriesLength} Mer",
   "vote_guide_message": `Bruk dine TRX til å stemme på Super Representanter..
    For hver TRX du har på din konto har du en stemme å gi.
@@ -678,6 +688,16 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Papir Lommebok",
   "new_wallet_ready_message": "Din nye lommebok er klar",
   "go_to_account_page": "Gå til konto siden",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Thai                                                         #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "อายุบล็อก",
   "bytes": "ขนาดไบต์",
   "MByte": "MByte",
-  "produced by": "ถูกสร้างโดย",
+  "produced_by": "ถูกสร้างโดย",
+  "block_reward": "Block Reward",
   "contract": "สัญญา",
   "from": "จาก",
   "to": "ไปยัง",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "ข่าวสาร",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -396,10 +407,10 @@ export const messages = {
   "buy_confirm_message_1": "คุณแน่ใจหรือไม่ว่าต้องการซื้อ",
   "for": "สำหรับ",
   "insufficient_trx": "TRX ไม่เพียงพอ",
-  "not_enouth_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
+  "not_enough_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
   "ends": "สิ้นสุด",
   "starts": "เริ่ม",
-  "can_be_unlocked_in": "สามารถปลดล็อกได้ภายใน",
+  "can_be_unlocked": "สามารถปลดล็อกได้ภายใน",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +432,6 @@ export const messages = {
   "thanks_for_applying": "ขอบคุณสำหรับการสมัครใช้งาน!",
   "to_much_votes": "คะแนนเสียงมากเกินไป",
   "no_trx_remaining": "ไม่มี TRX เหลือแล้ว",
-  "produced_by": "ผลิตโดย {witnessAddress}",
   "show_more": "แสดง {countriesLength} เพิ่มเติม",
   "vote_guide_message": "ใช้ TRX ของคุณเพื่อลงคะแนนเสียงเลือกตั้ง Super Representative คุณจะสามารถลงคะแนนเสียงเลืิอกตั้งได้หนึ่งคะแนน ต่อแต่ละ TRX ที่คุณมีในบัญชี TRX จะไม่ถูกใช้โดยตรง คุณสามารถลงคะแนนเสียงเลือกตั้งได้หลายครั้ง และได้หลายผู้สมัคร เท่าที่คุณต้องการ คะแนนสุดท้ายจะถูกนับ ณ เวลา 24 นาฬิกา และรายชื่อ Super Representative จะได้รับการปรับปรุง",
   "search_address": "ค้นหาแอดเดรส",
@@ -662,6 +672,16 @@ export const messages = {
   "print_paper_wallet": "ทำการพิมพ์ Paper wallet",
   "new_wallet_ready_message": "วอลเล็ทใหม่ของคุณพร้อมใช้งานแล้ว",
   "go_to_account_page": "ไปยังหน้าบัญชี",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

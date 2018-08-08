@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 6                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "yaş",
   "bytes": "Bayt",
   "MByte": "MByte",
-  "produced by": "üreten",
+  "produced_by": "üreten",
+  "block_reward": "Block Reward",
   "contract": "Sözleşme",
   "from": "gönderen",
   "to": "alıcı",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "onayla",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Mevcut TRON Power",
+  "produce_distribution": "Blok Üreticileri Çizelgesi",
+  "confirm_token_issue": "Jeton Basımı Onayla",
+  "_to": "şuna:",
   /*
   ##################################################################################
   #                                                                                #
@@ -410,10 +421,10 @@ export const messages = {
   "buy_confirm_message_1": "Satın almak istediğinizden emin misiniz",
   "for": "için",
   "insufficient_trx": "Yetersiz TRX",
-  "not_enouth_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
+  "not_enough_trx_message": "Belirtilen miktarda jeton alabileceğiniz kadar TRX bulunmuyor",
   "ends": "biter",
   "starts": "başlar",
-  "can_be_unlocked_in": "şu tarihte çözülebilir",
+  "can_be_unlocked": "şu tarihte çözülebilir",
   /*
   ##################################################################################
   #                                                                                #
@@ -435,7 +446,6 @@ export const messages = {
   "thanks_for_applying": "Başvurduğunuz için teşekkürler!",
   "to_much_votes": "Şu kadar oy",
   "no_trx_remaining": "TRX kalmadı",
-  "produced_by": "{witnessAddress} tarafından üretildi",
   "show_more": "Fazlasını {countriesLength} Göster",
   "vote_guide_message": `Kendi TRX'lerinizi kullanarak Süper Temsciler için oy verin.
    Hesabınızda tuttuğunuz her TRX başına harcayabileceğiniz bir adet oy bulunmaktadır.
@@ -685,6 +695,16 @@ export const messages = {
   "print_paper_wallet": "Kağıt Cüzdan Bastırın",
   "new_wallet_ready_message": "Yeni cüzdanınız hazırdır",
   "go_to_account_page": "Hesap sayfasına git",
+  "login_first": "Öncelikle cüzdana giriş yapınız",
+  "contract_name": "Sözleşme Adı",
+  "compiler": "Derleyici",
+  "tx_count": "Tx Sayısı",
+  "setting": "Ayar",
+  "date_verified": "Tarih Doğrulandı",
+  "compiler_version": "Derleyici Sürümü",
+  "creator": "Oluşturan",
+  "verify_contract_code": "Sözleşme Kodunu Doğrula",
+  "buy_tokens": "Jeton Satın Al",
   /*
   ##################################################################################
   #                                                                                #
@@ -741,15 +761,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "Süper Temsilcilik için başvuruldu",
+  "sr_candidature": "Süper Temsilci Adaylığı",
+  "created_token": "jeton oluşturuldu",
+  "token_creation": "Jeton Oluşturma",
+  "bought": "satın alındı",
+  "voter": "oylayan",
+  "voting": "oylanıyor",
+  "asset": "varlık",
+  "token_transfer": "Jeton Aktarımı",
   /*
   ##################################################################################
   #                                                                                #

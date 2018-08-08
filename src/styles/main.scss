@@ -572,8 +572,8 @@ tr a {
 
 .icon-big {
   position: absolute;
-  bottom: -25px;
-  right: -25px;
+  bottom: 0px;
+  right: 0px;
   opacity: 0.5;
 }
 
@@ -714,4 +714,16 @@ th {
 #dropdownMenuButton:hover{
   color:red;
   cursor: pointer;
+}
+
+._confirm_button{
+  margin-right:0px !important;
+
+}
+
+._context_right_click .react-contextmenu-wrapper{
+  display: inline-block !important;
+}
+._context_right_click .react-contextmenu-wrapper .truncate-ellipsis{
+  display: inline-block !important;
 }

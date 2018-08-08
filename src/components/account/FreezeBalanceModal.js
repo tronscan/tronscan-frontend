@@ -82,12 +82,14 @@ class FreezeBalanceModal extends React.PureComponent {
     return (
       <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered" >
         <ModalHeader className="text-center" toggle={this.hideModal}>
-          {tu("Freeze Balance")}
+          {tu("freeze")}
         </ModalHeader>
         <ModalBody className="text-center">
           <form>
             <div className="form-group">
+              <div className="text-left">{tu("current_power")}: <span style={{fontWeight:800}}>{trxBalance}</span></div>
               <label>{tu("trx_amount")}</label>
+
               <NumberField
                      min={1}
                      decimals={0}
@@ -109,7 +111,7 @@ class FreezeBalanceModal extends React.PureComponent {
                       onClick={this.freeze}
                 >
                 <i className="fa fa-snowflake mr-2"/>
-                {tu("Freeze Balance")}
+                {tu("freeze")}
               </button>
             </p>
           </form>

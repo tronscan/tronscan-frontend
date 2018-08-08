@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React, {Fragment} from "react";
+import {injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
@@ -22,6 +23,7 @@ class SendForm extends React.Component {
       to: props.to || "",
       token: "",
       amount: '',
+      note: '',
       sendStatus: 'waiting',
       isLoading: false,
       toAccount: null,
@@ -44,7 +46,7 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount} = this.state;
+    let {to, token, amount, note} = this.state;
     let {account, onSend} = this.props;
 
     this.setState({ isLoading: true, modal: null });
@@ -53,7 +55,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.send(token, account.address, to, amount)(account.key);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -235,10 +237,14 @@ class SendForm extends React.Component {
     })
   };
 
+  setNote = (note) => {
+    this.setState({ note });
+  };
+
   render() {
 
-    let {tokenBalances} = this.props;
-    let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
+    let {intl, tokenBalances} = this.props;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
     let isAmountValid = this.isAmountValid();
@@ -319,6 +325,21 @@ class SendForm extends React.Component {
             </div>
           </div>
         </div>
+        <div className="form-group">
+          <label>{tu("note")}</label>
+          <div className="input-group mb-3">
+            <textarea
+                   onChange={(ev) => this.setNote(ev.target.value)}
+                   className={"form-control"}
+                   value={note}
+                   placeholder={intl.formatMessage({id:"language_support"})}
+            />
+            <div className="invalid-feedback">
+              { tu("fill_a_valid_address") }
+              {/* tu("invalid_address") */}
+            </div>
+          </div>
+        </div>
         {this.renderFooter()}
       </form>
     )
@@ -336,4 +357,4 @@ const mapDispatchToProps = {
   reloadWallet,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SendForm)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SendForm))

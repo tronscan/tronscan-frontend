@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-25072018                                                  #
-  #         Update Date: 25.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
   #         Number of checks: 7                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "지난 시간",
   "bytes": "바이트",
   "MByte": "MByte",
-  "produced by": "생성자",
+  "produced_by": "생성자",
+  "block_reward": "Block Reward",
   "contract": "컨트랙트",
   "from": "보내는 주소",
   "to": "받는 주소",
@@ -84,7 +85,7 @@ export const messages = {
   "enter_password_message": "암호를 반드시 입력해야합니다!",
   "password_incorrect": "암호 불일치",
   "try_again": "다시 시도해보십시오",
-  "wallet_unlocked": "지갑 언락 완료",
+  "wallet_unlocked": "지갑 잠금 해제 완료",
   "weak": "약함",
   "okay": "괜찮음",
   "good": "좋음",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "데스크톱 버전 탐색기",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "는",
   "was_recorded_on": "을 기록했습니다",
   "rank_real_time": "순위 (실시간)",
+  "volume_24": "24시간 거래 볼륨",
+  "billion_usd": "(단위) 10억 USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -404,10 +415,10 @@ export const messages = {
   "buy_confirm_message_1": "정말로 다음과 같이 구매하시겠습니까",
   "for": "을 다음으로 구매:",
   "insufficient_trx": "불충분한 TRX",
-  "not_enouth_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
+  "not_enough_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
   "ends": "마감 기한은",
   "starts": "시작일은",
-  "can_be_unlocked_in": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",
+  "can_be_unlocked": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",
   /*
   ##################################################################################
   #                                                                                #
@@ -429,7 +440,6 @@ export const messages = {
   "thanks_for_applying": "신청해주셔서 감사합니다!",
   "to_much_votes": "To much votes",
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
-  "produced_by": "{witnessAddress}에 의해 생성됨",
   "show_more": "{countriesLength}개 더보기",
   "vote_guide_message": `TRX를 사용하여 슈퍼 대표(SR)에 투표하십시오.
    귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.
@@ -675,6 +685,16 @@ export const messages = {
   "print_paper_wallet": "페이퍼 월렛 인쇄",
   "new_wallet_ready_message": "사용자분의 새 지갑이 준비되었습니다",
   "go_to_account_page": "계정 페이지로 가기",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

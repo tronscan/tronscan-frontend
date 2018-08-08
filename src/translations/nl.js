@@ -55,7 +55,8 @@ export const messages = {
   "age": "age",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "geproduceerd door",
+  "produced_by": "geproduceerd door",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "van",
   "to": "naar",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "opgenomen op",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -398,10 +409,10 @@ export const messages = {
   "buy_confirm_message_1": "Weet je het zeker?",
   "for": "voor",
   "insufficient_trx": "Niet genoeg TRX beschikbaar",
-  "not_enouth_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
+  "not_enough_trx_message": "Helaas heb je niet genoeg TRX in je account om het opgegeven aantal tokens te kopen.",
   "ends": "eindigt",
   "starts": "start",
-  "can_be_unlocked_in": "kan ontgrendelt worden in",
+  "can_be_unlocked": "kan ontgrendelt worden",
   /*
   ##################################################################################
   #                                                                                #
@@ -423,7 +434,6 @@ export const messages = {
   "thanks_for_applying": "Hartelijk dank voor uw voordracht!",
   "to_much_votes": "U hebt het maximum aantal stemmen overschreden",
   "no_trx_remaining": "Geen TRX meer beschikbaar",
-  "produced_by": "Gemaakt door {witnessAddress}",
   "show_more": "Toon {countriesLength} meer",
   "vote_guide_message": `Gebruik uw TRX om op de super-vertegenwoordigers te stemmen.
    Voor elke TRX die u in uw account heeft, ontvangt u een stem die u kunt toewijzen.
@@ -673,6 +683,16 @@ export const messages = {
   "print_paper_wallet": "Print Papieren Portemonnee",
   "new_wallet_ready_message": "Je nieuwe portemonnee is beschikbaar",
   "go_to_account_page": "Ga naar account pagina",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

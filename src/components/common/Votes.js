@@ -55,7 +55,7 @@ export default class Votes extends React.Component {
   render() {
 
     let {votes, page, total, pageSize, totalVotes, loading, emptyState: EmptyState = null} = this.state;
-    let {showCandidate = true, showVoter = true } = this.props;
+    let {showCandidate = true, showVoter = true, showVoterPercentage = true } = this.props;
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
@@ -83,11 +83,11 @@ export default class Votes extends React.Component {
         <table className="table table-hover m-0 border-top-0">
           <thead className="thead-dark">
           <tr>
-            { showVoter && <th>{tu("voters")}</th> }
-            { showCandidate && <th>{tu("candidate")}</th> }
-            <th className="text-right" style={{width: 125 }}>{tu("votes")}</th>
-            <th className="text-right" style={{width: 150 }}>{tu("voter_percentage")}</th>
-            <th className="text-right" style={{width: 100 }}>{tu("percentage")}</th>
+            { showVoter && <th className="text-nowrap">{tu("voters")}</th> }
+            { showCandidate && <th className="text-nowrap">{tu("candidate")}</th> }
+            <th className="text-nowrap" style={{width: 125 }}>{tu("votes")}</th>
+            { showVoterPercentage && <th className="d-none d-md-table-cell" style={{width: 150 }}>{tu("voter_percentage")}</th> }
+            <th className="d-none d-md-table-cell" style={{width: 100 }}>{tu("percentage")}</th>
           </tr>
           </thead>
           <tbody>
@@ -96,24 +96,27 @@ export default class Votes extends React.Component {
               <tr key={vote.id}>
                 {
                   showCandidate &&
-                    <td>
+                    <td className="text-nowrap">
                       <ExternalLink url={vote.candidateUrl} /><br/>
                       <span className="small"><AddressLink address={vote.candidateAddress} /></span>
                     </td>
                 }
                 {
                   showVoter &&
-                    <td>
+                    <td className="text-nowrap">
                       <AddressLink address={vote.voterAddress} />
                     </td>
                 }
-                <td className="text-nowrap text-right">
+                <td className="text-nowrap">
                   <FormattedNumber value={vote.votes} />&nbsp;
                 </td>
-                <td className="text-nowrap text-right">
-                  <FormattedNumber value={(vote.votes / (vote.voterAvailableVotes)) * 100} minimumFractionDigits={2} />%
-                </td>
-                <td className="text-nowrap text-right">
+                {
+                  showVoterPercentage &&
+                    <td className="d-none d-md-table-cell">
+                      <FormattedNumber value={(vote.votes / (vote.voterAvailableVotes)) * 100} minimumFractionDigits={2} />%
+                    </td>
+                }
+                <td className="d-none d-md-table-cell">
                   <FormattedNumber value={(vote.votes / totalVotes) * 100} minimumFractionDigits={2} />%
                 </td>
               </tr>

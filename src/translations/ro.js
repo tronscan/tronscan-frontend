@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Romania                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 3                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "vârstă",
   "bytes": "Biți",
   "MByte": "MByte",
-  "produced by": "produs de",
+  "produced_by": "produs de",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "de la",
   "to": "la",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmare",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "de ",
   "was_recorded_on": "s-a înregistrat pe ",
   "rank_real_time": "Rang (Timp real)",
+  "volume_24": "Volum Tranzacționare 24 de ore",
+  "billion_usd": "Miliard USD",
+  "loading_transfers": "Încărcare Transferuri",
+  "loading_transactions": "Încărcare Tranzacții",
+  "loading_block": "Încărcare Bloc",
+  "current_power": "Putere Curentă",
+  "produce_distribution": "Diagramă Producție Blocuri",
+  "confirm_token_issue": "Confirmare Emitere Token",
+  "_to": "la",
   /*
   ##################################################################################
   #                                                                                #
@@ -409,10 +420,10 @@ export const messages = {
   "buy_confirm_message_1": "Sunteți sigur că vreți să cumpărați",
   "for": "pentru",
   "insufficient_trx": "TRX insuficient",
-  "not_enouth_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
+  "not_enough_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
   "ends": "sfârșește",
   "starts": "începe",
-  "can_be_unlocked_in": "poate fi descuiat în",
+  "can_be_unlocked": "poate fi descuiat",
   /*
   ##################################################################################
   #                                                                                #
@@ -434,7 +445,6 @@ export const messages = {
   "thanks_for_applying": "Mulțumim pentru aplicare!",
   "to_much_votes": "Prea multe voturi",
   "no_trx_remaining": "Nici un TRX rămas",
-  "produced_by": "Produs de {witnessAddress}",
   "show_more": "Arată {countriesLength} mai mult",
   "vote_guide_message": `Folosiți TRX pentru a vota pentru Super Reprezentanți.
    Pentru fiecare TRX pe care îl ţineţi în contul dumneavoastră aveţi un vot pentru a-l folosi.
@@ -682,6 +692,16 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
+  "login_first": "Logați-vă întâi la Portofel  ",
+  "contract_name": "Nume Contract",
+  "compiler": "Compilator",
+  "tx_count": "Numărătoare Tx",
+  "setting": "Setare",
+  "date_verified": "Dată Verificată",
+  "compiler_version": "Versiune Compilator",
+  "creator": "Creator",
+  "verify_contract_code": "Verificați codul de contract",
+  "buy_tokens": "Cumpărare Tokeni",
   /*
   ##################################################################################
   #                                                                                #
@@ -738,15 +758,15 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "aplicat pentru Super Reprezentanți",
+  "sr_candidature": "Candidatură Super Reprezentanți",
+  "created_token": "token creat",
+  "token_creation": "Creare Token",
+  "bought": "cumpărat",
+  "voter": "votant",
+  "voting": "votare",
+  "asset": "bun",
+  "token_transfer": "Transfer Token",
   /*
   ##################################################################################
   #                                                                                #

@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-24072018                                                  #
-  #         Update Date: 24.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: German                                                       #
   #         Status: Approved Version                                               #
   #         Number of checks: 6                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "Zeitpunkt",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "erstellt von",
+  "produced_by": "erstellt von",
+  "block_reward": "Block Belohnung",
   "contract": "Vertrag",
   "from": "von",
   "to": "nach",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Nachricht",
   "wallet_address": "Wallet-Adresse",
+  "confirm": "Bestätigen",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "von",
   "was_recorded_on": "wurde aufgenommen am ",
   "rank_real_time": "Abstimmung (Echtzeit)",
+  "volume_24": "24 Stunden Handelsvolumen",
+  "billion_usd": "Milliarden USD",
+  "loading_transfers": "Laden der Übertragungen",
+  "loading_transactions": "Laden der Transaktionen",
+  "loading_block": "Laden vom Block",
+  "current_power": "Aktuelle Power",
+  "produce_distribution": "Blockproduzenten Chart",
+  "confirm_token_issue": "Token-Ausgabe bestätigen",
+  "_to": "nach",
   /*
   ##################################################################################
   #                                                                                #
@@ -409,10 +420,10 @@ export const messages = {
   "buy_confirm_message_1": "Sind Sie sich beim Kauf des Tokens auch wirklich sicher? Sie erhalten ",
   "for": "für",
   "insufficient_trx": "Nicht ausreichend TRX vorhanden",
-  "not_enouth_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
+  "not_enough_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
   "ends": "endet",
   "starts": "started",
-  "can_be_unlocked_in": "Kann freigegeben werden in",
+  "can_be_unlocked": "Kann freigegeben werden.",
   /*
   ##################################################################################
   #                                                                                #
@@ -435,7 +446,6 @@ export const messages = {
   "thanks_for_applying": "Danke für Ihre Bewerbung!",
   "to_much_votes": "Sie haben die maximale Anzahl an Abstimmungen überschritten",
   "no_trx_remaining": "Kein TRX mehr vorhanden",
-  "produced_by": "Erstellt durch {witnessAddress}",
   "show_more": "Weitere {countriesLength} anzeigen.",
   "vote_guide_message": `Verwenden Sie Ihre TRX um für die Super-Repräsentanten abzustimmen.
    Für jeden TRX, den Sie auf Ihrem Konto haben, erhalten Sie eine Stimme die Sie vergeben können.
@@ -687,6 +697,16 @@ export const messages = {
   "print_paper_wallet": "Paper-Wallet drucken",
   "new_wallet_ready_message": "Ihre neue Wallet wurde erstellt.",
   "go_to_account_page": "Zur Konto-Seite wechseln",
+  "login_first": "Bitte melden Sie sich am Wallet an.",
+  "contract_name": "Vertragsname",
+  "compiler": "Compiler",
+  "tx_count": "Tx Anzahl",
+  "setting": "Einstellungen",
+  "date_verified": "Verifiziertes Datum",
+  "compiler_version": "Compiler Version",
+  "creator": "Ersteller",
+  "verify_contract_code": "Vertragscode verifizieren",
+  "buy_tokens": "Token kaufen",
   /*
   ##################################################################################
   #                                                                                #

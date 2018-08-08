@@ -91,19 +91,19 @@ class Transfers extends React.Component {
                     <table className="table table-hover table-striped m-0 transactions-table">
                       <thead className="thead-dark">
                         <tr>
-                          <th style={{ width: 130 }}>#</th>
+                          <th className="text-nowrap">#</th>
                           <th className="d-none d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
                           <th className="d-none d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
                           <th className="d-none d-md-table-cell">{tu("from")}</th>
                           <th className="d-none d-sm-table-cell">{tu("to")}</th>
-                          <th className="">{tu("value")}</th>
+                          <th className="text-nowrap text-right">{tu("value")}</th>
                         </tr>
                       </thead>
                       <tbody>
                       {
                         transfers.map((trx, index) => (
                           <tr key={trx.transactionHash}>
-                            <th>
+                            <th className="text-nowrap">
                               <Truncate>
                                 <TransactionHashLink hash={trx.transactionHash}>{trx.transactionHash}</TransactionHashLink>
                               </Truncate>
@@ -120,7 +120,7 @@ class Transfers extends React.Component {
                             <td className="d-none d-sm-table-cell">
                               <AddressLink address={trx.transferToAddress} />
                             </td>
-                            <td className="text-nowrap">
+                            <td className="text-nowrap text-right">
                               {
                                 trx.tokenName.toUpperCase() === 'TRX' ?
                                   <Fragment>

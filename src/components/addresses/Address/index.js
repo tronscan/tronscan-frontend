@@ -45,9 +45,9 @@ class Address extends React.Component {
           path: "",
           label: <span>{tu("transfers")}</span>,
           cmp: () => (
-            <TronLoader>
-              Loading Transfers
-            </TronLoader>
+              <TronLoader>
+                {tu("loading_transfers")}
+              </TronLoader>
           )
         },
         transactions: {
@@ -56,9 +56,9 @@ class Address extends React.Component {
           path: "/transactions",
           label: <span>{tu("transactions")}</span>,
           cmp: () => (
-            <TronLoader>
-              Loading Transactions
-            </TronLoader>
+              <TronLoader>
+                {tu("loading_transactions")}
+              </TronLoader>
           )
         },
       },
@@ -99,15 +99,16 @@ class Address extends React.Component {
   }
 
   async loadMedia(address) {
-    let media = await Client.getAddressMedia(address);
-
-    if (media.success) {
-      this.setState({
-        media: {
-          image: media.image,
-        }
-      });
-    }
+    try  {
+      let media = await Client.getAddressMedia(address);
+      if (media.success) {
+        this.setState({
+          media: {
+            image: media.image,
+          }
+        });
+      }
+   } catch(e) {}
   }
 
   async loadAddress(id) {
@@ -175,6 +176,7 @@ class Address extends React.Component {
           cmp: () => <Votes
             filter={{voter: id}}
             showVoter={false}
+            showVoterPercentage={false}
           />,
         },
         voters: {
@@ -267,7 +269,9 @@ class Address extends React.Component {
                       </div>
                     }
                     <div className="row">
-                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
+
+                      <div className="col-md-12">
+
                         <table className="table m-0">
                           <tbody>
                           {
@@ -356,16 +360,22 @@ class Address extends React.Component {
                           }
                           </tbody>
                         </table>
+
                       </div>
-                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
-                        {
-                          address.representative.enabled &&
+                      {
+                        /*
+                        <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
+                          {
+                          address.representative.enabled && votes.length &&
                           <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
                         }
-                        {address.representative.enabled &&
+                          {
+                          address.representative.enabled &&
                         <PieReact style={{height: 340}} data={votes}/>
                         }
-                      </div>
+                        </div>
+                       */
+                      }
                     </div>
                   </div>
                   <div className="card mt-3">

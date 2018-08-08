@@ -1,5 +1,6 @@
 /*eslint-disable no-script-url*/
 import React, {Component} from 'react';
+import xhr from "axios/index";
 import {connect} from "react-redux";
 import {loadNodes} from "../../actions/network";
 import {filter, maxBy, sortBy, sumBy} from "lodash";
@@ -89,11 +90,12 @@ class Nodes extends Component {
   }
 
   loadNodes = async () => {
-    let {nodes, status} = await Client.getNodeLocations();
+   // let {nodes, status} = await Client.getNodeLocations();
+    let {data} = await xhr.get("https://tron.network/api/v2/node/nodemap");
 
     this.setState({
-      nodes,
-      syncStatus: status,
+      nodes:data.data,
+      syncStatus: null,
     });
   };
 

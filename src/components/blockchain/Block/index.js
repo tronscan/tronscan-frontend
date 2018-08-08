@@ -128,7 +128,7 @@ class Block extends React.Component {
         {
           loading ? <div className="card">
             <TronLoader>
-              Loading Block {block.number}
+              {tu("loading_block")} {block.number}
             </TronLoader>
           </div> :
           <div className="row">

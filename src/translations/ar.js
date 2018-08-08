@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-13072018                                                  #
-  #         Update Date: 13.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 2807.2018                                                 #
   #         Language: Arabic                                                       #
   #         Status: First Version                                                  #
   #         Number of checks: 3                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "العمر",
   "bytes": "بايت",
   "MByte": "MByte",
-  "produced by": "إنتاج",
+  "produced_by": "إنتاج",
+  "block_reward": "Block Reward",
   "contract": "العقد",
   "from": "من",
   "to": "إلى",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -396,10 +407,10 @@ export const messages = {
   "buy_confirm_message_1": "هل أنت متأكدأنك تريد شراء",
   "for": "مقابل",
   "insufficient_trx": "غير كافيةTRX",
-  "not_enouth_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
+  "not_enough_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
   "ends": "ends",
   "starts": "starts",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +432,6 @@ export const messages = {
   "thanks_for_applying": "شكرا لتقديم الطلب!",
   "to_much_votes": "عدد الأصوات مفرط",
   "no_trx_remaining": "لم يتبق تي ار اكس",
-  "produced_by": "أنتج عبر {witnessAddress}",
   "show_more": "إظهار {countriesLength} اضافي",
   "vote_guide_message": "استخدم الـ تي ار اكس  لديك للتصويت للممثلين المميزين. لديك صوت واحد مقابل كل واحدة من الـ تي ار اكس في حسابك الخاص. لن تستهلك الـ تي ار اكس. يمكنك التصويت مرات متعددة و لممثلين مختلفين كما شئت. سوف يتم تدوين الأصوات النهائية عند الساعة 24 ويتم تحديث قائمة المندوبين.",
   "search_address": "ابحث عن عنوان",
@@ -662,6 +672,16 @@ export const messages = {
   "print_paper_wallet": "اطبع المحفظة على ورق",
   "new_wallet_ready_message": "محفظتك الجديدة جاهزة",
   "go_to_account_page": "اذهب الى صفحة الحساب",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #
