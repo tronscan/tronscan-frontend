@@ -314,7 +314,7 @@ class Navigation extends PureComponent {
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                 {tu("wallet")}
               </a>
-              <ul className="dropdown-menu dropdown-menu-right">
+              <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu">
                 <li className="px-1 py-1">
                   <div className="row" style={{width: 305}}>
                     <div className="col-lg-2">
@@ -376,10 +376,10 @@ class Navigation extends PureComponent {
               </ul>
             </li> :
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle nav_open_wallet" data-toggle="dropdown" href="javascript:">
+              <a className="nav-link dropdown-toggle nav-open-wallet" data-toggle="dropdown" href="javascript:">
                 {tu("open_wallet")}
               </a>
-              <ul className="dropdown-menu dropdown-menu-right nav_login_wallet" style={{width: 320}}>
+              <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
                 <li className="px-3">
                   <div className="form-group text-center">
                     <label>{tu("private_key")}</label>
@@ -470,8 +470,9 @@ class Navigation extends PureComponent {
                 Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
               </div>
           }
+
           <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
-            <ul className="navbar-nav navbar-right">
+            <ul className="navbar-nav navbar-right wallet-nav">
               {
                 wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
               }

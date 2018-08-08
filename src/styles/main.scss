@@ -725,7 +725,35 @@ th {
   margin-left: -16px;
 }
 
+.nav-stats-block{
+  display: none;
+}
+.navbar-nav .dropdown-menu {
+  position: static;
+  float: none;
+}
 @media (max-width: 767.98px) {
+  .logo {
+    margin-top: 6px;
+    margin-right: 6px;
+  }
+  .nav-item .nav-login-wallet,.nav-item .account-dropdown-menu {
+    position: absolute;
+    float: none;
+    left: -275px;
+  }
+  .nav-item .wallet-notifications{
+    position: absolute;
+    float: none;
+    left: -100px;
+  }
+
+  .wallet-nav{
+    flex-direction: row;
+    .nav-item{
+      margin-left: 10px;
+    }
+  }
   .home-stats{
      margin-top: -50px;
   }
@@ -739,6 +767,12 @@ th {
   .home-footer .quick-links li{
      width: 50%;
      text-align: left;
+  }
+  .nav-stats-none{
+    display: none;
+  }
+  .nav-stats-block{
+    display: block;
   }
   .home-stats>div{
      width: 50%;
@@ -756,11 +790,11 @@ th {
   .mt-5-logo img{
     height: 60px;
   }
-  .nav_open_wallet{
-    text-align: right;
+  .nav-open-wallet{
+    //text-align: right;
   }
-  .nav_login_wallet{
-    margin-left: -100px;
+  .navbar{
+    align-items: flex-start;
   }
   .pagination .page-item .page-link{
     padding: 8px;
