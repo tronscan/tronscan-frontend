@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Georgian                                                     #
   #         Status: First Version                                                  #
   #         Number of checks: 2                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "ასაკი",
   "bytes": "ბიტები",
   "MByte": "MByte",
-  "produced by": "წარმოებულია ......მიერ",
+  "produced_by": "წარმოებულია მიერ",
+  "block_reward": "Block Reward",
   "contract": "კონტრაქტი",
   "from": "-დან",
   "to": "-სკენ",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -402,10 +413,10 @@ export const messages = {
   "buy_confirm_message_1": "დარწმუნებული ხართ, რომ ყიდვა გსურთ",
   "for": "-სთვის",
   "insufficient_trx": "არასაკმარისი TRX",
-  "not_enouth_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
+  "not_enough_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
   "ends": "დასრულებები",
   "starts": "სტარტები",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -427,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "გმადლობთ, მიმართვისთვის!",
   "to_much_votes": "ნამეტანი ბევრი ხმა",
   "no_trx_remaining": "TRX არ დარჩა",
-  "produced_by": "წარმოებულია {witnessAddress}-მიერ",
   "show_more": "მეტი {countriesLength} ჩვენება",
   "vote_guide_message": `გამოიყენეთ თქვენი TRX სუპერ წარმომადგენლად ხმის მისაცემად.
    ყოველი მქონე TRX-სთვის თქვენს გაქვთ ერთი დასახარჯი ხმა.
@@ -671,6 +681,16 @@ export const messages = {
   "print_paper_wallet": "ამობეჭდეთ საფულე ქაღალდზე ",
   "new_wallet_ready_message": "თქვენი ახალი საფულე მზად არის",
   "go_to_account_page": "გადასვლა ანგარიშის გვერდზე",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

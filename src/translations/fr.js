@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: French                                                       #
   #         Status: Second Draft                                                   #
   #         Number of checks: 5                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "âge",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "produit par",
+  "produced_by": "produit par",
+  "block_reward": "Block Reward",
   "contract": "Contrat",
   "from": "de",
   "to": "vers",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -408,10 +419,10 @@ export const messages = {
   "buy_confirm_message_1": "Etes-vous sûr de vouloir acheter",
   "for": "à",
   "insufficient_trx": "Insufficient TRX",
-  "not_enouth_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
+  "not_enough_trx_message": "Vous n'avez pas assez de TRX pour acheter autant de jetons.",
   "ends": "fins",
   "starts": "démarrages",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +444,6 @@ export const messages = {
   "thanks_for_applying": "Merci d'avoir postulé!",
   "to_much_votes": "Trop de votes",
   "no_trx_remaining": "Pas de TRX restant",
-  "produced_by": "Produit par {witnessAddress}",
   "show_more": "Afficher {countriesLength} de plus",
   "vote_guide_message": `Utilisez vos TRX pour voter pour les Super Représentants.
    Pour chaque TRX que vous détenez dans votre compte, vous avez un vote à dépenser.
@@ -682,6 +692,16 @@ export const messages = {
   "print_paper_wallet": "Imprimer votre portefeuille papier",
   "new_wallet_ready_message": "Votre nouveau portefeuille est prêt",
   "go_to_account_page": "Aller à la page du compte",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

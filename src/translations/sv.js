@@ -15,10 +15,10 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-18072018                                                  #
-  #         Update Date: 18.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Swedish                                                      #
-  #         Status: Approved Version                                               #
+  #         Status: Second Version                                                 #
   #         Number of checks: 5                                                    #
   #         Participants: joelstahre                                               #
   #                                                                                #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "ålder",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "skapad av",
+  "produced_by": "skapad av",
+  "block_reward": "Block Reward",
   "contract": "Kontrakt",
   "from": "från",
   "to": "till",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Meddelande",
   "wallet_address": "Plånbokadress",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -176,7 +178,7 @@ export const messages = {
   "nodes_ranking": "Nodes Ranking",
   "total_accounts_last_day": "Totala konton till sista dagen",
   "chart_tip": "Använd datazoomområdet för att zooma in och ut ur vyn.",
-  "link_test_server": "kroppsvätskor",
+  "link_test_server": "Testnet",
   "highest": "Högsta ",
   "lowest": "Lägst ",
   "increase": "öka ",
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "av",
   "was_recorded_on": "spelades in på",
   "rank_real_time": "Rank (realtid)",
+  "volume_24": "24 Timme Trading Volume",
+  "billion_usd": "Miljard USD",
+  "loading_transfers": "Laddar överföringar",
+  "loading_transactions": "Laddar transaktioner",
+  "loading_block": "Laddar block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -404,10 +415,10 @@ export const messages = {
   "buy_confirm_message_1": "Är du säker på att du vill köpa",
   "for": "för",
   "insufficient_trx": "Otillräcklig TRX",
-  "not_enouth_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
+  "not_enough_trx_message": "Du kan bara sätta ditt kontonamn en gång!",
   "ends": "avsluta",
   "starts": "börjar",
-  "can_be_unlocked_in": "kan låsa upp i",
+  "can_be_unlocked": "kan låsa upp",
   /*
   ##################################################################################
   #                                                                                #
@@ -429,7 +440,6 @@ export const messages = {
   "thanks_for_applying": "Tack för ansökningen",
   "to_much_votes": "För mycket röster",
   "no_trx_remaining": "Inga TRX kvar",
-  "produced_by": "Producerad av {witnessAddress}",
   "show_more": "Visa {countriesLength} Mer",
   "vote_guide_message": `Använd dina TRX för att rösta för Super Representatives.
    För varje TRX du håller i ditt konto har du en röst att spendera.
@@ -673,6 +683,16 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Din nya plånbok är klar",
   "go_to_account_page": "Gå till kontosidan",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #

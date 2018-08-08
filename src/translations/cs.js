@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-28072018                                                  #
+  #         Update Date: 28.07.2018                                                #
   #         Language: Czech                                                        #
   #         Status: First Version                                                  #
   #         Number of checks: 4                                                    #
@@ -55,7 +55,8 @@ export const messages = {
   "age": "stáøí",
   "bytes": "Bytù",
   "MByte": "MByte",
-  "produced by": "vytvoøil",
+  "produced_by": "vytvoøil",
+  "block_reward": "Block Reward",
   "contract": "smlouva",
   "from": "z",
   "to": "do",
@@ -102,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Zpráva",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +186,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -407,10 +418,10 @@ export const messages = {
   "buy_confirm_message_1": "Urèitì chcete koupit",
   "for": "za",
   "insufficient_trx": "Nedostateèné množství TRX",
-  "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
+  "not_enough_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
   "ends": "konèí",
   "starts": "zaèíná",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -432,7 +443,6 @@ export const messages = {
   "thanks_for_applying": "Dìkujeme za podání žádosti!",
   "to_much_votes": "Pøíliš mnoho hlasù",
   "no_trx_remaining": "Žádné TRX k dispozici",
-  "produced_by": "Vytvoøil {witnessAddress}",
   "show_more": "Zobrazit {countriesLength} více",
   "vote_guide_message": `Své TRX použijte k hlasování pro Super Reprezentanty.
    Za každý TRX na svém úètì máte jeden použitelný hlas.
@@ -678,6 +688,16 @@ export const messages = {
   "print_paper_wallet": "Vytisknìte si papírovou penìženku",
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
   /*
   ##################################################################################
   #                                                                                #
