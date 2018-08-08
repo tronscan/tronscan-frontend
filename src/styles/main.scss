@@ -362,7 +362,6 @@ tr a {
     border-color: #343a40;
   }
 }
-
 .position-stretch {
   left: 0;
   bottom: 0;
@@ -718,7 +717,143 @@ th {
 
 ._confirm_button{
   margin-right:0px !important;
+}
 
+// New token stuff
+.token-cards {
+  background-color: gray;
+  transition: background-color 0.5s ease;
+  background-color: #fff;
+  color: #333;
+  font-weight: 300;
+  border-radius: 2px;
+  border: 1px solid #e5e5e5;
+  background-size: cover;
+  min-height: 200px;
+  background-image: url('../images/token-card-bg-hover.png') !important;
+    .token-cards-top {
+      padding: 10px 15px;
+    }
+
+    .token-cards-header {
+      font-size: 18px;
+      min-height: 30px;
+
+    }
+    .token-procentage {
+      font-size: 14px;
+    }
+    .token-title{
+      padding: 5px 0px 5px 0px;
+    }
+    .token-description {
+      font-size: 12px;
+      height: 80px;
+    }
+    .progress-bar-container {
+      width: 100%;
+      display: inline-block;
+        .progress-bar {
+          color: #fff;
+          background-color: #6b757c;
+        }
+        .progress {
+          border-radius: 5px;
+          background-color: #bbbbbb;
+          height: 10px;
+          width: 85%;
+        }
+        .token-amounts{
+          display: none;
+        }
+        .token-procentage {
+          display: none;
+        }
+      .token-card-percentage {
+        display: inline-block;
+        font-size: 12px;
+        margin-top: -12px;
+      }
+    }
+  .bottom-center {
+    min-height: 40px;
+  .token-time {
+    padding-top: 18px;
+  }
+
+  }
+  .token-info {
+    display: none;
+  }
+}
+
+.token-cards:hover {
+  color: #333;
+  font-weight: 200 !important;
+  background-color: #fff;
+  background-image: url('../images/token-card-bg-hover.png') !important;
+  transition: color 0.5s ease;
+  transition: background-color 0.5s ease;
+  border: 1px solid;
+  border-color: #b5b5b5;
+    .token-title {
+      .token-procentage {
+        display: none;
+      }
+    }
+    .token-time {
+      display: none;
+    }
+    .token-info {
+      display: inline-block;
+
+    }
+    .token-info {
+      height: 40px;
+      text-align: center;
+      width: 100%;
+      background-color: #6b757c;
+      padding-top: 10px;
+      color: #fff;
+    }
+    .progress-bar-container {
+      .progress {
+        display: none;
+      }
+      .token-amounts{
+        display: inline-block;
+        font-size: 12px;
+      }
+      .progress-bar {
+        color: $red;
+        background-color: $red;
+        transition: color 0.5s ease;
+        transition: background-color 0.5s ease;
+      }
+      .token-procentage {
+        display: inline-block;
+        font-size: 12px;
+        padding-top: 9px;
+      }
+      .token-card-percentage {
+        display: none;
+      }
+
+    }
+  .bottom-center{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .token-cards:hover {
+    color: #000;
+
+  }
+  .token-cards {
+    font-weight: normal;
+  }
+=======
 }
 
 ._context_right_click .react-contextmenu-wrapper{
