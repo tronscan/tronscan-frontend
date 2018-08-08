@@ -6,7 +6,7 @@ import {loadTokens} from "../../actions/tokens";
 import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
-import {FormattedNumber, FormattedDate,injectIntl} from "react-intl";
+import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
@@ -77,7 +77,7 @@ class TokenCreate extends Component {
     });
   };
   preSubmit = () => {
-  let {intl} = this.props;
+    let {intl} = this.props;
 
     this.setState({
       modal: (
@@ -522,6 +522,11 @@ class TokenCreate extends Component {
                         {tu("details")}
                         <i className="fab fa-wpforms float-right"/>
                       </legend>
+                      <p>
+                      <small className="form-text text-muted">
+                        {'('}{tu("language_support")}{')'}
+                      </small>
+                      </p>
                       <div className="form-row">
                         <div className="form-group col-md-6">
                           <label>{tu("token_name")} *</label>
