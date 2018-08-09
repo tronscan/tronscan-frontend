@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React, {Fragment} from "react";
+import {injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
@@ -242,7 +243,7 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {tokenBalances} = this.props;
+    let {intl, tokenBalances} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
@@ -330,7 +331,9 @@ class SendForm extends React.Component {
             <textarea
                    onChange={(ev) => this.setNote(ev.target.value)}
                    className={"form-control"}
-                   value={note} />
+                   value={note}
+                   placeholder={intl.formatMessage({id:"language_support"})}
+            />
             <div className="invalid-feedback">
               { tu("fill_a_valid_address") }
               {/* tu("invalid_address") */}
@@ -354,4 +357,4 @@ const mapDispatchToProps = {
   reloadWallet,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SendForm)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SendForm))

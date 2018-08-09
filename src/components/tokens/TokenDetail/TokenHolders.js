@@ -98,7 +98,7 @@ export class TokenHolders extends React.Component {
                       <FormattedNumber
                           value={(((tokenHolder.balance) / token.totalSupply) * 100)}
                           minimumFractionDigits={4}
-                          maximumFractionDigits={8}
+                          maximumFractionDigits={4}
                       /> %
                     </td>
                   </tr>

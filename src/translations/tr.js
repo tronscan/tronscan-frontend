@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "onayla",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Loading Transfers",
   "loading_transactions": "Loading Transactions",
   "loading_block": "Loading Block",
+  "current_power": "Mevcut TRON Power",
+  "produce_distribution": "Blok Üreticileri Çizelgesi",
+  "confirm_token_issue": "Jeton Basımı Onayla",
+  "_to": "şuna:",
   /*
   ##################################################################################
   #                                                                                #

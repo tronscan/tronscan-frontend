@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmare",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Încărcare Transferuri",
   "loading_transactions": "Încărcare Tranzacții",
   "loading_block": "Încărcare Bloc",
+  "current_power": "Putere Curentă",
+  "produce_distribution": "Diagramă Producție Blocuri",
+  "confirm_token_issue": "Confirmare Emitere Token",
+  "_to": "la",
   /*
   ##################################################################################
   #                                                                                #

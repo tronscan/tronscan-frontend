@@ -6,7 +6,7 @@ import {loadTokens} from "../../actions/tokens";
 import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
-import {FormattedNumber, FormattedDate} from "react-intl";
+import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
@@ -77,18 +77,18 @@ class TokenCreate extends Component {
     });
   };
   preSubmit = () => {
-    console.log(this.state.frozenSupply);
-    console.log(this.state.startTime.getTime());
+    let {intl} = this.props;
 
     this.setState({
       modal: (
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
+              confirmBtnText={intl.formatMessage({id: 'confirm'})}
               confirmBtnBsStyle="success"
+              cancelBtnText={intl.formatMessage({id: 'cancel'})}
               cancelBtnBsStyle="default"
-              title="Confirm Token Issue"
+              title={intl.formatMessage({id: 'confirm_token_issue'})}
               onConfirm={this.submit}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
@@ -116,7 +116,7 @@ class TokenCreate extends Component {
                   <th>{tu('participation')}:</th>
                   <td>
                     <FormattedDate value={this.state.startTime.getTime()}/>
-                    {' '}{tu('to')}{' '}
+                    {' '}{tu('_to')}{' '}
                     <FormattedDate value={this.state.endTime.getTime()}/>
                   </td>
                 </tr>
@@ -522,6 +522,11 @@ class TokenCreate extends Component {
                         {tu("details")}
                         <i className="fab fa-wpforms float-right"/>
                       </legend>
+                      <p>
+                      <small className="form-text text-muted">
+                        {'('}{tu("language_support")}{')'}
+                      </small>
+                      </p>
                       <div className="form-row">
                         <div className="form-group col-md-6">
                           <label>{tu("token_name")} *</label>
@@ -751,4 +756,4 @@ const mapDispatchToProps = {
   loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TokenCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenCreate));

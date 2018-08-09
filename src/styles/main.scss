@@ -572,8 +572,8 @@ tr a {
 
 .icon-big {
   position: absolute;
-  bottom: -25px;
-  right: -25px;
+  bottom: 0px;
+  right: 0px;
   opacity: 0.5;
 }
 
@@ -720,6 +720,7 @@ th {
   margin-right:0px !important;
 
 }
+<<<<<<< HEAD
 .mt-5-logo img{
   height: 100px;
   margin-left: -16px;
@@ -803,4 +804,11 @@ th {
     padding-top: 6px;
     padding-bottom: 0px;
   }
+}
+
+._context_right_click .react-contextmenu-wrapper{
+  display: inline-block !important;
+}
+._context_right_click .react-contextmenu-wrapper .truncate-ellipsis{
+  display: inline-block !important;
 }

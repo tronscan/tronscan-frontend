@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-29072018                                                  #
-  #         Update Date: 29.07.2018                                                #
+  #         Version: 1.6-04082018                                                  #
+  #         Update Date: 04.08.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 9                                                    #
@@ -103,6 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmar",
   /*
   ##################################################################################
   #                                                                                #
@@ -190,6 +191,10 @@ export const messages = {
   "loading_transfers": "Cargando Transferencias",
   "loading_transactions": "Cargando Transacciones",
   "loading_block": "Cargando Bloque",
+  "current_power":"Power Actual",
+  "produce_distribution":"Gráfico de Producción de Bloque",
+  "confirm_token_issue":"Confirmar Emisión de Token",
+  "_to":"para",
   /*
   ##################################################################################
   #                                                                                #

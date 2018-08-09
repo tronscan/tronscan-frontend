@@ -101,6 +101,7 @@ export const messages = {
   "desktop_explorer": "桌面浏览器",
   "message": "信息",
   "wallet_address": "Wallet Address",
+  "confirm": "确认",
   /*
   ##################################################################################
   #                                                                                #
@@ -188,6 +189,10 @@ export const messages = {
   "loading_transfers": "正在加载转账记录",
   "loading_transactions": "正在加载交易记录",
   "loading_block": "正在加载区块",
+  "current_power": "当前投票权",
+  "produce_distribution": "算力分配图",
+  "confirm_token_issue": "确认通证发行",
+  "_to": "至",
   /*
   ##################################################################################
   #                                                                                #
