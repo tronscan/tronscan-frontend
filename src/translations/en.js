@@ -812,6 +812,12 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
-
+  "search": "Search",
+  "language_support":"Only support English input currently",
+  "note":"Note",
+  "_percentage":"Percentage",
+  "foundation":"Foundation Freeze Addresses",
+  "foundation_address":"Foundation Freeze TRX Total Number",
+  "unfreeze_time":"Unfreeze Time",
+  "addresses_number":"Addresses Number",
 };
