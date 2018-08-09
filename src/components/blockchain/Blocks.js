@@ -91,7 +91,10 @@ class Blocks extends React.Component {
                           </th>
                           <td className="text-nowrap"><TimeAgo date={block.timestamp} /></td>
                           <td className="" style={{width: 100}}>
-                            <FormattedNumber value={block.nrOfTrx} />
+                            { block.nrOfTrx !==0 &&
+                              <FormattedNumber value={block.nrOfTrx}/>
+                            }
+                            { block.nrOfTrx ===0 && '-'}
                           </td>
                           <td className="d-none d-sm-table-cell">
                             <div className="show-mobile">
