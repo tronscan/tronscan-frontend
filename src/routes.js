@@ -19,7 +19,6 @@ import {
   DemoAsync,
   FaqAsync,
   LedgerHelpAsync,
-  NewsAsync,
   TokenOverviewAsync,
   TokenListAsync,
   TokensCreateAsync,
@@ -219,12 +218,6 @@ export const routes = [
         label: "link_test_server"
       }
     ]
-  },
-  {
-    path: "/news",
-    label: "news",
-    icon: "fa fa-newspaper",
-    component: NewsAsync
   },
   {
     path: "/help",
