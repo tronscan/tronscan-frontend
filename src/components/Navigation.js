@@ -459,7 +459,7 @@ class Navigation extends PureComponent {
     return (
       <div className="header-top">
         {popup}
-        <div className="container py-2 d-flex px-0">
+        <div className="container py-2 d-block d-md-flex px-0">
           <div className="ml-4">
             <Link to="/">
               <img src={this.getLogo()} className="logo" alt="Tron"/>
