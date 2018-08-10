@@ -11,6 +11,7 @@ import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
 import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "./common/Price";
 import {WidgetIcon} from "./common/Icon";
+import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
 
@@ -35,6 +36,20 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return 1;
+        } else if (obj1[property] < obj2[property]) {
+          return -1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+
     /*
     let {accounts, total} = await Client.getAccounts({
       sort: '-balance',
@@ -42,12 +57,12 @@ class Accounts extends Component {
       start: (page-1) * pageSize,
     });
     */
-    let data = await xhr.get("/foundation_addresses.json");
-    
+    let data = await xhr.get("https://debug.tron.network/api/v2/node/balance_info");
+    data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
-      accounts: data.data,
-      total: data.total,
+      accounts: data.data.data,
+      total: data.data.total,
     });
   };
 
@@ -59,9 +74,7 @@ class Accounts extends Component {
 
     let {accounts} = this.state;
     let {intl} = this.props;
-    if (accounts.length === 0) {
-      return;
-    }
+
     let column = [
       {
         title: '#',
@@ -94,7 +107,14 @@ class Accounts extends Component {
     ];
     return (
         <Fragment>
-          <Table columns={column} dataSource={accounts}/>
+          {
+            accounts.length === 0 ?
+                <TronLoader>
+                  {tu("loading")}
+                </TronLoader>
+                :
+                <Table columns={column} dataSource={accounts}/>
+          }
         </Fragment>
     )
   }
@@ -135,7 +155,7 @@ class Accounts extends Component {
 
                 <div className="card-body text-center">
                   <h3 className="text-success">
-                   2020/01/01
+                    2020/01/01
                   </h3>
                   {tu("unfreeze_time")}
                 </div>
