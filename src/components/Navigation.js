@@ -80,7 +80,7 @@ class Navigation extends PureComponent {
 
   isLoginValid = () => {
     let {privateKey} = this.state;
-    console.log(privateKey);
+
     if (trim(privateKey) === "external") {
       return true;
     }

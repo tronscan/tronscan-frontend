@@ -65,11 +65,11 @@ export const setActiveCurrency = (currency) => ({
 
 export const login = (privateKey) => async (dispatch, getState) => {
 
-  dispatch(setWalletLoading(true));
+  //dispatch(setWalletLoading(true));
   await dispatch(loginWithPrivateKey(privateKey));
-  await dispatch(reloadWallet());
-  dispatch(setWalletLoading(false));
-  await dispatch(loadRecentTransactions(getState().app.account.address));
+  //await dispatch(reloadWallet());
+  //dispatch(setWalletLoading(false));
+  //await dispatch(loadRecentTransactions(getState().app.account.address));
 };
 
 export const loginWithAddress = (address) => async (dispatch, getState) => {

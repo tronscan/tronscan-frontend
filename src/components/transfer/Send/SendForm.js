@@ -21,7 +21,7 @@ class SendForm extends React.Component {
     super(props);
 
     this.state = {
-      privateKey: '',
+      privateKey: "",
       to: props.to || "",
       token: "",
       amount: '',
