@@ -452,8 +452,165 @@ class Navigation extends PureComponent {
     return (
       <div className="header-top">
         {popup}
+        <div className="container d-lg-none d-xl-none d-md-none mobile-header">
+          <div className="row">
+            <div className="col-12 text-center pt-3">
+              <Link to="/">
+                <img src={this.getLogo()} className="logo" alt="Tron"/>
+              </Link>
+            </div>
+            <div className="col-12">
+              {
+                IS_TESTNET &&
+                <div className="col mx-auto text-center text-info font-weight-bold py-2">
+                  TESTNET
+                </div>
+              }
+              {
+                (syncStatus && syncStatus.sync.progress < 95) &&
+                <div className="col mx-auto text-danger text-center py-2">
+                  Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div className="col-12">
+          <div className="ml-auto navbar navbar-expand-md navbar-dark py-0 d-lg-none d-xl-none d-md-none mobile-header">
+            <ul className="navbar-nav">
+
+              {
+                wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+              }
+              {
+                (account.isLoggedIn && wallet.isOpen)
+                  ?
+                  <Fragment>
+                    <li className="nav-item dropdown">
+                      <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                        {tu("wallet")}
+                      </a>
+                      <ul className="dropdown-menu dropdown-menu-right">
+                        <li className="px-1 py-1">
+                          <div className="row" style={{width: 305}}>
+                            <div className="col-lg-2">
+                              <Avatar size={45} value={account.address}/>
+                            </div>
+                            <div className="col-lg-10">
+                              <b>{wallet.current.name || tu("account")}</b>
+                              <br/>
+                              <AddressLink
+                                address={account.address}
+                                className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
+                            </div>
+                          </div>
+                          <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
+                        </li>
+                        {
+                          wallet.current.representative.enabled && (
+                            <li className="dropdown-item text-danger text-center">
+                              Representative
+                            </li>
+                          )
+                        }
+                        <li className="dropdown-divider"/>
+                        <Link className="dropdown-item" to="/account">
+                          <i className="fa fa-credit-card mr-2"/>
+                          <FormattedNumber value={wallet.current.balance / ONE_TRX} /> TRX
+                        </Link>
+                        <Link className="dropdown-item" to="/account">
+                          <i className="fa fa-bolt mr-2"/>
+                          <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> Tron Power
+                        </Link>
+                        <Link className="dropdown-item" to="/account">
+                          <i className="fa fa-tachometer-alt mr-2"/>
+                          <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> Bandwidth
+                        </Link>
+                        <Link className="dropdown-item"
+                              to={"/blockchain/transactions?address=" + account.address}>
+                          <i className="fa fa-exchange-alt mr-2"/>
+                          <FormattedNumber value={totalTransactions} /> Transactions
+                        </Link>
+                        <li className="dropdown-divider"/>
+
+                        <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                          <i className="fa fa-paper-plane mr-2"/>
+                          {tu("send")}
+                        </a>
+                        <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                          <i className="fa fa-qrcode mr-2"/>
+                          {tu("receive")}
+                        </a>
+                        {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
+                        {/*<i className="fa fa-qrcode mr-2"/>*/}
+                        {/*Receive*/}
+                        {/*</Link>*/}
+                        <li className="dropdown-divider"/>
+                        <li className="px-2 pt-1">
+                          <button className="btn btn-danger btn-block" onClick={this.logout}>{tu("sign_out")}</button>
+                        </li>
+                      </ul>
+                    </li>
+                  </Fragment> :
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                      {tu("open_wallet")}
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
+                      <li className="px-3">
+                        <div className="form-group text-center">
+                          <label>{tu("private_key")}</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={ev => this.setState({ privateKey: ev.target.value })}
+                            placeholder=""/>
+                        </div>
+                        <button className="btn btn-success btn-block"
+                                disabled={!this.isLoginValid()}
+                                onClick={this.login}>
+                          {tu("sign_in")}
+                        </button>
+                      </li>
+                      <li className="dropdown-divider"/>
+                      <li className="px-3">
+                        <div className="form-group text-center">
+                          <label>{tu("keystore_file")}</label>
+                          <button className="btn btn-success btn-block" onClick={this.selectFile}>
+                            {tu("select_file")}
+                          </button>
+                          <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} accept=".txt" />
+                        </div>
+
+                      </li>
+                      <li className="dropdown-divider"/>
+                      {
+                        flags.mobileLogin &&
+                        <Fragment>
+                          <li className="px-3">
+                            <div className="form-group text-center">
+                              <label>{tu("Mobile Login")}</label>
+                              <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
+                                {tu("login_mobile")}
+                              </button>
+                            </div>
+                          </li>
+                          <li className="dropdown-divider"/>
+                        </Fragment>
+                      }
+                      <li className="px-3 py-2">
+                        <Link className="btn btn-primary btn-block" to="/wallet/new">
+                          {tu("create_wallet")}
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+              }
+            </ul>
+          </div>
+        </div>
         <div className="container py-2 d-flex px-0">
-          <div className="ml-4">
+          <div className="ml-4 d-none d-md-block">
             <Link to="/">
               <img src={this.getLogo()} className="logo" alt="Tron"/>
             </Link>
@@ -470,7 +627,7 @@ class Navigation extends PureComponent {
                 Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
               </div>
           }
-          <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
+          <div className="ml-auto navbar navbar-expand-md navbar-dark py-0 d-none d-md-block">
             <ul className="navbar-nav navbar-right">
               {
                 wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
