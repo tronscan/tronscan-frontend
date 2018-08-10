@@ -121,7 +121,7 @@ export const messages = {
   "live": "Echtzeitinformationen",
   "statistics": "Statistiken",
   "markets": "Marktplatz",
-  "tools": "Tools",
+  "tools": "Werkzeuge",
   "transaction_viewer": "Transaktionsbetrachter",
   "node_tester": "Knoten Tester",
   "system": "System",
