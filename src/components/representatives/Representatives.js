@@ -69,7 +69,7 @@ class Representatives extends Component {
 
   renderWitnesses(witnesses) {
 
-    if (witnesses.length === 0 || this.props.voteList.length ===0) {
+    if (witnesses.length === 0 || this.props.voteList.length === 0) {
       return (
           <div className="card">
             <TronLoader>
@@ -87,8 +87,8 @@ class Representatives extends Component {
           <table className="table table-hover table-striped bg-white m-0">
             <thead className="thead-dark">
             <tr>
-              <th className="text-right d-none d-lg-table-cell" style={{width:20}}>#</th>
-              <th style={{width:100}}>{tu("name")}</th>
+              <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
+              <th style={{width: 100}}>{tu("name")}</th>
               <th className="text-right text-nowrap">{tu("status")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
@@ -105,13 +105,16 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map((account,index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                               key={account.address} account={account}/>)}
             <tr>
               <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account} showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                                   key={account.address} account={account}
+                                                                   showSync={false}/>)}
             </tbody>
           </table>
         </div>
@@ -269,10 +272,18 @@ function Row({account, showSync = true, index, state, props}) {
           <FormattedNumber value={account.producedTotal}/>
         </td>
         <td className="text-right d-none d-md-table-cell">
-          <FormattedNumber value={account.missedTotal}/>
+          {
+            account.missedTotal !== 0 ?
+                <FormattedNumber value={account.missedTotal}/> :
+                '-'
+          }
         </td>
         <td className="text-right d-none d-md-table-cell text-nowrap">
-          <FormattedNumber value={account.producedTrx}/>
+          {
+            account.producedTrx !== 0 ?
+                <FormattedNumber value={account.producedTrx}/> :
+                '-'
+          }
         </td>
         <td className="text-right d-none d-sm-table-cell">
           {
