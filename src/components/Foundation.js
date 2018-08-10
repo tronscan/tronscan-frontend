@@ -57,7 +57,8 @@ class Accounts extends Component {
       start: (page-1) * pageSize,
     });
     */
-    let data = await xhr.get("https://tron.network/api/v2/node/balance_info");
+    let random=Math.random();
+    let data = await xhr.get("https://tron.network/api/v2/node/balance_info?random="+random);
     data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
@@ -97,12 +98,7 @@ class Accounts extends Component {
         title: intl.formatMessage({id: 'balance'}),
         dataIndex: 'balance',
         key: 'balance',
-        width: 200,
-        render: (text, record, index) => {
-          return (
-              <FormattedNumber value={text}/>
-          )
-        }
+        width: 200
       }
     ];
     return (
