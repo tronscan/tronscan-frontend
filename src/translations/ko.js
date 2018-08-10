@@ -104,6 +104,9 @@ export const messages = {
   "message": "Message",
   "wallet_address": "Wallet Address",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "분포 통계",
   "tron_transaction_chart": "트론 트랜잭션 차트",
   "transactions_per_day": "일일 트랜잭션 개수",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -695,6 +702,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

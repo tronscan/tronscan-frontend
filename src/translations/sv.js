@@ -104,6 +104,9 @@ export const messages = {
   "message": "Meddelande",
   "wallet_address": "Plånbokadress",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Rich List",
   "tron_transaction_chart": "TRON Transaktionskarta",
   "transactions_per_day": "Transaktioner per dag",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -693,6 +700,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

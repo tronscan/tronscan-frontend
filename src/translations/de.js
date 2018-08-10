@@ -104,6 +104,9 @@ export const messages = {
   "message": "Nachricht",
   "wallet_address": "Wallet-Adresse",
   "confirm": "Bestätigen",
+  "_percentage": "Prozent",
+  "language_support": "Es werden derzeit nur Eingaben in Englisch unterstützt.",
+  "note": "Hinweis",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Aufteilung TRX - Inhaber/Mengen",
   "tron_transaction_chart": "TRON Transaktions Chart",
   "transactions_per_day": "Transaktionen pro Tag",
+  "foundation": "Adressen der TRON Stiftung",
+  "foundation_address": "Anzahl eingefrorener TRX der TRON Stiftung",
+  "unfreeze_time": "Benötigte Zeit für das Auftauen",
+  "addresses_number": "Anzahl der Adressen",
   /*
   ##################################################################################
   #                                                                                #
@@ -707,6 +714,7 @@ export const messages = {
   "creator": "Ersteller",
   "verify_contract_code": "Vertragscode verifizieren",
   "buy_tokens": "Token kaufen",
+  "fill_a_valid_private_key": "Bitte geben Sie einen gültigen privaten Schlüssel ein.",
   /*
   ##################################################################################
   #                                                                                #

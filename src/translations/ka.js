@@ -104,6 +104,9 @@ export const messages = {
   "message": "Message",
   "wallet_address": "Wallet Address",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "სიმდიდრის სია",
   "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "ტრანზაქციები ერთ დღეში",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -691,6 +698,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

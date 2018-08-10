@@ -104,6 +104,9 @@ export const messages = {
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
   "confirm": "onayla",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Varlıklılar Listesi",
   "tron_transaction_chart": "TRON İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -705,6 +712,7 @@ export const messages = {
   "creator": "Oluşturan",
   "verify_contract_code": "Sözleşme Kodunu Doğrula",
   "buy_tokens": "Jeton Satın Al",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

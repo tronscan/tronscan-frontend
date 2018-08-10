@@ -104,6 +104,9 @@ export const messages = {
   "message": "پیام",
   "wallet_address": "آدرس کیف پول",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -207,8 +210,12 @@ export const messages = {
   "transactions_past_hour": "تراکنش های یک ساعت اخیر",
   "average_blocksize": "میانگین اندازه بلوک",
   "rich_list": "لیست غنی",
-  "TRX_transaction_chart": "نمودار تراکنش تی آرایکس",
+  "tron_transaction_chart": "نمودار تراکنش تی آرایکس",
   "transactions_per_day": "تراکنش روزانه",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -700,6 +707,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

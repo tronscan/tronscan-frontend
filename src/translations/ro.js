@@ -104,6 +104,9 @@ export const messages = {
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
   "confirm": "Confirmare",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Listă bogați",
   "tron_transaction_chart": "Diagramă tranzacții TRON",
   "transactions_per_day": "Tranzacții pe zi",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -702,6 +709,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verificați codul de contract",
   "buy_tokens": "Cumpărare Tokeni",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #

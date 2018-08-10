@@ -102,6 +102,9 @@ export const messages = {
   "message": "信息",
   "wallet_address": "Wallet Address",
   "confirm": "确认",
+  "_percentage": "百分比",
+  "language_support": "目前只支持英文输入",
+  "note": "备注",
   /*
   ##################################################################################
   #                                                                                #
@@ -207,6 +210,10 @@ export const messages = {
   "rich_list": "富豪榜",
   "tron_transaction_chart": "TRON交易数图表",
   "transactions_per_day": "日交易数",
+  "foundation": "基金会地址",
+  "foundation_address": "基金会锁仓TRX总数",
+  "unfreeze_time": "解冻时间",
+  "addresses_number": "地址数",
   /*
   ##################################################################################
   #                                                                                #
@@ -685,6 +692,7 @@ export const messages = {
   "creator": "合约开发者",
   "verify_contract_code": "验证合约代码",
   "buy_tokens": "购买通证",
+  "fill_a_valid_private_key": "请填写有效的私钥",
   /*
   ##################################################################################
   #                                                                                #
