@@ -145,7 +145,7 @@ export const messages = {
   "block_height": "Block Größe",
   "online_nodes": "Aktive Knoten",
   "pice_per_1000trx": "Preis (pro 1000TRX)",
-  "vote_for_super_representatives": "Für einen Super Repräsentant abstimmen",
+  "vote_for_super_representatives": "Super Repräsentanten wählen",
   "view_super_representatives": "Super Repräsentanten Übersicht",
   "create_new_wallet": "Ein neues Wallet erstellen",
   "view_tokens": "Tokenübersicht",
