@@ -30,6 +30,7 @@ import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
+import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 
 class Navigation extends PureComponent {
@@ -71,7 +72,9 @@ class Navigation extends PureComponent {
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
-      this.props.loginWithAddress(privateKey);
+      this.props.loginWithAddress(privateKey).then(()=>{
+        Lockr.set("account_address",privateKey);
+      });
     }
   };
 
@@ -386,7 +389,7 @@ class Navigation extends PureComponent {
               <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                 <li className="px-3">
                   <div className="form-group text-center">
-                    <label>{tu("private_key")}</label>
+                    <label>{tu("address")}</label>
                     <input
                       type="text"
                       className="form-control"
