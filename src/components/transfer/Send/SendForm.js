@@ -21,7 +21,7 @@ class SendForm extends React.Component {
     super(props);
 
     this.state = {
-      privateKey: null,
+      privateKey: '',
       to: props.to || "",
       token: "",
       amount: '',
@@ -274,19 +274,6 @@ class SendForm extends React.Component {
           {modal}
           {isLoading && <TronLoader/>}
           <div className="form-group">
-            <label>{tu("private_key")}</label>
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
-                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
-                     value={privateKey}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_key")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
-          <div className="form-group">
             <label>{tu("to")}</label>
             <div className="input-group mb-3">
               <input type="text"
@@ -339,6 +326,19 @@ class SendForm extends React.Component {
               <div className="invalid-feedback">
                 {tu("fill_a_valid_number")}
                 {/* tu("insufficient_tokens") */}
+              </div>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>{tu("private_key")}</label>
+            <div className="input-group mb-3">
+              <input type="text"
+                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
+                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
+                     value={privateKey}/>
+              <div className="invalid-feedback">
+                {tu("fill_a_valid_private_key")}
+                {/* tu("invalid_address") */}
               </div>
             </div>
           </div>
