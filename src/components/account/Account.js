@@ -842,6 +842,34 @@ class Account extends Component {
             </div>
         }
         <div className="row mt-3">
+            <div className="col-md-12">
+                <div className="card">
+                    <div className="card-body px-0 border-0">
+                        <h5 className="card-title text-center m-0">
+                            Tron {tu("power")}
+                        </h5>
+                    </div>
+                    <div className="card-body text-center pt-0">
+                        <p className="card-text">
+                            {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                        </p>
+                        {
+                            hasFrozen &&
+                            <button className="btn btn-danger mr-2" onClick={this.showUnfreezeModal}>
+                                {tu("unfreeze")}
+                                <i className="fa fa-fire ml-2"/>
+                            </button>
+                        }
+                        <button className="btn btn-dark mr-2" onClick={this.showFreezeBalance}>
+                            {tu("freeze")}
+                            <i className="fa fa-snowflake ml-2"/>
+                        </button>
+                    </div>
+                    {this.renderFrozenTokens()}
+                </div>
+            </div>
+        </div>
+        <div className="row mt-3">
           <div className="col-md-12">
             <div className="card">
               <div className="card-body px-0 border-0">
@@ -850,34 +878,6 @@ class Account extends Component {
                 </h5>
               </div>
               {this.renderTransactions()}
-            </div>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-body px-0 border-0">
-                <h5 className="card-title text-center m-0">
-                  TRON {tu("power")}
-                </h5>
-              </div>
-              <div className="card-body text-center pt-0">
-                <p className="card-text">
-                  {tu("freeze_trx_premessage_0")}<Link to="/votes" className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
-                </p>
-                {
-                  hasFrozen &&
-                  <button className="btn btn-danger mr-2" onClick={this.showUnfreezeModal}>
-                    {tu("unfreeze")}
-                    <i className="fa fa-fire ml-2"/>
-                  </button>
-                }
-                <button className="btn btn-dark mr-2" onClick={this.showFreezeBalance}>
-                  {tu("freeze")}
-                  <i className="fa fa-snowflake ml-2"/>
-                </button>
-              </div>
-              {this.renderFrozenTokens()}
             </div>
           </div>
         </div>
