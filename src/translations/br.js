@@ -779,10 +779,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_tron": "Buy TRON",
-  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
-  "buy_tron_using_changelly": "Buy TRON using Changelly",
-  "cant_load_widget": "Can't load widget",
+  "buy_tron": "Comprar TRON",
+  "buy_tron_message_0": "TRX pode ser comprado diretamente com Fiat ou outras Criptomoedas sem a necessidade de casas de câmbio. Ele utiliza um serviço da Changelly e é a maneira mais fácil e rápida de comprar TRX. Uma lista de moedas suportadas e um FAQ podem ser encontrados em ",
+  "buy_tron_using_changelly": "Comprar TRON utilizando a Changelly",
+  "cant_load_widget": "Não foi possível carregar o widget",
   /*
   ##################################################################################
   #                                                                                #
