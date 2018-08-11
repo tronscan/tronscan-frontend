@@ -783,6 +783,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "TRON TRX Erwerben",
+  "buy_tron_message_0": "Sie können TRX auch direkt mit Fiat- oder anderen Crypto-Währungen erwerben. Tronscan.org nutzt dazu einen Dienst von Changelly.com. Es ist der einfachste und schnellste Weg, TRX zu erwerben. Eine Liste der unterstützten Währungen, sowie ein FAQ finden Sie unter ",
+  "buy_tron_using_changelly": "Kaufen Sie TRON mit Changelly",
+  "cant_load_widget": "Widget kann nicht geladen werden",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################

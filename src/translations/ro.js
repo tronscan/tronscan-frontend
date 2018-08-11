@@ -778,6 +778,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Cumpărați TRON",
+  "buy_tron_message_0": "TRX poate fi cumpărat direct cu Fiat sau altă Crypto-Valută fără o bursă de exchange. Se poate folosi un serviciu de la Changelly.com și este metoda cea mai ușoară și rapidă de a cumpăra trx. O listă cu monedele acceptate și o secțiune de Întrebări Frecvente pot fi găsite la ",
+  "buy_tron_using_changelly": "Cumpărați  TRON folosind Changelly",
+  "cant_load_widget": "Nu se poate încărca widget-ul",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
