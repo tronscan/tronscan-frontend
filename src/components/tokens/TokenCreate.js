@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {t, tu} from "../../utils/i18n";
 import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
+import {login} from "../../actions/app";
 import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
-import {FormattedNumber, FormattedDate} from "react-intl";
+import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
@@ -39,6 +40,7 @@ class TokenCreate extends Component {
     endTime.setDate(startTime.getDate() + 90);
 
     this.state = {
+      privateKey:"",
       name: "",
       abbr: "",
       totalSupply: 100000,
@@ -77,18 +79,19 @@ class TokenCreate extends Component {
     });
   };
   preSubmit = () => {
-    console.log(this.state.frozenSupply);
-    console.log(this.state.startTime.getTime());
-
+    let {intl} = this.props;
+    let {privateKey} = this.state;
+    this.props.login(privateKey);
     this.setState({
       modal: (
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
+              confirmBtnText={intl.formatMessage({id: 'confirm'})}
               confirmBtnBsStyle="success"
+              cancelBtnText={intl.formatMessage({id: 'cancel'})}
               cancelBtnBsStyle="default"
-              title="Confirm Token Issue"
+              title={intl.formatMessage({id: 'confirm_token_issue'})}
               onConfirm={this.submit}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
@@ -116,7 +119,7 @@ class TokenCreate extends Component {
                   <th>{tu('participation')}:</th>
                   <td>
                     <FormattedDate value={this.state.startTime.getTime()}/>
-                    {' '}{tu('to')}{' '}
+                    {' '}{tu('_to')}{' '}
                     <FormattedDate value={this.state.endTime.getTime()}/>
                   </td>
                 </tr>
@@ -360,7 +363,8 @@ class TokenCreate extends Component {
 
   renderSubmit = () => {
 
-    let {isTokenCreated} = this.state;
+    let {isTokenCreated,privateKey} = this.state;
+    let isPrivateKeyValid = privateKey && privateKey.length === 64;
     let {valid} = this.isValid();
 
     let {wallet} = this.props;
@@ -381,6 +385,7 @@ class TokenCreate extends Component {
           <Alert color="warning" className="text-center">
             {tu("trx_token_wallet_requirement")}
           </Alert>
+
       );
     }
 
@@ -394,6 +399,19 @@ class TokenCreate extends Component {
 
 
     return (
+        <Fragment>
+        <div className="form-group">
+          <div className="input-group mb-3">
+            <input type="text"
+                   onChange={(ev) => this.setState({privateKey: ev.target.value})}
+                   className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
+                   value={privateKey}/>
+            <div className="invalid-feedback">
+              {tu("fill_a_valid_private_key")}
+              {/* tu("invalid_address") */}
+            </div>
+          </div>
+        </div>
         <div className="text-center">
           <button
               disabled={!valid}
@@ -401,6 +419,7 @@ class TokenCreate extends Component {
               className="btn btn-success"
               onClick={this.preSubmit}>{tu("issue_token")}</button>
         </div>
+        </Fragment>
     );
   };
 
@@ -522,6 +541,11 @@ class TokenCreate extends Component {
                         {tu("details")}
                         <i className="fab fa-wpforms float-right"/>
                       </legend>
+                      <p>
+                      <small className="form-text text-muted">
+                        {'('}{tu("language_support")}{')'}
+                      </small>
+                      </p>
                       <div className="form-row">
                         <div className="form-group col-md-6">
                           <label>{tu("token_name")} *</label>
@@ -748,7 +772,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  login,
   loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TokenCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenCreate));

@@ -55,9 +55,9 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
-"@tronscan/client@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.9.tgz#03bd0a697ae220f919b3d1fec8dbd9f631f6a4d2"
+"@tronscan/client@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.11.tgz#05f1574e950fe56e586dd587b38faa3da3e40fe0"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"

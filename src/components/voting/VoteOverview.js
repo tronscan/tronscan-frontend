@@ -384,7 +384,7 @@ class VoteOverview extends React.Component {
         <div className="row">
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 text-center widget-icon">
-              <WidgetIcon className="fa fa-clock text-primary"  />
+              <WidgetIcon className="fa fa-clock text-primary"  style={{bottom: 10}}/>
               <div className="card-body">
                 <h3 className="text-primary">
                   <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
@@ -399,7 +399,7 @@ class VoteOverview extends React.Component {
 
           <div className="col-md-4 mt-3 mt-md-0 position-relative">
             <div className="card h-100 widget-icon">
-              <WidgetIcon className="fa fa-check-circle text-secondary"  />
+              <WidgetIcon className="fa fa-check-circle text-secondary" style={{bottom: 10}}/>
               <div className="card-body text-center">
                 <h3 className="text-secondary">
                   <FormattedNumber value={totalVotes}/>
@@ -415,7 +415,7 @@ class VoteOverview extends React.Component {
 
           <div className="col-md-4 mt-3 mt-md-0">
             <div className="card h-100 widget-icon">
-              <WidgetIcon className="fa fa-arrow-up text-success" style={{right: -70}}  />
+              <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}  />
               <div className="card-body text-center">
                 <h3 className="text-success">
                   <VoteChange value={biggestGainer.change_cycle} arrow={true}/>

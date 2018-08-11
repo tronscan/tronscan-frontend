@@ -16,6 +16,7 @@ import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy} from "lodash";
 import Blocks from "../../common/Blocks";
+import {channel} from "../../../services/api";
 
 class Address extends React.Component {
 
@@ -82,17 +83,17 @@ class Address extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.live && this.live.close();
+    this.live && this.live.close();
   }
 
   async loadVotes(address) {
     let votes = await xhr.get("https://api.tronscan.org/api/vote?sort=-votes&limit=40&start=0&candidate=" + address);
 
-    let data = votes.data.data.slice(-10);
+    let data = votes.data.data.slice(0, 10);
     let totalVotes = votes.data.totalVotes;
-    for (let d in data) {
-      data[d].name = data[d].voterAddress;
-      data[d].value = ((data[d].votes / totalVotes) * 100).toFixed(3);
+    for (let vote of data) {
+      vote.name = vote.voterAddress;
+      vote.value = ((vote.votes / totalVotes) * 100).toFixed(3);
     }
     this.setState({votes: data});
 
@@ -111,14 +112,40 @@ class Address extends React.Component {
    } catch(e) {}
   }
 
+
+  async refreshAddress(id) {
+    let address = await Client.getAddress(id);
+
+    if (address.representative.enabled) {
+      this.loadMedia(id);
+    }
+
+    this.setState(prevProps => ({
+      address,
+      tabs: {
+        ...prevProps.tabs,
+        token_balances: {
+          id: "token_balances",
+          icon: "fa fa-piggy-bank",
+          path: "/token-balances",
+          label: <span>{tu("token_balances")}</span>,
+          cmp: () => <TokenBalances tokenBalances={address.balances}/>,
+        },
+      }
+    }))
+  }
+
   async loadAddress(id) {
 
     this.setState({loading: true, address: {address: id}, media: null,});
 
-    // this.live = channel("/address-" + id);
-    // this.live.on('transfer', transaction => {
-    //   console.log("NEW TRANSACTION!", transaction);
-    // });
+    this.live && this.live.close();
+    this.live = channel("/address-" + id);
+    this.live.on('transfer', transaction => {
+      setTimeout(() => {
+        this.refreshAddress(id);
+      }, 1500);
+    });
 
     let address = await Client.getAddress(id);
 
@@ -145,21 +172,21 @@ class Address extends React.Component {
           icon: "fa fa-exchange-alt",
           path: "",
           label: <span>{tu("transfers")}</span>,
-          cmp: () => <Transfers filter={{address: id}}/>
+          cmp: () => <Transfers filter={{address: id}} />
         },
         transactions: {
           id: "transactions",
           icon: "fas fa-handshake",
           path: "/transactions",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}}/>
+          cmp: () => <Transactions filter={{address: id}} />
         },
         token_balances: {
           id: "token_balances",
           icon: "fa fa-piggy-bank",
           path: "/token-balances",
           label: <span>{tu("token_balances")}</span>,
-          cmp: () => <TokenBalances tokenBalances={address.balances}/>,
+          cmp: () => <TokenBalances tokenBalances={address.balances} />,
         },
         blocks_produced: {
           id: "blocks-produced",
@@ -269,7 +296,9 @@ class Address extends React.Component {
                       </div>
                     }
                     <div className="row">
-                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : 'col-md-12'}>
+
+                      <div className="col-md-12">
+
                         <table className="table m-0">
                           <tbody>
                           {
@@ -358,16 +387,22 @@ class Address extends React.Component {
                           }
                           </tbody>
                         </table>
+
                       </div>
-                      <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
-                        {
+                      {
+                        /*
+                        <div className={address.representative.enabled ? 'col-md-6 mt-3 mt-md-0' : ''}>
+                          {
                           address.representative.enabled && votes.length &&
                           <h4 className="text-center mt-3">Top {votes.length} {tu("voters")} {tu("addresses")}</h4>
                         }
-                        {address.representative.enabled &&
+                          {
+                          address.representative.enabled &&
                         <PieReact style={{height: 340}} data={votes}/>
                         }
-                      </div>
+                        </div>
+                       */
+                      }
                     </div>
                   </div>
                   <div className="card mt-3">

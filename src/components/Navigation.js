@@ -10,7 +10,7 @@ import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
 import {tu,t} from "../utils/i18n"
-import {enableFlag, login, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
+import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
@@ -27,8 +27,10 @@ import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
+import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 
 class Navigation extends PureComponent {
@@ -70,7 +72,9 @@ class Navigation extends PureComponent {
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
-      this.props.login(privateKey);
+      this.props.loginWithAddress(privateKey).then(()=>{
+        Lockr.set("account_address",privateKey);
+      });
     }
   };
 
@@ -84,6 +88,9 @@ class Navigation extends PureComponent {
     if (!privateKey || privateKey.length === 0) {
       return false;
     }
+
+    if (isAddressValid(privateKey))
+      return true;
 
     if (privateKey.length !== 64) {
       return false;
@@ -382,7 +389,7 @@ class Navigation extends PureComponent {
               <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                 <li className="px-3">
                   <div className="form-group text-center">
-                    <label>{tu("private_key")}</label>
+                    <label>{tu("address")}</label>
                     <input
                       type="text"
                       className="form-control"
@@ -452,7 +459,7 @@ class Navigation extends PureComponent {
     return (
       <div className="header-top">
         {popup}
-        <div className="container py-2 d-flex px-0">
+        <div className="container py-2 d-block d-md-flex px-0">
           <div className="ml-4">
             <Link to="/">
               <img src={this.getLogo()} className="logo" alt="Tron"/>
@@ -647,6 +654,7 @@ const mapDispatchToProps = {
   setLanguage,
   logout,
   login,
+  loginWithAddress,
   setActiveCurrency,
   setTheme,
   enableFlag,

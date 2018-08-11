@@ -49,12 +49,85 @@ module.exports = {
       }
     ]
   },
+  representPieChart: {
+        color: [
+            '#c84a45',
+            '#e7afad',
+            '#e19b98',
+            '#da8683',
+            '#d4726e',
+            '#ce5e5a'
+        ],
+        title: {
+            text: '',
+            subtext: '',
+            x: 'center',
+            link:'',
+            target:'self'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        toolbox: {
+            x2:5,
+            y: -5,
+            feature: {
+                restore: {
+                    title: 'restore'
+                },
+                saveAsImage: {
+                    show: true,
+                    title: 'save'
+                }
+            }
+        },
+        legend: {
+            type:'scroll',
+            show:false,
+            orient: 'vertical',
+            left: 'right',
+            top:35,
+            selectedMode:'false',
+            data: []
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [],
+                "label": {
+                    "normal": {
+                        "show": true,
+                        "formatter": "{b}"
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+                "labelLine": {
+                    "normal": {
+                        "show": true,
+                        "smooth": false,
+                        "length": 20,
+                        "length2": 10
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+            }
+        ]
+    },
   lineChart: {
     title: {
       text: '',
       x: 'center',
       link:'',
       target:'self'
+
     },
     grid: {
       left: '5%',
@@ -271,6 +344,12 @@ module.exports = {
       x: 'center',
       link:'',
       target:'self',
+      padding: [
+            0,
+            0,
+            10,
+            0
+        ]
       
     },
     tooltip: {

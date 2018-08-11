@@ -25,10 +25,10 @@ export class BarReact extends React.Component {
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
     }
-    config.barChart.title.text='';
+    config.barChart.title.text = '';
     config.barChart.yAxis.data = [];
     config.barChart.series[0].data = [];
-    config.barChart.series[0].itemStyle= {
+    config.barChart.series[0].itemStyle = {
       normal: {
         color: new echarts.graphic.LinearGradient(
             0, 0, 1, 0,
@@ -49,16 +49,27 @@ export class BarReact extends React.Component {
       }
     }
 
-    if(data && data.length>0) {
-      data.map((val) => {
+    let dataOpt = [];
+    let others = {name: 'Others', total: 0};
+    data.map((val) => {
+      if (val.total > 10 && val.name !== null) {
+        dataOpt.push(val)
+      }
+      else {
+        others.total = others.total + val.total;
+      }
+    })
+    dataOpt.push(others);
 
+    if (dataOpt && dataOpt.length > 0) {
+      dataOpt.map((val) => {
         config.barChart.yAxis.data.push(val.name);
         config.barChart.series[0].data.push(val.total);
-
       })
     }
-    if(data && data.length===0){
-      config.barChart.title.text="No data";
+
+    if (dataOpt && dataOpt.length === 0) {
+      config.barChart.title.text = "No data";
     }
     myChart.setOption(config.barChart);
 
