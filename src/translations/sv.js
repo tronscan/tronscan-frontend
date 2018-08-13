@@ -19,7 +19,7 @@ export const messages = {
   #         Update Date: 13.08.2018                                                #
   #         Language: Swedish                                                      #
   #         Status: Second Version                                                 #
-  #         Number of checks: 5                                                    #
+  #         Number of checks: 6                                                    #
   #         Participants: joelstahre                                               #
   #                                                                                #
   ##################################################################################
@@ -103,10 +103,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Meddelande",
   "wallet_address": "Plånbokadress",
-  "confirm": "Confirm",
-  "_percentage": "Percentage",
-  "language_support": "Only support English input currently",
-  "note": "Note",
+  "confirm": "Bekräfta",
+  "_percentage": "Procentsats",
+  "language_support": "Stöd bara engelska inmatning just nu",
+  "note": "Notera",
   /*
   ##################################################################################
   #                                                                                #
@@ -690,19 +690,19 @@ export const messages = {
   "print_paper_wallet": "Skriv ut Pappersplånboken",
   "new_wallet_ready_message": "Din nya plånbok är klar",
   "go_to_account_page": "Gå till kontosidan",
-  "login_first": "Login to the Wallet first",
+  "login_first": "Logga in på Wallet först",
   "contract_name": "Contract Name",
   "compiler": "Compiler",
   "tx_count": "Tx Count",
-  "setting": "Setting",
+  "setting": "Miljö",
   "date_verified": "Date Verified",
   "compiler_version": "Compiler Version",
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
-  "buy_tokens": "Buy Tokens",
-  "fill_a_valid_private_key": "Please fill a valid private key",
-  "confirm_private_key": "Confirm Private Key",
-  "transfer_confirm_info": "Are you sure you want to transfer",
+  "buy_tokens": "Köp Token",
+  "fill_a_valid_private_key": "Var god fyll i en giltig privat nyckel",
+  "confirm_private_key": "Bekräfta privat nyckel",
+  "transfer_confirm_info": "Är du säker på att du vill överföra",
   /*
   ##################################################################################
   #                                                                                #
@@ -764,8 +764,8 @@ export const messages = {
   "created_token": "created token",
   "token_creation": "Token Creation",
   "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
+  "voter": "väljare",
+  "voting": "röstning",
   "asset": "asset",
   "token_transfer": "Token Transfer",
   /*
