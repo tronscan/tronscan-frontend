@@ -708,9 +708,9 @@ export const messages = {
   "creator": "Creador",
   "verify_contract_code": "Verificar el Código del Contrato",
   "buy_tokens": "Comprar Tokens",
-  "fill_a_valid_private_key": "Please fill a valid private key",
-  "confirm_private_key": "Confirm Private Key",
-  "transfer_confirm_info": "Are you sure you want to transfer",
+  "fill_a_valid_private_key": "Por favor ingrese una clave privada válida",
+  "confirm_private_key":"Confirmar Clave Privada",
+  "transfer_confirm_info":"¿Seguro que desea transferir",
   /*
   ##################################################################################
   #                                                                                #
