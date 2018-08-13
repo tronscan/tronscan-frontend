@@ -19,11 +19,11 @@ import {
   DemoAsync,
   FaqAsync,
   LedgerHelpAsync,
-  NewsAsync,
   TokenOverviewAsync,
   TokenListAsync,
   TokensCreateAsync,
   AccountsAsync,
+  FoundationAsync,
   NodesAsync,
   LiveAsync,
   TokenDetailAsync
@@ -91,6 +91,12 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync
       },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        icon: "fa fa-address-book",
+        component: FoundationAsync,
+      }
     ]
   },
   {
@@ -219,12 +225,6 @@ export const routes = [
         label: "link_test_server"
       }
     ]
-  },
-  {
-    path: "/news",
-    label: "news",
-    icon: "fa fa-newspaper",
-    component: NewsAsync
   },
   {
     path: "/help",

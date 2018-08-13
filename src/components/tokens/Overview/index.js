@@ -163,7 +163,7 @@ class TokenOverview extends Component {
 
       }
     }
-    tokens=tokens.sort(compare('issuedPercentage'));
+    //tokens=tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,

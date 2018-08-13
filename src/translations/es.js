@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-04082018                                                  #
-  #         Update Date: 04.08.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 9                                                    #
@@ -104,6 +104,9 @@ export const messages = {
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
   "confirm": "Confirmar",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Riqueza",
   "tron_transaction_chart": "Gráfico de transacciones TRON",
   "transactions_per_day": "Transacciones Diarias",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -701,6 +708,9 @@ export const messages = {
   "creator": "Creador",
   "verify_contract_code": "Verificar el Código del Contrato",
   "buy_tokens": "Comprar Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -766,6 +776,17 @@ export const messages = {
   "voting": "votación",
   "asset": "activo",
   "token_transfer": "Transferencia Token",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Comprar TRON",
+  "buy_tron_message_0": "Se puede comprar TRX directamente con dinero Fiat u otras criptomonedas sin necesidad de un Exchange. Se utiliza Changelly.com ya que es la forma más fácil y rápida de comprar TRX. Se puede encontrar una lista de monedas admitidas y preguntas frecuentes en ",
+  "buy_tron_using_changelly": "Comprar TRON usando Changelly",
+  "cant_load_widget": "No se puede cargar el widget",
   /*
   ##################################################################################
   #                                                                                #

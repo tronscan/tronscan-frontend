@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 28.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Turkish                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 6                                                    #
@@ -104,6 +104,9 @@ export const messages = {
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
   "confirm": "onayla",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Varlıklılar Listesi",
   "tron_transaction_chart": "TRON İşlem Grafiği",
   "transactions_per_day": "Günlük İşlem Adeti",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -705,6 +712,9 @@ export const messages = {
   "creator": "Oluşturan",
   "verify_contract_code": "Sözleşme Kodunu Doğrula",
   "buy_tokens": "Jeton Satın Al",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -770,6 +780,17 @@ export const messages = {
   "voting": "oylanıyor",
   "asset": "varlık",
   "token_transfer": "Jeton Aktarımı",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
   /*
   ##################################################################################
   #                                                                                #

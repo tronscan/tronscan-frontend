@@ -61,7 +61,7 @@ class TokenList extends Component {
       }
     }
 
-    tokens = tokens.sort(compare('issuedPercentage'));
+    //tokens = tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,
@@ -166,7 +166,13 @@ class TokenList extends Component {
                               <td className="text-nowrap"><TokenLink name={token.name}/></td>
                               <td className="d-none d-md-table-cell">{token.abbr}</td>
                               <td className="d-none d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
-                              <td className="d-none d-md-table-cell"><FormattedNumber value={token.issued}/></td>
+                              <td className="d-none d-md-table-cell">
+                                {
+                                  token.issued !== 0 ?
+                                      <FormattedNumber value={token.issued}/> :
+                                      '-'
+                                }
+                              </td>
                               <td className="text-nowrap">
                                 <FormattedDate value={token.dateCreated}/>{' '}
                                 <FormattedTime value={token.dateCreated}/>

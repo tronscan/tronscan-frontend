@@ -262,23 +262,6 @@ export const LedgerHelpAsync = asyncComponent({
   )
 });
 
-export const NewsAsync = asyncComponent({
-  LoadingComponent: () => (
-      <TronLoader/>
-  ),
-  resolve: () => new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-          [],
-          (require) => {
-            $script("", () => {
-              resolve(require("./Pages/News"));
-            });
-          },
-          'News',
-      )
-  )
-});
 
 export const TokenOverviewAsync = asyncComponent({
   LoadingComponent: () => (
@@ -350,6 +333,25 @@ export const AccountsAsync = asyncComponent({
             });
           },
           'Accounts',
+      )
+  )
+});
+
+
+export const FoundationAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Foundation"));
+            });
+          },
+          'Foundation',
       )
   )
 });

@@ -14,6 +14,7 @@ import {ContractTypes} from "../../../utils/protocol";
 import {trim} from "lodash";
 import {hextoString} from "@tronscan/client/src/utils/bytes";
 
+
 class Transaction extends React.Component {
 
   constructor() {
@@ -135,10 +136,10 @@ class Transaction extends React.Component {
                     }
                     {
                       (transaction.data && trim(transaction.data).length > 0) && <tr>
-                        <th>{tu("data")}:</th>
+                        <th>{tu("note")}:</th>
                         <td>
-                          <pre className="border border-grey bg-light-grey m-0 p-2 rounded">
-                            {hextoString(transaction.data)}
+                          <pre className="border border-grey bg-light-grey m-0 p-2 rounded" style={{whiteSpace: 'pre-wrap'}}>
+                            {decodeURIComponent(hextoString(transaction.data))}
                           </pre>
                         </td>
                       </tr>
