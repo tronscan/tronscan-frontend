@@ -829,7 +829,7 @@ export const messages = {
   "language_support":"目前只支持英文输入",
   "note":"备注",
   "_percentage":"百分比",
-  "foundation":"基金会锁仓地址",
+  "foundation":"基金会地址",
   "foundation_address":"基金会锁仓TRX总数",
   "unfreeze_time":"解冻时间",
   "addresses_number":"地址数",

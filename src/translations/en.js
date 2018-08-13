@@ -837,7 +837,7 @@ export const messages = {
   "language_support":"Only support English input currently",
   "note":"Note",
   "_percentage":"Percentage",
-  "foundation":"Foundation Freeze Addresses",
+  "foundation":"Foundation Addresses",
   "foundation_address":"Foundation Freeze TRX Total Number",
   "unfreeze_time":"Unfreeze Time",
   "addresses_number":"Addresses Number",

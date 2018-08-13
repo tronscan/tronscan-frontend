@@ -73,12 +73,6 @@ export const routes = [
         component: AccountsAsync,
       },
       {
-        path: "/blockchain/foundation",
-        label: "foundation",
-        icon: "fa fa-address-book",
-        component: FoundationAsync,
-      },
-      {
         label: "statistics",
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
@@ -97,6 +91,12 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync
       },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        icon: "fa fa-address-book",
+        component: FoundationAsync,
+      }
     ]
   },
   {

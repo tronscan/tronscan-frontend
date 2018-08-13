@@ -40,6 +40,19 @@ class Blocks extends React.Component {
       limit: pageSize,
       start: (page - 1) * pageSize,
     });
+    let {witnesses} = await Client.getWitnesses();
+
+    for(let block in blocks){
+      for(let witness in witnesses){
+        if(blocks[block].witnessAddress===witnesses[witness].address){
+          if(witnesses[witness].name!=="")
+            blocks[block].witnessName=witnesses[witness].name;
+          else
+            blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
+        }
+
+      }
+    }
 
     this.setState({
       loading: false,
@@ -76,9 +89,9 @@ class Blocks extends React.Component {
                     <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
-                        <th style={{width: 100}}>{tu("height")}</th>
-                        <th style={{width: 150}}>{tu("age")}</th>
-                        <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
+                        <th >{tu("height")}</th>
+                        <th >{tu("age")}</th>
+                        <th style={{width: 150}}><i className="fas fa-exchange-alt"/></th>
                         <th className="d-none d-sm-table-cell">{tu("produced_by")}</th>
                         <th className="d-none d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th>
                       </tr>
@@ -100,10 +113,11 @@ class Blocks extends React.Component {
                               </td>
                               <td className="d-none d-sm-table-cell">
                                 <div className="show-mobile">
-                                  <AddressLink address={block.witnessAddress}/>
+                                  {block.witnessName}
+
                                 </div>
                                 <div className="hidden-mobile">
-                                  <AddressLink address={block.witnessAddress}/>
+                                  {block.witnessName}
                                 </div>
                               </td>
                               <td className="d-none d-lg-table-cell">
