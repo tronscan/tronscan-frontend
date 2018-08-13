@@ -44,7 +44,7 @@ export const messages = {
   "block": "block",
   "name": "name",
   "website": "website",
-  "address": "address",
+  "address": "Address",
   "sign_out": "sign out",
   "sign_in": "sign in",
   "register_login": "Register / Log-in",
@@ -232,7 +232,7 @@ export const messages = {
   "show_qr_code": "Show QR Code",
   "do_not_send_2": "Do not send TRX from your own wallet or exchange to the above account address of testnet!",
   "bandwidth": "bandwidth",
-  "balance": "balance",
+  "balance": "Balance",
   "tron_power": "TRON Power",
   "transactions": "transactions",
   "no_transfers": "No Transfers",
@@ -831,6 +831,12 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
-
+  "search": "Search",
+  "language_support":"Only support English input currently",
+  "note":"Note",
+  "_percentage":"Percentage",
+  "foundation":"Foundation Freeze Addresses",
+  "foundation_address":"Foundation Freeze TRX Total Number",
+  "unfreeze_time":"Unfreeze Time",
+  "addresses_number":"Addresses Number",
 };
