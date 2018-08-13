@@ -699,7 +699,7 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
-  "login_first": "Logați-vă întâi la Portofel  ",
+  "login_first": "Logați-vă întâi la Portofel",
   "contract_name": "Nume Contract",
   "compiler": "Compilator",
   "tx_count": "Numărătoare Tx",
@@ -708,10 +708,10 @@ export const messages = {
   "compiler_version": "Versiune Compilator",
   "creator": "Creator",
   "verify_contract_code": "Verificați codul de contract",
-  "buy_tokens": "Cumpărare Tokeni",
-  "fill_a_valid_private_key": "Please fill a valid private key",
-  "confirm_private_key": "Confirm Private Key",
-  "transfer_confirm_info": "Are you sure you want to transfer",
+  "buy_tokens": "Cumpărați Tokeni",
+  "fill_a_valid_private_key": "Vă rugăm introduceți o cheie privată validă",
+  "confirm_private_key": "Confirmați cheia privată",
+  "transfer_confirm_info": "Sunteți siguri că vreți să transferați",
   /*
   ##################################################################################
   #                                                                                #
