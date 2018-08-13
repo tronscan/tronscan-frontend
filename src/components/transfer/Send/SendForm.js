@@ -97,15 +97,15 @@ class SendForm extends React.Component {
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
-              confirmBtnBsStyle="success"
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
               cancelBtnBsStyle="default"
-              title="Confirm transaction"
+              title={tu("confirm_transaction")}
               onConfirm={this.send}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
-            Are you sure you want to transfer<br/>
+            {tu("transfer_confirm_info")}<br/>
             <span className="font-weight-bold">{' '}
               <FormattedNumber
                   maximumFractionDigits={7}
@@ -113,8 +113,8 @@ class SendForm extends React.Component {
                   value={amount}/>{' '}
               {token + ' '}
           </span><br/>
-            to<br/>
-            {to}?
+            {tu("to")}<br/>
+            {to}
           </SweetAlert>
       )
     });

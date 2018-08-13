@@ -297,7 +297,7 @@ class Account extends Component {
               confirmBtnText={tu("confirm")}
               confirmBtnBsStyle="success"
               cancelBtnBsStyle="default"
-              title={tu("cancel")}
+              title={tu("confirm_private_key")}
               onConfirm={reConfirm}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
