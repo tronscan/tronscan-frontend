@@ -9,7 +9,7 @@ import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
-import {tu,t} from "../utils/i18n"
+import {tu, t} from "../utils/i18n"
 import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
@@ -43,7 +43,7 @@ class Navigation extends PureComponent {
     this.id = 0;
     this.loginFlag = false;
     this.state = {
-      privateKey: '',
+      address: '',
       search: "",
       popup: null,
       notifications: [],
@@ -51,13 +51,14 @@ class Navigation extends PureComponent {
   }
 
   componentDidUpdate() {
-    let { intl, account, wallet } = this.props;
-    if(account.isLoggedIn && wallet.isOpen && !this.loginFlag){
-      toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'login_success'}));
+    let {intl, account, wallet} = this.props;
+    if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
+      toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
       this.loginFlag = true;
     }
 
   }
+
   setLanguage = (language) => {
     this.props.setLanguage(language);
   };
@@ -67,36 +68,38 @@ class Navigation extends PureComponent {
   };
 
   login = () => {
-    let {privateKey} = this.state;
+    let {address} = this.state;
 
-    if (trim(privateKey) === "external") {
+    if (trim(address) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
-      this.props.loginWithAddress(privateKey).then(()=>{
-        Lockr.set("account_address",privateKey);
+      this.props.loginWithAddress(address).then(() => {
+        Lockr.set("account_address", address);
       });
     }
   };
 
   isLoginValid = () => {
-    let {privateKey} = this.state;
+    let {address} = this.state;
 
-    if (trim(privateKey) === "external") {
+    //if (trim(privateKey) === "external") {
+    //  return true;
+    // }
+
+    // if (!privateKey || privateKey.length === 0) {
+    //   return false;
+    //  }
+
+    if (isAddressValid(address))
       return true;
-    }
-
-    if (!privateKey || privateKey.length === 0) {
+    else
       return false;
-    }
 
-    if (isAddressValid(privateKey))
-      return true;
+    // if (privateKey.length !== 64) {
+    //   return false;
+    // }
 
-    if (privateKey.length !== 64) {
-      return false;
-    }
-
-    return true;
+    // return true;
   };
 
   selectFile = () => {
@@ -104,7 +107,7 @@ class Navigation extends PureComponent {
   };
 
   onFileSelected = async (ev) => {
-    if (ev.target.value.endsWith(".txt")){
+    if (ev.target.value.endsWith(".txt")) {
       let contents = await readFileContentsFromEvent(ev);
       this.fileRef.current.value = '';
       this.openPasswordPrompt(contents);
@@ -114,26 +117,26 @@ class Navigation extends PureComponent {
   openPasswordPrompt = (contents) => {
     this.setState({
       popup: (
-        <SweetAlert
-          input
-          showCancel
-          inputType="password"
-          cancelBtnBsStyle="default"
-          cancelBtnText={tu("cancel")}
-          title={tu("unlock_keyFile")}
-          placeHolder="Password"
-          onCancel={this.hideModal}
-          validationMsg={tu("enter_password_message")}
-          confirmBtnText={tu("ok")}
-          onConfirm={(password) => this.unlockKeyFile(password, contents)}>
-          {tu("password")}
-        </SweetAlert>
+          <SweetAlert
+              input
+              showCancel
+              inputType="password"
+              cancelBtnBsStyle="default"
+              cancelBtnText={tu("cancel")}
+              title={tu("unlock_keyFile")}
+              placeHolder="Password"
+              onCancel={this.hideModal}
+              validationMsg={tu("enter_password_message")}
+              confirmBtnText={tu("ok")}
+              onConfirm={(password) => this.unlockKeyFile(password, contents)}>
+            {tu("password")}
+          </SweetAlert>
       )
     });
   };
 
   hideModal = () => {
-    this.setState({ popup: null });
+    this.setState({popup: null});
   };
 
   unlockKeyFile = (password, contents) => {
@@ -145,24 +148,24 @@ class Navigation extends PureComponent {
     if (validatePrivateKey(privateKey) && pkToAddress(privateKey) === address) {
       this.setState({
         popup: (
-          <SweetAlert
-            success title={tu("wallet_unlocked")}
-            onConfirm={this.hideModal}
-            confirmBtnText={tu("ok")} />
+            <SweetAlert
+                success title={tu("wallet_unlocked")}
+                onConfirm={this.hideModal}
+                confirmBtnText={tu("ok")}/>
         )
       });
-       this.props.login(privateKey);
+      this.props.login(privateKey);
     } else {
       this.setState({
         popup: (
-          <SweetAlert
-            danger
-            showCancel
-            title={tu("password_incorrect")}
-            cancelBtnBsStyle="default"
-            cancelBtnText={tu("try_again")}
-            onCancel={() => this.openPasswordPrompt(contents)}
-            onConfirm={this.hideModal} />
+            <SweetAlert
+                danger
+                showCancel
+                title={tu("password_incorrect")}
+                cancelBtnBsStyle="default"
+                cancelBtnText={tu("try_again")}
+                onCancel={() => this.openPasswordPrompt(contents)}
+                onConfirm={this.hideModal}/>
         )
       });
     }
@@ -172,8 +175,8 @@ class Navigation extends PureComponent {
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
-    this.setState({ privateKey: '' });
-    toastr.info(intl.formatMessage({id:'success'}), intl.formatMessage({id:'logout_success'}));
+    this.setState({address: ''});
+    toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
 
   componentWillUnmount() {
@@ -202,7 +205,7 @@ class Navigation extends PureComponent {
       window.location.hash = result;
       this.setState({search: ""});
     } else {
-      toastr.warning(intl.formatMessage({id:'warning'}), intl.formatMessage({id:'record_not_found'}));
+      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
   };
 
@@ -237,24 +240,30 @@ class Navigation extends PureComponent {
     let icon = "";
 
     switch (theme) {
-      case "light": icon = "fa fa-moon"; break;
-      case "dark": icon = "fa fa-sun"; break;
-      case "tron": icon = "fas fa-user-astronaut"; break;
+      case "light":
+        icon = "fa fa-moon";
+        break;
+      case "dark":
+        icon = "fa fa-sun";
+        break;
+      case "tron":
+        icon = "fas fa-user-astronaut";
+        break;
     }
 
     return (
-      <li className="nav-item dropdown navbar-right">
-        <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
-          <i className={icon}/>
-        </a>
-      </li>
+        <li className="nav-item dropdown navbar-right">
+          <a key={theme} className="nav-link" href="javascript:;" onClick={this.onSetThemeClick}>
+            <i className={icon}/>
+          </a>
+        </li>
     )
   }
 
   newTransaction = () => {
     this.setState({
       popup: (
-        <SendModal onClose={this.hideModal} />
+          <SendModal onClose={this.hideModal}/>
       )
     });
   };
@@ -262,7 +271,7 @@ class Navigation extends PureComponent {
   showReceive = () => {
     this.setState({
       popup: (
-        <ReceiveModal onClose={this.hideModal} />
+          <ReceiveModal onClose={this.hideModal}/>
       )
     });
   };
@@ -304,139 +313,140 @@ class Navigation extends PureComponent {
 
     if (wallet.isLoading) {
       return (
-        <li className="nav-item">
-          <a className="nav-link" href="javascript:;">
-            Loading Wallet...
-          </a>
-        </li>
+          <li className="nav-item">
+            <a className="nav-link" href="javascript:;">
+              Loading Wallet...
+            </a>
+          </li>
       );
 
     }
 
     return (
-      <Fragment>
-        {
-          (account.isLoggedIn && wallet.isOpen) ?
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                {tu("wallet")}
-              </a>
-              <ul className="dropdown-menu dropdown-menu-right">
-                <li className="px-1 py-1">
-                  <div className="row" style={{width: 305}}>
-                    <div className="col-lg-2">
-                      <Avatar size={45} value={account.address}/>
-                    </div>
-                    <div className="col-lg-10">
-                      <b>{wallet.current.name || tu("account")}</b>
-                      <br/>
-                      <AddressLink
-                        address={account.address}
-                        className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
-                    </div>
-                  </div>
-                  <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
-                </li>
-                {
-                  wallet.current.representative.enabled && (
-                    <li className="dropdown-item text-danger text-center">
-                      Representative
+        <Fragment>
+          {
+            (account.isLoggedIn && wallet.isOpen) ?
+                <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                    {tu("wallet")}
+                  </a>
+                  <ul className="dropdown-menu dropdown-menu-right">
+                    <li className="px-1 py-1">
+                      <div className="row" style={{width: 305}}>
+                        <div className="col-lg-2">
+                          <Avatar size={45} value={account.address}/>
+                        </div>
+                        <div className="col-lg-10">
+                          <b>{wallet.current.name || tu("account")}</b>
+                          <br/>
+                          <AddressLink
+                              address={account.address}
+                              className="small text-truncate text-nowrap d-sm-inline-block" style={{width: 150}}/>
+                        </div>
+                      </div>
+                      <Link to="/account" className="btn btn-dark btn-block btn-sm">{tu("account")}</Link>
                     </li>
-                  )
-                }
-                <li className="dropdown-divider"/>
-                <Link className="dropdown-item" to="/account">
-                  <i className="fa fa-credit-card mr-2"/>
-                  <FormattedNumber value={wallet.current.balance / ONE_TRX} /> TRX
-                </Link>
-                <Link className="dropdown-item" to="/account">
-                  <i className="fa fa-bolt mr-2"/>
-                  <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX} /> TRON {tu("power")}
-                </Link>
-                <Link className="dropdown-item" to="/account">
-                  <i className="fa fa-tachometer-alt mr-2"/>
-                  <FormattedNumber value={wallet.current.bandwidth.netRemaining} /> {tu("bandwidth")}
-                </Link>
-                <Link className="dropdown-item"
-                      to={"/blockchain/transactions?address=" + account.address}>
-                  <i className="fa fa-exchange-alt mr-2"/>
-                  <FormattedNumber value={totalTransactions} /> {tu("transactions")}
-                </Link>
-                <li className="dropdown-divider"/>
+                    {
+                      wallet.current.representative.enabled && (
+                          <li className="dropdown-item text-danger text-center">
+                            Representative
+                          </li>
+                      )
+                    }
+                    <li className="dropdown-divider"/>
+                    <Link className="dropdown-item" to="/account">
+                      <i className="fa fa-credit-card mr-2"/>
+                      <FormattedNumber value={wallet.current.balance / ONE_TRX}/> TRX
+                    </Link>
+                    <Link className="dropdown-item" to="/account">
+                      <i className="fa fa-bolt mr-2"/>
+                      <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX}/> TRON {tu("power")}
+                    </Link>
+                    <Link className="dropdown-item" to="/account">
+                      <i className="fa fa-tachometer-alt mr-2"/>
+                      <FormattedNumber value={wallet.current.bandwidth.netRemaining}/> {tu("bandwidth")}
+                    </Link>
+                    <Link className="dropdown-item"
+                          to={"/blockchain/transactions?address=" + account.address}>
+                      <i className="fa fa-exchange-alt mr-2"/>
+                      <FormattedNumber value={totalTransactions}/> {tu("transactions")}
+                    </Link>
+                    <li className="dropdown-divider"/>
 
-                <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
-                  <i className="fa fa-paper-plane mr-2"/>
-                  {tu("send")}
-                </a>
-                <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
-                  <i className="fa fa-qrcode mr-2"/>
-                  {tu("receive")}
-                </a>
-                {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
-                {/*<i className="fa fa-qrcode mr-2"/>*/}
-                {/*Receive*/}
-                {/*</Link>*/}
-                <li className="dropdown-divider"/>
-                <li className="px-2 pt-1">
-                  <button className="btn btn-danger btn-block" onClick={this.logout}>{tu("sign_out")}</button>
-                </li>
-              </ul>
-            </li> :
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
-                {tu("open_wallet")}
-              </a>
-              <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
-                <li className="px-3">
-                  <div className="form-group text-center">
-                    <label>{tu("address")}</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      onChange={ev => this.setState({ privateKey: ev.target.value })}
-                      placeholder=""/>
-                  </div>
-                  <button className="btn btn-success btn-block"
-                          disabled={!this.isLoginValid()}
-                          onClick={this.login}>
-                    {tu("sign_in")}
-                  </button>
-                </li>
-                <li className="dropdown-divider"/>
-                <li className="px-3">
-                  <div className="form-group text-center">
-                    <label>{tu("keystore_file")}</label>
-                    <button className="btn btn-success btn-block" onClick={this.selectFile}>
-                      {tu("select_file")}
-                    </button>
-                    <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected} accept=".txt" />
-                  </div>
-
-                </li>
-                <li className="dropdown-divider"/>
-                {
-                  flags.mobileLogin &&
-                  <Fragment>
+                    <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
+                      <i className="fa fa-paper-plane mr-2"/>
+                      {tu("send")}
+                    </a>
+                    <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
+                      <i className="fa fa-qrcode mr-2"/>
+                      {tu("receive")}
+                    </a>
+                    {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
+                    {/*<i className="fa fa-qrcode mr-2"/>*/}
+                    {/*Receive*/}
+                    {/*</Link>*/}
+                    <li className="dropdown-divider"/>
+                    <li className="px-2 pt-1">
+                      <button className="btn btn-danger btn-block" onClick={this.logout}>{tu("sign_out")}</button>
+                    </li>
+                  </ul>
+                </li> :
+                <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                    {tu("open_wallet")}
+                  </a>
+                  <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                     <li className="px-3">
                       <div className="form-group text-center">
-                        <label>{tu("Mobile Login")}</label>
-                        <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
-                          {tu("login_mobile")}
-                        </button>
+                        <label>{tu("address")}</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            onChange={ev => this.setState({address: ev.target.value})}
+                            placeholder=""/>
                       </div>
+                      <button className="btn btn-success btn-block"
+                              disabled={!this.isLoginValid()}
+                              onClick={this.login}>
+                        {tu("sign_in")}
+                      </button>
                     </li>
                     <li className="dropdown-divider"/>
-                  </Fragment>
-                }
-                <li className="px-3 py-2">
-                  <Link className="btn btn-primary btn-block" to="/wallet/new">
-                    {tu("create_wallet")}
-                  </Link>
+                    <li className="px-3">
+                      <div className="form-group text-center">
+                        <label>{tu("keystore_file")}</label>
+                        <button className="btn btn-success btn-block" onClick={this.selectFile}>
+                          {tu("select_file")}
+                        </button>
+                        <input type="file" ref={this.fileRef} className="d-none" onChange={this.onFileSelected}
+                               accept=".txt"/>
+                      </div>
+
+                    </li>
+                    <li className="dropdown-divider"/>
+                    {
+                      flags.mobileLogin &&
+                      <Fragment>
+                        <li className="px-3">
+                          <div className="form-group text-center">
+                            <label>{tu("Mobile Login")}</label>
+                            <button className="btn btn-success btn-block" onClick={this.loginWithMobileDevice}>
+                              {tu("login_mobile")}
+                            </button>
+                          </div>
+                        </li>
+                        <li className="dropdown-divider"/>
+                      </Fragment>
+                    }
+                    <li className="px-3 py-2">
+                      <Link className="btn btn-primary btn-block" to="/wallet/new">
+                        {tu("create_wallet")}
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-        }
-      </Fragment>
+          }
+        </Fragment>
     )
   }
 
@@ -457,167 +467,169 @@ class Navigation extends PureComponent {
     let activeComponent = this.getActiveComponent();
 
     return (
-      <div className="header-top">
-        {popup}
-        <div className="container py-2 d-flex px-0">
-          <div className="ml-4">
-            <Link to="/">
-              <img src={this.getLogo()} className="logo" alt="Tron"/>
-            </Link>
-          </div>
-          {
-            IS_TESTNET &&
-            <div className="col mx-auto text-center text-info font-weight-bold py-2">
-              TESTNET
+        <div className="header-top">
+          {popup}
+          <div className="container py-2 d-flex px-0">
+            <div className="ml-4">
+              <Link to="/">
+                <img src={this.getLogo()} className="logo" alt="Tron"/>
+              </Link>
             </div>
-          }
-          {
-            (syncStatus && syncStatus.sync.progress < 95) &&
+            {
+              IS_TESTNET &&
+              <div className="col mx-auto text-center text-info font-weight-bold py-2">
+                TESTNET
+              </div>
+            }
+            {
+              (syncStatus && syncStatus.sync.progress < 95) &&
               <div className="col mx-auto text-danger text-center py-2">
                 Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
               </div>
-          }
-          <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
-            <ul className="navbar-nav navbar-right">
-              {
-                wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
-              }
-              {this.renderWallet()}
-            </ul>
-          </div>
-        </div>
-        <nav className="top-bar navbar navbar-expand-md navbar-dark">
-          <div className="container">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-top">
-              <span className="navbar-toggler-icon"/>
-            </button>
-            <div className="collapse navbar-collapse" id="navbar-top">
-              <ul className="navbar-nav mr-auto">
-                {filter(routes, r => r.showInMenu !== false).map(route => (
-                  <li key={route.path} className="nav-item dropdown">
-                    <NavLink
-                      className="nav-link"
-                      {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                      activeClassName="active"
-                      to={route.path}>
-                      {route.icon && <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                      {tu(route.label)}
-                    </NavLink>
-                    {
-                      route.routes &&
-                      <div className="dropdown-menu">
-                        {
-                          route.routes && route.routes.map((subRoute, index) => {
-
-                            if (subRoute === '-') {
-                              return (
-                                <div key={index} className="dropdown-divider"/>
-                              );
-                            }
-
-                            if (isString(subRoute)) {
-                              return (
-                                <h6 key={index} className="dropdown-header">{subRoute}</h6>
-                              )
-                            }
-
-                            if (subRoute.showInMenu === false) {
-                              return null;
-                            }
-
-                            if (!isUndefined(subRoute.url)) {
-                              return (
-                                <HrefLink
-                                  key={subRoute.url}
-                                  className="dropdown-item text-uppercase"
-                                  href={subRoute.url}>
-                                  {subRoute.icon && <i className={subRoute.icon + " mr-2"}/>}
-                                  {tu(subRoute.label)}
-                                  {subRoute.badge && <Badge value={subRoute.badge}/>}
-                                </HrefLink>
-                              );
-                            }
-
-                            return (
-                              <Link
-                                key={subRoute.path}
-                                className="dropdown-item text-uppercase"
-                                to={subRoute.path}>
-                                {subRoute.icon && <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
-                                {tu(subRoute.label)}
-                                {subRoute.badge && <Badge value={subRoute.badge}/>}
-                              </Link>
-                            );
-                          })
-                        }
-                      </div>
-                    }
-                  </li>
-                ))}
-              </ul>
+            }
+            <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
               <ul className="navbar-nav navbar-right">
-                {this.renderThemeChooser()}
-                <li className="nav-item dropdown navbar-right">
-                  <a className="nav-link dropdown-toggle dropdown-menu-right " data-toggle="dropdown" href="javascript:">
-                    {activeCurrency.toUpperCase()}
-                    </a>
-                  <div className="dropdown-menu">
-                    {
-                      currencyConversions.map(currency => (
-                        <a key={currency.id}
-                           className="dropdown-item"
-                           href="javascript:"
-                           onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
-                      ))
-                    }
-                  </div>
-                </li>
-                <li className="nav-item dropdown navbar-right">
-                  <a className="nav-link dropdown-toggle dropdown-menu-right " data-toggle="dropdown"
-                     href="javascript:">{activeLanguage.toUpperCase()}</a>
-                  <div className="dropdown-menu">
-                    {
-                      Object.keys(languages).map(language => (
-                        <a key={language}
-                           className="dropdown-item"
-                           href="javascript:"
-                           onClick={() => this.setLanguage(language)}>{languages[language]}</a>
-                      ))
-                    }
-                  </div>
-                </li>
+                {
+                  wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+                }
+                {this.renderWallet()}
               </ul>
             </div>
           </div>
-        </nav>
-        {
-          (activeComponent && activeComponent.showSubHeader !== false) && <div className="container d-flex sub-header">
-            {
-              activeComponent && <h4 className="pt-4 text-uppercase">
-                {tu(activeComponent.label)}
-              </h4>
-            }
+          <nav className="top-bar navbar navbar-expand-md navbar-dark">
+            <div className="container">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-top">
+                <span className="navbar-toggler-icon"/>
+              </button>
+              <div className="collapse navbar-collapse" id="navbar-top">
+                <ul className="navbar-nav mr-auto">
+                  {filter(routes, r => r.showInMenu !== false).map(route => (
+                      <li key={route.path} className="nav-item dropdown">
+                        <NavLink
+                            className="nav-link"
+                            {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                            activeClassName="active"
+                            to={route.path}>
+                          {route.icon && <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                          {tu(route.label)}
+                        </NavLink>
+                        {
+                          route.routes &&
+                          <div className="dropdown-menu">
+                            {
+                              route.routes && route.routes.map((subRoute, index) => {
 
-            <div className="ml-auto py-3 hidden-mobile nav-searchbar">
-              <div className="input-group">
-                <input type="text"
-                       className="form-control p-2 bg-white border-0 box-shadow-none"
-                       style={styles.search}
-                       value={search}
-                       onKeyDown={this.onSearchKeyDown}
-                       onChange={ev => this.setState({search: ev.target.value})}
-                       placeholder={intl.formatMessage({id:"search_description1"})}/>
-                <div className="input-group-append">
+                                if (subRoute === '-') {
+                                  return (
+                                      <div key={index} className="dropdown-divider"/>
+                                  );
+                                }
 
-                  <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
-                    <i className="fa fa-search"/>
-                  </button>
+                                if (isString(subRoute)) {
+                                  return (
+                                      <h6 key={index} className="dropdown-header">{subRoute}</h6>
+                                  )
+                                }
+
+                                if (subRoute.showInMenu === false) {
+                                  return null;
+                                }
+
+                                if (!isUndefined(subRoute.url)) {
+                                  return (
+                                      <HrefLink
+                                          key={subRoute.url}
+                                          className="dropdown-item text-uppercase"
+                                          href={subRoute.url}>
+                                        {subRoute.icon && <i className={subRoute.icon + " mr-2"}/>}
+                                        {tu(subRoute.label)}
+                                        {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                      </HrefLink>
+                                  );
+                                }
+
+                                return (
+                                    <Link
+                                        key={subRoute.path}
+                                        className="dropdown-item text-uppercase"
+                                        to={subRoute.path}>
+                                      {subRoute.icon && <i className={subRoute.icon + " mr-2" + " fa_width"}/>}
+                                      {tu(subRoute.label)}
+                                      {subRoute.badge && <Badge value={subRoute.badge}/>}
+                                    </Link>
+                                );
+                              })
+                            }
+                          </div>
+                        }
+                      </li>
+                  ))}
+                </ul>
+                <ul className="navbar-nav navbar-right">
+                  {this.renderThemeChooser()}
+                  <li className="nav-item dropdown navbar-right">
+                    <a className="nav-link dropdown-toggle dropdown-menu-right " data-toggle="dropdown"
+                       href="javascript:">
+                      {activeCurrency.toUpperCase()}
+                    </a>
+                    <div className="dropdown-menu">
+                      {
+                        currencyConversions.map(currency => (
+                            <a key={currency.id}
+                               className="dropdown-item"
+                               href="javascript:"
+                               onClick={() => this.setCurrency(currency.id)}>{currency.name}</a>
+                        ))
+                      }
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown navbar-right">
+                    <a className="nav-link dropdown-toggle dropdown-menu-right " data-toggle="dropdown"
+                       href="javascript:">{activeLanguage.toUpperCase()}</a>
+                    <div className="dropdown-menu">
+                      {
+                        Object.keys(languages).map(language => (
+                            <a key={language}
+                               className="dropdown-item"
+                               href="javascript:"
+                               onClick={() => this.setLanguage(language)}>{languages[language]}</a>
+                        ))
+                      }
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          {
+            (activeComponent && activeComponent.showSubHeader !== false) &&
+            <div className="container d-flex sub-header">
+              {
+                activeComponent && <h4 className="pt-4 text-uppercase">
+                  {tu(activeComponent.label)}
+                </h4>
+              }
+
+              <div className="ml-auto py-3 hidden-mobile nav-searchbar">
+                <div className="input-group">
+                  <input type="text"
+                         className="form-control p-2 bg-white border-0 box-shadow-none"
+                         style={styles.search}
+                         value={search}
+                         onKeyDown={this.onSearchKeyDown}
+                         onChange={ev => this.setState({search: ev.target.value})}
+                         placeholder={intl.formatMessage({id: "search_description1"})}/>
+                  <div className="input-group-append">
+
+                    <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
+                      <i className="fa fa-search"/>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        }
-      </div>
+          }
+        </div>
     )
   }
 }
@@ -660,4 +672,4 @@ const mapDispatchToProps = {
   enableFlag,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(withRouter(injectIntl(Navigation)))
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(withRouter(injectIntl(Navigation)))
