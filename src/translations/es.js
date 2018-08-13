@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-04082018                                                  #
-  #         Update Date: 04.08.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         language: Spanish                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 9                                                    #
@@ -709,6 +709,8 @@ export const messages = {
   "verify_contract_code": "Verificar el Código del Contrato",
   "buy_tokens": "Comprar Tokens",
   "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -781,10 +783,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_tron": "Buy TRON",
-  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
-  "buy_tron_using_changelly": "Buy TRON using Changelly",
-  "cant_load_widget": "Can't load widget",
+  "buy_tron": "Comprar TRON",
+  "buy_tron_message_0": "Se puede comprar TRX directamente con dinero Fiat u otras criptomonedas sin necesidad de un Exchange. Se utiliza Changelly.com ya que es la forma más fácil y rápida de comprar TRX. Se puede encontrar una lista de monedas admitidas y preguntas frecuentes en ",
+  "buy_tron_using_changelly": "Comprar TRON usando Changelly",
+  "cant_load_widget": "No se puede cargar el widget",
   /*
   ##################################################################################
   #                                                                                #

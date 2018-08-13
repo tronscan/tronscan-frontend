@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 28.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -693,6 +693,8 @@ export const messages = {
   "verify_contract_code": "验证合约代码",
   "buy_tokens": "购买通证",
   "fill_a_valid_private_key": "请填写有效的私钥",
+  "confirm_private_key": "确认私钥",
+  "transfer_confirm_info": "你确认要转账",
   /*
   ##################################################################################
   #                                                                                #
@@ -765,10 +767,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_tron": "Buy TRON",
-  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
-  "buy_tron_using_changelly": "Buy TRON using Changelly",
-  "cant_load_widget": "Can't load widget",
+  "buy_trx":"购买TRX",
+  "buy_trx_message_0": "TRX可以直接使用法定货币或是其它加密货币来购买而不需要通过交易所。这是因为我们使用了来自Changelly.com的服务，这也是最简单最快捷的购买TRX的方法。支持兑换的加密货币种类和常见问题请参见：",
+  "buy_trx_using_changelly":"使用Changelly来购买TRX",
+  "cant_load_widget":"无法加载控件",
   /*
   ##################################################################################
   #                                                                                #

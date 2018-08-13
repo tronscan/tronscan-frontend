@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 2807.2018                                                 #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Arabic                                                       #
   #         Status: First Version                                                  #
   #         Number of checks: 3                                                    #
@@ -679,17 +679,19 @@ export const messages = {
   "print_paper_wallet": "اطبع المحفظة على ورق",
   "new_wallet_ready_message": "محفظتك الجديدة جاهزة",
   "go_to_account_page": "اذهب الى صفحة الحساب",
-  "login_first": "Login to the Wallet first",
-  "contract_name": "Contract Name",
+  "login_first": "تسجيل الدخول إلى المحفظة أولاً",
+  "contract_name": "اسم العقد",
   "compiler": "Compiler",
   "tx_count": "Tx Count",
-  "setting": "Setting",
+  "setting": "ضبط",
   "date_verified": "Date Verified",
   "compiler_version": "Compiler Version",
-  "creator": "Creator",
-  "verify_contract_code": "Verify Contract Code",
-  "buy_tokens": "Buy Tokens",
-  "fill_a_valid_private_key": "Please fill a valid private key",
+  "creator": "المنشئ",
+  "verify_contract_code": "تحقق من قانون العقد",
+  "buy_tokens": "شراء الرموز",
+  "fill_a_valid_private_key": "يرجى ملء مفتاح خاص صالح",
+  "confirm_private_key": "تأكيد المفتاح الخاص",
+  "transfer_confirm_info": "هل أنت متأكد من أنك تريد نقلها",
   /*
   ##################################################################################
   #                                                                                #

@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 28.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Czech                                                        #
   #         Status: First Version                                                  #
   #         Number of checks: 4                                                    #
@@ -706,6 +706,8 @@ export const messages = {
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
   "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key":"Confirm Private Key",
+  "transfer_confirm_info":"Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -764,13 +766,13 @@ export const messages = {
   */
   "applied_for_super_representative": "applied for Super Representative",
   "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "created_token": "vytvořený token",
+  "token_creation": "Vytvoření Token",
+  "bought": "koupit",
+  "voter": "volič",
+  "voting": "volit",
+  "asset": "aktivum",
+  "token_transfer": "Přenos Token",
   /*
   ##################################################################################
   #                                                                                #
