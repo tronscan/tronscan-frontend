@@ -15,8 +15,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-28072018                                                  #
-  #         Update Date: 28.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Swedish                                                      #
   #         Status: Second Version                                                 #
   #         Number of checks: 5                                                    #
@@ -701,6 +701,8 @@ export const messages = {
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
   "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
