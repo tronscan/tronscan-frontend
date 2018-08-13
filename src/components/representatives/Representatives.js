@@ -125,6 +125,14 @@ class Representatives extends Component {
     let {intl} = this.props;
     let witnesses = this.getWitnesses();
     let pieChart = this.getPiechart();
+
+    if(pieChart.length){
+      for(let index in pieChart){
+        if(pieChart[index].name.indexOf("http://")>-1) {
+          pieChart[index].name = pieChart[index].name.substring(7).split('.com')[0];
+        }
+      }
+    }
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
 
     let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];

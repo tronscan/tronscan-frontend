@@ -136,10 +136,10 @@ class Transaction extends React.Component {
                     }
                     {
                       (transaction.data && trim(transaction.data).length > 0) && <tr>
-                        <th>{tu("data")}:</th>
+                        <th>{tu("note")}:</th>
                         <td>
                           <pre className="border border-grey bg-light-grey m-0 p-2 rounded" style={{whiteSpace: 'pre-wrap'}}>
-                            {hextoString(transaction.data)}
+                            {decodeURIComponent(hextoString(transaction.data))}
                           </pre>
                         </td>
                       </tr>

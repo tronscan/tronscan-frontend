@@ -264,7 +264,6 @@ class Account extends Component {
   }
 
   onInputChange = (value) => {
-    console.log(value);
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
     }

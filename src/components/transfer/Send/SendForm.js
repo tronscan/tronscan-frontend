@@ -354,7 +354,6 @@ class SendForm extends React.Component {
                 onChange={(ev) => this.setNote(ev.target.value)}
                 className={"form-control"}
                 value={note}
-                placeholder={intl.formatMessage({id: "language_support"})}
             />
               <div className="invalid-feedback">
                 {tu("fill_a_valid_address")}
