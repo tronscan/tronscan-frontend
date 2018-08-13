@@ -40,7 +40,7 @@ class TokenCreate extends Component {
     endTime.setDate(startTime.getDate() + 90);
 
     this.state = {
-      privateKey:"",
+      privateKey: "",
       name: "",
       abbr: "",
       totalSupply: 100000,
@@ -363,7 +363,7 @@ class TokenCreate extends Component {
 
   renderSubmit = () => {
 
-    let {isTokenCreated,privateKey} = this.state;
+    let {isTokenCreated, privateKey} = this.state;
     let isPrivateKeyValid = privateKey && privateKey.length === 64;
     let {valid} = this.isValid();
 
@@ -400,25 +400,25 @@ class TokenCreate extends Component {
 
     return (
         <Fragment>
-        <div className="form-group">
-          <div className="input-group mb-3">
-            <input type="text"
-                   onChange={(ev) => this.setState({privateKey: ev.target.value})}
-                   className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
-                   value={privateKey}/>
-            <div className="invalid-feedback">
-              {tu("fill_a_valid_private_key")}
-              {/* tu("invalid_address") */}
+          <div className="form-group">
+            <div className="input-group mb-3">
+              <input type="text"
+                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
+                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
+                     value={privateKey}/>
+              <div className="invalid-feedback">
+                {tu("fill_a_valid_private_key")}
+                {/* tu("invalid_address") */}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="text-center">
-          <button
-              disabled={!valid}
-              type="button"
-              className="btn btn-success"
-              onClick={this.preSubmit}>{tu("issue_token")}</button>
-        </div>
+          <div className="text-center">
+            <button
+                disabled={!valid || !isPrivateKeyValid}
+                type="button"
+                className="btn btn-success"
+                onClick={this.preSubmit}>{tu("issue_token")}</button>
+          </div>
         </Fragment>
     );
   };
@@ -542,9 +542,9 @@ class TokenCreate extends Component {
                         <i className="fab fa-wpforms float-right"/>
                       </legend>
                       <p>
-                      <small className="form-text text-muted">
-                        {'('}{tu("language_support")}{')'}
-                      </small>
+                        <small className="form-text text-muted">
+                          {'('}{tu("language_support")}{')'}
+                        </small>
                       </p>
                       <div className="form-row">
                         <div className="form-group col-md-6">

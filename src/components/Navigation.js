@@ -43,7 +43,7 @@ class Navigation extends PureComponent {
     this.id = 0;
     this.loginFlag = false;
     this.state = {
-      address: '',
+      privateKey: '',
       search: "",
       popup: null,
       notifications: [],
@@ -52,11 +52,12 @@ class Navigation extends PureComponent {
 
   componentDidUpdate() {
     let {intl, account, wallet} = this.props;
-    if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
+   /*
+   if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
       toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
       this.loginFlag = true;
     }
-
+   */
   }
 
   setLanguage = (language) => {
@@ -68,38 +69,39 @@ class Navigation extends PureComponent {
   };
 
   login = () => {
-    let {address} = this.state;
+    let {intl} = this.props;
+    let {privateKey} = this.state;
 
-    if (trim(address) === "external") {
+    if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
-      this.props.loginWithAddress(address).then(() => {
-        Lockr.set("account_address", address);
+      this.props.login(privateKey).then(()=>{
+        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
       });
     }
   };
 
   isLoginValid = () => {
-    let {address} = this.state;
+    let {privateKey} = this.state;
 
-    //if (trim(privateKey) === "external") {
-    //  return true;
-    // }
-
-    // if (!privateKey || privateKey.length === 0) {
-    //   return false;
-    //  }
-
-    if (isAddressValid(address))
+    if (trim(privateKey) === "external") {
       return true;
-    else
-      return false;
+     }
 
-    // if (privateKey.length !== 64) {
-    //   return false;
-    // }
+     if (!privateKey || privateKey.length === 0) {
+       return false;
+      }
 
-    // return true;
+    //if (isAddressValid(privateKey))
+    //  return true;
+    //else
+    //  return false;
+
+     if (privateKey.length !== 64) {
+       return false;
+     }
+
+     return true;
   };
 
   selectFile = () => {
@@ -175,7 +177,7 @@ class Navigation extends PureComponent {
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
-    this.setState({address: ''});
+    this.setState({privateKey: ''});
     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
 
@@ -321,6 +323,7 @@ class Navigation extends PureComponent {
       );
 
     }
+    Lockr.set("account_address", account.address);
 
     return (
         <Fragment>
@@ -398,11 +401,11 @@ class Navigation extends PureComponent {
                   <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
                     <li className="px-3">
                       <div className="form-group text-center">
-                        <label>{tu("address")}</label>
+                        <label>{tu("private_key")}</label>
                         <input
                             type="text"
                             className="form-control"
-                            onChange={ev => this.setState({address: ev.target.value})}
+                            onChange={ev => this.setState({privateKey: ev.target.value})}
                             placeholder=""/>
                       </div>
                       <button className="btn btn-success btn-block"

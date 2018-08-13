@@ -38,7 +38,12 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount} = this.state;
+    let {to, token, amount, privateKey} = this.state;
+
+    if (!privateKey || privateKey.length !== 64) {
+      return false;
+    }
+
     const {account} = this.props;
 
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;

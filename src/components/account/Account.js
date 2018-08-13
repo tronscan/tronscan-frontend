@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {t, tu} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import xhr from "axios";
+import {injectIntl} from "react-intl";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
@@ -272,6 +273,7 @@ class Account extends Component {
   }
   confirmPrivateKey = (param) => {
     let {privateKey} = this.state;
+
     let confirm = null;
     if (param === 'freeze')
       confirm = this.showFreezeBalance;
@@ -279,16 +281,24 @@ class Account extends Component {
       confirm = this.showUnfreezeModal;
     if (param === 'applySR')
       confirm = this.applyForDelegate;
+
+    let reConfirm = ()=> {
+      if (this.privateKey.value && this.privateKey.value.length === 64) {
+        confirm();
+      }
+    }
+
     this.setState({
       modal: (
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
               confirmBtnBsStyle="success"
               cancelBtnBsStyle="default"
-              title="Confirm Private Key"
-              onConfirm={confirm}
+              title={tu("cancel")}
+              onConfirm={reConfirm}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
@@ -1124,7 +1134,7 @@ const mapDispatchToProps = {
   reloadWallet,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Account)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Account))
 
 const styles = {
   iconEntropy: {
