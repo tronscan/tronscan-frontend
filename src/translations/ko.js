@@ -104,6 +104,9 @@ export const messages = {
   "message": "Message",
   "wallet_address": "Wallet Address",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "분포 통계",
   "tron_transaction_chart": "트론 트랜잭션 차트",
   "transactions_per_day": "일일 트랜잭션 개수",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -695,6 +702,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #
@@ -760,6 +768,17 @@ export const messages = {
   "voting": "투표",
   "asset": "자산",
   "token_transfer": "토큰 전송",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
   /*
   ##################################################################################
   #                                                                                #

@@ -104,6 +104,9 @@ export const messages = {
   "message": "Mensagem",
   "wallet_address": "Endereço da Carteira",
   "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Lista dos Ricos",
   "tron_transaction_chart": "Gráfico de Transações TRON ",
   "transactions_per_day": "Transações Por Dia",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -699,6 +706,7 @@ export const messages = {
   "creator": "Creator",
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
   /*
   ##################################################################################
   #                                                                                #
@@ -764,6 +772,17 @@ export const messages = {
   "voting": "votando",
   "asset": "ativo",
   "token_transfer": "Transferência de Token",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Comprar TRON",
+  "buy_tron_message_0": "TRX pode ser comprado diretamente com Fiat ou outras Criptomoedas sem a necessidade de casas de câmbio. Ele utiliza um serviço da Changelly e é a maneira mais fácil e rápida de comprar TRX. Uma lista de moedas suportadas e um FAQ podem ser encontrados em ",
+  "buy_tron_using_changelly": "Comprar TRON utilizando a Changelly",
+  "cant_load_widget": "Não foi possível carregar o widget",
   /*
   ##################################################################################
   #                                                                                #

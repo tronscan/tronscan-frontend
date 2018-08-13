@@ -102,6 +102,9 @@ export const messages = {
   "message": "信息",
   "wallet_address": "Wallet Address",
   "confirm": "确认",
+  "_percentage": "百分比",
+  "language_support": "目前只支持英文输入",
+  "note": "备注",
   /*
   ##################################################################################
   #                                                                                #
@@ -207,6 +210,10 @@ export const messages = {
   "rich_list": "富豪榜",
   "tron_transaction_chart": "TRON交易数图表",
   "transactions_per_day": "日交易数",
+  "foundation": "基金会地址",
+  "foundation_address": "基金会锁仓TRX总数",
+  "unfreeze_time": "解冻时间",
+  "addresses_number": "地址数",
   /*
   ##################################################################################
   #                                                                                #
@@ -685,6 +692,7 @@ export const messages = {
   "creator": "合约开发者",
   "verify_contract_code": "验证合约代码",
   "buy_tokens": "购买通证",
+  "fill_a_valid_private_key": "请填写有效的私钥",
   /*
   ##################################################################################
   #                                                                                #
@@ -750,6 +758,17 @@ export const messages = {
   "voting": "投票",
   "asset": "资产",
   "token_transfer": "通证转账",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
   /*
   ##################################################################################
   #                                                                                #
