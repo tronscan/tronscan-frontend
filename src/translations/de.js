@@ -104,6 +104,9 @@ export const messages = {
   "message": "Nachricht",
   "wallet_address": "Wallet-Adresse",
   "confirm": "Bestätigen",
+  "_percentage": "Prozent",
+  "language_support": "Es werden derzeit nur Eingaben in Englisch unterstützt.",
+  "note": "Hinweis",
   /*
   ##################################################################################
   #                                                                                #
@@ -118,7 +121,7 @@ export const messages = {
   "live": "Echtzeitinformationen",
   "statistics": "Statistiken",
   "markets": "Marktplatz",
-  "tools": "Tools",
+  "tools": "Werkzeuge",
   "transaction_viewer": "Transaktionsbetrachter",
   "node_tester": "Knoten Tester",
   "system": "System",
@@ -142,7 +145,7 @@ export const messages = {
   "block_height": "Block Größe",
   "online_nodes": "Aktive Knoten",
   "pice_per_1000trx": "Preis (pro 1000TRX)",
-  "vote_for_super_representatives": "Für einen Super Repräsentant abstimmen",
+  "vote_for_super_representatives": "Super Repräsentanten wählen",
   "view_super_representatives": "Super Repräsentanten Übersicht",
   "create_new_wallet": "Ein neues Wallet erstellen",
   "view_tokens": "Tokenübersicht",
@@ -209,6 +212,10 @@ export const messages = {
   "rich_list": "Aufteilung TRX - Inhaber/Mengen",
   "tron_transaction_chart": "TRON Transaktions Chart",
   "transactions_per_day": "Transaktionen pro Tag",
+  "foundation": "Adressen der TRON Stiftung",
+  "foundation_address": "Anzahl eingefrorener TRX der TRON Stiftung",
+  "unfreeze_time": "Benötigte Zeit für das Auftauen",
+  "addresses_number": "Anzahl der Adressen",
   /*
   ##################################################################################
   #                                                                                #
@@ -707,6 +714,7 @@ export const messages = {
   "creator": "Ersteller",
   "verify_contract_code": "Vertragscode verifizieren",
   "buy_tokens": "Token kaufen",
+  "fill_a_valid_private_key": "Bitte geben Sie einen gültigen privaten Schlüssel ein.",
   /*
   ##################################################################################
   #                                                                                #
@@ -772,6 +780,17 @@ export const messages = {
   "voting": "Stimmabgabe",
   "asset": "Kapital",
   "token_transfer": "Token Übertragung",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "TRON TRX Erwerben",
+  "buy_tron_message_0": "Sie können TRX auch direkt mit Fiat- oder anderen Crypto-Währungen erwerben. Tronscan.org nutzt dazu einen Dienst von Changelly.com. Es ist der einfachste und schnellste Weg, TRX zu erwerben. Eine Liste der unterstützten Währungen, sowie ein FAQ finden Sie unter ",
+  "buy_tron_using_changelly": "Kaufen Sie TRON mit Changelly",
+  "cant_load_widget": "Widget kann nicht geladen werden",
   /*
   ##################################################################################
   #                                                                                #

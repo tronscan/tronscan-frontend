@@ -1088,13 +1088,18 @@ class Account extends Component {
               <div className="card">
                 <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
                   <h5 className="card-title text-center m-0">
-                    Buy TRON
+                    {t("buy_tron")}
                   </h5>
+                  <p className="card-body text-center">
+                    {t("buy_tron_message_0")}
+                    <HrefLink href={"https://changelly.com/faq"}
+                              target="_blank">{"changelly.com/faq"}</HrefLink>{"."}
+                  </p>
                   <p>
                     {
-                      !showBuyTokens && <button className="btn btn-primary my-3"
+                      !showBuyTokens && <button className="btn btn-primary my-2"
                                                 onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
-                        Buy TRON using Changelly
+                        {t("buy_tron_using_changelly")}
                         <i className="fa fa-credit-card ml-2"/>
                       </button>
                     }
@@ -1103,7 +1108,7 @@ class Account extends Component {
                     showBuyTokens && <iframe
                         src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"}
                         height="500" className="changelly" scrolling="no"
-                        style={{overflowY: 'hidden', border: 'none', width: '100%'}}> Can't load widget
+                        style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
                     </iframe>
                   }
                 </div>
