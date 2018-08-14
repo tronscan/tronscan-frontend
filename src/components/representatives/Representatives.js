@@ -286,7 +286,7 @@ function Row({account, showSync = true, index, state, props}) {
                 '-'
           }
         </td>
-        <td className="text-right d-none d-md-table-cell text-nowrap">
+        <td className="text-right d-none d-md-table-cell">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
@@ -311,6 +311,7 @@ function Row({account, showSync = true, index, state, props}) {
             totalVotes > 0 &&
             <Fragment>
               <FormattedNumber value={filteredCandidates[index].votes}/>
+              <br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}
