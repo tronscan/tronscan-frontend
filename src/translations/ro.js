@@ -104,9 +104,9 @@ export const messages = {
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
   "confirm": "Confirmare",
-  "_percentage": "Percentage",
-  "language_support": "Only support English input currently",
-  "note": "Note",
+  "_percentage": "Procentaj",
+  "language_support": "Deocamdată este implementat numai suport în engleză",
+  "note": "Notă",
   /*
   ##################################################################################
   #                                                                                #
@@ -212,10 +212,10 @@ export const messages = {
   "rich_list": "Listă bogați",
   "tron_transaction_chart": "Diagramă tranzacții TRON",
   "transactions_per_day": "Tranzacții pe zi",
-  "foundation": "Foundation Addresses",
-  "foundation_address": "Foundation Freeze TRX Total Number",
-  "unfreeze_time": "Unfreeze Time",
-  "addresses_number": "Addresses Number",
+  "foundation": "Adresele Fundației",
+  "foundation_address": "Numărul total de TRX înghețat al Fundației",
+  "unfreeze_time": "Timp Dezghețare",
+  "addresses_number": "Număr adrese",
   /*
   ##################################################################################
   #                                                                                #
