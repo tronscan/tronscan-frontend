@@ -18,6 +18,7 @@ import {
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  CopyrightAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
@@ -243,6 +244,12 @@ export const routes = [
         label: "frequently_asked_questions",
         component: FaqAsync,
         path: "/help/faq",
+      },
+      {
+        label: "copyright",
+        component: CopyrightAsync,
+        path: "/help/copyright",
+        showInMenu: false
       },
       {
         label: "Ledger",

@@ -1087,10 +1087,10 @@ class Account extends Component {
               <div className="card">
                 <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
                   <h5 className="card-title text-center m-0">
-                    {t("buy_tron")}
+                    {t("buy_trx")}
                   </h5>
                   <p className="card-body text-center">
-                    {t("buy_tron_message_0")}
+                    {t("buy_trx_message_0")}
                     <HrefLink href={"https://changelly.com/faq"}
                               target="_blank">{"changelly.com/faq"}</HrefLink>{"."}
                   </p>
@@ -1098,7 +1098,7 @@ class Account extends Component {
                     {
                       !showBuyTokens && <button className="btn btn-primary my-2"
                                                 onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
-                        {t("buy_tron_using_changelly")}
+                        {t("buy_trx_using_changelly")}
                         <i className="fa fa-credit-card ml-2"/>
                       </button>
                     }

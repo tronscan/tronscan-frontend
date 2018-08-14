@@ -357,6 +357,7 @@ class Home extends Component {
                         className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
                     <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
                     <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> {tu("view_tokens")}</Link></li>
+                    <li><Link to="/help/copyright"><i className="fa fa-angle-right"/> {tu("copyright")}</Link></li>
                   </ul>
                 </div>
               </div>
@@ -384,6 +385,11 @@ class Home extends Component {
                   </ul>
                 </div>
                 <hr/>
+              </div>
+              <div className="row ">
+                <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
+                  <Link to="/help/copyright">Copyright© 2017-2018 {tu("tron_foundation")}</Link>
+                </div>
               </div>
             </div>
           </div>

@@ -244,6 +244,24 @@ export const FaqAsync = asyncComponent({
   )
 });
 
+export const CopyrightAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Pages/Copyright"));
+            });
+          },
+          'CopyrightAsync',
+      )
+  )
+});
+
 export const LedgerHelpAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>
