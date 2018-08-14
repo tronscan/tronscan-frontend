@@ -94,8 +94,8 @@ class Representatives extends Component {
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("transactions")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("votes")}</th>
+              <th className="text-right text-nowrap d-none d-lg-table-cell">{tu("productivity")}</th>
+              <th className="text-right text-nowrap d-none d-lg-table-cell">{tu("votes")}</th>
 
             </tr>
             </thead>
@@ -293,7 +293,7 @@ function Row({account, showSync = true, index, state, props}) {
                 '-'
           }
         </td>
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-right d-none d-lg-table-cell">
           {
             account.producedTotal > 0 ? (
                 <Fragment>
@@ -306,7 +306,7 @@ function Row({account, showSync = true, index, state, props}) {
           }
 
         </td>
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-right d-none d-lg-table-cell">
           {
             totalVotes > 0 &&
             <Fragment>
