@@ -23,6 +23,7 @@ import {
   TokenListAsync,
   TokensCreateAsync,
   AccountsAsync,
+  FoundationAsync,
   NodesAsync,
   LiveAsync,
   TokenDetailAsync
@@ -90,6 +91,12 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync
       },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        icon: "fa fa-address-book",
+        component: FoundationAsync,
+      }
     ]
   },
   {

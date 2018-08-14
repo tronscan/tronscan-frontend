@@ -337,6 +337,25 @@ export const AccountsAsync = asyncComponent({
   )
 });
 
+
+export const FoundationAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Foundation"));
+            });
+          },
+          'Foundation',
+      )
+  )
+});
+
 export const NodesAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>

@@ -5,15 +5,24 @@ import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {FormattedNumber} from "react-intl";
 import {injectIntl} from "react-intl";
-import _, {filter, maxBy, sortBy} from "lodash";
+import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
 import {WidgetIcon} from "../common/Icon";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
+import {loadVoteList, loadVoteTimer} from "../../actions/votes";
 
 class Representatives extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchCriteria: "",
+    };
+  }
 
   componentDidMount() {
+    this.props.loadVoteList()
+    this.props.loadVoteTimer();
     this.props.loadWitnesses();
     this.props.loadStatisticData();
   }
@@ -60,7 +69,7 @@ class Representatives extends Component {
 
   renderWitnesses(witnesses) {
 
-    if (witnesses.length === 0) {
+    if (witnesses.length === 0 || this.props.voteList.length === 0) {
       return (
           <div className="card">
             <TronLoader>
@@ -78,14 +87,16 @@ class Representatives extends Component {
           <table className="table table-hover table-striped bg-white m-0">
             <thead className="thead-dark">
             <tr>
-              <th className="text-right d-none d-lg-table-cell">#</th>
-              <th>{tu("name")}</th>
+              <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
+              <th style={{width: 100}}>{tu("name")}</th>
               <th className="text-right text-nowrap">{tu("status")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("transactions")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
+              <th className="text-right text-nowrap d-none d-lg-table-cell">{tu("productivity")}</th>
+              <th className="text-right text-nowrap d-none d-lg-table-cell">{tu("votes")}</th>
+
             </tr>
             </thead>
             <tbody>
@@ -94,13 +105,16 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map(account => <Row key={account.address} account={account}/>)}
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                               key={account.address} account={account}/>)}
             <tr>
               <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map(account => <Row key={account.address} account={account} showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                                   key={account.address} account={account}
+                                                                   showSync={false}/>)}
             </tbody>
           </table>
         </div>
@@ -111,6 +125,14 @@ class Representatives extends Component {
     let {intl} = this.props;
     let witnesses = this.getWitnesses();
     let pieChart = this.getPiechart();
+
+    if(pieChart.length){
+      for(let index in pieChart){
+        if(pieChart[index].name.indexOf("http://")>-1) {
+          pieChart[index].name = pieChart[index].name.substring(7).split('.com')[0];
+        }
+      }
+    }
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
 
     let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];
@@ -197,7 +219,33 @@ class Representatives extends Component {
   }
 }
 
-function Row({account, showSync = true}) {
+function Row({account, showSync = true, index, state, props}) {
+
+  let {searchCriteria} = state;
+  let {voteList: candidates} = props;
+  candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
+    ...c,
+    rank: index,
+  }));
+
+  let filteredCandidates = candidates;
+
+  if (searchCriteria && searchCriteria !== "") {
+    filteredCandidates = filter(candidates, c => {
+      if (trim(c.url.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
+        return true;
+      }
+
+      if (c.name.length > 0 && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  let totalVotes = sumBy(candidates, c => c.votes);
+
   return (
       <tr key={account.address}>
         <td className="text-right d-none d-lg-table-cell">{account.index + 1}</td>
@@ -232,12 +280,20 @@ function Row({account, showSync = true}) {
           <FormattedNumber value={account.producedTotal}/>
         </td>
         <td className="text-right d-none d-md-table-cell">
-          <FormattedNumber value={account.missedTotal}/>
+          {
+            account.missedTotal !== 0 ?
+                <FormattedNumber value={account.missedTotal}/> :
+                '-'
+          }
         </td>
-        <td className="text-right d-none d-md-table-cell text-nowrap">
-          <FormattedNumber value={account.producedTrx}/>
+        <td className="text-right d-none d-md-table-cell">
+          {
+            account.producedTrx !== 0 ?
+                <FormattedNumber value={account.producedTrx}/> :
+                '-'
+          }
         </td>
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-right d-none d-lg-table-cell">
           {
             account.producedTotal > 0 ? (
                 <Fragment>
@@ -250,6 +306,21 @@ function Row({account, showSync = true}) {
           }
 
         </td>
+        <td className="text-right d-none d-lg-table-cell">
+          {
+            totalVotes > 0 &&
+            <Fragment>
+              <FormattedNumber value={filteredCandidates[index].votes}/>
+              <br/>
+              {'('}
+              <FormattedNumber
+                  minimumFractionDigits={2}
+                  maximumFractionDigits={2}
+                  value={(filteredCandidates[index].votes / totalVotes) * 100}/>%
+              {')'}
+            </Fragment>
+          }
+        </td>
       </tr>
   )
 }
@@ -257,13 +328,17 @@ function Row({account, showSync = true}) {
 function mapStateToProps(state) {
   return {
     witnesses: state.network.witnesses,
-    statisticData: state.network.statisticData
+    statisticData: state.network.statisticData,
+    voteList: state.voting.voteList,
+    voteTimer: state.voting.voteTimer,
   };
 }
 
 const mapDispatchToProps = {
   loadWitnesses,
-  loadStatisticData
+  loadStatisticData,
+  loadVoteList,
+  loadVoteTimer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(Representatives));

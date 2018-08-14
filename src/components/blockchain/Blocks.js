@@ -26,19 +26,33 @@ class Blocks extends React.Component {
   componentDidMount() {
     this.loadBlocks();
   }
-  onChange = (page,pageSize) => {
-    this.loadBlocks(page,pageSize);
-   };
 
-  loadBlocks = async (page = 1,pageSize=40) => {
+  onChange = (page, pageSize) => {
+    this.loadBlocks(page, pageSize);
+  };
 
-    this.setState({ loading: true });
+  loadBlocks = async (page = 1, pageSize = 40) => {
+
+    this.setState({loading: true});
 
     let {blocks, total} = await Client.getBlocks({
       sort: '-number',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
     });
+    let {witnesses} = await Client.getWitnesses();
+
+    for(let block in blocks){
+      for(let witness in witnesses){
+        if(blocks[block].witnessAddress===witnesses[witness].address){
+          if(witnesses[witness].name!=="")
+            blocks[block].witnessName=witnesses[witness].name;
+          else
+            blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
+        }
+
+      }
+    }
 
     this.setState({
       loading: false,
@@ -80,7 +94,7 @@ class Blocks extends React.Component {
                         <th style={{width: 150}}>{tu("age")}</th>
                         <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
                         <th className="d-sm-table-cell">{tu("produced_by")}</th>
-                        <th className="d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th>
+                        <th className="d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th> 
                       </tr>
                       </thead>
                       <tbody>
@@ -106,31 +120,25 @@ class Blocks extends React.Component {
                                   <FormattedNumber value={block.size}/>
                                 </td>
                               </tr>
-                          ))
+                          ))      
                       }
                       </tbody>
                     </table>
                   </div>
-
                 </div>
               </StickyContainer>
             </div>
-          </div>
-        }
-      </main>
+          }
+        </main>
     )
   }
 
 }
 
 
-
-
-
 function mapStateToProps(state) {
 
-  return {
-  };
+  return {};
 }
 
 const mapDispatchToProps = {

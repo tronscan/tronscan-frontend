@@ -8,8 +8,8 @@ import {Client} from "../../services/api";
 import LineReact from "../common/LineChart";
 import {RingPieReact} from "../common/RingPieChart";
 import {
-    LineReactPrice,
-    LineReactVolumeUsd
+  LineReactPrice,
+  LineReactVolumeUsd
 } from "../common/LineCharts";
 import xhr from "axios/index";
 
@@ -23,7 +23,7 @@ class Markets extends React.Component {
       volumeGraph: [],
       markets: [],
       priceStats: null,
-      volume:null
+      volume: null
     };
   }
 
@@ -43,21 +43,21 @@ class Markets extends React.Component {
     let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
     let priceStatsTemp = data['Data'];
-    
+
     let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
 
     let volumeUSD = volumeData.data.volume_usd
-    let volume = volumeUSD.map(function (v,i) {
+    let volume = volumeUSD.map(function (v, i) {
       return {
-        time:v[0],
-        volume_billion:v[1]/Math.pow(10,9),
-        volume_usd:intl.formatNumber(v[1]) + ' USD'
+        time: v[0],
+        volume_billion: v[1] / Math.pow(10, 9),
+        volume_usd: intl.formatNumber(v[1]) + ' USD'
       }
     })
     this.setState({
       markets: markets,
       priceStats: priceStatsTemp,
-      volume:volume
+      volume: volume
     });
   };
 
@@ -73,10 +73,13 @@ class Markets extends React.Component {
           name: val.name,
           pair: val.pair,
           volumeNative: intl.formatNumber(val.volumeNative) + ' TRX',
-          volumePercentage: intl.formatNumber(val.volumePercentage, {
+          volumePercentage: (intl.formatNumber(val.volumePercentage, {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2
-          }) + '%',
+          }) + '%') !== '0.00%' ? (intl.formatNumber(val.volumePercentage, {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2
+          }) + '%') : '-',
           price: '$' + intl.formatNumber(val.price, {maximumFractionDigits: 4})
         });
 
@@ -94,7 +97,8 @@ class Markets extends React.Component {
         dataIndex: 'rank',
         key: 'rank',
         sorter: true,
-        width: '5%'
+        width: '5%',
+        className:'ant_table'
       },
       {
         title: intl.formatMessage({id: 'exchange'}),
@@ -134,7 +138,7 @@ class Markets extends React.Component {
   render() {
 
     let {intl, priceGraph, volumeGraph} = this.props;
-    let {markets,priceStats,volume} = this.state;
+    let {markets, priceStats, volume} = this.state;
     let tableData = this.formatTableData(markets);
     let column = this.customizedColumn();
 
@@ -145,19 +149,19 @@ class Markets extends React.Component {
               <div className="card">
                 <div className="card-body">
                   {/*<div style={{height: 300}}>*/}
-                    {/*{*/}
-                      {/*priceGraph.length === 0 ?*/}
-                          {/*<TronLoader/> :*/}
-                          {/*<LineReact message={{id: 'average_price_usd'}} style={{height: 300}}*/}
-                                     {/*data={priceGraph} keysData={['time', 'close']}*/}
-                                     {/*format={{time: true, date: true}}/>*/}
-                    {/*}*/}
+                  {/*{*/}
+                  {/*priceGraph.length === 0 ?*/}
+                  {/*<TronLoader/> :*/}
+                  {/*<LineReact message={{id: 'average_price_usd'}} style={{height: 300}}*/}
+                  {/*data={priceGraph} keysData={['time', 'close']}*/}
+                  {/*format={{time: true, date: true}}/>*/}
+                  {/*}*/}
                   <div style={{height: 350}}>
-                      {
-                          priceStats === null ?
-                              <TronLoader/> :
-                              <LineReactPrice style={{height: 350}} data={priceStats} intl={intl}/>
-                      }
+                    {
+                      priceStats === null ?
+                          <TronLoader/> :
+                          <LineReactPrice style={{height: 350}} data={priceStats} intl={intl}/>
+                    }
                   </div>
                 </div>
               </div>
@@ -167,20 +171,20 @@ class Markets extends React.Component {
                 <div className="card-body">
 
                   {/*<div style={{height: 300}}>*/}
-                    {/*{*/}
-                      {/*volumeGraph.length === 0 ?*/}
-                          {/*<TronLoader/> :*/}
-                          {/*<LineReact message={{id: 'average_volume_usd'}} style={{height: 300}}*/}
-                                     {/*data={volumeGraph} keysData={['time', 'volume']}*/}
-                                     {/*format={{time: true}}/>*/}
-                    {/*}*/}
+                  {/*{*/}
+                  {/*volumeGraph.length === 0 ?*/}
+                  {/*<TronLoader/> :*/}
+                  {/*<LineReact message={{id: 'average_volume_usd'}} style={{height: 300}}*/}
+                  {/*data={volumeGraph} keysData={['time', 'volume']}*/}
+                  {/*format={{time: true}}/>*/}
+                  {/*}*/}
                   {/*</div>*/}
                   <div style={{height: 350}}>
-                      {
-                          volume === null ?
-                              <TronLoader/> :
-                              <LineReactVolumeUsd style={{height: 350}} data={volume} intl={intl}/>
-                      }
+                    {
+                      volume === null ?
+                          <TronLoader/> :
+                          <LineReactVolumeUsd style={{height: 350}} data={volume} intl={intl}/>
+                    }
                   </div>
                 </div>
               </div>
@@ -191,7 +195,7 @@ class Markets extends React.Component {
               <div className="card">
                 <div className="card-body">
 
-                  <RingPieReact message={{id:'Trade Volume'}} style={{height: 700}} data={markets} intl={intl}/>
+                  <RingPieReact message={{id: 'Trade Volume'}} style={{height: 700}} data={markets} intl={intl}/>
                 </div>
               </div>
             </div>

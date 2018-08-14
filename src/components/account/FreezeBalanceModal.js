@@ -2,7 +2,7 @@
 import {connect} from "react-redux";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu,t} from "../../utils/i18n";
+import {tu, t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
@@ -17,7 +17,7 @@ class FreezeBalanceModal extends React.PureComponent {
     this.state = {
       loading: false,
       confirmed: false,
-      amount: "",
+      amount: ""
     };
   }
 
@@ -60,13 +60,12 @@ class FreezeBalanceModal extends React.PureComponent {
 
     let {account, onError} = this.props;
     let {amount} = this.state;
-
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3)(account.key);
     if (success) {
-      this.confirmModal({ amount });
-      this.setState({ loading: false });
+      this.confirmModal({amount});
+      this.setState({loading: false});
     } else {
       onError && onError();
     }
@@ -80,43 +79,46 @@ class FreezeBalanceModal extends React.PureComponent {
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
 
     return (
-      <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered" >
-        <ModalHeader className="text-center" toggle={this.hideModal}>
-          {tu("freeze")}
-        </ModalHeader>
-        <ModalBody className="text-center">
-          <form>
-            <div className="form-group">
-              <div className="text-left">{tu("current_power")}: <span style={{fontWeight:800}}>{trxBalance}</span></div>
-              <label>{tu("trx_amount")}</label>
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+          <ModalHeader className="text-center" toggle={this.hideModal}>
+            {tu("freeze")}
+          </ModalHeader>
+          <ModalBody className="text-center">
+            <form>
+              <div className="form-group">
+                <div className="text-left">{tu("current_power")}: <span style={{fontWeight: 800}}>{trxBalance}</span>
+                </div>
+                <label>{tu("trx_amount")}</label>
 
-              <NumberField
-                     min={1}
-                     decimals={0}
-                     value={amount}
-                     className="form-control text-center"
-                     onChange={this.onAmountChanged}/>
-            </div>
-            <div className="form-check">
-              <input type="checkbox"
-                     className="form-check-input"
-                     onChange={(ev) => this.setState({ confirmed: ev.target.checked })} />
-              <label className="form-check-label">
-                {tu("token_freeze_confirm_message_0")} <b><FormattedNumber value={amount}/> TRX</b> {t("token_freeze_confirm_message_1")}
-              </label>
-            </div>
-            <p className="mt-3">
-              <button className="btn btn-primary col-sm"
-                      disabled={!isValid}
-                      onClick={this.freeze}
+                <NumberField
+                    min={1}
+                    decimals={0}
+                    value={amount}
+                    className="form-control text-center"
+                    onChange={this.onAmountChanged}/>
+              </div>
+
+              <div className="form-check">
+                <input type="checkbox"
+                       className="form-check-input"
+                       onChange={(ev) => this.setState({confirmed: ev.target.checked})}/>
+                <label className="form-check-label">
+                  {tu("token_freeze_confirm_message_0")} <b><FormattedNumber
+                    value={amount}/> TRX</b> {t("token_freeze_confirm_message_1")}
+                </label>
+              </div>
+              <p className="mt-3">
+                <button className="btn btn-primary col-sm"
+                        disabled={!isValid}
+                        onClick={this.freeze}
                 >
-                <i className="fa fa-snowflake mr-2"/>
-                {tu("freeze")}
-              </button>
-            </p>
-          </form>
-        </ModalBody>
-      </Modal>
+                  <i className="fa fa-snowflake mr-2"/>
+                  {tu("freeze")}
+                </button>
+              </p>
+            </form>
+          </ModalBody>
+        </Modal>
     )
   }
 }
@@ -130,7 +132,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  reloadWallet,
+  reloadWallet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FreezeBalanceModal)
