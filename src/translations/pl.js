@@ -103,7 +103,7 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Przesłanie",
   "wallet_address": "Wallet Address",
-  "confirm": "Confirm",
+  "confirm": "Potwierdź",
   "_percentage": "Percentage",
   "language_support": "Only support English input currently",
   "note": "Note",
@@ -194,10 +194,10 @@ export const messages = {
   "loading_transfers": "Wczytuję Transfery",
   "loading_transactions": "Wczytuję Transakcje",
   "loading_block": "Wczytuję Blok",
-  "current_power": "Current Power",
-  "produce_distribution": "Block Producer Chart",
-  "confirm_token_issue": "Confirm Token Issue",
-  "_to": "to",
+  "current_power": "Aktualna ilość Power",
+  "produce_distribution": "Wykres twórców bloków",
+  "confirm_token_issue": "Potwierdź wydanie tokenu",
+  "_to": "do",
   /*
   ##################################################################################
   #                                                                                #
@@ -777,10 +777,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_tron": "Buy TRON",
-  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
-  "buy_tron_using_changelly": "Buy TRON using Changelly",
-  "cant_load_widget": "Can't load widget",
+  "buy_tron": "Kup TON",
+  "buy_tron_message_0": "TRX może być zakupione bezpośrednio za waluty typu FIAT lub inne kryptowaluty bez wykorzystywania do tego giełd kryptowalut. Do tego celu wykorzystujemy usługę dostarczaną przez Changelly, która jest najszybszym i najprostszym sposobem zakupu TRX. = Lista obsługiwanych walut i FAQ znajduje się tutaj ",
+  "buy_tron_using_changelly": "Kup TRON za pomocą Changelly",
+  "cant_load_widget": "Nie udało się załadować Widgetu",
   /*
   ##################################################################################
   #                                                                                #
