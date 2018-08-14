@@ -104,9 +104,9 @@ export const messages = {
   "message": "Mensaje",
   "wallet_address": "Wallet Address",
   "confirm": "Confirmar",
-  "_percentage": "Percentage",
-  "language_support": "Only support English input currently",
-  "note": "Note",
+  "_percentage": "Porcentaje",
+  "language_support": "Actualmente solo admite Inglés como método de entrada",
+  "note": "Nota",
   /*
   ##################################################################################
   #                                                                                #
@@ -189,8 +189,8 @@ export const messages = {
   "_of": "de",
   "was_recorded_on": "se registró el ",
   "rank_real_time": "Clasificación (Tiempo Real)",
-  "volume_24": "24 Hour Trading Volume",
-  "billion_usd": "Billion USD",
+  "volume_24": "Volumen Comercial (24h)",
+  "billion_usd": "Mil millones de dólares",
   "loading_transfers": "Cargando Transferencias",
   "loading_transactions": "Cargando Transacciones",
   "loading_block": "Cargando Bloque",
@@ -212,10 +212,10 @@ export const messages = {
   "rich_list": "Riqueza",
   "tron_transaction_chart": "Gráfico de transacciones TRON",
   "transactions_per_day": "Transacciones Diarias",
-  "foundation": "Foundation Addresses",
-  "foundation_address": "Foundation Freeze TRX Total Number",
-  "unfreeze_time": "Unfreeze Time",
-  "addresses_number": "Addresses Number",
+  "foundation": "Direcciones de la Fundación",
+  "foundation_address": "Cantidad total de TRX congelado en la Fundación",
+  "unfreeze_time": "Fecha de Descongelación",
+  "addresses_number": "Número de Direcciones",
   /*
   ##################################################################################
   #                                                                                #
@@ -643,7 +643,7 @@ export const messages = {
   "node_tester_rt": "Tiempo de respuesta",
   "confirmed_block": "Bloque confirmado",
   "loading": "cargando...",
-  "connection_node": "Connecting to Node",
+  "connection_node": "Conectando al Nodo",
   /*
   ##################################################################################
   #                                                                                #
