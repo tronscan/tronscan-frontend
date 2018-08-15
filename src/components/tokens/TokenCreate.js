@@ -16,6 +16,7 @@ import {Link} from "react-router-dom";
 import {NumberField} from "../common/Fields";
 import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -362,9 +363,10 @@ class TokenCreate extends Component {
   };
 
   renderSubmit = () => {
-
     let {isTokenCreated, privateKey} = this.state;
-    let isPrivateKeyValid = privateKey && privateKey.length === 64;
+    let {account} = this.props;
+
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
     let {valid} = this.isValid();
 
     let {wallet} = this.props;

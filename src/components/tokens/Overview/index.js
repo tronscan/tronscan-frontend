@@ -203,7 +203,7 @@ class TokenOverview extends Component {
     this.setState({
       activeToken: null,
       confirmedParticipate: true,
-      participateSuccess: isSuccess,
+      participateSuccess: isSuccess.success,
       loading: false,
     });
   };

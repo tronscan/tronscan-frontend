@@ -14,6 +14,7 @@ import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class SendForm extends React.Component {
 
@@ -39,12 +40,14 @@ class SendForm extends React.Component {
    */
   isValid = () => {
     let {to, token, amount, privateKey} = this.state;
+    let {account} = this.props;
 
     if (!privateKey || privateKey.length !== 64) {
       return false;
     }
-
-    const {account} = this.props;
+    if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
+      return false;
+    }
 
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
@@ -250,11 +253,11 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances} = this.props;
+    let {intl, tokenBalances,account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
-    let isPrivateKeyValid = privateKey && privateKey.length === 64;
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
     let isAmountValid = this.isAmountValid();
 
 
