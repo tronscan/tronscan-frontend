@@ -53,7 +53,7 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount, note} = this.state;
+    let {to, token, amount, note, privateKey} = this.state;
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
@@ -62,7 +62,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(privateKey);
 
     if (success) {
       this.refreshTokenBalances();
@@ -90,8 +90,7 @@ class SendForm extends React.Component {
 
   confirmSend = () => {
 
-    let {to, token, amount, privateKey} = this.state;
-    this.props.login(privateKey);
+    let {to, token, amount} = this.state;
     this.setState({
       modal: (
           <SweetAlert
