@@ -23,6 +23,7 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class Account extends Component {
 
@@ -264,14 +265,21 @@ class Account extends Component {
   }
 
   onInputChange = (value) => {
+    let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
   confirmPrivateKey = (param) => {
     let {privateKey} = this.state;
+    let {account} = this.props;
 
     let confirm = null;
     if (param === 'freeze')
@@ -280,10 +288,22 @@ class Account extends Component {
       confirm = this.showUnfreezeModal;
     if (param === 'applySR')
       confirm = this.applyForDelegate;
+    if (param === 'claimRewards')
+      confirm = this.claimRewards;
+    if (param === 'unfreezeAssetsConfirmation')
+      confirm = this.unfreezeAssetsConfirmation;
+    if (param === 'changeName')
+      confirm = this.changeName;
+    if (param === 'changeWebsite')
+      confirm = this.changeWebsite;
+    if (param === 'changeGithubURL')
+      confirm = this.changeGithubURL;
 
-    let reConfirm = ()=> {
+
+    let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        confirm();
+        if(pkToAddress(this.privateKey.value)===account.address)
+          confirm();
       }
     }
 
@@ -322,7 +342,7 @@ class Account extends Component {
   showFreezeBalance = () => {
 
     let {privateKey} = this.state;
-    this.props.login(privateKey);
+
     let {trxBalance} = this.props;
 
     if (trxBalance === 0) {
@@ -340,6 +360,7 @@ class Account extends Component {
     this.setState({
       modal: (
           <FreezeBalanceModal
+              privateKey={privateKey}
               onHide={this.hideModal}
               onError={() => {
                 this.setState({
@@ -362,7 +383,6 @@ class Account extends Component {
 
   showUnfreezeModal = async () => {
     let {privateKey} = this.state;
-    this.props.login(privateKey);
     this.setState({
       modal: (
           <SweetAlert
@@ -403,8 +423,8 @@ class Account extends Component {
   claimRewards = async () => {
 
     let {account, currentWallet} = this.props;
-
-    let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
+    let {privateKey} = this.state;
+    let {success, code} = await Client.withdrawBalance(currentWallet.address)(privateKey);
     if (success) {
       this.setState({
         modal: (
@@ -427,10 +447,10 @@ class Account extends Component {
 
   unfreeze = async () => {
     let {account} = this.props;
-
+    let {privateKey} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeBalance(account.address)(account.key);
+    let {success} = await Client.unfreezeBalance(account.address)(privateKey);
     if (success) {
       this.setState({
         modal: (
@@ -453,10 +473,10 @@ class Account extends Component {
 
   unfreezeAssets = async () => {
     let {account} = this.props;
-
+    let {privateKey} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeAssets(account.address)(account.key);
+    let {success} = await Client.unfreezeAssets(account.address)(privateKey);
     if (success) {
       this.setState({
         modal: (
@@ -494,7 +514,8 @@ class Account extends Component {
 
   updateName = async (name) => {
     let {account, currentWallet} = this.props;
-    let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
+    let {privateKey} = this.state;
+    let {success} = await Client.updateAccountName(currentWallet.address, name)(privateKey);
 
     if (success) {
       this.setState({
@@ -519,7 +540,8 @@ class Account extends Component {
 
   updateWebsite = async (url) => {
     let {account, currentWallet} = this.props;
-    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
+    let {privateKey} = this.state;
+    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(privateKey);
 
     if (success) {
       this.setState({
@@ -624,7 +646,8 @@ class Account extends Component {
   updateGithubURL = async (url) => {
 
     let {account, currentWallet} = this.props;
-    let key = await Client.auth(account.key);
+    let {privateKey} = this.state;
+    let key = await Client.auth(privateKey);
 
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");
@@ -658,10 +681,11 @@ class Account extends Component {
 
   applyForDelegate = () => {
     let {privateKey} = this.state;
-    this.props.login(privateKey);
+
     this.setState({
       modal: (
           <ApplyForDelegate
+              privateKey={privateKey}
               onCancel={this.hideModal}
               onConfirm={() => {
                 setTimeout(() => this.props.reloadWallet(), 1200);
@@ -781,7 +805,9 @@ class Account extends Component {
                         {currentWallet.name || "-"}
                         {
                           (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                          <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
+                          <a href="javascript:" className="float-right text-primary" onClick={() => {
+                            this.confirmPrivateKey('changeName')
+                          }}>
                             {tu("set_name")}
                           </a>
                         }
@@ -794,7 +820,9 @@ class Account extends Component {
                       <th>{tu("website")}:</th>
                       <td>
                         <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                        <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
+                        <a href="javascript:" className="float-right text-primary" onClick={() => {
+                          this.confirmPrivateKey('changeWebsite')
+                        }}>
                           {tu("change_website")}
                         </a>
 
@@ -889,7 +917,9 @@ class Account extends Component {
                         <th>{tu("Frozen Supply")}:</th>
                         <td>
                           <a href="javascript:" className="float-right text-primary"
-                             onClick={this.unfreezeAssetsConfirmation}>
+                             onClick={() => {
+                               this.confirmPrivateKey('unfreezeAssetsConfirmation')
+                             }}>
                             Unfreeze Assets
                           </a>
                           {
@@ -971,7 +1001,9 @@ class Account extends Component {
                           {tu("sr_receive_reward_message_0")}
                         </p>
                         <button className="btn btn-success mr-2"
-                                onClick={this.claimRewards}
+                                onClick={() => {
+                                  this.confirmPrivateKey('claimRewards')
+                                }}
                                 disabled={currentWallet.representative.allowance === 0}>
                           {tu("claim_rewards")}
                           <i className="fa fa-hand-holding-usd ml-2"/>
@@ -1008,7 +1040,9 @@ class Account extends Component {
                               {tu("set_github_url_message_0")}
                             </p>
                             <p className="text-center">
-                              <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
+                              <button className="btn btn-dark mr-2" onClick={() => {
+                                this.confirmPrivateKey('changeGithubURL')
+                              }}>
                                 {tu("set_github_link")}
                                 <i className="fab fa-github ml-2"/>
                               </button>
@@ -1026,7 +1060,9 @@ class Account extends Component {
                               <HrefLink href={"http://github.com/" + sr.githubLink}
                                         target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                               <a href="javascript:;" className="float-right text-primary"
-                                 onClick={this.changeGithubURL}>
+                                 onClick={() => {
+                                   this.confirmPrivateKey('changeGithubURL')
+                                 }}>
                                 {tu("Change Github Link")}
                               </a>
                             </td>

@@ -11,8 +11,11 @@ import {addDays, getTime} from "date-fns";
 import Transfers from "../../common/Transfers";
 import {ONE_TRX} from "../../../constants";
 import {NumberField} from "../../common/Fields";
+import {login} from "../../../actions/app";
+import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class TokenDetail extends React.Component {
 
@@ -20,6 +23,7 @@ class TokenDetail extends React.Component {
     super();
 
     this.state = {
+      privateKey:'',
       loading: true,
       token: {},
       tabs: [],
@@ -127,27 +131,84 @@ class TokenDetail extends React.Component {
   submit = async (token) => {
 
     let {account, currentWallet} = this.props;
-    let {buyAmount} = this.state;
+    let {buyAmount,privateKey} = this.state;
 
     let isSuccess = await Client.participateAsset(
         currentWallet.address,
         token.ownerAddress,
         token.name,
-        buyAmount * token.price)(account.key);
+        buyAmount * token.price)(privateKey);
 
-    if (isSuccess) {
+    if (isSuccess.success) {
       this.setState({
         activeToken: null,
         confirmedParticipate: true,
-        participateSuccess: isSuccess,
+        participateSuccess: isSuccess.success,
         buyAmount: 0,
       });
-
+      this.props.reloadWallet();
       return true;
     } else {
       return false;
     }
   };
+  onInputChange = (value) => {
+    let {account} = this.props;
+    if (value && value.length === 64) {
+      this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
+    }
+    this.setState({privateKey: value})
+    this.privateKey.value = value;
+  }
+  confirmPrivateKey = (param) => {
+    let {privateKey,token} = this.state;
+    let {account} = this.props;
+
+    let reConfirm = ()=> {
+      if (this.privateKey.value && this.privateKey.value.length === 64) {
+        if(pkToAddress(this.privateKey.value)===account.address)
+          this.buyTokens(token);
+      }
+    }
+
+    this.setState({
+      alert: (
+          <SweetAlert
+              info
+              showCancel
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
+              confirmBtnBsStyle="success"
+              cancelBtnBsStyle="default"
+              title={tu("confirm_private_key")}
+              onConfirm={reConfirm}
+              onCancel={() => this.setState({alert: null})}
+              style={{marginLeft: '-240px', marginTop: '-195px'}}
+          >
+            <div className="form-group">
+              <div className="input-group mb-3">
+                <input type="text"
+                       ref={ref => this.privateKey = ref}
+                       onChange={(ev) => {
+                         this.onInputChange(ev.target.value)
+                       }}
+                       className="form-control is-invalid"
+                />
+                <div className="invalid-feedback">
+                  {tu("fill_a_valid_private_key")}
+                </div>
+              </div>
+            </div>
+          </SweetAlert>
+      )
+    });
+  }
+
 
   confirmTransaction = async (token) => {
 
@@ -306,7 +367,7 @@ class TokenDetail extends React.Component {
                                 <button className="btn btn-success"
                                         type="button"
                                         disabled={!this.isBuyValid()}
-                                        onClick={() => this.buyTokens(token)}>
+                                        onClick={() => this.confirmPrivateKey()}>
                                   Participate
                                 </button>
                               </div>
@@ -361,6 +422,9 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  login,
+  reloadWallet
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenDetail));

@@ -14,6 +14,7 @@ import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class SendForm extends React.Component {
 
@@ -39,12 +40,14 @@ class SendForm extends React.Component {
    */
   isValid = () => {
     let {to, token, amount, privateKey} = this.state;
+    let {account} = this.props;
 
     if (!privateKey || privateKey.length !== 64) {
       return false;
     }
-
-    const {account} = this.props;
+    if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
+      return false;
+    }
 
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
@@ -53,7 +56,7 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount, note} = this.state;
+    let {to, token, amount, note, privateKey} = this.state;
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
@@ -62,7 +65,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(privateKey);
 
     if (success) {
       this.refreshTokenBalances();
@@ -90,8 +93,7 @@ class SendForm extends React.Component {
 
   confirmSend = () => {
 
-    let {to, token, amount, privateKey} = this.state;
-    this.props.login(privateKey);
+    let {to, token, amount} = this.state;
     this.setState({
       modal: (
           <SweetAlert
@@ -251,11 +253,11 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances} = this.props;
+    let {intl, tokenBalances,account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
-    let isPrivateKeyValid = privateKey && privateKey.length === 64;
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
     let isAmountValid = this.isAmountValid();
 
 
@@ -304,8 +306,8 @@ class SendForm extends React.Component {
                   onChange={(ev) => this.setState({token: ev.target.value})}
                   value={token}>
                 {
-                  tokenBalances.map(tokenBalance => (
-                      <SendOption key={tokenBalance.name}
+                  tokenBalances.map((tokenBalance,index) => (
+                      <SendOption key={index}
                                   name={tokenBalance.name}
                                   balance={tokenBalance.balance}/>
                   ))

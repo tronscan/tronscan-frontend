@@ -526,7 +526,7 @@ export const messages = {
   "token_link_message_1": "通证页面",
   "token_link_message_2": "在几分钟之内",
   "description_error_message_0": "描述需要不超过200个字符",
-  "token_creation_error": "尝试创建同通证时发生错误",
+  "token_creation_error": "尝试创建通证时发生错误",
   "tokenname_error_message_0": "名称需要不超过32个字符",
   "tokenname_error_message_1": "名称只能包含a-Z的字母",
   "abbreviation_required": "需要设置一个缩写",
