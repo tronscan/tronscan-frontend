@@ -320,7 +320,7 @@ class VoteOverview extends React.Component {
 
     let reConfirm = ()=> {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)!==account.address)
+        if(pkToAddress(this.privateKey.value)===account.address)
           this.submitVotes();
       }
     }
