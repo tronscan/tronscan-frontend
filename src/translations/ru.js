@@ -45,7 +45,7 @@ export const messages = {
   "block": "Блок",
   "name": "Имя/Название",
   "website": "Вебсайт",
-  "address": "Адресс",
+  "address": "Адрес",
   "sign_out": "выйти",
   "sign_in": "войти",
   "register_login": "Регистрация/Вход",
@@ -246,7 +246,7 @@ export const messages = {
   "request_trx_for_testing": "запросить для теста TRX",
   "token_balances": "Баланс Токена",
   "produced_blocks": "созданные Блоки",
-  "voters": "Выбиратели",
+  "voters": "Избератели",
   "progress": "Достижения",
   "transactions_count": "{transactions, plural, оne {transaction} other {transactions}}",
   "issuer": "Издатель",
@@ -739,7 +739,7 @@ export const messages = {
   */
   "record_not_found": "запись не найдена!",
   "warning": "Предупреждение",
-  "login_success": "Успех в Интернете",
+  "login_success": "вход выполнен",
   "logout_success": "Выход из системы",
   /*
   ##################################################################################
