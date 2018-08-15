@@ -303,6 +303,9 @@ class VoteOverview extends React.Component {
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
     }
+    else{
+      this.privateKey.className = "form-control is-invalid";
+    }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
