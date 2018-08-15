@@ -81,7 +81,6 @@ class TokenCreate extends Component {
   preSubmit = () => {
     let {intl} = this.props;
     let {privateKey} = this.state;
-    this.props.login(privateKey);
     this.setState({
       modal: (
           <SweetAlert
@@ -132,6 +131,7 @@ class TokenCreate extends Component {
 
   submit = async () => {
     let {account} = this.props;
+    let {privateKey} =this.state;
 
     this.setState({modal: null, loading: true, submitMessage: null});
 
@@ -148,7 +148,7 @@ class TokenCreate extends Component {
         description: this.state.description,
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
-      })(account.key);
+      })(privateKey);
 
       if (success) {
         this.setState({

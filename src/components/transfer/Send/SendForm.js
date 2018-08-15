@@ -303,8 +303,8 @@ class SendForm extends React.Component {
                   onChange={(ev) => this.setState({token: ev.target.value})}
                   value={token}>
                 {
-                  tokenBalances.map(tokenBalance => (
-                      <SendOption key={tokenBalance.name}
+                  tokenBalances.map((tokenBalance,index) => (
+                      <SendOption key={index}
                                   name={tokenBalance.name}
                                   balance={tokenBalance.balance}/>
                   ))
