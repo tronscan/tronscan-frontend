@@ -190,10 +190,10 @@ export const messages = {
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
   "volume_24": "24 Hour Trading Volume",
-  "billion_usd": "Billion USD",
-  "loading_transfers": "Loading Transfers",
-  "loading_transactions": "Loading Transactions",
-  "loading_block": "Loading Block",
+  "billion_usd": "Milyar USD",
+  "loading_transfers": "Aktarımlar Yükleniyor",
+  "loading_transactions": "İşlemler Yükleniyor",
+  "loading_block": "Blok Yükleniyor",
   "current_power": "Mevcut TRON Power",
   "produce_distribution": "Blok Üreticileri Çizelgesi",
   "confirm_token_issue": "Jeton Basımı Onayla",
@@ -787,10 +787,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_tron": "Buy TRON",
-  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron": "TRON satın al",
+  "buy_tron_message_0": "TRX itibari (siyasi) para ile ya da diğer Kripto-Paralar ile bir borsaya gitmeden doğrudan alınabilir. TRX satın almak için en kolay ve hızlı yöntemi sunan Changelly.com isimli hizmet sağlayıcısı kullanılmaktadır. Desteklenen para birimleri ve SSS buradan görüntülebilir ",
   "buy_tron_using_changelly": "Buy TRON using Changelly",
-  "cant_load_widget": "Can't load widget",
+  "cant_load_widget": "Araç yüklenemiyor",
   /*
   ##################################################################################
   #                                                                                #
