@@ -914,18 +914,18 @@ class Account extends Component {
                     {
                       issuedAsset.frozen.length > 0 &&
                       <tr>
-                        <th>{tu("Frozen Supply")}:</th>
+                        <th>{tu("frozen_supply")}:</th>
                         <td>
                           <a href="javascript:" className="float-right text-primary"
                              onClick={() => {
                                this.confirmPrivateKey('unfreezeAssetsConfirmation')
                              }}>
-                            Unfreeze Assets
+                            {tu("unfreeze_assets")}
                           </a>
                           {
                             issuedAsset.frozen.map(frozen => (
                                 <div>
-                                  {frozen.amount} can be unlocked&nbsp;
+                                  {frozen.amount} {tu("can_be_unlocked")}&nbsp;
                                   {
                                     (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
                                     <FormattedRelative
