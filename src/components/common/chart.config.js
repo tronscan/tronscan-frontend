@@ -121,6 +121,76 @@ module.exports = {
             }
         ]
     },
+  supplyTypesTRXPieChart: {
+        color: [
+            '#c84a45',
+            '#e7afad',
+            '#e19b98',
+            '#da8683'
+        ],
+        title: {
+            text: '',
+            subtext: '',
+            x: 'center',
+            link:'',
+            target:'self'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        toolbox: {
+            x2:5,
+            y: -5,
+            feature: {
+                restore: {
+                    title: 'restore'
+                },
+                saveAsImage: {
+                    show: true,
+                    title: 'save'
+                }
+            }
+        },
+        legend: {
+            type:'plain',
+            show:false,
+            orient: 'horizontal',
+            bottom: 0,
+            left: 120,
+            selectedMode:'false',
+            data: []
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [],
+                "label": {
+                    "normal": {
+                        "show": true,
+                        "formatter": "{b}"
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+                "labelLine": {
+                    "normal": {
+                        "show": true,
+                        "smooth": false,
+                        "length": 10,
+                        "length2": 5
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+            }
+        ]
+    },
   lineChart: {
     title: {
       text: '',
