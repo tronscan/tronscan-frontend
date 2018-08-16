@@ -19,6 +19,7 @@ import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -300,8 +301,14 @@ class VoteOverview extends React.Component {
   };
 
   onInputChange = (value) => {
+    let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
@@ -309,10 +316,12 @@ class VoteOverview extends React.Component {
 
   confirmPrivateKey = (param) => {
     let {privateKey} = this.state;
+    let {account} = this.props;
 
     let reConfirm = ()=> {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        this.submitVotes();
+        if(pkToAddress(this.privateKey.value)===account.address)
+          this.submitVotes();
       }
     }
 

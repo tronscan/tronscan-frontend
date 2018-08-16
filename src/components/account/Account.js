@@ -23,6 +23,7 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class Account extends Component {
 
@@ -264,14 +265,21 @@ class Account extends Component {
   }
 
   onInputChange = (value) => {
+    let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
   confirmPrivateKey = (param) => {
     let {privateKey} = this.state;
+    let {account} = this.props;
 
     let confirm = null;
     if (param === 'freeze')
@@ -294,7 +302,8 @@ class Account extends Component {
 
     let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        confirm();
+        if(pkToAddress(this.privateKey.value)===account.address)
+          confirm();
       }
     }
 
