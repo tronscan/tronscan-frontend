@@ -19,8 +19,8 @@
   "Live.js.map": "static/js/Live.2f6fa0df.chunk.js.map",
   "Markets.js": "static/js/Markets.e9b45ad2.chunk.js",
   "Markets.js.map": "static/js/Markets.e9b45ad2.chunk.js.map",
-  "NodeMap.js": "static/js/NodeMap.b8ad8b7a.chunk.js",
-  "NodeMap.js.map": "static/js/NodeMap.b8ad8b7a.chunk.js.map",
+  "NodeMap.js": "static/js/NodeMap.4ddb33b3.chunk.js",
+  "NodeMap.js.map": "static/js/NodeMap.4ddb33b3.chunk.js.map",
   "NodeTester.js": "static/js/NodeTester.63c6a034.chunk.js",
   "NodeTester.js.map": "static/js/NodeTester.63c6a034.chunk.js.map",
   "Nodes.js": "static/js/Nodes.e49876d8.chunk.js",
@@ -69,6 +69,6 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "tron-icon.svg": "df7f2ae527d40907753c23c534b4d428.svg",
-  "vendors.js": "static/js/vendors.3104ac69.js",
-  "vendors.js.map": "static/js/vendors.3104ac69.js.map"
+  "vendors.js": "static/js/vendors.0f0b97de.js",
+  "vendors.js.map": "static/js/vendors.0f0b97de.js.map"
 }
