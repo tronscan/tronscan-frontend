@@ -199,7 +199,7 @@ export default class MarketOverview extends Component {
 
 
         <div className="card">
-          <Table columns={columns} dataSource={tableData}/>
+          <Table columns={columns} dataSource={tableData} scroll={{ x: 1140 }} />
           {/*
             <table className="table table-hover bg-white m-0 table-striped">
             <thead className="thead-dark">

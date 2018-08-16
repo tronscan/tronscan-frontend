@@ -325,7 +325,7 @@ class Navigation extends PureComponent {
     }
     Lockr.set("account_address", account.address);
 
-    return (
+    return ( 
         <Fragment>
           {
             (account.isLoggedIn && wallet.isOpen) ?
@@ -375,7 +375,6 @@ class Navigation extends PureComponent {
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
                     </Link>
                     <li className="dropdown-divider"/>
-
                     <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
@@ -489,15 +488,14 @@ class Navigation extends PureComponent {
               <div className="col mx-auto text-danger text-center py-2">
                 Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
               </div>
-            }
-            <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
-              <ul className="navbar-nav navbar-right">
-                {
-                  wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
-                }
-                {this.renderWallet()}
-              </ul>
-            </div>
+          }
+          <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
+            <ul className="navbar-nav navbar-right wallet-nav">
+              {
+                wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+              }
+              {this.renderWallet()}
+            </ul>
           </div>
           <nav className="top-bar navbar navbar-expand-md navbar-dark">
             <div className="container">
