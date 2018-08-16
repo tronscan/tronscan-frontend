@@ -181,10 +181,10 @@ class Statistics extends React.Component {
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
         let genesisCirculatingNum = (currentTotalSupply - blockProduceRewardsNum - nodeRewardsNum - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
-            {value: genesisCirculatingNum, name: 'genesis_circulating_supply', selected: true},
-            {value: TRONFoundationTotal, name: 'tron_foundation', selected: true},
-            {value: blockProduceRewardsNum, name: 'block_produce_rewards', selected: true},
             {value: nodeRewardsNum, name: 'node_rewards', selected: true},
+            {value: blockProduceRewardsNum, name: 'block_produce_rewards', selected: true},
+            {value: TRONFoundationTotal, name: 'tron_foundation', selected: true},
+            {value: genesisCirculatingNum, name: 'genesis_circulating_supply', selected: true},
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
@@ -372,7 +372,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
         return (
             <main className="container header-overlap">
                 {
-                    match.params.chartName != 'pieChart' && match.params.chartName != 'trxoverview' ?
+                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' ?
                         <div className="alert alert-light" role="alert">
                             <div className="row">
                                 <div className="col-md-6 text-center">
@@ -538,7 +538,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
 
                                 }
                                 {
-                                    match.params.chartName === 'trxoverview' &&
+                                    match.params.chartName === 'supply' &&
                                     <div>
                                         {
                                             supplyTypesChart === null ?
@@ -599,8 +599,8 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style={{color:'red'}}>
-                                                                    <Link to="/blockchain/foundation" style={{color:'red'}}>{tu("foundation_freeze")}</Link>
+                                                                <td style={{color:'red'}} className="go-foundation">
+                                                                    <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("foundation_freeze")}</Link>
                                                                 </td>
                                                                 <td>
                                                                     {foundationFreeze} TRX
@@ -636,13 +636,13 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                         <div className="main-counters row">
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
-                                                                    <CountUp start={0} end={currentTotalSupply} duration={1}  separator="," decimals={2} />
+                                                                    <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={2} />
                                                                 </span>
                                                                 <h4>{tu('total_TRX_supply')}</h4>
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
-                                                                    $<CountUp start={0} end={marketCapitalization} duration={1}  separator="," decimals={2}/>
+                                                                    $<CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>
                                                                 </span>
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>

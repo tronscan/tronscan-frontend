@@ -240,7 +240,7 @@ export class SupplyTypesTRXPieChart extends React.Component {
         config.supplyTypesTRXPieChart.title.text=intl.formatMessage({id:message.id});
         config.supplyTypesTRXPieChart.series[0].data = [];
         config.supplyTypesTRXPieChart.legend.data = [];
-        config.supplyTypesTRXPieChart.title.link = '#/blockchain/stats/trxoverview';
+        config.supplyTypesTRXPieChart.title.link = '#/blockchain/stats/supply';
         config.supplyTypesTRXPieChart.tooltip.formatter = function (datas) {
             return (
                 intl.formatMessage({id: datas.name}) + ' (' + intl.formatNumber(datas.value) + ' TRX' + ')<br/>' +
@@ -253,10 +253,11 @@ export class SupplyTypesTRXPieChart extends React.Component {
             config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
             config.supplyTypesTRXPieChart.toolbox.feature = {
                 restore: {
+                    show: false,
                     title: 'restore'
                 },
                 saveAsImage: {
-                    show: true,
+                    show: false,
                     title: 'save'
                 }
             }

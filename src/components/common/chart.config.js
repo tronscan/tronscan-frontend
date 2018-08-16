@@ -157,8 +157,9 @@ module.exports = {
             show:false,
             orient: 'horizontal',
             bottom: 0,
-            left: 120,
+            left: 'center',
             selectedMode:'false',
+            itemGap:20,
             data: []
         },
         series: [
