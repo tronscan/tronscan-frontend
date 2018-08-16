@@ -168,7 +168,7 @@ class TokenList extends Component {
                               <td className="d-md-table-cell">{token.abbr}</td>
                               <td className="d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
                               <td className="d-md-table-cell"><FormattedNumber value={token.issued}/></td>
-                                {
+                              <td>  {
                                   token.issued !== 0 ?
                                       <FormattedNumber value={token.issued}/> :
                                       '-'

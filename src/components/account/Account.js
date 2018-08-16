@@ -1150,6 +1150,7 @@ class Account extends Component {
               </div>
             </div>
           </div>
+        </div>
         </main>
     )
   }
