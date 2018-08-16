@@ -787,14 +787,14 @@ class Account extends Component {
           </div>
 
           {showBandwidth && this.renderBandwidth()}
-
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                {
-                  currentWallet.representative.enabled &&
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              {
+                currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-                }
+              }
+              <div className="table-responsive">
                 <table className="table m-0">
                   <tbody>
                   {
@@ -845,17 +845,17 @@ class Account extends Component {
                         <p className="text-danger">
                           ({tu("do_not_send_2")})
                         </p>
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("transactions")}:</th>
-                    <td>
-                      <FormattedNumber value={totalTransactions}/>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <th>{tu("transactions")}:</th>
+                  <td>
+                    <FormattedNumber value={totalTransactions}/>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
               </div>
             </div>
           </div>

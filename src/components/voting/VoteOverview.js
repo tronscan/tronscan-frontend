@@ -517,7 +517,8 @@ class VoteOverview extends React.Component {
                           }
                         </Sticky>
                     }
-                    <table className="table vote-table table-hover table-striped m-0">
+                    <div className="table-responsive">
+                      <table className="table vote-table table-hover table-striped m-0">
                       <thead className="thead-dark">
                         <tr>
                           <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
@@ -622,6 +623,7 @@ class VoteOverview extends React.Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </StickyContainer>
               </div>

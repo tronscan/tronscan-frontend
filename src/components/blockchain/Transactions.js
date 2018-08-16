@@ -98,14 +98,15 @@ class Transactions extends React.Component {
                         )
                       }
                     </Sticky>
-                    <table className="table table-hover table-striped m-0 transactions-table">
+                    <div className="table-responsive">
+                      <table className="table table-hover table-striped m-0 transactions-table">
                       <thead className="thead-dark">
                       <tr>
                         <th style={{width: 130}}>#</th>
-                        <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("block")}</th>
-                        <th className="d-none d-lg-table-cell" style={{width: 125}}>{tu("created")}</th>
-                        <th className="d-none d-sm-table-cell">{tu("address")}</th>
-                        <th className="d-none d-md-table-cell" style={{width: 125}}>{tu("contract")}</th>
+                        <th className="d-md-table-cell" style={{width: 100}}>{tu("block")}</th>
+                        <th className="d-lg-table-cell" style={{width: 125}}>{tu("created")}</th>
+                        <th className="d-sm-table-cell">{tu("address")}</th>
+                        <th className="d-md-table-cell" style={{width: 125}}>{tu("contract")}</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -117,16 +118,16 @@ class Transactions extends React.Component {
                                 <TransactionHashLink hash={trx.hash}>{trx.hash}</TransactionHashLink>
                               </Truncate>
                             </th>
-                            <td className="d-none d-md-table-cell">
+                            <td className="d-md-table-cell">
                               <BlockNumberLink number={trx.block}/>
                             </td>
-                            <td className="text-nowrap d-none d-lg-table-cell">
+                            <td className="text-nowrap d-lg-table-cell">
                               <TimeAgo date={trx.timestamp}/>
                             </td>
-                            <td className="d-none d-sm-table-cell">
+                            <td className="d-sm-table-cell">
                               <AddressLink address={trx.ownerAddress}/>
                             </td>
-                            <td className="d-none d-md-table-cell">
+                            <td className="d-md-table-cell">
                               {ContractTypes[trx.contractType]}
                             </td>
                           </tr>
@@ -134,6 +135,7 @@ class Transactions extends React.Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </Fragment>
                 }
               </div>

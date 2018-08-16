@@ -145,15 +145,16 @@ class TokenList extends Component {
                         )
                       }
                     </Sticky>
-                    <table className="table table-hover m-0 table-striped">
+                    <div className="table-responsive">
+                      <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
                         <th className="text-nowrap">{tu("name")}
                           <SearchInput search={this.searchName}></SearchInput>
                         </th>
-                        <th className="d-none d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
-                        <th className="d-none d-md-table-cell">{tu("total_supply")}</th>
-                        <th className="d-none d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
+                        <th className="d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
+                        <th className="d-md-table-cell" >{tu("total_supply")}</th>
+                        <th className="d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
                         <th className="text-nowrap" style={{width: 150}}>{tu("registered")}</th>
                         {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
                         {/*<th style={{width: 150}}>{tu("transactions")}</th>*/}
@@ -164,9 +165,9 @@ class TokenList extends Component {
                         tokens.map((token, index) => (
                             <tr key={index}>
                               <td className="text-nowrap"><TokenLink name={token.name}/></td>
-                              <td className="d-none d-md-table-cell">{token.abbr}</td>
-                              <td className="d-none d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
-                              <td className="d-none d-md-table-cell">
+                              <td className="d-md-table-cell">{token.abbr}</td>
+                              <td className="d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
+                              <td className="d-md-table-cell"><FormattedNumber value={token.issued}/></td>
                                 {
                                   token.issued !== 0 ?
                                       <FormattedNumber value={token.issued}/> :
@@ -184,6 +185,7 @@ class TokenList extends Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </StickyContainer>
               </div>
