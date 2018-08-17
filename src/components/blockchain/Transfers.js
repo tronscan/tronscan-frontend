@@ -118,7 +118,7 @@ class Transfers extends React.Component {
                                   <td className="d-md-table-cell">
                                     <AddressLink address={trx.transferFromAddress} />
                                   </td>
-                                  <td className="d-sm-table-cell">
+                                  <td className="d-sm-table-cell transfer-cell">
                                     <AddressLink address={trx.transferToAddress} />
                                   </td>
                                   <td className="text-nowrap text-right">
