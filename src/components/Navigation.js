@@ -306,12 +306,7 @@ class Navigation extends PureComponent {
 
     renderWallet() {
 
-        let {
-            account,
-            totalTransactions = 0,
-            flags,
-            wallet,
-        } = this.props;
+        let {account, totalTransactions = 0, flags, wallet} = this.props;
 
         if (wallet.isLoading) {
             return (
@@ -323,7 +318,7 @@ class Navigation extends PureComponent {
             );
 
         }
-        Lockr.set("account_address", account.address);
+        //Lockr.set("account_address", account.address);
 
         return (
             <Fragment>

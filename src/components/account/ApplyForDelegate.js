@@ -38,7 +38,7 @@ class ApplyForDelegate extends Component {
 
     this.setState({ loading: true});
 
-    let {success} = await Client.applyForDelegate(account.address, url)(privateKey);
+    let {success} = await Client.applyForDelegate(account.address, url)(account.key);
     this.setState({ loading: false });
     if (success) {
       this.confirm();

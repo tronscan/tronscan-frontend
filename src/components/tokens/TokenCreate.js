@@ -149,7 +149,7 @@ class TokenCreate extends Component {
         description: this.state.description,
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
-      })(privateKey);
+      })(account.key);
 
       if (success) {
         this.setState({
@@ -402,21 +402,10 @@ class TokenCreate extends Component {
 
     return (
         <Fragment>
-          <div className="form-group">
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
-                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
-                     value={privateKey}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_private_key")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
+
           <div className="text-center">
             <button
-                disabled={!valid || !isPrivateKeyValid}
+                disabled={!valid}
                 type="button"
                 className="btn btn-success"
                 onClick={this.preSubmit}>{tu("issue_token")}</button>
