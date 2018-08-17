@@ -9,7 +9,7 @@ import "../../../styles/marker-cluster.scss";
 import "leaflet/dist/leaflet-src.js";
 import "leaflet.markercluster/dist/leaflet.markercluster-src.js";
 import "../../../lib/leaflet-echarts/leaflet-echarts.js";
-import "../../../lib/leaflet-echarts/lib/echarts.source";
+import "../../../lib/leaflet-echarts/lib/echarts.source.js";
 import config from '../../common/chart.config.js'
 
 export default class NodeMap extends Component {

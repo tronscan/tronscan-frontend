@@ -18,11 +18,13 @@ import {
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  CopyrightAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
   TokensCreateAsync,
   AccountsAsync,
+  FoundationAsync,
   NodesAsync,
   LiveAsync,
   TokenDetailAsync
@@ -90,6 +92,12 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync
       },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        icon: "fa fa-address-book",
+        component: FoundationAsync,
+      }
     ]
   },
   {
@@ -236,6 +244,12 @@ export const routes = [
         label: "frequently_asked_questions",
         component: FaqAsync,
         path: "/help/faq",
+      },
+      {
+        label: "copyright",
+        component: CopyrightAsync,
+        path: "/help/copyright",
+        showInMenu: false
       },
       {
         label: "Ledger",

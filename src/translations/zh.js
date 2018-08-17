@@ -526,7 +526,7 @@ export const messages = {
   "token_link_message_1": "通证页面",
   "token_link_message_2": "在几分钟之内",
   "description_error_message_0": "描述需要不超过200个字符",
-  "token_creation_error": "尝试创建同通证时发生错误",
+  "token_creation_error": "尝试创建通证时发生错误",
   "tokenname_error_message_0": "名称需要不超过32个字符",
   "tokenname_error_message_1": "名称只能包含a-Z的字母",
   "abbreviation_required": "需要设置一个缩写",
@@ -826,6 +826,12 @@ export const messages = {
   "power": "投票权",
   "token_transfers": "通证转账",
   "website_url": "网站地址",
-  "search": "搜索"
-
+  "language_support":"目前只支持英文输入",
+  "note":"备注",
+  "_percentage":"百分比",
+  "foundation":"基金会地址",
+  "foundation_address":"基金会锁仓TRX总数",
+  "unfreeze_time":"解冻时间",
+  "addresses_number":"地址数",
+  "copyright":"版权"
 };

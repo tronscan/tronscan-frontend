@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {t, tu} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import xhr from "axios";
+import {injectIntl} from "react-intl";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
@@ -22,6 +23,7 @@ import ChangeNameModal from "./ChangeNameModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class Account extends Component {
 
@@ -263,15 +265,22 @@ class Account extends Component {
   }
 
   onInputChange = (value) => {
-    console.log(value);
+    let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
   confirmPrivateKey = (param) => {
     let {privateKey} = this.state;
+    let {account} = this.props;
+
     let confirm = null;
     if (param === 'freeze')
       confirm = this.showFreezeBalance;
@@ -279,16 +288,36 @@ class Account extends Component {
       confirm = this.showUnfreezeModal;
     if (param === 'applySR')
       confirm = this.applyForDelegate;
+    if (param === 'claimRewards')
+      confirm = this.claimRewards;
+    if (param === 'unfreezeAssetsConfirmation')
+      confirm = this.unfreezeAssetsConfirmation;
+    if (param === 'changeName')
+      confirm = this.changeName;
+    if (param === 'changeWebsite')
+      confirm = this.changeWebsite;
+    if (param === 'changeGithubURL')
+      confirm = this.changeGithubURL;
+
+
+    let reConfirm = () => {
+      if (this.privateKey.value && this.privateKey.value.length === 64) {
+        if(pkToAddress(this.privateKey.value)===account.address)
+          confirm();
+      }
+    }
+
     this.setState({
       modal: (
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
               confirmBtnBsStyle="success"
               cancelBtnBsStyle="default"
-              title="Confirm Private Key"
-              onConfirm={confirm}
+              title={tu("confirm_private_key")}
+              onConfirm={reConfirm}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
@@ -313,7 +342,7 @@ class Account extends Component {
   showFreezeBalance = () => {
 
     let {privateKey} = this.state;
-    this.props.login(privateKey);
+
     let {trxBalance} = this.props;
 
     if (trxBalance === 0) {
@@ -331,6 +360,7 @@ class Account extends Component {
     this.setState({
       modal: (
           <FreezeBalanceModal
+              privateKey={privateKey}
               onHide={this.hideModal}
               onError={() => {
                 this.setState({
@@ -353,7 +383,6 @@ class Account extends Component {
 
   showUnfreezeModal = async () => {
     let {privateKey} = this.state;
-    this.props.login(privateKey);
     this.setState({
       modal: (
           <SweetAlert
@@ -394,7 +423,7 @@ class Account extends Component {
   claimRewards = async () => {
 
     let {account, currentWallet} = this.props;
-
+    let {privateKey} = this.state;
     let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
     if (success) {
       this.setState({
@@ -418,7 +447,7 @@ class Account extends Component {
 
   unfreeze = async () => {
     let {account} = this.props;
-
+    let {privateKey} = this.state;
     this.hideModal();
 
     let {success} = await Client.unfreezeBalance(account.address)(account.key);
@@ -444,7 +473,7 @@ class Account extends Component {
 
   unfreezeAssets = async () => {
     let {account} = this.props;
-
+    let {privateKey} = this.state;
     this.hideModal();
 
     let {success} = await Client.unfreezeAssets(account.address)(account.key);
@@ -485,6 +514,7 @@ class Account extends Component {
 
   updateName = async (name) => {
     let {account, currentWallet} = this.props;
+    let {privateKey} = this.state;
     let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
 
     if (success) {
@@ -510,6 +540,7 @@ class Account extends Component {
 
   updateWebsite = async (url) => {
     let {account, currentWallet} = this.props;
+    let {privateKey} = this.state;
     let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
 
     if (success) {
@@ -615,6 +646,7 @@ class Account extends Component {
   updateGithubURL = async (url) => {
 
     let {account, currentWallet} = this.props;
+    let {privateKey} = this.state;
     let key = await Client.auth(account.key);
 
     let [name, repo] = url.split("/");
@@ -649,10 +681,11 @@ class Account extends Component {
 
   applyForDelegate = () => {
     let {privateKey} = this.state;
-    this.props.login(privateKey);
+
     this.setState({
       modal: (
           <ApplyForDelegate
+              privateKey={privateKey}
               onCancel={this.hideModal}
               onConfirm={() => {
                 setTimeout(() => this.props.reloadWallet(), 1200);
@@ -754,71 +787,76 @@ class Account extends Component {
           </div>
 
           {showBandwidth && this.renderBandwidth()}
-
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                {
-                  currentWallet.representative.enabled &&
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              {
+                currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-                }
-                <table className="table m-0">
-                  <tbody>
-                  {
-                    wallet.isOpen &&
-                    <tr>
-                      <th>{tu("name")}:</th>
-                      <td>
-                        {currentWallet.name || "-"}
-                        {
-                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                          <a href="javascript:" className="float-right text-primary" onClick={this.changeName}>
-                            {tu("set_name")}
+              }
+                  <div className="table-responsive">
+                    <table className="table m-0">
+                      <tbody>
+                      {
+                        wallet.isOpen &&
+                        <tr>
+                          <th>{tu("name")}:</th>
+                          <td>
+                            {currentWallet.name || "-"}
+                            {
+                              (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
+                              <a href="javascript:" className="float-right text-primary" onClick={() => {
+                                this.changeName()
+                              }}>
+                                {tu("set_name")}
+                              </a>
+                            }
+                          </td>
+                        </tr>
+                      }
+                      {
+                        currentWallet.representative.enabled &&
+                        <tr>
+                          <th>{tu("website")}:</th>
+                          <td>
+                            <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                            <a href="javascript:" className="float-right text-primary" onClick={() => {
+                              this.changeWebsite()
+                            }}>
+                              {tu("change_website")}
+                            </a>
+
+                          </td>
+                        </tr>
+                      }
+                      <tr>
+                        <th style={{width: 150}}>{tu("address")}:</th>
+                        <td>
+                          <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
+                            {tu("show_qr_code")}
                           </a>
+
+                          <div className="float-left" style={{width: 350}}>
+                            <AddressLink address={account.address} includeCopy={true}/>
+                          </div>
+
+                          {
+                            IS_TESTNET &&
+                            <p className="text-danger">
+                              ({tu("do_not_send_2")})
+                            </p>
                         }
                       </td>
                     </tr>
-                  }
-                  {
-                    currentWallet.representative.enabled &&
                     <tr>
-                      <th>{tu("website")}:</th>
+                      <th>{tu("transactions")}:</th>
                       <td>
-                        <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                        <a href="javascript:" className="float-right text-primary" onClick={this.changeWebsite}>
-                          {tu("change_website")}
-                        </a>
-
+                        <FormattedNumber value={totalTransactions}/>
                       </td>
                     </tr>
-                  }
-                  <tr>
-                    <th style={{width: 150}}>{tu("address")}:</th>
-                    <td>
-                      <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                        {tu("show_qr_code")}
-                      </a>
-
-                      <div className="float-left" style={{width: 350}}>
-                        <AddressLink address={account.address} includeCopy={true}/>
-                      </div>
-
-                      {
-                        IS_TESTNET &&
-                        <p className="text-danger">
-                          ({tu("do_not_send_2")})
-                        </p>
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("transactions")}:</th>
-                    <td>
-                      <FormattedNumber value={totalTransactions}/>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                  </div>
               </div>
             </div>
           </div>
@@ -877,16 +915,18 @@ class Account extends Component {
                     {
                       issuedAsset.frozen.length > 0 &&
                       <tr>
-                        <th>{tu("Frozen Supply")}:</th>
+                        <th>{tu("frozen_supply")}:</th>
                         <td>
                           <a href="javascript:" className="float-right text-primary"
-                             onClick={this.unfreezeAssetsConfirmation}>
-                            Unfreeze Assets
+                             onClick={() => {
+                               this.unfreezeAssetsConfirmation()
+                             }}>
+                            {tu("unfreeze_assets")}
                           </a>
                           {
                             issuedAsset.frozen.map(frozen => (
                                 <div>
-                                  {frozen.amount} can be unlocked&nbsp;
+                                  {frozen.amount} {tu("can_be_unlocked")}&nbsp;
                                   {
                                     (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
                                     <FormattedRelative
@@ -932,14 +972,14 @@ class Account extends Component {
                   {
                     hasFrozen &&
                     <button className="btn btn-danger mr-2" onClick={() => {
-                      this.confirmPrivateKey('unfreeze')
+                      this.showUnfreezeModal()
                     }}>
                       {tu("unfreeze")}
                       <i className="fa fa-fire ml-2"/>
                     </button>
                   }
                   <button className="btn btn-dark mr-2" onClick={() => {
-                    this.confirmPrivateKey('freeze')
+                    this.showFreezeBalance()
                   }}>
                     {tu("freeze")}
                     <i className="fa fa-snowflake ml-2"/>
@@ -962,7 +1002,9 @@ class Account extends Component {
                           {tu("sr_receive_reward_message_0")}
                         </p>
                         <button className="btn btn-success mr-2"
-                                onClick={this.claimRewards}
+                                onClick={() => {
+                                  this.claimRewards()
+                                }}
                                 disabled={currentWallet.representative.allowance === 0}>
                           {tu("claim_rewards")}
                           <i className="fa fa-hand-holding-usd ml-2"/>
@@ -999,7 +1041,9 @@ class Account extends Component {
                               {tu("set_github_url_message_0")}
                             </p>
                             <p className="text-center">
-                              <button className="btn btn-dark mr-2" onClick={this.changeGithubURL}>
+                              <button className="btn btn-dark mr-2" onClick={() => {
+                                this.changeGithubURL()
+                              }}>
                                 {tu("set_github_link")}
                                 <i className="fab fa-github ml-2"/>
                               </button>
@@ -1017,7 +1061,9 @@ class Account extends Component {
                               <HrefLink href={"http://github.com/" + sr.githubLink}
                                         target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                               <a href="javascript:;" className="float-right text-primary"
-                                 onClick={this.changeGithubURL}>
+                                 onClick={() => {
+                                   this.changeGithubURL()
+                                 }}>
                                 {tu("Change Github Link")}
                               </a>
                             </td>
@@ -1047,7 +1093,7 @@ class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <button className="btn btn-success mr-2" onClick={() => {
-                          this.confirmPrivateKey('applySR')
+                          this.applyForDelegate()
                         }}>
                           <i className="fa fa-hand-holding-usd mr-2"/>
                           {tu("apply_super_representative_candidate")}
@@ -1078,10 +1124,10 @@ class Account extends Component {
               <div className="card">
                 <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
                   <h5 className="card-title text-center m-0">
-                    {t("buy_tron")}
+                    {t("buy_trx")}
                   </h5>
                   <p className="card-body text-center">
-                    {t("buy_tron_message_0")}
+                    {t("buy_trx_message_0")}
                     <HrefLink href={"https://changelly.com/faq"}
                               target="_blank">{"changelly.com/faq"}</HrefLink>{"."}
                   </p>
@@ -1089,7 +1135,7 @@ class Account extends Component {
                     {
                       !showBuyTokens && <button className="btn btn-primary my-2"
                                                 onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
-                        {t("buy_tron_using_changelly")}
+                        {t("buy_trx_using_changelly")}
                         <i className="fa fa-credit-card ml-2"/>
                       </button>
                     }
@@ -1129,7 +1175,7 @@ const mapDispatchToProps = {
   reloadWallet,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Account)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Account))
 
 const styles = {
   iconEntropy: {

@@ -11,6 +11,7 @@ import {Alert} from "reactstrap";
 import {BarLoader, TronLoader} from "../common/loaders";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {ONE_TRX} from "../../constants";
+import {login} from "../../actions/app";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
 import {WidgetIcon} from "../common/Icon";
@@ -18,6 +19,7 @@ import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -50,6 +52,7 @@ class VoteOverview extends React.Component {
   constructor() {
     super();
     this.state = {
+      privateKey:'',
       votingEnabled: false,
       votesSubmitted: false,
       submittingVotes: false,
@@ -297,9 +300,66 @@ class VoteOverview extends React.Component {
     });
   };
 
+  onInputChange = (value) => {
+    let {account} = this.props;
+    if (value && value.length === 64) {
+      this.privateKey.className = "form-control";
+      if(pkToAddress(value)!==account.address)
+        this.privateKey.className = "form-control is-invalid";
+    }
+    else{
+      this.privateKey.className = "form-control is-invalid";
+    }
+    this.setState({privateKey: value})
+    this.privateKey.value = value;
+  }
+
+  confirmPrivateKey = (param) => {
+    let {privateKey} = this.state;
+    let {account} = this.props;
+
+    let reConfirm = ()=> {
+      if (this.privateKey.value && this.privateKey.value.length === 64) {
+        if(pkToAddress(this.privateKey.value)===account.address)
+          this.submitVotes();
+      }
+    }
+
+    this.setState({
+      modal: (
+          <SweetAlert
+              info
+              showCancel
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
+              confirmBtnBsStyle="success"
+              cancelBtnBsStyle="default"
+              title={tu("confirm_private_key")}
+              onConfirm={reConfirm}
+              onCancel={this.hideModal}
+              style={{marginLeft: '-240px', marginTop: '-195px'}}
+          >
+            <div className="form-group">
+              <div className="input-group mb-3">
+                <input type="text"
+                       ref={ref => this.privateKey = ref}
+                       onChange={(ev) => {
+                         this.onInputChange(ev.target.value)
+                       }}
+                       className="form-control is-invalid"
+                />
+                <div className="invalid-feedback">
+                  {tu("fill_a_valid_private_key")}
+                </div>
+              </div>
+            </div>
+          </SweetAlert>
+      )
+    });
+  }
   submitVotes = async () => {
     let {account} = this.props;
-    let {votes} = this.state;
+    let {votes,privateKey} = this.state;
 
     this.setState({ submittingVotes: true, });
 
@@ -457,7 +517,8 @@ class VoteOverview extends React.Component {
                           }
                         </Sticky>
                     }
-                    <table className="table vote-table table-hover table-striped m-0">
+                    <div className="table-responsive">
+                      <table className="table vote-table table-hover table-striped m-0">
                       <thead className="thead-dark">
                         <tr>
                           <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
@@ -562,6 +623,7 @@ class VoteOverview extends React.Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </StickyContainer>
               </div>
@@ -586,6 +648,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  login,
   reloadWallet,
   loadVoteList,
   loadVoteTimer,

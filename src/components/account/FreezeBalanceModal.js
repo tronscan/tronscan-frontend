@@ -58,7 +58,7 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {account, onError} = this.props;
+    let {account, onError,privateKey} = this.props;
     let {amount} = this.state;
     this.setState({loading: true});
 

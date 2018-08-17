@@ -15,10 +15,9 @@ export const WitnessLink = ({address}) => (
   <Link to={`/witness/${address}`}>{address}</Link>
 );
 
-export const TokenLink = ({name, ...props}) => (
-  <Link to={`/token/${encodeURI(name)}`} {...props}>{name}</Link>
+export const TokenLink = ({name, children, ...props}) => (
+  <Link to={`/token/${encodeURI(name)}`} {...props}>{children || name}</Link>
 );
-
 
 export class AddressLink extends React.PureComponent {
 

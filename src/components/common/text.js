@@ -2,7 +2,7 @@ import React from "react";
 
 export function Truncate({children}) {
   return (
-    <div className="truncate-ellipsis">
+    <div>
       <span>{children}</span>
     </div>
   )

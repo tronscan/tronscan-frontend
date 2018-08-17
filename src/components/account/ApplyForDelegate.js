@@ -33,10 +33,10 @@ class ApplyForDelegate extends Component {
   };
 
   doApply = async () => {
-    let {account} = this.props;
+    let {account,privateKey} = this.props;
     let {url} = this.state;
 
-    this.setState({ loading: true, });
+    this.setState({ loading: true});
 
     let {success} = await Client.applyForDelegate(account.address, url)(account.key);
     this.setState({ loading: false });

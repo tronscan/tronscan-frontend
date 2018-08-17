@@ -14,6 +14,7 @@ import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class SendForm extends React.Component {
 
@@ -38,9 +39,17 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount} = this.state;
-    const {account} = this.props;
+    let {to, token, amount, privateKey} = this.state;
+    let {account} = this.props;
+    /*
+       if (!privateKey || privateKey.length !== 64) {
+         return false;
+       }
 
+      if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
+         return false;
+       }
+    */
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
 
@@ -48,7 +57,7 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount, note} = this.state;
+    let {to, token, amount, note, privateKey} = this.state;
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
@@ -85,22 +94,21 @@ class SendForm extends React.Component {
 
   confirmSend = () => {
 
-    let {to, token, amount, privateKey} = this.state;
-    this.props.login(privateKey);
+    let {to, token, amount} = this.state;
     this.setState({
       modal: (
           <SweetAlert
               info
               showCancel
-              confirmBtnText="Confirm"
-              confirmBtnBsStyle="success"
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
               cancelBtnBsStyle="default"
-              title="Confirm transaction"
+              title={tu("confirm_transaction")}
               onConfirm={this.send}
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
-            Are you sure you want to transfer<br/>
+            {tu("transfer_confirm_info")}<br/>
             <span className="font-weight-bold">{' '}
               <FormattedNumber
                   maximumFractionDigits={7}
@@ -108,8 +116,8 @@ class SendForm extends React.Component {
                   value={amount}/>{' '}
               {token + ' '}
           </span><br/>
-            to<br/>
-            {to}?
+            {tu("to")}<br/>
+            {to}
           </SweetAlert>
       )
     });
@@ -246,11 +254,11 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances} = this.props;
+    let {intl, tokenBalances,account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
-    let isPrivateKeyValid = privateKey && privateKey.length === 64;
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
     let isAmountValid = this.isAmountValid();
 
 
@@ -299,8 +307,8 @@ class SendForm extends React.Component {
                   onChange={(ev) => this.setState({token: ev.target.value})}
                   value={token}>
                 {
-                  tokenBalances.map(tokenBalance => (
-                      <SendOption key={tokenBalance.name}
+                  tokenBalances.map((tokenBalance,index) => (
+                      <SendOption key={index}
                                   name={tokenBalance.name}
                                   balance={tokenBalance.balance}/>
                   ))
@@ -329,19 +337,7 @@ class SendForm extends React.Component {
               </div>
             </div>
           </div>
-          <div className="form-group">
-            <label>{tu("private_key")}</label>
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
-                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
-                     value={privateKey}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_private_key")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
+
           <div className="form-group">
             <label>{tu("note")}</label>
             <div className="input-group mb-3">
@@ -349,7 +345,6 @@ class SendForm extends React.Component {
                 onChange={(ev) => this.setNote(ev.target.value)}
                 className={"form-control"}
                 value={note}
-                placeholder={intl.formatMessage({id: "language_support"})}
             />
               <div className="invalid-feedback">
                 {tu("fill_a_valid_address")}

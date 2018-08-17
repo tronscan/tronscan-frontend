@@ -84,7 +84,7 @@ class Representatives extends Component {
 
     return (
         <div className="card border-0">
-          <table className="table table-hover table-striped bg-white m-0">
+          <table className="table table-hover table-striped bg-white m-0 sr">
             <thead className="thead-dark">
             <tr>
               <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
@@ -92,10 +92,10 @@ class Representatives extends Component {
               <th className="text-right text-nowrap">{tu("status")}</th>
               <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_missed")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("transactions")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("productivity")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("votes")}</th>
+              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
+              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
+              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
+              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("votes")}</th>
 
             </tr>
             </thead>
@@ -112,7 +112,7 @@ class Representatives extends Component {
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+            {candidateRepresentatives.map((account, index) => <Row index={index+27} state={this.state} props={this.props}
                                                                    key={account.address} account={account}
                                                                    showSync={false}/>)}
             </tbody>
@@ -125,6 +125,7 @@ class Representatives extends Component {
     let {intl} = this.props;
     let witnesses = this.getWitnesses();
     let pieChart = this.getPiechart();
+
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
 
     let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];
@@ -271,21 +272,21 @@ function Row({account, showSync = true, index, state, props}) {
         <td className="text-right d-none d-md-table-cell">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-right d-none d-md-table-cell">
+        <td className="text-right d-none d-xl-table-cell">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-md-table-cell text-nowrap">
+        <td className="text-right d-none d-xl-table-cell">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-right d-none d-xl-table-cell">
           {
             account.producedTotal > 0 ? (
                 <Fragment>
@@ -298,11 +299,12 @@ function Row({account, showSync = true, index, state, props}) {
           }
 
         </td>
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-right d-none d-xl-table-cell">
           {
             totalVotes > 0 &&
             <Fragment>
               <FormattedNumber value={filteredCandidates[index].votes}/>
+              <br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

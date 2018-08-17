@@ -203,7 +203,7 @@ class TokenOverview extends Component {
     this.setState({
       activeToken: null,
       confirmedParticipate: true,
-      participateSuccess: isSuccess,
+      participateSuccess: isSuccess.success,
       loading: false,
     });
   };
@@ -213,111 +213,87 @@ class TokenOverview extends Component {
     let {amount, tokens} = this.state;
 
     return (
-      <div className="row">
+      <div className="row pt-3">
+
+
+
         {
           tokens.map((token, index) => (
             <Fragment key={index + "-" + token.name}>
-              <div className="col-12 col-sm-6 col-lg-4 mb-3">
-                <div className="card token-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title break-word">
-                      <Avatar value={token.name} size={25} className="float-right"/>
-                      <TokenLink name={token.name}/>
-                    </h5>
-                    <p className="card-text break-word">
-                      {token.description}
-                    </p>
-                    {/*<p className="mb-0">*/}
-                      {/*<ExternalLink url={token.url} className="card-link text-primary text-center">*/}
-                        {/*Visit Website*/}
-                      {/*</ExternalLink>*/}
-                    {/*</p>*/}
-                  </div>
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                      <span className="text-success">
-                        <FormattedNumber value={token.issued} className="text-success"/>&nbsp;
-                      </span>
-                      /&nbsp;
-                      <span className="text-muted">
-                        <FormattedNumber value={token.availableSupply}/>
-                      </span>
-                      <span className="float-right text-success">
-                        {Math.ceil(token.issuedPercentage)}%
-                      </span>
-                      <div className="progress mt-1">
-                        <div className="progress-bar bg-success" style={{width: token.issuedPercentage + '%'}}/>
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      {
-                        this.getTokenState(token) === 'active' &&
-                        <div className="text-center">
-                          {tu("ends")}&nbsp;
-                          <FormattedRelative value={token.endTime} units="day"/>
-                        </div>
-                      }
-                      {
-                        this.getTokenState(token) === 'finished' &&
-                        <button className="btn btn-link btn-block" disabled={true}>
-                          {tu("finished")}
-                        </button>
-                      }
-                      {
-                        this.getTokenState(token) === 'waiting' &&
-                        <div className="text-center">
-                          {tu("starts")} <FormattedRelative value={token.endTime}/>
-                        </div>
-                      }
-                    </li>
-                  </ul>
-                  {
-                    ( this.getTokenState(token) === 'active') && (
-                      !this.containsToken(token) ?
-                        <div className="card-footer bg-transparent border-top-0">
-                          {
-                            this.getTokenState(token) === 'finished' ?
-                              <button className="btn btn-outline-secondary btn-block" disabled={true}>
-                                {tu("finished")}
-                              </button> :
-                              <button className="btn btn-block btn-outline-primary"
-                                      onClick={() => this.toggleToken(token)}>
-                                {tu("participate")}
-                              </button>
-                          }
-                        </div> :
-                        <div className="card-footer bg-transparent border-top-0">
-                          <div className="text-muted text-center">
-                            {tu("how_much_buy_message")}<br/>
-                            {tu("price")}: {(token.price / ONE_TRX)} TRX
-                          </div>
-                          <div className="input-group mt-3">
-                            <NumberField
-                              className="form-control"
-                              value={amount}
-                              max={token.remaining}
-                              min={1}
-                              onChange={value => this.setState({ amount: value })}
-                            />
-                            <div className="input-group-append">
-                              <button className="btn btn-success"
-                                      type="button"
-                                      disabled={!this.isValid()}
-                                      onClick={() => this.buyTokens(token)}>
-                                <i className="fa fa-check"/>
-                              </button>
+              <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 ">
+                <div className="token-cards">
+                  <div className="token-cards-top">
+                    <div className="token-cards-header">
+                          <div className="progress-bar-container">
+                            <div className="progress mt-1">
+                              <div className="progress-bar " style={{width: token.issuedPercentage + '%'}}/>
+                            </div>
+                            <div className="float-right token-card-percentage">
+                              {Math.ceil(token.issuedPercentage)}%
+                            </div>
+                            <div className="token-amounts">
+                              <span className="">
+                                <FormattedNumber value={token.issued} className="text-success"/>&nbsp;
+                              </span>
+                                  /&nbsp;
+                                  <span className="">
+                                <FormattedNumber value={token.availableSupply}/>
+                              </span>
+
+                            </div>
+                            <div className="float-right token-procentage">
+                              {Math.ceil(token.issuedPercentage)}%
                             </div>
                           </div>
-                          <div className="text-center mt-1 text-muted">
-                            {/*<FormattedNumber value={amount} /> {token.name}<br/>*/}
-                            =&nbsp;
-                            <b><FormattedNumber value={amount * (token.price / ONE_TRX)}/> TRX</b>
-                          </div>
+
+
+                        <div className="token-title">
+                          <span>
+                            {token.name}
+                          </span>
+
                         </div>
-                    )
-                  }
+
+                    </div>
+                    <div className="token-description">
+                      {token.description}
+                    </div>
+                    <div>
+                      <div className="bottom-center">
+                        <div className="">
+                          {
+                            this.getTokenState(token) === 'active' &&
+                            <div className="text-center token-time">
+                              {tu("ends")}&nbsp;
+                              <FormattedRelative value={token.endTime} units="day"/>
+                            </div>
+                          }
+                          {
+                            this.getTokenState(token) === 'finished' &&
+                            <div className="text-center token-time" disabled={true}>
+                              {tu("finished")}
+                            </div>
+                          }
+                          {
+                            this.getTokenState(token) === 'waiting' &&
+                            <div className="text-center token-time">
+                              {tu("starts")} <FormattedRelative value={token.endTime}/>
+                            </div>
+                          }
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <TokenLink  name={token.name}>
+                    <div className="token-info">
+                      More info
+                    </div>
+                  </TokenLink>
                 </div>
               </div>
+
+                
             </Fragment>
           ))
         }
