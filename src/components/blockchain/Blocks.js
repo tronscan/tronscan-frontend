@@ -128,6 +128,7 @@ class Blocks extends React.Component {
                 </div>
               </StickyContainer>
             </div>
+          </div>
           }
         </main>
     )
