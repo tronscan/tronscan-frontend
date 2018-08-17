@@ -133,8 +133,7 @@ class Live extends React.Component {
     switch (event.type) {
       case "transfer":
         return (
-            <div className="table-responsive">
-              <Row key={event.id} icon="fa-exchange-alt">
+            <Row key={event.id} icon="fa-exchange-alt">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -160,11 +159,10 @@ class Live extends React.Component {
                   {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true}/>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={false}/>
+                  {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={true}/>
                 </div>
               </div>
             </Row>
-            </div>
         );
 
       case "vote":
