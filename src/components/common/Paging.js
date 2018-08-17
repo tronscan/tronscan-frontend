@@ -93,7 +93,7 @@ class Paging extends React.PureComponent {
     return (
         <div className="d-flex">
           {
-              className && <ul className={"pagination p-0 my-0 " + className}>
+              !(showFirst && "invisible") && <ul className={"pagination p-0 my-0 " + className}>
                 <li className={"page-item " + (showFirst && "invisible")}>
                   <FirstButton>
                     <i className="fas fa-fast-backward mr-sm-2"/>
