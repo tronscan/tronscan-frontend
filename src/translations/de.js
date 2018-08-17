@@ -430,7 +430,7 @@ export const messages = {
   "not_enough_trx_message": "Sie haben leider nicht genug TRX auf Ihrem Konto, um die angegebene Menge an Token zu erwerben.",
   "ends": "endet",
   "starts": "started",
-  "can_be_unlocked": "Kann freigegeben werden.",
+  "can_be_unlocked": "können freigegeben werden",
   /*
   ##################################################################################
   #                                                                                #

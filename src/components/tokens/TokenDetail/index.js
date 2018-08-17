@@ -294,7 +294,7 @@ class TokenDetail extends React.Component {
                               {
                                 token.frozen.map((frozen, index) => (
                                     <div key={index}>
-                                      {frozen.amount} {tu("can_be_unlocked")}&nbsp;
+                                      {frozen.amount} {t("can_be_unlocked")}&nbsp;
                                       <FormattedRelative
                                           value={getTime(addDays(new Date(token.startTime), frozen.days))}/>
                                     </div>
