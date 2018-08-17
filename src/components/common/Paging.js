@@ -135,7 +135,8 @@ class Paging extends React.PureComponent {
               }
             </li>
           </ul>
-          <ul className="pagination p-0 my-0 ">
+          {
+          !(showLast && "invisible")&& <ul className="pagination p-0 my-0 ">
             <li className={"page-item " + (showLast && " invisible")}>
               <NextButton>
                 <span className="d-none d-lg-inline-block">{tu("next_page")}</span>
@@ -149,6 +150,7 @@ class Paging extends React.PureComponent {
               </LastButton>
             </li>
           </ul>
+          }
           {
             showPageSize &&
             <ul className="pagination  p-0 my-0 ml-1">

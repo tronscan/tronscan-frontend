@@ -794,68 +794,69 @@ class Account extends Component {
                 currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
               }
-              <div className="table-responsive">
-                <table className="table m-0">
-                  <tbody>
-                  {
-                    wallet.isOpen &&
-                    <tr>
-                      <th>{tu("name")}:</th>
-                      <td>
-                        {currentWallet.name || "-"}
-                        {
-                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                          <a href="javascript:" className="float-right text-primary" onClick={() => {
-                            this.changeName()
-                          }}>
-                            {tu("set_name")}
+                  <div className="table-responsive">
+                    <table className="table m-0">
+                      <tbody>
+                      {
+                        wallet.isOpen &&
+                        <tr>
+                          <th>{tu("name")}:</th>
+                          <td>
+                            {currentWallet.name || "-"}
+                            {
+                              (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
+                              <a href="javascript:" className="float-right text-primary" onClick={() => {
+                                this.changeName()
+                              }}>
+                                {tu("set_name")}
+                              </a>
+                            }
+                          </td>
+                        </tr>
+                      }
+                      {
+                        currentWallet.representative.enabled &&
+                        <tr>
+                          <th>{tu("website")}:</th>
+                          <td>
+                            <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                            <a href="javascript:" className="float-right text-primary" onClick={() => {
+                              this.changeWebsite()
+                            }}>
+                              {tu("change_website")}
+                            </a>
+
+                          </td>
+                        </tr>
+                      }
+                      <tr>
+                        <th style={{width: 150}}>{tu("address")}:</th>
+                        <td>
+                          <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
+                            {tu("show_qr_code")}
                           </a>
+
+                          <div className="float-left" style={{width: 350}}>
+                            <AddressLink address={account.address} includeCopy={true}/>
+                          </div>
+
+                          {
+                            IS_TESTNET &&
+                            <p className="text-danger">
+                              ({tu("do_not_send_2")})
+                            </p>
                         }
                       </td>
                     </tr>
-                  }
-                  {
-                    currentWallet.representative.enabled &&
                     <tr>
-                      <th>{tu("website")}:</th>
+                      <th>{tu("transactions")}:</th>
                       <td>
-                        <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                        <a href="javascript:" className="float-right text-primary" onClick={() => {
-                          this.changeWebsite()
-                        }}>
-                          {tu("change_website")}
-                        </a>
-
+                        <FormattedNumber value={totalTransactions}/>
                       </td>
                     </tr>
-                  }
-                  <tr>
-                    <th style={{width: 150}}>{tu("address")}:</th>
-                    <td>
-                      <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                        {tu("show_qr_code")}
-                      </a>
-
-                      <div className="float-left" style={{width: 350}}>
-                        <AddressLink address={account.address} includeCopy={true}/>
-                      </div>
-
-                      {
-                        IS_TESTNET &&
-                        <p className="text-danger">
-                          ({tu("do_not_send_2")})
-                        </p>
-                    }
-                  </td>
-                </tr>
-                <tr>
-                  <th>{tu("transactions")}:</th>
-                  <td>
-                    <FormattedNumber value={totalTransactions}/>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+                    </tbody>
+                  </table>
+                  </div>
               </div>
             </div>
           </div>
@@ -1150,7 +1151,6 @@ class Account extends Component {
               </div>
             </div>
           </div>
-        </div>
         </main>
     )
   }
