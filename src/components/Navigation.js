@@ -333,7 +333,7 @@ class Navigation extends PureComponent {
                           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                               {tu("wallet")}
                           </a>
-                          <ul className="dropdown-menu dropdown-menu-right">
+                          <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu">
                             <li className="px-1 py-1">
                               <div className="row" style={{width: 305}}>
                                 <div className="col-lg-2">
@@ -399,7 +399,7 @@ class Navigation extends PureComponent {
                           <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
                               {tu("open_wallet")}
                           </a>
-                          <ul className="dropdown-menu dropdown-menu-right" style={{width: 320}}>
+                          <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
                             <li className="px-3">
                               <div className="form-group text-center">
                                 <label>{tu("private_key")}</label>
