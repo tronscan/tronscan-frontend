@@ -110,10 +110,10 @@ class Blocks extends React.Component {
                                 </td>
                                 <td className="d-sm-table-cell">
                                   <div className="show-mobile">
-                                    <AddressLink address={block.witnessAddress}/>
+                                    {block.witnessName}
                                   </div>
                                   <div className="hidden-mobile">
-                                    <AddressLink address={block.witnessAddress} />
+                                    {block.witnessName}
                                   </div>
                                 </td>
                                 <td className="d-lg-table-cell">
