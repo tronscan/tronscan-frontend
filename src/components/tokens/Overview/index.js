@@ -287,13 +287,13 @@ class TokenOverview extends Component {
                   </div>
                   <TokenLink  name={token.name}>
                     <div className="token-info">
-                      More info
+                      {tu("more_info")}
                     </div>
                   </TokenLink>
                 </div>
               </div>
 
-                
+
             </Fragment>
           ))
         }

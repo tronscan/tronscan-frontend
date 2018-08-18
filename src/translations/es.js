@@ -198,6 +198,7 @@ export const messages = {
   "produce_distribution":"Gráfico de Producción de Bloque",
   "confirm_token_issue":"Confirmar Emisión de Token",
   "_to":"para",
+  "more_info": "más informaciones",
   /*
   ##################################################################################
   #                                                                                #

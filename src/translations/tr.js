@@ -198,6 +198,7 @@ export const messages = {
   "produce_distribution": "Blok Üreticileri Çizelgesi",
   "confirm_token_issue": "Jeton Basımı Onayla",
   "_to": "şuna:",
+  "more_info": "more info",
   /*
   ##################################################################################
   #                                                                                #

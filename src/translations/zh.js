@@ -196,6 +196,7 @@ export const messages = {
   "produce_distribution": "算力分配图",
   "confirm_token_issue": "确认通证发行",
   "_to": "至",
+  "more_info": "more info",
   /*
   ##################################################################################
   #                                                                                #

@@ -368,7 +368,7 @@ class TokenDetail extends React.Component {
                                         type="button"
                                         disabled={!this.isBuyValid()}
                                         onClick={() => this.buyTokens(token)}>
-                                  Participate
+                                  {tu("participate")}
                                 </button>
                               </div>
                             </div>

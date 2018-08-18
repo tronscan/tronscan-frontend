@@ -197,6 +197,7 @@ export const messages = {
   "produce_distribution": "Block Producer Chart",
   "confirm_token_issue": "Confirm Token Issue",
   "_to": "to",
+  "more_info": "more info",
   /*
   ##################################################################################
   #                                                                                #
