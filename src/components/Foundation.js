@@ -13,6 +13,7 @@ import {TRXPrice} from "./common/Price";
 import {WidgetIcon} from "./common/Icon";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
+import {FormattedDate, FormattedTime} from "react-intl";
 import xhr from "axios/index";
 
 class Accounts extends Component {
@@ -151,7 +152,7 @@ class Accounts extends Component {
 
                 <div className="card-body text-center">
                   <h3 className="text-success">
-                    2020/01/01
+                    <FormattedDate value={1577833200000} />
                   </h3>
                   {tu("unfreeze_time")}
                 </div>
