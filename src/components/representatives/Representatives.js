@@ -112,7 +112,7 @@ class Representatives extends Component {
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+            {candidateRepresentatives.map((account, index) => <Row index={index+27} state={this.state} props={this.props}
                                                                    key={account.address} account={account}
                                                                    showSync={false}/>)}
             </tbody>
@@ -126,13 +126,6 @@ class Representatives extends Component {
     let witnesses = this.getWitnesses();
     let pieChart = this.getPiechart();
 
-    if(pieChart.length){
-      for(let index in pieChart){
-        if(pieChart[index].name.indexOf("http://")>-1) {
-          pieChart[index].name = pieChart[index].name.substring(7).split('.com')[0];
-        }
-      }
-    }
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
 
     let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];

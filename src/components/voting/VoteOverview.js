@@ -266,7 +266,7 @@ class VoteOverview extends React.Component {
           </div>
           <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
           <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
-          <button className="btn btn-success ml-1" onClick={this.confirmPrivateKey}>{tu("submit_votes")}</button>
+          <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
         </div>
       );
     }
@@ -369,7 +369,7 @@ class VoteOverview extends React.Component {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(privateKey);
+    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
 
     if (success) {
       setTimeout(() => this.props.reloadWallet(), 1200);
@@ -517,7 +517,8 @@ class VoteOverview extends React.Component {
                           }
                         </Sticky>
                     }
-                    <table className="table vote-table table-hover table-striped m-0">
+                    <div className="table-responsive">
+                      <table className="table vote-table table-hover table-striped m-0">
                       <thead className="thead-dark">
                         <tr>
                           <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
@@ -622,6 +623,7 @@ class VoteOverview extends React.Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </StickyContainer>
               </div>

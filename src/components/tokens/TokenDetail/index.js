@@ -137,7 +137,7 @@ class TokenDetail extends React.Component {
         currentWallet.address,
         token.ownerAddress,
         token.name,
-        buyAmount * token.price)(privateKey);
+        buyAmount * token.price)(account.key);
 
     if (isSuccess.success) {
       this.setState({
@@ -367,7 +367,7 @@ class TokenDetail extends React.Component {
                                 <button className="btn btn-success"
                                         type="button"
                                         disabled={!this.isBuyValid()}
-                                        onClick={() => this.confirmPrivateKey()}>
+                                        onClick={() => this.buyTokens(token)}>
                                   Participate
                                 </button>
                               </div>

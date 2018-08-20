@@ -71,67 +71,64 @@ class Blocks extends React.Component {
     let {match} = this.props;
 
     return (
-        <main className="container header-overlap pb-3">
-          {
-            <div className="row">
-              <div className="col-md-12">
-                <StickyContainer>
-                  <div className="card">
-                    <Sticky>
-                      {
-                        ({style}) => (
-                            <div style={{zIndex: 100, ...style}} className="py-3 bg-white card-body border-bottom">
-                              <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                            </div>
-                        )
-                      }
-                    </Sticky>
+      <main className="container header-overlap pb-3">
+        {
+          <div className="row">
+            <div className="col-md-12">
+              <StickyContainer>
+                <div className="card">
+                  <Sticky>
+                    {
+                      ({style}) => (
+                        <div style={{ zIndex: 100, ...style }} className="py-3 bg-white card-body border-bottom">
+                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}  />
+                        </div>
+                      )
+                    }
+                  </Sticky>
+                  <div className="table-responsive">
                     <table className="table table-hover m-0 table-striped">
                       <thead className="thead-dark">
                       <tr>
-                        <th >{tu("height")}</th>
-                        <th >{tu("age")}</th>
-                        <th style={{width: 150}}><i className="fas fa-exchange-alt"/></th>
-                        <th className="d-none d-sm-table-cell">{tu("produced_by")}</th>
-                        <th className="d-none d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th>
+                        <th style={{width: 100}}>{tu("height")}</th>
+                        <th style={{width: 150}}>{tu("age")}</th>
+                        <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
+                        <th className="d-sm-table-cell">{tu("produced_by")}</th>
+                        <th className="d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th> 
                       </tr>
                       </thead>
                       <tbody>
                       {
-                        blocks.map(block => (
-                            <tr key={block.number}>
-                              <th>
-                                <BlockNumberLink number={block.number}/>
-                              </th>
-                              <td className="text-nowrap"><TimeAgo date={block.timestamp}/></td>
-                              <td className="" style={{width: 100}}>
-                                {
-                                  block.nrOfTrx !== 0 ?
-                                  <FormattedNumber value={block.nrOfTrx}/> :
-                                  '-'
-                                }
-                              </td>
-                              <td className="d-none d-sm-table-cell">
-                                <div className="show-mobile">
-                                  {block.witnessName}
-
-                                </div>
-                                <div className="hidden-mobile">
-                                  {block.witnessName}
-                                </div>
-                              </td>
-                              <td className="d-none d-lg-table-cell">
-                                <FormattedNumber value={block.size}/>
-                              </td>
-                            </tr>
-                        ))
+                          blocks.map(block => (
+                              <tr key={block.number}>
+                                <th>
+                                  <BlockNumberLink number={block.number}/>
+                                </th>
+                                <td className="text-nowrap"><TimeAgo date={block.timestamp} /></td>
+                                <td className="" style={{width: 100}}>
+                                  <FormattedNumber value={block.nrOfTrx} />
+                                </td>
+                                <td className="d-sm-table-cell">
+                                  <div className="show-mobile">
+                                    {block.witnessName}
+                                  </div>
+                                  <div className="hidden-mobile">
+                                    {block.witnessName}
+                                  </div>
+                                </td>
+                                <td className="d-lg-table-cell">
+                                  <FormattedNumber value={block.size}/>
+                                </td>
+                              </tr>
+                          ))      
                       }
                       </tbody>
                     </table>
                   </div>
-                </StickyContainer>
-              </div>
+                </div>
+              </StickyContainer>
             </div>
+          </div>
           }
         </main>
     )
