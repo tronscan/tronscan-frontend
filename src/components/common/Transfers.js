@@ -99,7 +99,7 @@ class Transfers extends React.Component {
               <th className="d-lg-table-cell" style={{width: 125 }}>{tu("age")}</th>
               <th className="d-lg-table-cell" style={{width: 125 }}>{tu("hash")}</th>
               <th className="d-md-table-cell">{tu("from")}</th>
-              <th>{tu("to")}</th>
+              <th className="d-md-table-cell">{tu("to")}</th>
               <th className="text-right" style={{width: 125 }}>{tu("amount")}</th>
             </tr>
             </thead>
@@ -120,7 +120,7 @@ class Transfers extends React.Component {
                       <td className="d-md-table-cell">
                         <AddressLink address={transfer.transferFromAddress} />
                       </td>
-                      <td>
+                      <td className="d-md-table-cell transfer-cell">
                         <AddressLink address={transfer.transferToAddress} />
                       </td>
                       <td className="text-nowrap text-right">
