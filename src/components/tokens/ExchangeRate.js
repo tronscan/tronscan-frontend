@@ -18,8 +18,16 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {NavLink, Route, Switch} from "react-router-dom";
-import BasicInfo from "./BasicInfo.js"
 
+function ErrorLabel(error) {
+  if (error !== null) {
+    return (
+        <small className="text-danger"> {error} </small>
+    )
+  }
+
+  return null;
+}
 
 class TokenCreate extends Component {
 
@@ -449,7 +457,6 @@ class TokenCreate extends Component {
 
   render() {
     let {modal, numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime} = this.state;
-    let {match} = this.props;
 
     if (!this.isLoggedIn()) {
       return (
@@ -559,14 +566,221 @@ class TokenCreate extends Component {
                 <div className="card-body">
 
 
-                    <Switch>
+                  <Switch>
+                    {
+                      <Route exact path={match.url + ''} render={() => (<BasicInfo/>)}/>
+
+                    }
+                  </Switch>
+
+
+
+                  <h5 className="card-title text-center">
+                    {tu("issue_a_token")}
+                  </h5>
+                  <form>
+                    <fieldset>
+                      <legend>
+                        {tu("details")}
+                        <i className="fab fa-wpforms float-right"/>
+                      </legend>
+                      <p>
+                        <small className="form-text text-muted">
+                          {'('}{tu("language_support")}{')'}
+                        </small>
+                      </p>
+                      <div className="form-row">
+                        <div className="form-group col-md-6">
+                          <label>{tu("token_name")} *</label>
+                          <TextField cmp={this} field="name"/>
+                          <small className="form-text text-muted">
+                            {tu("token_message")}
+                          </small>
+                          {ErrorLabel(errors.name)}
+                        </div>
+                        <div className="form-group col-md-6">
+                          <label>{tu("token_abbr")} *</label>
+                          <TextField cmp={this} field="abbr"/>
+                          <small className="form-text text-muted">
+                            {tu("abbr_message")}
+                          </small>
+                          {ErrorLabel(errors.abbr)}
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-12">
+                          <label>{tu("total_supply")} *</label>
+                          <NumberField
+                              className="form-control"
+                              value={totalSupply}
+                              min={1}
+
+                              onChange={(totalSupply) => this.setState({totalSupply})}/>
+                          <small className="form-text text-muted">
+                            {tu("supply_message")}
+                          </small>
+                          {ErrorLabel(errors.supply)}
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-12">
+                          <label>{tu("description")} *</label>
+                          <TextField type="text" cmp={this} field="description"/>
+                          <small className="form-text text-muted">
+                            {tu("description_message")}
+                          </small>
+                          {ErrorLabel(errors.description)}
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-12">
+                          <label>{tu("website_url")} </label>
+                          <TextField type="text" cmp={this} field="url" placeholder="http://"/>
+                          <small className="form-text text-muted">
+                            {tu("url_message")}
+                          </small>
+                          {url !== "" && ErrorLabel(errors.url)}
+                        </div>
+                      </div>
+                    </fieldset>
+                    <hr/>
+                    <fieldset>
+                      <legend>
+                        {tu("exchange_rate")}
+                        <i className="fa fa-exchange-alt float-right"/>
+                      </legend>
+
+                      <div className="form-row">
+                        <p className="col-md-12">
+                          {tu("exchange_rate_message_0")}
+                        </p>
+                        <p className="col-md-12">
+                          {tu("exchange_rate_message_1")} <b><FormattedNumber
+                            value={numberOfCoins}/> {name || tu("token")}</b>&nbsp;
+                          {tu("exchange_rate_message_2")} <b><FormattedNumber
+                            value={numberOfTron}/> {tu("exchange_rate_message_3")}</b>.
+                        </p>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-6">
+                          <label>TRX {tu("amount")} *</label>
+                          <NumberField
+                              className="form-control"
+                              value={numberOfTron}
+                              min={1}
+                              onChange={(value) => this.setState({numberOfTron: value})}/>
+                          {numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
+                        </div>
+                        <div className="form-group col-md-6">
+                          <label>{tu("token")} {tu("amount")} *</label>
+                          <NumberField
+                              className="form-control"
+                              value={numberOfCoins}
+                              min={1}
+                              onChange={(value) => this.setState({numberOfCoins: value})}/>
+                          {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <p className="col-md-12">
+                          <b>{tu("token_price")}</b>: 1 {name || tu("token")} = <FormattedNumber
+                            value={exchangeRate}/> TRX
+                        </p>
+                      </div>
+                    </fieldset>
+                    <hr/>
+                    <fieldset>
+                      <legend>
+                        {tu("frozen_supply")}
+                        <i className="fa fa-snowflake float-right"/>
+                      </legend>
+
+                      <div className="form-row text-muted">
+                        <p className="col-md-12">
+                          {tu("frozen_supply_message_0")}
+                        </p>
+                      </div>
                       {
-                        <Route exact path={match.url + ''} render={() => (<BasicInfo/>)}/>
-
+                        frozenSupply.map((frozen, index) => (
+                            <div key={index}
+                                 className={"form-row " + (frozenSupply.length === index + 1 ? "text-muted" : "")}>
+                              <div className="form-group col-md-9">
+                                {index === 0 && <label>{tu("amount")}</label>}
+                                <NumberField
+                                    className="form-control"
+                                    value={frozen.amount}
+                                    min={0}
+                                    onBlur={() => this.blurFrozen(index)}
+                                    decimals={0}
+                                    onChange={(amount) => this.updateFrozen(index, {amount})}
+                                />
+                              </div>
+                              <div className="form-group col-md-3">
+                                {index === 0 && <label>{tu("days_to_freeze")}</label>}
+                                <NumberField
+                                    className="form-control"
+                                    onChange={(days) => this.updateFrozen(index, {days})}
+                                    decimals={0}
+                                    min={1}
+                                    value={frozen.days}/>
+                              </div>
+                            </div>
+                        ))
                       }
-                    </Switch>
+                      {
+                        frozenSupply.length > 1 &&
+                        <div>
+                          Total Frozen Supply: {sumBy(frozenSupply, fs => parseInt(fs.amount))}
+                        </div>
+                      }
+                    </fieldset>
+                    <hr/>
+                    <fieldset>
+                      <legend>
+                        {tu("participation")}
+                        <i className="fa fa-calendar-alt float-right"/>
+                      </legend>
 
-
+                      <div className="form-row text-muted">
+                        <p className="col-md-12">
+                          {tu("participation_message_0")}{name}{tu("participation_message_1")}
+                        </p>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-sm-12 col-md-12 col-lg-6">
+                          <label>{tu("start_date")}</label>
+                          <DateTimePicker
+                              locale={language}
+                              onChange={(data) => this.setState({startTime: data.toDate()})}
+                              isValidDate={this.isValidStartTime}
+                              value={startTime}
+                              input={false}/>
+                          {ErrorLabel(errors.startDate)}
+                        </div>
+                        <div className="form-group col-sm-12 col-md-12 col-lg-6">
+                          <label>{tu("end_date")}</label>
+                          <DateTimePicker
+                              locale={language}
+                              onChange={(data) => this.setState({endTime: data.toDate()})}
+                              isValidDate={this.isValidEndTime}
+                              value={endTime}
+                              input={false}
+                          />
+                          {ErrorLabel(errors.endDate)}
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div className="form-group">
+                      <div className="form-check">
+                        <TextField type="checkbox" cmp={this} field="confirmed" className="form-check-input"/>
+                        <label className="form-check-label">
+                          {tu("token_spend_confirm")}
+                        </label>
+                      </div>
+                    </div>
+                    {submitMessage}
+                    {this.renderSubmit()}
+                  </form>
                 </div>
               </div>
             </div>
