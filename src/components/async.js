@@ -190,6 +190,24 @@ export const NodeTesterAsync = asyncComponent({
   )
 });
 
+export const TronConvertToolAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./tools/TronConvertTool"));
+            });
+          },
+          'TronConvertTool',
+      )
+  )
+});
+
 export const SystemAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>
