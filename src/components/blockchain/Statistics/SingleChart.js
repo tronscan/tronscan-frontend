@@ -545,7 +545,8 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                 <TronLoader/> :
                                                 <div className="row" style={{fontSize : 12,marginRight:0}}>
                                                     <div className="col-md-5">
-                                                        <table className="table" style={{marginTop : 10}}>
+                                                        <div className="table-responsive">
+                                                            <table className="table" style={{marginTop : 10}}>
                                                             <thead>
                                                             <tr>
                                                                 <th style={{border:0}}>
@@ -608,30 +609,32 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                             </tr>
                                                             </tbody>
                                                         </table>
+                                                        </div>
                                                         <br/>
-                                                        <table className="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_trx')}</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody><tr>
-                                                                <td>{tu('in_USD')}:
-                                                                </td>
-                                                                <td>
-                                                                    ${priceUSD}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>{tu('in_BTC')}:
-                                                                </td>
-                                                                <td>
-                                                                    {priceBTC}
-                                                                </td>
-                                                            </tr>
-                                                            </tbody></table>
+                                                        <div className="table-responsive">
+                                                            <table className="table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_trx')}</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody><tr>
+                                                                    <td>{tu('in_USD')}:
+                                                                    </td>
+                                                                    <td>
+                                                                        ${priceUSD}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>{tu('in_BTC')}:
+                                                                    </td>
+                                                                    <td>
+                                                                        {priceBTC}
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody></table>
+                                                        </div>
                                                     </div>
-
                                                     <div className="col-md-7" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
                                                         <div className="main-counters row">
                                                             <div className="counters col-md-6 col-sm-6">
@@ -653,7 +656,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     message={{id: 'breakdown_supply_types'}}
                                                                     intl={intl}
                                                                     data={supplyTypesChart}
-                                                                    style={{height: 320}}
+                                                                    style={{height: 340}}
                                                                     source='singleChart'
                                                                 />
                                                             </div>

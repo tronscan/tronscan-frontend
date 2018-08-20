@@ -236,6 +236,14 @@ export const routes = [
     ]
   },
   {
+        path: "list_trx",
+        label: "list_trx",
+        icon: "fa fa-server",
+        enurl: "https://tron.network/exchangesList?lng=en",
+        zhurl: "https://tron.network/exchangesList?lng=zh",
+        linkHref:true
+  },
+  {
     path: "/help",
     label: "help",
     icon: "fa fa-question",

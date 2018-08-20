@@ -167,9 +167,8 @@ class Home extends Component {
   };
 
   render() {
-    let {intl} = this.props;
+    let {intl,activeLanguage} = this.props;
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
-
     return (
         <main className="home pb-0">
           <div className="container-fluid position-relative d-flex p-3 mx-auto flex-column">
@@ -319,6 +318,8 @@ class Home extends Component {
                   <ul className="list-unstyled quick-links">
                     <li><HrefLink href="https://stateoftrondapps.com/"><i
                         className="fa fa-angle-right"/> DApps</HrefLink></li>
+                    <li><HrefLink href={activeLanguage == 'zh'?'https://tron.network/exchangesList?lng=zh':'https://tron.network/exchangesList?lng=en'}><i
+                        className="fa fa-angle-right"/> List TRX</HrefLink></li>
                     <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> TRON Labs</HrefLink>
                     </li>
                     <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i
@@ -407,6 +408,7 @@ function mapStateToProps(state) {
   return {
     account: state.app.account,
     theme: state.app.theme,
+    activeLanguage: state.app.activeLanguage,
   };
 }
 

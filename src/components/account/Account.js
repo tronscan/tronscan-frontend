@@ -343,7 +343,7 @@ class Account extends Component {
 
     let {privateKey} = this.state;
 
-    let {trxBalance} = this.props;
+    let {trxBalance, currentWallet} = this.props;
 
     if (trxBalance === 0) {
       this.setState({
@@ -360,6 +360,7 @@ class Account extends Component {
     this.setState({
       modal: (
           <FreezeBalanceModal
+              frozenTrx={currentWallet.frozenTrx}
               privateKey={privateKey}
               onHide={this.hideModal}
               onError={() => {
