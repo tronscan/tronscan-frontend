@@ -49,7 +49,7 @@ class Confirm extends Component {
 
   render() {
     let {numberOfCoins, numberOfTron, name, abbr, description, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, checkbox} = this.state;
-
+    let {nextStep} = this.props;
     let exchangeRate = numberOfTron / numberOfCoins;
 
     return (
@@ -148,7 +148,7 @@ class Confirm extends Component {
                         </label>
                       </div>
                     </div>
-
+                    <a className="btn btn-danger btn-lg" onClick={()=>{nextStep(3)}}>上一步</a>
                     <a className="btn btn-danger btn-lg" onClick={() => {
                       this.submit();
                     }}>{tu("issue_token")}</a>
