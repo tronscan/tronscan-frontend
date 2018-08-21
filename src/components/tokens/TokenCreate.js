@@ -19,7 +19,9 @@ import 'moment/min/locales';
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {NavLink, Route, Switch} from "react-router-dom";
 import BasicInfo from "./BasicInfo.js"
-
+import ExchangeRate from "./ExchangeRate.js"
+import FreezeSupply from "./FreezeSupply.js"
+import Confirm from "./Confirm.js"
 
 class TokenCreate extends Component {
 
@@ -43,7 +45,7 @@ class TokenCreate extends Component {
       startTime: startTime,
       endTime: endTime,
       description: "",
-      url: "http://",
+      url: "",
       confirmed: false,
       loading: false,
       isTokenCreated: false,
@@ -51,7 +53,7 @@ class TokenCreate extends Component {
       issuedAsset: null,
       errors: {
         name: null,
-        supply: null,
+        totalSupply: null,
         description: null,
         url: null,
         tronAmount: null,
@@ -63,7 +65,8 @@ class TokenCreate extends Component {
 
       valid: false,
       submitMessage: null,
-      frozenSupply: [],
+      frozenSupply: [{amount: 0, days: 1}],
+      step: 3,
     };
   }
 
@@ -74,7 +77,9 @@ class TokenCreate extends Component {
   };
   preSubmit = () => {
     let {intl} = this.props;
-    let {privateKey} = this.state;
+    let {checkbox} = this.state;
+    if (!this.renderSubmit())
+      return;
     this.setState({
       modal: (
           <SweetAlert
@@ -89,43 +94,14 @@ class TokenCreate extends Component {
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
-            <div style={{overflow: 'auto'}}>
-              <table className="table m-0 text-left">
-                <tbody>
-                <tr>
-                  <th>{tu('token_name')}:</th>
-                  <td>{trim(this.state.name)}</td>
-                </tr>
-                <tr>
-                  <th>{tu('total_supply')}:</th>
-                  <td><FormattedNumber value={this.state.totalSupply}/></td>
-                </tr>
-                <tr>
-                  <th>{tu('website_url')}:</th>
-                  <td>{this.state.url}</td>
-                </tr>
-                <tr>
-                  <th>{tu('exchange_rate')}:</th>
-                  <td>{this.state.numberOfCoins + ' : ' + this.state.numberOfTron}</td>
-                </tr>
-                <tr>
-                  <th>{tu('participation')}:</th>
-                  <td>
-                    <FormattedDate value={this.state.startTime.getTime()}/>
-                    {' '}{tu('_to')}{' '}
-                    <FormattedDate value={this.state.endTime.getTime()}/>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
           </SweetAlert>)
     });
+
   }
 
   submit = async () => {
     let {account} = this.props;
-    let {privateKey} =this.state;
+    let {privateKey} = this.state;
 
     this.setState({modal: null, loading: true, submitMessage: null});
 
@@ -161,90 +137,6 @@ class TokenCreate extends Component {
     } finally {
       this.setState({loading: false});
     }
-  };
-
-  isValid = () => {
-
-    let {loading, name, abbr, totalSupply, numberOfCoins, numberOfTron, startTime, endTime, description, url, confirmed} = this.state;
-
-
-    let newErrors = {
-      name: null,
-      supply: null,
-      description: null,
-      url: null,
-      tronAmount: null,
-      tokenAmount: null,
-      startDate: null,
-      endDate: null,
-    };
-
-    if (loading) {
-      return {
-        errors: newErrors,
-        valid: false,
-      };
-    }
-
-    if (confirmed) {
-
-      name = trim(name);
-
-      if (name.length === 0) {
-        newErrors.name = tu("no_name_error");
-      } else if (name.length > 32) {
-        newErrors.name = tu("tokenname_error_message_0");
-      } else if (!/^[a-zA-Z]+$/i.test(name)) {
-        newErrors.name = tu("tokenname_error_message_1");
-      }
-
-      abbr = trim(abbr);
-
-      if (abbr.length === 0) {
-        newErrors.abbr = tu("abbreviation_required");
-      } else if (abbr.length > 5) {
-        newErrors.abbr = tu("abbreviation_error_message_0");
-      } else if (!/^[a-zA-Z]+$/i.test(abbr)) {
-        newErrors.abbr = tu("abbreviation_error_message_1");
-      }
-
-      if (description.length === 0) {
-        newErrors.description = tu("no_description_error");
-      } else if (description.length > 200) {
-        newErrors.description = tu("description_error_message_0");
-      }
-    }
-
-    if (totalSupply <= 0)
-      newErrors.supply = tu("no_supply_error");
-
-    if (url.length === 0)
-      newErrors.url = tu("no_url_error");
-
-    if (numberOfTron <= 0)
-      newErrors.tronAmount = tu("tron_value_error");
-
-    if (numberOfCoins <= 0)
-      newErrors.tokenAmount = tu("coin_value_error");
-
-    if (!startTime)
-      newErrors.startDate = tu("invalid_starttime_error");
-
-    let calculatedStartTime = new Date(startTime).getTime();
-
-    if (calculatedStartTime < Date.now())
-      newErrors.startDate = tu("past_starttime_error");
-
-    if (!endTime)
-      newErrors.endDate = tu("invalid_endtime_error");
-
-    if (new Date(endTime).getTime() <= calculatedStartTime)
-      newErrors.endDate = tu("date_error");
-
-    return {
-      errors: newErrors,
-      valid: confirmed === true && !some(Object.values(newErrors), error => error !== null),
-    };
   };
 
   isLoggedIn = () => {
@@ -295,219 +187,128 @@ class TokenCreate extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    let {frozenSupply} = this.state;
 
-    if (frozenSupply.length === 0) {
-      this.setState({
-        frozenSupply: [
-          {
-            amount: 0,
-            days: 1,
-          }
-        ]
-      });
-    } else if (frozenSupply.length > 0) {
-
-      let emptyFields = this.getEmptyFrozenFields();
-
-      if (emptyFields.length === 0) {
-        this.setState({
-          frozenSupply: [
-            ...frozenSupply,
-            {
-              amount: 0,
-              days: 1,
-            }
-          ]
-        });
-      }
-    }
-
-    let newState = {};
-    let hasChange = false;
-
-    for (let field of Object.keys(this.state)) {
-      let value = this.state[field];
-      if (value !== prevState[field]) {
-        hasChange = true;
-        switch (field) {
-          case "num":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-          case "trxNum":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-          case "totalSupply":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-        }
-      }
-      newState[field] = value;
-    }
-
-    if (hasChange) {
-      this.setState(newState);
-    }
   }
-
-  getEmptyFrozenFields = () => {
-    let {frozenSupply} = this.state;
-    return filter(frozenSupply, fs => Math.round(parseInt(fs.amount)) === 0 || fs.amount === "");
-  };
 
   renderSubmit = () => {
     let {isTokenCreated, privateKey} = this.state;
-    let {account} = this.props;
-
-    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
-    let {valid} = this.isValid();
+    let {account,intl} = this.props;
 
     let {wallet} = this.props;
 
     if (isTokenCreated) {
-      return (
-          <Alert color="success" className="text-center">
-            {tu("token_issued_successfully")}<br/>
-            {tu("token_link_message_0")}{' '}
-            <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
-            {tu("token_link_message_2")}
-          </Alert>
+      this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("token_issued_successfully")}<br/>
+                  {tu("token_link_message_0")}{' '}
+                  <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
+                  {tu("token_link_message_2")}
+                </SweetAlert>
+          }
       );
+      return false
     }
 
     if (!wallet) {
-      return (
-          <Alert color="warning" className="text-center">
-            {tu("trx_token_wallet_requirement")}
-          </Alert>
-
+      this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("trx_token_wallet_requirement")}
+                </SweetAlert>
+          }
       );
+      return false
     }
 
     if (wallet.balance < ASSET_ISSUE_COST) {
-      return (
-          <Alert color="danger" className="text-center">
-            {tu("trx_token_fee_message")}
-          </Alert>
+      this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("trx_token_fee_message")}
+                </SweetAlert>
+          }
       );
+      return false
     }
-
-
-    return (
-        <Fragment>
-
-          <div className="text-center">
-            <button
-                disabled={!valid}
-                type="button"
-                className="btn btn-success"
-                onClick={this.preSubmit}>{tu("issue_token")}</button>
-          </div>
-        </Fragment>
-    );
+    return true
   };
 
-  updateFrozen(index, values) {
 
-    let {frozenSupply} = this.state;
-
-    frozenSupply[index] = {
-      ...frozenSupply[index],
-      ...values
-    };
-
-    for (let frozen of frozenSupply) {
-
-      if (trim(frozen.amount) !== "")
-        frozen.amount = parseInt(frozen.amount);
-
-      if (trim(frozen.days) !== "")
-        frozen.days = parseInt(frozen.days);
-
-      frozen.amount = frozen.amount > 0 || frozen.amount === "" ? frozen.amount : 0;
-      frozen.days = frozen.days > 0 || frozen.days === "" ? frozen.days : 1;
-    }
-
-    this.setState({
-      frozenSupply,
-    });
+  changeStep = (step) => {
+    this.setState({step: step});
   }
-
-  blurFrozen(index) {
-    let {frozenSupply} = this.state;
-
-    let isEmpty = frozenSupply[index].amount <= 0 || frozenSupply[index].amount === "";
-
-    if (isEmpty && this.getEmptyFrozenFields().length >= 2) {
-      frozenSupply.splice(index, 1);
-    }
-
-    this.setState({
-      frozenSupply,
-    });
+  changeState = (params) => {
+    this.setState(params);
+  }
+  changeClassName = (stateStep, step) => {
+    if (stateStep === step)
+      return "ant-steps-item ant-steps-item-process"
+    if (stateStep > step)
+      return "ant-steps-item ant-steps-item-finish"
+    if (stateStep < step)
+      return "ant-steps-item ant-steps-item-wait"
   }
 
   render() {
-    let {modal, numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime} = this.state;
+    let {modal, numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
     let {match} = this.props;
 
-    if (!this.isLoggedIn()) {
-      return (
-          <main className="container pb-3 token-create header-overlap">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="text-center p-3">
-                      {tu("not_signed_in")}
+    /*
+        if (!this.isLoggedIn()) {
+          return (
+              <main className="container pb-3 token-create header-overlap">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="text-center p-3">
+                          {tu("not_signed_in")}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </main>
-      );
-    }
-    if (issuedAsset !== null) {
-      return (
-          <main className="container pb-3 token-create header-overlap">
-            <div className="row">
-              <div className="col-sm-8">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="text-center p-3">
-                      {tu("trx_token_account_limit")}
+              </main>
+          );
+        }
+        if (issuedAsset !== null) {
+          return (
+              <main className="container pb-3 token-create header-overlap">
+                <div className="row">
+                  <div className="col-sm-8">
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="text-center p-3">
+                          {tu("trx_token_account_limit")}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </main>
-      );
-    }
+              </main>
+          );
+        }
+    */
 
-    let {valid, errors} = this.isValid();
-
-    let exchangeRate = numberOfTron / numberOfCoins;
-    let {activeLanguage, language} = this.props;
-
-    if (activeLanguage === "en") {
-      language = 'en-gb';
-    } else if (activeLanguage === "no") {
-      language = 'en-gb';
-    } else if (activeLanguage === "zh") {
-      language = 'zh-cn';
-    } else {
-      language = activeLanguage;
-    }
-
-    if (!loading && confirmed && !valid) {
-      submitMessage = (
-          <Alert color="warning" className="text-center">
-            {tu("errors_in_form")}
-          </Alert>
-      );
-    }
 
     return (
 
@@ -518,7 +319,7 @@ class TokenCreate extends Component {
               <div className="card">
                 <div className="card-body">
                   <div className="ant-steps ant-steps-vertical">
-                    <div className="ant-steps-item ant-steps-item-process">
+                    <div className={this.changeClassName(step, 1)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">1</span></div>
                       <div className="ant-steps-item-content">
@@ -526,7 +327,7 @@ class TokenCreate extends Component {
                         <div className="ant-steps-item-description">通证的基本信息</div>
                       </div>
                     </div>
-                    <div className="ant-steps-item ant-steps-item-wait">
+                    <div className={this.changeClassName(step, 2)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">2</span></div>
                       <div className="ant-steps-item-content">
@@ -534,7 +335,7 @@ class TokenCreate extends Component {
                         <div className="ant-steps-item-description">规定每个通证的价格</div>
                       </div>
                     </div>
-                    <div className="ant-steps-item ant-steps-item-wait">
+                    <div className={this.changeClassName(step, 3)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">3</span></div>
                       <div className="ant-steps-item-content">
@@ -542,7 +343,7 @@ class TokenCreate extends Component {
                         <div className="ant-steps-item-description">可锁定部分通证固定时间</div>
                       </div>
                     </div>
-                    <div className="ant-steps-item ant-steps-item-wait">
+                    <div className={this.changeClassName(step, 4)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">4</span></div>
                       <div className="ant-steps-item-content">
@@ -557,15 +358,40 @@ class TokenCreate extends Component {
             <div className="col-sm-12 col-md-9">
               <div className="card">
                 <div className="card-body">
-
-
-                    <Switch>
-                      {
-                        <Route exact path={match.url + ''} render={() => (<BasicInfo/>)}/>
-
-                      }
-                    </Switch>
-
+                  {
+                    step === 1 &&
+                    <BasicInfo state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 2 &&
+                    <ExchangeRate state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 3 &&
+                    <FreezeSupply state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 4 &&
+                    <Confirm state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }} submit={() => {
+                      this.preSubmit()
+                    }}/>
+                  }
 
                 </div>
               </div>

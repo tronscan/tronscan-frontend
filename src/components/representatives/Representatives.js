@@ -105,16 +105,13 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
-                                                               key={account.address} account={account}/>)}
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
             <tr>
               <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index+27} state={this.state} props={this.props}
-                                                                   key={account.address} account={account}
-                                                                   showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state} props={this.props} key={account.address} account={account} showSync={false}/>)}
             </tbody>
           </table>
         </div>
