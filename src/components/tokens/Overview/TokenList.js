@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loadTokens} from "../../../actions/tokens";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {tu} from "../../../utils/i18n";
+import SweetAlert from "react-bootstrap-sweetalert";
+import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
 import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
@@ -11,6 +12,9 @@ import {TokenLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
+import SmartTable from "../../common/SmartTable.js"
+import {ONE_TRX} from "../../../constants";
+
 
 class TokenList extends Component {
 
@@ -46,6 +50,9 @@ class TokenList extends Component {
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
+    for (let index in tokens) {
+      tokens[index].index = parseInt(index) + 1;
+    }
 
     function compare(property) {
       return function (obj1, obj2) {
@@ -67,6 +74,7 @@ class TokenList extends Component {
       tokens,
       total,
     });
+    return total;
   };
 
   componentDidMount() {
@@ -122,71 +130,158 @@ class TokenList extends Component {
     }
 
   }
+  preBuyTokens = (token) => {
+    let {buyAmount} = this.state;
+    let {currentWallet, wallet} = this.props;
+
+    if (!wallet.isOpen) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                title="Open wallet"
+                onConfirm={() => this.setState({alert: null})}>
+              Open a wallet to participate
+            </SweetAlert>
+        ),
+      });
+      return;
+    }
+    else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                info
+                onConfirm={() => {
+                  this.buyTokens(token)
+                }}>
+              你想要购买多少数量的通证？
+              <div className="input-group">
+                <input
+                    className="form-control"
+                    value={buyAmount}
+                    max={token.remaining}
+                    min={1}
+                    onChange={value => this.setState({buyAmount: value})}
+                />
+              </div>
+            </SweetAlert>
+        ),
+      });
+    }
+  }
+  buyTokens = (token) => {
+
+
+    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+
+    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                title={tu("insufficient_trx")}
+                onConfirm={() => this.setState({alert: null})}
+            >
+              {tu("not_enough_trx_message")}
+            </SweetAlert>
+        ),
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                info
+                showCancel
+                confirmBtnText={tu("confirm_transaction")}
+                confirmBtnBsStyle="success"
+                cancelBtnText={tu("cancel")}
+                cancelBtnBsStyle="default"
+                title={tu("buy_confirm_message_0")}
+                onConfirm={() => this.confirmTransaction(token)}
+                onCancel={() => this.setState({alert: null})}
+            >
+              {tu("buy_confirm_message_1")}<br/>
+              {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+            </SweetAlert>
+        ),
+      });
+    }
+  };
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: '#',
+        dataIndex: 'index',
+        key: 'index',
+
+      },
+      {
+        title: intl.formatMessage({id: 'token'}),
+        dataIndex: 'name',
+        key: 'name',
+        width: '50%',
+        render: (text, record, index) => {
+          // console.log(record);
+          return <div><h5>{record.name}{'('}{record.abbr}{')'}</h5><p>{record.description}</p></div>
+        }
+      },
+      {
+        title: '信用评级',
+        dataIndex: 'credit',
+        key: 'credit',
+      },
+      {
+        title: '发行进度',
+        dataIndex: 'issuedPercentage',
+        key: 'issuedPercentage',
+        render: (text, record, index) => {
+          //  console.log(text);
+          if (text === null)
+            text = 0;
+          return <div><FormattedNumber value={text}/>%</div>
+        }
+      },
+      {
+        title: '发行时间',
+        dataIndex: 'dateCreated',
+        key: 'dateCreated',
+        render: (text, record, index) => {
+          return <FormattedDate value={text}/>
+        }
+      },
+      {
+        title: '参与发行',
+        render: (text, record, index) => {
+          if (record.endTime < new Date() || record.issuedPercentage === 100)
+            return <button className="btn btn-secondary btn-block">{tu("finish")}</button>
+          else
+            return <button className="btn btn-danger btn-block"
+                           onClick={() => this.buyTokens(record)}>{tu("participate")}</button>
+        }
+      }
+    ];
+
+    return column;
+  }
+
 
   render() {
 
     let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
-
+    let column = this.customizedColumn();
     return (
         <main className="container header-overlap">
           {alert}
           {
             <div className="row">
               <div className="col-md-12">
-                <StickyContainer>
-                  <div className="card">
-                    <Sticky>
-                      {
-                        ({style}) => (
-                            <div style={{zIndex: 100, ...style}} className="py-3 bg-white card-body border-bottom">
-                              <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                            </div>
-                        )
-                      }
-                    </Sticky>
-                    <div className="table-responsive">
-                      <table className="table table-hover m-0 table-striped">
-                      <thead className="thead-dark">
-                      <tr>
-                        <th className="text-nowrap">{tu("name")}
-                          <SearchInput search={this.searchName}></SearchInput>
-                        </th>
-                        <th className="d-md-table-cell" style={{width: 100}}>{tu("abbreviation")}</th>
-                        <th className="d-md-table-cell" >{tu("total_supply")}</th>
-                        <th className="d-md-table-cell" style={{width: 150}}>{tu("total_issued")}</th>
-                        <th className="text-nowrap" style={{width: 150}}>{tu("registered")}</th>
-                        {/*<th style={{width: 150}}>{tu("addresses")}</th>*/}
-                        {/*<th style={{width: 150}}>{tu("transactions")}</th>*/}
-                      </tr>
-                      </thead>
-                      <tbody>
-                      {
-                        tokens.map((token, index) => (
-                            <tr key={index}>
-                              <td className="text-nowrap"><TokenLink name={token.name}/></td>
-                              <td className="d-md-table-cell">{token.abbr}</td>
-                              <td className="d-md-table-cell"><FormattedNumber value={token.totalSupply}/></td>
-                              <td className="d-md-table-cell">  {
-                                  token.issued !== 0 ?
-                                      <FormattedNumber value={token.issued}/> :
-                                      '-'
-                                }
-                              </td>
-                              <td className="text-nowrap">
-                                <FormattedDate value={token.dateCreated}/>{' '}
-                                <FormattedTime value={token.dateCreated}/>
-                              </td>
-                              {/*<td><FormattedNumber value={token.addresses} /></td>*/}
-                              {/*<td><FormattedNumber value={token.transactions} /></td>*/}
-                            </tr>
-                        ))
-                      }
-                      </tbody>
-                    </table>
-                    </div>
-                  </div>
-                </StickyContainer>
+                <SmartTable loading={loading} column={column} data={tokens} total={total}
+                            onPageChange={(page, pageSize) => {
+                              this.loadPage(page, pageSize)
+                            }}/>
               </div>
             </div>
           }
