@@ -238,7 +238,7 @@ export const routes = [
   {
         path: "list_trx",
         label: "list_trx",
-        icon: "fa fa-server",
+        icon: "fa fa-plus",
         enurl: "https://tron.network/exchangesList?lng=en",
         zhurl: "https://tron.network/exchangesList?lng=zh",
         linkHref:true
