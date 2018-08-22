@@ -269,7 +269,9 @@ export class SupplyTypesTRXPieChart extends React.Component {
                 }
             }
         }else{
+            let seriesCenter = ['50%', '60%'];
             config.supplyTypesTRXPieChart.legend.show = false;
+            config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
             config.supplyTypesTRXPieChart.toolbox.feature = {
                 restore: {
                     show: false,

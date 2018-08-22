@@ -4,25 +4,28 @@ import {tu} from "../../utils/i18n";
 import {connect} from "react-redux";
 import {BlockNumberLink} from "../common/Links";
 import {FormattedNumber} from "react-intl";
-
+import {TronLoader} from "../common/loaders";
 
 class TronConvertTool extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      loader:false
+    };
   }
 
   componentDidMount() {
+      let iframe = document.getElementById("convertTool");
+      let _this = this
+      iframe.onload = function(){
+          _this.setState({
+              loader:true
+          });
+      };
 
   }
-
-  hideModal = () => {
-    this.setState({
-      modal: null,
-    });
-  };
 
   componentDidUpdate(prevProps, prevState) {
 
@@ -37,12 +40,18 @@ class TronConvertTool extends Component {
     return (
         <div className="container header-overlap">
           <div className="card">
-            <div className="row">
-              <div className="col-md-12">
-                <iframe  style={{width:'100%',height:'100%',minHeight:'750px',paddingTop:'15px',border:0 }} src="http://18.221.104.145:8888/TronConvertTool.html"></iframe>
+            <div className="row" style={{justifyContent: 'center'}}>
+                {
+                    <div className={this.state.loader?"loader-hidden col-md-12":"show col-md-12"} >
+                        <TronLoader/>
+                    </div>
+                }
+                {
+                  <div className={this.state.loader?"show col-md-12":"hidden col-md-12"} style={{width:'100%',height:'100%',minHeight:'750px',paddingTop:'15px',border:0 }} >
+                    <iframe id="convertTool" style={{width:'100%',height:'100%',minHeight:'750px',paddingTop:'15px',border:0 }} src="http://18.221.104.145:8888/TronConvertTool.html"></iframe>
+                  </div>
+                }
 
-
-              </div>
             </div>
           </div>
         </div>

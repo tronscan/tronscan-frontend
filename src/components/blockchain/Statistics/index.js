@@ -160,10 +160,10 @@ class Statistics extends React.Component {
     let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
     let genesisCirculatingNum = (currentTotalSupply - blockProduceRewardsNum - nodeRewardsNum  - TRONFoundationTotal).toFixed(2);
     let supplyTypesChartData = [
-        {value:TRONFoundationTotal, name:'TRON Foundation', selected:true},
-        {value:genesisCirculatingNum, name:'Genesis Circulating Supply',selected:true},
-        {value:blockProduceRewardsNum, name:' Block Produce Rewards',selected:true},
-        {value:nodeRewardsNum, name:'Node Rewards',selected:true},
+        {value:TRONFoundationTotal, name:'tron_foundation', selected:true},
+        {value:genesisCirculatingNum, name:'genesis_circulating_supply',selected:true},
+        {value:blockProduceRewardsNum, name:'block_produce_rewards',selected:true},
+        {value:nodeRewardsNum, name:'node_rewards',selected:true},
     ]
 
 
