@@ -12,7 +12,10 @@ export default class SmartTable extends Component {
       data: [],
       searchText: '',
       filtered: false,
-      pagination: {position: 'both', pageSize: 40},
+      pagination: {
+        position: 'both',
+        showSizeChanger: true,
+      },
       loading: false,
     }
   }
@@ -49,7 +52,7 @@ export default class SmartTable extends Component {
 
   fetch = (params = {}) => {
     this.setState({loading: true});
-    this.props.onPageChange(params.page, 40);
+    this.props.onPageChange(params.page, params.pageSize);
     this.setState({
       loading: false,
     });
@@ -157,7 +160,7 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total,loading,data,column} = this.props;
+    let {total, loading, data, column} = this.props;
     let columns = this.setColumn(column);
 
     return (

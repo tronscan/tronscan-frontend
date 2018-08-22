@@ -945,11 +945,21 @@ th {
   display: inline-block !important;
 }
 
-.ant_table {
-  padding-left:30px !important;
-}
-
 .sr th, .sr td{
   padding-left:10px;
   padding-right:10px;
+}
+
+//===========================ICO
+
+.ant_table {
+  //padding-left:20px !important;
+  text-align:center;
+}
+.ant-table-body table thead tr th:not(:nth-child(2)){
+  text-align:center;
+}
+
+.ant-table-tbody > tr > td {
+  padding: 0px 8px !important;
 }

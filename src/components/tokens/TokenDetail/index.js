@@ -23,7 +23,7 @@ class TokenDetail extends React.Component {
     super();
 
     this.state = {
-      privateKey:'',
+      privateKey: '',
       loading: true,
       token: {},
       tabs: [],
@@ -131,7 +131,7 @@ class TokenDetail extends React.Component {
   submit = async (token) => {
 
     let {account, currentWallet} = this.props;
-    let {buyAmount,privateKey} = this.state;
+    let {buyAmount, privateKey} = this.state;
 
     let isSuccess = await Client.participateAsset(
         currentWallet.address,
@@ -156,22 +156,22 @@ class TokenDetail extends React.Component {
     let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
-      if(pkToAddress(value)!==account.address)
+      if (pkToAddress(value) !== account.address)
         this.privateKey.className = "form-control is-invalid";
     }
-    else{
+    else {
       this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
   confirmPrivateKey = (param) => {
-    let {privateKey,token} = this.state;
+    let {privateKey, token} = this.state;
     let {account} = this.props;
 
-    let reConfirm = ()=> {
+    let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)===account.address)
+        if (pkToAddress(this.privateKey.value) === account.address)
           this.buyTokens(token);
       }
     }
@@ -354,7 +354,7 @@ class TokenDetail extends React.Component {
                           <td>
                             <div className="input-group">
                               {
-                                token.remaining!==0 &&
+                                token.remaining !== 0 &&
                                 <NumberField
                                     className="form-control"
                                     value={buyAmount}

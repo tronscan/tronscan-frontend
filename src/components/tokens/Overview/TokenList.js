@@ -133,8 +133,15 @@ class TokenList extends Component {
     }
 
   }
-  onBuyInputChange = (value) => {
+  onBuyInputChange = (value, price, max) => {
+    let {intl} = this.props;
+    if (value > max) {
+      value = max;
+    }
     this.setState({buyAmount: value});
+    this.buyAmount.value = value;
+    let priceTRX = value * (price / ONE_TRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
   }
   preBuyTokens = (token) => {
     let {buyAmount} = this.state;
@@ -144,10 +151,21 @@ class TokenList extends Component {
       this.setState({
         alert: (
             <SweetAlert
-                warning
+                info
                 title="Open wallet"
-                onConfirm={() => this.setState({alert: null})}>
-              Open a wallet to participate
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-165px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <span>Open a wallet to participate</span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
             </SweetAlert>
         ),
       });
@@ -157,30 +175,32 @@ class TokenList extends Component {
       this.setState({
         alert: (
             <SweetAlert
-                showConfirm="false"
-                onConfirm={() => {
-                  if (this.buyAmount.value > 0)
-                    this.buyTokens(token)
-                }}
-                style={{marginLeft: '-240px', marginTop: '-195px',width:'480px',height:'330px'}}
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5">
-              <h5 style={{color:'black'}}>你想要购买多少数量的通证？</h5>
-              <div className="input-group ">
-                <input
-                    ref={ref => this.buyAmount = ref}
-                    className="form-control"
-                    value={0}
-                    max={token.remaining}
-                    min={1}
-                    onChange={(e) => {
-                      this.onBuyInputChange(e.target.value)
-                    }}
-                />
-              </div>
-              <div className="text-center mt-1 text-muted">
-                <b><FormattedNumber value={(this.buyAmount? this.buyAmount:0) * (token.price / ONE_TRX)}/> TRX</b>
-              </div>
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <h5 style={{color: 'black'}}>你想要购买多少数量的通证？</h5>
+                <div className="input-group mt-5">
+                  <input
+                      type="number"
+                      ref={ref => this.buyAmount = ref}
+                      className="form-control"
+                      max={token.remaining}
+                      min={1}
+                      onChange={(e) => {
+                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                      }}
+                  />
+                </div>
+                <div className="text-center mt-3 text-muted">
+                  <b>= <span ref={ref => this.priceTRX = ref}></span> TRX</b>
+                </div>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.buyTokens(token)
+                }}>{tu("participate")}</button>
               </div>
             </SweetAlert>
         ),
@@ -188,7 +208,11 @@ class TokenList extends Component {
     }
   }
   buyTokens = (token) => {
+
     let {buyAmount} = this.state;
+    if (buyAmount <= 0) {
+      return;
+    }
     let {currentWallet, wallet} = this.props;
     let tokenCosts = buyAmount * (token.price / ONE_TRX);
 
@@ -197,10 +221,20 @@ class TokenList extends Component {
         alert: (
             <SweetAlert
                 warning
-                title={tu("insufficient_trx")}
-                onConfirm={() => this.setState({alert: null})}
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              {tu("not_enough_trx_message")}
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <span>
+                  {tu("not_enough_trx_message")}
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("confirm")}</button>
+              </div>
             </SweetAlert>
         ),
       });
@@ -208,23 +242,63 @@ class TokenList extends Component {
       this.setState({
         alert: (
             <SweetAlert
-                info
-                showCancel
-                confirmBtnText={tu("confirm_transaction")}
-                confirmBtnBsStyle="success"
-                cancelBtnText={tu("cancel")}
-                cancelBtnBsStyle="default"
-                title={tu("buy_confirm_message_0")}
-                onConfirm={() => this.confirmTransaction(token)}
-                onCancel={() => this.setState({alert: null})}
+                warning
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              {tu("buy_confirm_message_1")}<br/>
-              {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <span>
+                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.confirmTransaction(token)
+                }}>{tu("confirm")}</button>
+              </div>
             </SweetAlert>
         ),
       });
     }
   };
+  confirmTransaction = async (token) => {
+    let {account} = this.props;
+    let {buyAmount} = this.state;
+
+    let isSuccess = await Client.participateAsset(
+        account.address,
+        token.ownerAddress,
+        token.name,
+        buyAmount * token.price)(account.key);
+
+    this.setState({
+      alert: (
+          <SweetAlert
+              success
+              showConfirm={false}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+          >
+            <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                this.setState({alert: null})
+              }}>X</a>
+              <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+              <span>
+               Successfully received {token.name} tokens
+              </span>
+              <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                this.setState({alert: null})
+              }}>{tu("OK")}</button>
+            </div>
+
+          </SweetAlert>
+      )
+    });
+
+  };
+
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
@@ -232,7 +306,7 @@ class TokenList extends Component {
         title: '#',
         dataIndex: 'index',
         key: 'index',
-
+        className: 'ant_table',
       },
       {
         title: intl.formatMessage({id: 'token'}),
@@ -241,13 +315,15 @@ class TokenList extends Component {
         width: '50%',
         render: (text, record, index) => {
           // console.log(record);
-          return <div><h5>{record.name}{'('}{record.abbr}{')'}</h5><p>{record.description}</p></div>
+          return <div style={{paddingTop: '10px'}}><h5>{record.name}{'('}{record.abbr}{')'}</h5>
+            <p>{record.description}</p></div>
         }
       },
       {
         title: '信用评级',
         dataIndex: 'credit',
         key: 'credit',
+        className: 'ant_table'
       },
       {
         title: '发行进度',
@@ -258,7 +334,8 @@ class TokenList extends Component {
           if (text === null)
             text = 0;
           return <div><FormattedNumber value={text}/>%</div>
-        }
+        },
+        className: 'ant_table'
       },
       {
         title: '发行时间',
@@ -266,7 +343,8 @@ class TokenList extends Component {
         key: 'dateCreated',
         render: (text, record, index) => {
           return <FormattedDate value={text}/>
-        }
+        },
+        className: 'ant_table'
       },
       {
         title: '参与发行',
@@ -276,7 +354,8 @@ class TokenList extends Component {
           else
             return <button className="btn btn-danger btn-block"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
-        }
+        },
+        className: 'ant_table'
       }
     ];
 
@@ -295,6 +374,12 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12">
+                <span style={{
+                  marginTop: '25px',
+                  marginLeft: '5px',
+                  position: 'absolute',
+                  zIndex: '1000'
+                }}>当前共{total}个通证</span>
                 <SmartTable loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
