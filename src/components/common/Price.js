@@ -95,7 +95,7 @@ export class TRXPrice extends React.PureComponent {
 
     this.state = {
       open: false,
-      id: alpha(24)
+      id: alpha(24),
     };
   }
 
@@ -107,7 +107,7 @@ export class TRXPrice extends React.PureComponent {
 
   render() {
     let {open, id} = this.state;
-    let {amount = 0, currency = "", ...props} = this.props;
+    let {amount = 0, currency = "", showCurreny = true, ...props} = this.props;
 
     return (
       <Consumer>
@@ -120,7 +120,7 @@ export class TRXPrice extends React.PureComponent {
                               onMouseOver={() => this.setState({open: true})}
                               onMouseOut={() => this.setState({open: false})}
                               {...props}>
-                {value} {currency.toUpperCase() || priceValues.priceShown.toUpperCase()}
+                {value} { showCurreny && (currency.toUpperCase() || priceValues.priceShown.toUpperCase()) }
               </span>}
             </FormattedNumber>
             <Tooltip placement="top" isOpen={open} target={id}>

@@ -276,6 +276,10 @@ export const routes = [
         url: "https://t.me/tronscan",
         label: "telegram_updates",
       },
+      {
+        url: "https://t.me/tronscantalk",
+        label: "telegram_chat",
+      },
       '-',
       "Community",
       {
