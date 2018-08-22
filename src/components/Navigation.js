@@ -92,11 +92,6 @@ class Navigation extends PureComponent {
             return false;
         }
 
-        //if (isAddressValid(privateKey))
-        //  return true;
-        //else
-        //  return false;
-
         if (privateKey.length !== 64) {
             return false;
         }
