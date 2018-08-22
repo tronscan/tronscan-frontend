@@ -14,6 +14,8 @@ import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
 import {ONE_TRX} from "../../../constants";
+import {login} from "../../../actions/app";
+import {reloadWallet} from "../../../actions/wallet";
 
 
 class TokenList extends Component {
@@ -24,6 +26,7 @@ class TokenList extends Component {
 
     this.state = {
       tokens: [],
+      buyAmount: 0,
       loading: false,
       total: 0,
       filter: {},
@@ -130,6 +133,9 @@ class TokenList extends Component {
     }
 
   }
+  onBuyInputChange = (value) => {
+    this.setState({buyAmount: value});
+  }
   preBuyTokens = (token) => {
     let {buyAmount} = this.state;
     let {currentWallet, wallet} = this.props;
@@ -151,19 +157,30 @@ class TokenList extends Component {
       this.setState({
         alert: (
             <SweetAlert
-                info
+                showConfirm="false"
                 onConfirm={() => {
-                  this.buyTokens(token)
-                }}>
-              你想要购买多少数量的通证？
-              <div className="input-group">
+                  if (this.buyAmount.value > 0)
+                    this.buyTokens(token)
+                }}
+                style={{marginLeft: '-240px', marginTop: '-195px',width:'480px',height:'330px'}}
+            >
+              <div className="mt-5">
+              <h5 style={{color:'black'}}>你想要购买多少数量的通证？</h5>
+              <div className="input-group ">
                 <input
+                    ref={ref => this.buyAmount = ref}
                     className="form-control"
-                    value={buyAmount}
+                    value={0}
                     max={token.remaining}
                     min={1}
-                    onChange={value => this.setState({buyAmount: value})}
+                    onChange={(e) => {
+                      this.onBuyInputChange(e.target.value)
+                    }}
                 />
+              </div>
+              <div className="text-center mt-1 text-muted">
+                <b><FormattedNumber value={(this.buyAmount? this.buyAmount:0) * (token.price / ONE_TRX)}/> TRX</b>
+              </div>
               </div>
             </SweetAlert>
         ),
@@ -171,8 +188,8 @@ class TokenList extends Component {
     }
   }
   buyTokens = (token) => {
-
-
+    let {buyAmount} = this.state;
+    let {currentWallet, wallet} = this.props;
     let tokenCosts = buyAmount * (token.price / ONE_TRX);
 
     if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
@@ -258,7 +275,7 @@ class TokenList extends Component {
             return <button className="btn btn-secondary btn-block">{tu("finish")}</button>
           else
             return <button className="btn btn-danger btn-block"
-                           onClick={() => this.buyTokens(record)}>{tu("participate")}</button>
+                           onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
         }
       }
     ];
@@ -294,11 +311,16 @@ class TokenList extends Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    tokens: state.tokens.tokens,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
   };
 }
 
 const mapDispatchToProps = {
   loadTokens,
+  login,
+  reloadWallet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenList));
