@@ -94,33 +94,36 @@ class Blocks extends React.Component {
                         <th style={{width: 150}}>{tu("age")}</th>
                         <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
                         <th className="d-sm-table-cell">{tu("produced_by")}</th>
-                        <th className="d-lg-table-cell" style={{width: 100}}>{tu("bytes")}</th> 
+                        <th className="d-lg-table-cell text-right" style={{width: 100}}>{tu("bytes")}</th>
+                        <th className="d-sm-table-cell text-right" style={{width: 25}}>&nbsp;</th>
                       </tr>
                       </thead>
                       <tbody>
                       {
                           blocks.map(block => (
                               <tr key={block.number}>
-                                <th>
+                                <td className="font-weight-bold">
                                   <BlockNumberLink number={block.number}/>
-                                </th>
+                                </td>
                                 <td className="text-nowrap"><TimeAgo date={block.timestamp} /></td>
                                 <td className="" style={{width: 100}}>
                                   <FormattedNumber value={block.nrOfTrx} />
                                 </td>
                                 <td className="d-sm-table-cell">
-                                  <div className="show-mobile">
-                                    {block.witnessName}
-                                  </div>
-                                  <div className="hidden-mobile">
-                                    {block.witnessName}
-                                  </div>
+                                  {block.witnessName}
                                 </td>
-                                <td className="d-lg-table-cell">
+
+                                <td className="d-lg-table-cell text-right">
                                   <FormattedNumber value={block.size}/>
                                 </td>
+                                <td className="text-right">
+                                  {
+                                    block.confirmed &&
+                                      <span className="text-success"><i className="fas fa-circle"/></span>
+                                  }
+                                </td>
                               </tr>
-                          ))      
+                          ))
                       }
                       </tbody>
                     </table>
