@@ -104,9 +104,14 @@ export class BasicInfo extends PureComponent {
     return (
 
         <main className="">
-          <h5 className="card-title text-center">
+          <h5 className="card-title">
             {tu("issue_a_token")}
           </h5>
+          <p>
+            用户账户中有至少1024TRX，就可以在波场协议上发行通证。
+            通证发行后，会在通证总览页面进行显示。 之后用户可以在发行期限内参与认购，用TRX兑换通证。
+            在发行通证后，您的账户将会收到全部的发行数额。 当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。
+          </p>
           <form>
             <fieldset>
               <legend>

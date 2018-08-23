@@ -66,7 +66,8 @@ class TokenCreate extends Component {
       valid: false,
       submitMessage: null,
       frozenSupply: [{amount: 0, days: 1}],
-      step: 1,
+      showFrozenSupply:false,
+      step: 4,
     };
   }
 

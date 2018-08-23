@@ -960,6 +960,7 @@ th {
 .ant-table-tbody > tr > td {
   padding: 0px 8px !important;
 }
+
 .transfers .ant-table-tbody > tr > td {
   padding: 14px 8px !important;
 }
@@ -998,12 +999,25 @@ th {
 }
 
 .tokenDetail tr th {
-  width:10%;
-}
-.tokenDetail tr td {
-  width:40%;
+  width: 10%;
 }
 
-.nav-tabs .nav-link{
-  line-height:33px;
+.tokenDetail tr td {
+  width: 40%;
+}
+
+.nav-tabs .nav-link {
+  line-height: 33px;
+}
+
+.confirm th, .confirm td {
+  padding-left: 0px;
+}
+
+.confirm tr td:first-child {
+  width: 20%;
+}
+
+.confirm .borderBottom{
+  borderBottom:'1px solid #DFD7CA' !important;
 }

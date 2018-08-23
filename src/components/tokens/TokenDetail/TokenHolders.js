@@ -75,7 +75,7 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'address'}),
         dataIndex: 'address',
         key: 'address',
-   
+
         render: (text, record, index) => {
           return <AddressLink address={record.address}/>
         }

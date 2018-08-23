@@ -59,75 +59,75 @@ class Confirm extends Component {
             <div className="col-sm-12 col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">
+                  <h4 className="card-title">
                     {tu("issue_a_token")}
+                  </h4>
+                  <p>
+                    用户账户中有至少1024TRX，就可以在波场协议上发行通证。
+                    通证发行后，会在通证总览页面进行显示。 之后用户可以在发行期限内参与认购，用TRX兑换通证。
+                    在发行通证后，您的账户将会收到全部的发行数额。 当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。
+                  </p>
+                  <hr/>
+                  <h5 className="card-title">
+                    {tu("确认设置")}
                   </h5>
-
-
                   <form>
                     <fieldset>
-                      <legend>
-                        {tu("details")}
+
+                      <strong>{tu("基本设置")}</strong>
                         <i className="fab fa-wpforms float-right"/>
-                      </legend>
-                      <table className="table table-hover table-striped bg-white m-0 sr">
+
+                      <table className="table confirm">
                         <tbody>
                         <tr>
-                          <th className="text-nowrap">{tu("token_name")}</th>
-                          <td>{name}</td>
+                          <td className="text-nowrap" style={{borderTop:'0px'}}>{tu("token_name")}:</td>
+                          <td style={{borderTop:'0px'}}>{name}</td>
                         </tr>
                         <tr>
-                          <th className="text-nowrap">{tu("token_abbr")}</th>
+                          <td className="text-nowrap">{tu("token_abbr")}:</td>
                           <td>{abbr}</td>
                         </tr>
                         <tr>
-                          <th className="text-nowrap">{tu("total_supply")}</th>
-                          <td>{totalSupply}</td>
+                          <td className="text-nowrap borderBottom" >{tu("total_supply")}:</td>
+                          <td className="borderBottom">{totalSupply}</td>
                         </tr>
-                        <tr>
-                          <th className="text-nowrap">{tu("description")}</th>
-                          <td>{description}</td>
-                        </tr>
-                        <tr>
-                          <th className="text-nowrap">{tu("url_message")}</th>
-                          <td>{url}</td>
-                        </tr>
+
                         </tbody>
                       </table>
                     </fieldset>
-                    <hr/>
+
                     <fieldset>
-                      <legend>
-                        {tu("exchange_rate")}
+
+                      <strong>{tu("汇率设置")}</strong>
                         <i className="fa fa-exchange-alt float-right"/>
-                      </legend>
-                      <table className="table table-hover table-striped bg-white m-0 sr">
+
+                      <table className="table confirm">
                         <tbody>
                         <tr>
-                          <th className="text-nowrap">{tu("token_price")}</th>
-                          <td> 1 {name || tu("token")} = <FormattedNumber
+                          <td className="text-nowrap" style={{borderTop:'0px'}}>{tu("token_price")}</td>
+                          <td style={{borderTop:'0px'}}> 1 {name || tu("token")} = <FormattedNumber
                               value={exchangeRate}/> TRX
                           </td>
                         </tr>
                         <tr>
-                          <th className="text-nowrap">{tu("start_date")}</th>
+                          <td className="text-nowrap">{tu("start_date")}</td>
                           <td><FormattedDate value={startTime}/></td>
                         </tr>
                         <tr>
-                          <th className="text-nowrap">{tu("end_date")}</th>
-                          <td><FormattedDate value={endTime}/></td>
+                          <td className="text-nowrap borderBottom">{tu("end_date")}</td>
+                          <td className="borderBottom"><FormattedDate value={endTime}/></td>
                         </tr>
 
                         </tbody>
                       </table>
 
                     </fieldset>
-                    <hr/>
+
                     <fieldset>
-                      <legend>
-                        {tu("frozen_supply")}
+
+                      <strong>{tu("frozen_supply")}</strong>
                         <i className="fa fa-snowflake float-right"/>
-                      </legend>
+
                       <table className="table table-hover table-striped bg-white m-0 sr">
                         <tbody>
 

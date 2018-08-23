@@ -11,7 +11,7 @@ import "react-datetime/css/react-datetime.css";
 import {NumberField} from "../common/Fields";
 import 'moment/min/locales';
 import DateTimePicker from "react-datetime";
-
+import {Switch, Icon} from 'antd';
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -33,7 +33,7 @@ export class FreezeSupply extends Component {
 
   isValid = () => {
     this.props.nextStep(4);
-    this.state.step=4;
+    this.state.step = 4;
     this.props.nextState(this.state);
   };
 
@@ -88,21 +88,29 @@ export class FreezeSupply extends Component {
       frozenSupply: frozenSupply,
     });
   }
+  switchFreeze = (checked) => {
+    console.log(checked);
+    this.setState({showFrozenSupply: checked});
+  }
 
   render() {
-    let {frozenSupply} = this.state;
+    let {frozenSupply,showFrozenSupply} = this.state;
 
     let {errors} = this.state;
 
     let {nextStep} = this.props;
 
-    console.log(frozenSupply);
     return (
 
         <main className="">
-          <h5 className="card-title text-center">
+          <h5 className="card-title">
             {tu("issue_a_token")}
           </h5>
+          <p>
+            用户账户中有至少1024TRX，就可以在波场协议上发行通证。
+            通证发行后，会在通证总览页面进行显示。 之后用户可以在发行期限内参与认购，用TRX兑换通证。
+            在发行通证后，您的账户将会收到全部的发行数额。 当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。
+          </p>
           <form>
             <fieldset>
               <legend>
@@ -110,20 +118,25 @@ export class FreezeSupply extends Component {
                 <i className="fa fa-snowflake float-right"/>
               </legend>
 
-              <div className="form-row text-muted">
+              <div className="form-row text-muted mb-3">
                 <p className="col-md-12">
                   {tu("frozen_supply_message_0")}
                 </p>
+                <Switch checkedChildren="启用" unCheckedChildren="禁用" onChange={
+                  this.switchFreeze
+                }/>
               </div>
-              <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
-                <p className="col-md-7">
-                  <label>{tu("amount")}</label>
-                </p>
-                <p className="col-md-3">
-                  <label>{tu("days_to_freeze")}</label>
-                </p>
-              </div>
-              {
+              { showFrozenSupply &&
+                <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
+                  <p className="col-md-7">
+                    <label>{tu("amount")}</label>
+                  </p>
+                  <p className="col-md-3">
+                    <label>{tu("days_to_freeze")}</label>
+                  </p>
+                </div>
+              }
+              { showFrozenSupply &&
                 frozenSupply.map((frozen, index) => (
                     <div key={index}
                          className="form-row text-muted">
@@ -145,10 +158,12 @@ export class FreezeSupply extends Component {
                             value={frozen.days}/>
                       </div>
                       <div className="form-group col-md-2">
-                        <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}} onClick={this.plusFrozen}></a>
+                        <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
+                           onClick={this.plusFrozen}></a>
                         {
                           frozenSupply.length > 1 &&
-                          <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}} onClick={this.minusFrozen}></a>
+                          <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
+                             onClick={this.minusFrozen}></a>
                         }
                       </div>
                     </div>
