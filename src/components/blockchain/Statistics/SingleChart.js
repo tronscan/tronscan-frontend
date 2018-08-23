@@ -645,7 +645,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                 </tbody></table>
                                                                 <div style={{fontSize:12,color:'#999',whiteSpace: 'nowrap',textAlign:'left', padding: '0.75rem',borderTop: '1px solid #DFD7CA',verticalAlign: 'top'}}>
                                                                     <div style={{transform:'scale(.9)',marginLeft: '-1.3rem'}}>
-                                                                        {tu('supply_notes')}
+                                                                        *{tu('supply_notes')}
                                                                     </div>
                                                                 </div>
                                                         </div>
