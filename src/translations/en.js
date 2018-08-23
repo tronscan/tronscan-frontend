@@ -60,7 +60,7 @@ export const messages = {
   "from": "from",
   "to": "to",
   "value": "value",
-  "total_accounts": "Total Accounts (Real Time)",
+  "total_accounts": "Total Accounts",
   "submit": "submit",
   "send": "send",
   "receive": "receive",

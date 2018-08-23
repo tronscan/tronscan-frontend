@@ -823,6 +823,32 @@ export const messages = {
   "power": "Power",
   "token_transfers": "การโอนย้ายโทเคน",
   "website_url": "URL ของเว็บไซต์",
-  "search": "ค้นหา"
+  "search": "ค้นหา",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool":"Encode Convert Tool",
+  "breakdown_supply_types":"Breakdown By Supply Types",
+  "genesis":"Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards":"Block Produce Rewards",
+  "node_rewards":"Node Rewards",
+  "independence_day_burned":"Independence Day Burned",
+  "fee_burned":"Fee Burned",
+  "current_total_supply":"Current Total Supply",
+  "foundation_freeze":"Foundation Freeze",
+  "price_per_1000_trx":"PRICE PER 1000 TRX",
+  "in_USD":"In USD",
+  "in_BTC":"In BTC",
+  "total_TRX_supply":"Total TRX Supply",
+  "market_capitalization":"Market Capitalization",
+  "circulating_supply":"Circulating Supply",
+  "list_trx":"List TRX",
+  "burned_trx":"TRX Burned",
+  "supply_notes":"crowdsale and pre-sale, US, Chinese and Japanese citizens not included."
 
 };

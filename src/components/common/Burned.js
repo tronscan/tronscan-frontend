@@ -22,7 +22,7 @@ export class TRXBurned extends React.PureComponent {
 
     async loadBurnedNum() {
         let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
-        let feeBurnedNum = (Math.abs(this.state.startFeeBurnedNum) - Math.abs(address.balance / ONE_TRX)).toFixed(2);
+        let feeBurnedNum = (Math.abs(this.state.startFeeBurnedNum) - Math.abs(address.balance / ONE_TRX)).toFixed(0);
         console.log('feeBurnedNum',feeBurnedNum)
         let burnedNumTotal = Number(feeBurnedNum) + this.state.independenceDayBurned;
         console.log('burnedNumTotal',burnedNumTotal)
@@ -50,7 +50,7 @@ export class TRXBurned extends React.PureComponent {
                                     onMouseOver={() => this.setState({open: true})}
                                     onMouseOut={() => this.setState({open: false})}>
                     {/*{value}*/}
-                    <CountUp start={0} end={burnedNumTotal} duration={2}  separator="," decimals={2}/>
+                    <CountUp start={0} end={burnedNumTotal} duration={2}  separator="," decimals={0}/>
                     </span>}
                 </FormattedNumber>
                 <Tooltip placement="top" isOpen={open} target={id}>

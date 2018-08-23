@@ -343,7 +343,7 @@ class Statistics extends React.Component {
                         {
                             supplyTypesChart === null ?
                                 <TronLoader/> :
-                                <SupplyTypesTRXPieChart message={{id: 'breakdown_supply_types'}} intl={intl}
+                                <SupplyTypesTRXPieChart message={{id: 'total_TRX_supply'}} intl={intl}
                                                              data={supplyTypesChart} style={{height: 300}}/>
                         }
                     </div>

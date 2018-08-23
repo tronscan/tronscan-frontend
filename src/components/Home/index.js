@@ -209,11 +209,10 @@ class Home extends Component {
                       </button>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div className="row text-center home-stats pb-3">
-                <div className="col-md-1 col-sm-4">
+                <div className="col-md-2 col-sm-4">
                   <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
                     <p>{tu("online_nodes")}</p>
@@ -238,19 +237,19 @@ class Home extends Component {
                     <p>{tu("total_accounts")}</p>
                   </Link>
                 </div>
-                <div className="col-md-3 col-sm-6">
-                  <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><TRXBurned /></h2>
-                    <p>{tu("burned_trx")}</p>
-                  </Link>
-                </div>
+
                 <div className="col-md-2 col-sm-6">
                   <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><TRXPrice amount={1000} currency="USD"/></h2>
                     <p>{tu("pice_per_1000trx")}</p>
                   </Link>
                 </div>
-
+                <div className="col-md-2 col-sm-6">
+                  <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
+                    <h2><TRXBurned /></h2>
+                    <p>{tu("burned_trx")}</p>
+                  </Link>
+                </div>
 
               </div>
             </div>
