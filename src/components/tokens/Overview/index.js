@@ -7,6 +7,7 @@ import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
 import {Client} from "../../../services/api";
 import {getQueryParam} from "../../../utils/url";
+import {TokenLink} from "../../common/Links";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
@@ -34,7 +35,7 @@ class TokenOverview extends Component {
     }
   }
 
-  loadPage = async (page = 1, pageSize = 40) => {
+  loadPage = async (page = 1, pageSize = 10) => {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
@@ -298,7 +299,7 @@ class TokenOverview extends Component {
         width: '50%',
         render: (text, record, index) => {
           // console.log(record);
-          return <div style={{paddingTop: '10px'}}><h5>{record.name}{'('}{record.abbr}{')'}</h5>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
             <p>{record.description}</p></div>
         }
       },
@@ -369,7 +370,7 @@ class TokenOverview extends Component {
             <div className="row">
               <div className="col-md-12">
 
-                <SmartTable loading={loading} column={column} data={tokens} total={total}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
                             }}/>

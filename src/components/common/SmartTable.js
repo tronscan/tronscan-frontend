@@ -15,8 +15,8 @@ export default class SmartTable extends Component {
       pagination: {
         position: 'both',
         showSizeChanger: true,
-        showTotal:function(total){
-          return `共 ${total} 个通证`;
+        showTotal: function (total) {
+          return `共 ${total} 个`;
         }
       },
       loading: false,
@@ -163,14 +163,14 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total, loading, data, column} = this.props;
+    let {total, loading, data, column, bordered} = this.props;
     let columns = this.setColumn(column);
 
     return (
 
         <div className="card">
           <Table
-              bordered
+              bordered={bordered}
               columns={columns}
               rowKey={record => record.index}
               dataSource={data}

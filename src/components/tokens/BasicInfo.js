@@ -77,6 +77,17 @@ export class BasicInfo extends PureComponent {
       this.props.nextState(this.state);
     }
   };
+  previewLogo = () => {
+
+    let file = document.getElementById("logo");
+    document.getElementById("previewLogo").src = URL.createObjectURL(file.files[0]);
+    let reader = new FileReader();
+    reader.readAsDataURL(file.files[0]);
+    reader.onload = function(){
+      console.log(reader.result);
+    }
+
+  }
 
   componentDidMount() {
     console.log("Basic");
@@ -161,6 +172,24 @@ export class BasicInfo extends PureComponent {
                   <input type="text" placeholder="http://" className="form-control" onChange={(e) => {
                     this.setState({url: e.target.value})
                   }} value={url}/>
+                  <small className="form-text text-muted">
+                    {tu("url_message")}
+                  </small>
+                  {ErrorLabel(errors.url)}
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-12">
+                  <label>{tu("通证Logo")} </label>
+                  <div>
+                    <a href="javascript:;" className="uploadLogo">
+                      <img src={require("../../images/Upload.png")}/>
+                      <input type="file" id="logo" onChange={this.previewLogo}
+                             accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
+                    </a>
+                    <img id="previewLogo"
+                         style={{marginTop: '-52px', marginLeft: '15px', width: '60px', height: '60px'}}/>
+                  </div>
                   <small className="form-text text-muted">
                     {tu("url_message")}
                   </small>

@@ -5,9 +5,7 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import SweetAlert from "react-bootstrap-sweetalert";
 import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
-import {Sticky, StickyContainer} from "react-sticky";
 import {Client} from "../../../services/api";
-import Paging from "../../common/Paging";
 import {TokenLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
@@ -299,7 +297,7 @@ class TokenList extends Component {
         width: '50%',
         render: (text, record, index) => {
           // console.log(record);
-          return <div style={{paddingTop: '10px'}}><h5>{record.name}{'('}{record.abbr}{')'}</h5>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
             <p>{record.description}</p></div>
         }
       },
@@ -357,7 +355,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12">
-                <SmartTable loading={loading} column={column} data={tokens} total={total}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
                             }}/>
