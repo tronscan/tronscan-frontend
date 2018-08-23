@@ -98,7 +98,10 @@ async function searchToken(criteria) {
   if (tokens.length === 1) {
     return `#/token/${tokens[0].name}`;
   } else if (tokens.length > 1) {
-    return `#/tokens/list?search=${criteria}`;
+    if (window.location.hash === "#/tokens/view")
+      return `#/tokens/view?search=${criteria}`;
+    if (window.location.hash === "#/tokens/list")
+      return `#/tokens/list?search=${criteria}`;
   }
 
 }

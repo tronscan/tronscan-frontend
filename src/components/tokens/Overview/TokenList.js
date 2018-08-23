@@ -17,12 +17,10 @@ import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 
-
 class TokenList extends Component {
 
   constructor(props) {
     super(props);
-
 
     this.state = {
       tokens: [],
@@ -57,21 +55,6 @@ class TokenList extends Component {
       tokens[index].index = parseInt(index) + 1;
     }
 
-    function compare(property) {
-      return function (obj1, obj2) {
-
-        if (obj1[property] > obj2[property]) {
-          return -1;
-        } else if (obj1[property] < obj2[property]) {
-          return 1;
-        } else {
-          return 0;
-        }
-
-      }
-    }
-
-    //tokens = tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,
@@ -112,8 +95,8 @@ class TokenList extends Component {
   onChange = (page, pageSize) => {
     this.loadPage(page, pageSize);
   };
-  searchName = (name) => {
 
+  searchName = (name) => {
     if (name.length > 0) {
       this.setState({
         filter: {
@@ -122,7 +105,6 @@ class TokenList extends Component {
       });
     }
     else {
-
       if (window.location.hash !== '#/tokens/list')
         window.location.hash = '#/tokens/list';
       else {
@@ -131,8 +113,8 @@ class TokenList extends Component {
         });
       }
     }
-
   }
+
   onBuyInputChange = (value, price, max) => {
     let {intl} = this.props;
     if (value > max) {
@@ -143,6 +125,7 @@ class TokenList extends Component {
     let priceTRX = value * (price / ONE_TRX);
     this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
   }
+
   preBuyTokens = (token) => {
     let {buyAmount} = this.state;
     let {currentWallet, wallet} = this.props;
@@ -207,6 +190,7 @@ class TokenList extends Component {
       });
     }
   }
+
   buyTokens = (token) => {
 
     let {buyAmount} = this.state;
@@ -263,6 +247,7 @@ class TokenList extends Component {
       });
     }
   };
+
   confirmTransaction = async (token) => {
     let {account} = this.props;
     let {buyAmount} = this.state;
@@ -296,7 +281,6 @@ class TokenList extends Component {
           </SweetAlert>
       )
     });
-
   };
 
   customizedColumn = () => {
@@ -351,6 +335,8 @@ class TokenList extends Component {
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <button className="btn btn-secondary btn-block">{tu("finish")}</button>
+          else if(record.startTime > new Date())
+            return <button className="btn btn-info btn-block">{tu("尚未开始")}</button>
           else
             return <button className="btn btn-danger btn-block"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
@@ -358,13 +344,10 @@ class TokenList extends Component {
         className: 'ant_table'
       }
     ];
-
     return column;
   }
 
-
   render() {
-
     let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
     let column = this.customizedColumn();
@@ -374,12 +357,6 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12">
-                <span style={{
-                  marginTop: '25px',
-                  marginLeft: '5px',
-                  position: 'absolute',
-                  zIndex: '1000'
-                }}>当前共{total}个通证</span>
                 <SmartTable loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)

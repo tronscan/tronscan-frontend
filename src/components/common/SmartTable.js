@@ -15,6 +15,9 @@ export default class SmartTable extends Component {
       pagination: {
         position: 'both',
         showSizeChanger: true,
+        showTotal:function(total){
+          return `共 ${total} 个通证`;
+        }
       },
       loading: false,
     }
