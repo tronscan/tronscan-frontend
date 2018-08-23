@@ -158,12 +158,10 @@ class Statistics extends React.Component {
     let genesisNum =  100000000000;
     let independenceDayBurned = 1000000000;
     let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-    let genesisCirculatingNum = (currentTotalSupply - blockProduceRewardsNum - nodeRewardsNum  - TRONFoundationTotal).toFixed(2);
+    let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
     let supplyTypesChartData = [
-        {value:TRONFoundationTotal, name:'tron_foundation', selected:true},
-        {value:genesisCirculatingNum, name:'genesis_circulating_supply',selected:true},
-        {value:blockProduceRewardsNum, name:'block_produce_rewards',selected:true},
-        {value:nodeRewardsNum, name:'node_rewards',selected:true},
+        {value:TRONFoundationTotal, name:'foundation_freeze', selected:true},
+        {value:circulatingNum, name:'circulating_supply',selected:true},
     ]
 
 

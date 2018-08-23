@@ -50,23 +50,27 @@ class Statistics extends React.Component {
             summit: null,
             pieChart: null,
             supplyTypesChart: null,
-            genesisNum:'',
-            blockProduceRewardsNum:'',
-            nodeRewardsNum:'',
-            independenceDayBurned:'',
-            feeBurnedNum:'',
-            currentTotalSupply:'',
-            priceUSD:'',
-            priceBTC:'',
-            marketCapitalization:'',
-            foundationFreeze:''
+            genesisNum:null,
+            blockProduceRewardsNum:null,
+            nodeRewardsNum:null,
+            independenceDayBurned:null,
+            feeBurnedNum:null,
+            currentTotalSupply:null,
+            priceUSD:null,
+            priceBTC:null,
+            marketCapitalization:null,
+            foundationFreeze:null,
+            circulatingNum:null
         };
     }
 
     componentDidMount() {
         this.loadAccounts();
         this.loadStats();
-        this.loadTxOverviewStats();
+        setInterval(() => {
+            this.loadTxOverviewStats();
+        }, 15000);
+
     }
 
     async loadAccounts() {
@@ -179,12 +183,10 @@ class Statistics extends React.Component {
         let genesisNum = 100000000000;
         let independenceDayBurned = 1000000000;
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-        let genesisCirculatingNum = (currentTotalSupply - blockProduceRewardsNum - nodeRewardsNum - TRONFoundationTotal).toFixed(2);
+        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
-            {value: nodeRewardsNum, name: 'node_rewards', selected: true},
-            {value: blockProduceRewardsNum, name: 'block_produce_rewards', selected: true},
-            {value: TRONFoundationTotal, name: 'tron_foundation', selected: true},
-            {value: genesisCirculatingNum, name: 'genesis_circulating_supply', selected: true},
+            {value: TRONFoundationTotal, name: 'foundation_freeze', selected: true},
+            {value: circulatingNum, name: 'circulating_supply', selected: true},
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
@@ -248,7 +250,8 @@ class Statistics extends React.Component {
             priceUSD:priceUSD,
             priceBTC:priceBTC,
             marketCapitalization:marketCapitalization,
-            foundationFreeze:intl.formatNumber(TRONFoundationTotal)
+            foundationFreeze:intl.formatNumber(TRONFoundationTotal),
+            circulatingNum:intl.formatNumber(circulatingNum)
         });
 
         function compare(property) {
@@ -360,7 +363,7 @@ class Statistics extends React.Component {
 
     render() {
         let {match, intl} = this.props;
-let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze} = this.state;
+let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
 
         let unit;
         if (match.params.chartName === 'blockchainSizeStats' ||
@@ -607,12 +610,19 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     {foundationFreeze} TRX
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>{tu('circulating_supply')}:
+                                                                </td>
+                                                                <td>
+                                                                    {circulatingNum} TRX
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                         </div>
                                                         <br/>
                                                         <div className="table-responsive">
-                                                            <table className="table">
+                                                            <table className="table" style={{marginBottom:0}}>
                                                                 <thead>
                                                                 <tr>
                                                                     <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_trx')}</th>
@@ -633,6 +643,11 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     </td>
                                                                 </tr>
                                                                 </tbody></table>
+                                                                <div style={{fontSize:12,color:'#999',whiteSpace: 'nowrap',textAlign:'left', padding: '0.75rem',borderTop: '1px solid #DFD7CA',verticalAlign: 'top'}}>
+                                                                    <div style={{transform:'scale(.9)',marginLeft: '-1.3rem'}}>
+                                                                        {tu('supply_notes')}
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-7" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
@@ -656,7 +671,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     message={{id: 'breakdown_supply_types'}}
                                                                     intl={intl}
                                                                     data={supplyTypesChart}
-                                                                    style={{height: 340}}
+                                                                    style={{height: 400}}
                                                                     source='singleChart'
                                                                 />
                                                             </div>
