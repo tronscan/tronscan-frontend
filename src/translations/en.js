@@ -456,6 +456,7 @@ export const messages = {
   "percentage": "Percentage",
   "loading_token": "Loading Token",
   "voter_percentage": "Voter Percentage",
+  "total_balance": "Total Balance",
   /*
   ##################################################################################
   #                                                                                #
