@@ -367,7 +367,7 @@ class Address extends React.Component {
                             <td>
                               <ul className="list-unstyled m-0">
                                 <li>
-                                  <TRXPrice showCurreny={false} value={address.frozen.total / ONE_TRX}/>
+                                  <TRXPrice showCurreny={false} amount={address.frozen.total / ONE_TRX}/>
                                 </li>
                               </ul>
                             </td>
@@ -377,7 +377,7 @@ class Address extends React.Component {
                             <td>
                               <ul className="list-unstyled m-0">
                                 <li>
-                                  <TRXPrice value={(address.balance + address.frozen.total) / ONE_TRX} />
+                                  <TRXPrice amount={(address.balance + address.frozen.total) / ONE_TRX} />
                                 </li>
                               </ul>
                             </td>
