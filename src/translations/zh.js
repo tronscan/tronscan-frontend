@@ -859,6 +859,6 @@ export const messages = {
   "circulating_supply":"流通量",
   "list_trx":"交易所上币",
   "burned_trx":"TRX烧毁数",
-  "supply_notes":"除了在美国、中国和日本，大众发行和预售在全球都有"
+  "supply_notes":"全球范围可进行众筹和预售，除美国、中国及日本外"
 
 };
