@@ -19,6 +19,7 @@ import {
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  MyTokenAsync,
   CopyrightAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
@@ -167,7 +168,12 @@ export const routes = [
     component: TokenDetailAsync,
     showInMenu: false,
   },
-
+  {
+    label: "MyToken",
+    component: MyTokenAsync,
+    path: "/myToken",
+    showInMenu: false
+  },
   {
     path: "/markets",
     label: "markets",
