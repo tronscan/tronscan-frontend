@@ -310,7 +310,7 @@ console.log(result);
 
     return (
 
-        <main className="container pb-3 token-create header-overlap">
+        <main className="container pb-3 token-create header-overlap token_black">
           {modal}
           <div className="row">
             <div className="col-sm-12 col-md-3 mt-3 mt-md-0">
