@@ -246,16 +246,16 @@ class Address extends React.Component {
 
   render() {
 
-    let {address, tabs, stats, loading, blocksProduced, media, votes, candidates} = this.state;
+    let {address, tabs, stats, loading, blocksProduced, media, candidates} = this.state;
     let {match} = this.props;
     let rank;
     let totalVotes;
     let producer;
-    for (let can in candidates) {
-      if (address.address === candidates[can].address) {
-        rank = candidates[can].rank;
-        totalVotes = candidates[can].votes;
-        producer = candidates[can].producer;
+    for (let candidate of candidates) {
+      if (address.address === candidate.address) {
+        rank = candidate.rank;
+        totalVotes = candidate.votes;
+        producer = candidate.producer;
       }
     }
 
