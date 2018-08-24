@@ -58,8 +58,8 @@
   "languages.js.map": "static/js/languages.920dca54.chunk.js.map",
   "main.css": "static/css/main.29c1e850.css",
   "main.css.map": "static/css/main.29c1e850.css.map",
-  "main.js": "static/js/main.be82f87a.js",
-  "main.js.map": "static/js/main.be82f87a.js.map",
+  "main.js": "static/js/main.94eea459.js",
+  "main.js.map": "static/js/main.94eea459.js.map",
   "static/media/body_backgound_dark_theme_transparent.png": "static/media/body_backgound_dark_theme_transparent.4aca17ac.png",
   "static/media/body_backgound_transparent.png": "static/media/body_backgound_transparent.8d0012fe.png",
   "static/media/body_backgound_tronblue_transparent.png": "static/media/body_backgound_tronblue_transparent.8ca26328.png",
@@ -71,6 +71,6 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "tron-icon.svg": "df7f2ae527d40907753c23c534b4d428.svg",
-  "vendors.js": "static/js/vendors.b748c39c.js",
-  "vendors.js.map": "static/js/vendors.b748c39c.js.map"
+  "vendors.js": "static/js/vendors.0bf06e04.js",
+  "vendors.js.map": "static/js/vendors.0bf06e04.js.map"
 }
