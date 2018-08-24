@@ -660,6 +660,7 @@ export const messages = {
   "report_an_error": "Submit a bug / suggestion",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
+  "telegram": "Telegram",
   /*
   ##################################################################################
   #                                                                                #
