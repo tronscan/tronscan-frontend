@@ -24,6 +24,7 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import _ from "lodash";
 
 class Account extends Component {
 
@@ -89,7 +90,11 @@ class Account extends Component {
 
     let {tokenBalances = []} = this.props;
 
-    tokenBalances = filter(tokenBalances, tb => tb.name.toUpperCase() !== "TRX");
+    tokenBalances = _(tokenBalances)
+      .filter(tb => tb.name.toUpperCase() !== "TRX")
+      .filter(tb => tb.balance > 0)
+      .sortBy(tb => tb.name)
+      .value();
 
     if (tokenBalances.length === 0) {
       return (
