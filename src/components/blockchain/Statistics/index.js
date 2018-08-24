@@ -115,8 +115,8 @@ class Statistics extends React.Component {
 
         let priceStatsTemp = data['Data'];
 
-        let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
-        let volumeUSD = volumeData.data.volume_usd
+        let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+        let volumeUSD = volumeData.data.market_cap_by_available_supply
         let volume = volumeUSD.map(function (v, i) {
             return {
                 time: v[0],
