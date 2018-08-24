@@ -245,40 +245,78 @@ class TokenList extends Component {
       });
     }
   };
+  submit = async (token) => {
 
-  confirmTransaction = async (token) => {
-    let {account} = this.props;
+    let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
 
     let isSuccess = await Client.participateAsset(
-        account.address,
+        currentWallet.address,
         token.ownerAddress,
         token.name,
         buyAmount * token.price)(account.key);
 
+    if (isSuccess) {
+      this.setState({
+        activeToken: null,
+        confirmedParticipate: true,
+        participateSuccess: isSuccess,
+        buyAmount: 0,
+      });
+
+      return true;
+    } else {
+      return false;
+    }
+  };
+  confirmTransaction = async (token) => {
+
     this.setState({
       alert: (
           <SweetAlert
-              success
               showConfirm={false}
-              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title="One moment please.."
           >
-            <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
-              <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
-                this.setState({alert: null})
-              }}>X</a>
-              <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
-              <span>
+            Requesting tokens...
+          </SweetAlert>
+      ),
+    });
+
+    if (await this.submit(token)) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                success
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+                <span>
                Successfully received {token.name} tokens
               </span>
-              <button className="btn btn-danger btn-block mt-3" onClick={() => {
-                this.setState({alert: null})
-              }}>{tu("OK")}</button>
-            </div>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
 
-          </SweetAlert>
-      )
-    });
+            </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
+              Something went wrong...
+            </SweetAlert>
+        )
+      });
+    }
   };
 
   customizedColumn = () => {

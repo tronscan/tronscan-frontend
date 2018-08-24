@@ -64,10 +64,9 @@ class TokenCreate extends Component {
       },
 
       valid: false,
-      submitMessage: null,
       frozenSupply: [{amount: 0, days: 1}],
       showFrozenSupply:false,
-      step: 4,
+      step: 1,
     };
   }
 
@@ -101,13 +100,12 @@ class TokenCreate extends Component {
   }
 
   submit = async () => {
-    let {account} = this.props;
-    let {privateKey} = this.state;
+    let {account, intl} = this.props;
 
-    this.setState({modal: null, loading: true, submitMessage: null});
+    this.setState({modal: null, loading: true});
 
     try {
-      let {success} = await Client.createToken({
+      let result = await Client.createToken({
         address: account.address,
         name: trim(this.state.name),
         shortName: trim(this.state.abbr),
@@ -120,17 +118,36 @@ class TokenCreate extends Component {
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
-
-      if (success) {
+console.log(result);
+      if (result.success) {
         this.setState({
           isTokenCreated: true,
+          modal:
+              <SweetAlert
+                  success
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="success"
+                  onConfirm={this.hideModal}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+                {tu("token_issued_successfully")}<br/>
+                {tu("token_link_message_0")}{' '}
+                <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
+                {tu("token_link_message_2")}
+              </SweetAlert>
         });
       } else {
         this.setState({
-          submitMessage: (
-              <Alert color="warning" className="text-center">
-                {tu("token_creation_error")}
-              </Alert>
+          modal: (
+              <SweetAlert
+                  error
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="success"
+                  onConfirm={this.hideModal}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+                {result.message}
+              </SweetAlert>
           )
         });
       }
@@ -192,30 +209,9 @@ class TokenCreate extends Component {
   }
 
   renderSubmit = () => {
-    let {isTokenCreated, privateKey} = this.state;
     let {account,intl} = this.props;
 
     let {wallet} = this.props;
-
-    if (isTokenCreated) {
-      this.setState({
-            modal:
-                <SweetAlert
-                    error
-                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
-                    confirmBtnBsStyle="success"
-                    onConfirm={this.hideModal}
-                    style={{marginLeft: '-240px', marginTop: '-195px'}}
-                >
-                  {tu("token_issued_successfully")}<br/>
-                  {tu("token_link_message_0")}{' '}
-                  <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
-                  {tu("token_link_message_2")}
-                </SweetAlert>
-          }
-      );
-      return false
-    }
 
     if (!wallet) {
       this.setState({
@@ -270,7 +266,8 @@ class TokenCreate extends Component {
   }
 
   render() {
-    let {modal, numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
+    console.log("render");
+    let {modal, numberOfCoins, numberOfTron, name, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
     let {match} = this.props;
 
     /*

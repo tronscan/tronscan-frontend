@@ -183,7 +183,9 @@ console.log( this.props.state);
                       onChange={(data) => this.setState({startTime: data.toDate()})}
                       isValidDate={this.isValidStartTime}
                       value={startTime}
-                      input={true}/>
+                      closeOnSelect={true}
+                      input={true}
+                  />
                   {ErrorLabel(errors.startDate)}
                 </div>
                 <div className="form-group col-sm-12 col-md-12 col-lg-6">
@@ -193,6 +195,7 @@ console.log( this.props.state);
                       onChange={(data) => this.setState({endTime: data.toDate()})}
                       isValidDate={this.isValidEndTime}
                       value={endTime}
+                      closeOnSelect={true}
                       input={true}
                   />
                   {ErrorLabel(errors.endDate)}
