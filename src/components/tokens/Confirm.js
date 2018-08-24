@@ -48,10 +48,10 @@ class Confirm extends Component {
 
 
   render() {
-    let {numberOfCoins, numberOfTron, name, abbr, description, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, checkbox} = this.state;
+    let {numberOfCoins, numberOfTron, name, abbr, description, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, showFrozenSupply, checkbox} = this.state;
     let {nextStep} = this.props;
     let exchangeRate = numberOfTron / numberOfCoins;
-
+    console.log(frozenSupply);
     return (
 
         <main className="container">
@@ -75,20 +75,20 @@ class Confirm extends Component {
                     <fieldset>
 
                       <strong>{tu("基本设置")}</strong>
-                        <i className="fab fa-wpforms float-right"/>
+                      <i className="fab fa-wpforms float-right"/>
 
                       <table className="table confirm">
                         <tbody>
                         <tr>
-                          <td className="text-nowrap" style={{borderTop:'0px'}}>{tu("token_name")}:</td>
-                          <td style={{borderTop:'0px'}}>{name}</td>
+                          <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_name")}:</td>
+                          <td style={{borderTop: '0px'}}>{name}</td>
                         </tr>
                         <tr>
                           <td className="text-nowrap">{tu("token_abbr")}:</td>
                           <td>{abbr}</td>
                         </tr>
                         <tr>
-                          <td className="text-nowrap borderBottom" >{tu("total_supply")}:</td>
+                          <td className="text-nowrap borderBottom">{tu("total_supply")}:</td>
                           <td className="borderBottom">{totalSupply}</td>
                         </tr>
 
@@ -99,13 +99,13 @@ class Confirm extends Component {
                     <fieldset>
 
                       <strong>{tu("汇率设置")}</strong>
-                        <i className="fa fa-exchange-alt float-right"/>
+                      <i className="fa fa-exchange-alt float-right"/>
 
                       <table className="table confirm">
                         <tbody>
                         <tr>
-                          <td className="text-nowrap" style={{borderTop:'0px'}}>{tu("token_price")}</td>
-                          <td style={{borderTop:'0px'}}> 1 {name || tu("token")} = <FormattedNumber
+                          <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}</td>
+                          <td style={{borderTop: '0px'}}> 1 {name || tu("token")} = <FormattedNumber
                               value={exchangeRate}/> TRX
                           </td>
                         </tr>
@@ -122,18 +122,35 @@ class Confirm extends Component {
                       </table>
 
                     </fieldset>
-
                     <fieldset>
-
                       <strong>{tu("frozen_supply")}</strong>
-                        <i className="fa fa-snowflake float-right"/>
-
-                      <table className="table table-hover table-striped bg-white m-0 sr">
-                        <tbody>
-
-                        </tbody>
-                      </table>
-
+                      <i className="fa fa-snowflake float-right"/>
+                      <br/>
+                      {showFrozenSupply &&
+                      <div className="form-row mt-2" style={{marginBottom: "-10px"}}>
+                        <p className="col-md-6">
+                          <label>{tu("amount")}</label>
+                        </p>
+                        <p className="col-md-6">
+                          <label>{tu("days_to_freeze")}</label>
+                        </p>
+                      </div>
+                      }
+                      {!showFrozenSupply ?
+                          <span>不启用锁仓功能</span> :
+                          <table className="table ">
+                            <tbody>
+                            {
+                              frozenSupply.map((frozen, index) => (
+                                <tr key={index}>
+                                  <td className="text-nowrap borderBottom"><FormattedNumber value={frozen.amount}/></td>
+                                  <td className="borderBottom"><FormattedNumber value={frozen.days}/></td>
+                                </tr>
+                              ))
+                            }
+                            </tbody>
+                          </table>
+                      }
                     </fieldset>
                     <hr/>
 
@@ -148,8 +165,10 @@ class Confirm extends Component {
                         </label>
                       </div>
                     </div>
-                    <a className="btn btn-danger btn-lg" onClick={()=>{nextStep(3)}}>上一步</a>
                     <a className="btn btn-danger btn-lg" onClick={() => {
+                      nextStep(3)
+                    }}>上一步</a>
+                    <a className="btn btn-danger btn-lg ml-1" onClick={() => {
                       this.submit();
                     }}>{tu("issue_token")}</a>
 
