@@ -73,9 +73,9 @@ class Statistics extends React.Component {
         switch (chartName){
             case 'supply':
                 this.loadTotalTRXSupply();
-                // setInterval(() => {
-                //     this.loadTotalTRXSupply();
-                // }, 15000);
+                setInterval(() => {
+                    this.loadTotalTRXSupply();
+                }, 15000);
             break;
             case 'pieChart':
                 this.loadPieChart();
@@ -87,15 +87,6 @@ class Statistics extends React.Component {
                 this.loadPriceStats();
             break;
             case 'accounts':
-                this.loadAccounts();
-            break;
-            case 'transactionStats':
-                this.loadAccounts();
-            break;
-            case 'transactionValueStats':
-                this.loadAccounts();
-            break;
-            case 'blockStats':
                 this.loadAccounts();
             break;
             default:
