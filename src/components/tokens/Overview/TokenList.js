@@ -350,7 +350,7 @@ class TokenList extends Component {
     let {match} = this.props;
     let column = this.customizedColumn();
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black">
           {alert}
           {
             <div className="row">
