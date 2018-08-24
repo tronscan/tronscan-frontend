@@ -186,7 +186,8 @@ class TransactionViewer extends Component {
               <div className="card-body">
                 <h5 className="card-title text-center">Transaction</h5>
               </div>
-              <table className="table">
+              <div className="table-responsive">
+                <table className="table">
                 <Field label="timestamp">
                   <FormattedDate value={transactionData.timestamp / 1000000}/>&nbsp;
                   <FormattedTime value={transactionData.timestamp / 1000000}/>
@@ -198,6 +199,7 @@ class TransactionViewer extends Component {
                   {transactionData.signatures.length}
                 </Field>
               </table>
+              </div>
             </div>
             <div className="card mt-3">
               <div className="card-header text-center">

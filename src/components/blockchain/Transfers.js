@@ -88,54 +88,57 @@ class Transfers extends React.Component {
                         )
                       }
                     </Sticky>
-                    <table className="table table-hover table-striped m-0 transactions-table">
-                      <thead className="thead-dark">
+                    <div className="table-responsive">
+                      <table className="table table-hover table-striped m-0">
+                        <thead className="thead-dark">
                         <tr>
                           <th className="text-nowrap">#</th>
-                          <th className="d-none d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
-                          <th className="d-none d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
-                          <th className="d-none d-md-table-cell">{tu("from")}</th>
-                          <th className="d-none d-sm-table-cell">{tu("to")}</th>
+                          <th className="d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
+                          <th className="d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
+                          <th style={{width: 150}}>{tu("from")}</th>
+                          <th style={{width: 150}}>{tu("to")}</th>
                           <th className="text-nowrap text-right">{tu("value")}</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                      {
-                        transfers.map((trx, index) => (
-                          <tr key={trx.transactionHash}>
-                            <th className="text-nowrap">
-                              <Truncate>
-                                <TransactionHashLink hash={trx.transactionHash}>{trx.transactionHash}</TransactionHashLink>
-                              </Truncate>
-                            </th>
-                            <td className="d-none d-md-table-cell">
-                              <BlockNumberLink number={trx.block}/>
-                            </td>
-                            <td className="text-nowrap d-none d-lg-table-cell">
-                              <TimeAgo date={trx.timestamp} />
-                            </td>
-                            <td className="d-none d-md-table-cell">
-                              <AddressLink address={trx.transferFromAddress} />
-                            </td>
-                            <td className="d-none d-sm-table-cell">
-                              <AddressLink address={trx.transferToAddress} />
-                            </td>
-                            <td className="text-nowrap text-right">
-                              {
-                                trx.tokenName.toUpperCase() === 'TRX' ?
-                                  <Fragment>
-                                    <TRXPrice amount={trx.amount / ONE_TRX}/>
-                                  </Fragment> :
-                                  <Fragment>
-                                    <FormattedNumber value={trx.amount}/> {trx.tokenName}
-                                  </Fragment>
-                              }
-                            </td>
-                          </tr>
-                        ))
-                      }
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                        {
+                            transfers.map((trx, index) => (
+                                <tr key={trx.transactionHash}>
+                                  <th className="text-nowrap">
+                                    <Truncate>
+                                      <TransactionHashLink hash={trx.transactionHash}>{trx.transactionHash}</TransactionHashLink>
+                                    </Truncate>
+                                  </th>
+                                  <td className="d-md-table-cell">
+                                    <BlockNumberLink number={trx.block}/>
+                                  </td>
+                                  <td className="text-nowrap d-lg-table-cell">
+                                    <TimeAgo date={trx.timestamp} />
+                                  </td>
+                                  <td className="d-md-table-cell">
+                                    <AddressLink address={trx.transferFromAddress} />
+                                  </td>
+                                  <td className="d-sm-table-cell transfer-cell">
+                                    <AddressLink address={trx.transferToAddress} />
+                                  </td>
+                                  <td className="text-nowrap text-right">
+                                      {
+                                          trx.tokenName.toUpperCase() === 'TRX' ?
+                                              <Fragment>
+                                                <TRXPrice amount={trx.amount / ONE_TRX}/>
+                                              </Fragment> :
+                                              <Fragment>
+                                                <FormattedNumber value={trx.amount}/> {trx.tokenName}
+                                              </Fragment>
+                                      }
+                                  </td>
+                                </tr>
+                            ))
+                        }
+                        </tbody>
+                      </table>
+                    </div>
+
                   </Fragment>
                 }
               </div>

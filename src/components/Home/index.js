@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
+import {TRXBurned} from "../common/Burned";
 import RecentBlocks from "./RecentBlocks";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../../utils/timing";
@@ -167,9 +168,8 @@ class Home extends Component {
   };
 
   render() {
-    let {intl} = this.props;
+    let {intl,activeLanguage} = this.props;
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
-
     return (
         <main className="home pb-0">
           <div className="container-fluid position-relative d-flex p-3 mx-auto flex-column">
@@ -183,12 +183,11 @@ class Home extends Component {
             <div className="container home-splash">
               <div className="row justify-content-center text-center">
                 <div className="col-12 col-sm-8 col-lg-6">
-                  <p className="mt-5">
+                  <p className="mt-5 mt-5-logo">
                     <img src={this.getLogo()}
-                         style={styles.logo}
                          className="animated ad-600ms zoomIn"/>
                   </p>
-                  <h2 className="mb-5 mt-4 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>
+                  <h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>
                     {tu("tron_main_message")}
                   </h2>
                   <div className={
@@ -210,39 +209,45 @@ class Home extends Component {
                       </button>
                     </div>
                   </div>
-
                 </div>
               </div>
-              <div className="row text-center home-stats ">
-                <div className="col-md-2">
+              <div className="row text-center home-stats pb-3">
+                <div className="col-md-2 col-sm-4">
                   <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
                     <p>{tu("online_nodes")}</p>
                   </Link>
                 </div>
-                <div className="col-md-3 ">
+                <div className="col-md-2 col-sm-4">
                   <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                     <p>{tu("block_height")}</p>
                   </Link>
                 </div>
-                <div className="col-md-2 ">
+                <div className="col-md-2 col-sm-4">
                   <Link to="/blockchain/transactions"
                         className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
                     <p>{tu("transactions_last_day")}</p>
                   </Link>
                 </div>
-                <div className="col-md-3 ">
+                <div className="col-md-2 col-sm-6">
                   <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                     <p>{tu("total_accounts")}</p>
                   </Link>
                 </div>
-                <div className="col-md-2 ">
+
+                <div className="col-md-2 col-sm-6">
                   <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><TRXPrice amount={1000} currency="USD"/></h2>
                     <p>{tu("pice_per_1000trx")}</p>
+                  </Link>
+                </div>
+                <div className="col-md-2 col-sm-6">
+                  <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
+                    <h2><TRXBurned /></h2>
+                    <p>{tu("burned_trx")}</p>
                   </Link>
                 </div>
 
@@ -320,6 +325,8 @@ class Home extends Component {
                   <ul className="list-unstyled quick-links">
                     <li><HrefLink href="https://stateoftrondapps.com/"><i
                         className="fa fa-angle-right"/> DApps</HrefLink></li>
+                    <li><HrefLink href={activeLanguage == 'zh'?'https://tron.network/exchangesList?lng=zh':'https://tron.network/exchangesList?lng=en'}><i
+                        className="fa fa-angle-right"/> List TRX</HrefLink></li>
                     <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> TRON Labs</HrefLink>
                     </li>
                     <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i
@@ -399,10 +406,6 @@ class Home extends Component {
 }
 
 const styles = {
-  logo: {
-    height: 100,
-    marginLeft: -16
-  },
   list: {
     fontSize: 18,
   }
@@ -412,6 +415,7 @@ function mapStateToProps(state) {
   return {
     account: state.app.account,
     theme: state.app.theme,
+    activeLanguage: state.app.activeLanguage,
   };
 }
 

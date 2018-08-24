@@ -266,7 +266,7 @@ class VoteOverview extends React.Component {
           </div>
           <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
           <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
-          <button className="btn btn-success ml-1" onClick={this.confirmPrivateKey}>{tu("submit_votes")}</button>
+          <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
         </div>
       );
     }
@@ -369,7 +369,7 @@ class VoteOverview extends React.Component {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(privateKey);
+    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
 
     if (success) {
       setTimeout(() => this.props.reloadWallet(), 1200);
@@ -410,11 +410,11 @@ class VoteOverview extends React.Component {
     let {votingEnabled, votes, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet, voteList: candidates} = this.props;
 
+
     candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
       ...c,
       rank: index,
     }));
-
     let filteredCandidates = candidates;
 
     if (searchCriteria !== "") {
@@ -517,7 +517,8 @@ class VoteOverview extends React.Component {
                           }
                         </Sticky>
                     }
-                    <table className="table vote-table table-hover table-striped m-0">
+                    <div className="table-responsive">
+                      <table className="table vote-table table-hover table-striped m-0">
                       <thead className="thead-dark">
                         <tr>
                           <th className="d-none d-sm-table-cell" style={{width: 25}}>#</th>
@@ -525,6 +526,7 @@ class VoteOverview extends React.Component {
                           <th className="text-center d-none d-lg-table-cell" style={{width: 75}}>{tu("24h")}</th>
                           <th className="text-center d-none d-lg-table-cell" style={{width: 25}}>{tu("6h")}</th>
                           <th className="" style={{width: 100}}>{tu("votes")}</th>
+                          <th style={{width: 100}}>{tu("percentage")}</th>
                           {
                             votingEnabled && <th style={{width: 200}}>
                               {tu("your vote")}
@@ -569,30 +571,41 @@ class VoteOverview extends React.Component {
                                 </div>
                               }
                             </td>
-                            <td className="text-center d-none d-lg-table-cell">
+                            <td className="text-center d-none d-lg-table-cell align-middle">
                               <VoteChange value={candidate.change_day}/>
                             </td>
-                            <td className="text-center d-none d-lg-table-cell">
+                            <td className="text-center d-none d-lg-table-cell align-middle">
                               <VoteChange value={candidate.change_cycle}/>
                             </td>
-                            <td className="small text-center">
+                            <td className="small text-center align-middle">
                               {
                                 totalVotes > 0 &&
                                 <Fragment>
                                   <FormattedNumber value={candidate.votes}/><br/>
-                                  <div className="progress position-relative mt-1">
-                                    <div className="progress-bar"
-                                         style={{width: Math.round((candidate.votes / totalVotes) * 100) + '%'}}>
-                                    </div>
-                                    <span className="ml-auto mr-1 progress-bar-percentage">
-                                  <FormattedNumber
-                                    minimumFractionDigits={2}
-                                    maximumFractionDigits={2}
-                                    value={(candidate.votes / totalVotes) * 100}/>%
-                                   </span>
-                                  </div>
+                                  {/*<div className="progress position-relative mt-1">*/}
+                                    {/*<div className="progress-bar"*/}
+                                         {/*style={{width: Math.round((candidate.votes / totalVotes) * 100) + '%'}}>*/}
+                                    {/*</div>*/}
+                                    {/*<span className="ml-auto mr-1 progress-bar-percentage">*/}
+                                  {/*<FormattedNumber*/}
+                                    {/*minimumFractionDigits={2}*/}
+                                    {/*maximumFractionDigits={2}*/}
+                                    {/*value={(candidate.votes / totalVotes) * 100}/>%*/}
+                                   {/*</span>*/}
+                                  {/*</div>*/}
                                 </Fragment>
                               }
+                            </td>
+                            <td className="small text-center align-middle">
+                                {
+                                    totalVotes > 0 &&
+                                    <Fragment>
+                                      <FormattedNumber value={(candidate.votes / totalVotes) * 100}
+                                         minimumFractionDigits={2}
+                                         maximumFractionDigits={2}
+                                      />%
+                                    </Fragment>
+                                }
                             </td>
                             {
                               votingEnabled && <td className="vote-input-field">
@@ -622,6 +635,7 @@ class VoteOverview extends React.Component {
                       }
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </StickyContainer>
               </div>

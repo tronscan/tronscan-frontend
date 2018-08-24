@@ -833,5 +833,32 @@ export const messages = {
   "foundation_address":"基金会锁仓TRX总数",
   "unfreeze_time":"解冻时间",
   "addresses_number":"地址数",
-  "copyright":"版权"
+  "copyright":"版权",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool":"编码转换工具",
+  "breakdown_supply_types":"TRX分布",
+  "genesis":"创世块发行",
+  "TRX_distribution_overview": "TRX分布概览",
+  "block_produce_rewards":"出块奖励",
+  "node_rewards":"节点奖励",
+  "independence_day_burned":"独立日烧毁",
+  "fee_burned":"手续费烧毁",
+  "current_total_supply":"当前总流通量",
+  "foundation_freeze":"基金会冻结",
+  "price_per_1000_trx":"TRX价格（每1000TRX）",
+  "in_USD":"以美元计",
+  "in_BTC":"以比特币计",
+  "total_TRX_supply":"TRX总流通量",
+  "market_capitalization":"市值",
+  "circulating_supply":"流通量",
+  "list_trx":"交易所上币",
+  "burned_trx":"TRX烧毁数",
+  "supply_notes":"面向大众发行和预售，不包括美国，中国和日本。"
+
 };

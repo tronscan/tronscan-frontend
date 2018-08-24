@@ -18,7 +18,8 @@ import {
   LineReactVolumeUsd
 } from "../../common/LineCharts";
 import {
-  RepresentativesRingPieReact
+  RepresentativesRingPieReact,
+  SupplyTypesTRXPieChart
 } from "../../common/RingPieChart";
 import {loadPriceData} from "../../../actions/markets";
 
@@ -37,7 +38,8 @@ class Statistics extends React.Component {
       blockchainSizeStats: null,
       priceStats: null,
       volume:null,
-      pieChart:null
+      pieChart:null,
+      supplyTypesChart:null
     };
   }
 
@@ -140,6 +142,29 @@ class Statistics extends React.Component {
 
         })
     }
+    let random=Math.random();
+    let balanceData = await xhr.get("https://tron.network/api/v2/node/balance_info?random="+random);
+    let TRONFoundationTotal = balanceData.data.total;
+    let {blocks} = await Client.getBlocks({
+        limit: 1,
+        sort: '-number',
+    });
+    let blockHeight = blocks[0] ? blocks[0].number : 0;
+    let nodeRewardsNum =  blockHeight*16;
+    let blockProduceRewardsNum = blockHeight*32;
+    let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
+    let startFeeBurnedNum = Math.abs(-9223372036854.775808)
+    let feeBurnedNum = (startFeeBurnedNum - Math.abs(address.balance / ONE_TRX)).toFixed(2);
+    let genesisNum =  100000000000;
+    let independenceDayBurned = 1000000000;
+    let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
+    let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
+    let supplyTypesChartData = [
+        {value:TRONFoundationTotal, name:'foundation_freeze', selected:true},
+        {value:circulatingNum, name:'circulating_supply',selected:true},
+    ]
+
+
     let {txOverviewStats} = await Client.getTxOverviewStats();
     let temp = [];
     let addressesTemp = [];
@@ -187,13 +212,14 @@ class Statistics extends React.Component {
       blockchainSizeStats: blockchainSizeStatsTemp,
       priceStats: priceStatsTemp,
       volume:volume,
-      pieChart: pieChartData
+      pieChart: pieChartData,
+      supplyTypesChart:supplyTypesChartData
     });
   }
 
   render() {
 
-    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume,pieChart} = this.state;
+    let {txOverviewStats, addressesStats, transactionStats, transactionValueStats, blockStats, accounts, blockSizeStats, blockchainSizeStats, priceStats,volume,pieChart,supplyTypesChart} = this.state;
     let {intl} = this.props;
 
     return (
@@ -304,6 +330,21 @@ class Statistics extends React.Component {
                                 <TronLoader/> :
                                 <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
                                                              data={pieChart} style={{height: 300}}/>
+                        }
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div style={{height: 350}}>
+                        {
+                            supplyTypesChart === null ?
+                                <TronLoader/> :
+                                <SupplyTypesTRXPieChart message={{id: 'total_TRX_supply'}} intl={intl}
+                                                             data={supplyTypesChart} style={{height: 300}}/>
                         }
                     </div>
                   </div>

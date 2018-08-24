@@ -19,13 +19,15 @@ export default function Contract({contract}) {
               {tu("TRX_transfer_between_addresses")}
             </p>
           </div>
-          <table className="table">
-            <tbody>
-              <Field label="from"><AddressLink address={contract.from} /></Field>
-              <Field label="to"><AddressLink address={contract.to} /></Field>
-              <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table">
+              <tbody>
+                <Field label="from"><AddressLink address={contract.from} /></Field>
+                <Field label="to"><AddressLink address={contract.to} /></Field>
+                <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX} /></Field>
+              </tbody>
+            </table>
+          </div>
         </Fragment>
       );
 
@@ -38,12 +40,14 @@ export default function Contract({contract}) {
               {tu("token_transfer_between_addresses")}
             </p>
           </div>
-          <table className="table">
-            <Field label="from"><AddressLink address={contract.from} /></Field>
-            <Field label="to"><AddressLink address={contract.to} /></Field>
-            <Field label="amount">{contract.amount}</Field>
-            <Field label="token">{contract.token}</Field>
-          </table>
+          <div className="table-responsive">
+              <table className="table">
+                <Field label="from"><AddressLink address={contract.from} /></Field>
+                <Field label="to"><AddressLink address={contract.to} /></Field>
+                <Field label="amount">{contract.amount}</Field>
+                <Field label="token">{contract.token}</Field>
+              </table>
+          </div>
         </Fragment>
       );
 
@@ -56,12 +60,14 @@ export default function Contract({contract}) {
                 {tu("participate_token_between_addresses")}
               </p>
             </div>
-            <table className="table">
-              <Field label="to"><AddressLink address={contract.ownerAddress} /></Field>
-              <Field label="issuer"><AddressLink address={contract.toAddress} /></Field>
-              <Field label="amount">{contract.amount / ONE_TRX}</Field>
-              <Field label="token">{contract.token}</Field>
-            </table>
+            <div className="table-responsive">
+                <table className="table">
+                  <Field label="to"><AddressLink address={contract.ownerAddress} /></Field>
+                  <Field label="issuer"><AddressLink address={contract.toAddress} /></Field>
+                  <Field label="amount">{contract.amount / ONE_TRX}</Field>
+                  <Field label="token">{contract.token}</Field>
+                </table>
+            </div>
           </Fragment>
       );
     case "WITNESSUPDATECONTRACT":

@@ -79,10 +79,11 @@ export default class Transactions extends React.Component {
             )
           }
         </Sticky>
-        <table className="table table-hover m-0 border-top-0">
+        <div className="table-responsive">
+          <table className="table table-hover m-0 border-top-0">
           <thead className={theadClass}>
           <tr>
-            <th className="d-none d-md-table-cell" style={{width: 125}}>{tu("age")}</th>
+            <th className="d-md-table-cell" style={{width: 125}}>{tu("age")}</th>
             <th className="text-nowrap">{tu("hash")}</th>
             <th className="text-nowrap text-right" style={{width: 125}}>{tu("contract_type")}</th>
           </tr>
@@ -91,7 +92,7 @@ export default class Transactions extends React.Component {
           {
             transactions.map((transaction) => (
               <tr key={transaction.hash}>
-                <td className="d-none d-md-table-cell">
+                <td className="d-md-table-cell">
                   <TimeAgo date={transaction.timestamp}/>
                 </td>
                 <td className="text-nowrap">
@@ -109,6 +110,7 @@ export default class Transactions extends React.Component {
           }
           </tbody>
         </table>
+        </div>
       </StickyContainer>
     )
   }

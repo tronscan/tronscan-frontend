@@ -41,14 +41,15 @@ class SendForm extends React.Component {
   isValid = () => {
     let {to, token, amount, privateKey} = this.state;
     let {account} = this.props;
+    /*
+       if (!privateKey || privateKey.length !== 64) {
+         return false;
+       }
 
-    if (!privateKey || privateKey.length !== 64) {
-      return false;
-    }
-    if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
-      return false;
-    }
-
+      if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
+         return false;
+       }
+    */
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
 
@@ -65,7 +66,7 @@ class SendForm extends React.Component {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(privateKey);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -336,19 +337,7 @@ class SendForm extends React.Component {
               </div>
             </div>
           </div>
-          <div className="form-group">
-            <label>{tu("private_key")}</label>
-            <div className="input-group mb-3">
-              <input type="text"
-                     onChange={(ev) => this.setState({privateKey: ev.target.value})}
-                     className={"form-control " + (!isPrivateKeyValid ? "is-invalid" : "")}
-                     value={privateKey}/>
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_private_key")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
+
           <div className="form-group">
             <label>{tu("note")}</label>
             <div className="input-group mb-3">

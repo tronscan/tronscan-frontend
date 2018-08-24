@@ -2,7 +2,7 @@
 import React from "react";
 import {loadTokens} from "../../../actions/tokens";
 import {connect} from "react-redux";
-import {NavLink, Route, Switch} from "react-router-dom";
+import {Link, NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu, tv} from "../../../utils/i18n";
 import TimeAgoI18N from "../../common/TimeAgoI18N";
@@ -134,84 +134,93 @@ class Block extends React.Component {
           <div className="row">
             <div className="col-md-12 ">
               <div className="card">
-                <div className="card-body">
+                <div className="card-body d-flex">
+                  <Link className="mr-auto" to={"/block/" + (block.number - 1)}>
+                    <i className="fa fa-arrow-left"/>
+                  </Link>
                   <h5 className="card-title text-center m-0">
-                    <i className="fa fa-cube mr-2"></i>
+                    <i className="fa fa-cube mr-2"/>
                     {tu("block")} #{block.number}
                   </h5>
+                  <Link className="ml-auto" to={"/block/" + (block.number + 1)}>
+                    <i className="fa fa-arrow-right"/>
+                  </Link>
                 </div>
-                <table className="table table-hover m-0">
-                  <tbody>
-                  <tr>
-                    <th>{tu("status")}:</th>
-                    <td>
-                      {
-                        block.confirmed ?
-                          <span className="badge badge-success text-uppercase">Confirmed</span> :
-                          <span className="badge badge-danger text-uppercase">Unconfirmed</span>
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("hash")}:</th>
-                    <td>
-                      <Truncate>
-                        {block.hash} <CopyText text={block.hash} className="ml-1" />
-                      </Truncate>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("height")}:</th>
-                    <td>{block.number}</td>
-                  </tr>
-                  {
-                    block.timestamp !== 0 && <tr>
-                      <th>{tu("time")}:</th>
+                <div className="table-responsive">
+                  <table className="table table-hover m-0">
+                    <tbody>
+                    <tr>
+                      <th>{tu("status")}:</th>
                       <td>
-                        <FormattedDate value={block.timestamp} />&nbsp;
-                        <FormattedTime value={block.timestamp} />&nbsp;
-                        {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
+                        {
+                          block.confirmed ?
+                            <span className="badge badge-success text-uppercase">Confirmed</span> :
+                            <span className="badge badge-danger text-uppercase">Unconfirmed</span>
+                        }
                       </td>
                     </tr>
-                  }
-                  <tr>
-                    <th>{tu("transactions")}:</th>
-                    <td>
-                      {totalTransactions} {tv("transactions_count", { transactions: totalTransactions })}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("parenthash")}:</th>
-                    <td>
-                      <Truncate>
-                        <BlockNumberLink number={block.number - 1}>
-                          {block.parentHash}
-                        </BlockNumberLink>
-                        <CopyText text={block.parentHash} className="ml-1" />
-                      </Truncate>
-                    </td>
-                  </tr>
-                  {
-                    block.witnessAddress !== "" && <tr>
-                      <th>{tu("witness")}:</th>
+                    <tr>
+                      <th>{tu("hash")}:</th>
                       <td>
                         <Truncate>
-                          <AddressLink address={block.witnessAddress} includeCopy={true}/>
-
+                            {block.hash} <CopyText text={block.hash} className="ml-1" />
                         </Truncate>
                       </td>
                     </tr>
-                  }
+                    <tr>
+                      <th>{tu("height")}:</th>
+                      <td>{block.number}</td>
+                    </tr>
+                    {
+                        block.timestamp !== 0 && <tr>
+                          <th>{tu("time")}:</th>
+                          <td>
+                            <FormattedDate value={block.timestamp} />&nbsp;
+                            <FormattedTime value={block.timestamp} />&nbsp;
+                              {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
+                          </td>
+                        </tr>
+                    }
+                    <tr>
+                      <th>{tu("transactions")}:</th>
+                      <td>
+                          {totalTransactions} {tv("transactions_count", { transactions: totalTransactions })}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{tu("parenthash")}:</th>
+                      <td>
+                        <Truncate>
+                          <BlockNumberLink number={block.number - 1}>
+                              {block.parentHash}
+                          </BlockNumberLink>
+                          <CopyText text={block.parentHash} className="ml-1" />
+                        </Truncate>
+                      </td>
+                    </tr>
+                    {
+                        block.witnessAddress !== "" && <tr>
+                          <th>{tu("witness")}:</th>
+                          <td>
+                            <Truncate>
+                              <AddressLink address={block.witnessAddress} includeCopy={true}/>
 
-                  <tr>
-                    <th>{tu("size")}:</th>
-                    <td>
-                      <FormattedNumber value={block.size} />&nbsp;
-                      {tu("bytes")}
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+                            </Truncate>
+                          </td>
+                        </tr>
+                    }
+
+                    <tr>
+                      <th>{tu("size")}:</th>
+                      <td>
+                        <FormattedNumber value={block.size} />&nbsp;
+                          {tu("bytes")}
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
               </div>
 
               <div className="card mt-3">

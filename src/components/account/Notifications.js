@@ -176,7 +176,7 @@ class Notifications extends React.Component {
             <span className="badge badge-notify">{notifications.length}</span>
           }
         </a>
-        <ul className="dropdown-menu dropdown-menu-right">
+        <ul className="dropdown-menu dropdown-menu-right wallet-notifications">
           {
             notifications.length === 0 &&
             <h6 className="dropdown-header text-center">{tu("no_notifications")}</h6>

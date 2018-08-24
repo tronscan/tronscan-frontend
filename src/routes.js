@@ -15,6 +15,7 @@ import {
   RepresentativesAsync,
   AccountAsync,
   NodeTesterAsync,
+  TronConvertToolAsync,
   SystemAsync,
   DemoAsync,
   FaqAsync,
@@ -40,7 +41,7 @@ export const routes = [
     path: "/blockchain",
     label: "blockchain",
     icon: 'fa fa-link',
-    component: () => <Redirect to="/blockchain/blocks" />,
+    component: () => <Redirect to="/blockchain/blocks"/>,
     routes: [
       {
         path: "/blockchain/blocks",
@@ -147,12 +148,12 @@ export const routes = [
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenListAsync
-      },{
+      }, {
         label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
         component: TokenOverviewAsync
-      },{
+      }, {
         label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
@@ -210,6 +211,13 @@ export const routes = [
         component: NodeTesterAsync,
       },
       {
+        label: "tron_convert_tool",
+        path: "/tools/tron-convert-tool",
+        icon: "fa fa-random",
+        component: TronConvertToolAsync,
+      },
+
+      {
         path: "/tools/system",
         icon: "fa fa-database",
         label: "system",
@@ -226,6 +234,14 @@ export const routes = [
         label: "link_test_server"
       }
     ]
+  },
+  {
+        path: "list_trx",
+        label: "list_trx",
+        icon: "fa fa-plus",
+        enurl: "https://tron.network/exchangesList?lng=en",
+        zhurl: "https://tron.network/exchangesList?lng=zh",
+        linkHref:true
   },
   {
     path: "/help",
@@ -260,11 +276,16 @@ export const routes = [
         url: "https://t.me/tronscan",
         label: "telegram_updates",
       },
+
       '-',
       "Community",
       {
         url: "https://www.reddit.com/r/tronix",
         label: "reddit",
+      },
+      {
+        url: "https://t.me/tronscantalk",
+        label: "telegram",
       },
       '-',
       "Development",

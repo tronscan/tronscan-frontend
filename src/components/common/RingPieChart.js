@@ -226,6 +226,118 @@ export class RepresentativesRingPieReact extends React.Component {
   }
 }
 
+
+
+export class SupplyTypesTRXPieChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            pieId: 'ringPie' + id
+        }
+    }
+
+    initPie(id) {
+        let {intl, data,message,source} = this.props;
+        let myChart = echarts.getInstanceByDom(document.getElementById(id));
+        if (myChart === undefined) {
+            myChart = echarts.init(document.getElementById(id));
+        }
+        config.supplyTypesTRXPieChart.title.text=intl.formatMessage({id:message.id});
+        config.supplyTypesTRXPieChart.series[0].data = [];
+        config.supplyTypesTRXPieChart.legend.data = [];
+        config.supplyTypesTRXPieChart.title.link = '#/blockchain/stats/supply';
+        config.supplyTypesTRXPieChart.tooltip.formatter = function (datas) {
+            return (
+                intl.formatMessage({id: datas.name}) + ' (' + intl.formatNumber(datas.value) + ' TRX' + ')<br/>' +
+                intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
+            )
+        }
+        if(source==='singleChart'){
+            let seriesCenter = ['50%', '50%'];
+            config.supplyTypesTRXPieChart.legend.show = true;
+            config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
+            config.supplyTypesTRXPieChart.toolbox.feature = {
+                restore: {
+                    show: false,
+                    title: 'restore'
+                },
+                saveAsImage: {
+                    show: false,
+                    title: 'save'
+                }
+            }
+        }else{
+            let seriesCenter = ['50%', '60%'];
+            config.supplyTypesTRXPieChart.legend.show = false;
+            config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
+            config.supplyTypesTRXPieChart.toolbox.feature = {
+                restore: {
+                    show: false,
+                    title: 'restore'
+                },
+                saveAsImage: {
+                    show: false,
+                    title: 'save'
+                }
+            }
+        }
+
+        function compare(property) {
+            return function (obj1, obj2) {
+
+                if (obj1[property] > obj2[property]) {
+                    return 1;
+                } else if (obj1[property] < obj2[property]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+            }
+        }
+
+        if (data && data.length > 0) {
+            let exchanges = []
+            let temp = [];
+            for (let index in data) {
+                if (temp.indexOf(data[index].name) < 0) {
+                    temp.push(intl.formatMessage({id: data[index].name}) )
+                    exchanges.push({name: intl.formatMessage({id: data[index].name}), value: data[index].value,selected:data[index].selected});
+                }
+            }
+
+            exchanges.sort(compare("value")).reverse();
+            config.supplyTypesTRXPieChart.series[0].data = [];
+            config.supplyTypesTRXPieChart.legend.data = temp;
+            config.supplyTypesTRXPieChart.series[0].data = exchanges;
+
+        }
+        if(data && data.length===0){
+            config.supplyTypesTRXPieChart.title.text="No data";
+        }
+        myChart.setOption(config.supplyTypesTRXPieChart);
+    }
+
+
+    componentDidMount() {
+        this.initPie(this.state.pieId);
+    }
+
+    componentDidUpdate() {
+        this.initPie(this.state.pieId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.pieId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 // function mapStateToProps(state) {
 //   return {}
 // }

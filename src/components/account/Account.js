@@ -24,6 +24,7 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import _ from "lodash";
 
 class Account extends Component {
 
@@ -89,7 +90,11 @@ class Account extends Component {
 
     let {tokenBalances = []} = this.props;
 
-    tokenBalances = filter(tokenBalances, tb => tb.name.toUpperCase() !== "TRX");
+    tokenBalances = _(tokenBalances)
+      .filter(tb => tb.name.toUpperCase() !== "TRX")
+      .filter(tb => tb.balance > 0)
+      .sortBy(tb => tb.name)
+      .value();
 
     if (tokenBalances.length === 0) {
       return (
@@ -343,7 +348,7 @@ class Account extends Component {
 
     let {privateKey} = this.state;
 
-    let {trxBalance} = this.props;
+    let {trxBalance, currentWallet} = this.props;
 
     if (trxBalance === 0) {
       this.setState({
@@ -360,6 +365,7 @@ class Account extends Component {
     this.setState({
       modal: (
           <FreezeBalanceModal
+              frozenTrx={currentWallet.frozenTrx}
               privateKey={privateKey}
               onHide={this.hideModal}
               onError={() => {
@@ -424,7 +430,7 @@ class Account extends Component {
 
     let {account, currentWallet} = this.props;
     let {privateKey} = this.state;
-    let {success, code} = await Client.withdrawBalance(currentWallet.address)(privateKey);
+    let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
     if (success) {
       this.setState({
         modal: (
@@ -450,7 +456,7 @@ class Account extends Component {
     let {privateKey} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeBalance(account.address)(privateKey);
+    let {success} = await Client.unfreezeBalance(account.address)(account.key);
     if (success) {
       this.setState({
         modal: (
@@ -476,7 +482,7 @@ class Account extends Component {
     let {privateKey} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeAssets(account.address)(privateKey);
+    let {success} = await Client.unfreezeAssets(account.address)(account.key);
     if (success) {
       this.setState({
         modal: (
@@ -515,7 +521,7 @@ class Account extends Component {
   updateName = async (name) => {
     let {account, currentWallet} = this.props;
     let {privateKey} = this.state;
-    let {success} = await Client.updateAccountName(currentWallet.address, name)(privateKey);
+    let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
 
     if (success) {
       this.setState({
@@ -541,7 +547,7 @@ class Account extends Component {
   updateWebsite = async (url) => {
     let {account, currentWallet} = this.props;
     let {privateKey} = this.state;
-    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(privateKey);
+    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
 
     if (success) {
       this.setState({
@@ -647,7 +653,7 @@ class Account extends Component {
 
     let {account, currentWallet} = this.props;
     let {privateKey} = this.state;
-    let key = await Client.auth(privateKey);
+    let key = await Client.auth(account.key);
 
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");
@@ -787,75 +793,76 @@ class Account extends Component {
           </div>
 
           {showBandwidth && this.renderBandwidth()}
-
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                {
-                  currentWallet.representative.enabled &&
+        <div className="row mt-3">
+          <div className="col-md-12">
+            <div className="card">
+              {
+                currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-                }
-                <table className="table m-0">
-                  <tbody>
-                  {
-                    wallet.isOpen &&
-                    <tr>
-                      <th>{tu("name")}:</th>
-                      <td>
-                        {currentWallet.name || "-"}
-                        {
-                          (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                          <a href="javascript:" className="float-right text-primary" onClick={() => {
-                            this.confirmPrivateKey('changeName')
-                          }}>
-                            {tu("set_name")}
+              }
+                  <div className="table-responsive">
+                    <table className="table m-0">
+                      <tbody>
+                      {
+                        wallet.isOpen &&
+                        <tr>
+                          <th>{tu("name")}:</th>
+                          <td>
+                            {currentWallet.name || "-"}
+                            {
+                              (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
+                              <a href="javascript:" className="float-right text-primary" onClick={() => {
+                                this.changeName()
+                              }}>
+                                {tu("set_name")}
+                              </a>
+                            }
+                          </td>
+                        </tr>
+                      }
+                      {
+                        currentWallet.representative.enabled &&
+                        <tr>
+                          <th>{tu("website")}:</th>
+                          <td>
+                            <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                            <a href="javascript:" className="float-right text-primary" onClick={() => {
+                              this.changeWebsite()
+                            }}>
+                              {tu("change_website")}
+                            </a>
+
+                          </td>
+                        </tr>
+                      }
+                      <tr>
+                        <th style={{width: 150}}>{tu("address")}:</th>
+                        <td>
+                          <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
+                            {tu("show_qr_code")}
                           </a>
+
+                          <div className="float-left" style={{width: 350}}>
+                            <AddressLink address={account.address} includeCopy={true}/>
+                          </div>
+
+                          {
+                            IS_TESTNET &&
+                            <p className="text-danger">
+                              ({tu("do_not_send_2")})
+                            </p>
                         }
                       </td>
                     </tr>
-                  }
-                  {
-                    currentWallet.representative.enabled &&
                     <tr>
-                      <th>{tu("website")}:</th>
+                      <th>{tu("transactions")}:</th>
                       <td>
-                        <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                        <a href="javascript:" className="float-right text-primary" onClick={() => {
-                          this.confirmPrivateKey('changeWebsite')
-                        }}>
-                          {tu("change_website")}
-                        </a>
-
+                        <FormattedNumber value={totalTransactions}/>
                       </td>
                     </tr>
-                  }
-                  <tr>
-                    <th style={{width: 150}}>{tu("address")}:</th>
-                    <td>
-                      <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                        {tu("show_qr_code")}
-                      </a>
-
-                      <div className="float-left" style={{width: 350}}>
-                        <AddressLink address={account.address} includeCopy={true}/>
-                      </div>
-
-                      {
-                        IS_TESTNET &&
-                        <p className="text-danger">
-                          ({tu("do_not_send_2")})
-                        </p>
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("transactions")}:</th>
-                    <td>
-                      <FormattedNumber value={totalTransactions}/>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                  </div>
               </div>
             </div>
           </div>
@@ -918,7 +925,7 @@ class Account extends Component {
                         <td>
                           <a href="javascript:" className="float-right text-primary"
                              onClick={() => {
-                               this.confirmPrivateKey('unfreezeAssetsConfirmation')
+                               this.unfreezeAssetsConfirmation()
                              }}>
                             {tu("unfreeze_assets")}
                           </a>
@@ -971,14 +978,14 @@ class Account extends Component {
                   {
                     hasFrozen &&
                     <button className="btn btn-danger mr-2" onClick={() => {
-                      this.confirmPrivateKey('unfreeze')
+                      this.showUnfreezeModal()
                     }}>
                       {tu("unfreeze")}
                       <i className="fa fa-fire ml-2"/>
                     </button>
                   }
                   <button className="btn btn-dark mr-2" onClick={() => {
-                    this.confirmPrivateKey('freeze')
+                    this.showFreezeBalance()
                   }}>
                     {tu("freeze")}
                     <i className="fa fa-snowflake ml-2"/>
@@ -1002,7 +1009,7 @@ class Account extends Component {
                         </p>
                         <button className="btn btn-success mr-2"
                                 onClick={() => {
-                                  this.confirmPrivateKey('claimRewards')
+                                  this.claimRewards()
                                 }}
                                 disabled={currentWallet.representative.allowance === 0}>
                           {tu("claim_rewards")}
@@ -1041,7 +1048,7 @@ class Account extends Component {
                             </p>
                             <p className="text-center">
                               <button className="btn btn-dark mr-2" onClick={() => {
-                                this.confirmPrivateKey('changeGithubURL')
+                                this.changeGithubURL()
                               }}>
                                 {tu("set_github_link")}
                                 <i className="fab fa-github ml-2"/>
@@ -1061,7 +1068,7 @@ class Account extends Component {
                                         target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
                               <a href="javascript:;" className="float-right text-primary"
                                  onClick={() => {
-                                   this.confirmPrivateKey('changeGithubURL')
+                                   this.changeGithubURL()
                                  }}>
                                 {tu("Change Github Link")}
                               </a>
@@ -1092,7 +1099,7 @@ class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <button className="btn btn-success mr-2" onClick={() => {
-                          this.confirmPrivateKey('applySR')
+                          this.applyForDelegate()
                         }}>
                           <i className="fa fa-hand-holding-usd mr-2"/>
                           {tu("apply_super_representative_candidate")}
