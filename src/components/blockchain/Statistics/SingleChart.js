@@ -224,8 +224,9 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
-        let volumeUSD = volumeData.data.volume_usd
+        let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+        let volumeUSD = volumeData.data.market_cap_by_available_supply
+
         let volume = volumeUSD.map(function (v, i) {
             return {
                 time: v[0],
@@ -234,25 +235,28 @@ class Statistics extends React.Component {
                 volume_usd_num: v[1]
             }
         })
+        this.setState({
+            volumeStats: volume
+        });
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
         let vo = cloneDeep(volume).sort(this.compare('volume_usd_num'));
         for (let v in vo) {
             vo[v] = {date: vo[v].time, ...vo[v]};
         }
         this.setState({
-            volumeStats: volume,
-            submit:{
+            summit: {
                 volumeStats_sort: [
                     {
-                        date: vo[vo.length - 1].date,
+                        date: vo[vo.length - 1].time,
                         increment: vo[vo.length - 1].volume_usd_num
                     },
                     {
-                        date: vo[0].date,
+                        date: vo[0].time,
                         increment: vo[0].volume_usd_num
-                    }]
+                    }],
             }
         });
-
     }
     async loadPriceStats(){
         let {intl} = this.props;
@@ -263,26 +267,29 @@ class Statistics extends React.Component {
         let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
         let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
         let priceStatsTemp = data['Data'];
+        this.setState({
+            priceStats: priceStatsTemp
+        });
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
         let pr = cloneDeep(priceStatsTemp).sort(this.compare('close'));
         for (let p in pr) {
             pr[p] = {date: pr[p].time, ...pr[p]};
         }
         this.setState({
-            priceStats: priceStatsTemp,
-            submit:{
+            summit: {
                 priceStats_sort: [
                     {
-                        date: pr[pr.length - 1].date * 1000,
+                        date: pr[pr.length - 1].time * 1000,
                         increment: pr[pr.length - 1].close
                     },
                     {
-                        date: pr[0].date * 1000,
+                        date: pr[0].time * 1000,
                         increment: pr[0].close
-                    }
-                ]
+                    }],
+
             }
         });
-
     }
 
 
@@ -354,13 +361,6 @@ class Statistics extends React.Component {
         let addr = cloneDeep(addressesTemp).sort(compare('increment'));
         let tx = cloneDeep(temp).sort(compare('totalTransaction'));
         let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
-
-
-
-
-
-
-
         let _bcs = [];
 
         for (let b in blockchainSizeStatsTemp) {

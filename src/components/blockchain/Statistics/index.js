@@ -45,9 +45,7 @@ class Statistics extends React.Component {
     }
 
     componentDidMount() {
-        // this.loadAccounts();
-        // this.loadStats();
-        // this.loadTxOverviewStats();
+
     }
 
     async loadAccounts() {
