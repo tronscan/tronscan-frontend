@@ -16,6 +16,15 @@ import {NumberField} from "../common/Fields";
 import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 
+function ErrorLabel(error) {
+  if (error !== null) {
+    return (
+        <small className="text-danger"> {error} </small>
+    )
+  }
+  return null;
+}
+
 class Confirm extends Component {
 
   constructor(props) {
@@ -33,9 +42,16 @@ class Confirm extends Component {
     });
   };
   submit = () => {
+    let newErrors = {
+      confirm: null,
+    };
     let {checkbox} = this.state;
     if (checkbox)
       this.props.submit();
+    else {
+      newErrors.confirm = "需要勾选确认！";
+      this.setState({errors: newErrors});
+    }
   }
 
   componentDidMount() {
@@ -50,8 +66,9 @@ class Confirm extends Component {
   render() {
     let {numberOfCoins, numberOfTron, name, abbr, description, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, showFrozenSupply, checkbox} = this.state;
     let {nextStep} = this.props;
+    let {errors} = this.state;
     let exchangeRate = numberOfTron / numberOfCoins;
-    console.log(frozenSupply);
+
     return (
 
         <main className="container">
@@ -142,10 +159,11 @@ class Confirm extends Component {
                             <tbody>
                             {
                               frozenSupply.map((frozen, index) => (
-                                <tr key={index}>
-                                  <td className="text-nowrap borderBottom"><FormattedNumber value={frozen.amount}/></td>
-                                  <td className="borderBottom"><FormattedNumber value={frozen.days}/></td>
-                                </tr>
+                                  <tr key={index}>
+                                    <td className="text-nowrap borderBottom"><FormattedNumber value={frozen.amount}/>
+                                    </td>
+                                    <td className="borderBottom"><FormattedNumber value={frozen.days}/></td>
+                                  </tr>
                               ))
                             }
                             </tbody>
@@ -157,13 +175,15 @@ class Confirm extends Component {
 
                     <div className="form-group">
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" value={checkbox} onChange={(e) => {
-                          this.setState({checkbox: e.target.checked})
-                        }}/>
+                        <input type="checkbox" className="form-check-input" value={checkbox}
+                               onChange={(e) => {
+                                 this.setState({checkbox: e.target.checked, errors: {confirm: null}})
+                               }}/>
                         <label className="form-check-label">
                           {tu("token_spend_confirm")}
                         </label>
                       </div>
+                      {ErrorLabel(errors.confirm)}
                     </div>
                     <a className="btn btn-danger btn-lg" onClick={() => {
                       nextStep(3)
