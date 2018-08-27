@@ -34,6 +34,7 @@ export class BasicInfo extends PureComponent {
       description: null,
       url: null,
       abbr: null,
+      logo:null,
     };
 
     name = trim(name);
@@ -68,6 +69,9 @@ export class BasicInfo extends PureComponent {
     if (url.length === 0)
       newErrors.url = tu("no_url_error");
 
+    if (document.getElementById("previewLogo").src)
+      newErrors.logo = tu("no_logo_error");
+
     if (some(Object.values(newErrors), error => error !== null)) {
       this.setState({errors: newErrors});
     }
@@ -83,7 +87,7 @@ export class BasicInfo extends PureComponent {
     document.getElementById("previewLogo").src = URL.createObjectURL(file.files[0]);
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
-    reader.onload = function(){
+    reader.onload = function () {
       console.log(reader.result);
     }
 
@@ -98,6 +102,7 @@ export class BasicInfo extends PureComponent {
   }
 
   render() {
+    console.log('son');
     let {name, url, totalSupply, abbr, description} = this.state;
     let {intl} = this.props;
     let {errors} = this.state;
@@ -109,15 +114,15 @@ export class BasicInfo extends PureComponent {
             {tu("issue_a_token")}
           </h5>
           <p>
-            用户账户中有至少1024TRX，就可以在波场协议上发行通证。
-            通证发行后，会在通证总览页面进行显示。 之后用户可以在发行期限内参与认购，用TRX兑换通证。
-            在发行通证后，您的账户将会收到全部的发行数额。 当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。
+            {tu('token_issue_guide_message_1')}
+            {tu('token_issue_guide_message_2')}
+            {tu('token_issue_guide_message_3')}
           </p>
           <hr/>
           <form>
             <fieldset>
               <legend>
-                {tu("基本信息")}
+                {tu("basic_info")}
                 <i className="fab fa-wpforms float-right"/>
               </legend>
               <p>
@@ -130,14 +135,14 @@ export class BasicInfo extends PureComponent {
                   <label>{tu("token_name")} *</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({name: e.target.value})
-                  }} value={name} placeholder={intl.formatMessage({id:'token_message'})}/>
+                  }} value={name} placeholder={intl.formatMessage({id: 'token_message'})}/>
                   {ErrorLabel(errors.name)}
                 </div>
                 <div className="form-group col-md-6">
                   <label>{tu("token_abbr")} *</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({abbr: e.target.value})
-                  }} value={abbr} placeholder={intl.formatMessage({id:'abbr_message'})}/>
+                  }} value={abbr} placeholder={intl.formatMessage({id: 'abbr_message'})}/>
                   {ErrorLabel(errors.abbr)}
                 </div>
               </div>
@@ -157,7 +162,7 @@ export class BasicInfo extends PureComponent {
                   <label>{tu("description")} *</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({description: e.target.value})
-                  }} value={description} placeholder={intl.formatMessage({id:'description_message'})}/>
+                  }} value={description} placeholder={intl.formatMessage({id: 'description_message'})}/>
                   {ErrorLabel(errors.description)}
                 </div>
               </div>
@@ -166,15 +171,17 @@ export class BasicInfo extends PureComponent {
                   <label>{tu("website_url")} *</label>
                   <input type="text" placeholder="http://" className="form-control" onChange={(e) => {
                     this.setState({url: e.target.value})
-                  }} value={url} placeholder={intl.formatMessage({id:'url_message'})}/>
+                  }} value={url} placeholder={intl.formatMessage({id: 'url_message'})}/>
                   {ErrorLabel(errors.url)}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label>{tu("通证Logo")}  <small className="form-text text-muted" style={{display:'inline'}}>
-                    ({tu("图片限制")})
-                  </small></label>
+                  <label>{tu("token_logo")}
+                    <small className="form-text text-muted" style={{display: 'inline'}}>
+                      ({tu("image_restraint_desc")})
+                    </small>
+                  </label>
                   <div>
                     <a href="javascript:;" className="uploadLogo">
                       <img src={require("../../images/Upload.png")}/>
@@ -184,15 +191,14 @@ export class BasicInfo extends PureComponent {
                     <img id="previewLogo"
                          style={{marginTop: '-52px', marginLeft: '15px', width: '60px', height: '60px'}}/>
                   </div>
-
-                  {ErrorLabel(errors.url)}
+                  {ErrorLabel(errors.logo)}
                 </div>
               </div>
             </fieldset>
 
             <a className="btn btn-danger btn-lg" onClick={() => {
               this.isValid()
-            }}>下一步</a>
+            }}>{tu('next')}</a>
           </form>
 
         </main>

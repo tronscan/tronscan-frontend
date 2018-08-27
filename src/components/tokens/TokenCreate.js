@@ -165,6 +165,9 @@ console.log(result);
   componentDidMount() {
     this.setStartTime();
     this.checkExistingToken();
+    setTimeout(()=>{
+      this.setState({test:'1'});
+    },10000);
   }
 
   checkExistingToken = () => {
@@ -269,7 +272,7 @@ console.log(result);
   }
 
   render() {
-
+console.log('father');
     let {modal, numberOfCoins, numberOfTron, name, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
     let {match} = this.props;
 
@@ -324,32 +327,32 @@ console.log(result);
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">1</span></div>
                       <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">基本信息</div>
-                        <div className="ant-steps-item-description">通证的基本信息</div>
+                        <div className="ant-steps-item-title">{tu('basic_info')}</div>
+                        <div className="ant-steps-item-description">{tu('basic_info_desc')}</div>
                       </div>
                     </div>
                     <div className={this.changeClassName(step, 2)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">2</span></div>
                       <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">汇率设置</div>
-                        <div className="ant-steps-item-description">规定每个通证的价格</div>
+                        <div className="ant-steps-item-title">{tu('exchange_setting')}</div>
+                        <div className="ant-steps-item-description">{tu('exchange_setting_desc')}</div>
                       </div>
                     </div>
                     <div className={this.changeClassName(step, 3)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">3</span></div>
                       <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">锁仓设置</div>
-                        <div className="ant-steps-item-description">可锁定部分通证固定时间</div>
+                        <div className="ant-steps-item-title">{tu('freeze_setting')}</div>
+                        <div className="ant-steps-item-description">{tu('freeze_setting_desc')}</div>
                       </div>
                     </div>
                     <div className={this.changeClassName(step, 4)}>
                       <div className="ant-steps-item-tail"></div>
                       <div className="ant-steps-item-icon"><span className="ant-steps-icon">4</span></div>
                       <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">确认设置</div>
-                        <div className="ant-steps-item-description">确认全部信息</div>
+                        <div className="ant-steps-item-title">{tu('confirm_setting')}</div>
+                        <div className="ant-steps-item-description">{tu('confirm_setting_desc')}</div>
                       </div>
                     </div>
                   </div>

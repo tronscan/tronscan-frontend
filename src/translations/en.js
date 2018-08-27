@@ -927,4 +927,26 @@ export const messages = {
   "social_link": "Social media link",
   "download_excel": "Download the template",
 
+  /*
+##################################################################################
+#                                                                                #
+# ICO--create token page                                                         #
+#                                                                                #
+##################################################################################
+*/
+  "basic_info": "Basic Information",
+  "basic_info_desc": "Token basic information ",
+  "exchange_setting": "Exchange rate setting",
+  "exchange_setting_desc": "Set the issuing price and time frame for tokens",
+  "freeze_setting": "Freeze setting",
+  "freeze_setting_desc": "Freeze part of the tokens for a period of time",
+  "confirm_setting": "Confirm setting",
+  "confirm_setting_desc": "Confirm all your information",
+  "token_logo":"Token LOGO",
+  "image_restraint_desc":"Image restraint description",
+  "prev_step":"Previous",
+  "freeze_on": "On",
+  "freeze_off": "Off",
+  "freeze_not_valid":"Freeze function off",
+
 };

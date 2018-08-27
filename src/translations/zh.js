@@ -904,10 +904,10 @@ export const messages = {
   # ICO--myToken page                                                              #
   #                                                                                #
   ##################################################################################
-*/
+ */
   "my_token": "我发行的通证",
   "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
-  "tron_rating":"波场通证信誉评级",
+  "tron_rating": "波场通证信誉评级",
   "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tron.network",
   "brief_info": "简介",
   "website_official": "官方网站",
@@ -916,5 +916,27 @@ export const messages = {
   "country": "所在国家或地区",
   "social_link": "社交媒体链接",
   "download_excel": "下载模板",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--create token page                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
+  "basic_info": "基本信息",
+  "basic_info_desc": "通证的基本信息",
+  "exchange_setting": "汇率设置",
+  "exchange_setting_desc": "规定每个通证的价格和时间",
+  "freeze_setting": "锁仓设置",
+  "freeze_setting_desc": "可锁定部分通证固定时间",
+  "confirm_setting": "确认设置",
+  "confirm_setting_desc": "确认全部信息",
+  "token_logo": "通证LOGO",
+  "image_restraint_desc": "图片限制描述",
+  "prev_step": "上一步",
+  "freeze_on": "启用",
+  "freeze_off": "禁用",
+  "freeze_not_valid":"不启用锁仓设置",
 
 };
