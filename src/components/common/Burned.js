@@ -23,9 +23,7 @@ export class TRXBurned extends React.PureComponent {
     async loadBurnedNum() {
         let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
         let feeBurnedNum = (Math.abs(this.state.startFeeBurnedNum) - Math.abs(address.balance / ONE_TRX)).toFixed(0);
-        console.log('feeBurnedNum',feeBurnedNum)
         let burnedNumTotal = Number(feeBurnedNum) + this.state.independenceDayBurned;
-        console.log('burnedNumTotal',burnedNumTotal)
         this.setState((state) => ({
             feeBurnedNum:feeBurnedNum,
             burnedNumTotal:burnedNumTotal
