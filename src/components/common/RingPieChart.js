@@ -160,6 +160,7 @@ export class RepresentativesRingPieReact extends React.Component {
         }
       }
     } else {
+      let seriesCenter = ['50%', '60%'];
       config.representPieChart.legend.show = false;
       config.representPieChart.toolbox.feature = {
         restore: {
