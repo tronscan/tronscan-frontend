@@ -135,7 +135,8 @@ tr a {
     td {
       padding: 20px 10px 20px 10px !important;
     }
-  } //
+  }
+  //
   //.address-link {
   //  padding: 23px 30px 24px 0;
   //}
@@ -410,11 +411,13 @@ tr a {
   }
   .home .card {
     margin-bottom: 25px;
-  } // Wallet wizard
+  }
+  // Wallet wizard
   .wallet-wizard .wallet-wizard-logo {
     height: 75px;
     max-width: 100%;
-  } // Buttons
+  }
+  // Buttons
   .container button {
     font-size: 11px;
   }
@@ -541,7 +544,7 @@ tr a {
   white-space: nowrap;
 }
 
-.truncate-ellipsis>* {
+.truncate-ellipsis > * {
   display: table-cell;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -648,8 +651,8 @@ th {
   margin-left: 20px;
 }
 
-.ant-table-thead>tr>th,
-.ant-table-tbody>tr>td {
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
   padding: 16px 8px;
 }
 
@@ -790,14 +793,14 @@ th {
   .nav-stats-block {
     display: block;
   }
-  .home-stats>div {
+  .home-stats > div {
     width: 50%;
     margin-bottom: 20px;
   }
-  .home-stats>div h2 span {
+  .home-stats > div h2 span {
     font-size: 20px;
   }
-  .home-stats>div p span {
+  .home-stats > div p span {
     font-size: 18px;
   }
   .ant-back-top {
@@ -906,11 +909,11 @@ th {
   text-align: center;
 }
 
-.ant-table-tbody>tr>td {
+.ant-table-tbody > tr > td {
   padding: 0px 8px !important;
 }
 
-.transfers .ant-table-tbody>tr>td {
+.transfers .ant-table-tbody > tr > td {
   padding: 14px 8px !important;
 }
 
@@ -997,12 +1000,13 @@ $border-color: #666;
     &:not([href]):not([tabindex]) {
       color: $main-red;
     }
-  } // ********** 全局ant-table样式覆盖 ********** //
+  }
+  // ********** 全局ant-table样式覆盖 ********** //
   .ant-table {
     background: $bg-color;
     color: $text-block;
     font-family: Helvetica;
-    &.ant-table-bordered .ant-table-thead>tr>th {
+    &.ant-table-bordered .ant-table-thead > tr > th {
       border: none;
       border-top: 1px solid $border-color;
       &:last-child {
@@ -1014,8 +1018,8 @@ $border-color: #666;
         border-left: 1px solid $border-color;
       }
     }
-    &.ant-table-bordered .ant-table-tbody>tr {
-      &>td {
+    &.ant-table-bordered .ant-table-tbody > tr {
+      & > td {
         border-color: rgba(255, 255, 255, 0.10);
         &:last-child {
           border-right: none;
@@ -1039,19 +1043,20 @@ $border-color: #666;
       font-size: 12px;
       line-height: 1.4em;
     }
-    .ant-table-thead>tr.ant-table-row-hover>td,
-    .ant-table-tbody>tr.ant-table-row-hover>td,
-    .ant-table-thead>tr:hover>td,
-    .ant-table-tbody>tr:hover>td {
+    .ant-table-thead > tr.ant-table-row-hover > td,
+    .ant-table-tbody > tr.ant-table-row-hover > td,
+    .ant-table-thead > tr:hover > td,
+    .ant-table-tbody > tr:hover > td {
       background: #222;
     }
-    &.ant-table-bordered .ant-table-header>table,
-    &.ant-table-bordered .ant-table-body>table,
+    &.ant-table-bordered .ant-table-header > table,
+    &.ant-table-bordered .ant-table-body > table,
     &.ant-table-bordered .ant-table-fixed-left table,
     &.ant-table-bordered .ant-table-fixed-right table {
       border: none;
     }
-  } // ********** 全局ant-pagination样式覆盖 ********** //
+  }
+  // ********** 全局ant-pagination样式覆盖 ********** //
   .ant-pagination {
     font-family: Helvetica;
     font-size: 14px;
@@ -1102,7 +1107,8 @@ $border-color: #666;
     }
     &.ant-table-pagination.ant-pagination {
       margin-right: -7px;
-    } // 下拉框
+    }
+    // 下拉框
     // .ant-select-dropdown{
     //   color: $text-block-dark;
     //   background-color: $bg-color;
@@ -1111,11 +1117,13 @@ $border-color: #666;
     //   background-color: #222;
     //   color: $text-block-dark;
     // }
-  } // ********** 全局card样式覆盖 ********** //
+  }
+  // ********** 全局card样式覆盖 ********** //
   .card {
     background: none;
     border: none;
-  } // ********** 通证-创建 模块样式覆盖 ********** //
+  }
+  // ********** 通证-创建 模块样式覆盖 ********** //
   .col-sm-12.col-md-3.mt-3.mt-md-0 {
     background: $border-color;
     .card-body {
@@ -1159,28 +1167,29 @@ $border-color: #666;
     .btn:last-child {
       margin-left: 26px; // background: $main-red;
     }
-  } // ********** 全局ant-steps样式覆盖 ********** //
+  }
+  // ********** 全局ant-steps样式覆盖 ********** //
   .ant-steps {
     color: $text-block;
     .ant-steps-item-finish {
       .ant-steps-item-icon {
         background: transparent;
         border-color: $text-block;
-        &>.ant-steps-icon {
+        & > .ant-steps-icon {
           color: $text-block;
         }
       }
-      &>.ant-steps-item-tail:after {
+      & > .ant-steps-item-tail:after {
         background-color: $text-block;
       }
       .ant-steps-item-content {
         padding-bottom: 28px;
-        &>.ant-steps-item-title {
+        & > .ant-steps-item-title {
           color: $text-block;
           font-size: 18px;
           font-weight: normal;
         }
-        &>.ant-steps-item-description {
+        & > .ant-steps-item-description {
           color: $text-block;
         }
       }
@@ -1204,10 +1213,17 @@ $border-color: #666;
 .rdtPicker {
   bottom: 38px;
 }
-.socialMedia div{
+
+.socialMedia div {
   line-height: 32px;
 
 }
-.socialMedia div span{
- margin-left:10px;
+
+.socialMedia div span {
+  margin-left: 10px;
 }
+
+.myToken tr td:first-child {
+  width: 15%;
+}
+

@@ -7,11 +7,12 @@ import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {Alert} from "reactstrap";
+import {TokenLink} from "../common/Links";
 
 class MyToken extends Component {
   constructor() {
     super();
-    this.state={
+    this.state = {
       issuedAsset: null,
     };
   }
@@ -20,11 +21,18 @@ class MyToken extends Component {
     this.checkExistingToken();
   }
 
+  componentDidUpdate(prevProps) {
+    let {wallet} = this.props;
+    if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+      this.checkExistingToken();
+    }
+  }
+
   checkExistingToken = () => {
 
     let {wallet} = this.props;
-
     if (wallet !== null) {
+      console.log(123);
       Client.getIssuedAsset(wallet.address).then(({token}) => {
         if (token) {
           this.setState({
@@ -35,14 +43,47 @@ class MyToken extends Component {
     }
   };
 
+  download = () => {
+    window.open("https://codeload.github.com/douban/douban-client/legacy.zip/master");
+  }
+
   render() {
-    let {issuedAsset}= this.state;
+    let {issuedAsset} = this.state;
+    console.log(issuedAsset);
     let {wallet} = this.props;
+    console.log(this.props.wallet);
     if (!wallet) {
       return (
-          <Alert color="warning" className="text-center">
-            {tu("not_signed_in")}
-          </Alert>
+          <main className="container pb-3 token-create header-overlap">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="text-center p-3">
+                      {tu("not_signed_in")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+      );
+    }
+    if (!issuedAsset) {
+      return (
+          <main className="container pb-3 token-create header-overlap">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="text-center p-3">
+                      {tu("未找到通证发行记录")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
       );
     }
     return (
@@ -52,15 +93,15 @@ class MyToken extends Component {
               <div className="card">
                 <div className="card-body">
                   <h2>我发行的通证</h2>
-                  <p>通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得“波场通证信誉评级”</p>
+                  <p>通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得<a href="#/rating" style={{color:'red'}}>“波场通证信誉评级”</a></p>
                   <p>如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息发送至token@tron.network</p>
                   <hr/>
 
-                  <table className="table confirm">
+                  <table className="table myToken">
                     <tbody>
                     <tr>
                       <td style={{borderTop: '0px'}}>{tu("通证名称")}:</td>
-                      <td style={{borderTop: '0px'}}>{issuedAsset}</td>
+                      <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name}/></td>
                     </tr>
                     <tr>
                       <td>{tu("简介")}:</td>
@@ -120,7 +161,7 @@ class MyToken extends Component {
                       <span>Weibo</span>
                     </div>
                   </div>
-                  <button className="btn btn-danger btn-lg mt-5">下载表格</button>
+                  <button className="btn btn-danger btn-lg mt-5" onClick={this.download}>下载表格</button>
                 </div>
               </div>
             </div>

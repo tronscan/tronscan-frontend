@@ -719,6 +719,10 @@ class Account extends Component {
     });
   };
 
+  toissuedAsset = () => {
+    window.location.hash="#/myToken";
+  }
+
   render() {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
@@ -940,6 +944,7 @@ class Account extends Component {
                     }
                     </tbody>
                   </table>
+                  <button className="btn btn-danger btn-lg" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>通证详情</button>
                 </div>
               </div>
             </div>

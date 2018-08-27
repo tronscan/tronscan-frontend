@@ -280,6 +280,24 @@ export const MyTokenAsync = asyncComponent({
   )
 });
 
+export const TRONRatingAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Pages/TRONRating"));
+            });
+          },
+          'TRONRating',
+      )
+  )
+});
+
 export const CopyrightAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>

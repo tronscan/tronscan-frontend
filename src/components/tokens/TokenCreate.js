@@ -204,8 +204,11 @@ console.log(result);
     return isAfter(current, startTime);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-
+  componentDidUpdate(prevProps) {
+    let {wallet} = this.props;
+    if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+      this.checkExistingToken();
+    }
   }
 
   renderSubmit = () => {
@@ -266,11 +269,11 @@ console.log(result);
   }
 
   render() {
-    console.log("render");
+
     let {modal, numberOfCoins, numberOfTron, name, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
     let {match} = this.props;
 
-    /*
+
         if (!this.isLoggedIn()) {
           return (
               <main className="container pb-3 token-create header-overlap">
@@ -292,7 +295,7 @@ console.log(result);
           return (
               <main className="container pb-3 token-create header-overlap">
                 <div className="row">
-                  <div className="col-sm-8">
+                  <div className="col-md-12">
                     <div className="card">
                       <div className="card-body">
                         <div className="text-center p-3">
@@ -305,7 +308,7 @@ console.log(result);
               </main>
           );
         }
-    */
+
 
 
     return (
