@@ -92,41 +92,41 @@ class MyToken extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h2>我发行的通证</h2>
-                  <p>通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得<a href="#/rating" style={{color:'red'}}>“波场通证信誉评级”</a></p>
-                  <p>如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息发送至token@tron.network</p>
+                  <h2>{tu('my_token')}</h2>
+                  <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color:'red'}}>"{tu('tron_rating')}"</a></p>
+                  <p>{tu("my_token_desc_2")}</p>
                   <hr/>
 
                   <table className="table myToken">
                     <tbody>
                     <tr>
-                      <td style={{borderTop: '0px'}}>{tu("通证名称")}:</td>
+                      <td style={{borderTop: '0px'}}>{tu("name_of_the_token")}:</td>
                       <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name}/></td>
                     </tr>
                     <tr>
-                      <td>{tu("简介")}:</td>
+                      <td>{tu("brief_info")}:</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td className="text-nowrap">{tu("官网地址")}:</td>
+                      <td className="text-nowrap">{tu("website_official")}:</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td className="text-nowrap borderBottom">{tu("白皮书链接")}:</td>
+                      <td className="text-nowrap borderBottom">{tu("white_paper")}:</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td className="text-nowrap borderBottom">{tu("GITHUB链接")}:</td>
+                      <td className="text-nowrap borderBottom">{tu("GitHub")}:</td>
                       <td></td>
                     </tr>
                     <tr>
-                      <td className="text-nowrap borderBottom">{tu("所在国家")}:</td>
+                      <td className="text-nowrap borderBottom">{tu("country")}:</td>
                       <td></td>
                     </tr>
                     </tbody>
                   </table>
                   <hr/>
-                  <h4>社交媒体链接</h4>
+                  <h4>{tu('social_link')}</h4>
                   <div className="row socialMedia" style={{width: '60%'}}>
                     <div className="col-md-5">
                       <img src={require('../../images/reddit.png')}/>
@@ -161,7 +161,7 @@ class MyToken extends Component {
                       <span>Weibo</span>
                     </div>
                   </div>
-                  <button className="btn btn-danger btn-lg mt-5" onClick={this.download}>下载表格</button>
+                  <button className="btn btn-danger btn-lg mt-5" onClick={this.download}>{tu('download_excel')}</button>
                 </div>
               </div>
             </div>

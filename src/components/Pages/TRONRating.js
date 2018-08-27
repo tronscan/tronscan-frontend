@@ -12,89 +12,86 @@ export default class TRONRating extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h2>波场通证信誉评级系统</h2>
-                  <p>修改日期:2018年8月10日</p>
+                  <h2>{tu('rating_title')}</h2>
+                  <p>{tu('modify_on')}:2018年8月10日</p>
                   <hr/>
                   <p>
-                    波场通证信誉评级系统旨在帮助用户在与通证交互时做出明智的决策。当您访问通证页面时，本服务将通过以下方式显示:
+                    {tu('rating_description')}
                   </p>
                   <p>
-                    1)“未知”信誉评级
+                    1) {tu('rating_status_1')}
                   </p>
                   <p>
-                    通证跟踪器中的所有通证都默认为这种信誉评级。只提供了基本信息(网站、logo)，我们无法决定通证的信誉评分。
+                    a. {tu('rating_status_1_desc_a')}
                   </p>
                   <p>
-                    2)“中立”信誉评级
+                    2) {tu('rating_status_2')}
                   </p>
                   <p>
-                    中立的信誉评级决定了关于项目和团队的充分信息提供了某种形式的透明度。
+                    {tu('rating_status_2_desc')}
                   </p>
                   <p>
-                    a.提供必要且充分的信息(网站、logo、官方联系邮箱)。
+                    a. {tu('rating_status_2_desc_a')}
                   </p>
                   <p>
-                    b.团队成员和顾问的专业公众简介也可在网站上提供或发布(LinkedIn个人简介为项目提供属性)。
+                    b. {tu('rating_status_2_desc_b')}
                   </p>
                   <p>
-                    c.提供支持社交媒体资料。
+                    c. {tu('rating_status_2_desc_c')}
                   </p>
                   <p>
-                    3)“OK”信誉评级
+                    d. {tu('rating_status_2_desc_d')}
                   </p>
                   <p>
-                    一个OK信誉评级不是一个认可，但有以下标准的组合:
+                    e. {tu('rating_status_2_desc_e')}
                   </p>
                   <p>
-                    a.提供足够准确的信息
+                    f. {tu('rating_status_2_desc_f')}
                   </p>
                   <p>
-                    b.明确项目目标和沟通
+                    3) {tu('rating_status_3')}
                   </p>
                   <p>
-                    c.项目发起人/出资人/顾问的可见资料
+                    {tu('rating_status_3_desc')}
                   </p>
                   <p>
-                    d.没有明显的“危险”标志(我们在分配信誉分值时就知道)。该通证在一个具有AML/KYC检查的大型加密交易所交易/上市。如binance, bitfinex, poloniex, kraken,
-                    bittrex, liqui，或类似的交易所)
+                    a. {tu('rating_status_3_desc_a')}
                   </p>
                   <p>
-                    f. ICO关闭或公开提升/存在/活跃不少于3个月
+                    b. {tu('rating_status_3_desc_b')}
                   </p>
                   <p>
-                    g.主要ICO平台上市(通过KYC审核)
+                    c. {tu('rating_status_3_desc_c')}
                   </p>
                   <p>
-                    h.取得了重大的里程碑
+                    {tu('rating_status_4')}
                   </p>
                   <p>
-                    4)“可疑”信誉评级
+                    a. {tu('rating_status_4_desc_a')}
                   </p>
                   <p>
-                    有报道称，与本通证合约有关的诈骗/网络钓鱼/诈骗/滥发讯息或虚假陈述的资料并未得到适当处理及/或其他“危险”信号。
+                    b. {tu('rating_status_4_desc_b')}
                   </p>
                   <p>
-                    5)“不安全”信誉评级
+                    {tu('rating_status_5')}
                   </p>
                   <p>
-                    有大量可信的报告显示，与本通证合约有关的诈骗/网络钓鱼/诈骗/滥发讯息或虚假陈述的资料未获妥善处理，并已列于公开的“诈骗”资料库及/或其他“危险信号”内。
+                    a. {tu('rating_status_5_desc_a')}
                   </p>
                   <p>
-                    6)“垃圾”信誉评级
+                    b. {tu('rating_status_5_desc_b')}
                   </p>
-                  <p>
-                    通证名称和/或符号包含url/脚本/ refcode或其他“垃圾属性”。
-                  </p>
+
                   <hr/>
-                  <h5>免责声明</h5>
+                  <h5> {tu('rating_disclaimer')}</h5>
                   <p>
-                    TRON不支持、不批准或不谴责与TRON区块链上显示的通证契约相关的任何服务或项目。用户在采取任何与通证合约相关的行动之前，应始终进行自己的研究和尽职调查，尤其是涉及到价值转移的时候。
+                    {tu('disclaimer_desc_1')}
                   </p>
                   <p>
-                    与这项服务有关的信誉评分可能准确，也可能不准确，因为它们是基于主观评价和/或来自社区的报告。我们毫无表示,保证或承担任何责任内容,准确性,和可靠性这样的评级,我们不负责直接或间接地造成任何损害或损失或据称是由于使用或依赖任何相关的内容或提供的服务。
+                    {tu('disclaimer_desc_2')}
                   </p>
                   <p>
-                    我们保留最终决定在本页接受/拒绝一个象征性名誉奖，我们没有义务提供任何关于拒绝的理由的反馈。一旦发现虚假信息或不符之处，我们保留删除或更新信息(包括信誉)的权利。
+                    {tu('disclaimer_desc_3')}
                   </p>
                 </div>
               </div>
