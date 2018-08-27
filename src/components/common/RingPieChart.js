@@ -147,6 +147,8 @@ export class RepresentativesRingPieReact extends React.Component {
 
     }
     if (source === 'singleChart') {
+      let seriesCenter = ['50%', '50%'];
+      config.representPieChart.series[0].center = seriesCenter;
       config.representPieChart.legend.show = true;
       config.representPieChart.toolbox.feature = {
         restore: {
@@ -196,7 +198,6 @@ export class RepresentativesRingPieReact extends React.Component {
       }
 
       exchanges.sort(compare("value")).reverse();
-
       config.representPieChart.series[0].data = [];
       config.representPieChart.legend.data = temp;
       config.representPieChart.series[0].data = exchanges;
