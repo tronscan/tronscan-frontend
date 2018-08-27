@@ -938,5 +938,6 @@ export const messages = {
   "freeze_on": "启用",
   "freeze_off": "禁用",
   "freeze_not_valid":"不启用锁仓设置",
+  "no_logo_error":"未上传logo",
 
 };

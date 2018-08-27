@@ -948,5 +948,6 @@ export const messages = {
   "freeze_on": "On",
   "freeze_off": "Off",
   "freeze_not_valid":"Freeze function off",
+  "no_logo_error":"no logo found",
 
 };

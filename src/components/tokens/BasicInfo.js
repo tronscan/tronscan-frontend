@@ -34,7 +34,7 @@ export class BasicInfo extends PureComponent {
       description: null,
       url: null,
       abbr: null,
-      logo:null,
+      logo: null,
     };
 
     name = trim(name);
@@ -68,8 +68,8 @@ export class BasicInfo extends PureComponent {
 
     if (url.length === 0)
       newErrors.url = tu("no_url_error");
-
-    if (document.getElementById("previewLogo").src)
+    console.log(document.getElementById("previewLogo").src);
+    if (document.getElementById("previewLogo").src === "")
       newErrors.logo = tu("no_logo_error");
 
     if (some(Object.values(newErrors), error => error !== null)) {

@@ -178,10 +178,10 @@ export class FreezeSupply extends Component {
             </fieldset>
             <a className="btn btn-danger btn-lg" onClick={() => {
               nextStep(2)
-            }}>上一步</a>
+            }}>{tu('prev_step')}</a>
             <a className="ml-1 btn btn-danger btn-lg" onClick={() => {
               this.isValid()
-            }}>下一步</a>
+            }}>{tu('next')}</a>
           </form>
 
         </main>

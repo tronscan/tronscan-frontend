@@ -87,6 +87,8 @@ class Confirm extends Component {
                   <hr/>
                   <h5 className="card-title">
                     {tu("confirm_setting")}
+
+                    <span style={{color:'red',fontSize:'12px'}}>请确保以下信息正确，合约写入区块链后将不可修改。</span>
                   </h5>
                   <form>
                     <fieldset>
