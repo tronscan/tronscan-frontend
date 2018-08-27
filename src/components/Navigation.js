@@ -507,15 +507,27 @@ class Navigation extends PureComponent {
                     <ul className="navbar-nav mr-auto">
                         {filter(routes, r => r.showInMenu !== false).map(route => (
                             <li key={route.path} className="nav-item dropdown">
-                              <NavLink
-                                  className="nav-link"
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
-                                  activeClassName="active"
-                                  to={route.path}>
-                                  {route.icon &&
-                                  <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
-                                  {tu(route.label)}
-                              </NavLink>
+                              {
+                                  route.linkHref === true ?
+                                  <HrefLink
+                                      className="nav-link"
+                                      href={activeLanguage == 'en'?route.enurl:route.zhurl}>
+                                      {route.icon &&
+                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                      {tu(route.label)}
+                                  </HrefLink>
+                                  :
+                                  <NavLink
+                                      className="nav-link"
+                                      {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                      activeClassName="active"
+                                      to={route.path}>
+                                      {route.icon &&
+                                      <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
+                                      {tu(route.label)}
+                                  </NavLink>
+                              }
+
                                 {
                                     route.routes &&
                                     <div className="dropdown-menu">

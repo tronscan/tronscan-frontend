@@ -1227,3 +1227,71 @@ $border-color: #666;
   width: 15%;
 }
 
+
+.sr th, .sr td{
+  padding-left:10px;
+  padding-right:10px;
+}
+.main-counters{
+  margin-top: 30px;
+  margin-bottom: 50px;
+  .counters{
+    color: #555;
+    text-align: center;
+    span{
+      font-size: 32px;
+      line-height: 40px;
+    }
+    h4 {
+      margin-top: 10px;
+      span{
+        color: #555;
+        margin-top: 5px;
+        text-shadow: none;
+        font-weight: 400;
+        font-size: 18px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+    }
+  }
+
+}
+.go-foundation{
+  color: red;
+}
+.go-foundation:hover{
+  color: red;
+  text-decoration: underline;
+}
+.loader-hidden{
+  display: none;
+}
+.card-chart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+
+}
+.card-chart .card-title{
+  color: #666666;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.card-chart .card-title:hover{
+ text-decoration: underline;
+}
+.card-chart img{
+  margin: 16px auto 0;
+}
+
+.statistics-chart hr{
+  margin: 20px 55px;
+}
+
