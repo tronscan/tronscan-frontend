@@ -270,7 +270,7 @@ class TokenOverview extends Component {
               }}>X</a>
               <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
               <span>
-               Successfully received {token.name} tokens
+               {tu('success_receive')} {token.name} {tu('tokens')}
               </span>
               <button className="btn btn-danger btn-block mt-3" onClick={() => {
                 this.setState({alert: null})

@@ -336,6 +336,13 @@ class TokenList extends Component {
         className: 'ant_table',
       },
       {
+        title: 'LOGO',
+        dataIndex: 'imgLogo',
+        key: 'imgLogo',
+        width:'80px',
+        className: 'ant_table',
+      },
+      {
         title: intl.formatMessage({id: 'token'}),
         dataIndex: 'name',
         key: 'name',

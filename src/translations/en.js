@@ -967,5 +967,6 @@ export const messages = {
   "issue_time":"Issuing time ",
   "success_receive":"Successfully received",
   "circulating_supply":"Circulating supply",
+  "issue_info":"Issuance Info",
 
 };
