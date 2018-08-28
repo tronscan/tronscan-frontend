@@ -27,6 +27,7 @@ class AppCmp extends Component {
       this.state.store.dispatch(loginWithAddress(accountAddress));
     }
 
+
     // Refresh sync status
     setInterval(() => {
       this.state.store.dispatch(loadSyncStatus());
@@ -55,6 +56,7 @@ class AppCmp extends Component {
         </PriceProvider>
 
       </Provider>
+
     )
       ;
   }

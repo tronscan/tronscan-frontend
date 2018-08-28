@@ -15,7 +15,6 @@ export function confirmPKey(confirm, address, onCancel, setState,test) {
     else {
       this.privateKey.className = "form-control is-invalid";
     }
-    console.log(value);
     setState({privateKey: value});
     this.privateKey.value = value;
     test();

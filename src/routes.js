@@ -216,7 +216,6 @@ export const routes = [
         icon: "fa fa-random",
         component: TronConvertToolAsync,
       },
-
       {
         path: "/tools/system",
         icon: "fa fa-database",
@@ -276,15 +275,16 @@ export const routes = [
         url: "https://t.me/tronscan",
         label: "telegram_updates",
       },
-      {
-        url: "https://t.me/tronscantalk",
-        label: "telegram_chat",
-      },
+
       '-',
       "Community",
       {
         url: "https://www.reddit.com/r/tronix",
         label: "reddit",
+      },
+      {
+        url: "https://t.me/tronscantalk",
+        label: "telegram",
       },
       '-',
       "Development",

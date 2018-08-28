@@ -50,23 +50,61 @@ class Statistics extends React.Component {
             summit: null,
             pieChart: null,
             supplyTypesChart: null,
-            genesisNum:'',
-            blockProduceRewardsNum:'',
-            nodeRewardsNum:'',
-            independenceDayBurned:'',
-            feeBurnedNum:'',
-            currentTotalSupply:'',
-            priceUSD:'',
-            priceBTC:'',
-            marketCapitalization:'',
-            foundationFreeze:''
+            genesisNum:null,
+            blockProduceRewardsNum:null,
+            nodeRewardsNum:null,
+            independenceDayBurned:null,
+            feeBurnedNum:null,
+            currentTotalSupply:null,
+            priceUSD:null,
+            priceBTC:null,
+            marketCapitalization:null,
+            foundationFreeze:null,
+            circulatingNum:null
         };
     }
 
     componentDidMount() {
+        let {match} = this.props;
         this.loadAccounts();
         this.loadStats();
-        this.loadTxOverviewStats();
+
+        let chartName = match.params.chartName;
+        switch (chartName){
+            case 'supply':
+                this.loadTotalTRXSupply();
+                setInterval(() => {
+                    this.loadTotalTRXSupply();
+                }, 15000);
+            break;
+            case 'pieChart':
+                this.loadPieChart();
+            break;
+            case 'volumeStats':
+                this.loadVolume();
+            break;
+            case 'priceStats':
+                this.loadPriceStats();
+            break;
+            case 'accounts':
+                this.loadAccounts();
+            break;
+            default:
+                this.loadTxOverviewStats();
+            break;
+        }
+    }
+
+    compare (property) {
+        return function (obj1, obj2) {
+            if (obj1[property] > obj2[property]) {
+                return 1;
+            } else if (obj1[property] < obj2[property]) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
 
     async loadAccounts() {
@@ -119,50 +157,8 @@ class Statistics extends React.Component {
             blockStats,
         });
     }
-
-    async loadTxOverviewStats() {
+    async loadTotalTRXSupply(){
         let {intl} = this.props;
-        let today = new Date();
-        let timerToday = today.getTime();
-
-        let birthday = new Date("2017/10/10");
-        let timerBirthday = birthday.getTime();
-        let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
-
-
-        let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
-        let priceStatsTemp = data['Data'];
-
-
-        let volumeData = await xhr.get("https://cors.io/?https://graphs2.coinmarketcap.com/currencies/tron/",);
-        let volumeUSD = volumeData.data.volume_usd
-
-        let volume = volumeUSD.map(function (v, i) {
-            return {
-                time: v[0],
-                volume_billion: v[1] / Math.pow(10, 9),
-                volume_usd: intl.formatNumber(v[1]) + ' USD',
-                volume_usd_num: v[1]
-            }
-        })
-
-        let {statisticData} = await Client.getStatisticData()
-        let pieChartData = [];
-        if (statisticData.length > 0) {
-            statisticData.map((val, i) => {
-                pieChartData.push({
-                    key: i + 1,
-                    name: val.name ? val.name : val.url,
-                    volumeValue: intl.formatNumber(val.blockProduced),
-                    volumePercentage: intl.formatNumber(val.percentage * 100, {
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                    }) + '%',
-                });
-
-            })
-        }
-
         let random = Math.random();
         let balanceData = await xhr.get("https://tron.network/api/v2/node/balance_info?random=" + random);
         let TRONFoundationTotal = balanceData.data.total;
@@ -179,17 +175,125 @@ class Statistics extends React.Component {
         let genesisNum = 100000000000;
         let independenceDayBurned = 1000000000;
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-        let genesisCirculatingNum = (currentTotalSupply - blockProduceRewardsNum - nodeRewardsNum - TRONFoundationTotal).toFixed(2);
+        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
-            {value: nodeRewardsNum, name: 'node_rewards', selected: true},
-            {value: blockProduceRewardsNum, name: 'block_produce_rewards', selected: true},
-            {value: TRONFoundationTotal, name: 'tron_foundation', selected: true},
-            {value: genesisCirculatingNum, name: 'genesis_circulating_supply', selected: true},
+            {value: TRONFoundationTotal, name: 'foundation_freeze', selected: true},
+            {value: circulatingNum, name: 'circulating_supply', selected: true},
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*currentTotalSupply)).toFixed(2);
+        this.setState({
+            supplyTypesChart: supplyTypesChartData,
+            genesisNum:intl.formatNumber(genesisNum),
+            blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
+            nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
+            independenceDayBurned:intl.formatNumber(independenceDayBurned),
+            feeBurnedNum:intl.formatNumber(feeBurnedNum),
+            currentTotalSupply:currentTotalSupply,
+            priceUSD:priceUSD,
+            priceBTC:priceBTC,
+            marketCapitalization:marketCapitalization,
+            foundationFreeze:intl.formatNumber(TRONFoundationTotal),
+            circulatingNum:intl.formatNumber(circulatingNum)
+        });
+    }
+    async loadPieChart(){
+        let {intl} = this.props;
+        let {statisticData} = await Client.getStatisticData()
+        let pieChartData = [];
+        if (statisticData.length > 0) {
+            statisticData.map((val, i) => {
+                pieChartData.push({
+                    key: i + 1,
+                    name: val.name ? val.name : val.url,
+                    volumeValue: intl.formatNumber(val.blockProduced),
+                    volumePercentage: intl.formatNumber(val.percentage * 100, {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                    }) + '%',
+                });
+
+            })
+        }
+        this.setState({
+            pieChart: pieChartData
+        });
+    }
+
+    async loadVolume(){
+        let {intl} = this.props;
+        let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+        let volumeUSD = volumeData.data.market_cap_by_available_supply
+
+        let volume = volumeUSD.map(function (v, i) {
+            return {
+                time: v[0],
+                volume_billion: v[1] / Math.pow(10, 9),
+                volume_usd: intl.formatNumber(v[1]) + ' USD',
+                volume_usd_num: v[1]
+            }
+        })
+        this.setState({
+            volumeStats: volume
+        });
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let vo = cloneDeep(volume).sort(this.compare('volume_usd_num'));
+        for (let v in vo) {
+            vo[v] = {date: vo[v].time, ...vo[v]};
+        }
+        this.setState({
+            summit: {
+                volumeStats_sort: [
+                    {
+                        date: vo[vo.length - 1].time,
+                        increment: vo[vo.length - 1].volume_usd_num
+                    },
+                    {
+                        date: vo[0].time,
+                        increment: vo[0].volume_usd_num
+                    }],
+            }
+        });
+    }
+    async loadPriceStats(){
+        let {intl} = this.props;
+        let today = new Date();
+        let timerToday = today.getTime();
+        let birthday = new Date("2017/10/10");
+        let timerBirthday = birthday.getTime();
+        let dayNum = Math.floor((timerToday - timerBirthday) / 1000 / 3600 / 24);
+        let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
+        let priceStatsTemp = data['Data'];
+        this.setState({
+            priceStats: priceStatsTemp
+        });
+        let higest = {date: '', increment: ''};
+        let lowest = {date: '', increment: ''};
+        let pr = cloneDeep(priceStatsTemp).sort(this.compare('close'));
+        for (let p in pr) {
+            pr[p] = {date: pr[p].time, ...pr[p]};
+        }
+        this.setState({
+            summit: {
+                priceStats_sort: [
+                    {
+                        date: pr[pr.length - 1].time * 1000,
+                        increment: pr[pr.length - 1].close
+                    },
+                    {
+                        date: pr[0].time * 1000,
+                        increment: pr[0].close
+                    }],
+
+            }
+        });
+    }
+
+
+    async loadTxOverviewStats() {
         let {txOverviewStats} = await Client.getTxOverviewStats();
         let temp = [];
         let addressesTemp = [];
@@ -235,23 +339,10 @@ class Statistics extends React.Component {
             addressesStats: addressesTemp,
             blockSizeStats: blockSizeStatsTemp,
             blockchainSizeStats: blockchainSizeStatsTemp,
-            priceStats: priceStatsTemp,
-            volumeStats: volume,
-            pieChart: pieChartData,
-            supplyTypesChart: supplyTypesChartData,
-            genesisNum:intl.formatNumber(genesisNum),
-            blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
-            nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
-            independenceDayBurned:intl.formatNumber(independenceDayBurned),
-            feeBurnedNum:intl.formatNumber(feeBurnedNum),
-            currentTotalSupply:currentTotalSupply,
-            priceUSD:priceUSD,
-            priceBTC:priceBTC,
-            marketCapitalization:marketCapitalization,
-            foundationFreeze:intl.formatNumber(TRONFoundationTotal)
+
         });
 
-        function compare(property) {
+        function compare (property) {
             return function (obj1, obj2) {
 
                 if (obj1[property] > obj2[property]) {
@@ -270,14 +361,6 @@ class Statistics extends React.Component {
         let addr = cloneDeep(addressesTemp).sort(compare('increment'));
         let tx = cloneDeep(temp).sort(compare('totalTransaction'));
         let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
-        let pr = cloneDeep(priceStatsTemp).sort(compare('close'));
-        let vo = cloneDeep(volume).sort(compare('volume_usd_num'));
-        for (let p in pr) {
-            pr[p] = {date: pr[p].time, ...pr[p]};
-        }
-        for (let v in vo) {
-            vo[v] = {date: vo[v].time, ...vo[v]};
-        }
         let _bcs = [];
 
         for (let b in blockchainSizeStatsTemp) {
@@ -335,24 +418,8 @@ class Statistics extends React.Component {
                         date: bcs[0].date,
                         increment: bcs[0].blockchainSize
                     }],
-                priceStats_sort: [
-                    {
-                        date: pr[pr.length - 1].date * 1000,
-                        increment: pr[pr.length - 1].close
-                    },
-                    {
-                        date: pr[0].date * 1000,
-                        increment: pr[0].close
-                    }],
-                volumeStats_sort: [
-                    {
-                        date: vo[vo.length - 1].date,
-                        increment: vo[vo.length - 1].volume_usd_num
-                    },
-                    {
-                        date: vo[0].date,
-                        increment: vo[0].volume_usd_num
-                    }]
+
+
             }
         });
     }
@@ -360,8 +427,7 @@ class Statistics extends React.Component {
 
     render() {
         let {match, intl} = this.props;
-let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze} = this.state;
-
+        let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let unit;
         if (match.params.chartName === 'blockchainSizeStats' ||
             match.params.chartName === 'addressesStats') {
@@ -516,8 +582,10 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                         {
                                             volumeStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactVolumeUsd source='singleChart' style={{height: 500}}
-                                                                    data={volumeStats} intl={intl}/>
+                                                <LineReactVolumeUsd source='singleChart'
+                                                                    style={{height: 500}}
+                                                                    data={volumeStats}
+                                                                    intl={intl}/>
                                         }
                                     </div>
                                 }
@@ -530,7 +598,8 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                 <TronLoader/> :
                                                 <RepresentativesRingPieReact source='singleChart'
                                                                              message={{id: 'produce_distribution'}}
-                                                                             intl={intl} data={pieChart}
+                                                                             intl={intl}
+                                                                             data={pieChart}
                                                                              style={{height: 500}}/>
 
                                         }
@@ -607,12 +676,19 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     {foundationFreeze} TRX
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>{tu('circulating_supply')}:
+                                                                </td>
+                                                                <td>
+                                                                    {circulatingNum} TRX
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                         </div>
                                                         <br/>
                                                         <div className="table-responsive">
-                                                            <table className="table">
+                                                            <table className="table" style={{marginBottom:0}}>
                                                                 <thead>
                                                                 <tr>
                                                                     <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_trx')}</th>
@@ -633,6 +709,11 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     </td>
                                                                 </tr>
                                                                 </tbody></table>
+                                                                <div style={{fontSize:12,color:'#999',whiteSpace: 'nowrap',textAlign:'left', padding: '0.75rem',borderTop: '1px solid #DFD7CA',verticalAlign: 'top'}}>
+                                                                    <div style={{transform:'scale(.9)',marginLeft: '-1.3rem'}}>
+                                                                        *{tu('supply_notes')}
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-7" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
@@ -656,7 +737,7 @@ let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, price
                                                                     message={{id: 'breakdown_supply_types'}}
                                                                     intl={intl}
                                                                     data={supplyTypesChart}
-                                                                    style={{height: 340}}
+                                                                    style={{height: 400}}
                                                                     source='singleChart'
                                                                 />
                                                             </div>

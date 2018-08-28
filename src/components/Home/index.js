@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
+import {TRXBurned} from "../common/Burned";
 import RecentBlocks from "./RecentBlocks";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../../utils/timing";
@@ -208,7 +209,6 @@ class Home extends Component {
                       </button>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div className="row text-center home-stats pb-3">
@@ -218,7 +218,7 @@ class Home extends Component {
                     <p>{tu("online_nodes")}</p>
                   </Link>
                 </div>
-                <div className="col-md-3 col-sm-4">
+                <div className="col-md-2 col-sm-4">
                   <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                     <p>{tu("block_height")}</p>
@@ -231,16 +231,23 @@ class Home extends Component {
                     <p>{tu("transactions_last_day")}</p>
                   </Link>
                 </div>
-                <div className="col-md-3 col-sm-6">
+                <div className="col-md-2 col-sm-6">
                   <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                     <p>{tu("total_accounts")}</p>
                   </Link>
                 </div>
+
                 <div className="col-md-2 col-sm-6">
                   <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                     <h2><TRXPrice amount={1000} currency="USD"/></h2>
                     <p>{tu("pice_per_1000trx")}</p>
+                  </Link>
+                </div>
+                <div className="col-md-2 col-sm-6">
+                  <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
+                    <h2><TRXBurned /></h2>
+                    <p>{tu("burned_trx")}</p>
                   </Link>
                 </div>
 

@@ -60,7 +60,7 @@ export const messages = {
   "from": "from",
   "to": "to",
   "value": "value",
-  "total_accounts": "Total Accounts (Real Time)",
+  "total_accounts": "Total Accounts",
   "submit": "submit",
   "send": "send",
   "receive": "receive",
@@ -456,6 +456,7 @@ export const messages = {
   "percentage": "Percentage",
   "loading_token": "Loading Token",
   "voter_percentage": "Voter Percentage",
+  "total_balance": "Total Balance",
   /*
   ##################################################################################
   #                                                                                #
@@ -659,6 +660,7 @@ export const messages = {
   "report_an_error": "Submit a bug / suggestion",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
+  "telegram": "Telegram",
   /*
   ##################################################################################
   #                                                                                #
@@ -841,5 +843,32 @@ export const messages = {
   "foundation_address":"Foundation Freeze TRX Total Number",
   "unfreeze_time":"Unfreeze Time",
   "addresses_number":"Addresses Number",
-  "copyright":"Copyright"
+  "copyright":"Copyright",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool":"Encode Convert Tool",
+  "breakdown_supply_types":"Breakdown By Supply Types",
+  "genesis":"Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards":"Block Produce Rewards",
+  "node_rewards":"Node Rewards",
+  "independence_day_burned":"Independence Day Burned",
+  "fee_burned":"Fee Burned",
+  "current_total_supply":"Current Total Supply",
+  "foundation_freeze":"Foundation Freeze",
+  "price_per_1000_trx":"PRICE PER 1000 TRX",
+  "in_USD":"In USD",
+  "in_BTC":"In BTC",
+  "total_TRX_supply":"Total TRX Supply",
+  "market_capitalization":"Market Capitalization",
+  "circulating_supply":"Circulating Supply",
+  "list_trx":"List TRX",
+  "burned_trx":"TRX Burned",
+  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan"
+
 };

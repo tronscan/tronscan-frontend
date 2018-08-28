@@ -92,7 +92,7 @@ class SignModal extends React.Component {
     this.signer.signListener.once("app-login", login => {
       if (parseInt(login.code) === this.signer.code) {
         Client.setSigner(this.signer);
-        this.props.loginWithAddress(login.wallet.address);
+        //this.props.loginWithAddress(login.wallet.address);
         this.showAppLoggedIn(login);
       }
     });
