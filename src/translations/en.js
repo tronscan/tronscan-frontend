@@ -60,7 +60,7 @@ export const messages = {
   "from": "from",
   "to": "to",
   "value": "value",
-  "total_accounts": "Total Accounts (Real Time)",
+  "total_accounts": "Total Accounts",
   "submit": "submit",
   "send": "send",
   "receive": "receive",
@@ -456,6 +456,7 @@ export const messages = {
   "percentage": "Percentage",
   "loading_token": "Loading Token",
   "voter_percentage": "Voter Percentage",
+  "total_balance": "Total Balance",
   /*
   ##################################################################################
   #                                                                                #
@@ -659,6 +660,7 @@ export const messages = {
   "report_an_error": "Submit a bug / suggestion",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",
+  "telegram": "Telegram",
   /*
   ##################################################################################
   #                                                                                #
@@ -834,12 +836,132 @@ export const messages = {
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
   "search": "Search",
-  "language_support":"Only support English input currently",
-  "note":"Note",
-  "_percentage":"Percentage",
-  "foundation":"Foundation Addresses",
-  "foundation_address":"Foundation Freeze TRX Total Number",
-  "unfreeze_time":"Unfreeze Time",
-  "addresses_number":"Addresses Number",
-  "copyright":"Copyright"
+  "language_support": "Only support English input currently",
+  "note": "Note",
+  "_percentage": "Percentage",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
+  "copyright": "Copyright",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--rating page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "TRONRating": "TRON Token Rating",
+  "rating_title": "Tronscan Token Reputation System",
+  "modify_on": "Modified on",
+  "rating_description": "The Tronscan Reputation System aims at helping users to understand, differentiate and assess different tokens. When you visit the token page, the Reputation is classified into 5 categories:",
+  "rating_status_1": "Review Pending",
+  "rating_status_1_desc_a": "Not yet reviewed",
+  "rating_status_2": "OK",
+  "rating_status_2_desc": "An “OK” Reputation is not an endorsement or recommendation, but meets the following criteria:",
+  "rating_status_2_desc_a": "Provide sufficient and accurate information",
+  "rating_status_2_desc_b": "Has precise project goals and communication channels",
+  "rating_status_2_desc_c": "Accessible information of the project founders/ investors/ consultants",
+  "rating_status_2_desc_d": "The token is traded/listed on a cryptocurrency exchange with AML/KYC inspection",
+  "rating_status_2_desc_e": "ICO has been completed or active for no less than 3 months",
+  "rating_status_2_desc_f": "A major milestone has been achieved",
+  "rating_status_3": "Neutral",
+  "rating_status_3_desc": "A 'neutral' Reputation means that the information about the project and the team is relatively transparent.",
+  "rating_status_3_desc_a": "Provide necessary and sufficient information (official website, logo, official contact email, white paper)",
+  "rating_status_3_desc_b": "A professional public profile of team members and consultants is posted online (Indicate the project in LinkedIn Personal Profile)",
+  "rating_status_3_desc_c": "Provide social media materials",
+  "rating_status_4": "Insufficient Information",
+  "rating_status_4_desc_a": "Has not provided necessary and sufficient information (official website, logo, official contact email, white paper)",
+  "rating_status_4_desc_b": "There is no information showing that the project has ongoing operational progress",
+  "rating_status_5": "False Information",
+  "rating_status_5_desc_a": "Use false identity to issue token",
+  "rating_status_5_desc_b": "There is information indicating that the fraud/phishing/fraud/spamming or misrepresentation behavior related to this token has not been properly handled, or the token has other 'dangerous' signs.",
+  "rating_disclaimer": "DISCLAIMER",
+  "disclaimer_desc_1": "Tronscan does not endorse, approve or condemn any services or projects related to the token contracts displayed on the Tronscan. Users should always conduct research with due diligence before taking any action related to the token, especially when it comes to value investing.",
+  "disclaimer_desc_2": "Reputation associated with this service may or may not be accurate as they are based on subjective evaluations and/or reports from the community. We take no sides, nor do we guarantee or conduct any level of responsibility/accuracy/reliability evaluation; our reputation evaluation cannot be deemed as any behavioral advice, especially investment advice.",
+  "disclaimer_desc_3": "We reserve the right to interpret the symbolic reputation of the token on this page, and we are not obligated to provide any feedback for the refusal. We reserve the right to delete or update information (including reputation) once there is falseness or discrepancies of the information.",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--myToken page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "my_token": "My Token",
+  "my_token_desc_1": "The information related to the token will be displayed on the token page. Each token based on the comprehensiveness and authenticity of the information will get a",
+  "tron_rating":"Token Reputation",
+  "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@tron.network via your company email or certified email with necessary credentials.",
+  "brief_info": "Brief introduction",
+  "website_official": "Official website",
+  "white_paper": "White paper",
+  "GitHub": "GitHub",
+  "country": "Country/Region",
+  "social_link": "Social media link",
+  "download_excel": "Download the template",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--create token page                                                         #
+#                                                                                #
+##################################################################################
+*/
+  "basic_info": "Basic Information",
+  "basic_info_desc": "Token basic information ",
+  "exchange_setting": "Exchange rate setting",
+  "exchange_setting_desc": "Set the issuing price and time frame for tokens",
+  "freeze_setting": "Freeze setting",
+  "freeze_setting_desc": "Freeze part of the tokens for a period of time",
+  "confirm_setting": "Confirm setting",
+  "confirm_setting_desc": "Confirm all your information",
+  "token_logo":"Token LOGO",
+  "image_restraint_desc":"Image restraint description",
+  "prev_step":"Previous",
+  "freeze_on": "On",
+  "freeze_off": "Off",
+  "freeze_not_valid":"Freeze function off",
+  "no_logo_error":"no logo found",
+  "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--participate page                                                         #
+#                                                                                #
+##################################################################################
+*/
+
+  "issue_progress":"Progress",
+  "fund_raised":"Fund raised",
+  "issuing_price":"Issuing Price",
+  "buy_token_info":"你想要购买多少数量的通证？"
+
 };

@@ -304,7 +304,7 @@ class TokenOverview extends Component {
         }
       },
       {
-        title: '结束时间',
+        title: intl.formatMessage({id: 'end_time'}),
         dataIndex: 'endTime',
         key: 'endTime',
         className: 'ant_table',
@@ -316,7 +316,7 @@ class TokenOverview extends Component {
         }
       },
       {
-        title: '发行进度',
+        title: intl.formatMessage({id: 'end_time'}),
         dataIndex: 'issuedPercentage',
         key: 'issuedPercentage',
         render: (text, record, index) => {
@@ -328,21 +328,21 @@ class TokenOverview extends Component {
         className: 'ant_table'
       },
       {
-        title: '总筹集资金',
+        title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
           return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
         },
         className: 'ant_table'
       },
       {
-        title: '发行价格',
+        title: intl.formatMessage({id: 'issuing_price'}),
         render: (text, record, index) => {
           return <div><FormattedNumber value={record.price / ONE_TRX}/> TRX</div>
         },
         className: 'ant_table'
       },
       {
-        title: '参与发行',
+        title: intl.formatMessage({id: 'participate'}),
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <button className="btn btn-secondary btn-block">{tu("finish")}</button>

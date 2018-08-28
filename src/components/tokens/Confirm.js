@@ -80,20 +80,20 @@ class Confirm extends Component {
                     {tu("issue_a_token")}
                   </h4>
                   <p>
-                    用户账户中有至少1024TRX，就可以在波场协议上发行通证。
-                    通证发行后，会在通证总览页面进行显示。 之后用户可以在发行期限内参与认购，用TRX兑换通证。
-                    在发行通证后，您的账户将会收到全部的发行数额。 当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。
+                    {tu('token_issue_guide_message_1')}
+                    {tu('token_issue_guide_message_2')}
+                    {tu('token_issue_guide_message_3')}
                   </p>
                   <hr/>
                   <h5 className="card-title">
-                    {tu("确认设置")}
+                    {tu("confirm_setting")}
+                    <i className="fa fa-exclamation-circle" aria-hidden="true" style={{color:'red',marginRight:'10px',marginLeft:'10px'}}></i>
+                    <span style={{color:'red',fontSize:'12px'}}>{tu('confirm_issue_info')}</span>
                   </h5>
                   <form>
                     <fieldset>
-
-                      <strong>{tu("基本设置")}</strong>
+                      <strong>{tu("basic_info")}</strong>
                       <i className="fab fa-wpforms float-right"/>
-
                       <table className="table confirm">
                         <tbody>
                         <tr>
@@ -115,7 +115,7 @@ class Confirm extends Component {
 
                     <fieldset>
 
-                      <strong>{tu("汇率设置")}</strong>
+                      <strong>{tu("exchange_setting")}</strong>
                       <i className="fa fa-exchange-alt float-right"/>
 
                       <table className="table confirm">
@@ -154,7 +154,7 @@ class Confirm extends Component {
                       </div>
                       }
                       {!showFrozenSupply ?
-                          <span>不启用锁仓功能</span> :
+                          <span>{tu('freeze_not_valid')}</span> :
                           <table className="table ">
                             <tbody>
                             {
@@ -187,7 +187,7 @@ class Confirm extends Component {
                     </div>
                     <a className="btn btn-danger btn-lg" onClick={() => {
                       nextStep(3)
-                    }}>上一步</a>
+                    }}>{tu('prev_step')}</a>
                     <a className="btn btn-danger btn-lg ml-1" onClick={() => {
                       this.submit();
                     }}>{tu("issue_token")}</a>

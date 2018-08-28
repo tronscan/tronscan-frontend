@@ -410,11 +410,11 @@ class VoteOverview extends React.Component {
     let {votingEnabled, votes, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet, voteList: candidates} = this.props;
 
+
     candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
       ...c,
       rank: index,
     }));
-
     let filteredCandidates = candidates;
 
     if (searchCriteria !== "") {
@@ -526,6 +526,7 @@ class VoteOverview extends React.Component {
                           <th className="text-center d-none d-lg-table-cell" style={{width: 75}}>{tu("24h")}</th>
                           <th className="text-center d-none d-lg-table-cell" style={{width: 25}}>{tu("6h")}</th>
                           <th className="" style={{width: 100}}>{tu("votes")}</th>
+                          <th style={{width: 100}}>{tu("percentage")}</th>
                           {
                             votingEnabled && <th style={{width: 200}}>
                               {tu("your vote")}
@@ -570,30 +571,41 @@ class VoteOverview extends React.Component {
                                 </div>
                               }
                             </td>
-                            <td className="text-center d-none d-lg-table-cell">
+                            <td className="text-center d-none d-lg-table-cell align-middle">
                               <VoteChange value={candidate.change_day}/>
                             </td>
-                            <td className="text-center d-none d-lg-table-cell">
+                            <td className="text-center d-none d-lg-table-cell align-middle">
                               <VoteChange value={candidate.change_cycle}/>
                             </td>
-                            <td className="small text-center">
+                            <td className="small text-center align-middle">
                               {
                                 totalVotes > 0 &&
                                 <Fragment>
                                   <FormattedNumber value={candidate.votes}/><br/>
-                                  <div className="progress position-relative mt-1">
-                                    <div className="progress-bar"
-                                         style={{width: Math.round((candidate.votes / totalVotes) * 100) + '%'}}>
-                                    </div>
-                                    <span className="ml-auto mr-1 progress-bar-percentage">
-                                  <FormattedNumber
-                                    minimumFractionDigits={2}
-                                    maximumFractionDigits={2}
-                                    value={(candidate.votes / totalVotes) * 100}/>%
-                                   </span>
-                                  </div>
+                                  {/*<div className="progress position-relative mt-1">*/}
+                                    {/*<div className="progress-bar"*/}
+                                         {/*style={{width: Math.round((candidate.votes / totalVotes) * 100) + '%'}}>*/}
+                                    {/*</div>*/}
+                                    {/*<span className="ml-auto mr-1 progress-bar-percentage">*/}
+                                  {/*<FormattedNumber*/}
+                                    {/*minimumFractionDigits={2}*/}
+                                    {/*maximumFractionDigits={2}*/}
+                                    {/*value={(candidate.votes / totalVotes) * 100}/>%*/}
+                                   {/*</span>*/}
+                                  {/*</div>*/}
                                 </Fragment>
                               }
+                            </td>
+                            <td className="small text-center align-middle">
+                                {
+                                    totalVotes > 0 &&
+                                    <Fragment>
+                                      <FormattedNumber value={(candidate.votes / totalVotes) * 100}
+                                         minimumFractionDigits={2}
+                                         maximumFractionDigits={2}
+                                      />%
+                                    </Fragment>
+                                }
                             </td>
                             {
                               votingEnabled && <td className="vote-input-field">

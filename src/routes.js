@@ -19,6 +19,8 @@ import {
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  MyTokenAsync,
+  TRONRatingAsync,
   CopyrightAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
@@ -167,7 +169,18 @@ export const routes = [
     component: TokenDetailAsync,
     showInMenu: false,
   },
-
+  {
+    label: "MyToken",
+    component: MyTokenAsync,
+    path: "/myToken",
+    showInMenu: false
+  },
+  {
+    label: "TRONRating",
+    component: TRONRatingAsync,
+    path: "/rating",
+    showInMenu: false
+  },
   {
     path: "/markets",
     label: "markets",
@@ -210,12 +223,12 @@ export const routes = [
         icon: "fa fa-server",
         component: NodeTesterAsync,
       },
-      {
-        label: "tron_convert_tool",
-        path: "/tools/tron-convert-tool",
-        icon: "fa fa-random",
-        component: TronConvertToolAsync,
-      },
+      // {
+      //   label: "tron_convert_tool",
+      //   path: "/tools/tron-convert-tool",
+      //   icon: "fa fa-random",
+      //   component: TronConvertToolAsync,
+      // },
 
       {
         path: "/tools/system",
@@ -234,6 +247,14 @@ export const routes = [
         label: "link_test_server"
       }
     ]
+  },
+  {
+        path: "list_trx",
+        label: "list_trx",
+        icon: "fa fa-plus",
+        enurl: "https://tron.network/exchangesList?lng=en",
+        zhurl: "https://tron.network/exchangesList?lng=zh",
+        linkHref:true
   },
   {
     path: "/help",
@@ -268,11 +289,16 @@ export const routes = [
         url: "https://t.me/tronscan",
         label: "telegram_updates",
       },
+
       '-',
       "Community",
       {
         url: "https://www.reddit.com/r/tronix",
         label: "reddit",
+      },
+      {
+        url: "https://t.me/tronscantalk",
+        label: "telegram",
       },
       '-',
       "Development",

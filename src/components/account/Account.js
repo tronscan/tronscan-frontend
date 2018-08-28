@@ -24,6 +24,7 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import _ from "lodash";
 
 class Account extends Component {
 
@@ -89,7 +90,11 @@ class Account extends Component {
 
     let {tokenBalances = []} = this.props;
 
-    tokenBalances = filter(tokenBalances, tb => tb.name.toUpperCase() !== "TRX");
+    tokenBalances = _(tokenBalances)
+      .filter(tb => tb.name.toUpperCase() !== "TRX")
+      .filter(tb => tb.balance > 0)
+      .sortBy(tb => tb.name)
+      .value();
 
     if (tokenBalances.length === 0) {
       return (
@@ -343,7 +348,7 @@ class Account extends Component {
 
     let {privateKey} = this.state;
 
-    let {trxBalance} = this.props;
+    let {trxBalance, currentWallet} = this.props;
 
     if (trxBalance === 0) {
       this.setState({
@@ -360,6 +365,7 @@ class Account extends Component {
     this.setState({
       modal: (
           <FreezeBalanceModal
+              frozenTrx={currentWallet.frozenTrx}
               privateKey={privateKey}
               onHide={this.hideModal}
               onError={() => {
@@ -719,6 +725,10 @@ class Account extends Component {
     });
   };
 
+  toissuedAsset = () => {
+    window.location.hash="#/myToken";
+  }
+
   render() {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
@@ -940,6 +950,7 @@ class Account extends Component {
                     }
                     </tbody>
                   </table>
+                  <button className="btn btn-danger btn-lg" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>通证详情</button>
                 </div>
               </div>
             </div>

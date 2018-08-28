@@ -43,7 +43,6 @@ class FreezeBalanceModal extends React.PureComponent {
     let {trxBalance} = this.props;
 
     let amount = parseInt(value);
-
     if (!isNaN(amount)) {
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
       amount = amount < trxBalance ? amount : trxBalance;
@@ -74,10 +73,9 @@ class FreezeBalanceModal extends React.PureComponent {
   render() {
 
     let {amount, confirmed, loading} = this.state;
-    let {trxBalance} = this.props;
+    let {trxBalance,frozenTrx} = this.props;
 
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
-
     return (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
           <ModalHeader className="text-center" toggle={this.hideModal}>
@@ -86,7 +84,7 @@ class FreezeBalanceModal extends React.PureComponent {
           <ModalBody className="text-center">
             <form>
               <div className="form-group">
-                <div className="text-left">{tu("current_power")}: <span style={{fontWeight: 800}}>{trxBalance}</span>
+                <div className="text-left">{tu("current_power")}: <span style={{fontWeight: 800}}>{frozenTrx/ONE_TRX}</span>
                 </div>
                 <label>{tu("trx_amount")}</label>
 

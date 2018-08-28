@@ -38,6 +38,7 @@ class TokenList extends Component {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
+    let token
 
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
@@ -49,6 +50,12 @@ class TokenList extends Component {
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
+    try {
+      token = await Client.getToken("McDonaldsCoin");
+      tokens.splice(0,token);
+    }
+    catch(e){}
+
     for (let index in tokens) {
       tokens[index].index = parseInt(index) + 1;
     }

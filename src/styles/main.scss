@@ -135,7 +135,8 @@ tr a {
     td {
       padding: 20px 10px 20px 10px !important;
     }
-  } //
+  }
+  //
   //.address-link {
   //  padding: 23px 30px 24px 0;
   //}
@@ -410,11 +411,13 @@ tr a {
   }
   .home .card {
     margin-bottom: 25px;
-  } // Wallet wizard
+  }
+  // Wallet wizard
   .wallet-wizard .wallet-wizard-logo {
     height: 75px;
     max-width: 100%;
-  } // Buttons
+  }
+  // Buttons
   .container button {
     font-size: 11px;
   }
@@ -541,7 +544,7 @@ tr a {
   white-space: nowrap;
 }
 
-.truncate-ellipsis>* {
+.truncate-ellipsis > * {
   display: table-cell;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -648,8 +651,8 @@ th {
   margin-left: 20px;
 }
 
-.ant-table-thead>tr>th,
-.ant-table-tbody>tr>td {
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
   padding: 16px 8px;
 }
 
@@ -790,14 +793,14 @@ th {
   .nav-stats-block {
     display: block;
   }
-  .home-stats>div {
+  .home-stats > div {
     width: 50%;
     margin-bottom: 20px;
   }
-  .home-stats>div h2 span {
+  .home-stats > div h2 span {
     font-size: 20px;
   }
-  .home-stats>div p span {
+  .home-stats > div p span {
     font-size: 18px;
   }
   .ant-back-top {
@@ -906,11 +909,11 @@ th {
   text-align: center;
 }
 
-.ant-table-tbody>tr>td {
+.ant-table-tbody > tr > td {
   padding: 0px 8px !important;
 }
 
-.transfers .ant-table-tbody>tr>td {
+.transfers .ant-table-tbody > tr > td {
   padding: 14px 8px !important;
 }
 
@@ -1011,7 +1014,7 @@ $gold: #D0AC6E;
     background: $bg-color;
     color: $text-block;
     font-family: Helvetica;
-    &.ant-table-bordered .ant-table-thead>tr>th {
+    &.ant-table-bordered .ant-table-thead > tr > th {
       border: none;
       border-top: 1px solid $border-color;
       &:last-child {
@@ -1048,14 +1051,14 @@ $gold: #D0AC6E;
       font-size: 12px;
       line-height: 1.4em;
     }
-    .ant-table-thead>tr.ant-table-row-hover>td,
-    .ant-table-tbody>tr.ant-table-row-hover>td,
-    .ant-table-thead>tr:hover>td,
-    .ant-table-tbody>tr:hover>td {
+    .ant-table-thead > tr.ant-table-row-hover > td,
+    .ant-table-tbody > tr.ant-table-row-hover > td,
+    .ant-table-thead > tr:hover > td,
+    .ant-table-tbody > tr:hover > td {
       background: #222;
     }
-    &.ant-table-bordered .ant-table-header>table,
-    &.ant-table-bordered .ant-table-body>table,
+    &.ant-table-bordered .ant-table-header > table,
+    &.ant-table-bordered .ant-table-body > table,
     &.ant-table-bordered .ant-table-fixed-left table,
     &.ant-table-bordered .ant-table-fixed-right table {
       border: none;
@@ -1128,7 +1131,8 @@ $gold: #D0AC6E;
     }
     &.ant-table-pagination.ant-pagination {
       margin-right: -7px;
-    } // 下拉框
+    }
+    // 下拉框
     // .ant-select-dropdown{
     //   color: $text-block-dark;
     //   background-color: $bg-color;
@@ -1207,11 +1211,11 @@ $gold: #D0AC6E;
       .ant-steps-item-icon {
         background: transparent;
         border-color: $text-block;
-        &>.ant-steps-icon {
+        & > .ant-steps-icon {
           color: $text-block;
         }
       }
-      &>.ant-steps-item-tail:after {
+      & > .ant-steps-item-tail:after {
         background-color: $text-block;
       }
     }
@@ -1434,3 +1438,85 @@ $gold: #D0AC6E;
 .rdtPicker {
   bottom: 38px;
 }
+
+.socialMedia div {
+  line-height: 32px;
+
+}
+
+.socialMedia div span {
+  margin-left: 10px;
+}
+
+.myToken tr td:first-child {
+  width: 15%;
+}
+
+
+.sr th, .sr td{
+  padding-left:10px;
+  padding-right:10px;
+}
+.main-counters{
+  margin-top: 30px;
+  margin-bottom: 50px;
+  .counters{
+    color: #555;
+    text-align: center;
+    span{
+      font-size: 32px;
+      line-height: 40px;
+    }
+    h4 {
+      margin-top: 10px;
+      span{
+        color: #555;
+        margin-top: 5px;
+        text-shadow: none;
+        font-weight: 400;
+        font-size: 18px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+    }
+  }
+
+}
+.go-foundation{
+  color: red;
+}
+.go-foundation:hover{
+  color: red;
+  text-decoration: underline;
+}
+.loader-hidden{
+  display: none;
+}
+.card-chart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+
+}
+.card-chart .card-title{
+  color: #666666;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.card-chart .card-title:hover{
+ text-decoration: underline;
+}
+.card-chart img{
+  margin: 16px auto 0;
+}
+
+.statistics-chart hr{
+  margin: 20px 55px;
+}
+

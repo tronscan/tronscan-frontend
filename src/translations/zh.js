@@ -180,13 +180,13 @@ export const messages = {
   "total_accounts_last_day": "截止上一天总账户数",
   "chart_tip": "拖拽数据窗口来放大或缩小",
   "link_test_server": "测试网",
-  "highest":"最大",
-  "lowest":"最小",
-  "increase":"增长",
-  "number":"数值",
-  "_of":"是",
-  "was_recorded_on":"记录于 ",
-  "rank_real_time":"排名 (实时) ",
+  "highest": "最大",
+  "lowest": "最小",
+  "increase": "增长",
+  "number": "数值",
+  "_of": "是",
+  "was_recorded_on": "记录于 ",
+  "rank_real_time": "排名 (实时) ",
   "volume_24": "24小时交易量",
   "billion_usd": "十亿美元",
   "loading_transfers": "正在加载转账记录",
@@ -682,7 +682,7 @@ export const messages = {
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
-  "login_first" :"请先登录钱包",
+  "login_first": "请先登录钱包",
   "contract_name": "合约名称",
   "compiler": "编译器版本",
   "tx_count": "交易数",
@@ -767,10 +767,10 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "buy_trx":"购买TRX",
+  "buy_trx": "购买TRX",
   "buy_trx_message_0": "TRX可以直接使用法定货币或是其它加密货币来购买而不需要通过交易所。这是因为我们使用了来自Changelly.com的服务，这也是最简单最快捷的购买TRX的方法。支持兑换的加密货币种类和常见问题请参见：",
-  "buy_trx_using_changelly":"使用Changelly来购买TRX",
-  "cant_load_widget":"无法加载控件",
+  "buy_trx_using_changelly": "使用Changelly来购买TRX",
+  "cant_load_widget": "无法加载控件",
   /*
   ##################################################################################
   #                                                                                #
@@ -826,12 +826,132 @@ export const messages = {
   "power": "投票权",
   "token_transfers": "通证转账",
   "website_url": "网站地址",
-  "language_support":"目前只支持英文输入",
-  "note":"备注",
-  "_percentage":"百分比",
-  "foundation":"基金会地址",
-  "foundation_address":"基金会锁仓TRX总数",
-  "unfreeze_time":"解冻时间",
-  "addresses_number":"地址数",
-  "copyright":"版权"
+  "language_support": "目前只支持英文输入",
+  "note": "备注",
+  "_percentage": "百分比",
+  "foundation": "基金会地址",
+  "foundation_address": "基金会锁仓TRX总数",
+  "unfreeze_time": "解冻时间",
+  "addresses_number": "地址数",
+  "copyright": "版权",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "编码转换工具",
+  "breakdown_supply_types": "TRX分布",
+  "genesis": "创世块发行",
+  "TRX_distribution_overview": "TRX分布概览",
+  "block_produce_rewards": "出块奖励",
+  "node_rewards": "节点奖励",
+  "independence_day_burned": "独立日烧毁",
+  "fee_burned": "手续费烧毁",
+  "current_total_supply": "当前总流通量",
+  "foundation_freeze": "基金会冻结",
+  "price_per_1000_trx": "TRX价格（每1000TRX）",
+  "in_USD": "以美元计",
+  "in_BTC": "以比特币计",
+  "total_TRX_supply": "TRX总流通量",
+  "market_capitalization": "市值",
+  "circulating_supply": "流通量",
+  "list_trx": "交易所上币",
+  "burned_trx": "TRX烧毁数",
+  "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--rating page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "TRONRating": "TRON通证评级",
+  "rating_title": "波场区块链浏览器通证信誉评级系统",
+  "modify_on": "修改日期",
+  "rating_description": "波场区块链浏览器“通证信誉评级系统”旨在帮助用户了解、识别与判断不同通证，当您访问通证页面时，本评级服务将通过以下5种标志显示:",
+  "rating_status_1": "等待审核",
+  "rating_status_1_desc_a": "还未经过审核",
+  "rating_status_2": "OK",
+  "rating_status_2_desc": "一个'OK'信誉评级不是一个认可或推荐，但有以下标准的组合:",
+  "rating_status_2_desc_a": "提供足够准确的信息",
+  "rating_status_2_desc_b": "明确项目目标和沟通渠道",
+  "rating_status_2_desc_c": "项目发起人/投资人/顾问的可见资料",
+  "rating_status_2_desc_d": "该通证在一个具有AML/KYC检查的加密货币交易所交易/上市",
+  "rating_status_2_desc_e": "ICO已完成或ICO活跃不少于3个月",
+  "rating_status_2_desc_f": "取得了重大的里程碑",
+  "rating_status_3": "中立",
+  "rating_status_3_desc": "'中立'的信誉评级意味着项目方有相对充分的信息披露：",
+  "rating_status_3_desc_a": "提供必要且充分的信息(官方网站、logo、官方联系邮箱、白皮书)",
+  "rating_status_3_desc_b": "项目发起人/投资人/顾问的可见资料(LinkedIn个人简介中也包含了该项目)",
+  "rating_status_3_desc_c": "提供支持社交媒体资料",
+  "rating_status_4": "信息不充分",
+  "rating_status_4_desc_a": "未提交必要且充分的信息（官方网站、logo、官方联系邮箱、白皮书）",
+  "rating_status_4_desc_b": "没有资料显示该项目有持续的运营进展",
+  "rating_status_5": "信息存在虚假",
+  "rating_status_5_desc_a": "冒充他人身份与行为发行通证",
+  "rating_status_5_desc_b": "有资料显示，与本通证有关的诈骗/网络钓鱼/诈骗/滥发讯息或虚假陈述的资料并未得到适当处理，或有其他“危险”信号",
+  "rating_disclaimer": "免责声明",
+  "disclaimer_desc_1": "波场区块链浏览器不支持、不批准或不谴责与波场区块链浏览器上显示的通证相关的任何服务或项目。用户在采取任何与通证相关的行动之前，应始终进行自己的研究和调查，尤其是涉及到价值投资的时候。",
+  "disclaimer_desc_2": "与这项服务有关的信誉评分可能准确，也可能不准确，因为它们是基于主观评价和来自社区的报告。我们毫无保证或承担任何关于内容、准确性和可靠性这样的责任,我们的信誉评级不构成任何行为建议，尤其是投资建议。",
+  "disclaimer_desc_3": "我们保留在本页给通证评定象征性信誉的最终解释权，我们没有义务提供任何关于拒绝的理由的反馈。一旦发现虚假信息或不符之处，我们保留删除或更新信息(包括信誉)的权利。",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--myToken page                                                              #
+  #                                                                                #
+  ##################################################################################
+ */
+  "my_token": "我发行的通证",
+  "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
+  "tron_rating": "波场通证信誉评级",
+  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tron.network",
+  "brief_info": "简介",
+  "website_official": "官方网站",
+  "white_paper": "白皮书",
+  "GitHub": "GitHub",
+  "country": "所在国家或地区",
+  "social_link": "社交媒体链接",
+  "download_excel": "下载模板",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--create token page                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
+  "basic_info": "基本信息",
+  "basic_info_desc": "通证的基本信息",
+  "exchange_setting": "汇率设置",
+  "exchange_setting_desc": "规定每个通证的价格和时间",
+  "freeze_setting": "锁仓设置",
+  "freeze_setting_desc": "可锁定部分通证固定时间",
+  "confirm_setting": "确认设置",
+  "confirm_setting_desc": "确认全部信息",
+  "token_logo": "通证LOGO",
+  "image_restraint_desc": "图片限制描述",
+  "prev_step": "上一步",
+  "freeze_on": "启用",
+  "freeze_off": "禁用",
+  "freeze_not_valid":"不启用锁仓设置",
+  "no_logo_error":"未上传logo",
+  "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--participate page                                                         #
+#                                                                                #
+##################################################################################
+*/
+
+  "issue_progress":"发行进度",
+  "fund_raised":"总筹集资金",
+  "issuing_price":"发行价格",
+  "buy_token_info":"你想要购买多少数量的通证？"
+
 };
