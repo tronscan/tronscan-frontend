@@ -68,15 +68,15 @@ class TokenInfo extends React.Component {
             </td>
           </tr>
           <tr>
-            <th>{tu("共筹集资金")}:</th>
+            <th>{tu("fund_raised")}:</th>
             <td>
               <FormattedNumber value={token.issued * token.price / ONE_TRX}/> TRX
             </td>
           </tr>
           <tr>
-            <th>{tu("国家")}:</th>
+            <th>{tu("country")}:</th>
             <td>
-              {"中国"}
+
             </td>
           </tr>
 

@@ -11,6 +11,7 @@ import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
 import {FormattedNumber, injectIntl} from "react-intl";
 import SmartTable from "../../common/SmartTable.js"
+import {upperFirst} from "lodash";
 
 class Transfers extends React.Component {
 
@@ -73,7 +74,7 @@ class Transfers extends React.Component {
     let {intl} = this.props;
     let column = [
       {
-        title: intl.formatMessage({id: 'age'}),
+        title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
         width: '10%',
@@ -83,9 +84,11 @@ class Transfers extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'hash'}),
+        title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
+        width: '15%',
+        className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
             <TransactionHashLink hash={record.transactionHash}>
@@ -96,7 +99,7 @@ class Transfers extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'from'}),
+        title: upperFirst(intl.formatMessage({id: 'from'})),
         dataIndex: 'transferFromAddress',
         key: 'transferFromAddress',
         className: 'ant_table',
@@ -107,12 +110,13 @@ class Transfers extends React.Component {
       {
         title: '',
         className: 'ant_table',
+        width: '30px',
         render: (text, record, index) => {
           return <img src={require("../../../images/arrow.png")}/>
         },
       },
       {
-        title: intl.formatMessage({id: 'to'}),
+        title: upperFirst(intl.formatMessage({id: 'to'})),
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
         className: 'ant_table',
@@ -121,10 +125,10 @@ class Transfers extends React.Component {
         },
       },
       {
-        title: intl.formatMessage({id: 'amount'}),
+        title: upperFirst(intl.formatMessage({id: 'amount'})),
         dataIndex: 'amount',
         key: 'amount',
-        width: '10%',
+        width: '12%',
         className: 'ant_table',
         render: (text, record, index) => {
           return <div>{record.tokenName === "TRX" ?
