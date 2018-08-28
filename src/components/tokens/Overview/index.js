@@ -247,40 +247,73 @@ class TokenOverview extends Component {
       });
     }
   };
-  confirmTransaction = async (token) => {
-    let {account} = this.props;
-    let {buyAmount} = this.state;
+  submit = async (token) => {
+
+    let {account, currentWallet} = this.props;
+    let {buyAmount, privateKey} = this.state;
 
     let isSuccess = await Client.participateAsset(
-        account.address,
+        currentWallet.address,
         token.ownerAddress,
         token.name,
         buyAmount * token.price)(account.key);
 
+    if (isSuccess.success) {
+      this.setState({
+        activeToken: null,
+        confirmedParticipate: true,
+        participateSuccess: isSuccess.success,
+        buyAmount: 0,
+      });
+      this.props.reloadWallet();
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  confirmTransaction = async (token) => {
+    let {account,intl} = this.props;
+    let {buyAmount} = this.state;
     this.setState({
       alert: (
           <SweetAlert
-              success
               showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'transferring'})}
               style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
-            <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
-              <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
-                this.setState({alert: null})
-              }}>X</a>
-              <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
-              <span>
-               {tu('success_receive')} {token.name} {tu('tokens')}
-              </span>
-              <button className="btn btn-danger btn-block mt-3" onClick={() => {
-                this.setState({alert: null})
-              }}>{tu("OK")}</button>
-            </div>
-
           </SweetAlert>
-      )
+      ),
     });
 
+    if (await this.submit(token)) {
+
+      this.setState({
+        alert: (
+            <SweetAlert
+                success
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+                <span>
+               {tu('success_receive')} {token.name} {tu('tokens')}
+              </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
+            </SweetAlert>
+        )
+      });
+    }
   };
 
   customizedColumn = () => {
@@ -291,6 +324,16 @@ class TokenOverview extends Component {
         dataIndex: 'index',
         key: 'index',
         className: 'ant_table',
+      },
+      {
+        title: 'LOGO',
+        dataIndex: 'imgLogo',
+        key: 'imgLogo',
+        width: '80px',
+        className: 'ant_table_img',
+        render: (text, record, index) => {
+          return <img src={require('../../../images/logo_42.png')}/>
+        }
       },
       {
         title: intl.formatMessage({id: 'token'}),

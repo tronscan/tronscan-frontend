@@ -82,60 +82,6 @@ class TokenDetail extends React.Component {
     });
   };
 
-  buyTokens = (token) => {
-    let {buyAmount} = this.state;
-    let {currentWallet, wallet} = this.props;
-
-    if (!wallet.isOpen) {
-      this.setState({
-        alert: (
-            <SweetAlert
-                warning
-                title="Open wallet"
-                onConfirm={() => this.setState({alert: null})}>
-              Open a wallet to participate
-            </SweetAlert>
-        ),
-      });
-      return;
-    }
-
-    let tokenCosts = buyAmount * (token.price / ONE_TRX);
-
-    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
-      this.setState({
-        alert: (
-            <SweetAlert
-                warning
-                title={tu("insufficient_trx")}
-                onConfirm={() => this.setState({alert: null})}
-            >
-              {tu("not_enough_trx_message")}
-            </SweetAlert>
-        ),
-      });
-    } else {
-      this.setState({
-        alert: (
-            <SweetAlert
-                info
-                showCancel
-                confirmBtnText={tu("confirm_transaction")}
-                confirmBtnBsStyle="success"
-                cancelBtnText={tu("cancel")}
-                cancelBtnBsStyle="default"
-                title={tu("buy_confirm_message_0")}
-                onConfirm={() => this.confirmTransaction(token)}
-                onCancel={() => this.setState({alert: null})}
-            >
-              {tu("buy_confirm_message_1")}<br/>
-              {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
-            </SweetAlert>
-        ),
-      });
-    }
-  };
-
   submit = async (token) => {
 
     let {account, currentWallet} = this.props;
@@ -235,14 +181,13 @@ class TokenDetail extends React.Component {
 
   preBuyTokens = (token) => {
     let {buyAmount} = this.state;
-    let {currentWallet, wallet} = this.props;
+    let {currentWallet, wallet, intl} = this.props;
 
     if (!wallet.isOpen) {
       this.setState({
         alert: (
             <SweetAlert
                 info
-                title="Open wallet"
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
@@ -250,7 +195,7 @@ class TokenDetail extends React.Component {
                 <a style={{float: 'right', marginTop: '-165px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
-                <span>Open a wallet to participate</span>
+                <span>{tu('login_first')}</span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.setState({alert: null})
                 }}>{tu("OK")}</button>
@@ -353,40 +298,50 @@ class TokenDetail extends React.Component {
       });
     }
   };
-  confirmTransaction = async (token) => {
-    let {account} = this.props;
-    let {buyAmount} = this.state;
 
-    let isSuccess = await Client.participateAsset(
-        account.address,
-        token.ownerAddress,
-        token.name,
-        buyAmount * token.price)(account.key);
+  confirmTransaction = async (token) => {
+    let {account, intl} = this.props;
+    let {buyAmount} = this.state;
 
     this.setState({
       alert: (
           <SweetAlert
-              success
               showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'transferring'})}
               style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
-            <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
-              <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
-                this.setState({alert: null})
-              }}>X</a>
-              <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
-              <span>
-                {tu('success_receive')} {token.name} {tu('tokens')}
-              </span>
-              <button className="btn btn-danger btn-block mt-3" onClick={() => {
-                this.setState({alert: null})
-              }}>{tu("OK")}</button>
-            </div>
-
           </SweetAlert>
-      )
+      ),
     });
 
+    if (await this.submit(token)) {
+
+      this.setState({
+        alert: (
+            <SweetAlert
+                success
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}>X</a>
+                <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+                <span>
+                {tu('success_receive')} {token.name} {tu('tokens')}
+              </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
+            </SweetAlert>
+        )
+      });
+    }
   };
 
   render() {
@@ -409,7 +364,8 @@ class TokenDetail extends React.Component {
                       <div className="card-body">
                         <div className="d-flex">
                           <div style={{width: '80%'}}>
-                            <img style={{width: '60px', height: '60px', float: 'left', marginRight: '15px'}}/>
+                            <img style={{width: '60px', height: '60px', float: 'left', marginRight: '15px'}}
+                                 src={require('../../../images/logo_42.png')}/>
                             <h5 className="card-title">
                               {token.name}
                             </h5>
@@ -485,7 +441,8 @@ class TokenDetail extends React.Component {
 
                     <div className="card mt-3">
                       <div className="card-header">
-                        <ul className="nav nav-tabs card-header-tabs" style={{height: '50px', marginTop: '-12px', marginLeft: '-20px'
+                        <ul className="nav nav-tabs card-header-tabs" style={{
+                          height: '50px', marginTop: '-12px', marginLeft: '-20px'
                         }}>
                           {
                             tabs.map(tab => (

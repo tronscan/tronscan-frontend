@@ -968,5 +968,5 @@ export const messages = {
   "success_receive":"Successfully received",
   "circulating_supply":"Circulating supply",
   "issue_info":"Issuance Info",
-
+  "transferring":"In progress",
 };

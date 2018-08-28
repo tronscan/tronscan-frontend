@@ -34,11 +34,11 @@ class TokenList extends Component {
     }
   }
 
-  loadPage = async (page = 1, pageSize = 40) => {
+  loadPage = async (page = 1, pageSize = 10) => {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
-    let token
+    let token;
 
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
@@ -52,10 +52,11 @@ class TokenList extends Component {
     }
     try {
       token = await Client.getToken("McDonaldsCoin");
-      tokens.splice(0,token);
+      if (page === 1)
+        tokens.splice(9, 1, token);
     }
-    catch(e){}
-
+    catch (e) {
+    }
     for (let index in tokens) {
       tokens[index].index = parseInt(index) + 1;
     }
@@ -277,6 +278,8 @@ class TokenList extends Component {
     }
   };
   confirmTransaction = async (token) => {
+    let {account, intl} = this.props;
+    let {buyAmount} = this.state;
 
     this.setState({
       alert: (
@@ -284,9 +287,9 @@ class TokenList extends Component {
               showConfirm={false}
               showCancel={false}
               cancelBtnBsStyle="default"
-              title="One moment please.."
+              title={intl.formatMessage({id: 'transferring'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
-            Requesting tokens...
           </SweetAlert>
       ),
     });
@@ -339,8 +342,11 @@ class TokenList extends Component {
         title: 'LOGO',
         dataIndex: 'imgLogo',
         key: 'imgLogo',
-        width:'80px',
-        className: 'ant_table',
+        width: '80px',
+        className: 'ant_table_img',
+        render: (text, record, index) => {
+          return <img src={require('../../../images/logo_42.png')}/>
+        }
       },
       {
         title: intl.formatMessage({id: 'token'}),
@@ -385,7 +391,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <button className="btn btn-secondary btn-block btn-sm">{tu("finish")}</button>
-          else if(record.startTime > new Date())
+          else if (record.startTime > new Date())
             return <button className="btn btn-info btn-block btn-sm">{tu("尚未开始")}</button>
           else
             return <button className="btn btn-default btn-block btn-sm"

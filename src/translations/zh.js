@@ -958,5 +958,6 @@ export const messages = {
   "success_receive":"成功收到",
   "circulating_supply":"流通量",
   "issue_info":"发行信息",
+  "transferring":"转账中",
 
 };
