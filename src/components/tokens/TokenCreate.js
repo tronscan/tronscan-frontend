@@ -165,9 +165,7 @@ console.log(result);
   componentDidMount() {
     this.setStartTime();
     this.checkExistingToken();
-    setTimeout(()=>{
-      this.setState({test:'1'});
-    },10000);
+
   }
 
   checkExistingToken = () => {

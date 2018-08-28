@@ -221,7 +221,7 @@ class TokenDetail extends React.Component {
   isBuyValid = () => {
     return (this.state.buyAmount > 0);
   };
-  
+
   onBuyInputChange = (value, price, max) => {
     let {intl} = this.props;
     if (value > max) {
@@ -272,7 +272,7 @@ class TokenDetail extends React.Component {
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
-                <h5 style={{color: 'black'}}>你想要购买多少数量的通证？</h5>
+                <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
                 <div className="input-group mt-5">
                   <input
                       type="number"
@@ -376,7 +376,7 @@ class TokenDetail extends React.Component {
               }}>X</a>
               <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
               <span>
-               Successfully received {token.name} tokens
+                {tu('success_receive')} {token.name} {tu('tokens')}
               </span>
               <button className="btn btn-danger btn-block mt-3" onClick={() => {
                 this.setState({alert: null})
@@ -431,13 +431,13 @@ class TokenDetail extends React.Component {
                           <td>
                             <FormattedNumber value={token.totalSupply}/>
                           </td>
-                          <th>{tu("信用评级")}:</th>
+                          <th>{tu("reputation")}:</th>
                           <td>
 
                           </td>
                         </tr>
                         <tr>
-                          <th>{tu("流通量")}:</th>
+                          <th>{tu("circulating_supply")}:</th>
                           <td>
                             <FormattedNumber value={token.issued}/>
                           </td>
@@ -462,7 +462,7 @@ class TokenDetail extends React.Component {
                           <td>
                             <FormattedNumber value={token.totalTransactions}/>
                           </td>
-                          <th>{tu("白皮书")}:</th>
+                          <th>{tu("white_paper")}:</th>
                           <td>
                             <ExternalLink url={""}/>
                           </td>
