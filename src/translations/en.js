@@ -949,5 +949,19 @@ export const messages = {
   "freeze_off": "Off",
   "freeze_not_valid":"Freeze function off",
   "no_logo_error":"no logo found",
+  "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--participate page                                                         #
+#                                                                                #
+##################################################################################
+*/
+
+  "issue_progress":"Progress",
+  "fund_raised":"Fund raised",
+  "issuing_price":"Issuing Price",
+  "buy_token_info":"你想要购买多少数量的通证？"
 
 };

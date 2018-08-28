@@ -221,6 +221,17 @@ class TokenDetail extends React.Component {
   isBuyValid = () => {
     return (this.state.buyAmount > 0);
   };
+  
+  onBuyInputChange = (value, price, max) => {
+    let {intl} = this.props;
+    if (value > max) {
+      value = max;
+    }
+    this.setState({buyAmount: value});
+    this.buyAmount.value = value;
+    let priceTRX = value * (price / ONE_TRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+  }
 
   preBuyTokens = (token) => {
     let {buyAmount} = this.state;

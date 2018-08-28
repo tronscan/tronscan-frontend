@@ -66,7 +66,7 @@ class TokenCreate extends Component {
       valid: false,
       frozenSupply: [{amount: 0, days: 1}],
       showFrozenSupply:false,
-      step: 1,
+      step: 4,
     };
   }
 
