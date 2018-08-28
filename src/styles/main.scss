@@ -987,6 +987,31 @@ $border-color: #666;
 $border-color-lighter: rgba(255,255,255,0.1);
 
 $gold: #D0AC6E;
+
+// 覆盖 btn 样式
+.btn {
+  border-radius: 1px;
+
+  &-default{
+    @extend .btn-danger;
+    &:hover{
+      @extend .btn-danger:hover;
+    }
+  }
+
+  &-lg{
+    padding:{
+      top: 8px;
+      bottom: 8px;
+    }
+  }
+  &-xs{
+    padding:{
+      top: 0px;
+      bottom: 0px;
+    }
+  }
+}
 .token_black {
   color: $text-block;
   font-weight: lighter;
