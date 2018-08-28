@@ -4,12 +4,14 @@ import React from "react";
 import Navigation from "./Navigation";
 import Content from "./Content";
 import {IntlProvider} from "react-intl";
-
 import Lockr from "lockr";
 import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {BackTop} from 'antd';
+import {find} from "lodash";
+import {flatRoutes} from "../routes";
+import {matchPath} from "react-router";
 
 class MainWrap extends React.Component {
   constructor() {
@@ -30,7 +32,20 @@ class MainWrap extends React.Component {
     // Use language from local storage or detect from browser settings
     let language = Lockr.get("language", navigator.language.split(/[-_]/)[0]);
     this.props.setLanguage(language);
+
+    // Redirect if old hash navigation is found
+    let hash = window.location.hash;
+    if (hash.length > 0) {
+      let cmp = find(flatRoutes, route => route.path && matchPath(hash.substr(1), {
+        path: route.path,
+        strict: false,
+      }));
+      if (cmp !== null) {
+        reduxHistory.push(hash.substr(1));
+      }
+    }
   }
+
 
   componentDidUpdate({theme}) {
     /* eslint-disable no-undef */
@@ -85,4 +100,4 @@ const mapDispatchToProps = {
   setLanguage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainWrap)
+export default connect(mapStateToProps, mapDispatchToProps)(MainWrap);
