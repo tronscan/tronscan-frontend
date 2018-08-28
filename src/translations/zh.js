@@ -952,6 +952,10 @@ export const messages = {
   "issue_progress":"发行进度",
   "fund_raised":"总筹集资金",
   "issuing_price":"发行价格",
-  "buy_token_info":"你想要购买多少数量的通证？"
+  "buy_token_info":"你想要购买多少数量的通证？",
+  "reputation":"信用评级",
+  "issue_time":"发行时间",
+  "success_receive":"成功收到",
+  "circulating_supply":"流通量",
 
 };

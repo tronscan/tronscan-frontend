@@ -170,7 +170,7 @@ class TokenList extends Component {
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
-                <h5 style={{color: 'black'}}>你想要购买多少数量的通证？</h5>
+                <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
                 <div className="input-group mt-5">
                   <input
                       type="number"
@@ -305,7 +305,7 @@ class TokenList extends Component {
                 }}>X</a>
                 <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
                 <span>
-               Successfully received {token.name} tokens
+               {tu('success_receive')} {token.name} {tu('tokens')}
               </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.setState({alert: null})
@@ -347,13 +347,13 @@ class TokenList extends Component {
         }
       },
       {
-        title: '信用评级',
+        title: intl.formatMessage({id: 'reputation'}),
         dataIndex: 'credit',
         key: 'credit',
         className: 'ant_table'
       },
       {
-        title: '发行进度',
+        title: intl.formatMessage({id: 'issue_progress'}),
         dataIndex: 'issuedPercentage',
         key: 'issuedPercentage',
         render: (text, record, index) => {
@@ -365,7 +365,7 @@ class TokenList extends Component {
         className: 'ant_table'
       },
       {
-        title: '发行时间',
+        title: intl.formatMessage({id: 'issue_time'}),
         dataIndex: 'dateCreated',
         key: 'dateCreated',
         render: (text, record, index) => {
@@ -374,7 +374,7 @@ class TokenList extends Component {
         className: 'ant_table'
       },
       {
-        title: '参与发行',
+        title: intl.formatMessage({id: 'participate'}),
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <button className="btn btn-secondary btn-block">{tu("finish")}</button>
