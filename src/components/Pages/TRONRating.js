@@ -7,10 +7,10 @@ export default class TRONRating extends Component {
   render() {
 
     return (
-        <main className="container header-overlap news">
+        <main className="container header-overlap news token_black">
           <div className="row">
             <div className="col-md-12">
-              <div className="card">
+              <div className="card bg-gray">
                 <div className="card-body">
                   <h2>{tu('rating_title')}</h2>
                   <p>{tu('modify_on')}:2018年8月10日</p>

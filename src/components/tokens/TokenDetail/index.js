@@ -418,7 +418,7 @@ class TokenDetail extends React.Component {
                           <div className="ml-auto">
                             <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
                             <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/>
-                            <button className="btn btn-danger btn-lg"
+                            <button className="btn btn-default btn-xs"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                           </div>
                         </div>

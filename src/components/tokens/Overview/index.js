@@ -345,9 +345,9 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'participate'}),
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
-            return <button className="btn btn-secondary btn-block">{tu("finish")}</button>
+            return <button className="btn btn-secondary btn-block btn-sm">{tu("finish")}</button>
           else
-            return <button className="btn btn-danger btn-block"
+            return <button className="btn btn-default btn-block btn-sm"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
         },
         className: 'ant_table'

@@ -990,24 +990,45 @@ $gold: #D0AC6E;
 .token_black {
   color: $text-block;
   font-weight: lighter;
+
+  // 覆盖 btn 样式
   .btn {
-    background-color: transparent;
     border-radius: 1px;
-    &a:not([href]):not([tabindex]) {
-      color: #fff;
-    }
-  }
-  .btn:hover {
-    background-color: $main-red;
-    &:not([href]):not([tabindex]) {
-      color: #fff;
-    }
-  }
-  .btn-danger {
-    &:not([href]):not([tabindex]) {
+
+    &-default{
+      font-family: Helvetica-Bold;
+      background-color: transparent;
       color: $main-red;
+      border-color: $main-red;
+
+      *{
+        color: $main-red;
+      }
+      &:hover{
+        background-color: #444;
+      }
     }
-  } 
+
+    &-lg{
+      padding:{
+        top: 8px;
+        bottom: 8px;
+      }
+    }
+    &-xs{
+      padding:{
+        top: 0px;
+        bottom: 0px;
+      }
+    }
+  }
+
+  // 背景色样式
+  .bg-gray{
+    background-color: $bg-color!important;
+    border-radius: 1px;
+  }
+
   
   // ********** 全局ant-table样式覆盖 ********** //
   .ant-table {
@@ -1190,9 +1211,6 @@ $gold: #D0AC6E;
       margin-top: 3px;
       font-weight: normal;
     }
-    .btn:last-child {
-      margin-left: 26px!important; // background: $main-red;
-    }
   } 
   
   // ********** 全局ant-steps样式覆盖 ********** //
@@ -1341,9 +1359,6 @@ $gold: #D0AC6E;
         color: $text-block-dark
       }
     }
-    .btn{
-      padding: 0 17px;
-    }
     .card-header{
       background-color: $bg-color-dark;
       border-bottom: none;
@@ -1427,6 +1442,76 @@ $gold: #D0AC6E;
     }
     table{
       border-bottom: 1px solid $border-color-lighter;
+    }
+  }
+
+  &.mytoken{
+    .card-body{
+      padding: 0;
+    }
+  }
+  // news 样式覆盖
+  &.news{
+    h2, h2 * {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    h4, h4 * {
+      font-size: 14px;
+      color: $text-block-dark;
+      font-weight: lighter;
+    }
+    hr{
+      margin: 30px 0;
+    }
+    p{
+      margin-bottom: 0.7em;
+
+      &:last-child{
+        margin-bottom: 30px;
+      }
+    }
+    .socialMedia{
+      margin-left: 0;
+      .ml-2, .mx-2{
+        margin-left: 1.3rem !important;
+      }
+      .mt-2, .my-2{
+        margin-top: 1rem !important;
+      }
+      &>div{
+        background-color: $border-color;
+        span{
+          color: $text-block-dark;
+        }
+      }
+    }
+    .btn{
+      margin: 38px 0 50px!important;
+    }
+    .news_unit{
+      padding: 1.25rem;
+      background-color: $bg-color;
+      margin-bottom: 2px;
+
+      &:first-child{
+        hr{
+          display:none;
+        }
+      }
+
+      td{
+        border: none;
+        padding:{
+          top: 9px;
+          bottom: 9px;
+        }
+        color: $text-block-dark;
+
+        &:last-child, a{
+          color: $text-block;
+        }
+      }
     }
   }
 }

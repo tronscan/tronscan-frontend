@@ -185,10 +185,10 @@ class Confirm extends Component {
                       </div>
                       {ErrorLabel(errors.confirm)}
                     </div>
-                    <a className="btn btn-danger btn-lg" onClick={() => {
+                    <a className="btn btn-default btn-lg" onClick={() => {
                       nextStep(3)
                     }}>{tu('prev_step')}</a>
-                    <a className="btn btn-danger btn-lg ml-1" onClick={() => {
+                    <a className="btn btn-danger btn-lg ml-5" onClick={() => {
                       this.submit();
                     }}>{tu("issue_token")}</a>
 
