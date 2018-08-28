@@ -65,8 +65,8 @@ class TokenCreate extends Component {
 
       valid: false,
       frozenSupply: [{amount: 0, days: 1}],
-      showFrozenSupply:false,
-      step: 4,
+      showFrozenSupply: false,
+      step: 1,
     };
   }
 
@@ -118,7 +118,7 @@ class TokenCreate extends Component {
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
-console.log(result);
+      console.log(result);
       if (result.success) {
         this.setState({
           isTokenCreated: true,
@@ -174,9 +174,14 @@ console.log(result);
 
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
+        console.log(token);
         if (token) {
           this.setState({
             issuedAsset: token,
+          });
+        }else{
+          this.setState({
+            issuedAsset: null,
           });
         }
       });
@@ -207,13 +212,16 @@ console.log(result);
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-    if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
-      this.checkExistingToken();
+    console.log(wallet);
+    if (wallet !== null) {
+      if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+        this.checkExistingToken();
+      }
     }
   }
 
   renderSubmit = () => {
-    let {account,intl} = this.props;
+    let {account, intl} = this.props;
 
     let {wallet} = this.props;
 
@@ -270,46 +278,45 @@ console.log(result);
   }
 
   render() {
-console.log('father');
+    console.log('father');
     let {modal, numberOfCoins, numberOfTron, name, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
     let {match} = this.props;
 
 
-        if (!this.isLoggedIn()) {
-          return (
-              <main className="container pb-3 token-create header-overlap">
-                <div className="row">
-                  <div className="col-sm-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="text-center p-3">
-                          {tu("not_signed_in")}
-                        </div>
-                      </div>
+    if (!this.isLoggedIn()) {
+      return (
+          <main className="container pb-3 token-create header-overlap">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="text-center p-3">
+                      {tu("not_signed_in")}
                     </div>
                   </div>
                 </div>
-              </main>
-          );
-        }
-        if (issuedAsset !== null) {
-          return (
-              <main className="container pb-3 token-create header-overlap">
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="text-center p-3">
-                          {tu("trx_token_account_limit")}
-                        </div>
-                      </div>
+              </div>
+            </div>
+          </main>
+      );
+    }
+    if (issuedAsset !== null) {
+      return (
+          <main className="container pb-3 token-create header-overlap">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="text-center p-3">
+                      {tu("trx_token_account_limit")}
                     </div>
                   </div>
                 </div>
-              </main>
-          );
-        }
-
+              </div>
+            </div>
+          </main>
+      );
+    }
 
 
     return (

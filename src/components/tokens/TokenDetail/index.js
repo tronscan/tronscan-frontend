@@ -61,7 +61,7 @@ class TokenDetail extends React.Component {
           id: "tokenInfo",
           icon: "",
           path: "",
-          label: <span>{tu("发行信息")}</span>,
+          label: <span>{tu("issue_info")}</span>,
           cmp: () => <TokenInfo token={token}/>
         },
         {

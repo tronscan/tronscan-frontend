@@ -957,5 +957,6 @@ export const messages = {
   "issue_time":"发行时间",
   "success_receive":"成功收到",
   "circulating_supply":"流通量",
+  "issue_info":"发行信息",
 
 };
