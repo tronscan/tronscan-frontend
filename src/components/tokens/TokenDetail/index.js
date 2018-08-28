@@ -384,7 +384,7 @@ class TokenDetail extends React.Component {
     let {token, tabs, loading, buyAmount, alert} = this.state;
 
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
           {
             loading ? <div className="card">

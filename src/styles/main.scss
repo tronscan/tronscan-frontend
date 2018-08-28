@@ -975,8 +975,15 @@ th {
 $main-red: #C23631;
 $text-block: #D2D1D1;
 $text-block-dark: #999999;
+
+$bg-color-lighter: #F3F3F3;
 $bg-color: #333333;
+$bg-color-dark: #0C0000;
+
 $border-color: #666;
+$border-color-lighter: rgba(255,255,255,0.1);
+
+$gold: #D0AC6E;
 .token_black {
   color: $text-block;
   font-weight: lighter;
@@ -997,7 +1004,9 @@ $border-color: #666;
     &:not([href]):not([tabindex]) {
       color: $main-red;
     }
-  } // ********** 全局ant-table样式覆盖 ********** //
+  } 
+  
+  // ********** 全局ant-table样式覆盖 ********** //
   .ant-table {
     background: $bg-color;
     color: $text-block;
@@ -1014,7 +1023,7 @@ $border-color: #666;
         border-left: 1px solid $border-color;
       }
     }
-    &.ant-table-bordered .ant-table-tbody>tr {
+    .ant-table-tbody>tr {
       &>td {
         border-color: rgba(255, 255, 255, 0.10);
         &:last-child {
@@ -1051,7 +1060,9 @@ $border-color: #666;
     &.ant-table-bordered .ant-table-fixed-right table {
       border: none;
     }
-  } // ********** 全局ant-pagination样式覆盖 ********** //
+  } 
+  
+  // ********** 全局ant-pagination样式覆盖 ********** //
   .ant-pagination {
     font-family: Helvetica;
     font-size: 14px;
@@ -1070,7 +1081,6 @@ $border-color: #666;
     .ant-pagination-next .ant-pagination-item-link,
     .ant-pagination-jump-prev,
     .ant-pagination-jump-next {
-      width: 30px;
       @extend %pagination-default
     }
     .ant-pagination-jump-prev:after,
@@ -1085,6 +1095,22 @@ $border-color: #666;
       @extend %pagination-default;
       .ant-select-arrow:before {
         color: $text-block-dark;
+      }
+    }
+    .ant-select-dropdown{
+      border-radius: 1px;
+      border: 1px solid $border-color;
+      background: $bg-color;
+      color: $text-block-dark;
+
+      &-menu-item{
+        color: $text-block-dark;
+        border-radius: unset;
+
+        &-selected, &-selected:hover, &:hover{
+          font-weight: normal;
+          background-color: rgba(255, 255, 255, 0.20);
+        }
       }
     }
     .ant-pagination-item-active {
@@ -1111,11 +1137,15 @@ $border-color: #666;
     //   background-color: #222;
     //   color: $text-block-dark;
     // }
-  } // ********** 全局card样式覆盖 ********** //
+  } 
+  
+  // ********** 全局card样式覆盖 ********** //
   .card {
     background: none;
     border: none;
-  } // ********** 通证-创建 模块样式覆盖 ********** //
+  } 
+  
+  // ********** 通证-创建 模块样式覆盖 ********** //
   .col-sm-12.col-md-3.mt-3.mt-md-0 {
     background: $border-color;
     .card-body {
@@ -1157,11 +1187,22 @@ $border-color: #666;
       font-weight: normal;
     }
     .btn:last-child {
-      margin-left: 26px; // background: $main-red;
+      margin-left: 26px!important; // background: $main-red;
     }
-  } // ********** 全局ant-steps样式覆盖 ********** //
+  } 
+  
+  // ********** 全局ant-steps样式覆盖 ********** //
   .ant-steps {
     color: $text-block;
+    .ant-steps-item-wait{
+      .ant-steps-item-icon{
+        background: transparent;
+        border-color: $text-block;
+        &>.ant-steps-icon {
+          color: $text-block;
+        }
+      }
+    } 
     .ant-steps-item-finish {
       .ant-steps-item-icon {
         background: transparent;
@@ -1173,17 +1214,6 @@ $border-color: #666;
       &>.ant-steps-item-tail:after {
         background-color: $text-block;
       }
-      .ant-steps-item-content {
-        padding-bottom: 28px;
-        &>.ant-steps-item-title {
-          color: $text-block;
-          font-size: 18px;
-          font-weight: normal;
-        }
-        &>.ant-steps-item-description {
-          color: $text-block;
-        }
-      }
     }
     .ant-steps-item-process {
       * {
@@ -1193,6 +1223,206 @@ $border-color: #666;
         border: none;
         background-color: #D0AC6E;
       }
+    }
+    .ant-steps-item-content {
+      padding-bottom: 28px;
+      &>.ant-steps-item-title {
+        color: $text-block;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      &>.ant-steps-item-description {
+        color: $text-block;
+      }
+    }
+  }
+
+  // ********** 全局ant-switch 样式覆盖 ********** //
+  .ant-switch{
+    background-color: $border-color;
+    &-checked{
+      background-color: $main-red;
+    }
+  }
+
+  // ********** 全局 rdtPicker 样式覆盖 ********** //
+  .rdtPicker{
+    padding: 0;
+    background-color: $bg-color;
+    color: $text-block;
+    border-color: $border-color;
+
+    tfoot, th{
+      border-color: $border-color;
+    }
+
+    & td.rdtActive, & td.rdtActive:hover, & td.rdtDay:hover, 
+    & td.rdtHour:hover, & td.rdtMinute:hover,
+    & td.rdtSecond:hover, & .rdtTimeToggle:hover,
+    & thead tr th:hover,.rdtCounter .rdtBtn:hover{
+      background-color: $main-red!important;
+      color: #fff!important;
+    }
+    & td.rdtToday:before{
+      border-bottom: 7px solid $main-red;
+    }
+  }
+
+
+  // input
+  .form-control{
+    background: $border-color;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    font-weight: lighter;
+  }
+  legend{
+    font-size: 18px;
+    font-weight: normal;
+  }
+  .form-row{
+    label{
+      color: $main-red;
+    }
+    span{
+      color: $text-block;
+    }
+  }
+  .text-danger{
+    span{
+      color: $main-red;
+    }
+  }
+
+  // McDonaldsCoin 样式覆盖
+  &.mc-donalds-coin{
+  
+    .tokenDetail{
+      display: block;
+      padding: 0 20px;
+      background-color: $bg-color;
+
+      tbody{
+        tr:first-child th, tr:first-child td{
+          border: none;
+        }
+        td,th{
+          border-color: $border-color-lighter;
+        }
+        tr td:nth-child(4) *{
+          color: $main-red;
+        }
+        th{
+          color: $text-block-dark;
+          font-weight: lighter;
+        }
+        
+      }
+    }
+    .card-body{
+      background-color: $bg-color-dark;
+      border: 1px solid $border-color;
+      border-bottom: none;
+
+      &.p-0{
+        border: none;
+      }
+
+      h5{
+        font-size: 20px;
+        color: #fff;
+      }
+      p{
+        color: $text-block-dark
+      }
+    }
+    .btn{
+      padding: 0 17px;
+    }
+    .card-header{
+      background-color: $bg-color-dark;
+      border-bottom: none;
+
+      .nav-item a{
+        position: relative;
+        background: transparent;
+        border-radius: 0;
+        border: none;
+        color: #fff!important;
+
+        &:hover, &.active{
+          background-color: $bg-color;
+          color: $main-red;
+        }
+        &.active:before{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background-color: $main-red;
+        }
+      }
+    }
+    .nav-tabs .nav-link{
+      line-height: 34px;
+    }
+    .mt-3, .my-3{
+      margin-top: 2rem!important;
+    }
+    
+    
+      
+  }
+  .sweet-alert{
+    h5, h5 *{
+      font-size: 20px!important;
+    }
+    span, b{
+      font-size: 16px;
+    }
+    .input-group{
+      margin-top: 10px;
+    }
+    padding-bottom: 40px!important;
+    height: auto!important;
+
+    h5{
+      color: $border-color!important;
+    }
+    .form-control{
+      height: 50px;
+      color: $text-block-dark;
+      background-color: $bg-color-lighter;
+    }
+    .text-muted{
+      color: $gold!important;
+    }
+    .btn{
+      height: 50px;
+      font-size: 16px;
+    }
+    a{
+      color: $border-color!important;
+    }
+    
+  }
+  .row.transfers .card{
+    background-color: $bg-color;
+    padding: 0 20px 20px;
+
+    .ant-table thead th{
+      color: $text-block-dark;
+      background-color: $bg-color;
+    }
+    .ant-table-thead > tr > th{
+      border-bottom: 1px solid $border-color-lighter;
+      border-top: 1px solid $border-color-lighter;
+    }
+    table{
+      border-bottom: 1px solid $border-color-lighter;
     }
   }
 }
