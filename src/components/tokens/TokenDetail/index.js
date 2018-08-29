@@ -1,17 +1,14 @@
 import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
-import Avatar from "../../common/Avatar";
 import {t, tu} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import TokenHolders from "./TokenHolders";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
-import {addDays, getTime} from "date-fns";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import {ONE_TRX} from "../../../constants";
-import {NumberField} from "../../common/Fields";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -191,8 +188,8 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="" style={{width: '390px', margin: 'auto'}}>
-                <a style={{float: 'right', marginTop: '-165px'}} onClick={() => {
+              <div className="token-sweet-alert">
+                <a className="close" onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
                 <span>{tu('login_first')}</span>
@@ -338,6 +335,14 @@ class TokenDetail extends React.Component {
                 }}>{tu("OK")}</button>
               </div>
 
+            </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
+              {tu('fail_transaction')}
             </SweetAlert>
         )
       });

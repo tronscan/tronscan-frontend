@@ -959,5 +959,6 @@ export const messages = {
   "circulating_supply":"流通量",
   "issue_info":"发行信息",
   "transferring":"转账中",
+  "fail_transaction":"交易失败",
 
 };

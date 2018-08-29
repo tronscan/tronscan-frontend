@@ -969,4 +969,5 @@ export const messages = {
   "circulating_supply":"Circulating supply",
   "issue_info":"Issuance Info",
   "transferring":"In progress",
+  "fail_transaction":"Transaction failed",
 };

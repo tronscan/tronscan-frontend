@@ -900,13 +900,16 @@ th {
 }
 
 //===========================ICO
+
 .ant_table {
   text-align: center !important;
   font-family: Helvetica !important;
 }
+
 .ant_table_img {
   text-align: center !important;
 }
+
 .ant-table-body table thead tr th:not(:nth-child(2)) {
   text-align: center;
 }
@@ -986,7 +989,7 @@ $bg-color: #333333;
 $bg-color-dark: #0C0000;
 
 $border-color: #666;
-$border-color-lighter: rgba(255,255,255,0.1);
+$border-color-lighter: rgba(255, 255, 255, 0.1);
 
 $gold: #D0AC6E;
 
@@ -994,26 +997,27 @@ $gold: #D0AC6E;
 .btn {
   border-radius: 1px;
 
-  &-default{
+  &-default {
     @extend .btn-danger;
-    &:hover{
+    &:hover {
       @extend .btn-danger:hover;
     }
   }
 
-  &-lg{
-    padding:{
+  &-lg {
+    padding: {
       top: 8px;
       bottom: 8px;
     }
   }
-  &-xs{
-    padding:{
+  &-xs {
+    padding: {
       top: 0px;
       bottom: 0px;
     }
   }
 }
+
 .token_black {
   color: $text-block;
   font-weight: lighter;
@@ -1022,28 +1026,28 @@ $gold: #D0AC6E;
   .btn {
     border-radius: 1px;
 
-    &-default{
+    &-default {
       font-family: Helvetica-Bold;
       background-color: transparent;
       color: $main-red;
       border-color: $main-red;
 
-      *{
+      * {
         color: $main-red;
       }
-      &:hover{
+      &:hover {
         background-color: #444;
       }
     }
 
-    &-lg{
-      padding:{
+    &-lg {
+      padding: {
         top: 8px;
         bottom: 8px;
       }
     }
-    &-xs{
-      padding:{
+    &-xs {
+      padding: {
         top: 0px;
         bottom: 0px;
       }
@@ -1051,12 +1055,11 @@ $gold: #D0AC6E;
   }
 
   // 背景色样式
-  .bg-gray{
-    background-color: $bg-color!important;
+  .bg-gray {
+    background-color: $bg-color !important;
     border-radius: 1px;
   }
 
-  
   // ********** 全局ant-table样式覆盖 ********** //
   .ant-table {
     background: $bg-color;
@@ -1074,8 +1077,8 @@ $gold: #D0AC6E;
         border-left: 1px solid $border-color;
       }
     }
-    .ant-table-tbody>tr {
-      &>td {
+    .ant-table-tbody > tr {
+      & > td {
         border-color: rgba(255, 255, 255, 0.10);
         &:last-child {
           border-right: none;
@@ -1111,8 +1114,8 @@ $gold: #D0AC6E;
     &.ant-table-bordered .ant-table-fixed-right table {
       border: none;
     }
-  } 
-  
+  }
+
   // ********** 全局ant-pagination样式覆盖 ********** //
   .ant-pagination {
     font-family: Helvetica;
@@ -1148,17 +1151,17 @@ $gold: #D0AC6E;
         color: $text-block-dark;
       }
     }
-    .ant-select-dropdown{
+    .ant-select-dropdown {
       border-radius: 1px;
       border: 1px solid $border-color;
       background: $bg-color;
       color: $text-block-dark;
 
-      &-menu-item{
+      &-menu-item {
         color: $text-block-dark;
         border-radius: unset;
 
-        &-selected, &-selected:hover, &:hover{
+        &-selected, &-selected:hover, &:hover {
           font-weight: normal;
           background-color: rgba(255, 255, 255, 0.20);
         }
@@ -1189,14 +1192,14 @@ $gold: #D0AC6E;
     //   background-color: #222;
     //   color: $text-block-dark;
     // }
-  } 
-  
+  }
+
   // ********** 全局card样式覆盖 ********** //
   .card {
     background: none;
     border: none;
-  } 
-  
+  }
+
   // ********** 通证-创建 模块样式覆盖 ********** //
   .col-sm-12.col-md-3.mt-3.mt-md-0 {
     background: $border-color;
@@ -1238,20 +1241,20 @@ $gold: #D0AC6E;
       margin-top: 3px;
       font-weight: normal;
     }
-  } 
-  
+  }
+
   // ********** 全局ant-steps样式覆盖 ********** //
   .ant-steps {
     color: $text-block;
-    .ant-steps-item-wait{
-      .ant-steps-item-icon{
+    .ant-steps-item-wait {
+      .ant-steps-item-icon {
         background: transparent;
         border-color: $text-block;
-        &>.ant-steps-icon {
+        & > .ant-steps-icon {
           color: $text-block;
         }
       }
-    } 
+    }
     .ant-steps-item-finish {
       .ant-steps-item-icon {
         background: transparent;
@@ -1275,133 +1278,132 @@ $gold: #D0AC6E;
     }
     .ant-steps-item-content {
       padding-bottom: 28px;
-      &>.ant-steps-item-title {
+      & > .ant-steps-item-title {
         color: $text-block;
         font-size: 18px;
         font-weight: normal;
       }
-      &>.ant-steps-item-description {
+      & > .ant-steps-item-description {
         color: $text-block;
       }
     }
   }
 
   // ********** 全局ant-switch 样式覆盖 ********** //
-  .ant-switch{
+  .ant-switch {
     background-color: $border-color;
-    &-checked{
+    &-checked {
       background-color: $main-red;
     }
   }
 
   // ********** 全局 rdtPicker 样式覆盖 ********** //
-  .rdtPicker{
+  .rdtPicker {
     padding: 0;
     background-color: $bg-color;
     color: $text-block;
     border-color: $border-color;
 
-    tfoot, th{
+    tfoot, th {
       border-color: $border-color;
     }
 
-    & td.rdtActive, & td.rdtActive:hover, & td.rdtDay:hover, 
+    & td.rdtActive, & td.rdtActive:hover, & td.rdtDay:hover,
     & td.rdtHour:hover, & td.rdtMinute:hover,
     & td.rdtSecond:hover, & .rdtTimeToggle:hover,
-    & thead tr th:hover,.rdtCounter .rdtBtn:hover{
-      background-color: $main-red!important;
-      color: #fff!important;
+    & thead tr th:hover, .rdtCounter .rdtBtn:hover {
+      background-color: $main-red !important;
+      color: #fff !important;
     }
-    & td.rdtToday:before{
+    & td.rdtToday:before {
       border-bottom: 7px solid $main-red;
     }
   }
 
-
   // input
-  .form-control{
+  .form-control {
     background: $border-color;
     border: none;
     border-radius: 0;
     color: #fff;
     font-weight: lighter;
   }
-  legend{
+  legend {
     font-size: 18px;
     font-weight: normal;
   }
-  .form-row{
-    label{
+  .form-row {
+    label {
       color: $main-red;
     }
-    span{
+    span {
       color: $text-block;
     }
   }
-  .text-danger{
-    span{
+  .text-danger {
+    span {
       color: $main-red;
     }
   }
 
   // McDonaldsCoin 样式覆盖
-  &.mc-donalds-coin{
-  
-    .tokenDetail{
+  &.mc-donalds-coin {
+
+    .tokenDetail {
       display: block;
       padding: 0 20px;
       background-color: $bg-color;
 
-      tbody{
-        tr:first-child th, tr:first-child td{
+      tbody {
+        tr:first-child th, tr:first-child td {
           border: none;
         }
-        td,th{
+        td, th {
           border-color: $border-color-lighter;
         }
-        tr td:nth-child(4) *{
+        tr td:nth-child(4) * {
           color: $main-red;
         }
-        th{
+        th {
           color: $text-block-dark;
           font-weight: lighter;
         }
-        
+
       }
     }
-    .card-body{
+    .card-body {
       background-color: $bg-color-dark;
       border: 1px solid $border-color;
       border-bottom: none;
 
-      &.p-0{
+      &.p-0 {
         border: none;
       }
 
-      h5{
+      h5 {
         font-size: 20px;
         color: #fff;
       }
-      p{
+      p {
         color: $text-block-dark
       }
     }
-    .card-header{
+    .card-header {
       background-color: $bg-color-dark;
       border-bottom: none;
 
-      .nav-item a{
+      .nav-item a {
         position: relative;
         background: transparent;
         border-radius: 0;
         border: none;
-        color: #fff!important;
+        color: #fff !important;
 
-        &:hover, &.active{
+        &:hover, &.active {
           background-color: $bg-color;
           color: $main-red;
         }
-        &.active:before{
+        &.active:before {
           content: '';
           position: absolute;
           top: 0;
@@ -1412,73 +1414,71 @@ $gold: #D0AC6E;
         }
       }
     }
-    .nav-tabs .nav-link{
+    .nav-tabs .nav-link {
       line-height: 34px;
     }
-    .mt-3, .my-3{
-      margin-top: 2rem!important;
+    .mt-3, .my-3 {
+      margin-top: 2rem !important;
     }
-    
-    
-      
+
   }
-  .sweet-alert{
-    h5, h5 *{
-      font-size: 20px!important;
+  .sweet-alert {
+    h5, h5 * {
+      font-size: 20px !important;
     }
-    span, b{
+    span, b {
       font-size: 16px;
     }
-    .input-group{
+    .input-group {
       margin-top: 10px;
     }
-    padding-bottom: 40px!important;
-    height: auto!important;
+    padding-bottom: 40px !important;
+    height: auto !important;
 
-    h5{
-      color: $border-color!important;
+    h5 {
+      color: $border-color !important;
     }
-    .form-control{
+    .form-control {
       height: 50px;
       color: $text-block-dark;
       background-color: $bg-color-lighter;
     }
-    .text-muted{
-      color: $gold!important;
+    .text-muted {
+      color: $gold !important;
     }
-    .btn{
+    .btn {
       height: 50px;
       font-size: 16px;
     }
-    a{
-      color: $border-color!important;
+    a {
+      color: $border-color !important;
     }
-    
+
   }
-  .row.transfers .card{
+  .row.transfers .card {
     background-color: $bg-color;
     padding: 0 20px 20px;
 
-    .ant-table thead th{
+    .ant-table thead th {
       color: $text-block-dark;
       background-color: $bg-color;
     }
-    .ant-table-thead > tr > th{
+    .ant-table-thead > tr > th {
       border-bottom: 1px solid $border-color-lighter;
       border-top: 1px solid $border-color-lighter;
     }
-    table{
+    table {
       border-bottom: 1px solid $border-color-lighter;
     }
   }
 
-  &.mytoken{
-    .card-body{
+  &.mytoken {
+    .card-body {
       padding: 0;
     }
   }
   // news 样式覆盖
-  &.news{
+  &.news {
     h2, h2 * {
       font-size: 20px;
       margin-bottom: 10px;
@@ -1488,54 +1488,54 @@ $gold: #D0AC6E;
       color: $text-block-dark;
       font-weight: lighter;
     }
-    hr{
+    hr {
       margin: 30px 0;
     }
-    p{
+    p {
       margin-bottom: 0.7em;
 
-      &:last-child{
+      &:last-child {
         margin-bottom: 30px;
       }
     }
-    .socialMedia{
+    .socialMedia {
       margin-left: 0;
-      .ml-2, .mx-2{
+      .ml-2, .mx-2 {
         margin-left: 1.3rem !important;
       }
-      .mt-2, .my-2{
+      .mt-2, .my-2 {
         margin-top: 1rem !important;
       }
-      &>div{
+      & > div {
         background-color: $border-color;
-        span{
+        span {
           color: $text-block-dark;
         }
       }
     }
-    .btn{
-      margin: 38px 0 50px!important;
+    .btn {
+      margin: 38px 0 50px !important;
     }
-    .news_unit{
+    .news_unit {
       padding: 1.25rem;
       background-color: $bg-color;
       margin-bottom: 2px;
 
-      &:first-child{
-        hr{
-          display:none;
+      &:first-child {
+        hr {
+          display: none;
         }
       }
 
-      td{
+      td {
         border: none;
-        padding:{
+        padding: {
           top: 9px;
           bottom: 9px;
         }
         color: $text-block-dark;
 
-        &:last-child, a{
+        &:last-child, a {
           color: $text-block;
         }
       }
@@ -1564,24 +1564,24 @@ $gold: #D0AC6E;
   width: 15%;
 }
 
-
-.sr th, .sr td{
-  padding-left:10px;
-  padding-right:10px;
+.sr th, .sr td {
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.main-counters{
+
+.main-counters {
   margin-top: 30px;
   margin-bottom: 50px;
-  .counters{
+  .counters {
     color: #555;
     text-align: center;
-    span{
+    span {
       font-size: 32px;
       line-height: 40px;
     }
     h4 {
       margin-top: 10px;
-      span{
+      span {
         color: #555;
         margin-top: 5px;
         text-shadow: none;
@@ -1593,17 +1593,21 @@ $gold: #D0AC6E;
   }
 
 }
-.go-foundation{
+
+.go-foundation {
   color: red;
 }
-.go-foundation:hover{
+
+.go-foundation:hover {
   color: red;
   text-decoration: underline;
 }
-.loader-hidden{
+
+.loader-hidden {
   display: none;
 }
-.card-chart{
+
+.card-chart {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1613,7 +1617,8 @@ $gold: #D0AC6E;
   color: #555;
 
 }
-.card-chart .card-title{
+
+.card-chart .card-title {
   color: #666666;
   font-size: 1rem;
   display: flex;
@@ -1621,14 +1626,24 @@ $gold: #D0AC6E;
   align-items: center;
 
 }
-.card-chart .card-title:hover{
- text-decoration: underline;
+
+.card-chart .card-title:hover {
+  text-decoration: underline;
 }
-.card-chart img{
+
+.card-chart img {
   margin: 16px auto 0;
 }
 
-.statistics-chart hr{
+.statistics-chart hr {
   margin: 20px 55px;
 }
 
+.token-sweet-alert {
+  width: 390px;
+  margin: auto;
+}
+.token-sweet-alert .close {
+  float: right;
+  marginTop: -165px;
+}

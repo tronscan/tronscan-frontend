@@ -141,15 +141,14 @@ class TokenList extends Component {
         alert: (
             <SweetAlert
                 info
-                title="Open wallet"
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="" style={{width: '390px', margin: 'auto'}}>
-                <a style={{float: 'right', marginTop: '-165px'}} onClick={() => {
+              <div className="token-sweet-alert">
+                <a className="close" onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
-                <span>Open a wallet to participate</span>
+                <span>{tu('login_first')}</span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.setState({alert: null})
                 }}>{tu("OK")}</button>
@@ -167,7 +166,7 @@ class TokenList extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -214,7 +213,7 @@ class TokenList extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -236,7 +235,7 @@ class TokenList extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -302,7 +301,7 @@ class TokenList extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -322,7 +321,7 @@ class TokenList extends Component {
       this.setState({
         alert: (
             <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
-              Something went wrong...
+              {tu('fail_transaction')}
             </SweetAlert>
         )
       });
@@ -354,7 +353,6 @@ class TokenList extends Component {
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          // console.log(record);
           return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
             <p>{record.description}</p></div>
         }
@@ -370,7 +368,6 @@ class TokenList extends Component {
         dataIndex: 'issuedPercentage',
         key: 'issuedPercentage',
         render: (text, record, index) => {
-          //  console.log(text);
           if (text === null)
             text = 0;
           return <div><FormattedNumber value={text}/>%</div>
