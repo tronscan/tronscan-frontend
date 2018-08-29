@@ -87,7 +87,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        width: '15%',
+        width: '12%',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
