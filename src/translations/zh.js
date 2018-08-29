@@ -453,6 +453,7 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
+  "total_balance": "总余额",
   /*
   ##################################################################################
   #                                                                                #

@@ -20,13 +20,9 @@ class AppCmp extends Component {
 
   componentDidMount() {
     let accountKey = Lockr.get("account_key");
-    let accountAddress = Lockr.get("account_address");
     if (accountKey !== undefined) {
       this.state.store.dispatch(login(accountKey));
-    } else if (accountAddress !== undefined) {
-      this.state.store.dispatch(loginWithAddress(accountAddress));
     }
-
     // Refresh sync status
     setInterval(() => {
       this.state.store.dispatch(loadSyncStatus());
@@ -55,7 +51,7 @@ class AppCmp extends Component {
           </PriceProvider>
 
         </Provider>
-    );
+    )
   }
 }
 
