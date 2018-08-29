@@ -1,21 +1,13 @@
 import React from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "../../common/Paging";
-import {Client} from "../../../services/api";
-import {AddressLink, TransactionHashLink} from "../../common/Links";
-import {TRXPrice} from "../../common/Price";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../constants";
 import {tu} from "../../../utils/i18n";
-import TimeAgo from "react-timeago";
-import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
 
 class TokenInfo extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 

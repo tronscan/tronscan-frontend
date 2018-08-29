@@ -1,12 +1,10 @@
 import React, {Component, Fragment, PureComponent} from 'react';
 import {t, tu} from "../../utils/i18n";
-import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
 import {filter, trim, some, sumBy} from "lodash";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
 import "react-datetime/css/react-datetime.css";
 import {NumberField} from "../common/Fields";
 import 'moment/min/locales';
@@ -33,7 +31,6 @@ export class ExchangeRate extends PureComponent {
     let endTime = new Date();
     endTime.setHours(0, 0, 0, 0);
     endTime.setDate(startTime.getDate() + 90);
-console.log( this.props.state);
     this.state = this.props.state;
   }
 

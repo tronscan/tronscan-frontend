@@ -4,20 +4,14 @@ import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
-import DateTimePicker from "react-datetime";
 import {Link} from "react-router-dom";
-import {NumberField} from "../common/Fields";
 import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import {NavLink, Route, Switch} from "react-router-dom";
 import BasicInfo from "./BasicInfo.js"
 import ExchangeRate from "./ExchangeRate.js"
 import FreezeSupply from "./FreezeSupply.js"
@@ -118,7 +112,7 @@ class TokenCreate extends Component {
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
-      console.log(result);
+
       if (result.success) {
         this.setState({
           isTokenCreated: true,
@@ -165,7 +159,6 @@ class TokenCreate extends Component {
   componentDidMount() {
     this.setStartTime();
     this.checkExistingToken();
-
   }
 
   checkExistingToken = () => {
@@ -174,7 +167,7 @@ class TokenCreate extends Component {
 
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
-        console.log(token);
+
         if (token) {
           this.setState({
             issuedAsset: token,
@@ -212,7 +205,7 @@ class TokenCreate extends Component {
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-    console.log(wallet);
+
     if (wallet !== null) {
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
         this.checkExistingToken();
@@ -278,10 +271,8 @@ class TokenCreate extends Component {
   }
 
   render() {
-    console.log('father');
-    let {modal, numberOfCoins, numberOfTron, name, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, step} = this.state;
+    let {modal, issuedAsset, step} = this.state;
     let {match} = this.props;
-
 
     if (!this.isLoggedIn()) {
       return (

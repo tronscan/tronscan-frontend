@@ -453,6 +453,7 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
+  "total_balance": "总余额",
   /*
   ##################################################################################
   #                                                                                #
@@ -940,6 +941,7 @@ export const messages = {
   "freeze_not_valid":"不启用锁仓设置",
   "no_logo_error":"未上传logo",
   "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",
+  "tick_checkbox":"需要勾选确认",
 
   /*
 ##################################################################################
@@ -960,5 +962,6 @@ export const messages = {
   "issue_info":"发行信息",
   "transferring":"转账中",
   "fail_transaction":"交易失败",
+  "records":"条记录",
 
 };

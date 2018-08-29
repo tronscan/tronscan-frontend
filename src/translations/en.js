@@ -950,6 +950,7 @@ export const messages = {
   "freeze_not_valid":"Freeze function off",
   "no_logo_error":"no logo found",
   "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+  "tick_checkbox":"Need to tick the Checkbox",
 
   /*
 ##################################################################################
@@ -970,4 +971,5 @@ export const messages = {
   "issue_info":"Issuance Info",
   "transferring":"In progress",
   "fail_transaction":"Transaction failed",
+  "records":"Records",
 };

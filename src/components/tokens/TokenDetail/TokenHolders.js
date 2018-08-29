@@ -1,12 +1,9 @@
 import React from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "../../common/Paging";
 import {tu} from "../../../utils/i18n";
 import {AddressLink} from "../../common/Links";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
-import {withTimers} from "../../../utils/timing";
 import {FormattedNumber, injectIntl} from "react-intl";
 
 
@@ -25,9 +22,7 @@ class TokenHolders extends React.Component {
   }
 
   componentDidMount() {
-
     this.loadTokenHolders();
-
   }
 
   componentDidUpdate() {
@@ -75,7 +70,6 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'address'}),
         dataIndex: 'address',
         key: 'address',
-
         render: (text, record, index) => {
           return <AddressLink address={record.address}/>
         }
@@ -112,8 +106,7 @@ class TokenHolders extends React.Component {
   }
 
   render() {
-    let {token} = this.props;
-    let {addresses, page, total, pageSize, loading} = this.state;
+    let {addresses, total, loading} = this.state;
     let column = this.customizedColumn();
     if (!loading && addresses.length === 0) {
       return (

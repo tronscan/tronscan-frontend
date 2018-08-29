@@ -14,6 +14,7 @@ import SmartTable from "../../common/SmartTable.js"
 import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
+import {upperFirst} from "lodash";
 
 class TokenList extends Component {
 
@@ -51,9 +52,9 @@ class TokenList extends Component {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
     try {
-      token = await Client.getToken("McDonaldsCoin");
-      if (page === 1)
-        tokens.splice(9, 1, token);
+      // token = await Client.getToken("McDonaldsCoin");
+      // if (page === 1)
+      //   tokens.splice(9, 1, token);
     }
     catch (e) {
     }
@@ -348,12 +349,13 @@ class TokenList extends Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'token'}),
+        title: upperFirst(intl.formatMessage({id: 'token'})),
         dataIndex: 'name',
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name} namePlus={record.name + ' (' + record.abbr + ')'}/>
+          </h5>
             <p>{record.description}</p></div>
         }
       },
@@ -381,7 +383,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <FormattedDate value={text}/>
         },
-        className: 'ant_table'
+        className: 'ant_table d-none d-sm-table-cell'
       },
       {
         title: intl.formatMessage({id: 'participate'}),

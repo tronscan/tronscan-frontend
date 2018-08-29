@@ -6,7 +6,6 @@ import {Table, Input, Button, Icon} from 'antd';
 export default class SmartTable extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       filterDropdownVisible: false,
       data: [],
@@ -16,7 +15,7 @@ export default class SmartTable extends Component {
         position: 'both',
         showSizeChanger: true,
         showTotal: function (total) {
-          return `共 ${total} 个`;
+          return <div>{total} {tu('records')}</div>
         }
       },
       loading: false,
@@ -45,7 +44,7 @@ export default class SmartTable extends Component {
       pagination: pager,
     });
     this.fetch({
-      results: pagination.pageSize,
+      pageSize: pagination.pageSize,
       page: pagination.current,
       sortField: sorter.field,
       sortOrder: sorter.order,
