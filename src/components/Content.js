@@ -3,6 +3,7 @@ import {routes} from "../routes";
 import {Route, Switch} from "react-router-dom";
 import {filter, isUndefined} from "lodash";
 import {doSearch} from "../services/search";
+import {reduxHistory} from "../store";
 
 
 /*function Badge({value}) {
@@ -23,7 +24,7 @@ export default class Content extends Component {
     let {search} = this.state;
     let result = await doSearch(search);
     if (result !== null) {
-      window.location.hash = result;
+      reduxHistory.push(result);
     }
 
     this.setState({

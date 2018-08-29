@@ -45,7 +45,7 @@ async function searchBlockNumber(criteria) {
     });
 
     if (blocks.length === 1) {
-      return `#/block/${blocks[0].number}`;
+      return `/block/${blocks[0].number}`;
     }
   }
   catch (error) {
@@ -60,7 +60,7 @@ async function searchTxHash(criteria) {
   });
 
   if (transactions.length === 1) {
-    return `#/transaction/${transactions[0].hash}`;
+    return `/transaction/${transactions[0].hash}`;
   }
 }
 
@@ -72,7 +72,7 @@ async function searchBlockHash(criteria) {
   });
 
   if (blocksHash.length === 1) {
-    return `#/block/${blocksHash[0].number}`;
+    return `/block/${blocksHash[0].number}`;
   }
 }
 
@@ -84,7 +84,7 @@ async function searchAddress(criteria) {
   });
 
   if (accounts.length === 1) {
-    return `#/address/${accounts[0].address}`;
+    return `/address/${accounts[0].address}`;
   }
 }
 
@@ -96,9 +96,9 @@ async function searchToken(criteria) {
   });
 
   if (tokens.length === 1) {
-    return `#/token/${tokens[0].name}`;
+    return `/token/${tokens[0].name}`;
   } else if (tokens.length > 1) {
-    return `#/tokens/list?search=${criteria}`;
+    return `/tokens/list?search=${criteria}`;
   }
 
 }

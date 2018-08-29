@@ -18,8 +18,7 @@ import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
 import {LineReactAdd, LineReactTx} from "../common/LineCharts";
-
-const subDays = require("date-fns/sub_days");
+import {reduxHistory} from "../../store";
 
 class Home extends Component {
 
@@ -106,7 +105,7 @@ class Home extends Component {
     });
 
   }
-  
+
   doSearch = async () => {
     let {intl} = this.props;
     let {search} = this.state;
@@ -118,7 +117,7 @@ class Home extends Component {
         hasFound: true,
       });
       setTimeout(() => {
-        window.location.hash = result;
+        reduxHistory.push(result);
       }, 600);
     } else {
       this.setState({

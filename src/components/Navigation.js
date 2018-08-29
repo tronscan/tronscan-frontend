@@ -1,6 +1,6 @@
 /*eslint-disable no-script-url*/
 import React, {Fragment, PureComponent} from 'react'
-import {injectIntl} from "react-intl";
+import {FormattedNumber, injectIntl} from "react-intl";
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
@@ -9,13 +9,12 @@ import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
-import {tu, t} from "../utils/i18n"
+import {tu} from "../utils/i18n"
 import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
-import {FormattedNumber} from "react-intl"
 import {IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
@@ -27,11 +26,9 @@ import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
-import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
-import Lockr from "lockr";
-import {BarLoader} from "./common/loaders";
+import {reduxHistory} from "../store";
 
 class Navigation extends PureComponent {
 
@@ -199,7 +196,7 @@ class Navigation extends PureComponent {
         if (result === true) {
             this.setState({search: ""});
         } else if (result !== null) {
-            window.location.hash = result;
+            reduxHistory.push(result);
             this.setState({search: ""});
         } else {
             toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
