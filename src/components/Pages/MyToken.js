@@ -32,7 +32,7 @@ class MyToken extends Component {
 
     let {wallet} = this.props;
     if (wallet !== null) {
-      console.log(123);
+
       Client.getIssuedAsset(wallet.address).then(({token}) => {
         if (token) {
           this.setState({
@@ -44,14 +44,13 @@ class MyToken extends Component {
   };
 
   download = () => {
-    window.open("https://codeload.github.com/douban/douban-client/legacy.zip/master");
+    //window.open("https://codeload.github.com/douban/douban-client/legacy.zip/master");
   }
 
   render() {
     let {issuedAsset} = this.state;
-    console.log(issuedAsset);
     let {wallet} = this.props;
-    console.log(this.props.wallet);
+
     if (!wallet) {
       return (
           <main className="container pb-3 token-create header-overlap">

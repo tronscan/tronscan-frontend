@@ -14,6 +14,7 @@ import SmartTable from "../../common/SmartTable.js"
 import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
+import {upperFirst} from "lodash";
 
 class TokenList extends Component {
 
@@ -348,7 +349,7 @@ class TokenList extends Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'token'}),
+        title: upperFirst(intl.formatMessage({id: 'token'})),
         dataIndex: 'name',
         key: 'name',
         width: '50%',

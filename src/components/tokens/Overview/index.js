@@ -14,7 +14,7 @@ import SmartTable from "../../common/SmartTable.js"
 import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
-
+import {upperFirst} from "lodash";
 
 class TokenOverview extends Component {
 
@@ -39,7 +39,7 @@ class TokenOverview extends Component {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
-console.log(pageSize);
+
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
       limit: pageSize,
@@ -343,7 +343,7 @@ console.log(pageSize);
         }
       },
       {
-        title: intl.formatMessage({id: 'token'}),
+        title: upperFirst(intl.formatMessage({id: 'token'})),
         dataIndex: 'name',
         key: 'name',
         width: '40%',

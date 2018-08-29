@@ -54,7 +54,6 @@ export default class SmartTable extends Component {
 
   fetch = (params = {}) => {
     this.setState({loading: true});
-    console.log(params.pageSize);
     this.props.onPageChange(params.page, params.pageSize);
     this.setState({
       loading: false,

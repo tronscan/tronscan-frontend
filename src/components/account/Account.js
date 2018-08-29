@@ -637,7 +637,6 @@ class Account extends Component {
 
     for (let url of urls) {
       try {
-        console.log("trying ", url);
         await xhr.get(url);
         await this.updateGithubURL(input);
         return true;
