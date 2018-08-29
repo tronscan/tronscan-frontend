@@ -210,7 +210,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -256,7 +256,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -278,7 +278,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert" >
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -322,7 +322,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5" style={{width: '390px', margin: 'auto'}}>
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
@@ -369,8 +369,7 @@ class TokenDetail extends React.Component {
                       <div className="card-body">
                         <div className="d-flex">
                           <div style={{width: '80%'}}>
-                            <img style={{width: '60px', height: '60px', float: 'left', marginRight: '15px'}}
-                                 src={require('../../../images/logo_42.png')}/>
+                            <img className='token-logo' src={require('../../../images/logo_42.png')}/>
                             <h5 className="card-title">
                               {token.name}
                             </h5>

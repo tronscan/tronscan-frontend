@@ -1,16 +1,13 @@
 import React, {Component, Fragment, PureComponent} from 'react';
 import {t, tu} from "../../utils/i18n";
-import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
 import {filter, trim, some, sumBy} from "lodash";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
 import "react-datetime/css/react-datetime.css";
 import {NumberField} from "../common/Fields";
 import 'moment/min/locales';
-import DateTimePicker from "react-datetime";
 import {Switch, Icon} from 'antd';
 
 function ErrorLabel(error) {
@@ -26,9 +23,7 @@ export class FreezeSupply extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = this.props.state;
-
   }
 
   isValid = () => {
@@ -73,14 +68,12 @@ export class FreezeSupply extends Component {
 
   plusFrozen = () => {
     let {frozenSupply} = this.state;
-
     frozenSupply.push({amount: 0, days: 1});
-    console.log(frozenSupply);
-
     this.setState({
       frozenSupply: frozenSupply,
     });
   }
+
   minusFrozen = (index) => {
     let {frozenSupply} = this.state;
     frozenSupply.splice(index, 1);
@@ -88,17 +81,15 @@ export class FreezeSupply extends Component {
       frozenSupply: frozenSupply,
     });
   }
+
   switchFreeze = (checked) => {
-    console.log(checked);
     this.setState({showFrozenSupply: checked});
   }
 
   render() {
-    let {frozenSupply,showFrozenSupply} = this.state;
+    let {frozenSupply, showFrozenSupply, errors} = this.state;
 
-    let {errors} = this.state;
-
-    let {nextStep,intl} = this.props;
+    let {nextStep, intl} = this.props;
 
     return (
 
@@ -122,52 +113,53 @@ export class FreezeSupply extends Component {
                 <p className="col-md-12">
                   {tu("frozen_supply_message_0")}
                 </p>
-                <Switch checkedChildren={intl.formatMessage({id:'freeze_on'})} unCheckedChildren={intl.formatMessage({id:'freeze_off'})} onChange={
+                <Switch checkedChildren={intl.formatMessage({id: 'freeze_on'})}
+                        unCheckedChildren={intl.formatMessage({id: 'freeze_off'})} onChange={
                   this.switchFreeze
                 }/>
               </div>
-              { showFrozenSupply &&
-                <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
-                  <p className="col-md-7">
-                    <label>{tu("amount")}</label>
-                  </p>
-                  <p className="col-md-3">
-                    <label>{tu("days_to_freeze")}</label>
-                  </p>
-                </div>
+              {showFrozenSupply &&
+              <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
+                <p className="col-md-7">
+                  <label>{tu("amount")}</label>
+                </p>
+                <p className="col-md-3">
+                  <label>{tu("days_to_freeze")}</label>
+                </p>
+              </div>
               }
-              { showFrozenSupply &&
-                frozenSupply.map((frozen, index) => (
-                    <div key={index}
-                         className="form-row text-muted">
-                      <div className="form-group col-md-7">
-                        <NumberField
-                            className="form-control"
-                            value={frozen.amount}
-                            min={0}
-                            decimals={0}
-                            onChange={(amount) => this.updateFrozen(index, {amount})}
-                        />
-                      </div>
-                      <div className="form-group col-md-3">
-                        <NumberField
-                            className="form-control"
-                            onChange={(days) => this.updateFrozen(index, {days})}
-                            decimals={0}
-                            min={1}
-                            value={frozen.days}/>
-                      </div>
-                      <div className="form-group col-md-2">
-                        <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
-                           onClick={this.plusFrozen}></a>
-                        {
-                          frozenSupply.length > 1 &&
-                          <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
-                             onClick={this.minusFrozen}></a>
-                        }
-                      </div>
+              {showFrozenSupply &&
+              frozenSupply.map((frozen, index) => (
+                  <div key={index}
+                       className="form-row text-muted">
+                    <div className="form-group col-md-7">
+                      <NumberField
+                          className="form-control"
+                          value={frozen.amount}
+                          min={0}
+                          decimals={0}
+                          onChange={(amount) => this.updateFrozen(index, {amount})}
+                      />
                     </div>
-                ))
+                    <div className="form-group col-md-3">
+                      <NumberField
+                          className="form-control"
+                          onChange={(days) => this.updateFrozen(index, {days})}
+                          decimals={0}
+                          min={1}
+                          value={frozen.days}/>
+                    </div>
+                    <div className="form-group col-md-2">
+                      <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
+                         onClick={this.plusFrozen}></a>
+                      {
+                        frozenSupply.length > 1 &&
+                        <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
+                           onClick={this.minusFrozen}></a>
+                      }
+                    </div>
+                  </div>
+              ))
               }
               {
                 frozenSupply.length > 1 &&

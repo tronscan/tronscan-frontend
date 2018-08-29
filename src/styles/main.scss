@@ -1643,7 +1643,22 @@ $gold: #D0AC6E;
   width: 390px;
   margin: auto;
 }
+
 .token-sweet-alert .close {
   float: right;
-  marginTop: -165px;
+  margin-top: -165px;
+}
+
+.token-logo {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 15px;
+}
+
+.previewLogo {
+  margin-top: -52px;
+  margin-left: 15px;
+  width: 60px;
+  height: 60px;
 }

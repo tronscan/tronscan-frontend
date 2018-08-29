@@ -1,19 +1,10 @@
 import React, {Component} from 'react';
 import {t, tu} from "../../utils/i18n";
-import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
-import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
-import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
-import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
-import DateTimePicker from "react-datetime";
-import {Link} from "react-router-dom";
-import {NumberField} from "../common/Fields";
-import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
 
 function ErrorLabel(error) {
@@ -46,10 +37,11 @@ class Confirm extends Component {
       confirm: null,
     };
     let {checkbox} = this.state;
+    let {intl} = this.props;
     if (checkbox)
       this.props.submit();
     else {
-      newErrors.confirm = "需要勾选确认！";
+      newErrors.confirm = intl.formatMessage({id: 'tick_checkbox'});
       this.setState({errors: newErrors});
     }
   }
@@ -62,9 +54,8 @@ class Confirm extends Component {
 
   }
 
-
   render() {
-    let {numberOfCoins, numberOfTron, name, abbr, description, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime, showFrozenSupply, checkbox} = this.state;
+    let {numberOfCoins, numberOfTron, name, abbr, frozenSupply, totalSupply, startTime, endTime, showFrozenSupply, checkbox} = this.state;
     let {nextStep} = this.props;
     let {errors} = this.state;
     let exchangeRate = numberOfTron / numberOfCoins;
@@ -87,8 +78,9 @@ class Confirm extends Component {
                   <hr/>
                   <h5 className="card-title">
                     {tu("confirm_setting")}
-                    <i className="fa fa-exclamation-circle" aria-hidden="true" style={{color:'red',marginRight:'10px',marginLeft:'10px'}}></i>
-                    <span style={{color:'red',fontSize:'12px'}}>{tu('confirm_issue_info')}</span>
+                    <i className="fa fa-exclamation-circle" aria-hidden="true"
+                       style={{color: 'red', marginRight: '10px', marginLeft: '10px'}}></i>
+                    <span style={{color: 'red', fontSize: '12px'}}>{tu('confirm_issue_info')}</span>
                   </h5>
                   <form>
                     <fieldset>

@@ -34,7 +34,7 @@ export class BasicInfo extends PureComponent {
       description: null,
       url: null,
       abbr: null,
-      logo: null,
+   //   logo: null,
     };
 
     name = trim(name);
@@ -68,9 +68,9 @@ export class BasicInfo extends PureComponent {
 
     if (url.length === 0)
       newErrors.url = tu("no_url_error");
-    console.log(document.getElementById("previewLogo").src);
-    if (document.getElementById("previewLogo").src === "")
-      newErrors.logo = tu("no_logo_error");
+
+   // if (document.getElementById("previewLogo").src === "")
+    //  newErrors.logo = tu("no_logo_error");
 
     if (some(Object.values(newErrors), error => error !== null)) {
       this.setState({errors: newErrors});
@@ -81,34 +81,29 @@ export class BasicInfo extends PureComponent {
       this.props.nextState(this.state);
     }
   };
-  previewLogo = () => {
 
+  previewLogo = () => {
     let file = document.getElementById("logo");
     document.getElementById("previewLogo").src = URL.createObjectURL(file.files[0]);
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
     reader.onload = function () {
-      console.log(reader.result);
+      //console.log(reader.result);
     }
-
   }
 
   componentDidMount() {
-    console.log("Basic");
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("update");
   }
 
   render() {
-    console.log('son');
     let {name, url, totalSupply, abbr, description} = this.state;
     let {intl} = this.props;
     let {errors} = this.state;
 
     return (
-
         <main className="">
           <h5 className="card-title">
             {tu("issue_a_token")}
@@ -188,10 +183,9 @@ export class BasicInfo extends PureComponent {
                       <input type="file" id="logo" onChange={this.previewLogo}
                              accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
                     </a>
-                    <img id="previewLogo"
-                         style={{marginTop: '-52px', marginLeft: '15px', width: '60px', height: '60px'}}/>
+                    <img className="previewLogo" id="previewLogo"/>
                   </div>
-                  {ErrorLabel(errors.logo)}
+
                 </div>
               </div>
             </fieldset>
