@@ -348,7 +348,8 @@ class TokenOverview extends Component {
         key: 'name',
         width: '40%',
         render: (text, record, index) => {
-          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name} namePlus={record.name + ' (' + record.abbr + ')'}/>
+          </h5>
             <p>{record.description}</p></div>
         }
       },
@@ -364,7 +365,7 @@ class TokenOverview extends Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'end_time'}),
+        title: intl.formatMessage({id: 'issue_progress'}),
         dataIndex: 'issuedPercentage',
         key: 'issuedPercentage',
         render: (text, record, index) => {
@@ -372,14 +373,14 @@ class TokenOverview extends Component {
             text = 0;
           return <div><FormattedNumber value={text}/>%</div>
         },
-        className: 'ant_table'
+        className: 'ant_table d-none d-sm-table-cell'
       },
       {
         title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
           return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
         },
-        className: 'ant_table'
+        className: 'ant_table d-none d-md-table-cell'
       },
       {
         title: intl.formatMessage({id: 'issuing_price'}),
@@ -410,7 +411,7 @@ class TokenOverview extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
     let column = this.customizedColumn();
-    console.log(total);
+
     return (
         <main className="container header-overlap token_black">
           {alert}
