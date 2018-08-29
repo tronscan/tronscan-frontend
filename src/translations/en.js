@@ -971,4 +971,5 @@ export const messages = {
   "issue_info":"Issuance Info",
   "transferring":"In progress",
   "fail_transaction":"Transaction failed",
+  "records":"Records",
 };

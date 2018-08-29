@@ -39,7 +39,7 @@ class TokenOverview extends Component {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
-
+console.log(pageSize);
     let {tokens, total} = await Client.getTokens({
       sort: '-name',
       limit: pageSize,
@@ -346,7 +346,7 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'token'}),
         dataIndex: 'name',
         key: 'name',
-        width: '50%',
+        width: '40%',
         render: (text, record, index) => {
           return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}/>{' ('}{record.abbr}{')'}</h5>
             <p>{record.description}</p></div>
@@ -410,6 +410,7 @@ class TokenOverview extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match} = this.props;
     let column = this.customizedColumn();
+    console.log(total);
     return (
         <main className="container header-overlap token_black">
           {alert}

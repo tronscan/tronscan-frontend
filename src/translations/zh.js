@@ -962,6 +962,6 @@ export const messages = {
   "issue_info":"发行信息",
   "transferring":"转账中",
   "fail_transaction":"交易失败",
-
+  "records":"条记录",
 
 };
