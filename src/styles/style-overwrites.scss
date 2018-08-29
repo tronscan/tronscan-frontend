@@ -1,0 +1,76 @@
+body {
+  font-weight: lighter; // 覆盖 btn 样式
+  // 背景色样式
+  .bg-gray {
+    background-color: $bg-color !important;
+    border-radius: 1px;
+  } // 全局card样式覆盖
+  .card {
+    background: none;
+    border: none;
+    border-radius: 1px;
+  }
+  .uploadLogo {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border-radius: 4px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    &:hover {
+      background: #AADFFD;
+      border-color: #78C3F3;
+      color: #004974;
+      text-decoration: none;
+    }
+    input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      width: 60px;
+      height: 60px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  form {
+    fieldset {
+      padding-top: 15px;
+    }
+    strong {
+      font-size: 16px;
+      padding-top: 1rem;
+    }
+    .table {
+      margin: 0;
+      td {
+        font-size: 14px;
+      }
+      th,
+      td {
+        border-top-color: rgba(255, 255, 255, 0.10);
+      }
+    }
+    tr td:first-child {
+      color: $text-block-dark;
+    }
+    .form-check-label {
+      margin-top: 3px;
+      font-weight: normal;
+    }
+  }
+
+  // input
+  .form-control {
+    border: none;
+    border-radius: 0;
+    font-weight: lighter;
+  }
+}
