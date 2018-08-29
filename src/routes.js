@@ -216,7 +216,6 @@ export const routes = [
         icon: "fa fa-random",
         component: TronConvertToolAsync,
       },
-
       {
         path: "/tools/system",
         icon: "fa fa-database",
