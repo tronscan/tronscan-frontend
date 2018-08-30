@@ -16,6 +16,7 @@ import BasicInfo from "./BasicInfo.js"
 import ExchangeRate from "./ExchangeRate.js"
 import FreezeSupply from "./FreezeSupply.js"
 import Confirm from "./Confirm.js"
+import xhr from "axios/index";
 
 class TokenCreate extends Component {
 
@@ -56,8 +57,8 @@ class TokenCreate extends Component {
         endDate: null,
         abbr: null,
       },
-      logoUrl:null,
-      logoData:null,
+      logoUrl: null,
+      logoData: null,
       valid: false,
       frozenSupply: [{amount: 0, days: 1}],
       showFrozenSupply: false,
@@ -96,6 +97,7 @@ class TokenCreate extends Component {
 
   submit = async () => {
     let {account, intl} = this.props;
+    let {logoData} = this.state;
 
     this.setState({modal: null, loading: true});
 
@@ -113,6 +115,12 @@ class TokenCreate extends Component {
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
+
+      let result_img = await xhr.post("http://tronapp.co:9009/api/uploadLogo", {
+        imageData: logoData,
+        owner_address: account.address
+      });
+      console.log(result_img);
 
       if (result.success) {
         this.setState({
@@ -173,7 +181,7 @@ class TokenCreate extends Component {
           this.setState({
             issuedAsset: token,
           });
-        }else{
+        } else {
           this.setState({
             issuedAsset: null,
           });
