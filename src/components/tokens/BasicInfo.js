@@ -34,7 +34,7 @@ export class BasicInfo extends PureComponent {
       description: null,
       url: null,
       abbr: null,
-   //   logo: null,
+      //   logo: null,
     };
 
     name = trim(name);
@@ -69,7 +69,7 @@ export class BasicInfo extends PureComponent {
     if (url.length === 0)
       newErrors.url = tu("no_url_error");
 
-   // if (document.getElementById("previewLogo").src === "")
+    // if (document.getElementById("previewLogo").src === "")
     //  newErrors.logo = tu("no_logo_error");
 
     if (some(Object.values(newErrors), error => error !== null)) {
@@ -84,7 +84,10 @@ export class BasicInfo extends PureComponent {
 
   previewLogo = () => {
     let file = document.getElementById("logo");
-    document.getElementById("previewLogo").src = URL.createObjectURL(file.files[0]);
+    let logo_url = URL.createObjectURL(file.files[0]);
+    console.log(logo_url);
+    this.setState({logoUrl: logo_url});
+    document.getElementById("previewLogo").src = logo_url;
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
     reader.onload = function () {
@@ -99,7 +102,7 @@ export class BasicInfo extends PureComponent {
   }
 
   render() {
-    let {name, url, totalSupply, abbr, description} = this.state;
+    let {name, url, totalSupply, abbr, description, logoUrl} = this.state;
     let {intl} = this.props;
     let {errors} = this.state;
 
@@ -183,7 +186,8 @@ export class BasicInfo extends PureComponent {
                       <input type="file" id="logo" onChange={this.previewLogo}
                              accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
                     </a>
-                    <img className="previewLogo" id="previewLogo"/>
+                    <img className="previewLogo" id="previewLogo" src={logoUrl}
+                         style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
                   </div>
 
                 </div>
