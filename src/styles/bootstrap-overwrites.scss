@@ -37,8 +37,10 @@
     }
     &-default{
         background: transparent;
-        color: $main-red;
         border-color: $main-red;
+        span{
+            color: $main-red;
+        }
 
         &:hover{
             border-color: $main-red;

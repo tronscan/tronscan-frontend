@@ -55,13 +55,6 @@
   .transfers .ant-table-tbody>tr>td {
     padding: 14px 8px !important;
   }
-  
-  .tokenDetail tr th {
-    width: 10%;
-  }
-  .tokenDetail tr td {
-    width: 40%;
-  }
   .nav-tabs .nav-link {
     line-height: 33px;
   }
@@ -155,6 +148,9 @@
           color: $border-color-lighter;
         }
       }
+      .ant-steps-item-tail:after{
+        background: $main-color;
+      }
       .ant-steps-item-process {
         .ant-steps-item-content {
           &>.ant-steps-item-title {
@@ -218,10 +214,6 @@
       background: $border-color;
       color: #fff;
     }
-    legend {
-      font-size: 18px;
-      font-weight: normal;
-    }
     .form-row {
       label {
         color: $main-red;
@@ -234,7 +226,18 @@
       span {
         color: $main-red;
       }
-    } // McDonaldsCoin 样式覆盖
+    }
+    form {
+      .table {
+        th, td {
+          border-top-color: rgba(255, 255, 255, 0.10);
+        }
+      }
+      tr td:first-child {
+        color: $text-block-dark;
+      }
+  }
+    // McDonaldsCoin 样式覆盖
     &.mc-donalds-coin {
       .tokenDetail {
         display: block;

@@ -74,7 +74,7 @@
                     &-selected,
                     &-selected:hover,
                     &:hover {
-                        background-color: $gray-100;
+                        background-color: $border-color-lighter;
                     }
                 }
             }
@@ -96,6 +96,9 @@
                     color: $border-color;
                 }
             }
+            .ant-steps-item-tail:after{
+                background: $main-color;
+            }
             .ant-steps-item-process {
                 .ant-steps-item-content {
                     &>.ant-steps-item-title {
@@ -112,7 +115,19 @@
                     }
                 }
             }
-        } // 通证-创建 模块样式覆盖
+        } 
+        // 全局ant-switch 样式覆盖 ===============================
+        .ant-switch {
+            background-color: #eeeeee;
+            
+            &-inner{
+                color: $text-block!important;
+            }
+            &-checked {
+                background-color: $main-red;
+            }
+        }
+        // 通证-创建 模块样式覆盖
         .col-sm-12.col-md-3.mt-3.mt-md-0 {
             background: $bg-color-lightst;
             .card-body {
@@ -135,41 +150,12 @@
         p {
             color: $border-color;
         }
-        // 全局 rdtPicker 样式覆盖
-        .rdtPicker {
-            padding: 0;
-            background-color: $bg-color;
-            color: $text-block;
-            border-color: $border-color;
-            tfoot,
-            th {
-                border-color: $border-color;
-            }
-            & td.rdtActive,
-            & td.rdtActive:hover,
-            & td.rdtDay:hover,
-            & td.rdtHour:hover,
-            & td.rdtMinute:hover,
-            & td.rdtSecond:hover,
-            & .rdtTimeToggle:hover,
-            & thead tr th:hover,
-            .rdtCounter .rdtBtn:hover {
-                background-color: $main-red !important;
-                color: #fff !important;
-            }
-            & td.rdtToday:before {
-                border-bottom: 7px solid $main-red;
-            }
-        } 
         // input
         .form-control {
             background: #eee;
             color: $bg-color;
         }
-        legend {
-            font-size: 18px;
-            font-weight: normal;
-        }
+        
         .form-row {
             label {
                 color: $main-red;
@@ -178,80 +164,54 @@
                 color: #2a2a2a;
             }
         }
-        .text-danger {
-            span {
-                color: $main-red;
+        .card-title{
+            svg, svg *, span>span{
+                color: $gold!important;
             }
-        } // McDonaldsCoin 样式覆盖
+        }
+        form {
+            .table {
+              th, td {
+                border-top-color: #eee;
+              }
+            }
+            tr td:first-child {
+              color: $border-color;
+            }
+        }
+        // McDonaldsCoin 样式覆盖
         &.mc-donalds-coin {
             .tokenDetail {
-                display: block;
-                padding: 0 20px;
-                background-color: $bg-color;
+                background-color: $white;
                 tbody {
-                    tr:first-child th,
-                    tr:first-child td {
-                        border: none;
-                    }
                     td,
                     th {
-                        border-color: $border-color-lightst;
-                    }
-                    tr td:nth-child(4) * {
-                        color: $main-red;
+                        border-color: $border-color-lighter;
                     }
                     th {
-                        color: $text-block-dark;
-                        font-weight: lighter;
+                        color: $border-color;
                     }
                 }
             }
             .card-body {
-                background-color: $bg-color-dark;
-                border: 1px solid $border-color;
-                border-bottom: none;
-                &.p-0 {
-                    border: none;
-                }
+                background-color: $bg-color-lighter;
+                border: 1px solid $border-color-lighter;
                 h5 {
-                    font-size: 20px;
-                    color: #fff;
+                    color: $bg-color;
                 }
                 p {
-                    color: $text-block-dark
+                    color: $border-color
                 }
             }
             .card-header {
-                background-color: $bg-color-dark;
-                border-bottom: none;
+                background-color: $bg-color-lighter;
                 .nav-item a {
-                    position: relative;
-                    background: transparent;
-                    border-radius: 0;
-                    border: none;
-                    color: #fff !important;
+                    color: $text-block-dark !important;
                     &:hover,
                     &.active {
-                        background-color: $bg-color;
-                        color: $main-red;
-                    }
-                    &.active:before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        height: 4px;
-                        background-color: $main-red;
+                        background-color: $white;
                     }
                 }
-            }
-            .nav-tabs .nav-link {
-                line-height: 34px;
-            }
-            .mt-3,
-            .my-3 {
-                margin-top: 2rem !important;
             }
         }
         .sweet-alert {
@@ -288,18 +248,18 @@
             }
         }
         .row.transfers .card {
-            background-color: $bg-color;
+            background-color: $white;
             padding: 0 20px 20px;
             .ant-table thead th {
                 color: $text-block-dark;
-                background-color: $bg-color;
+                background-color: $white;
             }
             .ant-table-thead>tr>th {
-                border-bottom: 1px solid $border-color-lightst;
-                border-top: 1px solid $border-color-lightst;
+                border-bottom: 1px solid #eee;
+                border-top: 1px solid #eee;
             }
             table {
-                border-bottom: 1px solid $border-color-lightst;
+                border-bottom: 1px solid #eee;
             }
         }
         &.mytoken {

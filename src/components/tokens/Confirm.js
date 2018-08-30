@@ -180,7 +180,7 @@ class Confirm extends Component {
                     <a className="btn btn-default btn-lg" onClick={() => {
                       nextStep(3)
                     }}>{tu('prev_step')}</a>
-                    <a className="btn btn-danger btn-lg ml-5" onClick={() => {
+                    <a className="btn btn-danger btn-lg ml-4" onClick={() => {
                       this.submit();
                     }}>{tu("issue_token")}</a>
 

@@ -200,7 +200,7 @@ export class ExchangeRate extends PureComponent {
               </div>
             </fieldset>
             <a className="btn btn-default btn-lg" onClick={()=>{nextStep(1)}}>{tu('prev_step')}</a>
-            <a className="ml-5 btn btn-danger btn-lg" onClick={() => {
+            <a className="ml-4 btn btn-danger btn-lg" onClick={() => {
               this.isValid()
             }}>{tu('next')}</a>
           </form>

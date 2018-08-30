@@ -1,4 +1,4 @@
-body {
+body .token_black{
   font-weight: lighter; // 覆盖 btn 样式
   // 背景色样式
   .bg-gray {
@@ -13,17 +13,17 @@ body {
   .uploadLogo {
     position: relative;
     display: inline-block;
-    background: #D0EEFF;
+    // background: #D0EEFF;
     border-radius: 4px;
     overflow: hidden;
-    color: #1E88C7;
+    // color: #1E88C7;
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
     &:hover {
-      background: #AADFFD;
-      border-color: #78C3F3;
-      color: #004974;
+      background: rgba(0,0,0,.1);
+      // border-color: #78C3F3;
+      // color: #004974;
       text-decoration: none;
     }
     input {
@@ -53,18 +53,15 @@ body {
       td {
         font-size: 14px;
       }
-      th,
-      td {
-        border-top-color: rgba(255, 255, 255, 0.10);
-      }
-    }
-    tr td:first-child {
-      color: $text-block-dark;
     }
     .form-check-label {
       margin-top: 3px;
       font-weight: normal;
     }
+  }
+  legend {
+    font-size: 18px;
+    font-weight: normal;
   }
 
   // input
@@ -73,4 +70,69 @@ body {
     border-radius: 0;
     font-weight: lighter;
   }
+
+  .tokenDetail tr th {
+    width: 10%;
+  }
+  .tokenDetail tr td {
+    width: 40%;
+  }
+
+  // McDonaldsCoin 样式覆盖
+  &.mc-donalds-coin {
+    .tokenDetail {
+        display: block;
+        padding: 0 20px;
+        tbody {
+            tr:first-child th,
+            tr:first-child td {
+                border: none;
+            }
+            tr td:nth-child(4) * {
+                color: $main-red;
+            }
+            th {
+                font-weight: lighter;
+            }
+        }
+    }
+    .card-body {
+        border-bottom: none;
+        &.p-0 {
+            border: none;
+        }
+        h5 {
+            font-size: 20px;
+        }
+    }
+    .card-header {
+        border-bottom: none;
+        .nav-item a {
+            position: relative;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            &:hover,
+            &.active {
+                color: $main-red !important;
+            }
+            &.active:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background-color: $main-red;
+            }
+        }
+    }
+    .nav-tabs .nav-link {
+        line-height: 34px;
+    }
+    .mt-3,
+    .my-3 {
+        margin-top: 2rem !important;
+    }
+}
 }
