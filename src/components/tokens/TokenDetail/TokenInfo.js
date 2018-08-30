@@ -44,13 +44,13 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("progress")}:</th>
               <td>
-                <FormattedNumber value={token.percentage}/> %
+                <FormattedNumber value={token.issuedPercentage}/> %
               </td>
             </tr>
             <tr>
               <th>{tu("total_supply")}:</th>
               <td>
-                <FormattedNumber value={token.totalSupply}/> %
+                <FormattedNumber value={token.totalSupply}/>
               </td>
             </tr>
             <tr>

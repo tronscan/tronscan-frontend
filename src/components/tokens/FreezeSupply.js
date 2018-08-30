@@ -165,9 +165,9 @@ export class FreezeSupply extends Component {
               ))
               }
               {
-                frozenSupply.length > 1 &&
+                frozenSupply.length > 0 &&
                 <div className="mb-1">
-                  Total Frozen Supply: {sumBy(frozenSupply, fs => parseInt(fs.amount))}
+                  {tu('total')}{tu('frozen_supply')} : {sumBy(frozenSupply, fs => parseInt(fs.amount))}
                 </div>
               }
             </fieldset>

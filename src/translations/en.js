@@ -952,6 +952,7 @@ export const messages = {
   "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
   "tick_checkbox":"Need to tick the Checkbox",
   "change_info":"If the information is not correct, please contact us",
+  "total":"total",
 
   /*
 ##################################################################################

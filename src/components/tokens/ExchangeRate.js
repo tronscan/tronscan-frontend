@@ -135,15 +135,6 @@ export class ExchangeRate extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label><span>TRX</span> {tu("amount")} *</label>
-                  <NumberField
-                      className="form-control"
-                      value={numberOfTron}
-                      min={1}
-                      onChange={(value) => this.setState({numberOfTron: value})}/>
-                  {numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
-                </div>
-                <div className="form-group col-md-6">
                   <label>{tu("token")} {tu("amount")} *</label>
                   <NumberField
                       className="form-control"
@@ -151,6 +142,15 @@ export class ExchangeRate extends PureComponent {
                       min={1}
                       onChange={(value) => this.setState({numberOfCoins: value})}/>
                   {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
+                </div>
+                <div className="form-group col-md-6">
+                  <label><span>TRX</span> {tu("amount")} *</label>
+                  <NumberField
+                      className="form-control"
+                      value={numberOfTron}
+                      min={1}
+                      onChange={(value) => this.setState({numberOfTron: value})}/>
+                  {numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
                 </div>
               </div>
               <div className="form-row">
