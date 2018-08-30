@@ -228,7 +228,7 @@ class TokenDetail extends React.Component {
                   />
                 </div>
                 <div className="text-center mt-3 text-muted">
-                  <b>= <span ref={ref => this.priceTRX = ref}></span> TRX</b>
+                  <b>= <span ref={ref => this.priceTRX = ref}>0</span> TRX</b>
                 </div>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.buyTokens(token)
