@@ -321,7 +321,7 @@ class TokenCreate extends Component {
               <div className="card">
                 <div className="card-body">
                   <Steps direction="vertical" current={step - 1}>
-                    {steps.map(item => <Step key={tu(item.title)} title={tu(item.title)} description={tu(item.content)}/>)}
+                    {steps.map((item, index) => <Step key={index} title={tu(item.title)} description={tu(item.content)}/>)}
                   </Steps>
                 </div>
               </div>

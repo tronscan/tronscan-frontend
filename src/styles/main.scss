@@ -917,3 +917,27 @@ th {
   top: 50%;
 
 }
+.logo_upload{
+  position: relative;
+
+  .previewLogo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0!important;
+  }
+  .close{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    background: $white;
+  }
+  .svg-inline--fa{
+    width: 0.5em;
+    height: 0.5em;
+    line-height: 0.5em;
+    vertical-align: 1em;
+  }
+}
