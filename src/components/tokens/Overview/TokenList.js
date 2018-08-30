@@ -337,6 +337,7 @@ class TokenList extends Component {
         title: '#',
         dataIndex: 'index',
         key: 'index',
+        align: 'center',
         className: 'ant_table',
       },
       {
@@ -344,6 +345,7 @@ class TokenList extends Component {
         dataIndex: 'imgLogo',
         key: 'imgLogo',
         width: '80px',
+        align: 'center',
         className: 'ant_table_img',
         render: (text, record, index) => {
           return <img src={require('../../../images/logo_42.png')}/>
@@ -389,6 +391,7 @@ class TokenList extends Component {
       },
       {
         title: intl.formatMessage({id: 'participate'}),
+        align: 'center',
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
