@@ -71,8 +71,8 @@ class TokenInfo extends React.Component {
               </td>
             </tr>
             <tr>
-              <td colspan="2">
-                <i className="fa fa-exclamation-circle" ariaHidden="true"
+              <td colSpan="2">
+                <i className="fa fa-exclamation-circle" aria-hidden="true"
                   style={{color: 'red', marginRight: '10px'}}></i>
                 <span style={{color: 'red', fontSize: '12px'}}>{tu('change_info')}</span></td>
             </tr>
