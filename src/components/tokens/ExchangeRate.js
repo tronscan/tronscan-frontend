@@ -156,7 +156,7 @@ export class ExchangeRate extends PureComponent {
               <div className="form-row">
                 <p className="col-md-12">
                   <b>{tu("token_price")}</b>: 1 {name || tu("token")} = <FormattedNumber
-                    value={exchangeRate}/> TRX
+                    value={exchangeRate} maximumFractionDigits={7} minimunFractionDigits={7}/> TRX
                 </p>
               </div>
             </fieldset>

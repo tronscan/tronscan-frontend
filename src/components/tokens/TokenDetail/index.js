@@ -63,14 +63,14 @@ class TokenDetail extends React.Component {
         },
         {
           id: "transfers",
-          icon: "fa fa-exchange-alt",
+          icon: "",
           path: "/transfers",
           label: <span>{tu("token_transfers")}</span>,
           cmp: () => <Transfers filter={{token: name}}/>
         },
         {
           id: "holders",
-          icon: "fa fa-user",
+          icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
           cmp: () => <TokenHolders filter={{token: name}} token={{totalSupply: token.totalSupply}}/>
@@ -376,8 +376,9 @@ class TokenDetail extends React.Component {
                             <p className="card-text">{token.description}</p>
                           </div>
                           <div className="ml-auto">
+                            {/*
                             <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
-                            <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/>
+                            <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
                             <button className="btn btn-default btn-xs"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                           </div>
@@ -393,7 +394,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("reputation")}:</th>
                           <td>
-
+                            {"-"}
                           </td>
                         </tr>
                         <tr>
@@ -424,7 +425,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("white_paper")}:</th>
                           <td>
-                            <ExternalLink url={""}/>
+                            <ExternalLink url={"-"}/>
                           </td>
                         </tr>
                         <tr>
@@ -435,7 +436,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("GitHub")}:</th>
                           <td>
-                            <ExternalLink url={""}/>
+                            <ExternalLink url={"-"}/>
                           </td>
                         </tr>
 

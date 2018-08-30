@@ -1,10 +1,11 @@
-body .token_black{
+body .token_black {
   font-weight: lighter; // 覆盖 btn 样式
   // 背景色样式
   .bg-gray {
     background-color: $bg-color !important;
     border-radius: 1px;
-  } // 全局card样式覆盖
+  }
+  // 全局card样式覆盖
   .card {
     background: none;
     border: none;
@@ -21,7 +22,7 @@ body .token_black{
     text-indent: 0;
     line-height: 20px;
     &:hover {
-      background: rgba(0,0,0,.1);
+      background: rgba(0, 0, 0, .1);
       // border-color: #78C3F3;
       // color: #004974;
       text-decoration: none;
@@ -81,58 +82,61 @@ body .token_black{
   // McDonaldsCoin 样式覆盖
   &.mc-donalds-coin {
     .tokenDetail {
-        display: block;
-        padding: 0 20px;
-        tbody {
-            tr:first-child th,
-            tr:first-child td {
-                border: none;
-            }
-            tr td:nth-child(4) * {
-                color: $main-red;
-            }
-            th {
-                font-weight: lighter;
-            }
+      display: block;
+      padding: 0 20px;
+      tbody {
+        tr:first-child th,
+        tr:first-child td {
+          border: none;
         }
+        tr td:nth-child(4) * {
+          color: $main-red;
+        }
+        th {
+          font-weight: lighter;
+        }
+      }
     }
     .card-body {
-        border-bottom: none;
-        &.p-0 {
-            border: none;
-        }
-        h5 {
-            font-size: 20px;
-        }
+      border-bottom: none;
+      &.p-0 {
+        border: none;
+      }
+      h5 {
+        font-size: 20px;
+      }
     }
     .card-header {
-        border-bottom: none;
-        .nav-item a {
-            position: relative;
-            background: transparent;
-            border-radius: 0;
-            border: none;
-            &:hover,
-            &.active {
-                color: $main-red !important;
-            }
-            &.active:before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background-color: $main-red;
-            }
+      border-bottom: none;
+      .nav-item a {
+        position: relative;
+        background: transparent;
+        border-radius: 0;
+        border: none;
+        &:hover,
+        &.active {
+          color: $main-red !important;
         }
+        &.active:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background-color: $main-red;
+        }
+      }
     }
     .nav-tabs .nav-link {
-        line-height: 34px;
+      line-height: 34px;
     }
     .mt-3,
     .my-3 {
-        margin-top: 2rem !important;
+      margin-top: 2rem !important;
     }
-}
+  }
+  .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+  }
 }

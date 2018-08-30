@@ -15,6 +15,7 @@ import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
+import {TronLoader} from "../../common/loaders";
 
 class TokenOverview extends Component {
 
@@ -124,7 +125,7 @@ class TokenOverview extends Component {
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price / ONE_TRX);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX) + ' TRX';
   }
 
   preBuyTokens = (token) => {
@@ -165,7 +166,7 @@ class TokenOverview extends Component {
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}>X</a>
-                <h5 style={{color: 'black'}}>你想要购买多少数量的通证？</h5>
+                <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
                 <div className="input-group mt-5">
                   <input
                       type="number"
@@ -179,7 +180,7 @@ class TokenOverview extends Component {
                   />
                 </div>
                 <div className="text-center mt-3 text-muted">
-                  <b>= <span ref={ref => this.priceTRX = ref}></span> TRX</b>
+                  <b>= <span ref={ref => this.priceTRX = ref}>0 TRX</span></b>
                 </div>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.buyTokens(token)
@@ -348,22 +349,20 @@ class TokenOverview extends Component {
         key: 'name',
         width: '40%',
         render: (text, record, index) => {
-          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name} namePlus={record.name + ' (' + record.abbr + ')'}/>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}
+                                                                  namePlus={record.name + ' (' + record.abbr + ')'}/>
           </h5>
             <p>{record.description}</p></div>
         }
       },
       {
-        title: intl.formatMessage({id: 'end_time'}),
-        dataIndex: 'endTime',
-        key: 'endTime',
-        className: 'ant_table',
+        title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
-          return <div>
-            <FormattedRelative value={record.endTime} units="day"/>
-          </div>
-        }
+          return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
+        },
+        className: 'ant_table d-none d-md-table-cell'
       },
+
       {
         title: intl.formatMessage({id: 'issue_progress'}),
         dataIndex: 'issuedPercentage',
@@ -376,11 +375,15 @@ class TokenOverview extends Component {
         className: 'ant_table d-none d-sm-table-cell'
       },
       {
-        title: intl.formatMessage({id: 'fund_raised'}),
+        title: intl.formatMessage({id: 'end_time'}),
+        dataIndex: 'endTime',
+        key: 'endTime',
+        className: 'ant_table',
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
-        },
-        className: 'ant_table d-none d-md-table-cell'
+          return <div>
+            <FormattedRelative value={record.endTime} units="day"/>
+          </div>
+        }
       },
       {
         title: intl.formatMessage({id: 'issuing_price'}),
@@ -415,6 +418,7 @@ class TokenOverview extends Component {
     return (
         <main className="container header-overlap token_black">
           {alert}
+          {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
               <div className="col-md-12">
