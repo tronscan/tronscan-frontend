@@ -72,16 +72,6 @@ class Transfers extends React.Component {
     let {intl} = this.props;
     let column = [
       {
-        title: upperFirst(intl.formatMessage({id: 'age'})),
-        dataIndex: 'timestamp',
-        key: 'timestamp',
-        width: '10%',
-        className: 'ant_table',
-        render: (text, record, index) => {
-          return <TimeAgo date={record.timestamp}/>
-        }
-      },
-      {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
@@ -94,6 +84,16 @@ class Transfers extends React.Component {
             </TransactionHashLink>
           </Truncate>
 
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'age'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        width: '10%',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <TimeAgo date={record.timestamp}/>
         }
       },
       {

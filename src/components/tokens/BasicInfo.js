@@ -90,9 +90,15 @@ export class BasicInfo extends PureComponent {
     document.getElementById("previewLogo").src = logo_url;
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
-    reader.onload = function () {
+    reader.onload = () => {
       //console.log(reader.result);
+      this.setState({logoData: reader.result});
     }
+  }
+
+  resetLogo = () => {
+    this.setState({logoUrl: null});
+    this.setState({logoData: null});
   }
 
   componentDidMount() {
@@ -188,6 +194,7 @@ export class BasicInfo extends PureComponent {
                     </a>
                     <img className="previewLogo" id="previewLogo" src={logoUrl}
                          style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
+                    <a className="btn btn-danger btn-sm mb-4 ml-2" onClick={this.resetLogo}>{tu('delete')}</a>
                   </div>
 
                 </div>

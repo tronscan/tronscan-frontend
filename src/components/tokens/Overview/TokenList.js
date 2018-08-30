@@ -15,6 +15,7 @@ import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
+import {TronLoader} from "../../common/loaders";
 
 class TokenList extends Component {
 
@@ -354,7 +355,8 @@ class TokenList extends Component {
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name} namePlus={record.name + ' (' + record.abbr + ')'}/>
+          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}
+                                                                  namePlus={record.name + ' (' + record.abbr + ')'}/>
           </h5>
             <p>{record.description}</p></div>
         }
@@ -409,6 +411,7 @@ class TokenList extends Component {
     return (
         <main className="container header-overlap token_black">
           {alert}
+          {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
               <div className="col-md-12">
