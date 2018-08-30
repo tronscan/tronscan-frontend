@@ -1,10 +1,5 @@
 body .token_black {
   font-weight: lighter; // 覆盖 btn 样式
-  // 背景色样式
-  .bg-gray {
-    background-color: $bg-color !important;
-    border-radius: 1px;
-  }
   // 全局card样式覆盖
   .card {
     background: none;
@@ -13,17 +8,14 @@ body .token_black {
   }
   .uploadLogo {
     position: relative;
-    display: inline-block;
-    // background: #D0EEFF;
+    display: inline-block; // background: #D0EEFF;
     border-radius: 4px;
-    overflow: hidden;
-    // color: #1E88C7;
+    overflow: hidden; // color: #1E88C7;
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
     &:hover {
-      background: rgba(0, 0, 0, .1);
-      // border-color: #78C3F3;
+      background: rgba(0, 0, 0, .1); // border-color: #78C3F3;
       // color: #004974;
       text-decoration: none;
     }
@@ -40,7 +32,6 @@ body .token_black {
       }
     }
   }
-
   form {
     fieldset {
       padding-top: 15px;
@@ -63,23 +54,18 @@ body .token_black {
   legend {
     font-size: 18px;
     font-weight: normal;
-  }
-
-  // input
+  } // input
   .form-control {
     border: none;
     border-radius: 0;
     font-weight: lighter;
   }
-
   .tokenDetail tr th {
     width: 10%;
   }
   .tokenDetail tr td {
     width: 40%;
-  }
-
-  // McDonaldsCoin 样式覆盖
+  } // McDonaldsCoin 样式覆盖
   &.mc-donalds-coin {
     .tokenDetail {
       display: block;
@@ -136,7 +122,14 @@ body .token_black {
       margin-top: 2rem !important;
     }
   }
-  .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
-    display: none !important;
+  .card-title {
+    svg,
+    svg *,
+    span>span {
+      color: $gold !important;
+    }
+    .ant-spin-nested-loading>div>.ant-spin .ant-spin-dot {
+      display: none !important;
+    }
   }
 }

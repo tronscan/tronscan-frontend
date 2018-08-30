@@ -143,7 +143,7 @@ class TokenOverview extends Component {
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
                   this.setState({alert: null})
-                }}>X</a>
+                }}><i class="fa fa-times" aria-hidden="true"></i></a>
                 <span>{tu('login_first')}</span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.setState({alert: null})
@@ -165,7 +165,7 @@ class TokenOverview extends Component {
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
-                }}>X</a>
+                }}><i class="fa fa-times" aria-hidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
                 <div className="input-group mt-5">
                   <input
@@ -211,7 +211,7 @@ class TokenOverview extends Component {
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
-                }}>X</a>
+                }}><i class="fa fa-times" aria-hidden="true"></i></a>
                 <span>
                   {tu("not_enough_trx_message")}
                 </span>
@@ -233,7 +233,7 @@ class TokenOverview extends Component {
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
-                }}>X</a>
+                }}><i class="fa fa-times" aria-hidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
                 <span>
                 {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
@@ -396,7 +396,7 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'participate'}),
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
-            return <button className="btn btn-secondary btn-block btn-sm">{tu("finish")}</button>
+            return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else
             return <button className="btn btn-default btn-block btn-sm"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>

@@ -69,6 +69,11 @@
     borderBottom: '1px solid #DFD7CA' !important;
   }
   .token_black {
+    // 背景色样式
+    .bg-gray {
+      background-color: $bg-color !important;
+      border-radius: 1px;
+    }
     // dark ant-table样式覆盖 ===============================
     .ant-table {
       background: $bg-color;

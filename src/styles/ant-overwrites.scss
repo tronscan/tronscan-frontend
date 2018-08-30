@@ -127,5 +127,10 @@
         &-checked {
             background-color: $main-red;
         }
+        &-inner{
+            width: 3em;
+            text-align: center;
+        }
+        
     }
 }
