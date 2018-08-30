@@ -163,7 +163,7 @@ class MyToken extends Component {
                         <span>Weibo</span>
                       </div>
                     </div>
-                    <button className="btn btn-danger" onClick={this.download}><i class="fa fa-download mr-1" aria-hidden="true"></i>{tu('download_excel')}</button>
+                    <button className="btn btn-danger" onClick={this.download}><i className="fa fa-download mr-1" ariaHidden="true"></i>{tu('download_excel')}</button>
                   </div>
                 </div>
               </div>

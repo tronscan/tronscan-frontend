@@ -85,9 +85,9 @@ export class BasicInfo extends PureComponent {
   previewLogo = () => {
     let file = document.getElementById("logo");
     let logo_url = URL.createObjectURL(file.files[0]);
-    console.log(logo_url);
+    const oLogo = document.getElementById("previewLogo");
     this.setState({logoUrl: logo_url});
-    document.getElementById("previewLogo").src = logo_url;
+    oLogo && (oLogo.src = logo_url);
     let reader = new FileReader();
     reader.readAsDataURL(file.files[0]);
     reader.onload = () => {
@@ -186,15 +186,21 @@ export class BasicInfo extends PureComponent {
                       ({tu("image_restraint_desc")})
                     </small>
                   </label>
-                  <div>
+                  <div className="logo_upload">
                     <a href="javascript:;" className="uploadLogo">
                       <img src={require("../../images/Upload.png")}/>
                       <input type="file" id="logo" onChange={this.previewLogo}
                              accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
                     </a>
-                    <img className="previewLogo" id="previewLogo" src={logoUrl}
-                         style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
-                    <a className="btn btn-danger btn-sm mb-4 ml-2" onClick={this.resetLogo}>{tu('delete')}</a>
+                    { logoUrl &&
+                    <div>
+                      <img className="previewLogo" id="previewLogo" src={logoUrl}
+                          style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
+                      <a className="close" onClick={this.resetLogo}>
+                        <i className="fa fa-times" ariaHidden="true"></i>
+                      </a>
+                    </div>
+                    }
                   </div>
 
                 </div>
