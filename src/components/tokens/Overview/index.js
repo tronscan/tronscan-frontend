@@ -300,7 +300,7 @@ class TokenOverview extends Component {
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
-                }}>X</a>
+                }}><i class="fa fa-times" aria-hidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
                 <span>
                {tu('success_receive')} {token.name} {tu('tokens')}
