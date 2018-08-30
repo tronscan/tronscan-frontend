@@ -937,7 +937,7 @@ export const messages = {
   "image_restraint_desc": "图片限制描述",
   "prev_step": "上一步",
   "freeze_on": "启用",
-  "freeze_off": "禁用",
+  "freeze_off": "不启用",
   "freeze_not_valid":"不启用锁仓设置",
   "no_logo_error":"未上传logo",
   "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",

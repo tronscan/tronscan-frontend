@@ -135,7 +135,7 @@ export class ExchangeRate extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>TRX {tu("amount")} *</label>
+                  <label><span>TRX</span> {tu("amount")} *</label>
                   <NumberField
                       className="form-control"
                       value={numberOfTron}

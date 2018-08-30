@@ -26,6 +26,11 @@
         }
     } // default background style ====================================================
     .token_black {
+        // 背景色样式
+        .bg-gray {
+            background-color: $white !important;
+            border-radius: 1px;
+        }
         // light ant-table样式覆盖 ===============================
         .ant-table {
             background: $white;
@@ -164,11 +169,7 @@
                 color: #2a2a2a;
             }
         }
-        .card-title{
-            svg, svg *, span>span{
-                color: $gold!important;
-            }
-        }
+        
         form {
             .table {
               th, td {
@@ -310,7 +311,7 @@
             }
             .news_unit {
                 padding: 1.25rem;
-                background-color: $bg-color;
+                background-color: $white;
                 margin-bottom: 2px;
                 &:first-child {
                     hr {
@@ -323,10 +324,10 @@
                         top: 9px;
                         bottom: 9px;
                     }
-                    color: $text-block-dark;
+                    color: $border-color;
                     &:last-child,
                     a {
-                        color: $text-block;
+                        color: $bg-color;
                     }
                 }
             }
@@ -416,7 +417,7 @@
     }
     .token-sweet-alert .close {
         float: right;
-        marginTop: -165px;
+        margin-top: -134px;
     }
 }
 

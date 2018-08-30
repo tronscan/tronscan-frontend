@@ -17,6 +17,8 @@ import ExchangeRate from "./ExchangeRate.js"
 import FreezeSupply from "./FreezeSupply.js"
 import Confirm from "./Confirm.js"
 
+import {Steps} from 'antd';
+
 class TokenCreate extends Component {
 
   constructor() {
@@ -61,6 +63,12 @@ class TokenCreate extends Component {
       frozenSupply: [{amount: 0, days: 1}],
       showFrozenSupply: false,
       step: 1,
+      steps: [
+        {title: 'basic_info', content: 'basic_info_desc'},
+        {title: 'exchange_setting', content: 'exchange_setting_desc'},
+        {title: 'freeze_setting', content: 'freeze_setting_desc'},
+        {title: 'confirm_setting', content: 'confirm_setting_desc'}
+      ]
     };
   }
 
@@ -261,18 +269,11 @@ class TokenCreate extends Component {
   changeState = (params) => {
     this.setState(params);
   }
-  changeClassName = (stateStep, step) => {
-    if (stateStep === step)
-      return "ant-steps-item ant-steps-item-process"
-    if (stateStep > step)
-      return "ant-steps-item ant-steps-item-finish"
-    if (stateStep < step)
-      return "ant-steps-item ant-steps-item-wait"
-  }
 
   render() {
-    let {modal, issuedAsset, step} = this.state;
+    let {modal, issuedAsset, step, steps} = this.state;
     let {match} = this.props;
+    const Step = Steps.Step
 
     if (!this.isLoggedIn()) {
       return (
@@ -318,40 +319,9 @@ class TokenCreate extends Component {
             <div className="col-sm-12 col-md-3 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
-                  <div className="ant-steps ant-steps-vertical">
-                    <div className={this.changeClassName(step, 1)}>
-                      <div className="ant-steps-item-tail"></div>
-                      <div className="ant-steps-item-icon"><span className="ant-steps-icon">1</span></div>
-                      <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">{tu('basic_info')}</div>
-                        <div className="ant-steps-item-description">{tu('basic_info_desc')}</div>
-                      </div>
-                    </div>
-                    <div className={this.changeClassName(step, 2)}>
-                      <div className="ant-steps-item-tail"></div>
-                      <div className="ant-steps-item-icon"><span className="ant-steps-icon">2</span></div>
-                      <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">{tu('exchange_setting')}</div>
-                        <div className="ant-steps-item-description">{tu('exchange_setting_desc')}</div>
-                      </div>
-                    </div>
-                    <div className={this.changeClassName(step, 3)}>
-                      <div className="ant-steps-item-tail"></div>
-                      <div className="ant-steps-item-icon"><span className="ant-steps-icon">3</span></div>
-                      <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">{tu('freeze_setting')}</div>
-                        <div className="ant-steps-item-description">{tu('freeze_setting_desc')}</div>
-                      </div>
-                    </div>
-                    <div className={this.changeClassName(step, 4)}>
-                      <div className="ant-steps-item-tail"></div>
-                      <div className="ant-steps-item-icon"><span className="ant-steps-icon">4</span></div>
-                      <div className="ant-steps-item-content">
-                        <div className="ant-steps-item-title">{tu('confirm_setting')}</div>
-                        <div className="ant-steps-item-description">{tu('confirm_setting_desc')}</div>
-                      </div>
-                    </div>
-                  </div>
+                  <Steps direction="vertical" current={step - 1}>
+                    {steps.map(item => <Step key={tu(item.title)} title={tu(item.title)} description={tu(item.content)}/>)}
+                  </Steps>
                 </div>
               </div>
             </div>
