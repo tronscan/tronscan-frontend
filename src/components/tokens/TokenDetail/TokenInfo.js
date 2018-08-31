@@ -68,12 +68,13 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("country")}:</th>
               <td>
+                {token.country && tu(token.country)}
               </td>
             </tr>
             <tr>
               <td colSpan="2">
                 <i className="fa fa-exclamation-circle" aria-hidden="true"
-                  style={{color: 'red', marginRight: '10px'}}></i>
+                   style={{color: 'red', marginRight: '10px'}}></i>
                 <span style={{color: 'red', fontSize: '12px'}}>{tu('change_info')}</span></td>
             </tr>
 

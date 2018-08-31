@@ -927,6 +927,7 @@ export const messages = {
   "social_link": "Social media link",
   "download_excel": "Download the template",
   "no_message":"N/A (Please send an email to complete this information)",
+  "insufficient_message":"Insufficient information",
 
   /*
 ##################################################################################

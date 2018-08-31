@@ -374,7 +374,10 @@ class TokenList extends Component {
         dataIndex: 'reputation',
         key: 'reputation',
         align: 'center',
-        className: 'ant_table'
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return text && intl.formatMessage({id: text})
+        }
       },
       {
         title: intl.formatMessage({id: 'issue_progress'}),

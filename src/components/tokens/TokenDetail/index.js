@@ -49,8 +49,8 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result= await xhr.get("http://tronapp.co:9009/api/token?name="+name);
-    let token=result.data.data;
+    let result = await xhr.get("http://tronapp.co:9009/api/token?name=" + name);
+    let token = result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
@@ -281,7 +281,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5 token-sweet-alert" >
+              <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
@@ -397,7 +397,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("reputation")}:</th>
                           <td>
-                            {token.reputation}
+                            {token.reputation && tu(token.reputation)}
                           </td>
                         </tr>
                         <tr>
@@ -428,7 +428,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("white_paper")}:</th>
                           <td>
-                            <ExternalLink url={token.white_paper}/>
+                            <ExternalLink url={token.white_paper && tu(token.white_paper)}/>
                           </td>
                         </tr>
                         <tr>
@@ -439,7 +439,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("GitHub")}:</th>
                           <td>
-                            <ExternalLink url={token.github}/>
+                            <ExternalLink url={token.github && tu(token.github)}/>
                           </td>
                         </tr>
 

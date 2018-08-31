@@ -120,7 +120,7 @@ class MyToken extends Component {
                       </tr>
                       <tr>
                         <td>{tu("brief_info")}:</td>
-                        <td>{tu(issuedAsset.description)}</td>
+                        <td>{issuedAsset.description}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap">{tu("website_official")}:</td>
@@ -128,53 +128,32 @@ class MyToken extends Component {
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("white_paper")}:</td>
-                        <td>{tu(issuedAsset.white_paper)}</td>
+                        <td>{issuedAsset.white_paper && tu(issuedAsset.white_paper)}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("GitHub")}:</td>
-                        <td>{tu(issuedAsset.github)}</td>
+                        <td>{issuedAsset.github && tu(issuedAsset.github)}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("country")}:</td>
-                        <td>{tu(issuedAsset.country)}</td>
+                        <td>{issuedAsset.country && tu(issuedAsset.country)}</td>
                       </tr>
                       </tbody>
                     </table>
                     <hr/>
                     <h4>{tu('social_link')}</h4>
                     <div className="row socialMedia" style={{width: '60%'}}>
-                      <div className="col-md-5">
-                        <img src={require('../../images/reddit.png')}/>
-                        <span>Reddit</span>
-                      </div>
-                      <div className="col-md-5 ml-2">
-                        <img src={require('../../images/Twitter.png')}/>
-                        <span>Twitter</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/Facebook.png')}/>
-                        <span>Facebook</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/telegram.png')}/>
-                        <span>Telegram</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/steem.png')}/>
-                        <span>Steem</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/Medium.png')}/>
-                        <span>Medium</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/wechat.png')}/>
-                        <span>Wechat</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/weibo.png')}/>
-                        <span>Weibo</span>
-                      </div>
+                      {
+                        issuedAsset['social_media'] && issuedAsset['social_media'].map((media, index) => {
+                          return <div className="col-md-5 mr-3 mb-2">
+                            <img src={require('../../images/' + media.name + '.png')}/>
+                            {!media.url ?
+                                <span>{media.name}</span> :
+                                <a href={media.url}>{media.name}</a>
+                            }
+                          </div>
+                        })
+                      }
                     </div>
                     <button className="btn btn-danger" onClick={this.download}><i className="fa fa-download mr-1"
                                                                                   aria-hidden="true"></i>{tu('download_excel')}
