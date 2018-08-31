@@ -1,0 +1,101 @@
+$white: #ffffff;
+$color-grey-100: #333333;
+$color-grey-200: #666666;
+$color-grey-300: #999999;
+$color-grey-border:#979797;
+
+$color:#C23631;
+.tron-light {
+  background-color: #F3F3F3;
+  .header-top {
+    background: #F7F7F7;
+  }
+  .navbar-dark .navbar-nav .nav-link {
+    color: $color-grey-100;
+  }
+  @media (min-width:1200px) {
+    .container{
+      max-width:1200px;
+    }
+  }
+  .top-bar {
+    background-color: $white;
+    &.navbar-dark .navbar-nav .nav-link {
+      color: $color-grey-100 !important;
+    }
+  }
+  .sub-header h4 {
+    color: #222;
+  }
+
+  .nav-searchbar {
+    input {
+      background-color: #d2d1d1 !important;
+    }
+  }
+  .btn-search{
+    color: #fff;
+    background-color: $color;
+    border-color: $color;
+  }
+
+  .home-stats .text-muted{
+    h2{
+      color: $color-grey-100;
+    }
+    p{
+      color: $color-grey-200;
+    }
+    &:hover{
+      h2{
+        color: $color;
+      }
+      p{
+        color: $color;
+      }
+    }
+  }
+
+  .home .color-grey-100{
+    color: $color-grey-100 !important;
+  }
+  .home .color-grey-200{
+    color: $color-grey-200 !important;
+  }
+  .home .color-grey-300{
+    color: $color-grey-300 !important;
+  }
+  .home .color-grey-border{
+    border-color: $color-grey-border!important;
+  }
+  .home .color-grey-border:hover{
+    border-color: $color!important;
+    color: $color!important;
+    background-color: #FFFFFF!important;
+  }
+  .home .color-tron-100{
+    color:$color !important;
+  }
+  .home-footer{
+    background-color: $color-grey-100;
+  }
+  .home-footer a {
+    color: $white;
+  }
+  .home-footer h5 {
+    color: $white;
+  }
+  .home-footer .footer-link {
+    color: $white;
+  }
+  .home-footer .line{
+    width: 100%;
+    height: 1px;
+    background-color: #FFFFFF;
+  }
+  .list-group-item{
+    border-color: #EEEEEE;
+  }
+
+
+}

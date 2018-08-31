@@ -61,36 +61,41 @@ class RecentTransfers extends Component {
     }
 
     return (
-      <div className="card">
-        <div className="card-header bg-dark text-white d-flex">
-          <h5 className="m-0 lh-150">{tu("transfers")}</h5>
-          <Link to="/blockchain/transfers" className="ml-auto text-white btn btn-outline-secondary btn-sm">
+      <div className="card" style={styles.card}>
+        <div className="card-header bg-tron-light d-flex">
+          <i className="fa fa-server mr-3 fa_width_20 color-grey-100"></i>
+          <h5 className="m-0 lh-175 color-grey-100">{tu("transfers")}</h5>
+          <Link to="/blockchain/transfers" className="ml-auto btn btn-sm btn-outline-secondary color-grey-200 color-grey-border" style={{borderRadius:'0.15rem'}}>
             {tu("view_all")}
           </Link>
         </div>
-        <ul className="list-group list-group-flush scrollbar-dark" style={styles.list}>
+        <ul className="list-group list-group-flush" style={styles.list}>
         {
           transfers.map((transfer, i) => (
-            <li key={transfer.transactionHash} className="list-group-item p-2">
+            <li key={transfer.transactionHash} className="list-group-item p-3">
               <div className="media">
                 <div className="media-body mb-0 d-flex">
                   <div className="text-left">
-                    <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 20)}...</TransactionHashLink><br/>
-                    <AddressLink wrapClassName="d-inline-block" address={transfer.transferFromAddress} truncate={false}>
-                      {transfer.transferFromAddress.substr(0, 12)}...
+                    <div className="pt-1">
+                      <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
+                      <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
+                    </div><br/>
+
+                    <span className="color-grey-300 mr-2">{tu("from")}</span>
+                    <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferFromAddress} truncate={false}>
+                      {transfer.transferFromAddress.substr(0, 18)}...
                     </AddressLink>
-                    <i className="fas fa-arrow-right mr-1 ml-1"/>
-                    <AddressLink wrapClassName="d-inline-block" address={transfer.transferToAddress} truncate={false}>
-                      {transfer.transferToAddress.substr(0, 12)}...
-                    </AddressLink>
+                    <span className="color-grey-300 mr-2">{tu("to")}</span>
+                    <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferToAddress} truncate={false}>
+                      {transfer.transferToAddress.substr(0, 18)}...
+                    </AddressLink><br/>
                   </div>
-                  <div className="ml-auto text-right">
-                    <div className="text-muted">
-                      <TimeAgo date={transfer.timestamp} />
-                    </div>
-                    <div>
-                      <i className="fas fa-exchange-alt mr-1"/>
+                  <div className="ml-auto text-right d-flex flex-column pt-2">
+                    <div className="color-grey-200" style={{flex:1}}>
                       <TRXPrice amount={transfer.amount / ONE_TRX} />
+                    </div>
+                    <div className="text-muted color-grey-300 small" style={{flex:1}}>
+                      <TimeAgo date={transfer.timestamp} />
                     </div>
                   </div>
                 </div>
@@ -121,6 +126,10 @@ const styles = {
   list: {
     overflowY: 'scroll',
     overflowX: 'none',
-    height: 500,
+    height: 600,
+  },
+  card:{
+    border:'none',
+    borderRadius:0
   }
 };

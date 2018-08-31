@@ -20,7 +20,8 @@ import {
     LineReactBlockchainSize,
     LineReactTx,
     LineReactPrice,
-    LineReactVolumeUsd
+    LineReactVolumeUsd,
+    LineReactHighChartAdd
 } from "../../common/LineCharts";
 
 import {
@@ -484,8 +485,7 @@ class Statistics extends React.Component {
                                         {
                                             addressesStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactAdd source='singleChart' style={{height: 500}}
-                                                              data={addressesStats} intl={intl}/>
+                                                <LineReactHighChartAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
                                         }
                                     </div>
                                 }

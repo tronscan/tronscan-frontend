@@ -222,15 +222,16 @@ class Navigation extends PureComponent {
         let {theme} = this.props;
 
         switch (theme) {
-            case "light":
-                this.props.setTheme("tron");
-                break;
             case "dark":
+                //this.props.setTheme("tron");
                 this.props.setTheme("light");
                 break;
-            case "tron":
-                this.props.setTheme("dark");
-                break;
+            // case "dark":
+            //     this.props.setTheme("light");
+            //     break;
+            // case "tron":
+            //     this.props.setTheme("dark");
+            //     break;
 
         }
     };

@@ -4299,6 +4299,10 @@ he@1.1.1, he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
+highcharts@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-6.1.1.tgz#49dc34f5e963744ecd7eb87603b6cdaf8304c13a"
+
 history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"

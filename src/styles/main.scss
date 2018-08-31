@@ -19,8 +19,8 @@ $color-grey: #d2d1d1;
 @import "utilities/text-colors";
 @import "utilities/general";
 @import "wallet";
-@import "./themes/light.scss";
-@import "./themes/dark.scss";
+@import "./themes/tron-light.scss";
+@import "./themes/tron-dark.scss";
 @import "./themes/tron.scss";
 @import "representative";
 //@import "animations";
@@ -90,7 +90,7 @@ a {
 }
 
 .header-top {
-  box-shadow: 1px 0 14px 0 rgba(0, 0, 0, 0.5);
+  //box-shadow: 1px 0 14px 0 rgba(0, 0, 0, 0.5);
 }
 
 .sub-header {
@@ -292,8 +292,7 @@ tr a {
     text-decoration: none;
 
     &:hover {
-      color: #ad3630;
-
+      color: $light-red;
       h2 {
         //border-bottom: 2px solid #FFF;
       }
@@ -708,7 +707,10 @@ th {
 .fa_width {
   width: 15px !important;
 }
-
+.fa_width_20{
+  width: 22px !important;
+  font-size: 2rem;
+}
 #dropdownMenuButton:hover{
   color:red;
   cursor: pointer;
@@ -824,7 +826,11 @@ th {
     }
   }
   .home-stats{
-     margin-top: -50px;
+     margin-top:0px;
+    flex-direction: column;
+  }
+  .home .media-body{
+    flex-direction: column;
   }
   .home-footer h5{
      text-align: left;
@@ -844,8 +850,8 @@ th {
     display: block;
   }
   .home-stats>div{
-     width: 50%;
-     margin-bottom: 20px;
+     //width: 50% !important;
+     //margin-bottom: 20px;
   }
   .home-stats>div h2 span{
     font-size: 20px;
