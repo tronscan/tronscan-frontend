@@ -51,12 +51,16 @@ module.exports = {
   },
   representPieChart: {
         color: [
-            '#c84a45',
-            '#e7afad',
-            '#e19b98',
-            '#da8683',
-            '#d4726e',
-            '#ce5e5a'
+            '#424246',
+            '#96EE80',
+            '#F4A45D',
+            '#8085ED',
+            '#F25C81',
+            '#E5D355',
+            '#348188',
+            '#F25C81',
+            '#8FCACE',
+            '#7CB5EC'
         ],
         title: {
             text: '',
