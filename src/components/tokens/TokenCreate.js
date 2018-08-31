@@ -124,13 +124,12 @@ class TokenCreate extends Component {
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
 
-      let result_img = await xhr.post("http://tronapp.co:9009/api/uploadLogo", {
-        imageData: logoData,
-        owner_address: account.address
-      });
-      console.log(result_img);
-
       if (result.success) {
+        let result_img = await xhr.post("http://tronapp.co:9009/api/uploadLogo", {
+          imageData: logoData,
+          owner_address: account.address
+        });
+
         this.setState({
           isTokenCreated: true,
           modal:
@@ -329,7 +328,8 @@ class TokenCreate extends Component {
               <div className="card">
                 <div className="card-body">
                   <Steps direction="vertical" current={step - 1}>
-                    {steps.map((item, index) => <Step key={index} title={tu(item.title)} description={tu(item.content)}/>)}
+                    {steps.map((item, index) => <Step key={index} title={tu(item.title)}
+                                                      description={tu(item.content)}/>)}
                   </Steps>
                 </div>
               </div>

@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {HrefLink} from "../common/Links";
 import {Client} from "../../services/api";
 import {tu} from "../../utils/i18n";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
 import {TokenLink} from "../common/Links";
+import xhr from "axios/index";
 
 class MyToken extends Component {
   constructor() {
@@ -23,8 +22,10 @@ class MyToken extends Component {
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-    if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
-      this.checkExistingToken();
+    if (wallet) {
+      if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+        this.checkExistingToken();
+      }
     }
   }
 
@@ -33,18 +34,30 @@ class MyToken extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
 
-      Client.getIssuedAsset(wallet.address).then(({token}) => {
-        if (token) {
+      xhr.get("http://tronapp.co:9009/api/mytoken?owner=" + wallet.address).then((result) => {
+
+        if (result.data.data['Data'][0]) {
           this.setState({
-            issuedAsset: token,
+            issuedAsset: result.data.data['Data'][0],
           });
         }
       });
+
+
+      /*
+      Client.getIssuedAsset(wallet.address).then(({token}) => {
+         if (token) {
+           this.setState({
+             issuedAsset: token,
+           });
+         }
+       });
+      */
     }
   };
 
   download = () => {
-    //window.open("https://codeload.github.com/douban/douban-client/legacy.zip/master");
+    window.open("http://coin.top/tokenTemplate/TronscanTokenInformationSubmissionTemplate.xlsx");
   }
 
   render() {
@@ -76,7 +89,7 @@ class MyToken extends Component {
                 <div className="card">
                   <div className="card-body">
                     <div className="text-center p-3">
-                      {tu("未找到通证发行记录")}
+                      {tu("record_not_found")}
                     </div>
                   </div>
                 </div>
@@ -93,7 +106,7 @@ class MyToken extends Component {
                 <div className="card-body">
                   <div className="news_unit">
                     <h2>{tu('my_token')}</h2>
-                    <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color:'red'}}> "{tu('tron_rating')}"</a></p>
+                    <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color: 'red'}}> "{tu('tron_rating')}"</a></p>
                     <p>{tu("my_token_desc_2")}</p>
                     <hr/>
                   </div>
@@ -107,63 +120,44 @@ class MyToken extends Component {
                       </tr>
                       <tr>
                         <td>{tu("brief_info")}:</td>
-                        <td></td>
+                        <td>{issuedAsset.description}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap">{tu("website_official")}:</td>
-                        <td></td>
+                        <td>{issuedAsset.url}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("white_paper")}:</td>
-                        <td></td>
+                        <td>{issuedAsset.white_paper && tu(issuedAsset.white_paper)}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("GitHub")}:</td>
-                        <td></td>
+                        <td>{issuedAsset.github && tu(issuedAsset.github)}</td>
                       </tr>
                       <tr>
                         <td className="text-nowrap borderBottom">{tu("country")}:</td>
-                        <td></td>
+                        <td>{issuedAsset.country && tu(issuedAsset.country)}</td>
                       </tr>
                       </tbody>
                     </table>
                     <hr/>
                     <h4>{tu('social_link')}</h4>
                     <div className="row socialMedia" style={{width: '60%'}}>
-                      <div className="col-md-5">
-                        <img src={require('../../images/reddit.png')}/>
-                        <span>Reddit</span>
-                      </div>
-                      <div className="col-md-5 ml-2">
-                        <img src={require('../../images/Twitter.png')}/>
-                        <span>Twitter</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/Facebook.png')}/>
-                        <span>Facebook</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/telegram.png')}/>
-                        <span>Telegram</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/steem.png')}/>
-                        <span>Steem</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/Medium.png')}/>
-                        <span>Medium</span>
-                      </div>
-                      <div className="col-md-5 mt-2">
-                        <img src={require('../../images/wechat.png')}/>
-                        <span>Wechat</span>
-                      </div>
-                      <div className="col-md-5 mt-2 ml-2">
-                        <img src={require('../../images/weibo.png')}/>
-                        <span>Weibo</span>
-                      </div>
+                      {
+                        issuedAsset['social_media'] && issuedAsset['social_media'].map((media, index) => {
+                          return <div className="col-md-5 mr-3 mb-2">
+                            <img src={require('../../images/' + media.name + '.png')}/>
+                            {!media.url ?
+                                <span>{media.name}</span> :
+                                <a href={media.url}>{media.name}</a>
+                            }
+                          </div>
+                        })
+                      }
                     </div>
-                    <button className="btn btn-danger" onClick={this.download}><i className="fa fa-download mr-1" ariaHidden="true"></i>{tu('download_excel')}</button>
+                    <button className="btn btn-danger" onClick={this.download}><i className="fa fa-download mr-1"
+                                                                                  aria-hidden="true"></i>{tu('download_excel')}
+                    </button>
                   </div>
                 </div>
               </div>
