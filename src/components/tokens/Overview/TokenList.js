@@ -16,6 +16,7 @@ import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
+import xhr from "axios/index";
 
 class TokenList extends Component {
 
@@ -42,13 +43,18 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
 
-    let {tokens, total} = await Client.getTokens({
-      sort: '-name',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      ...filter,
-    });
+    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
+    let total = result.data.data['Total'];
+    let tokens = result.data.data['Data'];
+    /*
+    let {tokens, total} = await Client.getTokens({
+       sort: '-name',
+       limit: pageSize,
+       start: (page - 1) * pageSize,
+       ...filter,
+     });
+     */
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
@@ -365,8 +371,9 @@ class TokenList extends Component {
       },
       {
         title: intl.formatMessage({id: 'reputation'}),
-        dataIndex: 'credit',
-        key: 'credit',
+        dataIndex: 'reputation',
+        key: 'reputation',
+        align: 'center',
         className: 'ant_table'
       },
       {
@@ -378,6 +385,7 @@ class TokenList extends Component {
             text = 0;
           return <div><FormattedNumber value={text}/>%</div>
         },
+        align: 'center',
         className: 'ant_table'
       },
       {
@@ -387,6 +395,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <FormattedDate value={text}/>
         },
+        align: 'center',
         className: 'ant_table d-none d-sm-table-cell'
       },
       {

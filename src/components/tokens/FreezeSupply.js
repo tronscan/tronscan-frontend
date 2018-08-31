@@ -84,6 +84,11 @@ export class FreezeSupply extends Component {
 
   switchFreeze = (checked) => {
     this.setState({showFrozenSupply: checked});
+    if (!checked) {
+      this.setState({
+        frozenSupply: [{amount: 0, days: 1}]
+      });
+    }
   }
 
   render() {
@@ -114,9 +119,10 @@ export class FreezeSupply extends Component {
                   {tu("frozen_supply_message_0")}
                 </p>
                 <Switch checkedChildren={intl.formatMessage({id: 'freeze_on'})}
-                        unCheckedChildren={intl.formatMessage({id: 'freeze_off'})} onChange={
-                  this.switchFreeze
-                }/>
+                        unCheckedChildren={intl.formatMessage({id: 'freeze_off'})}
+                        onChange={this.switchFreeze}
+                        checked={showFrozenSupply}
+                />
               </div>
               {showFrozenSupply &&
               <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
@@ -165,7 +171,7 @@ export class FreezeSupply extends Component {
               ))
               }
               {
-                frozenSupply.length > 0 &&
+                showFrozenSupply && frozenSupply.length > 0 &&
                 <div className="mb-1">
                   {tu('total')}{tu('frozen_supply')} : {sumBy(frozenSupply, fs => parseInt(fs.amount))}
                 </div>

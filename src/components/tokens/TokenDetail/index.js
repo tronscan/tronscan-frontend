@@ -14,6 +14,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
 
@@ -47,7 +48,9 @@ class TokenDetail extends React.Component {
 
     this.setState({loading: true, token: {name}});
 
-    let token = await Client.getToken(name);
+    //let token = await Client.getToken(name);
+    let result= await xhr.get("http://tronapp.co:9009/api/token?name="+name);
+    let token=result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
@@ -394,7 +397,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("reputation")}:</th>
                           <td>
-                            {"-"}
+                            {token.reputation}
                           </td>
                         </tr>
                         <tr>
@@ -425,7 +428,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("white_paper")}:</th>
                           <td>
-                            <ExternalLink url={"-"}/>
+                            <ExternalLink url={token.white_paper}/>
                           </td>
                         </tr>
                         <tr>
@@ -436,7 +439,7 @@ class TokenDetail extends React.Component {
                           </td>
                           <th>{tu("GitHub")}:</th>
                           <td>
-                            <ExternalLink url={"-"}/>
+                            <ExternalLink url={token.github}/>
                           </td>
                         </tr>
 

@@ -128,7 +128,7 @@ class TokenCreate extends Component {
         imageData: logoData,
         owner_address: account.address
       });
-      console.log(result_img);
+
 
       if (result.success) {
         this.setState({

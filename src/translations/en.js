@@ -926,6 +926,7 @@ export const messages = {
   "country": "Country/Region",
   "social_link": "Social media link",
   "download_excel": "Download the template",
+  "no_message":"N/A (Please send an email to complete this information)",
 
   /*
 ##################################################################################
