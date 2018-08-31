@@ -223,7 +223,7 @@ class Navigation extends PureComponent {
 
         switch (theme) {
             case "light":
-                this.props.setTheme("tron");
+                this.props.setTheme("dark");
                 break;
             case "dark":
                 this.props.setTheme("light");
@@ -470,31 +470,33 @@ class Navigation extends PureComponent {
         return (
             <div className="header-top">
                 {popup}
-              <div className="container py-2 d-flex px-0">
-                <div className="ml-4">
-                  <Link to="/">
-                    <img src={this.getLogo()} className="logo" alt="Tron"/>
-                  </Link>
-                </div>
-                  {
-                      IS_TESTNET &&
-                      <div className="col mx-auto text-center text-info font-weight-bold py-2">
-                        TESTNET
-                      </div>
-                  }
-                  {
-                      (syncStatus && syncStatus.sync.progress < 95) &&
-                      <div className="col mx-auto text-danger text-center py-2">
-                        Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
-                      </div>
-                  }
-                <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
-                  <ul className="navbar-nav navbar-right wallet-nav">
-                      {
-                          wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
-                      }
-                      {this.renderWallet()}
-                  </ul>
+              <div className="logo-wrapper">
+                <div className="container py-2 d-flex px-0">
+                    <div className="ml-4">
+                    <Link to="/">
+                        <img src={this.getLogo()} className="logo" alt="Tron"/>
+                    </Link>
+                    </div>
+                    {
+                        IS_TESTNET &&
+                        <div className="col mx-auto text-center text-info font-weight-bold py-2">
+                            TESTNET
+                        </div>
+                    }
+                    {
+                        (syncStatus && syncStatus.sync.progress < 95) &&
+                        <div className="col mx-auto text-danger text-center py-2">
+                            Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                        </div>
+                    }
+                    <div className="ml-auto navbar navbar-expand-md navbar-dark py-0">
+                    <ul className="navbar-nav navbar-right wallet-nav">
+                        {
+                            wallet.isOpen && <Notifications wallet={wallet} notifications={notifications}/>
+                        }
+                        {this.renderWallet()}
+                    </ul>
+                    </div>
                 </div>
               </div>
               <nav className="top-bar navbar navbar-expand-md navbar-dark">

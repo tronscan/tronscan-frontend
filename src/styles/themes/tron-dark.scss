@@ -1,11 +1,11 @@
 @import './dark.scss';
 .tron-dark {
-  color: $text-block;
+ 
   // default background style ====================================================
   background-size: cover;
   background: #222 url(../images/body_backgound_dark_theme_transparent.png) fixed no-repeat;
   background-position: center -200px;
-  .header-top {
+  .logo-wrapper, .navbar{
     background: radial-gradient(at 50% -20%, #343a40bd, #111111ad) fixed;
   }
   .top-bar.navbar-dark .navbar-nav .nav-link {
@@ -65,6 +65,7 @@
     borderBottom: '1px solid #DFD7CA' !important;
   }
   .token_black {
+    color: $text-block;
     // 背景色样式
     .bg-gray {
       background-color: $bg-color !important;
@@ -223,11 +224,7 @@
         color: $text-block;
       }
     }
-    .text-danger {
-      span {
-        color: $main-red;
-      }
-    }
+    
     form {
       .table {
         th, td {

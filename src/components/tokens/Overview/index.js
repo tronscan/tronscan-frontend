@@ -400,6 +400,8 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
+          else if (record.startTime > new Date())
+            return <span style={{fontWeight: 'normal'}}>{tu("尚未开始")}</span>
           else
             return <button className="btn btn-default btn-block btn-sm"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>

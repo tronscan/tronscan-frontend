@@ -135,4 +135,10 @@ body .token_black {
   .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
     display: none !important;
   }
+  // 错误提示文字
+  .text-danger {
+    span {
+      color: $main-red!important;
+    }
+  }
 }
