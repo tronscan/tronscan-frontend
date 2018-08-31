@@ -115,7 +115,7 @@ const styles = {
   list: {
     overflowY: 'scroll',
     overflowX: 'none',
-    height: 600,
+    height: 618,
   },
   card:{
       border:'none',
