@@ -156,14 +156,17 @@ export class FreezeSupply extends Component {
                           value={frozen.days}/>
                     </div>
                     {
-                      index === 0 &&
+
                       <div className="form-group col-md-2">
-                        <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
-                           onClick={this.plusFrozen}></a>
                         {
-                          frozenSupply.length > 1 &&
+                          index === 0 &&
+                          <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
+                             onClick={this.plusFrozen}></a>
+                        }
+                        {
+                          index > 0 &&
                           <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
-                             onClick={this.minusFrozen}></a>
+                             onClick={()=>{this.minusFrozen(index)}}></a>
                         }
                       </div>
                     }

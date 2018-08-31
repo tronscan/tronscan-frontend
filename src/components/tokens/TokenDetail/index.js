@@ -427,8 +427,11 @@ class TokenDetail extends React.Component {
                             <FormattedNumber value={token.totalTransactions}/>
                           </td>
                           <th>{tu("white_paper")}:</th>
-                          <td>
-                            <ExternalLink url={token.white_paper && tu(token.white_paper)}/>
+                          <td>{
+                            token.white_paper !== 'no_message' ?
+                                <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
+                                <span>-</span>
+                          }
                           </td>
                         </tr>
                         <tr>
@@ -438,8 +441,11 @@ class TokenDetail extends React.Component {
                             <FormattedTime value={token.startTime}/>
                           </td>
                           <th>{tu("GitHub")}:</th>
-                          <td>
-                            <ExternalLink url={token.github && tu(token.github)}/>
+                          <td>{
+                            token.github !== 'no_message' ?
+                                <ExternalLink url={token.github && tu(token.github)}/> :
+                                <span>-</span>
+                          }
                           </td>
                         </tr>
 
