@@ -124,12 +124,13 @@ export class RepresentativesRingPieReact extends React.Component {
   initPie(id) {
     let {intl, data, message, source} = this.props;
     if (data.length) {
-      for (let index in data) {
-        if (data[index].name.indexOf("http://") > -1) {
-          data[index].name = data[index].name.substring(7).split('.com')[0];
+      for (let row of data) {
+        if (row.name && row.name.indexOf("http://") > -1) {
+          row.name = row.name.substring(7).split('.com')[0];
         }
       }
     }
+
     let myChart = echarts.getInstanceByDom(document.getElementById(id));
     if (myChart === undefined) {
       myChart = echarts.init(document.getElementById(id));
