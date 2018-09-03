@@ -2,6 +2,9 @@
     // 全局ant-table样式覆盖 ===============================
     .ant-table {
         font-family: Helvetica;
+        .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+            padding: 16px;
+        }
         .ant-table-tbody>tr {
             &>td {
                 &:last-child {
@@ -13,17 +16,20 @@
             }
         }
         thead th {
-            color: $main-red;
+            color: $border-color;
         }
         h5,
         a {
-            color: $main-red;
+            color: $main-red!important;
             font-size: 14px;
             font-family: Helvetica-Bold;
         }
         p {
             font-size: 12px;
             line-height: 1.4em;
+            height: 2.6em;
+            overflow: hidden;
+            margin: 0;
         }
         &.ant-table-bordered .ant-table-header>table,
         &.ant-table-bordered .ant-table-body>table,
@@ -31,7 +37,17 @@
         &.ant-table-bordered .ant-table-fixed-right table {
             border: none;
         }
+        .table-imgtext{
+            display: flex;
+            align-items: center;
+            img{
+                height: 42px;
+                width: 42px;
+                margin-right: 18px;
+            }
+        }
     }
+    
 
     // 全局ant-pagination样式覆盖 ===============================
     .ant-pagination {

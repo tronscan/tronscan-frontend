@@ -75,7 +75,6 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        width: '12%',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
@@ -90,7 +89,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        width: '10%',
+        width: '16%',
         className: 'ant_table',
         render: (text, record, index) => {
           return <TimeAgo date={record.timestamp}/>
@@ -126,7 +125,8 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
         dataIndex: 'amount',
         key: 'amount',
-        width: '12%',
+        width: '20%',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <div>{record.tokenName === "TRX" ?

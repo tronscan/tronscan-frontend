@@ -115,27 +115,21 @@ export class ExchangeRate extends PureComponent {
             {tu('token_issue_guide_message_2')}
             {tu('token_issue_guide_message_3')}
           </p>
+          <hr/>
           <form>
             <fieldset>
               <legend>
                 {tu("exchange_rate")}
-                <i className="fa fa-exchange-alt float-right"/>
               </legend>
 
               <div className="form-row">
                 <p className="col-md-12">
                   {tu("exchange_rate_message_0")}
                 </p>
-                <p className="col-md-12">
-                  {tu("exchange_rate_message_1")} <b><FormattedNumber
-                    value={numberOfCoins}/> {name || tu("token")}</b>&nbsp;
-                  {tu("exchange_rate_message_2")} <b><FormattedNumber
-                    value={numberOfTron}/> {tu("exchange_rate_message_3")}</b>.
-                </p>
               </div>
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label>{tu("token")} {tu("amount")} *</label>
+                <div className="form-group col-md-12">
+                  <label>* {tu("token")} {tu("amount")}</label>
                   <NumberField
                       className="form-control"
                       value={numberOfCoins}
@@ -143,8 +137,11 @@ export class ExchangeRate extends PureComponent {
                       onChange={(value) => this.setState({numberOfCoins: value})}/>
                   {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
                 </div>
-                <div className="form-group col-md-6">
-                  <label><span>TRX</span> {tu("amount")} *</label>
+                
+              </div>
+              <div className="form-row">
+              <div className="form-group col-md-12">
+                  <label>* <span>TRX</span> {tu("amount")}</label>
                   <NumberField
                       className="form-control"
                       value={numberOfTron}
@@ -155,7 +152,7 @@ export class ExchangeRate extends PureComponent {
               </div>
               <div className="form-row">
                 <p className="col-md-12">
-                  <b>{tu("token_price")}</b>: 1 {name || tu("token")} = <FormattedNumber
+                  <span>{tu("token_price")}</span>: 1 {name || tu("token")} = <FormattedNumber
                     value={exchangeRate} maximumFractionDigits={7} minimunFractionDigits={7}/> TRX
                 </p>
               </div>
@@ -164,7 +161,6 @@ export class ExchangeRate extends PureComponent {
             <fieldset>
               <legend>
                 {tu("participation")}
-                <i className="fa fa-calendar-alt float-right"/>
               </legend>
 
               <div className="form-row ">

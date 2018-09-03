@@ -34,7 +34,11 @@ body .token_black {
   }
   form {
     fieldset {
-      padding-top: 15px;
+      padding-top: 25px;
+
+      &:first-child{
+        padding-top: 15px;
+      }
     }
     strong {
       font-size: 16px;
@@ -137,8 +141,40 @@ body .token_black {
   }
   // 错误提示文字
   .text-danger {
+    
     span {
+      display: block;
+      padding-top: 10px;
       color: $main-red!important;
+    }
+  }
+  h5{
+    display: flex;
+    align-items: center;
+  }
+  hr{
+    margin: 1.5rem 0;
+  }
+
+  // 创建 =======================================================
+  .form-row {
+    label {
+      font-weight: normal;
+    }
+  }
+  .form-group{
+    margin-bottom: 20px;
+  }
+  .token_confirm{
+    .table th, .table td{
+      padding:{
+        left: 0;
+      }
+    }
+    .table tr{
+      td:first-child{
+        width: 15%;
+      }
     }
   }
 }

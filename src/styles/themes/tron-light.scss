@@ -191,7 +191,8 @@
                 tbody {
                     td,
                     th {
-                        border-color: $border-color-lighter;
+                        border-color: #eee;
+                        padding-left: 0;
                     }
                     th {
                         color: $border-color;
@@ -217,6 +218,9 @@
                         background-color: $white;
                     }
                 }
+            }
+            .mt-3{
+                border: 1px solid $border-color-lighter;
             }
         }
         .sweet-alert {
