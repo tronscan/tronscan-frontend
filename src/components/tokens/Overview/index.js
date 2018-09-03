@@ -394,7 +394,7 @@ class TokenOverview extends Component {
       {
         title: intl.formatMessage({id: 'issuing_price'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.price / ONE_TRX}/> TRX</div>
+          return <div><FormattedNumber value={record.price / ONE_TRX} maximumFractionDigits={6}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table'
