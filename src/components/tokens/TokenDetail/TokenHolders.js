@@ -79,7 +79,8 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'quantity'}),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        width: '10%',
+        width: '14%',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <FormattedNumber value={record.balance}/>
@@ -89,7 +90,8 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'percentage'}),
         dataIndex: 'percentage',
         key: 'percentage',
-        width: '10%',
+        width: '14%',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <div><FormattedNumber

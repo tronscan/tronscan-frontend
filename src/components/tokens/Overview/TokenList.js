@@ -347,29 +347,21 @@ class TokenList extends Component {
         className: 'ant_table',
       },
       {
-        title: 'LOGO',
-        dataIndex: 'imgUrl',
-        key: 'imgUrl',
-        width: '80px',
-        align: 'center',
-        className: 'ant_table_img',
-        render: (text, record, index) => {
-          if (text)
-            return <img src={require(text)}/>
-          else
-            return <img src={require('../../../images/logo_42.png')}/>
-        }
-      },
-      {
         title: upperFirst(intl.formatMessage({id: 'token'})),
         dataIndex: 'name',
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div style={{paddingTop: '10px'}}><h5><TokenLink name={record.name}
-                                                                  namePlus={record.name + ' (' + record.abbr + ')'}/>
-          </h5>
-            <p>{record.description}</p></div>
+          return <div className="table-imgtext">
+            <img src={require('../../../images/logo_42.png')}/>
+          
+            <div>
+              <h5><TokenLink name={record.name}
+                            namePlus={record.name + ' (' + record.abbr + ')'}/>
+              </h5>
+              <p>{record.description}</p>
+            </div>
+          </div>
         }
       },
       {

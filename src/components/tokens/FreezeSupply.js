@@ -107,11 +107,11 @@ export class FreezeSupply extends Component {
             {tu('token_issue_guide_message_2')}
             {tu('token_issue_guide_message_3')}
           </p>
+          <hr/>
           <form>
             <fieldset>
               <legend>
                 {tu("frozen_supply")}
-                <i className="fa fa-snowflake float-right"/>
               </legend>
 
               <div className="form-row text-muted mb-3">

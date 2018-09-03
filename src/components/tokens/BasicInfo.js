@@ -127,23 +127,26 @@ export class BasicInfo extends PureComponent {
             <fieldset>
               <legend>
                 {tu("basic_info")}
-                <i className="fab fa-wpforms float-right"/>
+                {/* <i className="fab fa-wpforms float-right"/> */}
+                <p className="ml-2" style={{display: 'inline-block'}}>
+                  <small className="form-text text-muted">
+                    {'('}{tu("language_support")}{')'}
+                  </small>
+                </p>
               </legend>
-              <p>
-                <small className="form-text text-muted">
-                  {'('}{tu("language_support")}{')'}
-                </small>
-              </p>
+              
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label>{tu("token_name")} *</label>
+                <div className="form-group col-md-12">
+                  <label>* {tu("token_name")}</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({name: e.target.value})
                   }} value={name} placeholder={intl.formatMessage({id: 'token_message'})}/>
                   {ErrorLabel(errors.name)}
                 </div>
-                <div className="form-group col-md-6">
-                  <label>{tu("token_abbr")} *</label>
+              </div>
+              <div className="form-row">
+               <div className="form-group col-md-12">
+                  <label>* {tu("token_abbr")}</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({abbr: e.target.value})
                   }} value={abbr} placeholder={intl.formatMessage({id: 'abbr_message'})}/>
@@ -152,7 +155,7 @@ export class BasicInfo extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label>{tu("total_supply")} *</label>
+                  <label>* {tu("total_supply")}</label>
                   <NumberField
                       className="form-control"
                       value={totalSupply}
@@ -163,7 +166,7 @@ export class BasicInfo extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label>{tu("description")} *</label>
+                  <label>* {tu("description")}</label>
                   <input type="text" className="form-control" onChange={(e) => {
                     this.setState({description: e.target.value})
                   }} value={description} placeholder={intl.formatMessage({id: 'description_message'})}/>
@@ -172,7 +175,7 @@ export class BasicInfo extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label>{tu("website_url")} *</label>
+                  <label>* {tu("website_url")}</label>
                   <input type="text" placeholder="http://" className="form-control" onChange={(e) => {
                     this.setState({url: e.target.value})
                   }} value={url} placeholder={intl.formatMessage({id: 'url_message'})}/>
