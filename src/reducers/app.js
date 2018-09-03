@@ -17,7 +17,7 @@ import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
 import {IS_DESKTOP} from "../constants";
 
 const initialState = {
-  theme: Lockr.get("theme", "dark"),
+  theme: Lockr.get("theme", "light"),
   accounts: [],
   syncStatus: null,
   price: {

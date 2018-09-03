@@ -10,18 +10,21 @@ $color:#C23631;
   .header-top {
     background: #F7F7F7;
   }
-  .navbar-dark .navbar-nav .nav-link {
-    color: $color-grey-100;
-  }
   @media (min-width:1200px) {
     .container{
       max-width:1200px;
     }
   }
+  .navbar-dark .navbar-nav .nav-link {
+    color: $color-grey-100;
+  }
   .top-bar {
     background-color: $white;
     &.navbar-dark .navbar-nav .nav-link {
-      color: $color-grey-100 !important;
+      color: $color-grey-100;
+      &:hover{
+        color:$color !important;
+      }
     }
   }
   .sub-header h4 {

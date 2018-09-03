@@ -586,7 +586,7 @@ class Navigation extends PureComponent {
                         ))}
                     </ul>
                     <ul className="navbar-nav navbar-right">
-                        {this.renderThemeChooser()}
+                        {/*{this.renderThemeChooser()}*/}
                       <li className="nav-item dropdown navbar-right">
                         <a className="nav-link dropdown-toggle dropdown-menu-right "
                            data-toggle="dropdown"
