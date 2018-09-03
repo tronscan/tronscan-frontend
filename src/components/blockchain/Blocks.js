@@ -80,7 +80,7 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'age'}),
+        title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
 
@@ -100,7 +100,7 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'produced by'}),
+        title: upperFirst(intl.formatMessage({id: 'produced by'})),
         dataIndex: 'witnessAddress',
         key: 'witnessAddress',
         align: 'center',
@@ -111,7 +111,7 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'bytes'}),
+        title: upperFirst(intl.formatMessage({id: 'bytes'})),
         dataIndex: 'size',
         key: 'size',
         align: 'center',
@@ -130,7 +130,7 @@ class Blocks extends React.Component {
     let {match} = this.props;
     let column = this.customizedColumn();
     return (
-      <main className="container header-overlap pb-3">
+      <main className="container header-overlap pb-3 token_black">
         {loading && <div className="loading-style"><TronLoader/></div>}
         {
           <div className="row">
