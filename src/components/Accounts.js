@@ -11,6 +11,9 @@ import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
 import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "./common/Price";
 import {WidgetIcon} from "./common/Icon";
+import SmartTable from "./common/SmartTable.js"
+import {upperFirst} from "lodash";
+import {TronLoader} from "./common/loaders";
 
 class Accounts extends Component {
 
@@ -29,14 +32,14 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1,pageSize=40) => {
+  loadAccounts = async (page = 1, pageSize = 10) => {
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     let {accounts, total} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
     });
 
     this.setState({
@@ -49,8 +52,9 @@ class Accounts extends Component {
   componentDidUpdate() {
     //checkPageChanged(this, this.loadAccounts);
   }
-  onChange = (page,pageSize) => {
-    this.loadAccounts(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.loadAccounts(page, pageSize);
   };
   onSearchFieldChangeHandler = (e) => {
     this.setState({
@@ -80,23 +84,23 @@ class Accounts extends Component {
     }
 
     return (
-      <Fragment>
-        <div className="table-responsive">
-          <table className="table table-striped m-0">
-            <thead className="thead-dark">
-            <tr>
-              <th>{tu("address")}</th>
-              <th className="d-md-table-cell">{tu("supply")}</th>
-              <th className="d-md-table-cell">{tu("power")}</th>
-              <th>{tu("balance")}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
+        <Fragment>
+          <div className="table-responsive">
+            <table className="table table-striped m-0">
+              <thead className="thead-dark">
+              <tr>
+                <th>{tu("address")}</th>
+                <th className="d-md-table-cell">{tu("supply")}</th>
+                <th className="d-md-table-cell">{tu("power")}</th>
+                <th>{tu("balance")}</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
                 accounts.map((account, index) => (
                     <tr key={account.address}>
                       <th>
-                        <AddressLink address={account.address} />
+                        <AddressLink address={account.address}/>
                       </th>
                       <td className="d-md-table-cell text-nowrap">
                         <FormattedNumber
@@ -113,55 +117,100 @@ class Accounts extends Component {
                       </td>
                     </tr>
                 ))
-            }
-            </tbody>
-          </table>
-        </div>
+              }
+              </tbody>
+            </table>
+          </div>
 
-      </Fragment>
+        </Fragment>
     )
+  }
+
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: upperFirst(intl.formatMessage({id: 'address'})),
+        dataIndex: 'address',
+        key: 'address',
+        align: 'center',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <AddressLink address={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'supply'})),
+        dataIndex: 'balance',
+        key: 'balance',
+        align: 'center',
+        className: 'ant_table',
+        width: '10%',
+        render: (text, record, index) => {
+          return <div><FormattedNumber
+              value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
+              minimumFractionDigits={8}
+              maximumFractionDigits={8}
+          /> %</div>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'power'})),
+        dataIndex: 'power',
+        key: 'power',
+        align: 'center',
+        width: '15%',
+        render: (text, record, index) => {
+          return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'balance'})),
+        dataIndex: 'balance',
+        key: 'balance',
+        align: 'center',
+        className: 'ant_table',
+        width: '15%',
+        render: (text, record, index) => {
+          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+        }
+      }
+    ];
+    return column;
   }
 
   render() {
 
     let {match} = this.props;
-    let {total, loading} = this.state;
+    let {total, loading, accounts} = this.state;
+    let column = this.customizedColumn();
 
     return (
-      <main className="container header-overlap pb-3">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="card h-100 text-center widget-icon">
-              <WidgetIcon className="fa fa-users text-secondary"  />
-              <div className="card-body">
-                <h3 className="text-primary">
-                  <FormattedNumber value={total}/>
-                </h3>
-                {tu("total_accounts")}
+        <main className="container header-overlap pb-3">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="card h-100 text-center widget-icon">
+                <WidgetIcon className="fa fa-users text-secondary"/>
+                <div className="card-body">
+                  <h3 className="text-primary">
+                    <FormattedNumber value={total}/>
+                  </h3>
+                  {tu("total_accounts")}
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
+          {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12">
-              <StickyContainer>
-                <div className="card mt-1">
-                  <Sticky>
-                    {
-                      ({style}) => (
-                        <div className="card-body bg-white py-3 border-bottom" style={{zIndex: 100, ...style}}>
-                          <Paging onChange={this.onChange} url={match.url} total={total} loading={loading} />
-                        </div>
-                      )
-                    }
-                  </Sticky>
-                  {this.renderAccounts()}
-                </div>
-              </StickyContainer>
+              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.loadAccounts(page, pageSize)
+                          }}/>
             </div>
           </div>
-      </main>
+        </main>
     )
   }
 }
