@@ -920,6 +920,7 @@ export const messages = {
   "no_message":"暂无，请发邮件补充信息",
   "insufficient_message":"信息不充分",
   "token_detail":"通证详情",
+  "contact_us":"联系我们",
 
   /*
   ##################################################################################
@@ -945,7 +946,7 @@ export const messages = {
   "no_logo_error":"未上传logo",
   "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",
   "tick_checkbox":"需要勾选确认",
-  "change_info":"信息不准确？联系我们核实身份更新信息",
+  "change_info":"信息不准确？核实身份更新信息请",
   "total":"总",
 
   /*

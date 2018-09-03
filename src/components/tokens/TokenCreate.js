@@ -79,6 +79,13 @@ class TokenCreate extends Component {
       modal: null,
     });
   };
+  redirectToTokenList = () => {
+    this.setState({
+      modal: null,
+    },()=>{
+      window.location.hash="#/myToken";
+    });
+  }
   preSubmit = () => {
     let {intl} = this.props;
     let {checkbox} = this.state;
@@ -137,12 +144,12 @@ class TokenCreate extends Component {
                   success
                   confirmBtnText={intl.formatMessage({id: 'confirm'})}
                   confirmBtnBsStyle="success"
-                  onConfirm={this.hideModal}
+                  onConfirm={this.redirectToTokenList}
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
                 {tu("token_issued_successfully")}<br/>
                 {tu("token_link_message_0")}{' '}
-                <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
+                {tu("token_link_message_1")}{' '}
                 {tu("token_link_message_2")}
               </SweetAlert>
         });

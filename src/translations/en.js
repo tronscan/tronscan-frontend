@@ -929,6 +929,7 @@ export const messages = {
   "no_message":"N/A (Please send an email to complete this information)",
   "insufficient_message":"Insufficient information",
   "token_detail":"Token Detail",
+  "contact_us":"Contact us",
 
   /*
 ##################################################################################
@@ -954,7 +955,7 @@ export const messages = {
   "no_logo_error":"no logo found",
   "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
   "tick_checkbox":"Need to tick the Checkbox",
-  "change_info":"If the information is not correct, please contact us",
+  "change_info":"If the information is not correct, please",
   "total":"total",
 
   /*

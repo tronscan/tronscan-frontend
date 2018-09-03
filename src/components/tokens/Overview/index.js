@@ -43,7 +43,7 @@ class TokenOverview extends Component {
     this.setState({loading: true});
 
     let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
-   
+
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
     /*
@@ -347,15 +347,17 @@ class TokenOverview extends Component {
         width: '40%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-              <img src={require('../../../images/logo_42.png')}/>
-            
-              <div>
-                <h5><TokenLink name={record.name}
-                              namePlus={record.name + ' (' + record.abbr + ')'}/>
-                </h5>
-                <p>{record.description}</p>
-              </div>
+            {record.imgUrl ?
+                <img src={record.imgUrl}/> :
+                <img src={require('../../../images/logo_default.png')}/>
+            }
+            <div>
+              <h5><TokenLink name={record.name}
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+              </h5>
+              <p>{record.description}</p>
             </div>
+          </div>
         }
       },
       {
@@ -433,7 +435,8 @@ class TokenOverview extends Component {
             <div className="row">
               <div className="col-md-12">
 
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} rowClassName="table-row"
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                            rowClassName="table-row"
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
                             }}/>

@@ -14,6 +14,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {Link} from "react-router-dom";
 import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
@@ -373,8 +374,8 @@ class TokenDetail extends React.Component {
                         <div className="card-body">
                           <div className="d-flex">
                             {token && token.imgUrl ?
-                                <img className='token-logo' src={require(token.imgUrl)}/> :
-                                <img className='token-logo' src={require('../../../images/logo_42.png')}/>
+                                <img className='token-logo' src={token.imgUrl}/> :
+                                <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                             }
                             <div style={{width: '80%'}}>
                               <h5 className="card-title">
@@ -401,7 +402,7 @@ class TokenDetail extends React.Component {
                             </td>
                             <th>{tu("reputation")}:</th>
                             <td>
-                              {token.reputation && tu(token.reputation)}
+                              <Link to={`/rating`}>{tu(token.reputation)}</Link>
                             </td>
                           </tr>
                           <tr>

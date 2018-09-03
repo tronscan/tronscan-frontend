@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
 import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
@@ -10,6 +10,7 @@ import {withTimers} from "../../../utils/timing";
 import {FormattedNumber, injectIntl} from "react-intl";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
+import {TronLoader} from "../../common/loaders";
 
 class Transfers extends React.Component {
 
@@ -158,17 +159,17 @@ class Transfers extends React.Component {
     }
 
     return (
-
+        <Fragment>
+        {loading && <div className="loading-style"><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12">
-
             <SmartTable border={false} loading={loading} column={column} data={transfers} total={total}
                         onPageChange={(page, pageSize) => {
                           this.loadPage(page, pageSize)
                         }}/>
           </div>
         </div>
-
+        </Fragment>
     )
   }
 }

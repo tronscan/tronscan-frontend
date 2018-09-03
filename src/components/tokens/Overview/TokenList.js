@@ -353,11 +353,14 @@ class TokenList extends Component {
         width: '50%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            <img src={require('../../../images/logo_42.png')}/>
-          
+            {record.imgUrl ?
+                <img src={record.imgUrl}/> :
+                <img src={require('../../../images/logo_default.png')}/>
+            }
+
             <div>
               <h5><TokenLink name={record.name}
-                            namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
               </h5>
               <p>{record.description}</p>
             </div>
