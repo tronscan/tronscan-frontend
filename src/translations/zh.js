@@ -919,6 +919,7 @@ export const messages = {
   "download_excel": "下载模板",
   "no_message":"暂无，请发邮件补充信息",
   "insufficient_message":"信息不充分",
+  "token_detail":"通证详情",
 
   /*
   ##################################################################################

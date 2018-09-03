@@ -949,7 +949,7 @@ class Account extends Component {
                     }
                     </tbody>
                   </table>
-                  <button className="btn btn-danger btn-lg" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>通证详情</button>
+                  <button className="btn btn-danger btn-lg" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>{tu('token_detail')}</button>
                 </div>
               </div>
             </div>
