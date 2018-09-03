@@ -134,3 +134,7 @@
         
     }
 }
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+}
