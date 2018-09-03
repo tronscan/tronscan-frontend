@@ -371,7 +371,10 @@ class TokenDetail extends React.Component {
                     <div className="card">
                       <div className="card-body">
                         <div className="d-flex">
-                          <img className='token-logo' src={require('../../../images/logo_42.png')}/>
+                          {token.imgUrl ?
+                              <img className='token-logo' src={require(token.imgUrl)}/> :
+                              <img className='token-logo' src={require('../../../images/logo_42.png')}/>
+                          }
                           <div style={{width: '80%'}}>
                             <h5 className="card-title">
                               {token.name}

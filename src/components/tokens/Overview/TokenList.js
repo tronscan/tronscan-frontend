@@ -348,13 +348,16 @@ class TokenList extends Component {
       },
       {
         title: 'LOGO',
-        dataIndex: 'imgLogo',
-        key: 'imgLogo',
+        dataIndex: 'imgUrl',
+        key: 'imgUrl',
         width: '80px',
         align: 'center',
         className: 'ant_table_img',
         render: (text, record, index) => {
-          return <img src={require('../../../images/logo_42.png')}/>
+          if (text)
+            return <img src={require(text)}/>
+          else
+            return <img src={require('../../../images/logo_42.png')}/>
         }
       },
       {

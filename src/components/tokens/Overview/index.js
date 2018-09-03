@@ -42,19 +42,19 @@ class TokenOverview extends Component {
     let {intl} = this.props;
     this.setState({loading: true});
 
-    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize+"&status=ico");
-    console.log(result);
+    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+   
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
-/*
-    let {tokens, total} = await Client.getTokens({
-      sort: '-name',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      status: 'ico',
-      ...filter,
-    });
-*/
+    /*
+        let {tokens, total} = await Client.getTokens({
+          sort: '-name',
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          status: 'ico',
+          ...filter,
+        });
+    */
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
@@ -342,13 +342,16 @@ class TokenOverview extends Component {
       },
       {
         title: 'LOGO',
-        dataIndex: 'imgLogo',
-        key: 'imgLogo',
+        dataIndex: 'imgUrl',
+        key: 'imgUrl',
         width: '80px',
         align: 'center',
         className: 'ant_table_img',
         render: (text, record, index) => {
-          return <img src={require('../../../images/logo_42.png')}/>
+          if (text)
+            return <img src={require(text)}/>
+          else
+            return <img src={require('../../../images/logo_42.png')}/>
         }
       },
       {
