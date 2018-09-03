@@ -145,7 +145,7 @@ class Accounts extends Component {
         key: 'balance',
         align: 'center',
         className: 'ant_table',
-        width: '10%',
+        width: '12%',
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
