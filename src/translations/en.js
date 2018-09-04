@@ -980,8 +980,9 @@ export const messages = {
   "circulating_supply":"Circulating supply",
   "issue_info":"Issuance Info",
   "transferring":"In progress",
+  "in_progress":"In progress",
   "fail_transaction":"Transaction failed",
   "records":"Records",
-  "part_totle": "A total of ",
+  "part_total": "A total of ",
   "part_pass": "tokens found",
 };

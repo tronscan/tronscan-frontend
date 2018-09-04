@@ -114,7 +114,18 @@ class TokenCreate extends Component {
     let {account, intl} = this.props;
     let {logoData} = this.state;
 
-    this.setState({modal: null, loading: true});
+    this.setState({
+      modal:
+          <SweetAlert
+              showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'in_progress'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+          >
+          </SweetAlert>,
+      loading: true
+    });
 
     try {
       let result = await Client.createToken({
@@ -148,8 +159,8 @@ class TokenCreate extends Component {
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
                 {tu("token_issued_successfully")}<br/>
-                {tu("token_link_message_0")}{' '}
-                {tu("token_link_message_1")}{' '}
+                {tu("token_link_message_0")}
+                {tu("token_link_message_1")}
                 {tu("token_link_message_2")}
               </SweetAlert>
         });

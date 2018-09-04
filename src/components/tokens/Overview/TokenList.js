@@ -421,7 +421,7 @@ class TokenList extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match,intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_totle'})+' ' + total +' '+ intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: 'part_total'})+' ' + total +' '+ intl.formatMessage({id: 'part_pass'})
     return (
         <main className="container header-overlap token_black">
           {alert}
