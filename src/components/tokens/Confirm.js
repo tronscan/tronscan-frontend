@@ -79,7 +79,7 @@ class Confirm extends Component {
             <span style={{color: 'red', fontSize: '12px'}}>{tu('confirm_issue_info')}</span>
           </h5>
           <form>
-            <fieldset>
+            <fieldset className="pt-4">
               <strong>{tu("basic_info")}</strong>
               <table className="table confirm">
                 <tbody>
@@ -100,7 +100,7 @@ class Confirm extends Component {
               </table>
             </fieldset>
 
-            <fieldset>
+            <fieldset className="pt-4">
 
               <strong>{tu("exchange_setting")}</strong>
 
@@ -125,7 +125,7 @@ class Confirm extends Component {
               </table>
 
             </fieldset>
-            <fieldset>
+            <fieldset className="pt-4">
               <strong>{tu("frozen_supply")}</strong>
               <br/>
               {showFrozenSupply &&

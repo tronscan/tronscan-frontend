@@ -14,6 +14,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {Link} from "react-router-dom";
 import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
@@ -49,7 +50,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("http://tronapp.co:9009/api/token?name=" + name);
+    let result = await xhr.get("http://www.tronapp.co:9009/api/token?name=" + name);
     let token = result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
@@ -367,124 +368,127 @@ class TokenDetail extends React.Component {
                   </TronLoader>
                 </div> :
                 <div className="row">
-                  <div className="col-sm-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="d-flex">
-                          {token.imgUrl ?
-                              <img className='token-logo' src={require(token.imgUrl)}/> :
-                              <img className='token-logo' src={require('../../../images/logo_42.png')}/>
-                          }
-                          <div style={{width: '80%'}}>
-                            <h5 className="card-title">
-                              {token.name}
-                            </h5>
-                            <p className="card-text">{token.description}</p>
-                          </div>
-                          <div className="ml-auto">
-                            {/*
+                  { token &&
+                    <div className="col-sm-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <div className="d-flex">
+                            {token && token.imgUrl ?
+                                <img className='token-logo' src={token.imgUrl}/> :
+                                <img className='token-logo' src={require('../../../images/logo_default.png')}/>
+                            }
+                            <div style={{width: '80%'}}>
+                              <h5 className="card-title">
+                                {token.name}
+                              </h5>
+                              <p className="card-text">{token.description}</p>
+                            </div>
+                            <div className="ml-auto">
+                              {/*
                             <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
                             <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
-                            <button className="btn btn-default btn-xs"
-                                    onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
+                              <button className="btn btn-default btn-xs"
+                                      onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
+                            </div>
                           </div>
                         </div>
+
+                        <table className="table m-0 tokenDetail">
+                          <tbody>
+                          <tr>
+                            <th>{tu("total_supply")}:</th>
+                            <td>
+                              <FormattedNumber value={token.totalSupply}/>
+                            </td>
+                            <th>{tu("reputation")}:</th>
+                            <td>
+                              <Link to={`/rating`}>{tu(token.reputation)}<img src={require('../../../images/state/'+token.reputation+'_active.png')} className="ml-1 faceico"/></Link>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("circulating_supply")}:</th>
+                            <td>
+                              <FormattedNumber value={token.issued}/>
+                            </td>
+                            <th>{tu("website")}:</th>
+                            <td>
+                              <ExternalLink url={token.url}/>
+                            </td>
+
+                          </tr>
+                          <tr>
+                            <th>{tu("token_holders")}:</th>
+                            <td>
+                              <FormattedNumber value={token.nrOfTokenHolders}/>
+                            </td>
+                            <th>{tu("issuer")}:</th>
+                            <td>
+                              <AddressLink address={token.ownerAddress}/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("nr_of_Transfers")}:</th>
+                            <td>
+                              <FormattedNumber value={token.totalTransactions}/>
+                            </td>
+                            <th>{tu("white_paper")}:</th>
+                            <td>{
+                              token.white_paper !== 'no_message' ?
+                                  <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
+                                  <span style={{color: '#d8d8d8'}}>-</span>
+                            }
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("start_date")}:</th>
+                            <td>
+                              <FormattedDate value={token.startTime}/>{' '}
+                              <FormattedTime value={token.startTime}/>
+                            </td>
+                            <th>{tu("GitHub")}:</th>
+                            <td>{
+                              token.github !== 'no_message' ?
+                                  <ExternalLink url={token.github && tu(token.github)}/> :
+                                  <span style={{color: '#d8d8d8'}}>-</span>
+                            }
+                            </td>
+                          </tr>
+
+                          </tbody>
+                        </table>
                       </div>
 
-                      <table className="table m-0 tokenDetail">
-                        <tbody>
-                        <tr>
-                          <th>{tu("total_supply")}:</th>
-                          <td>
-                            <FormattedNumber value={token.totalSupply}/>
-                          </td>
-                          <th>{tu("reputation")}:</th>
-                          <td>
-                            {token.reputation && tu(token.reputation)}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("circulating_supply")}:</th>
-                          <td>
-                            <FormattedNumber value={token.issued}/>
-                          </td>
-                          <th>{tu("website")}:</th>
-                          <td>
-                            <ExternalLink url={token.url}/>
-                          </td>
-
-                        </tr>
-                        <tr>
-                          <th>{tu("token_holders")}:</th>
-                          <td>
-                            <FormattedNumber value={token.nrOfTokenHolders}/>
-                          </td>
-                          <th>{tu("issuer")}:</th>
-                          <td>
-                            <AddressLink address={token.ownerAddress}/>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("nr_of_Transfers")}:</th>
-                          <td>
-                            <FormattedNumber value={token.totalTransactions}/>
-                          </td>
-                          <th>{tu("white_paper")}:</th>
-                          <td>{
-                            token.white_paper !== 'no_message' ?
-                                <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
-                                <span>-</span>
-                          }
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("start_date")}:</th>
-                          <td>
-                            <FormattedDate value={token.startTime}/>{' '}
-                            <FormattedTime value={token.startTime}/>
-                          </td>
-                          <th>{tu("GitHub")}:</th>
-                          <td>{
-                            token.github !== 'no_message' ?
-                                <ExternalLink url={token.github && tu(token.github)}/> :
-                                <span>-</span>
-                          }
-                          </td>
-                        </tr>
-
-                        </tbody>
-                      </table>
+                      <div className="card mt-3">
+                        <div className="card-header">
+                          <ul className="nav nav-tabs card-header-tabs" style={{
+                            height: '50px', marginTop: '-12px', marginLeft: '-20px'
+                          }}>
+                            {
+                              tabs.map(tab => (
+                                  <li key={tab.id} className="nav-item">
+                                    <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
+                                      <i className={tab.icon + " mr-2"}/>
+                                      {tab.label}
+                                    </NavLink>
+                                  </li>
+                              ))
+                            }
+                          </ul>
+                        </div>
+                        <div className="card-body p-0">
+                          <Switch>
+                            {
+                              tabs.map(tab => (
+                                  <Route key={tab.id} exact path={match.url + tab.path} render={() => (<tab.cmp/>)}/>
+                              ))
+                            }
+                          </Switch>
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="card mt-3">
-                      <div className="card-header">
-                        <ul className="nav nav-tabs card-header-tabs" style={{
-                          height: '50px', marginTop: '-12px', marginLeft: '-20px'
-                        }}>
-                          {
-                            tabs.map(tab => (
-                                <li key={tab.id} className="nav-item">
-                                  <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
-                                    <i className={tab.icon + " mr-2"}/>
-                                    {tab.label}
-                                  </NavLink>
-                                </li>
-                            ))
-                          }
-                        </ul>
-                      </div>
-                      <div className="card-body p-0">
-                        <Switch>
-                          {
-                            tabs.map(tab => (
-                                <Route key={tab.id} exact path={match.url + tab.path} render={() => (<tab.cmp/>)}/>
-                            ))
-                          }
-                        </Switch>
-                      </div>
-                    </div>
-                  </div>
+                  }
                 </div>
+
           }
 
         </main>

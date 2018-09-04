@@ -200,7 +200,7 @@ export class BasicInfo extends PureComponent {
                       <img className="previewLogo" id="previewLogo" src={logoUrl}
                           style={{width: '60px', height: '60px', marginTop: '-52px', marginLeft: '10px'}}/>
                       <a className="close" onClick={this.resetLogo}>
-                        <i className="fa fa-times" ariaHidden="true"></i>
+                        <i className="fa fa-times" aria-hidden="true"></i>
                       </a>
                     </div>
                     }
@@ -209,10 +209,11 @@ export class BasicInfo extends PureComponent {
                 </div>
               </div>
             </fieldset>
-
+            <div className="pt-2">
             <a className="btn btn-danger btn-lg" onClick={() => {
               this.isValid()
             }}>{tu('next')}</a>
+            </div>
           </form>
 
         </main>

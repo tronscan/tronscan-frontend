@@ -43,7 +43,7 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
 
-    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -64,9 +64,6 @@ class TokenList extends Component {
       //   tokens.splice(9, 1, token);
     }
     catch (e) {
-    }
-    for (let index in tokens) {
-      tokens[index].index = parseInt(index) + 1;
     }
 
     this.setState({
@@ -353,11 +350,14 @@ class TokenList extends Component {
         width: '50%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            <img src={require('../../../images/logo_42.png')}/>
-          
+            {record.imgUrl ?
+                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={record.imgUrl}/></div> :
+                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={require('../../../images/logo_default.png')}/></div>
+            }
+
             <div>
               <h5><TokenLink name={record.name}
-                            namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
               </h5>
               <p>{record.description}</p>
             </div>
@@ -371,7 +371,10 @@ class TokenList extends Component {
         align: 'center',
         className: 'ant_table',
         render: (text, record, index) => {
-          return text && intl.formatMessage({id: text})
+          return <div>
+            {text && intl.formatMessage({id: text})}
+            <img src={require('../../../images/state/'+text+'.png')} className="ml-1 faceico"/>
+          </div>
         }
       },
       {
@@ -416,15 +419,17 @@ class TokenList extends Component {
 
   render() {
     let {tokens, alert, loading, total} = this.state;
-    let {match} = this.props;
+    let {match,intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'part_totle'})+' ' + total +' '+ intl.formatMessage({id: 'part_pass'})
     return (
         <main className="container header-overlap token_black">
           {alert}
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-12 table_pos">
+                {total? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div>: ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)

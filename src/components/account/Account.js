@@ -888,7 +888,7 @@ class Account extends Component {
                 <div className="card">
                   <div className="card-body px-0 border-0">
                     <h5 className="card-title text-center m-0">
-                      {tu("Issued Token")}
+                      {tu("issued_token")}
                     </h5>
                   </div>
                   <table className="table m-0">
@@ -949,7 +949,7 @@ class Account extends Component {
                     }
                     </tbody>
                   </table>
-                  <button className="btn btn-danger btn-lg" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>通证详情</button>
+                  <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>{tu('token_detail')}</button>
                 </div>
               </div>
             </div>

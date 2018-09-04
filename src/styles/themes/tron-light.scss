@@ -134,6 +134,9 @@
             }
             &-checked {
                 background-color: $main-red;
+                span{
+                    color: $white!important;
+                }
             }
         }
         // 通证-创建 模块样式覆盖
@@ -192,7 +195,6 @@
                     td,
                     th {
                         border-color: #eee;
-                        padding-left: 0;
                     }
                     th {
                         color: $border-color;

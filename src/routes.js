@@ -170,7 +170,7 @@ export const routes = [
     showInMenu: false,
   },
   {
-    label: "MyToken",
+    label: "my_token",
     component: MyTokenAsync,
     path: "/myToken",
     showInMenu: false

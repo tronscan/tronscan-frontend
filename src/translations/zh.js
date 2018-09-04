@@ -914,12 +914,14 @@ export const messages = {
   "website_official": "官方网站",
   "white_paper": "白皮书",
   "GitHub": "GitHub",
-  "country": "所在国家或地区",
+  "country": "国家",
   "social_link": "社交媒体链接",
   "download_excel": "下载模板",
   "no_message":"暂无，请发邮件补充信息",
   "insufficient_message":"信息不充分",
-
+  "token_detail":"通证详情",
+  "contact_us":"联系我们",
+  "my_token":"我的通证",
   /*
   ##################################################################################
   #                                                                                #
@@ -944,8 +946,11 @@ export const messages = {
   "no_logo_error":"未上传logo",
   "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",
   "tick_checkbox":"需要勾选确认",
-  "change_info":"信息不准确？联系我们核实身份更新信息",
+  "change_info":"信息不准确？核实身份更新信息请",
   "total":"总",
+  "a_totle": "共",
+  "transaction_info": "条交易信息",
+  "hold_addr": "通证持有地址",
 
   /*
 ##################################################################################
@@ -967,5 +972,6 @@ export const messages = {
   "transferring":"转账中",
   "fail_transaction":"交易失败",
   "records":"条记录",
-
+  "part_totle": "波场网络当前共",
+  "part_pass": "个通证",
 };

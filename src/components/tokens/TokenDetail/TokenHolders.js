@@ -1,11 +1,12 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {tu} from "../../../utils/i18n";
 import {AddressLink} from "../../common/Links";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
-
+import {TronLoader} from "../../common/loaders";
+import {upperFirst} from "lodash";
 
 class TokenHolders extends React.Component {
 
@@ -57,7 +58,7 @@ class TokenHolders extends React.Component {
 
   };
   customizedColumn = () => {
-    let {intl,token} = this.props;
+    let {intl, token} = this.props;
     let column = [
       {
         title: '#',
@@ -76,10 +77,10 @@ class TokenHolders extends React.Component {
         }
       },
       {
-        title: intl.formatMessage({id: 'quantity'}),
+        title: upperFirst(intl.formatMessage({id: 'quantity'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        width: '14%',
+        width: '20%',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -90,7 +91,7 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'percentage'}),
         dataIndex: 'percentage',
         key: 'percentage',
-        width: '14%',
+        width: '18%',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -110,23 +111,27 @@ class TokenHolders extends React.Component {
 
   render() {
     let {addresses, total, loading} = this.state;
+    let {intl} = this.props
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center">{tu("no_holders_found")}</div>
       );
     }
     return (
-
+      <Fragment>
+        {loading && <div className="loading-style"><TronLoader/></div>}
         <div className="row transfers">
-          <div className="col-md-12">
-
+          <div className="col-md-12 table_pos">
+            {total? <div className="table_pos_info">{tableInfo}</div>: ''}
             <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                         onPageChange={(page, pageSize) => {
                           this.loadPage(page, pageSize)
                         }}/>
           </div>
         </div>
+      </Fragment>
     )
   }
 
