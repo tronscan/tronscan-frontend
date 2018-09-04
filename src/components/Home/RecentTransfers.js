@@ -25,27 +25,15 @@ class RecentTransfers extends Component {
   }
 
   componentDidMount() {
-    this.load();
+    this.props.loadTransactions();
     this.props.setInterval(() => {
-      this.load();
+      this.props.loadTransactions();
     }, 6000);
   }
 
-  load = async () => {
-    let {transfers} = await Client.getTransfers({
-      sort: '-timestamp',
-      limit: 15,
-      count: null,
-    });
-
-    this.setState({ transfers });
-  };
-
   render() {
-
-    let {transfers} = this.state;
-
-    if (transfers === null) {
+    let {transactions} = this.props;
+    if (transactions === null) {
       return (
         <div className="text-center d-flex justify-content-center">
           <TronLoader/>
@@ -53,7 +41,7 @@ class RecentTransfers extends Component {
       );
     }
 
-    if (transfers.length === 0) {
+    if (transactions.length === 0) {
       return (
         <div className="text-center d-flex justify-content-center">
           <TronLoader/>
@@ -74,8 +62,8 @@ class RecentTransfers extends Component {
         <ul className="list-group list-group-flush" style={styles.list}>
 
         {
-          transfers.map((transfer, i) => (
-            <li key={transfer.transactionHash} className="list-group-item overflow-h">
+            transactions.map((transfer, i) => (
+            <li key={transfer.transactionHash} className="list-group-item overflow-h" >
               <div className="media">
                 <div className="media-body mb-0 d-flex">
                   <div className="text-left pt-1">
@@ -117,6 +105,7 @@ class RecentTransfers extends Component {
 
 function mapStateToProps(state) {
   return {
+    transactions: state.blockchain.transactions,
     activeLanguage: state.app.activeLanguage,
   };
 }

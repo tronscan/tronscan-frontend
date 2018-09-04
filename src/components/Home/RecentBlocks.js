@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {tu} from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-//import {loadBlocks} from "../../actions/blockchain";
+import {loadBlocks} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
@@ -24,36 +24,14 @@ class RecentBlocks extends Component {
   }
 
   componentDidMount() {
-    this.loadBlocks();
+    this.props.loadBlocks();
     this.props.setInterval(() => {
-      this.loadBlocks();
+        this.props.loadBlocks();
     }, 6000);
   }
 
-  loadBlocks = async () => {
-    let {blocks} = await Client.getBlocks({
-        order: '-timestamp',
-        limit: 15,
-    });
-    let {witnesses} = await Client.getWitnesses();
-
-    for(let block in blocks){
-        for(let witness in witnesses){
-            if(blocks[block].witnessAddress===witnesses[witness].address){
-                if(witnesses[witness].name!=="")
-                    blocks[block].witnessName=witnesses[witness].name;
-                else
-                    blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
-            }
-
-        }
-    }
-    this.setState({ blocks });
-  };
-
   render() {
-    let {blocks} = this.state;
-
+    let {blocks} = this.props;
     if (blocks.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center">
@@ -77,7 +55,7 @@ class RecentBlocks extends Component {
               blocks.map(block => (
                   <li key={block.number} className="list-group-item overflow-h">
                     <div key={block.number} className="d-flex flex-column">
-                      <div className="media-body mb-0 d-flex">
+                      <div className="media-body mb-0 d-flex" style={{paddingTop:1}}>
                         <div className="text-left">
                           <Link className= "mr-1 d-flex justify-content-start color-tron-100 pt-1 list-item-word"
                                 to={`/block/${block.number}`}>
@@ -124,13 +102,13 @@ class RecentBlocks extends Component {
 
 function mapStateToProps(state) {
   return {
-    //blocks: state.blockchain.blocks,
+    blocks: state.blockchain.blocks,
     activeLanguage: state.app.activeLanguage,
   };
 }
 
 const mapDispatchToProps = {
-  //loadBlocks,
+  loadBlocks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(RecentBlocks)))

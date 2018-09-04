@@ -32,6 +32,7 @@ $color:#C23631;
         }
       }
   }
+
   .navbar-dark .navbar-nav .nav-link {
     color: $color-grey-100;
   }
@@ -137,7 +138,6 @@ $color:#C23631;
   }
   .list-group-item{
     border-color: #EEEEEE;
-    height: 100px;
     &:hover{
       background-color: rgba(255,555,255,0)!important;
     }
@@ -152,7 +152,13 @@ $color:#C23631;
     white-space:nowrap;
     text-overflow:ellipsis;
   }
-
+  .navbar-dark .navbar-toggler{
+    color: $color-grey-300;
+    border-color: $color-grey-300;
+  }
+  .navbar-dark .navbar-toggler-icon {
+    background: url("../images/main/navbar_toggler_icon.png") no-repeat;
+}
 
 
 }
