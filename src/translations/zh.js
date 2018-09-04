@@ -970,8 +970,9 @@ export const messages = {
   "circulating_supply":"流通量",
   "issue_info":"发行信息",
   "transferring":"转账中",
+  "in_progress":"处理中",
   "fail_transaction":"交易失败",
   "records":"条记录",
-  "part_totle": "波场网络当前共",
+  "part_total": "波场网络当前共",
   "part_pass": "个通证",
 };

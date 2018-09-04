@@ -97,6 +97,7 @@ export class BasicInfo extends PureComponent {
   }
 
   resetLogo = () => {
+    document.getElementById("logo").value=null;
     this.setState({logoUrl: null});
     this.setState({logoData: null});
   }

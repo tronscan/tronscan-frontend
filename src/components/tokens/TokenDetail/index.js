@@ -440,10 +440,10 @@ class TokenDetail extends React.Component {
                             </td>
                           </tr>
                           <tr>
-                            <th>{tu("start_date")}:</th>
+                            <th>{tu("created")}:</th>
                             <td>
-                              <FormattedDate value={token.startTime}/>{' '}
-                              <FormattedTime value={token.startTime}/>
+                              <FormattedDate value={token.dateCreated}/>{' '}
+                              <FormattedTime value={token.dateCreated}/>
                             </td>
                             <th>{tu("GitHub")}:</th>
                             <td>{
