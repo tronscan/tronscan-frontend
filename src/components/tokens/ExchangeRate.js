@@ -127,20 +127,9 @@ export class ExchangeRate extends PureComponent {
                   {tu("exchange_rate_message_0")}
                 </p>
               </div>
+              
               <div className="form-row">
-                <div className="form-group col-md-12">
-                  <label>* {tu("token")} {tu("amount")}</label>
-                  <NumberField
-                      className="form-control"
-                      value={numberOfCoins}
-                      min={1}
-                      onChange={(value) => this.setState({numberOfCoins: value})}/>
-                  {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
-                </div>
-                
-              </div>
-              <div className="form-row">
-              <div className="form-group col-md-12">
+                <div className="form-group col-md-6">
                   <label>* <span>TRX</span> {tu("amount")}</label>
                   <NumberField
                       className="form-control"
@@ -156,9 +145,21 @@ export class ExchangeRate extends PureComponent {
                     value={exchangeRate} maximumFractionDigits={7} minimunFractionDigits={7}/> TRX
                 </p>
               </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <label>* {tu("token")} {tu("amount")}</label>
+                  <NumberField
+                      className="form-control"
+                      value={numberOfCoins}
+                      min={1}
+                      onChange={(value) => this.setState({numberOfCoins: value})}/>
+                  {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
+                </div>
+                
+              </div>
             </fieldset>
-            <hr/>
-            <fieldset>
+            
+            <fieldset className="mb-3">
               <legend>
                 {tu("participation")}
               </legend>
@@ -195,10 +196,12 @@ export class ExchangeRate extends PureComponent {
                 </div>
               </div>
             </fieldset>
+            <div className="pt-2">
             <a className="btn btn-default btn-lg" onClick={()=>{nextStep(1)}}>{tu('prev_step')}</a>
             <a className="ml-4 btn btn-danger btn-lg" onClick={() => {
               this.isValid()
             }}>{tu('next')}</a>
+            </div>
           </form>
 
         </main>

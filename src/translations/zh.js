@@ -914,7 +914,7 @@ export const messages = {
   "website_official": "官方网站",
   "white_paper": "白皮书",
   "GitHub": "GitHub",
-  "country": "所在国家或地区",
+  "country": "国家",
   "social_link": "社交媒体链接",
   "download_excel": "下载模板",
   "no_message":"暂无，请发邮件补充信息",
@@ -948,6 +948,9 @@ export const messages = {
   "tick_checkbox":"需要勾选确认",
   "change_info":"信息不准确？核实身份更新信息请",
   "total":"总",
+  "a_totle": "共",
+  "transaction_info": "条交易信息",
+  "hold_addr": "通证持有地址",
 
   /*
 ##################################################################################
@@ -969,5 +972,6 @@ export const messages = {
   "transferring":"转账中",
   "fail_transaction":"交易失败",
   "records":"条记录",
-
+  "part_totle": "波场网络当前共",
+  "part_pass": "个通证",
 };

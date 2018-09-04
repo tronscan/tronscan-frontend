@@ -157,7 +157,7 @@ export class FreezeSupply extends Component {
                     </div>
                     {
 
-                      <div className="form-group col-md-2">
+                      <div className="form-group col-md-2" style={{textAlign: 'center'}}>
                         {
                           index === 0 &&
                           <a className="anticon anticon-plus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
@@ -180,12 +180,14 @@ export class FreezeSupply extends Component {
                 </div>
               }
             </fieldset>
-            <a className="btn btn-default btn-lg" onClick={() => {
-              nextStep(2)
-            }}>{tu('prev_step')}</a>
-            <a className="ml-4 btn btn-danger btn-lg" onClick={() => {
-              this.isValid()
-            }}>{tu('next')}</a>
+            <div className="pt-3">
+              <a className="btn btn-default btn-lg" onClick={() => {
+                nextStep(2)
+              }}>{tu('prev_step')}</a>
+              <a className="ml-4 btn btn-danger btn-lg" onClick={() => {
+                this.isValid()
+              }}>{tu('next')}</a>
+            </div>
           </form>
 
         </main>

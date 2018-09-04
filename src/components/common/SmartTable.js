@@ -14,9 +14,9 @@ export default class SmartTable extends Component {
       pagination: {
         position: 'both',
         showSizeChanger: true,
-        showTotal: function (total) {
-          return <div>{total} {tu('records')}</div>
-        }
+        // showTotal: function (total) {
+        //   return <div>{total} {tu('records')}</div>
+        // }
       },
       loading: false,
     }
@@ -167,7 +167,8 @@ export default class SmartTable extends Component {
 
     return (
 
-        <div className="card">
+        <div className="card table_pos">
+          
           <Table
               bordered={bordered}
               columns={columns}

@@ -402,7 +402,7 @@ class TokenDetail extends React.Component {
                             </td>
                             <th>{tu("reputation")}:</th>
                             <td>
-                              <Link to={`/rating`}>{tu(token.reputation)}</Link>
+                              <Link to={`/rating`}>{tu(token.reputation)}<img src={require('../../../images/state/'+token.reputation+'_active.png')} className="ml-1 faceico"/></Link>
                             </td>
                           </tr>
                           <tr>
@@ -435,7 +435,7 @@ class TokenDetail extends React.Component {
                             <td>{
                               token.white_paper !== 'no_message' ?
                                   <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
-                                  <span>-</span>
+                                  <span style={{color: '#d8d8d8'}}>-</span>
                             }
                             </td>
                           </tr>
@@ -449,7 +449,7 @@ class TokenDetail extends React.Component {
                             <td>{
                               token.github !== 'no_message' ?
                                   <ExternalLink url={token.github && tu(token.github)}/> :
-                                  <span>-</span>
+                                  <span style={{color: '#d8d8d8'}}>-</span>
                             }
                             </td>
                           </tr>

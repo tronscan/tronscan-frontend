@@ -958,6 +958,9 @@ export const messages = {
   "tick_checkbox":"Need to tick the Checkbox",
   "change_info":"If the information is not correct, please",
   "total":"total",
+  "a_totle": "A Total of",
+  "transaction_info": "transactions found",
+  "hold_addr": "Token Holders",
 
   /*
 ##################################################################################
@@ -979,4 +982,6 @@ export const messages = {
   "transferring":"In progress",
   "fail_transaction":"Transaction failed",
   "records":"Records",
+  "part_totle": "A total of ",
+  "part_pass": "tokens found",
 };

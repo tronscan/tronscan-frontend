@@ -430,10 +430,8 @@ class TokenOverview extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12">
-
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
-                            rowClassName="table-row"
+              <div className="col-md-12 ">
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} rowClassName="table-row"
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
                             }}/>
