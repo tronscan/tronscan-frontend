@@ -42,7 +42,7 @@ class TokenOverview extends Component {
     let {intl} = this.props;
     this.setState({loading: true});
 
-    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -348,8 +348,8 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <img src={record.imgUrl}/> :
-                <img src={require('../../../images/logo_default.png')}/>
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={record.imgUrl}/> :
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={require('../../../images/logo_default.png')}/>
             }
             <div>
               <h5><TokenLink name={record.name}

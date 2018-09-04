@@ -930,6 +930,7 @@ export const messages = {
   "insufficient_message":"Insufficient information",
   "token_detail":"Token Detail",
   "contact_us":"Contact us",
+  "my_token":"My Token",
 
   /*
 ##################################################################################
