@@ -58,9 +58,6 @@ class TokenOverview extends Component {
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
-    for (let index in tokens) {
-      tokens[index].index = parseInt(index) + 1;
-    }
 
     this.setState({
       loading: false,
@@ -348,8 +345,8 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={record.imgUrl}/> :
-                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={require('../../../images/logo_default.png')}/>
+                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={record.imgUrl}/></div> :
+                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
             <div>
               <h5><TokenLink name={record.name}
