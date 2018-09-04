@@ -17,7 +17,7 @@ import ExchangeRate from "./ExchangeRate.js"
 import FreezeSupply from "./FreezeSupply.js"
 import Confirm from "./Confirm.js"
 import xhr from "axios/index";
-
+import {TronLoader} from "../common/loaders";
 import {Steps} from 'antd';
 
 class TokenCreate extends Component {
@@ -82,8 +82,8 @@ class TokenCreate extends Component {
   redirectToTokenList = () => {
     this.setState({
       modal: null,
-    },()=>{
-      window.location.hash="#/myToken";
+    }, () => {
+      window.location.hash = "#/myToken";
     });
   }
   preSubmit = () => {
@@ -123,6 +123,7 @@ class TokenCreate extends Component {
               title={intl.formatMessage({id: 'in_progress'})}
               style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
+            <TronLoader/>
           </SweetAlert>,
       loading: true
     });
