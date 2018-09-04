@@ -64,7 +64,7 @@ export default class TRONRating extends Component {
                     c. {tu('rating_status_3_desc_c')}
                   </p>
                   <p>
-                    {tu('rating_status_4')}
+                    4) {tu('rating_status_4')}
                   </p>
                   <p>
                     a. {tu('rating_status_4_desc_a')}
@@ -73,7 +73,7 @@ export default class TRONRating extends Component {
                     b. {tu('rating_status_4_desc_b')}
                   </p>
                   <p>
-                    {tu('rating_status_5')}
+                    5) {tu('rating_status_5')}
                   </p>
                   <p>
                     a. {tu('rating_status_5_desc_a')}

@@ -42,8 +42,8 @@ class TokenOverview extends Component {
     let {intl} = this.props;
     this.setState({loading: true});
 
-    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
-   
+    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
     /*
@@ -347,15 +347,17 @@ class TokenOverview extends Component {
         width: '40%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-              <img src={require('../../../images/logo_42.png')}/>
-            
-              <div>
-                <h5><TokenLink name={record.name}
-                              namePlus={record.name + ' (' + record.abbr + ')'}/>
-                </h5>
-                <p>{record.description}</p>
-              </div>
+            {record.imgUrl ?
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={record.imgUrl}/> :
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={require('../../../images/logo_default.png')}/>
+            }
+            <div>
+              <h5><TokenLink name={record.name}
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+              </h5>
+              <p>{record.description}</p>
             </div>
+          </div>
         }
       },
       {
@@ -394,7 +396,7 @@ class TokenOverview extends Component {
       {
         title: intl.formatMessage({id: 'issuing_price'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.price / ONE_TRX}/> TRX</div>
+          return <div><FormattedNumber value={record.price / ONE_TRX} maximumFractionDigits={6}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table'

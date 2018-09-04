@@ -43,7 +43,7 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
 
-    let result = await xhr.get("http://tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -353,10 +353,14 @@ class TokenList extends Component {
         width: '50%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            <img src={require('../../../images/logo_42.png')} className="faceico"/>
+            {record.imgUrl ?
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={record.imgUrl}/> :
+                <img style={{width:'42px',height:'42px',marginRight: '18px'}} src={require('../../../images/logo_default.png')}/>
+            }
+
             <div>
               <h5><TokenLink name={record.name}
-                            namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
               </h5>
               <p>{record.description}</p>
             </div>
@@ -372,7 +376,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <div>
             {text && intl.formatMessage({id: text})}
-            <img src={require('../../../images/state/'+text+'.png')} className="ml-1"/>
+            <img src={require('../../../images/state/'+text+'.png')} className="ml-1 faceico"/>
           </div>
         }
       },
