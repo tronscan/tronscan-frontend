@@ -136,7 +136,7 @@ export class ExchangeRate extends PureComponent {
                       value={numberOfTron}
                       min={1}
                       onChange={(value) => this.setState({numberOfTron: value})}/>
-                  {numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
+                  {numberOfTron === "" && ErrorLabel(errors.tronAmount)}
                 </div>
               </div>
               <div className="form-row">
@@ -153,7 +153,7 @@ export class ExchangeRate extends PureComponent {
                       value={numberOfCoins}
                       min={1}
                       onChange={(value) => this.setState({numberOfCoins: value})}/>
-                  {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
+                  {numberOfCoins === "" && ErrorLabel(errors.tokenAmount)}
                 </div>
                 
               </div>

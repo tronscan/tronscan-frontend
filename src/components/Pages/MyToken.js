@@ -89,7 +89,7 @@ class MyToken extends Component {
                 <div className="card">
                   <div className="card-body">
                     <div className="text-center p-3">
-                      {tu("record_not_found")}
+                      {tu("record_not_found")} &nbsp; {tu("try_later")}
                     </div>
                   </div>
                 </div>
