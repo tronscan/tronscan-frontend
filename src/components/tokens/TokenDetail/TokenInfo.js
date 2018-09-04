@@ -18,7 +18,7 @@ class TokenInfo extends React.Component {
   render() {
     let token = this.props.token;
     return (
-        <div>
+        <div className="tokenDetail_box">
           <table className="table m-0 tokenDetail">
             <tbody>
             <tr>

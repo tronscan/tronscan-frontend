@@ -72,14 +72,14 @@ class Confirm extends Component {
             {tu('token_issue_guide_message_3')}
           </p>
           <hr/>
-          <h5 className="card-title">
+          <h5 className="card-title mb-4">
             {tu("confirm_setting")}
             <i className="fa fa-exclamation-circle" aria-hidden="true"
                 style={{color: 'red', marginRight: '10px', marginLeft: '10px'}}></i>
             <span style={{color: 'red', fontSize: '12px'}}>{tu('confirm_issue_info')}</span>
           </h5>
           <form>
-            <fieldset className="pt-4">
+            <fieldset>
               <strong>{tu("basic_info")}</strong>
               <table className="table confirm">
                 <tbody>
@@ -100,7 +100,7 @@ class Confirm extends Component {
               </table>
             </fieldset>
 
-            <fieldset className="pt-4">
+            <fieldset>
 
               <strong>{tu("exchange_setting")}</strong>
 
@@ -125,12 +125,11 @@ class Confirm extends Component {
               </table>
 
             </fieldset>
-            <fieldset className="pt-4">
+            <fieldset>
               <strong className="pt-0" style={{display: 'block'}}>{tu("frozen_supply")}</strong>
-              <br/>
               {!showFrozenSupply ?
-                  <span>{tu('freeze_not_valid')}</span> :
-                  <table className="table ">
+                  <div className="pt-2"><span>{tu('freeze_not_valid')}</span><hr/></div>:
+                  <table className="table confirm_table">
                     <thead>
                       <tr>
                         <th style={{borderBottom: 'none'}}>{tu("amount")}</th>

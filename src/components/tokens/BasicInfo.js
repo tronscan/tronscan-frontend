@@ -185,7 +185,7 @@ export class BasicInfo extends PureComponent {
               <div className="form-row">
                 <div className="form-group col-md-12">
                   <label>{tu("token_logo")}
-                    <small className="form-text text-muted" style={{display: 'inline'}}>
+                    <small className="form-text text-muted ml-2" style={{display: 'inline'}}>
                       ({tu("image_restraint_desc")})
                     </small>
                   </label>

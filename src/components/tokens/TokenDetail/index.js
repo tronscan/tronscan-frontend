@@ -393,7 +393,7 @@ class TokenDetail extends React.Component {
                           </div>
                         </div>
 
-                        <table className="table m-0 tokenDetail">
+                        <table className="table m-0 tokenDetail ">
                           <tbody>
                           <tr>
                             <th>{tu("total_supply")}:</th>

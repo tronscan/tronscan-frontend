@@ -948,7 +948,7 @@ export const messages = {
   "confirm_setting": "Confirm setting",
   "confirm_setting_desc": "Confirm all your information",
   "token_logo":"Token LOGO",
-  "image_restraint_desc":"Image restraint description",
+  "image_restraint_desc":"resolution 1:1, suggested format jpg/png",
   "prev_step":"Previous",
   "freeze_on": "On",
   "freeze_off": "Off",

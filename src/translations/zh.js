@@ -938,7 +938,7 @@ export const messages = {
   "confirm_setting": "确认设置",
   "confirm_setting_desc": "确认全部信息",
   "token_logo": "通证LOGO",
-  "image_restraint_desc": "图片限制描述",
+  "image_restraint_desc": "分辨率1:1，格式jpg/png",
   "prev_step": "上一步",
   "freeze_on": "启用",
   "freeze_off": "不启用",
