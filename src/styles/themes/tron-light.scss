@@ -10,10 +10,27 @@ $color:#C23631;
   .header-top {
     background: #F7F7F7;
   }
+
   @media (min-width:1200px) {
     .container{
       max-width:1200px;
     }
+  }
+  .list-group .list-group-item .media-body {
+    .list-item-word{
+      font-size: 1rem;
+      word-break:normal;
+      word-wrap:normal;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 980px) {
+      .list-group .list-group-item .media-body {
+        .list-item-word{
+          font-size: 12px;
+          word-break:break-all;
+          word-wrap:break-word;
+        }
+      }
   }
   .navbar-dark .navbar-nav .nav-link {
     color: $color-grey-100;
@@ -58,7 +75,29 @@ $color:#C23631;
       }
     }
   }
-
+  .home{
+    position: relative;
+    .main-icon-left{
+      position:absolute;
+      display: block;
+      width: 180px;
+      height: 370px;
+      top:156px;
+      left: 0;
+      background: url("../images/main/mian_bg_left.png") no-repeat;
+      background-size: 100% 100%;
+    }
+    .main-icon-right{
+      position:absolute;
+      display: block;
+      width: 200px;
+      height: 140px;
+      right:40px;
+      bottom: 440px;
+      background: url("../images/main/mian_bg_right.png") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
   .home .color-grey-100{
     color: $color-grey-100 !important;
   }
@@ -98,7 +137,22 @@ $color:#C23631;
   }
   .list-group-item{
     border-color: #EEEEEE;
+    height: 100px;
+    &:hover{
+      background-color: rgba(255,555,255,0)!important;
+    }
   }
+  .scrollbar-container{
+    .ps__rail-y{
+      z-index: 99;
+    }
+  }
+  .text-overflow{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+
 
 
 }

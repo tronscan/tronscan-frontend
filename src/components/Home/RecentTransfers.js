@@ -11,7 +11,8 @@ import TimeAgo from "react-timeago";
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 import {Client} from "../../services/api";
-
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 class RecentTransfers extends Component {
 
@@ -25,15 +26,15 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.load();
-    this.props.setInterval(() => {
-      this.load();
-    }, 6000);
+    // this.props.setInterval(() => {
+    //   this.load();
+    // }, 6000);
   }
 
   load = async () => {
     let {transfers} = await Client.getTransfers({
       sort: '-timestamp',
-      limit: 10,
+      limit: 15,
       count: null,
     });
 
@@ -69,13 +70,15 @@ class RecentTransfers extends Component {
             {tu("view_all")}
           </Link>
         </div>
+        <PerfectScrollbar>
         <ul className="list-group list-group-flush" style={styles.list}>
+
         {
           transfers.map((transfer, i) => (
-            <li key={transfer.transactionHash} className="list-group-item p-3">
+            <li key={transfer.transactionHash} className="list-group-item overflow-h">
               <div className="media">
                 <div className="media-body mb-0 d-flex">
-                  <div className="text-left">
+                  <div className="text-left pt-1">
                     <div className="pt-1">
                       <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
                       <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
@@ -83,18 +86,18 @@ class RecentTransfers extends Component {
 
                     <span className="color-grey-300 mr-2">{tu("from")}</span>
                     <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferFromAddress} truncate={false}>
-                      {transfer.transferFromAddress.substr(0, 18)}...
+                      {transfer.transferFromAddress.substr(0, 15)}...
                     </AddressLink>
                     <span className="color-grey-300 mr-2">{tu("to")}</span>
                     <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100" address={transfer.transferToAddress} truncate={false}>
-                      {transfer.transferToAddress.substr(0, 18)}...
+                      {transfer.transferToAddress.substr(0, 15)}...
                     </AddressLink><br/>
                   </div>
-                  <div className="ml-auto text-right d-flex flex-column pt-2">
+                  <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word" style={styles.nowrap}>
                     <div className="color-grey-200" style={{flex:1}}>
                       <TRXPrice amount={transfer.amount / ONE_TRX} />
                     </div>
-                    <div className="text-muted color-grey-300 small" style={{flex:1}}>
+                    <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                       <TimeAgo date={transfer.timestamp} />
                     </div>
                   </div>
@@ -103,7 +106,9 @@ class RecentTransfers extends Component {
             </li>
           ))
         }
+
         </ul>
+      </PerfectScrollbar>
       </div>
     )
   }
@@ -124,12 +129,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectInt
 
 const styles = {
   list: {
-    overflowY: 'scroll',
     overflowX: 'none',
-    height: 618,
+    height: 594,
   },
   card:{
     border:'none',
     borderRadius:0
+  },
+  nowrap:{
+      flex:1,
+      whiteSpace:'nowrap'
   }
 };

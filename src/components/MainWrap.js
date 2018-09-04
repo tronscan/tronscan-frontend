@@ -10,7 +10,6 @@ import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {BackTop} from 'antd';
-
 class MainWrap extends React.Component {
   constructor() {
     super();
@@ -34,8 +33,12 @@ class MainWrap extends React.Component {
 
   componentDidUpdate({theme}) {
     /* eslint-disable no-undef */
-    document.body.classList.remove("tron-" + theme);
-    document.body.classList.add("tron-" + this.props.theme);
+    if(Lockr.get('theme')){
+        Lockr.rm('theme');
+    }
+     document.body.classList.remove("tron-" + theme);
+    // document.body.classList.add("tron-" + this.props.theme);
+     document.body.classList.add("tron-light");
   }
 
   render() {

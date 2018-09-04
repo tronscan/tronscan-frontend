@@ -869,6 +869,10 @@ export const messages = {
   "circulating_supply":"Circulating Supply",
   "list_trx":"List TRX",
   "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan"
+  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history":"14 day Transaction History",
+  "14_day_address_growth":"14 day Address Growth"
+
+
 
 };

@@ -80,6 +80,7 @@ class Home extends Component {
           total: txOverviewStats[tx].newAddressSeen,
           increment: txOverviewStats[tx].newAddressSeen
         });
+
       }
       else {
         temp.push({
@@ -97,10 +98,9 @@ class Home extends Component {
         });
       }
     }
-
     this.setState({
       txOverviewStats: temp.slice(temp.length - 14, temp.length),
-      addressesStats: addressesTemp,
+      addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
       transactionPerDay: temp[temp.length - 1].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0
     });
@@ -172,6 +172,8 @@ class Home extends Component {
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
     return (
         <main className="home pb-0">
+          <i className="main-icon-left"></i>
+          <i className="main-icon-right"></i>
           <div className="container-fluid position-relative d-flex pt-4 mx-auto flex-column">
             {/*<div ref={(el) => this.$ref = el} style={{*/}
               {/*zIndex: 0,*/}
@@ -215,33 +217,33 @@ class Home extends Component {
               <div className="row text-center mr-0 ml-0">
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border:'none', borderRadius:0}} >
                   <div className="card-body d-flex pt-4 pb-4 home-stats">
-                    <div className="col-md-2 col-sm-4">
+                    <div className="col-md-2 col-sm-12 col-xs-12 ">
                       <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
                         <p className="m-0">{tu("online_nodes")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-4">
+                    <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-3 col-sm-4">
+                    <div className="col-md-3 col-sm-12 col-xs-12">
                       <Link to="/blockchain/transactions"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
                         <p className="m-0">{tu("transactions_last_day")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-6">
+                    <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
 
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-sm-12 col-xs-12">
                       <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><TRXPrice amount={1000} currency="USD"/></h2>
                         <p className="m-0">{tu("pice_per_1000trx")}</p>
@@ -266,11 +268,11 @@ class Home extends Component {
                     <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
                       <h5 className="m-0 lh-150">
                         <Link to="blockchain/stats/txOverviewStats">
-                          {tu("past_14_days_of_transactions")}
+                          {tu("14_day_transaction_history")}
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body pt-0">
+                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
                       <div style={{minWidth:255,height: 200}}>
                         {
@@ -288,11 +290,11 @@ class Home extends Component {
                     <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
                       <h5 className="m-0 lh-150">
                         <Link to="blockchain/stats/addressesStats">
-                          {tu("address_growth")}
+                          {tu("14_day_address_growth")}
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body pt-0">
+                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
                       <div style={{minWidth:255,height: 200}}>
                         {
@@ -316,8 +318,6 @@ class Home extends Component {
               </div>
             </div>
           </div>
-
-
           <div className="pt-5 home-footer">
             <div className="container">
               <div className="row text-center text-xs-center text-sm-left text-md-left">

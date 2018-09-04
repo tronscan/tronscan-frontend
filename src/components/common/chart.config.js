@@ -532,13 +532,16 @@ module.exports = {
               month: '%Y-%m',
               year: '%Y'
           },
+          gridLineColor:'#eeeeee',
           categories:[],
-          minTickInterval:1,
+          // minTickInterval:1,
           labels:{
               style:{
                 color:"#999999"
-              }
+              },
+              autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
           }
+
       },
       tooltip: {
           dateTimeLabelFormats: {
@@ -609,7 +612,7 @@ module.exports = {
           data: [],
           allowPointSelect: false,
           marker:{
-              enabled:false,
+              enabled:true,
               enabledThreshold:'7'
           }
       }]

@@ -134,7 +134,7 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
-  # home dashboard                                                                 #
+  # main dashboard                                                                 #
   #                                                                                #
   ##################################################################################
   */
@@ -860,6 +860,9 @@ export const messages = {
   "circulating_supply":"流通量",
   "list_trx":"交易所上币",
   "burned_trx":"TRX烧毁数",
-  "supply_notes":"全球范围可进行众筹和预售，除美国、中国及日本外"
+  "supply_notes":"全球范围可进行众筹和预售，除美国、中国及日本外",
+  "14_day_transaction_history":" 过去14天交易数",
+  "14_day_address_growth":" 过去14天地址增长"
+
 
 };

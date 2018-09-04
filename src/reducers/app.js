@@ -193,7 +193,7 @@ export function appReducer(state = initialState, action) {
     }
 
     case SET_THEME: {
-      Lockr.set("theme", action.theme);
+      //Lockr.set("theme", action.theme);
       return {
         ...state,
         theme: action.theme,

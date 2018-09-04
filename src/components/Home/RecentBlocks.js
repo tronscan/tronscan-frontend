@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {tu} from "../../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {loadBlocks} from "../../actions/blockchain";
+//import {loadBlocks} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
@@ -9,7 +9,9 @@ import TimeAgo from "react-timeago";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
-
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import {Client} from "../../services/api";
 
 class RecentBlocks extends Component {
 
@@ -22,14 +24,36 @@ class RecentBlocks extends Component {
   }
 
   componentDidMount() {
-    this.props.loadBlocks();
-    this.props.setInterval(() => {
-      this.props.loadBlocks();
-    }, 6000);
+    this.loadBlocks();
+    // this.props.setInterval(() => {
+    //   this.loadBlocks();
+    // }, 6000);
   }
 
+  loadBlocks = async () => {
+    let {blocks} = await Client.getBlocks({
+        order: '-timestamp',
+        limit: 15,
+    });
+    console.log(blocks)
+    let {witnesses} = await Client.getWitnesses();
+
+    for(let block in blocks){
+        for(let witness in witnesses){
+            if(blocks[block].witnessAddress===witnesses[witness].address){
+                if(witnesses[witness].name!=="")
+                    blocks[block].witnessName=witnesses[witness].name;
+                else
+                    blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
+            }
+
+        }
+    }
+    this.setState({ blocks });
+  };
+
   render() {
-    let {blocks} = this.props;
+    let {blocks} = this.state;
 
     if (blocks.length === 0) {
       return (
@@ -49,13 +73,14 @@ class RecentBlocks extends Component {
             </Link>
           </div>
           <ul className="list-group list-group-flush" style={styles.list}>
+            <PerfectScrollbar>
             {
               blocks.map(block => (
-                  <li key={block.number} className="list-group-item p-3 py-1">
+                  <li key={block.number} className="list-group-item overflow-h">
                     <div key={block.number} className="d-flex flex-column">
-                      <div className="media-body mb-0  d-flex">
+                      <div className="media-body mb-0 d-flex">
                         <div className="text-left">
-                          <Link className= "mr-1 d-flex justify-content-start color-tron-100 pt-1" style={{fontSize:'1rem'}}
+                          <Link className= "mr-1 d-flex justify-content-start color-tron-100 pt-1 list-item-word"
                                 to={`/block/${block.number}`}>
                             <i className="fa fa-cube mr-2 mt-1 fa_width color-tron-100" style={{fontSize:'1rem'}}></i>
                             #{block.number}
@@ -68,20 +93,20 @@ class RecentBlocks extends Component {
                               {tu("transactions")}
                             </Link>
                           </div>
-                          <div className="text-gray-dark break-word d-flex">
-                            <span className="mr-3 color-grey-300">{tu("produced_by")}:</span>
+                          <div className="text-gray-dark break-word d-flex list-item-word" >
+                            <span className="mr-2 color-grey-300">{tu("produced_by")}:</span>
                             <AddressLink address={block.witnessAddress} truncate={false}>
-                              <span className="color-tron-100">{block.witnessAddress.substr(0, 25)}...</span>
+                              <span className="color-tron-100">{block.witnessName}</span>
                             </AddressLink>
                           </div>
 
                         </div>
                         <div className="ml-auto text-right d-flex flex-column pt-2">
 
-                          <div className="text-gray-dark break-word color-grey-200"  style={{flex:1}}>
+                          <div className="text-gray-dark break-word color-grey-200 list-item-word"  style={styles.nowrap}>
                             {tu("block_reward")}: <TRXPrice amount={32}/>
                           </div>
-                          <div className="text-muted color-grey-300 small" style={{flex:1}}>
+                          <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                             <TimeAgo date={block.timestamp}/>
                           </div>
                         </div>
@@ -90,6 +115,7 @@ class RecentBlocks extends Component {
                   </li>
               ))
             }
+            </PerfectScrollbar>
           </ul>
         </div>
     )
@@ -99,13 +125,13 @@ class RecentBlocks extends Component {
 
 function mapStateToProps(state) {
   return {
-    blocks: state.blockchain.blocks,
+    //blocks: state.blockchain.blocks,
     activeLanguage: state.app.activeLanguage,
   };
 }
 
 const mapDispatchToProps = {
-  loadBlocks,
+  //loadBlocks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(RecentBlocks)))
@@ -113,12 +139,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectInt
 
 const styles = {
   list: {
-    overflowY: 'scroll',
     overflowX: 'none',
-    height: 618,
+      height: 594,
   },
   card:{
       border:'none',
       borderRadius:0
+  },
+  nowrap:{
+      flex:1,
+      whiteSpace:'nowrap'
   }
 };

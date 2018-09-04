@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment';
 import config from './chart.config.js'
 
 import echarts from 'echarts/lib/echarts'
@@ -41,7 +42,7 @@ export class LineReactHighChartAdd extends React.Component {
             data.map((val) => {
                 let temp;
                 temp = {...val, y: val.total};
-                _config.xAxis.categories.push(Highcharts.dateFormat('%m-%d',val.date));
+                _config.xAxis.categories.push(moment(val.date).format('M/D'));
                 _config.series[0].data.push(temp);
             })
         }
@@ -49,7 +50,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.title.text = "No data";
         }
 
-        // if (source !== 'home') {
+        // if (source !== 'main') {
         //     _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
         //     _config.title.link = '#/blockchain/stats/addressesStats';
         //     _config.toolbox.feature = {
@@ -70,7 +71,7 @@ export class LineReactHighChartAdd extends React.Component {
         //         }
         //     }
         // }
-        // if (source === 'home') {
+        // if (source === 'main') {
         //     _config.title.text = '';
         //     _config.title.link = '';
         //     _config.toolbox.feature = {};
@@ -98,7 +99,7 @@ export class LineReactHighChartAdd extends React.Component {
         //     })
         // }
         if (source === 'home') {
-            _config.xAxis.minTickInterval = 7
+            // _config.xAxis.minTickInterval = 7
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
@@ -143,7 +144,7 @@ export class LineReactHighChartTx extends React.Component {
             data.map((val) => {
                 let temp;
                 temp = {...val, y: val.totalTransaction};
-                _config.xAxis.categories.push(Highcharts.dateFormat('%m-%d',val.date));
+                _config.xAxis.categories.push(moment(val.date).format('M/D'));
                 _config.series[0].data.push(temp);
             })
         }
@@ -152,7 +153,7 @@ export class LineReactHighChartTx extends React.Component {
         }
 
 
-        // if (source !== 'home') {
+        // if (source !== 'main') {
         //     _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
         //     _config.title.link = '#/blockchain/stats/txOverviewStats';
         //     _config.toolbox.feature = {
