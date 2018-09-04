@@ -402,7 +402,7 @@ class TokenDetail extends React.Component {
                             </td>
                             <th>{tu("reputation")}:</th>
                             <td>
-                              <Link to={`/rating`}>{tu(token.reputation)}<img src={require('../../../images/state/'+token.reputation+'_active.png')} className="ml-1 faceico"/></Link>
+                              <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>{tu(token.reputation)}<img src={require('../../../images/state/'+token.reputation+'_active.png')} className="ml-1 faceico"/></Link>
                             </td>
                           </tr>
                           <tr>

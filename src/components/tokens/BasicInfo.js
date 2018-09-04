@@ -161,6 +161,7 @@ export class BasicInfo extends PureComponent {
                       className="form-control"
                       value={totalSupply}
                       min={1}
+                      placeholder={intl.formatMessage({id: 'supply_message'})}
                       onChange={(totalSupply) => this.setState({totalSupply})}/>
                   {ErrorLabel(errors.supply)}
                 </div>

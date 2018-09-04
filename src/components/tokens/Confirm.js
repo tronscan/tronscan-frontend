@@ -107,17 +107,17 @@ class Confirm extends Component {
               <table className="table confirm">
                 <tbody>
                 <tr>
-                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}</td>
+                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}:</td>
                   <td style={{borderTop: '0px'}}> 1 {name || tu("token")} = <FormattedNumber
                       value={exchangeRate}/> TRX
                   </td>
                 </tr>
                 <tr>
-                  <td className="text-nowrap">{tu("start_date")}</td>
+                  <td className="text-nowrap">{tu("start_date")}:</td>
                   <td><FormattedDate value={startTime}/></td>
                 </tr>
                 <tr>
-                  <td className="text-nowrap borderBottom">{tu("end_date")}</td>
+                  <td className="text-nowrap borderBottom">{tu("end_date")}:</td>
                   <td className="borderBottom"><FormattedDate value={endTime}/></td>
                 </tr>
 
