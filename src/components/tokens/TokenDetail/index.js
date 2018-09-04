@@ -435,7 +435,7 @@ class TokenDetail extends React.Component {
                             <td>{
                               token.white_paper !== 'no_message' ?
                                   <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
-                                  <span>-</span>
+                                  <span style={{color: '#d8d8d8'}}>-</span>
                             }
                             </td>
                           </tr>
@@ -449,7 +449,7 @@ class TokenDetail extends React.Component {
                             <td>{
                               token.github !== 'no_message' ?
                                   <ExternalLink url={token.github && tu(token.github)}/> :
-                                  <span>-</span>
+                                  <span style={{color: '#d8d8d8'}}>-</span>
                             }
                             </td>
                           </tr>
