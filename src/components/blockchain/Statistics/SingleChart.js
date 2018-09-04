@@ -485,7 +485,7 @@ class Statistics extends React.Component {
                                         {
                                             addressesStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactHighChartAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
+                                                <LineReactAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
                                         }
                                     </div>
                                 }
