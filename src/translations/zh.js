@@ -962,7 +962,7 @@ export const messages = {
 */
 
   "issue_progress":"发行进度",
-  "fund_raised":"总筹集资金",
+  "fund_raised":"已筹集资金",
   "issuing_price":"发行价格",
   "buy_token_info":"你想要购买多少数量的通证？",
   "reputation":"信用评级",
@@ -976,4 +976,6 @@ export const messages = {
   "records":"条记录",
   "part_total": "波场网络当前共",
   "part_pass": "个通证",
+  "token_overview_tron":"波场通证市场总览",
+  "token_participate_tron":"参与波场通证发行",
 };

@@ -121,7 +121,7 @@ class TokenHolders extends React.Component {
     }
     return (
       <Fragment>
-        {loading && <div className="loading-style"><TronLoader/></div>}
+        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             {total? <div className="table_pos_info">{tableInfo}</div>: ''}
