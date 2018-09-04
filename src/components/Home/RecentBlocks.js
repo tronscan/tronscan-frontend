@@ -25,9 +25,9 @@ class RecentBlocks extends Component {
 
   componentDidMount() {
     this.loadBlocks();
-    // this.props.setInterval(() => {
-    //   this.loadBlocks();
-    // }, 6000);
+    this.props.setInterval(() => {
+      this.loadBlocks();
+    }, 6000);
   }
 
   loadBlocks = async () => {
@@ -35,7 +35,6 @@ class RecentBlocks extends Component {
         order: '-timestamp',
         limit: 15,
     });
-    console.log(blocks)
     let {witnesses} = await Client.getWitnesses();
 
     for(let block in blocks){

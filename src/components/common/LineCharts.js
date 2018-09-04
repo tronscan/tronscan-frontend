@@ -381,7 +381,6 @@ export class LineReactTx extends React.Component {
             _config.toolbox.feature = {};
             _config.grid[0].top = 45;
             _config.tooltip.formatter = function (datas) {
-                console.log(datas)
                 let date = intl.formatDate((parseInt(datas[0].data.date)));
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
@@ -398,7 +397,6 @@ export class LineReactTx extends React.Component {
             data.map((val) => {
                 let temp;
                 temp = {...val, value: val.totalTransaction};
-                //console.log(temp)
                 _config.xAxis[0].data.push(intl.formatDate(val.date));
                 _config.series[0].data.push(temp);
             })

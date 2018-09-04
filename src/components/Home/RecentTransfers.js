@@ -26,9 +26,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.load();
-    // this.props.setInterval(() => {
-    //   this.load();
-    // }, 6000);
+    this.props.setInterval(() => {
+      this.load();
+    }, 6000);
   }
 
   load = async () => {
