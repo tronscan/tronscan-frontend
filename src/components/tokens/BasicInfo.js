@@ -209,10 +209,11 @@ export class BasicInfo extends PureComponent {
                 </div>
               </div>
             </fieldset>
-
+            <div className="pt-2">
             <a className="btn btn-danger btn-lg" onClick={() => {
               this.isValid()
             }}>{tu('next')}</a>
+            </div>
           </form>
 
         </main>

@@ -401,6 +401,7 @@ class TokenDetail extends React.Component {
                           <th>{tu("reputation")}:</th>
                           <td>
                             {token.reputation && tu(token.reputation)}
+                            <img src={require('../../../images/state/'+token.reputation+'_active.png')} className="ml-1"/>
                           </td>
                         </tr>
                         <tr>

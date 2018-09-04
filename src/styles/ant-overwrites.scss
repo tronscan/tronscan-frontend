@@ -108,6 +108,14 @@
         &.ant-table-pagination.ant-pagination {
             margin-right: -7px;
         }
+        .ant-pagination-disabled{
+            .ant-pagination-item-link{
+                color: $border-color-lighter!important;
+                &:hover{
+                    color: $border-color-lighter!important;
+                }
+            }
+        }
     }
 
     // 全局ant-steps样式覆盖 ===============================

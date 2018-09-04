@@ -79,7 +79,7 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'quantity'}),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        width: '14%',
+        width: '20%',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -90,7 +90,7 @@ class TokenHolders extends React.Component {
         title: intl.formatMessage({id: 'percentage'}),
         dataIndex: 'percentage',
         key: 'percentage',
-        width: '14%',
+        width: '18%',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -110,7 +110,9 @@ class TokenHolders extends React.Component {
 
   render() {
     let {addresses, total, loading} = this.state;
+    let {intl} = this.props
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center">{tu("no_holders_found")}</div>
@@ -119,8 +121,8 @@ class TokenHolders extends React.Component {
     return (
 
         <div className="row transfers">
-          <div className="col-md-12">
-
+          <div className="col-md-12 table_pos">
+            {total? <div className="table_pos_info">{tableInfo}</div>: ''}
             <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                         onPageChange={(page, pageSize) => {
                           this.loadPage(page, pageSize)

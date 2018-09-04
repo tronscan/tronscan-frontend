@@ -3,7 +3,7 @@ import {Client} from "../../../services/api";
 import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
-import {tu} from "../../../utils/i18n";
+import {tu, t} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
@@ -89,7 +89,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        width: '16%',
+        width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <TimeAgo date={record.timestamp}/>
@@ -125,7 +125,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
         dataIndex: 'amount',
         key: 'amount',
-        width: '20%',
+        width: '200px',
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -145,8 +145,10 @@ class Transfers extends React.Component {
   render() {
 
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
-    let {theadClass = "thead-dark"} = this.props;
+    let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'})
+    
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (
@@ -160,8 +162,8 @@ class Transfers extends React.Component {
     return (
 
         <div className="row transfers">
-          <div className="col-md-12">
-
+          <div className="col-md-12 table_pos">
+            {total? <div className="table_pos_info">{tableInfo}</div>: ''}
             <SmartTable border={false} loading={loading} column={column} data={transfers} total={total}
                         onPageChange={(page, pageSize) => {
                           this.loadPage(page, pageSize)

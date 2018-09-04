@@ -40,6 +40,10 @@
 
             &:hover{
                 border-color: $main-red;
+                background-color: $main-red;
+                span{
+                    color: #fff!important;
+                }
             }
         }
 

@@ -34,10 +34,10 @@ body .token_black {
   }
   form {
     fieldset {
-      padding-top: 25px;
+      // padding-top: 25px;
 
       &:first-child{
-        padding-top: 15px;
+        // padding-top: 15px;
       }
     }
     strong {
@@ -73,6 +73,10 @@ body .token_black {
   }
   // McDonaldsCoin 样式覆盖
   &.mc-donalds-coin {
+    th:first-child, td:first-child{
+      padding-left: 0!important;
+      padding-right: 0!important;
+    }
     .tokenDetail {
       display: block;
       padding: 0 20px;
@@ -83,6 +87,11 @@ body .token_black {
         }
         tr td:nth-child(4) * {
           color: $main-red;
+        }
+        tr{
+          td:nth-child(2) {
+            border-right: 60px solid $white;
+          }
         }
         th {
           font-weight: lighter;
@@ -129,6 +138,7 @@ body .token_black {
     }
   }
   .card-title {
+    margin-bottom: 0.5rem;
     svg,
     svg *,
     span > span {
@@ -176,5 +186,21 @@ body .token_black {
         width: 15%;
       }
     }
+  }
+
+  .table_pos{
+    position: relative;
+
+    &_info{
+      position: absolute;
+      top: 26px;
+      left: 38px;
+      color: $text-block-dark;
+      z-index: 1;
+    }
+  }
+  .faceico{
+    width: 16px;
+    height: 16px;
   }
 }
