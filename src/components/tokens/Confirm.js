@@ -126,21 +126,17 @@ class Confirm extends Component {
 
             </fieldset>
             <fieldset className="pt-4">
-              <strong>{tu("frozen_supply")}</strong>
+              <strong className="pt-0" style={{display: 'block'}}>{tu("frozen_supply")}</strong>
               <br/>
-              {showFrozenSupply &&
-              <div className="form-row mt-2" style={{marginBottom: "-10px"}}>
-                <p className="col-md-6">
-                  <label>{tu("amount")}</label>
-                </p>
-                <p className="col-md-6">
-                  <label>{tu("days_to_freeze")}</label>
-                </p>
-              </div>
-              }
               {!showFrozenSupply ?
                   <span>{tu('freeze_not_valid')}</span> :
                   <table className="table ">
+                    <thead>
+                      <tr>
+                        <th style={{borderBottom: 'none'}}>{tu("amount")}</th>
+                        <th style={{borderBottom: 'none'}}>{tu("days_to_freeze")}</th>
+                      </tr>
+                    </thead>
                     <tbody>
                     {
                       frozenSupply.map((frozen, index) => (
@@ -155,7 +151,6 @@ class Confirm extends Component {
                   </table>
               }
             </fieldset>
-            <hr/>
 
 
             <div className="form-group">
