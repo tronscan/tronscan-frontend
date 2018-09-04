@@ -5,12 +5,6 @@ import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter} from "lodash";
 import {AddressLink} from "./common/Links";
-import Paging from "./common/Paging";
-import {Client} from "../services/api";
-import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
-import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "./common/Price";
-import {WidgetIcon} from "./common/Icon";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
@@ -57,8 +51,8 @@ class Accounts extends Component {
       start: (page-1) * pageSize,
     });
     */
-    let random=Math.random();
-    let data = await xhr.get("https://tron.network/api/v2/node/balance_info?random="+random);
+    let random = Math.random();
+    let data = await xhr.get("https://tron.network/api/v2/node/balance_info?random=" + random);
     data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
@@ -102,16 +96,20 @@ class Accounts extends Component {
       }
     ];
     return (
-        <Fragment>
+        <div className="token_black">
           {
             accounts.length === 0 ?
-                <TronLoader>
-                  {tu("loading")}
-                </TronLoader>
+                <div className="card" style={{background:'white'}}>
+                  <TronLoader>
+                    {tu("loading")}
+                  </TronLoader>
+                </div>
                 :
-                <Table columns={column} dataSource={accounts}/>
+                <div className="card table_pos">
+                  <Table columns={column} dataSource={accounts} pagination={{position: 'both', showSizeChanger: true}}/>
+                </div>
           }
-        </Fragment>
+        </div>
     )
   }
 
@@ -161,7 +159,7 @@ class Accounts extends Component {
 
           <div className="row mt-2">
             <div className="col-md-12">
-              <div className="card mt-1">
+              <div className="mt-1">
                 {this.renderAccounts()}
               </div>
             </div>
