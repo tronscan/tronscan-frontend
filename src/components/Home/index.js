@@ -163,7 +163,7 @@ class Home extends Component {
       case "tron":
         return require("../../images/tron-banner-tronblue.png");
       default:
-        return require("../../images/tron-banner-inverted.png");
+        return require("../../images/tron-banner-1.png");
     }
   };
 
