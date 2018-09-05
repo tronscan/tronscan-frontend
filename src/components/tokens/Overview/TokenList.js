@@ -33,7 +33,7 @@ class TokenList extends Component {
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%${nameQuery}%`;
+      this.state.filter.name = `%25${nameQuery}%25`;
     }
   }
 
@@ -43,6 +43,7 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
     let result;
+
     if (filter.name)
       result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
     else
@@ -86,7 +87,7 @@ class TokenList extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%${nameQuery}%`,
+          name: `%25${nameQuery}%25`,
         }
       });
     } else {
@@ -114,7 +115,7 @@ class TokenList extends Component {
     if (name.length > 0) {
       this.setState({
         filter: {
-          name: `%${name}%`,
+          name: `%25${name}%25`,
         }
       });
     }

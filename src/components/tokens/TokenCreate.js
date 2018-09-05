@@ -36,7 +36,7 @@ class TokenCreate extends Component {
       privateKey: "",
       name: "",
       abbr: "",
-      totalSupply: 100000,
+      totalSupply: null,
       numberOfCoins: 1,
       numberOfTron: 1,
       startTime: startTime,
