@@ -13,7 +13,7 @@ export default class TRONRating extends Component {
               <div className="card bg-gray">
                 <div className="card-body">
                   <h2>{tu('rating_title')}</h2>
-                  <p>{tu('modify_on')}:2018年8月10日</p>
+                  <p>{tu('modify_on')}:2018/09/05</p>
                   <hr/>
                   <p>
                     {tu('rating_description')}

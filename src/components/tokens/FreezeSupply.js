@@ -127,10 +127,10 @@ export class FreezeSupply extends Component {
               {showFrozenSupply &&
               <div className="form-row text-muted" style={{marginBottom: "-10px"}}>
                 <p className="col-md-7">
-                  <label>{tu("amount")}</label>
+                  <span>{tu("amount")}</span>
                 </p>
                 <p className="col-md-3">
-                  <label>{tu("days_to_freeze")}</label>
+                  <span>{tu("days_to_freeze")}</span>
                 </p>
               </div>
               }
