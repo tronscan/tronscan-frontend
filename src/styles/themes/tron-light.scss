@@ -1,3 +1,4 @@
+
 @import './light.scss';
 .tron-light {
     // default background style ====================================================
@@ -430,5 +431,170 @@
         float: right;
         margin-top: -134px;
     }
+}
+
+$white: #ffffff;
+$color-grey-100: #333333;
+$color-grey-200: #666666;
+$color-grey-300: #999999;
+$color-grey-border:#979797;
+
+$color:#C23631;
+.tron-light {
+  background-color: #F3F3F3;
+  .header-top {
+    background: #F7F7F7;
+  }
+
+  @media (min-width:1200px) {
+    .container{
+      max-width:1200px;
+    }
+  }
+  .list-group .list-group-item .media-body {
+    .list-item-word{
+      font-size: 1rem;
+      word-break:normal;
+      word-wrap:normal;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 980px) {
+      .list-group .list-group-item .media-body {
+        .list-item-word{
+          font-size: 12px;
+          word-break:break-all;
+          word-wrap:break-word;
+        }
+      }
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    color: $color-grey-100;
+  }
+  .top-bar {
+    background-color: $white;
+    &.navbar-dark .navbar-nav .nav-link {
+      color: $color-grey-100;
+      &:hover{
+        color:$color !important;
+      }
+    }
+  }
+  .sub-header h4 {
+    color: #222;
+  }
+
+  .nav-searchbar {
+    input {
+      background-color: #d2d1d1 !important;
+    }
+  }
+  .btn-search{
+    color: #fff;
+    background-color: $color;
+    border-color: $color;
+  }
+
+  .home-stats .text-muted{
+    h2{
+      color: $color-grey-100;
+    }
+    p{
+      color: $color-grey-300;
+    }
+    &:hover{
+      h2{
+        color: $color;
+      }
+      p{
+        color: $color;
+      }
+    }
+  }
+  .home{
+    position: relative;
+    .main-icon-left{
+      position:absolute;
+      display: block;
+      width: 180px;
+      height: 370px;
+      top:156px;
+      left: 0;
+      background: url("../images/main/mian_bg_left.png") no-repeat;
+      background-size: 100% 100%;
+    }
+    .main-icon-right{
+      position:absolute;
+      display: block;
+      width: 200px;
+      height: 140px;
+      right:40px;
+      bottom: 440px;
+      background: url("../images/main/mian_bg_right.png") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .home .color-grey-100{
+    color: $color-grey-100 !important;
+  }
+  .home .color-grey-200{
+    color: $color-grey-200 !important;
+  }
+  .home .color-grey-300{
+    color: $color-grey-300 !important;
+  }
+  .home .color-grey-border{
+    border-color: $color-grey-border!important;
+  }
+  .home .color-grey-border:hover{
+    border-color: $color!important;
+    color: $color!important;
+    background-color: #FFFFFF!important;
+  }
+  .home .color-tron-100{
+    color:$color !important;
+  }
+  .home-footer{
+    background-color: $color-grey-100;
+  }
+  .home-footer a {
+    color: $white;
+  }
+  .home-footer h5 {
+    color: $white;
+  }
+  .home-footer .footer-link {
+    color: $white;
+  }
+  .home-footer .line{
+    width: 100%;
+    height: 1px;
+    background-color: #FFFFFF;
+  }
+  .list-group-item{
+    border-color: #EEEEEE;
+    &:hover{
+      background-color: rgba(255,555,255,0)!important;
+    }
+  }
+  .scrollbar-container{
+    .ps__rail-y{
+      z-index: 99;
+    }
+  }
+  .text-overflow{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .navbar-dark .navbar-toggler{
+    color: $color-grey-300;
+    border-color: $color-grey-300;
+  }
+  .navbar-dark .navbar-toggler-icon {
+    background: url("../images/main/navbar_toggler_icon.png") no-repeat;
+}
+
+
 }
 

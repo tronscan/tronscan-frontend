@@ -17,7 +17,7 @@ import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
-import {LineReactAdd, LineReactTx} from "../common/LineCharts";
+import {LineReactAdd, LineReactTx,LineReactHighChartTx,LineReactHighChartAdd} from "../common/LineCharts";
 
 const subDays = require("date-fns/sub_days");
 
@@ -80,6 +80,7 @@ class Home extends Component {
           total: txOverviewStats[tx].newAddressSeen,
           increment: txOverviewStats[tx].newAddressSeen
         });
+
       }
       else {
         temp.push({
@@ -97,10 +98,9 @@ class Home extends Component {
         });
       }
     }
-
     this.setState({
       txOverviewStats: temp.slice(temp.length - 14, temp.length),
-      addressesStats: addressesTemp,
+      addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
       transactionPerDay: temp[temp.length - 1].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0
     });
@@ -146,7 +146,7 @@ class Home extends Component {
     this.loadNodes();
     this.loadAccounts();
     this.load();
-    constellationPreset(this.$ref, "Hot Sparks");
+   // constellationPreset(this.$ref, "Hot Sparks");
 
     // this.props.setInterval(() => {
     //   this.load();
@@ -154,7 +154,7 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    clearConstellations();
+    //clearConstellations();
   }
 
   getLogo = () => {
@@ -163,7 +163,7 @@ class Home extends Component {
       case "tron":
         return require("../../images/tron-banner-tronblue.png");
       default:
-        return require("../../images/tron-banner-inverted.png");
+        return require("../../images/tron-banner-1.png");
     }
   };
 
@@ -172,107 +172,113 @@ class Home extends Component {
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
     return (
         <main className="home pb-0">
-          <div className="container-fluid position-relative d-flex p-3 mx-auto flex-column">
-            <div ref={(el) => this.$ref = el} style={{
-              zIndex: 0,
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }} className="position-absolute"/>
+          <i className="main-icon-left"></i>
+          <i className="main-icon-right"></i>
+          <div className="container-fluid position-relative d-flex pt-4 mx-auto flex-column">
+            {/*<div ref={(el) => this.$ref = el} style={{*/}
+              {/*zIndex: 0,*/}
+              {/*left: 0,*/}
+              {/*right: 0,*/}
+              {/*top: 0,*/}
+              {/*bottom: 0,*/}
+            {/*}} className="position-absolute"/>*/}
             <div className="container home-splash">
               <div className="row justify-content-center text-center">
-                <div className="col-12 col-sm-8 col-lg-6">
-                  <p className="mt-5 mt-5-logo">
-                    <img src={this.getLogo()}
-                         className="animated ad-600ms zoomIn"/>
-                  </p>
-                  <h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>
-                    {tu("tron_main_message")}
-                  </h2>
+                <div className="col-12">
+                  {/*<p className="mt-5 mt-5-logo">*/}
+                    {/*<img src={this.getLogo()}*/}
+                         {/*className="animated ad-600ms zoomIn"/>*/}
+                  {/*</p>*/}
+                  {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
+                    {/*{tu("tron_main_message")}*/}
+                  {/*</h2>*/}
                   <div className={
-                    "input-group input-group-lg pb-5 mb-5 " +
+                    "input-group input-group-lg mb-4" +
                     (isShaking ? " animated shake " : "") +
                     (hasFound ? " animated bounceOut" : "")
                   }>
                     <input type="text"
-                           className="form-control p-3 bg-dark text-white border-0 box-shadow-none"
-                           style={{fontSize: 13}}
+                           className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
+                           style={{fontSize: 13,borderRadius:0}}
                            value={search}
                            onKeyDown={this.onSearchKeyDown}
                            onChange={ev => this.setState({search: ev.target.value})}
                            placeholder={intl.formatMessage({id: 'search_description'})}/>
 
                     <div className="input-group-append">
-                      <button className="btn btn-dark box-shadow-none" onClick={this.doSearch}>
+                      <button className="btn btn-search box-shadow-none" onClick={this.doSearch}  style={{borderRadius:0}}>
                         <i className="fa fa-search"/>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="row text-center home-stats pb-3">
-                <div className="col-md-2 col-sm-4">
-                  <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
-                    <p>{tu("online_nodes")}</p>
-                  </Link>
-                </div>
-                <div className="col-md-2 col-sm-4">
-                  <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
-                    <p>{tu("block_height")}</p>
-                  </Link>
-                </div>
-                <div className="col-md-2 col-sm-4">
-                  <Link to="/blockchain/transactions"
-                        className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
-                    <p>{tu("transactions_last_day")}</p>
-                  </Link>
-                </div>
-                <div className="col-md-2 col-sm-6">
-                  <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
-                    <p>{tu("total_accounts")}</p>
-                  </Link>
-                </div>
 
-                <div className="col-md-2 col-sm-6">
-                  <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><TRXPrice amount={1000} currency="USD"/></h2>
-                    <p>{tu("pice_per_1000trx")}</p>
-                  </Link>
-                </div>
-                <div className="col-md-2 col-sm-6">
-                  <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
-                    <h2><TRXBurned /></h2>
-                    <p>{tu("burned_trx")}</p>
-                  </Link>
-                </div>
+              <div className="row text-center mr-0 ml-0">
+                <div className="col-12  card  pt-1 pl-0 pr-0" style={{border:'none', borderRadius:0}} >
+                  <div className="card-body d-flex pt-4 pb-4 home-stats">
+                    <div className="col-md-2 col-sm-12 col-xs-12 ">
+                      <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                        <p className="m-0">{tu("online_nodes")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-md-2 col-sm-12 col-xs-12">
+                      <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
+                        <p className="m-0">{tu("block_height")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-md-3 col-sm-12 col-xs-12">
+                      <Link to="/blockchain/transactions"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
+                        <p className="m-0">{tu("transactions_last_day")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-md-2 col-sm-12 col-xs-12">
+                      <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
+                        <p className="m-0">{tu("total_accounts")}</p>
+                      </Link>
+                    </div>
 
+                    <div className="col-md-3 col-sm-12 col-xs-12">
+                      <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><TRXPrice amount={1000} currency="USD"/></h2>
+                        <p className="m-0">{tu("pice_per_1000trx")}</p>
+                      </Link>
+                    </div>
+                    {/*<div className="col-md-2 col-sm-6">*/}
+                      {/*<Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">*/}
+                        {/*<h2><TRXBurned /></h2>*/}
+                        {/*<p className="m-0">{tu("burned_trx")}</p>*/}
+                      {/*</Link>*/}
+                    {/*</div>*/}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div className="pb-5">
             <div className="container">
-              <div className="row mt-3">
+              <div className="row mt-4">
                 <div className="col-md-6 mt-3 mt-md-0 ">
-                  <div className="card">
-                    <div className="card-header bg-dark text-white d-flex">
+                  <div className="card" style={styles.card}>
+                    <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
                       <h5 className="m-0 lh-150">
-                        <Link to="blockchain/stats/txOverviewStats" style={{color: 'white'}}>
-                          {tu("past_14_days_of_transactions")}
+                        <Link to="blockchain/stats/txOverviewStats">
+                          {tu("14_day_transaction_history")}
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
-                      <div style={{height: 250}}>
+                      <div style={{minWidth:255,height: 200}}>
                         {
                           txOverviewStats === null ?
                               <TronLoader/> :
-                              <LineReactTx style={{height: 250}} data={txOverviewStats} intl={intl} source='home'/>
+                              <LineReactHighChartTx style={{minWidth:255,height: 200}} data={txOverviewStats} intl={intl} source='home'/>
                         }
                       </div>
 
@@ -280,21 +286,21 @@ class Home extends Component {
                   </div>
                 </div>
                 <div className="col-md-6 mt-3 mt-md-0 ">
-                  <div className="card">
-                    <div className="card-header bg-dark text-white d-flex">
+                  <div className="card" style={styles.card}>
+                    <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
                       <h5 className="m-0 lh-150">
-                        <Link to="blockchain/stats/addressesStats" style={{color: 'white'}}>
-                          {tu("address_growth")}
+                        <Link to="blockchain/stats/addressesStats">
+                          {tu("14_day_address_growth")}
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
-                      <div style={{height: 250}}>
+                      <div style={{minWidth:255,height: 200}}>
                         {
                           addressesStats === null ?
                               <TronLoader/> :
-                              <LineReactAdd style={{height: 250}} data={addressesStats} intl={intl} source='home'/>
+                              <LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>
                         }
                       </div>
 
@@ -302,7 +308,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row mt-3">
+              <div className="row mt-4">
                 <div className="col-md-6 mt-3 mt-md-0 text-center">
                   <RecentBlocks/>
                 </div>
@@ -312,65 +318,63 @@ class Home extends Component {
               </div>
             </div>
           </div>
-
-
           <div className="pt-5 home-footer">
             <div className="container">
               <div className="row text-center text-xs-center text-sm-left text-md-left">
-                <div className="col-md-2">
-                  &nbsp;
-                </div>
-                <div className="col-xs-12 col-sm-4 col-md-3">
+                <div className="col-xs-12 col-sm-4 col-md-4">
                   <h5>TRON</h5>
-                  <ul className="list-unstyled quick-links">
-                    <li><HrefLink href="https://stateoftrondapps.com/"><i
-                        className="fa fa-angle-right"/> DApps</HrefLink></li>
-                    <li><HrefLink href={activeLanguage == 'zh'?'https://tron.network/exchangesList?lng=zh':'https://tron.network/exchangesList?lng=en'}><i
-                        className="fa fa-angle-right"/> List TRX</HrefLink></li>
-                    <li><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right"/> TRON Labs</HrefLink>
+                  <div className="line"></div>
+                  <ul className="list-unstyled quick-links pt-3">
+                    <li className="p-2"><HrefLink href="https://stateoftrondapps.com/"><i
+                        className="fa fa-angle-right mr-4"/> DApps</HrefLink></li>
+                    <li className="p-2"><HrefLink href={activeLanguage == 'zh'?'https://tron.network/exchangesList?lng=zh':'https://tron.network/exchangesList?lng=en'}><i
+                        className="fa fa-angle-right mr-4"/> List TRX</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right mr-4"/> TRON Labs</HrefLink>
                     </li>
-                    <li><HrefLink href="https://www.facebook.com/tronfoundation/"><i
-                        className="fa fa-angle-right"/> Facebook</HrefLink></li>
-                    <li><HrefLink href="https://twitter.com/tronfoundation"><i
-                        className="fa fa-angle-right"/> Twitter</HrefLink></li>
-                    <li><HrefLink href="https://tronfoundation.slack.com/"><i
-                        className="fa fa-angle-right"/> Slack</HrefLink></li>
-                    <li><HrefLink href="https://www.reddit.com/r/tronix"><i
-                        className="fa fa-angle-right"/> Reddit</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://www.facebook.com/tronfoundation/"><i
+                        className="fa fa-angle-right mr-4"/> Facebook</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://twitter.com/tronfoundation"><i
+                        className="fa fa-angle-right mr-4"/> Twitter</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://tronfoundation.slack.com/"><i
+                        className="fa fa-angle-right mr-4"/> Slack</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://www.reddit.com/r/tronix"><i
+                        className="fa fa-angle-right mr-4"/> Reddit</HrefLink></li>
                   </ul>
                 </div>
-                <div className="col-xs-12 col-sm-4 col-md-3">
+                <div className="col-xs-12 col-sm-4 col-md-4">
                   <h5>Development</h5>
-                  <ul className="list-unstyled quick-links">
-                    <li><HrefLink href="https://github.com/tronprotocol"><i
-                        className="fa fa-angle-right"/> Github</HrefLink></li>
-                    <li><HrefLink href="https://github.com/tronprotocol/java-tron"><i
-                        className="fa fa-angle-right"/> java-tron</HrefLink></li>
-                    <li>
+                  <div className="line"></div>
+                  <ul className="list-unstyled quick-links pt-3">
+                    <li className="p-2"><HrefLink href="https://github.com/tronprotocol"><i
+                        className="fa fa-angle-right mr-4"/> Github</HrefLink></li>
+                    <li className="p-2"><HrefLink href="https://github.com/tronprotocol/java-tron"><i
+                        className="fa fa-angle-right mr-4"/> java-tron</HrefLink></li>
+                    <li className="p-2">
                       <HrefLink href="https://github.com/tronprotocol/Documentation">
-                        <i className="fa fa-angle-right"/> Documentation
+                        <i className="fa fa-angle-right mr-4"/> Documentation
                       </HrefLink>
                     </li>
-                    <li><HrefLink href="http://wiki.tron.network/en/latest/"><i
-                        className="fa fa-angle-right"/> Wiki</HrefLink></li>
+                    <li className="p-2"><HrefLink href="http://wiki.tron.network/en/latest/"><i
+                        className="fa fa-angle-right mr-4"/> Wiki</HrefLink></li>
                   </ul>
                 </div>
-                <div className="col-xs-12 col-sm-4 col-md-3">
+                <div className="col-xs-12 col-sm-4 col-md-4">
                   <h5>Quick links</h5>
-                  <ul className="list-unstyled quick-links">
-                    <li><Link to="/votes"><i className="fa fa-angle-right"/> {tu("vote_for_super_representatives")}
+                  <div className="line"></div>
+                  <ul className="list-unstyled quick-links pt-3">
+                    <li className="p-2"><Link to="/votes"><i className="fa fa-angle-right mr-4"/> {tu("vote_for_super_representatives")}
                     </Link></li>
-                    <li><Link to="/representatives"><i
-                        className="fa fa-angle-right"/> {tu("view_super_representatives")}</Link></li>
-                    <li><Link to="/wallet/new"><i className="fa fa-angle-right"/> {tu("create_new_wallet")}</Link></li>
-                    <li><Link to="/tokens/view"><i className="fa fa-angle-right"/> {tu("view_tokens")}</Link></li>
-                    <li><Link to="/help/copyright"><i className="fa fa-angle-right"/> {tu("copyright")}</Link></li>
+                    <li className="p-2"><Link to="/representatives"><i
+                        className="fa fa-angle-right mr-4"/> {tu("view_super_representatives")}</Link></li>
+                    <li className="p-2"><Link to="/wallet/new"><i className="fa fa-angle-right mr-4"/> {tu("create_new_wallet")}</Link></li>
+                    <li className="p-2"><Link to="/tokens/view"><i className="fa fa-angle-right mr-4"/> {tu("view_tokens")}</Link></li>
+                    <li className="p-2"><Link to="/help/copyright"><i className="fa fa-angle-right mr-4"/> {tu("copyright")}</Link></li>
                   </ul>
                 </div>
               </div>
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12">
-                  <ul className="list-unstyled list-inline social text-center">
+                  <ul className="list-unstyled list-inline social text-center" style={{marginBottom:4}}>
                     <li className="list-inline-item">
                       <HrefLink href="https://www.facebook.com/tronfoundation/"><i
                           className="fab fa-facebook"/></HrefLink>
@@ -408,6 +412,10 @@ class Home extends Component {
 const styles = {
   list: {
     fontSize: 18,
+  },
+  card:{
+      border:'none',
+      borderRadius:0
   }
 }
 

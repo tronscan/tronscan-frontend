@@ -855,6 +855,7 @@ export const messages = {
   "breakdown_supply_types": "Breakdown By Supply Types",
   "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+
   "block_produce_rewards": "Block Produce Rewards",
   "node_rewards": "Node Rewards",
   "independence_day_burned": "Independence Day Burned",
@@ -870,7 +871,8 @@ export const messages = {
   "list_trx": "List TRX",
   "burned_trx": "TRX Burned",
   "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-
+  "14_day_transaction_history":"14 day Transaction History",
+  "14_day_address_growth":"14 day Address Growth",
   /*
   ##################################################################################
   #                                                                                #
