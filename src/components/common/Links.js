@@ -264,7 +264,7 @@ export const BlockHashLink = ({hash}) => (
 );
 
 export const TransactionHashLink = ({hash, children}) => (
-    <Link to={`/transaction/${hash}`}>{children}</Link>
+    <Link className="color-tron-100 list-item-word" to={`/transaction/${hash}`}>{children}</Link>
 );
 
 export const BlockNumberLink = ({number, children = null}) => {
