@@ -986,6 +986,8 @@ export const messages = {
   "records":"Records",
   "part_total": "A total of ",
   "part_pass": "tokens found",
+  "view_total": "A Total of",
+  "view_pass": "Tokens to participate",
   "token_overview_tron":"Overview of TRON token market",
   "token_participate_tron":"Participate in TRON token issuance",
 };

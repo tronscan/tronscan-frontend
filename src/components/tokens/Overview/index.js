@@ -41,7 +41,7 @@ class TokenOverview extends Component {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
-    
+
     let result;
     if (filter.name)
       result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
@@ -427,8 +427,9 @@ class TokenOverview extends Component {
   render() {
 
     let {tokens, alert, loading, total} = this.state;
-    let {match} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
         <main className="container header-overlap token_black">
@@ -436,12 +437,13 @@ class TokenOverview extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12 ">
+
+              <div className="col-md-12 table_pos">
+                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
-                            rowClassName="table-row"
-                            onPageChange={(page, pageSize) => {
-                              this.loadPage(page, pageSize)
-                            }}/>
+                            rowClassName="table-row" onPageChange={(page, pageSize) => {
+                  this.loadPage(page, pageSize)
+                }}/>
               </div>
             </div>
           }

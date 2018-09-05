@@ -976,6 +976,8 @@ export const messages = {
   "records":"条记录",
   "part_total": "波场网络当前共",
   "part_pass": "个通证",
+  "view_total": "当前共",
+  "view_pass": "个通证可参与发行",
   "token_overview_tron":"波场通证市场总览",
   "token_participate_tron":"参与波场通证发行",
 };
