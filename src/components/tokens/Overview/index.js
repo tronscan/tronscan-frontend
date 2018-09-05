@@ -170,11 +170,12 @@ class TokenOverview extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5 token-sweet-alert">
+              <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                {token.remaining === 0 && <span> {tu('no_token_to_buy')}</span>}
                 <div className="input-group mt-5">
                   <input
                       type="number"
@@ -412,7 +413,7 @@ class TokenOverview extends Component {
           if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else if (record.startTime > new Date())
-            return <span style={{fontWeight: 'normal'}}>{tu("尚未开始")}</span>
+            return <span style={{fontWeight: 'normal'}}>{tu("not_started")}</span>
           else
             return <button className="btn btn-default btn-block btn-sm"
                            onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
