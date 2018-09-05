@@ -972,11 +972,11 @@ export const messages = {
 */
 
   "issue_progress":"Progress",
-  "fund_raised":"Fund raised",
+  "fund_raised":"Fund Raised",
   "issuing_price":"Issuing Price",
   "buy_token_info":"你想要购买多少数量的通证？",
   "reputation":"Reputation",
-  "issue_time":"Issuing time ",
+  "issue_time":"Issuing Time ",
   "success_receive":"Successfully received",
   "circulating_supply":"Circulating supply",
   "issue_info":"Issuance Info",
