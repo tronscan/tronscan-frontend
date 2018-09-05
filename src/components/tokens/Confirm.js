@@ -75,8 +75,8 @@ class Confirm extends Component {
           <h5 className="card-title mb-4">
             {tu("confirm_setting")}
             <i className="fa fa-exclamation-circle" aria-hidden="true"
-                style={{color: 'red', marginRight: '10px', marginLeft: '10px'}}></i>
-            <span style={{color: 'red', fontSize: '12px'}}>{tu('confirm_issue_info')}</span>
+                style={{ marginRight: '10px', marginLeft: '10px'}}></i>
+            <span style={{ fontSize: '12px', display: 'block', width: '65%'}}>{tu('confirm_issue_info')}</span>
           </h5>
           <form>
             <fieldset>
