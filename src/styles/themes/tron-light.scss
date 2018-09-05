@@ -89,6 +89,9 @@
                     }
                 }
             }
+            .ant-pagination-item-active:focus a, .ant-pagination-item-active:hover a{
+                color: $white;
+            }
         } // 全局ant-steps样式覆盖 ===============================
         .ant-steps {
             $main-color: $text-block-dark;
