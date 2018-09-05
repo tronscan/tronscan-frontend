@@ -41,8 +41,12 @@ class TokenOverview extends Component {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});
-
-    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+    
+    let result;
+    if (filter.name)
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+    else
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -345,8 +349,10 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={record.imgUrl}/></div> :
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={require('../../../images/logo_default.png')}/></div>
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
             <div>
               <h5><TokenLink name={record.name}
@@ -363,7 +369,7 @@ class TokenOverview extends Component {
           return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
         },
         align: 'center',
-        className: 'ant_table d-none d-md-table-cell'
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
       },
 
       {
@@ -376,14 +382,14 @@ class TokenOverview extends Component {
           return <div><FormattedNumber value={text}/>%</div>
         },
         align: 'center',
-        className: 'ant_table d-none d-sm-table-cell'
+        className: 'ant_table d-none d-sm-table-cell _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'end_time'}),
         dataIndex: 'endTime',
         key: 'endTime',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return <div>
             <FormattedRelative value={record.endTime} units="day"/>
@@ -431,7 +437,8 @@ class TokenOverview extends Component {
           {
             <div className="row">
               <div className="col-md-12 ">
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} rowClassName="table-row"
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                            rowClassName="table-row"
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
                             }}/>

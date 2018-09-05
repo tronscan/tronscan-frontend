@@ -628,8 +628,8 @@ class Navigation extends PureComponent {
             (activeComponent && activeComponent.showSubHeader !== false) &&
             <div className="container d-flex sub-header">
               {
-                activeComponent && <h4 className="pt-4 text-uppercase">
-                  {tu(activeComponent.label)} &nbsp;&nbsp;
+                activeComponent && <h4 className="pt-4">
+                  <span className="text-uppercase">{tu(activeComponent.label)}</span> &nbsp;&nbsp;
                   {activeComponent.label === 'overview' &&
                   <small className='text-muted'>{tu('token_overview_tron')}</small>
                   }
