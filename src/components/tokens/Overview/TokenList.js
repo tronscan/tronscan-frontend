@@ -341,7 +341,7 @@ class TokenList extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table _text_nowrap',
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),

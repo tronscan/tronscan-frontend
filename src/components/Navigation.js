@@ -279,7 +279,7 @@ class Navigation extends PureComponent {
   };
 
   getLogo = () => {
-    let {theme} = this.props;
+    let theme = 'light';
 
     if (IS_TESTNET) {
       switch (theme) {
