@@ -34,7 +34,7 @@ class TokenHolders extends React.Component {
     this.loadTokenHolders(page, pageSize);
   };
 
-  loadTokenHolders = async (page = 1, pageSize = 40) => {
+  loadTokenHolders = async (page = 1, pageSize = 10) => {
     let {filter} = this.props;
     this.setState({loading: true});
 
@@ -97,8 +97,7 @@ class TokenHolders extends React.Component {
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((record.balance) / token.totalSupply) * 100)}
-              minimumFractionDigits={4}
-              maximumFractionDigits={4}
+              maximumFractionDigits={6}
           /> %
           </div>
 
@@ -121,13 +120,13 @@ class TokenHolders extends React.Component {
     }
     return (
       <Fragment>
-        {loading && <div className="loading-style"><TronLoader/></div>}
+        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             {total? <div className="table_pos_info">{tableInfo}</div>: ''}
             <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                         onPageChange={(page, pageSize) => {
-                          this.loadPage(page, pageSize)
+                          this.loadTokenHolders(page, pageSize)
                         }}/>
           </div>
         </div>

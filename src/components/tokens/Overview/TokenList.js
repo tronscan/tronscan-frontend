@@ -33,7 +33,7 @@ class TokenList extends Component {
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%${nameQuery}%`;
+      this.state.filter.name = `%25${nameQuery}%25`;
     }
   }
 
@@ -42,8 +42,12 @@ class TokenList extends Component {
     let {intl} = this.props;
     this.setState({loading: true});
     let token;
+    let result;
 
-    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    if (filter.name)
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+    else
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -83,7 +87,7 @@ class TokenList extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%${nameQuery}%`,
+          name: `%25${nameQuery}%25`,
         }
       });
     } else {
@@ -111,7 +115,7 @@ class TokenList extends Component {
     if (name.length > 0) {
       this.setState({
         filter: {
-          name: `%${name}%`,
+          name: `%25${name}%25`,
         }
       });
     }
@@ -189,7 +193,7 @@ class TokenList extends Component {
                   />
                 </div>
                 <div className="text-center mt-3 text-muted">
-                  <b>= <span ref={ref => this.priceTRX = ref}></span> TRX</b>
+                  <b>= <span ref={ref => this.priceTRX = ref}>0</span> TRX</b>
                 </div>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.buyTokens(token)
@@ -341,7 +345,7 @@ class TokenList extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table _text_nowrap',
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -351,8 +355,10 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={record.imgUrl}/></div> :
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={require('../../../images/logo_default.png')}/></div>
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
 
             <div>
@@ -373,7 +379,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <div>
             {text && intl.formatMessage({id: text})}
-            <img src={require('../../../images/state/'+text+'.png')} className="ml-1 faceico"/>
+            <img src={require('../../../images/state/' + text + '.png')} className="ml-1 faceico"/>
           </div>
         }
       },
@@ -387,7 +393,7 @@ class TokenList extends Component {
           return <div><FormattedNumber value={text}/>%</div>
         },
         align: 'center',
-        className: 'ant_table'
+        className: 'ant_table _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'issue_time'}),
@@ -419,9 +425,9 @@ class TokenList extends Component {
 
   render() {
     let {tokens, alert, loading, total} = this.state;
-    let {match,intl} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_totle'})+' ' + total +' '+ intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
     return (
         <main className="container header-overlap token_black">
           {alert}
@@ -429,7 +435,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div>: ''}
+                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)

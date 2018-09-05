@@ -51,12 +51,16 @@ module.exports = {
   },
   representPieChart: {
         color: [
-            '#c84a45',
-            '#e7afad',
-            '#e19b98',
-            '#da8683',
-            '#d4726e',
-            '#ce5e5a'
+            '#424246',
+            '#96EE80',
+            '#F4A45D',
+            '#8085ED',
+            '#F25C81',
+            '#E5D355',
+            '#348188',
+            '#F25C81',
+            '#8FCACE',
+            '#7CB5EC'
         ],
         title: {
             text: '',
@@ -421,7 +425,6 @@ module.exports = {
             10,
             0
         ]
-      
     },
     tooltip: {
       trigger: 'axis',
@@ -492,5 +495,126 @@ module.exports = {
       },
       data: []
     }]
-  }
+  },
+    overviewHighChart: {
+      chart: {
+          zoomType: '',
+          spacingTop:20,
+          spacingBottom: 0,
+          spacingLeft: 0,
+          spacingRight: 0
+      },
+      title: {
+          text: ''
+      },
+      credits:{
+          enabled:false
+      },
+      colors:[
+          '#c84a45',
+          '#e7afad'
+      ],
+      exporting:{
+          enabled:false
+      },
+      subtitle: {
+          text: ''
+      },
+      xAxis: {
+          type: 'datetime',
+          dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+          },
+          gridLineColor:'#eeeeee',
+          categories:[],
+          // minTickInterval:1,
+          labels:{
+              style:{
+                color:"#999999"
+              },
+              autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+          }
+
+      },
+      tooltip: {
+          dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%Y-%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+          }
+      },
+      yAxis: {
+          title: {
+              // align: 'high',
+              // offset: 0,
+              text: '',
+              // rotation: 0,
+              // x:100,
+              // y: -10
+          },
+          min:0,
+          //minTickInterval:5
+          tickPixelInterval:30,
+          labels:{
+              style:{
+                  color:"#999999"
+              }
+          }
+      },
+      legend: {
+          enabled: false
+      },
+      plotOptions: {
+          area: {
+              fillColor: {
+                  linearGradient: {
+                      x1: 0,
+                      y1: 0,
+                      x2: 0,
+                      y2: 1
+                  },
+                  stops: [
+                      [0, '#ECC2C1'],
+                      [1, '#ffffff']
+                  ]
+              },
+              marker: {
+                  radius: 2
+              },
+              lineWidth: 1,
+              states: {
+                  hover: {
+                      lineWidth: 1
+                  }
+              },
+              threshold: null,
+              column: {
+                  pointPadding: 0.1,
+                  borderWidth: 0
+              }
+          }
+      },
+      series: [{
+          type: 'area',
+          name: '',
+          data: [],
+          allowPointSelect: false,
+          marker:{
+              enabled:true,
+              enabledThreshold:'7'
+          }
+      }]
+  },
 };

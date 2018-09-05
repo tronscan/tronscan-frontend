@@ -72,14 +72,14 @@ class Confirm extends Component {
             {tu('token_issue_guide_message_3')}
           </p>
           <hr/>
-          <h5 className="card-title">
+          <h5 className="card-title mb-4">
             {tu("confirm_setting")}
             <i className="fa fa-exclamation-circle" aria-hidden="true"
-                style={{color: 'red', marginRight: '10px', marginLeft: '10px'}}></i>
-            <span style={{color: 'red', fontSize: '12px'}}>{tu('confirm_issue_info')}</span>
+                style={{ marginRight: '10px', marginLeft: '10px'}}></i>
+            <span style={{ fontSize: '12px', display: 'block', width: '65%'}}>{tu('confirm_issue_info')}</span>
           </h5>
           <form>
-            <fieldset className="pt-4">
+            <fieldset>
               <strong>{tu("basic_info")}</strong>
               <table className="table confirm">
                 <tbody>
@@ -100,24 +100,24 @@ class Confirm extends Component {
               </table>
             </fieldset>
 
-            <fieldset className="pt-4">
+            <fieldset>
 
               <strong>{tu("exchange_setting")}</strong>
 
               <table className="table confirm">
                 <tbody>
                 <tr>
-                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}</td>
+                  <td className="text-nowrap" style={{borderTop: '0px'}}>{tu("token_price")}:</td>
                   <td style={{borderTop: '0px'}}> 1 {name || tu("token")} = <FormattedNumber
                       value={exchangeRate}/> TRX
                   </td>
                 </tr>
                 <tr>
-                  <td className="text-nowrap">{tu("start_date")}</td>
+                  <td className="text-nowrap">{tu("start_date")}:</td>
                   <td><FormattedDate value={startTime}/></td>
                 </tr>
                 <tr>
-                  <td className="text-nowrap borderBottom">{tu("end_date")}</td>
+                  <td className="text-nowrap borderBottom">{tu("end_date")}:</td>
                   <td className="borderBottom"><FormattedDate value={endTime}/></td>
                 </tr>
 
@@ -125,22 +125,17 @@ class Confirm extends Component {
               </table>
 
             </fieldset>
-            <fieldset className="pt-4">
-              <strong>{tu("frozen_supply")}</strong>
-              <br/>
-              {showFrozenSupply &&
-              <div className="form-row mt-2" style={{marginBottom: "-10px"}}>
-                <p className="col-md-6">
-                  <label>{tu("amount")}</label>
-                </p>
-                <p className="col-md-6">
-                  <label>{tu("days_to_freeze")}</label>
-                </p>
-              </div>
-              }
+            <fieldset>
+              <strong className="pt-0" style={{display: 'block'}}>{tu("frozen_supply")}</strong>
               {!showFrozenSupply ?
-                  <span>{tu('freeze_not_valid')}</span> :
-                  <table className="table ">
+                  <div className="pt-2"><span>{tu('freeze_not_valid')}</span><hr/></div>:
+                  <table className="table confirm_table">
+                    <thead>
+                      <tr>
+                        <th style={{borderBottom: 'none'}}>{tu("amount")}</th>
+                        <th style={{borderBottom: 'none'}}>{tu("days_to_freeze")}</th>
+                      </tr>
+                    </thead>
                     <tbody>
                     {
                       frozenSupply.map((frozen, index) => (
@@ -155,7 +150,6 @@ class Confirm extends Component {
                   </table>
               }
             </fieldset>
-            <hr/>
 
 
             <div className="form-group">

@@ -17,7 +17,7 @@ import ExchangeRate from "./ExchangeRate.js"
 import FreezeSupply from "./FreezeSupply.js"
 import Confirm from "./Confirm.js"
 import xhr from "axios/index";
-
+import {TronLoader} from "../common/loaders";
 import {Steps} from 'antd';
 
 class TokenCreate extends Component {
@@ -82,8 +82,8 @@ class TokenCreate extends Component {
   redirectToTokenList = () => {
     this.setState({
       modal: null,
-    },()=>{
-      window.location.hash="#/myToken";
+    }, () => {
+      window.location.hash = "#/myToken";
     });
   }
   preSubmit = () => {
@@ -114,7 +114,19 @@ class TokenCreate extends Component {
     let {account, intl} = this.props;
     let {logoData} = this.state;
 
-    this.setState({modal: null, loading: true});
+    this.setState({
+      modal:
+          <SweetAlert
+              showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'in_progress'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+          >
+            <TronLoader/>
+          </SweetAlert>,
+      loading: true
+    });
 
     try {
       let result = await Client.createToken({
@@ -148,8 +160,8 @@ class TokenCreate extends Component {
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
                 {tu("token_issued_successfully")}<br/>
-                {tu("token_link_message_0")}{' '}
-                {tu("token_link_message_1")}{' '}
+                {tu("token_link_message_0")}
+                {tu("token_link_message_1")}
                 {tu("token_link_message_2")}
               </SweetAlert>
         });

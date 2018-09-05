@@ -134,7 +134,7 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
-  # home dashboard                                                                 #
+  # main dashboard                                                                 #
   #                                                                                #
   ##################################################################################
   */
@@ -275,7 +275,7 @@ export const messages = {
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
-  "frozen_supply": "锁仓设置",
+  "frozen_supply": "锁仓数量",
   "tokens_unfrozen": "解冻通证",
   "success_tokens_unfrozen_message": "成功解冻通证",
   "unable_to_unfreeze": "无法解冻",
@@ -484,7 +484,7 @@ export const messages = {
   "abbreviation": "缩写",
   "exchange_rate": "发行汇率",
   "token_price": "通证价格",
-  "supply_message": "进入流通的通证数量",
+  "supply_message": "创建的代币数量，如：比特币的发行总量为2100万",
   "description_message": "发行通证目的简述",
   "url_message": "展示更多通证信息的网址",
   "exchange_rate_message_0": "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
@@ -861,6 +861,8 @@ export const messages = {
   "list_trx": "交易所上币",
   "burned_trx": "TRX烧毁数",
   "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
+  "14_day_transaction_history":" 过去14天交易数",
+  "14_day_address_growth":" 过去14天地址增长",
 
   /*
   ##################################################################################
@@ -922,6 +924,8 @@ export const messages = {
   "token_detail":"通证详情",
   "contact_us":"联系我们",
   "my_token":"我的通证",
+  "try_later":"请稍后再试",
+  "contract_address":"合约地址",
   /*
   ##################################################################################
   #                                                                                #
@@ -938,7 +942,7 @@ export const messages = {
   "confirm_setting": "确认设置",
   "confirm_setting_desc": "确认全部信息",
   "token_logo": "通证LOGO",
-  "image_restraint_desc": "图片限制描述",
+  "image_restraint_desc": "分辨率1:1，格式jpg/png",
   "prev_step": "上一步",
   "freeze_on": "启用",
   "freeze_off": "不启用",
@@ -961,7 +965,7 @@ export const messages = {
 */
 
   "issue_progress":"发行进度",
-  "fund_raised":"总筹集资金",
+  "fund_raised":"已筹集资金",
   "issuing_price":"发行价格",
   "buy_token_info":"你想要购买多少数量的通证？",
   "reputation":"信用评级",
@@ -970,8 +974,13 @@ export const messages = {
   "circulating_supply":"流通量",
   "issue_info":"发行信息",
   "transferring":"转账中",
+  "in_progress":"处理中",
   "fail_transaction":"交易失败",
   "records":"条记录",
-  "part_totle": "波场网络当前共",
+  "part_total": "波场网络当前共",
   "part_pass": "个通证",
+  "view_total": "当前共",
+  "view_pass": "个通证可参与发行",
+  "token_overview_tron":"波场通证市场总览",
+  "token_participate_tron":"参与波场通证发行",
 };

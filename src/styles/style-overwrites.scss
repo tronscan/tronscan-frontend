@@ -98,6 +98,24 @@ body .token_black {
         }
       }
     }
+    .tokenDetail_box{
+      padding: 0 20px;
+      background-color: #fff;
+      .tokenDetail {
+        padding: 0;
+        display: table;
+
+        td{
+          width: auto;
+        }
+
+        tr{
+          td:nth-child(2) {
+            border-right: none;
+          }
+        }
+      }
+    }
     .card-body {
       border-bottom: none;
       &.p-0 {
@@ -181,11 +199,20 @@ body .token_black {
         left: 0;
       }
     }
+    .table{
+      margin-bottom: 1.4rem;
+    }
     .table tr{
       td:first-child{
         width: 15%;
       }
+      th{
+        border: none;
+      }
     }
+  }
+  .text-muted span{
+    color: inherit!important;
   }
 
   .table_pos{

@@ -33,7 +33,7 @@ class TokenOverview extends Component {
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%${nameQuery}%`;
+      this.state.filter.name = `%25${nameQuery}%25`;
     }
   }
 
@@ -42,7 +42,12 @@ class TokenOverview extends Component {
     let {intl} = this.props;
     this.setState({loading: true});
 
-    let result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+    let result;
+
+    if (filter.name)
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+    else
+      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];
@@ -76,7 +81,7 @@ class TokenOverview extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%${nameQuery}%`,
+          name: `%25${nameQuery}%25`,
         }
       });
     } else {
@@ -105,7 +110,7 @@ class TokenOverview extends Component {
     if (name.length > 0) {
       this.setState({
         filter: {
-          name: `%${name}%`,
+          name: `%25${name}%25`,
         }
       });
     }
@@ -335,7 +340,7 @@ class TokenOverview extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table _text_nowrap',
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -345,8 +350,10 @@ class TokenOverview extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={record.imgUrl}/></div> :
-                <div style={{width:'42px',height:'42px',marginRight: '18px'}}><img style={{width:'42px',height:'42px'}} src={require('../../../images/logo_default.png')}/></div>
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
             <div>
               <h5><TokenLink name={record.name}
@@ -363,7 +370,7 @@ class TokenOverview extends Component {
           return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
         },
         align: 'center',
-        className: 'ant_table d-none d-md-table-cell'
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
       },
 
       {
@@ -376,14 +383,14 @@ class TokenOverview extends Component {
           return <div><FormattedNumber value={text}/>%</div>
         },
         align: 'center',
-        className: 'ant_table d-none d-sm-table-cell'
+        className: 'ant_table d-none d-sm-table-cell _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'end_time'}),
         dataIndex: 'endTime',
         key: 'endTime',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return <div>
             <FormattedRelative value={record.endTime} units="day"/>
@@ -421,8 +428,9 @@ class TokenOverview extends Component {
   render() {
 
     let {tokens, alert, loading, total} = this.state;
-    let {match} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
         <main className="container header-overlap token_black">
@@ -430,11 +438,13 @@ class TokenOverview extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12 ">
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} rowClassName="table-row"
-                            onPageChange={(page, pageSize) => {
-                              this.loadPage(page, pageSize)
-                            }}/>
+
+              <div className="col-md-12 table_pos">
+                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                            rowClassName="table-row" onPageChange={(page, pageSize) => {
+                  this.loadPage(page, pageSize)
+                }}/>
               </div>
             </div>
           }

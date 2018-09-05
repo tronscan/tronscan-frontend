@@ -148,12 +148,12 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'})
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
     
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (
-            <div className="p-3 text-center">{tu("no_transfers")}</div>
+            <div className="p-3 text-center" style={{background:'white'}}>{tu("no_transfers")}</div>
         );
       }
 
@@ -162,7 +162,7 @@ class Transfers extends React.Component {
 
     return (
         <Fragment>
-        {loading && <div className="loading-style"><TronLoader/></div>}
+        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
             {total? <div className="table_pos_info">{tableInfo}</div>: ''}
