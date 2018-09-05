@@ -994,5 +994,5 @@ export const messages = {
   "token_overview_tron":"Overview of TRON token market",
   "token_participate_tron":"Participate in TRON token issuance",
   "not_started":"Not started",
-  "no_token_to_buy":"Sorry, all the circulating supply has been issued，please wait the tokens to be unfrozen to participate",
+  "no_token_to_buy":"Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
 };

@@ -45,9 +45,9 @@ class TokenList extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
     else
-      result = await xhr.get("http://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
     let total = result.data.data['Total'];
     let tokens = result.data.data['Data'];

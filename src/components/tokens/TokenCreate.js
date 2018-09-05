@@ -144,7 +144,7 @@ class TokenCreate extends Component {
       })(account.key);
 
       if (result.success) {
-        let result_img = await xhr.post("http://www.tronapp.co:9009/api/uploadLogo", {
+        let result_img = await xhr.post("https://www.tronapp.co:9009/api/uploadLogo", {
           imageData: logoData,
           owner_address: account.address
         });
