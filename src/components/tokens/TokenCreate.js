@@ -4,29 +4,21 @@ import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {TextField} from "../../utils/formHelper";
 import {filter, trim, some, sumBy} from "lodash";
 import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
-import {Alert} from "reactstrap";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
-import DateTimePicker from "react-datetime";
 import {Link} from "react-router-dom";
-import {NumberField} from "../common/Fields";
 import SweetAlert from "react-bootstrap-sweetalert";
 import 'moment/min/locales';
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-
-function ErrorLabel(error) {
-  if (error !== null) {
-    return (
-        <small className="text-danger"> {error} </small>
-    )
-  }
-
-  return null;
-}
+import BasicInfo from "./BasicInfo.js"
+import ExchangeRate from "./ExchangeRate.js"
+import FreezeSupply from "./FreezeSupply.js"
+import Confirm from "./Confirm.js"
+import xhr from "axios/index";
+import {TronLoader} from "../common/loaders";
+import {Steps} from 'antd';
 
 class TokenCreate extends Component {
 
@@ -44,13 +36,13 @@ class TokenCreate extends Component {
       privateKey: "",
       name: "",
       abbr: "",
-      totalSupply: 100000,
+      totalSupply: null,
       numberOfCoins: 1,
       numberOfTron: 1,
       startTime: startTime,
       endTime: endTime,
       description: "",
-      url: "http://",
+      url: "",
       confirmed: false,
       loading: false,
       isTokenCreated: false,
@@ -58,7 +50,7 @@ class TokenCreate extends Component {
       issuedAsset: null,
       errors: {
         name: null,
-        supply: null,
+        totalSupply: null,
         description: null,
         url: null,
         tronAmount: null,
@@ -67,10 +59,18 @@ class TokenCreate extends Component {
         endDate: null,
         abbr: null,
       },
-
+      logoUrl: null,
+      logoData: null,
       valid: false,
-      submitMessage: null,
-      frozenSupply: [],
+      frozenSupply: [{amount: 0, days: 1}],
+      showFrozenSupply: false,
+      step: 1,
+      steps: [
+        {title: 'basic_info', content: 'basic_info_desc'},
+        {title: 'exchange_setting', content: 'exchange_setting_desc'},
+        {title: 'freeze_setting', content: 'freeze_setting_desc'},
+        {title: 'confirm_setting', content: 'confirm_setting_desc'}
+      ]
     };
   }
 
@@ -79,9 +79,18 @@ class TokenCreate extends Component {
       modal: null,
     });
   };
+  redirectToTokenList = () => {
+    this.setState({
+      modal: null,
+    }, () => {
+      window.location.hash = "#/myToken";
+    });
+  }
   preSubmit = () => {
     let {intl} = this.props;
-    let {privateKey} = this.state;
+    let {checkbox} = this.state;
+    if (!this.renderSubmit())
+      return;
     this.setState({
       modal: (
           <SweetAlert
@@ -96,48 +105,31 @@ class TokenCreate extends Component {
               onCancel={this.hideModal}
               style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
-            <div style={{overflow: 'auto'}}>
-              <table className="table m-0 text-left">
-                <tbody>
-                <tr>
-                  <th>{tu('token_name')}:</th>
-                  <td>{trim(this.state.name)}</td>
-                </tr>
-                <tr>
-                  <th>{tu('total_supply')}:</th>
-                  <td><FormattedNumber value={this.state.totalSupply}/></td>
-                </tr>
-                <tr>
-                  <th>{tu('website_url')}:</th>
-                  <td>{this.state.url}</td>
-                </tr>
-                <tr>
-                  <th>{tu('exchange_rate')}:</th>
-                  <td>{this.state.numberOfCoins + ' : ' + this.state.numberOfTron}</td>
-                </tr>
-                <tr>
-                  <th>{tu('participation')}:</th>
-                  <td>
-                    <FormattedDate value={this.state.startTime.getTime()}/>
-                    {' '}{tu('_to')}{' '}
-                    <FormattedDate value={this.state.endTime.getTime()}/>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
           </SweetAlert>)
     });
+
   }
 
   submit = async () => {
-    let {account} = this.props;
-    let {privateKey} =this.state;
+    let {account, intl} = this.props;
+    let {logoData} = this.state;
 
-    this.setState({modal: null, loading: true, submitMessage: null});
+    this.setState({
+      modal:
+          <SweetAlert
+              showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'in_progress'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+          >
+            <TronLoader/>
+          </SweetAlert>,
+      loading: true
+    });
 
     try {
-      let {success} = await Client.createToken({
+      let result = await Client.createToken({
         address: account.address,
         name: trim(this.state.name),
         shortName: trim(this.state.abbr),
@@ -151,16 +143,40 @@ class TokenCreate extends Component {
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
       })(account.key);
 
-      if (success) {
+      if (result.success) {
+        let result_img = await xhr.post("https://www.tronapp.co:9009/api/uploadLogo", {
+          imageData: logoData,
+          owner_address: account.address
+        });
+
         this.setState({
           isTokenCreated: true,
+          modal:
+              <SweetAlert
+                  success
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="success"
+                  onConfirm={this.redirectToTokenList}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+                {tu("token_issued_successfully")}<br/>
+                {tu("token_link_message_0")}
+                {tu("token_link_message_1")}
+                {tu("token_link_message_2")}
+              </SweetAlert>
         });
       } else {
         this.setState({
-          submitMessage: (
-              <Alert color="warning" className="text-center">
-                {tu("token_creation_error")}
-              </Alert>
+          modal: (
+              <SweetAlert
+                  error
+                  confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                  confirmBtnBsStyle="success"
+                  onConfirm={this.hideModal}
+                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+              >
+                {result.message}
+              </SweetAlert>
           )
         });
       }
@@ -168,90 +184,6 @@ class TokenCreate extends Component {
     } finally {
       this.setState({loading: false});
     }
-  };
-
-  isValid = () => {
-
-    let {loading, name, abbr, totalSupply, numberOfCoins, numberOfTron, startTime, endTime, description, url, confirmed} = this.state;
-
-
-    let newErrors = {
-      name: null,
-      supply: null,
-      description: null,
-      url: null,
-      tronAmount: null,
-      tokenAmount: null,
-      startDate: null,
-      endDate: null,
-    };
-
-    if (loading) {
-      return {
-        errors: newErrors,
-        valid: false,
-      };
-    }
-
-    if (confirmed) {
-
-      name = trim(name);
-
-      if (name.length === 0) {
-        newErrors.name = tu("no_name_error");
-      } else if (name.length > 32) {
-        newErrors.name = tu("tokenname_error_message_0");
-      } else if (!/^[a-zA-Z]+$/i.test(name)) {
-        newErrors.name = tu("tokenname_error_message_1");
-      }
-
-      abbr = trim(abbr);
-
-      if (abbr.length === 0) {
-        newErrors.abbr = tu("abbreviation_required");
-      } else if (abbr.length > 5) {
-        newErrors.abbr = tu("abbreviation_error_message_0");
-      } else if (!/^[a-zA-Z]+$/i.test(abbr)) {
-        newErrors.abbr = tu("abbreviation_error_message_1");
-      }
-
-      if (description.length === 0) {
-        newErrors.description = tu("no_description_error");
-      } else if (description.length > 200) {
-        newErrors.description = tu("description_error_message_0");
-      }
-    }
-
-    if (totalSupply <= 0)
-      newErrors.supply = tu("no_supply_error");
-
-    if (url.length === 0)
-      newErrors.url = tu("no_url_error");
-
-    if (numberOfTron <= 0)
-      newErrors.tronAmount = tu("tron_value_error");
-
-    if (numberOfCoins <= 0)
-      newErrors.tokenAmount = tu("coin_value_error");
-
-    if (!startTime)
-      newErrors.startDate = tu("invalid_starttime_error");
-
-    let calculatedStartTime = new Date(startTime).getTime();
-
-    if (calculatedStartTime < Date.now())
-      newErrors.startDate = tu("past_starttime_error");
-
-    if (!endTime)
-      newErrors.endDate = tu("invalid_endtime_error");
-
-    if (new Date(endTime).getTime() <= calculatedStartTime)
-      newErrors.endDate = tu("date_error");
-
-    return {
-      errors: newErrors,
-      valid: confirmed === true && !some(Object.values(newErrors), error => error !== null),
-    };
   };
 
   isLoggedIn = () => {
@@ -270,9 +202,14 @@ class TokenCreate extends Component {
 
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
+
         if (token) {
           this.setState({
             issuedAsset: token,
+          });
+        } else {
+          this.setState({
+            issuedAsset: null,
           });
         }
       });
@@ -301,161 +238,69 @@ class TokenCreate extends Component {
     return isAfter(current, startTime);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    let {frozenSupply} = this.state;
+  componentDidUpdate(prevProps) {
+    let {wallet} = this.props;
 
-    if (frozenSupply.length === 0) {
-      this.setState({
-        frozenSupply: [
-          {
-            amount: 0,
-            days: 1,
-          }
-        ]
-      });
-    } else if (frozenSupply.length > 0) {
-
-      let emptyFields = this.getEmptyFrozenFields();
-
-      if (emptyFields.length === 0) {
-        this.setState({
-          frozenSupply: [
-            ...frozenSupply,
-            {
-              amount: 0,
-              days: 1,
-            }
-          ]
-        });
+    if (wallet !== null) {
+      if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
+        this.checkExistingToken();
       }
-    }
-
-    let newState = {};
-    let hasChange = false;
-
-    for (let field of Object.keys(this.state)) {
-      let value = this.state[field];
-      if (value !== prevState[field]) {
-        hasChange = true;
-        switch (field) {
-          case "num":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-          case "trxNum":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-          case "totalSupply":
-            value = value > 1 || value === "" ? value : 1;
-            break;
-        }
-      }
-      newState[field] = value;
-    }
-
-    if (hasChange) {
-      this.setState(newState);
     }
   }
 
-  getEmptyFrozenFields = () => {
-    let {frozenSupply} = this.state;
-    return filter(frozenSupply, fs => Math.round(parseInt(fs.amount)) === 0 || fs.amount === "");
-  };
-
   renderSubmit = () => {
-    let {isTokenCreated, privateKey} = this.state;
-    let {account} = this.props;
-
-    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
-    let {valid} = this.isValid();
+    let {account, intl} = this.props;
 
     let {wallet} = this.props;
 
-    if (isTokenCreated) {
-      return (
-          <Alert color="success" className="text-center">
-            {tu("token_issued_successfully")}<br/>
-            {tu("token_link_message_0")}{' '}
-            <Link to="/tokens/list">{tu("token_link_message_1")}</Link>{' '}
-            {tu("token_link_message_2")}
-          </Alert>
-      );
-    }
-
     if (!wallet) {
-      return (
-          <Alert color="warning" className="text-center">
-            {tu("trx_token_wallet_requirement")}
-          </Alert>
-
+      this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("trx_token_wallet_requirement")}
+                </SweetAlert>
+          }
       );
+      return false
     }
 
     if (wallet.balance < ASSET_ISSUE_COST) {
-      return (
-          <Alert color="danger" className="text-center">
-            {tu("trx_token_fee_message")}
-          </Alert>
+      this.setState({
+            modal:
+                <SweetAlert
+                    error
+                    confirmBtnText={intl.formatMessage({id: 'confirm'})}
+                    confirmBtnBsStyle="success"
+                    onConfirm={this.hideModal}
+                    style={{marginLeft: '-240px', marginTop: '-195px'}}
+                >
+                  {tu("trx_token_fee_message")}
+                </SweetAlert>
+          }
       );
+      return false
     }
-
-
-    return (
-        <Fragment>
-
-          <div className="text-center">
-            <button
-                disabled={!valid}
-                type="button"
-                className="btn btn-success"
-                onClick={this.preSubmit}>{tu("issue_token")}</button>
-          </div>
-        </Fragment>
-    );
+    return true
   };
 
-  updateFrozen(index, values) {
 
-    let {frozenSupply} = this.state;
-
-    frozenSupply[index] = {
-      ...frozenSupply[index],
-      ...values
-    };
-
-    for (let frozen of frozenSupply) {
-
-      if (trim(frozen.amount) !== "")
-        frozen.amount = parseInt(frozen.amount);
-
-      if (trim(frozen.days) !== "")
-        frozen.days = parseInt(frozen.days);
-
-      frozen.amount = frozen.amount > 0 || frozen.amount === "" ? frozen.amount : 0;
-      frozen.days = frozen.days > 0 || frozen.days === "" ? frozen.days : 1;
-    }
-
-    this.setState({
-      frozenSupply,
-    });
+  changeStep = (step) => {
+    this.setState({step: step});
   }
-
-  blurFrozen(index) {
-    let {frozenSupply} = this.state;
-
-    let isEmpty = frozenSupply[index].amount <= 0 || frozenSupply[index].amount === "";
-
-    if (isEmpty && this.getEmptyFrozenFields().length >= 2) {
-      frozenSupply.splice(index, 1);
-    }
-
-    this.setState({
-      frozenSupply,
-    });
+  changeState = (params) => {
+    this.setState(params);
   }
 
   render() {
-    let {modal, numberOfCoins, numberOfTron, name, submitMessage, frozenSupply, url, confirmed, loading, issuedAsset, totalSupply, startTime, endTime} = this.state;
+    let {modal, issuedAsset, step, steps} = this.state;
+    let {match} = this.props;
+    const Step = Steps.Step
 
     if (!this.isLoggedIn()) {
       return (
@@ -478,7 +323,7 @@ class TokenCreate extends Component {
       return (
           <main className="container pb-3 token-create header-overlap">
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
                     <div className="text-center p-3">
@@ -492,258 +337,60 @@ class TokenCreate extends Component {
       );
     }
 
-    let {valid, errors} = this.isValid();
-
-    let exchangeRate = numberOfTron / numberOfCoins;
-    let {activeLanguage, language} = this.props;
-
-    if (activeLanguage === "en") {
-      language = 'en-gb';
-    } else if (activeLanguage === "no") {
-      language = 'en-gb';
-    } else if (activeLanguage === "zh") {
-      language = 'zh-cn';
-    } else {
-      language = activeLanguage;
-    }
-
-    if (!loading && confirmed && !valid) {
-      submitMessage = (
-          <Alert color="warning" className="text-center">
-            {tu("errors_in_form")}
-          </Alert>
-      );
-    }
 
     return (
 
-        <main className="container pb-3 token-create header-overlap">
+        <main className="container pb-3 token-create header-overlap token_black">
           {modal}
           <div className="row">
-            <div className="col-sm-12 col-md-8">
+            <div className="col-sm-12 col-md-3 mt-3 mt-md-0">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">
-                    {tu("issue_a_token")}
-                  </h5>
-                  <form>
-                    <fieldset>
-                      <legend>
-                        {tu("details")}
-                        <i className="fab fa-wpforms float-right"/>
-                      </legend>
-                      <p>
-                        <small className="form-text text-muted">
-                          {'('}{tu("language_support")}{')'}
-                        </small>
-                      </p>
-                      <div className="form-row">
-                        <div className="form-group col-md-6">
-                          <label>{tu("token_name")} *</label>
-                          <TextField cmp={this} field="name"/>
-                          <small className="form-text text-muted">
-                            {tu("token_message")}
-                          </small>
-                          {ErrorLabel(errors.name)}
-                        </div>
-                        <div className="form-group col-md-6">
-                          <label>{tu("token_abbr")} *</label>
-                          <TextField cmp={this} field="abbr"/>
-                          <small className="form-text text-muted">
-                            {tu("abbr_message")}
-                          </small>
-                          {ErrorLabel(errors.abbr)}
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-md-12">
-                          <label>{tu("total_supply")} *</label>
-                          <NumberField
-                              className="form-control"
-                              value={totalSupply}
-                              min={1}
-
-                              onChange={(totalSupply) => this.setState({totalSupply})}/>
-                          <small className="form-text text-muted">
-                            {tu("supply_message")}
-                          </small>
-                          {ErrorLabel(errors.supply)}
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-md-12">
-                          <label>{tu("description")} *</label>
-                          <TextField type="text" cmp={this} field="description"/>
-                          <small className="form-text text-muted">
-                            {tu("description_message")}
-                          </small>
-                          {ErrorLabel(errors.description)}
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-md-12">
-                          <label>{tu("website_url")} </label>
-                          <TextField type="text" cmp={this} field="url" placeholder="http://"/>
-                          <small className="form-text text-muted">
-                            {tu("url_message")}
-                          </small>
-                          {url !== "" && ErrorLabel(errors.url)}
-                        </div>
-                      </div>
-                    </fieldset>
-                    <hr/>
-                    <fieldset>
-                      <legend>
-                        {tu("exchange_rate")}
-                        <i className="fa fa-exchange-alt float-right"/>
-                      </legend>
-
-                      <div className="form-row">
-                        <p className="col-md-12">
-                          {tu("exchange_rate_message_0")}
-                        </p>
-                        <p className="col-md-12">
-                          {tu("exchange_rate_message_1")} <b><FormattedNumber
-                            value={numberOfCoins}/> {name || tu("token")}</b>&nbsp;
-                          {tu("exchange_rate_message_2")} <b><FormattedNumber
-                            value={numberOfTron}/> {tu("exchange_rate_message_3")}</b>.
-                        </p>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-md-6">
-                          <label>TRX {tu("amount")} *</label>
-                          <NumberField
-                              className="form-control"
-                              value={numberOfTron}
-                              min={1}
-                              onChange={(value) => this.setState({numberOfTron: value})}/>
-                          {numberOfTron !== "" && ErrorLabel(errors.tronAmount)}
-                        </div>
-                        <div className="form-group col-md-6">
-                          <label>{tu("token")} {tu("amount")} *</label>
-                          <NumberField
-                              className="form-control"
-                              value={numberOfCoins}
-                              min={1}
-                              onChange={(value) => this.setState({numberOfCoins: value})}/>
-                          {numberOfCoins !== "" && ErrorLabel(errors.tokenAmount)}
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <p className="col-md-12">
-                          <b>{tu("token_price")}</b>: 1 {name || tu("token")} = <FormattedNumber
-                            value={exchangeRate}/> TRX
-                        </p>
-                      </div>
-                    </fieldset>
-                    <hr/>
-                    <fieldset>
-                      <legend>
-                        {tu("frozen_supply")}
-                        <i className="fa fa-snowflake float-right"/>
-                      </legend>
-
-                      <div className="form-row text-muted">
-                        <p className="col-md-12">
-                          {tu("frozen_supply_message_0")}
-                        </p>
-                      </div>
-                      {
-                        frozenSupply.map((frozen, index) => (
-                            <div key={index}
-                                 className={"form-row " + (frozenSupply.length === index + 1 ? "text-muted" : "")}>
-                              <div className="form-group col-md-9">
-                                {index === 0 && <label>{tu("amount")}</label>}
-                                <NumberField
-                                    className="form-control"
-                                    value={frozen.amount}
-                                    min={0}
-                                    onBlur={() => this.blurFrozen(index)}
-                                    decimals={0}
-                                    onChange={(amount) => this.updateFrozen(index, {amount})}
-                                />
-                              </div>
-                              <div className="form-group col-md-3">
-                                {index === 0 && <label>{tu("days_to_freeze")}</label>}
-                                <NumberField
-                                    className="form-control"
-                                    onChange={(days) => this.updateFrozen(index, {days})}
-                                    decimals={0}
-                                    min={1}
-                                    value={frozen.days}/>
-                              </div>
-                            </div>
-                        ))
-                      }
-                      {
-                        frozenSupply.length > 1 &&
-                        <div>
-                          Total Frozen Supply: {sumBy(frozenSupply, fs => parseInt(fs.amount))}
-                        </div>
-                      }
-                    </fieldset>
-                    <hr/>
-                    <fieldset>
-                      <legend>
-                        {tu("participation")}
-                        <i className="fa fa-calendar-alt float-right"/>
-                      </legend>
-
-                      <div className="form-row text-muted">
-                        <p className="col-md-12">
-                          {tu("participation_message_0")}{name}{tu("participation_message_1")}
-                        </p>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-sm-12 col-md-12 col-lg-6">
-                          <label>{tu("start_date")}</label>
-                          <DateTimePicker
-                              locale={language}
-                              onChange={(data) => this.setState({startTime: data.toDate()})}
-                              isValidDate={this.isValidStartTime}
-                              value={startTime}
-                              input={false}/>
-                          {ErrorLabel(errors.startDate)}
-                        </div>
-                        <div className="form-group col-sm-12 col-md-12 col-lg-6">
-                          <label>{tu("end_date")}</label>
-                          <DateTimePicker
-                              locale={language}
-                              onChange={(data) => this.setState({endTime: data.toDate()})}
-                              isValidDate={this.isValidEndTime}
-                              value={endTime}
-                              input={false}
-                          />
-                          {ErrorLabel(errors.endDate)}
-                        </div>
-                      </div>
-                    </fieldset>
-                    <div className="form-group">
-                      <div className="form-check">
-                        <TextField type="checkbox" cmp={this} field="confirmed" className="form-check-input"/>
-                        <label className="form-check-label">
-                          {tu("token_spend_confirm")}
-                        </label>
-                      </div>
-                    </div>
-                    {submitMessage}
-                    {this.renderSubmit()}
-                  </form>
+                  <Steps direction="vertical" current={step - 1}>
+                    {steps.map((item, index) => <Step key={index} title={tu(item.title)}
+                                                      description={tu(item.content)}/>)}
+                  </Steps>
                 </div>
               </div>
             </div>
-            <div className="col-sm-12 col-md-4 mt-3 mt-md-0">
+            <div className="col-sm-12 col-md-9">
               <div className="card">
                 <div className="card-body">
-                  <p>
-                    {t("token_issue_guide_message_1")}
-                  </p>
-                  <p>
-                    {t("token_issue_guide_message_2")}
-                  </p>
-                  <p>
-                    {t("token_issue_guide_message_3")}
-                  </p>
+                  {
+                    step === 1 &&
+                    <BasicInfo state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 2 &&
+                    <ExchangeRate state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 3 &&
+                    <FreezeSupply state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }}/>
+                  }
+                  {
+                    step === 4 &&
+                    <Confirm state={this.state} nextStep={(number) => {
+                      this.changeStep(number)
+                    }} nextState={(params) => {
+                      this.changeState(params)
+                    }} submit={() => {
+                      this.preSubmit()
+                    }}/>
+                  }
+
                 </div>
               </div>
             </div>

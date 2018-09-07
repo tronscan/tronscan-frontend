@@ -68,7 +68,6 @@ class Address extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-
     this.loadAddress(match.params.id);
     this.loadVotes(match.params.id);
     this.loadWitness();
@@ -251,6 +250,7 @@ class Address extends React.Component {
     let rank;
     let totalVotes;
     let producer;
+    let uploadURL =   "https://tron.network/api/v2/node/info_upload?address=" + match.params.id
     for (let can in candidates) {
       if (address.address === candidates[can].address) {
         rank = candidates[can].rank;
@@ -441,6 +441,8 @@ class Address extends React.Component {
                         }
                       </Switch>
                     </div>
+                  </div>
+                  <div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
                   </div>
                 </Fragment>
             }

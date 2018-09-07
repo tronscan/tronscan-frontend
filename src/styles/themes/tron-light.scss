@@ -1,0 +1,597 @@
+
+@import './light.scss';
+.tron-light {
+    // default background style ====================================================
+    $white: #FFF;
+    background-size: cover;
+    background: #f5f8fa url(../images/body_backgound_transparent.png) fixed no-repeat;
+    background-position: center -200px;
+    .logo-wrapper {
+        background: $white;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        color: #000;
+    }
+    .top-bar {
+        // &.navbar-dark .navbar-nav .nav-link {
+        //     color: $white !important;
+        // }
+        // background: #343a40;
+        &.navbar-dark .navbar-nav .nav-link {
+            color: $bg-color !important;
+        }
+        background: $white;
+    }
+    .sub-header h4 {
+        color: #222;
+    }
+    .nav-searchbar {
+        input {
+            background-color: $white !important;
+            border: 1px solid $text-block !important;
+        }
+    } // default background style ====================================================
+    .token_black {
+        // 背景色样式
+        .bg-gray {
+            background-color: $white !important;
+            border-radius: 1px;
+        }
+        // light ant-table样式覆盖 ===============================
+        .ant-table {
+            background: $white;
+            color: $border-color;
+            &.ant-table-bordered {
+                border: 1px solid $border-color-lighter;
+            }
+            .ant-table-tbody>tr {
+                &>td {
+                    border-color: $bg-color-lighter;
+                }
+            }
+            thead th {
+                background: $bg-color-lighter;
+            }
+            .ant-table-thead>tr.ant-table-row-hover>td,
+            .ant-table-tbody>tr.ant-table-row-hover>td,
+            .ant-table-thead>tr:hover>td,
+            .ant-table-tbody>tr:hover>td {
+                background: $gray-100;
+            }
+        } // 全局ant-pagination样式覆盖 ===============================
+        .ant-pagination {
+            $main-color: $border-color;
+            color: $main-color;
+            %pagination-default {
+                background: $white;
+                border: 1px solid $border-color-lighter;
+                color: $main-color;
+            }
+            .ant-pagination-jump-prev:after,
+            .ant-pagination-jump-next:after {
+                color: $main-color;
+            }
+            .ant-select-selection {
+                .ant-select-arrow:before {
+                    color: $main-color
+                }
+            }
+            .ant-select-dropdown {
+                border: 1px solid $border-color-lighter;
+                background: $white;
+                color: $main-color;
+                &-menu-item {
+                    color: $main-color;
+                    &-selected,
+                    &-selected:hover,
+                    &:hover {
+                        background-color: $border-color-lighter;
+                    }
+                }
+            }
+            .ant-pagination-item-active:focus a, .ant-pagination-item-active:hover a{
+                color: $white;
+            }
+        } // 全局ant-steps样式覆盖 ===============================
+        .ant-steps {
+            $main-color: $text-block-dark;
+            color: $main-color;
+            .ant-steps-item-content {
+                &>.ant-steps-item-title {
+                    color: $main-color;
+                }
+                &>.ant-steps-item-description {
+                    color: $main-color;
+                }
+            }
+            .ant-steps-item-icon {
+                border-color: $border-color;
+                &>.ant-steps-icon {
+                    color: $border-color;
+                }
+            }
+            .ant-steps-item-tail:after{
+                background: $main-color;
+            }
+            .ant-steps-item-process {
+                .ant-steps-item-content {
+                    &>.ant-steps-item-title {
+                        color: $bg-color;
+                    }
+                    &>.ant-steps-item-description {
+                        color: $bg-color;
+                    }
+                }
+                .ant-steps-item-icon {
+                    background-color: $gold;
+                    &>.ant-steps-icon {
+                        color: $white;
+                    }
+                }
+            }
+        } 
+        // 全局ant-switch 样式覆盖 ===============================
+        .ant-switch {
+            background-color: #eeeeee;
+            
+            &-inner{
+                color: $text-block!important;
+            }
+            &-checked {
+                background-color: $main-red;
+                span{
+                    color: $white!important;
+                }
+            }
+        }
+        // 通证-创建 模块样式覆盖
+        .col-sm-12.col-md-3.mt-3.mt-md-0 {
+            background: $bg-color-lightst;
+            .card-body {
+                padding: {
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+        .col-sm-12.col-md-9 .card {
+            background: $white;
+        }
+        hr {
+            border-color: #eee;
+        }
+        h5,
+        h5 * {
+            color: $bg-color;
+        }
+        p {
+            color: $border-color;
+        }
+        // input
+        .form-control {
+            background: #eee;
+            color: $bg-color;
+        }
+        
+        .form-row {
+            label {
+                color: $main-red;
+            }
+            span {
+                color: #2a2a2a;
+            }
+        }
+        
+        form {
+            .table {
+              th, td {
+                border-top-color: #eee;
+              }
+            }
+            tr td:first-child {
+              color: $border-color;
+            }
+        }
+        // McDonaldsCoin 样式覆盖
+        &.mc-donalds-coin {
+            .tokenDetail {
+                background-color: $white;
+                tbody {
+                    td,
+                    th {
+                        border-color: #eee;
+                    }
+                    th {
+                        color: $border-color;
+                    }
+                }
+            }
+            .card-body {
+                background-color: $bg-color-lighter;
+                border: 1px solid $border-color-lighter;
+                h5 {
+                    color: $bg-color;
+                }
+                p {
+                    color: $border-color
+                }
+            }
+            .card-header {
+                background-color: $bg-color-lighter;
+                .nav-item a {
+                    color: $text-block-dark !important;
+                    &:hover,
+                    &.active {
+                        background-color: $white;
+                    }
+                }
+            }
+            .border_table{
+                border: 1px solid $border-color-lighter;
+            }
+        }
+        .sweet-alert {
+            h5,
+            h5 * {
+                font-size: 20px !important;
+            }
+            span,
+            b {
+                font-size: 16px;
+            }
+            .input-group {
+                margin-top: 10px;
+            }
+            padding-bottom: 40px !important;
+            height: auto !important;
+            h5 {
+                color: $border-color !important;
+            }
+            .form-control {
+                height: 50px;
+                color: $text-block-dark;
+                background-color: $bg-color-lighter;
+            }
+            .text-muted {
+                color: $gold !important;
+            }
+            .btn {
+                height: 50px;
+                font-size: 16px;
+            }
+            a {
+                color: $border-color !important;
+            }
+        }
+        .row.transfers .card {
+            background-color: $white;
+            padding: 0 20px 20px;
+            .ant-table thead th {
+                color: $text-block-dark;
+                background-color: $white;
+            }
+            .ant-table-thead>tr>th {
+                border-bottom: 1px solid #eee;
+                border-top: 1px solid #eee;
+            }
+            table {
+                border-bottom: 1px solid #eee;
+            }
+        }
+        &.mytoken {
+            .card-body {
+                padding: 0;
+            }
+        } // news 样式覆盖
+        &.news {
+            h2,
+            h2 * {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            h4,
+            h4 * {
+                font-size: 14px;
+                color: $text-block-dark;
+                font-weight: lighter;
+            }
+            hr {
+                margin: 30px 0;
+            }
+            p {
+                margin-bottom: 0.7em;
+                &:last-child {
+                    margin-bottom: 30px;
+                }
+            }
+            .socialMedia {
+                margin-left: 0;
+                .ml-2,
+                .mx-2 {
+                    margin-left: 1.3rem !important;
+                }
+                .mt-2,
+                .my-2 {
+                    margin-top: 1rem !important;
+                }
+                &>div {
+                    background-color: #eee;
+                    span {
+                        color: $text-block-dark;
+                    }
+                }
+            }
+            .btn {
+                margin: 38px 0 50px !important;
+            }
+            .news_unit {
+                padding: 1.25rem;
+                background-color: $white;
+                margin-bottom: 2px;
+                &:first-child {
+                    hr {
+                        display: none;
+                    }
+                }
+                td {
+                    border: none;
+                    padding: {
+                        top: 9px;
+                        bottom: 9px;
+                    }
+                    color: $border-color;
+                    &:last-child,
+                    a {
+                        color: $bg-color;
+                    }
+                }
+            }
+        }
+    }
+    .confirm .borderBottom {
+        borderBottom: '1px solid #DFD7CA' !important;
+    }
+    .rdtPicker {
+        bottom: 38px;
+    }
+    .socialMedia div {
+        line-height: 32px;
+    }
+    .socialMedia div span {
+        margin-left: 10px;
+    }
+    .myToken tr td:first-child {
+        width: 15%;
+    }
+    .sr th,
+    .sr td {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .main-counters {
+        margin-top: 30px;
+        margin-bottom: 50px;
+        .counters {
+            color: #555;
+            text-align: center;
+            span {
+                font-size: 32px;
+                line-height: 40px;
+            }
+            h4 {
+                margin-top: 10px;
+                span {
+                    color: #555;
+                    margin-top: 5px;
+                    text-shadow: none;
+                    font-weight: 400;
+                    font-size: 18px;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                }
+            }
+        }
+    }
+    .go-foundation {
+        color: red;
+    }
+    .go-foundation:hover {
+        color: red;
+        text-decoration: underline;
+    }
+    .loader-hidden {
+        display: none;
+    }
+    .card-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #555;
+    }
+    .card-chart .card-title {
+        color: #666666;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card-chart .card-title:hover {
+        text-decoration: underline;
+    }
+    .card-chart img {
+        margin: 16px auto 0;
+    }
+    .statistics-chart hr {
+        margin: 20px 55px;
+    }
+    .token-sweet-alert {
+        width: 390px;
+        margin: auto;
+    }
+    .token-sweet-alert .close {
+        float: right;
+        margin-top: -134px;
+    }
+}
+
+$white: #ffffff;
+$color-grey-100: #333333;
+$color-grey-200: #666666;
+$color-grey-300: #999999;
+$color-grey-border:#979797;
+
+$color:#C23631;
+.tron-light {
+  background-color: #F3F3F3;
+  .header-top {
+    background: #F7F7F7;
+  }
+
+  @media (min-width:1200px) {
+    .container{
+      max-width:1200px;
+    }
+  }
+  .list-group .list-group-item .media-body {
+    .list-item-word{
+      font-size: 1rem;
+      word-break:normal;
+      word-wrap:normal;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 980px) {
+      .list-group .list-group-item .media-body {
+        .list-item-word{
+          font-size: 12px;
+          word-break:break-all;
+          word-wrap:break-word;
+        }
+      }
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    color: $color-grey-100;
+  }
+  .top-bar {
+    background-color: $white;
+    &.navbar-dark .navbar-nav .nav-link {
+      color: $color-grey-100;
+      &:hover{
+        color:$color !important;
+      }
+    }
+  }
+  .sub-header h4 {
+    color: #222;
+  }
+  .btn-search{
+    color: #fff;
+    background-color: $color;
+    border-color: $color;
+  }
+
+  .home-stats .text-muted{
+    h2{
+      color: $color-grey-100;
+    }
+    p{
+      color: $color-grey-300;
+    }
+    &:hover{
+      h2{
+        color: $color;
+      }
+      p{
+        color: $color;
+      }
+    }
+  }
+  .home{
+    position: relative;
+    .main-icon-left{
+      position:absolute;
+      display: block;
+      width: 180px;
+      height: 370px;
+      top:156px;
+      left: 0;
+      background: url("../images/main/mian_bg_left.png") no-repeat;
+      background-size: 100% 100%;
+    }
+    .main-icon-right{
+      position:absolute;
+      display: block;
+      width: 200px;
+      height: 140px;
+      right:40px;
+      bottom: 440px;
+      background: url("../images/main/mian_bg_right.png") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .home .color-grey-100{
+    color: $color-grey-100 !important;
+  }
+  .home .color-grey-200{
+    color: $color-grey-200 !important;
+  }
+  .home .color-grey-300{
+    color: $color-grey-300 !important;
+  }
+  .home .color-grey-border{
+    border-color: $color-grey-border!important;
+  }
+  .home .color-grey-border:hover{
+    border-color: $color!important;
+    color: $color!important;
+    background-color: #FFFFFF!important;
+  }
+  .home .color-tron-100{
+    color:$color !important;
+  }
+  .home-footer{
+    background-color: $color-grey-100;
+  }
+  .home-footer a {
+    color: $white;
+  }
+  .home-footer h5 {
+    color: $white;
+  }
+  .home-footer .footer-link {
+    color: $white;
+  }
+  .home-footer .line{
+    width: 100%;
+    height: 1px;
+    background-color: #FFFFFF;
+  }
+  .list-group-item{
+    border-color: #EEEEEE;
+    &:hover{
+      background-color: rgba(255,555,255,0)!important;
+    }
+  }
+  .scrollbar-container{
+    .ps__rail-y{
+      z-index: 99;
+    }
+  }
+  .text-overflow{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .navbar-dark .navbar-toggler{
+    color: $color-grey-300;
+    border-color: $color-grey-300;
+  }
+  .navbar-dark .navbar-toggler-icon {
+    background: url("../images/main/navbar_toggler_icon.png") no-repeat;
+}
+
+
+}
+

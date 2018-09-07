@@ -20,13 +20,10 @@ class AppCmp extends Component {
 
   componentDidMount() {
     let accountKey = Lockr.get("account_key");
-    let accountAddress = Lockr.get("account_address");
+
     if (accountKey !== undefined) {
       this.state.store.dispatch(login(accountKey));
-    } else if (accountAddress !== undefined) {
-      this.state.store.dispatch(loginWithAddress(accountAddress));
     }
-
 
     // Refresh sync status
     setInterval(() => {
@@ -40,25 +37,24 @@ class AppCmp extends Component {
     let {store} = this.state;
 
     return (
-      <Provider store={store}>
-        <PriceProvider>
-          <MainWrap store={store}/>
-          <ReduxToastr
-            timeOut={4000}
-            newestOnTop={false}
-            preventDuplicates
-            position="bottom-right"
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-            progressBar
-          />
 
-        </PriceProvider>
+        <Provider store={store}>
+          <PriceProvider>
+            <MainWrap store={store}/>
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={false}
+                preventDuplicates
+                position="bottom-right"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                progressBar
+            />
 
-      </Provider>
+          </PriceProvider>
 
+        </Provider>
     )
-      ;
   }
 }
 

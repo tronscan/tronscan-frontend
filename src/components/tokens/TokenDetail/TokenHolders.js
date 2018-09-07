@@ -1,13 +1,14 @@
-import React from "react";
-import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "../../common/Paging";
+import React, {Fragment} from "react";
 import {tu} from "../../../utils/i18n";
-import {FormattedNumber} from "react-intl";
 import {AddressLink} from "../../common/Links";
 import {Client} from "../../../services/api";
+import {ONE_TRX} from "../../../constants";
+import SmartTable from "../../common/SmartTable.js"
+import {FormattedNumber, injectIntl} from "react-intl";
+import {TronLoader} from "../../common/loaders";
+import {upperFirst} from "lodash";
 
-
-export class TokenHolders extends React.Component {
+class TokenHolders extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,9 +23,7 @@ export class TokenHolders extends React.Component {
   }
 
   componentDidMount() {
-
     this.loadTokenHolders();
-
   }
 
   componentDidUpdate() {
@@ -35,7 +34,7 @@ export class TokenHolders extends React.Component {
     this.loadTokenHolders(page, pageSize);
   };
 
-  loadTokenHolders = async (page = 1, pageSize = 40) => {
+  loadTokenHolders = async (page = 1, pageSize = 10) => {
     let {filter} = this.props;
     this.setState({loading: true});
 
@@ -46,6 +45,10 @@ export class TokenHolders extends React.Component {
       count: true
     });
 
+    for (let index in addresses) {
+      addresses[index].index = parseInt(index) + 1;
+    }
+
     this.setState({
       page,
       addresses,
@@ -54,60 +57,83 @@ export class TokenHolders extends React.Component {
     });
 
   };
+  customizedColumn = () => {
+    let {intl, token} = this.props;
+    let column = [
+      {
+        title: '#',
+        dataIndex: 'index',
+        key: 'index',
+        width: '10%',
+        align: 'left',
+        className: 'ant_table',
+      },
+      {
+        title: intl.formatMessage({id: 'address'}),
+        dataIndex: 'address',
+        key: 'address',
+        render: (text, record, index) => {
+          return <AddressLink address={record.address}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'quantity'})),
+        dataIndex: 'transactionHash',
+        key: 'transactionHash',
+        width: '20%',
+        align: 'right',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <FormattedNumber value={record.balance}/>
+        }
+      },
+      {
+        title: intl.formatMessage({id: 'percentage'}),
+        dataIndex: 'percentage',
+        key: 'percentage',
+        width: '18%',
+        align: 'right',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <div><FormattedNumber
+              value={(((record.balance) / token.totalSupply) * 100)}
+              maximumFractionDigits={6}
+          /> %
+          </div>
+
+        }
+      }
+    ];
+
+    return column;
+  }
 
   render() {
-    let {token} = this.props;
-    let {addresses, page, total, pageSize, loading} = this.state;
+    let {addresses, total, loading} = this.state;
+    let {intl} = this.props
+    let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center">{tu("no_holders_found")}</div>
       );
     }
     return (
-        <StickyContainer>
-          {
-            <Sticky>
-              {
-                ({style}) => (
-                    <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                      <Paging onChange={this.onChange} total={total} loading={loading} pageSize={pageSize} page={page}/>
-                    </div>
-                )
-              }
-            </Sticky>
-          }
-          <table className="table table-hover m-0 border-top-0">
-            <thead className="thead-dark">
-            <tr>
-              <th style={{width: 125}}>{tu("address")}</th>
-              <th style={{width: 125}}>{tu("quantity")}</th>
-              <th style={{width: 125}}>{tu("percentage")}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              addresses.map((tokenHolder, index) => (
-                  <tr key={index}>
-                    <td>
-                      <AddressLink address={tokenHolder.address}/>
-                    </td>
-                    <td className="text-nowrap">
-                      <FormattedNumber value={tokenHolder.balance}/>&nbsp;
-                    </td>
-                    <td className="text-nowrap">
-                      <FormattedNumber
-                          value={(((tokenHolder.balance) / token.totalSupply) * 100)}
-                          minimumFractionDigits={4}
-                          maximumFractionDigits={4}
-                      /> %
-                    </td>
-                  </tr>
-              ))
-            }
-            </tbody>
-          </table>
-        </StickyContainer>
+      <Fragment>
+        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
+        <div className="row transfers">
+          <div className="col-md-12 table_pos">
+            {total? <div className="table_pos_info">{tableInfo}</div>: ''}
+            <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
+                        onPageChange={(page, pageSize) => {
+                          this.loadTokenHolders(page, pageSize)
+                        }}/>
+          </div>
+        </div>
+      </Fragment>
     )
   }
 
 }
+
+export default injectIntl(TokenHolders);

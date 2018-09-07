@@ -9,6 +9,7 @@ import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {BackTop} from 'antd';
+
 import {find} from "lodash";
 import {flatRoutes} from "../routes";
 import {matchPath} from "react-router";
@@ -49,8 +50,10 @@ class MainWrap extends React.Component {
 
   componentDidUpdate({theme}) {
     /* eslint-disable no-undef */
-    document.body.classList.remove("theme-" + theme);
-    document.body.classList.add("theme-" + this.props.theme);
+
+    document.body.classList.remove("tron-" + 'light');
+    document.body.classList.add("tron-" + 'light');
+
   }
 
   render() {
