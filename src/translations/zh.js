@@ -983,4 +983,6 @@ export const messages = {
   "view_pass": "个通证可参与发行",
   "token_overview_tron":"波场通证市场总览",
   "token_participate_tron":"参与波场通证发行",
+  "not_started":"尚未开始",
+  "no_token_to_buy":"抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
 };

@@ -51,7 +51,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("http://www.tronapp.co:9009/api/token?name=" + name);
+    let result = await xhr.get("https://www.tronapp.co:9009/api/token?name=" + name);
     let token = result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
@@ -215,11 +215,12 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5 token-sweet-alert">
+              <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                {token.remaining === 0 && <span> {tu('no_token_to_buy')}</span>}
                 <div className="input-group mt-5">
                   <input
                       type="number"
@@ -395,7 +396,7 @@ class TokenDetail extends React.Component {
                             {/*
                             <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
                             <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
-                            {!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date()) &&
+                            {!(token.endTime < new Date()  || token.issuedPercentage === 100 || token.startTime > new Date()) &&
                             <button className="btn btn-default btn-xs"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }
@@ -475,11 +476,11 @@ class TokenDetail extends React.Component {
                           <td>
                             <div className="d-flex">
                               {token['social_media'] && token['social_media'].map((media, index) => {
-                                return (media.url!=="" && <div key={index} style={{marginRight: '10px'}}>
-                                     <a href={media.url}><img
-                                        src={require('../../../images/' + media.name + '.png')}/></a>
-                                </div>
-                                  )
+                                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
+                                      <a href={media.url}><img
+                                          src={require('../../../images/' + media.name + '.png')}/></a>
+                                    </div>
+                                )
                               })
                               }
                               {
