@@ -58,7 +58,7 @@ class Accounts extends Component {
     });
     */
     let random=Math.random();
-    let data = await xhr.get("https://tron.network/api/v2/node/balance_info?random="+random);
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random="+random);
     data.data.data.sort(compare('key'));
     this.setState({
       loading: false,

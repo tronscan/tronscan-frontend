@@ -161,7 +161,7 @@ class Statistics extends React.Component {
     async loadTotalTRXSupply(){
         let {intl} = this.props;
         let random = Math.random();
-        let balanceData = await xhr.get("https://tron.network/api/v2/node/balance_info?random=" + random);
+        let balanceData = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
         let TRONFoundationTotal = balanceData.data.total;
         let {blocks} = await Client.getBlocks({
             limit: 1,
@@ -225,7 +225,7 @@ class Statistics extends React.Component {
 
     async loadVolume(){
         let {intl} = this.props;
-        let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+        let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
         let volumeUSD = volumeData.data.market_cap_by_available_supply
 
         let volume = volumeUSD.map(function (v, i) {
@@ -430,8 +430,8 @@ class Statistics extends React.Component {
         let {match, intl} = this.props;
         let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let unit;
-        if (match.params.chartName === 'blockchainSizeStats' ||
-            match.params.chartName === 'addressesStats') {
+        let uploadURL = "http://server.tron.network/api/v2/node/overview_upload";
+        if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
             unit = 'number';
@@ -749,7 +749,13 @@ class Statistics extends React.Component {
 
                                 }
                             </div>
+
                         </div>
+                        {
+                            match.params.chartName === 'txOverviewStats' &&
+                            <div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>
+                        }
+
                     </div>
                 </div>
 
