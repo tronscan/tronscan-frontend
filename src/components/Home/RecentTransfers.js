@@ -83,7 +83,7 @@ class RecentTransfers extends Component {
                   </div>
                   <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word" style={styles.nowrap}>
                     <div className="color-grey-200" style={{flex:1}}>
-                      <TRXPrice amount={transfer.amount / ONE_TRX} />
+                      <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/>
                     </div>
                     <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                       <TimeAgo date={transfer.timestamp} />

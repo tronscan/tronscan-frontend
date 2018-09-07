@@ -44,7 +44,7 @@ class Markets extends React.Component {
     let {data} = await xhr.get("https://min-api.cryptocompare.com/data/histoday?fsym=TRX&tsym=USD&limit=" + dayNum);
     let priceStatsTemp = data['Data'];
 
-    let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+    let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
     let volumeUSD = volumeData.data.market_cap_by_available_supply
     let volume = volumeUSD.map(function (v, i) {
       return {
