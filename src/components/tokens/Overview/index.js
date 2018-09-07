@@ -170,7 +170,7 @@ class TokenOverview extends Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
+              <div className="mt-5 token-sweet-alert" style={{textAlign: 'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
@@ -368,7 +368,7 @@ class TokenOverview extends Component {
       {
         title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.issued * (record.price / ONE_TRX)}/> TRX</div>
+          return <div><FormattedNumber value={record.issued / ONE_TRX}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table d-none d-md-table-cell _text_nowrap'

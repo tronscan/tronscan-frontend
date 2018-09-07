@@ -23,17 +23,25 @@ export class FreezeSupply extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.props.state;
+    this.state = {
+      supplyCheck: false,
+      ...this.props.state
+    };
   }
 
   isValid = () => {
+    if (sumBy(this.state.frozenSupply, fs => parseInt(fs.amount)) > this.state.totalSupply) {
+      this.setState({supplyCheck: true});
+      return;
+    }
+    this.setState({supplyCheck: false});
     this.props.nextStep(4);
     this.state.step = 4;
     this.props.nextState(this.state);
   };
 
   componentDidMount() {
-
+    this.setState({supplyCheck: false});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -92,7 +100,7 @@ export class FreezeSupply extends Component {
   }
 
   render() {
-    let {frozenSupply, showFrozenSupply, errors} = this.state;
+    let {frozenSupply, showFrozenSupply, errors, supplyCheck} = this.state;
 
     let {nextStep, intl} = this.props;
 
@@ -166,7 +174,9 @@ export class FreezeSupply extends Component {
                         {
                           index > 0 &&
                           <a className="anticon anticon-minus-circle-o" style={{fontSize: "30px", marginTop: "0px"}}
-                             onClick={()=>{this.minusFrozen(index)}}></a>
+                             onClick={() => {
+                               this.minusFrozen(index)
+                             }}></a>
                         }
                       </div>
                     }
@@ -178,6 +188,9 @@ export class FreezeSupply extends Component {
                 <div className="mb-1">
                   {tu('total')}{tu('frozen_supply')} : {sumBy(frozenSupply, fs => parseInt(fs.amount))}
                 </div>
+              }
+              {supplyCheck &&
+              <small className="text-danger"> Total frozen supply is bigger than total supply!</small>
               }
             </fieldset>
             <div className="pt-3">
