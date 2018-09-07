@@ -84,7 +84,7 @@ class Blocks extends React.Component {
         dataIndex: 'timestamp',
         key: 'timestamp',
 
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <TimeAgo date={text} />
@@ -103,7 +103,7 @@ class Blocks extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'produced by'})),
         dataIndex: 'witnessAddress',
         key: 'witnessAddress',
-        align: 'center',
+        align: 'left',
         width: '40%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -127,14 +127,17 @@ class Blocks extends React.Component {
   render() {
 
     let {blocks, total, loading} = this.state;
-    let {match} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'block_unit'})
+
     return (
       <main className="container header-overlap pb-3 token_black">
         {loading && <div className="loading-style"><TronLoader/></div>}
         {
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 table_pos">
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadBlocks(page, pageSize)

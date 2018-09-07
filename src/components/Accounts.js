@@ -133,8 +133,9 @@ class Accounts extends Component {
         title: upperFirst(intl.formatMessage({id: 'address'})),
         dataIndex: 'address',
         key: 'address',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
+        width: '40%',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
         }
@@ -143,9 +144,9 @@ class Accounts extends Component {
         title: upperFirst(intl.formatMessage({id: 'supply'})),
         dataIndex: 'balance',
         key: 'balance',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
-        width: '12%',
+        // width: '12%',
         render: (text, record, index) => {
           return <div><FormattedNumber
               value={(((parseInt(text) / ONE_TRX) / CIRCULATING_SUPPLY) * 100)}
@@ -159,7 +160,7 @@ class Accounts extends Component {
         dataIndex: 'power',
         key: 'power',
         align: 'center',
-        width: '15%',
+        // width: '15%',
         render: (text, record, index) => {
           return <FormattedNumber value={parseInt(text) / ONE_TRX}/>
         }
@@ -168,9 +169,9 @@ class Accounts extends Component {
         title: upperFirst(intl.formatMessage({id: 'balance'})),
         dataIndex: 'balance',
         key: 'balance',
-        align: 'center',
+        align: 'right',
         className: 'ant_table',
-        width: '15%',
+        // width: '15%',
         render: (text, record, index) => {
           return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
@@ -181,16 +182,17 @@ class Accounts extends Component {
 
   render() {
 
-    let {match} = this.props;
+    let {match, intl} = this.props;
     let {total, loading, accounts} = this.state;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
 
     return (
-        <main className="container header-overlap pb-3">
+        <main className="container header-overlap pb-3 token_black">
           <div className="row">
             <div className="col-md-12">
-              <div className="card h-100 text-center widget-icon">
-                <WidgetIcon className="fa fa-users text-secondary"/>
+              <div className="card h-100 text-center widget-icon accout_unit">
+                {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
                     <FormattedNumber value={total}/>
@@ -203,7 +205,8 @@ class Accounts extends Component {
           </div>
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
-            <div className="col-md-12">
+            <div className="col-md-12 table_pos">
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)

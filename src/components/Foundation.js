@@ -67,8 +67,9 @@ class Accounts extends Component {
 
   renderAccounts() {
 
-    let {accounts} = this.state;
+    let {accounts, total} = this.state;
     let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
 
     let column = [
       {
@@ -76,12 +77,14 @@ class Accounts extends Component {
         dataIndex: 'key',
         key: 'key',
         width: 100,
+        align: 'left',
         className: 'ant_table'
       },
       {
         title: intl.formatMessage({id: 'address'}),
         dataIndex: 'address',
         key: 'address',
+        align: 'left',
         render: (text, record, index) => {
           return (
               <AddressLink address={text}/>
@@ -92,7 +95,8 @@ class Accounts extends Component {
         title: intl.formatMessage({id: 'balance'}),
         dataIndex: 'balance',
         key: 'balance',
-        width: 200
+        width: 200,
+        align: 'right',
       }
     ];
     return (
@@ -106,7 +110,8 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  <Table columns={column} dataSource={accounts} pagination={{position: 'both', showSizeChanger: true}}/>
+                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                  <Table bordered={true} columns={column} dataSource={accounts} pagination={{position: 'both', showSizeChanger: true}}/>
                 </div>
           }
         </div>
@@ -119,12 +124,12 @@ class Accounts extends Component {
     let {total, loading} = this.state;
 
     return (
-        <main className="container header-overlap pb-3">
-          <div className="row">
+        <main className="container header-overlap pb-3 token_black">
+          <div className="row foundation_title">
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 text-center widget-icon">
-                <div className="card-body">
-                  <h3 className="text-primary">
+              <div className="card h-100 widget-icon">
+                <div className="card-body pl-5">
+                  <h3>
                     <FormattedNumber value={1000}/>
                   </h3>
                   {tu("addresses_number")}
@@ -135,8 +140,8 @@ class Accounts extends Component {
             <div className="col-md-4 mt-3 mt-md-0 position-relative">
               <div className="card h-100 widget-icon">
 
-                <div className="card-body text-center">
-                  <h3 className="text-secondary">
+                <div className="card-body pl-5">
+                  <h3>
                     <FormattedNumber value={total}/>
                   </h3>
                   {tu("foundation_address")}
@@ -147,8 +152,8 @@ class Accounts extends Component {
             <div className="col-md-4 mt-3 mt-md-0">
               <div className="card h-100 widget-icon">
 
-                <div className="card-body text-center">
-                  <h3 className="text-success">
+                <div className="card-body pl-5">
+                  <h3>
                     2020/01/01
                   </h3>
                   {tu("unfreeze_time")}

@@ -230,4 +230,76 @@ body .token_black {
     width: 16px;
     height: 16px;
   }
+
+  $blue:   #4A90E2;
+  $yellow: #E0AE5C;
+  $green:  #69C265;
+  $titlimg: frozen sr band addr node up lock vote nextvote balance totle lowst nodest heightst;
+  @each $name in $titlimg{
+    .#{$name} {
+      background-image: url(../images/title-img/#{$name}.png)
+    }
+  }
+  @mixin bg-line ($image, $color: $main-red, $width: 4) {
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: $width * 1px;
+      background-color: $color;
+    }
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      // @extend .#{$image};
+      background-image: url(../images/title-img/#{$image}.png);
+      background-size: auto 100%;
+      background-repeat: no-repeat; 
+    }
+  }
+
+  .accout_unit{
+    position: relative;
+    background-color: $white;
+    @include bg-line(accounts, $main-red, 6);
+
+    h3{
+      color: $bg-color!important;
+    }
+  }
+  
+  .foundation_title{
+    color: none;
+    border-radius: 1px;
+
+    @each $number, $color, $image in (1, $main-red, addr),
+                             (2, $blue, lock),
+                             (3, $yellow, frozen) {
+      &>div:nth-child(#{$number}) .card-body{
+        @include bg-line($image, $color);
+      }
+    }
+
+    
+    
+
+    .card-body{
+      background: $white;
+
+      
+    }
+    span{
+      color: $text-block-dark;
+    }
+    h3, h3 *{
+      color: $bg-color;
+    }
+   
+  }
 }

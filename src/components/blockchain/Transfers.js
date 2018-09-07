@@ -73,7 +73,7 @@ class Transfers extends React.Component {
         title: '#',
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         width: '15%',
         render: (text, record, index) => {
@@ -86,7 +86,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'block'})),
         dataIndex: 'block',
         key: 'block',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         width: '10%',
         render: (text, record, index) => {
@@ -97,7 +97,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'created'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        align: 'center',
+        align: 'left',
         width: '14%',
         render: (text, record, index) => {
           return <TimeAgo date={text}/>
@@ -107,7 +107,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'from'})),
         dataIndex: 'transferFromAddress',
         key: 'transferFromAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
@@ -117,11 +117,23 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'to'})),
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
-        },
+        }
+      },
+      { 
+        title: upperFirst(intl.formatMessage({id: 'value'})),
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right',
+        width: '140px',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          console.log(text, record, index)
+          return record.amount +' '+ record.tokenName
+        }
       }
     ];
     return column;
@@ -130,14 +142,16 @@ class Transfers extends React.Component {
   render() {
 
     let {transfers, total, loading} = this.state;
-    let {match} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
 
     return (
       <main className="container header-overlap pb-3 token_black">
         {loading && <div className="loading-style"><TronLoader/></div>}
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-12 table_pos">
+            {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
             <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                         onPageChange={(page, pageSize) => {
                           this.load(page, pageSize)
