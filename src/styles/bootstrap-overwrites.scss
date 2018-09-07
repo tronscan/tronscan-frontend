@@ -1,5 +1,4 @@
 //boostrap overwrites
-
 .border-bottom {
     border-bottom: 1px solid $light-grey;
 }
@@ -8,16 +7,58 @@
     background-color: $dark-grey !important;
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
     background-color: transparent !important;
     outline: none !important;
 }
 
-.btn:focus,.btn:active {
-  outline: none !important;
-  box-shadow: none !important;
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .page-link:focus {
-  box-shadow: none;
+    box-shadow: none;
+}
+
+.token_black{
+
+
+    .btn {
+        border-radius: 1px;
+        span{
+            color: #fff;
+        }
+        &-default{
+            background: transparent;
+            border-color: $main-red;
+            span{
+                color: $main-red;
+            }
+
+            &:hover{
+                border-color: $main-red;
+                background-color: $main-red;
+                span{
+                    color: #fff!important;
+                }
+            }
+        }
+
+        &-lg {
+            padding: {
+                top: 8px;
+                bottom: 8px;
+            }
+        }
+        &-xs {
+            padding: {
+                top: 0px;
+                bottom: 0px;
+            }
+        }
+    }
+    
 }

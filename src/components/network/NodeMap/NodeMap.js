@@ -9,8 +9,8 @@ import "../../../styles/marker-cluster.scss";
 import "leaflet/dist/leaflet-src.js";
 import "leaflet.markercluster/dist/leaflet.markercluster-src.js";
 
-import "../../../lib/leaflet-echarts/leaflet-echarts.js";
-import "../../../lib/leaflet-echarts/lib/echarts.source.js";
+import "leaflet-echarts/src/leaflet-echarts.js";
+import "leaflet-echarts/lib/echarts.source.js";
 
 import config from '../../common/chart.config.js'
 

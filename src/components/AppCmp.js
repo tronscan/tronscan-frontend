@@ -10,50 +10,49 @@ import ReduxToastr from 'react-redux-toastr'
 
 class AppCmp extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            loading: true,
-            store,
-        };
+  constructor() {
+    super();
+    this.state = {
+      loading: true,
+      store,
+    };
+  }
+
+  componentDidMount() {
+    let accountKey = Lockr.get("account_key");
+    if (accountKey !== undefined) {
+      this.state.store.dispatch(login(accountKey));
     }
+    // Refresh sync status
+    setInterval(() => {
+      this.state.store.dispatch(loadSyncStatus());
+    }, 90000);
+    this.state.store.dispatch(loadSyncStatus());
+  }
 
-    componentDidMount() {
-        let accountKey = Lockr.get("account_key");
-        if (accountKey !== undefined) {
-            this.state.store.dispatch(login(accountKey));
-        }
-        // Refresh sync status
-        setInterval(() => {
-            this.state.store.dispatch(loadSyncStatus());
-        }, 90000);
-        this.state.store.dispatch(loadSyncStatus());
-    }
+  render() {
 
-    render() {
+    let {store} = this.state;
 
-        let {store} = this.state;
+    return (
+        <Provider store={store}>
+          <PriceProvider>
+            <MainWrap store={store}/>
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={false}
+                preventDuplicates
+                position="bottom-right"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                progressBar
+            />
 
-        return (
-            <Provider store={store}>
-                <PriceProvider>
-                    <MainWrap store={store}/>
-                    <ReduxToastr
-                        timeOut={4000}
-                        newestOnTop={false}
-                        preventDuplicates
-                        position="bottom-right"
-                        transitionIn="fadeIn"
-                        transitionOut="fadeOut"
-                        progressBar
-                    />
+          </PriceProvider>
 
-            </PriceProvider>
-
-    </Provider>
+        </Provider>
     )
-        ;
-    }
+  }
 }
 
 export default AppCmp;

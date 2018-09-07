@@ -33,12 +33,10 @@ class MainWrap extends React.Component {
 
   componentDidUpdate({theme}) {
     /* eslint-disable no-undef */
-    if(Lockr.get('theme')){
-        Lockr.rm('theme');
-    }
-     document.body.classList.remove("tron-" + theme);
-    // document.body.classList.add("tron-" + this.props.theme);
-     document.body.classList.add("tron-light");
+
+    document.body.classList.remove("tron-" + 'light');
+    document.body.classList.add("tron-" + 'light');
+
   }
 
   render() {
