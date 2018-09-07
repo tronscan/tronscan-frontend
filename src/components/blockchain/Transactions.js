@@ -85,7 +85,7 @@ class Transactions extends React.Component {
         title: '#',
         dataIndex: 'hash',
         key: 'hash',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         width: '12%',
         render: (text, record, index) => {
@@ -98,7 +98,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'block'})),
         dataIndex: 'block',
         key: 'block',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <BlockNumberLink number={text}/>
@@ -108,7 +108,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'created'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        align: 'center',
+        align: 'left',
         render: (text, record, index) => {
           return <TimeAgo date={text}/>
         }
@@ -117,7 +117,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'address'})),
         dataIndex: 'ownerAddress',
         key: 'ownerAddress',
-        align: 'center',
+        align: 'left',
         width: '40%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -128,7 +128,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'contract'})),
         dataIndex: 'contractType',
         key: 'contractType',
-        align: 'center',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <span>{ContractTypes[text]}</span>
@@ -141,14 +141,16 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, loading} = this.state;
-    let {match} = this.props;
+    let {match,intl} = this.props;
     let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 table_pos">
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
