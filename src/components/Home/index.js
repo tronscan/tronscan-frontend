@@ -17,7 +17,6 @@ import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
-import {LineReactAdd, LineReactTx} from "../common/LineCharts";
 import {reduxHistory} from "../../store";
 import {LineReactAdd, LineReactTx,LineReactHighChartTx,LineReactHighChartAdd} from "../common/LineCharts";
 
