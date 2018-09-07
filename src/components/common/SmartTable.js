@@ -54,6 +54,12 @@ export default class SmartTable extends Component {
 
   fetch = (params = {}) => {
     this.setState({loading: true});
+    if(!this.props.onPageChange){
+      this.setState({
+        loading: false,
+      });
+      return;
+    }
     this.props.onPageChange(params.page, params.pageSize);
     this.setState({
       loading: false,
@@ -172,7 +178,11 @@ export default class SmartTable extends Component {
           <Table
               bordered={bordered}
               columns={columns}
-              rowKey={record => record.index}
+              rowKey={(record) => {
+                if(record.id) return record.id;
+                if(record.number) return record.number;
+                if(record.name) return record.name;
+              }}
               dataSource={data}
               pagination={{total: total, ...this.state.pagination}}
               loading={loading}

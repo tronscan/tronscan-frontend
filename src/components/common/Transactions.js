@@ -90,7 +90,7 @@ class Transactions extends React.Component {
         key: 'contractType',
         align: 'center',
         width: '20%',
-        className: 'ant_table, _text_nowrap',
+        className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return <span>{ContractTypes[text]}</span>
         }
@@ -114,13 +114,13 @@ class Transactions extends React.Component {
     }
 
     return (
-        <Fragment>
-        {loading && <div className="loading-style"><TronLoader/></div>}
-        <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
-                    onPageChange={(page, pageSize) => {
-                      this.loadTransactions(page, pageSize)
-                    }}/>
-        </Fragment>
+        <div className="token_black">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                      onPageChange={(page, pageSize) => {
+                        this.loadTransactions(page, pageSize)
+                      }}/>
+        </div>
     )
   }
 }
