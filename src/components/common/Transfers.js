@@ -108,6 +108,14 @@ class Transfers extends React.Component {
         }
       },
       {
+        title: '',
+        className: 'ant_table',
+        width: '30px',
+        render: (text, record, index) => {
+          return <img src={require("../../images/arrow.png")}/>
+        }
+      },
+      {
         title: upperFirst(intl.formatMessage({id: 'to'})),
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
