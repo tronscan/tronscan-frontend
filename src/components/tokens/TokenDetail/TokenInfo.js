@@ -62,7 +62,7 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("fund_raised")}:</th>
               <td>
-                <FormattedNumber value={token.issued * token.price / ONE_TRX}/> TRX
+                <FormattedNumber value={token.participated / ONE_TRX}/> TRX
               </td>
             </tr>
             <tr>

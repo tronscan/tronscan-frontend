@@ -253,7 +253,9 @@ class Address extends React.Component {
     let rank;
     let totalVotes;
     let producer;
-    let uploadURL = "https://tron.network/api/v2/node/info_upload?address=" + match.params.id
+
+    let uploadURL =   "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
+
     for (let can in candidates) {
       if (address.address === candidates[can].address) {
         rank = candidates[can].rank;

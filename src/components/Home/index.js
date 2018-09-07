@@ -40,7 +40,7 @@ class Home extends Component {
 
   async loadNodes() {
    // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://tron.network/api/v2/node/nodemap");
+    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
     this.setState({
       onlineNodes: data.data.length
     })
@@ -152,6 +152,7 @@ class Home extends Component {
     //   this.load();
     // }, 6000);
   }
+
 
   componentWillUnmount() {
     //clearConstellations();
@@ -303,7 +304,6 @@ class Home extends Component {
                               <LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>
                         }
                       </div>
-
                     </div>
                   </div>
                 </div>

@@ -51,8 +51,10 @@ class Accounts extends Component {
       start: (page-1) * pageSize,
     });
     */
-    let random = Math.random();
-    let data = await xhr.get("https://tron.network/api/v2/node/balance_info?random=" + random);
+
+    let random=Math.random();
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random="+random);
+
     data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
