@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
@@ -10,6 +10,9 @@ import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
 import {FormattedNumber} from "react-intl";
+import SmartTable from "./SmartTable.js"
+import {upperFirst} from "lodash";
+import {ContractTypes} from "../../utils/protocol";
 
 class Transfers extends React.Component {
 
@@ -40,7 +43,7 @@ class Transfers extends React.Component {
     this.load(page,pageSize);
   };
 
-  load = async (page = 1,pageSize=40) => {
+  load = async (page = 1,pageSize=10) => {
 
     let {filter} = this.props;
 
@@ -64,10 +67,78 @@ class Transfers extends React.Component {
     });
   };
 
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: upperFirst(intl.formatMessage({id: 'age'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        align: 'center',
+        className: 'ant_table',
+        width: '14%',
+        render: (text, record, index) => {
+          return <TimeAgo date={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'hash'})),
+        dataIndex: 'hash',
+        key: 'hash',
+        align: 'center',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <Truncate>
+            <TransactionHashLink hash={text}>
+              {text}
+            </TransactionHashLink>
+          </Truncate>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'from'})),
+        dataIndex: 'transferFromAddress',
+        key: 'transferFromAddress',
+        align: 'center',
+        width: '20%',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <AddressLink address={text} />
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'to'})),
+        dataIndex: 'transferToAddress',
+        key: 'transferToAddress',
+        align: 'center',
+        width: '20%',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return  <AddressLink address={text} />
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'amount'})),
+        dataIndex: 'hash',
+        key: 'hash',
+        align: 'center',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <Truncate>
+            <TransactionHashLink hash={text}>
+              {text}
+            </TransactionHashLink>
+          </Truncate>
+        }
+      },
+    ];
+    return column;
+  }
+
   render() {
 
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
-    let {theadClass = "thead-dark"} = this.props;
+    let column = this.customizedColumn();
 
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
@@ -137,6 +208,13 @@ class Transfers extends React.Component {
           </table>
         </div>
       </StickyContainer>
+        <Fragment>
+        {loading && <div className="loading-style"><TronLoader/></div>}
+    <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
+                onPageChange={(page, pageSize) => {
+                  this.load(page, pageSize)
+                }}/>
+    </Fragment>
     )
   }
 }
