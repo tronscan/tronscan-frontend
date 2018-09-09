@@ -47,9 +47,11 @@ class Home extends Component {
   }
 
   async loadAccounts() {
-    let totalAccounts = await Client.getAccounts();
+    //let totalAccounts = await Client.getAccounts();
+    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account");
+    let totalAccounts = accountData.data.total;
     this.setState({
-      totalAccounts: totalAccounts.total
+      totalAccounts: totalAccounts
     })
   }
 
