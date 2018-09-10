@@ -1092,10 +1092,63 @@ th {
     font-size: 16px;
   }
   table th {
-    font-size:14px;
-    font-weight:normal;
+    font-size: 14px;
+    font-weight: normal;
   }
   a {
-    color:red;
+    color: red;
+  }
+}
+
+._voteOverview {
+  ._badge {
+    height: 100px;
+    .card-body > span {
+      font-size: 14px;
+      color: #999999;
+    }
+    h3[class='text-secondary'] span {
+      color: #333333;
+    }
+    .card-body {
+      padding-left: 50px;
+    }
+    .card {
+      border-radius: 0px;
+    }
+    ._ranks {
+      color: #999999;
+    }
+    a {
+      color: red;
+    }
+    img {
+      width: 48px;
+      height: 96px;
+      float: right;
+    }
+  }
+  .table-responsive thead tr th {
+    background: #F3F3F3;
+    color: #333333;
+    font-size: 14px;
+    border: 0px;
+  }
+  .table-responsive tbody td {
+    border-left: 1px solid #F3F3F3;
+    border-top: 1px solid #F3F3F3;
+  }
+  .table-responsive tbody th {
+    border-left: 1px solid #F3F3F3;
+    border-top: 1px solid #F3F3F3;
+  }
+  .table-responsive tbody a {
+    color: #C23631;
+  }
+  ._liveVotes span:nth-child(3) {
+    color: red;
+  }
+  ._team a{
+    border-radius: 0px;
   }
 }
