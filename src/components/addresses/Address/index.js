@@ -171,35 +171,35 @@ class Address extends React.Component {
         ...prevProps.tabs,
         transfers: {
           id: "transfers",
-          icon: "fa fa-exchange-alt",
+          // icon: "fa fa-exchange-alt",
           path: "",
           label: <span>{tu("transfers")}</span>,
           cmp: () => <Transfers filter={{address: id}}/>
         },
         transactions: {
           id: "transactions",
-          icon: "fas fa-handshake",
+          // icon: "fas fa-handshake",
           path: "/transactions",
           label: <span>{tu("transactions")}</span>,
           cmp: () => <Transactions filter={{address: id}}/>
         },
         token_balances: {
           id: "token_balances",
-          icon: "fa fa-piggy-bank",
+          // icon: "fa fa-piggy-bank",
           path: "/token-balances",
           label: <span>{tu("token_balances")}</span>,
           cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} />,
         },
         blocks_produced: {
           id: "blocks-produced",
-          icon: "fa fa-cube",
+          // icon: "fa fa-cube",
           path: "/blocks",
           label: <span>{tu("produced_blocks")}</span>,
           cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
         },
         votes: {
           id: "votes",
-          icon: "fa fa-bullhorn",
+          // icon: "fa fa-bullhorn",
           path: "/votes",
           label: <span>{tu("votes")}</span>,
           cmp: () => <Votes
@@ -210,7 +210,7 @@ class Address extends React.Component {
         },
         voters: {
           id: "voters",
-          icon: "fa fa-bullhorn",
+          // icon: "fa fa-bullhorn",
           path: "/voters",
           label: <span>{tu("voters")}</span>,
           cmp: () => <Votes
@@ -277,8 +277,8 @@ class Address extends React.Component {
                       </TronLoader>
                     </div> :
                     <Fragment>
-                      <div className="card">
-                        {
+                      <div className="card list-style-header">
+                        {/* {
                           address.representative.enabled && !producer &&
                           <div className="card-header text-center bg-info font-weight-bold text-white">
                             {tu("representatives")}
@@ -297,7 +297,13 @@ class Address extends React.Component {
                               <img style={{maxWidth: '100%'}} src={media.image}/>
                             </div>
                           </div>
-                        }
+                        } */}
+                        <div className="card-body">
+                          <h5 className="card-title m-0">
+                            <i className="fa fa-cube mr-2"/>
+                            {tu("representatives")}
+                          </h5>
+                        </div>
                         <div className="row">
 
                           <div className="col-md-12">
@@ -421,8 +427,8 @@ class Address extends React.Component {
                           }
                         </div>
                       </div>
-                      <div className="card mt-3">
-                        <div className="card-header">
+                      <div className="card mt-3 list-style-body">
+                        <div className="card-header list-style-body__header">
                           <ul className="nav nav-tabs card-header-tabs">
                             {
                               Object.values(tabs).map(tab => (
@@ -436,7 +442,7 @@ class Address extends React.Component {
                             }
                           </ul>
                         </div>
-                        <div className="card-body p-0">
+                        <div className="card-body p-0 list-style-body__body">
                           <Switch>
                             {
                               Object.values(tabs).map(tab => (

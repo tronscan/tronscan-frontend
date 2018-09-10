@@ -60,5 +60,23 @@
             }
         }
     }
+
     
+    
+}
+// badge ===================
+.badge{
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: lighter;
+    padding: 3px 14px;
+
+    &-danger{
+        background: rgba(194,54,49,0.20);
+        color: $main-red;
+    }
+    &-success{
+        background: rgba(105,194,101,0.20);
+        color: #2EAC28;
+    }
 }

@@ -132,17 +132,16 @@ class Representatives extends Component {
         .value()[0];
 
     return (
-        <main className="container header-overlap pb-3">
+        <main className="container header-overlap pb-3 token_black">
           <div className={witnesses.length === 0 || pieChart.length === 0 ? 'card' : ''}>
             {
               witnesses.length === 0 || pieChart.length === 0 ?
                   <TronLoader/> :
-                  <div className="row ">
-                    <div className="col-md-6">
-                      <div className="mt-3 mt-md-3">
+                  <div className="row">
+                    <div className="col-md-6 foundation_title represent_title">
+                      <div className="mb-3">
                         <div className="card h-100 widget-icon">
-                          <WidgetIcon className="fa fa-user-tie text-secondary"/>
-                          <div className="card-body text-center">
+                          <div className="card-body">
                             <h3 className="text-primary">
                               <FormattedNumber value={witnesses.length}/>
                             </h3>
@@ -151,42 +150,44 @@ class Representatives extends Component {
                         </div>
                       </div>
 
-                      <div className="mt-3 mt-md-3">
+                      <div className="mb-3">
                         <div className="card h-100">
-                          <div className="card-body text-center widget-icon">
-                            <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}/>
-                            <h3 className="text-success">
+                          <div className="card-body">
+                            <h3>
                               <FormattedNumber value={mostProductive.productivity}/>%
                             </h3>
-                            {tu("highest_productivity")}<br/>
-                            <AddressLink address={mostProductive.address}>
-                              {mostProductive.name || mostProductive.url}
-                            </AddressLink>
+                            <div className="represent_title_text">
+                              <span>{tu("highest_productivity")} - </span>
+                              <AddressLink address={mostProductive.address}>
+                                {mostProductive.name || mostProductive.url}
+                              </AddressLink>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-3 mt-md-3">
+                      <div className="mb-3">
                         <div className="card h-100 widget-icon">
-                          <WidgetIcon className="fa fa-arrow-down text-danger" style={{bottom: 10}}/>
-                          <div className="card-body text-center">
-                            <h3 className="text-danger">
+                          <div className="card-body">
+                            <h3>
                               <FormattedNumber maximumFractionDigits={2}
                                                minimunFractionDigits={2}
                                                value={leastProductive.productivity}/>%
                             </h3>
-                            {tu("lowest_productivity")}<br/>
-                            <AddressLink address={leastProductive.address}>
-                              {leastProductive.name || leastProductive.url}
-                            </AddressLink>
+                            <div className="represent_title_text">
+                              <span>{tu("lowest_productivity")} - </span>
+                              <AddressLink address={leastProductive.address}>
+                                {leastProductive.name || leastProductive.url}
+                              </AddressLink>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6 mt-3">
+                    <div className="col-md-6 mb-3">
                       <div className="card">
-                        <div className="card-body">
-                          <div style={{height: 330}}>
+                        {/* <div className="card-body"> */}
+                          <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue bg-image_addr">
                             {
                               <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
                                                            data={pieChart} style={{height: 300}}/>
@@ -194,7 +195,7 @@ class Representatives extends Component {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    {/* </div> */}
                   </div>
             }
           </div>

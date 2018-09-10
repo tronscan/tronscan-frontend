@@ -75,7 +75,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
@@ -86,7 +86,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
         key: 'transactionHash',
-        align: 'center',
+        align: 'left',
         width: '20%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -101,17 +101,25 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'from'})),
         dataIndex: 'transferFromAddress',
         key: 'transferFromAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
         }
       },
       {
+        title: '',
+        className: 'ant_table',
+        width: '30px',
+        render: (text, record, index) => {
+          return <img src={require("../../images/arrow.png")}/>
+        },
+      },
+      {
         title: upperFirst(intl.formatMessage({id: 'to'})),
         dataIndex: 'transferToAddress',
         key: 'transferToAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
@@ -121,8 +129,7 @@ class Transfers extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'amount'})),
         dataIndex: 'amount',
         key: 'amount',
-        align: 'center',
-        width: '12%',
+        align: 'right',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return <Fragment>
@@ -155,8 +162,7 @@ class Transfers extends React.Component {
 
     return (
         <div className="token_black">
-          {loading && <div className="loading-style"><TronLoader/></div>
-          }
+          {loading && <div className="loading-style"><TronLoader/></div>}
           <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
