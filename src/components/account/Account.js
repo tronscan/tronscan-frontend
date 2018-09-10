@@ -1152,7 +1152,7 @@ class Account extends Component {
                   </p>
                   {
                     showBuyTokens && <iframe
-                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"}
+                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=x600ducoeoei16mc&color=28cf00"}
                         height="500" className="changelly" scrolling="no"
                         style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
                     </iframe>
