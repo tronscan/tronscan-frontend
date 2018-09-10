@@ -47,9 +47,11 @@ class Home extends Component {
   }
 
   async loadAccounts() {
-    let totalAccounts = await Client.getAccounts();
+    //let totalAccounts = await Client.getAccounts();
+    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account");
+    let totalAccounts = accountData.data.total;
     this.setState({
-      totalAccounts: totalAccounts.total
+      totalAccounts: totalAccounts
     })
   }
 
@@ -66,8 +68,9 @@ class Home extends Component {
      });
     */
 
-    let {txOverviewStats} = await Client.getTxOverviewStats();
-
+    //let {txOverviewStats} = await Client.getTxOverviewStats();
+    let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
+    let txOverviewStats = overviewData.data.data;
     let temp = [];
     let addressesTemp = [];
 
