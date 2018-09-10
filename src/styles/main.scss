@@ -983,14 +983,14 @@ th {
     color: #666666;
     font-size: 18px;
     padding-bottom: 14px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
   }
   p {
     font-family: Helvetica;
     color: #666666;
     font-size: 14px;
     padding-bottom: 10px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
   }
   a {
     color: red;
@@ -998,5 +998,104 @@ th {
   li {
     padding-bottom: 8px;
   }
+}
 
+._transactionViewer {
+  h5 {
+    font-family: Helvetica-Bold;
+    color: #333333;
+    font-size: 18px;
+    padding-bottom: 14px;
+    margin-bottom: 0px;
+  }
+  p {
+    font-family: Helvetica;
+    color: #666666;
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+  }
+  textarea {
+    height: 254px;
+    width: 1074px !important;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+  ._load_tx {
+    margin-top: 40px;
+    button {
+      background: #C23631;
+      border: 0px solid #C23631;
+      border-radius: 0px;
+    }
+  }
+  hr {
+    margin-top: 30px;
+  }
+  div div div h5 {
+    margin-top: 37px;
+    padding-bottom: 0px;
+  }
+  ._qrcode {
+    button {
+      background: #C23631;
+      border: 0px solid #C23631;
+      border-radius: 0px;
+      margin-top: 20px;
+    }
+  }
+}
+
+._tester {
+  h5 {
+    font-family: Helvetica-Bold;
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 20px;
+    ._tester_msg {
+      font-family: Helvetica;
+      color: #666666;
+      font-size: 14px;
+      padding-left: 15px;
+    }
+  }
+  div div div[class='text-left'] {
+    font-family: Helvetica;
+    color: #666666;
+    margin-bottom: 16px;
+    button {
+      border-radius: 0px;
+      background: red !important;
+      margin-top: 40px;
+      color: white;
+    }
+  }
+  div div input {
+    border-radius: 0px;
+  }
+  .card-body {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+._system {
+  .table th, .table td {
+    border-top: 0px solid #DFD7CA;
+  }
+  table td, th {
+    padding-left: 30px;
+  }
+  table td:first-child {
+    font-family: Helvetica-Bold;
+    color: #333333;
+    font-size: 16px;
+  }
+  table th {
+    font-size:14px;
+    font-weight:normal;
+  }
+  a {
+    color:red;
+  }
 }

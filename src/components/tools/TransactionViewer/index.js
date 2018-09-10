@@ -149,7 +149,7 @@ class TransactionViewer extends Component {
     let {flags} = this.props;
 
     return (
-      <main className="container header-overlap">
+      <main className="container header-overlap _transactionViewer">
         {modal}
         {
           showInput &&
@@ -163,13 +163,13 @@ class TransactionViewer extends Component {
                           rows="6"
                           value={hex}
                           onChange={ev => this.setState({hex: ev.target.value})}/>
-                <div className="text-center p-3">
+                <div className="text-center _load_tx">
                   <button className="btn btn-primary"
                           disabled={trim(hex) === ""}
                           onClick={() => this.loadTransaction(hex)}>{tu("load_tx")}</button>
                 </div>
                 <hr/>
-                <div className="text-center p-3">
+                <div className="text-center p-3 _qrcode">
                   <h5 className="card-title text-center">{tu("tx_qrcode")}</h5>
                   <button className="btn btn-primary" onClick={() => this.scanTransaction()}>
                     {tu("load_tx_qrcode")}
