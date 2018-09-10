@@ -11,6 +11,7 @@ import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
 import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "./common/Price";
 import {WidgetIcon} from "./common/Icon";
+import xhr from "axios/index";
 
 class Accounts extends Component {
 
@@ -33,16 +34,18 @@ class Accounts extends Component {
 
     this.setState({ loading: true });
 
-    let {accounts, total} = await Client.getAccounts({
-      sort: '-balance',
-      limit: pageSize,
-      start: (page-1) * pageSize,
-    });
-
-    this.setState({
+    // let {accounts, total} = await Client.getAccounts({
+    //   sort: '-balance',
+    //   limit: pageSize,
+    //   start: (page-1) * pageSize,
+    // });
+      let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit="+ pageSize + "&start=" + (page - 1) * pageSize);
+      let accountsTotal = accountData.data.total;
+      let accounts = accountData.data.data;
+      this.setState({
       loading: false,
-      accounts,
-      total,
+      accounts:accounts,
+      total:accountsTotal
     });
   };
 
