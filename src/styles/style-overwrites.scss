@@ -285,14 +285,8 @@ body .token_black {
         @include bg-line($image, $color);
       }
     }
-
-    
-    
-
     .card-body{
       background: $white;
-
-      
     }
     span{
       color: $text-block-dark;
@@ -300,6 +294,56 @@ body .token_black {
     h3, h3 *{
       color: $bg-color;
     }
-   
+  }
+  .represent_title{
+    @each $number, $color, $image in (1, $main-red, sr),
+                             (2, $green, heightst),
+                             (3, $yellow, lowst) {
+      &>div:nth-child(#{$number}) .card-body{
+        @include bg-line($image, $color);
+      }
+    }
+    &_text{
+      &>span:last-child{
+        position: absolute;
+      }
+    }
+  }
+  
+  @each $name, $color in (red, $main-red),
+                         (green, $green),
+                         (yellow, $yellow),
+                         (blue, $blue) {
+    .bg-line_#{$name}{
+      position: relative;
+      &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: $color;
+      }
+    }
+  }
+  @each $image in addr, balance, band, frozen, heightst, lock, lowst,
+                  nextvote, node, nodest, sr, totle, up, vote, accounts{
+      
+    .bg-image_#{$image}{
+      position: relative;                 
+      &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        background-image: url(../images/title-img/#{$image}.png);
+        background-size: 50px;
+        background-repeat: no-repeat; 
+        background-position: center;
+      }
+    }
   }
 }

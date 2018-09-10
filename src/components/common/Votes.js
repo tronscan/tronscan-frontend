@@ -64,7 +64,7 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'voters'})),
         dataIndex: 'voterAddress',
         key: 'voterAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <AddressLink address={text}/>
@@ -74,7 +74,7 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'votes'})),
         dataIndex: 'votes',
         key: 'votes',
-        align: 'center',
+        align: 'left',
         width: '20%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -85,7 +85,7 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'percentage'})),
         dataIndex: 'percentage',
         key: 'percentage',
-        align: 'center',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Fragment><FormattedNumber value={(record.votes / totalVotes) * 100}
@@ -98,18 +98,30 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'candidate'})),
         dataIndex: 'candidateAddress',
         key: 'candidateAddress',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <Fragment><ExternalLink url={record.candidateUrl}/><br/>
+          return <Fragment><ExternalLink url={record.candidateUrl}/>
             <span className="small"><AddressLink address={record.candidateAddress}/></span></Fragment>
         }
       },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'candidate'})),
+      //   dataIndex: 'candidateAddress',
+      //   key: 'candidateAddress',
+      //   align: 'left',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return <Fragment><ExternalLink url={record.candidateUrl}/><br/>
+      //       <span className="small"><AddressLink address={record.candidateAddress}/></span></Fragment>
+      //   }
+      // },
+      
       {
         title: upperFirst(intl.formatMessage({id: 'votes'})),
         dataIndex: 'votes',
         key: 'votes',
-        align: 'center',
+        align: 'left',
         width: '20%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -120,7 +132,7 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'voter_percentage'})),
         dataIndex: 'voter_percentage',
         key: 'voter_percentage',
-        align: 'center',
+        align: 'left',
         width: '20%',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -132,7 +144,7 @@ class Votes extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'percentage'})),
         dataIndex: 'percentage',
         key: 'percentage',
-        align: 'center',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Fragment><FormattedNumber value={(record.votes / totalVotes) * 100}
@@ -159,7 +171,7 @@ class Votes extends React.Component {
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
         return (
-            <div className="p-3 text-center">{t("no_votes_found")}</div>
+            <div className="p-3 text-center no-data">{t("no_votes_found")}</div>
         );
       }
       return <EmptyState/>;

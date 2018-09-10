@@ -72,17 +72,17 @@ export default class Blocks extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        align: 'right',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <TimeAgo date={text}/>
         }
       },
       {
-        title: <i className="fas fa-exchange-alt"/>,
+        title: upperFirst(intl.formatMessage({id: 'transaction'})),
         dataIndex: 'nrOfTrx',
         key: 'nrOfTrx',
-        align: 'right',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>

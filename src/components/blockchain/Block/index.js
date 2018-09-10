@@ -133,18 +133,12 @@ class Block extends React.Component {
           </div> :
           <div className="row">
             <div className="col-md-12 ">
-              <div className="card">
-                <div className="card-body d-flex">
-                  <Link className="mr-auto" to={"/block/" + (block.number - 1)}>
-                    <i className="fa fa-arrow-left"/>
-                  </Link>
-                  <h5 className="card-title text-center m-0">
+              <div className="card list-style-header">
+                <div className="card-body">
+                  <h5 className="card-title m-0">
                     <i className="fa fa-cube mr-2"/>
                     {tu("block")} #{block.number}
                   </h5>
-                  <Link className="ml-auto" to={"/block/" + (block.number + 1)}>
-                    <i className="fa fa-arrow-right"/>
-                  </Link>
                 </div>
                 <div className="table-responsive">
                   <table className="table table-hover m-0">
@@ -223,14 +217,13 @@ class Block extends React.Component {
 
               </div>
 
-              <div className="card mt-3">
-                <div className="card-header">
+              <div className="card mt-3 list-style-body">
+                <div className="card-header list-style-body__header">
                   <ul className="nav nav-tabs card-header-tabs">
                     {
                       Object.values(tabs).map(tab => (
                         <li key={tab.id} className="nav-item">
                           <NavLink exact to={match.url + tab.path} className="nav-link text-dark" >
-                            <i className={tab.icon + " mr-2"} />
                             {tab.label}
                           </NavLink>
                         </li>
@@ -238,7 +231,7 @@ class Block extends React.Component {
                     }
                   </ul>
                 </div>
-                <div className="card-body p-0">
+                <div className="card-body p-0 list-style-body__body">
                   <Switch>
                     {
                       Object.values(tabs).map(tab => (

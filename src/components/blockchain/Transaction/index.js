@@ -92,9 +92,9 @@ class Transaction extends React.Component {
           </div> :
             <div className="row">
               <div className="col-md-12">
-                <div className="card">
+                <div className="card  list-style-header">
                   <div className="card-body">
-                    <h5 className="card-title text-center m-0">
+                    <h5 className="card-title m-0">
                       <i className="fa fa-hashtag mr-1"></i>
                       {tu("hash")} {transaction.hash}
                     </h5>
@@ -150,8 +150,8 @@ class Transaction extends React.Component {
                   </div>
                 </div>
 
-                <div className="card mt-3">
-                  <div className="card-header">
+                <div className="card mt-3  list-style-body">
+                  {/* <div className="card-header  list-style-body__header">
                     <ul className="nav nav-tabs card-header-tabs">
                       {
                         Object.values(tabs).map(tab => (
@@ -164,8 +164,8 @@ class Transaction extends React.Component {
                         ))
                       }
                     </ul>
-                  </div>
-                  <div className="card-body p-0">
+                  </div> */}
+                  <div className="card-body p-0  list-style-body__body">
                     <Switch>
                       {
                         Object.values(tabs).map(tab => (

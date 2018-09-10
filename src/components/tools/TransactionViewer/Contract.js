@@ -14,11 +14,12 @@ export default function Contract({contract}) {
 
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("transfer_contract")}</h5>
-            <p>
-              {tu("TRX_transfer_between_addresses")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("transfer_contract")}
+              <small>{tu("TRX_transfer_between_addresses")}</small>
+            </h5>
           </div>
           <div className="table-responsive">
             <table className="table">
@@ -35,11 +36,12 @@ export default function Contract({contract}) {
     case "TRANSFERASSETCONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("transfer_asset_contract")}</h5>
-            <p>
-              {tu("token_transfer_between_addresses")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("transfer_asset_contract")}
+              <small>{tu("token_transfer_between_addresses")}</small>
+            </h5>
           </div>
           <div className="table-responsive">
               <table className="table">
@@ -55,11 +57,12 @@ export default function Contract({contract}) {
     case "PARTICIPATEASSETISSUECONTRACT":
       return (
           <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">{tu("participate_asset_issue_contract")}</h5>
-              <p>
-                {tu("participate_token_between_addresses")}
-              </p>
+            <div className="card-body table-title">
+              <h5>
+                <i className="fa fa-exchange-alt"></i>
+                {tu("participate_asset_issue_contract")}
+                <small>{tu("participate_token_between_addresses")}</small>
+              </h5>
             </div>
             <div className="table-responsive">
                 <table className="table">
@@ -74,11 +77,12 @@ export default function Contract({contract}) {
     case "WITNESSUPDATECONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("witness_update_contract")}</h5>
-            <p>
-              {tu("updates_a_witness")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("witness_update_contract")}
+              <small>{tu("updates_a_witness")}</small>
+            </h5>
           </div>
           <table className="table">
             <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -89,11 +93,12 @@ export default function Contract({contract}) {
     case "WITNESSCREATECONTRACT":
       return (
           <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">{tu("witness_create_contract")}</h5>
-              <p>
-                {tu("create_a_witness")}
-              </p>
+            <div className="card-body table-title">
+              <h5>
+                <i className="fa fa-exchange-alt"></i>
+                {tu("witness_create_contract")}
+                <small>{tu("create_a_witness")}</small>
+              </h5>
             </div>
             <table className="table">
               <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -105,11 +110,12 @@ export default function Contract({contract}) {
     case "ACCOUNTUPDATECONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("account_update_contract")}</h5>
-            <p>
-              {tu("update_account_name")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("account_update_contract")}
+              <small>{tu("update_account_name")}</small>
+            </h5>
           </div>
           <table className="table">
             <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -120,11 +126,12 @@ export default function Contract({contract}) {
     case "WITHDRAWBALANCECONTRACT":
       return (
           <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">{tu("withdraw_balance_contract")}</h5>
-              <p>
-                {tu("withdraw_balance")}
-              </p>
+            <div className="card-body table-title">
+              <h5>
+                <i className="fa fa-exchange-alt"></i>
+                {tu("withdraw_balance_contract")}
+                <small>{tu("withdraw_balance")}</small>
+              </h5>
             </div>
             <table className="table">
               <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -135,11 +142,12 @@ export default function Contract({contract}) {
     case "FREEZEBALANCECONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("freeze_balance_contract")}</h5>
-            <p>
-              {tu("freeze_TRX")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("freeze_balance_contract")}
+              <small>{tu("freeze_TRX")}</small>
+            </h5>
           </div>
           <table className="table">
             <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -152,11 +160,12 @@ export default function Contract({contract}) {
     case "UNFREEZEBALANCECONTRACT":
       return (
           <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">{tu("unfreeze_balance_contract")}</h5>
-              <p>
-                {tu("unfreeze_TRX")}
-              </p>
+            <div className="card-body table-title">
+              <h5>
+                <i className="fa fa-exchange-alt"></i>
+                {tu("unfreeze_balance_contract")}
+                <small>{tu("unfreeze_TRX")}</small>
+              </h5>
             </div>
             <table className="table">
               <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -167,11 +176,12 @@ export default function Contract({contract}) {
     case "VOTEWITNESSCONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("vote_witness_contract")}</h5>
-            <p>
-              {tu("vote_for_a_witness")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("vote_witness_contract")}
+              <small>{tu("vote_for_a_witness")}</small>
+            </h5>
           </div>
           <table className="table">
             <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>
@@ -197,11 +207,12 @@ export default function Contract({contract}) {
     case "ASSETISSUECONTRACT":
       return (
         <Fragment>
-          <div className="card-body">
-            <h5 className="card-title text-center">{tu("asset_issue_contract")}</h5>
-            <p>
-              {tu("issue_a_new_asset")}
-            </p>
+          <div className="card-body table-title">
+            <h5>
+              <i className="fa fa-exchange-alt"></i>
+              {tu("asset_issue_contract")}
+              <small>{tu("issue_a_new_asset")}</small>
+            </h5>
           </div>
           <table className="table">
             <Field label="owner_address"><AddressLink address={contract.ownerAddress} /></Field>

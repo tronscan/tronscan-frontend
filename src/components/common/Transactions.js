@@ -63,7 +63,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',
         key: 'timestamp',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
@@ -74,7 +74,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'hash',
         key: 'hash',
-        align: 'center',
+        align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
@@ -88,7 +88,7 @@ class Transactions extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'contract_type'})),
         dataIndex: 'contractType',
         key: 'contractType',
-        align: 'center',
+        align: 'right',
         width: '20%',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
