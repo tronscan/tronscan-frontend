@@ -662,13 +662,13 @@ th {
   width: 15px !important;
 }
 
-.fa_width_20{
+.fa_width_20 {
   width: 22px !important;
   font-size: 2rem;
 }
 
-#dropdownMenuButton:hover{
-  color:red;
+#dropdownMenuButton:hover {
+  color: red;
   cursor: pointer;
 }
 
@@ -781,11 +781,11 @@ th {
     }
   }
 
-  .home-stats{
-     margin-top:0px;
+  .home-stats {
+    margin-top: 0px;
     flex-direction: column;
   }
-  .home .media-body{
+  .home .media-body {
     flex-direction: column;
   }
   .home-footer h5 {
@@ -906,7 +906,8 @@ th {
   padding-left: 10px;
   padding-right: 10px;
 }
-.token-logo{
+
+.token-logo {
   width: 50px;
   height: 50px;
   margin-right: 20px;
@@ -920,16 +921,17 @@ th {
   top: 50%;
 
 }
-.logo_upload{
+
+.logo_upload {
   position: relative;
 
-  .previewLogo{
+  .previewLogo {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 0!important;
+    margin: 0 !important;
   }
-  .close{
+  .close {
     width: 10px;
     height: 10px;
     position: absolute;
@@ -937,7 +939,7 @@ th {
     left: 50px;
     background: $white;
   }
-  .svg-inline--fa{
+  .svg-inline--fa {
     width: 0.5em;
     height: 0.5em;
     line-height: 0.5em;
@@ -945,7 +947,56 @@ th {
   }
 }
 
-._text_nowrap{
-  white-space:nowrap;
+._text_nowrap {
+  white-space: nowrap;
 }
 
+//======================Pages
+._faq {
+  h2 {
+    font-family: Helvetica-Bold;
+    color: #666666;
+    font-size: 16px;
+  }
+  p {
+    font-family: Helvetica;
+    color: #666666;
+    font-size: 14px;
+  }
+  a {
+    color: red;
+  }
+  ul ul {
+    list-style: none;
+  }
+  li {
+    padding-bottom: 8px;
+  }
+  ul ul li:first-child {
+    padding-top: 8px;
+  }
+}
+
+._leger {
+  h3 {
+    font-family: Helvetica-Bold;
+    color: #666666;
+    font-size: 18px;
+    padding-bottom: 14px;
+    margin-bottom:0px;
+  }
+  p {
+    font-family: Helvetica;
+    color: #666666;
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-bottom:0px;
+  }
+  a {
+    color: red;
+  }
+  li {
+    padding-bottom: 8px;
+  }
+
+}

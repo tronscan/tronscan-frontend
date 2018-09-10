@@ -8,11 +8,10 @@ export default class LedgerHelp extends Component {
 
     return (
       <main className="container header-overlap news">
-        <div className="row">
+        <div className="row _leger">
           <div className="col-md-12">
             <div className="card">
               <div className="card-body">
-                <h1 className="text-center">{tu('ledger_guide')}</h1>
                 <h3>{tu('requirements')}</h3>
                 <p>{tu('using_ledger_steps_message_0')}</p>
                 <ol>
