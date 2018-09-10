@@ -9,7 +9,7 @@ export default class Faq extends Component {
 
     return (
       <main className="container header-overlap news">
-        <div className="row">
+        <div className="row _faq">
           <div className="col-md-12">
             <div className="card">
               <div className="card-body">

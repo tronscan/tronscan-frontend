@@ -280,7 +280,7 @@ export const routes = [
         showInMenu: false
       },
       {
-        label: "Ledger",
+        label: "ledger_guide",
         component: LedgerHelpAsync,
         path: "/help/ledger",
       },

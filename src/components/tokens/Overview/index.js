@@ -368,7 +368,7 @@ class TokenOverview extends Component {
       {
         title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
-          return <div><FormattedNumber value={record.issued / ONE_TRX}/> TRX</div>
+          return <div><FormattedNumber value={record.participated / ONE_TRX}/> TRX</div>
         },
         align: 'center',
         className: 'ant_table d-none d-md-table-cell _text_nowrap'

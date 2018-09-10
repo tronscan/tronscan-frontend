@@ -95,40 +95,41 @@ class NodeTester extends Component {
     let {ip, port, modal, active, logs} = this.state;
 
     return (
-      <main className="container header-overlap">
+      <main className="container header-overlap _tester">
         {modal}
 
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title text-center">{tu("node_tester")}</h5>
-            <p className="text-center">
-              {tu("node_tester_msg")}
-            </p>
-            <div className="text-center">
-              IP
+            <h5 className="card-title text-left">{tu("node_tester")}
+            <span className="_tester_msg">
+               {tu("node_tester_msg")}
+            </span>
+            </h5>
+            <div className="text-left">
+              <span>IP</span>
             </div>
             <input
-              className="form-control text-center"
+              className="form-control text-left"
               type="text"
               placeholder="123.123.123.123"
               value={ip}
               onChange={ev => this.setState({ip: ev.target.value})}/><br/>
-            <div className="text-center">
-              Port
+            <div className="text-left">
+              <span>Port</span>
             </div>
             <input
-              className="form-control text-center"
+              className="form-control text-left"
               type="text"
               placeholder="50051"
               value={port}
               onChange={this.setPort}/>
-            <div className="text-center p-3">
+            <div className="text-left">
               {
                 active ?
-                  <button className="btn btn-danger"
+                  <button className="btn"
                           onClick={() => this.stopListening()}>{tu("node_tester_stop")}
                   </button> :
-                  <button className="btn btn-success"
+                  <button className="btn"
                           disabled={!this.isValid(ip, port)}
                           onClick={() => this.testNode(ip + ":" + port)}>
                     {tu("node_tester_test")}

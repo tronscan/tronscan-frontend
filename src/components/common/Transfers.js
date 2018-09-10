@@ -113,7 +113,7 @@ class Transfers extends React.Component {
         width: '30px',
         render: (text, record, index) => {
           return <img src={require("../../images/arrow.png")}/>
-        },
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'to'})),

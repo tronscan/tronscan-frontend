@@ -112,8 +112,16 @@ export class LineReactHighChartAdd extends React.Component {
         Highcharts.chart(document.getElementById(id),_config);
 
     }
-
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
     componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
         this.initLine(this.state.lineId);
     }
 
@@ -206,17 +214,20 @@ export class LineReactHighChartTx extends React.Component {
             //          intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
             // }
         }
+
         Highcharts.chart(document.getElementById(id),_config);
     }
-
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
     componentDidMount() {
         this.initLine(this.state.lineId);
     }
-    componentWillUpdate(){
-
-    }
     componentDidUpdate() {
-        //this.initLine(this.state.lineId);
+        this.initLine(this.state.lineId);
     }
 
     render() {
@@ -300,7 +311,6 @@ export class LineReactAdd extends React.Component {
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
-
         myChart.setOption(_config);
         this.myChart = myChart;
 
@@ -410,11 +420,6 @@ export class LineReactTx extends React.Component {
 
     componentDidMount() {
         this.initLine(this.state.lineId);
-        /* this.myChart.on('click', function (params) {
-           console.log(params.data.date);
-           window.location.href='#/blockchain/transactions/'+params.data.date;
-         });
-        */
     }
 
     componentDidUpdate() {
