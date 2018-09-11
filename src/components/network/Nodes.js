@@ -135,9 +135,8 @@ class Nodes extends Component {
             <main className="container header-overlap">
               <div className="row">
                 <div className="col-md-6">
-                  <div className="card h-100 text-center widget-icon">
-                    <WidgetIcon className="fa fa-server"/>
-                    <div className="card-body">
+                  <div className="card h-100 text-left widget-icon bg-line_red bg-image_node">
+                    <div className="card-body" style={{marginLeft:'50px'}}>
                       <h3 className="text-secondary">
                         {nodes.length}
                       </h3>
@@ -147,9 +146,8 @@ class Nodes extends Component {
                 </div>
 
                 <div className="col-md-6 mt-3 mt-md-0">
-                  <div className="card h-100 text-center widget-icon">
-                    <WidgetIcon className="fa fa-globe text-primary"/>
-                    <div className="card-body">
+                  <div className="card h-100 text-left widget-icon bg-line_green bg-image_nodest">
+                    <div className="card-body" style={{marginLeft:'50px'}}>
                       {
                         countries.length > 0 ?
                             <h3 className="text-primary">
@@ -166,7 +164,7 @@ class Nodes extends Component {
               </div>
               <div className="row mt-3">
                 <div className="col-md-12">
-                  <div className="card">
+                  <div className="card" style={{padding:'20px'}}>
                     <NodeMapAsync nodes={nodes} countries={countries}/>
                   </div>
                 </div>
