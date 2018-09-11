@@ -460,7 +460,7 @@ class VoteOverview extends React.Component {
           {modal}
           <div className="row _badge">
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 text-left widget-icon">
+              <div className="card h-100 text-left widget-icon bg-line_blue">
                 <WidgetIcon className="fa fa-clock text-primary"/>
                 <div className="card-body">
                   <h3 className="text-primary">
