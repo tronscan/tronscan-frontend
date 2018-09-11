@@ -1306,17 +1306,40 @@ $border-color-dark: #d8d8d8;
   ._cancel {
     background: #C23631;
     border: 1px solid #C23631;
-    width:82px;
+    width: 82px;
   }
   ._reset {
     background: #E0AE5C;
     border: 1px solid #E0AE5C;
-    width:82px;
+    width: 82px;
   }
   ._submit {
     background: #69C265;
     border: 1px solid #69C265;
-    width:82px;
+    width: 82px;
   }
 
+}
+
+._nodemap {
+  h3 {
+    font-family: Helvetica;
+    color: #333333 !important;
+    font-size: 24px;
+  }
+  ._node span {
+    font-family: Helvetica;
+    color: #999999 !important;
+    font-size: 14px;
+  }
+  ._node h5 span:nth-child(1) {
+    font-family: Helvetica;
+    color: #333333 !important;
+    font-size: 16px;
+  }
+  ._node h5 span:nth-child(2) {
+    font-family: Helvetica;
+    color: #666666 !important;
+    font-size: 13px;
+  }
 }
