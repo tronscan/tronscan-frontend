@@ -21,7 +21,9 @@ import {
     LineReactTx,
     LineReactPrice,
     LineReactVolumeUsd,
-    LineReactHighChartAdd
+    LineReactHighChartAdd,
+    LineReactHighChartTx,
+    LineReactHighChartPrice
 } from "../../common/LineCharts";
 
 import {
@@ -476,7 +478,7 @@ class Statistics extends React.Component {
                                         {
                                             txOverviewStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactTx source='singleChart' style={{height: 500}}
+                                                <LineReactHighChartTx source='singleChart' style={{height: 500}}
                                                              data={txOverviewStats} intl={intl}/>
                                         }
                                     </div>
@@ -487,7 +489,7 @@ class Statistics extends React.Component {
                                         {
                                             addressesStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
+                                                <LineReactHighChartAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
                                         }
                                     </div>
                                 }
@@ -520,7 +522,7 @@ class Statistics extends React.Component {
                                         {
                                             priceStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactPrice source='singleChart' style={{height: 500}}
+                                                <LineReactHighChartPrice source='singleChart' style={{height: 500}}
                                                                 data={priceStats} intl={intl}/>
                                         }
                                     </div>

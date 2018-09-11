@@ -499,10 +499,33 @@ module.exports = {
   overviewHighChart: {
     chart: {
       zoomType: '',
-      spacingTop: 20,
+      spacingTop: 0,
       spacingBottom: 0,
       spacingLeft: 0,
-      spacingRight: 0
+      spacingRight: 0,
+      resetZoomButton: {
+          position: {
+              align: 'right', // right by default
+              verticalAlign: 'top',
+              x: -55,
+              y: 0
+          },
+          relativeTo: 'chart',
+          theme: {
+              fill: 'white',
+              stroke: 'silver',
+              r: 0,
+              states: {
+                  hover: {
+                      fill: '#eeeeee',
+                      style: {
+                          color: 'red'
+                      }
+                  }
+              }
+          }
+
+      }
     },
     title: {
       text: ''
@@ -515,13 +538,14 @@ module.exports = {
       '#e7afad'
     ],
     exporting: {
-      enabled: false
+      enabled: true
     },
     subtitle: {
       text: ''
     },
     xAxis: {
       type: 'datetime',
+      ordinal: false,
       dateTimeLabelFormats: {
         millisecond: '%H:%M:%S.%L',
         second: '%H:%M:%S',
@@ -533,15 +557,12 @@ module.exports = {
         year: '%Y'
       },
       gridLineColor: '#eeeeee',
-      categories: [],
-      // minTickInterval:1,
       labels: {
         style: {
           color: "#999999"
         },
         autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
       }
-
     },
     tooltip: {
       dateTimeLabelFormats: {
@@ -610,10 +631,11 @@ module.exports = {
       type: 'area',
       name: '',
       data: [],
-      allowPointSelect: false,
+      //turboThreshold: 7000,
+      //allowPointSelect: false,
       marker: {
         enabled: true,
-        enabledThreshold: '7'
+        //enabledThreshold: '7'
       }
     }]
   },

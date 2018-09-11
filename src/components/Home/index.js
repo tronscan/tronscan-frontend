@@ -249,7 +249,7 @@ class Home extends Component {
 
                     <div className="col-md-3 col-sm-12 col-xs-12">
                       <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><TRXPrice amount={1000} currency="USD"/></h2>
+                        <h2><TRXPrice amount={1} currency="USD"/></h2>
                         <p className="m-0">{tu("pice_per_1000trx")}</p>
                       </Link>
                     </div>
@@ -301,11 +301,11 @@ class Home extends Component {
                     <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
                       <div style={{minWidth:255,height: 200}}>
-                        {
-                          addressesStats === null ?
-                              <TronLoader/> :
-                              <LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>
-                        }
+                        {/*{*/}
+                          {/*addressesStats === null ?*/}
+                              {/*<TronLoader/> :*/}
+                              {/*<LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>*/}
+                        {/*}*/}
                       </div>
                     </div>
                   </div>

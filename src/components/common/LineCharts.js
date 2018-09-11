@@ -148,11 +148,143 @@ export class LineReactHighChartTx extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, source} = this.props;
+        // if (data && data.length > 0) {
+        //     data.map((val) => {
+        //         let temp;
+        //         temp = {...val, y: val.totalTransaction};
+        //         //temp = [val.date,val.totalTransaction];
+        //         //_config.xAxis.categories.push(moment(val.date).format('M/D'));
+        //         _config.series[0].data.push(temp);
+        //     })
+        //     console.log(_config.series[0].data)
+        // }
+
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+
+        // if (source !== 'main') {
+        //     _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+        //     _config.title.link = '#/blockchain/stats/txOverviewStats';
+        //     _config.toolbox.feature = {
+        //         restore: {
+        //             title: 'restore'
+        //         }
+        //     }
+        //     _config.tooltip.formatter = function (datas) {
+        //         let date = intl.formatDate((parseInt(datas[0].data.date)));
+        //         return (
+        //             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+        //             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
+        //             intl.formatMessage({id: 'avg_blockSize'}) + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
+        //             intl.formatMessage({id: 'new_address_seen'}) + ' : ' + datas[0].data.newAddressSeen
+        //         )
+        //
+        //     }
+        // }
+        // if (source === 'singleChart') {
+        //     _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
+        //     _config.toolbox.feature = {
+        //         restore: {
+        //             title: 'restore'
+        //         },
+        //         saveAsImage: {
+        //             show: true,
+        //             title: 'save'
+        //         }
+        //     }
+        // }
+        if (source == 'home'){
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.totalTransaction};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.exporting.enabled = false;
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.date);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+                )
+            }
+        }else{
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.totalTransaction};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
+            _config.subtitle.text = intl.formatMessage({id: 'chart_tip'});
+            _config.xAxis.tickPixelInterval = 100;
+            _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
+            _config.yAxis.tickAmount = 6;
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.x);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y + '<br/>' +
+                    intl.formatMessage({id: 'avg_blockSize'}) + ' : ' + this.point.avgBlockSize + '<br/>' +
+                    intl.formatMessage({id: 'new_address_seen'}) + ' : ' + this.point.newAddressSeen
+                )
+            }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class LineReactHighChartPrice extends React.Component {
+
+    constructor(props) {
+
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'linePrice' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data, source} = this.props;
         if (data && data.length > 0) {
             data.map((val) => {
                 let temp;
-                temp = {...val, y: val.totalTransaction};
-                _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                temp = {...val, y: val.close};
+                _config.xAxis.categories.push(moment(val.time).format('M/D'));
                 _config.series[0].data.push(temp);
             })
         }
@@ -192,27 +324,20 @@ export class LineReactHighChartTx extends React.Component {
         //         }
         //     }
         // }
-        if (source === 'home') {
-           // _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'})
-            // _config.title.text = '';
-            // _config.toolbox.feature = {};
-            // _config.grid[0].top = 45;
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate((parseInt(this.point.date)));
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
-                )
-            }
-            // formatter: function () {
-            //     {y : 716732, dt : '1534377600', friendlydate : 'Thu 16, Aug 2018',  }
-            //     return '<span style="font-size:10px">' + this.point.friendlydate + '</span><br><table><tr><td style="padding:0">' +
-            //         '<span style="color:' + this.series.color + '">Transactions: </a></span><b>' + this.point.y + '</b><br>'
-            //     '</td></tr></table>';
-            //
-            //          intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-            //          intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
-            // }
+
+        // _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'})
+        _config.title.text = intl.formatMessage({id: 'average_price'});
+        _config.subtitle.text = intl.formatMessage({id: 'chart_tip'});
+        _config.yAxis.title.text = intl.formatMessage({id: 'usd'});
+        _config.yAxis.tickAmount = 7;
+        _config.xAxis.tickAmount = 10;
+        _config.series[0].marker.enabled = false;
+        _config.tooltip.formatter = function () {
+            let date = intl.formatDate((parseInt(this.point.date)));
+            return (
+                intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+            )
         }
 
         Highcharts.chart(document.getElementById(id),_config);
