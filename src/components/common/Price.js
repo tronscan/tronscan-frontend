@@ -159,7 +159,7 @@ export class TRXPrice extends React.PureComponent {
                                   showPopup && <Tooltip placement="top" isOpen={open} target={id}>
                                     TRX <FormattedNumber value={amount} maximumFractionDigits={6}
                                                          minimumFractionDigits={6}/> <br/>
-                                    satoshi <FormattedNumber value={priceValues.prices.BTC * amount * Math.pow(10, 8)}
+                                    <span className="text-capitalize">satoshi</span> <FormattedNumber value={priceValues.prices.BTC * amount * Math.pow(10, 8)}
                                                              maximumFractionDigits={priceValues.currencies.BTC.fractions || 2}/>
                                     <br/>
                                     ETH <FormattedNumber value={priceValues.prices.ETH * amount}

@@ -99,8 +99,8 @@ export class LineReactHighChartAdd extends React.Component {
         //     })
         // }
         if (source === 'home') {
-            _config.yAxis.min = 250000;
-            _config.yAxis.tickPixelInterval = 40;
+            //_config.yAxis.min = 250000;
+            _config.yAxis.tickInterval = 25000;
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
@@ -198,6 +198,7 @@ export class LineReactHighChartTx extends React.Component {
             // _config.title.text = '';
             // _config.toolbox.feature = {};
             // _config.grid[0].top = 45;
+            _config.yAxis.min = 0;
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
