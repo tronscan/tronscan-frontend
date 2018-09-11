@@ -995,4 +995,15 @@ export const messages = {
   "token_participate_tron":"Participate in TRON token issuance",
   "not_started":"Not started",
   "no_token_to_buy":"Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+
+/*
+##################################################################################
+#                                                                                #
+# new variables    2018-09-11 12:51:31                                           #
+#                                                                                #
+##################################################################################
+*/
+"pice_per_1trx": "Price",
+"tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+
 };

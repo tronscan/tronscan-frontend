@@ -108,57 +108,104 @@ export class TRXPrice extends React.PureComponent {
   render() {
     let {open, id} = this.state;
     let {source,name,amount = 0, currency = "", showCurreny = true, showPopup = true, ...props} = this.props;
-
+      let ele = null;
     return (
       <Consumer>
-        {
-          priceValues => (
-          source == 'transfers'?
-          <Fragment>
-            <FormattedNumber
-              value={this.renderPrice(amount, priceValues)}
-              maximumFractionDigits={12} >
-              {value => <span id={id}
-                              onMouseOver={() => this.setState({open: true})}
-                              onMouseOut={() => this.setState({open: false})}
-                              {...props}>
-                {name == 'TRX'? amount / ONE_TRX : amount} {name}
-              </span>}
-            </FormattedNumber>
-            {
-              showPopup && <Tooltip placement="top" isOpen={open} target={id}>
-                TRX <FormattedNumber value={amount/ONE_TRX} maximumFractionDigits={6} minimumFractionDigits={6} /> <br/>
-                BTC <FormattedNumber value={priceValues.prices.BTC * (amount/ONE_TRX)} maximumFractionDigits={priceValues.currencies.BTC.fractions || 2} /> <br/>
-                ETH <FormattedNumber value={priceValues.prices.ETH * (amount/ONE_TRX)} maximumFractionDigits={priceValues.currencies.ETH.fractions || 2} /><br/>
-                USD <FormattedNumber value={priceValues.prices.USD * (amount/ONE_TRX)} maximumFractionDigits={priceValues.currencies.USD.fractions || 2} /><br/>
-                EUR <FormattedNumber value={priceValues.prices.EUR * (amount/ONE_TRX)} maximumFractionDigits={priceValues.currencies.EUR.fractions || 2} />
-              </Tooltip>
-            }
-          </Fragment>
-          :
-            <Fragment>
-              <FormattedNumber
-                  value={this.renderPrice(amount, priceValues)}
-                  maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 2} >
-                  {value => <span id={id}
-                                  onMouseOver={() => this.setState({open: true})}
-                                  onMouseOut={() => this.setState({open: false})}
-                                  {...props}>
-              {value} { showCurreny && (currency.toUpperCase() || priceValues.priceShown.toUpperCase()) }
-            </span>}
-              </FormattedNumber>
-                {
-                    showPopup && <Tooltip placement="top" isOpen={open} target={id}>
-                      TRX <FormattedNumber value={amount} maximumFractionDigits={6} minimumFractionDigits={6} /> <br/>
-                      BTC <FormattedNumber value={priceValues.prices.BTC * amount} maximumFractionDigits={priceValues.currencies.BTC.fractions || 2} /> <br/>
-                      ETH <FormattedNumber value={priceValues.prices.ETH * amount} maximumFractionDigits={priceValues.currencies.ETH.fractions || 2} /><br/>
-                      USD <FormattedNumber value={priceValues.prices.USD * amount} maximumFractionDigits={priceValues.currencies.USD.fractions || 2} /><br/>
-                      EUR <FormattedNumber value={priceValues.prices.EUR * amount} maximumFractionDigits={priceValues.currencies.EUR.fractions || 2} />
-                    </Tooltip>
-                }
-            </Fragment>
-        )
-        }
+          {
+              priceValues => {
+                  switch (source) {
+                      case 'transfers':
+                          ele = <Fragment>
+                            <FormattedNumber
+                                value={this.renderPrice(amount, priceValues)}
+                                maximumFractionDigits={12}>
+                                {value => <span id={id}
+                                                onMouseOver={() => this.setState({open: true})}
+                                                onMouseOut={() => this.setState({open: false})}
+                                                {...props}>
+                              {name == 'TRX' ? amount / ONE_TRX : amount} {name}
+                                        </span>}
+                            </FormattedNumber>
+                              {
+                                  showPopup && <Tooltip placement="top" isOpen={open} target={id}>
+                                    TRX <FormattedNumber value={amount / ONE_TRX} maximumFractionDigits={6}
+                                                         minimumFractionDigits={6}/> <br/>
+                                    BTC <FormattedNumber value={priceValues.prices.BTC * (amount / ONE_TRX)}
+                                                         maximumFractionDigits={priceValues.currencies.BTC.fractions || 2}/>
+                                    <br/>
+                                    ETH <FormattedNumber value={priceValues.prices.ETH * (amount / ONE_TRX)}
+                                                         maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
+                                    USD <FormattedNumber value={priceValues.prices.USD * (amount / ONE_TRX)}
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 2}/><br/>
+                                    EUR <FormattedNumber value={priceValues.prices.EUR * (amount / ONE_TRX)}
+                                                         maximumFractionDigits={priceValues.currencies.EUR.fractions || 2}/>
+                                  </Tooltip>
+                              }
+                          </Fragment>
+                          break;
+                      case 'home':
+                          ele = <Fragment>
+                            <FormattedNumber
+                                value={this.renderPrice(amount, priceValues)}
+                                maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 2}>
+                                {value => <span id={id}
+                                                onMouseOver={() => this.setState({open: true})}
+                                                onMouseOut={() => this.setState({open: false})}
+                                                {...props}>
+          {value} {showCurreny && (currency.toUpperCase() || priceValues.priceShown.toUpperCase())}
+          </span>}
+                            </FormattedNumber>
+                              {
+                                  showPopup && <Tooltip placement="top" isOpen={open} target={id}>
+                                    TRX <FormattedNumber value={amount} maximumFractionDigits={6}
+                                                         minimumFractionDigits={6}/> <br/>
+                                    satoshi <FormattedNumber value={priceValues.prices.BTC * amount * Math.pow(10, 8)}
+                                                             maximumFractionDigits={priceValues.currencies.BTC.fractions || 2}/>
+                                    <br/>
+                                    ETH <FormattedNumber value={priceValues.prices.ETH * amount}
+                                                         maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
+                                    USD <FormattedNumber value={priceValues.prices.USD * amount}
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 6}/><br/>
+                                    EUR <FormattedNumber value={priceValues.prices.EUR * amount}
+                                                         maximumFractionDigits={priceValues.currencies.EUR.fractions || 6}/>
+                                  </Tooltip>
+                              }
+                          </Fragment>
+                          break;
+                      default:
+                          ele = <Fragment>
+                            <FormattedNumber
+                                value={this.renderPrice(amount, priceValues)}
+                                maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 2}>
+                                {value => <span id={id}
+                                                onMouseOver={() => this.setState({open: true})}
+                                                onMouseOut={() => this.setState({open: false})}
+                                                {...props}>
+          {value} {showCurreny && (currency.toUpperCase() || priceValues.priceShown.toUpperCase())}
+          </span>}
+                            </FormattedNumber>
+                              {
+                                  showPopup && <Tooltip placement="top" isOpen={open} target={id}>
+                                    TRX <FormattedNumber value={amount} maximumFractionDigits={6}
+                                                         minimumFractionDigits={6}/> <br/>
+                                    BTC <FormattedNumber value={priceValues.prices.BTC * amount}
+                                                         maximumFractionDigits={priceValues.currencies.BTC.fractions || 2}/>
+                                    <br/>
+                                    ETH <FormattedNumber value={priceValues.prices.ETH * amount}
+                                                         maximumFractionDigits={priceValues.currencies.ETH.fractions || 2}/><br/>
+                                    USD <FormattedNumber value={priceValues.prices.USD * amount}
+                                                         maximumFractionDigits={priceValues.currencies.USD.fractions || 2}/><br/>
+                                    EUR <FormattedNumber value={priceValues.prices.EUR * amount}
+                                                         maximumFractionDigits={priceValues.currencies.EUR.fractions || 2}/>
+                                  </Tooltip>
+                              }
+                          </Fragment>
+                  }
+                  return ele
+              }
+          }
+
+
       </Consumer>
     )
   }
