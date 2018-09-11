@@ -1079,7 +1079,6 @@ th {
   }
 }
 
-
 // list-style-header 头部表格样式
 $bg-color: #f3f3f3;
 $text-color-lighter: #999;
@@ -1087,90 +1086,90 @@ $text-color: #666;
 $text-color-dark: #333;
 $border-color: #eee;
 $border-color-dark: #d8d8d8;
-.list-style-header{
-    border: none;
-    border-top: 4px solid $main-red;
-    border-radius: 0;
-    padding: 0 2.6%;
-    color: $text-color;
-    h5{
-      font-weight: bold;
-      font-size: 16px;
-    }
-    *{
-      font-weight: lighter;
-    }
-    .card-body{
-      padding-left: 0;
-    }
-    a{
-      color: $main-red;
-    }
+.list-style-header {
+  border: none;
+  border-top: 4px solid $main-red;
+  border-radius: 0;
+  padding: 0 2.6%;
+  color: $text-color;
+  h5 {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  * {
+    font-weight: lighter;
+  }
+  .card-body {
+    padding-left: 0;
+  }
+  a {
+    color: $main-red;
+  }
 
-
-    .table th, .table td{
-      border-color: $border-color;
-      padding: {
-        left: 0;
-      }
+  .table th, .table td {
+    border-color: $border-color;
+    padding: {
+      left: 0;
     }
-    tbody tr:hover{
-      background-color: #fff;
-    }
-    td{
-      color: $text-color-dark;
-    }
+  }
+  tbody tr:hover {
+    background-color: #fff;
+  }
+  td {
+    color: $text-color-dark;
+  }
 }
+
 // list-style-body 头部表格样式
-.list-style-body{
+.list-style-body {
   border-color: $border-color-dark;
   border-radius: 0;
   // padding: 0 2.6%;
   background-color: $bg-color;
-  h5{
+  h5 {
     font-size: 16px;
   }
 
-  &__header{
-    padding:0;
+  &__header {
+    padding: 0;
 
-    .card-header{
+    .card-header {
       border: none;
     }
 
-    ul{
+    ul {
       margin: 0;
     }
-    li{
+    li {
       width: 100px;
-      a{
+      a {
         text-align: center;
-        border:none!important;
-        border-radius: 0!important;
+        border: none !important;
+        border-radius: 0 !important;
         padding: 0.8rem 0.9rem;
-        background: transparent!important;
+        background: transparent !important;
         box-sizing: border-box;
-        border-top: 4px solid transparent!important;
+        border-top: 4px solid transparent !important;
 
-        span{
+        span {
           color: $text-color-lighter;
         }
 
-        &.active, &:hover{
-          border-color: $main-red!important;
-          background: #fff!important;
-          span{
+        &.active, &:hover {
+          border-color: $main-red !important;
+          background: #fff !important;
+          span {
             color: $main-red;
           }
         }
       }
     }
   }
-  &__body{
+  &__body {
     background: #fff;
-    padding: 0 2.6%!important;
+    padding: 0 2.6% !important;
 
-    .no-data{
+    .no-data {
       height: 200px;
       line-height: 200px;
       color: $text-color-lighter;
@@ -1178,56 +1177,55 @@ $border-color-dark: #d8d8d8;
       font-weight: lighter;
     }
 
-    
-    .ant-table.ant-table-bordered{
-      border: none!important;
+    .ant-table.ant-table-bordered {
+      border: none !important;
     }
-    th{
-      background: #fff!important;
-      border-top: 1px solid #eee!important;
+    th {
+      background: #fff !important;
+      border-top: 1px solid #eee !important;
     }
-    td{
-      border-right: none!important;
+    td {
+      border-right: none !important;
     }
-    tr:last-child td, th{
-      border-bottom: 1px solid #eee!important;
+    tr:last-child td, th {
+      border-bottom: 1px solid #eee !important;
     }
-    th:first-child, td:first-child,{
-      padding-left: 0!important;
+    th:first-child, td:first-child, {
+      padding-left: 0 !important;
     }
-    th:last-child, td:last-child{
-      padding-right: 0!important;
+    th:last-child, td:last-child {
+      padding-right: 0 !important;
     }
 
-    .table-title{
+    .table-title {
       padding: 30px 0 6px;
-        span{
-          margin-left: 10px;
-        }
-        small{
-          color: $text-color-lighter;
-          font-weight: lighter;
-        }
-    }
-    .table-responsive{
-      th, td{
+      span {
+        margin-left: 10px;
+      }
+      small {
+        color: $text-color-lighter;
         font-weight: lighter;
-        border: none!important;
-        border-bottom: 1px solid $border-color!important;
       }
-      tbody:last-child{
-        td, th{
-          border: none!important;
+    }
+    .table-responsive {
+      th, td {
+        font-weight: lighter;
+        border: none !important;
+        border-bottom: 1px solid $border-color !important;
+      }
+      tbody:last-child {
+        td, th {
+          border: none !important;
         }
       }
-      .table tbody + tbody{
+      .table tbody + tbody {
         border: none;
       }
-      .table{
+      .table {
         margin: 0;
       }
     }
-    a{
+    a {
       color: $main-red;
     }
   }
@@ -1302,7 +1300,23 @@ $border-color-dark: #d8d8d8;
   ._liveVotes span:nth-child(3) {
     color: red;
   }
-  ._team a{
+  ._team a {
     border-radius: 0px;
   }
+  ._cancel {
+    background: #C23631;
+    border: 1px solid #C23631;
+    width:82px;
+  }
+  ._reset {
+    background: #E0AE5C;
+    border: 1px solid #E0AE5C;
+    width:82px;
+  }
+  ._submit {
+    background: #69C265;
+    border: 1px solid #69C265;
+    width:82px;
+  }
+
 }

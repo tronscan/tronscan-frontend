@@ -265,8 +265,11 @@ class VoteOverview extends React.Component {
     if (votingEnabled) {
       return (
           <div className="d-flex" style={{lineHeight: '36px'}}>
-            <div>
-              <input type="text"
+            <div className="d-flex">
+              <div style={{width:'35px',height:'35px',paddingLeft:'10px'}}>
+              <i className="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <input style={{background:'#F3F3F3'}} type="text"
                      className="form-control"
                      placeholder={intl.formatMessage({id: 'search'})}
                      onChange={(ev) => this.onSearchChange(ev.target.value)}/>
@@ -274,18 +277,18 @@ class VoteOverview extends React.Component {
             <div className="ml-auto">
               {this.renderVoteStatus()}
             </div>
-            <button className="btn btn-primary ml-auto" onClick={this.cancelVotes}>{tu("cancel")}</button>
-            <button className="btn btn-warning ml-1" onClick={this.resetVotes}>{tu("reset")}</button>
-            <button className="btn btn-success ml-1" onClick={this.submitVotes}>{tu("submit_votes")}</button>
+            <button className="btn btn-primary ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
+            <button className="btn btn-warning ml-1 _reset" onClick={this.resetVotes}>{tu("reset")}</button>
+            <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
           </div>
       );
     }
 
     return (
-        <div>
-          <button className="btn btn-tron btn-block" onClick={this.enableVoting}>
+        <div className="text-center">
+          <a className="btn" onClick={this.enableVoting} style={{color: 'red'}}>
             {tu("click_to_start_voting")}
-          </button>
+          </a>
         </div>
     );
   }
@@ -460,8 +463,7 @@ class VoteOverview extends React.Component {
           {modal}
           <div className="row _badge">
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 text-left widget-icon bg-line_blue">
-                <WidgetIcon className="fa fa-clock text-primary"/>
+              <div className="card h-100 text-left widget-icon bg-line_red bg-image_nextRound">
                 <div className="card-body">
                   <h3 className="text-primary">
                     <Countdown date={this.getNextCycle()} daysInHours={true} onComplete={() => {
@@ -475,8 +477,7 @@ class VoteOverview extends React.Component {
             </div>
 
             <div className="col-md-4 mt-3 mt-md-0 position-relative">
-              <div className="card h-100 widget-icon">
-                <WidgetIcon className="fa fa-check-circle text-secondary"/>
+              <div className="card h-100 widget-icon bg-line_green bg-image_totalVotes">
                 <div className="card-body text-left">
                   <h3 className="text-secondary">
                     <FormattedNumber value={totalVotes}/>
@@ -491,8 +492,7 @@ class VoteOverview extends React.Component {
             </div>
 
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 widget-icon">
-                <WidgetIcon className="fa fa-arrow-up text-success"/>
+              <div className="card h-100 widget-icon bg-line_yellow bg-image_mostRank">
                 <div className="card-body text-left">
                   <h3 className="text-success">
                     <VoteChange value={biggestGainer.change_cycle} arrow={true}/>
@@ -525,7 +525,8 @@ class VoteOverview extends React.Component {
                           <Sticky>
                             {
                               ({style}) => (
-                                  <div style={{zIndex: 100, ...style}} className="card-body bg-white p-2 border-bottom">
+                                  <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
+                                       className="card-body bg-white p-2">
                                     {this.renderVotingBar()}
                                   </div>
                               )
@@ -535,7 +536,7 @@ class VoteOverview extends React.Component {
 
                         <div className="table-responsive">
                           <table className="table vote-table table-hover m-0">
-                            <thead className="thead-dark">
+                            <thead className="thead-light">
                             <tr>
                               <th className="d-none d-sm-table-cell text-center" style={{width: 50}}>#</th>
                               <th>{tu("name")}</th>

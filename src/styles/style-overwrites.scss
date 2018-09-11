@@ -329,7 +329,7 @@ body .token_black {
   }
 }
 @each $image in addr, balance, band, frozen, heightst, lock, lowst,
-nextvote, node, nodest, sr, totle, up, vote, accounts{
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank{
 
   .bg-image_#{$image}{
     position: relative;
