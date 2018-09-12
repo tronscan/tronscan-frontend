@@ -38,17 +38,62 @@ export class LineReactHighChartAdd extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, source} = this.props;
-        if (data && data.length > 0) {
-            data.map((val) => {
-                let temp;
-                temp = {...val, y: val.total};
-                _config.xAxis.categories.push(moment(val.date).format('M/D'));
-                _config.series[0].data.push(temp);
-            })
-        }
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
+        if (source == 'home'){
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.total};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.exporting.enabled = false;
+            _config.yAxis.tickInterval = 25000;
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate((parseInt(this.point.date)));
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+                )
+            }
+        }else{
+            if (data && data.length === 0) {
+                _config.title.text = "No data";
+            }
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.total};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
+            _config.subtitle.text = intl.formatMessage({id: 'chart_tip'});
+            _config.xAxis.tickPixelInterval = 100;
+            _config.xAxis.minRange=24 * 3600 * 1000
+            _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
+            _config.yAxis.tickAmount = 5;
+            _config.yAxis.min = 0;
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.x);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
+                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
+                )
+            }
+        }
+
 
         // if (source !== 'main') {
         //     _config.title.text = intl.formatMessage({id: 'address_growth_chart'});
@@ -90,25 +135,8 @@ export class LineReactHighChartAdd extends React.Component {
         //
         // }
         //
-        // if (data && data.length > 0) {
-        //     data.map((val) => {
-        //         let temp;
-        //         temp = {...val, value: val.total};
-        //         _config.xAxis[0].data.push(intl.formatDate(val.date));
-        //         _config.series[0].data.push(temp);
-        //     })
-        // }
-        if (source === 'home') {
-            // _config.xAxis.minTickInterval = 7
-            _config.tooltip.formatter = function () {
-                let date = intl.formatDate((parseInt(this.point.date)));
-                return (
-                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
-                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
-                )
-            }
-        }
+
+
         Highcharts.chart(document.getElementById(id),_config);
 
     }
@@ -144,56 +172,10 @@ export class LineReactHighChartTx extends React.Component {
             lineId: 'lineTx' + id
         }
     }
-
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data, source} = this.props;
-        // if (data && data.length > 0) {
-        //     data.map((val) => {
-        //         let temp;
-        //         temp = {...val, y: val.totalTransaction};
-        //         //temp = [val.date,val.totalTransaction];
-        //         //_config.xAxis.categories.push(moment(val.date).format('M/D'));
-        //         _config.series[0].data.push(temp);
-        //     })
-        //     console.log(_config.series[0].data)
-        // }
 
-        if (data && data.length === 0) {
-            _config.title.text = "No data";
-        }
-
-        // if (source !== 'main') {
-        //     _config.title.text = intl.formatMessage({id: 'tron_transaction_chart'});
-        //     _config.title.link = '#/blockchain/stats/txOverviewStats';
-        //     _config.toolbox.feature = {
-        //         restore: {
-        //             title: 'restore'
-        //         }
-        //     }
-        //     _config.tooltip.formatter = function (datas) {
-        //         let date = intl.formatDate((parseInt(datas[0].data.date)));
-        //         return (
-        //             intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-        //             intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction + '<br/>' +
-        //             intl.formatMessage({id: 'avg_blockSize'}) + ' : ' + datas[0].data.avgBlockSize + '<br/>' +
-        //             intl.formatMessage({id: 'new_address_seen'}) + ' : ' + datas[0].data.newAddressSeen
-        //         )
-        //
-        //     }
-        // }
-        // if (source === 'singleChart') {
-        //     _config.title.subtext = intl.formatMessage({id: 'chart_tip'});
-        //     _config.toolbox.feature = {
-        //         restore: {
-        //             title: 'restore'
-        //         },
-        //         saveAsImage: {
-        //             show: true,
-        //             title: 'save'
-        //         }
-        //     }
-        // }
         if (source == 'home'){
             if (data && data.length > 0) {
                 _config.xAxis.categories = [];
@@ -204,6 +186,7 @@ export class LineReactHighChartTx extends React.Component {
                     _config.series[0].data.push(temp);
                 })
             }
+            _config.yAxis.min = 0;
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
             _config.tooltip.formatter = function () {
@@ -214,6 +197,9 @@ export class LineReactHighChartTx extends React.Component {
                 )
             }
         }else{
+            if (data && data.length === 0) {
+                _config.title.text = "No data";
+            }
             if (data && data.length > 0) {
                 data.map((val) => {
                     let temp;
@@ -228,6 +214,7 @@ export class LineReactHighChartTx extends React.Component {
             _config.xAxis.minRange=24 * 3600 * 1000
             _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
             _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
@@ -324,6 +311,7 @@ export class LineReactHighChartPrice extends React.Component {
         //         }
         //     }
         // }
+
 
         // _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'})
         _config.title.text = intl.formatMessage({id: 'average_price'});

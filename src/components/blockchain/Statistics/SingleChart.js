@@ -755,10 +755,10 @@ class Statistics extends React.Component {
                             </div>
 
                         </div>
-                        {/*{*/}
-                            {/*match.params.chartName === 'txOverviewStats' &&*/}
-                            {/*<div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>*/}
-                        {/*}*/}
+                        {
+                            match.params.chartName === 'txOverviewStats' &&
+                            <div style={{marginTop:20,float:'right'}}><i size="1" style={{fontStyle: 'normal'}}>[ Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;</div>
+                        }
 
                     </div>
                 </div>
