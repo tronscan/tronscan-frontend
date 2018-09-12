@@ -564,7 +564,7 @@ module.exports = {
         // x:100,
         // y: -10
       },
-      min: 0,
+     // min: 0,
       //minTickInterval:5
       tickPixelInterval: 30,
       labels: {
