@@ -1355,35 +1355,62 @@ $border-color-dark: #d8d8d8;
   color: #333333;
   font-size: 14px;
 }
+
 ._applyDesc span {
   font-family: Helvetica;
   color: #666666 !important;
   font-size: 13px;
 }
+
 ._applyHeader span {
   font-family: Helvetica-Bold;
   color: #333333;
   font-size: 16px;
 }
+
 ._applyHeader button span {
   font-size: 25px;
 }
+
 ._power span {
   font-family: Helvetica;
   color: #333333 !important;
   font-size: 14px;
 }
+
 ._freeze span {
   font-family: Helvetica;
   color: #666666 !important;
   font-size: 14px;
 }
+
 ._freezeHeader button span {
   font-size: 25px;
-  color:#666666;
+  color: #666666;
 }
+
 ._freezeHeader h5 span {
   font-family: Helvetica-Bold;
-  color:#333333;
+  color: #333333;
   font-size: 16px;
+}
+
+._freezeBody {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+._freezeHeader {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+._freezeContent .modal-content {
+  width: 460px;
+  height: 275px;
+  border-radius: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  //margin-top: -100px;
 }

@@ -78,11 +78,11 @@ class FreezeBalanceModal extends React.PureComponent {
 
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
     return (
-        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
           <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
             {tu("freeze")}
           </ModalHeader>
-          <ModalBody className="text-center">
+          <ModalBody className="text-center _freezeBody">
             <form>
               <div className="form-group">
                 <div className="text-left _power">{tu("current_power")}: <span style={{fontWeight: 800}}>{frozenTrx/ONE_TRX}</span>
