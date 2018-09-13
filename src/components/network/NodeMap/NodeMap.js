@@ -81,10 +81,10 @@ export default class NodeMap extends Component {
     let {className} = this.props;
 
     return (
-      <div
-        style={{height: 600}}
-        className={className + " map-2d"}
-        ref={(cmp) => this.$ref = cmp}/>
+        <div
+            style={{height: 600}}
+            className={className + " map-2d"}
+            ref={(cmp) => this.$ref = cmp}/>
     )
   }
 }

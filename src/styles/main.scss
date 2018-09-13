@@ -1230,11 +1230,13 @@ $border-color-dark: #d8d8d8;
     }
   }
 }
-a{
+
+a {
   color: $main-red;
 }
-table a{
-  color: $main-red!important;
+
+table a {
+  color: $main-red !important;
 }
 
 ._system {
@@ -1257,12 +1259,13 @@ table a{
     color: red;
   }
 }
-h5{
+
+h5 {
   font-size: 16px;
 }
 
-.table-responsive{
-  th, td{
+.table-responsive {
+  th, td {
     border-color: #eee;
   }
 }

@@ -7,7 +7,7 @@ import {ONE_TRX} from "../../constants";
 import {TronLoader} from "../common/loaders";
 import {AddressLink, TokenLink} from "../common/Links";
 import {tu, t} from "../../utils/i18n";
-import { Checkbox, Row, Col } from 'antd';
+import {Checkbox, Row, Col} from 'antd';
 
 const MESSAGE_LIMIT = 30;
 
@@ -158,11 +158,13 @@ class Live extends React.Component {
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("from")}{': '}
-                  <span className="position-absolute ml-2"><AddressLink address={event.transferFromAddress} truncate={true}/></span>
+                  <span className="position-absolute ml-2"><AddressLink address={event.transferFromAddress}
+                                                                        truncate={true}/></span>
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("to")}{': '}
-                  <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress} truncate={true}/></span>
+                  <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress}
+                                                                        truncate={true}/></span>
                 </div>
               </div>
             </Trxrow>
@@ -187,7 +189,8 @@ class Live extends React.Component {
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("representatives")}{': '}
-                  <span className="position-absolute ml-2"><AddressLink address={event.candidateAddress} truncate={false}/></span>
+                  <span className="position-absolute ml-2"><AddressLink address={event.candidateAddress}
+                                                                        truncate={false}/></span>
                 </div>
               </div>
             </Trxrow>
@@ -249,8 +252,8 @@ class Live extends React.Component {
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("address")}{': '}
-                    <AddressLink address={event.ownerAddress}
-                                 truncate={false}/>{' '}{t("applied_for_super_representative")}
+                  <AddressLink address={event.ownerAddress}
+                               truncate={false}/>{' '}{t("applied_for_super_representative")}
                 </div>
               </div>
             </Trxrow>
@@ -284,14 +287,15 @@ class Live extends React.Component {
                     {tu("filters")}
                   </h5>
                   <form className="pt-2">
-                    {<Checkbox.Group style={{ width: '100%' }} onChange={this.setFilter.bind(this)} defaultValue={filters}>
+                    {<Checkbox.Group style={{width: '100%'}} onChange={this.setFilter.bind(this)}
+                                     defaultValue={filters}>
                       <Row>{
                         filterButtons.map(filterButton => (
-                          <Col span={4} key={filterButton.value}>
-                            <i className={filterButton.icon + " ml-auto"}/>
-                            <span className="ml-1 mr-1">{filterButton.label}</span>
-                            <Checkbox value={filterButton.value}></Checkbox>
-                          </Col>
+                            <Col span={4} key={filterButton.value}>
+                              <i className={filterButton.icon + " ml-auto"}/>
+                              <span className="ml-1 mr-1">{filterButton.label}</span>
+                              <Checkbox value={filterButton.value}></Checkbox>
+                            </Col>
                         ))
                       }</Row>
                     </Checkbox.Group>}
@@ -312,7 +316,7 @@ class Live extends React.Component {
                       <ul className="list-group list-group-flush">
                         {
                           events.map(row => (
-                                this.buildRow(row)
+                              this.buildRow(row)
                           ))
                         }
                       </ul>

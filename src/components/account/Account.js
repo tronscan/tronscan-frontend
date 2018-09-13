@@ -91,10 +91,10 @@ class Account extends Component {
     let {tokenBalances = []} = this.props;
 
     tokenBalances = _(tokenBalances)
-      .filter(tb => tb.name.toUpperCase() !== "TRX")
-      .filter(tb => tb.balance > 0)
-      .sortBy(tb => tb.name)
-      .value();
+        .filter(tb => tb.name.toUpperCase() !== "TRX")
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => tb.name)
+        .value();
 
     if (tokenBalances.length === 0) {
       return (
@@ -273,10 +273,10 @@ class Account extends Component {
     let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
-      if(pkToAddress(value)!==account.address)
+      if (pkToAddress(value) !== account.address)
         this.privateKey.className = "form-control is-invalid";
     }
-    else{
+    else {
       this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
@@ -307,7 +307,7 @@ class Account extends Component {
 
     let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)===account.address)
+        if (pkToAddress(this.privateKey.value) === account.address)
           confirm();
       }
     }
@@ -725,7 +725,7 @@ class Account extends Component {
   };
 
   toissuedAsset = () => {
-    window.location.hash="#/myToken";
+    window.location.hash = "#/myToken";
   }
 
   render() {
@@ -773,7 +773,7 @@ class Account extends Component {
             <div className="col-md-4 mt-3 mt-md-0">
               <div className="card h-100 bg-line_blue bg-image_vote">
                 <div className="card-body">
-                  <h3  style={{color: '#333'}}>
+                  <h3 style={{color: '#333'}}>
                     <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX}/>
                   </h3>
                   TRON {tu("power")}
@@ -794,64 +794,67 @@ class Account extends Component {
           </div>
 
           {showBandwidth && this.renderBandwidth()}
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card px-3">
-              {
-                currentWallet.representative.enabled &&
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card px-3">
+                {
+                  currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-              }
-                  <div className="table-responsive">
-                    <table className="table m-0">
-                      <tbody>
-                      {
-                        wallet.isOpen &&
-                        <tr>
-                          <th style={{border: 'none'}}>{tu("name")}:</th>
-                          <td style={{border: 'none'}}>
-                            {currentWallet.name || "-"}
-                            {
-                              (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                              <a href="javascript:" className="float-right text-primary btn btn-default btn-sm" onClick={() => {
-                                this.changeName()
-                              }}>
-                                {tu("set_name")}
-                              </a>
-                            }
-                          </td>
-                        </tr>
-                      }
-                      {
-                        currentWallet.representative.enabled &&
-                        <tr>
-                          <th>{tu("website")}:</th>
-                          <td>
-                            <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                            <a href="javascript:" className="float-right text-primary btn btn-default btn-sm" onClick={() => {
-                              this.changeWebsite()
-                            }}>
-                              {tu("change_website")}
-                            </a>
-
-                          </td>
-                        </tr>
-                      }
+                }
+                <div className="table-responsive">
+                  <table className="table m-0">
+                    <tbody>
+                    {
+                      wallet.isOpen &&
                       <tr>
-                        <th style={{width: 150}}>{tu("address")}:</th>
+                        <th style={{border: 'none'}}>{tu("name")}:</th>
+                        <td style={{border: 'none'}}>
+                          {currentWallet.name || "-"}
+                          {
+                            (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
+                            <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                               onClick={() => {
+                                 this.changeName()
+                               }}>
+                              {tu("set_name")}
+                            </a>
+                          }
+                        </td>
+                      </tr>
+                    }
+                    {
+                      currentWallet.representative.enabled &&
+                      <tr>
+                        <th>{tu("website")}:</th>
                         <td>
-                          <a href="javascript:" className="float-right text-primary btn btn-default btn-sm" onClick={this.showQrCode}>
-                            {tu("show_qr_code")}
+                          <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                          <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                             onClick={() => {
+                               this.changeWebsite()
+                             }}>
+                            {tu("change_website")}
                           </a>
 
-                          <div className="float-left" style={{width: 350}}>
-                            <AddressLink address={account.address} includeCopy={true}/>
-                          </div>
+                        </td>
+                      </tr>
+                    }
+                    <tr>
+                      <th style={{width: 150}}>{tu("address")}:</th>
+                      <td>
+                        <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                           onClick={this.showQrCode}>
+                          {tu("show_qr_code")}
+                        </a>
 
-                          {
-                            IS_TESTNET &&
-                            <p className="text-danger">
-                              ({tu("do_not_send_2")})
-                            </p>
+                        <div className="float-left" style={{width: 350}}>
+                          <AddressLink address={account.address} includeCopy={true}/>
+                        </div>
+
+                        {
+                          IS_TESTNET &&
+                          <p className="text-danger">
+                            ({tu("do_not_send_2")})
+                          </p>
                         }
                       </td>
                     </tr>
@@ -863,7 +866,7 @@ class Account extends Component {
                     </tr>
                     </tbody>
                   </table>
-                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -888,66 +891,67 @@ class Account extends Component {
                     <h5 className="card-title text-center m-0">
                       {tu("issued_token")}
                     </h5>
-                  
-                  <table className="table mt-3 temp-table">
-                    <tbody>
-                    <tr>
-                      <th style={{width: 150}}>{tu("name")}:</th>
-                      <td>
-                        <TokenLink name={issuedAsset.name}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("start_date")}:</th>
-                      <td>
-                        <FormattedDate value={issuedAsset.startTime}/>{' '}
-                        <FormattedTime value={issuedAsset.startTime}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("end_date")}:</th>
-                      <td>
-                        <FormattedDate value={issuedAsset.endTime}/>{' '}
-                        <FormattedTime value={issuedAsset.endTime}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("progress")}:</th>
-                      <td>
-                        <div className="progress mt-1">
-                          <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
-                        </div>
-                      </td>
-                    </tr>
-                    {
-                      issuedAsset.frozen.length > 0 &&
+
+                    <table className="table mt-3 temp-table">
+                      <tbody>
                       <tr>
-                        <th>{tu("frozen_supply")}:</th>
+                        <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <a href="javascript:" className="float-right text-primary"
-                             onClick={() => {
-                               this.unfreezeAssetsConfirmation()
-                             }}>
-                            {tu("unfreeze_assets")}
-                          </a>
-                          {
-                            issuedAsset.frozen.map(frozen => (
-                                <div>
-                                  {frozen.amount} {tu("can_be_unlocked")}&nbsp;
-                                  {
-                                    (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
-                                    <FormattedRelative
-                                        value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))}/>
-                                  }
-                                </div>
-                            ))
-                          }
+                          <TokenLink name={issuedAsset.name}/>
                         </td>
                       </tr>
-                    }
-                    </tbody>
-                  </table>
-                  <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>{tu('token_detail')}</button>
+                      <tr>
+                        <th>{tu("start_date")}:</th>
+                        <td>
+                          <FormattedDate value={issuedAsset.startTime}/>{' '}
+                          <FormattedTime value={issuedAsset.startTime}/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("end_date")}:</th>
+                        <td>
+                          <FormattedDate value={issuedAsset.endTime}/>{' '}
+                          <FormattedTime value={issuedAsset.endTime}/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("progress")}:</th>
+                        <td>
+                          <div className="progress mt-1">
+                            <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
+                          </div>
+                        </td>
+                      </tr>
+                      {
+                        issuedAsset.frozen.length > 0 &&
+                        <tr>
+                          <th>{tu("frozen_supply")}:</th>
+                          <td>
+                            <a href="javascript:" className="float-right text-primary"
+                               onClick={() => {
+                                 this.unfreezeAssetsConfirmation()
+                               }}>
+                              {tu("unfreeze_assets")}
+                            </a>
+                            {
+                              issuedAsset.frozen.map(frozen => (
+                                  <div>
+                                    {frozen.amount} {tu("can_be_unlocked")}&nbsp;
+                                    {
+                                      (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
+                                      <FormattedRelative
+                                          value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))}/>
+                                    }
+                                  </div>
+                              ))
+                            }
+                          </td>
+                        </tr>
+                      }
+                      </tbody>
+                    </table>
+                    <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset}
+                            style={{width: '120px', margin: 'auto'}}>{tu('token_detail')}</button>
                   </div>
                 </div>
               </div>
@@ -972,28 +976,29 @@ class Account extends Component {
                   <h5 className="card-title text-center m-0">
                     TRON {tu("power")}
                   </h5>
-                
-                <div className="card-body px-0 d-lg-flex justify-content-lg-between">
-                  <p className="card-text">
-                    {tu("freeze_trx_premessage_0")}<Link to="/votes">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
-                  </p>
-                  <div>
-                    {
-                      hasFrozen &&
-                      <button className="btn btn-danger mr-2" style={{width: '64px'}} onClick={() => {
-                        this.showUnfreezeModal()
+
+                  <div className="card-body px-0 d-lg-flex justify-content-lg-between">
+                    <p className="card-text">
+                      {tu("freeze_trx_premessage_0")}<Link
+                        to="/votes">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                    </p>
+                    <div>
+                      {
+                        hasFrozen &&
+                        <button className="btn btn-danger mr-2" style={{width: '64px'}} onClick={() => {
+                          this.showUnfreezeModal()
+                        }}>
+                          {tu("unfreeze")}
+                        </button>
+                      }
+                      <button className="btn btn-primary mr-2" style={{width: '64px'}} onClick={() => {
+                        this.showFreezeBalance()
                       }}>
-                        {tu("unfreeze")}
+                        {tu("freeze")}
                       </button>
-                    }
-                    <button className="btn btn-primary mr-2" style={{width: '64px'}} onClick={() => {
-                      this.showFreezeBalance()
-                    }}>
-                      {tu("freeze")}
-                    </button>
+                    </div>
                   </div>
-                </div>
-                {this.renderFrozenTokens()}
+                  {this.renderFrozenTokens()}
                 </div>
               </div>
             </div>
@@ -1022,7 +1027,7 @@ class Account extends Component {
                             currentWallet.representative.allowance > 0 ?
                                 <p className="m-0 mt-3 text-success">
                                   Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                              className="font-weight-bold"/>
+                                                               className="font-weight-bold"/>
                                 </p> :
                                 <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
                                   No rewards to claim

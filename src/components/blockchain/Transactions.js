@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {tu} from "../../utils/i18n";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import TimeAgo from "react-timeago";
@@ -90,7 +89,7 @@ class Transactions extends React.Component {
         width: '12%',
         render: (text, record, index) => {
           return <Truncate>
-          <TransactionHashLink hash={text}>{text}</TransactionHashLink>
+            <TransactionHashLink hash={text}>{text}</TransactionHashLink>
           </Truncate>
         }
       },
@@ -141,7 +140,7 @@ class Transactions extends React.Component {
   render() {
 
     let {transactions, total, loading} = this.state;
-    let {match,intl} = this.props;
+    let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 

@@ -5,7 +5,6 @@ import {loadPriceData} from "../../actions/markets";
 import MarketOverview from "./MarketOverview";
 import {TronLoader} from "../common/loaders";
 import {Client} from "../../services/api";
-import LineReact from "../common/LineChart";
 import {RingPieReact} from "../common/RingPieChart";
 import {
   LineReactPrice,
@@ -97,7 +96,7 @@ class Markets extends React.Component {
         key: 'rank',
         sorter: true,
         width: '5%',
-        className:'ant_table'
+        className: 'ant_table'
       },
       {
         title: intl.formatMessage({id: 'exchange'}),

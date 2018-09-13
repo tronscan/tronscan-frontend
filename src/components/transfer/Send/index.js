@@ -26,34 +26,34 @@ class Send extends React.Component {
 
     if (!account.isLoggedIn) {
       return (
-        <div>
-          <div className="alert alert-warning">
-            {tu("require_account_to_send")}
+          <div>
+            <div className="alert alert-warning">
+              {tu("require_account_to_send")}
+            </div>
+            <p className="text-center">
+              <Link to="/login">{tu("Go to login")}</Link>
+            </p>
           </div>
-          <p className="text-center">
-            <Link to="/login">{tu("Go to login")}</Link>
-          </p>
-        </div>
       );
     }
 
     return (
-      <main className="container-fluid pt-5 pb-5 bg-dark">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 col-sm-8 col-lg-5">
-              <div className="card">
-                <div className="card-header text-center">
-                 {tu("Send TRX")}
-                </div>
-                <div className="card-body">
-                  <SendForm to={to} />
+        <main className="container-fluid pt-5 pb-5 bg-dark">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-12 col-sm-8 col-lg-5">
+                <div className="card">
+                  <div className="card-header text-center">
+                    {tu("Send TRX")}
+                  </div>
+                  <div className="card-body">
+                    <SendForm to={to}/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
     )
   }
 }
@@ -65,8 +65,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send)

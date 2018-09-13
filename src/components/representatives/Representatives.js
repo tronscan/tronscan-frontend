@@ -8,7 +8,6 @@ import {injectIntl} from "react-intl";
 import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
-import {WidgetIcon} from "../common/Icon";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
 
@@ -84,7 +83,7 @@ class Representatives extends Component {
 
     return (
         <div className="card border-0 represent__table">
-          <table className="table table-hover table-striped bg-white m-0 sr" style={{border:'1px solid #DFD7CA'}}>
+          <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
               <th className="text-center d-none d-lg-table-cell" style={{width: 20}}>#</th>
@@ -106,14 +105,17 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                               key={account.address} account={account}/>)}
             <tr style={{height: '72px'}}>
               <td colSpan="9" className="font-weight-bold">
                 <i className="fa fa-user mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state} props={this.props} key={account.address} account={account} showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state}
+                                                                   props={this.props} key={account.address}
+                                                                   account={account} showSync={false}/>)}
             </tbody>
           </table>
         </div>
@@ -189,14 +191,14 @@ class Representatives extends Component {
                     <div className="col-md-6 mb-3">
                       <div className="card">
                         {/* <div className="card-body"> */}
-                          <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue">
-                            {
-                              <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
-                                                           data={pieChart} style={{height: 300}}/>
-                            }
-                          </div>
+                        <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue">
+                          {
+                            <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
+                                                         data={pieChart} style={{height: 300}}/>
+                          }
                         </div>
                       </div>
+                    </div>
                     {/* </div> */}
                   </div>
             }
@@ -240,7 +242,8 @@ function Row({account, showSync = true, index, state, props}) {
   let totalVotes = sumBy(candidates, c => c.votes);
 
   return (
-      <tr key={account.address} className={(account.index> 26)? 'represent__table__lighter': 'represent__table__content'}>
+      <tr key={account.address}
+          className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
         <td className="text-center d-none d-lg-table-cell">{account.index + 1}</td>
         <td>
           {

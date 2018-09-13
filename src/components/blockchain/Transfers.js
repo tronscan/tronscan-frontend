@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
-import {tu} from "../../utils/i18n";
+import {injectIntl} from "react-intl";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import TimeAgo from "react-timeago";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import {ONE_TRX} from "../../constants";
 import {getQueryParams} from "../../utils/url";
 import {Truncate} from "../common/text";
 import {upperFirst} from "lodash";
@@ -32,14 +30,15 @@ class Transfers extends React.Component {
   componentDidUpdate() {
     //checkPageChanged(this, this.load);
   }
-  onChange = (page,pageSize) => {
-    this.load(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.load(page, pageSize);
   };
-  load = async (page = 1, pageSize=10) => {
+  load = async (page = 1, pageSize = 10) => {
 
     let {location} = this.props;
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     let searchParams = {};
 
@@ -55,7 +54,7 @@ class Transfers extends React.Component {
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
-      start: (page-1) * pageSize,
+      start: (page - 1) * pageSize,
       ...searchParams,
     });
 
@@ -123,7 +122,7 @@ class Transfers extends React.Component {
           return <AddressLink address={text}/>
         }
       },
-      { 
+      {
         title: upperFirst(intl.formatMessage({id: 'value'})),
         dataIndex: 'amount',
         key: 'amount',
@@ -132,7 +131,7 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           console.log(text, record, index)
-          return record.amount +' '+ record.tokenName
+          return record.amount + ' ' + record.tokenName
         }
       }
     ];
@@ -147,25 +146,24 @@ class Transfers extends React.Component {
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
 
     return (
-      <main className="container header-overlap pb-3 token_black">
-        {loading && <div className="loading-style"><TronLoader/></div>}
-        <div className="row">
-          <div className="col-md-12 table_pos">
-            {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-            <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
-                        onPageChange={(page, pageSize) => {
-                          this.load(page, pageSize)
-                        }}/>
+        <main className="container header-overlap pb-3 token_black">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          <div className="row">
+            <div className="col-md-12 table_pos">
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.load(page, pageSize)
+                          }}/>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return {
-  };
+  return {};
 }
 
 const mapDispatchToProps = {

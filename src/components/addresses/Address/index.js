@@ -188,7 +188,7 @@ class Address extends React.Component {
           // icon: "fa fa-piggy-bank",
           path: "/token-balances",
           label: <span>{tu("token_balances")}</span>,
-          cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} />,
+          cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
         },
         blocks_produced: {
           id: "blocks-produced",
@@ -254,7 +254,7 @@ class Address extends React.Component {
     let totalVotes;
     let producer;
 
-    let uploadURL =   "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
+    let uploadURL = "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
 
     for (let can in candidates) {
       if (address.address === candidates[can].address) {

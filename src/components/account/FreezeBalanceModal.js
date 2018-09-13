@@ -58,7 +58,7 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {account, onError,privateKey} = this.props;
+    let {account, onError, privateKey} = this.props;
     let {amount} = this.state;
     this.setState({loading: true});
 
@@ -74,7 +74,7 @@ class FreezeBalanceModal extends React.PureComponent {
   render() {
 
     let {amount, confirmed, loading} = this.state;
-    let {trxBalance,frozenTrx, intl} = this.props;
+    let {trxBalance, frozenTrx, intl} = this.props;
 
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
     return (
@@ -85,16 +85,17 @@ class FreezeBalanceModal extends React.PureComponent {
           <ModalBody className="text-center _freezeBody">
             <form>
               <div className="form-group">
-                <div className="text-left _power">{tu("current_power")}: <span style={{fontWeight: 800}}>{frozenTrx/ONE_TRX}</span>
+                <div className="text-left _power">{tu("current_power")}: <span
+                    style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
                 </div>
 
                 <NumberField
                     min={1}
                     decimals={0}
                     value={amount}
-                    placeholder={intl.formatMessage({id:'trx_amount'})}
+                    placeholder={intl.formatMessage({id: 'trx_amount'})}
                     className="form-control text-left"
-                    style={{marginTop:'12px',background:"#F3F3F3",border:"1px solid #EEEEEE"}}
+                    style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
                     onChange={this.onAmountChanged}/>
               </div>
 
@@ -111,7 +112,7 @@ class FreezeBalanceModal extends React.PureComponent {
                 <button className="btn btn-primary col-sm"
                         disabled={!isValid}
                         onClick={this.freeze}
-                        style={{background:'#4A90E2',borderRadius:'0px',border:'0px'}}
+                        style={{background: '#4A90E2', borderRadius: '0px', border: '0px'}}
                 >
                   <i className="fa fa-snowflake mr-2"/>
                   {tu("freeze")}

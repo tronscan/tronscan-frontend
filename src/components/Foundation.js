@@ -52,8 +52,8 @@ class Accounts extends Component {
     });
     */
 
-    let random=Math.random();
-    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random="+random);
+    let random = Math.random();
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
 
     data.data.data.sort(compare('key'));
     this.setState({
@@ -105,7 +105,7 @@ class Accounts extends Component {
         <div className="token_black">
           {
             accounts.length === 0 ?
-                <div className="card" style={{background:'white'}}>
+                <div className="card" style={{background: 'white'}}>
                   <TronLoader>
                     {tu("loading")}
                   </TronLoader>
@@ -113,7 +113,8 @@ class Accounts extends Component {
                 :
                 <div className="card table_pos">
                   {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-                  <Table bordered={true} columns={column} dataSource={accounts} pagination={{position: 'both', showSizeChanger: true}}/>
+                  <Table bordered={true} columns={column} dataSource={accounts}
+                         pagination={{position: 'both', showSizeChanger: true}}/>
                 </div>
           }
         </div>

@@ -8,7 +8,6 @@ import {tu} from "../../utils/i18n";
 import {TronLoader} from "../common/loaders";
 import {NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
-import {Client} from "../../services/api";
 import {WidgetIcon} from "../common/Icon";
 import BarReact from "../common/BarChart";
 

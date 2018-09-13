@@ -8,18 +8,18 @@ import SweetAlert from "react-bootstrap-sweetalert";
 
 class SendModal extends React.PureComponent {
 
-  constructor({ isOpen = false, to = "" }) {
+  constructor({isOpen = false, to = ""}) {
     super();
 
     this.state = {
       isOpen,
       modal: (
-        <Modal backdrop={false} isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
-          <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
-          <ModalBody className="text-center">
-            <SendForm to={to} onSend={this.onSend} />
-          </ModalBody>
-        </Modal>
+          <Modal backdrop={false} isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+            <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
+            <ModalBody className="text-center">
+              <SendForm to={to} onSend={this.onSend}/>
+            </ModalBody>
+          </Modal>
       )
     };
   }
@@ -33,7 +33,7 @@ class SendModal extends React.PureComponent {
   onSend = () => {
     this.setState({
       modal: (
-        <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal} />
+          <SweetAlert success title="Successful Transaction" onConfirm={this.hideModal}/>
       )
     });
   };
@@ -46,9 +46,9 @@ class SendModal extends React.PureComponent {
 
     if (!account.isLoggedIn) {
       return (
-        <SweetAlert danger title="Not logged in" onConfirm={this.hideModal}>
-          You have to be logged in to make transactions
-        </SweetAlert>
+          <SweetAlert danger title="Not logged in" onConfirm={this.hideModal}>
+            You have to be logged in to make transactions
+          </SweetAlert>
       )
     }
 
@@ -63,7 +63,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendModal)

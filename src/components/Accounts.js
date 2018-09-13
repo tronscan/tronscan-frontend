@@ -5,12 +5,8 @@ import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter} from "lodash";
 import {AddressLink} from "./common/Links";
-import Paging from "./common/Paging";
-import {Client} from "../services/api";
 import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
-import {Sticky, StickyContainer} from "react-sticky";
 import {TRXPrice} from "./common/Price";
-import {WidgetIcon} from "./common/Icon";
 import SmartTable from "./common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./common/loaders";
@@ -44,13 +40,13 @@ class Accounts extends Component {
     //   limit: pageSize,
     //   start: (page-1) * pageSize,
     // });
-      let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit="+ pageSize + "&start=" + (page - 1) * pageSize);
-      let accountsTotal = accountData.data.total;
-      let accounts = accountData.data.data;
-      this.setState({
+    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    let accountsTotal = accountData.data.total;
+    let accounts = accountData.data.data;
+    this.setState({
       loading: false,
-      accounts:accounts,
-      total:accountsTotal
+      accounts: accounts,
+      total: accountsTotal
     });
   };
 

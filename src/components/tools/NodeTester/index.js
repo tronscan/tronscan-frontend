@@ -32,7 +32,7 @@ class NodeTester extends Component {
 
   isValid = (ip, port) => {
     let isValidIp = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip);
-    let isValidPort = !isNaN(parseInt(port,10)) && port > 0;
+    let isValidPort = !isNaN(parseInt(port, 10)) && port > 0;
 
     return isValidIp && isValidPort;
   };
@@ -83,7 +83,7 @@ class NodeTester extends Component {
     let port = trim(ev.target.value);
 
     if (port !== '') {
-      port = parseInt(port,10);
+      port = parseInt(port, 10);
       port = isNaN(port) ? 0 : port;
     }
 
@@ -95,51 +95,51 @@ class NodeTester extends Component {
     let {ip, port, modal, active, logs} = this.state;
 
     return (
-      <main className="container header-overlap _tester">
-        {modal}
+        <main className="container header-overlap _tester">
+          {modal}
 
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title text-left">{tu("node_tester")}
-            <span className="_tester_msg">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title text-left">{tu("node_tester")}
+                <span className="_tester_msg">
                {tu("node_tester_msg")}
             </span>
-            </h5>
-            <div className="text-left">
-              <span>IP</span>
-            </div>
-            <input
-              className="form-control text-left"
-              type="text"
-              placeholder="123.123.123.123"
-              value={ip}
-              onChange={ev => this.setState({ip: ev.target.value})}/><br/>
-            <div className="text-left">
-              <span>Port</span>
-            </div>
-            <input
-              className="form-control text-left"
-              type="text"
-              placeholder="50051"
-              value={port}
-              onChange={this.setPort}/>
-            <div className="text-left">
-              {
-                active ?
-                  <button className="btn"
-                          onClick={() => this.stopListening()}>{tu("node_tester_stop")}
-                  </button> :
-                  <button className="btn"
-                          disabled={!this.isValid(ip, port)}
-                          onClick={() => this.testNode(ip + ":" + port)}>
-                    {tu("node_tester_test")}
-                  </button>
-              }
+              </h5>
+              <div className="text-left">
+                <span>IP</span>
+              </div>
+              <input
+                  className="form-control text-left"
+                  type="text"
+                  placeholder="123.123.123.123"
+                  value={ip}
+                  onChange={ev => this.setState({ip: ev.target.value})}/><br/>
+              <div className="text-left">
+                <span>Port</span>
+              </div>
+              <input
+                  className="form-control text-left"
+                  type="text"
+                  placeholder="50051"
+                  value={port}
+                  onChange={this.setPort}/>
+              <div className="text-left">
+                {
+                  active ?
+                      <button className="btn"
+                              onClick={() => this.stopListening()}>{tu("node_tester_stop")}
+                      </button> :
+                      <button className="btn"
+                              disabled={!this.isValid(ip, port)}
+                              onClick={() => this.testNode(ip + ":" + port)}>
+                        {tu("node_tester_test")}
+                      </button>
+                }
+              </div>
             </div>
           </div>
-        </div>
-        {
-          (active && logs.length === 0) &&
+          {
+            (active && logs.length === 0) &&
             <div className="card mt-3">
               <table className="table table-hover table-striped bg-white m-0">
                 <thead className="thead-dark">
@@ -148,15 +148,15 @@ class NodeTester extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td align="center">{tu("loading")}</td>
-                  </tr>
+                <tr>
+                  <td align="center">{tu("loading")}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
-        }
-        {
-          logs.length > 0 &&
+          }
+          {
+            logs.length > 0 &&
             <div className="card mt-3">
               <table className="table table-hover table-striped bg-white m-0">
                 <thead className="thead-dark">
@@ -168,17 +168,17 @@ class NodeTester extends Component {
                 <tbody>
                 {
                   logs.map(log => (
-                    <tr key={log.id}>
-                      <td>{log.msg}</td>
-                      <td>{log.responseTime} ms</td>
-                    </tr>
+                      <tr key={log.id}>
+                        <td>{log.msg}</td>
+                        <td>{log.responseTime} ms</td>
+                      </tr>
                   ))
                 }
                 </tbody>
               </table>
             </div>
-        }
-      </main>
+          }
+        </main>
     );
   }
 }

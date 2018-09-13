@@ -70,6 +70,7 @@ export default class MarketOverview extends Component {
 
       }
     }
+
     let filter = {
       filterDropdown: (
           <div className="custom-filter-dropdown">
@@ -96,22 +97,22 @@ export default class MarketOverview extends Component {
       }
     }
 
-    let columns=[];
+    let columns = [];
 
-    for(let col of column){
-      if(col.sorter && !col.filterDropdown) {
-        let temp={sorter: compare(col.key)}
-        columns.push({...col,...temp});
+    for (let col of column) {
+      if (col.sorter && !col.filterDropdown) {
+        let temp = {sorter: compare(col.key)}
+        columns.push({...col, ...temp});
       }
-      else if(!col.sorter && col.filterDropdown){
-        let temp={...filter}
-        columns.push({...col,...temp});
+      else if (!col.sorter && col.filterDropdown) {
+        let temp = {...filter}
+        columns.push({...col, ...temp});
       }
-      else if(col.sorter && col.filterDropdown){
-        let temp={sorter: compare(col.key), ...filter}
-        columns.push({...col,...temp});
+      else if (col.sorter && col.filterDropdown) {
+        let temp = {sorter: compare(col.key), ...filter}
+        columns.push({...col, ...temp});
       }
-      else{
+      else {
         columns.push(col);
       }
 
@@ -126,12 +127,12 @@ export default class MarketOverview extends Component {
     let columns = this.setColumn(column);
     let {tableData} = this.props;
     let {data} = this.state;
-    if(data.length){
+    if (data.length) {
       tableData = this.state.data;
     }
     return (
         <div className="card token_black markets">
-          <Table columns={columns} dataSource={tableData} />
+          <Table columns={columns} dataSource={tableData}/>
         </div>
 
     )

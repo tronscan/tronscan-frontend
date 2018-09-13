@@ -14,7 +14,6 @@ import {ONE_TRX} from "../../constants";
 import {login} from "../../actions/app";
 import {reloadWallet} from "../../actions/wallet";
 import {Link} from "react-router-dom";
-import {WidgetIcon} from "../common/Icon";
 import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
@@ -266,10 +265,10 @@ class VoteOverview extends React.Component {
       return (
           <div className="d-flex" style={{lineHeight: '36px'}}>
             <div className="d-flex">
-              <div style={{width:'35px',height:'35px',paddingLeft:'10px'}}>
-              <i className="fa fa-search" aria-hidden="true"></i>
+              <div style={{width: '35px', height: '35px', paddingLeft: '10px'}}>
+                <i className="fa fa-search" aria-hidden="true"></i>
               </div>
-              <input style={{background:'#F3F3F3'}} type="text"
+              <input style={{background: '#F3F3F3'}} type="text"
                      className="form-control"
                      placeholder={intl.formatMessage({id: 'search'})}
                      onChange={(ev) => this.onSearchChange(ev.target.value)}/>
