@@ -194,7 +194,9 @@ class Representatives extends Component {
                         <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue">
                           {
                             <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
-                                                         data={pieChart} style={{height: 300}}/>
+                                                         data={pieChart} style={{height: 300}}
+                                                         source='representatives'
+                            />
                           }
                         </div>
                       </div>

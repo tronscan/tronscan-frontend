@@ -503,7 +503,6 @@ module.exports = {
       spacingBottom: 0,
       spacingLeft: 0,
       spacingRight: 0,
-      marginTop:80,
       resetZoomButton: {
           position: {
               align: 'right', // right by default
@@ -692,10 +691,14 @@ module.exports = {
             }
         },
         legend: {
-            itemDistance: 20,
-            symbolWidth: 20,
-            symbolHeight: 12,
-            symbolRadius: 0
+            // itemDistance: 20,
+            // symbolWidth: 20,
+            // symbolHeight: 12,
+            // symbolRadius: 0
+            itemStyle:{
+                fontWeight: 'normal',
+                color:'#666666'
+            }
         },
         tooltip: {
             dateTimeLabelFormats: {

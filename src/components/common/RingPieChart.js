@@ -170,6 +170,10 @@ export class RepresentativesRingPieReact extends React.Component {
               }
           }
       }
+      if (source == 'representatives'){
+          _config.plotOptions.pie.showInLegend = false;
+          _config.exporting.enabled = false;
+      }
       _config.title.text = intl.formatMessage({id: message.id});
       _config.exporting.filename = intl.formatMessage({id: message.id});
       _config.tooltip.formatter = function (data) {

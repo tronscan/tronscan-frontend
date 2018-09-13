@@ -1011,8 +1011,8 @@ export const messages = {
 */
 "pice_per_1trx": "Price",
 "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
-"HighChart_tip":"Click and drag in the plot area to zoom in"
-
+"HighChart_tip":"Click and drag in the plot area to zoom in",
+"general_information":"General Information"
 
 
 };
