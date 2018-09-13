@@ -11,7 +11,6 @@ import TimeAgo from "react-timeago";
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 
-
 class RecentTransactions extends Component {
 
   constructor() {
@@ -35,61 +34,62 @@ class RecentTransactions extends Component {
 
     if (transactions === null) {
       return (
-        <div className="text-center d-flex justify-content-center">
-          <TronLoader/>
-        </div>
+          <div className="text-center d-flex justify-content-center">
+            <TronLoader/>
+          </div>
       );
     }
 
     if (transactions.length === 0) {
       return (
-        <div className="text-center d-flex justify-content-center">
-          <TronLoader/>
-        </div>
+          <div className="text-center d-flex justify-content-center">
+            <TronLoader/>
+          </div>
       );
     }
 
     return (
-      <div className="card">
-        <div className="card-header bg-dark text-white d-flex">
-          <h5 className="m-0 lh-150">{tu("Transactions")}</h5>
-          <Link to="/blockchain/transactions" className="ml-auto text-white btn btn-outline-secondary btn-sm">
-            {tu("view_all")}
-          </Link>
+        <div className="card">
+          <div className="card-header bg-dark text-white d-flex">
+            <h5 className="m-0 lh-150">{tu("Transactions")}</h5>
+            <Link to="/blockchain/transactions" className="ml-auto text-white btn btn-outline-secondary btn-sm">
+              {tu("view_all")}
+            </Link>
+          </div>
+          <ul className="list-group list-group-flush scrollbar-dark" style={styles.list}>
+            {
+              transactions.map((transaction, i) => (
+                  <li key={transaction.hash} className="list-group-item p-2">
+                    <div className="media">
+                      <div className="media-body mb-0 d-flex">
+                        <div className="text-left">
+                          <TransactionHashLink
+                              hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink>
+                          <br/>
+                          <AddressLink wrapClass="d-inline-block" address={transaction.transferFromAddress}>
+                            {transaction.transferFromAddress}...
+                          </AddressLink>
+                          <i className="fas fa-arrow-right mr-1 ml-1"/>
+                          <AddressLink wrapClass="d-inline-block" address={transaction.transferToAddress}>
+                            {transaction.transferToAddress}
+                          </AddressLink>
+                        </div>
+                        <div className="ml-auto text-right">
+                          <div className="text-muted">
+                            <TimeAgo date={transaction.timestamp}/>
+                          </div>
+                          <div>
+                            <i className="fas fa-exchange-alt mr-1"/>
+                            <TRXPrice amount={transaction.amount / ONE_TRX}/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              ))
+            }
+          </ul>
         </div>
-        <ul className="list-group list-group-flush scrollbar-dark" style={styles.list}>
-        {
-          transactions.map((transaction, i) => (
-            <li key={transaction.hash} className="list-group-item p-2">
-              <div className="media">
-                <div className="media-body mb-0 d-flex">
-                  <div className="text-left">
-                    <TransactionHashLink hash={transaction.hash}>{transaction.hash.substr(0, 20)}...</TransactionHashLink>
-                    <br/>
-                    <AddressLink wrapClass="d-inline-block" address={transaction.transferFromAddress}>
-                      {transaction.transferFromAddress}...
-                    </AddressLink>
-                    <i className="fas fa-arrow-right mr-1 ml-1"/>
-                    <AddressLink  wrapClass="d-inline-block" address={transaction.transferToAddress}>
-                      {transaction.transferToAddress}
-                    </AddressLink>
-                  </div>
-                  <div className="ml-auto text-right">
-                    <div className="text-muted">
-                      <TimeAgo date={transaction.timestamp} />
-                    </div>
-                    <div>
-                      <i className="fas fa-exchange-alt mr-1"/>
-                      <TRXPrice amount={transaction.amount / ONE_TRX} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-        </ul>
-      </div>
     )
   }
 }

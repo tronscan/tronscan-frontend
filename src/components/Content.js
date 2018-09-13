@@ -48,26 +48,26 @@ export default class Content extends Component {
         <Switch>
           {routes.map(route => {
             return (
-              <Route
-                key={route.path}
-                path={route.path}
-                render={props => (
-                  <React.Fragment>
-                    <Switch>
-                      {
-                        route.routes && filter(route.routes, r => !isUndefined(r.path)).map(subRoute => (
-                          <Route
-                            exact={true}
-                            key={subRoute.path}
-                            path={subRoute.path}
-                            component={subRoute.component}/>
-                        ))
-                      }
-                      <Route component={route.component}/>
-                    </Switch>
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    render={props => (
+                        <React.Fragment>
+                          <Switch>
+                            {
+                              route.routes && filter(route.routes, r => !isUndefined(r.path)).map(subRoute => (
+                                  <Route
+                                      exact={true}
+                                      key={subRoute.path}
+                                      path={subRoute.path}
+                                      component={subRoute.component}/>
+                              ))
+                            }
+                            <Route component={route.component}/>
+                          </Switch>
 
-                  </React.Fragment>
-                )}/>
+                        </React.Fragment>
+                    )}/>
             )
           })
           }

@@ -53,7 +53,7 @@ class Representative extends React.Component {
   async loadPage(url) {
     try {
       return await xhr.get(url)
-    } catch(e) {
+    } catch (e) {
       return {};
     }
   }
@@ -174,21 +174,21 @@ class Representative extends React.Component {
         address,
       });
 
-    } catch(e) {
+    } catch (e) {
       this.setState({
         body: (
-          <main className="container header-overlap">
-            <div className="card text-center">
-              <div className="card-body">
-                <Alert color="warning">
-                  {tu("unable_load_representatives_page")}
-                </Alert>
+            <main className="container header-overlap">
+              <div className="card text-center">
+                <div className="card-body">
+                  <Alert color="warning">
+                    {tu("unable_load_representatives_page")}
+                  </Alert>
+                </div>
+                <p>
+                  <Link to="/votes" className="btn btn-primary">Go Back</Link>
+                </p>
               </div>
-              <p>
-                <Link to="/votes" className="btn btn-primary">Go Back</Link>
-              </p>
-            </div>
-          </main>
+            </main>
         )
       })
     }
@@ -205,27 +205,29 @@ class Representative extends React.Component {
     }, 500);
   };
 
-  renderSidebar = (props = {})  => {
+  renderSidebar = (props = {}) => {
     let {address, files, sections} = this.state;
 
     return (
-      <div style={{ ...props }}>
-        <div className="card font-weight-bold mb-2">
-          <img className="card-img-top" src={files.logo}/>
-          <Scrollspy items={sections.map(s => s.id)} className="list-group list-group-flush" currentClassName="is-current">
-            {
-              sections.map(section => (
-                <a key={section.id} className="list-group-item" href={"#" + section.id} onClick={this.scrollTo}>{section.name}</a>
-              ))
-            }
-            <ExternalLink className="list-group-item" url={address.representative.url}>Website</ExternalLink>
-          </Scrollspy>
+        <div style={{...props}}>
+          <div className="card font-weight-bold mb-2">
+            <img className="card-img-top" src={files.logo}/>
+            <Scrollspy items={sections.map(s => s.id)} className="list-group list-group-flush"
+                       currentClassName="is-current">
+              {
+                sections.map(section => (
+                    <a key={section.id} className="list-group-item" href={"#" + section.id}
+                       onClick={this.scrollTo}>{section.name}</a>
+                ))
+              }
+              <ExternalLink className="list-group-item" url={address.representative.url}>Website</ExternalLink>
+            </Scrollspy>
+          </div>
+          <Link className="btn btn-secondary btn-block mb-2" to="/votes">
+            <i className="fa fa-arrow-left mr-2"/>
+            {tu("go_to_votelist")}
+          </Link>
         </div>
-        <Link className="btn btn-secondary btn-block mb-2" to="/votes">
-          <i className="fa fa-arrow-left mr-2"/>
-          {tu("go_to_votelist")}
-        </Link>
-      </div>
     );
   };
 
@@ -239,86 +241,86 @@ class Representative extends React.Component {
 
     if (!address) {
       return (
-        <main className="container header-overlap">
-          <div className="card text-center">
-            <TronLoader>
-              {tu("loading_representatives")}
-            </TronLoader>
-          </div>
-        </main>
+          <main className="container header-overlap">
+            <div className="card text-center">
+              <TronLoader>
+                {tu("loading_representatives")}
+              </TronLoader>
+            </div>
+          </main>
       );
     }
 
     if (!address.representative.enabled) {
       return (
-        <main className="container header-overlap">
-          <div className="card text-center">
-            <div className="card-body">
-              <Alert color="warning">
-                {tu("address_not_super_representative")}
-              </Alert>
+          <main className="container header-overlap">
+            <div className="card text-center">
+              <div className="card-body">
+                <Alert color="warning">
+                  {tu("address_not_super_representative")}
+                </Alert>
+              </div>
+              <p>
+                <Link to="/votes" className="btn btn-primary">Go Back</Link>
+              </p>
             </div>
-            <p>
-              <Link to="/votes" className="btn btn-primary">Go Back</Link>
-            </p>
-          </div>
-        </main>
+          </main>
       );
     }
 
     return (
-      <main className="container header-overlap representative-landing-page">
-        <StickyContainer className="row">
-          <div className="col-md-3">
-            <MediaQuery minWidth={768}>
-              <Sticky>
-                {
-                  ({style, isSticky}) => this.renderSidebar({ ...style, ...(isSticky ? { top: 15 } : {}) })
-                }
-              </Sticky>
-            </MediaQuery>
-            <MediaQuery maxWidth={768}>
-              {this.renderSidebar()}
-            </MediaQuery>
-
-          </div>
-          <div className="col-md-9 representative-content">
-            {
-              loading ? <div className="card">
-                  <TronLoader>
-                    {tu("loading_representative")} {address.address}
-                  </TronLoader>
-                </div> :
-                <Fragment>
-                  <div className="card">
-                    {
-                      address.representative.enabled &&
-                      <div className="card-header text-center bg-info font-weight-bold text-white">
-                        {address.name || "Representative"}
-                      </div>
-                    }
-                    <div className="card-body text-center">
-                      <img src={files.banner} style={styles.image}/>
-                    </div>
-                  </div>
+        <main className="container header-overlap representative-landing-page">
+          <StickyContainer className="row">
+            <div className="col-md-3">
+              <MediaQuery minWidth={768}>
+                <Sticky>
                   {
-                    sections.map(section => (
-                      <div className="card mt-3">
-                        <a id={section.id} />
-                        <div className="card-header bg-info text-center text-white font-weight-bold">
-                          {section.name}
-                        </div>
-                        <div className="card-body">
-                          {section.content}
+                    ({style, isSticky}) => this.renderSidebar({...style, ...(isSticky ? {top: 15} : {})})
+                  }
+                </Sticky>
+              </MediaQuery>
+              <MediaQuery maxWidth={768}>
+                {this.renderSidebar()}
+              </MediaQuery>
+
+            </div>
+            <div className="col-md-9 representative-content">
+              {
+                loading ? <div className="card">
+                      <TronLoader>
+                        {tu("loading_representative")} {address.address}
+                      </TronLoader>
+                    </div> :
+                    <Fragment>
+                      <div className="card">
+                        {
+                          address.representative.enabled &&
+                          <div className="card-header text-center bg-info font-weight-bold text-white">
+                            {address.name || "Representative"}
+                          </div>
+                        }
+                        <div className="card-body text-center">
+                          <img src={files.banner} style={styles.image}/>
                         </div>
                       </div>
-                    ))
-                  }
-                </Fragment>
-            }
-          </div>
-        </StickyContainer>
-      </main>
+                      {
+                        sections.map(section => (
+                            <div className="card mt-3">
+                              <a id={section.id}/>
+                              <div className="card-header bg-info text-center text-white font-weight-bold">
+                                {section.name}
+                              </div>
+                              <div className="card-body">
+                                {section.content}
+                              </div>
+                            </div>
+                        ))
+                      }
+                    </Fragment>
+              }
+            </div>
+          </StickyContainer>
+        </main>
     )
   }
 }
@@ -336,7 +338,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Representative);

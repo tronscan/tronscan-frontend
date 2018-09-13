@@ -46,18 +46,18 @@ export default class Scanner extends React.Component {
       } else {
         this.setState({
           error: (
-            <Alert color="warning" className="text-center">
-              {tu("no_webcam_found")}
-            </Alert>
+              <Alert color="warning" className="text-center">
+                {tu("no_webcam_found")}
+              </Alert>
           )
         });
       }
     } catch (e) {
       this.setState({
         error: (
-          <Alert color="danger" className="text-center">
-            {tu("trying_enable_webcam_message_0")} <br/>{tu("trying_enable_webcam_message_1")}
-          </Alert>
+            <Alert color="danger" className="text-center">
+              {tu("trying_enable_webcam_message_0")} <br/>{tu("trying_enable_webcam_message_1")}
+            </Alert>
         )
       })
     }
@@ -72,7 +72,7 @@ export default class Scanner extends React.Component {
     }
 
     return (
-      <video className="w-100" style={styles.video} ref={this.ref}/>
+        <video className="w-100" style={styles.video} ref={this.ref}/>
     )
   }
 }

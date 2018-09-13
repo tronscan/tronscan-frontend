@@ -248,12 +248,12 @@ export const routes = [
     ]
   },
   {
-        path: "list_trx",
-        label: "list_trx",
-        icon: "fa fa-plus",
-        enurl: "https://tron.network/exchangesList?lng=en",
-        zhurl: "https://tron.network/exchangesList?lng=zh",
-        linkHref:true
+    path: "list_trx",
+    label: "list_trx",
+    icon: "fa fa-plus",
+    enurl: "https://tron.network/exchangesList?lng=en",
+    zhurl: "https://tron.network/exchangesList?lng=zh",
+    linkHref: true
   },
   {
     path: "/help",
@@ -280,7 +280,7 @@ export const routes = [
         showInMenu: false
       },
       {
-        label: "Ledger",
+        label: "ledger_guide",
         component: LedgerHelpAsync,
         path: "/help/ledger",
       },

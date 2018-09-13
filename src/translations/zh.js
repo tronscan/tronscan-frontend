@@ -176,7 +176,8 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking": "节点排名（以国家/地区划分）",
+  "nodes_ranking": "节点排名",
+  "split_by_country":"以国家/地区划分",
   "total_accounts_last_day": "截止上一天总账户数",
   "chart_tip": "拖拽数据窗口来放大或缩小",
   "link_test_server": "测试网",
@@ -955,7 +956,11 @@ export const messages = {
   "a_totle": "共",
   "transaction_info": "条交易信息",
   "hold_addr": "通证持有地址",
-
+  "transactions_unit":"个交易",
+  "block_unit":"个区块",
+  "record_unit":"个记录",
+  "token_unit": "个通证",
+  "vote_unit": "个投票",
   /*
 ##################################################################################
 #                                                                                #

@@ -23,11 +23,11 @@
     box-shadow: none;
 }
 
-.token_black{
-
+// .token_black{
 
     .btn {
         border-radius: 1px;
+        font-weight: lighter;
         span{
             color: #fff;
         }
@@ -46,6 +46,14 @@
                 }
             }
         }
+        &-success, &-success:disabled{
+            background-color: #69C265; 
+            border-color: #69C265;
+        }
+        &-primary{
+            background-color: #4A90E2;
+            border-color: #4A90E2;
+        }
 
         &-lg {
             padding: {
@@ -60,5 +68,23 @@
             }
         }
     }
+
     
+    
+// }
+// badge ===================
+.badge{
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: lighter;
+    padding: 3px 14px;
+
+    &-danger{
+        background: rgba(194,54,49,0.20);
+        color: $main-red;
+    }
+    &-success{
+        background: rgba(105,194,101,0.20);
+        color: #2EAC28;
+    }
 }

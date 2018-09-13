@@ -6,6 +6,9 @@ import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import TimeAgo from "react-timeago";
+import SmartTable from "./SmartTable.js"
+import {upperFirst} from "lodash";
+import {TronLoader} from "./loaders";
 
 export default class Blocks extends React.Component {
 
@@ -31,7 +34,7 @@ export default class Blocks extends React.Component {
     this.load(page, pageSize);
   };
 
-  load = async (page = 1, pageSize = 40) => {
+  load = async (page = 1, pageSize = 10) => {
 
     let {filter} = this.props;
 
@@ -52,9 +55,59 @@ export default class Blocks extends React.Component {
     });
   };
 
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: upperFirst(intl.formatMessage({id: 'height'})),
+        dataIndex: 'number',
+        key: 'number',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <BlockNumberLink number={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'age'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <TimeAgo date={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'transaction'})),
+        dataIndex: 'nrOfTrx',
+        key: 'nrOfTrx',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <FormattedNumber value={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'bytes'})),
+        dataIndex: 'size',
+        key: 'size',
+        align: 'right',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <FormattedNumber value={text}/>
+        }
+      },
+    ];
+    return column;
+  }
   render() {
 
     let {page, total, pageSize, loading, blocks, emptyState: EmptyState = null} = this.state;
+    let column = this.customizedColumn();
+    let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
+
 
     if (!loading && blocks.length === 0) {
       if (!EmptyState) {
@@ -66,46 +119,14 @@ export default class Blocks extends React.Component {
     }
 
     return (
-      <StickyContainer>
-        {
-          total > pageSize &&
-            <Sticky>
-              {
-                ({style}) => (
-                  <div style={{zIndex: 100, ...style}} className="card-body bg-white py-3 border-bottom">
-                    <Paging onChange={this.onChange} total={total} loading={loading} pageSize={pageSize} page={page}/>
-                  </div>
-                )
-              }
-            </Sticky>
-        }
-        <table className="table table-hover m-0 table-striped">
-          <thead className="thead-dark">
-          <tr>
-            <th style={{width: 100}}>{tu("height")}</th>
-            <th style={{width: 150}}>{tu("age")}</th>
-            <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
-            <th style={{width: 100}}>{tu("bytes")}</th>
-          </tr>
-          </thead>
-          <tbody>
-          {
-            blocks.map(block => (
-              <tr key={block.number}>
-                <th>
-                  <BlockNumberLink number={block.number}/>
-                </th>
-                <td className="text-nowrap"><TimeAgo date={block.timestamp} /></td>
-                <td style={{width: 100}}><FormattedNumber value={block.nrOfTrx} /></td>
-                <td>
-                  <FormattedNumber value={block.size}/>
-                </td>
-              </tr>
-            ))
-          }
-          </tbody>
-        </table>
-      </StickyContainer>
+        <div className="token_black table_pos">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+          <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
+                      onPageChange={(page, pageSize) => {
+                        this.load(page, pageSize)
+                      }}/>
+        </div>
     )
   }
 }

@@ -215,7 +215,7 @@ class TokenDetail extends React.Component {
                 showConfirm={false}
                 style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
-              <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
+              <div className="mt-5 token-sweet-alert" style={{textAlign: 'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
@@ -396,7 +396,7 @@ class TokenDetail extends React.Component {
                             {/*
                             <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
                             <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
-                            {!(token.endTime < new Date()  || token.issuedPercentage === 100 || token.startTime > new Date()) &&
+                            {!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date()) &&
                             <button className="btn btn-default btn-xs"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }

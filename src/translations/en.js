@@ -177,7 +177,8 @@ export const messages = {
   "witness": "Witness",
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
-  "nodes_ranking": "Nodes Ranking (Rank by country and region)",
+  "nodes_ranking": "Nodes Ranking",
+  "split_by_country":"Rank by country and region",
   "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
@@ -278,7 +279,7 @@ export const messages = {
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
-  "frozen_supply": " Frozen Suppluy",
+  "frozen_supply": " Frozen Supply",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -965,6 +966,11 @@ export const messages = {
   "a_totle": "A Total of",
   "transaction_info": "transactions found",
   "hold_addr": "Token Holders",
+  "transactions_unit":"Transfers",
+  "block_unit":"Tokens",
+  "record_unit":"Transactions",
+  "token_unit": "Token",
+  "vote_unit": "Voters",
 
   /*
 ##################################################################################

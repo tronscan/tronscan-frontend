@@ -57,27 +57,27 @@ export default class TestNetRequest extends React.Component {
         this.setState({
           success: true,
           modal: (
-            <SweetAlert success title={tu("trx_received")} onConfirm={this.hideModal}>
-              <FormattedNumber value={amount / ONE_TRX}/> TRX {tu("have_been_added_to_your_account")}
-            </SweetAlert>
+              <SweetAlert success title={tu("trx_received")} onConfirm={this.hideModal}>
+                <FormattedNumber value={amount / ONE_TRX}/> TRX {tu("have_been_added_to_your_account")}
+              </SweetAlert>
           )
         });
       } else if (code === "CONTRACT_VALIDATE_ERROR") {
         this.setState({
           verificationCode: null,
           modal: (
-            <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
-              {tu("test_trx_temporarily_unavailable_message")}
-            </SweetAlert>
+              <SweetAlert danger title={tu("error")} onConfirm={this.hideModal}>
+                {tu("test_trx_temporarily_unavailable_message")}
+              </SweetAlert>
           )
         });
       } else {
         this.setState({
           verificationCode: null,
           modal: (
-            <SweetAlert danger title="Error" onConfirm={this.hideModal}>
-              {message}
-            </SweetAlert>
+              <SweetAlert danger title="Error" onConfirm={this.hideModal}>
+                {message}
+              </SweetAlert>
           )
         });
       }
@@ -88,9 +88,9 @@ export default class TestNetRequest extends React.Component {
       this.setState({
         verificationCode: null,
         modal: (
-          <SweetAlert danger title="TRX Received" onConfirm={this.hideModal}>
-            {tu("An_unknown_error_occurred,_please_try_again_in_a_few_minutes")}
-          </SweetAlert>
+            <SweetAlert danger title="TRX Received" onConfirm={this.hideModal}>
+              {tu("An_unknown_error_occurred,_please_try_again_in_a_few_minutes")}
+            </SweetAlert>
         )
       });
     }
@@ -115,33 +115,33 @@ export default class TestNetRequest extends React.Component {
     let {modal, success} = this.state;
 
     return (
-      <div>
-        {modal}
-        <p className="pt-1">
-          {tu("information_message_1")}
-        </p>
-        {
-          success ?
-            <Alert color="success">
-              {tu("information_message_3")}
-            </Alert> :
-            <React.Fragment>
-              <p className="d-flex justify-content-center">
-                <RecaptchaAsync
-                  sitekey="6Le7AV4UAAAAADGmYVtg_lZuLj3w9xjwd7-P3gqX"
-                  render="explicit"
-                  onloadCallback={this.onLoad}
-                  expiredCallback={this.onExpired}
-                  verifyCallback={this.onVerify} />
-              </p>
-              <button className="btn btn-secondary"
-                      onClick={this.requestTrx}
-                      disabled={!this.canRequest()}>
-                {tu("request_trx_for_testing")}
-              </button>
-            </React.Fragment>
-        }
-      </div>
+        <div>
+          {modal}
+          <p className="pt-1">
+            {tu("information_message_1")}
+          </p>
+          {
+            success ?
+                <Alert color="success">
+                  {tu("information_message_3")}
+                </Alert> :
+                <React.Fragment>
+                  <p className="d-flex justify-content-center">
+                    <RecaptchaAsync
+                        sitekey="6Le7AV4UAAAAADGmYVtg_lZuLj3w9xjwd7-P3gqX"
+                        render="explicit"
+                        onloadCallback={this.onLoad}
+                        expiredCallback={this.onExpired}
+                        verifyCallback={this.onVerify}/>
+                  </p>
+                  <button className="btn btn-secondary"
+                          onClick={this.requestTrx}
+                          disabled={!this.canRequest()}>
+                    {tu("request_trx_for_testing")}
+                  </button>
+                </React.Fragment>
+          }
+        </div>
     )
   }
 }
