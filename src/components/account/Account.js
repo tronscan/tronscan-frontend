@@ -637,7 +637,6 @@ class Account extends Component {
 
     for (let url of urls) {
       try {
-        console.log("trying ", url);
         await xhr.get(url);
         await this.updateGithubURL(input);
         return true;
@@ -725,6 +724,10 @@ class Account extends Component {
     });
   };
 
+  toissuedAsset = () => {
+    window.location.hash="#/myToken";
+  }
+
   render() {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
@@ -751,6 +754,12 @@ class Account extends Component {
     return (
         <main className="container header-overlap">
           {modal}
+          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
+              {tu("tron_power_freezing")}
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div className="row">
             <div className="col-md-4">
               <div className="card h-100 text-center widget-icon">
@@ -791,7 +800,6 @@ class Account extends Component {
               </div>
             </div>
           </div>
-
           {showBandwidth && this.renderBandwidth()}
         <div className="row mt-3">
           <div className="col-md-12">
@@ -885,7 +893,7 @@ class Account extends Component {
                 <div className="card">
                   <div className="card-body px-0 border-0">
                     <h5 className="card-title text-center m-0">
-                      {tu("Issued Token")}
+                      {tu("issued_token")}
                     </h5>
                   </div>
                   <table className="table m-0">
@@ -946,6 +954,7 @@ class Account extends Component {
                     }
                     </tbody>
                   </table>
+                  <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>{tu('token_detail')}</button>
                 </div>
               </div>
             </div>
@@ -1148,7 +1157,7 @@ class Account extends Component {
                   </p>
                   {
                     showBuyTokens && <iframe
-                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"}
+                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=x600ducoeoei16mc&color=28cf00"}
                         height="500" className="changelly" scrolling="no"
                         style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
                     </iframe>

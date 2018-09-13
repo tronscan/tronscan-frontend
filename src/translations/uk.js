@@ -867,6 +867,18 @@ export const messages = {
   "circulating_supply":"Circulating Supply",
   "list_trx":"List TRX",
   "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan"
+  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history":"14 day Transaction History",
+  "14_day_address_growth":"14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

@@ -278,7 +278,7 @@ export const messages = {
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
-  "frozen_supply": "Frozen Supply",
+  "frozen_supply": " Frozen Suppluy",
   "tokens_unfrozen": "Tokens Unfrozen",
   "success_tokens_unfrozen_message": "Successfully unfrozen tokens",
   "unable_to_unfreeze": "Unable to unfreeze",
@@ -374,13 +374,13 @@ export const messages = {
   ##################################################################################
   */
   "name_of_the_token": "Name of the token",
-  "token_message": "Name for the token",
+  "token_message": "Token name, avoid duplication",
   "token_abbr": "token Abbreviation",
-  "abbr_message": "Abbreviation for the token",
-  "total_supply": "total supply",
+  "abbr_message": "Token abbreviation, avoid duplication",
+  "total_supply": "total Supply",
   "issued_token": "issued token",
   "create_token": "Create Token",
-  "description": "Description",
+  "description": "Brief Introduction",
   "description_url": "Description URL",
   "quote_token_amount": "Quote Token Amount",
   "base_token_amount": "Base Token Amount",
@@ -481,15 +481,15 @@ export const messages = {
   "details": "details",
   "issue_a_token": "Issue a Token",
   "issue_token": "Issue Token",
-  "token_name": "token name",
+  "token_name": "token Name",
   "total_issued": "Total issued",
   "registered": "Registered",
   "abbreviation": "Abbreviations",
-  "exchange_rate": "Exchange Rate",
+  "exchange_rate": "Issuing Exchange Rate",
   "token_price": "Token Price",
-  "supply_message": "Total amount of tokens which will be in circulation",
+  "supply_message": "Total token issuance, e.g. Total bitcoin issuance  21 million",
   "description_message": "A short description of the purpose of the token",
-  "url_message": "A website where users can find more information about the token",
+  "url_message": "A website address that shows more information about the token",
   "exchange_rate_message_0": "Specify the price of a single token by defining how many tokens a participant will receive for every TRX they spend.",
   "exchange_rate_message_1": "Participants will receive",
   "exchange_rate_message_2": "for every",
@@ -500,14 +500,14 @@ export const messages = {
    for a minimum of 1 day. The frozen supply can manually be unfrozen after start date and frozen
    days has been reached. Freezing supply is not required.`,
   "token_issued_successfully": "Token successfully issued",
-  "participation": "participation",
+  "participation": "Issuing Time",
   "start_date": "Start Date",
   "end_date": "End Date",
   "token_spend_confirm": "I confirm that creating the total supply of the token costs a one time total fee of 1024 TRX.",
   "token_issue_guide_message_1": `Issuing a token on the TRON Protocol can be done
     by anyone who has at least 1024 TRX in their account.`,
   "token_issue_guide_message_2": `When a token is issued it will be shown on the token overview page.
-    Users can then participate within the participation period and exchange their TRX for tokens.`,
+    Users can then participate within the issuing time and exchange their TRX for tokens.`,
   "token_issue_guide_message_3": `After issuing the token your account will receive the amount of tokens equal to the total supply.
     When other users exchange their TRX for tokens then the tokens will be withdrawn from your account and you will
     receive TRX equal to the specified exchange rate.`,
@@ -834,16 +834,16 @@ export const messages = {
   "address_growth": "Address Growth",
   "power": "Power",
   "token_transfers": "Token Transfers",
-  "website_url": "Website URL",
+  "website_url": "Official Website",
   "search": "Search",
-  "language_support":"Only support English input currently",
-  "note":"Note",
-  "_percentage":"Percentage",
-  "foundation":"Foundation Addresses",
-  "foundation_address":"Foundation Freeze TRX Total Number",
-  "unfreeze_time":"Unfreeze Time",
-  "addresses_number":"Addresses Number",
-  "copyright":"Copyright",
+  "language_support": "Only support English input currently",
+  "note": "Note",
+  "_percentage": "Percentage",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
+  "copyright": "Copyright",
   /*
     ##################################################################################
     #                                                                                #
@@ -851,24 +851,159 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
+
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history":"14 day Transaction History",
+  "14_day_address_growth":"14 day Address Growth",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--rating page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "TRONRating": "TRON Token Rating",
+  "rating_title": "Tronscan Token Reputation System",
+  "modify_on": "Modified on",
+  "rating_description": "The Tronscan Reputation System aims at helping users to understand, differentiate and assess different tokens. When you visit the token page, the Reputation is classified into 5 categories:",
+  "rating_status_1": "Review Pending",
+  "rating_status_1_desc_a": "Not yet reviewed",
+  "rating_status_2": "OK",
+  "rating_status_2_desc": "An “OK” Reputation is not an endorsement or recommendation, but meets the following criteria:",
+  "rating_status_2_desc_a": "Provide sufficient and accurate information",
+  "rating_status_2_desc_b": "Has precise project goals and communication channels",
+  "rating_status_2_desc_c": "Accessible information of the project founders/ investors/ consultants",
+  "rating_status_2_desc_d": "The token is traded/listed on a cryptocurrency exchange with AML/KYC inspection",
+  "rating_status_2_desc_e": "ICO has been completed or active for no less than 3 months",
+  "rating_status_2_desc_f": "A major milestone has been achieved",
+  "rating_status_3": "Neutral",
+  "rating_status_3_desc": "A 'neutral' Reputation means that the information about the project and the team is relatively transparent.",
+  "rating_status_3_desc_a": "Provide necessary and sufficient information (official website, logo, official contact email, white paper)",
+  "rating_status_3_desc_b": "A professional public profile of team members and consultants is posted online (Indicate the project in LinkedIn Personal Profile)",
+  "rating_status_3_desc_c": "Provide social media materials",
+  "rating_status_4": "Insufficient Information",
+  "rating_status_4_desc_a": "Has not provided necessary and sufficient information (official website, logo, official contact email, white paper)",
+  "rating_status_4_desc_b": "There is no information showing that the project has ongoing operational progress",
+  "rating_status_5": "False Information",
+  "rating_status_5_desc_a": "Use false identity to issue token",
+  "rating_status_5_desc_b": "There is information indicating that the fraud/phishing/fraud/spamming or misrepresentation behavior related to this token has not been properly handled, or the token has other 'dangerous' signs.",
+  "rating_disclaimer": "DISCLAIMER",
+  "disclaimer_desc_1": "Tronscan does not endorse, approve or condemn any services or projects related to the token contracts displayed on the Tronscan. Users should always conduct research with due diligence before taking any action related to the token, especially when it comes to value investing.",
+  "disclaimer_desc_2": "Reputation associated with this service may or may not be accurate as they are based on subjective evaluations and/or reports from the community. We take no sides, nor do we guarantee or conduct any level of responsibility/accuracy/reliability evaluation; our reputation evaluation cannot be deemed as any behavioral advice, especially investment advice.",
+  "disclaimer_desc_3": "We reserve the right to interpret the symbolic reputation of the token on this page, and we are not obligated to provide any feedback for the refusal. We reserve the right to delete or update information (including reputation) once there is falseness or discrepancies of the information.",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--myToken page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "my_token": "My Token",
+  "my_token_desc_1": "The information related to the token will be displayed on the token page. Each token based on the comprehensiveness and authenticity of the information will get a",
+  "tron_rating":"Token Reputation",
+  "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@tron.network via your company email or certified email with necessary credentials.",
+  "brief_info": "Brief Introduction",
+  "website_official": "Official website",
+  "white_paper": "White Paper",
+  "GitHub": "GitHub",
+  "country": "Country/Region",
+  "social_link": "Social Media Link",
+  "download_excel": "Download the template",
+  "no_message":"N/A (Please send an email to complete this information)",
+  "insufficient_message":"Insufficient information",
+  "token_detail":"Token Detail",
+  "contact_us":"Contact us",
+  "my_token":"My Token",
+  "try_later":"Please try it later",
+  "contract_address":"Contract Address",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--create token page                                                         #
+#                                                                                #
+##################################################################################
+*/
+  "basic_info": "Basic Information",
+  "basic_info_desc": "Token basic information ",
+  "exchange_setting": "Issuance Setting",
+  "exchange_setting_desc": "Set the issuing price and time frame for tokens",
+  "freeze_setting": "Frozen Setting",
+  "freeze_setting_desc": "Freeze part of the tokens for a period of time",
+  "confirm_setting": "Confirm Setting",
+  "confirm_setting_desc": "Confirm all your information",
+  "token_logo":"Token LOGO",
+  "image_restraint_desc":"resolution 1:1, suggested format jpg/png",
+  "prev_step":"Previous",
+  "freeze_on": "ON",
+  "freeze_off": "OFF",
+  "freeze_not_valid":"Freeze function off",
+  "no_logo_error":"no logo found",
+  "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+  "tick_checkbox":"Need to tick the Checkbox",
+  "change_info":"If the information is not correct, please",
+  "total":"total",
+  "a_totle": "A Total of",
+  "transaction_info": "transactions found",
+  "hold_addr": "Token Holders",
+
+  /*
+##################################################################################
+#                                                                                #
+# ICO--participate page                                                         #
+#                                                                                #
+##################################################################################
+*/
+
+  "issue_progress":"Progress",
+  "fund_raised":"Fund Raised",
+  "issuing_price":"Issuing Price",
+  "buy_token_info":"你想要购买多少数量的通证？",
+  "reputation":"Reputation",
+  "issue_time":"Issuing Time ",
+  "success_receive":"Successfully received",
   "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan"
+  "issue_info":"Issuance Info",
+  "transferring":"In progress",
+  "in_progress":"In progress",
+  "fail_transaction":"Transaction failed",
+  "records":"Records",
+  "part_total": "A total of ",
+  "part_pass": "tokens found",
+  "view_total": "A Total of",
+  "view_pass": "Tokens to participate",
+  "token_overview_tron":"Overview of TRON token market",
+  "token_participate_tron":"Participate in TRON token issuance",
+  "not_started":"Not started",
+  "no_token_to_buy":"Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+
+/*
+##################################################################################
+#                                                                                #
+# new variables    2018-09-11 12:51:31                                           #
+#                                                                                #
+##################################################################################
+*/
+"pice_per_1trx": "Price",
+"tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

@@ -115,7 +115,7 @@ class Statistics extends React.Component {
 
         let priceStatsTemp = data['Data'];
 
-        let volumeData = await xhr.get("https://tron.network/api/v2/node/market_data");
+        let volumeData = await xhr.get("https://server.tron.network/api/v2/node/market_data");
         let volumeUSD = volumeData.data.market_cap_by_available_supply
         let volume = volumeUSD.map(function (v, i) {
             return {
@@ -142,7 +142,7 @@ class Statistics extends React.Component {
             })
         }
         let random = Math.random();
-        let balanceData = await xhr.get("https://tron.network/api/v2/node/balance_info?random=" + random);
+        let balanceData = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
         let TRONFoundationTotal = balanceData.data.total;
         let {blocks} = await Client.getBlocks({
             limit: 1,

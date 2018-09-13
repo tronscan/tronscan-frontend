@@ -84,7 +84,7 @@ class Representatives extends Component {
 
     return (
         <div className="card border-0">
-          <table className="table table-hover table-striped bg-white m-0 sr">
+          <table className="table table-hover table-striped bg-white m-0 sr" style={{border:'1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
               <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
@@ -105,16 +105,13 @@ class Representatives extends Component {
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
-                                                               key={account.address} account={account}/>)}
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
             <tr>
               <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index+27} state={this.state} props={this.props}
-                                                                   key={account.address} account={account}
-                                                                   showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state} props={this.props} key={account.address} account={account} showSync={false}/>)}
             </tbody>
           </table>
         </div>

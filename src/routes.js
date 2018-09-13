@@ -19,6 +19,8 @@ import {
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  MyTokenAsync,
+  TRONRatingAsync,
   CopyrightAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
@@ -167,7 +169,18 @@ export const routes = [
     component: TokenDetailAsync,
     showInMenu: false,
   },
-
+  {
+    label: "my_token",
+    component: MyTokenAsync,
+    path: "/myToken",
+    showInMenu: false
+  },
+  {
+    label: "TRONRating",
+    component: TRONRatingAsync,
+    path: "/rating",
+    showInMenu: false
+  },
   {
     path: "/markets",
     label: "markets",

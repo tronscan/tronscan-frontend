@@ -1,21 +1,22 @@
 import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
-import Avatar from "../../common/Avatar";
 import {t, tu} from "../../../utils/i18n";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {TokenHolders} from "./TokenHolders";
+import TokenHolders from "./TokenHolders";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
-import {addDays, getTime} from "date-fns";
-import Transfers from "../../common/Transfers";
+import Transfers from "./Transfers.js";
+import TokenInfo from "./TokenInfo.js";
 import {ONE_TRX} from "../../../constants";
-import {NumberField} from "../../common/Fields";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {Link} from "react-router-dom";
+import {some} from "lodash";
+import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
 
@@ -23,7 +24,7 @@ class TokenDetail extends React.Component {
     super();
 
     this.state = {
-      privateKey:'',
+      privateKey: '',
       loading: true,
       token: {},
       tabs: [],
@@ -49,7 +50,9 @@ class TokenDetail extends React.Component {
 
     this.setState({loading: true, token: {name}});
 
-    let token = await Client.getToken(name);
+    //let token = await Client.getToken(name);
+    let result = await xhr.get("https://www.tronapp.co:9009/api/token?name=" + name);
+    let token = result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
@@ -57,81 +60,34 @@ class TokenDetail extends React.Component {
       token,
       tabs: [
         {
-          id: "transactions",
-          icon: "fa fa-exchange-alt",
+          id: "tokenInfo",
+          icon: "",
           path: "",
+          label: <span>{tu("issue_info")}</span>,
+          cmp: () => <TokenInfo token={token}/>
+        },
+        {
+          id: "transfers",
+          icon: "",
+          path: "/transfers",
           label: <span>{tu("token_transfers")}</span>,
           cmp: () => <Transfers filter={{token: name}}/>
         },
         {
           id: "holders",
-          icon: "fa fa-user",
+          icon: "",
           path: "/holders",
-          label: <span>{totalAddresses} {tu("token_holders")}</span>,
+          label: <span>{tu("token_holders")}</span>,
           cmp: () => <TokenHolders filter={{token: name}} token={{totalSupply: token.totalSupply}}/>
         },
       ]
     });
   };
 
-  buyTokens = (token) => {
-    let {buyAmount} = this.state;
-    let {currentWallet, wallet} = this.props;
-
-    if (!wallet.isOpen) {
-      this.setState({
-        alert: (
-            <SweetAlert
-                warning
-                title="Open wallet"
-                onConfirm={() => this.setState({alert: null})}>
-              Open a wallet to participate
-            </SweetAlert>
-        ),
-      });
-      return;
-    }
-
-    let tokenCosts = buyAmount * (token.price / ONE_TRX);
-
-    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
-      this.setState({
-        alert: (
-            <SweetAlert
-                warning
-                title={tu("insufficient_trx")}
-                onConfirm={() => this.setState({alert: null})}
-            >
-              {tu("not_enough_trx_message")}
-            </SweetAlert>
-        ),
-      });
-    } else {
-      this.setState({
-        alert: (
-            <SweetAlert
-                info
-                showCancel
-                confirmBtnText={tu("confirm_transaction")}
-                confirmBtnBsStyle="success"
-                cancelBtnText={tu("cancel")}
-                cancelBtnBsStyle="default"
-                title={tu("buy_confirm_message_0")}
-                onConfirm={() => this.confirmTransaction(token)}
-                onCancel={() => this.setState({alert: null})}
-            >
-              {tu("buy_confirm_message_1")}<br/>
-              {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
-            </SweetAlert>
-        ),
-      });
-    }
-  };
-
   submit = async (token) => {
 
     let {account, currentWallet} = this.props;
-    let {buyAmount,privateKey} = this.state;
+    let {buyAmount, privateKey} = this.state;
 
     let isSuccess = await Client.participateAsset(
         currentWallet.address,
@@ -156,22 +112,22 @@ class TokenDetail extends React.Component {
     let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
-      if(pkToAddress(value)!==account.address)
+      if (pkToAddress(value) !== account.address)
         this.privateKey.className = "form-control is-invalid";
     }
-    else{
+    else {
       this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
   }
   confirmPrivateKey = (param) => {
-    let {privateKey,token} = this.state;
+    let {privateKey, token} = this.state;
     let {account} = this.props;
 
-    let reConfirm = ()=> {
+    let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)===account.address)
+        if (pkToAddress(this.privateKey.value) === account.address)
           this.buyTokens(token);
       }
     }
@@ -210,7 +166,145 @@ class TokenDetail extends React.Component {
   }
 
 
+  isBuyValid = () => {
+    return (this.state.buyAmount > 0);
+  };
+
+  onBuyInputChange = (value, price, max) => {
+    let {intl} = this.props;
+    if (value > max) {
+      value = max;
+    }
+    this.setState({buyAmount: value});
+    this.buyAmount.value = value;
+    let priceTRX = value * (price / ONE_TRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+  }
+
+  preBuyTokens = (token) => {
+    let {buyAmount} = this.state;
+    let {currentWallet, wallet, intl} = this.props;
+
+    if (!wallet.isOpen) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                info
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="token-sweet-alert">
+                <a className="close" onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <span>{tu('login_first')}</span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
+            </SweetAlert>
+        ),
+      });
+      return;
+    }
+    else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
+                <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                {token.remaining === 0 && <span> {tu('no_token_to_buy')}</span>}
+                <div className="input-group mt-5">
+                  <input
+                      type="number"
+                      ref={ref => this.buyAmount = ref}
+                      className="form-control"
+                      max={token.remaining}
+                      min={1}
+                      onChange={(e) => {
+                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                      }}
+                  />
+                </div>
+                <div className="text-center mt-3 text-muted">
+                  <b>= <span ref={ref => this.priceTRX = ref}>0</span> TRX</b>
+                </div>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.buyTokens(token)
+                }}>{tu("participate")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    }
+  }
+  buyTokens = (token) => {
+
+    let {buyAmount} = this.state;
+    if (buyAmount <= 0) {
+      return;
+    }
+    let {currentWallet, wallet} = this.props;
+    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+
+    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <span>
+                  {tu("not_enough_trx_message")}
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("confirm")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <span>
+                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.confirmTransaction(token)
+                }}>{tu("confirm")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    }
+  };
+
   confirmTransaction = async (token) => {
+    let {account, intl} = this.props;
+    let {buyAmount} = this.state;
 
     this.setState({
       alert: (
@@ -218,18 +312,35 @@ class TokenDetail extends React.Component {
               showConfirm={false}
               showCancel={false}
               cancelBtnBsStyle="default"
-              title="One moment please.."
+              title={intl.formatMessage({id: 'transferring'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
-            Requesting tokens...
           </SweetAlert>
       ),
     });
 
     if (await this.submit(token)) {
+
       this.setState({
         alert: (
-            <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({alert: null})}>
-              Successfully received {token.name} tokens
+            <SweetAlert
+                success
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+                <span>
+                {tu('success_receive')} {token.name} {tu('tokens')}
+              </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
             </SweetAlert>
         )
       });
@@ -237,24 +348,27 @@ class TokenDetail extends React.Component {
       this.setState({
         alert: (
             <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
-              Something went wrong...
+              {tu('fail_transaction')}
             </SweetAlert>
         )
       });
     }
   };
 
-  isBuyValid = () => {
-    return (this.state.buyAmount > 0);
-  };
-
   render() {
 
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert} = this.state;
+    let social_display = 0;
+
+    token && token['social_media'] && token['social_media'].map((media, index) => {
+      if (media.url) {
+        social_display++;
+      }
+    })
 
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black mc-donalds-coin">
           {alert}
           {
             loading ? <div className="card">
@@ -263,70 +377,67 @@ class TokenDetail extends React.Component {
                   </TronLoader>
                 </div> :
                 <div className="row">
+                  {token &&
                   <div className="col-sm-12">
                     <div className="card">
                       <div className="card-body">
-                        <Avatar value={token.name} className="float-right"/>
-                        <h5 className="card-title">
-                          {token.name}
-                        </h5>
-                        <p className="card-text">{token.description}</p>
+                        <div className="d-flex">
+                          {token && token.imgUrl ?
+                              <img className='token-logo' src={token.imgUrl}/> :
+                              <img className='token-logo' src={require('../../../images/logo_default.png')}/>
+                          }
+                          <div style={{width: '80%'}}>
+                            <h5 className="card-title">
+                              {token.name}
+                            </h5>
+                            <p className="card-text">{token.description}</p>
+                          </div>
+                          <div className="ml-auto">
+                            {/*
+                            <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
+                            <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
+                            {!(token.endTime < new Date()  || token.issuedPercentage === 100 || token.startTime > new Date()) &&
+                            <button className="btn btn-default btn-xs"
+                                    onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
+                            }
+                          </div>
+                        </div>
                       </div>
-                      <table className="table m-0">
+
+                      <table className="table m-0 tokenDetail ">
                         <tbody>
                         <tr>
-                          <th style={{width: 250}}>{tu("website")}:</th>
-                          <td>
-                            <ExternalLink url={token.url}/>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th style={{width: 250}}>{tu("total_supply")}:</th>
+                          <th>{tu("total_supply")}:</th>
                           <td>
                             <FormattedNumber value={token.totalSupply}/>
                           </td>
-                        </tr>
-                        {
-                          token.frozen.length > 0 &&
-                          <tr>
-                            <th>{tu("Frozen Supply")}:</th>
-                            <td>
-                              {
-                                token.frozen.map((frozen, index) => (
-                                    <div key={index}>
-                                      {frozen.amount} {tu("can_be_unlocked")}&nbsp;
-                                      <FormattedRelative
-                                          value={getTime(addDays(new Date(token.startTime), frozen.days))}/>
-                                    </div>
-                                ))
-                              }
-                            </td>
-                          </tr>
-                        }
-                        <tr>
-                          <th>{tu("issuer")}:</th>
+                          <th>{tu("reputation")}:</th>
                           <td>
-                            <AddressLink address={token.ownerAddress}/>
+                            <Link to={`/rating`}
+                                  style={{display: 'flex', alignItems: 'center'}}>{tu(token.reputation)}<img
+                                src={require('../../../images/state/' + token.reputation + '_active.png')}
+                                className="ml-1 faceico"/></Link>
                           </td>
                         </tr>
                         <tr>
-                          <th>{tu("start_date")}:</th>
+                          <th>{tu("circulating_supply")}:</th>
                           <td>
-                            <FormattedDate value={token.startTime}/>{' '}
-                            <FormattedTime value={token.startTime}/>
+                            <FormattedNumber value={token.issued}/>
                           </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("end_date")}:</th>
+                          <th>{tu("website")}:</th>
                           <td>
-                            <FormattedDate value={token.endTime}/>{' '}
-                            <FormattedTime value={token.endTime}/>
+                            <ExternalLink url={token.url}/>
                           </td>
+
                         </tr>
                         <tr>
                           <th>{tu("token_holders")}:</th>
                           <td>
                             <FormattedNumber value={token.nrOfTokenHolders}/>
+                          </td>
+                          <th>{tu("issuer")}:</th>
+                          <td>
+                            <AddressLink address={token.ownerAddress}/>
                           </td>
                         </tr>
                         <tr>
@@ -334,53 +445,61 @@ class TokenDetail extends React.Component {
                           <td>
                             <FormattedNumber value={token.totalTransactions}/>
                           </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("progress")}:</th>
-                          <td>
-                            <div className="progress mt-1">
-                              <div className="progress-bar bg-success" style={{width: (100 - token.percentage) + '%'}}/>
-                            </div>
+                          <th>{tu("white_paper")}:</th>
+                          <td>{
+                            token.white_paper !== 'no_message' ?
+                                <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
+                                <span style={{color: '#d8d8d8'}}>-</span>
+                          }
                           </td>
                         </tr>
                         <tr>
-                          <th>{tu("price")}:</th>
+                          <th>{tu("created")}:</th>
                           <td>
-                            <FormattedNumber value={(token.price / ONE_TRX)}/> TRX
+                            <FormattedDate value={token.dateCreated}/>{' '}
+                            <FormattedTime value={token.dateCreated}/>
+                          </td>
+                          <th>{tu("GitHub")}:</th>
+                          <td>{
+                            token.github !== 'no_message' ?
+                                <ExternalLink url={token.github && tu(token.github)}/> :
+                                <span style={{color: '#d8d8d8'}}>-</span>
+                          }
                           </td>
                         </tr>
                         <tr>
-                          <th>{tu("participate")}:</th>
+                          <th>{tu("contract_address")}:</th>
                           <td>
-                            <div className="input-group">
-                              {
-                                token.remaining!==0 &&
-                                <NumberField
-                                    className="form-control"
-                                    value={buyAmount}
-                                    max={token.remaining}
-                                    min={1}
-                                    onChange={value => this.setState({buyAmount: value})}
-                                />
+                            <span style={{color: '#d8d8d8'}}>-</span>
+                          </td>
+                          <th>{tu("social_link")}:</th>
+                          <td>
+                            <div className="d-flex">
+                              {token['social_media'] && token['social_media'].map((media, index) => {
+                                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
+                                      <a href={media.url}><img
+                                          src={require('../../../images/' + media.name + '.png')}/></a>
+                                    </div>
+                                )
+                              })
                               }
-                              <div className="input-group-append">
-                                <button className="btn btn-success"
-                                        type="button"
-                                        disabled={!this.isBuyValid()}
-                                        onClick={() => this.buyTokens(token)}>
-                                  Participate
-                                </button>
-                              </div>
+                              {
+                                !social_display &&
+                                <span style={{color: '#d8d8d8'}}>-</span>
+                              }
                             </div>
                           </td>
                         </tr>
+
                         </tbody>
                       </table>
                     </div>
 
-                    <div className="card mt-3">
+                    <div className="card mt-3 border_table">
                       <div className="card-header">
-                        <ul className="nav nav-tabs card-header-tabs">
+                        <ul className="nav nav-tabs card-header-tabs" style={{
+                          height: '50px', marginTop: '-12px', marginLeft: '-20px'
+                        }}>
                           {
                             tabs.map(tab => (
                                 <li key={tab.id} className="nav-item">
@@ -404,7 +523,9 @@ class TokenDetail extends React.Component {
                       </div>
                     </div>
                   </div>
+                  }
                 </div>
+
           }
 
         </main>
