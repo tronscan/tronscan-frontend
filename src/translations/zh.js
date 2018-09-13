@@ -995,5 +995,6 @@ export const messages = {
 ##################################################################################
 */
   "pice_per_1trx": "价格",
-  "tron_power_freezing":"TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。"
+  "tron_power_freezing":"TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
+  "HighChart_tip":"单击并拖动绘图区域以放大"
 };

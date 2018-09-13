@@ -15,20 +15,17 @@ import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
 
 import {
-    LineReactAdd,
-    LineReactBlockSize,
-    LineReactBlockchainSize,
-    LineReactTx,
-    LineReactPrice,
-    LineReactVolumeUsd,
     LineReactHighChartAdd,
     LineReactHighChartTx,
-    LineReactHighChartPrice
+    LineReactHighChartBlockchainSize,
+    BarReactHighChartBlockSize,
+    LineReactHighChartPrice,
+    LineReactHighChartVolumeUsd
 } from "../../common/LineCharts";
 
 import {
     RepresentativesRingPieReact,
-    SupplyTypesTRXPieChart
+    SupplyTypesTRXPieChart,
 } from "../../common/RingPieChart";
 
 import {loadPriceData} from "../../../actions/markets";
@@ -78,7 +75,7 @@ class Statistics extends React.Component {
                 this.loadTotalTRXSupply();
                 setInterval(() => {
                     this.loadTotalTRXSupply();
-                }, 15000);
+                }, 30000);
             break;
             case 'pieChart':
                 this.loadPieChart();
@@ -180,8 +177,9 @@ class Statistics extends React.Component {
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
         let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
-            {value: TRONFoundationTotal, name: 'foundation_freeze', selected: true},
-            {value: circulatingNum, name: 'circulating_supply', selected: true},
+            {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
+            {value: TRONFoundationTotal, name: 'foundation_freeze', selected: false,sliced: false},
+
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
@@ -471,7 +469,7 @@ class Statistics extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">
-                            <div className="card-body">
+                            <div className="card-body p-5">
                                 {
                                     match.params.chartName === 'txOverviewStats' &&
                                     <div style={{height: 500}}>
@@ -499,7 +497,7 @@ class Statistics extends React.Component {
                                         {
                                             blockSizeStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactBlockSize source='singleChart' style={{height: 500}}
+                                                <BarReactHighChartBlockSize source='singleChart' style={{height: 500}}
                                                                     data={blockSizeStats}
                                                                     intl={intl}/>
                                         }
@@ -511,7 +509,7 @@ class Statistics extends React.Component {
                                         {
                                             blockchainSizeStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactBlockchainSize source='singleChart' style={{height: 500}}
+                                                <LineReactHighChartBlockchainSize source='singleChart' style={{height: 500}}
                                                                          data={blockchainSizeStats} intl={intl}/>
                                         }
                                     </div>
@@ -586,7 +584,7 @@ class Statistics extends React.Component {
                                         {
                                             volumeStats === null ?
                                                 <TronLoader/> :
-                                                <LineReactVolumeUsd source='singleChart'
+                                                <LineReactHighChartVolumeUsd source='singleChart'
                                                                     style={{height: 500}}
                                                                     data={volumeStats}
                                                                     intl={intl}/>

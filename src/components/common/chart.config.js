@@ -499,10 +499,11 @@ module.exports = {
   overviewHighChart: {
     chart: {
       zoomType: '',
-      spacingTop: 0,
+      spacingTop: 5,
       spacingBottom: 0,
       spacingLeft: 0,
       spacingRight: 0,
+      marginTop:80,
       resetZoomButton: {
           position: {
               align: 'right', // right by default
@@ -538,7 +539,10 @@ module.exports = {
       '#e7afad'
     ],
     exporting: {
-      enabled: true
+      enabled: true,
+      sourceWidth: 1072,
+      sourceHeight: 500,
+      filename:''
     },
     subtitle: {
       text: ''
@@ -617,7 +621,7 @@ module.exports = {
         lineWidth: 1,
         states: {
           hover: {
-            lineWidth: 1
+            lineWidth: 2
           }
         },
         threshold: null,
@@ -639,4 +643,117 @@ module.exports = {
       }
     }]
   },
+    ringPieHighChart3D: {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            },
+            spacingTop: 5,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename:''
+        },
+        credits: {
+            enabled: false
+        },
+        colors: [
+            '#424246',
+            '#96EE80',
+            '#F4A45D',
+            '#8085ED',
+            '#F25C81',
+            '#E5D355',
+            '#348188',
+            '#F25C81',
+            '#8FCACE',
+            '#7CB5EC'
+        ],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                showInLegend: true,
+                innerSize: 100,
+                depth: 60,
+            }
+        },
+        legend: {
+            itemDistance: 20,
+            symbolWidth: 20,
+            symbolHeight: 12,
+            symbolRadius: 0
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        series: [{
+            name: '',
+            data: []
+        }]
+    },
+    supplyPieHighChart: {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 562,
+            sourceHeight: 400,
+            filename:''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        colors: [
+            '#c84a45',
+            '#e7afad'
+        ],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: '',
+            colorByPoint: true,
+            data: []
+        }]
+    }
 };

@@ -13,6 +13,19 @@ import 'echarts/lib/component/legend/ScrollableLegendModel.js'
 import 'echarts/lib/component/legend/ScrollableLegendView.js'
 import 'echarts/lib/component/legend/scrollableLegendAction.js'
 
+import Highcharts from 'highcharts/highstock';
+import HighchartsMore from 'highcharts/highcharts-more';
+import HighchartsDrilldown from 'highcharts/modules/drilldown';
+import Highcharts3D from 'highcharts/highcharts-3d';
+import Exporting from 'highcharts/modules/exporting';
+
+import {cloneDeep} from "lodash";
+
+HighchartsMore(Highcharts)
+HighchartsDrilldown(Highcharts);
+Highcharts3D(Highcharts);
+Exporting(Highcharts);
+
 
 export class RingPieReact extends React.Component {
 
@@ -114,110 +127,117 @@ export class RingPieReact extends React.Component {
 export class RepresentativesRingPieReact extends React.Component {
 
   constructor(props) {
-    super(props)
-    let id = ('_' + Math.random()).replace('.', '_');
-    this.state = {
-      pieId: 'ringPie' + id
-    }
+      super(props)
+      let id = ('_' + Math.random()).replace('.', '_');
+      this.state = {
+          pieId: 'ringPie' + id
+      }
   }
-
   initPie(id) {
-    let {intl, data, message, source} = this.props;
-    if (data.length) {
-      for (let index in data) {
-        if (data[index].name.indexOf("http://") > -1) {
-          data[index].name = data[index].name.substring(7).split('.com')[0];
-        }
-      }
-    }
-    let myChart = echarts.getInstanceByDom(document.getElementById(id));
-    if (myChart === undefined) {
-      myChart = echarts.init(document.getElementById(id));
-    }
-    config.representPieChart.title.text = intl.formatMessage({id: message.id});
-    config.representPieChart.series[0].data = [];
-    config.representPieChart.legend.data = [];
-    config.representPieChart.title.link = '#/blockchain/stats/pieChart';
-    config.representPieChart.tooltip.formatter = function (datas) {
-      return (
-          intl.formatMessage({id: 'witness'}) + ' : ' + datas.name + '<br/>' +
-          intl.formatMessage({id: 'produced_blocks'}) + ' : ' + datas.value + '<br/>' +
-          intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
-      )
-
-    }
-    if (source === 'singleChart') {
-      let seriesCenter = ['50%', '50%'];
-      config.representPieChart.series[0].center = seriesCenter;
-      config.representPieChart.legend.show = true;
-      config.representPieChart.toolbox.feature = {
-        restore: {
-          title: 'restore'
-        },
-        saveAsImage: {
-          show: true,
-          title: 'save'
-        }
-      }
-    } else {
-      let seriesCenter = ['50%', '60%'];
-      config.representPieChart.legend.show = false;
-      config.representPieChart.toolbox.feature = {
-        restore: {
-          show: false,
-          title: 'restore'
-        },
-        saveAsImage: {
-          show: false,
-          title: 'save'
-        }
-      }
-    }
-
-    function compare(property) {
-      return function (obj1, obj2) {
-
-        if (obj1[property] > obj2[property]) {
-          return 1;
-        } else if (obj1[property] < obj2[property]) {
-          return -1;
-        } else {
-          return 0;
-        }
-
-      }
-    }
-
-    if (data && data.length > 0) {
-      let exchanges = []
-      let temp = [];
-      for (let index in data) {
-        if (temp.indexOf(data[index].name) < 0) {
-          temp.push(data[index].name)
-          exchanges.push({name: data[index].name, value: data[index].volumeValue});
-        }
+      let {intl, data, message, source} = this.props;
+      let _config = cloneDeep(config.ringPieHighChart3D);
+      console.log('data', data)
+      if (data.length) {
+          for (let index in data) {
+              if (data[index].name.indexOf("http://") > -1) {
+                  data[index].name = data[index].name.substring(7).split('.com')[0];
+              }
+          }
       }
 
-      exchanges.sort(compare("value")).reverse();
-      config.representPieChart.series[0].data = [];
-      config.representPieChart.legend.data = temp;
-      config.representPieChart.series[0].data = exchanges;
+      function compare(property) {
+          return function (obj1, obj2) {
+              if (obj1[property] > obj2[property]) {
+                  return 1;
+              } else if (obj1[property] < obj2[property]) {
+                  return -1;
+              } else {
+                  return 0;
+              }
+          }
+      }
 
-    }
-    if (data && data.length === 0) {
-      config.representPieChart.title.text = "No data";
-    }
-    myChart.setOption(config.representPieChart);
+      if (data && data.length === 0) {
+          _config.title.text = "No data";
+      }
+      if (data && data.length > 0) {
+          let exchanges = []
+          let temp = [];
+          for (let index in data) {
+              if (temp.indexOf(data[index].name) < 0) {
+                  temp.push(data[index].name)
+                  _config.series[0].data.push([data[index].name, Number(data[index].volumeValue)]);
+              }
+          }
+      }
+      _config.title.text = intl.formatMessage({id: message.id});
+      _config.exporting.filename = intl.formatMessage({id: message.id});
+      _config.tooltip.formatter = function (data) {
+          let date = intl.formatDate(this.point.x);
+          console.log(this.point)
+          return (
+              intl.formatMessage({id: 'witness'}) + ' : ' + this.point.name + '<br/>' +
+              intl.formatMessage({id: 'produced_blocks'}) + ' : ' + this.point.y + '<br/>'+
+              intl.formatMessage({id: '_percentage'}) + ' : ' + this.point.percentage.toFixed(2) + '%'
+          )
+      }
+      Highcharts.chart(document.getElementById(id), _config);
+
   }
 
 
-  componentDidMount() {
-    this.initPie(this.state.pieId);
-  }
+    // config.ringPieReactHighChart3D.title.text = intl.formatMessage({id: message.id});
+    // config.ringPieReactHighChart3D.series[0].data = [];
+    // config.ringPieReactHighChart3D.legend.data = [];
+    // config.ringPieReactHighChart3D.title.link = '#/blockchain/stats/pieChart';
+    // config.ringPieReactHighChart3D.tooltip.formatter = function (datas) {
+    //   return (
+    //       intl.formatMessage({id: 'witness'}) + ' : ' + datas.name + '<br/>' +
+    //       intl.formatMessage({id: 'produced_blocks'}) + ' : ' + datas.value + '<br/>' +
+    //       intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
+    //   )
+    //
+    // }
+    // if (source === 'singleChart') {
+    //   let seriesCenter = ['50%', '50%'];
+    //   config.ringPieReactHighChart3D.series[0].center = seriesCenter;
+    //   config.ringPieReactHighChart3D.legend.show = true;
+    //   config.ringPieReactHighChart3D.toolbox.feature = {
+    //     restore: {
+    //       title: 'restore'
+    //     },
+    //     saveAsImage: {
+    //       show: true,
+    //       title: 'save'
+    //     }
+    //   }
+    // } else {
+    //   let seriesCenter = ['50%', '60%'];
+    //   config.ringPieReactHighChart3D.legend.show = false;
+    //   config.ringPieReactHighChart3D.toolbox.feature = {
+    //     restore: {
+    //       show: false,
+    //       title: 'restore'
+    //     },
+    //     saveAsImage: {
+    //       show: false,
+    //       title: 'save'
+    //     }
+    //   }
+    // }
 
-  componentDidUpdate() {
-    this.initPie(this.state.pieId);
-  }
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.intl.locale !== this.props.intl.locale) {
+            return true
+        }
+        return false
+    }
+    componentDidMount() {
+        this.initPie(this.state.pieId);
+    }
+    componentDidUpdate() {
+        this.initPie(this.state.pieId);
+    }
 
   render() {
     return (
@@ -228,10 +248,7 @@ export class RepresentativesRingPieReact extends React.Component {
   }
 }
 
-
-
 export class SupplyTypesTRXPieChart extends React.Component {
-
     constructor(props) {
         super(props)
         let id = ('_' + Math.random()).replace('.', '_');
@@ -239,87 +256,62 @@ export class SupplyTypesTRXPieChart extends React.Component {
             pieId: 'ringPie' + id
         }
     }
-
     initPie(id) {
         let {intl, data,message,source} = this.props;
-        let myChart = echarts.getInstanceByDom(document.getElementById(id));
-        if (myChart === undefined) {
-            myChart = echarts.init(document.getElementById(id));
-        }
-        config.supplyTypesTRXPieChart.title.text=intl.formatMessage({id:message.id});
-        config.supplyTypesTRXPieChart.series[0].data = [];
-        config.supplyTypesTRXPieChart.legend.data = [];
-        config.supplyTypesTRXPieChart.title.link = '#/blockchain/stats/supply';
-        config.supplyTypesTRXPieChart.tooltip.formatter = function (datas) {
-            return (
-                intl.formatMessage({id: datas.name}) + ' (' + intl.formatNumber(datas.value) + ' TRX' + ')<br/>' +
-                intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
-            )
-        }
-        if(source==='singleChart'){
-            let seriesCenter = ['50%', '50%'];
-            config.supplyTypesTRXPieChart.legend.show = true;
-            config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
-            config.supplyTypesTRXPieChart.toolbox.feature = {
-                restore: {
-                    show: false,
-                    title: 'restore'
-                },
-                saveAsImage: {
-                    show: false,
-                    title: 'save'
-                }
-            }
-        }else{
-            let seriesCenter = ['50%', '60%'];
-            config.supplyTypesTRXPieChart.legend.show = false;
-            config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
-            config.supplyTypesTRXPieChart.toolbox.feature = {
-                restore: {
-                    show: false,
-                    title: 'restore'
-                },
-                saveAsImage: {
-                    show: false,
-                    title: 'save'
-                }
-            }
-        }
+        let _config = cloneDeep(config.supplyPieHighChart);
+        console.log('data', data)
 
-        function compare(property) {
-            return function (obj1, obj2) {
-
-                if (obj1[property] > obj2[property]) {
-                    return 1;
-                } else if (obj1[property] < obj2[property]) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-
-            }
+        if(data && data.length===0){
+            _config.title.text="No data";
         }
-
         if (data && data.length > 0) {
-            let exchanges = []
             let temp = [];
             for (let index in data) {
                 if (temp.indexOf(data[index].name) < 0) {
-                    temp.push(intl.formatMessage({id: data[index].name}) )
-                    exchanges.push({name: intl.formatMessage({id: data[index].name}), value: data[index].value,selected:data[index].selected});
+                    _config.series[0].data.push({name: intl.formatMessage({id: data[index].name}), y: parseInt(data[index].value), selected:data[index].selected,sliced:data[index].sliced});
                 }
             }
-
-            exchanges.sort(compare("value")).reverse();
-            config.supplyTypesTRXPieChart.series[0].data = [];
-            config.supplyTypesTRXPieChart.legend.data = temp;
-            config.supplyTypesTRXPieChart.series[0].data = exchanges;
-
+            console.log('_config.series[0].data',_config.series[0].data)
         }
-        if(data && data.length===0){
-            config.supplyTypesTRXPieChart.title.text="No data";
+        _config.title.text=intl.formatMessage({id:message.id});
+        _config.exporting.filename = intl.formatMessage({id: message.id});
+        _config.tooltip.formatter = function () {
+            return (
+                intl.formatMessage({id: this.point.name}) + ' (' + intl.formatNumber(this.point.y) + ' TRX' + ')<br/>' +
+                intl.formatMessage({id: '_percentage'}) + ' : ' + this.point.percentage.toFixed(2) + '%'
+            )
         }
-        myChart.setOption(config.supplyTypesTRXPieChart);
+
+        // if(source==='singleChart'){
+        //     let seriesCenter = ['50%', '50%'];
+        //     config.supplyTypesTRXPieChart.legend.show = true;
+        //     config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
+        //     config.supplyTypesTRXPieChart.toolbox.feature = {
+        //         restore: {
+        //             show: false,
+        //             title: 'restore'
+        //         },
+        //         saveAsImage: {
+        //             show: false,
+        //             title: 'save'
+        //         }
+        //     }
+        // }else{
+        //     let seriesCenter = ['50%', '60%'];
+        //     config.supplyTypesTRXPieChart.legend.show = false;
+        //     config.supplyTypesTRXPieChart.series[0].center = seriesCenter;
+        //     config.supplyTypesTRXPieChart.toolbox.feature = {
+        //         restore: {
+        //             show: false,
+        //             title: 'restore'
+        //         },
+        //         saveAsImage: {
+        //             show: false,
+        //             title: 'save'
+        //         }
+        //     }
+        // }
+        Highcharts.chart(document.getElementById(id), _config);
     }
 
 
