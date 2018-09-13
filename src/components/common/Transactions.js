@@ -103,6 +103,8 @@ class Transactions extends React.Component {
 
     let {transactions, total, loading, EmptyState = null} = this.state;
     let column = this.customizedColumn();
+    let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
     if (!loading && transactions.length === 0) {
       if (!EmptyState) {
@@ -114,8 +116,9 @@ class Transactions extends React.Component {
     }
 
     return (
-        <div className="token_black">
+        <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
+          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
           <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
                       onPageChange={(page, pageSize) => {
                         this.loadTransactions(page, pageSize)

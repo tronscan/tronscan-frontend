@@ -39,9 +39,12 @@ export function TokenBalances({tokenBalances, intl}) {
     },
 
   ];
+  let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + tokenBalances.length + ' ' + intl.formatMessage({id: 'token_unit'})
+
 
   return (
-      <div className="token_black">
+      <div className="token_black table_pos">
+      {tokenBalances.length ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
       <SmartTable bordered={true} column={column} data={tokenBalances} total={tokenBalances.length} />
       </div>
   )

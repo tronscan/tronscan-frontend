@@ -215,17 +215,7 @@ body .token_black {
     color: inherit!important;
   }
 
-  .table_pos{
-    position: relative;
-
-    &_info{
-      position: absolute;
-      top: 26px;
-      left: 38px;
-      color: $text-block-dark;
-      z-index: 1;
-    }
-  }
+  
   .faceico{
     width: 16px;
     height: 16px;
@@ -309,6 +299,38 @@ body .token_black {
       }
     }
   }
+  .represent__table{
+    table{
+      border: 1px solid #d8d8d8;
+    }
+    th{
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+    }
+    td{
+      background: #fff;
+      border: 1px solid #f3f3f3;
+      position: relative;
+      vertical-align: middle;
+    }
+    &__content, &__lighter{
+      td:first-child:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left:0;
+        bottom: 0;
+        width: 4px;
+        background-color: $main-red;
+      }
+    }
+    &__lighter{
+      td:first-child:before{
+        background: rgba(194,54,49,0.20);
+      }
+    }
+  }
   
   @each $name, $color in (red, $main-red),
                          (green, $green),
@@ -344,6 +366,118 @@ body .token_black {
         background-repeat: no-repeat; 
         background-position: center;
       }
+    }
+  }
+}
+
+.markets{
+  background: transparent;
+  border:none;
+  .ant-pagination.ant-table-pagination.ant-pagination{
+    margin-right: 0px;
+  }
+  table{
+    border: 1px solid #d8d8d8;
+    border-radius: 1px;
+    th{
+      border-radius: 0!important;
+    }
+  }
+}
+
+.table_pos{
+  position: relative;
+
+  &_info{
+    position: absolute;
+    top: 26px;
+    left: 38px;
+    color: $text-block-dark;
+    z-index: 1;
+  }
+}
+
+.live{
+  .card{
+    background-color: #fff!important;
+  }
+}
+.accounts{
+  .card{
+    background-color: #fff!important;
+  }
+  .table-responsive{
+    th, td{
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+  .temp-table{
+    &.table{
+      border: 1px solid #eee;
+    }
+    th,td{
+      border: none;
+    }
+    th{
+      background-color: #fff;
+    }
+    tbody tr{
+      &:nth-child(odd){
+        background-color: #f3f3f3;
+      }
+      &:nth-child(even){
+        background-color: #fff;
+      }
+    }
+    .ant-table{
+      border-color: #eee!important;
+
+      th{
+        background-color: #fff!important;
+      }
+      td{
+        border: none!important;
+      }
+    }
+  }
+  
+}
+.nav{
+  .dropdown-menu{
+    border-radius:2px;
+    border-color: #eee;
+
+    .form-control{
+      background: #F3F3F3;
+      border: 1px solid #EEEEEE;
+      border-radius: 1px;
+    }
+  }
+  .dropdown-item{
+    *{font-weight: normal;}
+    padding:{
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .dropdown-divider.blod{
+    border-width: 4px;
+    border-color: #eee;
+  }
+
+  &_input{
+    .dropdown-menu{
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+    li{
+      background: #fff;
+      border: 1px solid #eee;
     }
   }
 }

@@ -182,6 +182,8 @@ export default class SmartTable extends Component {
                 if(record.id) return record.id;
                 if(record.number) return record.number;
                 if(record.name) return record.name;
+                if(record.address) return record.address;
+                if(record.hash) return record.hash;
               }}
               dataSource={data}
               pagination={{total: total, ...this.state.pagination}}

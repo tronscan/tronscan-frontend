@@ -167,6 +167,8 @@ class Votes extends React.Component {
     let {showCandidate = true, showVoter = true, showVoterPercentage = true, filter} = this.props;
 
     let column = this.customizedColumn(filter);
+    let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'vote_unit'})
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
@@ -179,8 +181,9 @@ class Votes extends React.Component {
 
     return (
 
-        <div className="token_black">
+        <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
+          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
           <SmartTable bordered={true} loading={loading} column={column} data={votes} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)

@@ -23,11 +23,11 @@
     box-shadow: none;
 }
 
-.token_black{
-
+// .token_black{
 
     .btn {
         border-radius: 1px;
+        font-weight: lighter;
         span{
             color: #fff;
         }
@@ -46,6 +46,14 @@
                 }
             }
         }
+        &-success, &-success:disabled{
+            background-color: #69C265; 
+            border-color: #69C265;
+        }
+        &-primary{
+            background-color: #4A90E2;
+            border-color: #4A90E2;
+        }
 
         &-lg {
             padding: {
@@ -63,7 +71,7 @@
 
     
     
-}
+// }
 // badge ===================
 .badge{
     border-radius: 2px;

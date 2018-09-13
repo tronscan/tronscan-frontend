@@ -958,6 +958,8 @@ export const messages = {
   "transactions_unit":"个交易",
   "block_unit":"个区块",
   "record_unit":"个记录",
+  "token_unit": "个通证",
+  "vote_unit": "个投票",
   /*
 ##################################################################################
 #                                                                                #

@@ -1227,10 +1227,14 @@ $border-color-dark: #d8d8d8;
         margin: 0;
       }
     }
-    a{
-      color: $main-red;
-    }
+    
   }
+}
+a{
+  color: $main-red;
+}
+table a{
+  color: $main-red!important;
 }
 
 ._system {
@@ -1252,4 +1256,14 @@ $border-color-dark: #d8d8d8;
   a {
     color:red;
   }
+}
+h5{
+  font-size: 16px;
+}
+
+.table-responsive{
+  th, td{
+    border-color: #eee;
+  }
+  
 }

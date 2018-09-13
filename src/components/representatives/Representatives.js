@@ -83,31 +83,33 @@ class Representatives extends Component {
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
 
     return (
-        <div className="card border-0">
+        <div className="card border-0 represent__table">
           <table className="table table-hover table-striped bg-white m-0 sr" style={{border:'1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
-              <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
+              <th className="text-center d-none d-lg-table-cell" style={{width: 20}}>#</th>
               <th style={{width: 100}}>{tu("name")}</th>
-              <th className="text-right text-nowrap">{tu("status")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
+              <th className="text-center text-nowrap">{tu("status")}</th>
+              <th className="text-center text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
+              <th className="text-center text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
               <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("votes")}</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td colSpan="9" className="bg-danger text-white text-center font-weight-bold">
+            <tr style={{height: '72px'}}>
+              <td colSpan="9" className="font-weight-bold">
+                <i className="fa fa-trophy mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
                 {tu("Super Representatives")}
               </td>
             </tr>
             {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
-            <tr>
-              <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
+            <tr style={{height: '72px'}}>
+              <td colSpan="9" className="font-weight-bold">
+                <i className="fa fa-user mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
@@ -187,7 +189,7 @@ class Representatives extends Component {
                     <div className="col-md-6 mb-3">
                       <div className="card">
                         {/* <div className="card-body"> */}
-                          <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue bg-image_addr">
+                          <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue">
                             {
                               <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
                                                            data={pieChart} style={{height: 300}}/>
@@ -238,8 +240,8 @@ function Row({account, showSync = true, index, state, props}) {
   let totalVotes = sumBy(candidates, c => c.votes);
 
   return (
-      <tr key={account.address}>
-        <td className="text-right d-none d-lg-table-cell">{account.index + 1}</td>
+      <tr key={account.address} className={(account.index> 26)? 'represent__table__lighter': 'represent__table__content'}>
+        <td className="text-center d-none d-lg-table-cell">{account.index + 1}</td>
         <td>
           {
             account.name ?
@@ -264,27 +266,27 @@ function Row({account, showSync = true, index, state, props}) {
                 }
               </td> : <td>&nbsp;</td>
         }
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-center d-none d-sm-table-cell">
           <BlockNumberLink number={account.latestBlockNumber}/>
         </td>
-        <td className="text-right d-none d-md-table-cell">
+        <td className="text-center d-none d-md-table-cell">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTotal > 0 ? (
                 <Fragment>

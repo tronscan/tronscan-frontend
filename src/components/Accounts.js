@@ -148,7 +148,7 @@ class Accounts extends Component {
       {
         title: upperFirst(intl.formatMessage({id: 'supply'})),
         dataIndex: 'balance',
-        key: 'balance',
+        key: 'supply',
         align: 'left',
         className: 'ant_table',
         // width: '12%',

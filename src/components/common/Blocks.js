@@ -105,6 +105,9 @@ export default class Blocks extends React.Component {
 
     let {page, total, pageSize, loading, blocks, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
+    let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
+
 
     if (!loading && blocks.length === 0) {
       if (!EmptyState) {
@@ -116,9 +119,9 @@ export default class Blocks extends React.Component {
     }
 
     return (
-        <div className="token_black">
-          {loading && <div className="loading-style"><TronLoader/></div>
-          }
+        <div className="token_black table_pos">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
           <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
