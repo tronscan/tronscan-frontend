@@ -349,23 +349,23 @@ body .token_black {
       }
     }
   }
-  @each $image in addr, balance, band, frozen, heightst, lock, lowst,
-                  nextvote, node, nodest, sr, totle, up, vote, accounts{
-      
-    .bg-image_#{$image}{
-      position: relative;                 
-      &:before{
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 50px;
-        background-image: url(../images/title-img/#{$image}.png);
-        background-size: 50px;
-        background-repeat: no-repeat; 
-        background-position: center;
-      }
+}
+@each $image in addr, balance, band, frozen, heightst, lock, lowst,
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest{
+
+  .bg-image_#{$image}{
+    position: relative;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background-image: url(../images/title-img/#{$image}.png);
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 }

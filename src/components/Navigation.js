@@ -392,7 +392,7 @@ class Navigation extends PureComponent {
                     {/*Receive*/}
                     {/*</Link>*/}
                     <li className="dropdown-divider"/>
-                    <li className=" pt-1">
+                    <li className=" pt-1 pb-2">
                       <button className="btn btn-danger btn-block"
                               onClick={this.logout}>{tu("sign_out")}</button>
                     </li>

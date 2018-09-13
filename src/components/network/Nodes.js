@@ -90,11 +90,11 @@ class Nodes extends Component {
   }
 
   loadNodes = async () => {
-   // let {nodes, status} = await Client.getNodeLocations();
+    // let {nodes, status} = await Client.getNodeLocations();
     let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
 
     this.setState({
-      nodes:data.data,
+      nodes: data.data,
       syncStatus: null,
     });
   };
@@ -132,62 +132,64 @@ class Nodes extends Component {
     }
 
     return (
-            <main className="container header-overlap">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="card h-100 text-center widget-icon">
-                    <WidgetIcon className="fa fa-server"/>
-                    <div className="card-body">
-                      <h3 className="text-secondary">
-                        {nodes.length}
-                      </h3>
-                      {tu("nodes")}
-                    </div>
-                  </div>
+        <main className="container header-overlap _nodemap">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="card h-100 text-left widget-icon bg-line_red bg-image_node">
+                <div className="card-body _node" style={{marginLeft: '50px'}}>
+                  <h3 className="text-secondary">
+                    {nodes.length}
+                  </h3>
+                  {tu("nodes")}
                 </div>
+              </div>
+            </div>
 
-                <div className="col-md-6 mt-3 mt-md-0">
-                  <div className="card h-100 text-center widget-icon">
-                    <WidgetIcon className="fa fa-globe text-primary"/>
-                    <div className="card-body">
-                      {
-                        countries.length > 0 ?
-                            <h3 className="text-primary">
-                              {maxBy(countries, c => c.total).name}
-                            </h3> :
-                            <h3 className="text-primary">
-                              Unknown
-                            </h3>
-                      }
-                      {tu("most_nodes")}
-                    </div>
+            <div className="col-md-6 mt-3 mt-md-0">
+              <div className="card h-100 text-left widget-icon bg-line_green bg-image_nodest">
+                <div className="card-body _node" style={{marginLeft: '50px'}}>
+                  {
+                    countries.length > 0 ?
+                        <h3 className="text-primary">
+                          {maxBy(countries, c => c.total).name}
+                        </h3> :
+                        <h3 className="text-primary">
+                          Unknown
+                        </h3>
+                  }
+                  {tu("most_nodes")}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card" style={{padding: '20px'}}>
+                <NodeMapAsync nodes={nodes} countries={countries}/>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-body _node">
+                  <h5 className="card-title text-center">
+                    {tu("nodes_ranking")}
+                    <br/>
+                    {tu("split_by_country")}
+                  </h5>
+                  <div style={{height: 500}}>
+                    {
+                      countries === null ?
+                          <TronLoader/> :
+                          <BarReact style={{height: 500}} data={countries}/>
+                    }
                   </div>
                 </div>
               </div>
-              <div className="row mt-3">
-                <div className="col-md-12">
-                  <div className="card">
-                    <NodeMapAsync nodes={nodes} countries={countries}/>
-                  </div>
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-md-12">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title text-center"> {tu("nodes_ranking")}</h5>
-                      <div style={{height: 500}}>
-                        {
-                          countries === null ?
-                              <TronLoader/> :
-                              <BarReact style={{height: 500}} data={countries}/>
-                        }
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/*
+            </div>
+          </div>
+          {/*
               <div className="row mt-3">
                 <div className="col-md-12">
                   <div className="card">
@@ -237,8 +239,8 @@ class Nodes extends Component {
                 </div>
               </div>
               */
-              }
-            </main>
+          }
+        </main>
     )
   }
 }
