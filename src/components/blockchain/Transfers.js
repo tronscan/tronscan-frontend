@@ -11,6 +11,7 @@ import {Truncate} from "../common/text";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import {TRXPrice} from "../common/Price";
 
 class Transfers extends React.Component {
 
@@ -127,11 +128,13 @@ class Transfers extends React.Component {
         dataIndex: 'amount',
         key: 'amount',
         align: 'right',
-        width: '140px',
+        width: '180px',
         className: 'ant_table',
         render: (text, record, index) => {
-          console.log(text, record, index)
-          return record.amount + ' ' + record.tokenName
+          return record.tokenName == 'TRX'? 
+                  <TRXPrice amount={record.amount}/>
+                  :record.amount + ' ' + record.tokenName
+
         }
       }
     ];
@@ -143,7 +146,7 @@ class Transfers extends React.Component {
     let {transfers, total, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
 
     return (
         <main className="container header-overlap pb-3 token_black">

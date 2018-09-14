@@ -962,6 +962,8 @@ export const messages = {
   "record_unit":"个记录",
   "token_unit": "个通证",
   "vote_unit": "个投票",
+  "account_unit": "个账户",
+  "address_unit": "个地址",
   /*
 ##################################################################################
 #                                                                                #

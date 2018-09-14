@@ -186,7 +186,7 @@ class Accounts extends Component {
     let {match, intl} = this.props;
     let {total, loading, accounts} = this.state;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'record_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'account_unit'})
 
     return (
         <main className="container header-overlap pb-3 token_black">

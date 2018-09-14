@@ -289,10 +289,10 @@ class Live extends React.Component {
                   <form className="pt-2">
                     {<Checkbox.Group style={{width: '100%'}} onChange={this.setFilter.bind(this)}
                                      defaultValue={filters}>
-                      <Row>{
+                      <Row className="d-flex">{
                         filterButtons.map(filterButton => (
-                            <Col span={4} key={filterButton.value}>
-                              <i className={filterButton.icon + " ml-auto"}/>
+                            <Col className="mr-5" key={filterButton.value} >
+                              <i className={filterButton.icon + " ml-2"}/>
                               <span className="ml-1 mr-1">{filterButton.label}</span>
                               <Checkbox value={filterButton.value}></Checkbox>
                             </Col>
