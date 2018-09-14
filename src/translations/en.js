@@ -972,6 +972,8 @@ export const messages = {
   "record_unit": "Transactions",
   "token_unit": "Tokens",
   "vote_unit": "Voters",
+  "account_unit": "accounts",
+  "address_unit": "addresses",
 
   /*
 ##################################################################################

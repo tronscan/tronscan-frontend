@@ -185,7 +185,7 @@ export class TRXPrice extends React.PureComponent {
           </span>}
                             </FormattedNumber>
                               {
-                                  showPopup && <Tooltip placement="left" isOpen={open} target={id}>
+                                  showPopup && <Tooltip placement="top" isOpen={open} target={id}>
                                     TRX <FormattedNumber value={amount} maximumFractionDigits={6}
                                                          minimumFractionDigits={6}/> <br/>
                                     BTC <FormattedNumber value={priceValues.prices.BTC * amount}
