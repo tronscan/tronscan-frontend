@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -194,10 +193,10 @@ export const messages = {
   "loading_transfers": "Cargando Transferencias",
   "loading_transactions": "Cargando Transacciones",
   "loading_block": "Cargando Bloque",
-  "current_power":"Power Actual",
-  "produce_distribution":"Gráfico de Producción de Bloque",
-  "confirm_token_issue":"Confirmar Emisión de Token",
-  "_to":"para",
+  "current_power": "Power Actual",
+  "produce_distribution": "Gráfico de Producción de Bloque",
+  "confirm_token_issue": "Confirmar Emisión de Token",
+  "_to": "para",
   /*
   ##################################################################################
   #                                                                                #
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Enviar a la siguiente dirección",
   "change_website": "Cambiar Sitio Web",
   "you_must_enter_url": "Debe de introducir una URL",
-  "specify_the_url":  "Por favor especifique la URL",
+  "specify_the_url": "Por favor especifique la URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -303,7 +302,7 @@ export const messages = {
   "apply_for_delegate": "solicitar ser representante",
   "apply_super_representative_candidate": "Solicitar ser un Candidato a Súper Representante",
   "your_personal_website_address": "su dirección web personal",
-  "apply_for_delegate_predescription":`Podrá ser Super Representante de TRON siempre y cuando disponga de 1 Token como mínimo.
+  "apply_for_delegate_predescription": `Podrá ser Super Representante de TRON siempre y cuando disponga de 1 Token como mínimo.
    Sin embargo, para que la red y la comunidad funcionen de una forma más fluida y efectiva, hemos creado un conjunto de estándares y regulaciones para que los candidatos a Super representantes puedan ser recomendados. Promoveremos a los SR recomendados para que tengan más posibilidades de que sean elegidos.
    Los nuevos Súper Representantes que sean recomendados se actualizan y publican una vez a la semana.`,
   "apply_for_delegate_description": `
@@ -514,10 +513,10 @@ export const messages = {
   "start_date": "Fecha de inicio",
   "end_date": "Fecha de finalización",
   "token_spend_confirm": "Acepto crear el Token y entiendo que cuesta un total de 1024 TRX.",
-  "token_issue_guide_message_1":`Siempre que posea al menos 1024 TRX en su cuenta, podrá crear un Token en el protocolo TRON.`,
-  "token_issue_guide_message_2":`Siempre que se crea un token, se mostrará en la página de descripción general.
+  "token_issue_guide_message_1": `Siempre que posea al menos 1024 TRX en su cuenta, podrá crear un Token en el protocolo TRON.`,
+  "token_issue_guide_message_2": `Siempre que se crea un token, se mostrará en la página de descripción general.
     Los usuarios pueden colaborar en el período de participación e intercambiar su TRX por Tokens.`,
-  "token_issue_guide_message_3":`Después de emitir el token, su cuenta recibirá una cantidad de Tokens igual al suministro total que se haya establecido.
+  "token_issue_guide_message_3": `Después de emitir el token, su cuenta recibirá una cantidad de Tokens igual al suministro total que se haya establecido.
    Siempre que otros usuarios intercambien sus TRX por Tokens, dichos Tokens serán retirados de su cuenta y recibirá la correspondiente cantidad en TRX.`,
   /*
   ##################################################################################
@@ -850,27 +849,27 @@ export const messages = {
    #                                                                                #
    ##################################################################################
  */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
 
   /*
@@ -881,7 +880,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "Asset deltakelse",
   "loading_transaction": "Henter Transaksjon",
   "nodes_ranking": "Rankering Noder",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Høyeste ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Send til følgende adresse",
   "change_website": "Endre Nettside",
   "you_must_enter_url": "Du må skrive inn en URL",
-  "specify_the_url":  "Vennligst spesifiser URL",
+  "specify_the_url": "Vennligst spesifiser URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -303,7 +302,7 @@ export const messages = {
   "apply_for_delegate": "Søk for å bli representant",
   "apply_super_representative_candidate": "Søknad om å bli Super Representant",
   "your_personal_website_address": "din personlige nettside adresse",
-  "apply_for_delegate_predescription":`Alle token holdere har muligheten til å bli en TRON Super Representant.
+  "apply_for_delegate_predescription": `Alle token holdere har muligheten til å bli en TRON Super Representant.
    Men, for at nettverket og samfunnet skal kunne operere optimalt og effektivt,
    har vi laget et sett av standarder og reguleringer for kvalifiserte kandidater for å bli anbefalte  Super Representanter. Vi vil fremme anbefalte SRs for å øke deres sjanser til å bli valgt. Nye anbefalte Super Representanter blir oppdatert og lagt ut en gang i uken.`,
   "apply_for_delegate_description": `
@@ -368,7 +367,7 @@ export const messages = {
   "could_not_claim_rewards": "Kunne ikke hente belønninger",
   "claim_rewards_error_message": "Noe gikk galt ved henting av belønninger, vennligst prøv igjen senere.",
   "rewards_claimed": "Belønning krevet!",
-  "successfully_claimed_rewards":  "Vellykket krevet belønning",
+  "successfully_claimed_rewards": "Vellykket krevet belønning",
   "claim_rewards": "Krev Belønninger",
   "sr_receive_reward_message_0": "Som en representant kan du motta belønninger for å produsere blokker. Disse belønningene kan kreves en gang i døgnet.",
   "intro": "Intro",
@@ -512,9 +511,9 @@ export const messages = {
   "end_date": "Slutt Dato",
   "token_spend_confirm": "Jeg bekrevter herved at ved å utstede en total beholdning av et token, vil det koste meg et engangsbeløp på 1024 TRX.",
   "token_issue_guide_message_1": `Å utstede en token på TRON Protokollen kan gjøres av hvilken som helst som innehar minst 1024 TRX på sin konto.`,
-  "token_issue_guide_message_2":`Når en token er utstedt vil du kunne se den på siden for token oversikt.
+  "token_issue_guide_message_2": `Når en token er utstedt vil du kunne se den på siden for token oversikt.
     Brukere kan så delta innenfor deltakelsesperioden og veksle deres TRX for tokens.`,
-  "token_issue_guide_message_3":`Etter å ha utstedt token vil du på din konto motta antall tokener lik den totale beholdningen.
+  "token_issue_guide_message_3": `Etter å ha utstedt token vil du på din konto motta antall tokener lik den totale beholdningen.
     Når andre brukere veksler deres TRX for tokens så vil tokenene bli trukket fra din konto og du vil da motta TRX tilsvarende den spesifiserte vekslings raten.`,
   /*
   ##################################################################################
@@ -830,12 +829,12 @@ export const messages = {
   "search_description": "Søk Adresse,Blokk Høyde,Transaksjon Hash,Token Navn",
   "search_description1": "Search Adresse,Blokk,Transaksjon,Token",
   "transaction": "Transaksjon",
-  "total_addresses":"Totale Adresser",
-  "daily_increment":"Daglig Økning",
-  "address_growth_chart":"Skjema for Adresse Økning",
-  "addresses_amount":"Antall Adresser",
-  "past_14_days_of_transactions":"Transaksjoner for siste 14 dager",
-  "address_growth":"Adresse Økning",
+  "total_addresses": "Totale Adresser",
+  "daily_increment": "Daglig Økning",
+  "address_growth_chart": "Skjema for Adresse Økning",
+  "addresses_amount": "Antall Adresser",
+  "past_14_days_of_transactions": "Transaksjoner for siste 14 dager",
+  "address_growth": "Adresse Økning",
   "power": "Power",
   "token_transfers": "Tokenoverføringer",
   "website_url": "Nettadresse",
@@ -847,27 +846,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -877,6 +876,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

@@ -177,7 +177,7 @@ export const messages = {
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
   "nodes_ranking": "节点排名",
-  "split_by_country":"以国家/地区划分",
+  "split_by_country": "以国家/地区划分",
   "total_accounts_last_day": "截止上一天总账户数",
   "chart_tip": "拖拽数据窗口来放大或缩小",
   "link_test_server": "测试网",
@@ -862,8 +862,8 @@ export const messages = {
   "list_trx": "交易所上币",
   "burned_trx": "TRX烧毁数",
   "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
-  "14_day_transaction_history":" 过去14天交易数",
-  "14_day_address_growth":" 过去14天地址增长",
+  "14_day_transaction_history": " 过去14天交易数",
+  "14_day_address_growth": " 过去14天地址增长",
 
   /*
   ##################################################################################
@@ -920,13 +920,13 @@ export const messages = {
   "country": "国家",
   "social_link": "社交媒体链接",
   "download_excel": "下载模板",
-  "no_message":"暂无，请发邮件补充信息",
-  "insufficient_message":"信息不充分",
-  "token_detail":"通证详情",
-  "contact_us":"联系我们",
-  "my_token":"我的通证",
-  "try_later":"请稍后再试",
-  "contract_address":"合约地址",
+  "no_message": "暂无，请发邮件补充信息",
+  "insufficient_message": "信息不充分",
+  "token_detail": "通证详情",
+  "contact_us": "联系我们",
+  "my_token": "我的通证",
+  "try_later": "请稍后再试",
+  "contract_address": "合约地址",
   /*
   ##################################################################################
   #                                                                                #
@@ -947,19 +947,19 @@ export const messages = {
   "prev_step": "上一步",
   "freeze_on": "启用",
   "freeze_off": "不启用",
-  "freeze_not_valid":"不启用锁仓设置",
-  "no_logo_error":"未上传logo",
-  "confirm_issue_info":"请确保以下信息正确，合约写入区块链后将不可修改。",
-  "tick_checkbox":"需要勾选确认",
-  "change_info":"信息不准确？核实身份更新信息请",
-  "total":"总",
+  "freeze_not_valid": "不启用锁仓设置",
+  "no_logo_error": "未上传logo",
+  "confirm_issue_info": "请确保以下信息正确，合约写入区块链后将不可修改。",
+  "tick_checkbox": "需要勾选确认",
+  "change_info": "信息不准确？核实身份更新信息请",
+  "total": "总",
   "a_totle": "共",
   "transaction_info": "条交易信息",
   "hold_addr": "通证持有地址",
-  "transactions_unit":"个交易",
+  "transactions_unit": "个交易",
   "transfers_unit": "个转账",
-  "block_unit":"个区块",
-  "record_unit":"个记录",
+  "block_unit": "个区块",
+  "record_unit": "个记录",
   "token_unit": "个通证",
   "vote_unit": "个投票",
   /*
@@ -970,47 +970,43 @@ export const messages = {
 ##################################################################################
 */
 
-  "issue_progress":"发行进度",
-  "fund_raised":"已筹集资金",
-  "issuing_price":"发行价格",
-  "buy_token_info":"你想要购买多少数量的通证？",
-  "reputation":"信用评级",
-  "issue_time":"发行时间",
-  "success_receive":"成功收到",
-  "circulating_supply":"流通量",
-  "issue_info":"发行信息",
-  "transferring":"转账中",
-  "in_progress":"处理中",
-  "fail_transaction":"交易失败",
-  "records":"条记录",
+  "issue_progress": "发行进度",
+  "fund_raised": "已筹集资金",
+  "issuing_price": "发行价格",
+  "buy_token_info": "你想要购买多少数量的通证？",
+  "reputation": "信用评级",
+  "issue_time": "发行时间",
+  "success_receive": "成功收到",
+  "circulating_supply": "流通量",
+  "issue_info": "发行信息",
+  "transferring": "转账中",
+  "in_progress": "处理中",
+  "fail_transaction": "交易失败",
+  "records": "条记录",
   "part_total": "波场网络当前共",
   "part_pass": "个通证",
   "view_total": "当前共",
   "view_pass": "个通证可参与发行",
-  "token_overview_tron":"波场通证市场总览",
-  "token_participate_tron":"参与波场通证发行",
-  "not_started":"尚未开始",
-  "no_token_to_buy":"抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
+  "token_overview_tron": "波场通证市场总览",
+  "token_participate_tron": "参与波场通证发行",
+  "not_started": "尚未开始",
+  "no_token_to_buy": "抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
 
 
-/*
-##################################################################################
-#                                                                                #
-# new variables    2018-09-11 12:51:31                                           #
-#                                                                                #
-##################################################################################
-*/
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
   "pice_per_1trx": "价格",
-  "tron_power_freezing":"TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
-  "HighChart_tip":"单击并拖动绘图区域以放大",
-  "general_information":"一般信息",
-  "blockchain Information":"区块链信息",
-  "sr_information":"超级代表信息",
-  "currency_information":"流通信息"
-
-
-
-
+  "tron_power_freezing": "TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
+  "HighChart_tip": "单击并拖动绘图区域以放大",
+  "general_information": "一般信息",
+  "blockchain Information": "区块链信息",
+  "sr_information": "超级代表信息",
+  "currency_information": "流通信息"
 
 
 };

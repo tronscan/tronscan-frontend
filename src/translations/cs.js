@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Poslat na následující adresu",
   "change_website": "Zmìnit webovou stránku",
   "you_must_enter_url": "Musíte zadat URL",
-  "specify_the_url":  "Prosím, upøesnìte URL",
+  "specify_the_url": "Prosím, upøesnìte URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -303,7 +302,7 @@ export const messages = {
   "apply_for_delegate": "kandidovat na delegáta",
   "apply_super_representative_candidate": "Podat si žádost o kandidaturu na Super Reprezentanta",
   "your_personal_website_address": "adresa vaší osobní webové stránky",
-  "apply_for_delegate_predescription":`Každý držitel tokenù má možnost stát se TRON Super Reprezentantem.
+  "apply_for_delegate_predescription": `Každý držitel tokenù má možnost stát se TRON Super Reprezentantem.
    Aby však sí a komunita fungovala efektivnì a bez problémù,
    vytvoøili jsme pro kandidáty, kteøí se chtìjí stát doporuèeným Super reprezentantem, sadu standardù a regulací. Doporuèované SR budeme propagovat, abychom zvýšili jejich šance na zvolení. Noví doporuèení Super Reprezentanti jsou aktualizováni a zveøejòováni jednou týdnì.`,
   "apply_for_delegate_description": `
@@ -368,7 +367,7 @@ export const messages = {
   "could_not_claim_rewards": "Nebylo možné vyžádat si odmìny",
   "claim_rewards_error_message": "Pøi vyžádání odmìn došlo k neznámé chybì. Prosím, zkuste to pozdìji.",
   "rewards_claimed": "Odmìny vyžádány!",
-  "successfully_claimed_rewards":  "Odmìny úspìšnì vyžádány",
+  "successfully_claimed_rewards": "Odmìny úspìšnì vyžádány",
   "claim_rewards": "Vyžádat si odmìny",
   "sr_receive_reward_message_0": "Jako reprezentantovi vám náleží odmìna za generování blokù. O tuto odmìnu mùžete žádat každých 24 hodin",
   "intro": "Intro",
@@ -512,9 +511,9 @@ export const messages = {
   "end_date": "Koncové datum",
   "token_spend_confirm": "Beru na vìdomí, že za celkové množství vydaných tokenù bude úètován jednorázový poplatek 1024 TRX.",
   "token_issue_guide_message_1": `Token na TRON protokolu mùže vydat každý, kdo má na úètu alespoò 1024 TRX.`,
-  "token_issue_guide_message_2":`Jakmile je token vydán, zobrazí se na stránce s pøehledem tokenù.
+  "token_issue_guide_message_2": `Jakmile je token vydán, zobrazí se na stránce s pøehledem tokenù.
     Uživatelé si následnì bìhem daného odobí mohou vymìnit své TRX za tokeny.`,
-  "token_issue_guide_message_3":`Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
+  "token_issue_guide_message_3": `Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
     Když ostatní uživatelé vymìní své TRX za vámi vydaný token, budou tokeny odepsány z vašeho úètu a vy obdržíte TRX v hodnotì odpovídající aktuálnímu kursu.`,
   /*
   ##################################################################################
@@ -706,8 +705,8 @@ export const messages = {
   "verify_contract_code": "Verify Contract Code",
   "buy_tokens": "Buy Tokens",
   "fill_a_valid_private_key": "Please fill a valid private key",
-  "confirm_private_key":"Confirm Private Key",
-  "transfer_confirm_info":"Are you sure you want to transfer",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -848,27 +847,27 @@ export const messages = {
    #                                                                                #
    ##################################################################################
  */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
 
   /*
@@ -879,6 +878,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

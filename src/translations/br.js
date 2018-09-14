@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Enviar para o seguinte endereço",
   "change_website": "Alterar Website",
   "you_must_enter_url": "Você deve inserir uma URL",
-  "specify_the_url":  "Por favor, insira a URL",
+  "specify_the_url": "Por favor, insira a URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -371,7 +370,7 @@ export const messages = {
   "could_not_claim_rewards": "Não foi possível resgatar recompensas",
   "claim_rewards_error_message": "Algo deu errado ao tentar resgatar recompensas, tente novamente mais tarde",
   "rewards_claimed": "Recompensas Resgatadas!",
-  "successfully_claimed_rewards":  "Recompensas resgatadas com sucesso",
+  "successfully_claimed_rewards": "Recompensas resgatadas com sucesso",
   "claim_rewards": "Resgatar Recompensas",
   "sr_receive_reward_message_0": "Como representante, você recebe recompensas para produzir blocos. Estas recompensas podem ser resgatadas a cada 24 horas",
   "intro": "Intro",
@@ -848,27 +847,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
 
   /*
@@ -879,6 +878,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };
