@@ -87,7 +87,7 @@ class Representatives extends Component {
             <thead className="thead-dark">
             <tr>
               <th className="text-center d-none d-lg-table-cell" style={{width: 20}}>#</th>
-              <th style={{width: 100}}>{tu("name")}</th>
+              <th style={{width: 60}}>{tu("name")}</th>
               <th className="text-center text-nowrap">{tu("status")}</th>
               <th className="text-center text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-center text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
@@ -250,7 +250,7 @@ function Row({account, showSync = true, index, state, props}) {
         <td>
           {
             account.name ?
-                <div className="_context_right_click">
+                <div className="_context_right_click" style={{width: '250px'}}>
                   <AddressLink address={account.address}>
                     {account.name}<br/>
                     <span className="small text-muted">{account.url}</span>

@@ -276,7 +276,7 @@ class VoteOverview extends React.Component {
             <div className="ml-auto">
               {this.renderVoteStatus()}
             </div>
-            <button className="btn btn-primary ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
+            <button className="btn btn-danger ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
             <button className="btn btn-warning ml-1 _reset" onClick={this.resetVotes}>{tu("reset")}</button>
             <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
           </div>
@@ -285,7 +285,7 @@ class VoteOverview extends React.Component {
 
     return (
         <div className="text-center">
-          <a className="btn" onClick={this.enableVoting} style={{color: 'red'}}>
+          <a className="" onClick={this.enableVoting} style={{color: 'red'}}>
             {tu("click_to_start_voting")}
           </a>
         </div>

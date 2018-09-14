@@ -343,7 +343,7 @@ class Navigation extends PureComponent {
                               style={{width: 150}}/>
                         </div>
                         <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center">
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                          <i className="fa fa-angle-right" aria-hidden="true"></i>
                         </Link>
                       </div>
                     </li>
@@ -358,34 +358,34 @@ class Navigation extends PureComponent {
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-credit-card mr-2"/>
                       <FormattedNumber value={wallet.current.balance / ONE_TRX}/> TRX
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-bolt mr-2"/>
                       <FormattedNumber value={wallet.current.frozenTrx / ONE_TRX}/> TRON {tu("power")}
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-tachometer-alt mr-2"/>
                       <FormattedNumber value={wallet.current.bandwidth.netRemaining}/> {tu("bandwidth")}
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <Link className="dropdown-item"
                           to={"/blockchain/transactions?address=" + account.address}>
                       <i className="fa fa-exchange-alt mr-2"/>
                       <FormattedNumber value={totalTransactions}/> {tu("transactions")}
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <li className="dropdown-divider"/>
                     <a className="dropdown-item" href="javascript:;" onClick={this.newTransaction}>
                       <i className="fa fa-paper-plane mr-2"/>
                       {tu("send")}
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </a>
                     <a className="dropdown-item" href="javascript:;" onClick={this.showReceive}>
                       <i className="fa fa-qrcode mr-2"/>
                       {tu("receive")}
-                      <i class="fa fa-angle-right float-right" aria-hidden="true"></i>
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </a>
                     {/*<Link className="dropdown-item" to={"/blockchain/transactions?address=" + account.address}>*/}
                     {/*<i className="fa fa-qrcode mr-2"/>*/}
