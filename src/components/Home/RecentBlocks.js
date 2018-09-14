@@ -45,7 +45,7 @@ class RecentBlocks extends Component {
             <i className="fa fa-cubes mr-3 fa_width_20 color-grey-100"></i>
             <h5 className="m-0 lh-175 color-grey-100">{tu("blocks")}</h5>
             <Link to="/blockchain/blocks"
-                  className="ml-auto btn btn-sm btn-outline-secondary color-grey-200 color-grey-border"
+                  className="ml-auto btn btn-sm btn-default"
                   style={{borderRadius: '0.15rem'}}>
               {tu("view_all")}
             </Link>
