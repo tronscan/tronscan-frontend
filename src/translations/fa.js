@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "مشارکت دارایی",
   "loading_transaction": "بارگزاری تراکنش",
   "nodes_ranking": "رتبه بندی نود ها",
-  "total_accounts_last_day":"کل حساب ها تا آخرین روز",
+  "total_accounts_last_day": "کل حساب ها تا آخرین روز",
   "chart_tip": "منطقه زوم داده را برای بزرگنمایی و کوچکنمایی بکشید",
   "link_test_server": "Testnet",
   "highest": "بالاترین ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "ارسال به آدرس زیر",
   "change_website": "تغییر وب سایت",
   "you_must_enter_url": "شما باید آدرس سایت را وارد کنید",
-  "specify_the_url":  "لطفا آدرس سایت را مشخص کنید",
+  "specify_the_url": "لطفا آدرس سایت را مشخص کنید",
   /*
   ##################################################################################
   #                                                                                #
@@ -303,7 +302,7 @@ export const messages = {
   "apply_for_delegate": "درخواست برای نمایندگی",
   "apply_super_representative_candidate": "درخواست کاندیداتوری برای نماینده ممتاز شدن",
   "your_personal_website_address": "وبسایت شخصی شما",
-  "apply_for_delegate_predescription":`هر صاحب توکن این فرصت را دارد که به عنوان یک نماینده ممتاز ترون تبدیل شود.
+  "apply_for_delegate_predescription": `هر صاحب توکن این فرصت را دارد که به عنوان یک نماینده ممتاز ترون تبدیل شود.
    با این حال، برای عملکرد هماهنگ و کارآمد تر شبکه و جامعه،
    ما مجموعه ای از استانداردها و مقررات را برای کاندیدهای واجد شرایط برای تبدیل شدن به نمایندگان ممتاز توصیه شده ایجاد کرده ایم. ما نمایندگان ممتاز توصیه شده را ترویج میدهیم تا شانس خود را برای انتخاب شدن افزایش دهند. نمایندگان ممتاز توصیه شده جدید، یک بار در هفته بروز و ارسال می شود.`,
   "apply_for_delegate_description": `
@@ -354,7 +353,7 @@ export const messages = {
   "github_linked": "گیت هاب پیوند شد",
   "unable_to_link_github_message": "نمی توان به گیت هاب پیوند داد، مطمئن شوید که نام کاربری شما درست است!",
   "could_not_link_github": "گیت هاب را نمی توان پیوند داد",
-  "enter_your_github_username":  "نام کاربری گیت هاب را وارد نمایید",
+  "enter_your_github_username": "نام کاربری گیت هاب را وارد نمایید",
   "link_to_github": "پیوند به گیت هاب",
   "link_github": "پیوند گیت هاب",
   "you_must_enter_a_url": "شما باید آدرس اینترنتی را وارد نمایید",
@@ -369,7 +368,7 @@ export const messages = {
   "could_not_claim_rewards": "نمیتوان اعمال پاداش کرد",
   "claim_rewards_error_message": "هنگام تلاش برای اعمال پاداش، چیزی اشتباه رخ داد، لطفا بعدا دوباره امتحان کنید.",
   "rewards_claimed": "پاداش اعمال شد!",
-  "successfully_claimed_rewards":  "پاداش موفقیت آمیز بود",
+  "successfully_claimed_rewards": "پاداش موفقیت آمیز بود",
   "claim_rewards": "پاداش اعمالی",
   "sr_receive_reward_message_0": "به عنوان یک نماینده شما پاداش برای تولید بلوک دریافت می کنید. این پاداش ها می تواند هر 24 ساعت اعمال شود",
   "intro": "معرفی",
@@ -500,7 +499,7 @@ export const messages = {
   "supply_message": "کل مقدار توکن هایی که در گردش خواهند بود",
   "description_message": "شرح مختصری از هدف این توکن",
   "url_message": "وب سایتی که کاربران می توانند اطلاعات بیشتری در مورد توکن پیدا کنند",
-  "exchange_rate_message_0" : "تعیین قیمت توکن واحد با تعیین تعداد توکن هایی که یک شرکت کننده برای هر تی آر ایکس که می پردازند، دریافت می کند.",
+  "exchange_rate_message_0": "تعیین قیمت توکن واحد با تعیین تعداد توکن هایی که یک شرکت کننده برای هر تی آر ایکس که می پردازند، دریافت می کند.",
   "exchange_rate_message_1": "شرکت کننده دریافت می کند",
   "exchange_rate_message_2": "برای هر",
   "exchange_rate_message_3": "TRX",
@@ -513,10 +512,10 @@ export const messages = {
   "start_date": "تاریخ شروع",
   "end_date": "تاریخ پایان",
   "token_spend_confirm": "من تأیید میکنم که باید 1024 ترون را برای ساختن توکن خرج کنم",
-  "token_issue_guide_message_1":`صدور توکن در پروتکل TRON می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
-  "token_issue_guide_message_2":`هنگامی که یک توکن صادر می شود، در صفحه مشاهده توکن نمایش داده می شود.
+  "token_issue_guide_message_1": `صدور توکن در پروتکل TRON می تواند انجام شود توسط هر کسی که حداقل 1024 TRX را در حساب خود داشته باشد.`,
+  "token_issue_guide_message_2": `هنگامی که یک توکن صادر می شود، در صفحه مشاهده توکن نمایش داده می شود.
     سپس کاربران می توانند در دوره مشارکت شرکت کنند و TRX را برای توکن ها مبادله کنند.`,
-  "token_issue_guide_message_3":`بعد از صدور توکن، حساب شما مقدار توکن هایی را که برابر با کل عرضه هستند دریافت خواهد کرد.
+  "token_issue_guide_message_3": `بعد از صدور توکن، حساب شما مقدار توکن هایی را که برابر با کل عرضه هستند دریافت خواهد کرد.
     هنگامی که دیگر کاربران TRX را برای توکن ها مبادله می کنند، پس از آن، توکن ها از حساب شما خارج خواهند شد و شما می توانید  TRX برابر با نرخ تبادل ارز مشخص شده را دریافت کنید.`,
   /*
   ##################################################################################
@@ -849,27 +848,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -879,7 +878,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

@@ -7,15 +7,16 @@ import {ONE_TRX} from "../../constants";
 import {TronLoader} from "../common/loaders";
 import {AddressLink, TokenLink} from "../common/Links";
 import {tu, t} from "../../utils/i18n";
+import {Checkbox, Row, Col} from 'antd';
 
 const MESSAGE_LIMIT = 30;
 
-function Row({valdata, icon, children, ...props}) {
+function Trxrow({valdata, icon, children, ...props}) {
 
   return (
       <li className="list-group-item p-1">
-        <div className="media text-muted my-1" key={valdata} {...props}>
-          <i className={"fa fa-lg mx-2 fa-2x " + icon}/>
+        <div className="media text-muted my-3 mx-3" key={valdata} {...props}>
+          {/* <i className={"fa fa-lg mx-2 fa-2x " + icon}/> */}
           <div className="media-body mb-0 lh-125 ">
             {children}
           </div>
@@ -33,43 +34,43 @@ class Live extends React.Component {
 
     this.state = {
       events: [],
-      filters: {},
+      filters: [],
       filterButtons: [
         {
           label: tu("transactions"),
           icon: 'fa fa-exchange-alt',
-          id: 'transfer',
+          value: 'transfer',
         },
         {
           label: tu("votes"),
           icon: 'fa fa-bullhorn',
-          id: 'vote',
+          value: 'vote',
         },
         {
           label: tu("asset_participation"),
           icon: 'fa fa-arrow-right',
-          id: 'asset-participate',
+          value: 'asset-participate',
         },
         {
           label: tu("token_created"),
           icon: 'fa fa-plus-circle',
-          id: 'asset-create',
+          value: 'asset-create',
         },
         {
           label: tu("witness"),
           icon: 'fa fa-eye',
-          id: 'witness-create',
+          value: 'witness-create',
         },
         {
           label: tu("account"),
           icon: 'fa fa-user',
-          id: 'account-name-changed',
+          value: 'account-name-changed',
         },
       ]
     };
 
     for (let button of this.state.filterButtons) {
-      this.state.filters[button.id] = true;
+      this.state.filters.push(button.value)
     }
   }
 
@@ -120,7 +121,7 @@ class Live extends React.Component {
 
     event.id = this.id++;
 
-    if (this.state.filters[event.type] === true) {
+    if (this.state.filters.indexOf(event.type) > -1) {
       this.setState((prevState, props) => ({
         events: [event, ...prevState.events.slice(0, MESSAGE_LIMIT)]
       }));
@@ -133,7 +134,7 @@ class Live extends React.Component {
     switch (event.type) {
       case "transfer":
         return (
-            <Row key={event.id} icon="fa-exchange-alt">
+            <Trxrow key={event.id} icon="fa-exchange-alt">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -156,19 +157,23 @@ class Live extends React.Component {
                   {' '}{event.tokenName}
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("from")}{': '}<AddressLink address={event.transferFromAddress} truncate={true}/>
+                  {tu("from")}{': '}
+                  <span className="position-absolute ml-2"><AddressLink address={event.transferFromAddress}
+                                                                        truncate={true}/></span>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("to")}{': '}<AddressLink address={event.transferToAddress} truncate={true}/>
+                  {tu("to")}{': '}
+                  <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress}
+                                                                        truncate={true}/></span>
                 </div>
               </div>
-            </Row>
+            </Trxrow>
         );
 
       case "vote":
         return (
 
-            <Row key={event.id} icon="fa-bullhorn">
+            <Trxrow key={event.id} icon="fa-bullhorn">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -179,19 +184,22 @@ class Live extends React.Component {
                   {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("voter")}{': '}<AddressLink address={event.voterAddress} truncate={false}/>
+                  {tu("voter")}{': '}
+                  <span className="position-absolute ml-2"><AddressLink address={event.voterAddress} truncate={false}/></span>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("representatives")}{': '}<AddressLink address={event.candidateAddress} truncate={false}/>
+                  {tu("representatives")}{': '}
+                  <span className="position-absolute ml-2"><AddressLink address={event.candidateAddress}
+                                                                        truncate={false}/></span>
                 </div>
               </div>
-            </Row>
+            </Trxrow>
         );
 
       case "asset-participate":
         return (
 
-            <Row key={event.id} icon="fa-arrow-right">
+            <Trxrow key={event.id} icon="fa-arrow-right">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -202,18 +210,19 @@ class Live extends React.Component {
                   {tu("token_name")}{': '}<b>{event.name}</b>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("owner_address")}{': '}<AddressLink address={event.ownerAddress} truncate={false}/>
+                  {tu("owner_address")}{': '}
+                  <span className="position-absolute ml-2"><AddressLink address={event.ownerAddress} truncate={false}/></span>
                 </div>
                 <div className="col-xs-8 col-sm-6">
                   {tu("bought")}{': '}{event.amount} {event.name}
                 </div>
               </div>
-            </Row>
+            </Trxrow>
         );
 
       case "asset-create":
         return (
-            <Row key={event.id} icon="fa-plus-circle">
+            <Trxrow key={event.id} icon="fa-plus-circle">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -229,12 +238,12 @@ class Live extends React.Component {
                     name={event.name}/>
                 </div>
               </div>
-            </Row>
+            </Trxrow>
         );
 
       case "witness-create":
         return (
-            <Row key={event.id} icon="fa-user">
+            <Trxrow key={event.id} icon="fa-user">
               <div className="row">
                 <div className="col-xs-8 col-sm-6">
                   <h5 className="card-title text-left">
@@ -242,11 +251,12 @@ class Live extends React.Component {
                   </h5>
                 </div>
                 <div className="col-xs-8 col-sm-6">
-                  {tu("address")}{': '}<AddressLink address={event.ownerAddress}
-                                                    truncate={false}/>{' '}{t("applied_for_super_representative")}
+                  {tu("address")}{': '}
+                  <AddressLink address={event.ownerAddress}
+                               truncate={false}/>{' '}{t("applied_for_super_representative")}
                 </div>
               </div>
-            </Row>
+            </Trxrow>
         );
     }
 
@@ -259,15 +269,8 @@ class Live extends React.Component {
     )
   }
 
-  setFilter(name, value) {
-    let {filters} = this.state;
-
-    this.setState({
-      filters: {
-        ...filters,
-        [name]: value,
-      },
-    })
+  setFilter(value) {
+    this.setState({filters: value})
   }
 
   render() {
@@ -275,34 +278,33 @@ class Live extends React.Component {
     let {events, filters, filterButtons} = this.state;
 
     return (
-        <main className="container header-overlap page-live pb-3">
+        <main className="container header-overlap page-live pb-3 token_black live">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-12 mb-4">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title text-center">
+                  <h5 className="card-title">
                     {tu("filters")}
                   </h5>
                   <form className="pt-2">
-                    {
-                      filterButtons.map(filterButton => (<label key={filterButton.id} className="form-check">
-                            <input className="form-check-input"
-                                   type="checkbox"
-                                   checked={filters[filterButton.id]}
-                                   onChange={(ev) => this.setFilter(filterButton.id, ev.target.checked)}/>
-                            <a className="form-check-label d-flex flex-row">
-                              {filterButton.label}
-                              <i className={filterButton.icon + " ml-auto"}/>
-                            </a>
-                          </label>
-                      ))
-                    }
+                    {<Checkbox.Group style={{width: '100%'}} onChange={this.setFilter.bind(this)}
+                                     defaultValue={filters}>
+                      <Row className="d-flex">{
+                        filterButtons.map(filterButton => (
+                            <Col className="mr-5" key={filterButton.value} >
+                              <i className={filterButton.icon + " ml-2"}/>
+                              <span className="ml-1 mr-1">{filterButton.label}</span>
+                              <Checkbox value={filterButton.value}></Checkbox>
+                            </Col>
+                        ))
+                      }</Row>
+                    </Checkbox.Group>}
                   </form>
                 </div>
               </div>
             </div>
 
-            <div className="col-md-9 mt-3 mt-md-0">
+            <div className="col-md-12 mt-3 mt-md-0">
               {
                 events.length === 0 ?
                     <div className="card">
@@ -314,7 +316,7 @@ class Live extends React.Component {
                       <ul className="list-group list-group-flush">
                         {
                           events.map(row => (
-                                this.buildRow(row)
+                              this.buildRow(row)
                           ))
                         }
                       </ul>

@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "Participare capital",
   "loading_transaction": "Încărcare Tranzacție",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total conturi până în ziua trecută",
+  "total_accounts_last_day": "Total conturi până în ziua trecută",
   "chart_tip": "Trage zona de zoom date pentru a face zoom in sau zoom out",
   "link_test_server": "Rețea de test",
   "highest": "Cel mai mare ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Trimiteți la adresa următoare",
   "change_website": "Schimbați site-ul web",
   "you_must_enter_url": "Trebuie să introduceți un URL",
-  "specify_the_url":  "Vă rugăm specificați URL-ul",
+  "specify_the_url": "Vă rugăm specificați URL-ul",
   /*
   ##################################################################################
   #                                                                                #
@@ -355,7 +354,7 @@ export const messages = {
   "github_linked": "Sincronizat cu Github!",
   "unable_to_link_github_message": "Nu s-a putut sincroniza cu Github, asigurați-vă că numele de utilizator este corect!",
   "could_not_link_github": "Nu s-a putut sincroniza cu Github",
-  "enter_your_github_username":  "Introduceți numele de utilizator de Github",
+  "enter_your_github_username": "Introduceți numele de utilizator de Github",
   "link_to_github": "Legătură către Github",
   "link_github": "Legătură Github",
   "you_must_enter_a_url": "Trebuie să introduceți un URL",
@@ -370,7 +369,7 @@ export const messages = {
   "could_not_claim_rewards": "Nu s-au putut primi recompense",
   "claim_rewards_error_message": "Ceva nu a mers bine în timp ce s-au solicitat recompense, vă rugăm încercați mai târziu.",
   "rewards_claimed": "Recompensă primită!",
-  "successfully_claimed_rewards":  "S-au primit recompense cu succes",
+  "successfully_claimed_rewards": "S-au primit recompense cu succes",
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
@@ -516,9 +515,9 @@ export const messages = {
   "end_date": "Dată Sfârșit",
   "token_spend_confirm": "Confirm că supply-ul total al tokenilor costă o taxă unică de 1024 TRX.",
   "token_issue_guide_message_1": `Emiterea unui token pe TRON Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
-  "token_issue_guide_message_2":`Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
+  "token_issue_guide_message_2": `Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
     Utilizatorii pot apoi să participe în perioada de participare şi să schimbe TRXul lor pentru tokeni.`,
-  "token_issue_guide_message_3":`După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
+  "token_issue_guide_message_3": `După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
     Când alţi utilizatori schimbă TRXul lor pentru tokeni atunci tokenii vor fi retrași din contul dumneavoastră şi veți primi TRX egal cu cursul de schimb specificat.`,
   /*
   ##################################################################################
@@ -851,27 +850,27 @@ export const messages = {
    #                                                                                #
    ##################################################################################
  */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -881,7 +880,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

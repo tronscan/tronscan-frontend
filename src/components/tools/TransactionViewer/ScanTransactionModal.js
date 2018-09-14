@@ -21,16 +21,16 @@ class ScanSignatureModal extends React.Component {
   componentDidMount() {
     this.setState({
       body: (
-        <div>
-          <Scanner onScan={this.onCodeScan}/>
-        </div>
+          <div>
+            <Scanner onScan={this.onCodeScan}/>
+          </div>
       )
     });
   }
 
   onCodeScan = ({code}) => {
     let {onConfirm} = this.props;
-    onConfirm && onConfirm({ code });
+    onConfirm && onConfirm({code});
   };
 
   render() {
@@ -38,12 +38,12 @@ class ScanSignatureModal extends React.Component {
     let {body} = this.state;
 
     return (
-      <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
-        <ModalHeader className="text-center" toggle={this.hideModal}>Scan Transaction</ModalHeader>
-        <ModalBody>
-          {body}
-        </ModalBody>
-      </Modal>
+        <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+          <ModalHeader className="text-center" toggle={this.hideModal}>Scan Transaction</ModalHeader>
+          <ModalBody>
+            {body}
+          </ModalBody>
+        </Modal>
     )
   }
 }
@@ -54,8 +54,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScanSignatureModal);

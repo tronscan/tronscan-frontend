@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "Varlık Katılımı",
   "loading_transaction": "İşlem Yükleniyor",
   "nodes_ranking": "Düğüm Sıralaması",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Alıcı'nın adresi",
   "change_website": "Website'yi değiştir",
   "you_must_enter_url": "Bir URL girmelisiniz",
-  "specify_the_url":  "Please specify the URL",
+  "specify_the_url": "Please specify the URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -356,7 +355,7 @@ export const messages = {
   "github_linked": "Github bağlandı!",
   "unable_to_link_github_message": "GitHub ile bağlantı kurulamadı, lütfen kullanıcı adından emin olunuz!",
   "could_not_link_github": "GitHub bağlanamadı",
-  "enter_your_github_username":  "GitHub kullanıcı adınızı giriniz",
+  "enter_your_github_username": "GitHub kullanıcı adınızı giriniz",
   "link_to_github": "GitHub ile bağla",
   "link_github": "GitHub Bağla",
   "you_must_enter_a_url": "Bir URL girmelisiniz",
@@ -371,7 +370,7 @@ export const messages = {
   "could_not_claim_rewards": "Ödüller talep edilemedi",
   "claim_rewards_error_message": "Ödüller talep edilirken bir hata oluştu, lütfen daha sonra tekrar deneyiniz",
   "rewards_claimed": "Ödüller talep edildi!",
-  "successfully_claimed_rewards":  "Ödüller başarıyla talep edildi",
+  "successfully_claimed_rewards": "Ödüller başarıyla talep edildi",
   "claim_rewards": "Ödül Talebi",
   "sr_receive_reward_message_0": "Bir temsilci olarak, blok ürettiğiniz için ödül alırsınız. Bu ödüller her 24 saatte bir talep edilebilir",
   "intro": "Başlangıç",
@@ -518,9 +517,9 @@ export const messages = {
   "token_spend_confirm": "Jeton arzının tamamnını yaratmanın bir defalık toplam 1024 TRX ücrete tabi olduğunu onaylarım.",
   "token_issue_guide_message_1": `TRON Protokolünde jeton üretimi
    hesabında en az 1024 TRX bulunan herkes tarafından yapılabilir.`,
-  "token_issue_guide_message_2":`Bir jeton üretilir üretilmez jetonlara genel bakış sayfasında görünecektir.
+  "token_issue_guide_message_2": `Bir jeton üretilir üretilmez jetonlara genel bakış sayfasında görünecektir.
    Kullanıcılar katılım süresi boyunca katılım sağlayarak TRX'leri ile jeton alabilirler.`,
-  "token_issue_guide_message_3":`Jeton üretildikten sonra hesabınıza toplam arzı kadar miktarda jeton gelecektir.
+  "token_issue_guide_message_3": `Jeton üretildikten sonra hesabınıza toplam arzı kadar miktarda jeton gelecektir.
    Diğer kullanıcılar TRX ile jeton aldıklarında, jetonlar hesabınızdan çekilir
    ve siz tanımlı jeton fiyatı üzerinden TRX alırsınız.`,
   /*
@@ -854,27 +853,27 @@ export const messages = {
    #                                                                                #
    ##################################################################################
  */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -884,6 +883,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

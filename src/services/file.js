@@ -1,5 +1,3 @@
-
-
 export function downloadStringAsFile(contents, filename, mimetype = 'text/plain') {
   let a = window.document.createElement('a');
   a.href = window.URL.createObjectURL(new Blob([contents], {type: mimetype}));

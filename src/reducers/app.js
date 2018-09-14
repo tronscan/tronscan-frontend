@@ -167,7 +167,7 @@ export function appReducer(state = initialState, action) {
 
       if (IS_DESKTOP) {
         Lockr.rm("account_key");
-       // Lockr.set("account_address", action.address);
+        // Lockr.set("account_address", action.address);
       }
 
       return {

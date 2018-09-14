@@ -81,7 +81,7 @@ class Demo extends Component {
       totalAccounts: totalAccounts.total,
       previousTotalAccounts: prevState.totalAccounts,
     }));
-    
+
   }
 
   componentDidMount() {
@@ -217,8 +217,8 @@ class Demo extends Component {
   }
 }
 
-const  countUpProps = {
-  redraw:true
+const countUpProps = {
+  redraw: true
 }
 
 function mapStateToProps(state) {

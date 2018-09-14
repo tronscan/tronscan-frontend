@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "การเข้าร่วมสินทรัพย์",
   "loading_transaction": "กำลังโหลดธุรกรรม",
   "nodes_ranking": "การจัดอันดับโหนด",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "ส่งไปยังแอดเดรสต่อไปนี้",
   "change_website": "เปลี่ยนเว็บไซต์",
   "you_must_enter_url": "คุณต้องระบุ URL",
-  "specify_the_url":  "โปรดระบุ URL",
+  "specify_the_url": "โปรดระบุ URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -267,8 +266,8 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "freeze" : "การตรึงยอดคงเหลือในบัญชี",
-  "unfreeze" : "การยกเลิกการตรึงยอดคงเหลือในบัญชี",
+  "freeze": "การตรึงยอดคงเหลือในบัญชี",
+  "unfreeze": "การยกเลิกการตรึงยอดคงเหลือในบัญชี",
   "freeze_trx_least": "คุณต้องมี 1 TRX เป็นอย่างน้อย เพื่อทำการตรึงยอดคงเหลือในบัญชี",
   "unable_unfreeze_trx_message": "ไม่สามารถยกเลิกการตรึงยอดคงเหลือ TRX ซึ่งอาจเป็นเพราะยังไม่ถึงระยะเวลาการตรึงบัญชีขั้นต่ำ",
   "freeze_trx_premessage_0": "คุณสามารถทำการตรึงยอดคงเหลือ TRX ในบัญชี เพื่อได้รับ TRON Power และเปิดใช้งานคุณสมบัติเพิ่มเติม เช่น คุณสามารถใช้ TRON Power ในการ",
@@ -357,7 +356,7 @@ export const messages = {
   "could_not_claim_rewards": "ไม่สามารถขอรับรางวัลได้",
   "claim_rewards_error_message": "เกิดข้อผิดพลาดขณะพยายามขอรับรางวัล กรุณาลองอีกครั้งในภายหลัง",
   "rewards_claimed": "ได้รับรางวัลแล้ว!",
-  "successfully_claimed_rewards":  "ได้รับรางวัลต่างๆ เรียบร้อยแล้ว",
+  "successfully_claimed_rewards": "ได้รับรางวัลต่างๆ เรียบร้อยแล้ว",
   "claim_rewards": "ขอรับรางวัล",
   "sr_receive_reward_message_0": "ในฐานะ Representative คุณจะได้รับรางวัลสำหรับการผลิตบล็อก สามารถขอรับรางวัลเหล่านี้ได้ทุก 24 ชั่วโมง",
   "intro": "บทนำ",
@@ -574,7 +573,7 @@ export const messages = {
   "open_team_page": "ดูข้อมูลเพิ่มเติม",
   "warning_votes": "ต้องใช้ 1 TRON Power เป็นอย่างน้อยในการลงคะแนนเสียง ซึ่งคุณสามารถได้รับ TRON Power จากการตรึงยอดคงเหลือ TRX ใน",
   "account_page": "หน้าบัญชี",
-  "loading_votes" : "โหลดคะแนนเสียง",
+  "loading_votes": "โหลดคะแนนเสียง",
   "3_day_ranking": "อันดับใน 3 วัน",
   "live_ranking": "อันดับปัจจุบัน",
   "live_ranking_msg": "รีเฟรชทุกๆ 15 วินาที การลงคะแนนใหม่อาจใช้เวลา 1-2 นาทีก่อนที่จะถูกนับ",
@@ -814,12 +813,12 @@ export const messages = {
   "search_description": "ค้นหาแอดเดรส, หมายเลขบล็อก, ค่าแฮชของธุรกรรม, ชื่อธุรกรรม",
   "search_description1": "ค้นหาแอดเดรส, บล็อก, ธุรกรรม, โทเคน",
   "transaction": "ธุรกรรม",
-  "total_addresses":"จำนวนแอดเดรสทั้งหมด",
-  "daily_increment":"จำนวนที่เพิ่มรายวัน",
-  "address_growth_chart":"แผนภูมิการเพิ่มขึ้นของแอดเดรส",
-  "addresses_amount":"จำนวนแอดเดรส",
-  "past_14_days_of_transactions":"ธุรกรรมใน 14 วันที่ผ่านมา",
-  "address_growth":"การเพิ่มขึ้นของแอดเดรส",
+  "total_addresses": "จำนวนแอดเดรสทั้งหมด",
+  "daily_increment": "จำนวนที่เพิ่มรายวัน",
+  "address_growth_chart": "แผนภูมิการเพิ่มขึ้นของแอดเดรส",
+  "addresses_amount": "จำนวนแอดเดรส",
+  "past_14_days_of_transactions": "ธุรกรรมใน 14 วันที่ผ่านมา",
+  "address_growth": "การเพิ่มขึ้นของแอดเดรส",
   "power": "Power",
   "token_transfers": "การโอนย้ายโทเคน",
   "website_url": "URL ของเว็บไซต์",
@@ -831,27 +830,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -861,7 +860,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

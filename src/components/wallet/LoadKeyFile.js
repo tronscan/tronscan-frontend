@@ -16,17 +16,17 @@ export default class LoadKeyFile extends React.Component {
     let {onCancel} = this.props || {};
 
     return (
-      <SweetAlert
-        input
-        showCancel
-        inputType="password"
-        cancelBtnBsStyle="default"
-        title="Unlock KeyFile"
-        placeHolder="Password"
-        onCancel={onCancel}
-        onConfirm={this.onConfirm}>
-        Password
-      </SweetAlert>
+        <SweetAlert
+            input
+            showCancel
+            inputType="password"
+            cancelBtnBsStyle="default"
+            title="Unlock KeyFile"
+            placeHolder="Password"
+            onCancel={onCancel}
+            onConfirm={this.onConfirm}>
+          Password
+        </SweetAlert>
     );
   };
 

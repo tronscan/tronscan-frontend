@@ -5,11 +5,14 @@ import {loadPriceData} from "../../actions/markets";
 import MarketOverview from "./MarketOverview";
 import {TronLoader} from "../common/loaders";
 import {Client} from "../../services/api";
-import LineReact from "../common/LineChart";
 import {RingPieReact} from "../common/RingPieChart";
+import {Link} from "react-router-dom";
+import {tu} from "../../utils/i18n";
 import {
   LineReactPrice,
-  LineReactVolumeUsd
+  LineReactVolumeUsd,
+  LineReactHighChartPrice,
+  LineReactHighChartVolumeUsd
 } from "../common/LineCharts";
 import xhr from "axios/index";
 
@@ -56,7 +59,7 @@ class Markets extends React.Component {
     this.setState({
       markets: markets,
       priceStats: priceStatsTemp,
-      volume: volume
+      volume: volume.slice(27, volume.length - 1),
     });
   };
 
@@ -97,7 +100,7 @@ class Markets extends React.Component {
         key: 'rank',
         sorter: true,
         width: '5%',
-        className:'ant_table'
+        className: 'ant_table'
       },
       {
         title: intl.formatMessage({id: 'exchange'}),
@@ -144,50 +147,51 @@ class Markets extends React.Component {
     return (
         <main className="container header-overlap pb-3">
           <div className="row">
-            <div className="col-md-6 mt-3 mt-md-0">
-              <div className="card">
-                <div className="card-body">
-                  {/*<div style={{height: 300}}>*/}
-                  {/*{*/}
-                  {/*priceGraph.length === 0 ?*/}
-                  {/*<TronLoader/> :*/}
-                  {/*<LineReact message={{id: 'average_price_usd'}} style={{height: 300}}*/}
-                  {/*data={priceGraph} keysData={['time', 'close']}*/}
-                  {/*format={{time: true, date: true}}/>*/}
-                  {/*}*/}
-                  <div style={{height: 350}}>
-                    {
-                      priceStats === null ?
-                          <TronLoader/> :
-                          <LineReactPrice style={{height: 350}} data={priceStats} intl={intl}/>
-                    }
-                  </div>
+            <div className="col-md-6 mt-3 mt-md-0 ">
+              <div className="card" style={styles.card}>
+                <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
+                  <h5 className="m-0 lh-150">
+                    <Link to="blockchain/stats/priceStats">
+                        {tu("average_price")}
+                    </Link>
+                  </h5>
                 </div>
-              </div>
-            </div>
-            <div className="col-md-6 mt-3 mt-md-0">
-              <div className="card">
-                <div className="card-body">
+                <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
 
-                  {/*<div style={{height: 300}}>*/}
-                  {/*{*/}
-                  {/*volumeGraph.length === 0 ?*/}
-                  {/*<TronLoader/> :*/}
-                  {/*<LineReact message={{id: 'average_volume_usd'}} style={{height: 300}}*/}
-                  {/*data={volumeGraph} keysData={['time', 'volume']}*/}
-                  {/*format={{time: true}}/>*/}
-                  {/*}*/}
-                  {/*</div>*/}
-                  <div style={{height: 350}}>
-                    {
-                      volume === null ?
-                          <TronLoader/> :
-                          <LineReactVolumeUsd style={{height: 350}} data={volume} intl={intl}/>
-                    }
+                  <div style={{minWidth:255,height: 200}}>
+                      {
+                          priceStats === null ?
+                              <TronLoader/> :
+                              <LineReactHighChartPrice style={{minWidth:255,height: 200}} data={priceStats} intl={intl} source="markets"/>
+                      }
                   </div>
+
                 </div>
               </div>
             </div>
+            <div className="col-md-6 mt-3 mt-md-0 ">
+              <div className="card" style={styles.card}>
+                <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
+                  <h5 className="m-0 lh-150">
+                    <Link to="blockchain/stats/volumeStats">
+                        {tu("volume_24")}
+                    </Link>
+                  </h5>
+                </div>
+                <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
+
+                  <div style={{minWidth:255,height: 200}}>
+                      {
+                          volume === null ?
+                              <TronLoader/> :
+                              <LineReactHighChartVolumeUsd style={{minWidth:255,height: 200}} data={volume} intl={intl} source="markets"/>
+                      }
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
@@ -209,6 +213,15 @@ class Markets extends React.Component {
   }
 }
 
+const styles = {
+    list: {
+        fontSize: 18,
+    },
+    card:{
+        border:'none',
+        borderRadius:0,
+    }
+}
 
 function mapStateToProps(state) {
   return {

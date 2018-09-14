@@ -372,6 +372,14 @@ class TokenList extends Component {
         }
       },
       {
+        title: intl.formatMessage({id: 'fund_raised'}),
+        render: (text, record, index) => {
+          return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+      },
+      {
         title: intl.formatMessage({id: 'reputation'}),
         dataIndex: 'reputation',
         key: 'reputation',
@@ -391,7 +399,7 @@ class TokenList extends Component {
         render: (text, record, index) => {
           if (text === null)
             text = 0;
-          return <div><FormattedNumber value={text}/>%</div>
+          return <div><FormattedNumber value={text} maximumFractionDigits={1}/>%</div>
         },
         align: 'center',
         className: 'ant_table _text_nowrap'

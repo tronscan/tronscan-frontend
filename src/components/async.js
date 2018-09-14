@@ -390,7 +390,6 @@ export const TokensCreateAsync = asyncComponent({
 });
 
 
-
 export const AccountsAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>

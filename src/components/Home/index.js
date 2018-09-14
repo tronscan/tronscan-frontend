@@ -3,12 +3,10 @@ import {connect} from "react-redux";
 import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
-import {clearConstellations, constellationPreset} from "../../lib/constellation/constellation";
 import CountUp from 'react-countup';
 import {Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
-import {TRXBurned} from "../common/Burned";
 import RecentBlocks from "./RecentBlocks";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../../utils/timing";
@@ -17,8 +15,11 @@ import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
+
 import {reduxHistory} from "../../store";
-import {LineReactAdd, LineReactTx,LineReactHighChartTx,LineReactHighChartAdd} from "../common/LineCharts";
+
+import {LineReactHighChartTx, LineReactHighChartAdd} from "../common/LineCharts";
+
 
 const subDays = require("date-fns/sub_days");
 
@@ -40,7 +41,7 @@ class Home extends Component {
   }
 
   async loadNodes() {
-   // let {total} = await Client.getNodeLocations();
+    // let {total} = await Client.getNodeLocations();
     let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
     this.setState({
       onlineNodes: data.data.length
@@ -150,7 +151,7 @@ class Home extends Component {
     this.loadNodes();
     this.loadAccounts();
     this.load();
-   // constellationPreset(this.$ref, "Hot Sparks");
+    // constellationPreset(this.$ref, "Hot Sparks");
 
     // this.props.setInterval(() => {
     //   this.load();
@@ -173,7 +174,7 @@ class Home extends Component {
   };
 
   render() {
-    let {intl,activeLanguage} = this.props;
+    let {intl, activeLanguage} = this.props;
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
     return (
         <main className="home pb-0">
@@ -181,21 +182,21 @@ class Home extends Component {
           <i className="main-icon-right"></i>
           <div className="container-fluid position-relative d-flex pt-4 mx-auto flex-column">
             {/*<div ref={(el) => this.$ref = el} style={{*/}
-              {/*zIndex: 0,*/}
-              {/*left: 0,*/}
-              {/*right: 0,*/}
-              {/*top: 0,*/}
-              {/*bottom: 0,*/}
+            {/*zIndex: 0,*/}
+            {/*left: 0,*/}
+            {/*right: 0,*/}
+            {/*top: 0,*/}
+            {/*bottom: 0,*/}
             {/*}} className="position-absolute"/>*/}
             <div className="container home-splash">
               <div className="row justify-content-center text-center">
                 <div className="col-12">
                   {/*<p className="mt-5 mt-5-logo">*/}
-                    {/*<img src={this.getLogo()}*/}
-                         {/*className="animated ad-600ms zoomIn"/>*/}
+                  {/*<img src={this.getLogo()}*/}
+                  {/*className="animated ad-600ms zoomIn"/>*/}
                   {/*</p>*/}
                   {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
-                    {/*{tu("tron_main_message")}*/}
+                  {/*{tu("tron_main_message")}*/}
                   {/*</h2>*/}
                   <div className={
                     "input-group input-group-lg mb-4" +
@@ -204,14 +205,15 @@ class Home extends Component {
                   }>
                     <input type="text"
                            className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
-                           style={{fontSize: 13,borderRadius:0}}
+                           style={{fontSize: 13, borderRadius: 0}}
                            value={search}
                            onKeyDown={this.onSearchKeyDown}
                            onChange={ev => this.setState({search: ev.target.value})}
                            placeholder={intl.formatMessage({id: 'search_description'})}/>
 
                     <div className="input-group-append">
-                      <button className="btn btn-search box-shadow-none" onClick={this.doSearch}  style={{borderRadius:0}}>
+                      <button className="btn btn-search box-shadow-none" onClick={this.doSearch}
+                              style={{borderRadius: 0}}>
                         <i className="fa fa-search"/>
                       </button>
                     </div>
@@ -220,7 +222,7 @@ class Home extends Component {
               </div>
 
               <div className="row text-center mr-0 ml-0">
-                <div className="col-12  card  pt-1 pl-0 pr-0" style={{border:'none', borderRadius:0}} >
+                <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body d-flex pt-4 pb-4 home-stats">
                     <div className="col-md-2 col-sm-12 col-xs-12 ">
                       <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
@@ -229,7 +231,8 @@ class Home extends Component {
                       </Link>
                     </div>
                     <div className="col-md-2 col-sm-12 col-xs-12">
-                      <Link to="/blockchain/blocks" className="hvr-underline-from-center hvr-underline-white text-muted">
+                      <Link to="/blockchain/blocks"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
@@ -242,7 +245,8 @@ class Home extends Component {
                       </Link>
                     </div>
                     <div className="col-md-2 col-sm-12 col-xs-12">
-                      <Link to="/blockchain/accounts" className="hvr-underline-from-center hvr-underline-white text-muted">
+                      <Link to="/blockchain/accounts"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
@@ -255,10 +259,10 @@ class Home extends Component {
                       </Link>
                     </div>
                     {/*<div className="col-md-2 col-sm-6">*/}
-                      {/*<Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">*/}
-                        {/*<h2><TRXBurned /></h2>*/}
-                        {/*<p className="m-0">{tu("burned_trx")}</p>*/}
-                      {/*</Link>*/}
+                    {/*<Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">*/}
+                    {/*<h2><TRXBurned /></h2>*/}
+                    {/*<p className="m-0">{tu("burned_trx")}</p>*/}
+                    {/*</Link>*/}
                     {/*</div>*/}
                   </div>
                 </div>
@@ -277,13 +281,14 @@ class Home extends Component {
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
+                    <div className="card-body pt-0" style={{paddingLeft: '2rem', paddingRight: '2rem'}}>
 
-                      <div style={{minWidth:255,height: 200}}>
+                      <div style={{minWidth: 255, height: 200}}>
                         {
                           txOverviewStats === null ?
                               <TronLoader/> :
-                              <LineReactHighChartTx style={{minWidth:255,height: 200}} data={txOverviewStats} intl={intl} source='home'/>
+                              <LineReactHighChartTx style={{minWidth: 255, height: 200}} data={txOverviewStats}
+                                                    intl={intl} source='home'/>
                         }
                       </div>
 
@@ -299,13 +304,14 @@ class Home extends Component {
                         </Link>
                       </h5>
                     </div>
-                    <div className="card-body pt-0" style={{paddingLeft:'2rem',paddingRight:'2rem'}}>
+                    <div className="card-body pt-0" style={{paddingLeft: '2rem', paddingRight: '2rem'}}>
 
-                      <div style={{minWidth:255,height: 200}}>
+                      <div style={{minWidth: 255, height: 200}}>
                         {
                           addressesStats === null ?
                               <TronLoader/> :
-                              <LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>
+                              <LineReactHighChartAdd style={{minWidth: 255, height: 200}} data={addressesStats}
+                                                     intl={intl} source='home'/>
                         }
                       </div>
                     </div>
@@ -331,9 +337,11 @@ class Home extends Component {
                   <ul className="list-unstyled quick-links pt-3">
                     <li className="p-2"><HrefLink href="https://stateoftrondapps.com/"><i
                         className="fa fa-angle-right mr-4"/> DApps</HrefLink></li>
-                    <li className="p-2"><HrefLink href={activeLanguage == 'zh'?'https://tron.network/exchangesList?lng=zh':'https://tron.network/exchangesList?lng=en'}><i
+                    <li className="p-2"><HrefLink
+                        href={activeLanguage == 'zh' ? 'https://tron.network/exchangesList?lng=zh' : 'https://tron.network/exchangesList?lng=en'}><i
                         className="fa fa-angle-right mr-4"/> List TRX</HrefLink></li>
-                    <li className="p-2"><HrefLink href="https://medium.com/@Tronfoundation"><i className="fa fa-angle-right mr-4"/> TRON Labs</HrefLink>
+                    <li className="p-2"><HrefLink href="https://medium.com/@Tronfoundation"><i
+                        className="fa fa-angle-right mr-4"/> TRON Labs</HrefLink>
                     </li>
                     <li className="p-2"><HrefLink href="https://www.facebook.com/tronfoundation/"><i
                         className="fa fa-angle-right mr-4"/> Facebook</HrefLink></li>
@@ -366,19 +374,23 @@ class Home extends Component {
                   <h5>Quick links</h5>
                   <div className="line"></div>
                   <ul className="list-unstyled quick-links pt-3">
-                    <li className="p-2"><Link to="/votes"><i className="fa fa-angle-right mr-4"/> {tu("vote_for_super_representatives")}
+                    <li className="p-2"><Link to="/votes"><i
+                        className="fa fa-angle-right mr-4"/> {tu("vote_for_super_representatives")}
                     </Link></li>
                     <li className="p-2"><Link to="/representatives"><i
                         className="fa fa-angle-right mr-4"/> {tu("view_super_representatives")}</Link></li>
-                    <li className="p-2"><Link to="/wallet/new"><i className="fa fa-angle-right mr-4"/> {tu("create_new_wallet")}</Link></li>
-                    <li className="p-2"><Link to="/tokens/view"><i className="fa fa-angle-right mr-4"/> {tu("view_tokens")}</Link></li>
-                    <li className="p-2"><Link to="/help/copyright"><i className="fa fa-angle-right mr-4"/> {tu("copyright")}</Link></li>
+                    <li className="p-2"><Link to="/wallet/new"><i
+                        className="fa fa-angle-right mr-4"/> {tu("create_new_wallet")}</Link></li>
+                    <li className="p-2"><Link to="/tokens/view"><i
+                        className="fa fa-angle-right mr-4"/> {tu("view_tokens")}</Link></li>
+                    <li className="p-2"><Link to="/help/copyright"><i
+                        className="fa fa-angle-right mr-4"/> {tu("copyright")}</Link></li>
                   </ul>
                 </div>
               </div>
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12">
-                  <ul className="list-unstyled list-inline social text-center" style={{marginBottom:4}}>
+                  <ul className="list-unstyled list-inline social text-center" style={{marginBottom: 4}}>
                     <li className="list-inline-item">
                       <HrefLink href="https://www.facebook.com/tronfoundation/"><i
                           className="fab fa-facebook"/></HrefLink>
@@ -417,9 +429,9 @@ const styles = {
   list: {
     fontSize: 18,
   },
-  card:{
-      border:'none',
-      borderRadius:0
+  card: {
+    border: 'none',
+    borderRadius: 0
   }
 }
 

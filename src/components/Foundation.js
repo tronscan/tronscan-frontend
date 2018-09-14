@@ -5,12 +5,6 @@ import {tu} from "../utils/i18n";
 import {FormattedNumber, injectIntl} from "react-intl";
 import {filter} from "lodash";
 import {AddressLink} from "./common/Links";
-import Paging from "./common/Paging";
-import {Client} from "../services/api";
-import {CIRCULATING_SUPPLY, ONE_TRX} from "../constants";
-import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "./common/Price";
-import {WidgetIcon} from "./common/Icon";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
@@ -57,8 +51,10 @@ class Accounts extends Component {
       start: (page-1) * pageSize,
     });
     */
-    let random=Math.random();
-    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random="+random);
+
+    let random = Math.random();
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
+
     data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
@@ -73,8 +69,9 @@ class Accounts extends Component {
 
   renderAccounts() {
 
-    let {accounts} = this.state;
+    let {accounts, total} = this.state;
     let {intl} = this.props;
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'address_unit'})
 
     let column = [
       {
@@ -82,12 +79,14 @@ class Accounts extends Component {
         dataIndex: 'key',
         key: 'key',
         width: 100,
+        align: 'left',
         className: 'ant_table'
       },
       {
         title: intl.formatMessage({id: 'address'}),
         dataIndex: 'address',
         key: 'address',
+        align: 'left',
         render: (text, record, index) => {
           return (
               <AddressLink address={text}/>
@@ -98,20 +97,27 @@ class Accounts extends Component {
         title: intl.formatMessage({id: 'balance'}),
         dataIndex: 'balance',
         key: 'balance',
-        width: 200
+        width: 200,
+        align: 'right',
       }
     ];
     return (
-        <Fragment>
+        <div className="token_black">
           {
             accounts.length === 0 ?
-                <TronLoader>
-                  {tu("loading")}
-                </TronLoader>
+                <div className="card" style={{background: 'white'}}>
+                  <TronLoader>
+                    {tu("loading")}
+                  </TronLoader>
+                </div>
                 :
-                <Table columns={column} dataSource={accounts}/>
+                <div className="card table_pos">
+                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                  <Table bordered={true} columns={column} dataSource={accounts}
+                         pagination={{position: 'both', showSizeChanger: true}}/>
+                </div>
           }
-        </Fragment>
+        </div>
     )
   }
 
@@ -121,12 +127,12 @@ class Accounts extends Component {
     let {total, loading} = this.state;
 
     return (
-        <main className="container header-overlap pb-3">
-          <div className="row">
+        <main className="container header-overlap pb-3 token_black">
+          <div className="row foundation_title">
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 text-center widget-icon">
-                <div className="card-body">
-                  <h3 className="text-primary">
+              <div className="card h-100 widget-icon">
+                <div className="card-body pl-5">
+                  <h3>
                     <FormattedNumber value={1000}/>
                   </h3>
                   {tu("addresses_number")}
@@ -137,8 +143,8 @@ class Accounts extends Component {
             <div className="col-md-4 mt-3 mt-md-0 position-relative">
               <div className="card h-100 widget-icon">
 
-                <div className="card-body text-center">
-                  <h3 className="text-secondary">
+                <div className="card-body pl-5">
+                  <h3>
                     <FormattedNumber value={total}/>
                   </h3>
                   {tu("foundation_address")}
@@ -149,8 +155,8 @@ class Accounts extends Component {
             <div className="col-md-4 mt-3 mt-md-0">
               <div className="card h-100 widget-icon">
 
-                <div className="card-body text-center">
-                  <h3 className="text-success">
+                <div className="card-body pl-5">
+                  <h3>
                     2020/01/01
                   </h3>
                   {tu("unfreeze_time")}
@@ -161,7 +167,7 @@ class Accounts extends Component {
 
           <div className="row mt-2">
             <div className="col-md-12">
-              <div className="card mt-1">
+              <div className="mt-1">
                 {this.renderAccounts()}
               </div>
             </div>
