@@ -15,7 +15,7 @@ function Trxrow({valdata, icon, children, ...props}) {
 
   return (
       <li className="list-group-item p-1">
-        <div className="media text-muted my-3 mx-3" key={valdata} {...props}>
+        <div className="media my-3 mx-3" key={valdata} {...props}>
           {/* <i className={"fa fa-lg mx-2 fa-2x " + icon}/> */}
           <div className="media-body mb-0 lh-125 ">
             {children}
@@ -261,7 +261,7 @@ class Live extends React.Component {
     }
 
     return (
-        <div className="media text-muted pt-3" key={'other-' + index}>
+        <div className="media pt-3" key={'other-' + index}>
           <p className="media-body pb-3 mb-0 small lh-125 ">
             Unknown
           </p>

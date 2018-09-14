@@ -540,9 +540,9 @@ class VoteOverview extends React.Component {
                               <th className="d-none d-sm-table-cell text-center" style={{width: 50}}>#</th>
                               <th>{tu("name")}</th>
 
-                              <th className="text-center" style={{width: 150}}>{tu("votes")}</th>
-                              <th className="text-center" style={{width: 150}}>{tu("live")}</th>
-                              <th style={{width: 100}}>{tu("percentage")}</th>
+                              <th className="text-right" style={{width: 150}}>{tu("votes")}</th>
+                              <th className="text-right" style={{width: 150}}>{tu("live")}</th>
+                              <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
                               {
                                 votingEnabled && <th style={{width: 200}}>
                                   {tu("your vote")}
@@ -590,7 +590,7 @@ class VoteOverview extends React.Component {
                                         </div>
                                       }
                                     </td>
-                                    <td className="small text-center align-middle">
+                                    <td className="small text-right align-middle">
                                       {
                                         totalVotes > 0 &&
                                         <Fragment>
@@ -598,16 +598,19 @@ class VoteOverview extends React.Component {
                                         </Fragment>
                                       }
                                     </td>
-                                    <td className="small text-center align-middle _liveVotes">
+                                    <td className="small text-right align-middle _liveVotes">
                                       {
                                         totalVotes > 0 &&
                                         <Fragment>
                                           <FormattedNumber value={candidate.liveVote}/><br/>
-                                          <FormattedNumber value={candidate.liveVote - candidate.votes}/>
+                                          {candidate.liveVote > candidate.votes?
+                                            <span className="color-green">+<FormattedNumber  value={candidate.liveVote - candidate.votes}/></span>
+                                            :<span className="color-red"><FormattedNumber  value={candidate.liveVote - candidate.votes}/></span>
+                                          }
                                         </Fragment>
                                       }
                                     </td>
-                                    <td className="small text-center align-middle">
+                                    <td className="small text-right align-middle">
                                       {
                                         totalVotes > 0 &&
                                         <Fragment>

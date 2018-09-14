@@ -149,7 +149,7 @@ class Representatives extends Component {
                             <h3 className="text-primary">
                               <FormattedNumber value={witnesses.length}/>
                             </h3>
-                            {tu("representatives")}
+                            {tu("representativesAcandidates")}
                           </div>
                         </div>
                       </div>
@@ -246,7 +246,7 @@ function Row({account, showSync = true, index, state, props}) {
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
-        <td className="text-center d-none d-lg-table-cell">{account.index + 1}</td>
+        <td className="text-center d-none d-lg-table-cell" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
         <td>
           {
             account.name ?

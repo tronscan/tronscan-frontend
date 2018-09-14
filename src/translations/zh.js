@@ -312,6 +312,7 @@ export const messages = {
   "recent_transactions": "近期交易",
   "newest_account": "最新账户",
   "representatives": "超级代表",
+  "representativesAcandidates": "超级代表及候选人",
   "most_votes": "最高得票",
   "start_end_time": "开始/结束时间",
   "scan_qr_code": "扫描二维码",
