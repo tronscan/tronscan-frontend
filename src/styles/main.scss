@@ -1141,7 +1141,7 @@ $border-color-dark: #d8d8d8;
       margin: 0;
     }
     li {
-      width: 100px;
+      min-width: 100px;
       a {
         text-align: center;
         border: none !important;

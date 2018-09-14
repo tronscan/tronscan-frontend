@@ -91,7 +91,7 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: <i className="fas fa-exchange-alt"/>,
+        title: upperFirst(intl.formatMessage({id: 'transactions'})),
         dataIndex: 'nrOfTrx',
         key: 'nrOfTrx',
         align: 'center',
@@ -100,7 +100,7 @@ class Blocks extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'produced by'})),
+        title: upperFirst(intl.formatMessage({id: 'produced_by'})),
         dataIndex: 'witnessAddress',
         key: 'witnessAddress',
         align: 'left',

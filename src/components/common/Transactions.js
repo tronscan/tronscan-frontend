@@ -59,17 +59,7 @@ class Transactions extends React.Component {
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
-      {
-        title: upperFirst(intl.formatMessage({id: 'age'})),
-        dataIndex: 'timestamp',
-        key: 'timestamp',
-        align: 'left',
-        className: 'ant_table',
-        width: '14%',
-        render: (text, record, index) => {
-          return <TimeAgo date={text}/>
-        }
-      },
+      
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'hash',
@@ -82,6 +72,17 @@ class Transactions extends React.Component {
               {text}
             </TransactionHashLink>
           </Truncate>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'age'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        align: 'left',
+        className: 'ant_table',
+        width: '14%',
+        render: (text, record, index) => {
+          return <TimeAgo date={text}/>
         }
       },
       {

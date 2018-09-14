@@ -71,17 +71,7 @@ class Transfers extends React.Component {
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
-      {
-        title: upperFirst(intl.formatMessage({id: 'age'})),
-        dataIndex: 'timestamp',
-        key: 'timestamp',
-        align: 'left',
-        className: 'ant_table',
-        width: '14%',
-        render: (text, record, index) => {
-          return <TimeAgo date={text}/>
-        }
-      },
+     
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
         dataIndex: 'transactionHash',
@@ -95,6 +85,17 @@ class Transfers extends React.Component {
               {text}
             </TransactionHashLink>
           </Truncate>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'age'})),
+        dataIndex: 'timestamp',
+        key: 'timestamp',
+        align: 'left',
+        className: 'ant_table',
+        width: '14%',
+        render: (text, record, index) => {
+          return <TimeAgo date={text}/>
         }
       },
       {
@@ -150,7 +151,7 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
 
 
     if (!loading && transfers.length === 0) {

@@ -25,7 +25,7 @@ export default function Contract({contract}) {
                 <tbody>
                 <Field label="from"><AddressLink address={contract.from}/></Field>
                 <Field label="to"><AddressLink address={contract.to}/></Field>
-                <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX}/></Field>
+                <Field label="amount"><TRXPrice amount={contract.amount}/></Field>
                 </tbody>
               </table>
             </div>

@@ -27,8 +27,10 @@
     }
     .nav-searchbar {
         input {
-            background-color: $white !important;
-            border: 1px solid $text-block !important;
+            // background-color: $white !important;
+            // border: 1px solid $text-block !important;
+            background-color: #f3f3f3!important;
+            border-radius: 2px;
         }
     } // default background style ====================================================
     .token_black {

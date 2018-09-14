@@ -154,10 +154,10 @@ class Votes extends React.Component {
     ];
 
     if (filter.voter) {
-      return column_v;
+      return column_c;
     }
     if (filter.candidate) {
-      return column_c;
+      return column_v;
     }
   }
 

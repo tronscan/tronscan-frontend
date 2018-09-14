@@ -957,6 +957,7 @@ export const messages = {
   "transaction_info": "条交易信息",
   "hold_addr": "通证持有地址",
   "transactions_unit":"个交易",
+  "transfers_unit": "个转账",
   "block_unit":"个区块",
   "record_unit":"个记录",
   "token_unit": "个通证",

@@ -582,7 +582,7 @@ class VoteOverview extends React.Component {
                                       </div>
                                       {
                                         candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
-                                          <Link className="btn btn-lg btn-block btn-outline-secondary mt-1"
+                                          <Link className="btn btn-lg btn-block btn-default mt-1"
                                                 to={`/representative/${candidate.address}`}>
                                             {tu("open_team_page")}
                                             <i className="fas fa-users ml-2"/>

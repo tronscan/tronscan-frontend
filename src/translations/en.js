@@ -966,10 +966,11 @@ export const messages = {
   "a_totle": "A Total of",
   "transaction_info": "transactions found",
   "hold_addr": "Token Holders",
-  "transactions_unit":"Transfers",
-  "block_unit":"Tokens",
+  "transactions_unit":"Transactions",
+  "transfers_unit": "Transfers",
+  "block_unit":"Blocks",
   "record_unit":"Transactions",
-  "token_unit": "Token",
+  "token_unit": "Tokens",
   "vote_unit": "Voters",
 
   /*

@@ -120,8 +120,8 @@ export class TRXPrice extends React.PureComponent {
                                 value={this.renderPrice(amount, priceValues)}
                                 maximumFractionDigits={12}>
                                 {value => <span id={id}
-                                                onMouseOver={() => this.setState({open: true})}
-                                                onMouseOut={() => this.setState({open: false})}
+                                                onMouseEnter={() => this.setState({open: true})}
+                                                onMouseLeave={() => this.setState({open: false})}
                                                 {...props}>
                               {name == 'TRX' ? amount / ONE_TRX : amount} {name}
                                         </span>}
@@ -178,14 +178,14 @@ export class TRXPrice extends React.PureComponent {
                                 value={this.renderPrice(amount, priceValues)}
                                 maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 2}>
                                 {value => <span id={id}
-                                                onMouseOver={() => this.setState({open: true})}
-                                                onMouseOut={() => this.setState({open: false})}
+                                                onMouseEnter={() => this.setState({open: true})}
+                                                onMouseLeave={() => this.setState({open: false})}
                                                 {...props}>
           {value} {showCurreny && (currency.toUpperCase() || priceValues.priceShown.toUpperCase())}
           </span>}
                             </FormattedNumber>
                               {
-                                  showPopup && <Tooltip placement="top" isOpen={open} target={id}>
+                                  showPopup && <Tooltip placement="left" isOpen={open} target={id}>
                                     TRX <FormattedNumber value={amount} maximumFractionDigits={6}
                                                          minimumFractionDigits={6}/> <br/>
                                     BTC <FormattedNumber value={priceValues.prices.BTC * amount}
