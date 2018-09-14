@@ -209,13 +209,13 @@ class Statistics extends React.Component {
 
     return (
         <main className="container header-overlap">
-          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-            {tu("click_the_chart_title_to_find_more")}
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="card statistics-chart" style={{width: '100%'}}>
+          {/*<div className="text-center alert alert-light alert-dismissible fade show" role="alert">*/}
+            {/*{tu("click_the_chart_title_to_find_more")}*/}
+            {/*<button type="button" className="close" data-dismiss="alert" aria-label="Close">*/}
+              {/*<span aria-hidden="true">&times;</span>*/}
+            {/*</button>*/}
+          {/*</div>*/}
+          <div className="card statistics-chart" style={styles.card}>
             <div className="row mt-5">
               <div className="col-md-4">
                   <span className="">
@@ -273,7 +273,7 @@ class Statistics extends React.Component {
               <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-exchange-alt ml-5 mr-2"/>
-                      {tu("general_information")}
+                      {tu("blockchain_information")}
                   </span>
               </div>
             </div>
@@ -312,7 +312,7 @@ class Statistics extends React.Component {
               <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-exchange-alt ml-5 mr-2"/>
-                      {tu("general_information")}
+                      {tu("sr_information")}
                   </span>
               </div>
             </div>
@@ -339,7 +339,7 @@ class Statistics extends React.Component {
               <div className="col-md-4">
                   <span className="">
                   <i className="fas fa-exchange-alt ml-5 mr-2"/>
-                      {tu("general_information")}
+                      {tu("currency_information")}
                   </span>
               </div>
             </div>
@@ -361,7 +361,10 @@ class Statistics extends React.Component {
               <div className="col-md-4">
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/volumeStats">
-                    {tu("volume_24")}
+                    <span>
+                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                        {tu("volume_24")}
+                    </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}/>
                   </Link>
@@ -375,6 +378,16 @@ class Statistics extends React.Component {
   }
 }
 
+const styles = {
+    list: {
+        fontSize: 18,
+    },
+    card: {
+        border: 'none',
+        borderRadius: 0,
+        width: '100%'
+    }
+}
 
 function mapStateToProps(state) {
   return {
