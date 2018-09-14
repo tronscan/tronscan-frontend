@@ -755,7 +755,7 @@ class Account extends Component {
         <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-              {tu("tron_power_freezing")}
+            {tu("tron_power_freezing")}
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -875,18 +875,6 @@ class Account extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-body temp-table">
-                  <h5 className="card-title text-center m-0">
-                    {tu("tokens")}
-                  </h5>
-                  {this.renderTokens()}
-                </div>
-              </div>
-            </div>
-          </div>
           {
             issuedAsset &&
             <div className="row mt-3">
@@ -962,6 +950,19 @@ class Account extends Component {
               </div>
             </div>
           }
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-body temp-table">
+                  <h5 className="card-title text-center m-0">
+                    {tu("tokens")}
+                  </h5>
+                  {this.renderTokens()}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">

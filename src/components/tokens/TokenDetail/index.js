@@ -388,7 +388,7 @@ class TokenDetail extends React.Component {
                           }
                           <div style={{width: '80%'}}>
                             <h5 className="card-title">
-                              {token.name}
+                              {token.name} ({token.abbr})
                             </h5>
                             <p className="card-text">{token.description}</p>
                           </div>

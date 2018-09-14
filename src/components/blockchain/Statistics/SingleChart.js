@@ -237,7 +237,7 @@ class Statistics extends React.Component {
             }
         })
         this.setState({
-            volumeStats: volume
+            volumeStats: volume.slice(27, volume.length - 1),
         });
         let higest = {date: '', increment: ''};
         let lowest = {date: '', increment: ''};
