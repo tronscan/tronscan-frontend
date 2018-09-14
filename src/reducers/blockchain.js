@@ -9,7 +9,7 @@ const initialState = {
 
 export function blockchainReducer(state = initialState, action) {
 
-  switch(action.type) {
+  switch (action.type) {
     case SET_TRANSACTIONS: {
       return {
         ...state,

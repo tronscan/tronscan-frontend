@@ -38,7 +38,6 @@ export const setSyncStatus = (status) => ({
   status,
 });
 
-
 export const loginWithPrivateKey = (privateKey) => ({
   type: LOGIN_PK,
   privateKey,
@@ -72,12 +71,12 @@ export const login = (privateKey) => async (dispatch, getState) => {
   }
   else {
   */
-    dispatch(setWalletLoading(true));
-    await dispatch(loginWithPrivateKey(privateKey));
-    await dispatch(reloadWallet());
-    dispatch(setWalletLoading(false));
-    await dispatch(loadRecentTransactions(getState().app.account.address));
- // }
+  dispatch(setWalletLoading(true));
+  await dispatch(loginWithPrivateKey(privateKey));
+  await dispatch(reloadWallet());
+  dispatch(setWalletLoading(false));
+  await dispatch(loadRecentTransactions(getState().app.account.address));
+  // }
 };
 
 export const loginWithAddress = (address) => async (dispatch, getState) => {

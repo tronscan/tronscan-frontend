@@ -8,7 +8,7 @@ const initialState = {
 
 export function marketsReducer(state = initialState, action) {
 
-  switch(action.type) {
+  switch (action.type) {
     case SET_VOLUME_DATA: {
       return {
         ...state,

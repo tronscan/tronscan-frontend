@@ -1,11 +1,12 @@
 @import './dark.scss';
+
 .tron-dark {
- 
+
   // default background style ====================================================
   background-size: cover;
   background: #222 url(../images/body_backgound_dark_theme_transparent.png) fixed no-repeat;
   background-position: center -200px;
-  .logo-wrapper, .navbar{
+  .logo-wrapper, .navbar {
     background: radial-gradient(at 50% -20%, #343a40bd, #111111ad) fixed;
   }
   .top-bar.navbar-dark .navbar-nav .nav-link {
@@ -38,17 +39,18 @@
     .token-info {
       background-color: #24292e;
     }
-  } // 覆盖样式  ====================================================
+  }
+  // 覆盖样式  ====================================================
   .ant_table_img {
     text-align: center !important;
   }
   .ant-table-body table thead tr th:not(:nth-child(2)) {
     text-align: center;
   }
-  .ant-table-tbody>tr>td {
+  .ant-table-tbody > tr > td {
     padding: 0px 8px !important;
   }
-  .transfers .ant-table-tbody>tr>td {
+  .transfers .ant-table-tbody > tr > td {
     padding: 14px 8px !important;
   }
   .nav-tabs .nav-link {
@@ -75,7 +77,7 @@
     .ant-table {
       background: $bg-color;
       color: $text-block;
-      &.ant-table-bordered .ant-table-thead>tr>th {
+      &.ant-table-bordered .ant-table-thead > tr > th {
         border: none;
         border-top: 1px solid $border-color;
         &:last-child {
@@ -87,21 +89,22 @@
           border-left: 1px solid $border-color;
         }
       }
-      .ant-table-tbody>tr {
-        &>td {
+      .ant-table-tbody > tr {
+        & > td {
           border-color: rgba(255, 255, 255, 0.10);
         }
       }
       thead th {
         background: $bg-color-dark;
       }
-      .ant-table-thead>tr.ant-table-row-hover>td,
-      .ant-table-tbody>tr.ant-table-row-hover>td,
-      .ant-table-thead>tr:hover>td,
-      .ant-table-tbody>tr:hover>td {
+      .ant-table-thead > tr.ant-table-row-hover > td,
+      .ant-table-tbody > tr.ant-table-row-hover > td,
+      .ant-table-thead > tr:hover > td,
+      .ant-table-tbody > tr:hover > td {
         background: #222;
       }
-    } // 全局ant-pagination样式覆盖 ===============================
+    }
+    // 全局ant-pagination样式覆盖 ===============================
     .ant-pagination {
       $main-color: $text-block-dark;
       color: $main-color;
@@ -132,44 +135,46 @@
           }
         }
       }
-    } // 全局ant-steps样式覆盖 ===============================
+    }
+    // 全局ant-steps样式覆盖 ===============================
     .ant-steps {
       $main-color: $text-block;
       color: $main-color;
       .ant-steps-item-content {
-        &>.ant-steps-item-title {
+        & > .ant-steps-item-title {
           color: $main-color;
         }
-        &>.ant-steps-item-description {
+        & > .ant-steps-item-description {
           color: $main-color;
         }
       }
       .ant-steps-item-icon {
         border-color: $border-color-lighter;
-        &>.ant-steps-icon {
+        & > .ant-steps-icon {
           color: $border-color-lighter;
         }
       }
-      .ant-steps-item-tail:after{
+      .ant-steps-item-tail:after {
         background: $main-color;
       }
       .ant-steps-item-process {
         .ant-steps-item-content {
-          &>.ant-steps-item-title {
+          & > .ant-steps-item-title {
             color: $white;
           }
-          &>.ant-steps-item-description {
+          & > .ant-steps-item-description {
             color: $white;
           }
         }
         .ant-steps-item-icon {
           background-color: $gold;
-          &>.ant-steps-icon {
+          & > .ant-steps-icon {
             color: $white;
           }
         }
       }
-    } // 通证-创建 模块样式覆盖
+    }
+    // 通证-创建 模块样式覆盖
     .col-sm-12.col-md-3.mt-3.mt-md-0 {
       background: $border-color;
       .card-body {
@@ -224,7 +229,7 @@
         color: $text-block;
       }
     }
-    
+
     form {
       .table {
         th, td {
@@ -234,7 +239,7 @@
       tr td:first-child {
         color: $text-block-dark;
       }
-  }
+    }
     // McDonaldsCoin 样式覆盖
     &.mc-donalds-coin {
       .tokenDetail {
@@ -347,7 +352,7 @@
         color: $text-block-dark;
         background-color: $bg-color;
       }
-      .ant-table-thead>tr>th {
+      .ant-table-thead > tr > th {
         border-bottom: 1px solid $border-color-lightst;
         border-top: 1px solid $border-color-lightst;
       }
@@ -359,7 +364,8 @@
       .card-body {
         padding: 0;
       }
-    } // news 样式覆盖
+    }
+    // news 样式覆盖
     &.news {
       h2,
       h2 * {
@@ -391,7 +397,7 @@
         .my-2 {
           margin-top: 1rem !important;
         }
-        &>div {
+        & > div {
           background-color: $border-color;
           span {
             color: $text-block-dark;

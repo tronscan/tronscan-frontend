@@ -36,7 +36,7 @@ body .token_black {
     fieldset {
       // padding-top: 25px;
 
-      &:first-child{
+      &:first-child {
         // padding-top: 15px;
       }
     }
@@ -73,9 +73,9 @@ body .token_black {
   }
   // McDonaldsCoin 样式覆盖
   &.mc-donalds-coin {
-    th:first-child, td:first-child{
-      padding-left: 0!important;
-      padding-right: 0!important;
+    th:first-child, td:first-child {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
     .tokenDetail {
       display: block;
@@ -88,7 +88,7 @@ body .token_black {
         tr td:nth-child(4) * {
           color: $main-red;
         }
-        tr{
+        tr {
           td:nth-child(2) {
             border-right: 60px solid $white;
           }
@@ -98,18 +98,18 @@ body .token_black {
         }
       }
     }
-    .tokenDetail_box{
+    .tokenDetail_box {
       padding: 0 20px;
       background-color: #fff;
       .tokenDetail {
         padding: 0;
         display: table;
 
-        td{
+        td {
           width: auto;
         }
 
-        tr{
+        tr {
           td:nth-child(2) {
             border-right: none;
           }
@@ -169,18 +169,18 @@ body .token_black {
   }
   // 错误提示文字
   .text-danger {
-    
+
     span {
       display: block;
       padding-top: 10px;
-      color: $main-red!important;
+      color: $main-red !important;
     }
   }
-  h5{
+  h5 {
     display: flex;
     align-items: center;
   }
-  hr{
+  hr {
     margin: 1.5rem 0;
   }
 
@@ -190,48 +190,47 @@ body .token_black {
       font-weight: normal;
     }
   }
-  .form-group{
+  .form-group {
     margin-bottom: 20px;
   }
-  .token_confirm{
-    .table th, .table td{
-      padding:{
+  .token_confirm {
+    .table th, .table td {
+      padding: {
         left: 0;
       }
     }
-    .table{
+    .table {
       margin-bottom: 1.4rem;
     }
-    .table tr{
-      td:first-child{
+    .table tr {
+      td:first-child {
         width: 15%;
       }
-      th{
+      th {
         border: none;
       }
     }
   }
-  .text-muted span{
-    color: inherit!important;
+  .text-muted span {
+    color: inherit !important;
   }
 
-  
-  .faceico{
+  .faceico {
     width: 16px;
     height: 16px;
   }
 
-  $blue:   #4A90E2;
+  $blue: #4A90E2;
   $yellow: #E0AE5C;
-  $green:  #69C265;
+  $green: #69C265;
   $titlimg: frozen sr band addr node up lock vote nextvote balance totle lowst nodest heightst;
-  @each $name in $titlimg{
+  @each $name in $titlimg {
     .#{$name} {
       background-image: url(../images/title-img/#{$name}.png)
     }
   }
-  @mixin bg-line ($image, $color: $main-red, $width: 4) {
-    &:after{
+  @mixin bg-line($image, $color: $main-red, $width: 4) {
+    &:after {
       content: '';
       position: absolute;
       top: 0;
@@ -240,7 +239,7 @@ body .token_black {
       width: $width * 1px;
       background-color: $color;
     }
-    &:before{
+    &:before {
       content: '';
       position: absolute;
       top: 0;
@@ -250,112 +249,113 @@ body .token_black {
       // @extend .#{$image};
       background-image: url(../images/title-img/#{$image}.png);
       background-size: auto 100%;
-      background-repeat: no-repeat; 
+      background-repeat: no-repeat;
     }
   }
 
-  .accout_unit{
+  .accout_unit {
     position: relative;
     background-color: $white;
     @include bg-line(accounts, $main-red, 6);
 
-    h3{
-      color: $bg-color!important;
+    h3 {
+      color: $bg-color !important;
     }
   }
-  
-  .foundation_title{
+
+  .foundation_title {
     color: none;
     border-radius: 1px;
 
     @each $number, $color, $image in (1, $main-red, addr),
-                             (2, $blue, lock),
-                             (3, $yellow, frozen) {
-      &>div:nth-child(#{$number}) .card-body{
+            (2, $blue, lock),
+            (3, $yellow, frozen) {
+      & > div:nth-child(#{$number}) .card-body {
         @include bg-line($image, $color);
       }
     }
-    .card-body{
+    .card-body {
       background: $white;
     }
-    span{
+    span {
       color: $text-block-dark;
     }
-    h3, h3 *{
+    h3, h3 * {
       color: $bg-color;
     }
   }
-  .represent_title{
+  .represent_title {
     @each $number, $color, $image in (1, $main-red, sr),
-                             (2, $green, heightst),
-                             (3, $yellow, lowst) {
-      &>div:nth-child(#{$number}) .card-body{
+            (2, $green, heightst),
+            (3, $yellow, lowst) {
+      & > div:nth-child(#{$number}) .card-body {
         @include bg-line($image, $color);
       }
     }
-    &_text{
-      &>span:last-child{
+    &_text {
+      & > span:last-child {
         position: absolute;
       }
     }
   }
-  .represent__table{
-    table{
+  .represent__table {
+    table {
       border: 1px solid #d8d8d8;
     }
-    th{
+    th {
       background: #f3f3f3;
       color: #333;
       border: none;
     }
-    td{
+    td {
       background: #fff;
       border: 1px solid #f3f3f3;
       position: relative;
       vertical-align: middle;
     }
-    &__content, &__lighter{
-      td:first-child:before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left:0;
-        bottom: 0;
-        width: 4px;
-        background-color: $main-red;
-      }
-    }
-    &__lighter{
-      td:first-child:before{
-        background: rgba(194,54,49,0.20);
-      }
-    }
-  }
-}
-  @each $name, $color in (red, $main-red),
-                         (green, $green),
-                         (yellow, $yellow),
-                         (blue, $blue) {
-    .bg-line_#{$name}{
-      position: relative;
-      &:after{
+    &__content, &__lighter {
+      td:first-child:before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         bottom: 0;
         width: 4px;
-        background-color: $color;
+        background-color: $main-red;
+      }
+    }
+    &__lighter {
+      td:first-child:before {
+        background: rgba(194, 54, 49, 0.20);
       }
     }
   }
+}
+
+@each $name, $color in (red, $main-red),
+        (green, $green),
+        (yellow, $yellow),
+        (blue, $blue) {
+  .bg-line_#{$name} {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: $color;
+    }
+  }
+}
 
 @each $image in addr, balance, band, frozen, heightst, lock, lowst,
-nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest{
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest {
 
-  .bg-image_#{$image}{
+  .bg-image_#{$image} {
     position: relative;
-    &:before{
+    &:before {
       content: '';
       position: absolute;
       top: 0;
@@ -370,25 +370,25 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   }
 }
 
-.markets{
+.markets {
   background: transparent;
-  border:none;
-  .ant-pagination.ant-table-pagination.ant-pagination{
+  border: none;
+  .ant-pagination.ant-table-pagination.ant-pagination {
     margin-right: 0px;
   }
-  table{
+  table {
     border: 1px solid #d8d8d8;
     border-radius: 1px;
-    th{
-      border-radius: 0!important;
+    th {
+      border-radius: 0 !important;
     }
   }
 }
 
-.table_pos{
+.table_pos {
   position: relative;
 
-  &_info{
+  &_info {
     position: absolute;
     top: 26px;
     left: 38px;
@@ -397,85 +397,89 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   }
 }
 
-.live{
-  .card{
-    background-color: #fff!important;
+.live {
+  .card {
+    background-color: #fff !important;
   }
 }
-.accounts{
-  .card{
-    background-color: #fff!important;
+
+.accounts {
+  .card {
+    background-color: #fff !important;
   }
-  .table-responsive{
-    th, td{
+  .table-responsive {
+    th, td {
       padding: {
         left: 0;
         right: 0;
       }
     }
   }
-  .temp-table{
-    &.table{
+  .temp-table {
+    &.table {
       border: 1px solid #eee;
     }
-    th,td{
+    th, td {
       border: none;
     }
-    th{
+    th {
       background-color: #fff;
     }
-    tbody tr{
-      &:nth-child(odd){
+    tbody tr {
+      &:nth-child(odd) {
         background-color: #f3f3f3;
       }
-      &:nth-child(even){
+      &:nth-child(even) {
         background-color: #fff;
       }
     }
-    .ant-table{
-      border-color: #eee!important;
+    .ant-table {
+      border-color: #eee !important;
 
-      th{
-        background-color: #fff!important;
+      th {
+        background-color: #fff !important;
       }
-      td{
-        border: none!important;
+      td {
+        border: none !important;
       }
     }
   }
-  
+
 }
-.nav{
-  .dropdown-menu{
-    border-radius:2px;
+
+.nav {
+  .dropdown-menu {
+    border-radius: 2px;
     border-color: #eee;
 
-    .form-control{
+    .form-control {
       background: #F3F3F3;
       border: 1px solid #EEEEEE;
       border-radius: 1px;
     }
   }
-  .dropdown-item{
-    *{font-weight: normal;}
-    padding:{
+  .dropdown-item {
+    * {
+      font-weight: normal;
+    }
+    padding: {
       left: 0;
       right: 0;
     }
   }
 
-  .dropdown-divider.blod{
+  .dropdown-divider.blod {
     border-width: 4px;
     border-color: #eee;
   }
 
-  &_input{
-    .dropdown-menu{
+  &_input {
+    .dropdown-menu {
       border: none;
       background: transparent;
       padding: 0;
     }
-    li{
+    li {
       background: #fff;
       border: 1px solid #eee;
     }

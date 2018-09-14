@@ -10,7 +10,6 @@ export const setTokenBalances = (tokens = [], frozen = {}) => ({
   frozen,
 });
 
-
 export const setRecentTransactions = (transactions = []) => ({
   type: SET_RECENT_TRANSACTIONS,
   transactions,

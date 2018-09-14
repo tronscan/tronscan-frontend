@@ -5,7 +5,7 @@
 
     &:hover {
       color: var(--blue);
-   }
+    }
 
   }
 
@@ -15,10 +15,8 @@
   }
 }
 
-
 // Sandstone 4.1.0
 // Bootswatch
-
 
 // Variables ===================================================================
 
@@ -38,7 +36,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,500,700" !de
 .bg-light {
   background-color: $gray-200 !important;
 }
-.bg-tron-light{
+
+.bg-tron-light {
   background-color: $white !important;
 }
 
@@ -141,7 +140,6 @@ input,
     color: $gray-300;
   }
 }
-
 
 .breadcrumb {
   @extend .sandstone;
