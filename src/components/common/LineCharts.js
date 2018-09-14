@@ -422,15 +422,15 @@ export class LineReactHighChartPrice extends React.Component {
             _config.yAxis.min = 0;
 
             _config.series[0].marker.enabled = false;
-            // _config.series[0].pointInterval = 24 * 3600 * 1000;
-            // _config.series[0].pointStart = Date.UTC(2017, 9, 10);
-            // _config.tooltip.formatter = function () {
-            //     let date = intl.formatDate(this.point.x);
-            //     return (
-            //         intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-            //         intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
-            //     )
-            // }
+            //_config.series[0].pointInterval = 24 * 3600 * 1000;
+            //_config.series[0].pointStart = Date.UTC(2017, 9, 10);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.x);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'average_price'}) + ' : ' + this.point.y
+                )
+            }
         }
         Highcharts.chart(document.getElementById(id),_config);
     }
@@ -480,7 +480,6 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                     temp = [val.time,val.volume_billion]
                     _config.series[0].data.push(temp);
                 })
-                console.log(_config.series[0].data)
             }
             _config.chart.spacingTop = 20;
             _config.xAxis.tickPixelInterval = 100;
@@ -504,7 +503,6 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                     // temp = {...val, y: val.volume_billion};
                     _config.series[0].data.push(temp);
                 })
-                console.log(_config.series[0].data)
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;

@@ -267,7 +267,12 @@ class Address extends React.Component {
     if (!address) {
       return null;
     }
-
+    let  pathname = this.props.location.pathname;
+    let  tabName = ''
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z]+)$/
+      pathname.replace(rex,function (a,b) {
+         tabName = b
+      })
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -454,11 +459,16 @@ class Address extends React.Component {
                             }
                           </Switch>
                         </div>
+
                       </div>
-                      <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
-                        Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span
-                            className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
-                      </div>
+                      {
+                          tabName === '' ?
+                            <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
+                              Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span
+                                  className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
+                            </div> :null
+                      }
+
                     </Fragment>
               }
             </div>

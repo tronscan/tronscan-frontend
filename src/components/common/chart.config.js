@@ -235,6 +235,18 @@ module.exports = {
       text: '',
       x: 'center'
     },
+    color: [
+        '#F25C81',
+        '#7CB5EC',
+        '#F4A45D',
+        '#8085ED',
+        '#8FCACE',
+        '#424246',
+        '#348188',
+        '#F25C81',
+        '#E5D355',
+        '#96EE80',
+    ],
     legend: {
       type: 'scroll',
       orient: 'vertical',
