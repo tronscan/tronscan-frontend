@@ -143,19 +143,6 @@ export class RepresentativesRingPieReact extends React.Component {
               }
           }
       }
-
-      function compare(property) {
-          return function (obj1, obj2) {
-              if (obj1[property] > obj2[property]) {
-                  return 1;
-              } else if (obj1[property] < obj2[property]) {
-                  return -1;
-              } else {
-                  return 0;
-              }
-          }
-      }
-
       if (data && data.length === 0) {
           _config.title.text = "No data";
       }
@@ -165,13 +152,14 @@ export class RepresentativesRingPieReact extends React.Component {
           for (let index in data) {
               if (temp.indexOf(data[index].name) < 0) {
                   temp.push(data[index].name)
-                  _config.series[0].data.push([data[index].name, Number(data[index].volumeValue)]);
+                  exchanges.push([data[index].name, Number(data[index].volumeValue)]);
               }
           }
-      }
-      if (source == 'representatives'){
-          _config.plotOptions.pie.showInLegend = false;
-          _config.exporting.enabled = false;
+          console.log(exchanges);
+          let addSeries = _config.series[0].data;
+          addSeries.push(...exchanges);
+         //let re =  addSeries.concat();
+          console.log(1,addSeries)
       }
       _config.title.text = intl.formatMessage({id: message.id});
       _config.exporting.filename = intl.formatMessage({id: message.id});
@@ -182,6 +170,12 @@ export class RepresentativesRingPieReact extends React.Component {
               intl.formatMessage({id: 'produced_blocks'}) + ' : ' + this.point.y + '<br/>'+
               intl.formatMessage({id: '_percentage'}) + ' : ' + this.point.percentage.toFixed(2) + '%'
           )
+      }
+      if (source == 'representatives'){
+          _config.plotOptions.pie.showInLegend = false;
+          _config.plotOptions.pie.innerSize = 60
+          _config.exporting.enabled = false;
+          _config.title.text ='';
       }
       Highcharts.chart(document.getElementById(id), _config);
 

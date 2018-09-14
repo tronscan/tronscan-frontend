@@ -695,9 +695,9 @@ module.exports = {
         ],
         plotOptions: {
             pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                showInLegend: true,
+                //allowPointSelect: true,
+                //cursor: 'pointer',
+                //showInLegend: false,
                 innerSize: 100,
                 depth: 60,
             }

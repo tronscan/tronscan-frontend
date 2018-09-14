@@ -195,9 +195,8 @@ class Markets extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
-              <div className="card">
+              <div className="card" style={styles.card}>
                 <div className="card-body">
-
                   <RingPieReact message={{id: 'Trade Volume'}} style={{height: 700}} data={markets} intl={intl}/>
                 </div>
               </div>
