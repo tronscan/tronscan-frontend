@@ -273,7 +273,6 @@ class Address extends React.Component {
     pathname.replace(rex,function (a,b) {
        tabName = b
     })
-    console.log('tabName',tabName)
     return (
         <main className="container header-overlap">
           <div className="row">

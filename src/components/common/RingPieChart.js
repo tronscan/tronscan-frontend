@@ -12,14 +12,13 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/legend/ScrollableLegendModel.js'
 import 'echarts/lib/component/legend/ScrollableLegendView.js'
 import 'echarts/lib/component/legend/scrollableLegendAction.js'
+import {cloneDeep} from "lodash";
 
-import Highcharts from 'highcharts/highstock';
+import Highcharts from 'highcharts/highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
-
-import {cloneDeep} from "lodash";
 
 HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
@@ -155,12 +154,10 @@ export class RepresentativesRingPieReact extends React.Component {
                   exchanges.push([data[index].name, Number(data[index].volumeValue)]);
               }
           }
-          console.log(exchanges);
           let addSeries = _config.series[0].data;
           addSeries.push(...exchanges);
-         //let re =  addSeries.concat();
-          console.log(1,addSeries)
       }
+      _config.chart.options3d.enabled = true
       _config.title.text = intl.formatMessage({id: message.id});
       _config.exporting.filename = intl.formatMessage({id: message.id});
       _config.tooltip.formatter = function (data) {
@@ -173,55 +170,14 @@ export class RepresentativesRingPieReact extends React.Component {
       }
       if (source == 'representatives'){
           _config.plotOptions.pie.showInLegend = false;
-          _config.plotOptions.pie.innerSize = 60
+          _config.plotOptions.pie.innerSize = 60;
+          _config.plotOptions.pie.depth = 40;
           _config.exporting.enabled = false;
           _config.title.text ='';
       }
       Highcharts.chart(document.getElementById(id), _config);
 
   }
-
-
-    // config.ringPieReactHighChart3D.title.text = intl.formatMessage({id: message.id});
-    // config.ringPieReactHighChart3D.series[0].data = [];
-    // config.ringPieReactHighChart3D.legend.data = [];
-    // config.ringPieReactHighChart3D.title.link = '#/blockchain/stats/pieChart';
-    // config.ringPieReactHighChart3D.tooltip.formatter = function (datas) {
-    //   return (
-    //       intl.formatMessage({id: 'witness'}) + ' : ' + datas.name + '<br/>' +
-    //       intl.formatMessage({id: 'produced_blocks'}) + ' : ' + datas.value + '<br/>' +
-    //       intl.formatMessage({id: '_percentage'}) + ' : ' + datas.percent + '%'
-    //   )
-    //
-    // }
-    // if (source === 'singleChart') {
-    //   let seriesCenter = ['50%', '50%'];
-    //   config.ringPieReactHighChart3D.series[0].center = seriesCenter;
-    //   config.ringPieReactHighChart3D.legend.show = true;
-    //   config.ringPieReactHighChart3D.toolbox.feature = {
-    //     restore: {
-    //       title: 'restore'
-    //     },
-    //     saveAsImage: {
-    //       show: true,
-    //       title: 'save'
-    //     }
-    //   }
-    // } else {
-    //   let seriesCenter = ['50%', '60%'];
-    //   config.ringPieReactHighChart3D.legend.show = false;
-    //   config.ringPieReactHighChart3D.toolbox.feature = {
-    //     restore: {
-    //       show: false,
-    //       title: 'restore'
-    //     },
-    //     saveAsImage: {
-    //       show: false,
-    //       title: 'save'
-    //     }
-    //   }
-    // }
-
     shouldComponentUpdate(nextProps) {
         if (nextProps.intl.locale !== this.props.intl.locale) {
             return true

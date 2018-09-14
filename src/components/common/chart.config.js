@@ -654,7 +654,7 @@ module.exports = {
       }
     }]
   },
-    ringPieHighChart3D: {
+  ringPieHighChart3D: {
         chart: {
             type: 'pie',
             options3d: {
@@ -695,9 +695,9 @@ module.exports = {
         ],
         plotOptions: {
             pie: {
-                //allowPointSelect: true,
-                //cursor: 'pointer',
-                //showInLegend: false,
+                allowPointSelect: true,
+                cursor: 'pointer',
+                showInLegend: true,
                 innerSize: 100,
                 depth: 60,
             }
@@ -729,7 +729,7 @@ module.exports = {
             data: []
         }]
     },
-    supplyPieHighChart: {
+  supplyPieHighChart: {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
