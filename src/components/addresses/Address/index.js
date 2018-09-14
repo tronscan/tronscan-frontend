@@ -269,10 +269,11 @@ class Address extends React.Component {
     }
     let  pathname = this.props.location.pathname;
     let  tabName = ''
-    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z]+)$/
-      pathname.replace(rex,function (a,b) {
-         tabName = b
-      })
+    let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
+    pathname.replace(rex,function (a,b) {
+       tabName = b
+    })
+    console.log('tabName',tabName)
     return (
         <main className="container header-overlap">
           <div className="row">
