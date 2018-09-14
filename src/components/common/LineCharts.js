@@ -480,7 +480,6 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                     temp = [val.time,val.volume_billion]
                     _config.series[0].data.push(temp);
                 })
-                console.log(_config.series[0].data)
             }
             _config.chart.spacingTop = 20;
             _config.xAxis.tickPixelInterval = 100;
@@ -504,7 +503,6 @@ export class LineReactHighChartVolumeUsd extends React.Component {
                     // temp = {...val, y: val.volume_billion};
                     _config.series[0].data.push(temp);
                 })
-                console.log(_config.series[0].data)
             }
             _config.chart.zoomType = 'x';
             _config.chart.marginTop = 80;

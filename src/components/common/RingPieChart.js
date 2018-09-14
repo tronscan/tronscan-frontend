@@ -136,7 +136,6 @@ export class RepresentativesRingPieReact extends React.Component {
   initPie(id) {
       let {intl, data, message, source} = this.props;
       let _config = cloneDeep(config.ringPieHighChart3D);
-      console.log('data', data)
       if (data.length) {
           for (let index in data) {
               if (data[index].name.indexOf("http://") > -1) {
@@ -178,7 +177,6 @@ export class RepresentativesRingPieReact extends React.Component {
       _config.exporting.filename = intl.formatMessage({id: message.id});
       _config.tooltip.formatter = function (data) {
           let date = intl.formatDate(this.point.x);
-          console.log(this.point)
           return (
               intl.formatMessage({id: 'witness'}) + ' : ' + this.point.name + '<br/>' +
               intl.formatMessage({id: 'produced_blocks'}) + ' : ' + this.point.y + '<br/>'+
@@ -263,8 +261,6 @@ export class SupplyTypesTRXPieChart extends React.Component {
     initPie(id) {
         let {intl, data,message,source} = this.props;
         let _config = cloneDeep(config.supplyPieHighChart);
-        console.log('data', data)
-
         if(data && data.length===0){
             _config.title.text="No data";
         }
@@ -275,7 +271,6 @@ export class SupplyTypesTRXPieChart extends React.Component {
                     _config.series[0].data.push({name: intl.formatMessage({id: data[index].name}), y: parseInt(data[index].value), selected:data[index].selected,sliced:data[index].sliced});
                 }
             }
-            console.log('_config.series[0].data',_config.series[0].data)
         }
         _config.title.text=intl.formatMessage({id:message.id});
         _config.exporting.filename = intl.formatMessage({id: message.id});

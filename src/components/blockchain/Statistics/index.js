@@ -219,7 +219,7 @@ class Statistics extends React.Component {
             <div className="row mt-5">
               <div className="col-md-4">
                   <span className="">
-                  <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                  <i className="fas fa-layer-group ml-5 mr-2"/>
                       {tu("general_information")}
                   </span>
               </div>
@@ -229,7 +229,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/txOverviewStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("tron_transaction_chart")}
                     </span>
                     <img src={require("../../../images/chart/TRON-Transaction-Chart.png")}
@@ -243,7 +243,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/addressesStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("address_growth_chart")}
                     </span>
                     <img src={require("../../../images/chart/Address-Growth-Chart.png")}
@@ -257,7 +257,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/supply">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("total_TRX_supply")}
                     </span>
                     <img src={require("../../../images/chart/Total-TRX-Supply.png")}
@@ -272,7 +272,7 @@ class Statistics extends React.Component {
             <div className="row mt-5">
               <div className="col-md-4">
                   <span className="">
-                  <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                  <i className="fas fa-cubes ml-5 mr-2"/>
                       {tu("blockchain_information")}
                   </span>
               </div>
@@ -282,7 +282,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/blockSizeStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-bar ml-5 mr-2"/>
                         {tu("average_blocksize")}
                     </span>
                     <img src={require("../../../images/chart/Average-Block-Size.png")}
@@ -296,7 +296,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/blockchainSizeStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("blockchain_size")}
                     </span>
                     <img src={require("../../../images/chart/Blockchain-Size.png")}
@@ -311,7 +311,7 @@ class Statistics extends React.Component {
             <div className="row mt-5">
               <div className="col-md-4">
                   <span className="">
-                  <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                  <i className="fas fa-medal ml-5 mr-2"/>
                       {tu("sr_information")}
                   </span>
               </div>
@@ -321,7 +321,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/pieChart">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-pie ml-5 mr-2"/>
                         {tu("produce_distribution")}
                     </span>
                     <img src={require("../../../images/chart/Block-Producer-Chart.png")}
@@ -348,7 +348,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/priceStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("average_price")}
                     </span>
                     <img src={require("../../../images/chart/Average-Price.png")}
@@ -362,7 +362,7 @@ class Statistics extends React.Component {
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/volumeStats">
                     <span>
-                      <i className="fas fa-exchange-alt ml-5 mr-2"/>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
                         {tu("volume_24")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
