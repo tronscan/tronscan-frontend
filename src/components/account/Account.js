@@ -754,6 +754,12 @@ class Account extends Component {
     return (
         <main className="container header-overlap">
           {modal}
+          <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
+              {tu("tron_power_freezing")}
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div className="row">
             <div className="col-md-4">
               <div className="card h-100 text-center widget-icon">
@@ -794,7 +800,6 @@ class Account extends Component {
               </div>
             </div>
           </div>
-
           {showBandwidth && this.renderBandwidth()}
         <div className="row mt-3">
           <div className="col-md-12">
@@ -1152,7 +1157,7 @@ class Account extends Component {
                   </p>
                   {
                     showBuyTokens && <iframe
-                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=9d1448c106fd&color=28cf00"}
+                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=x600ducoeoei16mc&color=28cf00"}
                         height="500" className="changelly" scrolling="no"
                         style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
                     </iframe>

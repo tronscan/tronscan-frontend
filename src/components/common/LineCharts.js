@@ -99,7 +99,8 @@ export class LineReactHighChartAdd extends React.Component {
         //     })
         // }
         if (source === 'home') {
-            // _config.xAxis.minTickInterval = 7
+            //_config.yAxis.min = 250000;
+            _config.yAxis.tickInterval = 25000;
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
@@ -112,8 +113,16 @@ export class LineReactHighChartAdd extends React.Component {
         Highcharts.chart(document.getElementById(id),_config);
 
     }
-
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
     componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
         this.initLine(this.state.lineId);
     }
 
@@ -189,6 +198,7 @@ export class LineReactHighChartTx extends React.Component {
             // _config.title.text = '';
             // _config.toolbox.feature = {};
             // _config.grid[0].top = 45;
+            _config.yAxis.min = 0;
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate((parseInt(this.point.date)));
                 return (
@@ -206,17 +216,20 @@ export class LineReactHighChartTx extends React.Component {
             //          intl.formatMessage({id: 'total_transactions'}) + ' : ' + datas[0].data.totalTransaction
             // }
         }
+
         Highcharts.chart(document.getElementById(id),_config);
     }
-
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
     componentDidMount() {
         this.initLine(this.state.lineId);
     }
-    componentWillUpdate(){
-
-    }
     componentDidUpdate() {
-        //this.initLine(this.state.lineId);
+        this.initLine(this.state.lineId);
     }
 
     render() {
@@ -300,7 +313,6 @@ export class LineReactAdd extends React.Component {
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
-
         myChart.setOption(_config);
         this.myChart = myChart;
 
@@ -410,11 +422,6 @@ export class LineReactTx extends React.Component {
 
     componentDidMount() {
         this.initLine(this.state.lineId);
-        /* this.myChart.on('click', function (params) {
-           console.log(params.data.date);
-           window.location.href='#/blockchain/transactions/'+params.data.date;
-         });
-        */
     }
 
     componentDidUpdate() {

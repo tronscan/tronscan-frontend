@@ -41,16 +41,18 @@ class Home extends Component {
 
   async loadNodes() {
    // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://tron.network/api/v2/node/nodemap");
+    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
     this.setState({
       onlineNodes: data.data.length
     })
   }
 
   async loadAccounts() {
-    let totalAccounts = await Client.getAccounts();
+    //let totalAccounts = await Client.getAccounts();
+    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account");
+    let totalAccounts = accountData.data.total;
     this.setState({
-      totalAccounts: totalAccounts.total
+      totalAccounts: totalAccounts
     })
   }
 
@@ -67,8 +69,9 @@ class Home extends Component {
      });
     */
 
-    let {txOverviewStats} = await Client.getTxOverviewStats();
-
+    //let {txOverviewStats} = await Client.getTxOverviewStats();
+    let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
+    let txOverviewStats = overviewData.data.data;
     let temp = [];
     let addressesTemp = [];
 
@@ -100,9 +103,9 @@ class Home extends Component {
       }
     }
     this.setState({
-      txOverviewStats: temp.slice(temp.length - 14, temp.length),
+      txOverviewStats: temp.slice(temp.length - 15, temp.length - 1),
       addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
-      transactionPerDay: temp[temp.length - 1].totalTransaction,
+      transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0
     });
 
@@ -153,6 +156,7 @@ class Home extends Component {
     //   this.load();
     // }, 6000);
   }
+
 
   componentWillUnmount() {
     //clearConstellations();
@@ -246,8 +250,8 @@ class Home extends Component {
 
                     <div className="col-md-3 col-sm-12 col-xs-12">
                       <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><TRXPrice amount={1000} currency="USD"/></h2>
-                        <p className="m-0">{tu("pice_per_1000trx")}</p>
+                        <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
+                        <p className="m-0">{tu("pice_per_1trx")}</p>
                       </Link>
                     </div>
                     {/*<div className="col-md-2 col-sm-6">*/}
@@ -304,7 +308,6 @@ class Home extends Component {
                               <LineReactHighChartAdd style={{minWidth:255,height: 200}} data={addressesStats} intl={intl} source='home'/>
                         }
                       </div>
-
                     </div>
                   </div>
                 </div>
