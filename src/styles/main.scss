@@ -964,7 +964,7 @@ th {
     font-size: 14px;
   }
   a {
-    color: red;
+    color: #C23631;
   }
   ul ul {
     list-style: none;
@@ -993,7 +993,7 @@ th {
     margin-bottom: 0px;
   }
   a {
-    color: red;
+    color: #C23631;
   }
   li {
     padding-bottom: 8px;
@@ -1065,7 +1065,7 @@ th {
     margin-bottom: 16px;
     button {
       border-radius: 0px;
-      background: red !important;
+      background: #C23631 !important;
       margin-top: 40px;
       color: white;
     }
@@ -1373,6 +1373,12 @@ h5 {
   font-size: 13px;
 }
 
+.modal-content {
+  border-radius: 2px;
+}
+._applyHeader {
+  border-bottom:0px;
+}
 ._applyHeader span {
   font-family: Helvetica-Bold;
   color: #333333;
