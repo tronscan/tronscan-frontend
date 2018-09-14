@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -831,27 +830,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -861,7 +860,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

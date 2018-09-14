@@ -178,7 +178,7 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Loading Transaction",
   "nodes_ranking": "Nodes Ranking",
-  "split_by_country":"Rank by country and region",
+  "split_by_country": "Rank by country and region",
   "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
@@ -873,8 +873,8 @@ export const messages = {
   "list_trx": "List TRX",
   "burned_trx": "TRX Burned",
   "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
   /*
   ##################################################################################
   #                                                                                #
@@ -921,7 +921,7 @@ export const messages = {
 */
   "my_token": "My Token",
   "my_token_desc_1": "The information related to the token will be displayed on the token page. Each token based on the comprehensiveness and authenticity of the information will get a",
-  "tron_rating":"Token Reputation",
+  "tron_rating": "Token Reputation",
   "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@tron.network via your company email or certified email with necessary credentials.",
   "brief_info": "Brief Introduction",
   "website_official": "Official website",
@@ -930,13 +930,13 @@ export const messages = {
   "country": "Country/Region",
   "social_link": "Social Media Link",
   "download_excel": "Download the template",
-  "no_message":"N/A (Please send an email to complete this information)",
-  "insufficient_message":"Insufficient information",
-  "token_detail":"Token Detail",
-  "contact_us":"Contact us",
-  "my_token":"My Token",
-  "try_later":"Please try it later",
-  "contract_address":"Contract Address",
+  "no_message": "N/A (Please send an email to complete this information)",
+  "insufficient_message": "Insufficient information",
+  "token_detail": "Token Detail",
+  "contact_us": "Contact us",
+  "my_token": "My Token",
+  "try_later": "Please try it later",
+  "contract_address": "Contract Address",
 
   /*
 ##################################################################################
@@ -953,24 +953,24 @@ export const messages = {
   "freeze_setting_desc": "Freeze part of the tokens for a period of time",
   "confirm_setting": "Confirm Setting",
   "confirm_setting_desc": "Confirm all your information",
-  "token_logo":"Token LOGO",
-  "image_restraint_desc":"resolution 1:1, suggested format jpg/png",
-  "prev_step":"Previous",
+  "token_logo": "Token LOGO",
+  "image_restraint_desc": "resolution 1:1, suggested format jpg/png",
+  "prev_step": "Previous",
   "freeze_on": "ON",
   "freeze_off": "OFF",
-  "freeze_not_valid":"Freeze function off",
-  "no_logo_error":"no logo found",
-  "confirm_issue_info":"Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
-  "tick_checkbox":"Need to tick the Checkbox",
-  "change_info":"If the information is not correct, please",
-  "total":"total",
+  "freeze_not_valid": "Freeze function off",
+  "no_logo_error": "no logo found",
+  "confirm_issue_info": "Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+  "tick_checkbox": "Need to tick the Checkbox",
+  "change_info": "If the information is not correct, please",
+  "total": "total",
   "a_totle": "A Total of",
   "transaction_info": "transactions found",
   "hold_addr": "Token Holders",
-  "transactions_unit":"Transactions",
+  "transactions_unit": "Transactions",
   "transfers_unit": "Transfers",
-  "block_unit":"Blocks",
-  "record_unit":"Transactions",
+  "block_unit": "Blocks",
+  "record_unit": "Transactions",
   "token_unit": "Tokens",
   "vote_unit": "Voters",
   "account_unit": "accounts",
@@ -984,43 +984,42 @@ export const messages = {
 ##################################################################################
 */
 
-  "issue_progress":"Progress",
-  "fund_raised":"Fund Raised",
-  "issuing_price":"Issuing Price",
-  "buy_token_info":"你想要购买多少数量的通证？",
-  "reputation":"Reputation",
-  "issue_time":"Issuing Time ",
-  "success_receive":"Successfully received",
-  "circulating_supply":"Circulating Supply",
-  "issue_info":"Issuance Info",
-  "transferring":"In progress",
-  "in_progress":"In progress",
-  "fail_transaction":"Transaction failed",
-  "records":"Records",
+  "issue_progress": "Progress",
+  "fund_raised": "Fund Raised",
+  "issuing_price": "Issuing Price",
+  "buy_token_info": "你想要购买多少数量的通证？",
+  "reputation": "Reputation",
+  "issue_time": "Issuing Time ",
+  "success_receive": "Successfully received",
+  "circulating_supply": "Circulating Supply",
+  "issue_info": "Issuance Info",
+  "transferring": "In progress",
+  "in_progress": "In progress",
+  "fail_transaction": "Transaction failed",
+  "records": "Records",
   "part_total": "A total of ",
   "part_pass": "tokens found",
   "view_total": "A Total of",
   "view_pass": "Tokens to participate",
-  "token_overview_tron":"Overview of TRON token market",
-  "token_participate_tron":"Participate in TRON token issuance",
-  "not_started":"Not started",
-  "no_token_to_buy":"Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+  "token_overview_tron": "Overview of TRON token market",
+  "token_participate_tron": "Participate in TRON token issuance",
+  "not_started": "Not started",
+  "no_token_to_buy": "Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
 
-/*
-##################################################################################
-#                                                                                #
-# new variables    2018-09-11 12:51:31                                           #
-#                                                                                #
-##################################################################################
-*/
-"pice_per_1trx": "Price",
-"tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
-"HighChart_tip":"Click and drag in the plot area to zoom in",
-"general_information":"General Information",
-"blockchain_information":"Blockchain Information",
-"sr_information":"SR Information",
-"currency_information":"Currency Information"
-
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
 
 
 };

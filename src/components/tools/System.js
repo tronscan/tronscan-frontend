@@ -47,7 +47,7 @@ class System extends Component {
     return (
         <main className="container header-overlap _system">
           {modal}
-          <div className="">
+          <div className="" style={{borderTop: "4px solid #C23631"}}>
             <table className="table table-hover m-0 bg-white">
               <tbody>
               <tr>

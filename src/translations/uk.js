@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Надіслати на наступну адресу",
   "change_website": "Змінити веб-сайт",
   "you_must_enter_url": "Ви повинні ввести URL-адресу",
-  "specify_the_url":  "Будь ласка, вкажіть URL-адресу",
+  "specify_the_url": "Будь ласка, вкажіть URL-адресу",
   /*
   ##################################################################################
   #                                                                                #
@@ -353,7 +352,7 @@ export const messages = {
   "github_linked": "З’єднано з Github!",
   "unable_to_link_github_message": " Не вдається зв'язатись з Github, переконайтеся, що ваше ім'я користувача правильне!",
   "could_not_link_github": " Не вдалося зв’язатися з Github ",
-  "enter_your_github_username":  "Введіть ім'я користувача Github",
+  "enter_your_github_username": "Введіть ім'я користувача Github",
   "link_to_github": "Зв’язатися з Github",
   "link_github": "перейти на Github",
   "you_must_enter_a_url": "Ви повинні ввести URL-адресу",
@@ -368,7 +367,7 @@ export const messages = {
   "could_not_claim_rewards": " Не можуть претендувати на винагороду",
   "claim_rewards_error_message": "Сталася помилка під час спроби подати скаргу, будь ласка, спробуйте пізніше.",
   "rewards_claimed": "Заявлені Нагороди!",
-  "successfully_claimed_rewards":  " Успішні заяви про винагороду",
+  "successfully_claimed_rewards": " Успішні заяви про винагороду",
   "claim_rewards": "Заявки на винагороду",
   "sr_receive_reward_message_0": "Як представник ви отримуєте винагороду за виробництво блоків. Ці винагороди можна вимагати кожні 24 години",
   "intro": "вступ",
@@ -515,7 +514,7 @@ export const messages = {
     для кожного, хто має хоча б 1024 TRX на своєму Обліковому записі`,
   "token_issue_guide_message_2": `Коли токен випущений, це повинно бути відображено на сторінці огляду токена.
    Потім користувачі можуть брати участь під час періоду участі і обміну TRX на токени.`,
-  "token_issue_guide_message_3":`Після випуску токена ваш аккаунт отримає кількість токенов, що дорівнює загальному обсягу.
+  "token_issue_guide_message_3": `Після випуску токена ваш аккаунт отримає кількість токенов, що дорівнює загальному обсягу.
     Коли інші користувачі обмінюють свої TRX на токени, то токени будуть списуватися з Вашого облікового запису і Ви будете
     отримувати TRX, у кількості відповідно до зазначеного обмінного курсу.`,
   /*
@@ -849,27 +848,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -879,6 +878,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

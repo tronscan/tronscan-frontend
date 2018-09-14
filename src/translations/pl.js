@@ -1,5 +1,4 @@
-﻿
-export const messages = {
+﻿export const messages = {
   /*
   ##################################################################################
   #                                                                                #
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Wyślij na następujący adres",
   "change_website": "Zmień adres strony",
   "you_must_enter_url": "Wpisz poprawny adres URL",
-  "specify_the_url":  "Musisz wpisać adres URL",
+  "specify_the_url": "Musisz wpisać adres URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -351,7 +350,7 @@ export const messages = {
   "github_linked": "Github został poprawnie połączony!",
   "unable_to_link_github_message": "Nie udało się połączyć konta Github, upewnij się, że nickname jest poprawny",
   "could_not_link_github": "Nie udało się połączyć konta Github",
-  "enter_your_github_username":   "Podaj nazwę użytkownika na Github",
+  "enter_your_github_username": "Podaj nazwę użytkownika na Github",
   "link_to_github": "Połącz z Githubem",
   "link_github": "Połącz Github",
   "you_must_enter_a_url": "Musisz wpisać adres URL",
@@ -366,7 +365,7 @@ export const messages = {
   "could_not_claim_rewards": "Przesłanie nagród nie udało się.",
   "claim_rewards_error_message": "Coś poszło nie tak podczas przesyłania nagród na Twoje konto, spróbuj ponownie później.",
   "rewards_claimed": "Nagrody zostały odebrane!",
-  "successfully_claimed_rewards":  "Pomyślnie odebrano nagrody",
+  "successfully_claimed_rewards": "Pomyślnie odebrano nagrody",
   "claim_rewards": "Odbierz nagrody",
   "sr_receive_reward_message_0": "Jako Reprezentant, otrzymujesz nagrody za produkowanie bloków. Nagrody możesz odbierać co 24 godziny.",
   "intro": "Wstęp",
@@ -510,8 +509,8 @@ export const messages = {
   "end_date": "Data końcowa",
   "token_spend_confirm": "Potwierdzam, że tworząc token zostanie mi pobrana jednorazowa opłata w wysokości 1024 TRX.",
   "token_issue_guide_message_1": `Wydanie tokenu za pośrednictwem protokołu TRON jest możliwe do wykonania przez każdego, kto posiada przynajmniej 1024 TRX na swoim koncie.`,
-  "token_issue_guide_message_2":`Utworzenie tokenu będzie wiązało się z jego wyświetleniem na stronie głównej tokenów. Użytkownicy mogą brać udział w dystrybucji tokenów i wymieniać swoje TRX za tokeny we wskazanym okresie.`,
-  "token_issue_guide_message_3":`Po wydaniu tokenu, Twoje konto zostanie zasilone ilością tokenów równą ustawionej przez Ciebie cyrkulacji.
+  "token_issue_guide_message_2": `Utworzenie tokenu będzie wiązało się z jego wyświetleniem na stronie głównej tokenów. Użytkownicy mogą brać udział w dystrybucji tokenów i wymieniać swoje TRX za tokeny we wskazanym okresie.`,
+  "token_issue_guide_message_3": `Po wydaniu tokenu, Twoje konto zostanie zasilone ilością tokenów równą ustawionej przez Ciebie cyrkulacji.
    W momencie kiedy inni użytkownicy wymienią swoje TRX na Twoje tokeny, odpowiednia ilość utworzonych przez Ciebie tokenów zostanie zabrana z Twojego konta, a w zamian otrzymasz ilość TRX zgodną z ustalonym przez Ciebie kursem wymiany.`,
   /*
   ##################################################################################
@@ -844,27 +843,27 @@ export const messages = {
    #                                                                                #
    ##################################################################################
  */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -874,7 +873,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

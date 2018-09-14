@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Invia al seguente indirizzo",
   "change_website": "Cambia sito web",
   "you_must_enter_url": "Devi inserire un URL",
-  "specify_the_url":  "Per favore, specifica l'URL",
+  "specify_the_url": "Per favore, specifica l'URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -301,7 +300,7 @@ export const messages = {
   "apply_for_delegate": "richiesta per diventare rappresentante",
   "apply_super_representative_candidate": "Richiesta per essere un Super Rappresentante",
   "your_personal_website_address": "il tuo sito web personale",
-  "apply_for_delegate_predescription":`Ogni possessore di token ha l'opportunità di diventare un Super Rappresentante di TRON.
+  "apply_for_delegate_predescription": `Ogni possessore di token ha l'opportunità di diventare un Super Rappresentante di TRON.
    Tuttavia, affinché sia rete che la comunità possano operare in modo più fluido ed efficace,
    abbiamo creato una serie di norme e regolamenti per essere idonei a diventare Super Rappresentanti. Promuoveremo i Super Rappresentanti selezionati per aumentare le possibilità di essere eletti. La lista dei Super Rappresentanti selezionati viene aggiornata una volta a settimana.`,
   "apply_for_delegate_description": `
@@ -366,7 +365,7 @@ export const messages = {
   "could_not_claim_rewards": "Non è stato possibile reclamare le ricompense",
   "claim_rewards_error_message": "Qualcosa è andato storto nel tentativo di reclamare le ricompense, si prega di riprovare più tardi.",
   "rewards_claimed": "Ricompense reclamate!",
-  "successfully_claimed_rewards":  "Ricompense reclamate con successo",
+  "successfully_claimed_rewards": "Ricompense reclamate con successo",
   "claim_rewards": "Reclama ricompense",
   "sr_receive_reward_message_0": "In qualità di rappresentante ricevi ricompense per la produzione dei blocchi. Queste ricompense possono essere reclamate ogni 24 ore",
   "intro": "Introduzione",
@@ -513,7 +512,7 @@ export const messages = {
   "token_issue_guide_message_1": "L'emissione di un token sul protocollo TRON può essere eseguita da chiunque possieda almeno 1024 TRX nel proprio conto.",
   "token_issue_guide_message_2": `Quando un token viene emesso verrà mostrato nella pagina panoramica del token.
     Gli utenti possono quindi partecipare all'interno del periodo di partecipazione e scambiare i loro TRX per il token.`,
-  "token_issue_guide_message_3":`Dopo la creazione del token il tuo conto riceverà la quantità di token pari alla fornitura totale.
+  "token_issue_guide_message_3": `Dopo la creazione del token il tuo conto riceverà la quantità di token pari alla fornitura totale.
     Quando altri utenti scambieranno i loro TRX per i tuoi token, questi saranno detratti dal tuo account e riceverai una somma di TRX uguale al tasso di cambio specificato.`,
   /*
   ##################################################################################
@@ -846,27 +845,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -876,7 +875,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

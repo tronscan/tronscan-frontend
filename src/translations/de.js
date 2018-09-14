@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "An folgende Adresse senden",
   "change_website": "Webseite anpassen",
   "you_must_enter_url": "Sie müssen eine gültige URL eingeben",
-  "specify_the_url":  "Bitte geben Sie die URL der Webseite ein",
+  "specify_the_url": "Bitte geben Sie die URL der Webseite ein",
   /*
   ##################################################################################
   #                                                                                #
@@ -370,7 +369,7 @@ export const messages = {
   "could_not_claim_rewards": "Eine Prämie/Belohnung konnte nicht ermittelt werden.",
   "claim_rewards_error_message": "Beim Einfordern der Prämie/Belohnung ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal.",
   "rewards_claimed": "Prämie/Belohnung angefordert!",
-  "successfully_claimed_rewards":  "Prämie/Belohnung Erfolgreich erhalten",
+  "successfully_claimed_rewards": "Prämie/Belohnung Erfolgreich erhalten",
   "claim_rewards": "Prämien einfordern",
   "sr_receive_reward_message_0": "Als Repräsentat erhalten Sie eine Prämie/Belohnung für das Erstellung von Blöcken(Blockchain). Diese Prämie kann alle 24 Stunden in Anspruch genommen werden.",
   "intro": "Einleitung",
@@ -517,11 +516,11 @@ export const messages = {
   "start_date": "Start Datum",
   "end_date": "End Datum",
   "token_spend_confirm": "Hiermit akzeptiere ich, dass mich die Erstellung des Tokens eine einmalige Gebühr von 1024 TRX kostet.",
-  "token_issue_guide_message_1":`Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des TRON-Protokolls kann durch jeden Benutzer erfolgen,
+  "token_issue_guide_message_1": `Die Erstellung und Ausgabe eines eigenen Tokens auf Basis des TRON-Protokolls kann durch jeden Benutzer erfolgen,
    man benötigt dazu mindestens 1024 TRX auf seinem Konto.`,
-  "token_issue_guide_message_2":`Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
+  "token_issue_guide_message_2": `Der aktuelle Stand der ausgegebenen Tokens wird auf der Token-Übersichtsseite angezeigt.
    Die Benutzer können innerhalb des definierten Zeitraums teilnehmen und ihre TRX gegen Token eintauschen.`,
-  "token_issue_guide_message_3":`Nach der Erstellung des Token werden Ihnen diese auf Ihrem Konto gugeschrieben.
+  "token_issue_guide_message_3": `Nach der Erstellung des Token werden Ihnen diese auf Ihrem Konto gugeschrieben.
     Wenn Benutzer TRX gegen den von Ihnen erstellen Token eintauschen, erhalten Sie den entsprechenden Gegenwert
     auf Ihrem Konto Gutgeschrieben. Gleichzeitig werden Ihnen die Token abgezogen.`,
   /*
@@ -856,27 +855,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
 
   /*
@@ -887,6 +886,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

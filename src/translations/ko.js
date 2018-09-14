@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "자산 참여",
   "loading_transaction": "트랜잭션 로딩 중",
   "nodes_ranking": "노드 랭킹",
-  "total_accounts_last_day":"마지막 날까지의 총 계정 수",
+  "total_accounts_last_day": "마지막 날까지의 총 계정 수",
   "chart_tip": "데이터 확대 영역을 드래그하여 줌 인/아웃 할 수 있습니다",
   "link_test_server": "테스트넷",
   "highest": "최고 ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "다음과 같은 주소에 전송하십시오",
   "change_website": "웹 사이트 주소 변경",
   "you_must_enter_url": "URL을 반드시 입력해야합니다",
-  "specify_the_url":  "URL을 지정해주세요",
+  "specify_the_url": "URL을 지정해주세요",
   /*
   ##################################################################################
   #                                                                                #
@@ -350,7 +349,7 @@ export const messages = {
   "github_linked": "깃헙(Github) 연결 완료!",
   "unable_to_link_github_message": "깃헙(Github)에 연결하지 못했습니다. 유저네임이 올바른지 확인해주세요!",
   "could_not_link_github": "깃헙(Github)에 연결하지 못했습니다",
-  "enter_your_github_username":   "깃헙(Github) 유저네임을 입력해주십시오",
+  "enter_your_github_username": "깃헙(Github) 유저네임을 입력해주십시오",
   "link_to_github": "깃헙(Github) 연결",
   "link_github": "깃헙(Github) 링크",
   "you_must_enter_a_url": "반드시 URL을 입력해주어야 합니다",
@@ -365,7 +364,7 @@ export const messages = {
   "could_not_claim_rewards": "보상을 청구하지 못했습니다",
   "claim_rewards_error_message": "보상을 청구하는 중에 문제가 생겼습니다. 나중에 다시 시도해주십시오.",
   "rewards_claimed": "보상을 청구하였습니다!",
-  "successfully_claimed_rewards":  "성공적으로 보상을 청구하였습니다",
+  "successfully_claimed_rewards": "성공적으로 보상을 청구하였습니다",
   "claim_rewards": "보상 청구",
   "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
   "intro": "Intro",
@@ -508,10 +507,10 @@ export const messages = {
   "start_date": "시작 일자",
   "end_date": "종료 일자",
   "token_spend_confirm": "나는 토큰의 총 공급량을 만드는데 한 번의 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
-  "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
+  "token_issue_guide_message_1": `TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
+  "token_issue_guide_message_2": `토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
-  "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
+  "token_issue_guide_message_3": `토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
    다른 사용자가 TRX를 토큰으로 교환하면 토큰이 계정에서 철회되고 지정된 환율과 동일한 TRX를 받게됩니다.`,
   /*
   ##################################################################################
@@ -827,12 +826,12 @@ export const messages = {
   "search_description": "주소, 블록번호, 트랜잭션해시, 토큰이름 검색",
   "search_description1": "주소, 블록, 트랜잭션, 토큰 검색",
   "transaction": "트랜잭션",
-  "total_addresses":"총 주소 수",
-  "daily_increment":"일일 증가량",
-  "address_growth_chart":"주소 증가 차트",
-  "addresses_amount":"주소 수",
-  "past_14_days_of_transactions":"지난 14일동안 트랜잭션 상황",
-  "address_growth":"주소 증가 상황",
+  "total_addresses": "총 주소 수",
+  "daily_increment": "일일 증가량",
+  "address_growth_chart": "주소 증가 차트",
+  "addresses_amount": "주소 수",
+  "past_14_days_of_transactions": "지난 14일동안 트랜잭션 상황",
+  "address_growth": "주소 증가 상황",
   "power": "트론파워",
   "token_transfers": "토큰 전송 목록",
   "website_url": "웹사이트 URL",
@@ -844,27 +843,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -874,6 +873,6 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };
