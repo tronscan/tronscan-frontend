@@ -740,6 +740,23 @@ th {
   }
 }
 
+// New token stuff mobile
+
+@media (max-width: 767.98px) {
+  .token_black .ant-table .ant-table-tbody > tr > td {
+    padding: 10px;
+    font-size: 10px !important;
+  }
+  .token_black .ant-table .ant-table-thead > tr > th {
+    padding: 10px 1px;
+  }
+  .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+    word-break: initial;
+    font-size: 10px !important;
+  }
+
+}
+
 .mt-5-logo img {
   height: 100px;
   margin-left: -16px;

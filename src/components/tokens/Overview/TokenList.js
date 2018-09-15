@@ -346,7 +346,7 @@ class TokenList extends Component {
         dataIndex: 'index',
         key: 'index',
         align: 'center',
-        className: 'ant_table _text_nowrap',
+        className: 'ant_table _text_nowrap d-none d-xl-table-cell',
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -354,7 +354,7 @@ class TokenList extends Component {
         key: 'name',
         width: '50%',
         render: (text, record, index) => {
-          return <div className="table-imgtext">
+          return <div className="table-imgtext ">
             {record.imgUrl ?
                 <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
                     style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
@@ -377,14 +377,14 @@ class TokenList extends Component {
           return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
         },
         align: 'center',
-        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+        className: 'ant_table d-none d-xl-table-cell _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'reputation'}),
         dataIndex: 'reputation',
         key: 'reputation',
         align: 'center',
-        className: 'ant_table',
+        className: 'ant_table d-none d-xl-table-cell',
         render: (text, record, index) => {
           return <div>
             {text && intl.formatMessage({id: text})}
@@ -444,7 +444,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ? <div className="table_pos_info d-none d-xl-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)
