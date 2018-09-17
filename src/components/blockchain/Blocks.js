@@ -30,7 +30,7 @@ class Blocks extends React.Component {
     this.loadBlocks(page, pageSize);
   };
 
-  loadBlocks = async (page = 1, pageSize = 10) => {
+  loadBlocks = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
 
@@ -101,8 +101,8 @@ class Blocks extends React.Component {
       },
       {
         title: upperFirst(intl.formatMessage({id: 'produced_by'})),
-        dataIndex: 'witnessAddress',
-        key: 'witnessAddress',
+        dataIndex: 'witnessName',
+        key: 'witnessName',
         align: 'left',
         width: '40%',
         className: 'ant_table',

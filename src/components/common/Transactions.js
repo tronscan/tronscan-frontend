@@ -37,7 +37,7 @@ class Transactions extends React.Component {
     this.loadTransactions(page, pageSize);
   };
 
-  loadTransactions = async (page = 1, pageSize = 10) => {
+  loadTransactions = async (page = 1, pageSize = 20) => {
 
     let {filter} = this.props;
 
