@@ -140,14 +140,14 @@ class VoteOverview extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let {account,} = this.props;
     if (account.isLoggedIn) {
       this.props.reloadWallet();
       this.loadCurrentVotes(account.address);
     }
-    this.loadVotes();
-    this.loadVoteTimer();
+    await this.loadVotes();
+    await this.loadVoteTimer();
   }
 
   loadLiveVotes = async () => {
@@ -155,6 +155,7 @@ class VoteOverview extends React.Component {
     this.setState({
       liveVotes,
     });
+
   };
 
   loadVoteTimer = async () => {
@@ -451,12 +452,13 @@ class VoteOverview extends React.Component {
     let voteSize = Math.ceil(trxBalance / 20);
 
     for (let index in filteredCandidates) {
-      for (let liveVote in liveVotes) {
-        if (filteredCandidates[index].address === liveVotes[liveVote].address) {
-          filteredCandidates[index].liveVote = liveVotes[liveVote].votes
+        for (let liveVote in liveVotes) {
+            if (filteredCandidates[index].address === liveVotes[liveVote].address) {
+                filteredCandidates[index].liveVote = liveVotes[liveVote].votes
+            }
         }
-      }
     }
+
     return (
         <main className="container header-overlap _voteOverview">
           {modal}
@@ -560,92 +562,98 @@ class VoteOverview extends React.Component {
                               </tr>
                             }
                             {
-                              filteredCandidates.map(candidate => (
-                                  <tr key={candidate.address}>
-                                    {
-                                      viewStats ?
-                                          <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
-                                              style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                            {candidate.rank + 1}
-                                          </th> :
-                                          <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
-                                            {candidate.rank + 1}
-                                          </th>
-                                    }
-                                    <td className="d-flex flex-column flex-sm-row ">
-                                      <div className="text-center text-sm-left">
-                                        <Truncate>
-                                          <AddressLink address={candidate.address}
-                                                       className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
-                                        </Truncate>
-                                        <AddressLink className="small text-muted" address={candidate.address}/>
-                                      </div>
-                                      {
-                                        candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
-                                          <Link className="btn btn-lg btn-block btn-default mt-1"
-                                                to={`/representative/${candidate.address}`}>
-                                            {tu("open_team_page")}
-                                            <i className="fas fa-users ml-2"/>
-                                          </Link>
+                              filteredCandidates.map(candidate => {
+                                let candidateLiveVote = candidate.liveVote || 0
+                                return (
+
+                                    <tr key={candidate.address}>
+                                        {
+                                            viewStats ?
+                                                <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
+                                                    style={{backgroundColor: "#" + colors[candidate.rank]}}>
+                                                    {candidate.rank + 1}
+                                                </th> :
+                                                <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
+                                                    {candidate.rank + 1}
+                                                </th>
+                                        }
+                                      <td className="d-flex flex-column flex-sm-row ">
+                                        <div className="text-center text-sm-left">
+                                          <Truncate>
+                                            <AddressLink address={candidate.address}
+                                                         className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
+                                          </Truncate>
+                                          <AddressLink className="small text-muted" address={candidate.address}/>
                                         </div>
-                                      }
-                                    </td>
-                                    <td className="small text-right align-middle">
-                                      {
-                                        totalVotes > 0 &&
-                                        <Fragment>
-                                          <FormattedNumber value={candidate.votes}/><br/>
-                                        </Fragment>
-                                      }
-                                    </td>
-                                    <td className="small text-right align-middle _liveVotes">
-                                      {
-                                        totalVotes > 0 &&
-                                        <Fragment>
-                                          <FormattedNumber value={candidate.liveVote}/><br/>
-                                          {candidate.liveVote > candidate.votes?
-                                            <span className="color-green">+<FormattedNumber  value={candidate.liveVote - candidate.votes}/></span>
-                                            :<span className="color-red"><FormattedNumber  value={candidate.liveVote - candidate.votes}/></span>
+                                          {
+                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
+                                                <Link className="btn btn-lg btn-block btn-default mt-1"
+                                                      to={`/representative/${candidate.address}`}>
+                                                    {tu("open_team_page")}
+                                                  <i className="fas fa-users ml-2"/>
+                                                </Link>
+                                              </div>
                                           }
-                                        </Fragment>
-                                      }
-                                    </td>
-                                    <td className="small text-right align-middle">
-                                      {
-                                        totalVotes > 0 &&
-                                        <Fragment>
-                                          <FormattedNumber value={(candidate.votes / totalVotes) * 100}
-                                                           minimumFractionDigits={2}
-                                                           maximumFractionDigits={2}
-                                          />%
-                                        </Fragment>
-                                      }
-                                    </td>
-                                    {
-                                      votingEnabled && <td className="vote-input-field">
-                                        <div className="input-group">
-                                          <div className="input-group-prepend">
-                                            <button className="btn btn-outline-danger"
-                                                    onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) - voteSize)}
-                                                    type="button">-
-                                            </button>
-                                          </div>
-                                          <input
-                                              type="text"
-                                              value={votes[candidate.address] || ""}
-                                              className="form-control form-control-sm text-center"
-                                              onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
-                                          <div className="input-group-append">
-                                            <button className="btn btn-outline-success"
-                                                    onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) + voteSize)}
-                                                    type="button">+
-                                            </button>
-                                          </div>
-                                        </div>
                                       </td>
-                                    }
-                                  </tr>
-                              ))
+                                      <td className="small text-right align-middle">
+                                          {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={candidate.votes}/><br/>
+                                              </Fragment>
+                                          }
+                                      </td>
+                                      <td className="small text-right align-middle _liveVotes">
+                                          {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={candidateLiveVote}/><br/>
+
+                                                  {(candidateLiveVote > 0) && (candidateLiveVote > candidate.votes) ?
+                                                      <span className="color-green">+<FormattedNumber  value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                      :<span className="color-red"><FormattedNumber  value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                  }
+                                              </Fragment>
+                                          }
+                                      </td>
+                                      <td className="small text-right align-middle">
+                                          {
+                                              totalVotes > 0 &&
+                                              <Fragment>
+                                                <FormattedNumber value={(candidate.votes / totalVotes) * 100}
+                                                                 minimumFractionDigits={2}
+                                                                 maximumFractionDigits={2}
+                                                />%
+                                              </Fragment>
+                                          }
+                                      </td>
+                                        {
+                                            votingEnabled && <td className="vote-input-field">
+                                              <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                  <button className="btn btn-outline-danger"
+                                                          onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) - voteSize)}
+                                                          type="button">-
+                                                  </button>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    value={votes[candidate.address] || ""}
+                                                    className="form-control form-control-sm text-center"
+                                                    onChange={(ev) => this.setVote(candidate.address, ev.target.value)}/>
+                                                <div className="input-group-append">
+                                                  <button className="btn btn-outline-success"
+                                                          onClick={() => this.setVote(candidate.address, (votes[candidate.address] || 0) + voteSize)}
+                                                          type="button">+
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </td>
+                                        }
+                                    </tr>
+                                )
+                              }
+                              )
                             }
                             </tbody>
                           </table>
