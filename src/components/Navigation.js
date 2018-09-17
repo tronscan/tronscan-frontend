@@ -485,7 +485,7 @@ class Navigation extends PureComponent {
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
               </div>
-              <div className="ml-auto py-3 hidden-mobile nav-searchbar">
+              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
                 <div className="input-group">
                   <input type="text"
                          className="form-control p-2 bg-white border-0 box-shadow-none"
@@ -501,7 +501,7 @@ class Navigation extends PureComponent {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
               {
                 IS_TESTNET &&
                 <div className="col text-center text-info font-weight-bold py-2">
@@ -664,7 +664,7 @@ class Navigation extends PureComponent {
                 </h4>
               }
 
-              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
+              <div className="ml-auto py-3 hidden-mobile nav-searchbar">
                 <div className="input-group">
                   <input type="text"
                          className="form-control p-2 bg-white border-0 box-shadow-none"
@@ -680,7 +680,7 @@ class Navigation extends PureComponent {
                     </button>
                   </div>
                 </div>
-              </div> */}
+              </div>
               
             </div>
           }

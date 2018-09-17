@@ -27,10 +27,13 @@
     }
     .nav-searchbar {
         input {
-            // background-color: $white !important;
-            // border: 1px solid $text-block !important;
-            background-color: #f3f3f3!important;
+            background-color: $white !important;
+            border: 1px solid $text-block !important;
+            // background-color: #f3f3f3!important;
             border-radius: 2px;
+        }
+        .input-group-append button{
+            border-radius: 0 2px 2px 0;
         }
     } // default background style ====================================================
     .token_black {
