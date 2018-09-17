@@ -367,7 +367,7 @@ class TokenDetail extends React.Component {
         social_display++;
       }
     })
-    let lowerText = toLower(token.reputation) + '_acitve.png';
+    let lowerText = toLower(token.reputation) + '_active.png';
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
