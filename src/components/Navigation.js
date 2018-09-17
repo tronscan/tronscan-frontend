@@ -541,7 +541,7 @@ class Navigation extends PureComponent {
                           route.linkHref === true ?
                               <HrefLink
                                   className="nav-link"
-                                  href={activeLanguage == 'en' ? route.enurl : route.zhurl}>
+                                  href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
