@@ -461,7 +461,7 @@ class Navigation extends PureComponent {
 
   render() {
 
-    let {intl} = this.props;
+    let {intl, params} = this.props;
     let {
       languages,
       activeLanguage,
@@ -474,7 +474,6 @@ class Navigation extends PureComponent {
     let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
-
     return (
         <div className="header-top">
           {popup}
@@ -485,23 +484,25 @@ class Navigation extends PureComponent {
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
               </div>
-              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
-                <div className="input-group">
-                  <input type="text"
-                         className="form-control p-2 bg-white border-0 box-shadow-none"
-                         style={styles.search}
-                         value={search}
-                         onKeyDown={this.onSearchKeyDown}
-                         onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder={intl.formatMessage({id: "search_description1"})}/>
-                  <div className="input-group-append">
+              { this.props.location.pathname != '/'&&
+                <div className="ml-auto py-3 hidden-mobile nav-searchbar">
+                  <div className="input-group">
+                    <input type="text"
+                          className="form-control p-2 bg-white border-0 box-shadow-none"
+                          style={styles.search}
+                          value={search}
+                          onKeyDown={this.onSearchKeyDown}
+                          onChange={ev => this.setState({search: ev.target.value})}
+                          placeholder={intl.formatMessage({id: "search_description1"})}/>
+                    <div className="input-group-append">
 
-                    <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
-                      <i className="fa fa-search"/>
-                    </button>
+                      <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
+                        <i className="fa fa-search"/>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div> */}
+              }
               {
                 IS_TESTNET &&
                 <div className="col text-center text-info font-weight-bold py-2">
@@ -664,7 +665,7 @@ class Navigation extends PureComponent {
                 </h4>
               }
 
-              <div className="ml-auto py-3 hidden-mobile nav-searchbar">
+              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
                 <div className="input-group">
                   <input type="text"
                          className="form-control p-2 bg-white border-0 box-shadow-none"
@@ -680,7 +681,7 @@ class Navigation extends PureComponent {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
               
             </div>
           }
