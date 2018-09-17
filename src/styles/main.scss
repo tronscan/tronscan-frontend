@@ -1335,7 +1335,9 @@ h5 {
   }
 
 }
-
+.leaflet-marker-icon.marker-cluster{
+  border-radius:50%;
+}
 ._nodemap {
   div div div {
     border-radius:1px;

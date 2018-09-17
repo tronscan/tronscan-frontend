@@ -165,7 +165,7 @@ class Live extends React.Component {
                                                                         truncate={true}/></span>
                 </div>
                 <div className="col-xs-8 col-sm-2">
-                 
+
                 </div>
                 <div className="col-xs-8 col-sm-5">
                   {tu("to")}{': '}
