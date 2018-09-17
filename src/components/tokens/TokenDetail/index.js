@@ -51,7 +51,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://www.tronapp.co:9009/api/token?name=" + name);
+    let result = await xhr.get("http://18.216.57.65:20110/api/token?name=" + name);
     let token = result.data.data;
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 

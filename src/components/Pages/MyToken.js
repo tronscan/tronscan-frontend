@@ -33,7 +33,7 @@ class MyToken extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
 
-      xhr.get("https://www.tronapp.co:9009/api/mytoken?owner=" + wallet.address).then((result) => {
+      xhr.get("http://18.216.57.65:20110/api/token?owner=" + wallet.address).then((result) => {
 
         if (result.data.data['Data'][0]) {
           this.setState({
