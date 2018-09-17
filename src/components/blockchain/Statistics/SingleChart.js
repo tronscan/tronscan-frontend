@@ -127,35 +127,7 @@ class Statistics extends React.Component {
 
     async loadStats() {
 
-        let {stats} = await Client.getTransferStats({
-            groupby: 'timestamp',
-            interval: 'hour',
-        });
 
-        let {stats: blockStats} = await Client.getBlockStats({
-            info: `avg-block-size`,
-        });
-
-        let transactionTotalStats = stats.total.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value,
-        }));
-
-        let valueStats = stats.value.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value / ONE_TRX,
-        }));
-
-        blockStats = blockStats.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value,
-        }));
-
-        this.setState({
-            transactionStats: transactionTotalStats,
-            transactionValueStats: valueStats,
-            blockStats,
-        });
     }
     async loadTotalTRXSupply(){
         let {intl} = this.props;
