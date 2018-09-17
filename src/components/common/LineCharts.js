@@ -143,9 +143,10 @@ export class LineReactHighChartTx extends React.Component {
                     _config.series[0].data.push(temp);
                 })
             }
-            _config.yAxis.min = 0;
+            //_config.yAxis.min = 0;
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
+            _config.yAxis.tickInterval = 50000;
             _config.tooltip.formatter = function () {
                 let date = intl.formatDate(this.point.date);
                 return (

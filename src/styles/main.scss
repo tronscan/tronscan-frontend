@@ -964,7 +964,7 @@ th {
     font-size: 14px;
   }
   a {
-    color: red;
+    color: #C23631;
   }
   ul ul {
     list-style: none;
@@ -993,7 +993,7 @@ th {
     margin-bottom: 0px;
   }
   a {
-    color: red;
+    color: #C23631;
   }
   li {
     padding-bottom: 8px;
@@ -1065,7 +1065,7 @@ th {
     margin-bottom: 16px;
     button {
       border-radius: 0px;
-      background: red !important;
+      background: #C23631 !important;
       margin-top: 40px;
       color: white;
     }
@@ -1096,9 +1096,9 @@ $border-color-dark: #d8d8d8;
     font-weight: bold;
     font-size: 16px;
   }
-  * {
-    font-weight: lighter;
-  }
+  // * {
+  //   font-weight: lighter;
+  // }
   .card-body {
     padding-left: 0;
   }
@@ -1174,7 +1174,7 @@ $border-color-dark: #d8d8d8;
       line-height: 200px;
       color: $text-color-lighter;
       font-size: 12px;
-      font-weight: lighter;
+      // font-weight: lighter;
     }
 
     .ant-table.ant-table-bordered {
@@ -1204,12 +1204,13 @@ $border-color-dark: #d8d8d8;
       }
       small {
         color: $text-color-lighter;
-        font-weight: lighter;
+        // font-weight: lighter;
       }
     }
     .table-responsive {
+      overflow: unset;
       th, td {
-        font-weight: lighter;
+        // font-weight: lighter;
         border: none !important;
         border-bottom: 1px solid $border-color !important;
       }
@@ -1240,6 +1241,7 @@ table a {
 }
 
 ._system {
+  padding-top: 20px;
   .table th, .table td {
     border-top: 0px solid #DFD7CA;
   }
@@ -1290,13 +1292,16 @@ h5 {
       color: #999999;
     }
     a {
-      color: red;
+      color: #C23631;
     }
     img {
       width: 48px;
       height: 96px;
       float: right;
     }
+  }
+  ._badge div div {
+    border:0px;
   }
   .table-responsive thead tr th {
     background: #F3F3F3;
@@ -1331,8 +1336,14 @@ h5 {
   }
 
 }
-
+.leaflet-marker-icon.marker-cluster{
+  border-radius:50%;
+}
 ._nodemap {
+  div div div {
+    border-radius:1px;
+    border:0px;
+  }
   h3 {
     font-family: Helvetica;
     color: #333333 !important;
@@ -1371,6 +1382,19 @@ h5 {
   font-family: Helvetica;
   color: #666666 !important;
   font-size: 13px;
+}
+
+._applyDesc {
+  margin-top: -10px;
+}
+
+.modal-content {
+  border-radius: 2px;
+}
+
+._applyHeader {
+  border-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 ._applyHeader span {

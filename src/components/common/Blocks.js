@@ -34,7 +34,7 @@ export default class Blocks extends React.Component {
     this.load(page, pageSize);
   };
 
-  load = async (page = 1, pageSize = 10) => {
+  load = async (page = 1, pageSize = 20) => {
 
     let {filter} = this.props;
 

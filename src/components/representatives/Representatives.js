@@ -10,6 +10,7 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
+import {Link} from "react-router-dom";
 
 class Representatives extends Component {
   constructor() {
@@ -149,7 +150,7 @@ class Representatives extends Component {
                             <h3 className="text-primary">
                               <FormattedNumber value={witnesses.length}/>
                             </h3>
-                            {tu("representatives")}
+                            {tu("representativesAcandidates")}
                           </div>
                         </div>
                       </div>
@@ -190,14 +191,25 @@ class Representatives extends Component {
                     </div>
                     <div className="col-md-6 mb-3">
                       <div className="card">
-                        {/* <div className="card-body"> */}
-                        <div style={{height: 326, background: '#fff'}} className="pt-3 bg-line_blue">
-                          {
-                            <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
-                                                         data={pieChart} style={{height: 300}}
-                                                         source='representatives'
-                            />
-                          }
+                        <div style={{height: 326, background: '#fff'}} className="pt-2 bg-line_blue">
+                          <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={{border:0}}>
+                            <h6 className="m-0 lh-150" style={{fontSize:16}}>
+                              <Link to="blockchain/stats/pieChart">
+                                  {tu("produce_distribution")}
+                              </Link>
+                            </h6>
+                          </div>
+                          <div className="card-body pt-0">
+                            <div style={{minWidth: 255, height: 200}}>
+                                {
+                                  <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
+                                                               data={pieChart} style={{height: 255}}
+                                                               source='representatives'
+                                  />
+                                }
+                            </div>
+
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -246,7 +258,7 @@ function Row({account, showSync = true, index, state, props}) {
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
-        <td className="text-center d-none d-lg-table-cell">{account.index + 1}</td>
+        <td className="text-center d-none d-lg-table-cell" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
         <td>
           {
             account.name ?
@@ -309,7 +321,6 @@ function Row({account, showSync = true, index, state, props}) {
             totalVotes > 0 &&
             <Fragment>
               <FormattedNumber value={filteredCandidates[index].votes}/>
-              <br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

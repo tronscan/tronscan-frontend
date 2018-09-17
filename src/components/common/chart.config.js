@@ -654,7 +654,7 @@ module.exports = {
       }
     }]
   },
-    ringPieHighChart3D: {
+  ringPieHighChart3D: {
         chart: {
             type: 'pie',
             options3d: {
@@ -729,7 +729,7 @@ module.exports = {
             data: []
         }]
     },
-    supplyPieHighChart: {
+  supplyPieHighChart: {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,

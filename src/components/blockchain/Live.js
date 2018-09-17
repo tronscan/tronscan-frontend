@@ -15,7 +15,7 @@ function Trxrow({valdata, icon, children, ...props}) {
 
   return (
       <li className="list-group-item p-1">
-        <div className="media text-muted my-3 mx-3" key={valdata} {...props}>
+        <div className="media my-3 mx-3" key={valdata} {...props}>
           {/* <i className={"fa fa-lg mx-2 fa-2x " + icon}/> */}
           <div className="media-body mb-0 lh-125 ">
             {children}
@@ -136,12 +136,15 @@ class Live extends React.Component {
         return (
             <Trxrow key={event.id} icon="fa-exchange-alt">
               <div className="row">
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("token_transfer")}</b>
                   </h5>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+                 <img src={require("../../images/arrow.png")}/>
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("asset")}{': '}
                   {
                     event.tokenName === 'TRX' ?
@@ -156,12 +159,15 @@ class Live extends React.Component {
                   }
                   {' '}{event.tokenName}
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   {tu("from")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.transferFromAddress}
                                                                         truncate={true}/></span>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("to")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress}
                                                                         truncate={true}/></span>
@@ -175,19 +181,25 @@ class Live extends React.Component {
 
             <Trxrow key={event.id} icon="fa-bullhorn">
               <div className="row">
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("voting")}</b>
                   </h5>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("votes")}{': '}<b><FormattedNumber value={event.votes}/></b>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   {tu("voter")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.voterAddress} truncate={false}/></span>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("representatives")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.candidateAddress}
                                                                         truncate={false}/></span>
@@ -201,19 +213,25 @@ class Live extends React.Component {
 
             <Trxrow key={event.id} icon="fa-arrow-right">
               <div className="row">
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("asset_participation")}</b>
                   </h5>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("token_name")}{': '}<b>{event.name}</b>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   {tu("owner_address")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.ownerAddress} truncate={false}/></span>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("bought")}{': '}{event.amount} {event.name}
                 </div>
               </div>
@@ -224,12 +242,15 @@ class Live extends React.Component {
         return (
             <Trxrow key={event.id} icon="fa-plus-circle">
               <div className="row">
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("token_creation")}</b>
                   </h5>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("token_name")}{': '}<b><TokenLink name={event.name}/></b>
                 </div>
                 <div className="col-sm-9">
@@ -245,12 +266,15 @@ class Live extends React.Component {
         return (
             <Trxrow key={event.id} icon="fa-user">
               <div className="row">
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("sr_candidature")}</b>
                   </h5>
                 </div>
-                <div className="col-xs-8 col-sm-6">
+                <div className="col-xs-8 col-sm-2">
+
+                </div>
+                <div className="col-xs-8 col-sm-5">
                   {tu("address")}{': '}
                   <AddressLink address={event.ownerAddress}
                                truncate={false}/>{' '}{t("applied_for_super_representative")}
@@ -261,7 +285,7 @@ class Live extends React.Component {
     }
 
     return (
-        <div className="media text-muted pt-3" key={'other-' + index}>
+        <div className="media pt-3" key={'other-' + index}>
           <p className="media-body pb-3 mb-0 small lh-125 ">
             Unknown
           </p>

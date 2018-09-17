@@ -37,7 +37,7 @@ class TokenList extends Component {
     }
   }
 
-  loadPage = async (page = 1, pageSize = 10) => {
+  loadPage = async (page = 1, pageSize = 20) => {
     let {filter} = this.state;
     let {intl} = this.props;
     this.setState({loading: true});

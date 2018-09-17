@@ -734,12 +734,12 @@ class Statistics extends React.Component {
                                               </div>
                                             </div>
                                             <div className="card">
-                                              <div className="card-body">
+                                              <div className="card-body" style={{height: 400}}>
                                                 <SupplyTypesTRXPieChart
                                                     message={{id: 'breakdown_supply_types'}}
                                                     intl={intl}
                                                     data={supplyTypesChart}
-                                                    style={{height: 400}}
+                                                    style={{height: 300,marginTop:25}}
                                                     source='singleChart'
                                                 />
                                               </div>

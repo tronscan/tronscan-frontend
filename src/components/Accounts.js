@@ -30,7 +30,7 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1, pageSize = 10) => {
+  loadAccounts = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
 

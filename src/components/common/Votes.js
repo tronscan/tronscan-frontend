@@ -35,7 +35,7 @@ class Votes extends React.Component {
     this.load(page, pageSize);
   };
 
-  load = async (page = 1, pageSize = 10) => {
+  load = async (page = 1, pageSize = 20) => {
 
     let {filter} = this.props;
 
@@ -168,7 +168,13 @@ class Votes extends React.Component {
 
     let column = this.customizedColumn(filter);
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'vote_unit'})
+    let tableInfo;
+    if(filter.candidate) {
+      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'voter_unit'});
+    }
+    if(filter.voter){
+      tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'vote_unit'});
+    }
 
     if (!loading && votes.length === 0) {
       if (!EmptyState) {

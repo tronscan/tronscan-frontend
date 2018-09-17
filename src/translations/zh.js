@@ -312,6 +312,7 @@ export const messages = {
   "recent_transactions": "近期交易",
   "newest_account": "最新账户",
   "representatives": "超级代表",
+  "representativesAcandidates": "超级代表及候选人",
   "most_votes": "最高得票",
   "start_end_time": "开始/结束时间",
   "scan_qr_code": "扫描二维码",
@@ -961,7 +962,8 @@ export const messages = {
   "block_unit": "个区块",
   "record_unit": "个记录",
   "token_unit": "个通证",
-  "vote_unit": "个投票",
+  "voter_unit": "个选民",
+  "vote_unit": "个候选人",
   "account_unit": "个账户",
   "address_unit": "个地址",
   /*

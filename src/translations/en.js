@@ -315,6 +315,7 @@ export const messages = {
   "recent_transactions": "recent transactions",
   "newest_account": "newest account",
   "representatives": "representatives",
+  "representativesAcandidates": "Super representatives and candidates",
   "most_votes": "most votes",
   "start_end_time": "Start / End Time",
   "scan_qr_code": "Scan the code with a QR Code scanner",
@@ -971,7 +972,8 @@ export const messages = {
   "block_unit": "Blocks",
   "record_unit": "Transactions",
   "token_unit": "Tokens",
-  "vote_unit": "Voters",
+  "vote_unit": "candidates",
+  "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
 

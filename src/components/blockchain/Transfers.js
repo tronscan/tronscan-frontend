@@ -12,6 +12,7 @@ import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
+import {ONE_TRX} from "../../constants";
 
 class Transfers extends React.Component {
 
@@ -35,7 +36,7 @@ class Transfers extends React.Component {
   onChange = (page, pageSize) => {
     this.load(page, pageSize);
   };
-  load = async (page = 1, pageSize = 10) => {
+  load = async (page = 1, pageSize = 20) => {
 
     let {location} = this.props;
 
@@ -132,7 +133,7 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return record.tokenName == 'TRX'? 
-                  <TRXPrice amount={record.amount}/>
+                  <TRXPrice amount={record.amount / ONE_TRX}/>
                   :record.amount + ' ' + record.tokenName
 
         }

@@ -1,5 +1,5 @@
 body .token_black {
-  font-weight: lighter; // 覆盖 btn 样式
+  // font-weight: lighter; // 覆盖 btn 样式
   // 全局card样式覆盖
   .card {
     background: none;
@@ -63,7 +63,7 @@ body .token_black {
   .form-control {
     border: none;
     border-radius: 0;
-    font-weight: lighter;
+    // font-weight: lighter;
   }
   .tokenDetail tr th {
     width: 10%;
@@ -94,7 +94,7 @@ body .token_black {
           }
         }
         th {
-          font-weight: lighter;
+          // font-weight: lighter;
         }
       }
     }
@@ -368,6 +368,12 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       background-position: center;
     }
   }
+}
+.color-green{
+  color: $green!important;
+}
+.color-red{
+  color: $main-red!important;
 }
 
 .markets{
