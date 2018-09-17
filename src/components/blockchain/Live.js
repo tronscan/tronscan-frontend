@@ -136,41 +136,39 @@ class Live extends React.Component {
         return (
             <Trxrow key={event.id} icon="fa-exchange-alt">
               <div className="row">
-                <div className="col-xs-8 col-sm-5">
+                <div className="col-xs-10 col-sm-5">
                   <h5 className="card-title text-left">
                     <b>{tu("token_transfer")}</b>
                   </h5>
-                </div>
-                <div className="col-xs-8 col-sm-2">
-                 <img src={require("../../images/arrow.png")}/>
-                </div>
-                <div className="col-xs-8 col-sm-5">
-                  {tu("asset")}{': '}
-                  {
-                    event.tokenName === 'TRX' ?
-                        <b><FormattedNumber
-                            maximumFractionDigits={7}
-                            minimunFractionDigits={7}
-                            value={event.amount / ONE_TRX}/></b> :
-                        <b><FormattedNumber
-                            maximumFractionDigits={7}
-                            minimunFractionDigits={7}
-                            value={event.amount}/></b>
-                  }
-                  {' '}{event.tokenName}
-                </div>
-                <div className="col-xs-8 col-sm-5">
                   {tu("from")}{': '}
                   <span className="position-absolute ml-2"><AddressLink address={event.transferFromAddress}
                                                                         truncate={true}/></span>
                 </div>
-                <div className="col-xs-8 col-sm-2">
 
+                <div className="col-xs-4 col-sm-2 d-flex justify-content-center align-items-center">
+                 <img src={require("../../images/arrow.png")}/>
                 </div>
-                <div className="col-xs-8 col-sm-5">
-                  {tu("to")}{': '}
-                  <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress}
-                                                                        truncate={true}/></span>
+
+                <div className="col-xs-10 col-sm-5">
+                  <div>{tu("asset")}{': '}
+                    {
+                      event.tokenName === 'TRX' ?
+                          <b><FormattedNumber
+                              maximumFractionDigits={7}
+                              minimunFractionDigits={7}
+                              value={event.amount / ONE_TRX}/></b> :
+                          <b><FormattedNumber
+                              maximumFractionDigits={7}
+                              minimunFractionDigits={7}
+                              value={event.amount}/></b>
+                    }
+                    {' '}{event.tokenName}
+                  </div>
+                  <div>
+                    {tu("to")}{': '}
+                    <span className="position-absolute ml-2"><AddressLink address={event.transferToAddress}
+                                                                          truncate={true}/></span>
+                  </div>
                 </div>
               </div>
             </Trxrow>
