@@ -36,7 +36,7 @@ class Transfers extends React.Component {
   onChange = (page, pageSize) => {
     this.load(page, pageSize);
   };
-  load = async (page = 1, pageSize = 10) => {
+  load = async (page = 1, pageSize = 20) => {
 
     let {location} = this.props;
 

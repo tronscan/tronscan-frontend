@@ -41,7 +41,7 @@ class Transfers extends React.Component {
     this.loadPage(page, pageSize);
   };
 
-  loadPage = async (page = 1, pageSize = 10) => {
+  loadPage = async (page = 1, pageSize = 20) => {
 
     let {filter} = this.props;
 
