@@ -69,7 +69,7 @@ class TokenInfo extends React.Component {
               <th>{tu("country")}:</th>
               <td>
                 {token.country !== 'no_message' ?
-                    <span>tu(token.country)}</span> :
+                    <span>{tu(token.country)}</span> :
                     <span>-</span>
                 }
               </td>

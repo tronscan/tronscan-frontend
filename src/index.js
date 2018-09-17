@@ -28,3 +28,4 @@ ReactDOM.render(<AppCmp/>, document.getElementById('root'));
 if (IS_DESKTOP) {
   require("./desktop/bootstrap");
 }
+
