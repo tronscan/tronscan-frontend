@@ -91,10 +91,10 @@ class Account extends Component {
     let {tokenBalances = []} = this.props;
 
     tokenBalances = _(tokenBalances)
-      .filter(tb => tb.name.toUpperCase() !== "TRX")
-      .filter(tb => tb.balance > 0)
-      .sortBy(tb => tb.name)
-      .value();
+        .filter(tb => tb.name.toUpperCase() !== "TRX")
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => tb.name)
+        .value();
 
     if (tokenBalances.length === 0) {
       return (
@@ -105,7 +105,7 @@ class Account extends Component {
     }
 
     return (
-        <table className="table border-0 m-0">
+        <table className="table mt-3 temp-table">
           <thead className="thead-light">
           <tr>
             <th>{tu("name")}</th>
@@ -228,7 +228,7 @@ class Account extends Component {
     }
 
     return (
-        <table className="table border-0 m-0">
+        <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
             <th>{tu("balance")}</th>
@@ -273,10 +273,10 @@ class Account extends Component {
     let {account} = this.props;
     if (value && value.length === 64) {
       this.privateKey.className = "form-control";
-      if(pkToAddress(value)!==account.address)
+      if (pkToAddress(value) !== account.address)
         this.privateKey.className = "form-control is-invalid";
     }
-    else{
+    else {
       this.privateKey.className = "form-control is-invalid";
     }
     this.setState({privateKey: value})
@@ -307,7 +307,7 @@ class Account extends Component {
 
     let reConfirm = () => {
       if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if(pkToAddress(this.privateKey.value)===account.address)
+        if (pkToAddress(this.privateKey.value) === account.address)
           confirm();
       }
     }
@@ -725,7 +725,7 @@ class Account extends Component {
   };
 
   toissuedAsset = () => {
-    window.location.hash="#/myToken";
+    window.location.hash = "#/myToken";
   }
 
   render() {
@@ -752,35 +752,34 @@ class Account extends Component {
     let hasFrozen = frozen.balances.length > 0;
 
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-              {tu("tron_power_freezing")}
+            {tu("tron_power_freezing")}
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div className="row">
             <div className="col-md-4">
-              <div className="card h-100 text-center widget-icon">
-                <WidgetIcon className="fa fa-tachometer-alt" style={styles.iconEntropy}/>
+              <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
-                  <h3 className="text-secondary">
+                  <h3 style={{color: '#44679F'}}>
                     <FormattedNumber value={currentWallet.bandwidth.netRemaining}/>
                   </h3>
-                  <a href="javascript:;"
+                  {/* <a href="javascript:;"
                      onClick={() => this.setState(state => ({showBandwidth: !state.showBandwidth}))}>
                     {tu("bandwidth")}
-                  </a>
+                  </a> */}
+                  {tu("bandwidth")}
                 </div>
               </div>
             </div>
 
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 text-center widget-icon">
-                <i className="icon-big fa fa-bolt fa-7x" style={{color: '#ffc107'}}/>
+              <div className="card h-100 bg-line_blue bg-image_vote">
                 <div className="card-body">
-                  <h3 className="text-warning">
+                  <h3 style={{color: '#333'}}>
                     <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX}/>
                   </h3>
                   TRON {tu("power")}
@@ -789,10 +788,9 @@ class Account extends Component {
             </div>
 
             <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 widget-icon">
-                <img src={require("../../images/tron-icon.svg")} style={styles.tronBalance}/>
-                <div className="card-body text-center">
-                  <h3 className="text-danger">
+              <div className="card h-100 bg-line_yellow bg-image_balance">
+                <div className="card-body">
+                  <h3 style={{color: '#2EAC28'}}>
                     <TRXPrice amount={currentWallet.balance / ONE_TRX}/>
                   </h3>
                   {tu("balance")}
@@ -801,64 +799,67 @@ class Account extends Component {
             </div>
           </div>
           {showBandwidth && this.renderBandwidth()}
-        <div className="row mt-3">
-          <div className="col-md-12">
-            <div className="card">
-              {
-                currentWallet.representative.enabled &&
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card px-3">
+                {
+                  currentWallet.representative.enabled &&
                   <div className="card-header bg-info text-center font-weight-bold text-white">Representative</div>
-              }
-                  <div className="table-responsive">
-                    <table className="table m-0">
-                      <tbody>
-                      {
-                        wallet.isOpen &&
-                        <tr>
-                          <th>{tu("name")}:</th>
-                          <td>
-                            {currentWallet.name || "-"}
-                            {
-                              (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
-                              <a href="javascript:" className="float-right text-primary" onClick={() => {
-                                this.changeName()
-                              }}>
-                                {tu("set_name")}
-                              </a>
-                            }
-                          </td>
-                        </tr>
-                      }
-                      {
-                        currentWallet.representative.enabled &&
-                        <tr>
-                          <th>{tu("website")}:</th>
-                          <td>
-                            <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
-                            <a href="javascript:" className="float-right text-primary" onClick={() => {
-                              this.changeWebsite()
-                            }}>
-                              {tu("change_website")}
-                            </a>
-
-                          </td>
-                        </tr>
-                      }
+                }
+                <div className="table-responsive">
+                  <table className="table m-0">
+                    <tbody>
+                    {
+                      wallet.isOpen &&
                       <tr>
-                        <th style={{width: 150}}>{tu("address")}:</th>
+                        <th style={{border: 'none'}}>{tu("name")}:</th>
+                        <td style={{border: 'none'}}>
+                          {currentWallet.name || "-"}
+                          {
+                            (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
+                            <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                               onClick={() => {
+                                 this.changeName()
+                               }}>
+                              {tu("set_name")}
+                            </a>
+                          }
+                        </td>
+                      </tr>
+                    }
+                    {
+                      currentWallet.representative.enabled &&
+                      <tr>
+                        <th>{tu("website")}:</th>
                         <td>
-                          <a href="javascript:" className="float-right text-primary" onClick={this.showQrCode}>
-                            {tu("show_qr_code")}
+                          <a href={currentWallet.representative.url}>{currentWallet.representative.url}</a>
+                          <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                             onClick={() => {
+                               this.changeWebsite()
+                             }}>
+                            {tu("change_website")}
                           </a>
 
-                          <div className="float-left" style={{width: 350}}>
-                            <AddressLink address={account.address} includeCopy={true}/>
-                          </div>
+                        </td>
+                      </tr>
+                    }
+                    <tr>
+                      <th style={{width: 150}}>{tu("address")}:</th>
+                      <td>
+                        <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
+                           onClick={this.showQrCode}>
+                          {tu("show_qr_code")}
+                        </a>
 
-                          {
-                            IS_TESTNET &&
-                            <p className="text-danger">
-                              ({tu("do_not_send_2")})
-                            </p>
+                        <div className="float-left" style={{width: 350}}>
+                          <AddressLink address={account.address} includeCopy={true}/>
+                        </div>
+
+                        {
+                          IS_TESTNET &&
+                          <p className="text-danger">
+                            ({tu("do_not_send_2")})
+                          </p>
                         }
                       </td>
                     </tr>
@@ -870,19 +871,7 @@ class Account extends Component {
                     </tr>
                     </tbody>
                   </table>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-body px-0 border-0">
-                  <h5 className="card-title text-center m-0">
-                    {tu("tokens")}
-                  </h5>
                 </div>
-                {this.renderTokens()}
               </div>
             </div>
           </div>
@@ -891,70 +880,72 @@ class Account extends Component {
             <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">
-                  <div className="card-body px-0 border-0">
+                  <div className="card-body">
                     <h5 className="card-title text-center m-0">
                       {tu("issued_token")}
                     </h5>
-                  </div>
-                  <table className="table m-0">
-                    <tbody>
-                    <tr>
-                      <th style={{width: 150}}>{tu("name")}:</th>
-                      <td>
-                        <TokenLink name={issuedAsset.name}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("start_date")}:</th>
-                      <td>
-                        <FormattedDate value={issuedAsset.startTime}/>{' '}
-                        <FormattedTime value={issuedAsset.startTime}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("end_date")}:</th>
-                      <td>
-                        <FormattedDate value={issuedAsset.endTime}/>{' '}
-                        <FormattedTime value={issuedAsset.endTime}/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>{tu("progress")}:</th>
-                      <td>
-                        <div className="progress mt-1">
-                          <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
-                        </div>
-                      </td>
-                    </tr>
-                    {
-                      issuedAsset.frozen.length > 0 &&
+
+                    <table className="table mt-3 temp-table">
+                      <tbody>
                       <tr>
-                        <th>{tu("frozen_supply")}:</th>
+                        <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <a href="javascript:" className="float-right text-primary"
-                             onClick={() => {
-                               this.unfreezeAssetsConfirmation()
-                             }}>
-                            {tu("unfreeze_assets")}
-                          </a>
-                          {
-                            issuedAsset.frozen.map(frozen => (
-                                <div>
-                                  {frozen.amount} {tu("can_be_unlocked")}&nbsp;
-                                  {
-                                    (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
-                                    <FormattedRelative
-                                        value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))}/>
-                                  }
-                                </div>
-                            ))
-                          }
+                          <TokenLink name={issuedAsset.name}/>
                         </td>
                       </tr>
-                    }
-                    </tbody>
-                  </table>
-                  <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset} style={{width:'120px',margin:'auto'}}>{tu('token_detail')}</button>
+                      <tr>
+                        <th>{tu("start_date")}:</th>
+                        <td>
+                          <FormattedDate value={issuedAsset.startTime}/>{' '}
+                          <FormattedTime value={issuedAsset.startTime}/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("end_date")}:</th>
+                        <td>
+                          <FormattedDate value={issuedAsset.endTime}/>{' '}
+                          <FormattedTime value={issuedAsset.endTime}/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{tu("progress")}:</th>
+                        <td>
+                          <div className="progress mt-1">
+                            <div className="progress-bar bg-success" style={{width: issuedAsset.percentage + '%'}}/>
+                          </div>
+                        </td>
+                      </tr>
+                      {
+                        issuedAsset.frozen.length > 0 &&
+                        <tr>
+                          <th>{tu("frozen_supply")}:</th>
+                          <td>
+                            <a href="javascript:" className="float-right text-primary"
+                               onClick={() => {
+                                 this.unfreezeAssetsConfirmation()
+                               }}>
+                              {tu("unfreeze_assets")}
+                            </a>
+                            {
+                              issuedAsset.frozen.map(frozen => (
+                                  <div>
+                                    {frozen.amount} {tu("can_be_unlocked")}&nbsp;
+                                    {
+                                      (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
+                                      <FormattedRelative
+                                          value={getTime(addDays(new Date(issuedAsset.startTime), frozen.days))}/>
+                                    }
+                                  </div>
+                              ))
+                            }
+                          </td>
+                        </tr>
+                      }
+                      </tbody>
+                    </table>
+                    <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset}
+                            style={{width: '120px', margin: 'auto'}}>{tu('token_detail')}</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -962,45 +953,59 @@ class Account extends Component {
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
-                <div className="card-body px-0 border-0">
+                <div className="card-body temp-table">
+                  <h5 className="card-title text-center m-0">
+                    {tu("tokens")}
+                  </h5>
+                  {this.renderTokens()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-body temp-table">
                   <h5 className="card-title text-center m-0">
                     {tu("transactions")}
                   </h5>
+                  {this.renderTransactions()}
                 </div>
-                {this.renderTransactions()}
               </div>
             </div>
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
-                <div className="card-body px-0 border-0">
+                <div className="card-body">
                   <h5 className="card-title text-center m-0">
                     TRON {tu("power")}
                   </h5>
+
+                  <div className="card-body px-0 d-lg-flex justify-content-lg-between">
+                    <p className="card-text">
+                      {tu("freeze_trx_premessage_0")}<Link
+                        to="/votes">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                    </p>
+                    <div>
+                      {
+                        hasFrozen &&
+                        <button className="btn btn-danger mr-2" style={{width: '64px'}} onClick={() => {
+                          this.showUnfreezeModal()
+                        }}>
+                          {tu("unfreeze")}
+                        </button>
+                      }
+                      <button className="btn btn-primary mr-2" style={{width: '64px'}} onClick={() => {
+                        this.showFreezeBalance()
+                      }}>
+                        {tu("freeze")}
+                      </button>
+                    </div>
+                  </div>
+                  {this.renderFrozenTokens()}
                 </div>
-                <div className="card-body text-center pt-0">
-                  <p className="card-text">
-                    {tu("freeze_trx_premessage_0")}<Link to="/votes"
-                                                         className="text-primary">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
-                  </p>
-                  {
-                    hasFrozen &&
-                    <button className="btn btn-danger mr-2" onClick={() => {
-                      this.showUnfreezeModal()
-                    }}>
-                      {tu("unfreeze")}
-                      <i className="fa fa-fire ml-2"/>
-                    </button>
-                  }
-                  <button className="btn btn-dark mr-2" onClick={() => {
-                    this.showFreezeBalance()
-                  }}>
-                    {tu("freeze")}
-                    <i className="fa fa-snowflake ml-2"/>
-                  </button>
-                </div>
-                {this.renderFrozenTokens()}
               </div>
             </div>
           </div>
@@ -1009,62 +1014,62 @@ class Account extends Component {
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">
-                      <div className="card-body text-center">
+                      <div className="card-body">
                         <h5 className="card-title text-center">
                           {tu("Super Representatives")}
                         </h5>
                         <p className="card-text">
                           {tu("sr_receive_reward_message_0")}
                         </p>
-                        <button className="btn btn-success mr-2"
-                                onClick={() => {
-                                  this.claimRewards()
-                                }}
-                                disabled={currentWallet.representative.allowance === 0}>
-                          {tu("claim_rewards")}
-                          <i className="fa fa-hand-holding-usd ml-2"/>
-                        </button>
-                        {
-                          currentWallet.representative.allowance > 0 ?
-                              <p className="m-0 mt-3 text-success">
-                                Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                             className="font-weight-bold"/>
-                              </p> :
-                              <p className="m-0 mt-3 font-weight-bold text-danger">
-                                No rewards to claim
-                              </p>
-                        }
-                      </div>
-                      <div className="card-body border-top">
+                        <div className="text-center">
+                          <button className="btn btn-success"
+                                  onClick={() => {
+                                    this.claimRewards()
+                                  }}
+                                  disabled={currentWallet.representative.allowance === 0}>
+                            {tu("claim_rewards")}
+                          </button>
+                          {
+                            currentWallet.representative.allowance > 0 ?
+                                <p className="m-0 mt-3 text-success">
+                                  Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
+                                                               className="font-weight-bold"/>
+                                </p> :
+                                <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
+                                  No rewards to claim
+                                </p>
+                          }
+                        </div>
+                        <hr/>
                         <h5 className="card-title text-center">
                           {tu("landing_page")}
                         </h5>
-                        <p className="card-text text-center">
-                          {tu("create_sr_landing_page_message_0")}
-                        </p>
-                        <p className="text-center">
-                          <HrefLink className="btn btn-primary mr-2"
-                                    href="https://github.com/tronscan/tronsr-template#readme">
-                            {tu("show_more_information_publish_sr_page")}
-                            <i className="fa fa-question ml-2"/>
-                          </HrefLink>
-                        </p>
-                        {
-                          !this.hasGithubLink() &&
-                          <Fragment>
-                            <p className="card-text text-center">
-                              {tu("set_github_url_message_0")}
-                            </p>
-                            <p className="text-center">
-                              <button className="btn btn-dark mr-2" onClick={() => {
-                                this.changeGithubURL()
-                              }}>
-                                {tu("set_github_link")}
-                                <i className="fab fa-github ml-2"/>
-                              </button>
-                            </p>
-                          </Fragment>
-                        }
+                        <div className="text-center">
+                          <p className="card-text text-center">
+                            {tu("create_sr_landing_page_message_0")}
+                          </p>
+                          <p className="text-center">
+                            <HrefLink className="btn btn-danger"
+                                      href="https://github.com/tronscan/tronsr-template#readme">
+                              {tu("show_more_information_publish_sr_page")}
+                            </HrefLink>
+                          </p>
+                          {
+                            !this.hasGithubLink() &&
+                            <Fragment>
+                              <p className="card-text text-center">
+                                {tu("set_github_url_message_0")}
+                              </p>
+                              <p className="text-center">
+                                <button className="btn btn-dark mr-2" onClick={() => {
+                                  this.changeGithubURL()
+                                }}>
+                                  {tu("set_github_link")}
+                                </button>
+                              </p>
+                            </Fragment>
+                          }
+                        </div>
                       </div>
                       {
                         this.hasGithubLink() &&
@@ -1098,21 +1103,20 @@ class Account extends Component {
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">
-                      <div className="card-body px-0 border-0">
+                      <div className="card-body">
                         <h5 className="card-title text-center m-0">
                           {tu("Super Representatives")}
                         </h5>
-                      </div>
-                      <div className="card-body text-center">
-                        <p className="card-text">
+                        <p className="pt-3">
                           {tu("apply_for_delegate_predescription")}
                         </p>
-                        <button className="btn btn-success mr-2" onClick={() => {
-                          this.applyForDelegate()
-                        }}>
-                          <i className="fa fa-hand-holding-usd mr-2"/>
-                          {tu("apply_super_representative_candidate")}
-                        </button>
+                        <div className="text-center">
+                          <button className="btn btn-success" style={{width: '240px'}} onClick={() => {
+                            this.applyForDelegate()
+                          }}>
+                            {tu("apply_super_representative_candidate")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1137,24 +1141,24 @@ class Account extends Component {
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
-                <div className="card-body mb-0 pb-0 px-0 border-0 text-center">
+                <div className="card-body">
                   <h5 className="card-title text-center m-0">
                     {t("buy_trx")}
                   </h5>
-                  <p className="card-body text-center">
+                  <div className="py-3">
                     {t("buy_trx_message_0")}
                     <HrefLink href={"https://changelly.com/faq"}
                               target="_blank">{"changelly.com/faq"}</HrefLink>{"."}
-                  </p>
-                  <p>
+                  </div>
+                  <div className="text-center">
                     {
-                      !showBuyTokens && <button className="btn btn-primary my-2"
+                      !showBuyTokens && <button className="btn btn-danger"
+                                                style={{width: '240px'}}
                                                 onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
                         {t("buy_trx_using_changelly")}
-                        <i className="fa fa-credit-card ml-2"/>
                       </button>
                     }
-                  </p>
+                  </div>
                   {
                     showBuyTokens && <iframe
                         src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=x600ducoeoei16mc&color=28cf00"}

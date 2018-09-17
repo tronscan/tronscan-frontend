@@ -8,9 +8,9 @@ import {injectIntl} from "react-intl";
 import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
-import {WidgetIcon} from "../common/Icon";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
 import {loadVoteList, loadVoteTimer} from "../../actions/votes";
+import {Link} from "react-router-dom";
 
 class Representatives extends Component {
   constructor() {
@@ -83,35 +83,40 @@ class Representatives extends Component {
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
 
     return (
-        <div className="card border-0">
-          <table className="table table-hover table-striped bg-white m-0 sr" style={{border:'1px solid #DFD7CA'}}>
+        <div className="card border-0 represent__table">
+          <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
-              <th className="text-right d-none d-lg-table-cell" style={{width: 20}}>#</th>
-              <th style={{width: 100}}>{tu("name")}</th>
-              <th className="text-right text-nowrap">{tu("status")}</th>
-              <th className="text-right text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
-              <th className="text-right text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
+              <th className="text-center d-none d-lg-table-cell" style={{width: 20}}>#</th>
+              <th style={{width: 60}}>{tu("name")}</th>
+              <th className="text-center text-nowrap">{tu("status")}</th>
+              <th className="text-center text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
+              <th className="text-center text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
+              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
               <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("votes")}</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td colSpan="9" className="bg-danger text-white text-center font-weight-bold">
+            <tr style={{height: '72px'}}>
+              <td colSpan="9" className="font-weight-bold">
+                <i className="fa fa-trophy mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
                 {tu("Super Representatives")}
               </td>
             </tr>
-            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props} key={account.address} account={account}/>)}
-            <tr>
-              <td colSpan="9" className="bg-secondary text-white text-center font-weight-bold">
+            {superRepresentatives.map((account, index) => <Row index={index} state={this.state} props={this.props}
+                                                               key={account.address} account={account}/>)}
+            <tr style={{height: '72px'}}>
+              <td colSpan="9" className="font-weight-bold">
+                <i className="fa fa-user mr-2 ml-2" aria-hidden="true" style={{color: '#666'}}></i>
                 {tu("Super Representative Candidates")}
               </td>
             </tr>
-            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state} props={this.props} key={account.address} account={account} showSync={false}/>)}
+            {candidateRepresentatives.map((account, index) => <Row index={index + 27} state={this.state}
+                                                                   props={this.props} key={account.address}
+                                                                   account={account} showSync={false}/>)}
             </tbody>
           </table>
         </div>
@@ -132,69 +137,83 @@ class Representatives extends Component {
         .value()[0];
 
     return (
-        <main className="container header-overlap pb-3">
+        <main className="container header-overlap pb-3 token_black">
           <div className={witnesses.length === 0 || pieChart.length === 0 ? 'card' : ''}>
             {
               witnesses.length === 0 || pieChart.length === 0 ?
                   <TronLoader/> :
-                  <div className="row ">
-                    <div className="col-md-6">
-                      <div className="mt-3 mt-md-3">
+                  <div className="row">
+                    <div className="col-md-6 foundation_title represent_title">
+                      <div className="mb-3">
                         <div className="card h-100 widget-icon">
-                          <WidgetIcon className="fa fa-user-tie text-secondary"/>
-                          <div className="card-body text-center">
+                          <div className="card-body">
                             <h3 className="text-primary">
                               <FormattedNumber value={witnesses.length}/>
                             </h3>
-                            {tu("representatives")}
+                            {tu("representativesAcandidates")}
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-3 mt-md-3">
+                      <div className="mb-3">
                         <div className="card h-100">
-                          <div className="card-body text-center widget-icon">
-                            <WidgetIcon className="fa fa-arrow-up text-success" style={{bottom: 10}}/>
-                            <h3 className="text-success">
+                          <div className="card-body">
+                            <h3>
                               <FormattedNumber value={mostProductive.productivity}/>%
                             </h3>
-                            {tu("highest_productivity")}<br/>
-                            <AddressLink address={mostProductive.address}>
-                              {mostProductive.name || mostProductive.url}
-                            </AddressLink>
+                            <div className="represent_title_text">
+                              <span>{tu("highest_productivity")} - </span>
+                              <AddressLink address={mostProductive.address}>
+                                {mostProductive.name || mostProductive.url}
+                              </AddressLink>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-3 mt-md-3">
+                      <div className="mb-3">
                         <div className="card h-100 widget-icon">
-                          <WidgetIcon className="fa fa-arrow-down text-danger" style={{bottom: 10}}/>
-                          <div className="card-body text-center">
-                            <h3 className="text-danger">
+                          <div className="card-body">
+                            <h3>
                               <FormattedNumber maximumFractionDigits={2}
                                                minimunFractionDigits={2}
                                                value={leastProductive.productivity}/>%
                             </h3>
-                            {tu("lowest_productivity")}<br/>
-                            <AddressLink address={leastProductive.address}>
-                              {leastProductive.name || leastProductive.url}
-                            </AddressLink>
+                            <div className="represent_title_text">
+                              <span>{tu("lowest_productivity")} - </span>
+                              <AddressLink address={leastProductive.address}>
+                                {leastProductive.name || leastProductive.url}
+                              </AddressLink>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6 mt-3">
+                    <div className="col-md-6 mb-3">
                       <div className="card">
-                        <div className="card-body">
-                          <div style={{height: 330}}>
-                            {
-                              <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
-                                                           data={pieChart} style={{height: 300}}/>
-                            }
+                        <div style={{height: 326, background: '#fff'}} className="pt-2 bg-line_blue">
+                          <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={{border:0}}>
+                            <h6 className="m-0 lh-150" style={{fontSize:16}}>
+                              <Link to="blockchain/stats/pieChart">
+                                  {tu("produce_distribution")}
+                              </Link>
+                            </h6>
+                          </div>
+                          <div className="card-body pt-0">
+                            <div style={{minWidth: 255, height: 200}}>
+                                {
+                                  <RepresentativesRingPieReact message={{id: 'produce_distribution'}} intl={intl}
+                                                               data={pieChart} style={{height: 255}}
+                                                               source='representatives'
+                                  />
+                                }
+                            </div>
+
                           </div>
                         </div>
                       </div>
                     </div>
+                    {/* </div> */}
                   </div>
             }
           </div>
@@ -237,12 +256,13 @@ function Row({account, showSync = true, index, state, props}) {
   let totalVotes = sumBy(candidates, c => c.votes);
 
   return (
-      <tr key={account.address}>
-        <td className="text-right d-none d-lg-table-cell">{account.index + 1}</td>
+      <tr key={account.address}
+          className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
+        <td className="text-center d-none d-lg-table-cell" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
         <td>
           {
             account.name ?
-                <div className="_context_right_click">
+                <div className="_context_right_click" style={{width: '250px'}}>
                   <AddressLink address={account.address}>
                     {account.name}<br/>
                     <span className="small text-muted">{account.url}</span>
@@ -263,27 +283,27 @@ function Row({account, showSync = true, index, state, props}) {
                 }
               </td> : <td>&nbsp;</td>
         }
-        <td className="text-right d-none d-sm-table-cell">
+        <td className="text-center d-none d-sm-table-cell">
           <BlockNumberLink number={account.latestBlockNumber}/>
         </td>
-        <td className="text-right d-none d-md-table-cell">
+        <td className="text-center d-none d-md-table-cell">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTotal > 0 ? (
                 <Fragment>
@@ -301,7 +321,6 @@ function Row({account, showSync = true, index, state, props}) {
             totalVotes > 0 &&
             <Fragment>
               <FormattedNumber value={filteredCandidates[index].votes}/>
-              <br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

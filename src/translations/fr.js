@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -179,7 +178,7 @@ export const messages = {
   "asset_participation": "Asset participation",
   "loading_transaction": "Chargement des transactions",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Envoyer à l'adresse suivante",
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "specify_the_url": "Please specify the URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -267,8 +266,8 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "freeze" : "Gel",
-  "unfreeze" : "débloquer",
+  "freeze": "Gel",
+  "unfreeze": "débloquer",
   "freeze_trx_least": "Vous avez besoin d'au moins 1 TRX pour pouvoir en geler",
   "unable_unfreeze_trx_message": "Impossible de débloquer les TRX. Cela pourrait être dû au fait que la période de gel minimale n'a pas encore été atteinte.",
   "freeze_trx_premessage_0": "TRX peut être gelé / verrouillé pour obtenir du TRON Power et activer des fonctionnalités supplémentaires. Par exemple, avec TRON Power vous pouvez",
@@ -369,7 +368,7 @@ export const messages = {
   "could_not_claim_rewards": "Could not claim rewards",
   "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
   "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "successfully_claimed_rewards": "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
   "intro": "Intro",
@@ -513,11 +512,11 @@ export const messages = {
   "start_date": "Date de début",
   "end_date": "Date de fin",
   "token_spend_confirm": "Je confirme que la création de l'offre totale de jetons aura pour coût unique 1024 TRX.",
-  "token_issue_guide_message_1":`L'émission d'un jeton sur le protocole TRON peut être faite
+  "token_issue_guide_message_1": `L'émission d'un jeton sur le protocole TRON peut être faite
    par n'importe qui qui a au moins 1024 TRX dans son compte.`,
-  "token_issue_guide_message_2":`Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
+  "token_issue_guide_message_2": `Lorsqu'un jeton est émis, il apparaît sur la page de présentation des jetons.
    Les utilisateurs peuvent alors participer à la période de participation et échanger leur TRX contre des jetons.`,
-  "token_issue_guide_message_3":`Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
+  "token_issue_guide_message_3": `Après l'émission du jeton, votre compte recevra le nombre de jetons égal à la quantité totale.
    Lorsque d'autres utilisateurs échangent leur TRX contre des jetons, les jetons seront retirés de votre compte et vous
    recevez un nombre de TRX égal au taux de change spécifié.`,
   /*
@@ -851,27 +850,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -881,7 +880,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

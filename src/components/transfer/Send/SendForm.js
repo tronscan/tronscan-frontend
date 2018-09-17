@@ -254,11 +254,11 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances,account} = this.props;
+    let {intl, tokenBalances, account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
-    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey)===account.address;
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
 
 
@@ -307,7 +307,7 @@ class SendForm extends React.Component {
                   onChange={(ev) => this.setState({token: ev.target.value})}
                   value={token}>
                 {
-                  tokenBalances.map((tokenBalance,index) => (
+                  tokenBalances.map((tokenBalance, index) => (
                       <SendOption key={index}
                                   name={tokenBalance.name}
                                   balance={tokenBalance.balance}/>

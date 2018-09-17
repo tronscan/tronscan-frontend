@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Client} from "../../services/api";
 import {tu} from "../../utils/i18n";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
 

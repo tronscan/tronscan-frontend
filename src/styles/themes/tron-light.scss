@@ -4,7 +4,8 @@
     // default background style ====================================================
     $white: #FFF;
     background-size: cover;
-    background: #f5f8fa url(../images/body_backgound_transparent.png) fixed no-repeat;
+    // background: #f5f8fa url(../images/body_backgound_transparent.png) fixed no-repeat;
+    background: #f3f3f3;
     background-position: center -200px;
     .logo-wrapper {
         background: $white;
@@ -27,8 +28,13 @@
     }
     .nav-searchbar {
         input {
-            background-color: $white !important;
-            border: 1px solid $text-block !important;
+            // background-color: $white !important;
+            // border: 1px solid $text-block !important;
+            background-color: #f3f3f3!important;
+            border-radius: 2px;
+        }
+        .input-group-append button{
+            border-radius: 0 2px 2px 0;
         }
     } // default background style ====================================================
     .token_black {
@@ -404,27 +410,26 @@
     .card-chart {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         flex-direction: column;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 500;
-        color: #555;
     }
     .card-chart .card-title {
-        color: #666666;
-        font-size: 1rem;
+        color: #C23631;
+        font-size: 14px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     .card-chart .card-title:hover {
         text-decoration: underline;
     }
     .card-chart img {
-        margin: 16px auto 0;
+        //margin: 16px auto 0;
     }
     .statistics-chart hr {
-        margin: 20px 55px;
+        margin: 0px 55px;
     }
     .token-sweet-alert {
         width: 390px;

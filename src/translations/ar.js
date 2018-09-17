@@ -1,5 +1,4 @@
-﻿
-export const messages = {
+﻿export const messages = {
   /*
   ##################################################################################
   #                                                                                #
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "أرسل الى العنوان التالي",
   "change_website": "تغيير الموقع الألكتروني",
   "you_must_enter_url": "يجب عليك ادخال الرابط ",
-  "specify_the_url":  "يرجى تحديد الرابط المعين",
+  "specify_the_url": "يرجى تحديد الرابط المعين",
   /*
   ##################################################################################
   #                                                                                #
@@ -357,7 +356,7 @@ export const messages = {
   "could_not_claim_rewards": "لا يمكن المطالبة بالمكافآت ",
   "claim_rewards_error_message": "حدث خطأ أثناء محاولة المطالبة بالمكافآت ، يرجى المحاولة مرة أخرى في وقت لاحق.",
   "rewards_claimed": "تم الحصول على المكافآت",
-  "successfully_claimed_rewards":  "تم الحصول على المكافآت بنجاح",
+  "successfully_claimed_rewards": "تم الحصول على المكافآت بنجاح",
   "claim_rewards": "الحصول على المكافآت ",
   "sr_receive_reward_message_0": "كممثل مثالي, تحصل على مكافآت لإنتاج كتل. يمكن المطالبة بهذه المكافآت كل 24 ساعة",
   "intro": "مقدمة",
@@ -798,7 +797,7 @@ export const messages = {
   "freeze_balance_contract": "تجميد عقد الرصيد",
   "freeze_TRX": "TRX تجميد ",
   "unfreeze_balance_contract": "الغاء تجميد عقد الرصيد",
-  "unfreeze_TRX":  "TRX الغاء تجميد",
+  "unfreeze_TRX": "TRX الغاء تجميد",
   "vote_witness_contract": "عقد تصويت الشاهد",
   "vote_for_a_witness": "صوت لـشاهد",
   "asset_issue_contract": "عقد اصدار الأصول",
@@ -814,54 +813,54 @@ export const messages = {
   "search_description": "عنوان البحث ,ارتفاع الكتله,تجزئة المعامله,اسم العمله الرقميه",
   "search_description1": "عنوان البحث,الكتله,المعامله,العمله الرقميه",
   "transaction": "المعامله",
-  "total_addresses":"مجموع العناوين",
-  "daily_increment":"الزياده اليوميه",
-  "address_growth_chart":"عنوان مخطط النمو",
-  "addresses_amount":"عناوين المبلغ",
-  "past_14_days_of_transactions":"اخر 14 يوم من المعاملات",
-  "address_growth":"عنوان التنميه",
+  "total_addresses": "مجموع العناوين",
+  "daily_increment": "الزياده اليوميه",
+  "address_growth_chart": "عنوان مخطط النمو",
+  "addresses_amount": "عناوين المبلغ",
+  "past_14_days_of_transactions": "اخر 14 يوم من المعاملات",
+  "address_growth": "عنوان التنميه",
   "power": "الطاقه",
   "token_transfers": "نقل العملات الرقميه",
   "website_url": "رابط الموقع الالكتروني",
   "search": "بحث",
-    /*
-      ##################################################################################
-      #                                                                                #
-      # new variables    20180822 17:11:52                                                              #
-      #                                                                                #
-      ##################################################################################
-    */
-    "tron_convert_tool":"Encode Convert Tool",
-    "breakdown_supply_types":"Breakdown By Supply Types",
-    "genesis":"Genesis",
-    "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-    "block_produce_rewards":"Block Produce Rewards",
-    "node_rewards":"Node Rewards",
-    "independence_day_burned":"Independence Day Burned",
-    "fee_burned":"Fee Burned",
-    "current_total_supply":"Current Total Supply",
-    "foundation_freeze":"Foundation Freeze",
-    "price_per_1000_trx":"PRICE PER 1000 TRX",
-    "in_USD":"In USD",
-    "in_BTC":"In BTC",
-    "total_TRX_supply":"Total TRX Supply",
-    "market_capitalization":"Market Capitalization",
-    "circulating_supply":"Circulating Supply",
-    "list_trx":"List TRX",
-    "burned_trx":"TRX Burned",
-    "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-    "14_day_transaction_history":"14 day Transaction History",
-    "14_day_address_growth":"14 day Address Growth",
-
-
-    /*
+  /*
     ##################################################################################
     #                                                                                #
-    # new variables    2018-09-11 12:51:31                                           #
+    # new variables    20180822 17:11:52                                                              #
     #                                                                                #
     ##################################################################################
-    */
-    "pice_per_1trx": "Price",
-    "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 };

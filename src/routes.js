@@ -185,7 +185,10 @@ export const routes = [
     path: "/markets",
     label: "markets",
     icon: "fa fa-chart-line",
-    component: MarketsAsync
+   // component: MarketsAsync
+    enurl: "https://coinmarketcap.com/currencies/tron/#charts",
+    zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+    linkHref: true
   },
   {
     path: "/votes",
@@ -248,12 +251,12 @@ export const routes = [
     ]
   },
   {
-        path: "list_trx",
-        label: "list_trx",
-        icon: "fa fa-plus",
-        enurl: "https://tron.network/exchangesList?lng=en",
-        zhurl: "https://tron.network/exchangesList?lng=zh",
-        linkHref:true
+    path: "list_trx",
+    label: "list_trx",
+    icon: "fa fa-plus",
+    enurl: "https://tron.network/exchangesList?lng=en",
+    zhurl: "https://tron.network/exchangesList?lng=zh",
+    linkHref: true
   },
   {
     path: "/help",
@@ -280,7 +283,7 @@ export const routes = [
         showInMenu: false
       },
       {
-        label: "Ledger",
+        label: "ledger_guide",
         component: LedgerHelpAsync,
         path: "/help/ledger",
       },

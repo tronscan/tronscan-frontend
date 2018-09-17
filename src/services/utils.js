@@ -1,8 +1,7 @@
-
 export function Try(func) {
   try {
     func();
-  } catch(e) {
+  } catch (e) {
     // ignore
   }
 }

@@ -22,7 +22,7 @@ class ChangeNameModal extends Component {
     }
 
     if (name.length > 32) {
-      return [ false, tu("name_to_long")];
+      return [false, tu("name_to_long")];
     }
 
     if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
@@ -42,7 +42,7 @@ class ChangeNameModal extends Component {
     let {onConfirm} = this.props;
     let {name} = this.state;
     onConfirm && onConfirm(name);
-    this.setState({ disabled: true });
+    this.setState({disabled: true});
   };
 
   cancel = () => {
@@ -61,42 +61,38 @@ class ChangeNameModal extends Component {
     }
 
     return (
-      <Modal isOpen={true} toggle={this.cancel} fade={false} size="lg" className="modal-dialog-centered">
-        <ModalHeader className="text-center" toggle={this.cancel}>{tu("set_name")}</ModalHeader>
-        <ModalBody>
-          <p className="text-center">
-            <label className="text-danger">{tu("unique_account_message")}</label>
-            <input className={"form-control text-center " + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
-                   type="text"
-                   placeholder="Account Name"
-                   value={name}
-                   onChange={(ev) => this.setState({ name: ev.target.value })}/>
-            <div className="invalid-feedback text-center text-danger">
-              {errorMessage}
-            </div>
-          </p>
-          <div className="pt-3">
+        <Modal isOpen={true} toggle={this.cancel} fade={false} size="lg" className="modal-dialog-centered">
+          <ModalHeader className="text-center" toggle={this.cancel}>{tu("set_name")}</ModalHeader>
+          <ModalBody>
             <p className="text-center">
-              <button
-                disabled={disabled || !isValid}
-                className="btn btn-success"
-                onClick={this.confirm}>{tu("change_name")}</button>
+              <label className="text-danger">{tu("unique_account_message")}</label>
+              <input className={"form-control text-center " + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
+                     type="text"
+                     placeholder="Account Name"
+                     value={name}
+                     onChange={(ev) => this.setState({name: ev.target.value})}/>
+              <div className="invalid-feedback text-center text-danger">
+                {errorMessage}
+              </div>
             </p>
-          </div>
-        </ModalBody>
-      </Modal>
+            <div className="pt-3">
+              <p className="text-center">
+                <button
+                    disabled={disabled || !isValid}
+                    className="btn btn-success"
+                    onClick={this.confirm}>{tu("change_name")}</button>
+              </p>
+            </div>
+          </ModalBody>
+        </Modal>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return {
-
-  };
+  return {};
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangeNameModal)

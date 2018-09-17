@@ -3,7 +3,7 @@
     .ant-table {
         font-family: Helvetica;
         .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
-            padding: 16px;
+            padding: 13px;
         }
         .ant-table-tbody>tr {
             &>td {
@@ -43,6 +43,11 @@
             align-items: center;
             div{
                // flex: 1;
+            }
+        }
+        &-column-has-filters{
+            span, i{
+                color: $main-red!important;
             }
         }
     }
@@ -155,5 +160,20 @@
             text-align: center;
         }
         
+    }
+}
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+}
+
+// 全局ant-checkbox 样式覆盖 ===============================
+.ant-checkbox{
+    &-wrapper:hover &-inner, &:hover &-inner, &-input:focus + &-inner{
+        border-color: $main-red;
+    }
+    &-checked &-inner{
+        background-color: $main-red;
+        border-color: $main-red;
     }
 }

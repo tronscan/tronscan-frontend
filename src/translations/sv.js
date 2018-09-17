@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -259,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Skicka till följande address",
   "change_website": "Ändra webbplats",
   "you_must_enter_url": "Du måste ange en webbadress",
-  "specify_the_url":  "Ange webbadressen",
+  "specify_the_url": "Ange webbadressen",
   /*
   ##################################################################################
   #                                                                                #
@@ -300,7 +299,7 @@ export const messages = {
   "apply_for_delegate": "ansöka om ombudet",
   "apply_super_representative_candidate": "Ansök om att bli en Super Representative kandidat",
   "your_personal_website_address": "din personliga webbadress",
-  "apply_for_delegate_predescription":`Varje token innehavare har möjlighet att bli en TRON Super Representative.
+  "apply_for_delegate_predescription": `Varje token innehavare har möjlighet att bli en TRON Super Representative.
    För att nätverket och samhället ska fungera mer smidigt och effektivt har vi dock skapat en uppsättning standarder och regler för kvalificerade kandidater att bli rekommenderade superrepresentanter.
    Vi kommer att främja rekommenderade SR: er för att öka deras chanser att bli valda.
    Nya rekommenderade Super Representatives uppdateras och publiceras en gång i`,
@@ -365,7 +364,7 @@ export const messages = {
   "could_not_claim_rewards": "Kunde inte hävda belöningar",
   "claim_rewards_error_message": "Något gick fel när du försökte hävda belöningar, snälla försök igen senare.",
   "rewards_claimed": "Belöningar krävde!",
-  "successfully_claimed_rewards":  "Framgångsrikt anspråk på belöningar",
+  "successfully_claimed_rewards": "Framgångsrikt anspråk på belöningar",
   "claim_rewards": "Krav på belöningar",
   "sr_receive_reward_message_0": "Som representant får du belöningar för att producera block. Dessa belöningar kan hävdas var 24: e timme",
   "intro": "Intro",
@@ -509,7 +508,7 @@ export const messages = {
   "end_date": "Slut Datum",
   "token_spend_confirm": "Jag godkänner att skapandet av de totala tillgångarna av tokens kommer att kosta en engångskostnad av 1024 TRX.",
   "token_issue_guide_message_1": "Utfärdande av token på TRON Protocol kan göras av vem som helst som har minst 1024 TRX på sitt konto",
-  "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens." ,
+  "token_issue_guide_message_2": "När en token är utfärdad så kommer det att visas på token översikts sida. Användare kan deltaga inom deltagande perioden och växla sina TRX för tokens.",
   "token_issue_guide_message_3": "När du har utfärdat token kommer ditt konto att få mängden tokens lika med det totala utbudet. När andra användare byter ut deras TRX för tokens kommer tokens att dras tillbaka från ditt konto och du kommer att ta emot TRX lika med angiven växelkurs.",
   /*
   ##################################################################################
@@ -842,27 +841,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -872,7 +871,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

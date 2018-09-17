@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -348,7 +347,7 @@ export const messages = {
   "github_linked": "Github მიბმულია!",
   "unable_to_link_github_message": "ვერ ვებმევი Githubს, დარწმუნდით, რომ თქვენი მომხმარებლის სახელი სწორია!",
   "could_not_link_github": "ვერ მოვახერხე Github-ზე მიბმა",
-  "enter_your_github_username":   "შეიყვანეთ თქვენი Github-ის სამომხმარებლო სახელი",
+  "enter_your_github_username": "შეიყვანეთ თქვენი Github-ის სამომხმარებლო სახელი",
   "link_to_github": " Github-ზე მიბმა ",
   "link_github": "Github-ზე მიბმა",
   "you_must_enter_a_url": "თქვენ უნდა შეიყვანოთ URL",
@@ -363,7 +362,7 @@ export const messages = {
   "could_not_claim_rewards": "Could not claim rewards",
   "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
   "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "successfully_claimed_rewards": "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
   "intro": "Intro",
@@ -506,9 +505,9 @@ export const messages = {
   "end_date": "დასრულების თარიღი",
   "token_spend_confirm": "მე ვადასტურებ, რომ ტოკენების ღირებულების სრული მიწოდების შექმნისათვის ერთჯერადი სრული გადასახადი შეადგენს 1024 TRX.",
   "token_issue_guide_message_1": `ტრონის პროტოკოლზე გამოშვებული ტოკენი შეიძლება განხორციელდეს ნებისმიერის მიერ, რომელსაც აქვს სულ მცირე 1024 TRX თავის ანგარიშზე.`,
-  "token_issue_guide_message_2":`ტოკენის გაცემისას, ის იქნება ნაჩვენები ტოკენის მიმოხილვის გვერდზე.
+  "token_issue_guide_message_2": `ტოკენის გაცემისას, ის იქნება ნაჩვენები ტოკენის მიმოხილვის გვერდზე.
     მომხმარებლებს მონაწილეობის მიღება შეუძლიათ მონაწილეობის პერიოდში და გადაცვალოთ თავიანთი TRX -ები ტოკენებზე.`,
-  "token_issue_guide_message_3":`ტოკენის გამოცემის შემდეგ, თქვენს ანგარიშზე დაჯდება მიწოდების ტოლი ტკენების რაოდენობა. როდესაც სხვა მომხმარებლები გადაცვლიან თავიანთ TRX-ებს ტოკენებზე, მაშინ ტოკენები მოხსნილი იქნება თქვენი ანგარიშიდან და თქვენ მიიღებთ TRX-ებს განსაზღვრული გადაცვლის კურსით.`,
+  "token_issue_guide_message_3": `ტოკენის გამოცემის შემდეგ, თქვენს ანგარიშზე დაჯდება მიწოდების ტოლი ტკენების რაოდენობა. როდესაც სხვა მომხმარებლები გადაცვლიან თავიანთ TRX-ებს ტოკენებზე, მაშინ ტოკენები მოხსნილი იქნება თქვენი ანგარიშიდან და თქვენ მიიღებთ TRX-ებს განსაზღვრული გადაცვლის კურსით.`,
   /*
   ##################################################################################
   #                                                                                #
@@ -840,27 +839,27 @@ export const messages = {
     #                                                                                #
     ##################################################################################
   */
-  "tron_convert_tool":"Encode Convert Tool",
-  "breakdown_supply_types":"Breakdown By Supply Types",
-  "genesis":"Genesis",
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
   "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
-  "block_produce_rewards":"Block Produce Rewards",
-  "node_rewards":"Node Rewards",
-  "independence_day_burned":"Independence Day Burned",
-  "fee_burned":"Fee Burned",
-  "current_total_supply":"Current Total Supply",
-  "foundation_freeze":"Foundation Freeze",
-  "price_per_1000_trx":"PRICE PER 1000 TRX",
-  "in_USD":"In USD",
-  "in_BTC":"In BTC",
-  "total_TRX_supply":"Total TRX Supply",
-  "market_capitalization":"Market Capitalization",
-  "circulating_supply":"Circulating Supply",
-  "list_trx":"List TRX",
-  "burned_trx":"TRX Burned",
-  "supply_notes":"Crowdsale and pre-sale available globally, except in the US, China, and Japan",
-  "14_day_transaction_history":"14 day Transaction History",
-  "14_day_address_growth":"14 day Address Growth",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
 
   /*
   ##################################################################################
@@ -870,7 +869,7 @@ export const messages = {
   ##################################################################################
   */
   "pice_per_1trx": "Price",
-  "tron_power_freezing":"TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power."
 
 
 };

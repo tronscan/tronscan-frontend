@@ -12,18 +12,18 @@ class TronConvertTool extends Component {
     super(props);
 
     this.state = {
-      loader:false
+      loader: false
     };
   }
 
   componentDidMount() {
-      let iframe = document.getElementById("convertTool");
-      let _this = this
-      iframe.onload = function(){
-          _this.setState({
-              loader:true
-          });
-      };
+    let iframe = document.getElementById("convertTool");
+    let _this = this
+    iframe.onload = function () {
+      _this.setState({
+        loader: true
+      });
+    };
 
   }
 
@@ -41,17 +41,19 @@ class TronConvertTool extends Component {
         <div className="container header-overlap">
           <div className="card">
             <div className="row" style={{justifyContent: 'center'}}>
-                {
-                    <div className={this.state.loader?"loader-hidden col-md-12":"show col-md-12"} >
-                        <TronLoader/>
-                    </div>
-                }
-                {
-                  <div className={this.state.loader?"show col-md-12":"hidden col-md-12"} style={{width:'100%',height:'100%',minHeight:'750px',paddingTop:'15px',border:0 }} >
-                    <iframe id="convertTool" style={{width:'100%',height:'100%',minHeight:'750px',paddingTop:'15px',border:0 }} src="https://cdnsrcpro.tronscan.org:4443"></iframe>
-                  </div>
-                }
-
+              {
+                <div className={this.state.loader ? "loader-hidden col-md-12" : "show col-md-12"}>
+                  <TronLoader/>
+                </div>
+              }
+              {
+                <div className={this.state.loader ? "show col-md-12" : "hidden col-md-12"}
+                     style={{width: '100%', height: '100%', minHeight: '750px', paddingTop: '15px', border: 0}}>
+                  <iframe id="convertTool"
+                          style={{width: '100%', height: '100%', minHeight: '750px', paddingTop: '15px', border: 0}}
+                          src="https://tronscan.org/TronConvertTool/"></iframe>
+                </div>
+              }
             </div>
           </div>
         </div>

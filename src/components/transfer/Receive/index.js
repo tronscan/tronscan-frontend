@@ -42,39 +42,39 @@ class Receive extends React.Component {
 
     if (!account.isLoggedIn) {
       return (
-        <div>
-          <div className="alert alert-warning">
-            {tu("require_account_to_receive")}
+          <div>
+            <div className="alert alert-warning">
+              {tu("require_account_to_receive")}
+            </div>
+            <p className="text-center">
+              <Link to="/login">{tu("Go to login")}</Link>
+            </p>
           </div>
-          <p className="text-center">
-            <Link to="/login">{tu("Go to login")}</Link>
-          </p>
-        </div>
       );
     }
 
     return (
-      <main className="container-fluid pt-5 pb-5 bg-dark">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 col-sm-8 col-lg-5">
-              <div className="card">
-                <div className="card-header text-center">
-                  {tu("receive_trx")}
-                </div>
-                <div className="card-body">
-                  {
-                    qrcode && <img src={qrcode} style={{width: '100%'}} alt="account address" />
-                  }
-                </div>
-                <div className="card-footer text-muted text-center">
-                  {tu("scan_qr_code")}
+        <main className="container-fluid pt-5 pb-5 bg-dark">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-12 col-sm-8 col-lg-5">
+                <div className="card">
+                  <div className="card-header text-center">
+                    {tu("receive_trx")}
+                  </div>
+                  <div className="card-body">
+                    {
+                      qrcode && <img src={qrcode} style={{width: '100%'}} alt="account address"/>
+                    }
+                  </div>
+                  <div className="card-footer text-muted text-center">
+                    {tu("scan_qr_code")}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
     )
   }
 }
@@ -85,8 +85,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive)

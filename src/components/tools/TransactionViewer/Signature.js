@@ -4,8 +4,8 @@ import Field from "./Field";
 export default function Signature({signature}) {
 
   return (
-    <table className="table">
-      <Field label="Signature">{signature.bytes}</Field>
-    </table>
+      <table className="table">
+        <Field label="Signature">{signature.bytes}</Field>
+      </table>
   );
 }

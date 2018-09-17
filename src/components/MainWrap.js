@@ -10,6 +10,7 @@ import {ConnectedRouter} from 'react-router-redux'
 import {reduxHistory} from "../store";
 import SignModal from "./signing/SignModal";
 import {BackTop} from 'antd';
+
 class MainWrap extends React.Component {
   constructor() {
     super();

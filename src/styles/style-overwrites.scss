@@ -1,5 +1,5 @@
 body .token_black {
-  font-weight: lighter; // 覆盖 btn 样式
+  // font-weight: lighter; // 覆盖 btn 样式
   // 全局card样式覆盖
   .card {
     background: none;
@@ -63,7 +63,7 @@ body .token_black {
   .form-control {
     border: none;
     border-radius: 0;
-    font-weight: lighter;
+    // font-weight: lighter;
   }
   .tokenDetail tr th {
     width: 10%;
@@ -94,7 +94,7 @@ body .token_black {
           }
         }
         th {
-          font-weight: lighter;
+          // font-weight: lighter;
         }
       }
     }
@@ -215,19 +215,275 @@ body .token_black {
     color: inherit!important;
   }
 
-  .table_pos{
-    position: relative;
-
-    &_info{
-      position: absolute;
-      top: 26px;
-      left: 38px;
-      color: $text-block-dark;
-      z-index: 1;
-    }
-  }
+  
   .faceico{
     width: 16px;
     height: 16px;
+  }
+
+  $blue:   #4A90E2;
+  $yellow: #E0AE5C;
+  $green:  #69C265;
+  $titlimg: frozen sr band addr node up lock vote nextvote balance totle lowst nodest heightst;
+  @each $name in $titlimg{
+    .#{$name} {
+      background-image: url(../images/title-img/#{$name}.png)
+    }
+  }
+  @mixin bg-line ($image, $color: $main-red, $width: 4) {
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: $width * 1px;
+      background-color: $color;
+    }
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      // @extend .#{$image};
+      background-image: url(../images/title-img/#{$image}.png);
+      background-size: auto 100%;
+      background-repeat: no-repeat; 
+    }
+  }
+
+  .accout_unit{
+    position: relative;
+    background-color: $white;
+    @include bg-line(accounts, $main-red, 6);
+
+    h3{
+      color: $bg-color!important;
+    }
+  }
+  
+  .foundation_title{
+    color: none;
+    border-radius: 1px;
+
+    @each $number, $color, $image in (1, $main-red, addr),
+                             (2, $blue, lock),
+                             (3, $yellow, frozen) {
+      &>div:nth-child(#{$number}) .card-body{
+        @include bg-line($image, $color);
+      }
+    }
+    .card-body{
+      background: $white;
+    }
+    span{
+      color: $text-block-dark;
+    }
+    h3, h3 *{
+      color: $bg-color;
+    }
+  }
+  .represent_title{
+    @each $number, $color, $image in (1, $main-red, sr),
+                             (2, $green, heightst),
+                             (3, $yellow, lowst) {
+      &>div:nth-child(#{$number}) .card-body{
+        @include bg-line($image, $color);
+      }
+    }
+    &_text{
+      &>span:last-child{
+        position: absolute;
+      }
+    }
+  }
+  .represent__table{
+    table{
+      border: 1px solid #d8d8d8;
+    }
+    th{
+      background: #f3f3f3;
+      color: #333;
+      border: none;
+    }
+    td{
+      background: #fff;
+      border: 1px solid #f3f3f3;
+      position: relative;
+      vertical-align: middle;
+    }
+    &__content, &__lighter{
+      td:first-child:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left:0;
+        bottom: 0;
+        width: 4px;
+        background-color: $main-red;
+      }
+    }
+    &__lighter{
+      td:first-child:before{
+        background: rgba(194,54,49,0.20);
+      }
+    }
+  }
+}
+  @each $name, $color in (red, $main-red),
+                         (green, $green),
+                         (yellow, $yellow),
+                         (blue, $blue) {
+    .bg-line_#{$name}{
+      position: relative;
+      &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: $color;
+      }
+    }
+  }
+
+@each $image in addr, balance, band, frozen, heightst, lock, lowst,
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest{
+
+  .bg-image_#{$image}{
+    position: relative;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background-image: url(../images/title-img/#{$image}.png);
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+.color-green{
+  color: $green!important;
+}
+.color-red{
+  color: $main-red!important;
+}
+
+.markets{
+  background: transparent;
+  border:none;
+  .ant-pagination.ant-table-pagination.ant-pagination{
+    margin-right: 0px;
+  }
+  table{
+    border: 1px solid #d8d8d8;
+    border-radius: 1px;
+    th{
+      border-radius: 0!important;
+    }
+  }
+}
+
+.table_pos{
+  position: relative;
+
+  &_info{
+    position: absolute;
+    top: 26px;
+    left: 38px;
+    color: $text-block-dark;
+    z-index: 1;
+  }
+}
+
+.live{
+  .card{
+    background-color: #fff!important;
+  }
+}
+.accounts{
+  .card{
+    background-color: #fff!important;
+  }
+  .table-responsive{
+    th, td{
+      padding: {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+  .temp-table{
+    &.table{
+      border: 1px solid #eee;
+    }
+    th,td{
+      border: none;
+    }
+    th{
+      background-color: #fff;
+    }
+    tbody tr{
+      &:nth-child(odd){
+        background-color: #f3f3f3;
+      }
+      &:nth-child(even){
+        background-color: #fff;
+      }
+    }
+    .ant-table{
+      border-color: #eee!important;
+
+      th{
+        background-color: #fff!important;
+      }
+      td{
+        border: none!important;
+      }
+    }
+  }
+  
+}
+.nav{
+  .dropdown-menu{
+    border-radius:2px;
+    border-color: #eee;
+
+    .form-control{
+      background: #F3F3F3;
+      border: 1px solid #EEEEEE;
+      border-radius: 1px;
+    }
+  }
+  .dropdown-item{
+    *{font-weight: normal;}
+    padding:{
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .dropdown-divider.blod{
+    border-width: 4px;
+    border-color: #eee;
+  }
+
+  &_input{
+    .dropdown-menu{
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+    li{
+      background: #fff;
+      border: 1px solid #eee;
+    }
   }
 }

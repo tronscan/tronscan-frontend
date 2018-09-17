@@ -34,7 +34,7 @@ class TokenHolders extends React.Component {
     this.loadTokenHolders(page, pageSize);
   };
 
-  loadTokenHolders = async (page = 1, pageSize = 10) => {
+  loadTokenHolders = async (page = 1, pageSize = 20) => {
     let {filter} = this.props;
     this.setState({loading: true});
 

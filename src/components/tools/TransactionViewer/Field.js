@@ -4,11 +4,11 @@ import React from "react";
 
 export default function Field({label, children}) {
   return (
-      <tbody>
+      // <tbody>
       <tr>
         <th>{tu(label)}</th>
         <td>{children}</td>
       </tr>
-      </tbody>
+      // </tbody>
   )
 }

@@ -14,6 +14,7 @@ export default class SmartTable extends Component {
       pagination: {
         position: 'both',
         showSizeChanger: true,
+        defaultPageSize:20
         // showTotal: function (total) {
         //   return <div>{total} {tu('records')}</div>
         // }
@@ -54,6 +55,12 @@ export default class SmartTable extends Component {
 
   fetch = (params = {}) => {
     this.setState({loading: true});
+    if (!this.props.onPageChange) {
+      this.setState({
+        loading: false,
+      });
+      return;
+    }
     this.props.onPageChange(params.page, params.pageSize);
     this.setState({
       loading: false,
@@ -164,21 +171,23 @@ export default class SmartTable extends Component {
 
     let {total, loading, data, column, bordered} = this.props;
     let columns = this.setColumn(column);
-
     return (
-
         <div className="card table_pos">
-          
           <Table
               bordered={bordered}
               columns={columns}
-              rowKey={record => record.index}
+              rowKey={(record) => {
+                if (record.id) return record.id;
+                if (record.number) return record.number;
+                if (record.name) return record.name;
+                if (record.address) return record.address;
+                if (record.hash) return record.hash;
+              }}
               dataSource={data}
               pagination={{total: total, ...this.state.pagination}}
               loading={loading}
               onChange={this.handleTableChange}
           />
-
         </div>
 
     )
