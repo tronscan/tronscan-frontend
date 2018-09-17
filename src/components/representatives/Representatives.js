@@ -321,7 +321,6 @@ function Row({account, showSync = true, index, state, props}) {
             totalVotes > 0 &&
             <Fragment>
               <FormattedNumber value={filteredCandidates[index].votes}/>
-              <br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

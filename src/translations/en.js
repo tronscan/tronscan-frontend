@@ -972,7 +972,8 @@ export const messages = {
   "block_unit": "Blocks",
   "record_unit": "Transactions",
   "token_unit": "Tokens",
-  "vote_unit": "Voters",
+  "vote_unit": "candidates",
+  "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
 

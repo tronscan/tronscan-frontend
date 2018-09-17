@@ -1240,6 +1240,7 @@ table a {
 }
 
 ._system {
+  padding-top: 20px;
   .table th, .table td {
     border-top: 0px solid #DFD7CA;
   }
@@ -1290,13 +1291,16 @@ h5 {
       color: #999999;
     }
     a {
-      color: red;
+      color: #C23631;
     }
     img {
       width: 48px;
       height: 96px;
       float: right;
     }
+  }
+  ._badge div div {
+    border:0px;
   }
   .table-responsive thead tr th {
     background: #F3F3F3;
@@ -1333,6 +1337,10 @@ h5 {
 }
 
 ._nodemap {
+  div div div {
+    border-radius:1px;
+    border:0px;
+  }
   h3 {
     font-family: Helvetica;
     color: #333333 !important;
@@ -1373,12 +1381,19 @@ h5 {
   font-size: 13px;
 }
 
+._applyDesc {
+  margin-top: -10px;
+}
+
 .modal-content {
   border-radius: 2px;
 }
+
 ._applyHeader {
-  border-bottom:0px;
+  border-bottom: 0px;
+  padding-bottom: 0px;
 }
+
 ._applyHeader span {
   font-family: Helvetica-Bold;
   color: #333333;

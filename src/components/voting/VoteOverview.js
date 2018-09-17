@@ -285,7 +285,7 @@ class VoteOverview extends React.Component {
 
     return (
         <div className="text-center">
-          <a className="" onClick={this.enableVoting} style={{color: 'red'}}>
+          <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
             {tu("click_to_start_voting")}
           </a>
         </div>
