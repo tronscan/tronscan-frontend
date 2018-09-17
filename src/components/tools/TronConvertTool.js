@@ -51,10 +51,9 @@ class TronConvertTool extends Component {
                      style={{width: '100%', height: '100%', minHeight: '750px', paddingTop: '15px', border: 0}}>
                   <iframe id="convertTool"
                           style={{width: '100%', height: '100%', minHeight: '750px', paddingTop: '15px', border: 0}}
-                          src="https://cdnsrcpro.tronscan.org:4443"></iframe>
+                          src="https://tronscan.org/TronConvertTool/"></iframe>
                 </div>
               }
-
             </div>
           </div>
         </div>
