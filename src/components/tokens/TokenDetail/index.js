@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {Link} from "react-router-dom";
-import {some, lowerCase} from "lodash";
+import {some, toLower} from "lodash";
 import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
@@ -367,7 +367,7 @@ class TokenDetail extends React.Component {
         social_display++;
       }
     })
-    let lowerText = lowerCase(token.reputation) + '_acitve.png';
+    let lowerText = toLower(token.reputation) + '_acitve.png';
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
