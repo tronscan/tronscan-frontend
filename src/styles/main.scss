@@ -1208,6 +1208,7 @@ $border-color-dark: #d8d8d8;
       }
     }
     .table-responsive {
+      overflow: unset;
       th, td {
         // font-weight: lighter;
         border: none !important;
