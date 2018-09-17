@@ -185,7 +185,10 @@ export const routes = [
     path: "/markets",
     label: "markets",
     icon: "fa fa-chart-line",
-    component: MarketsAsync
+   // component: MarketsAsync
+    enurl: "https://coinmarketcap.com/currencies/tron/#charts",
+    zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+    linkHref: true
   },
   {
     path: "/votes",
