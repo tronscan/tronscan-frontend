@@ -35,6 +35,9 @@
         }
         .input-group-append button{
             border-radius: 0 2px 2px 0;
+            background-color: $main-red;
+            border-color: $main-red;
+            color: #fff;
         }
     } // default background style ====================================================
     .token_black {
