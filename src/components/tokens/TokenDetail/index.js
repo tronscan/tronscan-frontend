@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {Link} from "react-router-dom";
-import {some} from "lodash";
+import {some, lowerCase} from "lodash";
 import xhr from "axios/index";
 
 class TokenDetail extends React.Component {
@@ -360,12 +360,14 @@ class TokenDetail extends React.Component {
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert} = this.state;
     let social_display = 0;
+   
 
     token && token['social_media'] && token['social_media'].map((media, index) => {
       if (media.url) {
         social_display++;
       }
     })
+    let lowerText = lowerCase(token.reputation) + '_acitve.png';
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
@@ -415,7 +417,7 @@ class TokenDetail extends React.Component {
                           <td>
                             <Link to={`/rating`}
                                   style={{display: 'flex', alignItems: 'center'}}>{tu(token.reputation)}<img
-                                src={require('../../../images/state/' + token.reputation + '_active.png')}
+                                src={require('../../../images/state/' + lowerText)}
                                 className="ml-1 faceico"/></Link>
                           </td>
                         </tr>

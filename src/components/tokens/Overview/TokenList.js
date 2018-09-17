@@ -14,7 +14,7 @@ import SmartTable from "../../common/SmartTable.js"
 import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
-import {upperFirst} from "lodash";
+import {upperFirst, lowerCase} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
 
@@ -386,9 +386,10 @@ class TokenList extends Component {
         align: 'center',
         className: 'ant_table',
         render: (text, record, index) => {
+          let lowerText = lowerCase(text)
           return <div>
             {text && intl.formatMessage({id: text})}
-            <img src={require('../../../images/state/' + text + '.png')} className="ml-1 faceico"/>
+            <img src={require('../../../images/state/' + lowerText + '.png')} className="ml-1 faceico"/>
           </div>
         }
       },
