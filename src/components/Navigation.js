@@ -403,7 +403,7 @@ class Navigation extends PureComponent {
                     {tu("open_wallet")}
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
-                    <li className="px-3 py-3 mb-2">
+                  <li className="px-3 py-3">
                       <div className="text-center">
                         <label>{tu("private_key")}</label>
                         <input
@@ -419,7 +419,7 @@ class Navigation extends PureComponent {
                       </button>
                     </li>
                     {/* <li className="dropdown-divider blod"/> */}
-                    <li className="px-3 py-3 mb-2">
+                    <li className="px-3 py-3 ">
                       <div className="text-center">
                         <label>{tu("keystore_file")}</label>
                         <button className="btn btn-danger btn-block" onClick={this.selectFile}>
@@ -435,7 +435,7 @@ class Navigation extends PureComponent {
                     {
                       flags.mobileLogin &&
                       <Fragment>
-                        <li className="px-3 py-3 mb-2">
+                        <li className="px-3 py-3 ">
                           <div className="text-center">
                             <label>{tu("Mobile Login")}</label>
                             <button className="btn btn-success btn-block"
@@ -497,7 +497,7 @@ class Navigation extends PureComponent {
                             placeholder={intl.formatMessage({id: "search_description1"})}/>
                       <div className="input-group-append">
 
-                        <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
+                        <button className="btn box-shadow-none" onClick={this.doSearch}>
                           <i className="fa fa-search"/>
                         </button>
                       </div>
@@ -541,7 +541,7 @@ class Navigation extends PureComponent {
                           route.linkHref === true ?
                               <HrefLink
                                   className="nav-link"
-                                  href={activeLanguage == 'en' ? route.enurl : route.zhurl}>
+                                  href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}

@@ -35,6 +35,9 @@
         }
         .input-group-append button{
             border-radius: 0 2px 2px 0;
+            background-color: $main-red;
+            border-color: $main-red;
+            color: #fff;
         }
     } // default background style ====================================================
     .token_black {
@@ -450,9 +453,6 @@ $color-grey-border:#979797;
 $color:#C23631;
 .tron-light {
   background-color: #F3F3F3;
-  .header-top {
-    background: #F7F7F7;
-  }
 
   @media (min-width:1200px) {
     .container{
