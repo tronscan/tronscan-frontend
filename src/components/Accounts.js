@@ -41,12 +41,15 @@ class Accounts extends Component {
     //   start: (page-1) * pageSize,
     // });
     let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+    let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
+    let txOverviewStats = overviewData.data.data;
     let accountsTotal = accountData.data.total;
     let accounts = accountData.data.data;
     this.setState({
       loading: false,
       accounts: accounts,
-      total: accountsTotal
+      total: txOverviewStats[txOverviewStats.length-1].totalAddress,
+      _total:accountsTotal
     });
   };
 
@@ -184,7 +187,7 @@ class Accounts extends Component {
   render() {
 
     let {match, intl} = this.props;
-    let {total, loading, accounts} = this.state;
+    let {total, _total, loading, accounts} = this.state;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'account_unit'})
 
@@ -208,7 +211,7 @@ class Accounts extends Component {
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
+              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={_total}
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)
                           }}/>

@@ -103,7 +103,8 @@ class Home extends Component {
       txOverviewStats: temp.slice(temp.length - 15, temp.length - 1),
       addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
-      blockHeight: blocks[0] ? blocks[0].number : 0
+      blockHeight: blocks[0] ? blocks[0].number : 0,
+      totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress
     });
 
   }
@@ -145,7 +146,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.loadNodes();
-    this.loadAccounts();
+  //  this.loadAccounts();
     this.load();
     // constellationPreset(this.$ref, "Hot Sparks");
 

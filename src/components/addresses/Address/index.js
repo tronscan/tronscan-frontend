@@ -267,11 +267,11 @@ class Address extends React.Component {
     if (!address) {
       return null;
     }
-    let  pathname = this.props.location.pathname;
-    let  tabName = ''
+    let pathname = this.props.location.pathname;
+    let tabName = ''
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
-    pathname.replace(rex,function (a,b) {
-       tabName = b
+    pathname.replace(rex, function (a, b) {
+      tabName = b
     })
     return (
         <main className="container header-overlap">
@@ -305,12 +305,15 @@ class Address extends React.Component {
                             </div>
                           </div>
                         } */}
-                        <div className="card-body">
-                          <h5 className="card-title m-0">
-                            <i className="fa fa-cube mr-2"/>
-                            {tu("representatives")}
-                          </h5>
-                        </div>
+                        {
+                          address.representative.enabled &&
+                          <div className="card-body">
+                            <h5 className="card-title m-0">
+                              <i className="fa fa-cube mr-2"/>
+                              {tu("representatives")}
+                            </h5>
+                          </div>
+                        }
                         <div className="row">
 
                           <div className="col-md-12">
@@ -462,11 +465,11 @@ class Address extends React.Component {
 
                       </div>
                       {
-                          tabName === '' ?
+                        tabName === '' ?
                             <div style={{marginTop: 20, float: 'right'}}><i size="1" style={{fontStyle: 'normal'}}>[
                               Download <a href={uploadURL} style={{color: '#C23631'}}><b>CSV Export</b></a>&nbsp;<span
                                   className="glyphicon glyphicon-download-alt"></span> ]</i>&nbsp;
-                            </div> :null
+                            </div> : null
                       }
 
                     </Fragment>
