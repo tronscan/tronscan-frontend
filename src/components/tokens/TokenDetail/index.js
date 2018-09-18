@@ -450,7 +450,7 @@ class TokenDetail extends React.Component {
                           <th>{tu("white_paper")}:</th>
                           <td>{
                             token.white_paper !== 'no_message' ?
-                                <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
+                                <ExternalLink url={token.white_paper && tu(token.white_paper)} _url={token.white_paper}/> :
                                 <span style={{color: '#d8d8d8'}}>-</span>
                           }
                           </td>
