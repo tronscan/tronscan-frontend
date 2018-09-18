@@ -452,11 +452,31 @@ class VoteOverview extends React.Component {
     let voteSize = Math.ceil(trxBalance / 20);
 
     for (let index in filteredCandidates) {
-        for (let liveVote in liveVotes) {
-            if (filteredCandidates[index].address === liveVotes[liveVote].address) {
-                filteredCandidates[index].liveVote = liveVotes[liveVote].votes
-            }
+      for (let liveVote in liveVotes) {
+        if (filteredCandidates[index].address === liveVotes[liveVote].address) {
+          filteredCandidates[index].liveVote = liveVotes[liveVote].votes
         }
+      }
+    }
+
+    function compare(property) {
+      return function (obj1, obj2) {
+
+        if (obj1[property] > obj2[property]) {
+          return -1;
+        } else if (obj1[property] < obj2[property]) {
+          return 1;
+        } else {
+          return 0;
+        }
+
+      }
+    }
+
+    filteredCandidates.sort(compare('liveVote'));
+
+    for (let f in filteredCandidates) {
+      filteredCandidates[f].rank = parseInt(f);
     }
 
     return (
@@ -563,61 +583,63 @@ class VoteOverview extends React.Component {
                             }
                             {
                               filteredCandidates.map(candidate => {
-                                let candidateLiveVote = candidate.liveVote || 0
-                                return (
+                                    let candidateLiveVote = candidate.liveVote || 0
+                                    return (
 
-                                    <tr key={candidate.address}>
-                                        {
+                                        <tr key={candidate.address}>
+                                          {
                                             viewStats ?
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
                                                     style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                                    {candidate.rank + 1}
+                                                  {candidate.rank + 1}
                                                 </th> :
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
-                                                    {candidate.rank + 1}
+                                                  {candidate.rank + 1}
                                                 </th>
-                                        }
-                                      <td className="d-flex flex-column flex-sm-row ">
-                                        <div className="text-center text-sm-left">
-                                          <Truncate>
-                                            <AddressLink address={candidate.address}
-                                                         className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
-                                          </Truncate>
-                                          <AddressLink className="small text-muted" address={candidate.address}/>
-                                        </div>
-                                          {
+                                          }
+                                          <td className="d-flex flex-column flex-sm-row ">
+                                            <div className="text-center text-sm-left">
+                                              <Truncate>
+                                                <AddressLink address={candidate.address}
+                                                             className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>
+                                              </Truncate>
+                                              <AddressLink className="small text-muted" address={candidate.address}/>
+                                            </div>
+                                            {
                                               candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
                                                 <Link className="btn btn-lg btn-block btn-default mt-1"
                                                       to={`/representative/${candidate.address}`}>
-                                                    {tu("open_team_page")}
+                                                  {tu("open_team_page")}
                                                   <i className="fas fa-users ml-2"/>
                                                 </Link>
                                               </div>
-                                          }
-                                      </td>
-                                      <td className="small text-right align-middle">
-                                          {
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle">
+                                            {
                                               totalVotes > 0 &&
                                               <Fragment>
                                                 <FormattedNumber value={candidate.votes}/><br/>
                                               </Fragment>
-                                          }
-                                      </td>
-                                      <td className="small text-right align-middle _liveVotes">
-                                          {
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle _liveVotes">
+                                            {
                                               totalVotes > 0 &&
                                               <Fragment>
                                                 <FormattedNumber value={candidateLiveVote}/><br/>
 
-                                                  {(candidateLiveVote > 0) && (candidateLiveVote > candidate.votes) ?
-                                                      <span className="color-green">+<FormattedNumber  value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
-                                                      :<span className="color-red"><FormattedNumber  value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
-                                                  }
+                                                {(candidateLiveVote > 0) && (candidateLiveVote > candidate.votes) ?
+                                                    <span className="color-green">+<FormattedNumber
+                                                        value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                    : <span className="color-red"><FormattedNumber
+                                                        value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                }
                                               </Fragment>
-                                          }
-                                      </td>
-                                      <td className="small text-right align-middle">
-                                          {
+                                            }
+                                          </td>
+                                          <td className="small text-right align-middle">
+                                            {
                                               totalVotes > 0 &&
                                               <Fragment>
                                                 <FormattedNumber value={(candidate.votes / totalVotes) * 100}
@@ -625,9 +647,9 @@ class VoteOverview extends React.Component {
                                                                  maximumFractionDigits={2}
                                                 />%
                                               </Fragment>
-                                          }
-                                      </td>
-                                        {
+                                            }
+                                          </td>
+                                          {
                                             votingEnabled && <td className="vote-input-field">
                                               <div className="input-group">
                                                 <div className="input-group-prepend">
@@ -649,10 +671,10 @@ class VoteOverview extends React.Component {
                                                 </div>
                                               </div>
                                             </td>
-                                        }
-                                    </tr>
-                                )
-                              }
+                                          }
+                                        </tr>
+                                    )
+                                  }
                               )
                             }
                             </tbody>

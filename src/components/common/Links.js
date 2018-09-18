@@ -171,7 +171,7 @@ export class ExternalLink extends React.PureComponent {
   };
 
   renderExternalLink() {
-    let {url} = this.props;
+    let {url, _url} = this.props;
 
     let urlHandler = App.getExternalLinkHandler();
     if (urlHandler) {
@@ -185,6 +185,10 @@ export class ExternalLink extends React.PureComponent {
              target="_blank">{tu("continue_to_external_website")}</a>
       );
     } else {
+      if (_url)
+        url = _url;
+      if (url.toLowerCase().indexOf("http://") < 0 && url.toLowerCase().indexOf("https://") < 0)
+        url = "http://" + url;
       return (
           <a className="btn btn-primary"
              href={url}
