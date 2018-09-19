@@ -35,23 +35,23 @@ class TokenDetail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.name));
+    this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.name !== prevProps.match.params.name) {
-      this.loadToken(decodeURI(match.params.name));
+      this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
     }
   }
 
-  loadToken = async (name) => {
+  loadToken = async (name,address) => {
 
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("http://18.216.57.65:20110/api/token?name=" + name);
+    let result = await xhr.get("http://18.216.57.65:20110/api/token?name=" + name+"&owner="+address);
     let token = result.data.data[0];
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 

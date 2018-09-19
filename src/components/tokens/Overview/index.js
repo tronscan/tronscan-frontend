@@ -358,7 +358,7 @@ class TokenOverview extends Component {
             }
             <div>
               <h5><TokenLink name={record.name}
-                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
               <p>{record.description}</p>
             </div>
