@@ -62,6 +62,7 @@ class VoteOverview extends React.Component {
       viewStats: false,
       colors: palette('mpn65', 20),
       liveVotes: null,
+      goSignedIn:false
     };
   }
 
@@ -226,7 +227,6 @@ class VoteOverview extends React.Component {
   renderVotingBar() {
     let {votingEnabled, votesSubmitted, submittingVotes} = this.state;
     let {intl, account} = this.props;
-
     let {trxBalance} = this.getVoteStatus();
 
     if (!account.isLoggedIn) {
@@ -292,7 +292,28 @@ class VoteOverview extends React.Component {
         </div>
     );
   }
-
+  renderVotingBarFalse() {
+      let {intl, account} = this.props;
+      let { goSignedIn } = this.state;
+      if (!account.isLoggedIn) {
+          return (
+              <div className="text-center">
+                {
+                    goSignedIn ? <span style={{color: '#333333'}}>
+                        {tu("not_signed_in")}
+                    </span>:<a href="javascript:;" onClick={this.notSignedIn} >
+                        {tu("click_to_start_voting")}
+                    </a>
+                }
+              </div>
+          );
+      }
+  }
+  notSignedIn = () =>{
+      this.setState({
+          goSignedIn: true
+      });
+  }
   resetVotes = () => {
     this.setState({
       votes: {},
@@ -547,12 +568,25 @@ class VoteOverview extends React.Component {
                             {
                               ({style}) => (
                                   <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
-                                       className="card-body bg-white p-2">
+                                       className="card-body bg-white p-3">
                                     {this.renderVotingBar()}
                                   </div>
                               )
                             }
                           </Sticky>
+                        }
+                        {
+                            !wallet.isOpen &&
+                            <Sticky>
+                                {
+                                    ({style}) => (
+                                        <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
+                                             className="card-body bg-white p-3">
+                                            {this.renderVotingBarFalse()}
+                                        </div>
+                                    )
+                                }
+                            </Sticky>
                         }
 
                         <div className="table-responsive">
