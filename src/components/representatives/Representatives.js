@@ -277,7 +277,7 @@ function Row({account, showSync = true, index, state, props}) {
           showSync ?
               <td className="text-center">
                 {
-                  account.inSync ?
+                  account.producer ?
                       <span key="no" className="text-success"><i className="fas fa-circle"/></span> :
                       <span key="yes" className="text-danger"><i className="fa fa-times"/></span>
                 }
