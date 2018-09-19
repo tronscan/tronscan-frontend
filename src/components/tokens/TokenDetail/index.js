@@ -360,7 +360,7 @@ class TokenDetail extends React.Component {
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert} = this.state;
     let social_display = 0;
-   
+
 
     token && token['social_media'] && token['social_media'].map((media, index) => {
       if (media.url) {
@@ -450,7 +450,8 @@ class TokenDetail extends React.Component {
                           <th>{tu("white_paper")}:</th>
                           <td>{
                             token.white_paper !== 'no_message' ?
-                                <ExternalLink url={token.white_paper && tu(token.white_paper)}/> :
+                                <ExternalLink url={token.white_paper && tu(token.white_paper)}
+                                              _url={token.white_paper}/> :
                                 <span style={{color: '#d8d8d8'}}>-</span>
                           }
                           </td>
@@ -464,7 +465,7 @@ class TokenDetail extends React.Component {
                           <th>{tu("GitHub")}:</th>
                           <td>{
                             token.github !== 'no_message' ?
-                                <ExternalLink url={token.github && tu(token.github)}/> :
+                                <ExternalLink url={token.github && tu(token.github)} _url={token.github}/> :
                                 <span style={{color: '#d8d8d8'}}>-</span>
                           }
                           </td>
