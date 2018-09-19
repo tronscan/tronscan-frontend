@@ -102,6 +102,7 @@ export class BasicInfo extends PureComponent {
   }
 
   componentDidMount() {
+
   }
 
   componentDidUpdate(prevProps, prevState) {
