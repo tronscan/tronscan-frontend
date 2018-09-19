@@ -52,7 +52,7 @@ class TokenDetail extends React.Component {
 
     //let token = await Client.getToken(name);
     let result = await xhr.get("http://18.216.57.65:20110/api/token?name=" + name);
-    let token = result.data.data;
+    let token = result.data.data[0];
     let {total: totalAddresses} = await Client.getTokenHolders(name);
 
     this.setState({
