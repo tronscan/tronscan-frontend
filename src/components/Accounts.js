@@ -206,7 +206,7 @@ class Accounts extends Component {
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <SmartTable bordered={true} loading={loading} column={column} data={accounts}
+              <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)
                           }}/>
