@@ -420,7 +420,6 @@ class VoteOverview extends React.Component {
 
     let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet} = this.props;
-    console.log(1)
     let candidates = votesList.data || []
   
     let filteredCandidates = candidates.map((v, i) => Object.assign({
