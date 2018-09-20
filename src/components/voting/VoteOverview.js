@@ -445,7 +445,6 @@ class VoteOverview extends React.Component {
 
     let {votingEnabled, votes, liveVotes, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet, voteList: candidates,account} = this.props;
-
     candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
       ...c,
       rank: index,
@@ -601,7 +600,7 @@ class VoteOverview extends React.Component {
                               <th className="text-right" style={{width: 150}}>{tu("live")}</th>
                               <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
                               {
-                                votingEnabled && <th style={{width: 200}}>
+                                votingEnabled && trxBalance > 0 && <th style={{width: 200}}>
                                   {tu("your_vote")}
                                 </th>
                               }
@@ -685,7 +684,7 @@ class VoteOverview extends React.Component {
                                             }
                                           </td>
                                           {
-                                            votingEnabled && <td className="vote-input-field">
+                                            votingEnabled && trxBalance > 0 && <td className="vote-input-field">
                                               <div className="input-group">
                                                 <div className="input-group-prepend">
                                                   <button className="btn btn-outline-danger"
