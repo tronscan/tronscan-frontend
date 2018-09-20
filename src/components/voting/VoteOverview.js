@@ -574,7 +574,7 @@ class VoteOverview extends React.Component {
                                               <AddressLink className="small text-muted" address={candidate.address}/>
                                             </div>
                                             {
-                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
+                                              candidate.url && <div className="_team ml-0 ml-sm-auto">
                                                 <Link className="btn btn-lg btn-block btn-default mt-1"
                                                       to={`/representative/${candidate.url}`}>
                                                   {tu("open_team_page")}
@@ -596,7 +596,10 @@ class VoteOverview extends React.Component {
                                               totalVotes > 0 &&
                                               <Fragment>
                                                 <FormattedNumber value={candidate.realTimeVotes}/><br/>
-
+                                                  {/* <span className={candidate.changeVotes > 0
+                                                    ? 'color-green'
+                                                    : 'color-red'}>
+                                                  </span> */}
                                                 {(candidate.changeVotes > 0) ?
                                                     <span className="color-green">+<FormattedNumber
                                                         value={candidate.changeVotes}/></span>
