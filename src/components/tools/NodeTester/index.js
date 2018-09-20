@@ -56,26 +56,26 @@ class NodeTester extends Component {
   testNode = (ip) => {
     return
     this.listener && this.listener.close();
-    this.listener = channel("/nodetest-" + ip, {
-      query: {
-        ip,
-      }
-    });
+    // this.listener = channel("/nodetest-" + ip, {
+    //   query: {
+    //     ip,
+    //   }
+    // });
 
-    this.listener.on("connect", () => {
-      this.setState({
-        active: true,
-      });
-    });
+    // this.listener.on("connect", () => {
+    //   this.setState({
+    //     active: true,
+    //   });
+    // });
 
-    this.listener.on("node-status", status => {
-      this.setState(state => ({
-        logs: [{
-          ...status,
-          id: this.id++,
-        }, ...state.logs.slice(0, 9)],
-      }));
-    });
+    // this.listener.on("node-status", status => {
+    //   this.setState(state => ({
+    //     logs: [{
+    //       ...status,
+    //       id: this.id++,
+    //     }, ...state.logs.slice(0, 9)],
+    //   }));
+    // });
   };
 
   setPort = (ev) => {

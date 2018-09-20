@@ -11,7 +11,6 @@ export class ExternalSigner {
   constructor(cmp) {
     this.cmp = cmp;
     this.uuid = uuidv1().toString().replace(/-/g, "");
-
     // this.signListener = channel(`/sign-${this.uuid}`);
     // this.signListener.on("device-connected", loginResult => {
     //   this.cmp.onDeviceConneced(loginResult);
@@ -38,14 +37,14 @@ export class ExternalSigner {
 
     return new Promise((resolve, error) => {
       this.cmp.waitForTransaction(error);
-      this.signListener.emit("sign-request", {transaction: {hex: transactionHex}}, signedTransaction => {
-        let bytesDecode = hexStr2byteArray(signedTransaction.transaction.hex);
-        let transaction = Transaction.deserializeBinary(bytesDecode);
-        setTimeout(() => {
-          this.cmp.hideModal();
-          resolve({transaction, hex: signedTransaction.transaction.hex});
-        }, 1200);
-      });
+      // this.signListener.emit("sign-request", {transaction: {hex: transactionHex}}, signedTransaction => {
+      //   let bytesDecode = hexStr2byteArray(signedTransaction.transaction.hex);
+      //   let transaction = Transaction.deserializeBinary(bytesDecode);
+      //   setTimeout(() => {
+      //     this.cmp.hideModal();
+      //     resolve({transaction, hex: signedTransaction.transaction.hex});
+      //   }, 1200);
+      // });
     });
   }
 }
