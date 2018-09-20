@@ -71,7 +71,7 @@ class Accounts extends Component {
 
     let {accounts, total} = this.state;
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'address_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + 1000 + ' ' + intl.formatMessage({id: 'address_unit'})
 
     let column = [
       {
