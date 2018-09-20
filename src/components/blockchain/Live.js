@@ -83,38 +83,38 @@ class Live extends React.Component {
   }
 
   listen = () => {
-    this.listener = channel("/blockchain");
-    this.listener.on("transfer", trx => {
-      this.addEvent({
-        type: "transfer",
-        ...trx,
-      });
-    });
-    this.listener.on("vote", event => {
-      this.addEvent({
-        type: "vote",
-        ...event,
-      });
-    });
-    this.listener.on("asset-participate", event => {
-      this.addEvent({
-        type: "asset-participate",
-        ...event,
-      });
-    });
-    this.listener.on("witness-create", event => {
-      this.addEvent({
-        type: "witness-create",
-        ...event,
-      });
-    });
+    // this.listener = channel("/blockchain");
+    // this.listener.on("transfer", trx => {
+    //   this.addEvent({
+    //     type: "transfer",
+    //     ...trx,
+    //   });
+    // });
+    // this.listener.on("vote", event => {
+    //   this.addEvent({
+    //     type: "vote",
+    //     ...event,
+    //   });
+    // });
+    // this.listener.on("asset-participate", event => {
+    //   this.addEvent({
+    //     type: "asset-participate",
+    //     ...event,
+    //   });
+    // });
+    // this.listener.on("witness-create", event => {
+    //   this.addEvent({
+    //     type: "witness-create",
+    //     ...event,
+    //   });
+    // });
 
-    this.listener.on("asset-create", event => {
-      this.addEvent({
-        type: "asset-create",
-        ...event,
-      });
-    });
+    // this.listener.on("asset-create", event => {
+    //   this.addEvent({
+    //     type: "asset-create",
+    //     ...event,
+    //   });
+    // });
   };
 
   addEvent = (event) => {

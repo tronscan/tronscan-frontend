@@ -165,7 +165,7 @@ class VoteOverview extends React.Component {
   loadVotes = async () => {
 
     let {voteList} = this.props;
-
+    
     if (voteList.length === 0) {
       this.setState({loading: true});
     }
