@@ -140,7 +140,7 @@ class Address extends React.Component {
     let {intl} = this.props;
     this.setState({loading: true, address: {address: id}, media: null,});
 
-    this.live && this.live.close();
+    // this.live && this.live.close();
     // this.live = channel("/address-" + id);
     // this.live.on('transfer', transaction => {
     //   setTimeout(() => {

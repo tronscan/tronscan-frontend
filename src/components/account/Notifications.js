@@ -77,13 +77,13 @@ class Notifications extends React.Component {
   }
 
   componentDidMount() {
-    this.reconnect();
+    // this.reconnect();
   }
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
     if (prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address) {
-      this.reconnect();
+      // this.reconnect();
     }
   }
 
