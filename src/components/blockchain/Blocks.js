@@ -93,7 +93,7 @@ class Blocks extends React.Component {
         width: '40%',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return <AddressLink address={record.witnessAddress} children={text}/>
         }
       },
       {
