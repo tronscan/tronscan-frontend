@@ -93,7 +93,8 @@ export const routes = [
         label: "live",
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
-        component: LiveAsync
+        component: LiveAsync,
+        showInMenu: false
       },
       {
         path: "/blockchain/foundation",
