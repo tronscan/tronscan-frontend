@@ -70,7 +70,6 @@ class Address extends React.Component {
   componentDidMount() {
     let {match} = this.props;
     this.loadAddress(match.params.id);
-    this.loadVotes(match.params.id);
     this.loadWitness();
   }
 
@@ -239,7 +238,7 @@ class Address extends React.Component {
       ...c,
       rank: index + 1,
     }));
-
+    
     this.setState({
       candidates: newCandidates
     });
@@ -248,7 +247,7 @@ class Address extends React.Component {
 
   render() {
 
-    let {address, tabs, stats, loading, blocksProduced, media, votes, candidates} = this.state;
+    let {address, tabs, stats, loading, blocksProduced, media, candidates} = this.state;
     let {match} = this.props;
     let rank;
     let totalVotes;

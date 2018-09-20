@@ -80,15 +80,10 @@ class Block extends React.Component {
       return;
     }
 
-    let {total} = await Client.getTransactions({
-      block: id,
-      limit: 1,
-    });
-
     this.setState({
       loading: false,
       block,
-      totalTransactions: total,
+      totalTransactions: block.number,
       tabs: {
         transactions: {
           id: "transactions",

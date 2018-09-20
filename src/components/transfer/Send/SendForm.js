@@ -58,6 +58,7 @@ class SendForm extends React.Component {
    */
   send = async () => {
     let {to, token, amount, note, privateKey} = this.state;
+    console.log('privateKey',privateKey)
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
