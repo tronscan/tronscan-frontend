@@ -123,7 +123,6 @@ class TransactionViewer extends Component {
 
 
     if (hexUrl !== "" && (prevState.hex !== hexUrl)) {
-      console.log(prevState.hex, hexUrl);
       this.loadTransaction(hexUrl);
 
       this.setState({
