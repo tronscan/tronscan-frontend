@@ -11,11 +11,11 @@ export class ExternalSigner {
   constructor(cmp) {
     this.cmp = cmp;
     this.uuid = uuidv1().toString().replace(/-/g, "");
-    console.log("UID", this.uuid);
-    this.signListener = channel(`/sign-${this.uuid}`);
-    this.signListener.on("device-connected", loginResult => {
-      this.cmp.onDeviceConneced(loginResult);
-    });
+
+    // this.signListener = channel(`/sign-${this.uuid}`);
+    // this.signListener.on("device-connected", loginResult => {
+    //   this.cmp.onDeviceConneced(loginResult);
+    // });
 
     this.regenerateCode();
   }

@@ -140,13 +140,13 @@ class Address extends React.Component {
     let {intl} = this.props;
     this.setState({loading: true, address: {address: id}, media: null,});
 
-    this.live && this.live.close();
-    this.live = channel("/address-" + id);
-    this.live.on('transfer', transaction => {
-      setTimeout(() => {
-        this.refreshAddress(id);
-      }, 1500);
-    });
+    // this.live && this.live.close();
+    // this.live = channel("/address-" + id);
+    // this.live.on('transfer', transaction => {
+    //   setTimeout(() => {
+    //     this.refreshAddress(id);
+    //   }, 1500);
+    // });
 
     let address = await Client.getAddress(id);
 

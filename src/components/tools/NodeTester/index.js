@@ -54,7 +54,7 @@ class NodeTester extends Component {
   };
 
   testNode = (ip) => {
-
+    return
     this.listener && this.listener.close();
     this.listener = channel("/nodetest-" + ip, {
       query: {

@@ -36,7 +36,7 @@ class TokenCreate extends Component {
       privateKey: "",
       name: "",
       abbr: "",
-      totalSupply: null,
+      totalSupply: '',
       numberOfCoins: 1,
       numberOfTron: 1,
       startTime: startTime,
@@ -50,7 +50,7 @@ class TokenCreate extends Component {
       issuedAsset: null,
       errors: {
         name: null,
-        totalSupply: null,
+        totalSupply: '',
         description: null,
         url: null,
         tronAmount: null,
@@ -192,17 +192,16 @@ class TokenCreate extends Component {
   };
 
   componentDidMount() {
-    this.setStartTime();
+    // this.setStartTime();
     this.checkExistingToken();
   }
 
   checkExistingToken = () => {
 
     let {wallet} = this.props;
-
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
-
+        
         if (token) {
           this.setState({
             issuedAsset: token,
