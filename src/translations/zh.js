@@ -1010,7 +1010,8 @@ export const messages = {
   "general_information": "一般信息",
   "blockchain_information": "区块链信息",
   "sr_information": "超级代表信息",
-  "currency_information": "流通信息"
+  "currency_information": "流通信息",
+  "your_vote":"票数"
 
 
 };
