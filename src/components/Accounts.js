@@ -31,18 +31,20 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1, pageSize = 20) => {
+  loadAccounts = async (page = 1, pageSize = 20) => {console.log(Client)
 
     this.setState({loading: true});
 
-    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account?sort=-balance&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
-    let accountsTotal = accountData.data.total;
-    let accounts = accountData.data.data;
+    let { accounts, total } = await Client.getAccounts({
+      sort: '-balance',
+      limit: pageSize,
+      start: (page - 1) * pageSize
+    })
 
     this.setState({
       loading: false,
       accounts: accounts,
-      total: accountsTotal
+      total: total
     });
   };
 
