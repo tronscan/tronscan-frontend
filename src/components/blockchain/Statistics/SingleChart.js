@@ -66,9 +66,6 @@ class Statistics extends React.Component {
 
     componentDidMount() {
         let {match} = this.props;
-        this.loadAccounts();
-        this.loadStats();
-
         let chartName = match.params.chartName;
         switch (chartName){
             case 'supply':
@@ -124,11 +121,6 @@ class Statistics extends React.Component {
         });
     }
 
-
-    async loadStats() {
-
-
-    }
     async loadTotalTRXSupply(){
         let {intl} = this.props;
         let random = Math.random();
