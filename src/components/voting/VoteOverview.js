@@ -52,7 +52,7 @@ class VoteOverview extends React.Component {
     super();
     this.state = {
       privateKey: '',
-      votingEnabled: true,
+      votingEnabled: false,
       votesSubmitted: false,
       submittingVotes: false,
       loading: false,
@@ -245,7 +245,7 @@ class VoteOverview extends React.Component {
       );
     }
 
-    if (trxBalance <= 0) {
+    if (votingEnabled && trxBalance <= 0) {
       return (
           <div className="text-center">
             {tu("warning_votes")}{' '}
@@ -261,8 +261,7 @@ class VoteOverview extends React.Component {
           </div>
       );
     }
-
-   if (votingEnabled) {
+    if (votingEnabled) {
       return (
           <div className="d-flex" style={{lineHeight: '36px'}}>
             <div className="d-flex">
@@ -282,15 +281,16 @@ class VoteOverview extends React.Component {
             <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
           </div>
       );
-    }else {
-       return (
-           <div className="text-center">
-             <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
-                 {tu("click_to_start_voting")}
-             </a>
-           </div>
-       );
-   }
+    }
+
+     return (
+         <div className="text-center">
+           <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
+               {tu("click_to_start_voting")}
+           </a>
+         </div>
+     );
+
 
 
   }
@@ -601,7 +601,7 @@ class VoteOverview extends React.Component {
                               <th className="text-right" style={{width: 150}}>{tu("live")}</th>
                               <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
                               {
-                                votingEnabled && account.isLoggedIn && <th style={{width: 200}}>
+                                votingEnabled && <th style={{width: 200}}>
                                   {tu("your_vote")}
                                 </th>
                               }
@@ -685,7 +685,7 @@ class VoteOverview extends React.Component {
                                             }
                                           </td>
                                           {
-                                            votingEnabled && account.isLoggedIn && <td className="vote-input-field">
+                                            votingEnabled && <td className="vote-input-field">
                                               <div className="input-group">
                                                 <div className="input-group-prepend">
                                                   <button className="btn btn-outline-danger"
