@@ -19,7 +19,6 @@ class TransactionViewer extends Component {
     super(props);
 
     let hexUrl = getQueryParam(props.location, "hex", "");
-
     this.state = {
       hex: hexUrl,
       showInput: hexUrl === "",
@@ -40,10 +39,15 @@ class TransactionViewer extends Component {
       modal: null,
     });
   };
+  setHex = (hexUrl) =>{
+      this.setState({
+          hex: hexUrl,
+      });
+  }
 
   loadTransaction = async (hex) => {
     try {
-      let {transaction} = await Client.readTransaction(hex);
+      let {transaction} = await Client.readTransactionNew(hex);
 
       this.setState({
         transactionData: transaction,
@@ -66,6 +70,7 @@ class TransactionViewer extends Component {
           <ScanSignatureModal onClose={this.hideModal} onConfirm={({code}) => {
             this.loadTransaction(code);
             this.hideModal();
+            this.setHex(code);
           }}/>
       )
     });
@@ -95,8 +100,7 @@ class TransactionViewer extends Component {
 
   broadcastTransactionModal = async () => {
     let {hex} = this.state;
-    let {transaction} = await Client.readTransaction(hex);
-
+    let {transaction} = await Client.readTransactionNew(hex);
     this.setState({
       modal: (
           <SweetAlert
@@ -146,7 +150,6 @@ class TransactionViewer extends Component {
 
     let {hex, transactionData, modal, showInput} = this.state;
     let {flags} = this.props;
-
     return (
         <main className="container header-overlap _transactionViewer">
           {modal}
@@ -188,8 +191,8 @@ class TransactionViewer extends Component {
                 <div className="table-responsive">
                   <table className="table">
                     <Field label="timestamp">
-                      <FormattedDate value={transactionData.timestamp / 1000000}/>&nbsp;
-                      <FormattedTime value={transactionData.timestamp / 1000000}/>
+                      <FormattedDate value={transactionData.timestamp }/>&nbsp;
+                      <FormattedTime value={transactionData.timestamp }/>
                     </Field>
                     <Field label="contracts">
                       {transactionData.contracts.length}
