@@ -485,6 +485,18 @@ class Navigation extends PureComponent {
                 </Link>
               </div>
               <div className="ml-auto d-flex">
+                {
+                  IS_TESTNET &&
+                  <div className="col text-center text-info font-weight-bold py-2">
+                    TESTNET
+                  </div>
+                }
+                {
+                  (syncStatus && syncStatus.sync.progress < 95) &&
+                  <div className="col text-danger text-center py-2">
+                    Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                  </div>
+                }
                 { this.props.location.pathname != '/'&&
                   <div className= "hidden-mobile nav-searchbar">
                     <div className="input-group">
@@ -502,18 +514,6 @@ class Navigation extends PureComponent {
                         </button>
                       </div>
                     </div>
-                  </div>
-                }
-                {
-                  IS_TESTNET &&
-                  <div className="col text-center text-info font-weight-bold py-2">
-                    TESTNET
-                  </div>
-                }
-                {
-                  (syncStatus && syncStatus.sync.progress < 95) &&
-                  <div className="col text-danger text-center py-2">
-                    Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                   </div>
                 }
                 <div className="navbar navbar-expand-md navbar-dark py-0">

@@ -99,7 +99,6 @@ class Representatives extends Component {
   render() {
     let {intl,witnesses} = this.props;
     let pieChart = this.getPiechart();
-    console.log('pieChart',pieChart)
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
     let mostProductive = sortBy(productivityWitnesses, w => w.producePercentage * -1)[0];
     let leastProductive = _(productivityWitnesses)
