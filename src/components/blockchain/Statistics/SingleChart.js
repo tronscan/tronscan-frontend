@@ -259,9 +259,7 @@ class Statistics extends React.Component {
 
 
     async loadTxOverviewStats() {
-        // let {txOverviewStats} = await Client.getTxOverviewStats();
-        let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
-        let txOverviewStats = overviewData.data.data;
+        let { txOverviewStats } = await Client.getTxOverviewStats();
         let temp = [];
         let addressesTemp = [];
         let blockSizeStatsTemp = [];
@@ -287,7 +285,7 @@ class Statistics extends React.Component {
                 });
                 addressesTemp.push({
                     date: txOverviewStats[tx].date,
-                    total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+                    total: txOverviewStats[tx].totalAddress,
                     increment: txOverviewStats[tx].newAddressSeen
                 });
             }

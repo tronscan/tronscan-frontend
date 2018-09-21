@@ -87,7 +87,7 @@ class Home extends Component {
         });
         addressesTemp.push({
           date: txOverviewStats[tx].date,
-          total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+          total: txOverviewStats[tx].totalAddress,
           increment: txOverviewStats[tx].newAddressSeen
         });
       }
