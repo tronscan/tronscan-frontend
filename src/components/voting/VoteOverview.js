@@ -573,7 +573,7 @@ class VoteOverview extends React.Component {
                                               <AddressLink className="small text-muted" address={candidate.address}/>
                                             </div>
                                             {
-                                              candidate.address && <div className="_team ml-0 ml-sm-auto">
+                                              candidate.hasPage && <div className="_team ml-0 ml-sm-auto">
                                                 <Link className="btn btn-lg btn-block btn-default mt-1"
                                                       to={`/representative/${candidate.address}`}>
                                                   {tu("open_team_page")}
