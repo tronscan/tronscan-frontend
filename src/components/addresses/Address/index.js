@@ -31,7 +31,7 @@ class Address extends React.Component {
       loading: true,
       blocksProduced: 0,
       votes: null,
-      rank: 999,
+      rank: 0,
       totalVotes: 0,
       address: {
         address: "",
@@ -259,26 +259,6 @@ class Address extends React.Component {
                     </div> :
                     <Fragment>
                       <div className="card list-style-header">
-                        {/* {
-                          address.representative.enabled && !producer &&
-                          <div className="card-header text-center bg-info font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          address.representative.enabled && producer &&
-                          <div className="card-header text-center bg-danger font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          media &&
-                          <div className="card-body">
-                            <div className="text-center">
-                              <img style={{maxWidth: '100%'}} src={media.image}/>
-                            </div>
-                          </div>
-                        } */}
                         {
                           address.representative.enabled &&
                           <div className="card-body">
@@ -295,7 +275,7 @@ class Address extends React.Component {
                             <table className="table m-0">
                               <tbody>
                               {
-                                rank &&
+                                Boolean(rank) &&
                                 <tr>
                                   <th>{tu("rank_real_time")}:</th>
                                   <td>
@@ -379,7 +359,7 @@ class Address extends React.Component {
                                 </td>
                               </tr>
                               {
-                                totalVotes &&
+                                Boolean(totalVotes) &&
                                 <tr>
                                   <th>{tu("total_votes")}:</th>
                                   <td>

@@ -93,7 +93,6 @@ class Home extends Component {
         });
       }
     }
-    console.log(temp)
     this.setState({
       txOverviewStats: temp.slice(temp.length - 15, temp.length - 1),
       addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),

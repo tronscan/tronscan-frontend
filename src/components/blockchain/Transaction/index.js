@@ -101,70 +101,57 @@ class Transaction extends React.Component {
                       <div className="table-responsive">
                         <table className="table table-hover m-0">
                           <tbody>
-                          <tr>
-                            <th>{tu("status")}:</th>
-                            <td>
-                              {
-                                transaction.confirmed ?
-                                    <span className="badge badge-success text-uppercase">Confirmed</span> :
-                                    <span className="badge badge-danger text-uppercase">Unconfirmed</span>
-                              }
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("hash")}:</th>
-                            <td>
-                              <Truncate>
-                                {transaction.hash}
-                                <CopyText text={transaction.hash} className="ml-1"/>
-                              </Truncate>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("block")}:</th>
-                            <td><BlockNumberLink number={transaction.block}/></td>
-                          </tr>
-                          {
-                            transaction.timestamp !== 0 && <tr>
-                              <th>{tu("time")}:</th>
+                            <tr>
+                              <th>{tu("status")}:</th>
                               <td>
-                                <FormattedDate value={transaction.timestamp}/>&nbsp;
-                                <FormattedTime value={transaction.timestamp}/>&nbsp;
-                                {/*(<TimeAgoI18N date={transaction.timestamp} activeLanguage={activeLanguage}/>)*/}
+                                {
+                                  transaction.confirmed ?
+                                  <span className="badge badge-success text-uppercase">Confirmed</span> :
+                                  <span className="badge badge-danger text-uppercase">Unconfirmed</span>
+                                }
                               </td>
                             </tr>
-                          }
-                          {
-                            (transaction.data && trim(transaction.data).length > 0) && <tr>
-                              <th>{tu("note")}:</th>
+                            <tr>
+                              <th>{tu("hash")}:</th>
                               <td>
-                          <pre className="border border-grey bg-light-grey m-0 p-2 rounded"
-                               style={{whiteSpace: 'pre-wrap'}}>
-                            {decodeURIComponent(hextoString(transaction.data))}
-                          </pre>
+                                <Truncate>
+                                  {transaction.hash}
+                                  <CopyText text={transaction.hash} className="ml-1"/>
+                                </Truncate>
                               </td>
                             </tr>
-                          }
+                            <tr>
+                              <th>{tu("block")}:</th>
+                              <td><BlockNumberLink number={transaction.block}/></td>
+                            </tr>
+                            {
+                              transaction.timestamp !== 0 && <tr>
+                                <th>{tu("time")}:</th>
+                                <td>
+                                  <FormattedDate value={transaction.timestamp}/>&nbsp;
+                                  <FormattedTime value={transaction.timestamp}/>&nbsp;
+                                  {/*(<TimeAgoI18N date={transaction.timestamp} activeLanguage={activeLanguage}/>)*/}
+                                </td>
+                              </tr>
+                            }
+                            {
+                              (transaction.data && trim(transaction.data).length > 0) ?
+                              <tr>
+                                <th>{tu("note")}:</th>
+                                <td>
+                                  <pre className="border border-grey bg-light-grey m-0 p-2 rounded"
+                                      style={{whiteSpace: 'pre-wrap'}}>
+                                    {decodeURIComponent(hextoString(transaction.data))}
+                                  </pre>
+                                </td>
+                              </tr>:<tr></tr>
+                            }
                           </tbody>
                         </table>
                       </div>
                     </div>
 
                     <div className="card mt-3  list-style-body">
-                      {/* <div className="card-header  list-style-body__header">
-                    <ul className="nav nav-tabs card-header-tabs">
-                      {
-                        Object.values(tabs).map(tab => (
-                          <li key={tab.id} className="nav-item">
-                            <NavLink exact to={match.url + tab.path} className="nav-link text-dark" >
-                              <i className={tab.icon + " mr-2"} />
-                              {tab.label}
-                            </NavLink>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div> */}
                       <div className="card-body p-0  list-style-body__body">
                         <Switch>
                           {
