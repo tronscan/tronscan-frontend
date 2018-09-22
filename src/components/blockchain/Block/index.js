@@ -83,7 +83,7 @@ class Block extends React.Component {
     this.setState({
       loading: false,
       block,
-      totalTransactions: block.number,
+      totalTransactions: block.nrOfTrx,
       tabs: {
         transactions: {
           id: "transactions",

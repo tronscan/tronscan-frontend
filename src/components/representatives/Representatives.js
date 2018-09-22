@@ -66,7 +66,7 @@ class Representatives extends Component {
               <th className="text-center text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
               <th className="text-center text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
               <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
-              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
+              {/* <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th> */}
               <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
               <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("votes")}</th>
 
@@ -200,31 +200,6 @@ class Representatives extends Component {
 
 function Row({account, showSync = true, index, state, props}) {
 
-  // let {searchCriteria} = state;
-  // let {voteList: candidates} = props;
-  // candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
-  //   ...c,
-  //   rank: index,
-  // }));
-  //
-  // let filteredCandidates = candidates;
-  //
-  // if (searchCriteria && searchCriteria !== "") {
-  //   filteredCandidates = filter(candidates, c => {
-  //     if (trim(c.url.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
-  //       return true;
-  //     }
-  //
-  //     if (c.name.length > 0 && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
-  //       return true;
-  //     }
-  //
-  //     return false;
-  //   });
-  // }
-  //
-  // let totalVotes = sumBy(candidates, c => c.votes);
-
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
@@ -266,13 +241,13 @@ function Row({account, showSync = true, index, state, props}) {
                 '-'
           }
         </td>
-        <td className="text-center d-none d-xl-table-cell">
+        {/* <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
-        </td>
+        </td> */}
         <td className="text-center d-none d-xl-table-cell">
           {
             account.producedTotal > 0 ? (
