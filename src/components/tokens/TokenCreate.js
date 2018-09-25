@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
 import {filter, trim, some, sumBy} from "lodash";
-import {ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
+import {ASSET_ISSUE_COST, ONE_TRX, API_URL} from "../../constants";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
@@ -144,7 +144,7 @@ class TokenCreate extends Component {
       })(account.key);
 
       if (result.success) {
-        let result_img = await xhr.post("http://18.216.57.65:20110/api/uploadLogo", {
+        let result_img = await xhr.post(API_URL+ "/api/uploadLogo", {
           imageData: logoData,
           owner_address: account.address
         });

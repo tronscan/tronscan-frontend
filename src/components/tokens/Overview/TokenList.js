@@ -11,7 +11,7 @@ import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst, toLower} from "lodash";
@@ -45,9 +45,9 @@ class TokenList extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("http://18.216.57.65:20110/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
     else
-      result = await xhr.get("http://18.216.57.65:20110/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
     let total = result.data['total'];
     let tokens = result.data['data'];

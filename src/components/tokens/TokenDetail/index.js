@@ -8,7 +8,7 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -51,7 +51,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("http://18.216.57.65:20110/api/token?name=" + name+"&owner="+address);
+    let result = await xhr.get(API_URL+"/api/token?name=" + name+"&owner="+address);
     let token = result.data.data[0];
 
     this.setState({

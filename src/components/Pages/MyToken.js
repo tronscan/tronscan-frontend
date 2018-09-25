@@ -6,6 +6,7 @@ import {login} from "../../actions/app";
 import {injectIntl} from "react-intl";
 import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
+import {API_URL} from "../../constants";
 
 class MyToken extends Component {
   constructor() {
@@ -33,7 +34,7 @@ class MyToken extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
 
-      xhr.get("http://18.216.57.65:20110/api/token?owner=" + wallet.address).then((result) => {
+      xhr.get(API_URL+"/api/token?owner=" + wallet.address).then((result) => {
 
         if (result.data.data['Data'][0]) {
           this.setState({
