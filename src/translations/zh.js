@@ -215,6 +215,8 @@ export const messages = {
   "foundation_address": "基金会锁仓TRX总数",
   "unfreeze_time": "解冻时间",
   "addresses_number": "地址数",
+  "Confirmed": "已确认",
+  "Unconfirmed": "未确认",
   /*
   ##################################################################################
   #                                                                                #
