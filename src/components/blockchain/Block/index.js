@@ -143,8 +143,8 @@ class Block extends React.Component {
                             <td>
                               {
                                 block.confirmed ?
-                                    <span className="badge badge-success text-uppercase">Confirmed</span> :
-                                    <span className="badge badge-danger text-uppercase">Unconfirmed</span>
+                                    <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
+                                    <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>
                               }
                             </td>
                           </tr>

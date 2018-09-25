@@ -95,9 +95,10 @@ async function searchToken(criteria) {
     limit: 2,
   });
 
-  if (tokens.length === 1) {
-    return `#/token/${tokens[0].name}`;
-  } else if (tokens.length > 1) {
+  // if (tokens.length === 1) {
+  //   return `#/token/${tokens[0].name}`;
+  // } else 
+  if (tokens.length >= 1) {
 
     if (window.location.hash === "#/tokens/view")
       return `#/tokens/view?search=${criteria}`;

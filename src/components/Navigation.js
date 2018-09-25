@@ -201,6 +201,7 @@ class Navigation extends PureComponent {
     let type = getSearchType(search);
 
     let result = await doSearch(search, type);
+    
     if (result === true) {
       this.setState({search: ""});
     } else if (result !== null) {

@@ -51,15 +51,6 @@ class TokenOverview extends Component {
 
     let total = result.data['total'];
     let tokens = result.data['data'];
-    /*
-        let {tokens, total} = await Client.getTokens({
-          sort: '-name',
-          limit: pageSize,
-          start: (page - 1) * pageSize,
-          status: 'ico',
-          ...filter,
-        });
-    */
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
