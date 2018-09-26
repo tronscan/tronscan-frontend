@@ -151,7 +151,7 @@ class TokenList extends Component {
             <SweetAlert
                 info
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
@@ -173,7 +173,7 @@ class TokenList extends Component {
         alert: (
             <SweetAlert
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {

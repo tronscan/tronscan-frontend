@@ -87,15 +87,15 @@ class Representatives extends Component {
           <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
-              <th className="text-center d-none d-lg-table-cell" style={{width: 20}}>#</th>
+              <th className="text-center" style={{width: 20}}>#</th>
               <th style={{width: 60}}>{tu("name")}</th>
               <th className="text-center text-nowrap">{tu("status")}</th>
-              <th className="text-center text-nowrap d-none d-sm-table-cell">{tu("last_block")}</th>
-              <th className="text-center text-nowrap d-none d-md-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
-              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("transactions")}</th>
-              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("productivity")}</th>
-              <th className="text-right text-nowrap d-none d-xl-table-cell">{tu("votes")}</th>
+              <th className="text-center text-nowrap ">{tu("last_block")}</th>
+              <th className="text-center text-nowrap ">{tu("blocks_produced")}</th>
+              <th className="text-center text-nowrap">{tu("blocks_missed")}</th>
+              <th className="text-center text-nowrap">{tu("transactions")}</th>
+              <th className="text-center text-nowrap">{tu("productivity")}</th>
+              <th className="text-right text-nowrap">{tu("votes")}</th>
 
             </tr>
             </thead>
@@ -219,7 +219,7 @@ class Representatives extends Component {
           </div>
 
           <div className="row mt-3">
-            <div className="col-md-12">
+            <div className="col-md-12 table-scroll">
               {this.renderWitnesses(witnesses)}
             </div>
           </div>
@@ -258,7 +258,7 @@ function Row({account, showSync = true, index, state, props}) {
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
-        <td className="text-center d-none d-lg-table-cell" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
+        <td className="text-center" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
         <td>
           {
             account.name ?
@@ -283,27 +283,27 @@ function Row({account, showSync = true, index, state, props}) {
                 }
               </td> : <td>&nbsp;</td>
         }
-        <td className="text-center d-none d-sm-table-cell">
+        <td className="text-center">
           <BlockNumberLink number={account.latestBlockNumber}/>
         </td>
-        <td className="text-center d-none d-md-table-cell">
+        <td className="text-center">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-center d-none d-xl-table-cell">
+        <td className="text-center">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
                 '-'
           }
         </td>
-        <td className="text-center d-none d-xl-table-cell">
+        <td className="text-center">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
         </td>
-        <td className="text-center d-none d-xl-table-cell">
+        <td className="text-center">
           {
             account.producedTotal > 0 ? (
                 <Fragment>
@@ -316,7 +316,7 @@ function Row({account, showSync = true, index, state, props}) {
           }
 
         </td>
-        <td className="text-right d-none d-xl-table-cell">
+        <td className="text-right">
           {
             totalVotes > 0 &&
             <Fragment>
