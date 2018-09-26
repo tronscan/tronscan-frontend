@@ -112,7 +112,7 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                  {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                   <Table bordered={true} columns={column} dataSource={accounts}
                          pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20}}/>
                 </div>

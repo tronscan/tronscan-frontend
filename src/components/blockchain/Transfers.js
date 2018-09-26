@@ -154,7 +154,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {
                             this.load(page, pageSize)

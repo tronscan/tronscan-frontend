@@ -121,6 +121,14 @@
             }
         }
     }
+    @media screen and (max-width: 750px) {
+        .ant-table { 
+            overflow-x: auto;
+            &-content{
+                width: 1000px;
+            }
+        }
+    }
 
     // 全局ant-steps样式覆盖 ===============================
     .ant-steps {
