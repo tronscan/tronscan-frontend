@@ -35,10 +35,9 @@ class MyToken extends Component {
     if (wallet !== null) {
 
       xhr.get(API_URL+"/api/token?owner=" + wallet.address).then((result) => {
-
-        if (result.data.data['Data'][0]) {
+        if (result.data.data[0]) {
           this.setState({
-            issuedAsset: result.data.data['Data'][0],
+            issuedAsset: result.data.data[0],
           });
         }
       });
@@ -145,7 +144,7 @@ class MyToken extends Component {
                     <div className="row socialMedia" style={{width: '60%'}}>
                       {
                         issuedAsset['social_media'] && issuedAsset['social_media'].map((media, index) => {
-                          return <div className="col-md-5 mr-3 mb-2">
+                          return <div className="col-md-5 mr-3 mb-2" key={index}>
                             <img src={require('../../images/' + media.name + '.png')}/>
                             {!media.url ?
                                 <span>{media.name}</span> :

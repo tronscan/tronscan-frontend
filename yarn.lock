@@ -55,7 +55,7 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
-"@tronscan/client@^0.2.14":
+"@tronscan/client@0.2.14":
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.14.tgz#5c44171fe675e3594802a591ab45e276471f9662"
   dependencies:
