@@ -57,6 +57,7 @@ class Transfers extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
+      total: this.state.total,
       ...searchParams,
     });
 

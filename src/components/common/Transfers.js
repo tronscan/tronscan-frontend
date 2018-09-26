@@ -57,6 +57,7 @@ class Transfers extends React.Component {
       limit: pageSize,
       start: (page - 1) * pageSize,
       count: showTotal ? true : null,
+      total: this.state.total,
       ...filter,
     });
 
