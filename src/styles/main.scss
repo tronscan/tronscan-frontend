@@ -1454,3 +1454,77 @@ h5 {
   padding-right: 20px;
   //margin-top: -100px;
 }
+.contract-body{
+  padding: 2rem;
+  .contract-title{
+    color: #333333;
+    font-size: 16px;
+    margin-bottom:1.25rem;
+  }
+  p{
+    color: #666666!important;
+    font-size: 13px;
+    line-height:20px;
+    margin-top: 8px!important;
+  }
+  hr{
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.contract-body-input{
+  padding: 2rem;
+  section{
+    label{
+      color: #666666;
+      font-size: 1rem;
+      line-height: 22px;
+      margin-bottom: 1rem;
+    }
+    input,select{
+      border: 0;
+      outline: none;
+      border-radius: 0;
+      background-color: #F3F3F3;
+    }
+    .form-control{
+      padding: 0.475rem 0.75rem;
+    }
+
+    .form-control:focus{
+      box-shadow:none;
+      background-color: #F3F3F3;
+    }
+    .custom-select:focus{
+      box-shadow:none;
+      background-color: #F3F3F3;
+    }
+  }
+  .contract-code,.contract-ABI{
+    span{
+      color: #666666;
+    }
+    textarea{
+      border: 0;
+      outline: none;
+      border-radius: 0;
+      background-color: #F3F3F3;
+    }
+    .contract-input{
+      background-color: #F3F3F3;
+      margin-top: 1rem;
+      input{
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        background-color: #F3F3F3;
+      }
+      form-control:focus{
+        box-shadow:none;
+        background-color: #F3F3F3;
+      }
+
+    }
+
+  }
+}

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {trim} from "lodash";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {connect} from "react-redux";
 import {CopyText} from "../common/Copy";
-import {BlockNumberLink} from "../common/Links";
-import {FormattedNumber} from "react-intl";
-
-
+import {NavLink} from "react-router-dom";
+import {FormattedNumber, injectIntl} from "react-intl";
 class VerifyContractCode extends Component {
 
   constructor(props) {
@@ -48,94 +46,105 @@ class VerifyContractCode extends Component {
 
   render() {
     let {contractCode, selectedCompiler, compilers, abi} = this.state;
+    let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
-          <div className="card">
-            <div className="card-body">
+          <div className="card" style={styles.card}>
+            <div className="card-header list-style-body__header">
+              <ul className="nav nav-tabs card-header-tabs">
+                <li className="nav-item">
+                  <a href="javascript:;" className="nav-link text-dark active">
+                      <span>
+                        <span>{tu("contract_source_code")}</span>
+                      </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="card-body contract-body">
               <div>
-                <h5 className="card-title text-left">Verify and Publish your Solidity Source Code</h5>
+                <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
                 <p>
-                  Step 1 : Enter your Contract Source Code below.
+                    {tu("step")} 1 : {tu("step_1")}
                 </p>
                 <p>
-                  Step 2 : If the Bytecode generated matches the existing Creation Address Bytecode, the contract is
-                  then
-                  Verified.
+                    {tu("step")} 2 : {tu("step_2")}
                 </p>
                 <p>
-                  Step 3 : Contract Source Code is published online and publicably verifiable by anyone.
+                    {tu("step")} 3 : {tu("step_3")}
                 </p>
-                <br/>
+                <hr/>
+
                 <p>
-                  NOTES
-                </p>
-                <p>
-                  1. To verify Contracts that accept Constructor arguments, please enter the ABI-encoded Arguments in
-                  the
-                  last box below.
+                    {tu("contract_notes")}
                 </p>
                 <p>
-                  2. For debugging purposes if it compiles correctly at Browser Solidity, it should also compile
-                  correctly
-                  here.
+                  1. {tu("contract_notes_1")}
                 </p>
                 <p>
-                  3. Contracts that use "imports" will need to have the code concatenated into one file as we do not
-                  support "imports" in separate files. You can try using the Blockcat solidity-flattener or
-                  SolidityFlattery
+                  2. {tu("contract_notes_2_1")}
+                  <a href="https://github.com/tronprotocol/tron-studio">
+                      {tu("contract_notes_2_2")}
+                  </a>
+                  {t("contract_notes_2_3")}
                 </p>
                 <p>
-                  4. We do not support contract verification for contracts created by another contract
+                  3. {t("contract_notes_3")}
                 </p>
                 <p>
-                  5. There is a timeout of up to 45 seconds for each contract compiled. If your contract takes longer
-                  than
-                  this we will not be able to verify it.
+                  4. {t("contract_notes_4")}
+                </p>
+                <p>
+                  5. {t("contract_notes_5")}
                 </p>
               </div>
-              <hr/>
+            </div>
+            <hr style={styles.hr}/>
+            <div className="card-body contract-body-input">
               <div className="row">
-                <div className="col-md-3 mt-3 mt-md-0">
+                <div className="col-md-4 mt-3 mt-md-0">
                   <section>
-                    <label style={{whiteSpace: 'nowrap'}}><b>Contract Address </b>
+                    <label style={{whiteSpace: 'nowrap'}}>{tu("contract_address")}
                       <span>*</span>
                     </label>
                     <div>
-                      <input type="text" className="form-control" placeholder="Contract Address"/>
+                      <input type="text" className="form-control"
+                             placeholder={intl.formatMessage({id: 'contract_address'})}/>
                     </div>
                   </section>
                 </div>
-                <div className="col-md-3 mt-3 mt-md-0">
+                <div className="col-md-4 mt-3 mt-md-0">
                   <section>
-                    <label style={{whiteSpace: 'nowrap'}}><b>Contract Name </b>
+                    <label style={{whiteSpace: 'nowrap'}}>{tu("contract_name")}
                       <span>*</span>
                     </label>
                     <div>
-                      <input type="text" className="form-control" placeholder="Contract Address"/>
+                      <input type="text" className="form-control"
+                             placeholder={intl.formatMessage({id: 'contract_name'})}/>
                     </div>
                   </section>
                 </div>
-                <div className="col-md-3 mt-3 mt-md-0">
+                <div className="col-md-2 mt-3 mt-md-0">
                   <section>
-                    <label style={{whiteSpace: 'nowrap'}}><b>Compiler </b>
+                    <label style={{whiteSpace: 'nowrap'}}>{tu("compiler")}
                       <span>*</span>
                     </label>
                     <div>
                       <select className="custom-select" onChange={this.compilerSelectChange}>
-                        {
-                          compilers.map((compiler, index) => {
-                            return (
-                                <option key={index} value={compiler}>{compiler}</option>
-                            )
-                          })
-                        }
+                          {
+                              compilers.map((compiler, index) => {
+                                  return (
+                                      <option key={index} value={compiler}>{compiler}</option>
+                                  )
+                              })
+                          }
                       </select>
                     </div>
                   </section>
                 </div>
-                <div className="col-md-3 mt-3 mt-md-0">
+                <div className="col-md-2 mt-3 mt-md-0">
                   <section>
-                    <label style={{whiteSpace: 'nowrap'}}><b>Optimization </b>
+                    <label style={{whiteSpace: 'nowrap'}}>{tu("optimization")}
                       <span>*</span>
                     </label>
                     <div>
@@ -148,34 +157,43 @@ class VerifyContractCode extends Component {
                 </div>
               </div>
 
-              <div className="row mt-3">
+              <div className="row mt-3 contract-code">
                 <div className="col-md-12 ">
                   <div className="d-flex mb-1">
-                    <span><b>Enter the Solidity Contract Code below</b> <i className="fa fa-cogs"></i></span>
-                    <CopyText text={contractCode} className="ml-auto ml-1"/>
+                    <span className="mb-3">{tu("enter_contract_code")}</span>
+                    {/*<CopyText text={contractCode} className="ml-auto ml-1"/>*/}
                   </div>
                   <textarea className="w-100 form-control"
-                            rows="7"
+                            rows="11"
                             value={contractCode}
                             onChange={ev => this.setState({contractCode: ev.target.value})}/>
-
                 </div>
               </div>
-
-
-              <hr/>
-              <div className="row mt-3">
+              <hr style={styles.hr_32}/>
+              <div className="row mt-3 contract-ABI">
                 <div className="col-md-12 ">
-                  <p>
-                    The following are optional Parameters
+                  <p className="mb-3">
+                      {tu("following_optional_parameters")}
                   </p>
-                  <span><b>Constructor Arguments ABI-encoded (For contracts that accept constructor parameters):</b></span>
-
-                  <textarea className="w-100 form-control"
-                            rows="7"
+                  <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
+                  <textarea className="w-100 form-control mt-3"
+                            rows="1"
                             value={abi}
                             onChange={ev => this.setState({abi: ev.target.value})}/>
 
+                </div>
+                <div className="col-md-12">
+                  <p className="mt-5">{tu("contract_library_address")}</p>
+                  <div className="row">
+                    <div className="col-md-5 contract-input">
+                      <span>{tu("library_1_name")}:</span>
+                      <input type="text" className="form-control"/>
+                    </div>
+                    <div className="col-md-7 contract-input">
+                      <span>{tu("library_contract_address")}:</span>
+                      <input type="text" className="form-control"/>
+                    </div>
+                  </div>
                 </div>
               </div>
               <hr/>
@@ -192,10 +210,30 @@ class VerifyContractCode extends Component {
   }
 }
 
+const styles = {
+    card: {
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderBottom:'none',
+        borderRadius: 0
+    },
+    hr:{
+        borderTop: '3px solid rgba(0, 0, 0, 0.1)',
+        margin:0
+    },
+    hr_32:{
+       marginTop:'2rem',
+       marginBottom:'2rem'
+    },
+    s_title:{
+      fontSize:16
+    }
+
+}
 function mapStateToProps(state) {
   return {};
 }
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(VerifyContractCode)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(VerifyContractCode))
