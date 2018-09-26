@@ -595,10 +595,10 @@ class VoteOverview extends React.Component {
                                             viewStats ?
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
                                                     style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                                  {candidate.rank + 1}
+                                                  {candidate.realTimeRanking}
                                                 </th> :
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
-                                                  {candidate.rank + 1}
+                                                  {candidate.realTimeRanking}
                                                 </th>
                                           }
                                           <td className="d-flex flex-column flex-sm-row ">
