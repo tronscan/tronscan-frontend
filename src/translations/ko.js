@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-25072018                                                  #
-  #         Update Date: 25.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Korean                                                       #
   #         Status: third draft                                                    #
   #         Number of checks: 7                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "지난 시간",
   "bytes": "바이트",
   "MByte": "MByte",
-  "produced by": "생성자",
+  "produced_by": "생성자",
+  "block_reward": "Block Reward",
   "contract": "컨트랙트",
   "from": "보내는 주소",
   "to": "받는 주소",
@@ -84,7 +84,7 @@ export const messages = {
   "enter_password_message": "암호를 반드시 입력해야합니다!",
   "password_incorrect": "암호 불일치",
   "try_again": "다시 시도해보십시오",
-  "wallet_unlocked": "지갑 언락 완료",
+  "wallet_unlocked": "지갑 잠금 해제 완료",
   "weak": "약함",
   "okay": "괜찮음",
   "good": "좋음",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "데스크톱 버전 탐색기",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -174,7 +178,7 @@ export const messages = {
   "asset_participation": "자산 참여",
   "loading_transaction": "트랜잭션 로딩 중",
   "nodes_ranking": "노드 랭킹",
-  "total_accounts_last_day":"마지막 날까지의 총 계정 수",
+  "total_accounts_last_day": "마지막 날까지의 총 계정 수",
   "chart_tip": "데이터 확대 영역을 드래그하여 줌 인/아웃 할 수 있습니다",
   "link_test_server": "테스트넷",
   "highest": "최고 ",
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "는",
   "was_recorded_on": "을 기록했습니다",
   "rank_real_time": "순위 (실시간)",
+  "volume_24": "24시간 거래 볼륨",
+  "billion_usd": "(단위) 10억 USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "분포 통계",
   "tron_transaction_chart": "트론 트랜잭션 차트",
   "transactions_per_day": "일일 트랜잭션 개수",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "다음과 같은 주소에 전송하십시오",
   "change_website": "웹 사이트 주소 변경",
   "you_must_enter_url": "URL을 반드시 입력해야합니다",
-  "specify_the_url":  "URL을 지정해주세요",
+  "specify_the_url": "URL을 지정해주세요",
   /*
   ##################################################################################
   #                                                                                #
@@ -332,7 +349,7 @@ export const messages = {
   "github_linked": "깃헙(Github) 연결 완료!",
   "unable_to_link_github_message": "깃헙(Github)에 연결하지 못했습니다. 유저네임이 올바른지 확인해주세요!",
   "could_not_link_github": "깃헙(Github)에 연결하지 못했습니다",
-  "enter_your_github_username":   "깃헙(Github) 유저네임을 입력해주십시오",
+  "enter_your_github_username": "깃헙(Github) 유저네임을 입력해주십시오",
   "link_to_github": "깃헙(Github) 연결",
   "link_github": "깃헙(Github) 링크",
   "you_must_enter_a_url": "반드시 URL을 입력해주어야 합니다",
@@ -347,7 +364,7 @@ export const messages = {
   "could_not_claim_rewards": "보상을 청구하지 못했습니다",
   "claim_rewards_error_message": "보상을 청구하는 중에 문제가 생겼습니다. 나중에 다시 시도해주십시오.",
   "rewards_claimed": "보상을 청구하였습니다!",
-  "successfully_claimed_rewards":  "성공적으로 보상을 청구하였습니다",
+  "successfully_claimed_rewards": "성공적으로 보상을 청구하였습니다",
   "claim_rewards": "보상 청구",
   "sr_receive_reward_message_0": "대표로서 블록 생성에 대한 보상을 받을 수 있습니다. 이러한 보상은 24시간마다 청구할 수 있습니다",
   "intro": "Intro",
@@ -404,10 +421,10 @@ export const messages = {
   "buy_confirm_message_1": "정말로 다음과 같이 구매하시겠습니까",
   "for": "을 다음으로 구매:",
   "insufficient_trx": "불충분한 TRX",
-  "not_enouth_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
+  "not_enough_trx_message": "토큰을 구매할 수 있는 TRX를 충분히 가지고 있지 않습니다",
   "ends": "마감 기한은",
   "starts": "시작일은",
-  "can_be_unlocked_in": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",
+  "can_be_unlocked": "개의 수량은 다음 기한 이후에 언락될 수 있습니다 -",
   /*
   ##################################################################################
   #                                                                                #
@@ -429,7 +446,6 @@ export const messages = {
   "thanks_for_applying": "신청해주셔서 감사합니다!",
   "to_much_votes": "To much votes",
   "no_trx_remaining": "남아있는 TRX가 없습니다.",
-  "produced_by": "{witnessAddress}에 의해 생성됨",
   "show_more": "{countriesLength}개 더보기",
   "vote_guide_message": `TRX를 사용하여 슈퍼 대표(SR)에 투표하십시오.
    귀하가 보유하고있는 모든 TRX에 대해 귀하는 하나의 투표권을가집니다.
@@ -491,10 +507,10 @@ export const messages = {
   "start_date": "시작 일자",
   "end_date": "종료 일자",
   "token_spend_confirm": "나는 토큰의 총 공급량을 만드는데 한 번의 총 1024 TRX의 비용이 들었음을 확인합니다.",
-  "token_issue_guide_message_1":`TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
-  "token_issue_guide_message_2":`토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
+  "token_issue_guide_message_1": `TRON 프로토콜에서 토큰을 발행하는 것은 계정에 최소 1024 개의 TRX를 가진 사람이 수행 할 수 있습니다.`,
+  "token_issue_guide_message_2": `토큰이 발급되면 토큰 개요 페이지에 표시됩니다.
    사용자는 참여 기간 내에 참여하고 TRX를 토큰으로 교환 할 수 있습니다.`,
-  "token_issue_guide_message_3":`토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
+  "token_issue_guide_message_3": `토큰을 발행하면 계정에 총 공급과 동일한 토큰 금액이 지급됩니다.
    다른 사용자가 TRX를 토큰으로 교환하면 토큰이 계정에서 철회되고 지정된 환율과 동일한 TRX를 받게됩니다.`,
   /*
   ##################################################################################
@@ -675,6 +691,19 @@ export const messages = {
   "print_paper_wallet": "페이퍼 월렛 인쇄",
   "new_wallet_ready_message": "사용자분의 새 지갑이 준비되었습니다",
   "go_to_account_page": "계정 페이지로 가기",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -743,6 +772,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -786,15 +826,58 @@ export const messages = {
   "search_description": "주소, 블록번호, 트랜잭션해시, 토큰이름 검색",
   "search_description1": "주소, 블록, 트랜잭션, 토큰 검색",
   "transaction": "트랜잭션",
-  "total_addresses":"총 주소 수",
-  "daily_increment":"일일 증가량",
-  "address_growth_chart":"주소 증가 차트",
-  "addresses_amount":"주소 수",
-  "past_14_days_of_transactions":"지난 14일동안 트랜잭션 상황",
-  "address_growth":"주소 증가 상황",
+  "total_addresses": "총 주소 수",
+  "daily_increment": "일일 증가량",
+  "address_growth_chart": "주소 증가 차트",
+  "addresses_amount": "주소 수",
+  "past_14_days_of_transactions": "지난 14일동안 트랜잭션 상황",
+  "address_growth": "주소 증가 상황",
   "power": "트론파워",
   "token_transfers": "토큰 전송 목록",
   "website_url": "웹사이트 URL",
-  "search": "검색"
+  "search": "검색",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
 
 };

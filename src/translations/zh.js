@@ -14,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-24072018                                                  #
-  #         Update Date: 24.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Chinese                                                      #
   #         Status: Approved Version                                               #
   #         Number of checks: 5                                                    #
@@ -53,7 +53,8 @@ export const messages = {
   "age": "年龄",
   "bytes": "字节",
   "MByte": "兆字节",
-  "produced by": "出块者",
+  "produced_by": "出块者",
+  "block_reward": "区块奖励",
   "contract": "合约",
   "from": "发送人",
   "to": "接收人",
@@ -100,6 +101,10 @@ export const messages = {
   "desktop_explorer": "桌面浏览器",
   "message": "信息",
   "wallet_address": "Wallet Address",
+  "confirm": "确认",
+  "_percentage": "百分比",
+  "language_support": "目前只支持英文输入",
+  "note": "备注",
   /*
   ##################################################################################
   #                                                                                #
@@ -124,12 +129,12 @@ export const messages = {
   "votes": "投票",
   "account": "账户",
   "tokens": "通证",
-  "overview": "概况",
+  "overview": "概览",
   "participate": "参与",
   /*
   ##################################################################################
   #                                                                                #
-  # home dashboard                                                                 #
+  # main dashboard                                                                 #
   #                                                                                #
   ##################################################################################
   */
@@ -171,17 +176,27 @@ export const messages = {
   "witness": "超级代表",
   "asset_participation": "参与通证发行",
   "loading_transaction": "交易加载中",
-  "nodes_ranking": "节点排名（以国家/地区划分）",
+  "nodes_ranking": "节点排名",
+  "split_by_country": "以国家/地区划分",
   "total_accounts_last_day": "截止上一天总账户数",
   "chart_tip": "拖拽数据窗口来放大或缩小",
   "link_test_server": "测试网",
-  "highest":"最大",
-  "lowest":"最小",
-  "increase":"增长",
-  "number":"数值",
-  "_of":"是",
-  "was_recorded_on":"记录于 ",
-  "rank_real_time":"排名 (实时) ",
+  "highest": "最大",
+  "lowest": "最小",
+  "increase": "增长",
+  "number": "数值",
+  "_of": "是",
+  "was_recorded_on": "记录于 ",
+  "rank_real_time": "排名 (实时) ",
+  "volume_24": "24小时交易量",
+  "billion_usd": "十亿美元",
+  "loading_transfers": "正在加载转账记录",
+  "loading_transactions": "正在加载交易记录",
+  "loading_block": "正在加载区块",
+  "current_power": "当前投票权",
+  "produce_distribution": "算力分配图",
+  "confirm_token_issue": "确认通证发行",
+  "_to": "至",
   /*
   ##################################################################################
   #                                                                                #
@@ -196,6 +211,10 @@ export const messages = {
   "rich_list": "富豪榜",
   "tron_transaction_chart": "TRON交易数图表",
   "transactions_per_day": "日交易数",
+  "foundation": "基金会地址",
+  "foundation_address": "基金会锁仓TRX总数",
+  "unfreeze_time": "解冻时间",
+  "addresses_number": "地址数",
   /*
   ##################################################################################
   #                                                                                #
@@ -257,7 +276,7 @@ export const messages = {
   "trx_amount": "TRX数额",
   "token_freeze_confirm_message_0": "确认冻结",
   "token_freeze_confirm_message_1": "至少3天",
-  "frozen_supply": "冻结数额",
+  "frozen_supply": "锁仓数量",
   "tokens_unfrozen": "解冻通证",
   "success_tokens_unfrozen_message": "成功解冻通证",
   "unable_to_unfreeze": "无法解冻",
@@ -293,6 +312,7 @@ export const messages = {
   "recent_transactions": "近期交易",
   "newest_account": "最新账户",
   "representatives": "超级代表",
+  "representativesAcandidates": "超级代表及候选人",
   "most_votes": "最高得票",
   "start_end_time": "开始/结束时间",
   "scan_qr_code": "扫描二维码",
@@ -353,13 +373,13 @@ export const messages = {
   ##################################################################################
   */
   "name_of_the_token": "通证名称",
-  "token_message": "通证名称",
+  "token_message": "通证名称，尽量避免重复",
   "token_abbr": "通证缩写",
-  "abbr_message": "通证缩写",
+  "abbr_message": "通证缩写，建议不与交易所现有符号重复",
   "total_supply": "发行量",
   "issued_token": "已发行通证",
   "create_token": "发行通证",
-  "description": "描述",
+  "description": "简介",
   "description_url": "网站URL",
   "quote_token_amount": "二级通证数额",
   "base_token_amount": "基本通证数额",
@@ -394,10 +414,10 @@ export const messages = {
   "buy_confirm_message_1": "是否确定要购买通证",
   "for": "共计",
   "insufficient_trx": "TRX数量不足",
-  "not_enouth_trx_message": "没有足够的TRX购买此数量的通证",
+  "not_enough_trx_message": "没有足够的TRX购买此数量的通证",
   "ends": "结束",
   "starts": "开始",
-  "can_be_unlocked_in": "将解锁于",
+  "can_be_unlocked": "将解锁于",
   /*
   ##################################################################################
   #                                                                                #
@@ -419,7 +439,6 @@ export const messages = {
   "thanks_for_applying": "感谢您的申请！",
   "to_much_votes": "票数过多",
   "no_trx_remaining": "无TRX余额",
-  "produced_by": "出块者：{超级代表地址}",
   "show_more": "展示{国家长度} 更多内容",
   "vote_guide_message": `使用TRX为超级代表投票。
    每一个TRX享有一次投票机会。
@@ -436,6 +455,7 @@ export const messages = {
   "percentage": "总百分比",
   "loading_token": "通证加载中",
   "voter_percentage": "自占百分比",
+  "total_balance": "总余额",
   /*
   ##################################################################################
   #                                                                                #
@@ -464,11 +484,11 @@ export const messages = {
   "total_issued": "认购量",
   "registered": "注册日期",
   "abbreviation": "缩写",
-  "exchange_rate": "汇率",
+  "exchange_rate": "发行汇率",
   "token_price": "通证价格",
-  "supply_message": "进入流通的通证数量",
+  "supply_message": "创建的代币数量，如：比特币的发行总量为2100万",
   "description_message": "发行通证目的简述",
-  "url_message": "用户可以查询到更多通证信息的网站",
+  "url_message": "展示更多通证信息的网址",
   "exchange_rate_message_0": "规定单位通证的价值，明确每一TRX可以换取的通证数量。",
   "exchange_rate_message_1": "参与者可以获得",
   "exchange_rate_message_2": "每",
@@ -477,9 +497,9 @@ export const messages = {
   "participation_message_1": " 通证。",
   "frozen_supply_message_0": `可锁定部分通证。明确具体的锁定数额，并锁定至少一天。被锁定的通证可以在到达锁定期限后手动解冻，锁定并非强制。`,
   "token_issued_successfully": "通证发行成功！",
-  "participation": "参与",
+  "participation": "参与时间",
   "start_date": "开始日期",
-  "end_date": "结束时期",
+  "end_date": "结束日期",
   "token_spend_confirm": "我已获知发行通证需一次性缴纳1024TRX。",
   "token_issue_guide_message_1": `用户账户中有至少1024TRX，就可以在波场协议上发行通证。`,
   "token_issue_guide_message_2": `通证发行后，会在通证总览页面进行显示。
@@ -509,7 +529,7 @@ export const messages = {
   "token_link_message_1": "通证页面",
   "token_link_message_2": "在几分钟之内",
   "description_error_message_0": "描述需要不超过200个字符",
-  "token_creation_error": "尝试创建同通证时发生错误",
+  "token_creation_error": "尝试创建通证时发生错误",
   "tokenname_error_message_0": "名称需要不超过32个字符",
   "tokenname_error_message_1": "名称只能包含a-Z的字母",
   "abbreviation_required": "需要设置一个缩写",
@@ -665,6 +685,19 @@ export const messages = {
   "print_paper_wallet": "打印纸钱包",
   "new_wallet_ready_message": "新钱包已准备就绪",
   "go_to_account_page": "进入账户页面",
+  "login_first": "请先登录钱包",
+  "contract_name": "合约名称",
+  "compiler": "编译器版本",
+  "tx_count": "交易数",
+  "setting": "设置",
+  "date_verified": "验证日期",
+  "compiler_version": "编译器版本",
+  "creator": "合约开发者",
+  "verify_contract_code": "验证合约代码",
+  "buy_tokens": "购买通证",
+  "fill_a_valid_private_key": "请填写有效的私钥",
+  "confirm_private_key": "确认私钥",
+  "transfer_confirm_info": "你确认要转账",
   /*
   ##################################################################################
   #                                                                                #
@@ -733,6 +766,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_trx": "购买TRX",
+  "buy_trx_message_0": "TRX可以直接使用法定货币或是其它加密货币来购买而不需要通过交易所。这是因为我们使用了来自Changelly.com的服务，这也是最简单最快捷的购买TRX的方法。支持兑换的加密货币种类和常见问题请参见：",
+  "buy_trx_using_changelly": "使用Changelly来购买TRX",
+  "cant_load_widget": "无法加载控件",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -784,9 +828,192 @@ export const messages = {
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",
-  "website_url": "网站地址",
   "search": "搜索",
   "inter_tnxl":"合约内部交易",
   "inter_a_total":"共找到",
-  "inter_transactions_found":"个内部交易"
+  "inter_transactions_found":"个内部交易",
+  "website_url": "官方网站",
+  "language_support": "目前只支持英文输入",
+  "note": "备注",
+  "_percentage": "百分比",
+  "foundation": "基金会地址",
+  "foundation_address": "基金会锁仓TRX总数",
+  "unfreeze_time": "解冻时间",
+  "addresses_number": "地址数",
+  "copyright": "版权",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "编码转换工具",
+  "breakdown_supply_types": "TRX分布",
+  "genesis": "创世块发行",
+  "TRX_distribution_overview": "TRX分布概览",
+  "block_produce_rewards": "出块奖励",
+  "node_rewards": "节点奖励",
+  "independence_day_burned": "独立日烧毁",
+  "fee_burned": "手续费烧毁",
+  "current_total_supply": "当前总流通量",
+  "foundation_freeze": "基金会冻结",
+  "price_per_1000_trx": "TRX价格（每1000TRX）",
+  "in_USD": "以美元计",
+  "in_BTC": "以比特币计",
+  "total_TRX_supply": "TRX总流通量",
+  "market_capitalization": "市值",
+  "circulating_supply": "流通量",
+  "list_trx": "交易所上币",
+  "burned_trx": "TRX烧毁数",
+  "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
+  "14_day_transaction_history": " 过去14天交易数",
+  "14_day_address_growth": " 过去14天地址增长",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--rating page                                                              #
+  #                                                                                #
+  ##################################################################################
+*/
+  "TRONRating": "TRON通证评级",
+  "rating_title": "波场区块链浏览器通证信誉评级系统",
+  "modify_on": "修改日期",
+  "rating_description": "波场区块链浏览器“通证信誉评级系统”旨在帮助用户了解、识别与判断不同通证，当您访问通证页面时，本评级服务将通过以下5种标志显示:",
+  "rating_status_1": "等待审核",
+  "rating_status_1_desc_a": "还未经过审核",
+  "rating_status_2": "OK",
+  "rating_status_2_desc": "一个'OK'信誉评级不是一个认可或推荐，但有以下标准的组合:",
+  "rating_status_2_desc_a": "提供足够准确的信息",
+  "rating_status_2_desc_b": "明确项目目标和沟通渠道",
+  "rating_status_2_desc_c": "项目发起人/投资人/顾问的可见资料",
+  "rating_status_2_desc_d": "该通证在一个具有AML/KYC检查的加密货币交易所交易/上市",
+  "rating_status_2_desc_e": "ICO已完成或ICO活跃不少于3个月",
+  "rating_status_2_desc_f": "取得了重大的里程碑",
+  "rating_status_3": "中立",
+  "rating_status_3_desc": "'中立'的信誉评级意味着项目方有相对充分的信息披露：",
+  "rating_status_3_desc_a": "提供必要且充分的信息(官方网站、logo、官方联系邮箱、白皮书)",
+  "rating_status_3_desc_b": "项目发起人/投资人/顾问的可见资料(LinkedIn个人简介中也包含了该项目)",
+  "rating_status_3_desc_c": "提供支持社交媒体资料",
+  "rating_status_4": "信息不充分",
+  "rating_status_4_desc_a": "未提交必要且充分的信息（官方网站、logo、官方联系邮箱、白皮书）",
+  "rating_status_4_desc_b": "没有资料显示该项目有持续的运营进展",
+  "rating_status_5": "信息存在虚假",
+  "rating_status_5_desc_a": "冒充他人身份与行为发行通证",
+  "rating_status_5_desc_b": "有资料显示，与本通证有关的诈骗/网络钓鱼/诈骗/滥发讯息或虚假陈述的资料并未得到适当处理，或有其他“危险”信号",
+  "rating_disclaimer": "免责声明",
+  "disclaimer_desc_1": "波场区块链浏览器不支持、不批准或不谴责与波场区块链浏览器上显示的通证相关的任何服务或项目。用户在采取任何与通证相关的行动之前，应始终进行自己的研究和调查，尤其是涉及到价值投资的时候。",
+  "disclaimer_desc_2": "与这项服务有关的信誉评分可能准确，也可能不准确，因为它们是基于主观评价和来自社区的报告。我们毫无保证或承担任何关于内容、准确性和可靠性这样的责任,我们的信誉评级不构成任何行为建议，尤其是投资建议。",
+  "disclaimer_desc_3": "我们保留在本页给通证评定象征性信誉的最终解释权，我们没有义务提供任何关于拒绝的理由的反馈。一旦发现虚假信息或不符之处，我们保留删除或更新信息(包括信誉)的权利。",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--myToken page                                                              #
+  #                                                                                #
+  ##################################################################################
+ */
+  "my_token": "我发行的通证",
+  "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
+  "tron_rating": "波场通证信誉评级",
+  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tron.network",
+  "brief_info": "简介",
+  "website_official": "官方网站",
+  "white_paper": "白皮书",
+  "GitHub": "GitHub",
+  "country": "国家",
+  "social_link": "社交媒体链接",
+  "download_excel": "下载模板",
+  "no_message": "暂无，请发邮件补充信息",
+  "insufficient_message": "信息不充分",
+  "token_detail": "通证详情",
+  "contact_us": "联系我们",
+  "my_token": "我的通证",
+  "try_later": "请稍后再试",
+  "contract_address": "合约地址",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--create token page                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
+  "basic_info": "基本信息",
+  "basic_info_desc": "通证的基本信息",
+  "exchange_setting": "发行设置",
+  "exchange_setting_desc": "规定每个通证的价格和时间",
+  "freeze_setting": "锁仓设置",
+  "freeze_setting_desc": "可锁定部分通证固定时间",
+  "confirm_setting": "确认设置",
+  "confirm_setting_desc": "确认全部信息",
+  "token_logo": "通证LOGO",
+  "image_restraint_desc": "分辨率1:1，格式jpg/png",
+  "prev_step": "上一步",
+  "freeze_on": "启用",
+  "freeze_off": "不启用",
+  "freeze_not_valid": "不启用锁仓设置",
+  "no_logo_error": "未上传logo",
+  "confirm_issue_info": "请确保以下信息正确，合约写入区块链后将不可修改。",
+  "tick_checkbox": "需要勾选确认",
+  "change_info": "信息不准确？核实身份更新信息请",
+  "total": "总",
+  "a_totle": "共",
+  "transaction_info": "条交易信息",
+  "hold_addr": "通证持有地址",
+  "transactions_unit": "个交易",
+  "transfers_unit": "个转账",
+  "block_unit": "个区块",
+  "record_unit": "个记录",
+  "token_unit": "个通证",
+  "voter_unit": "个选民",
+  "vote_unit": "个候选人",
+  "account_unit": "个账户",
+  "address_unit": "个地址",
+  /*
+##################################################################################
+#                                                                                #
+# ICO--participate page                                                         #
+#                                                                                #
+##################################################################################
+*/
+
+  "issue_progress": "发行进度",
+  "fund_raised": "已筹集资金",
+  "issuing_price": "发行价格",
+  "buy_token_info": "你想要购买多少数量的通证？",
+  "reputation": "信用评级",
+  "issue_time": "发行时间",
+  "success_receive": "成功收到",
+  "circulating_supply": "流通量",
+  "issue_info": "发行信息",
+  "transferring": "转账中",
+  "in_progress": "处理中",
+  "fail_transaction": "交易失败",
+  "records": "条记录",
+  "part_total": "波场网络当前共",
+  "part_pass": "个通证",
+  "view_total": "当前共",
+  "view_pass": "个通证可参与发行",
+  "token_overview_tron": "波场通证市场总览",
+  "token_participate_tron": "参与波场通证发行",
+  "not_started": "尚未开始",
+  "no_token_to_buy": "抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
+
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "价格",
+  "tron_power_freezing": "TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
+  "HighChart_tip": "单击并拖动绘图区域以放大",
+  "general_information": "一般信息",
+  "blockchain_information": "区块链信息",
+  "sr_information": "超级代表信息",
+  "currency_information": "流通信息",
+  "your_vote":"票数"
 };

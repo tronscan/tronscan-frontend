@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Czech                                                        #
   #         Status: First Version                                                  #
   #         Number of checks: 4                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "stáøí",
   "bytes": "Bytù",
   "MByte": "MByte",
-  "produced by": "vytvoøil",
+  "produced_by": "vytvoøil",
+  "block_reward": "Block Reward",
   "contract": "smlouva",
   "from": "z",
   "to": "do",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Zpráva",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -174,7 +178,7 @@ export const messages = {
   "asset_participation": "Zastoupená aktiva",
   "loading_transaction": "Naèítám transakci",
   "nodes_ranking": "Hodnocení uzlů",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "Seznam bohatých",
   "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Poslat na následující adresu",
   "change_website": "Zmìnit webovou stránku",
   "you_must_enter_url": "Musíte zadat URL",
-  "specify_the_url":  "Prosím, upøesnìte URL",
+  "specify_the_url": "Prosím, upøesnìte URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -285,7 +302,7 @@ export const messages = {
   "apply_for_delegate": "kandidovat na delegáta",
   "apply_super_representative_candidate": "Podat si žádost o kandidaturu na Super Reprezentanta",
   "your_personal_website_address": "adresa vaší osobní webové stránky",
-  "apply_for_delegate_predescription":`Každý držitel tokenù má možnost stát se TRON Super Reprezentantem.
+  "apply_for_delegate_predescription": `Každý držitel tokenù má možnost stát se TRON Super Reprezentantem.
    Aby však sí a komunita fungovala efektivnì a bez problémù,
    vytvoøili jsme pro kandidáty, kteøí se chtìjí stát doporuèeným Super reprezentantem, sadu standardù a regulací. Doporuèované SR budeme propagovat, abychom zvýšili jejich šance na zvolení. Noví doporuèení Super Reprezentanti jsou aktualizováni a zveøejòováni jednou týdnì.`,
   "apply_for_delegate_description": `
@@ -350,7 +367,7 @@ export const messages = {
   "could_not_claim_rewards": "Nebylo možné vyžádat si odmìny",
   "claim_rewards_error_message": "Pøi vyžádání odmìn došlo k neznámé chybì. Prosím, zkuste to pozdìji.",
   "rewards_claimed": "Odmìny vyžádány!",
-  "successfully_claimed_rewards":  "Odmìny úspìšnì vyžádány",
+  "successfully_claimed_rewards": "Odmìny úspìšnì vyžádány",
   "claim_rewards": "Vyžádat si odmìny",
   "sr_receive_reward_message_0": "Jako reprezentantovi vám náleží odmìna za generování blokù. O tuto odmìnu mùžete žádat každých 24 hodin",
   "intro": "Intro",
@@ -407,10 +424,10 @@ export const messages = {
   "buy_confirm_message_1": "Urèitì chcete koupit",
   "for": "za",
   "insufficient_trx": "Nedostateèné množství TRX",
-  "not_enouth_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
+  "not_enough_trx_message": "Na nákup tolika tokenù nemáte dostateèné množství TRX",
   "ends": "konèí",
   "starts": "zaèíná",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -432,7 +449,6 @@ export const messages = {
   "thanks_for_applying": "Dìkujeme za podání žádosti!",
   "to_much_votes": "Pøíliš mnoho hlasù",
   "no_trx_remaining": "Žádné TRX k dispozici",
-  "produced_by": "Vytvoøil {witnessAddress}",
   "show_more": "Zobrazit {countriesLength} více",
   "vote_guide_message": `Své TRX použijte k hlasování pro Super Reprezentanty.
    Za každý TRX na svém úètì máte jeden použitelný hlas.
@@ -495,9 +511,9 @@ export const messages = {
   "end_date": "Koncové datum",
   "token_spend_confirm": "Beru na vìdomí, že za celkové množství vydaných tokenù bude úètován jednorázový poplatek 1024 TRX.",
   "token_issue_guide_message_1": `Token na TRON protokolu mùže vydat každý, kdo má na úètu alespoò 1024 TRX.`,
-  "token_issue_guide_message_2":`Jakmile je token vydán, zobrazí se na stránce s pøehledem tokenù.
+  "token_issue_guide_message_2": `Jakmile je token vydán, zobrazí se na stránce s pøehledem tokenù.
     Uživatelé si následnì bìhem daného odobí mohou vymìnit své TRX za tokeny.`,
-  "token_issue_guide_message_3":`Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
+  "token_issue_guide_message_3": `Po vydání tokenù obdržíte na svùj úèet tokeny v hodnotì odpovídající celkovému množství v obìhu.
     Když ostatní uživatelé vymìní své TRX za vámi vydaný token, budou tokeny odepsány z vašeho úètu a vy obdržíte TRX v hodnotì odpovídající aktuálnímu kursu.`,
   /*
   ##################################################################################
@@ -678,6 +694,19 @@ export const messages = {
   "print_paper_wallet": "Vytisknìte si papírovou penìženku",
   "new_wallet_ready_message": "Vaše nová penìženka je pøipravená",
   "go_to_account_page": "Pøejít na úèet",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -736,13 +765,24 @@ export const messages = {
   */
   "applied_for_super_representative": "applied for Super Representative",
   "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "created_token": "vytvořený token",
+  "token_creation": "Vytvoření Token",
+  "bought": "koupit",
+  "voter": "volič",
+  "voting": "volit",
+  "asset": "aktivum",
+  "token_transfer": "Přenos Token",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
   /*
   ##################################################################################
   #                                                                                #
@@ -798,6 +838,51 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Převody Token",
   "website_url": "Website URL",
-  "search": "Vyhledávání"
+  "search": "Vyhledávání",
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # new variables    20180822 17:11:52                                                              #
+   #                                                                                #
+   ##################################################################################
+ */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
 
 };

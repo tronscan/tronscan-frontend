@@ -17,7 +17,7 @@ import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
 import {IS_DESKTOP} from "../constants";
 
 const initialState = {
-  theme: Lockr.get("theme", "dark"),
+  theme: Lockr.get("theme", "light"),
   accounts: [],
   syncStatus: null,
   price: {
@@ -167,7 +167,7 @@ export function appReducer(state = initialState, action) {
 
       if (IS_DESKTOP) {
         Lockr.rm("account_key");
-        Lockr.set("account_address", action.address);
+        // Lockr.set("account_address", action.address);
       }
 
       return {
@@ -193,7 +193,7 @@ export function appReducer(state = initialState, action) {
     }
 
     case SET_THEME: {
-      Lockr.set("theme", action.theme);
+      //Lockr.set("theme", action.theme);
       return {
         ...state,
         theme: action.theme,

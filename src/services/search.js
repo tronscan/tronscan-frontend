@@ -92,11 +92,19 @@ async function searchToken(criteria) {
 
   let {tokens} = await Client.getTokens({
     name: `%${criteria}%`,
-    limit: 1,
+    limit: 2,
   });
 
   if (tokens.length === 1) {
     return `#/token/${tokens[0].name}`;
+  } else if (tokens.length > 1) {
+
+    if (window.location.hash === "#/tokens/view")
+      return `#/tokens/view?search=${criteria}`;
+    else if (window.location.hash === "#/tokens/list")
+      return `#/tokens/list?search=${criteria}`;
+    else
+      return `#/tokens/list?search=${criteria}`;
   }
 
 }

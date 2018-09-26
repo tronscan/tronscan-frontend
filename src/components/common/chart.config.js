@@ -11,8 +11,8 @@ module.exports = {
     title: {
       text: '',
       x: 'center',
-      link:'',
-      target:'self'
+      link: '',
+      target: 'self'
     },
     tooltip: {
       trigger: 'item',
@@ -49,12 +49,160 @@ module.exports = {
       }
     ]
   },
+  representPieChart: {
+    color: [
+      '#424246',
+      '#96EE80',
+      '#F4A45D',
+      '#8085ED',
+      '#F25C81',
+      '#E5D355',
+      '#348188',
+      '#F25C81',
+      '#8FCACE',
+      '#7CB5EC'
+    ],
+    title: {
+      text: '',
+      subtext: '',
+      x: 'center',
+      link: '',
+      target: 'self'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{b}: {c} ({d}%)"
+    },
+    toolbox: {
+      x2: 5,
+      y: -5,
+      feature: {
+        restore: {
+          title: 'restore'
+        },
+        saveAsImage: {
+          show: true,
+          title: 'save'
+        }
+      }
+    },
+    legend: {
+      type: 'scroll',
+      show: false,
+      orient: 'vertical',
+      left: 'right',
+      top: 35,
+      selectedMode: 'false',
+      data: []
+    },
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '60%'],
+        data: [],
+        "label": {
+          "normal": {
+            "show": true,
+            "formatter": "{b}"
+          },
+          "emphasis": {
+            "show": true
+          }
+        },
+        "labelLine": {
+          "normal": {
+            "show": true,
+            "smooth": false,
+            "length": 20,
+            "length2": 10
+          },
+          "emphasis": {
+            "show": true
+          }
+        },
+      }
+    ]
+  },
+  supplyTypesTRXPieChart: {
+    color: [
+      '#c84a45',
+      '#e7afad',
+      '#e19b98',
+      '#da8683'
+    ],
+    title: {
+      text: '',
+      subtext: '',
+      x: 'center',
+      link: '',
+      target: 'self'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{b}: {c} ({d}%)"
+    },
+    toolbox: {
+      x2: 5,
+      y: -5,
+      feature: {
+        restore: {
+          title: 'restore'
+        },
+        saveAsImage: {
+          show: true,
+          title: 'save'
+        }
+      }
+    },
+    legend: {
+      type: 'plain',
+      show: false,
+      orient: 'horizontal',
+      bottom: 0,
+      left: 'center',
+      selectedMode: 'false',
+      itemGap: 20,
+      data: []
+    },
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '50%'],
+        data: [],
+        "label": {
+          "normal": {
+            "show": true,
+            "formatter": "{b}"
+          },
+          "emphasis": {
+            "show": true
+          }
+        },
+        "labelLine": {
+          "normal": {
+            "show": true,
+            "smooth": false,
+            "length": 10,
+            "length2": 5
+          },
+          "emphasis": {
+            "show": true
+          }
+        },
+      }
+    ]
+  },
   lineChart: {
     title: {
       text: '',
       x: 'center',
-      link:'',
-      target:'self'
+      link: '',
+      target: 'self'
+
     },
     grid: {
       left: '5%',
@@ -78,7 +226,7 @@ module.exports = {
     series: [{
       data: [],
       type: 'line',
-     // smooth: true
+      // smooth: true
     }]
   },
 
@@ -87,6 +235,18 @@ module.exports = {
       text: '',
       x: 'center'
     },
+    color: [
+        '#F25C81',
+        '#7CB5EC',
+        '#F4A45D',
+        '#8085ED',
+        '#8FCACE',
+        '#424246',
+        '#348188',
+        '#F25C81',
+        '#E5D355',
+        '#96EE80',
+    ],
     legend: {
       type: 'scroll',
       orient: 'vertical',
@@ -201,7 +361,7 @@ module.exports = {
         markPoint: {
           symbol: 'emptyCircle',
           symbolSize: function (v) {
-            return 10 + v / 10
+            return 1 + v / 10
           },
           effect: {
             show: true,
@@ -269,9 +429,14 @@ module.exports = {
     title: {
       text: '',
       x: 'center',
-      link:'',
-      target:'self',
-      
+      link: '',
+      target: 'self',
+      padding: [
+        0,
+        0,
+        10,
+        0
+      ]
     },
     tooltip: {
       trigger: 'axis',
@@ -281,7 +446,7 @@ module.exports = {
     },
 
     toolbox: {
-      x2:5,
+      x2: 5,
       y: -5,
       feature: {
         restore: {
@@ -342,5 +507,268 @@ module.exports = {
       },
       data: []
     }]
-  }
+  },
+  overviewHighChart: {
+    chart: {
+      zoomType: '',
+      spacingTop: 5,
+      spacingBottom: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      resetZoomButton: {
+          position: {
+              align: 'right', // right by default
+              verticalAlign: 'top',
+              x: -55,
+              y: 0
+          },
+          relativeTo: 'chart',
+          theme: {
+              fill: 'white',
+              stroke: 'silver',
+              r: 0,
+              states: {
+                  hover: {
+                      fill: '#eeeeee',
+                      style: {
+                          color: 'red'
+                      }
+                  }
+              }
+          }
+
+      }
+    },
+    title: {
+      text: ''
+    },
+    credits: {
+      enabled: false
+    },
+    colors: [
+      '#c84a45',
+      '#e7afad'
+    ],
+    exporting: {
+      enabled: true,
+      sourceWidth: 1072,
+      sourceHeight: 500,
+      filename:''
+    },
+    subtitle: {
+      text: ''
+    },
+    xAxis: {
+      type: 'datetime',
+      ordinal: false,
+      dateTimeLabelFormats: {
+        millisecond: '%H:%M:%S.%L',
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%m-%d',
+        week: '%m-%d',
+        month: '%Y-%m',
+        year: '%Y'
+      },
+      gridLineColor: '#eeeeee',
+      labels: {
+        style: {
+          color: "#999999"
+        },
+        autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+      }
+    },
+    tooltip: {
+      dateTimeLabelFormats: {
+        millisecond: '%H:%M:%S.%L',
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%Y-%m-%d',
+        week: '%m-%d',
+        month: '%Y-%m',
+        year: '%Y'
+      }
+    },
+    yAxis: {
+      title: {
+        // align: 'high',
+        // offset: 0,
+        text: '',
+        // rotation: 0,
+        // x:100,
+        // y: -10
+      },
+     // min: 0,
+      //minTickInterval:5
+      tickPixelInterval: 30,
+      labels: {
+        style: {
+          color: "#999999"
+        }
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    plotOptions: {
+      area: {
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, '#ECC2C1'],
+            [1, '#ffffff']
+          ]
+        },
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 2
+          }
+        },
+        threshold: null,
+        column: {
+          pointPadding: 0.1,
+          borderWidth: 0
+        }
+      }
+    },
+    series: [{
+      type: 'area',
+      name: '',
+      data: [],
+      //turboThreshold: 7000,
+      //allowPointSelect: false,
+      marker: {
+        enabled: true,
+        //enabledThreshold: '7'
+      }
+    }]
+  },
+  ringPieHighChart3D: {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            },
+            spacingTop: 5,
+            spacingBottom: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 1072,
+            sourceHeight: 500,
+            filename:''
+        },
+        credits: {
+            enabled: false
+        },
+        colors: [
+            '#424246',
+            '#96EE80',
+            '#F4A45D',
+            '#8085ED',
+            '#F25C81',
+            '#E5D355',
+            '#348188',
+            '#F25C81',
+            '#8FCACE',
+            '#7CB5EC'
+        ],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                showInLegend: true,
+                innerSize: 100,
+                depth: 60,
+            }
+        },
+        legend: {
+            // itemDistance: 20,
+            // symbolWidth: 20,
+            // symbolHeight: 12,
+            // symbolRadius: 0
+            itemStyle:{
+                fontWeight: 'normal',
+                color:'#666666'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        series: [{
+            name: '',
+            data: []
+        }]
+    },
+  supplyPieHighChart: {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: true,
+            sourceWidth: 562,
+            sourceHeight: 400,
+            filename:''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        colors: [
+            '#c84a45',
+            '#e7afad'
+        ],
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: '',
+            colorByPoint: true,
+            data: []
+        }]
+    }
 };

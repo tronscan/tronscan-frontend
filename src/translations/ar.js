@@ -1,5 +1,4 @@
-﻿
-export const messages = {
+﻿export const messages = {
   /*
   ##################################################################################
   #                                                                                #
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.5-13072018                                                  #
-  #         Update Date: 13.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Arabic                                                       #
   #         Status: First Version                                                  #
   #         Number of checks: 3                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "العمر",
   "bytes": "بايت",
   "MByte": "MByte",
-  "produced by": "إنتاج",
+  "produced_by": "إنتاج",
+  "block_reward": "Block Reward",
   "contract": "العقد",
   "from": "من",
   "to": "إلى",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "اللائحة الغنية",
   "tron_transaction_chart": "TRON مخطط معاملات",
   "transactions_per_day": "المعاملات لكل يوم واحد",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "أرسل الى العنوان التالي",
   "change_website": "تغيير الموقع الألكتروني",
   "you_must_enter_url": "يجب عليك ادخال الرابط ",
-  "specify_the_url":  "يرجى تحديد الرابط المعين",
+  "specify_the_url": "يرجى تحديد الرابط المعين",
   /*
   ##################################################################################
   #                                                                                #
@@ -339,7 +356,7 @@ export const messages = {
   "could_not_claim_rewards": "لا يمكن المطالبة بالمكافآت ",
   "claim_rewards_error_message": "حدث خطأ أثناء محاولة المطالبة بالمكافآت ، يرجى المحاولة مرة أخرى في وقت لاحق.",
   "rewards_claimed": "تم الحصول على المكافآت",
-  "successfully_claimed_rewards":  "تم الحصول على المكافآت بنجاح",
+  "successfully_claimed_rewards": "تم الحصول على المكافآت بنجاح",
   "claim_rewards": "الحصول على المكافآت ",
   "sr_receive_reward_message_0": "كممثل مثالي, تحصل على مكافآت لإنتاج كتل. يمكن المطالبة بهذه المكافآت كل 24 ساعة",
   "intro": "مقدمة",
@@ -396,10 +413,10 @@ export const messages = {
   "buy_confirm_message_1": "هل أنت متأكدأنك تريد شراء",
   "for": "مقابل",
   "insufficient_trx": "غير كافيةTRX",
-  "not_enouth_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
+  "not_enough_trx_message": "ليس لديك ما يكفي من  تي ار اكس لشراء العديد من العملات الرقميه",
   "ends": "ends",
   "starts": "starts",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "شكرا لتقديم الطلب!",
   "to_much_votes": "عدد الأصوات مفرط",
   "no_trx_remaining": "لم يتبق تي ار اكس",
-  "produced_by": "أنتج عبر {witnessAddress}",
   "show_more": "إظهار {countriesLength} اضافي",
   "vote_guide_message": "استخدم الـ تي ار اكس  لديك للتصويت للممثلين المميزين. لديك صوت واحد مقابل كل واحدة من الـ تي ار اكس في حسابك الخاص. لن تستهلك الـ تي ار اكس. يمكنك التصويت مرات متعددة و لممثلين مختلفين كما شئت. سوف يتم تدوين الأصوات النهائية عند الساعة 24 ويتم تحديث قائمة المندوبين.",
   "search_address": "ابحث عن عنوان",
@@ -662,6 +678,19 @@ export const messages = {
   "print_paper_wallet": "اطبع المحفظة على ورق",
   "new_wallet_ready_message": "محفظتك الجديدة جاهزة",
   "go_to_account_page": "اذهب الى صفحة الحساب",
+  "login_first": "تسجيل الدخول إلى المحفظة أولاً",
+  "contract_name": "اسم العقد",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "ضبط",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "المنشئ",
+  "verify_contract_code": "تحقق من قانون العقد",
+  "buy_tokens": "شراء الرموز",
+  "fill_a_valid_private_key": "يرجى ملء مفتاح خاص صالح",
+  "confirm_private_key": "تأكيد المفتاح الخاص",
+  "transfer_confirm_info": "هل أنت متأكد من أنك تريد نقلها",
   /*
   ##################################################################################
   #                                                                                #
@@ -730,6 +759,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -757,7 +797,7 @@ export const messages = {
   "freeze_balance_contract": "تجميد عقد الرصيد",
   "freeze_TRX": "TRX تجميد ",
   "unfreeze_balance_contract": "الغاء تجميد عقد الرصيد",
-  "unfreeze_TRX":  "TRX الغاء تجميد",
+  "unfreeze_TRX": "TRX الغاء تجميد",
   "vote_witness_contract": "عقد تصويت الشاهد",
   "vote_for_a_witness": "صوت لـشاهد",
   "asset_issue_contract": "عقد اصدار الأصول",
@@ -773,15 +813,59 @@ export const messages = {
   "search_description": "عنوان البحث ,ارتفاع الكتله,تجزئة المعامله,اسم العمله الرقميه",
   "search_description1": "عنوان البحث,الكتله,المعامله,العمله الرقميه",
   "transaction": "المعامله",
-  "total_addresses":"مجموع العناوين",
-  "daily_increment":"الزياده اليوميه",
-  "address_growth_chart":"عنوان مخطط النمو",
-  "addresses_amount":"عناوين المبلغ",
-  "past_14_days_of_transactions":"اخر 14 يوم من المعاملات",
-  "address_growth":"عنوان التنميه",
+  "total_addresses": "مجموع العناوين",
+  "daily_increment": "الزياده اليوميه",
+  "address_growth_chart": "عنوان مخطط النمو",
+  "addresses_amount": "عناوين المبلغ",
+  "past_14_days_of_transactions": "اخر 14 يوم من المعاملات",
+  "address_growth": "عنوان التنميه",
   "power": "الطاقه",
   "token_transfers": "نقل العملات الرقميه",
   "website_url": "رابط الموقع الالكتروني",
-  "search": "بحث"
+  "search": "بحث",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
 
 };

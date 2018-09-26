@@ -4,43 +4,67 @@ import TimeAgo from "react-timeago";
 import {FormattedNumber} from "react-intl";
 import {BlockNumberLink} from "../../common/Links";
 import {tu} from "../../../utils/i18n";
+import SmartTable from "../../common/SmartTable.js"
+import {upperFirst} from "lodash";
 
 export default function Blocks({blocks = []}) {
 
   if (blocks.length === 0) {
     return (
-      <div className="text-center p-3">
-        {tu("no_blocks_found")}
-      </div>
+        <div className="text-center p-3">
+          {tu("no_blocks_found")}
+        </div>
     );
   }
+  let column = [
+    {
+      title: upperFirst(intl.formatMessage({id: 'height'})),
+      dataIndex: 'number',
+      key: 'number',
+      align: 'left',
+      className: 'ant_table',
+      render: (text, record, index) => {
+        return <BlockNumberLink number={text}/>
+      }
+    },
+    {
+      title: upperFirst(intl.formatMessage({id: 'age'})),
+      dataIndex: 'timestamp',
+      key: 'timestamp',
+      align: 'right',
+      className: 'ant_table',
+      render: (text, record, index) => {
+        return <TimeAgo date={text}/>
+      }
+    },
+    {
+      title: <i className="fas fa-exchange-alt"/>,
+      dataIndex: 'nrOfTrx',
+      key: 'nrOfTrx',
+      align: 'right',
+      className: 'ant_table',
+      render: (text, record, index) => {
+        return <FormattedNumber value={text}/>
+      }
+    },
+    {
+      title: upperFirst(intl.formatMessage({id: 'bytes'})),
+      dataIndex: 'size',
+      key: 'size',
+      align: 'right',
+      className: 'ant_table',
+      render: (text, record, index) => {
+        return <FormattedNumber value={text}/>
+      }
+    },
 
+
+  ];
   return (
-      <table className="table table-hover m-0 table-striped">
-        <thead className="thead-dark">
-        <tr>
-          <th style={{width: 100}}>{tu("height")}</th>
-          <th style={{width: 150}}>{tu("age")}</th>
-          <th style={{width: 100}}><i className="fas fa-exchange-alt"/></th>
-          <th style={{width: 100}}>{tu("bytes")}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {
-          blocks.map(block => (
-            <tr key={block.number}>
-              <th>
-                <BlockNumberLink number={block.number}/>
-              </th>
-              <td className="text-nowrap"><TimeAgo date={block.timestamp} /></td>
-              <td style={{width: 100}}><FormattedNumber value={block.nrOfTrx} /></td>
-              <td>
-                <FormattedNumber value={block.size}/>
-              </td>
-            </tr>
-          ))
-        }
-        </tbody>
-      </table>
+
+      <div className="token_black">
+        <SmartTable bordered={true} column={column} data={blocks} total={blocks.length}/>
+      </div>
+
   )
 }

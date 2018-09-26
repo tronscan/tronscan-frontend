@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-15072018                                                  #
-  #         Update Date: 15.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Romania                                                      #
   #         Status: second Version                                                 #
   #         Number of checks: 3                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "vârstă",
   "bytes": "Biți",
   "MByte": "MByte",
-  "produced by": "produs de",
+  "produced_by": "produs de",
+  "block_reward": "Block Reward",
   "contract": "Contract",
   "from": "de la",
   "to": "la",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Mesaj",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirmare",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -174,7 +178,7 @@ export const messages = {
   "asset_participation": "Participare capital",
   "loading_transaction": "Încărcare Tranzacție",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total conturi până în ziua trecută",
+  "total_accounts_last_day": "Total conturi până în ziua trecută",
   "chart_tip": "Trage zona de zoom date pentru a face zoom in sau zoom out",
   "link_test_server": "Rețea de test",
   "highest": "Cel mai mare ",
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "de ",
   "was_recorded_on": "s-a înregistrat pe ",
   "rank_real_time": "Rang (Timp real)",
+  "volume_24": "Volum Tranzacționare 24 de ore",
+  "billion_usd": "Miliard USD",
+  "loading_transfers": "Încărcare Transferuri",
+  "loading_transactions": "Încărcare Tranzacții",
+  "loading_block": "Încărcare Bloc",
+  "current_power": "Putere Curentă",
+  "produce_distribution": "Diagramă Producție Blocuri",
+  "confirm_token_issue": "Confirmare Emitere Token",
+  "_to": "la",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "Listă bogați",
   "tron_transaction_chart": "Diagramă tranzacții TRON",
   "transactions_per_day": "Tranzacții pe zi",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Trimiteți la adresa următoare",
   "change_website": "Schimbați site-ul web",
   "you_must_enter_url": "Trebuie să introduceți un URL",
-  "specify_the_url":  "Vă rugăm specificați URL-ul",
+  "specify_the_url": "Vă rugăm specificați URL-ul",
   /*
   ##################################################################################
   #                                                                                #
@@ -337,7 +354,7 @@ export const messages = {
   "github_linked": "Sincronizat cu Github!",
   "unable_to_link_github_message": "Nu s-a putut sincroniza cu Github, asigurați-vă că numele de utilizator este corect!",
   "could_not_link_github": "Nu s-a putut sincroniza cu Github",
-  "enter_your_github_username":  "Introduceți numele de utilizator de Github",
+  "enter_your_github_username": "Introduceți numele de utilizator de Github",
   "link_to_github": "Legătură către Github",
   "link_github": "Legătură Github",
   "you_must_enter_a_url": "Trebuie să introduceți un URL",
@@ -352,7 +369,7 @@ export const messages = {
   "could_not_claim_rewards": "Nu s-au putut primi recompense",
   "claim_rewards_error_message": "Ceva nu a mers bine în timp ce s-au solicitat recompense, vă rugăm încercați mai târziu.",
   "rewards_claimed": "Recompensă primită!",
-  "successfully_claimed_rewards":  "S-au primit recompense cu succes",
+  "successfully_claimed_rewards": "S-au primit recompense cu succes",
   "claim_rewards": "Solicitare Recompensă",
   "sr_receive_reward_message_0": "În calitate de reprezentant primiți recompense pentru producere de blocuri. Aceste recompense pot fi solicitate la fiecare 24 de ore",
   "intro": "Intro",
@@ -409,10 +426,10 @@ export const messages = {
   "buy_confirm_message_1": "Sunteți sigur că vreți să cumpărați",
   "for": "pentru",
   "insufficient_trx": "TRX insuficient",
-  "not_enouth_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
+  "not_enough_trx_message": "Nu aveți suficient TRX pentru a cumpăra atâția tokeni",
   "ends": "sfârșește",
   "starts": "începe",
-  "can_be_unlocked_in": "poate fi descuiat în",
+  "can_be_unlocked": "poate fi descuiat",
   /*
   ##################################################################################
   #                                                                                #
@@ -434,7 +451,6 @@ export const messages = {
   "thanks_for_applying": "Mulțumim pentru aplicare!",
   "to_much_votes": "Prea multe voturi",
   "no_trx_remaining": "Nici un TRX rămas",
-  "produced_by": "Produs de {witnessAddress}",
   "show_more": "Arată {countriesLength} mai mult",
   "vote_guide_message": `Folosiți TRX pentru a vota pentru Super Reprezentanți.
    Pentru fiecare TRX pe care îl ţineţi în contul dumneavoastră aveţi un vot pentru a-l folosi.
@@ -499,9 +515,9 @@ export const messages = {
   "end_date": "Dată Sfârșit",
   "token_spend_confirm": "Confirm că supply-ul total al tokenilor costă o taxă unică de 1024 TRX.",
   "token_issue_guide_message_1": `Emiterea unui token pe TRON Protocol se poate face de oricine are cel puțin 1024 TRX în contul lui.`,
-  "token_issue_guide_message_2":`Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
+  "token_issue_guide_message_2": `Atunci când un token este emis acesta va fi indicat pe pagina de prezentare token.
     Utilizatorii pot apoi să participe în perioada de participare şi să schimbe TRXul lor pentru tokeni.`,
-  "token_issue_guide_message_3":`După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
+  "token_issue_guide_message_3": `După emiterea tokenului contul va primi suma de tokeni egală cu supply-ul total.
     Când alţi utilizatori schimbă TRXul lor pentru tokeni atunci tokenii vor fi retrași din contul dumneavoastră şi veți primi TRX egal cu cursul de schimb specificat.`,
   /*
   ##################################################################################
@@ -682,6 +698,19 @@ export const messages = {
   "print_paper_wallet": "Printați Portofel de Hârtie",
   "new_wallet_ready_message": "Noul dumneavoastră portofel este gata",
   "go_to_account_page": "Mergeți la pagina de cont",
+  "login_first": "Logați-vă întâi la Portofel  ",
+  "contract_name": "Nume Contract",
+  "compiler": "Compilator",
+  "tx_count": "Numărătoare Tx",
+  "setting": "Setare",
+  "date_verified": "Dată Verificată",
+  "compiler_version": "Versiune Compilator",
+  "creator": "Creator",
+  "verify_contract_code": "Verificați codul de contract",
+  "buy_tokens": "Cumpărare Tokeni",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -738,15 +767,26 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "applied_for_super_representative": "applied for Super Representative",
-  "sr_candidature": "Super Representative Candidature",
-  "created_token": "created token",
-  "token_creation": "Token Creation",
-  "bought": "bought",
-  "voter": "voter",
-  "voting": "voting",
-  "asset": "asset",
-  "token_transfer": "Token Transfer",
+  "applied_for_super_representative": "aplicat pentru Super Reprezentanți",
+  "sr_candidature": "Candidatură Super Reprezentanți",
+  "created_token": "token creat",
+  "token_creation": "Creare Token",
+  "bought": "cumpărat",
+  "voter": "votant",
+  "voting": "votare",
+  "asset": "bun",
+  "token_transfer": "Transfer Token",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Cumpărați TRON",
+  "buy_tron_message_0": "TRX poate fi cumpărat direct cu Fiat sau altă Crypto-Valută fără o bursă de exchange. Se poate folosi un serviciu de la Changelly.com și este metoda cea mai ușoară și rapidă de a cumpăra trx. O listă cu monedele acceptate și o secțiune de Întrebări Frecvente pot fi găsite la ",
+  "buy_tron_using_changelly": "Cumpărați  TRON folosind Changelly",
+  "cant_load_widget": "Nu se poate încărca widget-ul",
   /*
   ##################################################################################
   #                                                                                #
@@ -802,6 +842,50 @@ export const messages = {
   "power": "Putere",
   "token_transfers": "Transfer Tokeni",
   "website_url": "Website URL",
-  "search": "Căutare"
+  "search": "Căutare",
+  /*
+   ##################################################################################
+   #                                                                                #
+   # new variables    20180822 17:11:52                                                              #
+   #                                                                                #
+   ##################################################################################
+ */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
+
 
 };

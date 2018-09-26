@@ -51,9 +51,9 @@ class TransactionViewer extends Component {
     } catch (e) {
       this.setState({
         modal: (
-          <SweetAlert danger title={tu("transaction_load_error")} onConfirm={this.hideModal}>
-            {tu("transaction_load_error_message")}
-          </SweetAlert>
+            <SweetAlert danger title={tu("transaction_load_error")} onConfirm={this.hideModal}>
+              {tu("transaction_load_error_message")}
+            </SweetAlert>
         )
       });
     }
@@ -63,10 +63,10 @@ class TransactionViewer extends Component {
 
     this.setState({
       modal: (
-        <ScanSignatureModal onClose={this.hideModal} onConfirm={({code}) => {
-          this.loadTransaction(code);
-          this.hideModal();
-        }} />
+          <ScanSignatureModal onClose={this.hideModal} onConfirm={({code}) => {
+            this.loadTransaction(code);
+            this.hideModal();
+          }}/>
       )
     });
   };
@@ -76,18 +76,18 @@ class TransactionViewer extends Component {
     if (success) {
       this.setState({
         modal: (
-          <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
-            {tu("transaction_success_message")}
-          </SweetAlert>
+            <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
+              {tu("transaction_success_message")}
+            </SweetAlert>
         )
       });
     } else {
       this.setState({
         modal: (
-          <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
-            {tu("transaction_error_message")}<br/>
-            Code: {code}
-          </SweetAlert>
+            <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
+              {tu("transaction_error_message")}<br/>
+              Code: {code}
+            </SweetAlert>
         ),
       });
     }
@@ -99,17 +99,17 @@ class TransactionViewer extends Component {
 
     this.setState({
       modal: (
-        <SweetAlert
-          info
-          showCancel
-          confirmBtnText={tu("confirm_transaction")}
-          confirmBtnBsStyle="success"
-          cancelBtnBsStyle="default"
-          title={tu("confirm_transaction_message")}
-          onConfirm={() => this.broadcastTransaction(hex)}
-          onCancel={this.hideModal}
-        >
-        </SweetAlert>
+          <SweetAlert
+              info
+              showCancel
+              confirmBtnText={tu("confirm_transaction")}
+              confirmBtnBsStyle="success"
+              cancelBtnBsStyle="default"
+              title={tu("confirm_transaction_message")}
+              onConfirm={() => this.broadcastTransaction(hex)}
+              onCancel={this.hideModal}
+          >
+          </SweetAlert>
       )
     });
 
@@ -138,7 +138,7 @@ class TransactionViewer extends Component {
 
     this.setState({
       modal: (
-        <AddSignatureModalAsync transaction={hex} onClose={this.hideModal} />
+          <AddSignatureModalAsync transaction={hex} onClose={this.hideModal}/>
       )
     });
   };
@@ -149,10 +149,10 @@ class TransactionViewer extends Component {
     let {flags} = this.props;
 
     return (
-      <main className="container header-overlap">
-        {modal}
-        {
-          showInput &&
+        <main className="container header-overlap _transactionViewer">
+          {modal}
+          {
+            showInput &&
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title text-center">{tu("transaction")} HEX</h5>
@@ -163,13 +163,13 @@ class TransactionViewer extends Component {
                           rows="6"
                           value={hex}
                           onChange={ev => this.setState({hex: ev.target.value})}/>
-                <div className="text-center p-3">
+                <div className="text-center _load_tx">
                   <button className="btn btn-primary"
                           disabled={trim(hex) === ""}
                           onClick={() => this.loadTransaction(hex)}>{tu("load_tx")}</button>
                 </div>
                 <hr/>
-                <div className="text-center p-3">
+                <div className="text-center p-3 _qrcode">
                   <h5 className="card-title text-center">{tu("tx_qrcode")}</h5>
                   <button className="btn btn-primary" onClick={() => this.scanTransaction()}>
                     {tu("load_tx_qrcode")}
@@ -178,61 +178,63 @@ class TransactionViewer extends Component {
                 </div>
               </div>
             </div>
-        }
-        {
-          transactionData !== null &&
-          <Fragment>
-            <div className="card mt-3">
-              <div className="card-body">
-                <h5 className="card-title text-center">Transaction</h5>
+          }
+          {
+            transactionData !== null &&
+            <Fragment>
+              <div className="card mt-3">
+                <div className="card-body">
+                  <h5 className="card-title text-center">Transaction</h5>
+                </div>
+                <div className="table-responsive">
+                  <table className="table">
+                    <Field label="timestamp">
+                      <FormattedDate value={transactionData.timestamp / 1000000}/>&nbsp;
+                      <FormattedTime value={transactionData.timestamp / 1000000}/>
+                    </Field>
+                    <Field label="contracts">
+                      {transactionData.contracts.length}
+                    </Field>
+                    <Field label="signatures">
+                      {transactionData.signatures.length}
+                    </Field>
+                  </table>
+                </div>
               </div>
-              <table className="table">
-                <Field label="timestamp">
-                  <FormattedDate value={transactionData.timestamp / 1000000}/>&nbsp;
-                  <FormattedTime value={transactionData.timestamp / 1000000}/>
-                </Field>
-                <Field label="contracts">
-                  {transactionData.contracts.length}
-                </Field>
-                <Field label="signatures">
-                  {transactionData.signatures.length}
-                </Field>
-              </table>
-            </div>
-            <div className="card mt-3">
-              <div className="card-header text-center">
-                {tu("Contracts")}
+              <div className="card mt-3">
+                <div className="card-header text-center">
+                  {tu("Contracts")}
+                </div>
+                {
+                  transactionData.contracts.map(contract => (
+                      <Contract contract={contract}/>
+                  ))
+                }
               </div>
-              {
-                transactionData.contracts.map(contract => (
-                  <Contract contract={contract} />
-                ))
-              }
-            </div>
-            <div className="card mt-3">
-              <div className="card-header text-center">
-                {tu("Signatures")}
-              </div>
-              {
-                transactionData.signatures.map(signature => (
-                  <Signature signature={signature} />
-                ))
-              }
-              {/*<div className="card-body text-center">*/}
+              <div className="card mt-3">
+                <div className="card-header text-center">
+                  {tu("Signatures")}
+                </div>
+                {
+                  transactionData.signatures.map(signature => (
+                      <Signature signature={signature}/>
+                  ))
+                }
+                {/*<div className="card-body text-center">*/}
                 {/*<button className="btn btn-primary" onClick={this.addSignature}>*/}
-                  {/*<i className="fas fa-plus-circle mr-2"/>*/}
-                  {/*Add Signature*/}
+                {/*<i className="fas fa-plus-circle mr-2"/>*/}
+                {/*Add Signature*/}
                 {/*</button>*/}
-              {/*</div>*/}
-            </div>
-            <div className="card mt-3 mb-5">
-              <button className="btn btn-success btn-lg" onClick={this.broadcastTransactionModal}>
-                {tu("broadcast_transaction_to_network")}
-              </button>
-            </div>
-          </Fragment>
-        }
-      </main>
+                {/*</div>*/}
+              </div>
+              <div className="card mt-3 mb-5">
+                <button className="btn btn-success btn-lg" onClick={this.broadcastTransactionModal}>
+                  {tu("broadcast_transaction_to_network")}
+                </button>
+              </div>
+            </Fragment>
+          }
+        </main>
     );
   }
 }
@@ -244,7 +246,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionViewer);

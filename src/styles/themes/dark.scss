@@ -27,5 +27,24 @@
     }
   }
 
-}
 
+  .token-cards {
+    background-color: #24292e;
+    border: 1px solid #24292e;
+    color: #FFFFFF;
+
+
+    .progress-bar {
+      background-color: #fff;
+    }
+  }
+
+  .token-cards:hover {
+    background-color: #D2D1D1 !important;
+    color: #333 !important;
+    .token-info {
+      background-color: #24292e;
+    }
+  }
+
+}

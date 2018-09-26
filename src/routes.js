@@ -16,15 +16,19 @@ import {
   RepresentativesAsync,
   AccountAsync,
   NodeTesterAsync,
+  TronConvertToolAsync,
   SystemAsync,
   DemoAsync,
   FaqAsync,
+  MyTokenAsync,
+  TRONRatingAsync,
+  CopyrightAsync,
   LedgerHelpAsync,
-  NewsAsync,
   TokenOverviewAsync,
   TokenListAsync,
   TokensCreateAsync,
   AccountsAsync,
+  FoundationAsync,
   NodesAsync,
   LiveAsync,
   TokenDetailAsync
@@ -44,7 +48,7 @@ export const routes = [
     path: "/blockchain",
     label: "blockchain",
     icon: 'fa fa-link',
-    component: () => <Redirect to="/blockchain/blocks" />,
+    component: () => <Redirect to="/blockchain/blocks"/>,
     routes: [
       {
         path: "/blockchain/blocks",
@@ -107,6 +111,12 @@ export const routes = [
         icon: `fa fa-random`,
         path: "/blockchain/ContractInter",
         component: ContractInter
+      },
+      {
+        path: "/blockchain/foundation",
+        label: "foundation",
+        icon: "fa fa-address-book",
+        component: FoundationAsync,
       }
     ]
   },
@@ -163,12 +173,12 @@ export const routes = [
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenListAsync
-      },{
+      }, {
         label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
         component: TokenOverviewAsync
-      },{
+      }, {
         label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
@@ -182,12 +192,26 @@ export const routes = [
     component: TokenDetailAsync,
     showInMenu: false,
   },
-
+  {
+    label: "my_token",
+    component: MyTokenAsync,
+    path: "/myToken",
+    showInMenu: false
+  },
+  {
+    label: "TRONRating",
+    component: TRONRatingAsync,
+    path: "/rating",
+    showInMenu: false
+  },
   {
     path: "/markets",
     label: "markets",
     icon: "fa fa-chart-line",
-    component: MarketsAsync
+   // component: MarketsAsync
+    enurl: "https://coinmarketcap.com/currencies/tron/",
+    zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+    linkHref: true
   },
   {
     path: "/votes",
@@ -232,6 +256,12 @@ export const routes = [
         component: NodeTesterAsync,
       },
       {
+        label: "tron_convert_tool",
+        path: "/tools/tron-convert-tool",
+        icon: "fa fa-random",
+        component: TronConvertToolAsync,
+      },
+      {
         path: "/tools/system",
         icon: "fa fa-database",
         label: "system",
@@ -250,10 +280,12 @@ export const routes = [
     ]
   },
   {
-    path: "/news",
-    label: "news",
-    icon: "fa fa-newspaper",
-    component: NewsAsync
+    path: "list_trx",
+    label: "list_trx",
+    icon: "fa fa-plus",
+    enurl: "https://tron.network/exchangesList?lng=en",
+    zhurl: "https://tron.network/exchangesList?lng=zh",
+    linkHref: true
   },
   {
     path: "/help",
@@ -274,7 +306,13 @@ export const routes = [
         path: "/help/faq",
       },
       {
-        label: "Ledger",
+        label: "copyright",
+        component: CopyrightAsync,
+        path: "/help/copyright",
+        showInMenu: false
+      },
+      {
+        label: "ledger_guide",
         component: LedgerHelpAsync,
         path: "/help/ledger",
       },
@@ -282,11 +320,16 @@ export const routes = [
         url: "https://t.me/tronscan",
         label: "telegram_updates",
       },
+
       '-',
       "Community",
       {
         url: "https://www.reddit.com/r/tronix",
         label: "reddit",
+      },
+      {
+        url: "https://t.me/tronscantalk",
+        label: "telegram",
       },
       '-',
       "Development",

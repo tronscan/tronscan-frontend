@@ -2,7 +2,7 @@
 import React from "react";
 import {loadTokens} from "../../../actions/tokens";
 import {connect} from "react-redux";
-import {NavLink, Route, Switch} from "react-router-dom";
+import {Link, NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu, tv} from "../../../utils/i18n";
 import TimeAgoI18N from "../../common/TimeAgoI18N";
@@ -63,7 +63,7 @@ class Block extends React.Component {
 
   async loadBlock(id) {
 
-    this.setState({ loading: true, block: { number: id, } });
+    this.setState({loading: true, block: {number: id,}});
 
     let block;
 
@@ -95,14 +95,14 @@ class Block extends React.Component {
           icon: "fa fa-handshake",
           path: "",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{block: block.number}} />,
+          cmp: () => <Transactions filter={{block: block.number}}/>,
         },
         transfers: {
           id: "transfers",
           icon: "fa fa-exchange-alt",
           path: "/transfers",
           label: <span>{tu("transfers")}</span>,
-          cmp: () => <Transfers filter={{block: block.number}} />,
+          cmp: () => <Transfers filter={{block: block.number}}/>,
         },
       }
     });
@@ -115,135 +115,138 @@ class Block extends React.Component {
 
     if (notFound) {
       return (
-        <main className="container header-overlap">
-          <Alert color="warning" className="text-center">
-            Block {block.number} not found
-          </Alert>
-        </main>
+          <main className="container header-overlap">
+            <Alert color="warning" className="text-center">
+              Block {block.number} not found
+            </Alert>
+          </main>
       );
     }
 
     return (
-      <main className="container header-overlap">
-        {
-          loading ? <div className="card">
-            <TronLoader>
-              Loading Block {block.number}
-            </TronLoader>
-          </div> :
-          <div className="row">
-            <div className="col-md-12 ">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title text-center m-0">
-                    <i className="fa fa-cube mr-2"></i>
-                    {tu("block")} #{block.number}
-                  </h5>
+        <main className="container header-overlap">
+          {
+            loading ? <div className="card">
+                  <TronLoader>
+                    {tu("loading_block")} {block.number}
+                  </TronLoader>
+                </div> :
+                <div className="row">
+                  <div className="col-md-12 ">
+                    <div className="card list-style-header">
+                      <div className="card-body">
+                        <h5 className="card-title m-0">
+                          <i className="fa fa-cube mr-2"/>
+                          {tu("block")} #{block.number}
+                        </h5>
+                      </div>
+                      <div className="table-responsive">
+                        <table className="table table-hover m-0">
+                          <tbody>
+                          <tr>
+                            <th>{tu("status")}:</th>
+                            <td>
+                              {
+                                block.confirmed ?
+                                    <span className="badge badge-success text-uppercase">Confirmed</span> :
+                                    <span className="badge badge-danger text-uppercase">Unconfirmed</span>
+                              }
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("hash")}:</th>
+                            <td>
+                              <Truncate>
+                                {block.hash} <CopyText text={block.hash} className="ml-1"/>
+                              </Truncate>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("height")}:</th>
+                            <td>{block.number}</td>
+                          </tr>
+                          {
+                            block.timestamp !== 0 && <tr>
+                              <th>{tu("time")}:</th>
+                              <td>
+                                <FormattedDate value={block.timestamp}/>&nbsp;
+                                <FormattedTime value={block.timestamp}/>&nbsp;
+                                {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
+                              </td>
+                            </tr>
+                          }
+                          <tr>
+                            <th>{tu("transactions")}:</th>
+                            <td>
+                              {totalTransactions} {tv("transactions_count", {transactions: totalTransactions})}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("parenthash")}:</th>
+                            <td>
+                              <Truncate>
+                                <BlockNumberLink number={block.number - 1}>
+                                  {block.parentHash}
+                                </BlockNumberLink>
+                                <CopyText text={block.parentHash} className="ml-1"/>
+                              </Truncate>
+                            </td>
+                          </tr>
+                          {
+                            block.witnessAddress !== "" && <tr>
+                              <th>{tu("witness")}:</th>
+                              <td>
+                                <Truncate>
+                                  <AddressLink address={block.witnessAddress} includeCopy={true}/>
+
+                                </Truncate>
+                              </td>
+                            </tr>
+                          }
+
+                          <tr>
+                            <th>{tu("size")}:</th>
+                            <td>
+                              <FormattedNumber value={block.size}/>&nbsp;
+                              {tu("bytes")}
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+
+                    <div className="card mt-3 list-style-body">
+                      <div className="card-header list-style-body__header">
+                        <ul className="nav nav-tabs card-header-tabs">
+                          {
+                            Object.values(tabs).map(tab => (
+                                <li key={tab.id} className="nav-item">
+                                  <NavLink exact to={match.url + tab.path} className="nav-link text-dark">
+                                    {tab.label}
+                                  </NavLink>
+                                </li>
+                            ))
+                          }
+                        </ul>
+                      </div>
+                      <div className="card-body p-0 list-style-body__body">
+                        <Switch>
+                          {
+                            Object.values(tabs).map(tab => (
+                                <Route key={tab.id} exact path={match.url + tab.path}
+                                       render={(props) => (<tab.cmp block={block}/>)}/>
+                            ))
+                          }
+                        </Switch>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <table className="table table-hover m-0">
-                  <tbody>
-                  <tr>
-                    <th>{tu("status")}:</th>
-                    <td>
-                      {
-                        block.confirmed ?
-                          <span className="badge badge-success text-uppercase">Confirmed</span> :
-                          <span className="badge badge-danger text-uppercase">Unconfirmed</span>
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("hash")}:</th>
-                    <td>
-                      <Truncate>
-                        {block.hash} <CopyText text={block.hash} className="ml-1" />
-                      </Truncate>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("height")}:</th>
-                    <td>{block.number}</td>
-                  </tr>
-                  {
-                    block.timestamp !== 0 && <tr>
-                      <th>{tu("time")}:</th>
-                      <td>
-                        <FormattedDate value={block.timestamp} />&nbsp;
-                        <FormattedTime value={block.timestamp} />&nbsp;
-                        {(<TimeAgoI18N date={block.timestamp} activeLanguage={activeLanguage}/>)}
-                      </td>
-                    </tr>
-                  }
-                  <tr>
-                    <th>{tu("transactions")}:</th>
-                    <td>
-                      {totalTransactions} {tv("transactions_count", { transactions: totalTransactions })}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>{tu("parenthash")}:</th>
-                    <td>
-                      <Truncate>
-                        <BlockNumberLink number={block.number - 1}>
-                          {block.parentHash}
-                        </BlockNumberLink>
-                        <CopyText text={block.parentHash} className="ml-1" />
-                      </Truncate>
-                    </td>
-                  </tr>
-                  {
-                    block.witnessAddress !== "" && <tr>
-                      <th>{tu("witness")}:</th>
-                      <td>
-                        <Truncate>
-                          <AddressLink address={block.witnessAddress} includeCopy={true}/>
+          }
 
-                        </Truncate>
-                      </td>
-                    </tr>
-                  }
-
-                  <tr>
-                    <th>{tu("size")}:</th>
-                    <td>
-                      <FormattedNumber value={block.size} />&nbsp;
-                      {tu("bytes")}
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="card mt-3">
-                <div className="card-header">
-                  <ul className="nav nav-tabs card-header-tabs">
-                    {
-                      Object.values(tabs).map(tab => (
-                        <li key={tab.id} className="nav-item">
-                          <NavLink exact to={match.url + tab.path} className="nav-link text-dark" >
-                            <i className={tab.icon + " mr-2"} />
-                            {tab.label}
-                          </NavLink>
-                        </li>
-                      ))
-                    }
-                  </ul>
-                </div>
-                <div className="card-body p-0">
-                  <Switch>
-                    {
-                      Object.values(tabs).map(tab => (
-                        <Route key={tab.id} exact path={match.url + tab.path} render={(props) => (<tab.cmp block={block} />)} />
-                      ))
-                    }
-                  </Switch>
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-
-      </main>
+        </main>
     )
   }
 

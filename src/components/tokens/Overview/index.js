@@ -1,419 +1,473 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loadTokens} from "../../../actions/tokens";
-import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
-import {tu,t} from "../../../utils/i18n";
-import {Client} from "../../../services/api";
-import {ONE_TRX} from "../../../constants";
-import {TokenLink} from "../../common/Links";
-import Avatar from "../../common/Avatar";
-import {Sticky, StickyContainer} from "react-sticky";
+import {FormattedDate, FormattedNumber, FormattedTime, FormattedRelative, injectIntl} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
-import Paging from "../../common/Paging";
-import {NumberField} from "../../common/Fields";
+import {t, tu} from "../../../utils/i18n";
+import {trim} from "lodash";
+import {Client} from "../../../services/api";
+import {getQueryParam} from "../../../utils/url";
+import {TokenLink} from "../../common/Links";
+import SearchInput from "../../../utils/SearchInput";
+import {toastr} from 'react-redux-toastr'
+import SmartTable from "../../common/SmartTable.js"
+import {ONE_TRX} from "../../../constants";
+import {login} from "../../../actions/app";
+import {reloadWallet} from "../../../actions/wallet";
+import {upperFirst} from "lodash";
+import {TronLoader} from "../../common/loaders";
+import xhr from "axios/index";
 
 class TokenOverview extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      activeToken: null,
-      alert: null,
-      amount: "",
-      confirmed: false,
-      confirmedParticipate: false,
-      participateSuccess: false,
-      loading: false,
-      viewMode: 'grid',
-      filters: {
-        active: true,
-         waiting: true,
-      },
-      confirmVisible: false,
-      total: 0,
       tokens: [],
+      buyAmount: 0,
+      loading: false,
+      total: 0,
+      filter: {},
     };
+
+    let nameQuery = trim(getQueryParam(props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.state.filter.name = `%25${nameQuery}%25`;
+    }
   }
 
-  toggleToken(token) {
-    this.setState({
-      activeToken: token,
-      amount: 0,
-      confirmed: false,
-      confirmedParticipate: false,
-      participateSuccess: false,
-      loading: false,
-    })
-  }
+  loadPage = async (page = 1, pageSize = 20) => {
+    let {filter} = this.state;
+    let {intl} = this.props;
+    this.setState({loading: true});
 
-  closeToken() {
-    this.setState({
-      activeToken: null,
-      amount: 0,
-      confirmed: false,
-      confirmedParticipate: false,
-      participateSuccess: false,
-      loading: false,
-    })
-  }
+    let result;
 
-  getTokenState = (token) => {
-    let now = new Date().getTime();
+    if (filter.name)
+      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+    else
+      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
-    if (token.endTime < now || token.issuedPercentage === 100) {
-      return 'finished';
+    let total = result.data.data['Total'];
+    let tokens = result.data.data['Data'];
+    /*
+        let {tokens, total} = await Client.getTokens({
+          sort: '-name',
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          status: 'ico',
+          ...filter,
+        });
+    */
+    if (tokens.length === 0) {
+      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
 
-    if (token.startTime < now) {
-      return 'active';
-    }
-
-    return 'waiting';
-  };
-
-  buyTokens = (token) => {
-    let {amount} = this.state;
-    let {wallet} = this.props;
-
-    let tokenCosts = amount * (token.price / ONE_TRX);
-
-    if (( wallet.balance / ONE_TRX) < tokenCosts) {
-      this.setState({
-        alert: (
-          <SweetAlert
-            warning
-            title={tu("insufficient_trx")}
-            onConfirm={() => this.setState({ alert: null })}
-          >
-            {tu("not_enouth_trx_message")}
-          </SweetAlert>
-        ),
-      });
-    } else {
-      this.setState({
-        alert: (
-          <SweetAlert
-            info
-            showCancel
-            confirmBtnText={tu("confirm_transaction")}
-            confirmBtnBsStyle="success"
-            cancelBtnText={tu("cancel")}
-            cancelBtnBsStyle="default"
-            title={tu("buy_confirm_message_0")}
-            onConfirm={() => this.confirmTransaction(token)}
-            onCancel={() => this.setState({ alert: null })}
-          >
-            {tu("buy_confirm_message_1")}<br/>
-            {amount} {token.name} {t("for")} {amount * (token.price / ONE_TRX)} TRX?
-          </SweetAlert>
-        ),
-      });
-    }
-  };
-
-  containsToken(token) {
-    let {activeToken} = this.state;
-
-    if (!activeToken) {
-      return false;
-    }
-
-    return activeToken.name === token.name;
-  }
-
-  loadPage = async (page = 1,pageSize=40) => {
-
-    this.setState({ loading: true });
-
-    let {tokens, total} = await Client.getTokens({
-      sort: '-name',
-      limit: pageSize,
-      start: (page-1) * pageSize,
-      status: "ico",
-    });
-
-    function compare(property) {
-      return function (obj1, obj2) {
-
-        if (obj1[property] > obj2[property]) {
-          return -1;
-        } else if (obj1[property] < obj2[property] ) {
-          return 1;
-        } else {
-          return 0;
-        }
-
-      }
-    }
-    tokens=tokens.sort(compare('issuedPercentage'));
     this.setState({
       loading: false,
       tokens,
       total,
     });
+    return total;
   };
 
   componentDidMount() {
     this.loadPage();
   }
 
-  componentDidUpdate() {
-    //checkPageChanged(this, this.loadPage);
+  setSearch = () => {
+    let nameQuery = trim(getQueryParam(this.props.location, "search"));
+    if (nameQuery.length > 0) {
+      this.setState({
+        filter: {
+          name: `%25${nameQuery}%25`,
+        }
+      });
+    } else {
+      this.setState({
+        filter: {},
+      });
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location !== prevProps.location) {
+      this.setSearch();
+    }
+    if (this.state.filter !== prevState.filter) {
+      console.log("SEARCH CHANGED!");
+      this.loadPage();
+    }
   }
-  onChange = (page,pageSize) => {
-    this.loadPage(page,pageSize);
+
+  onChange = (page, pageSize) => {
+    this.loadPage(page, pageSize);
   };
 
-  isValid = () => {
-    let {amount} = this.state;
-    return (amount > 0);
-  };
+  searchName = (name) => {
 
+    if (name.length > 0) {
+      this.setState({
+        filter: {
+          name: `%25${name}%25`,
+        }
+      });
+    }
+    else {
+      if (window.location.hash !== '#/tokens/view')
+        window.location.hash = '#/tokens/view';
+      else {
+        this.setState({
+          filter: {},
+        });
+      }
+    }
+  }
+
+  onBuyInputChange = (value, price, max) => {
+    let {intl} = this.props;
+    if (value > max) {
+      value = max;
+    }
+    this.setState({buyAmount: value});
+    this.buyAmount.value = value;
+    let priceTRX = value * (price / ONE_TRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX) + ' TRX';
+  }
+
+  preBuyTokens = (token) => {
+    let {buyAmount} = this.state;
+    let {currentWallet, wallet} = this.props;
+
+    if (!wallet.isOpen) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                info
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="token-sweet-alert">
+                <a className="close" onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <span>{tu('login_first')}</span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
+            </SweetAlert>
+        ),
+      });
+      return;
+    }
+    else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert" style={{textAlign: 'left'}}>
+                <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu('buy_token_info')}</h5>
+                {token.remaining === 0 && <span> {tu('no_token_to_buy')}</span>}
+                <div className="input-group mt-5">
+                  <input
+                      type="number"
+                      ref={ref => this.buyAmount = ref}
+                      className="form-control"
+                      max={token.remaining}
+                      min={1}
+                      onChange={(e) => {
+                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                      }}
+                  />
+                </div>
+                <div className="text-center mt-3 text-muted">
+                  <b>= <span ref={ref => this.priceTRX = ref}>0 TRX</span></b>
+                </div>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.buyTokens(token)
+                }}>{tu("participate")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    }
+  }
+  buyTokens = (token) => {
+
+    let {buyAmount} = this.state;
+    if (buyAmount <= 0) {
+      return;
+    }
+    let {currentWallet, wallet} = this.props;
+    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+
+    if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <span>
+                  {tu("not_enough_trx_message")}
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("confirm")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert
+                warning
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <span>
+                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.confirmTransaction(token)
+                }}>{tu("confirm")}</button>
+              </div>
+            </SweetAlert>
+        ),
+      });
+    }
+  };
   submit = async (token) => {
 
-    let {account} = this.props;
-    let {amount} = this.state;
-
-    this.setState({ loading: true });
-
-    console.log("participate", token);
+    let {account, currentWallet} = this.props;
+    let {buyAmount, privateKey} = this.state;
 
     let isSuccess = await Client.participateAsset(
-      account.address,
-      token.ownerAddress,
-      token.name,
-      amount * token.price)(account.key);
+        currentWallet.address,
+        token.ownerAddress,
+        token.name,
+        buyAmount * token.price)(account.key);
 
-    this.setState({
-      activeToken: null,
-      confirmedParticipate: true,
-      participateSuccess: isSuccess,
-      loading: false,
-    });
+    if (isSuccess.success) {
+      this.setState({
+        activeToken: null,
+        confirmedParticipate: true,
+        participateSuccess: isSuccess.success,
+        buyAmount: 0,
+      });
+      this.props.reloadWallet();
+      return true;
+    } else {
+      return false;
+    }
   };
 
-  renderGrid() {
-    let {account} = this.props;
-    let {amount, tokens} = this.state;
-
-    return (
-      <div className="row">
-        {
-          tokens.map((token, index) => (
-            <Fragment key={index + "-" + token.name}>
-              <div className="col-12 col-sm-6 col-lg-4 mb-3">
-                <div className="card token-card h-100">
-                  <div className="card-body">
-                    <h5 className="card-title break-word">
-                      <Avatar value={token.name} size={25} className="float-right"/>
-                      <TokenLink name={token.name}/>
-                    </h5>
-                    <p className="card-text break-word">
-                      {token.description}
-                    </p>
-                    {/*<p className="mb-0">*/}
-                      {/*<ExternalLink url={token.url} className="card-link text-primary text-center">*/}
-                        {/*Visit Website*/}
-                      {/*</ExternalLink>*/}
-                    {/*</p>*/}
-                  </div>
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                      <span className="text-success">
-                        <FormattedNumber value={token.issued} className="text-success"/>&nbsp;
-                      </span>
-                      /&nbsp;
-                      <span className="text-muted">
-                        <FormattedNumber value={token.availableSupply}/>
-                      </span>
-                      <span className="float-right text-success">
-                        {Math.ceil(token.issuedPercentage)}%
-                      </span>
-                      <div className="progress mt-1">
-                        <div className="progress-bar bg-success" style={{width: token.issuedPercentage + '%'}}/>
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      {
-                        this.getTokenState(token) === 'active' &&
-                        <div className="text-center">
-                          {tu("ends")}&nbsp;
-                          <FormattedRelative value={token.endTime} units="day"/>
-                        </div>
-                      }
-                      {
-                        this.getTokenState(token) === 'finished' &&
-                        <button className="btn btn-link btn-block" disabled={true}>
-                          {tu("finished")}
-                        </button>
-                      }
-                      {
-                        this.getTokenState(token) === 'waiting' &&
-                        <div className="text-center">
-                          {tu("starts")} <FormattedRelative value={token.endTime}/>
-                        </div>
-                      }
-                    </li>
-                  </ul>
-                  {
-                    (account.isLoggedIn && this.getTokenState(token) === 'active') && (
-                      !this.containsToken(token) ?
-                        <div className="card-footer bg-transparent border-top-0">
-                          {
-                            this.getTokenState(token) === 'finished' ?
-                              <button className="btn btn-outline-secondary btn-block" disabled={true}>
-                                {tu("finished")}
-                              </button> :
-                              <button className="btn btn-block btn-outline-primary"
-                                      onClick={() => this.toggleToken(token)}>
-                                {tu("participate")}
-                              </button>
-                          }
-                        </div> :
-                        <div className="card-footer bg-transparent border-top-0">
-                          <div className="text-muted text-center">
-                            {tu("how_much_buy_message")}<br/>
-                            {tu("price")}: {(token.price / ONE_TRX)} TRX
-                          </div>
-                          <div className="input-group mt-3">
-                            <NumberField
-                              className="form-control"
-                              value={amount}
-                              max={token.remaining}
-                              min={1}
-                              onChange={value => this.setState({ amount: value })}
-                            />
-                            <div className="input-group-append">
-                              <button className="btn btn-success"
-                                      type="button"
-                                      disabled={!this.isValid()}
-                                      onClick={() => this.buyTokens(token)}>
-                                <i className="fa fa-check"/>
-                              </button>
-                            </div>
-                          </div>
-                          <div className="text-center mt-1 text-muted">
-                            {/*<FormattedNumber value={amount} /> {token.name}<br/>*/}
-                            =&nbsp;
-                            <b><FormattedNumber value={amount * (token.price / ONE_TRX)}/> TRX</b>
-                          </div>
-                        </div>
-                    )
-                  }
-                </div>
-              </div>
-            </Fragment>
-          ))
-        }
-
-      </div>
-    );
-  }
-
-  renderSmallDate(token) {
-
-    let now = new Date().getTime();
-
-    if (token.endTime < now) {
-      return (
-        <Fragment>
-          <span className="text-muted">
-            {tu("finished")}&nbsp;
-            <FormattedDate value={token.endTime}/>&nbsp;
-            <FormattedTime value={token.endTime}/>
-          </span>
-        </Fragment>
-      );
-    }
-
-    if (token.startTime < now) {
-      return (
-        <Fragment>
-          <span className="text-muted">
-            Started&nbsp;
-            <FormattedDate value={token.startTime}/>&nbsp;
-            <FormattedTime value={token.startTime}/>
-          </span>
-          {
-            !this.containsToken(token) && <button
-              className="btn btn-primary btn-sm float-right"
-              onClick={() => this.toggleToken(token)}>
-              {tu("participate")}
-            </button>
-          }
-
-        </Fragment>
-      )
-    }
-
-    return (
-      <Fragment>
-          <span className="text-muted">
-            {tu("starts")}&nbsp;
-            <FormattedDate value={token.startTime}/>&nbsp;
-            <FormattedTime value={token.startTime}/>
-          </span>
-      </Fragment>
-    );
-  }
-
-  confirmTransaction = (token) => {
+  confirmTransaction = async (token) => {
+    let {account, intl} = this.props;
+    let {buyAmount} = this.state;
     this.setState({
       alert: (
-        <SweetAlert success title="Transaction Confirmed" onConfirm={() => this.setState({ alert: null })}>
-          Successfully received {token.name} tokens
-        </SweetAlert>
-      )
+          <SweetAlert
+              showConfirm={false}
+              showCancel={false}
+              cancelBtnBsStyle="default"
+              title={intl.formatMessage({id: 'transferring'})}
+              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+          >
+          </SweetAlert>
+      ),
     });
-    this.submit(token);
+
+    if (await this.submit(token)) {
+
+      this.setState({
+        alert: (
+            <SweetAlert
+                success
+                showConfirm={false}
+                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+            >
+              <div className="mt-5 token-sweet-alert">
+                <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
+                  this.setState({alert: null})
+                }}><i className="fa fa-times" ariaHidden="true"></i></a>
+                <h5 style={{color: 'black'}}>{tu('transaction')} {tu('confirm')}</h5>
+                <span>
+               {tu('success_receive')} {token.name} {tu('tokens')}
+              </span>
+                <button className="btn btn-danger btn-block mt-3" onClick={() => {
+                  this.setState({alert: null})
+                }}>{tu("OK")}</button>
+              </div>
+
+            </SweetAlert>
+        )
+      });
+    } else {
+      this.setState({
+        alert: (
+            <SweetAlert danger title="Error" onConfirm={() => this.setState({alert: null})}>
+              {tu('fail_transaction')}
+            </SweetAlert>
+        )
+      });
+    }
   };
+
+  customizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      {
+        title: '#',
+        dataIndex: 'index',
+        key: 'index',
+        align: 'center',
+        className: 'ant_table _text_nowrap',
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'token'})),
+        dataIndex: 'name',
+        key: 'name',
+        width: '40%',
+        render: (text, record, index) => {
+          return <div className="table-imgtext">
+            {record.imgUrl ?
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
+            }
+            <div>
+              <h5><TokenLink name={record.name}
+                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+              </h5>
+              <p>{record.description}</p>
+            </div>
+          </div>
+        }
+      },
+      {
+        title: intl.formatMessage({id: 'fund_raised'}),
+        render: (text, record, index) => {
+          return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+      },
+
+      {
+        title: intl.formatMessage({id: 'issue_progress'}),
+        dataIndex: 'issuedPercentage',
+        key: 'issuedPercentage',
+        render: (text, record, index) => {
+          if (text === null)
+            text = 0;
+          return <div><FormattedNumber value={text} maximumFractionDigits={1}/>%</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-sm-table-cell _text_nowrap'
+      },
+      {
+        title: intl.formatMessage({id: 'end_time'}),
+        dataIndex: 'endTime',
+        key: 'endTime',
+        align: 'center',
+        className: 'ant_table _text_nowrap',
+        render: (text, record, index) => {
+          return <div>
+            <FormattedRelative value={record.endTime} units="day"/>
+          </div>
+        }
+      },
+      {
+        title: intl.formatMessage({id: 'issuing_price'}),
+        render: (text, record, index) => {
+          return <div><FormattedNumber value={record.price / ONE_TRX} maximumFractionDigits={6}/> TRX</div>
+        },
+        align: 'center',
+        className: 'ant_table'
+      },
+      {
+        title: intl.formatMessage({id: 'participate'}),
+        align: 'center',
+        render: (text, record, index) => {
+          if (record.endTime < new Date() || record.issuedPercentage === 100)
+            return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
+          else if (record.startTime > new Date())
+            return <span style={{fontWeight: 'normal'}}>{tu("not_started")}</span>
+          else
+            return <button className="btn btn-default btn-block btn-sm"
+                           onClick={() => this.preBuyTokens(record)}>{tu("participate")}</button>
+        },
+        className: 'ant_table'
+      }
+    ];
+
+    return column;
+  }
+
 
   render() {
 
-    let {alert, loading, total} = this.state;
-    let {match} = this.props;
+    let {tokens, alert, loading, total} = this.state;
+    let {match, intl} = this.props;
+    let column = this.customizedColumn();
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
-      <Fragment>
-        {alert}
-          <StickyContainer className="container header-overlap pb-3">
-            {
-              total > 0 &&
-              <Sticky>
-                {
-                  ({style, isSticky}) => (
-                      <div
-                          className={"row " + (isSticky ? " bg-white no-gutters p-2 border border-secondary  border-top-0" : "")}>
-                        <div className="col-sm-12">
-                          <Paging onChange={this.onChange} loading={loading} url={match.url} total={total}/>
-                        </div>
-                      </div>
-                  )
-                }
-              </Sticky>
-            }
-            <div className="row mt-3">
-              <div className="col-sm-12">
-                {this.renderGrid()}
+        <main className="container header-overlap token_black">
+          {alert}
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          {
+            <div className="row">
+
+              <div className="col-md-12 table_pos">
+                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                            rowClassName="table-row" onPageChange={(page, pageSize) => {
+                  this.loadPage(page, pageSize)
+                }}/>
               </div>
             </div>
-          </StickyContainer>
-      </Fragment>
+          }
+        </main>
+
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    tokens: state.tokens.tokens,
     account: state.app.account,
-    wallet: state.wallet.current,
+    tokens: state.tokens.tokens,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
   };
 }
 
 const mapDispatchToProps = {
   loadTokens,
+  login,
+  reloadWallet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TokenOverview));

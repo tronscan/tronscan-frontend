@@ -1,7 +1,8 @@
 import {Client} from "../services/api";
 import xhr from "axios";
 import {loadRecentTransactions} from "./account";
-import {reloadWallet} from "./wallet";
+import {reloadWallet, setWalletLoading} from "./wallet";
+import Lockr from "lockr";
 
 export const SET_ACCOUNTS = 'SET_ACCOUNTS';
 export const SET_PRICE = 'SET_PRICE';
@@ -65,12 +66,18 @@ export const setActiveCurrency = (currency) => ({
 
 export const login = (privateKey) => async (dispatch, getState) => {
 
-  dispatch(loginWithPrivateKey(privateKey));
-
-  setTimeout(() => {
-    dispatch(reloadWallet());
-    dispatch(loadRecentTransactions(getState().app.account.address));
-  }, 50);
+  /*if(Lockr.get("account_address")) {
+    await dispatch(loginWithPrivateKey(privateKey));
+    return
+  }
+  else {
+  */
+    dispatch(setWalletLoading(true));
+    await dispatch(loginWithPrivateKey(privateKey));
+    await dispatch(reloadWallet());
+    dispatch(setWalletLoading(false));
+    await dispatch(loadRecentTransactions(getState().app.account.address));
+ // }
 };
 
 export const loginWithAddress = (address) => async (dispatch, getState) => {

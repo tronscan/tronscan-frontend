@@ -83,7 +83,7 @@ $tronBlue: rgba(21,171,195,1.0);
     background: black;
   }
 
-  .border-bottom {
+  .border-bottom, .border {
     border-color: $tronBlue !important;
   }
 
@@ -153,4 +153,26 @@ $tronBlue: rgba(21,171,195,1.0);
   .list-group-item {
     background: #000;
   }
+
+
+  .token-cards {
+    background-color:black;
+    border: 1px solid $tronBlue;
+    color: $tronBlue;
+
+    .token-info {
+      background-color: black;
+    }
+  }
+
+  .token-cards:hover {
+    background-color: #D2D1D1 !important;
+    border: 1px solid $tronBlue;
+    color: #333 !important;
+    .token-info {
+      background-color: black;
+      color: $tronBlue;
+    }
+  }
+
 }

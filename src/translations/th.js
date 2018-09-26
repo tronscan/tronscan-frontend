@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-16072018                                                  #
-  #         Update Date: 16.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Thai                                                         #
   #         Status: Approved Draft                                                 #
   #         Number of checks: 5                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "อายุบล็อก",
   "bytes": "ขนาดไบต์",
   "MByte": "MByte",
-  "produced by": "ถูกสร้างโดย",
+  "produced_by": "ถูกสร้างโดย",
+  "block_reward": "Block Reward",
   "contract": "สัญญา",
   "from": "จาก",
   "to": "ไปยัง",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "ข่าวสาร",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -174,7 +178,7 @@ export const messages = {
   "asset_participation": "การเข้าร่วมสินทรัพย์",
   "loading_transaction": "กำลังโหลดธุรกรรม",
   "nodes_ranking": "การจัดอันดับโหนด",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "รายการผู้ถือครองจำนวนมาก",
   "tron_transaction_chart": "แผนภูมิธุรกรรม TRON",
   "transactions_per_day": "จำนวนธุรกรรมต่อวัน",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "ส่งไปยังแอดเดรสต่อไปนี้",
   "change_website": "เปลี่ยนเว็บไซต์",
   "you_must_enter_url": "คุณต้องระบุ URL",
-  "specify_the_url":  "โปรดระบุ URL",
+  "specify_the_url": "โปรดระบุ URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -249,8 +266,8 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "freeze" : "การตรึงยอดคงเหลือในบัญชี",
-  "unfreeze" : "การยกเลิกการตรึงยอดคงเหลือในบัญชี",
+  "freeze": "การตรึงยอดคงเหลือในบัญชี",
+  "unfreeze": "การยกเลิกการตรึงยอดคงเหลือในบัญชี",
   "freeze_trx_least": "คุณต้องมี 1 TRX เป็นอย่างน้อย เพื่อทำการตรึงยอดคงเหลือในบัญชี",
   "unable_unfreeze_trx_message": "ไม่สามารถยกเลิกการตรึงยอดคงเหลือ TRX ซึ่งอาจเป็นเพราะยังไม่ถึงระยะเวลาการตรึงบัญชีขั้นต่ำ",
   "freeze_trx_premessage_0": "คุณสามารถทำการตรึงยอดคงเหลือ TRX ในบัญชี เพื่อได้รับ TRON Power และเปิดใช้งานคุณสมบัติเพิ่มเติม เช่น คุณสามารถใช้ TRON Power ในการ",
@@ -339,7 +356,7 @@ export const messages = {
   "could_not_claim_rewards": "ไม่สามารถขอรับรางวัลได้",
   "claim_rewards_error_message": "เกิดข้อผิดพลาดขณะพยายามขอรับรางวัล กรุณาลองอีกครั้งในภายหลัง",
   "rewards_claimed": "ได้รับรางวัลแล้ว!",
-  "successfully_claimed_rewards":  "ได้รับรางวัลต่างๆ เรียบร้อยแล้ว",
+  "successfully_claimed_rewards": "ได้รับรางวัลต่างๆ เรียบร้อยแล้ว",
   "claim_rewards": "ขอรับรางวัล",
   "sr_receive_reward_message_0": "ในฐานะ Representative คุณจะได้รับรางวัลสำหรับการผลิตบล็อก สามารถขอรับรางวัลเหล่านี้ได้ทุก 24 ชั่วโมง",
   "intro": "บทนำ",
@@ -396,10 +413,10 @@ export const messages = {
   "buy_confirm_message_1": "คุณแน่ใจหรือไม่ว่าต้องการซื้อ",
   "for": "สำหรับ",
   "insufficient_trx": "TRX ไม่เพียงพอ",
-  "not_enouth_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
+  "not_enough_trx_message": "คุณไม่มี TRX เพียงพอที่จะซื้อโทเคนจำนวนมาก",
   "ends": "สิ้นสุด",
   "starts": "เริ่ม",
-  "can_be_unlocked_in": "สามารถปลดล็อกได้ภายใน",
+  "can_be_unlocked": "สามารถปลดล็อกได้ภายใน",
   /*
   ##################################################################################
   #                                                                                #
@@ -421,7 +438,6 @@ export const messages = {
   "thanks_for_applying": "ขอบคุณสำหรับการสมัครใช้งาน!",
   "to_much_votes": "คะแนนเสียงมากเกินไป",
   "no_trx_remaining": "ไม่มี TRX เหลือแล้ว",
-  "produced_by": "ผลิตโดย {witnessAddress}",
   "show_more": "แสดง {countriesLength} เพิ่มเติม",
   "vote_guide_message": "ใช้ TRX ของคุณเพื่อลงคะแนนเสียงเลือกตั้ง Super Representative คุณจะสามารถลงคะแนนเสียงเลืิอกตั้งได้หนึ่งคะแนน ต่อแต่ละ TRX ที่คุณมีในบัญชี TRX จะไม่ถูกใช้โดยตรง คุณสามารถลงคะแนนเสียงเลือกตั้งได้หลายครั้ง และได้หลายผู้สมัคร เท่าที่คุณต้องการ คะแนนสุดท้ายจะถูกนับ ณ เวลา 24 นาฬิกา และรายชื่อ Super Representative จะได้รับการปรับปรุง",
   "search_address": "ค้นหาแอดเดรส",
@@ -557,7 +573,7 @@ export const messages = {
   "open_team_page": "ดูข้อมูลเพิ่มเติม",
   "warning_votes": "ต้องใช้ 1 TRON Power เป็นอย่างน้อยในการลงคะแนนเสียง ซึ่งคุณสามารถได้รับ TRON Power จากการตรึงยอดคงเหลือ TRX ใน",
   "account_page": "หน้าบัญชี",
-  "loading_votes" : "โหลดคะแนนเสียง",
+  "loading_votes": "โหลดคะแนนเสียง",
   "3_day_ranking": "อันดับใน 3 วัน",
   "live_ranking": "อันดับปัจจุบัน",
   "live_ranking_msg": "รีเฟรชทุกๆ 15 วินาที การลงคะแนนใหม่อาจใช้เวลา 1-2 นาทีก่อนที่จะถูกนับ",
@@ -662,6 +678,19 @@ export const messages = {
   "print_paper_wallet": "ทำการพิมพ์ Paper wallet",
   "new_wallet_ready_message": "วอลเล็ทใหม่ของคุณพร้อมใช้งานแล้ว",
   "go_to_account_page": "ไปยังหน้าบัญชี",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -730,6 +759,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -773,15 +813,59 @@ export const messages = {
   "search_description": "ค้นหาแอดเดรส, หมายเลขบล็อก, ค่าแฮชของธุรกรรม, ชื่อธุรกรรม",
   "search_description1": "ค้นหาแอดเดรส, บล็อก, ธุรกรรม, โทเคน",
   "transaction": "ธุรกรรม",
-  "total_addresses":"จำนวนแอดเดรสทั้งหมด",
-  "daily_increment":"จำนวนที่เพิ่มรายวัน",
-  "address_growth_chart":"แผนภูมิการเพิ่มขึ้นของแอดเดรส",
-  "addresses_amount":"จำนวนแอดเดรส",
-  "past_14_days_of_transactions":"ธุรกรรมใน 14 วันที่ผ่านมา",
-  "address_growth":"การเพิ่มขึ้นของแอดเดรส",
+  "total_addresses": "จำนวนแอดเดรสทั้งหมด",
+  "daily_increment": "จำนวนที่เพิ่มรายวัน",
+  "address_growth_chart": "แผนภูมิการเพิ่มขึ้นของแอดเดรส",
+  "addresses_amount": "จำนวนแอดเดรส",
+  "past_14_days_of_transactions": "ธุรกรรมใน 14 วันที่ผ่านมา",
+  "address_growth": "การเพิ่มขึ้นของแอดเดรส",
   "power": "Power",
   "token_transfers": "การโอนย้ายโทเคน",
   "website_url": "URL ของเว็บไซต์",
-  "search": "ค้นหา"
+  "search": "ค้นหา",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
+
 
 };

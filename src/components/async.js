@@ -207,6 +207,24 @@ export const NodeTesterAsync = asyncComponent({
   )
 });
 
+export const TronConvertToolAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./tools/TronConvertTool"));
+            });
+          },
+          'TronConvertTool',
+      )
+  )
+});
+
 export const SystemAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>
@@ -261,6 +279,60 @@ export const FaqAsync = asyncComponent({
   )
 });
 
+export const MyTokenAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Pages/MyToken"));
+            });
+          },
+          'MyToken',
+      )
+  )
+});
+
+export const TRONRatingAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Pages/TRONRating"));
+            });
+          },
+          'TRONRating',
+      )
+  )
+});
+
+export const CopyrightAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Pages/Copyright"));
+            });
+          },
+          'CopyrightAsync',
+      )
+  )
+});
+
 export const LedgerHelpAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>
@@ -279,23 +351,6 @@ export const LedgerHelpAsync = asyncComponent({
   )
 });
 
-export const NewsAsync = asyncComponent({
-  LoadingComponent: () => (
-      <TronLoader/>
-  ),
-  resolve: () => new Promise(resolve =>
-      // Webpack's code splitting API w/naming
-      require.ensure(
-          [],
-          (require) => {
-            $script("", () => {
-              resolve(require("./Pages/News"));
-            });
-          },
-          'News',
-      )
-  )
-});
 
 export const TokenOverviewAsync = asyncComponent({
   LoadingComponent: () => (
@@ -352,7 +407,6 @@ export const TokensCreateAsync = asyncComponent({
 });
 
 
-
 export const AccountsAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>
@@ -367,6 +421,25 @@ export const AccountsAsync = asyncComponent({
             });
           },
           'Accounts',
+      )
+  )
+});
+
+
+export const FoundationAsync = asyncComponent({
+  LoadingComponent: () => (
+      <TronLoader/>
+  ),
+  resolve: () => new Promise(resolve =>
+      // Webpack's code splitting API w/naming
+      require.ensure(
+          [],
+          (require) => {
+            $script("", () => {
+              resolve(require("./Foundation"));
+            });
+          },
+          'Foundation',
       )
   )
 });

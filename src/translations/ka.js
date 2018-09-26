@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,8 +14,8 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Georgian                                                     #
   #         Status: First Version                                                  #
   #         Number of checks: 2                                                    #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "ასაკი",
   "bytes": "ბიტები",
   "MByte": "MByte",
-  "produced by": "წარმოებულია ......მიერ",
+  "produced_by": "წარმოებულია მიერ",
+  "block_reward": "Block Reward",
   "contract": "კონტრაქტი",
   "from": "-დან",
   "to": "-სკენ",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "სიმდიდრის სია",
   "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "ტრანზაქციები ერთ დღეში",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -330,7 +347,7 @@ export const messages = {
   "github_linked": "Github მიბმულია!",
   "unable_to_link_github_message": "ვერ ვებმევი Githubს, დარწმუნდით, რომ თქვენი მომხმარებლის სახელი სწორია!",
   "could_not_link_github": "ვერ მოვახერხე Github-ზე მიბმა",
-  "enter_your_github_username":   "შეიყვანეთ თქვენი Github-ის სამომხმარებლო სახელი",
+  "enter_your_github_username": "შეიყვანეთ თქვენი Github-ის სამომხმარებლო სახელი",
   "link_to_github": " Github-ზე მიბმა ",
   "link_github": "Github-ზე მიბმა",
   "you_must_enter_a_url": "თქვენ უნდა შეიყვანოთ URL",
@@ -345,7 +362,7 @@ export const messages = {
   "could_not_claim_rewards": "Could not claim rewards",
   "claim_rewards_error_message": "Something went wrong while trying to claim rewards, please try again later.",
   "rewards_claimed": "Rewards Claimed!",
-  "successfully_claimed_rewards":  "Successfully claimed rewards",
+  "successfully_claimed_rewards": "Successfully claimed rewards",
   "claim_rewards": "Claim Rewards",
   "sr_receive_reward_message_0": "As a representative you receive rewards for producing blocks. These rewards can be claimed every 24 hours",
   "intro": "Intro",
@@ -402,10 +419,10 @@ export const messages = {
   "buy_confirm_message_1": "დარწმუნებული ხართ, რომ ყიდვა გსურთ",
   "for": "-სთვის",
   "insufficient_trx": "არასაკმარისი TRX",
-  "not_enouth_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
+  "not_enough_trx_message": "თქვენ არ გაქვთ საკმარისი TRX ბევრი ტოკენის საყიდლად",
   "ends": "დასრულებები",
   "starts": "სტარტები",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -427,7 +444,6 @@ export const messages = {
   "thanks_for_applying": "გმადლობთ, მიმართვისთვის!",
   "to_much_votes": "ნამეტანი ბევრი ხმა",
   "no_trx_remaining": "TRX არ დარჩა",
-  "produced_by": "წარმოებულია {witnessAddress}-მიერ",
   "show_more": "მეტი {countriesLength} ჩვენება",
   "vote_guide_message": `გამოიყენეთ თქვენი TRX სუპერ წარმომადგენლად ხმის მისაცემად.
    ყოველი მქონე TRX-სთვის თქვენს გაქვთ ერთი დასახარჯი ხმა.
@@ -489,9 +505,9 @@ export const messages = {
   "end_date": "დასრულების თარიღი",
   "token_spend_confirm": "მე ვადასტურებ, რომ ტოკენების ღირებულების სრული მიწოდების შექმნისათვის ერთჯერადი სრული გადასახადი შეადგენს 1024 TRX.",
   "token_issue_guide_message_1": `ტრონის პროტოკოლზე გამოშვებული ტოკენი შეიძლება განხორციელდეს ნებისმიერის მიერ, რომელსაც აქვს სულ მცირე 1024 TRX თავის ანგარიშზე.`,
-  "token_issue_guide_message_2":`ტოკენის გაცემისას, ის იქნება ნაჩვენები ტოკენის მიმოხილვის გვერდზე.
+  "token_issue_guide_message_2": `ტოკენის გაცემისას, ის იქნება ნაჩვენები ტოკენის მიმოხილვის გვერდზე.
     მომხმარებლებს მონაწილეობის მიღება შეუძლიათ მონაწილეობის პერიოდში და გადაცვალოთ თავიანთი TRX -ები ტოკენებზე.`,
-  "token_issue_guide_message_3":`ტოკენის გამოცემის შემდეგ, თქვენს ანგარიშზე დაჯდება მიწოდების ტოლი ტკენების რაოდენობა. როდესაც სხვა მომხმარებლები გადაცვლიან თავიანთ TRX-ებს ტოკენებზე, მაშინ ტოკენები მოხსნილი იქნება თქვენი ანგარიშიდან და თქვენ მიიღებთ TRX-ებს განსაზღვრული გადაცვლის კურსით.`,
+  "token_issue_guide_message_3": `ტოკენის გამოცემის შემდეგ, თქვენს ანგარიშზე დაჯდება მიწოდების ტოლი ტკენების რაოდენობა. როდესაც სხვა მომხმარებლები გადაცვლიან თავიანთ TRX-ებს ტოკენებზე, მაშინ ტოკენები მოხსნილი იქნება თქვენი ანგარიშიდან და თქვენ მიიღებთ TRX-ებს განსაზღვრული გადაცვლის კურსით.`,
   /*
   ##################################################################################
   #                                                                                #
@@ -671,6 +687,19 @@ export const messages = {
   "print_paper_wallet": "ამობეჭდეთ საფულე ქაღალდზე ",
   "new_wallet_ready_message": "თქვენი ახალი საფულე მზად არის",
   "go_to_account_page": "გადასვლა ანგარიშის გვერდზე",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -739,6 +768,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -791,6 +831,50 @@ export const messages = {
   "power": "Power",
   "token_transfers": "ნიშნად გადარიცხვები",
   "website_url": "საიტი URL",
-  "search": "ძიება"
+  "search": "ძიება",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
+
 
 };

@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React, {Fragment} from "react";
+import {injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
@@ -12,6 +13,8 @@ import {reloadWallet} from "../../../actions/wallet";
 import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
+import {login} from "../../../actions/app";
+import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 class SendForm extends React.Component {
 
@@ -19,9 +22,11 @@ class SendForm extends React.Component {
     super(props);
 
     this.state = {
+      privateKey: "",
       to: props.to || "",
       token: "",
       amount: '',
+      note: '',
       sendStatus: 'waiting',
       isLoading: false,
       toAccount: null,
@@ -34,9 +39,17 @@ class SendForm extends React.Component {
    * @returns {*|boolean}
    */
   isValid = () => {
-    let {to, token, amount} = this.state;
-    const {account} = this.props ;
+    let {to, token, amount, privateKey} = this.state;
+    let {account} = this.props;
+    /*
+       if (!privateKey || privateKey.length !== 64) {
+         return false;
+       }
 
+      if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
+         return false;
+       }
+    */
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
 
@@ -44,16 +57,16 @@ class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount} = this.state;
+    let {to, token, amount, note, privateKey} = this.state;
     let {account, onSend} = this.props;
 
-    this.setState({ isLoading: true, modal: null });
+    this.setState({isLoading: true, modal: null});
 
     if (token === "TRX") {
       amount = amount * ONE_TRX;
     }
 
-    let {success} = await Client.send(token, account.address, to, amount)(account.key);
+    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
 
     if (success) {
       this.refreshTokenBalances();
@@ -80,31 +93,32 @@ class SendForm extends React.Component {
   };
 
   confirmSend = () => {
+
     let {to, token, amount} = this.state;
     this.setState({
       modal: (
-        <SweetAlert
-          info
-          showCancel
-          confirmBtnText="Confirm"
-          confirmBtnBsStyle="success"
-          cancelBtnBsStyle="default"
-          title="Confirm transaction"
-          onConfirm={this.send}
-          onCancel={this.hideModal}
-          style={{marginLeft:'-240px',marginTop:'-195px'}}
-        >
-          Are you sure you want to transfer<br/>
-          <span className="font-weight-bold">{' '}
-            <FormattedNumber
-              maximumFractionDigits={7}
-              minimunFractionDigits={7}
-              value={amount} />{' '}
-            {token + ' '}
+          <SweetAlert
+              info
+              showCancel
+              cancelBtnText={tu("cancel")}
+              confirmBtnText={tu("confirm")}
+              cancelBtnBsStyle="default"
+              title={tu("confirm_transaction")}
+              onConfirm={this.send}
+              onCancel={this.hideModal}
+              style={{marginLeft: '-240px', marginTop: '-195px'}}
+          >
+            {tu("transfer_confirm_info")}<br/>
+            <span className="font-weight-bold">{' '}
+              <FormattedNumber
+                  maximumFractionDigits={7}
+                  minimunFractionDigits={7}
+                  value={amount}/>{' '}
+              {token + ' '}
           </span><br/>
-          to<br/>
-          {to}?
-        </SweetAlert>
+            {tu("to")}<br/>
+            {to}
+          </SweetAlert>
       )
     });
   };
@@ -116,7 +130,6 @@ class SendForm extends React.Component {
   };
 
   setAmount = (amount) => {
-
 
 
     if (amount !== '') {
@@ -178,32 +191,32 @@ class SendForm extends React.Component {
 
     if (sendStatus === 'success') {
       return (
-        <Alert color="success" className="text-center">
-          {tu("successful_send")}
-        </Alert>
+          <Alert color="success" className="text-center">
+            {tu("successful_send")}
+          </Alert>
       )
     }
 
     if (sendStatus === 'failure') {
       return (
-        <Alert color="danger" className="text-center">
-          Something went wrong while submitting the transaction
-        </Alert>
+          <Alert color="danger" className="text-center">
+            Something went wrong while submitting the transaction
+          </Alert>
       )
     }
 
     return (
-      <Fragment>
+        <Fragment>
 
-        {/*<Alert color="warning" className="text-center">*/}
+          {/*<Alert color="warning" className="text-center">*/}
           {/*{tu("address_warning")}*/}
-        {/*</Alert>*/}
-        <button
-          type="button"
-          disabled={!this.isValid() || isLoading}
-          className="btn btn-primary btn-block btn-lg"
-          onClick={this.confirmSend}>{tu("send")}</button>
-      </Fragment>
+          {/*</Alert>*/}
+          <button
+              type="button"
+              disabled={!this.isValid() || isLoading}
+              className="btn btn-primary btn-block btn-lg"
+              onClick={this.confirmSend}>{tu("send")}</button>
+        </Fragment>
     )
   }
 
@@ -216,7 +229,7 @@ class SendForm extends React.Component {
     });
   };
 
-  resetForm = ()  => {
+  resetForm = () => {
     this.setState({
       amount: '',
       sendStatus: 'waiting',
@@ -226,7 +239,7 @@ class SendForm extends React.Component {
   };
 
   setAddress = (address) => {
-    this.setState({ to: address });
+    this.setState({to: address});
 
     Client.getAddress(address).then(data => {
       this.setState({
@@ -235,92 +248,112 @@ class SendForm extends React.Component {
     })
   };
 
+  setNote = (note) => {
+    this.setState({note});
+  };
+
   render() {
 
-    let {tokenBalances} = this.props;
-    let {isLoading, sendStatus, modal, to, toAccount, token, amount} = this.state;
+    let {intl, tokenBalances, account} = this.props;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
 
     let isToValid = to.length !== 0 && isAddressValid(to);
+    let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
 
 
     if (sendStatus === 'success') {
       return (
-        <Fragment>
-          <div className="alert alert-success text-center">
-            {tu("successful_send")}
-          </div>
-          <div className="justify-content-center">
-            <button className="btn btn-primary btn-block" onClick={this.resetForm}>
-              {tu("make_another_transaction")}
-            </button>
-          </div>
-        </Fragment>
+          <Fragment>
+            <div className="alert alert-success text-center">
+              {tu("successful_send")}
+            </div>
+            <div className="justify-content-center">
+              <button className="btn btn-primary btn-block" onClick={this.resetForm}>
+                {tu("make_another_transaction")}
+              </button>
+            </div>
+          </Fragment>
       )
     }
 
     return (
-      <form>
-        {modal}
-        {isLoading && <TronLoader/>}
-        <div className="form-group">
-          <label>{tu("to")}</label>
-          <div className="input-group mb-3">
-            <input type="text"
-                   onChange={(ev) => this.setAddress(ev.target.value)}
-                   className={"form-control " + (!isToValid ? "is-invalid" : "")}
-                   value={to} />
-            <div className="invalid-feedback">
-                { tu("fill_a_valid_address") }
+        <form>
+          {modal}
+          {isLoading && <TronLoader/>}
+          <div className="form-group">
+            <label>{tu("to")}</label>
+            <div className="input-group mb-3">
+              <input type="text"
+                     onChange={(ev) => this.setAddress(ev.target.value)}
+                     className={"form-control " + (!isToValid ? "is-invalid" : "")}
+                     value={to}/>
+              <div className="invalid-feedback">
+                {tu("fill_a_valid_address")}
                 {/* tu("invalid_address") */}
+              </div>
             </div>
           </div>
-        </div>
-        {
-          (toAccount && toAccount.name !== "") && <Alert color="info">
-            <b>{toAccount.name}</b>
-          </Alert>
-        }
-        <div className="form-group">
-          <label>{tu("token")}</label>
-          <div className="input-group mb-3">
-            <select
-              className="form-control"
-              onChange={(ev) => this.setState({ token: ev.target.value }) }
-              value={token}>
-              {
-                tokenBalances.map(tokenBalance => (
-                  <SendOption key={tokenBalance.name}
-                              name={tokenBalance.name}
-                              balance={tokenBalance.balance}/>
-                ))
-              }
-            </select>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>{tu("amount")}</label>
-          <div className="input-group mb-3">
-            <input type="number"
-                   onChange={(ev) => this.setAmount(ev.target.value) }
-                   className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
-                   value={amount}
-                   placeholder='0.000000'/>
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary"
-                      type="button"
-                      onClick={this.setMaxAmount}>
-                MAX
-              </button>
-            </div>
-            <div className="invalid-feedback">
-              { tu("fill_a_valid_number") }
-              {/* tu("insufficient_tokens") */}
+          {
+            (toAccount && toAccount.name !== "") && <Alert color="info">
+              <b>{toAccount.name}</b>
+            </Alert>
+          }
+          <div className="form-group">
+            <label>{tu("token")}</label>
+            <div className="input-group mb-3">
+              <select
+                  className="form-control"
+                  onChange={(ev) => this.setState({token: ev.target.value})}
+                  value={token}>
+                {
+                  tokenBalances.map((tokenBalance, index) => (
+                      <SendOption key={index}
+                                  name={tokenBalance.name}
+                                  balance={tokenBalance.balance}/>
+                  ))
+                }
+              </select>
             </div>
           </div>
-        </div>
-        {this.renderFooter()}
-      </form>
+          <div className="form-group">
+            <label>{tu("amount")}</label>
+            <div className="input-group mb-3">
+              <input type="number"
+                     onChange={(ev) => this.setAmount(ev.target.value)}
+                     className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
+                     value={amount}
+                     placeholder='0.000000'/>
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary"
+                        type="button"
+                        onClick={this.setMaxAmount}>
+                  MAX
+                </button>
+              </div>
+              <div className="invalid-feedback">
+                {tu("fill_a_valid_number")}
+                {/* tu("insufficient_tokens") */}
+              </div>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>{tu("note")}</label>
+            <div className="input-group mb-3">
+            <textarea
+                onChange={(ev) => this.setNote(ev.target.value)}
+                className={"form-control"}
+                value={note}
+            />
+              <div className="invalid-feedback">
+                {tu("fill_a_valid_address")}
+                {/* tu("invalid_address") */}
+              </div>
+            </div>
+          </div>
+          {this.renderFooter()}
+        </form>
     )
   }
 }
@@ -333,7 +366,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  login,
   reloadWallet,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SendForm)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SendForm))

@@ -1,4 +1,3 @@
-
 export const messages = {
   /*
   ##################################################################################
@@ -15,12 +14,12 @@ export const messages = {
   ##################################################################################
   #                                                                                #
   #         Template for translating the tronscan.org website                      #
-  #         Version: 1.6-11072018                                                  #
-  #         Update Date: 11.07.2018                                                #
+  #         Version: 1.6-13082018                                                  #
+  #         Update Date: 13.08.2018                                                #
   #         Language: Vietnamese                                                   #
   #         Status: First Version                                                  #
   #         Number of checks: 4                                                    #
-  #         Participants: Quoc Nguyen                                              #
+  #         Participants: Quoc Nguyen                                           #
   #                                                                                #
   ##################################################################################
   #                                                                                #
@@ -55,7 +54,8 @@ export const messages = {
   "age": "tuổi của khối",
   "bytes": "Bytes",
   "MByte": "MByte",
-  "produced by": "sản xuất bởi",
+  "produced_by": "sản xuất bởi",
+  "block_reward": "Block Reward",
   "contract": "Hợp đồng",
   "from": "from",
   "to": "đến",
@@ -102,6 +102,10 @@ export const messages = {
   "desktop_explorer": "Desktop Explorer",
   "message": "Message",
   "wallet_address": "Wallet Address",
+  "confirm": "Confirm",
+  "_percentage": "Percentage",
+  "language_support": "Only support English input currently",
+  "note": "Note",
   /*
   ##################################################################################
   #                                                                                #
@@ -174,7 +178,7 @@ export const messages = {
   "asset_participation": "Góp phần vào tài sản",
   "loading_transaction": "Đang tải giao dịch",
   "nodes_ranking": "Nodes Ranking",
-  "total_accounts_last_day":"Total Accounts Till Last Day",
+  "total_accounts_last_day": "Total Accounts Till Last Day",
   "chart_tip": "Drag the data zoom area to zoom in and zoom out",
   "link_test_server": "Testnet",
   "highest": "Highest ",
@@ -184,6 +188,15 @@ export const messages = {
   "_of": "of",
   "was_recorded_on": "was recorded on",
   "rank_real_time": "Rank (Real time)",
+  "volume_24": "24 Hour Trading Volume",
+  "billion_usd": "Billion USD",
+  "loading_transfers": "Loading Transfers",
+  "loading_transactions": "Loading Transactions",
+  "loading_block": "Loading Block",
+  "current_power": "Current Power",
+  "produce_distribution": "Block Producer Chart",
+  "confirm_token_issue": "Confirm Token Issue",
+  "_to": "to",
   /*
   ##################################################################################
   #                                                                                #
@@ -198,6 +211,10 @@ export const messages = {
   "rich_list": "Rich List",
   "tron_transaction_chart": "TRON Transaction Chart",
   "transactions_per_day": "Transactions Per Day",
+  "foundation": "Foundation Addresses",
+  "foundation_address": "Foundation Freeze TRX Total Number",
+  "unfreeze_time": "Unfreeze Time",
+  "addresses_number": "Addresses Number",
   /*
   ##################################################################################
   #                                                                                #
@@ -241,7 +258,7 @@ export const messages = {
   "send_to_following_address": "Gửi đến địa chỉ sau",
   "change_website": "Change Website",
   "you_must_enter_url": "You must enter a URL",
-  "specify_the_url":  "Please specify the URL",
+  "specify_the_url": "Please specify the URL",
   /*
   ##################################################################################
   #                                                                                #
@@ -283,7 +300,7 @@ export const messages = {
   "apply_for_delegate": "đăng ký trở thành đại diện",
   "apply_super_representative_candidate": "Đăng ký trở thành ứng cử viên Siêu Đại Diện",
   "your_personal_website_address": "địa chỉ trang web cá nhân của bạn",
-  "apply_for_delegate_predescription":`Tất cả mọi người giữ mã token đều có cơ hội trở thành Siêu Đại Diện TRON.
+  "apply_for_delegate_predescription": `Tất cả mọi người giữ mã token đều có cơ hội trở thành Siêu Đại Diện TRON.
    Tuy nhiên, để mạng và cộng đồng hoạt động thông suốt và hiệu quả hơn,
    chúng tôi đã tạo ra một bộ tiêu chuẩn và quy định cho các ứng cử viên đủ điều kiện để trở thành
    Siêu Đại Diện được đề xuất. Chúng tôi sẽ quảng bá cho các Siêu Đại Diện được đề xuất để tăng
@@ -336,7 +353,7 @@ export const messages = {
   "github_linked": "Liên kết Github!",
   "unable_to_link_github_message": "Không thể liên kết với Github, đảm bảo tên người dùng của bạn chính xác!",
   "could_not_link_github": "Không thể liên kết Github",
-  "enter_your_github_username":  "Nhập tên người dùng Github của bạn",
+  "enter_your_github_username": "Nhập tên người dùng Github của bạn",
   "link_to_github": "Liên kết đến Github",
   "link_github": "Liên kết Github",
   "you_must_enter_a_url": "Bạn phải nhập URL",
@@ -351,7 +368,7 @@ export const messages = {
   "could_not_claim_rewards": "Không thể nhận phần thưởng",
   "claim_rewards_error_message": "Đã xảy ra lỗi khi cố gắng nhận phần thưởng, vui lòng thử lại sau.",
   "rewards_claimed": "Phần thưởng đã được xác nhận!",
-  "successfully_claimed_rewards":  "Phần thưởng đã nhận được thành công",
+  "successfully_claimed_rewards": "Phần thưởng đã nhận được thành công",
   "claim_rewards": "Nhận phần thưởng",
   "sr_receive_reward_message_0": "Là một đại diện bạn nhận được phần thưởng cho việc sản xuất các khối. Những phần thưởng này có thể được xác nhận sau mỗi 24 giờ",
   "intro": "Giới thiệu",
@@ -408,10 +425,10 @@ export const messages = {
   "buy_confirm_message_1": "Bạn có chắc bạn muốn mua",
   "for": "cho",
   "insufficient_trx": "Không đủ TRX",
-  "not_enouth_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
+  "not_enough_trx_message": "Bạn không có đủ TRX để mua nhiều mã token",
   "ends": "kết thúc",
   "starts": "bắt đầu",
-  "can_be_unlocked_in": "can be unlocked in",
+  "can_be_unlocked": "can be unlocked",
   /*
   ##################################################################################
   #                                                                                #
@@ -433,7 +450,6 @@ export const messages = {
   "thanks_for_applying": "Cảm ơn vì đã đăng ký!",
   "to_much_votes": "Đến nhiều phiếu bầu",
   "no_trx_remaining": "Không còn TRX",
-  "produced_by": "Được sản xuất bởi {itnessAddress}",
   "show_more": "Hiển thị {countriesLength} khác",
   "vote_guide_message": `Sử dụng TRX của bạn để bỏ phiếu cho Siêu Đại Diện.
    Đối với mỗi TRX bạn giữ trong tài khoản của mình, bạn có một phiếu để sử dụng.
@@ -499,9 +515,9 @@ export const messages = {
   "token_spend_confirm": "Tôi xác nhận việc tạo tổng nguồn cung cho mã token tổng chi phí một lần là 1024 TRX.",
   "token_issue_guide_message_1": `Phát hành một mã token trên Giao thức TRON có thể được thực hiện
     bởi bất kỳ ai có ít nhất 1024 TRX trong tài khoản của họ.`,
-  "token_issue_guide_message_2":`Khi một mã token được phát hành, nó sẽ được hiển thị trên trang tổng quan mã token.
+  "token_issue_guide_message_2": `Khi một mã token được phát hành, nó sẽ được hiển thị trên trang tổng quan mã token.
     Sau đó, người dùng có thể tham gia trong khoảng thời gian này và trao đổi TRX với mã token.`,
-  "token_issue_guide_message_3":`Sau khi phát hành mã token, tài khoản của bạn sẽ nhận được số lượng mã token bằng tổng số nguồn cung.
+  "token_issue_guide_message_3": `Sau khi phát hành mã token, tài khoản của bạn sẽ nhận được số lượng mã token bằng tổng số nguồn cung.
     Khi những người dùng khác trao đổi TRX của họ với mã token thì mã token sẽ bị rút khỏi tài khoản của bạn và bạn sẽ
     nhận TRX bằng với tỷ giá quy định.`,
   /*
@@ -683,6 +699,19 @@ export const messages = {
   "print_paper_wallet": "Ví in giấy",
   "new_wallet_ready_message": "Ví mới của bạn đã sẵn sàng",
   "go_to_account_page": "Chuyển đến trang tài khoản",
+  "login_first": "Login to the Wallet first",
+  "contract_name": "Contract Name",
+  "compiler": "Compiler",
+  "tx_count": "Tx Count",
+  "setting": "Setting",
+  "date_verified": "Date Verified",
+  "compiler_version": "Compiler Version",
+  "creator": "Creator",
+  "verify_contract_code": "Verify Contract Code",
+  "buy_tokens": "Buy Tokens",
+  "fill_a_valid_private_key": "Please fill a valid private key",
+  "confirm_private_key": "Confirm Private Key",
+  "transfer_confirm_info": "Are you sure you want to transfer",
   /*
   ##################################################################################
   #                                                                                #
@@ -751,6 +780,17 @@ export const messages = {
   /*
   ##################################################################################
   #                                                                                #
+  # buy Tron                                                                       #
+  #                                                                                #
+  ##################################################################################
+  */
+  "buy_tron": "Buy TRON",
+  "buy_tron_message_0": "TRX can be purchased directly with Fiat or other Crypto-Currencies without a stock exchange. It uses a service from Changelly.com and is the easiest and fastest way to purchase trx. A list of supported currencies and a FAQ can be found at ",
+  "buy_tron_using_changelly": "Buy TRON using Changelly",
+  "cant_load_widget": "Can't load widget",
+  /*
+  ##################################################################################
+  #                                                                                #
   # new variables                                                                  #
   #                                                                                #
   ##################################################################################
@@ -803,6 +843,50 @@ export const messages = {
   "power": "Power",
   "token_transfers": "Token Transfers",
   "website_url": "Website URL",
-  "search": "Search"
+  "search": "Search",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    20180822 17:11:52                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+  "tron_convert_tool": "Encode Convert Tool",
+  "breakdown_supply_types": "Breakdown By Supply Types",
+  "genesis": "Genesis",
+  "TRX_distribution_overview": "TRX DISTRIBUTION OVERVIEW",
+  "block_produce_rewards": "Block Produce Rewards",
+  "node_rewards": "Node Rewards",
+  "independence_day_burned": "Independence Day Burned",
+  "fee_burned": "Fee Burned",
+  "current_total_supply": "Current Total Supply",
+  "foundation_freeze": "Foundation Freeze",
+  "price_per_1000_trx": "PRICE PER 1000 TRX",
+  "in_USD": "In USD",
+  "in_BTC": "In BTC",
+  "total_TRX_supply": "Total TRX Supply",
+  "market_capitalization": "Market Capitalization",
+  "circulating_supply": "Circulating Supply",
+  "list_trx": "List TRX",
+  "burned_trx": "TRX Burned",
+  "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
+  "14_day_transaction_history": "14 day Transaction History",
+  "14_day_address_growth": "14 day Address Growth",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-09-11 12:51:31                                           #
+  #                                                                                #
+  ##################################################################################
+  */
+  "pice_per_1trx": "Price",
+  "tron_power_freezing": "TRON power can be gained through freezing TRX, 1 TRX for 1 TRON power.",
+  "HighChart_tip": "Click and drag in the plot area to zoom in",
+  "general_information": "General Information",
+  "blockchain_information": "Blockchain Information",
+  "sr_information": "SR Information",
+  "currency_information": "Currency Information"
+
 
 };

@@ -1,0 +1,179 @@
+.token_black {
+    // 全局ant-table样式覆盖 ===============================
+    .ant-table {
+        font-family: Helvetica;
+        .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+            padding: 13px;
+        }
+        .ant-table-tbody>tr {
+            &>td {
+                &:last-child {
+                    border-right: none;
+                }
+            }
+            &:last-child td {
+                border-bottom: none;
+            }
+        }
+        thead th {
+            color: $border-color;
+            border: none;
+        }
+        h5,
+        a {
+            color: $main-red!important;
+            font-size: 14px;
+            font-family: Helvetica-Bold;
+        }
+        p {
+            font-size: 12px;
+            line-height: 1.4em;
+            height: 2.6em;
+            overflow: hidden;
+            margin: 0;
+        }
+        &.ant-table-bordered .ant-table-header>table,
+        &.ant-table-bordered .ant-table-body>table,
+        &.ant-table-bordered .ant-table-fixed-left table,
+        &.ant-table-bordered .ant-table-fixed-right table {
+            border: none;
+        }
+        .table-imgtext{
+            display: flex;
+            align-items: center;
+            div{
+               // flex: 1;
+            }
+        }
+        &-column-has-filters{
+            span, i{
+                color: $main-red!important;
+            }
+        }
+    }
+    
+
+    // 全局ant-pagination样式覆盖 ===============================
+    .ant-pagination {
+        font-family: Helvetica;
+        font-size: 14px;
+        text-align: center;
+        %pagination-default {
+            height: 32px;
+            line-height: 32px;
+            border-radius: 1px;
+        }
+        .ant-pagination-item,
+        .ant-pagination-prev .ant-pagination-item-link,
+        .ant-pagination-next .ant-pagination-item-link,
+        .ant-pagination-jump-prev,
+        .ant-pagination-jump-next {
+            @extend %pagination-default;
+        }
+        .ant-pagination-prev .ant-pagination-item-link:after,
+        .ant-pagination-next .ant-pagination-item-link:after {
+            font-size: 17px;
+        }
+        .ant-select-selection {
+            @extend %pagination-default;
+            .ant-select-arrow:before {
+                color: $text-block-dark;
+            }
+        }
+        .ant-select-dropdown {
+            border-radius: 1px;
+            border: 1px solid $border-color;
+            background: $bg-color;
+            color: $text-block-dark;
+            &-menu-item {
+                color: $text-block-dark;
+                border-radius: unset;
+                &-selected,
+                &-selected:hover,
+                &:hover {
+                    font-weight: normal;
+                    background-color: rgba(255, 255, 255, 0.20);
+                }
+            }
+        }
+        .ant-pagination-item-active {
+            border-color: $main-red!important;
+            background-color: $main-red!important;
+            color: #fff!important;
+        }
+        .ant-pagination-item {
+            &:hover {
+                @extend .ant-pagination-item-active;
+                & a {
+                    color: #fff !important;
+                }
+            }
+        }
+        &.ant-table-pagination.ant-pagination {
+            margin-right: -7px;
+        }
+        .ant-pagination-disabled{
+            .ant-pagination-item-link{
+                color: $border-color-lighter!important;
+                &:hover{
+                    color: $border-color-lighter!important;
+                }
+            }
+        }
+    }
+
+    // 全局ant-steps样式覆盖 ===============================
+    .ant-steps {
+        // color: $text-block;
+        .ant-steps-item-wait {
+            .ant-steps-item-icon {
+                background: transparent;
+            }
+        }
+        .ant-steps-item-finish {
+            .ant-steps-item-icon {
+                background: transparent;
+            }
+        }
+        .ant-steps-item-process {
+            .ant-steps-item-icon {
+                border: none;
+            }
+        }
+        .ant-steps-item-content {
+            padding-bottom: 28px;
+            &>.ant-steps-item-title {
+                font-size: 18px;
+                font-weight: normal;
+            }
+        }
+    }
+
+    // 全局ant-switch 样式覆盖 ===============================
+    .ant-switch {
+        background-color: $border-color;
+        &-checked {
+            background-color: $main-red;
+        }
+        &-inner{
+            width: 3em;
+            text-align: center;
+        }
+        
+    }
+}
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+    display: none !important;
+}
+
+// 全局ant-checkbox 样式覆盖 ===============================
+.ant-checkbox{
+    &-wrapper:hover &-inner, &:hover &-inner, &-input:focus + &-inner{
+        border-color: $main-red;
+    }
+    &-checked &-inner{
+        background-color: $main-red;
+        border-color: $main-red;
+    }
+}
