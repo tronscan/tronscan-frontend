@@ -35,7 +35,7 @@ class Accounts extends Component {
     this.setState({
       loading: false,
       accounts: data.data.data,
-      total: 1000,
+      total: data.data.total
     });
   };
 
@@ -93,7 +93,7 @@ class Accounts extends Component {
                         onChange={(pagination) => {
                           this.loadAccounts(pagination.current, pagination.pageSize)
                         }}
-                        pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20, total:total }}/>
+                        pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20, total:1000 }}/>
                 </div>
           }
         </div>
