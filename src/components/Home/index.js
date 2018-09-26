@@ -241,12 +241,11 @@ class Home extends Component {
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
-
                     <div className="col-md-3 col-sm-12 col-xs-12">
-                      <Link to="/markets" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
-                        <p className="m-0">{tu("pice_per_1trx")}</p>
-                      </Link>
+                        <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
+                          <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
+                          <p className="m-0">{tu("pice_per_1trx")}</p>
+                        </HrefLink>
                     </div>
                     {/*<div className="col-md-2 col-sm-6">*/}
                     {/*<Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">*/}

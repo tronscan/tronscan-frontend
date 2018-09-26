@@ -1010,9 +1010,10 @@ export const messages = {
   "tron_power_freezing": "TRON power 可以通过冻结TRX来获得，每冻结1个TRX，可以获得1个TRON power。",
   "HighChart_tip": "单击并拖动绘图区域以放大",
   "general_information": "一般信息",
-  "blockchain Information": "区块链信息",
+  "blockchain_information": "区块链信息",
   "sr_information": "超级代表信息",
-  "currency_information": "流通信息"
+  "currency_information": "流通信息",
+  "your_vote":"票数"
 
 
 };

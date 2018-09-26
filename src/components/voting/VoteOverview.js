@@ -62,6 +62,8 @@ class VoteOverview extends React.Component {
       viewStats: false,
       colors: palette('mpn65', 20),
       votesList: {},
+      liveVotes: null,
+      goSignedIn:false
     };
   }
 
@@ -224,7 +226,6 @@ class VoteOverview extends React.Component {
   renderVotingBar() {
     let {votingEnabled, votesSubmitted, submittingVotes} = this.state;
     let {intl, account} = this.props;
-
     let {trxBalance} = this.getVoteStatus();
 
     if (!account.isLoggedIn) {
@@ -243,7 +244,7 @@ class VoteOverview extends React.Component {
       );
     }
 
-    if (trxBalance <= 0) {
+    if (votingEnabled && trxBalance <= 0) {
       return (
           <div className="text-center">
             {tu("warning_votes")}{' '}
@@ -259,7 +260,6 @@ class VoteOverview extends React.Component {
           </div>
       );
     }
-
     if (votingEnabled) {
       return (
           <div className="d-flex" style={{lineHeight: '36px'}}>
@@ -282,15 +282,39 @@ class VoteOverview extends React.Component {
       );
     }
 
-    return (
-        <div className="text-center">
-          <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
-            {tu("click_to_start_voting")}
-          </a>
-        </div>
-    );
-  }
+     return (
+         <div className="text-center">
+           <a className="" onClick={this.enableVoting} style={{color: '#C23631'}}>
+               {tu("click_to_start_voting")}
+           </a>
+         </div>
+     );
 
+
+
+  }
+  renderVotingBarFalse() {
+      let {intl, account} = this.props;
+      let { goSignedIn } = this.state;
+      if (!account.isLoggedIn) {
+          return (
+              <div className="text-center">
+                {
+                    goSignedIn ? <span style={{color: '#333333'}}>
+                        {tu("not_signed_in")}
+                    </span>:<a href="javascript:;" onClick={this.notSignedIn} >
+                        {tu("click_to_start_voting")}
+                    </a>
+                }
+              </div>
+          );
+      }
+  }
+  notSignedIn = () =>{
+      this.setState({
+          goSignedIn: true
+      });
+  }
   resetVotes = () => {
     this.setState({
       votes: {},
@@ -515,12 +539,25 @@ class VoteOverview extends React.Component {
                             {
                               ({style}) => (
                                   <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
-                                       className="card-body bg-white p-2">
+                                       className="card-body bg-white p-3">
                                     {this.renderVotingBar()}
                                   </div>
                               )
                             }
                           </Sticky>
+                        }
+                        {
+                            !wallet.isOpen &&
+                            <Sticky>
+                                {
+                                    ({style}) => (
+                                        <div style={{borderBottom: "1px solid #D8D8D8", zIndex: 100, ...style}}
+                                             className="card-body bg-white p-3">
+                                            {this.renderVotingBarFalse()}
+                                        </div>
+                                    )
+                                }
+                            </Sticky>
                         }
 
                         <div className="table-responsive">
@@ -534,8 +571,8 @@ class VoteOverview extends React.Component {
                               <th className="text-right" style={{width: 150}}>{tu("live")}</th>
                               <th className="text-right" style={{width: 100}}>{tu("percentage")}</th>
                               {
-                                votingEnabled && <th style={{width: 200}}>
-                                  {tu("your vote")}
+                                votingEnabled && trxBalance > 0 && <th style={{width: 200}}>
+                                  {tu("your_vote")}
                                 </th>
                               }
                             </tr>
@@ -620,7 +657,7 @@ class VoteOverview extends React.Component {
                                             }
                                           </td>
                                           {
-                                            votingEnabled && <td className="vote-input-field">
+                                            votingEnabled && trxBalance > 0 && <td className="vote-input-field">
                                               <div className="input-group">
                                                 <div className="input-group-prepend">
                                                   <button className="btn btn-outline-danger"

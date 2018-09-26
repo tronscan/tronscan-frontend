@@ -1022,7 +1022,8 @@ export const messages = {
   "general_information": "General Information",
   "blockchain_information": "Blockchain Information",
   "sr_information": "SR Information",
-  "currency_information": "Currency Information"
+  "currency_information": "Currency Information",
+  "your_vote":"Your vote"
 
 
 };
