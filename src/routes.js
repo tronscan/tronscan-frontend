@@ -32,6 +32,7 @@ import {
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
+import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
@@ -100,6 +101,12 @@ export const routes = [
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
         component: LiveAsync
+      },
+      {
+        label: "inter_tnxl",
+        icon: `fa fa-random`,
+        path: "/blockchain/ContractInter",
+        component: ContractInter
       }
     ]
   },
