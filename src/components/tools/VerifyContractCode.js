@@ -9,7 +9,6 @@ class VerifyContractCode extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       abi:"",
       contractCode: "",
@@ -184,22 +183,66 @@ class VerifyContractCode extends Component {
                 </div>
                 <div className="col-md-12">
                   <p className="mt-5">{tu("contract_library_address")}</p>
-                  <div className="row">
+                  <div className="row ml-0" style={styles.rowRight}>
                     <div className="col-md-5 contract-input">
                       <span>{tu("library_1_name")}:</span>
-                      <input type="text" className="form-control"/>
+                      <input type="text" className="form-control contract-input-s"/>
                     </div>
                     <div className="col-md-7 contract-input">
                       <span>{tu("library_contract_address")}:</span>
-                      <input type="text" className="form-control"/>
+                      <input type="text" className="form-control contract-input-l"/>
+                    </div>
+                  </div>
+
+                  <div className="row ml-0" style={styles.rowRight}>
+                    <div className="col-md-5 contract-input">
+                      <span>{tu("library_2_name")}:</span>
+                      <input type="text" className="form-control contract-input-s"/>
+                    </div>
+                    <div className="col-md-7 contract-input">
+                      <span>{tu("library_contract_address")}:</span>
+                      <input type="text" className="form-control contract-input-l"/>
+                    </div>
+                  </div>
+
+                  <div className="row ml-0" style={styles.rowRight}>
+                    <div className="col-md-5 contract-input">
+                      <span>{tu("library_3_name")}:</span>
+                      <input type="text" className="form-control contract-input-s"/>
+                    </div>
+                    <div className="col-md-7 contract-input">
+                      <span>{tu("library_contract_address")}:</span>
+                      <input type="text" className="form-control contract-input-l"/>
+                    </div>
+                  </div>
+
+                  <div className="row ml-0" style={styles.rowRight}>
+                    <div className="col-md-5 contract-input">
+                      <span>{tu("library_4_name")}:</span>
+                      <input type="text" className="form-control contract-input-s"/>
+                    </div>
+                    <div className="col-md-7 contract-input">
+                      <span>{tu("library_contract_address")}:</span>
+                      <input type="text" className="form-control contract-input-l"/>
+                    </div>
+                  </div>
+
+                  <div className="row ml-0" style={styles.rowRight}>
+                    <div className="col-md-5 contract-input">
+                      <span>{tu("library_5_name")}:</span>
+                      <input type="text" className="form-control contract-input-s"/>
+                    </div>
+                    <div className="col-md-7 contract-input">
+                      <span>{tu("library_contract_address")}:</span>
+                      <input type="text" className="form-control contract-input-l"/>
                     </div>
                   </div>
                 </div>
               </div>
               <hr/>
-              <div className="float-right">
-                <button type="button" className="btn btn-primary btn-lg">Verify And Publish</button>
-                <button type="button" className="btn btn-secondary btn-lg ml-3">Reset</button>
+              <div className="float-left" >
+                <button type="button" className="btn btn-lg btn-verify text-capitalize">{tu('verify_and_publish')}</button>
+                <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
               </div>
             </div>
 
@@ -227,6 +270,9 @@ const styles = {
     },
     s_title:{
       fontSize:16
+    },
+    rowRight:{
+      marginRight:'1.25rem'
     }
 
 }

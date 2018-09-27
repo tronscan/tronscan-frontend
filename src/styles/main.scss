@@ -1513,18 +1513,39 @@ h5 {
     .contract-input{
       background-color: #F3F3F3;
       margin-top: 1rem;
+      padding-right: 35px!important;
       input{
         border: 0;
         outline: none;
         border-radius: 0;
         background-color: #F3F3F3;
+        display: inline-block;
       }
-      form-control:focus{
+      .form-control:focus{
         box-shadow:none;
         background-color: #F3F3F3;
       }
-
+      .contract-input-s{
+        width: 70%;
+      }
+      .contract-input-l{
+        width: 70%;
+      }
     }
-
+    .col-md-7{
+      margin-left: 20px;
+      margin-right: -20px;
+    }
+  }
+  .btn-verify{
+    background-color:#C23631;
+    border-color:#C23631;
+  }
+  .btn-reset{
+    background-color:#ffffff;
+    border-color:#C23631;
+    span{
+      color:#C23631;
+    }
   }
 }
