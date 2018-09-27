@@ -8,6 +8,7 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
+import {Information} from "./Information.js";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
@@ -366,7 +367,7 @@ class TokenDetail extends React.Component {
         social_display++;
       }
     })
-    let lowerText = toLower(token.reputation) + '_active.png';
+    let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
@@ -401,7 +402,7 @@ class TokenDetail extends React.Component {
                           </div>
                         </div>
                       </div>
-
+<Information token={token}></Information>
                       <table className="table m-0 tokenDetail ">
                         <tbody>
                         <tr>

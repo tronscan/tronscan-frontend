@@ -1557,3 +1557,21 @@ h5 {
     }
   }
 }
+
+.information-bg{
+  background: #fff;
+  padding: 20px;
+
+  &-item{
+    display: flex;
+    height: 45px;
+    line-height: 45px;
+    width: 50%;
+
+    &>span{
+      display: block;
+      width: 120px;
+      font-weight: bold;
+    }
+  }
+}
