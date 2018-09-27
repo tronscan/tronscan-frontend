@@ -423,7 +423,7 @@ class VoteOverview extends React.Component {
       });
     } else {
       this.setState({
-        votesSubmitted: true,
+        votesSubmitted: false,
         submittingVotes: false,
         votingEnabled: false,
         modal: (
