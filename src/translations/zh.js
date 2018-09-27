@@ -989,7 +989,7 @@ export const messages = {
   "in_progress": "处理中",
   "fail_transaction": "交易失败",
   "records": "条记录",
-  "part_total": "波场网络当前共",
+  "part_total": "当前共",
   "part_pass": "个通证",
   "view_total": "当前共",
   "view_pass": "个通证可参与发行",

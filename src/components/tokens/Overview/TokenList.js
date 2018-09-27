@@ -43,31 +43,20 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
     let result;
+    let total
 
-    if (filter.name)
+    if (filter.name){
       result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
-    else
+      total = result.data['data'].length;
+    }else{
       result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
-
-    let total = result.data['total'];
+      total = result.data['total'];
+    }
+    
     let tokens = result.data['data'];
-    /*
-    let {tokens, total} = await Client.getTokens({
-       sort: '-name',
-       limit: pageSize,
-       start: (page - 1) * pageSize,
-       ...filter,
-     });
-     */
+    
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
-    }
-    try {
-      // token = await Client.getToken("McDonaldsCoin");
-      // if (page === 1)
-      //   tokens.splice(9, 1, token);
-    }
-    catch (e) {
     }
 
     this.setState({
