@@ -5,7 +5,9 @@ export default function Signature({signature}) {
 
   return (
       <table className="table">
-        <Field label="Signature">{signature.bytes}</Field>
+        <tbody>
+            <Field label="Signature">{signature.bytes}</Field>
+        </tbody>
       </table>
   );
 }

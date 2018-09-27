@@ -190,16 +190,18 @@ class TransactionViewer extends Component {
                 </div>
                 <div className="table-responsive">
                   <table className="table">
-                    <Field label="timestamp">
-                      <FormattedDate value={transactionData.timestamp }/>&nbsp;
-                      <FormattedTime value={transactionData.timestamp }/>
-                    </Field>
-                    <Field label="contracts">
-                      {transactionData.contracts.length}
-                    </Field>
-                    <Field label="signatures">
-                      {transactionData.signatures.length}
-                    </Field>
+                    <tbody>
+                      <Field label="timestamp">
+                        <FormattedDate value={transactionData.timestamp }/>&nbsp;
+                        <FormattedTime value={transactionData.timestamp }/>
+                      </Field>
+                      <Field label="contracts">
+                        {transactionData.contracts.length}
+                      </Field>
+                      <Field label="signatures">
+                        {transactionData.signatures.length}
+                      </Field>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -208,8 +210,8 @@ class TransactionViewer extends Component {
                   {tu("Contracts")}
                 </div>
                 {
-                  transactionData.contracts.map(contract => (
-                      <Contract contract={contract}/>
+                  transactionData.contracts.map((contract,index) => (
+                      <Contract key={index} contract={contract}/>
                   ))
                 }
               </div>

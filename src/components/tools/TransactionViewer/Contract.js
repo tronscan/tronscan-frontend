@@ -206,8 +206,8 @@ export default function Contract({contract}) {
                   <td>
                     <ul>
                       {
-                        contract.votes.map(vote => (
-                            <li>
+                        contract.votes.map((vote,index) => (
+                            <li key={index}>
                               <AddressLink address={vote['vote_address']} truncate={false}/>
                               {tu("counts")} : {vote['vote_count']}
                             </li>
@@ -232,14 +232,16 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-              <Field label="token_name">{contract.name}</Field>
-              <Field label="total_supply">{contract.totalSupply}</Field>
-              <Field label="TRX_exchange_rate">{contract.trxNum / ONE_TRX} : {contract.num}</Field>
-              <Field label="start_time"><FormattedDate value={contract.startTime}/></Field>
-              <Field label="end_time"><FormattedDate value={contract.endTime}/></Field>
-              <Field label="description">{contract.description}</Field>
-              <Field label="URL"><ExternalLink url={contract.url}/></Field>
+                <tbody>
+                    <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                    <Field label="token_name">{contract.name}</Field>
+                    <Field label="total_supply">{contract.totalSupply}</Field>
+                    <Field label="TRX_exchange_rate">{contract.trxNum / ONE_TRX} : {contract.num}</Field>
+                    <Field label="start_time"><FormattedDate value={contract.startTime}/></Field>
+                    <Field label="end_time"><FormattedDate value={contract.endTime}/></Field>
+                    <Field label="description">{contract.description}</Field>
+                    <Field label="URL"><ExternalLink url={contract.url}/></Field>
+                </tbody>
             </table>
           </Fragment>
       );
