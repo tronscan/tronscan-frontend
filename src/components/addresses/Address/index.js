@@ -80,6 +80,7 @@ class Address extends React.Component {
 
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
+      this.loadWitness(match.params.id);
     }
   }
 
