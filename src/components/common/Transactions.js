@@ -47,6 +47,7 @@ class Transactions extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
+      total: this.state.total,
       ...filter,
     });
 
@@ -107,7 +108,7 @@ class Transactions extends React.Component {
     let {intl} = this.props;
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
-    if (!loading && transactions.length === 0) {
+    if (!loading && transactions && transactions.length === 0) {
       if (!EmptyState) {
         return (
             <div className="p-3 text-center">{tu("no_transactions")}</div>

@@ -11,7 +11,7 @@ import {TokenLink} from "../../common/Links";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
@@ -45,21 +45,12 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
     else
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
-    let total = result.data.data['Total'];
-    let tokens = result.data.data['Data'];
-    /*
-        let {tokens, total} = await Client.getTokens({
-          sort: '-name',
-          limit: pageSize,
-          start: (page - 1) * pageSize,
-          status: 'ico',
-          ...filter,
-        });
-    */
+    let total = result.data['total'];
+    let tokens = result.data['data'];
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
@@ -358,7 +349,7 @@ class TokenOverview extends Component {
             }
             <div>
               <h5><TokenLink name={record.name}
-                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
               <p>{record.description}</p>
             </div>

@@ -104,7 +104,8 @@ export const routes = [
         label: "live",
         icon: `fa fa-bolt`,
         path: "/blockchain/live",
-        component: LiveAsync
+        component: LiveAsync,
+        showInMenu: false
       },
       {
         label: "inter_tnxl",
@@ -187,7 +188,7 @@ export const routes = [
     ]
   },
   {
-    path: "/token/:name",
+    path: "/token/:name/:address",
     label: "token",
     component: TokenDetailAsync,
     showInMenu: false,

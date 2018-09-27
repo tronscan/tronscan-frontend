@@ -69,7 +69,7 @@ class System extends Component {
                 <th>{tu("confirmed_block")}:</th>
                 <td>
                   <BlockNumberLink
-                      number={sync.database.unconfirmedBlock - 1}>{sync.database.unconfirmedBlock - 1}</BlockNumberLink>
+                      number={sync.database.confirmedBlock - 1}>{sync.database.confirmedBlock - 1}</BlockNumberLink>
                 </td>
               </tr>
               </tbody>

@@ -6,6 +6,7 @@ import {login} from "../../actions/app";
 import {injectIntl} from "react-intl";
 import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
+import {API_URL} from "../../constants";
 
 class MyToken extends Component {
   constructor() {
@@ -33,11 +34,10 @@ class MyToken extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
 
-      xhr.get("https://www.tronapp.co:9009/api/mytoken?owner=" + wallet.address).then((result) => {
-
-        if (result.data.data['Data'][0]) {
+      xhr.get(API_URL+"/api/token?owner=" + wallet.address).then((result) => {
+        if (result.data.data[0]) {
           this.setState({
-            issuedAsset: result.data.data['Data'][0],
+            issuedAsset: result.data.data[0],
           });
         }
       });
@@ -144,7 +144,7 @@ class MyToken extends Component {
                     <div className="row socialMedia" style={{width: '60%'}}>
                       {
                         issuedAsset['social_media'] && issuedAsset['social_media'].map((media, index) => {
-                          return <div className="col-md-5 mr-3 mb-2">
+                          return <div className="col-md-5 mr-3 mb-2" key={index}>
                             <img src={require('../../images/' + media.name + '.png')}/>
                             {!media.url ?
                                 <span>{media.name}</span> :

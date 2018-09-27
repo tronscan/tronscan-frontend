@@ -17,7 +17,7 @@ import {Link} from "react-router-dom";
 import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
-import {loadVoteList, loadVoteTimer} from "../../actions/votes";
+import {loadVoteTimer} from "../../actions/votes";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
 function VoteChange({value, arrow = false}) {
@@ -61,6 +61,7 @@ class VoteOverview extends React.Component {
       modal: null,
       viewStats: false,
       colors: palette('mpn65', 20),
+      votesList: {},
       liveVotes: null,
       goSignedIn:false
     };
@@ -151,13 +152,12 @@ class VoteOverview extends React.Component {
     await this.loadVoteTimer();
   }
 
-  loadLiveVotes = async () => {
-    let liveVotes = await Client.getLiveVotes();
+  loadVoteList = async () => {
+    let votesList = await Client.getVotesList()
     this.setState({
-      liveVotes,
+      votesList,
     });
-
-  };
+  }
 
   loadVoteTimer = async () => {
     this.props.loadVoteTimer();
@@ -166,12 +166,11 @@ class VoteOverview extends React.Component {
   loadVotes = async () => {
 
     let {voteList} = this.props;
-
+    
     if (voteList.length === 0) {
       this.setState({loading: true});
     }
-    await this.loadLiveVotes();
-    await this.props.loadVoteList();
+    await this.loadVoteList();
     this.setState({loading: false});
 
   };
@@ -424,7 +423,7 @@ class VoteOverview extends React.Component {
       });
     } else {
       this.setState({
-        votesSubmitted: true,
+        votesSubmitted: false,
         submittingVotes: false,
         votingEnabled: false,
         modal: (
@@ -443,13 +442,13 @@ class VoteOverview extends React.Component {
 
   render() {
 
-    let {votingEnabled, votes, liveVotes, loading, modal, viewStats, colors, searchCriteria} = this.state;
-    let {wallet, voteList: candidates,account} = this.props;
-    candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
-      ...c,
-      rank: index,
-    }));
-    let filteredCandidates = candidates;
+    let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
+    let {wallet} = this.props;
+    let candidates = votesList.data || []
+  
+    let filteredCandidates = candidates.map((v, i) => Object.assign({
+      rank: i
+    }, v));
 
     if (searchCriteria !== "") {
       filteredCandidates = filter(candidates, c => {
@@ -465,40 +464,12 @@ class VoteOverview extends React.Component {
       });
     }
 
-    let totalVotes = sumBy(candidates, c => c.votes);
+    let totalVotes = votesList.totalVotes || 0;
 
-    let biggestGainer = sortBy(candidates, c => c.change_cycle * -1)[0] || {};
+    let biggestGainer = votesList.fastestRise || {}
     let {trxBalance} = this.getVoteStatus();
 
     let voteSize = Math.ceil(trxBalance / 20);
-
-    for (let index in filteredCandidates) {
-      for (let liveVote in liveVotes) {
-        if (filteredCandidates[index].address === liveVotes[liveVote].address) {
-          filteredCandidates[index].liveVote = liveVotes[liveVote].votes
-        }
-      }
-    }
-
-    function compare(property) {
-      return function (obj1, obj2) {
-
-        if (obj1[property] > obj2[property]) {
-          return -1;
-        } else if (obj1[property] < obj2[property]) {
-          return 1;
-        } else {
-          return 0;
-        }
-
-      }
-    }
-
-    filteredCandidates.sort(compare('liveVote'));
-
-    for (let f in filteredCandidates) {
-      filteredCandidates[f].rank = parseInt(f);
-    }
 
     return (
         <main className="container header-overlap _voteOverview">
@@ -617,7 +588,6 @@ class VoteOverview extends React.Component {
                             }
                             {
                               filteredCandidates.map(candidate => {
-                                    let candidateLiveVote = candidate.liveVote || 0
                                     return (
 
                                         <tr key={candidate.address}>
@@ -625,10 +595,10 @@ class VoteOverview extends React.Component {
                                             viewStats ?
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
                                                     style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                                  {candidate.rank + 1}
+                                                  {candidate.realTimeRanking}
                                                 </th> :
                                                 <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
-                                                  {candidate.rank + 1}
+                                                  {candidate.realTimeRanking}
                                                 </th>
                                           }
                                           <td className="d-flex flex-column flex-sm-row ">
@@ -653,7 +623,7 @@ class VoteOverview extends React.Component {
                                             {
                                               totalVotes > 0 &&
                                               <Fragment>
-                                                <FormattedNumber value={candidate.votes}/><br/>
+                                                <FormattedNumber value={candidate.lastCycleVotes}/><br/>
                                               </Fragment>
                                             }
                                           </td>
@@ -661,13 +631,16 @@ class VoteOverview extends React.Component {
                                             {
                                               totalVotes > 0 &&
                                               <Fragment>
-                                                <FormattedNumber value={candidateLiveVote}/><br/>
-
-                                                {(candidateLiveVote > 0) && (candidateLiveVote > candidate.votes) ?
+                                                <FormattedNumber value={candidate.realTimeVotes}/><br/>
+                                                  {/* <span className={candidate.changeVotes > 0
+                                                    ? 'color-green'
+                                                    : 'color-red'}>
+                                                  </span> */}
+                                                {(candidate.changeVotes > 0) ?
                                                     <span className="color-green">+<FormattedNumber
-                                                        value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                        value={candidate.changeVotes}/></span>
                                                     : <span className="color-red"><FormattedNumber
-                                                        value={candidateLiveVote && (candidateLiveVote - candidate.votes)}/></span>
+                                                        value={candidate.changeVotes}/></span>
                                                 }
                                               </Fragment>
                                             }
@@ -676,7 +649,7 @@ class VoteOverview extends React.Component {
                                             {
                                               totalVotes > 0 &&
                                               <Fragment>
-                                                <FormattedNumber value={(candidate.votes / totalVotes) * 100}
+                                                <FormattedNumber value={candidate.votesPercentage}
                                                                  minimumFractionDigits={2}
                                                                  maximumFractionDigits={2}
                                                 />%
@@ -740,7 +713,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   login,
   reloadWallet,
-  loadVoteList,
   loadVoteTimer,
 };
 

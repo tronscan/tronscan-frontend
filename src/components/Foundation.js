@@ -26,40 +26,16 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-  loadAccounts = async (page = 1, pageSize = 40) => {
+  loadAccounts = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
 
-    function compare(property) {
-      return function (obj1, obj2) {
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance?page_index=" + page +"&per_page="+pageSize);
 
-        if (obj1[property] > obj2[property]) {
-          return 1;
-        } else if (obj1[property] < obj2[property]) {
-          return -1;
-        } else {
-          return 0;
-        }
-
-      }
-    }
-
-    /*
-    let {accounts, total} = await Client.getAccounts({
-      sort: '-balance',
-      limit: pageSize,
-      start: (page-1) * pageSize,
-    });
-    */
-
-    let random = Math.random();
-    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
-
-    data.data.data.sort(compare('key'));
     this.setState({
       loading: false,
       accounts: data.data.data,
-      total: data.data.total,
+      total: data.data.total
     });
   };
 
@@ -69,9 +45,9 @@ class Accounts extends Component {
 
   renderAccounts() {
 
-    let {accounts, total} = this.state;
+    let {accounts, total, loadAccounts} = this.state;
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + 1000 + ' ' + intl.formatMessage({id: 'address_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' 1000 ' + intl.formatMessage({id: 'address_unit'})
 
     let column = [
       {
@@ -113,8 +89,11 @@ class Accounts extends Component {
                 :
                 <div className="card table_pos">
                   {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-                  <Table bordered={true} columns={column} dataSource={accounts}
-                         pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20}}/>
+                  <Table bordered={true} columns={column} dataSource={accounts} 
+                        onChange={(pagination) => {
+                          this.loadAccounts(pagination.current, pagination.pageSize)
+                        }}
+                        pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20, total:1000 }}/>
                 </div>
           }
         </div>

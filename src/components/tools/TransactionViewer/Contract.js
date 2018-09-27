@@ -23,8 +23,8 @@ export default function Contract({contract}) {
             <div className="table-responsive">
               <table className="table">
                 <tbody>
-                <Field label="from"><AddressLink address={contract.from}/></Field>
-                <Field label="to"><AddressLink address={contract.to}/></Field>
+                <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="to"><AddressLink address={contract['to_address']}/></Field>
                 <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX}/></Field>
                 </tbody>
               </table>
@@ -44,10 +44,12 @@ export default function Contract({contract}) {
             </div>
             <div className="table-responsive">
               <table className="table">
-                <Field label="from"><AddressLink address={contract.from}/></Field>
-                <Field label="to"><AddressLink address={contract.to}/></Field>
-                <Field label="amount">{contract.amount}</Field>
-                <Field label="token">{contract.token}</Field>
+                <tbody>
+                  <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
+                  <Field label="to"><AddressLink address={contract['to_address']}/></Field>
+                  <Field label="amount">{contract.amount}</Field>
+                  <Field label="token">{contract['asset_name']}</Field>
+                </tbody>
               </table>
             </div>
           </Fragment>
@@ -65,10 +67,12 @@ export default function Contract({contract}) {
             </div>
             <div className="table-responsive">
               <table className="table">
-                <Field label="to"><AddressLink address={contract.ownerAddress}/></Field>
-                <Field label="issuer"><AddressLink address={contract.toAddress}/></Field>
-                <Field label="amount">{contract.amount / ONE_TRX}</Field>
-                <Field label="token">{contract.token}</Field>
+                <tbody>
+                  <Field label="to"><AddressLink address={contract['owner_address']}/></Field>
+                  <Field label="issuer"><AddressLink address={contract['to_address']}/></Field>
+                  <Field label="amount">{contract.amount / ONE_TRX}</Field>
+                  <Field label="token">{contract['asset_name']}</Field>
+                </tbody>
               </table>
             </div>
           </Fragment>
@@ -84,8 +88,10 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
-              <Field label="URL">{contract.url}</Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="URL">{contract.url}</Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -100,8 +106,10 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
-              <Field label="URL">{contract.url}</Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="URL">{contract.url}</Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -117,8 +125,10 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
-              <Field label="account_name">{contract.name}</Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="account_name">{contract.name}</Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -133,7 +143,9 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -149,9 +161,11 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
-              <Field label="frozen_balance">{contract.frozenBalance / ONE_TRX}</Field>
-              <Field label="frozen_days">{contract.frozenDuration}</Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <Field label="frozen_balance">{contract['frozen_balance'] / ONE_TRX}</Field>
+                <Field label="frozen_days">{contract['frozen_duration']}</Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -167,7 +181,9 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -183,22 +199,24 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
-              <tr>
-                <th>{tu("votes")}</th>
-                <td>
-                  <ul>
-                    {
-                      contract.votes.map(vote => (
-                          <li>
-                            <AddressLink address={vote.voteAddress} truncate={false}/>
-                            {tu("counts")} : {vote.voteCount}
-                          </li>
-                      ))
-                    }
-                  </ul>
-                </td>
-              </tr>
+              <tbody>
+                <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                <tr>
+                  <th>{tu("votes")}</th>
+                  <td>
+                    <ul>
+                      {
+                        contract.votes.map(vote => (
+                            <li>
+                              <AddressLink address={vote['vote_address']} truncate={false}/>
+                              {tu("counts")} : {vote['vote_count']}
+                            </li>
+                        ))
+                      }
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </Fragment>
       );
@@ -214,7 +232,7 @@ export default function Contract({contract}) {
               </h5>
             </div>
             <table className="table">
-              <Field label="owner_address"><AddressLink address={contract.ownerAddress}/></Field>
+              <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
               <Field label="token_name">{contract.name}</Field>
               <Field label="total_supply">{contract.totalSupply}</Field>
               <Field label="TRX_exchange_rate">{contract.trxNum / ONE_TRX} : {contract.num}</Field>

@@ -24,18 +24,6 @@ export const loadBlocks = () => async (dispatch) => {
         order: '-timestamp',
         limit: 15,
     });
-    let {witnesses} = await Client.getWitnesses();
-    for(let block in blocks){
-        for(let witness in witnesses){
-            if(blocks[block].witnessAddress===witnesses[witness].address){
-                if(witnesses[witness].name!=="")
-                    blocks[block].witnessName=witnesses[witness].name;
-                else
-                    blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
-            }
-
-        }
-    }
     dispatch(setBlocks(blocks));
 };
 
