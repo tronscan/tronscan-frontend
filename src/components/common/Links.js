@@ -15,12 +15,13 @@ export const WitnessLink = ({address}) => (
     <Link to={`/witness/${address}`}>{address}</Link>
 );
 
-export const TokenLink = ({name, namePlus, children, ...props}) => {
+export const TokenLink = ({name, namePlus, address, children, ...props}) => {
+
   if (name && !namePlus) {
-    return <Link to={`/token/${encodeURI(name)}`} {...props}>{children || name}</Link>
+    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || name}</Link>
   }
   if (namePlus && name) {
-    return <Link to={`/token/${encodeURI(name)}`} {...props}>{children || namePlus}</Link>
+    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
   }
 };
 
@@ -106,7 +107,7 @@ export class AddressLink extends React.PureComponent {
 
   render() {
 
-    let {address = null, width = -1, children, showQrCode = false, wrapClassName, includeCopy = false, truncate = true, className = "", ...props} = this.props;
+    let {isContract = false, address = null, width = -1, children, showQrCode = false, wrapClassName, includeCopy = false, truncate = true, className = "", ...props} = this.props;
     let {modal, random} = this.state;
 
     let style = {};
@@ -117,13 +118,23 @@ export class AddressLink extends React.PureComponent {
 
     let wrap = (
         <Fragment>
-          <Link
-              to={`/address/${address}`}
-              style={style}
-              className={"address-link text-nowrap " + className}
-              {...props}>
-            {children ? children : address}
-          </Link>
+          {
+            !isContract ?
+              <Link
+                  to={`/address/${address}`}
+                  style={style}
+                  className={"address-link text-nowrap " + className}
+                  {...props}>
+                {children ? children : address}
+              </Link> :
+              <Link
+                  to={`/contract/${address}`}
+                  style={style}
+                  className={"address-link text-nowrap " + className}
+                  {...props}>
+                {children ? children : address}
+              </Link>
+          }
           {
             includeCopy &&
             <CopyText text={address} className="ml-1"/>

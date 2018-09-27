@@ -8,8 +8,11 @@ import {upperFirst} from "lodash";
 import {ONE_TRX} from "../../../constants";
 
 export function TokenBalances({tokenBalances, intl}) {
-
-  if (Object.keys(tokenBalances).length === 0 || (Object.keys(tokenBalances).length === 1 && tokenBalances[0].name === "TRX")) {
+  let balances = filter(tokenBalances, function(o) {
+    return o.name != 'TRX'
+  })
+  
+  if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
     return (
         <div className="text-center p-3">
           {tu("no_tokens_found")}
@@ -24,7 +27,7 @@ export function TokenBalances({tokenBalances, intl}) {
       align: 'left',
       className: 'ant_table',
       render: (text, record, index) => {
-        return <TokenLink name={text}/>
+        return <TokenLink name={text} address={record.address}/>
       }
     },
     {
@@ -39,7 +42,7 @@ export function TokenBalances({tokenBalances, intl}) {
     },
 
   ];
-  let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + tokenBalances.length + ' ' + intl.formatMessage({id: 'token_unit'})
+  let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
 
 
   return (

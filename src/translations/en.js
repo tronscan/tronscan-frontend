@@ -216,6 +216,8 @@ export const messages = {
   "foundation_address": "Foundation Freeze TRX Total Number",
   "unfreeze_time": "Unfreeze Time",
   "addresses_number": "Addresses Number",
+  "Confirmed": "Confirmed",
+  "Unconfirmed": "Unconfirmed",
   /*
   ##################################################################################
   #                                                                                #
@@ -836,6 +838,12 @@ export const messages = {
   "address_growth": "Address Growth",
   "power": "Power",
   "token_transfers": "Token Transfers",
+  "search": "Search",
+  "inter_tnxl":"Contract Interal Txns",
+  "inter_a_total":"A Total Of",
+  "inter_transactions_found":"Internal Transactions found",
+  "parent_hash":"ParentHash",
+  "inter_type":"Type",
   "website_url": "Official Website",
   "search": "Search",
   "language_support": "Only support English input currently",
@@ -1021,7 +1029,43 @@ export const messages = {
   "blockchain_information": "Blockchain Information",
   "sr_information": "SR Information",
   "currency_information": "Currency Information",
-  "your_vote":"Your vote"
+  "your_vote":"Your vote",
+
+    /*
+   ##################################################################################
+   #                                                                                #
+   # Contract                                             #
+   #                                                                                #
+   ##################################################################################
+   */
+  "contract_source_code":"Contract Source Code",
+  "step":"Step",
+  "step_1":"Enter your Contract Source Code below.",
+  "step_2":"If the Bytecode generated matches the existingCreation Address Bytecode, the contract is then Verified.",
+  "step_3":"Contract Source Code is published online andpublicably verifiable by anyone.",
+  "contract_notes":"NOTES",
+  "contract_notes_1":"To verify Contracts that accept Constructor arguments,please enter the ABI-encoded Arguments in the box below.",
+  "contract_notes_2_1":"For debugging purposes if it compiles correctly at",
+  "contract_notes_2_2":" TRON studio",
+  "contract_notes_2_3":", it should also compile correctly here.",
+  "contract_notes_3":'We do not support contract verification that use "imports" up to now.',
+  "contract_notes_4":"We do not support contract verification for contractscreated by another contract.",
+  "contract_notes_5":"There is a timeout of up to 45 secondsfor each contract compiled. If your contract takes longer than this we will notbe able to verify it.",
+  "contract_address":"Contract Address",
+  "contract_optimization":"Optimization",
+  "enter_contract_code":"Enter the Solidity Contract Code below",
+  "following_optional_parameters":"The following are optional Parameters",
+  "constructor_arguments_ABIencoded":"Constructor Arguments ABI-encoded (For contracts that accept constructor parameters)",
+  "contract_library_address":"Contract Library Address (For contracts that use libraries, supports up to 5 libraries):",
+  "library_1_name":"Library_1 Name",
+  "library_2_name":"Library_2 Name",
+  "library_3_name":"Library_3 Name",
+  "library_4_name":"Library_4 Name",
+  "library_5_name":"Library_5 Name",
+  "library_contract_address":"Library Contract Address",
+  "verify_and_publish":"Verify And Publish"
+
+
 
 
 };

@@ -8,7 +8,7 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -35,25 +35,24 @@ class TokenDetail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.name));
+    this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.name !== prevProps.match.params.name) {
-      this.loadToken(decodeURI(match.params.name));
+      this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
     }
   }
 
-  loadToken = async (name) => {
+  loadToken = async (name,address) => {
 
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://www.tronapp.co:9009/api/token?name=" + name);
-    let token = result.data.data;
-    let {total: totalAddresses} = await Client.getTokenHolders(name);
+    let result = await xhr.get(API_URL+"/api/token?name=" + name+"&owner="+address);
+    let token = result.data.data[0];
 
     this.setState({
       loading: false,
@@ -395,9 +394,6 @@ class TokenDetail extends React.Component {
                             <p className="card-text">{token.description}</p>
                           </div>
                           <div className="ml-auto">
-                            {/*
-                            <img src={require("../../../images/share.png")} style={{marginRight: '10px'}}/>
-                            <img src={require("../../../images/collect.png")} style={{marginRight: '10px'}}/> */}
                             {!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date()) &&
                             <button className="btn btn-default btn-xs"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>

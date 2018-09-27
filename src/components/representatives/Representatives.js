@@ -9,43 +9,17 @@ import _, {filter, maxBy, sortBy, trim, sumBy} from "lodash";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
-import {loadVoteList, loadVoteTimer} from "../../actions/votes";
 import {Link} from "react-router-dom";
 
 class Representatives extends Component {
   constructor() {
     super();
-    this.state = {
-      searchCriteria: "",
-    };
   }
 
   componentDidMount() {
-    this.props.loadVoteList()
-    this.props.loadVoteTimer();
     this.props.loadWitnesses();
     this.props.loadStatisticData();
   }
-
-  getWitnesses() {
-    let {witnesses} = this.props;
-    witnesses = witnesses.map(w => ({
-      ...w,
-      inSync: this.isinSync(w),
-      productivity: (w.producedTotal / (w.producedTotal + w.missedTotal)) * 100,
-    }));
-
-    return sortBy(filter(witnesses, w => w.producer), w => w.votes * -1)
-        .concat(sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1))
-        .map((w, index) => ({...w, index}));
-  }
-
-  isinSync(account) {
-    let {witnesses} = this.props;
-    let maxBlockNumber = maxBy(witnesses, witness => witness.latestBlockNumber).latestBlockNumber;
-    return account.latestBlockNumber > maxBlockNumber - SR_MAX_COUNT;
-  }
-
   getPiechart() {
     let {intl} = this.props;
     let {statisticData} = this.props;
@@ -69,7 +43,7 @@ class Representatives extends Component {
 
   renderWitnesses(witnesses) {
 
-    if (witnesses.length === 0 || this.props.voteList.length === 0) {
+    if (witnesses.length === 0) {
       return (
           <div className="card">
             <TronLoader>
@@ -81,7 +55,6 @@ class Representatives extends Component {
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
-
     return (
         <div className="card border-0 represent__table">
           <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
@@ -124,16 +97,13 @@ class Representatives extends Component {
   }
 
   render() {
-    let {intl} = this.props;
-    let witnesses = this.getWitnesses();
+    let {intl,witnesses} = this.props;
     let pieChart = this.getPiechart();
-
     let productivityWitnesses = witnesses.slice(0, SR_MAX_COUNT);
-
-    let mostProductive = sortBy(productivityWitnesses, w => w.productivity * -1)[0];
+    let mostProductive = sortBy(productivityWitnesses, w => w.producePercentage * -1)[0];
     let leastProductive = _(productivityWitnesses)
         .filter(w => w.producedTotal > 0)
-        .sortBy(w => w.productivity)
+        .sortBy(w => w.producePercentage)
         .value()[0];
 
     return (
@@ -159,7 +129,7 @@ class Representatives extends Component {
                         <div className="card h-100">
                           <div className="card-body">
                             <h3>
-                              <FormattedNumber value={mostProductive.productivity}/>%
+                              <FormattedNumber value={mostProductive.producePercentage}/>%
                             </h3>
                             <div className="represent_title_text">
                               <span>{tu("highest_productivity")} - </span>
@@ -177,7 +147,7 @@ class Representatives extends Component {
                             <h3>
                               <FormattedNumber maximumFractionDigits={2}
                                                minimunFractionDigits={2}
-                                               value={leastProductive.productivity}/>%
+                                               value={leastProductive.producePercentage}/>%
                             </h3>
                             <div className="represent_title_text">
                               <span>{tu("lowest_productivity")} - </span>
@@ -230,31 +200,6 @@ class Representatives extends Component {
 
 function Row({account, showSync = true, index, state, props}) {
 
-  let {searchCriteria} = state;
-  let {voteList: candidates} = props;
-  candidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
-    ...c,
-    rank: index,
-  }));
-
-  let filteredCandidates = candidates;
-
-  if (searchCriteria && searchCriteria !== "") {
-    filteredCandidates = filter(candidates, c => {
-      if (trim(c.url.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
-        return true;
-      }
-
-      if (c.name.length > 0 && trim(c.name.toLowerCase()).indexOf(searchCriteria.toLowerCase()) !== -1) {
-        return true;
-      }
-
-      return false;
-    });
-  }
-
-  let totalVotes = sumBy(candidates, c => c.votes);
-
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
@@ -277,7 +222,7 @@ function Row({account, showSync = true, index, state, props}) {
           showSync ?
               <td className="text-center">
                 {
-                  account.inSync ?
+                  account.producer ?
                       <span key="no" className="text-success"><i className="fas fa-circle"/></span> :
                       <span key="yes" className="text-danger"><i className="fa fa-times"/></span>
                 }
@@ -310,7 +255,7 @@ function Row({account, showSync = true, index, state, props}) {
                   <FormattedNumber
                       maximumFractionDigits={2}
                       minimunFractionDigits={2}
-                      value={account.productivity}/>%
+                      value={account.producePercentage}/>%
                 </Fragment>
             ) : '-'
           }
@@ -318,14 +263,13 @@ function Row({account, showSync = true, index, state, props}) {
         </td>
         <td className="text-right">
           {
-            totalVotes > 0 &&
             <Fragment>
-              <FormattedNumber value={filteredCandidates[index].votes}/>
+              <FormattedNumber value={account.votes}/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}
                   maximumFractionDigits={2}
-                  value={(filteredCandidates[index].votes / totalVotes) * 100}/>%
+                  value={account.votesPercentage}/>%
               {')'}
             </Fragment>
           }
@@ -337,17 +281,13 @@ function Row({account, showSync = true, index, state, props}) {
 function mapStateToProps(state) {
   return {
     witnesses: state.network.witnesses,
-    statisticData: state.network.statisticData,
-    voteList: state.voting.voteList,
-    voteTimer: state.voting.voteTimer,
+    statisticData: state.network.statisticData
   };
 }
 
 const mapDispatchToProps = {
   loadWitnesses,
-  loadStatisticData,
-  loadVoteList,
-  loadVoteTimer,
+  loadStatisticData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(injectIntl(Representatives));

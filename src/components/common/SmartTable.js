@@ -176,12 +176,14 @@ export default class SmartTable extends Component {
           <Table
               bordered={bordered}
               columns={columns}
-              rowKey={(record) => {
+              rowKey={(record, index) => {
+                return index
+                if (record.transactionHash) return record.transactionHash;
+                if (record.address) return record.address;
+                if (record.hash) return record.hash;
                 if (record.id) return record.id;
                 if (record.number) return record.number;
                 if (record.name) return record.name;
-                if (record.address) return record.address;
-                if (record.hash) return record.hash;
               }}
               dataSource={data}
               pagination={{total: total, ...this.state.pagination}}

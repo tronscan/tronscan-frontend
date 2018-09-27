@@ -249,8 +249,9 @@ body .token_black {
       width: 50px;
       // @extend .#{$image};
       background-image: url(../images/title-img/#{$image}.png);
-      background-size: auto 100%;
-      background-repeat: no-repeat; 
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 

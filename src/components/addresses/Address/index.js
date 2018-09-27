@@ -31,6 +31,8 @@ class Address extends React.Component {
       loading: true,
       blocksProduced: 0,
       votes: null,
+      rank: 0,
+      totalVotes: 0,
       address: {
         address: "",
         balance: 0,
@@ -70,8 +72,7 @@ class Address extends React.Component {
   componentDidMount() {
     let {match} = this.props;
     this.loadAddress(match.params.id);
-    this.loadVotes(match.params.id);
-    this.loadWitness();
+    this.loadWitness(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
@@ -79,6 +80,7 @@ class Address extends React.Component {
 
     if (match.params.id !== prevProps.match.params.id) {
       this.loadAddress(match.params.id);
+      this.loadWitness(match.params.id);
     }
   }
 
@@ -141,13 +143,13 @@ class Address extends React.Component {
     let {intl} = this.props;
     this.setState({loading: true, address: {address: id}, media: null,});
 
-    this.live && this.live.close();
-    this.live = channel("/address-" + id);
-    this.live.on('transfer', transaction => {
-      setTimeout(() => {
-        this.refreshAddress(id);
-      }, 1500);
-    });
+    // this.live && this.live.close();
+    // this.live = channel("/address-" + id);
+    // this.live.on('transfer', transaction => {
+    //   setTimeout(() => {
+    //     this.refreshAddress(id);
+    //   }, 1500);
+    // });
 
     let address = await Client.getAddress(id);
 
@@ -222,47 +224,20 @@ class Address extends React.Component {
     }));
   }
 
-  async loadWitness() {
-    let {witnesses} = await Client.getWitnesses();
-    let votes = await Client.getLiveVotes();
-
-    let candidates = witnesses.map(c => ({
-      ...c,
-      votes: 0,
-    }));
-    candidates = candidates.map(c => ({
-      ...c,
-      votes: (votes[c.address] ? votes[c.address].votes : 0),
-    }));
-
-    let newCandidates = sortBy(candidates, c => c.votes * -1).map((c, index) => ({
-      ...c,
-      rank: index + 1,
-    }));
-
+  async loadWitness(id) {
+    /* 需要总票数，实时排名俩个参数*/
+    let {data} = await Client.getVoteWitness(id)
     this.setState({
-      candidates: newCandidates
+      totalVotes: data.realTimeVotes,
+      rank: data.realTimeRanking
     });
-
   }
 
   render() {
 
-    let {address, tabs, stats, loading, blocksProduced, media, votes, candidates} = this.state;
+    let {address, tabs, stats, loading, blocksProduced, media, candidates, rank ,totalVotes} = this.state;
     let {match} = this.props;
-    let rank;
-    let totalVotes;
-    let producer;
-
     let uploadURL = "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
-
-    for (let can in candidates) {
-      if (address.address === candidates[can].address) {
-        rank = candidates[can].rank;
-        totalVotes = candidates[can].votes;
-        producer = candidates[can].producer;
-      }
-    }
 
     if (!address) {
       return null;
@@ -285,26 +260,6 @@ class Address extends React.Component {
                     </div> :
                     <Fragment>
                       <div className="card list-style-header">
-                        {/* {
-                          address.representative.enabled && !producer &&
-                          <div className="card-header text-center bg-info font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          address.representative.enabled && producer &&
-                          <div className="card-header text-center bg-danger font-weight-bold text-white">
-                            {tu("representatives")}
-                          </div>
-                        }
-                        {
-                          media &&
-                          <div className="card-body">
-                            <div className="text-center">
-                              <img style={{maxWidth: '100%'}} src={media.image}/>
-                            </div>
-                          </div>
-                        } */}
                         {
                           address.representative.enabled &&
                           <div className="card-body">
@@ -321,7 +276,7 @@ class Address extends React.Component {
                             <table className="table m-0">
                               <tbody>
                               {
-                                rank &&
+                                Boolean(rank) &&
                                 <tr>
                                   <th>{tu("rank_real_time")}:</th>
                                   <td>
@@ -405,7 +360,7 @@ class Address extends React.Component {
                                 </td>
                               </tr>
                               {
-                                totalVotes &&
+                                Boolean(totalVotes) &&
                                 <tr>
                                   <th>{tu("total_votes")}:</th>
                                   <td>

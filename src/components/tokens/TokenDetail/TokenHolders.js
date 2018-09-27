@@ -123,7 +123,7 @@ class TokenHolders extends React.Component {
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''}
+            {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
             <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
                         onPageChange={(page, pageSize) => {
                           this.loadTokenHolders(page, pageSize)

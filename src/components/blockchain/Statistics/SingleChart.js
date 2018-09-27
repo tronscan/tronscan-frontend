@@ -66,9 +66,6 @@ class Statistics extends React.Component {
 
     componentDidMount() {
         let {match} = this.props;
-        this.loadAccounts();
-        this.loadStats();
-
         let chartName = match.params.chartName;
         switch (chartName){
             case 'supply':
@@ -124,39 +121,6 @@ class Statistics extends React.Component {
         });
     }
 
-
-    async loadStats() {
-
-        let {stats} = await Client.getTransferStats({
-            groupby: 'timestamp',
-            interval: 'hour',
-        });
-
-        let {stats: blockStats} = await Client.getBlockStats({
-            info: `avg-block-size`,
-        });
-
-        let transactionTotalStats = stats.total.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value,
-        }));
-
-        let valueStats = stats.value.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value / ONE_TRX,
-        }));
-
-        blockStats = blockStats.map(row => ({
-            timestamp: row.timestamp,
-            value: row.value,
-        }));
-
-        this.setState({
-            transactionStats: transactionTotalStats,
-            transactionValueStats: valueStats,
-            blockStats,
-        });
-    }
     async loadTotalTRXSupply(){
         let {intl} = this.props;
         let random = Math.random();
@@ -295,9 +259,7 @@ class Statistics extends React.Component {
 
 
     async loadTxOverviewStats() {
-        // let {txOverviewStats} = await Client.getTxOverviewStats();
-        let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
-        let txOverviewStats = overviewData.data.data;
+        let { txOverviewStats } = await Client.getTxOverviewStats();
         let temp = [];
         let addressesTemp = [];
         let blockSizeStatsTemp = [];
@@ -323,7 +285,7 @@ class Statistics extends React.Component {
                 });
                 addressesTemp.push({
                     date: txOverviewStats[tx].date,
-                    total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+                    total: txOverviewStats[tx].totalAddress,
                     increment: txOverviewStats[tx].newAddressSeen
                 });
             }

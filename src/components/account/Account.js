@@ -38,7 +38,8 @@ class Account extends Component {
       sr: null,
       issuedAsset: null,
       showBandwidth: false,
-      privateKey: ""
+      privateKey: "",
+      temporaryName: ""
     };
 
   }
@@ -525,6 +526,7 @@ class Account extends Component {
 
     if (success) {
       this.setState({
+        temporaryName: name,
         modal: (
             <SweetAlert success title={tu("name_changed")} onConfirm={this.hideModal}>
               {tu("successfully_changed_name_to_message")} <b>{name}</b>
@@ -730,7 +732,7 @@ class Account extends Component {
 
   render() {
 
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
 
     if (!wallet.isOpen || !currentWallet) {
@@ -814,7 +816,7 @@ class Account extends Component {
                       <tr>
                         <th style={{border: 'none'}}>{tu("name")}:</th>
                         <td style={{border: 'none'}}>
-                          {currentWallet.name || "-"}
+                          {currentWallet.name|| temporaryName || "-"}
                           {
                             (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
                             <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"

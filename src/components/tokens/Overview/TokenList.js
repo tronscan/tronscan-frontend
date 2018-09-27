@@ -11,7 +11,7 @@ import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
 import SmartTable from "../../common/SmartTable.js"
-import {ONE_TRX} from "../../../constants";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst, toLower} from "lodash";
@@ -45,12 +45,12 @@ class TokenList extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
     else
-      result = await xhr.get("https://www.tronapp.co:9009/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+      result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
 
-    let total = result.data.data['Total'];
-    let tokens = result.data.data['Data'];
+    let total = result.data['total'];
+    let tokens = result.data['data'];
     /*
     let {tokens, total} = await Client.getTokens({
        sort: '-name',
@@ -364,7 +364,7 @@ class TokenList extends Component {
 
             <div>
               <h5><TokenLink name={record.name}
-                             namePlus={record.name + ' (' + record.abbr + ')'}/>
+                             namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
               <p>{record.description}</p>
             </div>

@@ -23,13 +23,19 @@ class Transactions extends React.Component {
       total: 0,
     };
   }
+  
+  componentWillReceiveProps() {
+    setTimeout(() => {
+      this.loadTransactions();
+    }, 0)
+  }
 
   componentDidMount() {
     this.loadTransactions();
   }
 
   componentDidUpdate() {
-    //checkPageChanged(this, this.loadTransactions);
+    // checkPageChanged(this, this.loadTransactions);
   }
 
   onChange = (page, pageSize) => {
@@ -67,6 +73,7 @@ class Transactions extends React.Component {
         sort: '-timestamp',
         limit: pageSize,
         start: (page - 1) * pageSize,
+        total: this.state.total,
         ...searchParams,
       });
     }

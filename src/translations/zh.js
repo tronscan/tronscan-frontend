@@ -215,6 +215,8 @@ export const messages = {
   "foundation_address": "基金会锁仓TRX总数",
   "unfreeze_time": "解冻时间",
   "addresses_number": "地址数",
+  "Confirmed": "已确认",
+  "Unconfirmed": "未确认",
   /*
   ##################################################################################
   #                                                                                #
@@ -828,6 +830,10 @@ export const messages = {
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",
+  "search": "搜索",
+  "inter_tnxl":"合约内部交易",
+  "inter_a_total":"共找到",
+  "inter_transactions_found":"个内部交易",
   "website_url": "官方网站",
   "language_support": "目前只支持英文输入",
   "note": "备注",
@@ -1012,6 +1018,4 @@ export const messages = {
   "sr_information": "超级代表信息",
   "currency_information": "流通信息",
   "your_vote":"票数"
-
-
 };

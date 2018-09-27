@@ -38,16 +38,16 @@ class Home extends Component {
 
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
+    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap?total=1");
     this.setState({
-      onlineNodes: data.data.length
+      onlineNodes: data.total
     })
   }
 
   async loadAccounts() {
-    //let totalAccounts = await Client.getAccounts();
-    let accountData = await xhr.get("https://assistapi.tronscan.org/api/account");
-    let totalAccounts = accountData.data.total;
+    let { totalAccounts } = await Client.getAccounts();
+    // let accountData = await xhr.get("http://18.216.57.65:20110/api/account");
+    // let totalAccounts = accountData.total;
     this.setState({
       totalAccounts: totalAccounts
     })
@@ -60,18 +60,11 @@ class Home extends Component {
       sort: '-number',
     });
 
-    /* let {total: totalTransactions} = await Client.getTransfers({
-       limit: 1,
-       date_start: subDays(new Date(), 1),
-     });
-    */
-
-    //let {txOverviewStats} = await Client.getTxOverviewStats();
-    let overviewData = await xhr.get("https://assistapi.tronscan.org/api/stats/overview");
-    let txOverviewStats = overviewData.data.data;
+    let { txOverviewStats } = await Client.getTxOverviewStats();
+    // let overviewData = await xhr.get("http://18.216.57.65:20110/api/stats/overview");
+    // let txOverviewStats = overviewData.data.data;
     let temp = [];
     let addressesTemp = [];
-
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
       if (tx === 0) {
@@ -86,7 +79,8 @@ class Home extends Component {
       else {
         temp.push({
           date: txOverviewStats[tx].date,
-          totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+          totalTransaction: txOverviewStats[tx].newTransactionSeen ,
           avgBlockTime: txOverviewStats[tx].avgBlockTime,
           avgBlockSize: txOverviewStats[tx].avgBlockSize,
           totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
@@ -94,7 +88,7 @@ class Home extends Component {
         });
         addressesTemp.push({
           date: txOverviewStats[tx].date,
-          total: txOverviewStats[tx].newAddressSeen + addressesTemp[tx - 1].total,
+          total: txOverviewStats[tx].totalAddress,
           increment: txOverviewStats[tx].newAddressSeen
         });
       }
@@ -146,7 +140,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.loadNodes();
-  //  this.loadAccounts();
     this.load();
     // constellationPreset(this.$ref, "Hot Sparks");
 

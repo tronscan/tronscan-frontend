@@ -201,6 +201,7 @@ class Navigation extends PureComponent {
     let type = getSearchType(search);
 
     let result = await doSearch(search, type);
+    
     if (result === true) {
       this.setState({search: ""});
     } else if (result !== null) {
@@ -484,6 +485,18 @@ class Navigation extends PureComponent {
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
               </div>
+                {
+                    IS_TESTNET &&
+                    <div className="col text-center text-info font-weight-bold py-2">
+                      TESTNET
+                    </div>
+                }
+                {
+                     (syncStatus && syncStatus.sync.progress < 95) &&
+                    <div className="col text-danger text-center py-2">
+                      Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                    </div>
+                }
               <div className="ml-auto d-flex">
                 { this.props.location.pathname != '/'&&
                   <div className= "hidden-mobile nav-searchbar">
@@ -502,18 +515,6 @@ class Navigation extends PureComponent {
                         </button>
                       </div>
                     </div>
-                  </div>
-                }
-                {
-                  IS_TESTNET &&
-                  <div className="col text-center text-info font-weight-bold py-2">
-                    TESTNET
-                  </div>
-                }
-                {
-                  (syncStatus && syncStatus.sync.progress < 95) &&
-                  <div className="col text-danger text-center py-2">
-                    Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                   </div>
                 }
                 <div className="navbar navbar-expand-md navbar-dark py-0">
