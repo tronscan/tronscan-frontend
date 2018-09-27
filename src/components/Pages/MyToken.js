@@ -115,7 +115,7 @@ class MyToken extends Component {
                       <tbody>
                       <tr>
                         <td style={{borderTop: '0px'}}>{tu("name_of_the_token")}:</td>
-                        <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name}/></td>
+                        <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/></td>
                       </tr>
                       <tr>
                         <td>{tu("brief_info")}:</td>
