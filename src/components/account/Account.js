@@ -118,7 +118,7 @@ class Account extends Component {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
                   <td>
-                    <TokenLink name={token.name}/>
+                    <TokenLink name={token.name} address={token.address}/>
                   </td>
                   <td className="text-right">
                     <FormattedNumber value={token.balance}/>
@@ -892,7 +892,7 @@ class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <TokenLink name={issuedAsset.name}/>
+                          <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
                         </td>
                       </tr>
                       <tr>
@@ -929,8 +929,8 @@ class Account extends Component {
                               {tu("unfreeze_assets")}
                             </a>
                             {
-                              issuedAsset.frozen.map(frozen => (
-                                  <div>
+                              issuedAsset.frozen.map((frozen, index) => (
+                                  <div key={index}>
                                     {frozen.amount} {tu("can_be_unlocked")}&nbsp;
                                     {
                                       (getTime(addDays(new Date(issuedAsset.startTime), frozen.days)) > getTime(new Date())) &&
