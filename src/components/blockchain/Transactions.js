@@ -25,7 +25,9 @@ class Transactions extends React.Component {
   }
   
   componentWillReceiveProps() {
-    this.loadTransactions();
+    setTimeout(() => {
+      this.loadTransactions();
+    }, 0)
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ class Transactions extends React.Component {
   }
 
   componentDidUpdate() {
-    //checkPageChanged(this, this.loadTransactions);
+    // checkPageChanged(this, this.loadTransactions);
   }
 
   onChange = (page, pageSize) => {
