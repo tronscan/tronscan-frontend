@@ -23,6 +23,10 @@ class Transactions extends React.Component {
       total: 0,
     };
   }
+  
+  componentWillReceiveProps() {
+    this.loadTransactions();
+  }
 
   componentDidMount() {
     this.loadTransactions();
