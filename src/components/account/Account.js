@@ -731,8 +731,7 @@ class Account extends Component {
   render() {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
-
+    let {account, frozen, totalTransactions, currentWallet, wallet,language} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1111,7 +1110,8 @@ class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <div className="text-center">
-                          <button className="btn btn-success" onClick={() => {
+                          <button className="apply-super-btn btn btn-success"
+                                  onClick={() => {
                             this.applyForDelegate()
                           }}>
                             {tu("apply_super_representative_candidate")}

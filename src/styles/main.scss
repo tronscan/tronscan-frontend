@@ -895,6 +895,10 @@ th {
   .token-cards {
     font-weight: normal;
   }
+  .apply-super-btn{
+    transform: scale(0.9);
+    margin-left: -1.25rem;
+  }
 }
 
 ._context_right_click .react-contextmenu-wrapper .truncate-ellipsis {
@@ -1449,3 +1453,4 @@ h5 {
   padding-right: 20px;
   //margin-top: -100px;
 }
+
