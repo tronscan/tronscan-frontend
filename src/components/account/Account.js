@@ -731,7 +731,7 @@ class Account extends Component {
   render() {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet,language} = this.props;
+    let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
