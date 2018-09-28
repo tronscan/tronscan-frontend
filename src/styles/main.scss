@@ -106,7 +106,7 @@ a {
 
 @include media-breakpoint-down(sm) {
   body {
-    font-size: 1rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -768,7 +768,8 @@ th {
   .nav-item .account-dropdown-menu {
     position: absolute;
     float: none;
-    left: -275px;
+    left: auto;
+    right: -16px;
   }
   .nav-item .wallet-notifications {
     position: absolute;
@@ -1560,18 +1561,40 @@ h5 {
 
 .information-bg{
   background: #fff;
-  padding: 20px;
+  padding: 0 20px;
 
   &-item{
     display: flex;
     height: 45px;
-    line-height: 45px;
-    width: 50%;
+    line-height: 1.4em;
+    width: 45%;
+    float: left;
+    border-bottom: 1px solid #eee;
+    align-items: center;
 
+    &.ml{
+      margin-left: 10%;
+    }
     &>span{
       display: block;
       width: 120px;
       font-weight: bold;
+      color: #666;
+    }
+    &>p{
+      flex: 1;
+      margin: 0!important;
     }
   }
+}
+@media screen and (max-width: 768px) {
+  .information-bg{
+    &-item{
+      width: 100%;
+      &.ml{
+        margin-left: 0;
+      }
+    }
+  }
+  
 }

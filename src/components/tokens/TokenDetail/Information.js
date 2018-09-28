@@ -80,7 +80,7 @@ export function Information({token}) {
       <div className="information-bg">{
         tokenList.map((item,index) => {
           return(
-            <div className={index%2 == 0? 'information-bg-item float-left': 'information-bg-item'}>
+            <div className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
               <span>{tu(item.name)}</span>
               <p>{item.content}</p>
             </div>)
