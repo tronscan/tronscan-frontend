@@ -734,7 +734,6 @@ class Account extends Component {
 
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
-
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -986,20 +985,20 @@ class Account extends Component {
                   </h5>
 
                   <div className="card-body px-0 d-lg-flex justify-content-lg-between">
-                    <p className="card-text">
+                    <p className="card-text" style={{maxWidth:'82%'}}>
                       {tu("freeze_trx_premessage_0")}<Link
                         to="/votes">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
                     </p>
                     <div>
                       {
                         hasFrozen &&
-                        <button className="btn btn-danger mr-2" style={{width: '64px'}} onClick={() => {
+                        <button className="btn btn-danger mr-2" onClick={() => {
                           this.showUnfreezeModal()
                         }}>
                           {tu("unfreeze")}
                         </button>
                       }
-                      <button className="btn btn-primary mr-2" style={{width: '64px'}} onClick={() => {
+                      <button className="btn btn-primary" onClick={() => {
                         this.showFreezeBalance()
                       }}>
                         {tu("freeze")}
@@ -1113,7 +1112,8 @@ class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <div className="text-center">
-                          <button className="btn btn-success" style={{width: '240px'}} onClick={() => {
+                          <button className="apply-super-btn btn btn-success"
+                                  onClick={() => {
                             this.applyForDelegate()
                           }}>
                             {tu("apply_super_representative_candidate")}
