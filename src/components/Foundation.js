@@ -9,6 +9,7 @@ import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
 import {trim} from "lodash";
+import {Tooltip} from "reactstrap";
 class Accounts extends Component {
 
   constructor() {
@@ -18,7 +19,8 @@ class Accounts extends Component {
       loading: true,
       searchString: "",
       accounts: [],
-      total: 0
+      total: 0,
+      open: false,
     }
   }
 
@@ -83,7 +85,7 @@ class Accounts extends Component {
 
   renderAccounts() {
 
-    let {accounts, total} = this.state;
+    let {accounts, total,open} = this.state;
     let {intl} = this.props;
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + 1000 + ' ' + intl.formatMessage({id: 'address_unit'})
 
@@ -102,8 +104,19 @@ class Accounts extends Component {
         key: 'address',
         align: 'left',
         render: (text, record, index) => {
+          console.log('index',index)
+          console.log('record',record)
           return (
-              record.isPlan? <div className="d-flex"><i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i> <AddressLink address={text}/></div>:<AddressLink address={text}/>
+              record.isPlan?  <div><div className="d-flex"
+                                        style={{width:300}}
+                                        id={"Tronics-Support-Plan_"+record.key}
+                                        onMouseOver={() => this.setState({open: true})}
+                                        onMouseOut={() => this.setState({open: false})}>
+                                        <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
+                                        <AddressLink address={text}/>
+                                    </div>
+                                    <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={open}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
+                              </div>:<AddressLink address={text}/>
           )
         }
       },
