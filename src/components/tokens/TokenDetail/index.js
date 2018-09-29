@@ -402,7 +402,7 @@ class TokenDetail extends React.Component {
                             <button className="btn btn-default btn-xs d-inline-block"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }
-                            <a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block ml-2">Update Token</a>
+                            <a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block ml-2">{tu("update_token")}</a>
                           </div>
                         </div>
                       </div>

@@ -1017,5 +1017,7 @@ export const messages = {
   "frozen_by_the_foundationTRX":"基金会锁仓TRX数",
   "tronics_support_plan":"Tronics 支持计划",
   "tronics_support_plan_recipient_address":"Tronics支持计划受赠地址",
+  "update_token":"更新通证",
+  "total_frozen": "冻结总量",
 
 };

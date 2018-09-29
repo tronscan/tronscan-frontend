@@ -103,7 +103,7 @@ class MyToken extends Component {
               <div className="card">
                 <div className="card-body">
                   <div className="news_unit">
-                    <h2>{tu('my_token')}</h2>
+                    <h2>{tu('update_token')}</h2>
                     <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color: 'red'}}> "{tu('tron_rating')}"</a></p>
                     <p>{tu("my_token_desc_2")}</p>
                     <hr/>

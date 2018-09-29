@@ -104,8 +104,6 @@ class Accounts extends Component {
         key: 'address',
         align: 'left',
         render: (text, record, index) => {
-          console.log('index',index)
-          console.log('record',record)
           return (
               record.isPlan?  <div><div className="d-flex"
                                         style={{width:300}}

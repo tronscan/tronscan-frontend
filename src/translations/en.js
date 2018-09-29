@@ -1027,6 +1027,8 @@ export const messages = {
   "frozen_by_the_foundationTRX":"TRX frozen by the Foundation",
   "tronics_support_plan":"Tronics Support Plan",
   "tronics_support_plan_recipient_address":"Tronics Support Plan recipient address",
+  "update_token":"Update Token",
+  "total_frozen": "Total Frozen",
 
 
 };
