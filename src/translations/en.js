@@ -1021,7 +1021,11 @@ export const messages = {
   "blockchain_information": "Blockchain Information",
   "sr_information": "SR Information",
   "currency_information": "Currency Information",
-  "your_vote":"Your vote"
+  "your_vote":"Your vote",
+  "total_number_frozenTRX":"Total number of frozen TRX",
+  "tronics_support_planTRX":"TRX frozen by the Tronics Support Plan",
+  "frozen_by_the_foundationTRX":"TRX frozen by the Foundation",
+  "tronics_support_plan":"Tronics Support Plan"
 
 
 };
