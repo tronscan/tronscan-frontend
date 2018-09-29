@@ -31,7 +31,7 @@ export const loadBlocks = () => async (dispatch) => {
                 if(witnesses[witness].name!=="")
                     blocks[block].witnessName=witnesses[witness].name;
                 else
-                    blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];;
+                    blocks[block].witnessName=witnesses[witness].url.substring(7).split('.com')[0];
             }
 
         }
