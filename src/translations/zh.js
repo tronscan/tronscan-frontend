@@ -972,6 +972,9 @@ export const messages = {
   "vote_unit": "个候选人",
   "account_unit": "个账户",
   "address_unit": "个地址",
+  "contract_unit": "条已验证合约",
+  "inter_contract_unit": "条合约内部交易",
+
   /*
 ##################################################################################
 #                                                                                #

@@ -11,6 +11,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "./Txs";
 import Code from "./Code";
 
+
 class SmartContract extends React.Component {
 
 
@@ -60,22 +61,19 @@ class SmartContract extends React.Component {
         ...prevProps.tabs,
         transactions: {
           id: "transactions",
-          icon: "fas fa-handshake",
           path: "",
           label: <span>{tu("transactions")}</span>,
           cmp: () => <Transactions filter={{address: id}}  />
         },
 
-        votes: {
-          id: "internal_transactions",
-          icon: "fa fa-bullhorn",
-          path: "/intr",
-          label: <span>{tu("internal_transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}} isInternal={true} />,
-        },
+        // votes: {
+        //   id: "internal_transactions",
+        //   path: "/intr",
+        //   label: <span>{tu("internal_transactions")}</span>,
+        //   cmp: () => <Transactions filter={{address: id}} isInternal={true} />,
+        // },
         voters: {
           id: "code",
-          icon: "fa fa-bullhorn",
           path: "/code",
           label: <span>{tu("code")}</span>,
           cmp: () => <Code filter={{address: id}} />,
@@ -94,7 +92,7 @@ class SmartContract extends React.Component {
     }
 
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black">
           <div className="row">
             <div className="col-md-12 ">
               {
@@ -104,7 +102,8 @@ class SmartContract extends React.Component {
                       </TronLoader>
                     </div> :
                     <Fragment>
-                      <div className="card">
+                      <div className="card list-style-header">
+                      <div className="table-responsive">
                         <table className="table m-0">
                           <tbody>
 
@@ -149,9 +148,10 @@ class SmartContract extends React.Component {
                           </tr>
                           </tbody>
                         </table>
+                        </div>
                       </div>
-                      <div className="card mt-3">
-                        <div className="card-header">
+                      <div className="card mt-3 list-style-body">
+                        <div className="card-header list-style-body__header">
                           <ul className="nav nav-tabs card-header-tabs">
                             {
                               Object.values(tabs).map(tab => (
@@ -165,7 +165,7 @@ class SmartContract extends React.Component {
                             }
                           </ul>
                         </div>
-                        <div className="card-body p-0">
+                        <div className="card-body p-0 list-style-body__body">
                           <Switch>
                             {
                               Object.values(tabs).map(tab => (

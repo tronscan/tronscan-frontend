@@ -984,6 +984,8 @@ export const messages = {
   "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
+  "contract_unit": "verified contract source codes found",
+  "inter_contract_unit": "Internal Transactions found",
 
   /*
 ##################################################################################
