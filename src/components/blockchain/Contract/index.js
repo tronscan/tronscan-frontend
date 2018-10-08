@@ -10,6 +10,7 @@ import {TRXPrice} from "../../common/Price";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "./Txs";
 import Code from "./Code";
+import Txhash from "./Txhash";
 
 
 class SmartContract extends React.Component {
@@ -61,7 +62,7 @@ class SmartContract extends React.Component {
         ...prevProps.tabs,
         transactions: {
           id: "transactions",
-          path: "",
+          path: "/transactions",
           label: <span>{tu("transactions")}</span>,
           cmp: () => <Transactions filter={{address: id}}  />
         },
@@ -72,6 +73,12 @@ class SmartContract extends React.Component {
         //   label: <span>{tu("internal_transactions")}</span>,
         //   cmp: () => <Transactions filter={{address: id}} isInternal={true} />,
         // },
+        Txns: {
+          id: "Txns",
+          path: "/Txns",
+          label: <span>Token Txns</span>,
+          cmp: () => <Txhash filter={{address: id}} />,
+        },
         voters: {
           id: "code",
           path: "/code",
@@ -103,8 +110,27 @@ class SmartContract extends React.Component {
                     </div> :
                     <Fragment>
                       <div className="card list-style-header">
-                      <div className="table-responsive">
-                        <table className="table m-0">
+                      <div className="contract-header">
+                        <h6><AddressLink address={contract.address} includeCopy={true}/></h6>
+
+                        <div className="d-flex justify-content-between">
+                          <div className="contract-header__item">
+                            <h6 className="contract-header__title">Contract Overview</h6>
+                            <ul>
+                              <li><p>Balance: </p>100,000,000,000 TRX</li>
+                              <li><p>TRX Value: </p>$68.70</li>
+                              <li><p>Transactions: </p>23 Txns</li>
+                              <li className="border-bottom-0"><p>Token Tracke: </p>tHena (THENA)</li>
+                            </ul>
+                          </div>
+                          <div className="contract-header__item">
+                            <h6 className="contract-header__title">Misc</h6>
+                            <ul>
+                              <li><p>Contract Creato:</p>TV3Nm7f4f377d8f4b3…</li>
+                            </ul>
+                          </div>
+                        </div>
+                        {/* <table className="table m-0">
                           <tbody>
 
                           <tr>
@@ -147,7 +173,7 @@ class SmartContract extends React.Component {
                             </td>
                           </tr>
                           </tbody>
-                        </table>
+                        </table> */}
                         </div>
                       </div>
                       <div className="card mt-3 list-style-body">

@@ -1093,7 +1093,8 @@ $border-color: #eee;
 $border-color-dark: #d8d8d8;
 .list-style-header {
   border: none;
-  border-top: 4px solid $main-red;
+  border-top: 4px solid $main-red!important;
+  background: #fff!important;
   border-radius: 0;
   padding: 0 2.6%;
   color: $text-color;
@@ -1555,5 +1556,64 @@ h5 {
     .contract-show{
       display: block;
     }
+  }
+}
+.contract-header{
+  padding-bottom: 20px;
+  h6{
+    padding: 30px 0;
+    font-size: 16px;
+    margin: 0;
+
+    &.contract-header__title{
+      padding: 0;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__item{
+    width: 46%;
+  }
+
+  .verified {
+    i, svg{
+      color: #69C265;
+      font-size: 12px;
+    }
+  }
+  
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -1px;
+    li{
+      display: flex;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #eee;
+
+      p{
+        width: 138px;
+        &.plus{
+          width: 180px;
+        }
+      }
+    }
+  }
+}
+
+.tip{
+  width: 40px;
+  height: 22px;
+  line-height: 22px;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  &-in{
+    background: #69C265;
+  }
+  &-out{
+    background: #E0AE5c;
   }
 }

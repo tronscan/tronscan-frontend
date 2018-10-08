@@ -54,10 +54,24 @@ export default class Code extends React.Component {
         <main className="container">
 
           <div className="row">
-            <div className="col-md-12 ">
+            <div className="col-md-12 contract-header">
               <br/>
-              <strong><i className="fa fa-check"></i> Contract Source Code Verified (Exact match)</strong>
-              <table className="table table-hover mt-3">
+              <div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i> Contract Source Code Verified (Exact match)</div>
+
+              <div className="d-flex justify-content-between">
+                <div className="contract-header__item">
+                  <ul>
+                    <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
+                    <li><p className="plus">Optimization Enabled: </p>Yes</li>
+                  </ul>
+                </div>
+                <div className="contract-header__item">
+                  <ul>
+                    <li><p className="plus">{tu("compiler_version")}:</p>{compilerVersion}</li>
+                  </ul>
+                </div>
+              </div>
+              {/* <table className="table table-hover mt-3">
                 <tbody>
 
                 <tr>
@@ -74,13 +88,13 @@ export default class Code extends React.Component {
                 </tr>
 
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span>Contract Source Code <i className="fa fa-code"></i></span>
+                <span><i className="fa fa-code"></i> Contract Source Code</span>
                 <CopyText text={sourceCode} className="ml-auto ml-1"/>
               </div>
               <ReactAce
@@ -100,7 +114,7 @@ export default class Code extends React.Component {
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span>Contract ABI <i className="fa fa-cogs"></i></span>
+                <span><i className="fa fa-cogs"></i> Contract ABI</span>
                 <CopyText text={abi} className="ml-auto ml-1"/>
               </div>
               <textarea className="w-100 form-control"
@@ -114,7 +128,7 @@ export default class Code extends React.Component {
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span>Contract Creation Code <i className="fa fa-braille"></i></span>
+                <span><i className="fa fa-braille"></i> Contract Creation Code</span>
                 <CopyText text={creationCode} className="ml-auto ml-1"/>
               </div>
               <textarea className="w-100 form-control"
