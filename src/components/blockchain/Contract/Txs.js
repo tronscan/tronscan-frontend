@@ -149,7 +149,7 @@ class Transactions extends React.Component {
     return (
       <Fragment>
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <div className="row transfers">
+        <div className="row">
           <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
