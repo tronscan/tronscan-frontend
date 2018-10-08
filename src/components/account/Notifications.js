@@ -77,13 +77,13 @@ class Notifications extends React.Component {
   }
 
   componentDidMount() {
-    // this.reconnect();
+    this.reconnect();
   }
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
     if (prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address) {
-      // this.reconnect();
+      this.reconnect();
     }
   }
 
@@ -91,54 +91,55 @@ class Notifications extends React.Component {
     let {wallet} = this.props;
 
     this.listener && this.listener.close();
+    console.log(1)
 
     if (!wallet.isOpen) {
       return;
     }
 
-    // this.listener = channel("/address-" + wallet.current.address);
-    // this.listener.on("transfer", trx => {
+    this.listener = channel("/address-" + wallet.current.address);
+    this.listener.on("transfer", trx => {
 
-    //   let amount = trx.amount;
-    //   if (trx.tokenName.toUpperCase() === "TRX") {
-    //     amount = amount / ONE_TRX;
-    //   }
+      let amount = trx.amount;
+      if (trx.tokenName.toUpperCase() === "TRX") {
+        amount = amount / ONE_TRX;
+      }
 
-    //   if (trx.transferToAddress === wallet.current.address) {
-    //     sendNotification(`Received ${amount} ${trx.tokenName} from ${trx.transferFromAddress}`, {
-    //       icon: require("../../images/tron-logo.jpg")
-    //     });
-    //   }
+      if (trx.transferToAddress === wallet.current.address) {
+        sendNotification(`Received ${amount} ${trx.tokenName} from ${trx.transferFromAddress}`, {
+          icon: require("../../images/tron-logo.jpg")
+        });
+      }
 
-    //   this.setState(state => ({
-    //     notifications: [{
-    //       id: this.id++,
-    //       type: "transfer",
-    //       ...trx,
-    //     }, ...state.notifications.slice(0, 9)]
-    //   }));
-    //   this.props.reloadWallet();
-    // });
+      this.setState(state => ({
+        notifications: [{
+          id: this.id++,
+          type: "transfer",
+          ...trx,
+        }, ...state.notifications.slice(0, 9)]
+      }));
+      this.props.reloadWallet();
+    });
 
 
-    // this.listener.on("vote", vote => {
-    //   if (vote.candidateAddress === wallet.current.address) {
-    //     sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
-    //       icon: require("../../images/tron-logo.jpg")
-    //     });
-    //     this.setState(state => ({
-    //       notifications: [{
-    //         id: this.id++,
-    //         type: "vote",
-    //         ...vote,
-    //       }, ...state.notifications.slice(0, 9)]
-    //     }));
-    //   }
-    // });
+    this.listener.on("vote", vote => {
+      if (vote.candidateAddress === wallet.current.address) {
+        sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
+          icon: require("../../images/tron-logo.jpg")
+        });
+        this.setState(state => ({
+          notifications: [{
+            id: this.id++,
+            type: "vote",
+            ...vote,
+          }, ...state.notifications.slice(0, 9)]
+        }));
+      }
+    });
 
-    // this.listener.on("witness-create", event => {
-    //   this.props.reloadWallet();
-    // });
+    this.listener.on("witness-create", event => {
+      this.props.reloadWallet();
+    });
   }
 
   componentWillUnmount() {
