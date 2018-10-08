@@ -1548,4 +1548,12 @@ h5 {
       color:#C23631;
     }
   }
+  .contract-code_body{
+    .contract-hide{
+      display: none;
+    }
+    .contract-show{
+      display: block;
+    }
+  }
 }
