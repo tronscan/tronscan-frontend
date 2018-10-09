@@ -268,7 +268,7 @@ class VerifyContractCode extends Component {
               </div>
             </div>
             <div className={currIndex == 0? "contract-hide":"contract-show"}>
-              <div className="card-body byte-code_ABI">
+              <div className="card-body byte-code_ABI contract-body">
                 <div className="row">
                   <div className="col-lg-12">
                     <span>{tu('note')}: </span>
@@ -279,16 +279,25 @@ class VerifyContractCode extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="pt-3">
+                  <div className="col-lg-12 pt-3 byte-code_error">
+                      <span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>
+                      <span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>
+                      <p>Unable to Verify Contract source code.</p>
+                  </div>
+                </div>
+                <hr/>
+                <div className="row">
+                  <div className="col-md-5 contract-input">
+                    <span>{tu("library_5_name")}:</span>
+
+                  </div>
+                  <div className="col-md-7 contract-input">
+                    <span>{tu("library_contract_address")}:</span>
 
                   </div>
                 </div>
               </div>
-
             </div>
-
-
-
           </div>
 
         </main>
