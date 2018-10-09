@@ -142,7 +142,7 @@ class Statistics extends React.Component {
         let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
             {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
-            {value: TRONFoundationTotal, name: 'foundation_freeze', selected: false,sliced: false},
+            {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
 
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
@@ -634,7 +634,7 @@ class Statistics extends React.Component {
                                                 </tr>
                                                 <tr>
                                                   <td style={{color:'red'}} className="go-foundation">
-                                                    <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("foundation_freeze")}</Link>
+                                                    <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
                                                   </td>
                                                   <td>
                                                       {foundationFreeze} TRX

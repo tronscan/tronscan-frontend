@@ -387,7 +387,7 @@ class TokenDetail extends React.Component {
                               <img className='token-logo' src={token.imgUrl}/> :
                               <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
-                          <div style={{width: '80%'}}>
+                          <div style={{width: '70%'}}>
                             <h5 className="card-title">
                               {token.name} ({token.abbr})
                             </h5>
@@ -395,9 +395,10 @@ class TokenDetail extends React.Component {
                           </div>
                           <div className="ml-auto">
                             {!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date()) &&
-                            <button className="btn btn-default btn-xs"
+                            <button className="btn btn-default btn-xs d-inline-block"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }
+                            <a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block ml-2">{tu("update_token")}</a>
                           </div>
                         </div>
                       </div>

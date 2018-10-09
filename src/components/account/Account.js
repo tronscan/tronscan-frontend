@@ -731,7 +731,6 @@ class Account extends Component {
   }
 
   render() {
-
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
     if (!wallet.isOpen || !currentWallet) {

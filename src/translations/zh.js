@@ -1013,7 +1013,13 @@ export const messages = {
   "blockchain_information": "区块链信息",
   "sr_information": "超级代表信息",
   "currency_information": "流通信息",
-  "your_vote":"票数"
-
+  "your_vote":"票数",
+  "total_number_frozenTRX":"锁仓TRX总数",
+  "tronics_support_planTRX":"Tronics支持计划锁仓TRX数",
+  "frozen_by_the_foundationTRX":"基金会锁仓TRX数",
+  "tronics_support_plan":"Tronics 支持计划",
+  "tronics_support_plan_recipient_address":"Tronics支持计划受赠地址",
+  "update_token":"更新通证",
+  "total_frozen": "冻结总量",
 
 };

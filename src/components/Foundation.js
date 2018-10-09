@@ -8,7 +8,8 @@ import {AddressLink} from "./common/Links";
 import {TronLoader} from "./common/loaders";
 import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
-
+import {trim} from "lodash";
+import {Tooltip} from "reactstrap";
 class Accounts extends Component {
 
   constructor() {
@@ -19,12 +20,14 @@ class Accounts extends Component {
       searchString: "",
       accounts: [],
       total: 0,
+      open: false,
     }
   }
 
   componentDidMount() {
     this.loadAccounts();
   }
+
 
   loadAccounts = async (page = 1, pageSize = 20) => {
 
@@ -45,7 +48,8 @@ class Accounts extends Component {
 
   renderAccounts() {
 
-    let {accounts, total, loadAccounts} = this.state;
+
+    let {accounts, total, loadAccounts,open} = this.state;
     let {intl} = this.props;
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' 1000 ' + intl.formatMessage({id: 'address_unit'})
 
@@ -65,7 +69,16 @@ class Accounts extends Component {
         align: 'left',
         render: (text, record, index) => {
           return (
-              <AddressLink address={text}/>
+              record.isPlan?  <div><div className="d-flex"
+                                        style={{width:300}}
+                                        id={"Tronics-Support-Plan_"+record.key}
+                                        onMouseOver={() => this.setState({open: true})}
+                                        onMouseOut={() => this.setState({open: false})}>
+                                        <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
+                                        <AddressLink address={text}/>
+                                    </div>
+                                    <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={open}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
+                              </div>:<AddressLink address={text}/>
           )
         }
       },
@@ -88,12 +101,13 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-                  <Table bordered={true} columns={column} dataSource={accounts} 
-                        onChange={(pagination) => {
-                          this.loadAccounts(pagination.current, pagination.pageSize)
-                        }}
-                        pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20, total:1000 }}/>
+                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
+                    <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" style={{color:'#C23631'}}>{tu('tronics_support_plan')}></a></div> : ''}
+                    <Table bordered={true} columns={column} dataSource={accounts}
+                           onChange={(pagination) => {
+                               this.loadAccounts(pagination.current, pagination.pageSize)
+                           }}
+                           pagination={{position: 'both', showSizeChanger: true,defaultPageSize:20, total:1000 }}/>
                 </div>
           }
         </div>
@@ -103,38 +117,52 @@ class Accounts extends Component {
   render() {
 
     let {match} = this.props;
-    let {total, loading} = this.state;
-
+    let {total, loading,planAddress} = this.state;
+    let tronicsPlanTRX = 0;
+    for(let plan in planAddress){
+        tronicsPlanTRX += planAddress[plan].balance
+    }
+    tronicsPlanTRX = Math.round(tronicsPlanTRX)
+    let foundationTRX =  Math.round(total - tronicsPlanTRX)
     return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row foundation_title">
-            <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 widget-icon">
-                <div className="card-body pl-5">
-                  <h3>
-                    <FormattedNumber value={1000}/>
-                  </h3>
-                  {tu("addresses_number")}
-                </div>
-              </div>
-            </div>
 
-            <div className="col-md-4 mt-3 mt-md-0 position-relative">
+            <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
-
-                <div className="card-body pl-5">
+                <div className="card-body pl-4 bg-image_book">
                   <h3>
                     <FormattedNumber value={total}/>
                   </h3>
-                  {tu("foundation_address")}
+                  {tu("total_number_frozenTRX")}
                 </div>
               </div>
             </div>
 
-            <div className="col-md-4 mt-3 mt-md-0">
+            <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
               <div className="card h-100 widget-icon">
+                <div className="card-body pl-4">
+                  <h3>
+                    <FormattedNumber value={tronicsPlanTRX}/>
+                  </h3>
+                  {tu("tronics_support_planTRX")}
+                </div>
+              </div>
+            </div>
 
-                <div className="card-body pl-5">
+            <div className="col-md-3 mt-3 mt-md-0 pr-0">
+              <div className="card h-100 widget-icon">
+                <div className="card-body pl-4 bg-image_home" >
+                  <h3>
+                    <FormattedNumber value={foundationTRX}/>
+                  </h3>
+                  {tu("frozen_by_the_foundationTRX")}
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3 mt-3 mt-md-0">
+              <div className="card h-100 widget-icon bg-line_green">
+                <div className="card-body pl-4 bg-image_frozen">
                   <h3>
                     2020/01/01
                   </h3>
@@ -143,6 +171,7 @@ class Accounts extends Component {
               </div>
             </div>
           </div>
+
 
           <div className="row mt-2">
             <div className="col-md-12">

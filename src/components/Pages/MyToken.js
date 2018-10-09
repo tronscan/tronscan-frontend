@@ -7,30 +7,45 @@ import {injectIntl} from "react-intl";
 import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
 import {API_URL} from "../../constants";
+import Address from '../addresses/Address';
+
 
 class MyToken extends Component {
   constructor() {
     super();
     this.state = {
       issuedAsset: null,
+      addressStatus: false
     };
   }
 
   componentDidMount() {
-    this.checkExistingToken();
+    let {wallet} = this.props;
+    const address = this.props.location.search && this.props.location.search.split('?address=')[1]
+    let walletAddress = '';
+    if(address){
+      walletAddress = address
+    }else if(wallet){
+      walletAddress = wallet.address
+    }else{
+      return false
+    }
+
+    this.setState({addressStatus: walletAddress})
+    walletAddress && this.checkExistingToken(walletAddress);
+   
   }
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
     if (wallet) {
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
-        this.checkExistingToken();
+        this.checkExistingToken(wallet.address);
       }
     }
   }
 
   checkExistingToken = () => {
-
     let {wallet} = this.props;
     if (wallet !== null) {
 
@@ -53,6 +68,7 @@ class MyToken extends Component {
        });
       */
     }
+
   };
 
   download = () => {
@@ -60,10 +76,10 @@ class MyToken extends Component {
   }
 
   render() {
-    let {issuedAsset} = this.state;
+    let {issuedAsset,addressStatus} = this.state;
     let {wallet} = this.props;
 
-    if (!wallet) {
+    if (!wallet && !addressStatus) {
       return (
           <main className="container pb-3 token-create header-overlap">
             <div className="row">
@@ -80,7 +96,7 @@ class MyToken extends Component {
           </main>
       );
     }
-    if (!issuedAsset) {
+    if (!addressStatus) {
       return (
           <main className="container pb-3 token-create header-overlap">
             <div className="row">
@@ -97,6 +113,7 @@ class MyToken extends Component {
           </main>
       );
     }
+    if(issuedAsset){
     return (
         <main className="container header-overlap news token_black mytoken">
           <div className="row">
@@ -104,7 +121,7 @@ class MyToken extends Component {
               <div className="card">
                 <div className="card-body">
                   <div className="news_unit">
-                    <h2>{tu('my_token')}</h2>
+                    <h2>{tu('update_token')}</h2>
                     <p>{tu("my_token_desc_1")}<a href="#/rating" style={{color: 'red'}}> "{tu('tron_rating')}"</a></p>
                     <p>{tu("my_token_desc_2")}</p>
                     <hr/>
@@ -163,7 +180,8 @@ class MyToken extends Component {
             </div>
           </div>
         </main>
-    )
+    )}
+    return <div></div>
   }
 }
 

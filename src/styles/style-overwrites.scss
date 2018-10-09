@@ -278,6 +278,8 @@ body .token_black {
     }
     .card-body{
       background: $white;
+      height: 100px;
+      font-size: 0.75rem;
     }
     span{
       color: $text-block-dark;
@@ -352,7 +354,7 @@ body .token_black {
   }
 
 @each $image in addr, balance, band, frozen, heightst, lock, lowst,
-nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest{
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest,home,book{
 
   .bg-image_#{$image}{
     position: relative;
@@ -363,7 +365,7 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       right: 0;
       bottom: 0;
       width: 50px;
-      background-image: url(../images/title-img/#{$image}.png);
+      background-image: url(../images/title-img/#{$image}.png)!important;
       background-size: 50px;
       background-repeat: no-repeat;
       background-position: center;
