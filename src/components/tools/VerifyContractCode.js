@@ -80,7 +80,7 @@ class VerifyContractCode extends Component {
                 }
               </ul>
             </div>
-            <div className={currIndex == 0? "contract-show":"contract-hide"} style={{display:"none"}}>
+            <div className={currIndex == 0? "contract-show":"contract-hide"}>
               <div className="card-body contract-body">
                 <div>
                   <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
@@ -267,7 +267,25 @@ class VerifyContractCode extends Component {
                 </div>
               </div>
             </div>
-            <div></div>
+            <div className={currIndex == 0? "contract-hide":"contract-show"}>
+              <div className="card-body byte-code_ABI">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <span>{tu('note')}: </span>
+                    <span>contract was creating during</span>
+                    &nbsp;&nbsp;
+                    <span>{tu('txn')}: </span>
+                    <span>a3NmH1enpu4X5Hur8Z16eCyNymTqKXQDP</span>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="pt-3">
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
 
 
 

@@ -1475,6 +1475,7 @@ h5 {
 }
 .contract-body-input{
   padding: 2rem;
+  padding-bottom: 4rem;
   section{
     label{
       color: #666666;
@@ -1549,13 +1550,14 @@ h5 {
       color:#C23631;
     }
   }
-  .contract-code_body{
-    .contract-hide{
-      display: none;
-    }
-    .contract-show{
-      display: block;
-    }
+
+}
+.contract-code_body{
+  .contract-hide{
+    display: none;
+  }
+  .contract-show{
+    display: block;
   }
 }
 .contract-header{
@@ -1615,5 +1617,9 @@ h5 {
   }
   &-out{
     background: #E0AE5c;
+  }
+
+  .byte-code_ABI{
+
   }
 }
