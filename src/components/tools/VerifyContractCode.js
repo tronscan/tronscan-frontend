@@ -268,7 +268,7 @@ class VerifyContractCode extends Component {
               </div>
             </div>
             <div className={currIndex == 0? "contract-hide":"contract-show"}>
-              <div className="card-body byte-code_ABI contract-body">
+              <div className="card-body byte-code_ABI contract-body pb-5">
                 <div className="row">
                   <div className="col-lg-12">
                     <span>{tu('note')}: </span>
@@ -286,15 +286,62 @@ class VerifyContractCode extends Component {
                   </div>
                 </div>
                 <hr/>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>Compiler Test:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>V0.4.23</span>
+                  </div>
+                </div>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>Optimization Enabled:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>0</span>
+                  </div>
+                </div>
                 <div className="row">
-                  <div className="col-md-5 contract-input">
-                    <span>{tu("library_5_name")}:</span>
-
+                  <div className="col-lg-12 pt-3">
+                    <span>Constructor Arguements Used (ABI-encoded):</span>
                   </div>
-                  <div className="col-md-7 contract-input">
-                    <span>{tu("library_contract_address")}:</span>
-
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <input type="text" className="form-control"/>
                   </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractName:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <input type="text" className="form-control"/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractBytecode:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <textarea className="w-100 form-control mt-3"
+                              rows="11"
+                              value={abi}
+                              onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractABI:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <textarea className="w-100 form-control mt-3"
+                              rows="6"
+                              value={abi}
+                              onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="float-left pt-3 pb-3">
+                  <button type="button" className="btn btn-lg btn-start-over text-capitalize">Start Over</button>
                 </div>
               </div>
             </div>

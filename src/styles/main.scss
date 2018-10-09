@@ -1618,11 +1618,32 @@ h5 {
   &-out{
     background: #E0AE5c;
   }
-
-  .byte-code_ABI{
-     padding-top: 2rem;
+}
+.byte-code_ABI{
+  padding-top: 2rem;
+  textarea{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: #F3F3F3;
+  }
+  .form-control{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: #F3F3F3;
+    display: inline-block;
+  }
+  .form-control:focus{
+    box-shadow:none;
+    background-color: #F3F3F3;
   }
   .byte-code_error{
     color:#e60815
   }
+  .btn-start-over{
+    background: #AFB9C9;
+  }
+
 }
+
