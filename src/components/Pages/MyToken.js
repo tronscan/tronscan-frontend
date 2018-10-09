@@ -45,30 +45,15 @@ class MyToken extends Component {
     }
   }
 
-  checkExistingToken = () => {
-    let {wallet} = this.props;
-    if (wallet !== null) {
+  checkExistingToken = (walletAddress) => {
+      xhr.get(API_URL+"/api/token?owner=" + walletAddress).then((result) => {
+          if (result.data.data[0]) {
+              this.setState({
+                  issuedAsset: result.data.data[0],
+              });
+          }
 
-      xhr.get(API_URL+"/api/token?owner=" + wallet.address).then((result) => {
-        if (result.data.data[0]) {
-          this.setState({
-            issuedAsset: result.data.data[0],
-          });
-        }
       });
-
-
-      /*
-      Client.getIssuedAsset(wallet.address).then(({token}) => {
-         if (token) {
-           this.setState({
-             issuedAsset: token,
-           });
-         }
-       });
-      */
-    }
-
   };
 
   download = () => {

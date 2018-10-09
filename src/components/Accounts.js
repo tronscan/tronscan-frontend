@@ -35,16 +35,17 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
-    let { accounts, total } = await Client.getAccounts({
+    let { accounts } = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
+    let { txOverviewStats } = await Client.getTxOverviewStats();
 
     this.setState({
       loading: false,
       accounts: accounts,
-      total: total
+      total: txOverviewStats[txOverviewStats.length-1].totalAddress
     });
   };
 
