@@ -30,16 +30,49 @@ class Accounts extends Component {
 
 
   loadAccounts = async (page = 1, pageSize = 20) => {
-
+    let planAddress = [
+        {
+            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV'
+        }
+    ]
     this.setState({loading: true});
 
-    let data = await xhr.get("https://server.tron.network/api/v2/node/balance?page_index=" + page +"&per_page="+pageSize);
+    //let data = await xhr.get("https://server.tron.network/api/v2/node/balance?page_index=" + page +"&per_page="+pageSize);
 
+    let random = Math.random();
+    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
+
+    function compare(property) {
+        return function (obj1, obj2) {
+
+            if (obj1[property] > obj2[property]) {
+                return 1;
+            } else if (obj1[property] < obj2[property]) {
+                return -1;
+            } else {
+                return 0;
+            }
+
+        }
+    }
+    data.data.data.sort(compare('key'));
+    let foundationAddress  = data.data.data
+    for(let item in foundationAddress){
+        for(let address in planAddress){
+            if(foundationAddress[item].address === planAddress[address].address){
+                foundationAddress[item].isPlan= true;
+                planAddress[address].balance = parseFloat(trim(foundationAddress[item].balance.split('TRX')[0]));
+            }
+        }
+    }
     this.setState({
-      loading: false,
-      accounts: data.data.data,
-      total: data.data.total
+        loading: false,
+        accounts: foundationAddress,
+        total: data.data.total,
+        planAddress:planAddress
     });
+
+
   };
 
   componentDidUpdate() {
