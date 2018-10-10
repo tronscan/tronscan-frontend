@@ -203,7 +203,7 @@ function Row({account, showSync = true, index, state, props}) {
   return (
       <tr key={account.address}
           className={(account.index > 26) ? 'represent__table__lighter' : 'represent__table__content'}>
-        <td className="text-center" style={{paddingLeft: '14px'}}>{account.index + 1}</td>
+        <td className="text-center" style={{paddingLeft: '14px'}}>{index + 1}</td>
         <td>
           {
             account.name ?
