@@ -1066,7 +1066,8 @@ export const messages = {
   "library_4_name":"Library_4 Name",
   "library_5_name":"Library_5 Name",
   "library_contract_address":"Library Contract Address",
-  "verify_and_publish":"Verify And Publish"
+  "verify_and_publish":"Verify And Publish",
+  "txn":"txn"
 
 
 

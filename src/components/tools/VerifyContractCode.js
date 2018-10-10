@@ -80,7 +80,7 @@ class VerifyContractCode extends Component {
                 }
               </ul>
             </div>
-            <div className={currIndex == 0? "contract-show":"contract-hide"} style={{display:"none"}}>
+            <div className={currIndex == 0? "contract-show":"contract-hide"}>
               <div className="card-body contract-body">
                 <div>
                   <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
@@ -267,10 +267,84 @@ class VerifyContractCode extends Component {
                 </div>
               </div>
             </div>
-            <div></div>
-
-
-
+            <div className={currIndex == 0? "contract-hide":"contract-show"}>
+              <div className="card-body byte-code_ABI contract-body pb-5">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <span>{tu('note')}: </span>
+                    <span>contract was creating during</span>
+                    &nbsp;&nbsp;
+                    <span>{tu('txn')}: </span>
+                    <span>a3NmH1enpu4X5Hur8Z16eCyNymTqKXQDP</span>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3 byte-code_error">
+                      <span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>
+                      <span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>
+                      <p>Unable to Verify Contract source code.</p>
+                  </div>
+                </div>
+                <hr/>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>Compiler Test:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>V0.4.23</span>
+                  </div>
+                </div>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>Optimization Enabled:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>0</span>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>Constructor Arguements Used (ABI-encoded):</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <input type="text" className="form-control"/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractName:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <input type="text" className="form-control"/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractBytecode:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <textarea className="w-100 form-control mt-3"
+                              rows="11"
+                              value={abi}
+                              onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>ContractABI:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <textarea className="w-100 form-control mt-3"
+                              rows="6"
+                              value={abi}
+                              onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="float-left pt-3 pb-3">
+                  <button type="button" className="btn btn-lg btn-start-over text-capitalize">Start Over</button>
+                </div>
+              </div>
+            </div>
           </div>
 
         </main>
