@@ -140,7 +140,7 @@ class TokenList extends Component {
             <SweetAlert
                 info
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
@@ -162,7 +162,7 @@ class TokenList extends Component {
         alert: (
             <SweetAlert
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px', left: "50%"}}
             >
               <div className="mt-5 token-sweet-alert" style={{textAlign:'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
@@ -434,7 +434,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)

@@ -560,11 +560,11 @@ class VoteOverview extends React.Component {
                             </Sticky>
                         }
 
-                        <div className="table-responsive">
+                        <div className="table-responsive table-scroll">
                           <table className="table vote-table table-hover m-0">
                             <thead className="thead-light">
                             <tr>
-                              <th className="d-none d-sm-table-cell text-center" style={{width: 50}}>#</th>
+                              <th className="text-center" style={{width: 50}}>#</th>
                               <th>{tu("name")}</th>
 
                               <th className="text-right" style={{width: 150}}>{tu("votes")}</th>
@@ -593,15 +593,15 @@ class VoteOverview extends React.Component {
                                         <tr key={candidate.address}>
                                           {
                                             viewStats ?
-                                                <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center"
+                                                <th className="font-weight-bold pt-4 text-center"
                                                     style={{backgroundColor: "#" + colors[candidate.rank]}}>
                                                   {candidate.realTimeRanking}
                                                 </th> :
-                                                <th className="font-weight-bold d-none d-sm-table-cell pt-4 text-center">
+                                                <th className="font-weight-bold pt-4 text-center">
                                                   {candidate.realTimeRanking}
                                                 </th>
                                           }
-                                          <td className="d-flex flex-column flex-sm-row ">
+                                          <td className="d-flex flex-row ">
                                             <div className="text-center text-sm-left">
                                               <Truncate>
                                                 <AddressLink address={candidate.address}

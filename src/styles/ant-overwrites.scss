@@ -64,11 +64,18 @@
             border-radius: 1px;
         }
         .ant-pagination-item,
+        .ant-pagination-prev,
+        .ant-pagination-next,
         .ant-pagination-prev .ant-pagination-item-link,
         .ant-pagination-next .ant-pagination-item-link,
         .ant-pagination-jump-prev,
         .ant-pagination-jump-next {
+            box-sizing: content-box;
             @extend %pagination-default;
+        }
+        .ant-pagination-prev .ant-pagination-item-link,
+        .ant-pagination-next .ant-pagination-item-link{
+            border: none!important;
         }
         .ant-pagination-prev .ant-pagination-item-link:after,
         .ant-pagination-next .ant-pagination-item-link:after {
@@ -121,6 +128,7 @@
             }
         }
     }
+    
 
     // 全局ant-steps样式覆盖 ===============================
     .ant-steps {
@@ -158,6 +166,26 @@
         &-inner{
             width: 3em;
             text-align: center;
+        }
+        
+    }
+
+    @media screen and (max-width: 750px) {
+        .ant-table { 
+            overflow-x: auto;
+            &-content{
+                width: 1000px;
+            }
+        }
+
+        .ant-pagination {
+            font-size: 10px;
+            text-align: center;
+            %pagination-default {
+                height: 26px;
+                line-height: 26px;
+                min-width: 26px;
+            }
         }
         
     }

@@ -107,7 +107,7 @@ export class AddressLink extends React.PureComponent {
 
   render() {
 
-    let {address = null, width = -1, children, showQrCode = false, wrapClassName, includeCopy = false, truncate = true, className = "", ...props} = this.props;
+    let {isContract = false, address = null, width = -1, children, showQrCode = false, wrapClassName, includeCopy = false, truncate = true, className = "", ...props} = this.props;
     let {modal, random} = this.state;
 
     let style = {};
@@ -118,13 +118,23 @@ export class AddressLink extends React.PureComponent {
 
     let wrap = (
         <Fragment>
-          <Link
-              to={`/address/${address}`}
-              style={style}
-              className={"address-link text-nowrap " + className}
-              {...props}>
-            {children ? children : address}
-          </Link>
+          {
+            !isContract ?
+              <Link
+                  to={`/address/${address}`}
+                  style={style}
+                  className={"address-link text-nowrap " + className}
+                  {...props}>
+                {children ? children : address}
+              </Link> :
+              <Link
+                  to={`/contract/${address}`}
+                  style={style}
+                  className={"address-link text-nowrap " + className}
+                  {...props}>
+                {children ? children : address}
+              </Link>
+          }
           {
             includeCopy &&
             <CopyText text={address} className="ml-1"/>

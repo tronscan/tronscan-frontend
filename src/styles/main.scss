@@ -106,7 +106,7 @@ a {
 
 @include media-breakpoint-down(sm) {
   body {
-    font-size: 1rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -672,6 +672,11 @@ th {
   cursor: pointer;
 }
 
+.contract > .card > .card-body p{
+  color:gray;
+  margin:auto 0;
+}
+
 ._confirm_button {
   margin-right: 0px !important;
 }
@@ -763,7 +768,8 @@ th {
   .nav-item .account-dropdown-menu {
     position: absolute;
     float: none;
-    left: -275px;
+    left: auto;
+    right: -16px;
   }
   .nav-item .wallet-notifications {
     position: absolute;
@@ -1454,3 +1460,145 @@ h5 {
   //margin-top: -100px;
 }
 
+.table-scroll{
+  overflow-x: auto!important;
+
+  .card, table{
+    width: 800px!important;
+  }
+}
+.contract-body{
+  padding: 2rem;
+  .contract-title{
+    color: #333333;
+    font-size: 16px;
+    margin-bottom:1.25rem;
+  }
+  p{
+    color: #666666!important;
+    font-size: 13px;
+    line-height:20px;
+    margin-top: 8px!important;
+  }
+  hr{
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.contract-body-input{
+  padding: 2rem;
+  section{
+    label{
+      color: #666666;
+      font-size: 1rem;
+      line-height: 22px;
+      margin-bottom: 1rem;
+    }
+    input,select{
+      border: 0;
+      outline: none;
+      border-radius: 0;
+      background-color: #F3F3F3;
+    }
+    .form-control{
+      padding: 0.475rem 0.75rem;
+    }
+
+    .form-control:focus{
+      box-shadow:none;
+      background-color: #F3F3F3;
+    }
+    .custom-select:focus{
+      box-shadow:none;
+      background-color: #F3F3F3;
+    }
+  }
+  .contract-code,.contract-ABI{
+    span{
+      color: #666666;
+    }
+    textarea{
+      border: 0;
+      outline: none;
+      border-radius: 0;
+      background-color: #F3F3F3;
+    }
+    .contract-input{
+      background-color: #F3F3F3;
+      margin-top: 1rem;
+      padding-right: 35px!important;
+      input{
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        background-color: #F3F3F3;
+        display: inline-block;
+      }
+      .form-control:focus{
+        box-shadow:none;
+        background-color: #F3F3F3;
+      }
+      .contract-input-s{
+        width: 70%;
+      }
+      .contract-input-l{
+        width: 70%;
+      }
+    }
+    .col-md-7{
+      margin-left: 20px;
+      margin-right: -20px;
+    }
+  }
+  .btn-verify{
+    background-color:#C23631;
+    border-color:#C23631;
+  }
+  .btn-reset{
+    background-color:#ffffff;
+    border-color:#C23631;
+    span{
+      color:#C23631;
+    }
+  }
+}
+
+.information-bg{
+  background: #fff;
+  padding: 0 20px;
+
+  &-item{
+    display: flex;
+    height: 45px;
+    line-height: 1.4em;
+    width: 45%;
+    float: left;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+
+    &.ml{
+      margin-left: 10%;
+    }
+    &>span{
+      display: block;
+      width: 120px;
+      font-weight: bold;
+      color: #666;
+    }
+    &>p{
+      flex: 1;
+      margin: 0!important;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .information-bg{
+    &-item{
+      width: 100%;
+      &.ml{
+        margin-left: 0;
+      }
+    }
+  }
+  
+}

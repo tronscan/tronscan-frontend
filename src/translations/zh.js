@@ -830,6 +830,10 @@ export const messages = {
   "address_growth": "地址增长",
   "power": "投票权",
   "token_transfers": "通证转账",
+  "search": "搜索",
+  "inter_tnxl":"合约内部交易",
+  "inter_a_total":"共找到",
+  "inter_transactions_found":"个内部交易",
   "website_url": "官方网站",
   "language_support": "目前只支持英文输入",
   "note": "备注",
@@ -1027,5 +1031,4 @@ export const messages = {
   "create_to_address":"被创建账号地址",
   "proposal_create_contract":"创建提议合约",
   "proposal_create":"创建提议",
-
 };

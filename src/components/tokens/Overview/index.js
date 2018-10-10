@@ -432,7 +432,7 @@ class TokenOverview extends Component {
             <div className="row">
 
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             rowClassName="table-row" onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize)

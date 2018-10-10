@@ -134,7 +134,7 @@ class Accounts extends Component {
                 </div>
                 :
                 <div className="card table_pos">
-                  {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
+                  {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
                     <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" style={{color:'#C23631'}}>{tu('tronics_support_plan')}></a></div> : ''}
                     <Table bordered={true} columns={column} dataSource={accounts}
                            onChange={(pagination) => {

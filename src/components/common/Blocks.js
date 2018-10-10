@@ -121,7 +121,7 @@ export default class Blocks extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
           <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)

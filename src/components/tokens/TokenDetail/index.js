@@ -8,6 +8,7 @@ import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
+import {Information} from "./Information.js";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
@@ -358,15 +359,6 @@ class TokenDetail extends React.Component {
 
     let {match, wallet} = this.props;
     let {token, tabs, loading, buyAmount, alert} = this.state;
-    let social_display = 0;
-
-
-    token && token['social_media'] && token['social_media'].map((media, index) => {
-      if (media.url) {
-        social_display++;
-      }
-    })
-    let lowerText = toLower(token.reputation) + '_active.png';
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
@@ -402,97 +394,7 @@ class TokenDetail extends React.Component {
                           </div>
                         </div>
                       </div>
-
-                      <table className="table m-0 tokenDetail ">
-                        <tbody>
-                        <tr>
-                          <th>{tu("total_supply")}:</th>
-                          <td>
-                            <FormattedNumber value={token.totalSupply}/>
-                          </td>
-                          <th>{tu("reputation")}:</th>
-                          <td>
-                            <Link to={`/rating`}
-                                  style={{display: 'flex', alignItems: 'center'}}>{tu(token.reputation)}<img
-                                src={require('../../../images/state/' + lowerText)}
-                                className="ml-1 faceico"/></Link>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("circulating_supply")}:</th>
-                          <td>
-                            <FormattedNumber value={token.issued}/>
-                          </td>
-                          <th>{tu("website")}:</th>
-                          <td>
-                            <ExternalLink url={token.url}/>
-                          </td>
-
-                        </tr>
-                        <tr>
-                          <th>{tu("token_holders")}:</th>
-                          <td>
-                            <FormattedNumber value={token.nrOfTokenHolders}/>
-                          </td>
-                          <th>{tu("issuer")}:</th>
-                          <td>
-                            <AddressLink address={token.ownerAddress}/>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("nr_of_Transfers")}:</th>
-                          <td>
-                            <FormattedNumber value={token.totalTransactions}/>
-                          </td>
-                          <th>{tu("white_paper")}:</th>
-                          <td>{
-                            token.white_paper !== 'no_message' ?
-                                <ExternalLink url={token.white_paper && tu(token.white_paper)}
-                                              _url={token.white_paper}/> :
-                                <span style={{color: '#d8d8d8'}}>-</span>
-                          }
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("created")}:</th>
-                          <td>
-                            <FormattedDate value={token.dateCreated}/>{' '}
-                            <FormattedTime value={token.dateCreated}/>
-                          </td>
-                          <th>{tu("GitHub")}:</th>
-                          <td>{
-                            token.github !== 'no_message' ?
-                                <ExternalLink url={token.github && tu(token.github)} _url={token.github}/> :
-                                <span style={{color: '#d8d8d8'}}>-</span>
-                          }
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{tu("contract_address")}:</th>
-                          <td>
-                            <span style={{color: '#d8d8d8'}}>-</span>
-                          </td>
-                          <th>{tu("social_link")}:</th>
-                          <td>
-                            <div className="d-flex">
-                              {token['social_media'] && token['social_media'].map((media, index) => {
-                                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
-                                      <a href={media.url}><img
-                                          src={require('../../../images/' + media.name + '.png')}/></a>
-                                    </div>
-                                )
-                              })
-                              }
-                              {
-                                !social_display &&
-                                <span style={{color: '#d8d8d8'}}>-</span>
-                              }
-                            </div>
-                          </td>
-                        </tr>
-
-                        </tbody>
-                      </table>
+                      <Information token={token}></Information>
                     </div>
 
                     <div className="card mt-3 border_table">

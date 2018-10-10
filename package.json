@@ -82,6 +82,8 @@
     "query-string": "^6.0.0",
     "raf": "3.4.0",
     "react": "^16.3.2",
+    "react-ace": "^6.1.4",
+    "react-ace-editor": "0.0.2",
     "react-async-component": "^2.0.0",
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-bs-notifier": "^5.0.0",

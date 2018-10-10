@@ -8,6 +8,7 @@ import {
   MarketsAsync,
   StatisticsAsync,
   SingleChartAsync,
+  VerifyContractCodeAsync,
   TransactionViewerAsync,
   VoteLiveAsync,
   VoteOverviewAsync,
@@ -35,7 +36,11 @@ import {
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
+import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
+import Contracts from "./components/blockchain/Contracts";
+import SmartContract from "./components/blockchain/Contract";
+
 import {Redirect} from "react-router-dom";
 
 export const routes = [
@@ -77,6 +82,12 @@ export const routes = [
         component: AccountsAsync,
       },
       {
+        path: "/blockchain/contracts",
+        label: "contracts",
+        icon: "fa fa-file",
+        component: Contracts,
+      },
+      {
         label: "statistics",
         icon: `fa fa-chart-pie`,
         path: "/blockchain/stats",
@@ -95,6 +106,12 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync,
         showInMenu: false
+      },
+      {
+        label: "inter_tnxl",
+        icon: `fa fa-random`,
+        path: "/blockchain/ContractInter",
+        component: ContractInter
       },
       {
         path: "/blockchain/foundation",
@@ -132,6 +149,12 @@ export const routes = [
     path: "/address/:id",
     label: "address",
     component: Address,
+    showInMenu: false,
+  },
+  {
+    path: "/contract/:id",
+    label: "contract",
+    component: SmartContract,
     showInMenu: false,
   },
   {
@@ -215,6 +238,12 @@ export const routes = [
     label: "tools",
     icon: "fa fa-wrench",
     routes: [
+      {
+        label: "verify_contract_code",
+        path: "/tools/verify-contract-code",
+        icon: "fa fa-check-square",
+        component: VerifyContractCodeAsync,
+      },
       {
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",

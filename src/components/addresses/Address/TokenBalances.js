@@ -47,8 +47,8 @@ export function TokenBalances({tokenBalances, intl}) {
 
   return (
       <div className="token_black table_pos">
-        {tokenBalances.length ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-        <SmartTable bordered={true} column={column} data={balances} total={balances.length}/>
+        {tokenBalances.length ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+        <SmartTable bordered={true} column={column} data={tokenBalances} total={tokenBalances.length}/>
       </div>
   )
 }
