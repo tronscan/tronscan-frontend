@@ -7,7 +7,36 @@ import {tu} from "../../../utils/i18n";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 
 export default function Contract({contract}) {
+    let parametersArr = [
+        'MAINTENANCE_TIME_INTERVAL',
+        'ACCOUNT_UPGRADE_COST',
+        'CREATE_ACCOUNT_FEE',
+        'TRANSACTION_FEE',
+        'ASSET_ISSUE_FEE',
+        'WITNESS_PAY_PER_BLOCK',
+        'WITNESS_STANDBY_ALLOWANCE',
+        'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT',
+        'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE',
+        'ALLOW_CREATION_OF_CONTRACTS',
+        'REMOVE_THE_POWER_OF_THE_GR',
+        'ENERGY_FEE',
+        'EXCHANGE_CREATE_FEE',
+        'MAX_CPU_TIME_OF_ONE_TX',
+        'ALLOW_UPDATE_ACCOUNT_NAME',
+        'ALLOW_SAME_TOKEN_NAME'
+    ];
+    let proposal,proposalVal;
+    if(contract.parameters){
+        for(let item in contract.parameters){
+            for(let i in parametersArr){
+                if(item === i){
+                     proposal = parametersArr[item];
+                     proposalVal = contract.parameters[item]
+                }
+            }
+        }
 
+    }
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -127,11 +156,29 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="account_name">{contract.name}</Field>
+                <Field label="account_name">{contract['account_name']}</Field>
               </tbody>
             </table>
           </Fragment>
       );
+      case "ACCOUNTCREATECONTRACT":
+          return (
+              <Fragment>
+                  <div className="card-body table-title">
+                      <h5>
+                          <i className="fa fa-exchange-alt"></i>
+                          {tu("account_create_contract")}
+                          <small>{tu("account_create")}</small>
+                      </h5>
+                  </div>
+                  <table className="table">
+                      <tbody>
+                      <Field label="create_from_address"><AddressLink address={contract['owner_address']}/></Field>
+                      <Field label="create_to_address"><AddressLink address={contract['account_address']}/></Field>
+                      </tbody>
+                  </table>
+              </Fragment>
+          );
     case "WITHDRAWBALANCECONTRACT":
       return (
           <Fragment>
@@ -245,16 +292,46 @@ export default function Contract({contract}) {
             </table>
           </Fragment>
       );
-
+      case "PROPOSALCREATECONTRACT":
+          return (
+              <Fragment>
+                  <div className="card-body table-title">
+                      <h5>
+                          <i className="fa fa-exchange-alt"></i>
+                          {tu("proposal_create_contract")}
+                          <small>{tu("proposal_create")}</small>
+                      </h5>
+                  </div>
+                  <table className="table">
+                      <tbody>
+                      <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                      <tr>
+                          <th>{proposal}</th>
+                          <td>{proposalVal}</td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </Fragment>
+          );
     default:
       return (
           <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">#</h5>
-              <p>
-                contract not found
-              </p>
-            </div>
+              <div className="card-body table-title">
+                  <h5>
+                      <i className="fa fa-exchange-alt"></i>
+                      &nbsp;&nbsp;
+                      {contract.contractType}
+                  </h5>
+              </div>
+              <table className="table">
+                  <tbody>
+                  {
+                      contract['owner_address']?
+                          <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                          :''
+                  }
+                  </tbody>
+              </table>
           </Fragment>
       );
   }

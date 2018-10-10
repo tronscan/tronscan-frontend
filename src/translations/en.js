@@ -1031,6 +1031,10 @@ export const messages = {
   "tronics_support_plan_recipient_address":"Tronics Support Plan recipient address",
   "update_token":"Update Token",
   "total_frozen": "Total Frozen",
-
-
+  "account_create_contract":"Account Create Contract",
+  "account_create":"Create account",
+  "create_from_address": "Initiate Contract Address",
+  "create_to_address":"Created Account Address",
+  "proposal_create_contract":"Proposal Create Contract",
+  "proposal_create":"Create proposal"
 };

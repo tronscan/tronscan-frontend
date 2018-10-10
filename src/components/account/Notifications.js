@@ -91,7 +91,6 @@ class Notifications extends React.Component {
     let {wallet} = this.props;
 
     this.listener && this.listener.close();
-    console.log(1)
 
     if (!wallet.isOpen) {
       return;
