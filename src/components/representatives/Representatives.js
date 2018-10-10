@@ -65,7 +65,7 @@ class Representatives extends Component {
               <th className="text-center text-nowrap">{tu("status")}</th>
               <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("last_block")}</th>
               <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("blocks_produced")}</th>
-              <th className="text-center text-nowrap d-none d-xl-table-cell">{tu("blocks_missed")}</th>
+              <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("blocks_missed")}</th>
               {/* <th className="text-center text-nowrap">{tu("transactions")}</th> */}
               <th className="text-center text-nowrap">{tu("productivity")}</th>
               <th className="text-right text-nowrap">{tu("votes")}</th>
@@ -234,7 +234,7 @@ function Row({account, showSync = true, index, state, props}) {
         <td className="text-center d-none d-lg-table-cell">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-center d-none d-xl-table-cell">
+        <td className="text-center d-none d-lg-table-cell">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
