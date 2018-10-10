@@ -1024,7 +1024,7 @@ export const messages = {
   "tronics_support_plan":"Tronics 支持计划",
   "tronics_support_plan_recipient_address":"Tronics支持计划受赠地址",
   "update_token":"更新通证",
-  "total_frozen": "基金会储备",
+  "total_frozen": "基金会持有",
   "account_create_contract":"账户创建合约",
   "account_create":"创建账户",
   "create_from_address": "发起合约地址",
