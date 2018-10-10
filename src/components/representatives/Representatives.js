@@ -56,17 +56,17 @@ class Representatives extends Component {
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
     return (
-        <div className="card border-0 represent__table">
+        <div className="card border-0 represent__table w-1000">
           <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
             <thead className="thead-dark">
             <tr>
-              <th className="text-center" style={{width: 20}}>#</th>
-              <th style={{width: 60}}>{tu("name")}</th>
+              <th className="text-center" >#</th>
+              <th >{tu("name")}</th>
               <th className="text-center text-nowrap">{tu("status")}</th>
-              <th className="text-center text-nowrap ">{tu("last_block")}</th>
-              <th className="text-center text-nowrap ">{tu("blocks_produced")}</th>
-              <th className="text-center text-nowrap">{tu("blocks_missed")}</th>
-              <th className="text-center text-nowrap">{tu("transactions")}</th>
+              <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("last_block")}</th>
+              <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("blocks_produced")}</th>
+              <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("blocks_missed")}</th>
+              {/* <th className="text-center text-nowrap">{tu("transactions")}</th> */}
               <th className="text-center text-nowrap">{tu("productivity")}</th>
               <th className="text-right text-nowrap">{tu("votes")}</th>
 
@@ -188,8 +188,8 @@ class Representatives extends Component {
             }
           </div>
 
-          <div className="row mt-3">
-            <div className="col-md-12 table-scroll">
+          <div className=" mt-3">
+            <div className=" table-scroll">
               {this.renderWitnesses(witnesses)}
             </div>
           </div>
@@ -207,7 +207,7 @@ function Row({account, showSync = true, index, state, props}) {
         <td>
           {
             account.name ?
-                <div className="_context_right_click" style={{width: '250px'}}>
+                <div className="_context_right_click" style={{width: '200px'}}>
                   <AddressLink address={account.address}>
                     {account.name}<br/>
                     <span className="small text-muted">{account.url}</span>
@@ -228,26 +228,26 @@ function Row({account, showSync = true, index, state, props}) {
                 }
               </td> : <td>&nbsp;</td>
         }
-        <td className="text-center">
+        <td className="text-center  d-none d-lg-table-cell">
           <BlockNumberLink number={account.latestBlockNumber}/>
         </td>
-        <td className="text-center">
+        <td className="text-center d-none d-lg-table-cell">
           <FormattedNumber value={account.producedTotal}/>
         </td>
-        <td className="text-center">
+        <td className="text-center d-none d-lg-table-cell">
           {
             account.missedTotal !== 0 ?
                 <FormattedNumber value={account.missedTotal}/> :
                 '-'
           }
         </td>
-        <td className="text-center">
+        {/* <td className="text-center">
           {
             account.producedTrx !== 0 ?
                 <FormattedNumber value={account.producedTrx}/> :
                 '-'
           }
-        </td>
+        </td> */}
         <td className="text-center">
           {
             account.producedTotal > 0 ? (
@@ -264,7 +264,7 @@ function Row({account, showSync = true, index, state, props}) {
         <td className="text-right">
           {
             <Fragment>
-              <FormattedNumber value={account.votes}/>
+              <FormattedNumber value={account.votes}/><br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

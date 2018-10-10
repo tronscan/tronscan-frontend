@@ -1594,12 +1594,14 @@ h5 {
       }
     }
   }
-
   .table-scroll{
     overflow-x: auto!important;
-
+  
     .card, table{
       width: 800px!important;
+    }
+    .w-1000, .w-1000 table{
+      width: 1000px!important;
     }
   }
 }
