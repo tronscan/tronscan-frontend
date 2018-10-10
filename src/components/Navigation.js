@@ -208,7 +208,7 @@ class Navigation extends PureComponent {
       window.location.hash = result;
       this.setState({search: ""});
     } else {
-      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
+      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
     }
   };
 

@@ -13,6 +13,7 @@ import Contract from "../../tools/TransactionViewer/Contract";
 import {ContractTypes} from "../../../utils/protocol";
 import {trim} from "lodash";
 import {hextoString} from "@tronscan/client/src/utils/bytes";
+import {Alert} from "reactstrap";
 
 class Transaction extends React.Component {
 
@@ -21,6 +22,7 @@ class Transaction extends React.Component {
 
     this.state = {
       loading: true,
+      notFound: false,
       transaction: {
         hash: -1,
         timestamp: 0,
@@ -44,7 +46,6 @@ class Transaction extends React.Component {
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
-
     if (match.params.hash !== prevProps.match.params.hash) {
       this.load(match.params.hash);
     }
@@ -55,7 +56,13 @@ class Transaction extends React.Component {
     this.setState({loading: true, transaction: {hash: id}});
 
     let transaction = await Client.getTransactionByHash(id);
-
+    console.log('transaction',transaction)
+    if (!transaction['hash']) {
+        this.setState({
+            notFound: true,
+        });
+        return;
+    }
     this.setState({
       loading: false,
       transaction,
@@ -78,9 +85,17 @@ class Transaction extends React.Component {
 
   render() {
 
-    let {transaction, tabs, loading} = this.state;
+    let {transaction, tabs, loading,notFound} = this.state;
     let {match} = this.props;
-
+    if (notFound) {
+        return (
+            <main className="container header-overlap">
+              <Alert color="warning" className="text-center">
+                  {tu('transaction_not_found')}
+              </Alert>
+            </main>
+        );
+    }
     return (
         <main className="container header-overlap">
           {

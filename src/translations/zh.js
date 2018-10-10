@@ -1024,12 +1024,15 @@ export const messages = {
   "tronics_support_plan":"Tronics 支持计划",
   "tronics_support_plan_recipient_address":"Tronics支持计划受赠地址",
   "update_token":"更新通证",
-  "total_frozen": "冻结总量",
+  "total_frozen": "基金会储备",
   "account_create_contract":"账户创建合约",
   "account_create":"创建账户",
   "create_from_address": "发起合约地址",
   "create_to_address":"被创建账号地址",
   "proposal_create_contract":"创建提议合约",
   "proposal_create":"创建提议",
-  "available_balance":"可用余额"
+  "available_balance":"可用余额",
+  "block_not_found":" 对不起，无法找到该区块。",
+  "transaction_not_found":"对不起，无法找到该交易。",
+  "search_not_found":"对不起，无法找到您输入的搜索内容。"
 };

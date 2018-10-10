@@ -112,7 +112,7 @@ class Block extends React.Component {
       return (
           <main className="container header-overlap">
             <Alert color="warning" className="text-center">
-              Block {block.number} not found
+                {tu('block_not_found')}
             </Alert>
           </main>
       );

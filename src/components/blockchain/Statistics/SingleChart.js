@@ -123,9 +123,10 @@ class Statistics extends React.Component {
 
     async loadTotalTRXSupply(){
         let {intl} = this.props;
+        let TronicsSupportPlanTotal = 48051406;
         let random = Math.random();
         let balanceData = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
-        let TRONFoundationTotal = balanceData.data.total;
+        let TRONFoundationTotal = balanceData.data.total - TronicsSupportPlanTotal;
         let {blocks} = await Client.getBlocks({
             limit: 1,
             sort: '-number',
@@ -139,7 +140,7 @@ class Statistics extends React.Component {
         let genesisNum = 100000000000;
         let independenceDayBurned = 1000000000;
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
+        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal + TronicsSupportPlanTotal).toFixed(2);
         let supplyTypesChartData = [
             {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
             {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},

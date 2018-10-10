@@ -128,7 +128,7 @@ class Home extends Component {
         });
       }, 1000);
 
-      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
+      toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
     }
   }
 

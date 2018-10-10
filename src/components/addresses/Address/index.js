@@ -85,7 +85,7 @@ class Address extends React.Component {
   }
 
   componentWillUnmount() {
-    this.live && this.live.close();
+   // this.live && this.live.close();
   }
 
   async loadVotes(address) {

@@ -24,11 +24,11 @@ class Transactions extends React.Component {
     };
   }
   
-  componentWillReceiveProps() {
-    setTimeout(() => {
-      this.loadTransactions();
-    }, 0)
-  }
+  // componentWillReceiveProps() {
+  //   setTimeout(() => {
+  //     this.loadTransactions();
+  //   }, 0)
+  // }
 
   componentDidMount() {
     this.loadTransactions();
