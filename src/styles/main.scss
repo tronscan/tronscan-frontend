@@ -1592,13 +1592,15 @@ h5 {
     margin-bottom: -1px;
     li{
       display: flex;
-      height: 40px;
-      line-height: 40px;
+      min-height: 40px;
+      padding: 10px 0;
+      line-height: 1.4em;
       border-bottom: 1px solid #eee;
       color: #333;
 
       p{
         width: 138px;
+        margin: 0;
         
         &.plus{
           width: 180px;

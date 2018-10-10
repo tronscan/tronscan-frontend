@@ -61,7 +61,7 @@ class Transactions extends React.Component {
     
     let column = [
       {
-        title: upperFirst(intl.formatMessage({id: isInternal? 'parenthash': 'hash'})),
+        title: upperFirst(intl.formatMessage({id: isInternal? 'ParentTxHash': 'TxHash'})),
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
@@ -75,17 +75,6 @@ class Transactions extends React.Component {
                 </Truncate>
         }
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'block'})),
-      //   dataIndex: 'block',
-      //   key: 'block',
-      //   align: 'left',
-      //   width: '100px',
-      //   className: 'ant_table',
-      //   render: (text, record, index) => {
-      //     return <BlockNumberLink number={text}/>
-      //   }
-      // },
       {
         title: upperFirst(intl.formatMessage({id: 'age'})),
         dataIndex: 'timestamp',

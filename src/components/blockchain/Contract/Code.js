@@ -56,45 +56,27 @@ export default class Code extends React.Component {
           <div className="row">
             <div className="col-md-12 contract-header">
               <br/>
-              <div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i> Contract Source Code Verified (Exact match)</div>
+              <div className="pb-3 verified"><i className="fa fa-check-circle mr-1"></i>{tu('contract_code_verified')}}</div>
 
               <div className="d-flex justify-content-between">
                 <div className="contract-header__item">
                   <ul>
                     <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
-                    <li><p className="plus">Optimization Enabled: </p>Yes</li>
+                    <li><p className="plus">{tu('Optimization_Enabled')}: </p>Yes</li>
                   </ul>
                 </div>
                 <div className="contract-header__item">
                   <ul>
-                    <li><p className="plus">{tu("compiler_version")}:</p>{compilerVersion}</li>
+                    <li><p className="plus">{tu("Compiler_Text")}:</p>{compilerVersion}</li>
                   </ul>
                 </div>
               </div>
-              {/* <table className="table table-hover mt-3">
-                <tbody>
-
-                <tr>
-                  <th>{tu("contract_name")}:</th>
-                  <td style={{width: '80%'}}>
-                    {name}
-                  </td>
-                </tr>
-                <tr>
-                  <th>{tu("compiler_version")}:</th>
-                  <td style={{width: '80%'}}>
-                    {compilerVersion}
-                  </td>
-                </tr>
-
-                </tbody>
-              </table> */}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-code"></i> Contract Source Code</span>
+                <span><i className="fa fa-code"></i> {tu('Contract_Source_Code')}</span>
                 <CopyText text={sourceCode} className="ml-auto ml-1"/>
               </div>
               <ReactAce
@@ -114,7 +96,7 @@ export default class Code extends React.Component {
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-cogs"></i> Contract ABI</span>
+                <span><i className="fa fa-cogs"></i> {tu('Contract_ABI')}</span>
                 <CopyText text={abi} className="ml-auto ml-1"/>
               </div>
               <textarea className="w-100 form-control"
@@ -128,7 +110,35 @@ export default class Code extends React.Component {
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-braille"></i> Contract Creation Code</span>
+                <span><i className="fa fa-braille"></i> {tu('Byte_code')}</span>
+                <CopyText text={creationCode} className="ml-auto ml-1"/>
+              </div>
+              <textarea className="w-100 form-control"
+                        rows="7"
+                        value={creationCode}
+                        onChange={ev => this.setState({creationCode: ev.target.value})}/>
+
+            </div>
+          </div>
+
+          <div className="row mt-3">
+            <div className="col-md-12 ">
+              <div className="d-flex mb-1">
+                <span><i className="fa fa-braille"></i> {tu('Constructor_Arguments')}</span>
+                <CopyText text={creationCode} className="ml-auto ml-1"/>
+              </div>
+              <textarea className="w-100 form-control"
+                        rows="7"
+                        value={creationCode}
+                        onChange={ev => this.setState({creationCode: ev.target.value})}/>
+
+            </div>
+          </div>
+
+          <div className="row mt-3">
+            <div className="col-md-12 ">
+              <div className="d-flex mb-1">
+                <span><i className="fa fa-braille"></i> {tu('Library_Used')}</span>
                 <CopyText text={creationCode} className="ml-auto ml-1"/>
               </div>
               <textarea className="w-100 form-control"

@@ -57,7 +57,7 @@ class Contracts extends React.Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '150px',
+        width: '200px',
         render: (text, record, index) => {
           return <Truncate>
                     <AddressLink address={text} isContract={true}>{text}</AddressLink>
@@ -65,7 +65,7 @@ class Contracts extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+        title: upperFirst(intl.formatMessage({id: 'ContractName'})),
         dataIndex: 'name',
         key: 'name',
         align: 'left',
@@ -75,7 +75,7 @@ class Contracts extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'compiler'})),
+        title: upperFirst(intl.formatMessage({id: 'Compiler'})),
         dataIndex: 'compiler',
         key: 'compiler',
         align: 'left',
@@ -94,7 +94,7 @@ class Contracts extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'tx_count'})),
+        title: upperFirst(intl.formatMessage({id: 'TxCount'})),
         dataIndex: 'trxCount',
         key: 'trxCount',
         align: 'left',
@@ -114,20 +114,22 @@ class Contracts extends React.Component {
       //   }
       // },
       {
-        title: upperFirst(intl.formatMessage({id: 'setting'})),
+        title: upperFirst(intl.formatMessage({id: 'Settings'})),
         dataIndex: 'isSetting',
         key: 'isSetting',
         align: 'left',
+        width: '80px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return text && <span><i className="fa fa-cog"></i> <i className="fa fa-cog"></i> <i className="fa fa-cog"></i></span>
+          return text? <span><i className="fa fa-cog"></i> <i className="fa fa-cog"></i> <i className="fa fa-cog"></i></span>: '-'
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'date_verified'})),
+        title: upperFirst(intl.formatMessage({id: 'DateVerified'})),
         dataIndex: 'dateVerified',
         key: 'dateVerified',
         align: 'right',
+        width: '170px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <div>
@@ -145,7 +147,7 @@ class Contracts extends React.Component {
     let {contracts, total, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'verified_contract_source_codes_found'})
 
     return (
       <main className="container header-overlap pb-3 token_black">

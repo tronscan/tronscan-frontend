@@ -61,7 +61,7 @@ class Transactions extends React.Component {
     
     let column = [
       {
-        title: upperFirst(intl.formatMessage({id: isInternal? 'parenthash': 'hash'})),
+        title: upperFirst(intl.formatMessage({id: isInternal? 'ParentTxHash': 'TxHash'})),
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',

@@ -169,8 +169,10 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total, loading, data, column, bordered} = this.props;
+    let {total, loading, data, column, bordered, pagination=true} = this.props;
     let columns = this.setColumn(column);
+    const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
+    console.log(paginationStatus)
     return (
         <div className="card table_pos">
           <Table
@@ -178,15 +180,9 @@ export default class SmartTable extends Component {
               columns={columns}
               rowKey={(record, index) => {
                 return index
-                if (record.transactionHash) return record.transactionHash;
-                if (record.address) return record.address;
-                if (record.hash) return record.hash;
-                if (record.id) return record.id;
-                if (record.number) return record.number;
-                if (record.name) return record.name;
               }}
               dataSource={data}
-              pagination={{total: total, ...this.state.pagination}}
+              pagination={paginationStatus}
               loading={loading}
               onChange={this.handleTableChange}
           />

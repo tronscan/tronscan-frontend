@@ -1017,6 +1017,47 @@ export const messages = {
   "not_started": "Not started",
   "no_token_to_buy": "Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
 
+/*
+##################################################################################
+#                                                                                #
+# contract page                                                                  #
+#                                                                                #
+##################################################################################
+*/
+
+  "Code": "Code",
+  "contract_overview": "Contract Overview",
+  "trx_value": "TRX Value",
+  "token_tracker": "Token Tracker",
+  "contract_creator": "Contract Creator",
+  "at_txn": "at txn",
+  "token_txns": "Token Txns",
+  "Events": "Events",
+  "TxHash": "TxHash",
+  "Internal_Txns": "Internal Txns",
+  "ParentTxHash": "ParentTxHash",
+  "TxFee": "TxFee",
+  "contract_code_verified": "Contract Source Code Verified (Exact Match)",
+  "Contract_ABI": "Contract ABI",
+  "Byte_code": "Byte code",
+  "Constructor_Arguments": "Constructor Arguments (ABI-Encoded and is the last bytes of the Contract Creation Code above) ",
+  "Copy": "Copy",
+  "TxHash_Block_Age": "TxHash | Block | Age",
+  "Method": "Method",
+  "Event_Logs": "Event Logs",
+  "With_Verified_Source_Codes_Only": "With Verified Source Codes Only",
+  "verified_contract_source_codes_found": " verified contract source codes found",
+  "ContractName": "ContractName",
+  "TxCount": "TxCount",
+  "Settings": "Settings",
+  "DateVerified": "DateVerified",
+  "Compiler": "Compiler",
+  "Compiler_Text": "Compiler Text",
+  "Contract_Internal_Transactions": "Contract Internal Transactions",
+  "Internal_Transactions_found": "Internal Transactions found",
+  "Misc": "Misc",
+  "Optimization_Enabled": "Optimization Enabled",
+
   /*
   ##################################################################################
   #                                                                                #

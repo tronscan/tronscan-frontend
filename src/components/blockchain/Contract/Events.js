@@ -70,7 +70,7 @@ class Transactions extends React.Component {
     
     let column = [
       {
-        title: 'TxHash | Block | Age',
+        title: upperFirst(intl.formatMessage({id: 'TxHash_Block_Age'})),
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
@@ -85,7 +85,7 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: 'Method',
+        title: upperFirst(intl.formatMessage({id: 'Method'})),
         dataIndex: 'Method',
         key: 'Method',
         align: 'left',
@@ -99,7 +99,7 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: 'Event Logs',
+        title: upperFirst(intl.formatMessage({id: 'Event_Logs'})),
         dataIndex: 'Logs',
         key: 'Logs',
         align: 'left',
@@ -159,6 +159,7 @@ class Transactions extends React.Component {
           <div className="col-md-12 event-main">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
+                          // pagination={false}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadContracts(page, pageSize)
