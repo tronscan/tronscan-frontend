@@ -1564,6 +1564,7 @@ h5 {
     padding: 30px 0;
     font-size: 16px;
     margin: 0;
+    color: #333;
 
     &.contract-header__title{
       padding: 0;
@@ -1592,9 +1593,11 @@ h5 {
       height: 40px;
       line-height: 40px;
       border-bottom: 1px solid #eee;
+      color: #333;
 
       p{
         width: 138px;
+        
         &.plus{
           width: 180px;
         }
@@ -1615,5 +1618,22 @@ h5 {
   }
   &-out{
     background: #E0AE5c;
+  }
+}
+.event-main{
+  tr{
+    vertical-align: baseline;
+  }
+
+  .event{
+    .e-blue{
+      color: #A281EE;
+    }
+    .e-red{
+      color: #EF7A75;
+    }
+    #event-wapper{
+      display: none;
+    }
   }
 }

@@ -11,6 +11,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "./Txs";
 import Code from "./Code";
 import Txhash from "./Txhash";
+import Events from "./Events";
 
 
 class SmartContract extends React.Component {
@@ -62,7 +63,7 @@ class SmartContract extends React.Component {
         ...prevProps.tabs,
         transactions: {
           id: "transactions",
-          path: "/transactions",
+          path: "",
           label: <span>{tu("transactions")}</span>,
           cmp: () => <Transactions filter={{address: id}}  />
         },
@@ -85,6 +86,12 @@ class SmartContract extends React.Component {
           label: <span>{tu("code")}</span>,
           cmp: () => <Code filter={{address: id}} />,
         },
+        events: {
+          id: "events",
+          path: "/events",
+          label: <span>Events</span>,
+          cmp: () => <Events filter={{address: id}} />,
+        }
       }
     }));
   }

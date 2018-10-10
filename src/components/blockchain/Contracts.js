@@ -68,7 +68,6 @@ class Contracts extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'contract_name'})),
         dataIndex: 'name',
         key: 'name',
-        sorter: true,
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
@@ -104,16 +103,16 @@ class Contracts extends React.Component {
           return <FormattedNumber value={text}/>
         }
       },
-      {
-        title: upperFirst(intl.formatMessage({id: 'value'})),
-        dataIndex: 'trxAmount',
-        key: 'trxAmount',
-        align: 'left',
-        className: 'ant_table',
-        render: (text, record, index) => {
-          return <FormattedNumber value={text}/>
-        }
-      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'value'})),
+      //   dataIndex: 'trxAmount',
+      //   key: 'trxAmount',
+      //   align: 'left',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return <FormattedNumber value={text}/>
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({id: 'setting'})),
         dataIndex: 'isSetting',
@@ -121,7 +120,7 @@ class Contracts extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return text && <i className="fa fa-cog"></i>
+          return text && <span><i className="fa fa-cog"></i> <i className="fa fa-cog"></i> <i className="fa fa-cog"></i></span>
         }
       },
       {
