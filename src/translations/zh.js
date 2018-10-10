@@ -1031,4 +1031,5 @@ export const messages = {
   "create_to_address":"被创建账号地址",
   "proposal_create_contract":"创建提议合约",
   "proposal_create":"创建提议",
+  "available_balance":"可用余额"
 };

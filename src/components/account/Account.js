@@ -793,7 +793,7 @@ class Account extends Component {
                   <h3 style={{color: '#2EAC28'}}>
                     <TRXPrice amount={currentWallet.balance / ONE_TRX}/>
                   </h3>
-                  {tu("balance")}
+                  {tu("available_balance")}
                 </div>
               </div>
             </div>

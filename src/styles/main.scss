@@ -1460,13 +1460,7 @@ h5 {
   //margin-top: -100px;
 }
 
-.table-scroll{
-  overflow-x: auto!important;
 
-  .card, table{
-    width: 800px!important;
-  }
-}
 .contract-body{
   padding: 2rem;
   .contract-title{
@@ -1600,5 +1594,12 @@ h5 {
       }
     }
   }
-  
+
+  .table-scroll{
+    overflow-x: auto!important;
+
+    .card, table{
+      width: 800px!important;
+    }
+  }
 }
