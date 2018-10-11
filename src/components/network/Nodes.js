@@ -161,13 +161,13 @@ class Nodes extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="card" style={{padding: '20px'}}>
-                <NodeMapAsync nodes={nodes} countries={countries}/>
-              </div>
-            </div>
-          </div>
+          {/*<div className="row mt-3">*/}
+            {/*<div className="col-md-12">*/}
+              {/*<div className="card" style={{padding: '20px'}}>*/}
+                {/*<NodeMapAsync nodes={nodes} countries={countries}/>*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
