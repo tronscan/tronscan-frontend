@@ -1585,6 +1585,9 @@ h5 {
     }
   }
 }
+.token-detail-btn{
+  margin-left: 10px;
+}
 @media screen and (max-width: 768px) {
   .information-bg{
     &-item{
@@ -1603,5 +1606,9 @@ h5 {
     .w-1000, .w-1000 table{
       width: 1000px!important;
     }
+  }
+  .token-detail-btn{
+    margin-left: 0px;
+    margin-top: 6px;
   }
 }

@@ -1046,6 +1046,7 @@ export const messages = {
   "block_not_found":"Sorry, the block could not be found.",
   "transaction_not_found":"Sorry, the transaction could not be found.",
   "search_not_found": "Sorry, the search string you entered could not be found.",
+  "available_balance":"Available Balance",
     /*
    ##################################################################################
    #                                                                                #
@@ -1079,5 +1080,5 @@ export const messages = {
   "library_5_name":"Library_5 Name",
   "library_contract_address":"Library Contract Address",
   "verify_and_publish":"Verify And Publish",
-  "available_balance":"Available Balance"
+
 };

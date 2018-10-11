@@ -886,6 +886,16 @@ export const messages = {
   "tronics_support_plan":"Tronics Support Plan",
   "tronics_support_plan_recipient_address":"Tronics Support Plan recipient address",
   "update_token":"Update Token",
-  "total_frozen": "Total Frozen",
+  "total_frozen": "Foundation Reserve",
+  "account_create_contract":"Account Create Contract",
+  "account_create":"Create account",
+  "create_from_address": "Initiate Contract Address",
+  "create_to_address":"Created Account Address",
+  "proposal_create_contract":"Proposal Create Contract",
+  "proposal_create":"Create proposal",
+  "block_not_found":"Sorry, the block could not be found.",
+  "transaction_not_found":"Sorry, the transaction could not be found.",
+  "search_not_found": "Sorry, the search string you entered could not be found.",
+  "available_balance":"Available Balance",
 
 };

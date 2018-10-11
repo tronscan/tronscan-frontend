@@ -78,7 +78,7 @@ function getClientEnvironment(publicUrl) {
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
         API_URL: process.env.API_URL || `https://wlcyapi.tronscan.org`,
-        NET: process.env.NET || `mainnet`,
+        NET: process.env.NET || `mainnet`, //testnet
         DESKTOP: process.env.DESKTOP || `false`,
       }
     );
