@@ -6,7 +6,9 @@ import {CopyText} from "../common/Copy";
 import {QuestionMark} from "../common/QuestionMark";
 import {NavLink} from "react-router-dom";
 import {FormattedNumber, injectIntl} from "react-intl";
-
+import {alpha} from "../../utils/str";
+import {Tooltip} from "reactstrap";
+import ContractCodeRequest from "./ContractCodeRequest";
 
 class VerifyContractCode extends Component {
 
@@ -21,7 +23,11 @@ class VerifyContractCode extends Component {
       tabs:["contract_source_code","bytecode_and_ABI"],
       currIndex:0,
       contractAddress:'',
-      contractName:''
+      contractName:'',
+      id24: alpha(24),
+      id20: alpha(20),
+      open24:false,
+      open20:false
     };
   }
 
@@ -46,7 +52,7 @@ class VerifyContractCode extends Component {
 
 
   render() {
-    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName} = this.state;
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20} = this.state;
     let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
@@ -127,8 +133,8 @@ class VerifyContractCode extends Component {
                     <section>
                       <label style={{whiteSpace: 'nowrap'}} className="d-flex">{tu("contract_name")}
                         {/*<span>*</span>*/}
-                        <div className="mt-1 ml-1">
-                          <QuestionMark placement="top" text="contract_name"/>
+                        <div className="mt-1 ml-2">
+                          <QuestionMark placement="top" text="contract_name_tip"/>
                         </div>
                       </label>
                       <div className="d-flex contract-div-bg">
@@ -190,7 +196,12 @@ class VerifyContractCode extends Component {
                     <p className="mb-3">
                         {tu("following_optional_parameters")}
                     </p>
-                    <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
+                    <div className="d-flex">
+                      <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
+                      <div className="mt-1 ml-2">
+                        <QuestionMark placement="top" text="constructor_arguments_ABIencoded_tip"/>
+                      </div>
+                    </div>
                     <textarea className="w-100 form-control mt-3"
                               rows="1"
                               value={abi}
@@ -201,11 +212,24 @@ class VerifyContractCode extends Component {
                     <p className="mt-5">{tu("contract_library_address")}</p>
                     <div className="row ml-0" style={styles.rowRight}>
                       <div className="col-md-5 contract-input">
-                        <span>{tu("library_1_name")}:</span>
+                        <span id={id20}
+                              onMouseOver={() => this.setState({open20: true})}
+                              onMouseOut={() => this.setState({open20: false})}>
+                        {tu("library_1_name")}:</span>
+                        <Tooltip placement="top" isOpen={open20} target={id20}>
+                          <span className="text-lowercase text-left">{t("library_1_name_tip")}</span>
+                        </Tooltip>
                         <input type="text" className="form-control contract-input-s"/>
                       </div>
                       <div className="col-md-7 contract-input">
-                        <span>{tu("library_contract_address")}:</span>
+                        <span
+                            id={id24}
+                            onMouseOver={() => this.setState({open24: true})}
+                            onMouseOut={() => this.setState({open24: false})}>
+                          {tu("library_contract_address")}:</span>
+                        <Tooltip placement="top" isOpen={open24} target={id24}>
+                          <span className="text-lowercase">{t("library_contract_address_tip")}</span>
+                        </Tooltip>
                         <input type="text" className="form-control contract-input-l"/>
                       </div>
                     </div>
@@ -256,9 +280,11 @@ class VerifyContractCode extends Component {
                   </div>
                 </div>
                 <hr/>
+
                 <div className="float-left" >
-                  <button type="button" className="btn btn-lg btn-verify text-capitalize">{tu('verify_and_publish')}</button>
-                  <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
+                  <ContractCodeRequest/>
+                  {/*<button type="button" className="btn btn-lg btn-verify text-capitalize">{tu('verify_and_publish')}</button>*/}
+                  {/*<button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>*/}
                 </div>
               </div>
             </div>
