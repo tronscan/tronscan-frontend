@@ -40,6 +40,7 @@ class Transaction extends React.Component {
   }
 
   componentDidMount() {
+    document.documentElement.scrollTop = 0;
     let {match} = this.props;
     this.load(match.params.hash);
   }
