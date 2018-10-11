@@ -3,6 +3,7 @@ import {trim} from "lodash";
 import {tu,t} from "../../utils/i18n";
 import {connect} from "react-redux";
 import {CopyText} from "../common/Copy";
+import {QuestionMark} from "../common/QuestionMark";
 import {NavLink} from "react-router-dom";
 import {FormattedNumber, injectIntl} from "react-intl";
 
@@ -18,7 +19,9 @@ class VerifyContractCode extends Component {
       Optimization: true,
       compilers: ['Please Select', 'v0.0.1', 'v0.0.2', 'v0.0.3', 'v0.0.4', 'v0.0.5'],
       tabs:["contract_source_code","bytecode_and_ABI"],
-      currIndex:0
+      currIndex:0,
+      contractAddress:'',
+      contractName:''
     };
   }
 
@@ -43,28 +46,13 @@ class VerifyContractCode extends Component {
 
 
   render() {
-    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex} = this.state;
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName} = this.state;
     let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
           <div className="card contract-code_body" style={styles.card}>
             <div className="card-header list-style-body__header">
               <ul className="nav nav-tabs card-header-tabs">
-
-                {/*<li className="nav-item">*/}
-                  {/*<a href="javascript:;" className="nav-link text-dark">*/}
-                      {/*<span>*/}
-                        {/*<span>{tu("contract_source_code")}</span>*/}
-                      {/*</span>*/}
-                  {/*</a>*/}
-                {/*</li>*/}
-                {/*<li className="nav-item">*/}
-                  {/*<a href="javascript:;" className="nav-link text-dark">*/}
-                      {/*<span>*/}
-                        {/*<span>{tu("bytecode_and_ABI")}</span>*/}
-                      {/*</span>*/}
-                  {/*</a>*/}
-                {/*</li>*/}
                 {
                   tabs.map((val,index) =>{
                       return (
@@ -125,22 +113,29 @@ class VerifyContractCode extends Component {
                   <div className="col-md-4 mt-3 mt-md-0">
                     <section>
                       <label style={{whiteSpace: 'nowrap'}}>{tu("contract_address")}
-                        <span>*</span>
+                        {/*<span>*</span>*/}
                       </label>
-                      <div>
+                      <div className="d-flex contract-div-bg">
                         <input type="text" className="form-control"
-                               placeholder={intl.formatMessage({id: 'contract_address'})}/>
+                               placeholder={intl.formatMessage({id: 'contract_address'})}
+                               value={contractAddress}/>
+                        <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
                       </div>
                     </section>
                   </div>
                   <div className="col-md-4 mt-3 mt-md-0">
                     <section>
-                      <label style={{whiteSpace: 'nowrap'}}>{tu("contract_name")}
-                        <span>*</span>
+                      <label style={{whiteSpace: 'nowrap'}} className="d-flex">{tu("contract_name")}
+                        {/*<span>*</span>*/}
+                        <div className="mt-1 ml-1">
+                          <QuestionMark placement="top" text="contract_name"/>
+                        </div>
                       </label>
-                      <div>
+                      <div className="d-flex contract-div-bg">
                         <input type="text" className="form-control"
-                               placeholder={intl.formatMessage({id: 'contract_name'})}/>
+                               placeholder={intl.formatMessage({id: 'contract_name'})}
+                               value={contractName}/>
+                        <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
                       </div>
                     </section>
                   </div>

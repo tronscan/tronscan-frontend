@@ -1477,6 +1477,12 @@ h5 {
   padding: 2rem;
   padding-bottom: 4rem;
   section{
+    .contract-div-bg{
+      background-color: #F3F3F3;
+    }
+    .contract-copy{
+      margin-top: 8px;
+    }
     label{
       color: #666666;
       font-size: 1rem;
@@ -1500,6 +1506,11 @@ h5 {
     .custom-select:focus{
       box-shadow:none;
       background-color: #F3F3F3;
+    }
+    .custom-select{
+      appearance: normal;
+      -moz-appearance: none;
+      -webkit-appearance: none;
     }
   }
   .contract-code,.contract-ABI{
@@ -1667,5 +1678,20 @@ h5 {
     background: #AFB9C9;
   }
 
+}
+.question-mark{
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   background-color:#d8d8d8;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   i{
+      font-size: 10px;
+      font-style: normal;
+      transform: scale(0.9);
+   }
 }
 
