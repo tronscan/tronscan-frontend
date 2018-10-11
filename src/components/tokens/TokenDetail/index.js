@@ -191,7 +191,7 @@ class TokenDetail extends React.Component {
             <SweetAlert
                 info
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                style={{ width: '30rem', height: '18.75rem',left:'50%',marginLeft:'-15rem'}}
             >
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
