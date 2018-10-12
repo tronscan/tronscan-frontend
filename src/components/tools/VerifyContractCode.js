@@ -34,38 +34,65 @@ class VerifyContractCode extends Component {
                     value: '',
                     error: ''
                 },
-                last_name: {
+                contract_name: {
                     valid: false,
                     value: '',
                     error: ''
                 },
-                email: {
+                contract_code: {
                     valid: false,
                     value: '',
                     error: ''
                 },
-                password: {
-                    valid: false,
-                    value: '',
-                    error: ''
-                },
-                comfirmPassword: {
-                    valid: false,
-                    value: '',
-                    error: ''
-                },
-                gender: {
-                    valid: false,
-                    value: '',
-                    error: ''
-                },
-                title: {
-                    valid: true,
-                    value: '',
-                    error: ''
-                },
+
             },
         };
+    }
+    handleSignUpChange(field, value) {
+        const {formVerify: {contract_address,contract_name,contract_code}} = this.state;
+
+        const newFieldObj = {value, valid: true, error: ''};
+
+        switch (field) {
+            case 'contract_address': {
+                if (value.length >= 31) {
+                    newFieldObj.error = 'First Name up to 30 characters';
+                    newFieldObj.valid = false;
+                } else if (value.length === 0) {
+                    newFieldObj.error = 'Please enter First Name';
+                    newFieldObj.valid = false;
+                }
+                break;
+            }
+            case 'contract_name': {
+                if (value.length >= 31) {
+                    newFieldObj.error = 'Last Name up to 30 characters';
+                    newFieldObj.valid = false;
+                } else if (value.length === 0) {
+                    newFieldObj.error = 'Please enter Last Name';
+                    newFieldObj.valid = false;
+                }
+                break;
+            }
+            case 'contract_code': {
+                var myreg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+                if (!myreg.test(value)) {
+                    newFieldObj.error = 'Please enter a valid email';
+                    newFieldObj.valid = false;
+                } else if (value.length === 0) {
+                    newFieldObj.error = 'Please enter email address';
+                    newFieldObj.valid = false;
+                }
+                break;
+            }
+        }
+
+        this.setState({
+            formVerify: {
+                ...this.state.formVerify,
+                [field]: newFieldObj
+            }
+        });
     }
 
     componentDidMount() {
