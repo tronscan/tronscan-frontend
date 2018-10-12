@@ -1108,7 +1108,11 @@ export const messages = {
   "library_5_name":"Library_5 Name",
   "library_contract_address":"Library Contract Address",
   "verify_and_publish":"Verify And Publish",
-  "txn":"txn"
+  "txn":"txn",
+  "contract_name_tip":"Must match the ContractName in the Source Code or in a MultiPart Contract it should match the ContractName you deployed.",
+  "constructor_arguments_ABIencoded_tip":"This option ONLY applies to contracts that accept constructor arguments, if you are unsure you most likely do not need this.The constructor arguments should be in ABI-ENCODED values and will be appended to the contract bytecode.",
+  "library_1_name_tip":"This option ONLY applies to contracts that use libraries.",
+  "library_contract_address_tip":"Corresponding Contract Library Address."
 
 
 
