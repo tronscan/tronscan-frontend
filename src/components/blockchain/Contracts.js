@@ -9,6 +9,10 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {upperFirst} from "lodash";
 import {loadTokens} from "../../actions/tokens";
+import xhr from "axios/index";
+import {API_URL} from "../../constants";
+import {TRXPrice} from "../common/Price";
+import { ONE_TRX} from "../../constants";
 
 class Contracts extends React.Component {
 
@@ -32,24 +36,31 @@ class Contracts extends React.Component {
   search = () => {
     console.log("searching");
   }
-  loadContracts = async (page = 1, pageSize = 40) => {
-
-    let result = await Client.getContracts({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize
+  loadContracts = async (page = 1, pageSize = 20) => {
+    xhr({
+      baseURL: 'http://18.216.57.65:20110',
+      url: `/api/contracts`,
+      method:'get',
+      params: {
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize
+      }
+      
+    }).then((result) => {
+      if (result.data.data) {
+        this.setState({
+          contracts: result.data.data,
+          loading: false,
+          total: result.data.total
+        });
+      }
     });
-    console.log(result);
-    this.setState({
-      contracts: result.data,
-      loading: false,
-      total: result.total
-    });
+    
   };
 
   customizedColumn = () => {
     let {intl} = this.props;
-    console.log(this.props)
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'address'})),
@@ -90,7 +101,7 @@ class Contracts extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={text}/>
+          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       },
       {
@@ -103,25 +114,21 @@ class Contracts extends React.Component {
           return <FormattedNumber value={text}/>
         }
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'value'})),
-      //   dataIndex: 'trxAmount',
-      //   key: 'trxAmount',
-      //   align: 'left',
-      //   className: 'ant_table',
-      //   render: (text, record, index) => {
-      //     return <FormattedNumber value={text}/>
-      //   }
-      // },
       {
         title: upperFirst(intl.formatMessage({id: 'Settings'})),
         dataIndex: 'isSetting',
         key: 'isSetting',
         align: 'left',
-        width: '80px',
+        width: '90px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return text? <span><i className="fa fa-cog"></i> <i className="fa fa-cog"></i> <i className="fa fa-cog"></i></span>: '-'
+          return (
+          <span>
+            {record.isLibrary && <i className="fa fa-columns mx-1"></i> }
+            {record.isSetting && <i className="fa fa-bolt mx-1"></i> }
+            {record.isParameter && <i className="fa fa-wrench mx-1"></i> }
+            {(!record.isLibrary && !record.isSetting && !record.isParameter) && '-' }
+          </span>)
         }
       },
       {

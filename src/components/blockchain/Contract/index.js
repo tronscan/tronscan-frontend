@@ -5,9 +5,9 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import {ONE_TRX} from "../../../constants";
 import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
+import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "./Txs";
 import Code from "./Code";
@@ -15,6 +15,8 @@ import Txhash from "./Txhash";
 import Events from "./Events";
 import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
+import xhr from "axios/index";
+import {API_URL} from "../../../constants";
 
 
 class SmartContract extends React.Component {
@@ -58,6 +60,10 @@ class SmartContract extends React.Component {
 
 
     let contract = await Client.getContractOverview(id);
+    // let contract = xhr.get(`http://18.216.57.65:20110/api/contract/${id}`).then((result) => {
+    //   console.log(result.data)
+    //   return result.data
+    // });
 
     this.setState(prevProps => ({
       loading: false,
@@ -68,14 +74,14 @@ class SmartContract extends React.Component {
           id: "transactions",
           path: "",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}}  />
+          cmp: () => <Transactions filter={{contract: id}}  />
         },
-        Txns: {
-          id: "Txns",
-          path: "/Txns",
-          label: <span>{tu('token_txns')}</span>,
-          cmp: () => <Txhash filter={{address: id}} />,
-        },
+        // Txns: {
+        //   id: "Txns",
+        //   path: "/Txns",
+        //   label: <span>{tu('token_txns')}</span>,
+        //   cmp: () => <Txhash filter={{address: id}} />,
+        // },
         voters: {
           id: "code",
           path: "/code",
@@ -120,10 +126,10 @@ class SmartContract extends React.Component {
                           <div className="contract-header__item">
                             <h6 className="contract-header__title">{tu('contract_overview')}</h6>
                             <ul>
-                              <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p>100,000,000,000 TRX</li>
-                              <li><p>{tu('trx_value')}: </p>$68.70</li>
-                              <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>23 Txns</li>
-                              <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>tHena (THENA)</li>
+                              <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
+                              <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li>
+                              <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>{contract.trxCount}</li>
+                              {/* <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>{contract.tokenContract}</li> */}
                             </ul>
                           </div>
                           <div className="contract-header__item">
@@ -131,13 +137,18 @@ class SmartContract extends React.Component {
                             <ul>
                               <li>
                                 <p>{tu('contract_creator')}:</p>
-                                <span style={{width: '30%'}}><AddressLink address={contract.address} /></span>
-                                <span className="px-1">{tu('at_txn')}</span>
-                                <span style={{width: '30%'}}>
-                                <Truncate>
-                                  <TransactionHashLink hash='553a335f33bd739aa97f7fa9a40e1f4ffa9c71bc51ff231b83530a9d384bb717'>553a335f33bd739aa97f7fa9a40e1f4ffa9c71bc51ff231b83530a9d384bb717</TransactionHashLink>
-                                  </Truncate>
-                                </span>
+                                {contract.creator &&
+                                  <div className="d-flex">
+                                    <span style={{width: '30%'}}>
+                                    <Truncate><AddressLink address={contract.creator.address} /></Truncate></span>
+                                    <span className="px-1">{tu('at_txn')}</span>
+                                    <span style={{width: '30%'}}>
+                                    <Truncate>
+                                      <TransactionHashLink hash={contract.creator.txHash}>{contract.creator.txHash}</TransactionHashLink>
+                                      </Truncate>
+                                    </span>
+                                  </div>
+                                }
                               </li>
                             </ul>
                           </div>

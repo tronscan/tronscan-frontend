@@ -10,7 +10,12 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable.js"
-import {upperFirst} from "lodash";
+import {upperFirst, toUpper} from "lodash";
+import xhr from "axios/index";
+import {API_URL} from "../../../constants";
+import {TRXPrice} from "../../common/Price";
+import {ONE_TRX} from "../../../constants";
+import { Tooltip } from 'antd'
 
 class Transactions extends React.Component {
 
@@ -50,6 +55,21 @@ class Transactions extends React.Component {
       ...filter,
     });
 
+    let contract = xhr.get(`http://18.216.57.65:20110/api/contracts/transaction`, {
+      sort: '-timestamp',
+      count: true,
+      limit: pageSize,
+      start: (page - 1) * pageSize,
+      ...filter
+    }).then((result) => {
+      console.log(result.data)
+      return result.data
+    });
+
+    transactions.data.map( item => {
+      item.tip = item.ownerAddress == filter.contract? 'out': 'in'
+    })
+
     this.setState({
       transactions: transactions.data,
       loading: false,
@@ -83,7 +103,7 @@ class Transactions extends React.Component {
         width: '120px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <TimeAgo date={text}/>
+          return <TimeAgo date={text}/>
         }
       },
       {
@@ -92,7 +112,15 @@ class Transactions extends React.Component {
         key: 'ownerAddress',
         align: 'left',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return  record.tip == 'in'?
+                  <span className="d-flex">
+                    <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+                      <span><i className="far fa-file mr-1"></i></span>
+                    </Tooltip>
+                    
+                    <AddressLink address={text} isContract={false}/>
+                  </span>:
+                  <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -100,16 +128,24 @@ class Transactions extends React.Component {
         dataIndex: 'tip',
         align: 'center',
         render: (text, record, index) => {
-          return <div className="tip tip-in">IN</div>
+          return <div className={"tip tip-"+text}>{toUpper(text)}</div>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'to'})),
-        dataIndex: 'sendAddress',
-        key: 'sendAddress',
+        dataIndex: 'toAddress',
+        key: 'toAddress',
         align: 'left',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.tip == 'out'?
+                  <span className="d-flex">
+                    <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+                      <span><i className="far fa-file mr-1"></i></span>
+                    </Tooltip>
+                    
+                    <AddressLink address={text} isContract={false}/>
+                  </span>:
+                  <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -120,17 +156,18 @@ class Transactions extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <FormattedNumber value={text}/>
+          return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),
         dataIndex: 'token',
+        key: 'token',
         align: 'right',
         width: '80px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <span>ATRON</span>
+          return  <span>{text}</span>
         }
       }
     ];

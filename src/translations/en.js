@@ -1036,7 +1036,7 @@ export const messages = {
   "TxHash": "TxHash",
   "Internal_Txns": "Internal Txns",
   "ParentTxHash": "ParentTxHash",
-  "TxFee": "TxFee",
+  "TxFee": "[TxFee]",
   "contract_code_verified": "Contract Source Code Verified (Exact Match)",
   "Contract_ABI": "Contract ABI",
   "Byte_code": "Byte code",

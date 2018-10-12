@@ -3,6 +3,9 @@ import ReactAce from 'react-ace-editor';
 import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
+import xhr from "axios";
+import {API_URL} from "../../../constants";
+import { AddressLink} from "../../common/Links";
 
 
 export default class Code extends React.Component {
@@ -15,7 +18,12 @@ export default class Code extends React.Component {
       compilerVersion: "",
       sourceCode: "",
       abi: "",
-      creationCode: ""
+      creationCode: "",
+      abiEncoded: "",
+      address: "",
+      byteCode: "",
+      isSetting: 'Yes',
+      librarys: null,
     };
   }
 
@@ -27,18 +35,25 @@ export default class Code extends React.Component {
   async loadContractCode(id) {
     let contractCode = await Client.getContractCode(id);
 
-    this.setState({
-      name: contractCode.data.name,
-      compilerVersion: contractCode.data.compilerVersion,
-      sourceCode: contractCode.data.sourceCode,
-      abi: contractCode.data.contractABI,
-      creationCode: contractCode.data.contractCreationCode
-    }, () => {
-      this.ace.editor.setValue(this.state.sourceCode);
-      this.ace.editor.clearSelection();
+    xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX`).then((result) => {
+      console.log(result.data)
+      let contractCode = result.data.data
+      this.setState({
+        name: contractCode.name,
+        compilerVersion: contractCode.compiler,
+        sourceCode: contractCode.source,
+        abi: contractCode.abi,
+        abiEncoded: contractCode.abiEncoded,
+        address: contractCode.address,
+        byteCode: contractCode.byteCode,
+        isSetting: contractCode.isSetting? 'Yes': 'No',
+        librarys: contractCode.librarys,
+      }, () => {
+        this.ace.editor.setValue(this.state.sourceCode);
+        this.ace.editor.clearSelection();
+      });
     });
 
-    //this.ace.editor.setValue('123');
   }
 
   onChange = (newValue, e) => {
@@ -48,7 +63,7 @@ export default class Code extends React.Component {
   }
 
   render() {
-    let {name, compilerVersion, sourceCode, abi, creationCode} = this.state;
+    let {name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys} = this.state;
 
     return (
         <main className="container">
@@ -62,7 +77,7 @@ export default class Code extends React.Component {
                 <div className="contract-header__item">
                   <ul>
                     <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
-                    <li><p className="plus">{tu('Optimization_Enabled')}: </p>Yes</li>
+                    <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li>
                   </ul>
                 </div>
                 <div className="contract-header__item">
@@ -101,6 +116,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
+                        readonly="readonly"
                         value={abi}
                         onChange={ev => this.setState({abi: ev.target.value})}/>
 
@@ -110,44 +126,51 @@ export default class Code extends React.Component {
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-braille"></i> {tu('Byte_code')}</span>
-                <CopyText text={creationCode} className="ml-auto ml-1"/>
+                <span><i className="fas fa-file-invoice"></i> {tu('Byte_code')}</span>
+                <CopyText text={byteCode} className="ml-auto ml-1"/>
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        value={creationCode}
-                        onChange={ev => this.setState({creationCode: ev.target.value})}/>
+                        readonly="readonly"
+                        value={byteCode}
+                        onChange={ev => this.setState({byteCode: ev.target.value})}/>
 
             </div>
           </div>
-
+          
+          { abiEncoded&&
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-braille"></i> {tu('Constructor_Arguments')}</span>
-                <CopyText text={creationCode} className="ml-auto ml-1"/>
+                <span><i className="far fa-dot-circle"></i> {tu('Constructor_Arguments')}</span>
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        value={creationCode}
-                        onChange={ev => this.setState({creationCode: ev.target.value})}/>
+                        readonly="readonly"
+                        value={abiEncoded}
+                        onChange={ev => this.setState({abiEncoded: ev.target.value})}/>
 
             </div>
-          </div>
+          </div>}
 
+          { librarys&&librarys.length&&
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-braille"></i> {tu('Library_Used')}</span>
-                <CopyText text={creationCode} className="ml-auto ml-1"/>
+                <span><i className="fas fa-map-marker-alt"></i> {tu('Library_Used')}</span>
               </div>
-              <textarea className="w-100 form-control"
-                        rows="7"
-                        value={creationCode}
-                        onChange={ev => this.setState({creationCode: ev.target.value})}/>
+              <div className="code-wapper">
+              { librarys.map( item => {
+                  return <div className="code-wapper-item d-flex">
+                    <p>{item.name}</p>
+                    <AddressLink address={item.address} isContract={true}/>
+                  </div>
+                })
+              }
+              </div>
 
             </div>
-          </div>
+          </div>}
 
         </main>
 

@@ -1606,6 +1606,9 @@ h5 {
           width: 180px;
         }
       }
+      &>div{
+        flex: 1;
+      }
     }
   }
 }
@@ -1667,5 +1670,15 @@ h5 {
     background: #AFB9C9;
   }
 
+}
+
+.code-wapper{
+  background: #eeeeee;
+  padding: 6px 12px;
+  
+  &-item, &-item p{
+    line-height: 2em;
+    margin: 0;
+  }
 }
 

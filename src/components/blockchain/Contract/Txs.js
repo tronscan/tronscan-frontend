@@ -10,7 +10,12 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable.js"
-import {upperFirst} from "lodash";
+import {upperFirst, toUpper} from "lodash";
+import xhr from "axios";
+import {API_URL} from "../../../constants";
+import {TRXPrice} from "../../common/Price";
+import {ONE_TRX} from "../../../constants";
+import { Tooltip } from 'antd'
 
 class Transactions extends React.Component {
 
@@ -37,23 +42,43 @@ class Transactions extends React.Component {
     this.loadTransactions(page, pageSize);
   };
 
-  loadTransactions = async (page = 1, pageSize = 40) => {
+  loadTransactions = async (page = 1, pageSize = 20) => {
 
     let {filter, isInternal = false} = this.props;
 
     this.setState({loading: true});
 
-    let transactions = await Client.getContractTxs({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      ...filter,
+    // let transactions = await Client.getContractTxs({
+    //   sort: '-timestamp',
+    //   limit: pageSize,
+    //   start: (page - 1) * pageSize,
+    //   ...filter,
+    // });
+    xhr({
+      baseURL: 'http://18.216.57.65:20110',
+      url: `/api/contracts/transaction`,
+      method:'get',
+      params: {
+        sort: '-timestamp',
+        count: true,
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        ...filter
+      }
+      
+    }).then((result) => {
+      result.data.data.map( item => {
+        item.tip = item.ownAddress == filter.contract? 'out': 'in'
+      })
+  
+      this.setState({
+        transactions: result.data.data,
+        total: result.data.total,
+        loading: false,
+      });
     });
 
-    this.setState({
-      transactions: transactions.data,
-      loading: false,
-    });
+    
   };
 
   customizedColumn = () => {
@@ -65,7 +90,7 @@ class Transactions extends React.Component {
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
-        width: '150px',
+        // width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
@@ -80,7 +105,7 @@ class Transactions extends React.Component {
         dataIndex: 'block',
         key: 'block',
         align: 'left',
-        width: '100px',
+        width: '80px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <BlockNumberLink number={text}/>
@@ -91,7 +116,7 @@ class Transactions extends React.Component {
         dataIndex: 'timestamp',
         key: 'timestamp',
         align: 'left',
-        width: '120px',
+        width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
           return  <TimeAgo date={text}/>
@@ -99,20 +124,46 @@ class Transactions extends React.Component {
       },
       {
         title: upperFirst(intl.formatMessage({id: 'from'})),
-        dataIndex: 'ownerAddress',
-        key: 'ownerAddress',
+        dataIndex: 'ownAddress',
+        key: 'ownAddress',
         align: 'left',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.tip == 'in'?
+          <span className="d-flex">
+            {record.ownAddressType ==2 &&
+            <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+              <span><i className="far fa-file mr-1"></i></span>
+            </Tooltip>}
+            
+            <AddressLink address={text} isContract={record.ownAddressType ==2}/>
+          </span>:
+          <Truncate><span>{text}</span></Truncate>
+        }
+      },
+      {
+        title: '',
+        dataIndex: 'tip',
+        align: 'center',
+        render: (text, record, index) => {
+          return <div className={"tip tip-"+text}>{toUpper(text)}</div>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'to'})),
-        dataIndex: 'sendAddress',
-        key: 'sendAddress',
+        dataIndex: 'toAddress',
+        key: 'toAddress',
         align: 'left',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.tip == 'out'?
+          <span className="d-flex">
+            {record.toAddressType ==2 &&
+            <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+              <span><i className="far fa-file mr-1"></i></span>
+            </Tooltip>}
+            
+            <AddressLink address={text} isContract={record.toAddressType ==2}/>
+          </span>:
+          <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -120,10 +171,21 @@ class Transactions extends React.Component {
         dataIndex: 'value',
         key: 'value',
         align: 'right',
-        width: '150px',
+        width: '120px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <FormattedNumber value={text}/>
+          return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'TxFee'})),
+        dataIndex: 'txFee',
+        key: 'txFee',
+        align: 'right',
+        width: '120px',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       }
     ];

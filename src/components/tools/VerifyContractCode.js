@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {CopyText} from "../common/Copy";
 import {NavLink} from "react-router-dom";
 import {FormattedNumber, injectIntl} from "react-intl";
+import xhr from "axios/index";
+import {API_URL} from "../../constants";
 
 
 class VerifyContractCode extends Component {
@@ -18,7 +20,18 @@ class VerifyContractCode extends Component {
       Optimization: true,
       compilers: ['Please Select', 'v0.0.1', 'v0.0.2', 'v0.0.3', 'v0.0.4', 'v0.0.5'],
       tabs:["contract_source_code","bytecode_and_ABI"],
-      currIndex:0
+      currIndex:0,
+      data: {
+        address: '',
+        name: '',
+        compiler: '',
+        isSetting: '',
+        source: '',
+        byteCode: '',
+        abi: '',
+        abiEncoded: '',
+        librarys: []
+      }
     };
   }
 
@@ -41,9 +54,21 @@ class VerifyContractCode extends Component {
     });
   }
 
+  onSubmit(){
+    xhr.post(`http://18.216.57.65:20110/api/contracts/verify`, {
+
+    }).then((result) => {
+      console.log(result.data)
+      return result.data
+    });
+  }
+  getParams(e, tip){
+    console.log(e,tip)
+  }
+
 
   render() {
-    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex} = this.state;
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex, data} = this.state;
     let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
@@ -129,7 +154,8 @@ class VerifyContractCode extends Component {
                       </label>
                       <div>
                         <input type="text" className="form-control"
-                               placeholder={intl.formatMessage({id: 'contract_address'})}/>
+                               placeholder={intl.formatMessage({id: 'contract_address'})}
+                               onChange={this.getParams('addresss')}/>
                       </div>
                     </section>
                   </div>
@@ -262,7 +288,7 @@ class VerifyContractCode extends Component {
                 </div>
                 <hr/>
                 <div className="float-left" >
-                  <button type="button" className="btn btn-lg btn-verify text-capitalize">{tu('verify_and_publish')}</button>
+                  <button type="button" className="btn btn-lg btn-verify text-capitalize" onClick="onSubmit">{tu('verify_and_publish')}</button>
                   <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
                 </div>
               </div>
