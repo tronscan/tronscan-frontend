@@ -27,7 +27,44 @@ class VerifyContractCode extends Component {
       id24: alpha(24),
       id20: alpha(20),
       open24:false,
-      open20:false
+      open20:false,
+      formVerify: {
+          contract_address: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          last_name: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          email: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          password: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          comfirmPassword: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          gender: {
+              valid: false,
+              value: '',
+              error: ''
+          },
+          title: {
+              valid: true,
+              value: '',
+              error: ''
+          },
+      },
     };
   }
 
@@ -52,7 +89,7 @@ class VerifyContractCode extends Component {
 
 
   render() {
-    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20} = this.state;
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address, last_name, password, gender, email, title, comfirmPassword}} = this.state;
     let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
@@ -124,7 +161,10 @@ class VerifyContractCode extends Component {
                       <div className="d-flex contract-div-bg">
                         <input type="text" className="form-control"
                                placeholder={intl.formatMessage({id: 'contract_address'})}
-                               value={contractAddress}/>
+                               value={contractAddress}
+                               name={contract_address}
+                               onInput={(e) => this.handleSignUpChange('first_name', e.target.value)}
+                        />
                         <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
                       </div>
                     </section>

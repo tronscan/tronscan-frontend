@@ -3,19 +3,15 @@ import {tu} from "../../utils/i18n";
 import {RecaptchaAsync} from "../common/async";
 import xhr from "axios/index";
 import {FormattedNumber} from "react-intl";
-import SweetAlert from "react-bootstrap-sweetalert";
-import {API_URL, ONE_TRX} from "../../constants";
 import {Alert} from "reactstrap";
 
 export default class TestNetRequest extends React.Component {
 
     constructor() {
         super();
-
         this.state = {
             modal: null,
-            verificationCode: null,
-            success: false,
+            verificationCode: '111',
             waitingForTrx: false,
         };
     }
@@ -102,46 +98,34 @@ export default class TestNetRequest extends React.Component {
         // }
     };
 
-    hideModal = () => {
-        this.setState({modal: null});
-    };
-
     canRequest = () => {
-        let {verificationCode, waitingForTrx} = this.state;
-        return !waitingForTrx && !!verificationCode;
+        let {verificationCode} = this.state;
+        return verificationCode;
     };
 
     render() {
-
-        let {modal, success} = this.state;
-
         return (
             <div>
-                {modal}
-                <p className="pt-1">
-                    {tu("information_message_1")}
-                </p>
-                {
-                    success ?
-                        <Alert color="success">
-                            {tu("information_message_3")}
-                        </Alert> :
-                        <React.Fragment>
-                            <div className="d-flex justify-content-center">
-                                <RecaptchaAsync
-                                    sitekey="6LdYjXQUAAAAAHKPvArcKB0fkXnH441HPYSZNH-A"
-                                    render="explicit"
-                                    onloadCallback={this.onLoad}
-                                    expiredCallback={this.onExpired}
-                                    verifyCallback={this.onVerify}/>
-                            </div>
-                            <button className="btn btn-secondary"
-                                    onClick={this.requestTrx}
-                                    disabled={!this.canRequest()}>
-                                {tu("request_trx_for_testing")}
-                            </button>
-                        </React.Fragment>
-                }
+                <React.Fragment>
+                    <div className="d-flex justify-content-center">
+                        <RecaptchaAsync
+                            sitekey="6LdYjXQUAAAAAHKPvArcKB0fkXnH441HPYSZNH-A"
+                            render="explicit"
+                            onloadCallback={this.onLoad}
+                            expiredCallback={this.onExpired}
+                            verifyCallback={this.onVerify}/>
+                    </div>
+                    {/*<button className="btn btn-secondary"*/}
+                            {/*onClick={this.requestTrx}*/}
+                            {/*disabled={!this.canRequest()}>*/}
+                        {/*{tu("request_trx_for_testing")}*/}
+                    {/*</button>*/}
+                    <button type="button"
+                            className="btn btn-lg btn-verify text-capitalize mt-3 mb-4"
+                            onClick={this.requestTrx}
+                            disabled={!this.canRequest()}>{tu('verify_and_publish')}</button>
+                    <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize  mt-3 mb-4">{tu('reset')}</button>
+                </React.Fragment>
             </div>
         )
     }
