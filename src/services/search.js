@@ -59,7 +59,7 @@ async function searchTxHash(criteria) {
     limit: 1,
   });
 
-  if (transactions.length === 1) {
+  if (transactions.length === 1 && transactions[0].hash) {
     return `#/transaction/${transactions[0].hash}`;
   }
 }
