@@ -10,7 +10,12 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable"
-import {upperFirst} from "lodash";
+import {upperFirst, forIn} from "lodash";
+import xhr from "axios/index";
+import {API_URL} from "../../../constants";
+import tronWeb from 'tronweb';
+import { Select } from 'antd';
+const Option = Select.Option;
 
 class Transactions extends React.Component {
 
@@ -36,13 +41,12 @@ class Transactions extends React.Component {
   onChange = (page, pageSize) => {
     this.loadTransactions(page, pageSize);
   };
-  changeWapper () {
-   
-    const oWapper = document.getElementById('event-wapper')
-    if(oWapper.style.display == 'none'){
-      oWapper.style.display = 'block'
-    }else{
+  changeWapper (index) {
+    const oWapper = document.getElementById('event-wapper'+index)
+    if(oWapper.style.display == 'block'){
       oWapper.style.display = 'none'
+    }else{
+      oWapper.style.display = 'block'
     }
   }
 
@@ -58,12 +62,38 @@ class Transactions extends React.Component {
       start: (page - 1) * pageSize,
       ...filter,
     });
-
-    this.setState({
-      transactions: transactions.data,
-      loading: false,
+// ${filter.address}
+    xhr.get(`http://18.216.57.65:20110/api/contracts/event?contract=${filter.address}`).then((result) => {
+      this.setState({
+        transactions: result.data,
+        loading: false,
+      });
     });
+
+    // this.setState({
+    //   transactions: transactions.data,
+    //   loading: false,
+    // });
   };
+
+  handleChange(value, index, string) {
+    const oSele = document.getElementById('select_'+index)
+    var statusmap = {
+      Hex () {
+        return string
+      },
+      Text() {
+        return tronWeb.toUtf8(string)
+      },
+      Number(){
+        return parseInt(string,16)
+      },
+      Address(){
+        return tronWeb.address.fromHex(string)
+      }
+    }
+    oSele.innerHTML = statusmap[value]()
+  }
 
   customizedColumn = () => {
     let {intl, isInternal = false} = this.props;
@@ -78,9 +108,9 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-                  <AddressLink address="TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBi"/>
-                  #<BlockNumberLink number={2450578}/><br/>
-                  <TimeAgo date={1539071616000}/>
+                  <AddressLink address={record.contract_address}/>
+                  #<BlockNumberLink number={record.block_number}/><br/>
+                  <TimeAgo date={record.block_timestamp}/>
                 </Truncate>
         }
       },
@@ -93,48 +123,80 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-                  <div>transfer(address,uint256）</div>
-                  <div>Ύx797af627]</div>
+                  <div>{record.event_name}</div>
+                  <div></div>
                 </Truncate>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'Event_Logs'})),
-        dataIndex: 'Logs',
-        key: 'Logs',
+        dataIndex: 'block_number',
+        key: 'block_number',
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
           return <div className="event">
-                    <div><a onClick={this.changeWapper}>Transfer</a>(<span className="e-blue"> address <span className="e-red">owner</span></span> 
-                               
-                                <span className="e-blue"> bytes32 <span className="e-red">operation</span></span> 
+                    <div><a onClick={this.changeWapper.bind(this,index)}>{record.event_name}</a>
+
+                    {/* (index_topic_1<span className="e-blue"> address <span className="e-red">_from</span></span>,
                                 
-                                <span className="e-blue"> uint256  <span className="e-red">value</span></span> 
+                    index_topic_2<span className="e-blue"> address  <span className="e-red">_to</span></span>,
                                
-                                <span className="e-blue"> address <span className="e-red">owner</span></span> 
-                                
-                    )</div>
-                    <div id="event-wapper" className=" p-3">
-                      <div className="mb-1">
-                        <span className="e-blue"> address <span className="e-red">owner</span></span>
-                        <AddressLink address="TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBi"/>
-                      </div>
-                      <div className="mb-1">
-                        <span className="e-blue"> address <span className="e-red">owner</span></span>
-                        <AddressLink address="TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBi"/>
-                      </div>
+                                <span className="e-blue"> uint256 <span className="e-red">_value</span></span>) */}
                     </div>
+                    { record.event_name == 'Transfer' &&
+                    <div id={"event-wapper"+index} className="event-wapper p-3">
+                    
+                      <div className="mb-1">
+                        <span className="e-blue"> address <span className="e-red">_from</span></span>
+                        <AddressLink address={record.result._from}/>
+                      </div>
+                      <div className="mb-1">
+                        <span className="e-blue"> address <span className="e-red">_to</span></span>
+                        <AddressLink address={record.result._to}/>
+                      </div>
+                      <div className="mb-1">
+                        <span className="e-blue"> uint256 <span className="e-red">_value</span></span>
+                        <AddressLink address={record.result._value}/>
+                      </div>
+                    </div>}
+
+                    { record.event_name == "CreateReferral" &&
+                    <div id={"event-wapper"+index} className="event-wapper p-3">
+                    
+                      <div className="mb-1">
+                        <span className="e-blue"> uint256 <span className="e-red">_code</span></span>
+                        <AddressLink address={record.result._code}/>
+                      </div>
+                      <div className="mb-1">
+                        <span className="e-blue"> address <span className="e-red">_owner</span></span>
+                        <AddressLink address={record.result._owner}/>
+                      </div>
+                    </div>}
+                    
+                    {record.row&&
+                      <div className="event-topic">{
+                        record.row.topics.map( (item,index) => {
+                          return <p key={index}>[topic {index}] {item}</p>
+                        })
+                      }
+                      </div>
+                    }
 
                     <div>
-                      <select className="form-control-sm" id="exampleFormControlSelect1">
-                        <option>Hex</option>
-                        <option>Number</option>
-                        <option>Text</option>
-                        <option>Address</option>
-                      </select>
-                      <i className="fa fa-arrow-right mx-2" aria-hidden="true"></i>
-                      <span>0000000000000000000000002903cadbe271e057edef157340b52a5898d7424f</span>
+
+                    {record.row&&
+                      <span>
+                        <Select defaultValue="Hex" style={{ width: 80 }} onChange={ value => { this.handleChange(value, index , record.row.data) }}>
+                          <Option value="Hex">Hex</Option>
+                          <Option value="Text">Text</Option>
+                          <Option value="Number">Number</Option>
+                          <Option value="Address">Address</Option>
+                        </Select>
+                        <i className="fa fa-arrow-right mx-2" aria-hidden="true"></i>
+                        <span id={'select_'+index} className="event-hex">{ record.row.data}</span>
+                      </span>
+                    }
                     </div>
                   </div>
         }
@@ -160,6 +222,7 @@ class Transactions extends React.Component {
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
                           // pagination={false}
+                          scroll={{ x: 1000 }}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadContracts(page, pageSize)

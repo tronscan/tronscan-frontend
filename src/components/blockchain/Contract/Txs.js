@@ -105,7 +105,7 @@ class Transactions extends React.Component {
         dataIndex: 'block',
         key: 'block',
         align: 'left',
-        width: '80px',
+        width: '90px',
         className: 'ant_table',
         render: (text, record, index) => {
           return <BlockNumberLink number={text}/>

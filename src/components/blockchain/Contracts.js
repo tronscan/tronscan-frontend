@@ -42,6 +42,7 @@ class Contracts extends React.Component {
       url: `/api/contracts`,
       method:'get',
       params: {
+        confirm: 0,
         sort: '-timestamp',
         limit: pageSize,
         start: (page - 1) * pageSize

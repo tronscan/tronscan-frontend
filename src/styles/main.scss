@@ -1650,8 +1650,17 @@ h5 {
     .e-red{
       color: #EF7A75;
     }
-    #event-wapper{
+    .event-wapper{
       display: none;
+    }
+    &-topic p{
+      height: 2em;
+      line-height: 2em;
+      font-size: 12px;
+      // margin-bottom: 0.5em;
+    }
+    &-hex{
+      font-size: 12px;
     }
   }
 }

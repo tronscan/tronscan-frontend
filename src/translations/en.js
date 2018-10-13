@@ -1057,6 +1057,8 @@ export const messages = {
   "Internal_Transactions_found": "Internal Transactions found",
   "Misc": "Misc",
   "Optimization_Enabled": "Optimization Enabled",
+  "Normal_Transactions": "Normal Transactions",
+  "Verified_contracts": "verified contracts",
 
   /*
   ##################################################################################

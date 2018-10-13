@@ -17,6 +17,7 @@ import {upperFirst} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL} from "../../../constants";
+import { Tooltip } from 'antd'
 
 
 class SmartContract extends React.Component {
@@ -59,43 +60,43 @@ class SmartContract extends React.Component {
     this.setState({loading: true, address: {address: id} });
 
 
-    let contract = await Client.getContractOverview(id);
-    // let contract = xhr.get(`http://18.216.57.65:20110/api/contract/${id}`).then((result) => {
-    //   console.log(result.data)
-    //   return result.data
-    // });
+    // let contract = await Client.getContractOverview(id);
+    xhr.get(`http://18.216.57.65:20110/api/contract/${id}`).then((result) => {
 
-    this.setState(prevProps => ({
-      loading: false,
-      contract:contract.data,
-      tabs: {
-        ...prevProps.tabs,
-        transactions: {
-          id: "transactions",
-          path: "",
-          label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{contract: id}}  />
-        },
-        // Txns: {
-        //   id: "Txns",
-        //   path: "/Txns",
-        //   label: <span>{tu('token_txns')}</span>,
-        //   cmp: () => <Txhash filter={{address: id}} />,
-        // },
-        voters: {
-          id: "code",
-          path: "/code",
-          label: <span>{tu("Code")}</span>,
-          cmp: () => <Code filter={{address: id}} />,
-        },
-        events: {
-          id: "events",
-          path: "/events",
-          label: <span>{tu('Events')}</span>,
-          cmp: () => <Events filter={{address: id}} />,
+      this.setState(prevProps => ({
+        loading: false,
+        contract:result.data.data[0],
+        tabs: {
+          ...prevProps.tabs,
+          transactions: {
+            id: "transactions",
+            path: "",
+            label: <span>{tu("transactions")}</span>,
+            cmp: () => <Transactions filter={{contract: id}}  />
+          },
+          // Txns: {
+          //   id: "Txns",
+          //   path: "/Txns",
+          //   label: <span>{tu('token_txns')}</span>,
+          //   cmp: () => <Txhash filter={{address: id}} />,
+          // },
+          voters: {
+            id: "code",
+            path: "/code",
+            label: <span>{tu("Code")}</span>,
+            cmp: () => <Code filter={{address: id}} />,
+          },
+          events: {
+            id: "events",
+            path: "/events",
+            label: <span>{tu('Events')}</span>,
+            cmp: () => <Events filter={{address: id}} />,
+          }
         }
-      }
-    }));
+      }));
+    });
+
+   
   }
 
   render() {
@@ -128,7 +129,12 @@ class SmartContract extends React.Component {
                             <ul>
                               <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
                               <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li>
-                              <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>{contract.trxCount}</li>
+                              <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
+                                {contract.trxCount} 
+                                <Tooltip placement="top" title={intl.formatMessage({id: 'Normal_Transactions'})}>
+                                  <span className="ml-1"> txns </span>
+                                </Tooltip>
+                              </li>
                               {/* <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>{contract.tokenContract}</li> */}
                             </ul>
                           </div>

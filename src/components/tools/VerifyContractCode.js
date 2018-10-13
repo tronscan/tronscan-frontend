@@ -22,7 +22,7 @@ class VerifyContractCode extends Component {
             contractCode: "",
             selectedCompiler: "",
             Optimization: true,
-            compilers: ['Please Select', 'v0.0.1', 'v0.0.2', 'v0.0.3', 'v0.0.4', 'v0.0.5'],
+            compilers: ['V0.4.24'],
             tabs:["contract_source_code","bytecode_and_ABI"],
             currIndex:0,
             id24: alpha(24),
@@ -42,7 +42,7 @@ class VerifyContractCode extends Component {
                 },
                 contract_compiler: {
                     valid: false,
-                    value: '',
+                    value: 'V0.4.24',
                     error: ''
                 },
                 contract_code: {
@@ -52,7 +52,7 @@ class VerifyContractCode extends Component {
                 },
                 contract_optimization:{
                     valid: true,
-                    value: '',
+                    value: true,
                     error: ''
                 },
                 abi_Encoded:{
@@ -103,6 +103,11 @@ class VerifyContractCode extends Component {
             }
         }
 
+        
+        if(field == 'contract_optimization'){
+          newFieldObj.value = newFieldObj.value == 'true'
+        }
+
         this.setState({
             formVerify: {
                 ...this.state.formVerify,
@@ -120,7 +125,6 @@ class VerifyContractCode extends Component {
         this.setState({
             selectedCompiler: e.target.value
         });
-        console.log(this.state.selectedCompiler)
     }
 
     optSelectChange = (e) => {
@@ -152,8 +156,6 @@ class VerifyContractCode extends Component {
                arrAbi.push(abi);
            }
        }
-        console.log('byteCode',arrByteCode)
-       console.log('abi',arrAbi)
         let VerifyInfo = {
             address: contract_address.value,//合约地址
             name: contract_name.value,//合约名称

@@ -1047,7 +1047,8 @@ export const messages = {
   "Internal_Transactions_found": "条合约内部交易",
   "Misc": "杂项",
   "Optimization_Enabled": "是否优化",
-
+  "Normal_Transactions": "常规交易",
+  "Verified_contracts": "已验证合约",
 
   /*
   ##################################################################################

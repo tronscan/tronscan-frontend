@@ -35,8 +35,7 @@ export default class Code extends React.Component {
   async loadContractCode(id) {
     let contractCode = await Client.getContractCode(id);
 
-    xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX`).then((result) => {
-      console.log(result.data)
+    xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=${id}`).then((result) => {
       let contractCode = result.data.data
       this.setState({
         name: contractCode.name,
@@ -153,7 +152,7 @@ export default class Code extends React.Component {
             </div>
           </div>}
 
-          { librarys&&librarys.length&&
+          { librarys&&(librarys.length !== 0)&&
           <div className="row mt-3">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
