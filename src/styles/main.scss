@@ -1128,7 +1128,7 @@ $border-color-dark: #d8d8d8;
 
 // list-style-body 头部表格样式
 .list-style-body {
-  border-color: $border-color-dark;
+  border: 1px solid $border-color-dark!important;
   border-radius: 0;
   // padding: 0 2.6%;
   background-color: $bg-color;

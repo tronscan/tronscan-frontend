@@ -124,6 +124,7 @@
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "three": "^0.92.0",
+    "tronweb": "^2.0.16",
     "url-loader": "0.6.2",
     "uuid": "^3.2.1",
     "valid-url": "^1.0.9",
