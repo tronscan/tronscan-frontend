@@ -44,7 +44,6 @@ class Contracts extends React.Component {
       limit: pageSize,
       start: (page - 1) * pageSize
     });
-    console.log(result);
     this.setState({
       contracts: result.data,
       loading: false,

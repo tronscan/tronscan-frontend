@@ -57,7 +57,6 @@ class Transaction extends React.Component {
     this.setState({loading: true, transaction: {hash: id}});
 
     let transaction = await Client.getTransactionByHash(id);
-    console.log('transaction',transaction)
     if (!transaction['hash']) {
         this.setState({
             notFound: true,
