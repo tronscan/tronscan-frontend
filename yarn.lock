@@ -1561,6 +1561,10 @@ browser-resolve@^1.11.2:
   dependencies:
     resolve "1.1.7"
 
+browser-solc-tron@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/browser-solc-tron/-/browser-solc-tron-1.0.5.tgz#67b70ccd20b7a0a6de756807d7abf03b6ec69d0f"
+
 browser-stdout@1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.1.tgz#baa559ee14ced73452229bad7326467c61fabd60"
@@ -3148,6 +3152,10 @@ es6-set@~0.1.5:
     es6-iterator "~2.0.1"
     es6-symbol "3.1.1"
     event-emitter "~0.3.5"
+
+es6-shim@^0.35.3:
+  version "0.35.3"
+  resolved "https://registry.yarnpkg.com/es6-shim/-/es6-shim-0.35.3.tgz#9bfb7363feffff87a6cdb6cd93e405ec3c4b6f26"
 
 es6-symbol@3.1.1, es6-symbol@^3.1.1, es6-symbol@~3.1.1:
   version "3.1.1"
@@ -9617,6 +9625,13 @@ trim-trailing-lines@^1.0.0:
 trim@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
+
+tronwebcompiler@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tronwebcompiler/-/tronwebcompiler-1.0.0.tgz#36db7edef338c04c82dba591f56f1598dcb6f1fd"
+  dependencies:
+    browser-solc-tron "^1.0.5"
+    es6-shim "^0.35.3"
 
 trough@^1.0.0:
   version "1.0.2"

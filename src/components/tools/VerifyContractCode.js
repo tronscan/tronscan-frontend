@@ -9,7 +9,10 @@ import {FormattedNumber, injectIntl} from "react-intl";
 import {alpha} from "../../utils/str";
 import {Tooltip} from "reactstrap";
 import ContractCodeRequest from "./ContractCodeRequest";
+import getCompiler from "../../utils/compiler";
+import {Client} from "../../services/api";
 
+var compile;
 class VerifyContractCode extends Component {
 
     constructor(props) {
@@ -22,8 +25,6 @@ class VerifyContractCode extends Component {
             compilers: ['Please Select', 'v0.0.1', 'v0.0.2', 'v0.0.3', 'v0.0.4', 'v0.0.5'],
             tabs:["contract_source_code","bytecode_and_ABI"],
             currIndex:0,
-            contractAddress:'',
-            contractName:'',
             id24: alpha(24),
             id20: alpha(20),
             open24:false,
@@ -39,48 +40,63 @@ class VerifyContractCode extends Component {
                     value: '',
                     error: ''
                 },
+                contract_compiler: {
+                    valid: false,
+                    value: '',
+                    error: ''
+                },
                 contract_code: {
                     valid: false,
                     value: '',
                     error: ''
                 },
+                contract_optimization:{
+                    valid: true,
+                    value: '',
+                    error: ''
+                },
+                abi_Encoded:{
+                    valid: true,
+                    value: '',
+                    error: ''
+                }
 
             },
         };
     }
-    handleSignUpChange(field, value) {
-        const {formVerify: {contract_address,contract_name,contract_code}} = this.state;
+    handleVerifyCodeChange(field, value) {
+        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code}} = this.state;
 
         const newFieldObj = {value, valid: true, error: ''};
 
         switch (field) {
             case 'contract_address': {
-                if (value.length >= 31) {
-                    newFieldObj.error = 'First Name up to 30 characters';
+                if (value.length < 34) {
+                    newFieldObj.error = 'InvalidLength';
                     newFieldObj.valid = false;
                 } else if (value.length === 0) {
-                    newFieldObj.error = 'Please enter First Name';
+                    newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
                 }
                 break;
             }
             case 'contract_name': {
-                if (value.length >= 31) {
-                    newFieldObj.error = 'Last Name up to 30 characters';
+                if (value.length === 0) {
+                    newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
-                } else if (value.length === 0) {
-                    newFieldObj.error = 'Please enter Last Name';
+                }
+                break;
+            }
+            case 'contract_compiler': {
+                if (value === 0) {
+                    newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
                 }
                 break;
             }
             case 'contract_code': {
-                var myreg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-                if (!myreg.test(value)) {
-                    newFieldObj.error = 'Please enter a valid email';
-                    newFieldObj.valid = false;
-                } else if (value.length === 0) {
-                    newFieldObj.error = 'Please enter email address';
+                if (value.length === 0) {
+                    newFieldObj.error = '** Please enter the contract source code';
                     newFieldObj.valid = false;
                 }
                 break;
@@ -95,9 +111,7 @@ class VerifyContractCode extends Component {
         });
     }
 
-    componentDidMount() {
 
-    }
 
     handleClick(index){
         this.setState({ currIndex:index });
@@ -106,6 +120,7 @@ class VerifyContractCode extends Component {
         this.setState({
             selectedCompiler: e.target.value
         });
+        console.log(this.state.selectedCompiler)
     }
 
     optSelectChange = (e) => {
@@ -114,9 +129,72 @@ class VerifyContractCode extends Component {
         });
     }
 
+   handleVerifyCode = async(e) => {
+        e.preventDefault();
+        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded}} = this.state;
+        // if (!contract_address.valid || !contract_name.valid || !contract_compiler.valid || !contract_code.valid ) {
+        //     alert('Please fill in the correct information and try again');
+        //     return;
+        // }
+       let resource = contract_code.value
+       let optimize = 1;
+       let result = compile(resource, optimize);
+       let arrContract = [];
+       let arrByteCode = [];
+       let arrAbi = [];
+       for (var name in result.contracts) {
+           arrContract.push(name);
+           if (result.contracts[name].bytecode) {
+               let bytecode = result.contracts[name].bytecode;
+               arrByteCode.push(bytecode);
+               let metadata = JSON.parse(result.contracts[name].metadata);
+               let abi = JSON.stringify(metadata.output.abi);
+               arrAbi.push(abi);
+           }
+       }
+        console.log('byteCode',arrByteCode)
+       console.log('abi',arrAbi)
+        let VerifyInfo = {
+            address: contract_address.value,//合约地址
+            name: contract_name.value,//合约名称
+            compiler: contract_compiler.value, //编译器版本
+            isSetting: contract_optimization.value,//是否优化
+            source: contract_code.value,//合约源代码
+            byteCode:arrByteCode[0],//编译生成的二进制代码
+            abi:arrAbi[0],//编译生成的abi
+            abiEncoded:abi_Encoded.value,//编译所需参数
+            // librarys:librarys
+        }
+
+        let contractCode = await Client.contractsVerify(VerifyInfo);
+
+        // Ajax({url: Api.signup, data: signupInfo, method: 'post'}).then((res) => {
+        //     if (res.code == 0) {
+        //         this.setState({
+        //             success: true,
+        //             AlertMsg: 'You have registered successfully.',
+        //             modal: false
+        //         })
+        //     } else {
+        //         this.setState({
+        //             success: false,
+        //             AlertMsg: res.msg,
+        //             modal: false
+        //         })
+        //     }
+        // });
+
+    }
+     componentDidMount() {
+        this.getCompile()
+     }
+     async getCompile (){
+         compile = await getCompiler();
+     }
+
 
     render() {
-        let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address, last_name, password, gender, email, title, comfirmPassword}} = this.state;
+        let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded}} = this.state;
         let {intl} = this.props;
         return (
             <main className="contract container header-overlap">
@@ -188,11 +266,11 @@ class VerifyContractCode extends Component {
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
                                    placeholder={intl.formatMessage({id: 'contract_address'})}
-                                   value={contractAddress}
-                                   name={contract_address}
-                                   onInput={(e) => this.handleSignUpChange('first_name', e.target.value)}
+                                   // value={contract_address}
+                                   name="contract_address"
+                                   onInput={(e) => this.handleVerifyCodeChange('contract_address', e.target.value)}
                             />
-                            <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
+                            <CopyText text={contract_address} className="ml-auto contract-copy mr-2"/>
                           </div>
                         </section>
                       </div>
@@ -207,7 +285,10 @@ class VerifyContractCode extends Component {
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
                                    placeholder={intl.formatMessage({id: 'contract_name'})}
-                                   value={contractName}/>
+                                   //value={contractName}
+                                   name="contract_name"
+                                   onInput={(e) => this.handleVerifyCodeChange('contract_name', e.target.value)}
+                            />
                             <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
                           </div>
                         </section>
@@ -218,7 +299,9 @@ class VerifyContractCode extends Component {
                             <span>*</span>
                           </label>
                           <div>
-                            <select className="custom-select" onChange={this.compilerSelectChange}>
+                            <select className="custom-select"
+                                    name="contract_compiler"
+                                    onChange={(e) => this.handleVerifyCodeChange('contract_compiler', e.target.value)}>
                                 {
                                     compilers.map((compiler, index) => {
                                         return (
@@ -236,7 +319,10 @@ class VerifyContractCode extends Component {
                             <span>*</span>
                           </label>
                           <div>
-                            <select className="custom-select" onChange={this.optSelectChange}>
+                            <select className="custom-select"
+                                    name="contract_optimization"
+                                    onChange={(e) => this.handleVerifyCodeChange('contract_optimization', e.target.value)}
+                            >
                               <option key={1} value={true}>true</option>
                               <option key={0} value={false}>false</option>
                             </select>
@@ -253,8 +339,10 @@ class VerifyContractCode extends Component {
                         </div>
                         <textarea className="w-100 form-control"
                                   rows="11"
-                                  value={contractCode}
-                                  onChange={ev => this.setState({contractCode: ev.target.value})}/>
+                                  //value={contractCode}
+                                  name="contract_code"
+                                  onChange={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
+                         />
                       </div>
                     </div>
                     <hr style={styles.hr_32}/>
@@ -271,8 +359,9 @@ class VerifyContractCode extends Component {
                         </div>
                         <textarea className="w-100 form-control mt-3"
                                   rows="1"
-                                  value={abi}
-                                  onChange={ev => this.setState({abi: ev.target.value})}/>
+                                  //value={abi}
+                                  name="abi_Encoded"
+                                  onChange={(e) => this.handleVerifyCodeChange('abi_Encoded', e.target.value)}/>
 
                       </div>
                       <div className="col-md-12">
@@ -350,8 +439,8 @@ class VerifyContractCode extends Component {
 
                     <div className="float-left" >
                       <ContractCodeRequest/>
-                        {/*<button type="button" className="btn btn-lg btn-verify text-capitalize">{tu('verify_and_publish')}</button>*/}
-                        {/*<button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>*/}
+                        <button type="button" className="btn btn-lg btn-verify text-capitalize" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
+                        <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
                     </div>
                   </div>
                 </div>

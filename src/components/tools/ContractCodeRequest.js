@@ -120,11 +120,11 @@ export default class TestNetRequest extends React.Component {
                             {/*disabled={!this.canRequest()}>*/}
                         {/*{tu("request_trx_for_testing")}*/}
                     {/*</button>*/}
-                    <button type="button"
-                            className="btn btn-lg btn-verify text-capitalize mt-3 mb-4"
-                            onClick={this.requestTrx}
-                            disabled={!this.canRequest()}>{tu('verify_and_publish')}</button>
-                    <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize  mt-3 mb-4">{tu('reset')}</button>
+                    {/*<button type="button"*/}
+                            {/*className="btn btn-lg btn-verify text-capitalize mt-3 mb-4"*/}
+                            {/*onClick={this.requestTrx}*/}
+                            {/*disabled={!this.canRequest()}>{tu('verify_and_publish')}</button>*/}
+                    {/*<button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize  mt-3 mb-4">{tu('reset')}</button>*/}
                 </React.Fragment>
             </div>
         )
