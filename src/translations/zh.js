@@ -972,6 +972,9 @@ export const messages = {
   "vote_unit": "个候选人",
   "account_unit": "个账户",
   "address_unit": "个地址",
+  "contract_unit": "条已验证合约",
+  "inter_contract_unit": "条合约内部交易",
+
   /*
 ##################################################################################
 #                                                                                #
@@ -1002,6 +1005,50 @@ export const messages = {
   "not_started": "尚未开始",
   "no_token_to_buy": "抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
 
+ /*
+##################################################################################
+#                                                                                #
+# contract page                                                                  #
+#                                                                                #
+##################################################################################
+*/
+
+  "Code": "代码",
+  "contract_overview": "合约概览",
+  "trx_value": "TRX价值",
+  "token_tracker": "通证追踪器",
+  "contract_creator": "合约创建者",
+  "at_txn": "于交易",
+  "token_txns": "通证交易",
+  "Events": "事件",
+  "TxHash": "交易哈希",
+  "Internal_Txns": "合约内部交易",
+  "ParentTxHash": "父哈希",
+  "TxFee": "手续费",
+  "contract_code_verified": "已验证的合约源码（精确匹配）",
+  "Contract_Source_Code": "合约源码",
+  "Contract_ABI": "合约ABI",
+  "Byte_code": "字节码",
+  "Constructor_Arguments": "构造函数参数（ABI已编码并且是合约字节码的最后一部分字节）",
+  "Library_Used": "使用的库",
+  "Copy": "复制",
+  "TxHash_Block_Age": "交易哈希|区块|年龄",
+  "Method": "方法",
+  "Event_Logs": "事件日志",
+  "With_Verified_Source_Codes_Only": "只包括已验证源码的合约",
+  "verified_contract_source_codes_found": "条已验证合约",
+  "ContractName": "合约名称",
+  "TxCount": "交易数",
+  "Settings": "设置",
+  "DateVerified": "验证日期",
+  "Compiler": "编译器",
+  "Compiler_Text": "编译器版本",
+  "Contract_Internal_Transactions": "合约内部交易",
+  "Internal_Transactions_found": "条合约内部交易",
+  "Misc": "杂项",
+  "Optimization_Enabled": "是否优化",
+  "Normal_Transactions": "常规交易",
+  "Verified_contracts": "已验证合约",
 
   /*
   ##################################################################################

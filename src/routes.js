@@ -83,7 +83,7 @@ export const routes = [
       },
       {
         path: "/blockchain/contracts",
-        label: "contracts",
+        label: "Verified_contracts",
         icon: "fa fa-file",
         component: Contracts,
         showInMenu: false

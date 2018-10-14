@@ -984,6 +984,8 @@ export const messages = {
   "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
+  "contract_unit": "verified contract source codes found",
+  "inter_contract_unit": "Internal Transactions found",
 
   /*
 ##################################################################################
@@ -1014,6 +1016,49 @@ export const messages = {
   "token_participate_tron": "Participate in TRON token issuance",
   "not_started": "Not started",
   "no_token_to_buy": "Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+
+/*
+##################################################################################
+#                                                                                #
+# contract page                                                                  #
+#                                                                                #
+##################################################################################
+*/
+
+  "Code": "Code",
+  "contract_overview": "Contract Overview",
+  "trx_value": "TRX Value",
+  "token_tracker": "Token Tracker",
+  "contract_creator": "Contract Creator",
+  "at_txn": "at txn",
+  "token_txns": "Token Txns",
+  "Events": "Events",
+  "TxHash": "TxHash",
+  "Internal_Txns": "Internal Txns",
+  "ParentTxHash": "ParentTxHash",
+  "TxFee": "[TxFee]",
+  "contract_code_verified": "Contract Source Code Verified (Exact Match)",
+  "Contract_ABI": "Contract ABI",
+  "Byte_code": "Byte code",
+  "Constructor_Arguments": "Constructor Arguments (ABI-Encoded and is the last bytes of the Contract Creation Code above) ",
+  "Copy": "Copy",
+  "TxHash_Block_Age": "TxHash | Block | Age",
+  "Method": "Method",
+  "Event_Logs": "Event Logs",
+  "With_Verified_Source_Codes_Only": "With Verified Source Codes Only",
+  "verified_contract_source_codes_found": " verified contract source codes found",
+  "ContractName": "ContractName",
+  "TxCount": "TxCount",
+  "Settings": "Settings",
+  "DateVerified": "DateVerified",
+  "Compiler": "Compiler",
+  "Compiler_Text": "Compiler Text",
+  "Contract_Internal_Transactions": "Contract Internal Transactions",
+  "Internal_Transactions_found": "Internal Transactions found",
+  "Misc": "Misc",
+  "Optimization_Enabled": "Optimization Enabled",
+  "Normal_Transactions": "Normal Transactions",
+  "Verified_contracts": "verified contracts",
 
   /*
   ##################################################################################
@@ -1055,6 +1100,7 @@ export const messages = {
    ##################################################################################
    */
   "contract_source_code":"Contract Source Code",
+  "bytecode_and_ABI":"ByteCode And ABI",
   "step":"Step",
   "step_1":"Enter your Contract Source Code below.",
   "step_2":"If the Bytecode generated matches the existingCreation Address Bytecode, the contract is then Verified.",
@@ -1080,5 +1126,10 @@ export const messages = {
   "library_5_name":"Library_5 Name",
   "library_contract_address":"Library Contract Address",
   "verify_and_publish":"Verify And Publish",
+  "txn":"txn",
+  "contract_name_tip":"Must match the ContractName in the Source Code or in a MultiPart Contract it should match the ContractName you deployed.",
+  "constructor_arguments_ABIencoded_tip":"This option ONLY applies to contracts that accept constructor arguments, if you are unsure you most likely do not need this.The constructor arguments should be in ABI-ENCODED values and will be appended to the contract bytecode.",
+  "library_1_name_tip":"This option ONLY applies to contracts that use libraries.",
+  "library_contract_address_tip":"Corresponding Contract Library Address."
 
 };

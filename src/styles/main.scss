@@ -1098,7 +1098,8 @@ $border-color: #eee;
 $border-color-dark: #d8d8d8;
 .list-style-header {
   border: none;
-  border-top: 4px solid $main-red;
+  border-top: 4px solid $main-red!important;
+  background: #fff!important;
   border-radius: 0;
   padding: 0 2.6%;
   color: $text-color;
@@ -1132,7 +1133,7 @@ $border-color-dark: #d8d8d8;
 
 // list-style-body 头部表格样式
 .list-style-body {
-  border-color: $border-color-dark;
+  border: 1px solid $border-color-dark!important;
   border-radius: 0;
   // padding: 0 2.6%;
   background-color: $bg-color;
@@ -1481,7 +1482,14 @@ h5 {
 }
 .contract-body-input{
   padding: 2rem;
+  padding-bottom: 4rem;
   section{
+    .contract-div-bg{
+      background-color: #F3F3F3;
+    }
+    .contract-copy{
+      margin-top: 8px;
+    }
     label{
       color: #666666;
       font-size: 1rem;
@@ -1505,6 +1513,11 @@ h5 {
     .custom-select:focus{
       box-shadow:none;
       background-color: #F3F3F3;
+    }
+    .custom-select{
+      appearance: normal;
+      -moz-appearance: none;
+      -webkit-appearance: none;
     }
   }
   .contract-code,.contract-ABI{
@@ -1554,6 +1567,15 @@ h5 {
     span{
       color:#C23631;
     }
+  }
+
+}
+.contract-code_body{
+  .contract-hide{
+    display: none;
+  }
+  .contract-show{
+    display: block;
   }
 }
 
@@ -1613,3 +1635,151 @@ h5 {
     margin-top: 6px;
   }
 }
+
+.contract-header{
+  padding-bottom: 20px;
+  h6{
+    padding: 30px 0;
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+
+    &.contract-header__title{
+      padding: 0;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__item{
+    width: 46%;
+  }
+
+  .verified {
+    i, svg{
+      color: #69C265;
+      font-size: 12px;
+    }
+  }
+  
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -1px;
+    li{
+      display: flex;
+      min-height: 40px;
+      padding: 10px 0;
+      line-height: 1.4em;
+      border-bottom: 1px solid #eee;
+      color: #333;
+
+      p{
+        width: 138px;
+        margin: 0;
+        
+        &.plus{
+          width: 180px;
+        }
+      }
+      &>div{
+        flex: 1;
+      }
+    }
+  }
+}
+
+.tip{
+  width: 40px;
+  height: 22px;
+  line-height: 22px;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  &-in{
+    background: #69C265;
+  }
+  &-out{
+    background: #E0AE5c;
+  }
+}
+.event-main{
+  tr{
+    vertical-align: baseline;
+  }
+
+  .event{
+    .e-blue{
+      color: #A281EE;
+    }
+    .e-red{
+      color: #EF7A75;
+    }
+    .event-wapper{
+      display: none;
+    }
+    &-topic p{
+      height: 2em;
+      line-height: 2em;
+      font-size: 12px;
+      // margin-bottom: 0.5em;
+    }
+    &-hex{
+      font-size: 12px;
+    }
+  }
+}
+.byte-code_ABI{
+  padding-top: 2rem;
+  textarea{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: #F3F3F3;
+  }
+  .form-control{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: #F3F3F3;
+    display: inline-block;
+  }
+  .form-control:focus{
+    box-shadow:none;
+    background-color: #F3F3F3;
+  }
+  .byte-code_error{
+    color:#e60815
+  }
+  .btn-start-over{
+    background: #AFB9C9;
+  }
+
+}
+.question-mark{
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   background-color:#d8d8d8;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   i{
+      font-size: 10px;
+      font-style: normal;
+      transform: scale(0.9);
+   }
+}
+
+.code-wapper{
+  background: #eeeeee;
+  padding: 6px 12px;
+  
+  &-item, &-item p{
+    line-height: 2em;
+    margin: 0;
+  }
+}
+
+
