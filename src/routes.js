@@ -112,6 +112,7 @@ export const routes = [
         icon: `fa fa-random`,
         path: "/blockchain/ContractInter",
         component: ContractInter,
+        showInMenu: false
       },
       {
         path: "/blockchain/foundation",

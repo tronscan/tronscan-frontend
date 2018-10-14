@@ -48,14 +48,15 @@ class Transactions extends React.Component {
 
     this.setState({loading: true});
 
-    let transactions = await Client.getContractTxs({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      ...filter,
-    });
+    // let transactions = await Client.getContractTxs({
+    //   sort: '-timestamp',
+    //   limit: pageSize,
+    //   start: (page - 1) * pageSize,
+    //   ...filter,
+    // });
 
-    let contract = xhr.get(`http://18.216.57.65:20110/api/contracts/transaction`, {
+
+    let transactions = xhr.get(`http://18.216.57.65:20110/api/contracts/transaction`, {
       sort: '-timestamp',
       count: true,
       limit: pageSize,

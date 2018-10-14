@@ -366,76 +366,76 @@ class VerifyContractCode extends Component {
                                   onChange={(e) => this.handleVerifyCodeChange('abi_Encoded', e.target.value)}/>
 
                       </div>
-                      <div className="col-md-12">
-                        <p className="mt-5">{tu("contract_library_address")}</p>
-                        <div className="row ml-0" style={styles.rowRight}>
-                          <div className="col-md-5 contract-input">
-                        <span id={id20}
-                              onMouseOver={() => this.setState({open20: true})}
-                              onMouseOut={() => this.setState({open20: false})}>
-                        {tu("library_1_name")}:</span>
-                            <Tooltip placement="top" isOpen={open20} target={id20}>
-                              <span className="text-lowercase text-left">{t("library_1_name_tip")}</span>
-                            </Tooltip>
-                            <input type="text" className="form-control contract-input-s"/>
-                          </div>
-                          <div className="col-md-7 contract-input">
-                        <span
-                            id={id24}
-                            onMouseOver={() => this.setState({open24: true})}
-                            onMouseOut={() => this.setState({open24: false})}>
-                          {tu("library_contract_address")}:</span>
-                            <Tooltip placement="top" isOpen={open24} target={id24}>
-                              <span className="text-lowercase">{t("library_contract_address_tip")}</span>
-                            </Tooltip>
-                            <input type="text" className="form-control contract-input-l"/>
-                          </div>
-                        </div>
+                      {/*<div className="col-md-12">*/}
+                        {/*<p className="mt-5">{tu("contract_library_address")}</p>*/}
+                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                          {/*<div className="col-md-5 contract-input">*/}
+                        {/*<span id={id20}*/}
+                              {/*onMouseOver={() => this.setState({open20: true})}*/}
+                              {/*onMouseOut={() => this.setState({open20: false})}>*/}
+                        {/*{tu("library_1_name")}:</span>*/}
+                            {/*<Tooltip placement="top" isOpen={open20} target={id20}>*/}
+                              {/*<span className="text-lowercase text-left">{t("library_1_name_tip")}</span>*/}
+                            {/*</Tooltip>*/}
+                            {/*<input type="text" className="form-control contract-input-s"/>*/}
+                          {/*</div>*/}
+                          {/*<div className="col-md-7 contract-input">*/}
+                        {/*<span*/}
+                            {/*id={id24}*/}
+                            {/*onMouseOver={() => this.setState({open24: true})}*/}
+                            {/*onMouseOut={() => this.setState({open24: false})}>*/}
+                          {/*{tu("library_contract_address")}:</span>*/}
+                            {/*<Tooltip placement="top" isOpen={open24} target={id24}>*/}
+                              {/*<span className="text-lowercase">{t("library_contract_address_tip")}</span>*/}
+                            {/*</Tooltip>*/}
+                            {/*<input type="text" className="form-control contract-input-l"/>*/}
+                          {/*</div>*/}
+                        {/*</div>*/}
 
-                        <div className="row ml-0" style={styles.rowRight}>
-                          <div className="col-md-5 contract-input">
-                            <span>{tu("library_2_name")}:</span>
-                            <input type="text" className="form-control contract-input-s"/>
-                          </div>
-                          <div className="col-md-7 contract-input">
-                            <span>{tu("library_contract_address")}:</span>
-                            <input type="text" className="form-control contract-input-l"/>
-                          </div>
-                        </div>
+                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                          {/*<div className="col-md-5 contract-input">*/}
+                            {/*<span>{tu("library_2_name")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-s"/>*/}
+                          {/*</div>*/}
+                          {/*<div className="col-md-7 contract-input">*/}
+                            {/*<span>{tu("library_contract_address")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-l"/>*/}
+                          {/*</div>*/}
+                        {/*</div>*/}
 
-                        <div className="row ml-0" style={styles.rowRight}>
-                          <div className="col-md-5 contract-input">
-                            <span>{tu("library_3_name")}:</span>
-                            <input type="text" className="form-control contract-input-s"/>
-                          </div>
-                          <div className="col-md-7 contract-input">
-                            <span>{tu("library_contract_address")}:</span>
-                            <input type="text" className="form-control contract-input-l"/>
-                          </div>
-                        </div>
+                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                          {/*<div className="col-md-5 contract-input">*/}
+                            {/*<span>{tu("library_3_name")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-s"/>*/}
+                          {/*</div>*/}
+                          {/*<div className="col-md-7 contract-input">*/}
+                            {/*<span>{tu("library_contract_address")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-l"/>*/}
+                          {/*</div>*/}
+                        {/*</div>*/}
 
-                        <div className="row ml-0" style={styles.rowRight}>
-                          <div className="col-md-5 contract-input">
-                            <span>{tu("library_4_name")}:</span>
-                            <input type="text" className="form-control contract-input-s"/>
-                          </div>
-                          <div className="col-md-7 contract-input">
-                            <span>{tu("library_contract_address")}:</span>
-                            <input type="text" className="form-control contract-input-l"/>
-                          </div>
-                        </div>
+                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                          {/*<div className="col-md-5 contract-input">*/}
+                            {/*<span>{tu("library_4_name")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-s"/>*/}
+                          {/*</div>*/}
+                          {/*<div className="col-md-7 contract-input">*/}
+                            {/*<span>{tu("library_contract_address")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-l"/>*/}
+                          {/*</div>*/}
+                        {/*</div>*/}
 
-                        <div className="row ml-0" style={styles.rowRight}>
-                          <div className="col-md-5 contract-input">
-                            <span>{tu("library_5_name")}:</span>
-                            <input type="text" className="form-control contract-input-s"/>
-                          </div>
-                          <div className="col-md-7 contract-input">
-                            <span>{tu("library_contract_address")}:</span>
-                            <input type="text" className="form-control contract-input-l"/>
-                          </div>
-                        </div>
-                      </div>
+                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                          {/*<div className="col-md-5 contract-input">*/}
+                            {/*<span>{tu("library_5_name")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-s"/>*/}
+                          {/*</div>*/}
+                          {/*<div className="col-md-7 contract-input">*/}
+                            {/*<span>{tu("library_contract_address")}:</span>*/}
+                            {/*<input type="text" className="form-control contract-input-l"/>*/}
+                          {/*</div>*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
                     </div>
                     <hr/>
 

@@ -33,7 +33,7 @@ export default class Code extends React.Component {
   }
 
   async loadContractCode(id) {
-    let contractCode = await Client.getContractCode(id);
+    //let contractCode = await Client.getContractCode(id);
 
     xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=${id}`).then((result) => {
       let contractCode = result.data.data
