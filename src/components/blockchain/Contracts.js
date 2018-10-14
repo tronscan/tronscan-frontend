@@ -39,7 +39,7 @@ class Contracts extends React.Component {
 
   loadContracts = async (page = 1, pageSize = 20) => {
     xhr({
-      baseURL: 'http://18.216.57.65:20110',
+      baseURL: 'http://18.216.57.65:20111',
       url: `/api/contracts`,
       method:'get',
       params: {

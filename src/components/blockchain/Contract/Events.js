@@ -63,7 +63,7 @@ class Transactions extends React.Component {
     //   ...filter,
     // });
 // ${filter.address}
-    xhr.get(`http://18.216.57.65:20110/api/contracts/event?contract=${filter.address}`).then((result) => {
+    xhr.get(`http://18.216.57.65:20111/api/contracts/event?contract=${filter.address}`).then((result) => {
       this.setState({
         transactions: result.data,
         loading: false,

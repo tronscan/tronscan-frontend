@@ -11,7 +11,7 @@ export default class TestNetRequest extends React.Component {
         super();
         this.state = {
             modal: null,
-            verificationCode: '111',
+            verificationCode: null,
             waitingForTrx: false,
         };
     }
@@ -20,6 +20,7 @@ export default class TestNetRequest extends React.Component {
         this.setState({
             verificationCode: code,
         });
+        this.props.handleCaptchaCode(code);
     };
 
     onExpired = () => {
@@ -109,7 +110,7 @@ export default class TestNetRequest extends React.Component {
                 <React.Fragment>
                     <div className="d-flex justify-content-center">
                         <RecaptchaAsync
-                            sitekey="6LdYjXQUAAAAAHKPvArcKB0fkXnH441HPYSZNH-A"
+                            sitekey="6Lds9nQUAAAAAAMMUjLOyu4KL_XQROPLBoHi8rTr"
                             render="explicit"
                             onloadCallback={this.onLoad}
                             expiredCallback={this.onExpired}

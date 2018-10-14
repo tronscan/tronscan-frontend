@@ -1134,6 +1134,9 @@ export const messages = {
   "library_contract_address_tip":"Corresponding Contract Library Address.",
   "contract_source_code_for":"The Contract Source code for",
   "has_already_been_verified":"has already been verified.",
-  "click_here_to_view":"Click here to view the"
-
+  "click_here_to_view":"Click here to view the",
+  "contract_was_creating_during":"contract was creating during",
+  "constructor_arguements":"Constructor Arguements Used (ABI-encoded)",
+  "ContractBytecode":"ContractBytecode",
+  "ContractABI":"ContractABI"
 };

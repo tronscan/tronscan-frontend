@@ -61,7 +61,7 @@ class SmartContract extends React.Component {
 
 
     // let contract = await Client.getContractOverview(id);
-    xhr.get(`http://18.216.57.65:20110/api/contract/${id}`).then((result) => {
+    xhr.get(`http://18.216.57.65:20111/api/contract/${id}`).then((result) => {
 
       this.setState(prevProps => ({
         loading: false,

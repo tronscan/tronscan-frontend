@@ -13991,7 +13991,7 @@ var getCompiler = function getCompiler() {
       // NOTE: workaround some browsers
       window.Module = undefined;
       // var url = "https://ethereum.github.io/solc-bin/bin/" + version;
-      loadScript("", url ? url : 'http://coin.top/production/js/2018-08-15-09-02-07_soljson_v1.0.js', function () {
+      loadScript("", url ? url : 'https://coin.top/production/js/2018-08-15-09-02-07_soljson_v1.0.js', function () {
         var compiler = solc(window.Module);
         callback(compiler);
       });

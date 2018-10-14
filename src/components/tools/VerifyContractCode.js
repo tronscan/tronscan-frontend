@@ -41,7 +41,8 @@ class VerifyContractCode extends Component {
             id20: alpha(20),
             open24:false,
             open20:false,
-            contractAddress:null,
+            contractAddress:'',
+            captcha_code:"",
             formVerify: {
                 contract_address: {
                     valid: false,
@@ -73,28 +74,30 @@ class VerifyContractCode extends Component {
                     value: '',
                     error: ''
                 }
-
             },
+            contractInfo_abi: null,
+            contractInfo_abiEncoded: null,
+            contractInfo_address: null,
+            contractInfo_byteCode: null,
+            contractInfo_compiler: null,
+            contractInfo_isSetting: null,
+            contractInfo_name: null,
+            contractInfo_source: null
+
         };
     }
     handleVerifyCodeChange(field, value) {
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code}} = this.state;
 
         const newFieldObj = {value, valid: true, error: ''};
-        // console.log('contract_address',value)
-        // console.log('contract_address',value)
         switch (field) {
             case 'contract_address': {
                 if (value.length < 34 || value.length > 34) {
-                    console.log("value.length",value.length)
                     newFieldObj.error = '**InvalidLength';
                     newFieldObj.valid = false;
                 } else if (value.length === 0) {
-                    console.log(222)
                     newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
-                }else if(value.length == 34){
-                    this.handleVerifyContractAddress(value)
                 }
                 console.log('contract_address',value)
                 break;
@@ -135,7 +138,9 @@ class VerifyContractCode extends Component {
         });
     }
 
-
+    handleCaptchaCode = (val) => {
+        this.setState({captcha_code: val});
+    }
 
     handleClick(index){
         this.setState({ currIndex:index });
@@ -151,13 +156,35 @@ class VerifyContractCode extends Component {
             optimization: e.target.value
         });
     }
+    handleReset = (e) => {
+        console.log(this.state.formVerify.abi_Encoded)
+        let abi_EncodedReset = '';
+        let abi_EncodedData = Object.assign({}, this.state.formVerify.abi_Encoded, { value: abi_EncodedReset });
+        let formVerifyReset = Object.assign({}, this.state.formVerify, { abi_Encoded: abi_EncodedData });
+        let newData= {value:'', valid: true, error: ''};
+        let newCompiler = {valid: false, value: 'V0.4.24', error: ''};
+        let newOptimization={valid: true, value: true, error: ''};
+        this.setState({
+            formVerify: {
+                ...this.state.formVerify,
+                contract_address:newData,
+                contract_name:newData,
+                contract_compiler:newCompiler,
+                contract_code:newData,
+                contract_optimization:newOptimization,
+                abi_Encoded: newData,
 
-     handleVerifyContractAddress(id) {
+            }
+        },() => {
+            console.log(222)
+        });
+    }
+    handleVerifyContractAddress(id) {
         //let contractCode = await Client.getContractCode(id);
 
-        xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=${id}`).then((result) => {
+        xhr.get(`http://18.216.57.65:20111/api/contracts/code?contract=${id}`).then((result) => {
             let contractCode = result.data.data
-            console.log('contractCode',contractCode)
+            console.log('contractCode=========',contractCode.address)
             if(contractCode.address){
                 this.setState({
                     contractAddress: contractCode.address
@@ -168,13 +195,69 @@ class VerifyContractCode extends Component {
         });
 
     }
-   handleVerifyCode = async(e) => {
+    contractsVerify = async (VerifyInfo) => {
+        let contractData = await Client.contractsVerify(VerifyInfo);
+        console.log('contractData',contractData)
+        let show = {"label":"bytecode_and_ABI", "show":true};
+        this.setState(preState=>({
+            tabs:preState.tabs.filter(item=>{
+                return item.show=true;
+
+            }),
+            currIndex:1
+        }))
+        let contractInfo = contractData.data;
+        this.setState({
+            contractInfo_abi: contractInfo.abi,
+            contractInfo_abiEncoded: contractInfo.abiEncoded,
+            contractInfo_address: contractInfo.address,
+            contractInfo_byteCode: contractInfo.byteCode,
+            contractInfo_compiler: contractInfo.compiler,
+            contractInfo_isSetting: contractInfo.isSetting,
+            contractInfo_name: contractInfo.name,
+            contractInfo_source: contractInfo.source
+
+        },() => {
+            console.log(333)
+        });
+        console.log(this.state.tabs)
+    };
+   handleVerifyCode = (e) => {
         e.preventDefault();
-        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded}} = this.state;
-        // if (!contract_address.valid || !contract_name.valid || !contract_compiler.valid || !contract_code.valid ) {
-        //     alert('Please fill in the correct information and try again');
-        //     return;
-        // }
+        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractAddress,captcha_code} = this.state;
+        const newFieldObj = {value:'', valid: true, error: ''};
+        if (!contract_address.valid ) {
+            if (contract_address.value.length < 34 || contract_address.value.length > 34) {
+                newFieldObj.error = '**InvalidLength';
+                newFieldObj.valid = false;
+            } else if (contract_address.value.length === 0) {
+                newFieldObj.error = '**Required';
+                newFieldObj.valid = false;
+            }
+            this.setState({
+                formVerify: {
+                    ...this.state.formVerify,
+                    contract_address: newFieldObj
+                }
+            });
+            return;
+        }
+       if (!contract_name.valid ) {
+           if (contract_name.value.length === 0) {
+               newFieldObj.error = '**Required';
+               newFieldObj.valid = false;
+           }
+           return;
+       }
+       if (!contract_code.valid ) {
+           if (contract_code.value.length === 0) {
+               newFieldObj.error = '**Required';
+               newFieldObj.valid = false;
+           }
+           return;
+       }
+
+
        let resource = contract_code.value
        let optimize = 1;
        let result = compile(resource, optimize);
@@ -200,26 +283,21 @@ class VerifyContractCode extends Component {
             byteCode:arrByteCode[0],//编译生成的二进制代码
             abi:arrAbi[0],//编译生成的abi
             abiEncoded:abi_Encoded.value,//编译所需参数
+            captchaCode:captcha_code
             // librarys:librarys
         }
 
-        let contractCode = await Client.contractsVerify(VerifyInfo);
+        this.handleVerifyContractAddress(contract_address.value)
 
-        // Ajax({url: Api.signup, data: signupInfo, method: 'post'}).then((res) => {
-        //     if (res.code == 0) {
-        //         this.setState({
-        //             success: true,
-        //             AlertMsg: 'You have registered successfully.',
-        //             modal: false
-        //         })
-        //     } else {
-        //         this.setState({
-        //             success: false,
-        //             AlertMsg: res.msg,
-        //             modal: false
-        //         })
-        //     }
-        // });
+        console.log('contract_address.value',contract_address.value)
+        setTimeout(()=> {
+            if(!contractAddress){
+                this.contractsVerify(VerifyInfo)
+            }
+        },800)
+
+
+
 
     }
      componentDidMount() {
@@ -231,7 +309,7 @@ class VerifyContractCode extends Component {
 
 
     render() {
-        let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded}} = this.state;
+        let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},        contractInfo_abi, contractInfo_abiEncoded, contractInfo_address, contractInfo_byteCode, contractInfo_compiler, contractInfo_isSetting, contractInfo_name, contractInfo_source} = this.state;
         let {intl} = this.props;
         return (
             <main className="contract container header-overlap">
@@ -306,7 +384,7 @@ class VerifyContractCode extends Component {
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
                                    placeholder={intl.formatMessage({id: 'contract_address'})}
-                                   // value={contract_address}
+                                   value={contract_address.value}
                                    name="contract_address"
                                    onInput={(e) => this.handleVerifyCodeChange('contract_address', e.target.value)}
                             />
@@ -325,22 +403,22 @@ class VerifyContractCode extends Component {
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
                                    placeholder={intl.formatMessage({id: 'contract_name'})}
-                                   //value={contractName}
+                                   value={contract_name.value}
                                    name="contract_name"
                                    onInput={(e) => this.handleVerifyCodeChange('contract_name', e.target.value)}
                             />
-                            <CopyText text={contractAddress} className="ml-auto contract-copy mr-2"/>
+                            <CopyText text={contract_name.value} className="ml-auto contract-copy mr-2"/>
                           </div>
                         </section>
                       </div>
                       <div className="col-md-2 mt-3 mt-md-0">
                         <section>
                           <label style={{whiteSpace: 'nowrap'}}>{tu("compiler")}
-                            <span>*</span>
                           </label>
                           <div>
                             <select className="custom-select"
                                     name="contract_compiler"
+                                    value={contract_compiler.value}
                                     onChange={(e) => this.handleVerifyCodeChange('contract_compiler', e.target.value)}>
                                 {
                                     compilers.map((compiler, index) => {
@@ -356,15 +434,15 @@ class VerifyContractCode extends Component {
                       <div className="col-md-2 mt-3 mt-md-0">
                         <section>
                           <label style={{whiteSpace: 'nowrap'}}>{tu("optimization")}
-                            <span>*</span>
                           </label>
                           <div>
                             <select className="custom-select"
                                     name="contract_optimization"
+                                    value={contract_optimization.value}
                                     onChange={(e) => this.handleVerifyCodeChange('contract_optimization', e.target.value)}
                             >
-                              <option key={1} value={true}>true</option>
-                              <option key={0} value={false}>false</option>
+                              <option key={1} value={true}>Yes</option>
+                              <option key={0} value={false}>No</option>
                             </select>
                           </div>
                         </section>
@@ -380,7 +458,7 @@ class VerifyContractCode extends Component {
                         </div>
                         <textarea className="w-100 form-control"
                                   rows="11"
-                                  //value={contractCode}
+                                  value={contract_code.value}
                                   name="contract_code"
                                   onChange={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
                          />
@@ -400,7 +478,7 @@ class VerifyContractCode extends Component {
                         </div>
                         <textarea className="w-100 form-control mt-3"
                                   rows="1"
-                                  //value={abi}
+                                  value={abi_Encoded.value}
                                   name="abi_Encoded"
                                   onChange={(e) => this.handleVerifyCodeChange('abi_Encoded', e.target.value)}/>
 
@@ -479,19 +557,21 @@ class VerifyContractCode extends Component {
                     <hr/>
 
                     <div className="float-left" >
-                      <ContractCodeRequest/>
+                      <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
                         <button type="button" className="btn btn-lg btn-verify text-capitalize" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
-                        <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
+                        <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize" onClick={this.handleReset}>{tu('reset')}</button>
                     </div>
                   </div>
                     <div className={contractAddress?"card-body contract-body contract-show":"card-body contract-body contract-hide"}>
                       <div className="contract-address-has_verified">
                           <div>
                               {tu('contract_source_code_for') }
+                              &nbsp;&nbsp;
                                <span className="contract_source_code_address">{contractAddress}</span>
+                              &nbsp;&nbsp;
                               {t('has_already_been_verified') }
                           </div>
-                          <div className="d-flex">
+                          <div className="d-flex mt-2">
                               <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
                               &nbsp;&nbsp;
                               <AddressLink address={contractAddress} isContract={true}>{tu('contract_source_code')}</AddressLink>
@@ -504,31 +584,32 @@ class VerifyContractCode extends Component {
                     <div className="row">
                       <div className="col-lg-12">
                         <span>{tu('note')}: </span>
-                        <span>contract was creating during</span>
+                        <span></span>
                         &nbsp;&nbsp;
                         <span>{tu('txn')}: </span>
-                        <span>a3NmH1enpu4X5Hur8Z16eCyNymTqKXQDP</span>
+                        <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-12 pt-3 byte-code_error">
-                        <span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>
-                        <span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>
-                        <p>Unable to Verify Contract source code.</p>
+                        {/*<span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>*/}
+                        {/*<span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>*/}
+                        <span></span>
+                        {/*<p>Unable to Verify Contract source code.</p>*/}
                       </div>
                     </div>
                     <hr/>
                     <div className="row pt-3">
                       <div className="col-lg-2">
-                        <span>Compiler Test:</span>
+                        <span>{tu('Compiler_Text')}:</span>
                       </div>
                       <div className="col-lg-10">
-                        <span>V0.4.23</span>
+                        <span>{contractInfo_compiler}</span>
                       </div>
                     </div>
                     <div className="row pt-3">
                       <div className="col-lg-2">
-                        <span>Optimization Enabled:</span>
+                        <span>{tu('Optimization_Enabled')}:</span>
                       </div>
                       <div className="col-lg-10">
                         <span>0</span>
@@ -536,39 +617,44 @@ class VerifyContractCode extends Component {
                     </div>
                     <div className="row">
                       <div className="col-lg-12 pt-3">
-                        <span>Constructor Arguements Used (ABI-encoded):</span>
+                        <span>{tu('constructor_arguements')}:</span>
                       </div>
                       <div className="col-lg-12 pt-3 contract-input">
-                        <input type="text" className="form-control"/>
+                        <input type="text" className="form-control"
+                               value={contractInfo_abiEncoded}
+                        />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-12 pt-3">
-                        <span>ContractName:</span>
+                        <span>{tu('ContractName')}:</span>
                       </div>
                       <div className="col-lg-12 pt-3 contract-input">
-                        <input type="text" className="form-control"/>
+                        <input type="text" className="form-control"
+                               value={contractInfo_name}
+                        />
+
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-12 pt-3">
-                        <span>ContractBytecode:</span>
+                        <span>{tu('Contract_Bytecode')}:</span>
                       </div>
                       <div className="col-lg-12 pt-3 contract-input">
                     <textarea className="w-100 form-control mt-3"
                               rows="11"
-                              value={abi}
+                              value={contractInfo_byteCode}
                               onChange={ev => this.setState({abi: ev.target.value})}/>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-12 pt-3">
-                        <span>ContractABI:</span>
+                        <span>{tu('ContractABI')}:</span>
                       </div>
                       <div className="col-lg-12 pt-3 contract-input">
                     <textarea className="w-100 form-control mt-3"
                               rows="6"
-                              value={abi}
+                              value={contractInfo_abi}
                               onChange={ev => this.setState({abi: ev.target.value})}/>
                       </div>
                     </div>

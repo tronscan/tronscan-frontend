@@ -56,7 +56,7 @@ class Transactions extends React.Component {
     // });
 
 
-    let transactions = xhr.get(`http://18.216.57.65:20110/api/contracts/transaction`, {
+    let transactions = xhr.get(`http://18.216.57.65:20111/api/contracts/transaction`, {
       sort: '-timestamp',
       count: true,
       limit: pageSize,
