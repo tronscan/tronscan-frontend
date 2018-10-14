@@ -1530,6 +1530,11 @@ h5 {
       border-radius: 0;
       background-color: #F3F3F3;
     }
+    .contract-error{
+      font-size: 14px;
+      color:#E60815 ;
+      margin-left: 12px;
+    }
     .contract-input{
       background-color: #F3F3F3;
       margin-top: 1rem;
@@ -1576,6 +1581,11 @@ h5 {
   }
   .contract-show{
     display: block;
+  }
+  .contract-error{
+     font-size: 14px;
+     color:#E60815;
+     margin-left: 12px;
   }
 }
 
@@ -1779,6 +1789,16 @@ h5 {
   &-item, &-item p{
     line-height: 2em;
     margin: 0;
+  }
+}
+
+.contract-address-has_verified{
+  .contract_source_code_address{
+    color: #333333;
+    font-size: 1rem;
+  }
+  .click-here-to_view{
+    white-space:nowrap
   }
 }
 

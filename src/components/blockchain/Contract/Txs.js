@@ -140,14 +140,14 @@ class Transactions extends React.Component {
           <Truncate><span>{text}</span></Truncate>
         }
       },
-      {
-        title: '',
-        dataIndex: 'tip',
-        align: 'center',
-        render: (text, record, index) => {
-          return <div className={"tip tip-"+text}>{toUpper(text)}</div>
-        }
-      },
+      // {
+      //   title: '',
+      //   dataIndex: 'tip',
+      //   align: 'center',
+      //   render: (text, record, index) => {
+      //     return <div className={"tip tip-"+text}>{toUpper(text)}</div>
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({id: 'to'})),
         dataIndex: 'toAddress',
@@ -197,7 +197,7 @@ class Transactions extends React.Component {
     let {transactions, total, loading, EmptyState = null} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transaction_info'})
 
     // if (!loading && transactions.length === 0) {
     //   if (!EmptyState) {

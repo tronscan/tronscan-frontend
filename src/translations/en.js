@@ -1095,7 +1095,7 @@ export const messages = {
     /*
    ##################################################################################
    #                                                                                #
-   # Contract                                             #
+   # verify-contract-code                                          #
    #                                                                                #
    ##################################################################################
    */
@@ -1104,15 +1104,16 @@ export const messages = {
   "step":"Step",
   "step_1":"Enter your Contract Source Code below.",
   "step_2":"If the Bytecode generated matches the existingCreation Address Bytecode, the contract is then Verified.",
-  "step_3":"Contract Source Code is published online andpublicably verifiable by anyone.",
+  "step_3":"Contract Source Code is published online and publicably verifiable by anyone.",
   "contract_notes":"NOTES",
   "contract_notes_1":"To verify Contracts that accept Constructor arguments,please enter the ABI-encoded Arguments in the box below.",
   "contract_notes_2_1":"For debugging purposes if it compiles correctly at",
   "contract_notes_2_2":" TRON studio",
   "contract_notes_2_3":", it should also compile correctly here.",
   "contract_notes_3":'We do not support contract verification that use "imports" up to now.',
-  "contract_notes_4":"We do not support contract verification for contractscreated by another contract.",
-  "contract_notes_5":"There is a timeout of up to 45 secondsfor each contract compiled. If your contract takes longer than this we will notbe able to verify it.",
+  "contract_notes_4":"We do not support contract verification for contracts created by another contract.",
+  "contract_notes_5":"There is a timeout of up to 45 seconds for each contract compiled. If your contract takes longer than this we will not be able to verify it.",
+  "contract_notes_6":"More functions are coming in the next version.",
   "contract_address":"Contract Address",
   "contract_optimization":"Optimization",
   "enter_contract_code":"Enter the Solidity Contract Code below",
@@ -1130,6 +1131,9 @@ export const messages = {
   "contract_name_tip":"Must match the ContractName in the Source Code or in a MultiPart Contract it should match the ContractName you deployed.",
   "constructor_arguments_ABIencoded_tip":"This option ONLY applies to contracts that accept constructor arguments, if you are unsure you most likely do not need this.The constructor arguments should be in ABI-ENCODED values and will be appended to the contract bytecode.",
   "library_1_name_tip":"This option ONLY applies to contracts that use libraries.",
-  "library_contract_address_tip":"Corresponding Contract Library Address."
+  "library_contract_address_tip":"Corresponding Contract Library Address.",
+  "contract_source_code_for":"The Contract Source code for",
+  "has_already_been_verified":"has already been verified.",
+  "click_here_to_view":"Click here to view the"
 
 };

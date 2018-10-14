@@ -90,7 +90,7 @@ export default class Code extends React.Component {
           <div className="row">
             <div className="col-md-12 ">
               <div className="d-flex mb-1">
-                <span><i className="fa fa-code"></i> {tu('Contract_Source_Code')}</span>
+                <span><i className="fa fa-code"></i> {tu('contract_source_code')}</span>
                 <CopyText text={sourceCode} className="ml-auto ml-1"/>
               </div>
               <ReactAce

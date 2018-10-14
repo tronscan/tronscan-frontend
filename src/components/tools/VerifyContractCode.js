@@ -11,6 +11,9 @@ import {Tooltip} from "reactstrap";
 import ContractCodeRequest from "./ContractCodeRequest";
 import getCompiler from "../../utils/compiler";
 import {Client} from "../../services/api";
+import xhr from "axios";
+import {AddressLink} from "../common/Links";
+import {Truncate} from "../common/text";
 
 var compile;
 class VerifyContractCode extends Component {
@@ -23,12 +26,22 @@ class VerifyContractCode extends Component {
             selectedCompiler: "",
             Optimization: true,
             compilers: ['V0.4.24'],
-            tabs:["contract_source_code","bytecode_and_ABI"],
+            tabs:[
+                {
+                    "label":"contract_source_code",
+                    "show":true
+                },
+                {
+                    "label":"bytecode_and_ABI",
+                    "show":false
+                }
+            ],
             currIndex:0,
             id24: alpha(24),
             id20: alpha(20),
             open24:false,
             open20:false,
+            contractAddress:null,
             formVerify: {
                 contract_address: {
                     valid: false,
@@ -68,16 +81,22 @@ class VerifyContractCode extends Component {
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code}} = this.state;
 
         const newFieldObj = {value, valid: true, error: ''};
-
+        // console.log('contract_address',value)
+        // console.log('contract_address',value)
         switch (field) {
             case 'contract_address': {
-                if (value.length < 34) {
-                    newFieldObj.error = 'InvalidLength';
+                if (value.length < 34 || value.length > 34) {
+                    console.log("value.length",value.length)
+                    newFieldObj.error = '**InvalidLength';
                     newFieldObj.valid = false;
                 } else if (value.length === 0) {
+                    console.log(222)
                     newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
+                }else if(value.length == 34){
+                    this.handleVerifyContractAddress(value)
                 }
+                console.log('contract_address',value)
                 break;
             }
             case 'contract_name': {
@@ -133,6 +152,22 @@ class VerifyContractCode extends Component {
         });
     }
 
+     handleVerifyContractAddress(id) {
+        //let contractCode = await Client.getContractCode(id);
+
+        xhr.get(`http://18.216.57.65:20110/api/contracts/code?contract=${id}`).then((result) => {
+            let contractCode = result.data.data
+            console.log('contractCode',contractCode)
+            if(contractCode.address){
+                this.setState({
+                    contractAddress: contractCode.address
+                }, () => {
+
+                });
+            }
+        });
+
+    }
    handleVerifyCode = async(e) => {
         e.preventDefault();
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded}} = this.state;
@@ -206,10 +241,10 @@ class VerifyContractCode extends Component {
                       {
                           tabs.map((val,index) =>{
                               return (
-                                  <li className="nav-item" onClick={(e) => this.handleClick(index)} key={index}>
+                                  <li className={val.show?"nav-item contract-show":"nav-item contract-hide"} onClick={(e) => this.handleClick(index)} key={index}>
                                     <a href="javascript:;"  className={ index == currIndex ? 'nav-link text-dark active' : 'nav-link text-dark'}>
                                 <span>
-                                    <span>{tu(val)}</span>
+                                    <span>{tu(val.label)}</span>
                                 </span>
                                     </a>
                                   </li>
@@ -255,15 +290,18 @@ class VerifyContractCode extends Component {
                       <p>
                         5. {t("contract_notes_5")}
                       </p>
+                      <p>
+                        6. {t("contract_notes_6")}
+                      </p>
                     </div>
                   </div>
                   <hr style={styles.hr}/>
-                  <div className="card-body contract-body-input">
-                    <div className="row">
+                  <div className={!contractAddress? "card-body contract-body-input contract-show":"card-body contract-body-input contract-hide"}>
+                      <div className="row">
                       <div className="col-md-4 mt-3 mt-md-0">
                         <section>
                           <label style={{whiteSpace: 'nowrap'}}>{tu("contract_address")}
-                              {/*<span>*</span>*/}
+                              <span className="contract-error">{contract_address.error}</span>
                           </label>
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
@@ -272,17 +310,17 @@ class VerifyContractCode extends Component {
                                    name="contract_address"
                                    onInput={(e) => this.handleVerifyCodeChange('contract_address', e.target.value)}
                             />
-                            <CopyText text={contract_address} className="ml-auto contract-copy mr-2"/>
+                            <CopyText text={contract_address.value} className="ml-auto contract-copy mr-2"/>
                           </div>
                         </section>
                       </div>
                       <div className="col-md-4 mt-3 mt-md-0">
                         <section>
                           <label style={{whiteSpace: 'nowrap'}} className="d-flex">{tu("contract_name")}
-                              {/*<span>*</span>*/}
                             <div className="mt-1 ml-2">
                               <QuestionMark placement="top" text="contract_name_tip"/>
                             </div>
+                            <span className="contract-error">{contract_name.error}</span>
                           </label>
                           <div className="d-flex contract-div-bg">
                             <input type="text" className="form-control"
@@ -338,6 +376,7 @@ class VerifyContractCode extends Component {
                         <div className="d-flex mb-1">
                           <span className="mb-3">{tu("enter_contract_code")}</span>
                             {/*<CopyText text={contractCode} className="ml-auto ml-1"/>*/}
+                            <span className="contract-error">{contract_code.error}</span>
                         </div>
                         <textarea className="w-100 form-control"
                                   rows="11"
@@ -444,6 +483,20 @@ class VerifyContractCode extends Component {
                         <button type="button" className="btn btn-lg btn-verify text-capitalize" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
                         <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize">{tu('reset')}</button>
                     </div>
+                  </div>
+                    <div className={contractAddress?"card-body contract-body contract-show":"card-body contract-body contract-hide"}>
+                      <div className="contract-address-has_verified">
+                          <div>
+                              {tu('contract_source_code_for') }
+                               <span className="contract_source_code_address">{contractAddress}</span>
+                              {t('has_already_been_verified') }
+                          </div>
+                          <div className="d-flex">
+                              <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
+                              &nbsp;&nbsp;
+                              <AddressLink address={contractAddress} isContract={true}>{tu('contract_source_code')}</AddressLink>
+                          </div>
+                      </div>
                   </div>
                 </div>
                 <div className={currIndex == 0? "contract-hide":"contract-show"}>
