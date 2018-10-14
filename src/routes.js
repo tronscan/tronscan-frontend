@@ -86,7 +86,6 @@ export const routes = [
         label: "Verified_contracts",
         icon: "fa fa-file",
         component: Contracts,
-        showInMenu: false
       },
       {
         label: "statistics",
@@ -113,7 +112,6 @@ export const routes = [
         icon: `fa fa-random`,
         path: "/blockchain/ContractInter",
         component: ContractInter,
-        showInMenu: false
       },
       {
         path: "/blockchain/foundation",
@@ -245,7 +243,6 @@ export const routes = [
         path: "/tools/verify-contract-code",
         icon: "fa fa-check-square",
         component: VerifyContractCodeAsync,
-        showInMenu: false,
       },
       {
         label: "transaction_viewer",
