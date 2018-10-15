@@ -1102,6 +1102,7 @@ export const messages = {
    */
   "contract_source_code":"Contract Source Code",
   "bytecode_and_ABI":"ByteCode And ABI",
+  "verify_and_publish_your_solidity_source_code":"Verify and Publish your Solidity Source Code",
   "step":"Step",
   "step_1":"Enter your Contract Source Code below.",
   "step_2":"If the Bytecode generated matches the existingCreation Address Bytecode, the contract is then Verified.",

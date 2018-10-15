@@ -41,7 +41,8 @@ class VerifyContractCode extends Component {
             open24:false,
             open20:false,
             contractAddress:'',
-            captcha_code:"",
+            captcha_code:null,
+            verifyMessage:"",
             iSContractAddress:false,
             formVerify: {
                 contract_address: {
@@ -140,6 +141,10 @@ class VerifyContractCode extends Component {
     handleCaptchaCode = (val) => {
         this.setState({captcha_code: val});
     }
+    canRequest = () => {
+        let {captcha_code} = this.state;
+        return captcha_code;
+    };
 
     handleClick(index){
         this.setState({ currIndex:index });
@@ -192,6 +197,7 @@ class VerifyContractCode extends Component {
             currIndex:1
         }))
         let contractInfo = contractData.data;
+        let contractStatus = contractData.status;
         this.setState({
             contractInfo_abi: contractInfo.abi,
             contractInfo_abiEncoded: contractInfo.abiEncoded,
@@ -200,8 +206,8 @@ class VerifyContractCode extends Component {
             contractInfo_compiler: contractInfo.compiler,
             contractInfo_isSetting: contractInfo.isSetting,
             contractInfo_name: contractInfo.name,
-            contractInfo_source: contractInfo.source
-
+            contractInfo_source: contractInfo.source,
+            verify_message:contractStatus.message
         },() => {
 
         });
@@ -301,7 +307,7 @@ class VerifyContractCode extends Component {
 
 
   render() {
-    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractInfo_abi, contractInfo_abiEncoded, contractInfo_address, contractInfo_byteCode, contractInfo_compiler, contractInfo_isSetting, contractInfo_name, contractInfo_source,iSContractAddress} = this.state;
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractInfo_abi, contractInfo_abiEncoded, contractInfo_address, contractInfo_byteCode, contractInfo_compiler, contractInfo_isSetting, contractInfo_name, contractInfo_source,iSContractAddress,verify_message} = this.state;
     let {intl} = this.props;
     return (
         <main className="contract container header-overlap">
@@ -326,7 +332,7 @@ class VerifyContractCode extends Component {
             <div className={currIndex == 0? "contract-show":"contract-hide"}>
               <div className="card-body contract-body">
                 <div>
-                  <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
+                  <h5 className="card-title text-left contract-title">{tu("verify_and_publish_your_solidity_source_code")}</h5>
                   <p>
                       {tu("step")} 1 : {tu("step_1")}
                   </p>
@@ -555,7 +561,7 @@ class VerifyContractCode extends Component {
                 <hr/>
 
                 <div className="float-left" >
-                  <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
+                  <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode} />
                   <button type="button" className="btn btn-lg btn-verify text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
                   <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleReset}>{tu('reset')}</button>
                 </div>
@@ -595,7 +601,7 @@ class VerifyContractCode extends Component {
                   <div className="col-lg-12 pt-3 byte-code_error">
                     {/*<span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>*/}
                     {/*<span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>*/}
-                    <span></span>
+                    <span>{verify_message}</span>
                     {/*<p>Unable to Verify Contract source code.</p>*/}
                   </div>
                 </div>
