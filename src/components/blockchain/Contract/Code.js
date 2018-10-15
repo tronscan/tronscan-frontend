@@ -115,7 +115,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={abi}
                         onChange={ev => this.setState({abi: ev.target.value})}/>
 
@@ -130,7 +130,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={byteCode}
                         onChange={ev => this.setState({byteCode: ev.target.value})}/>
 
@@ -145,7 +145,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={abiEncoded}
                         onChange={ev => this.setState({abiEncoded: ev.target.value})}/>
 
