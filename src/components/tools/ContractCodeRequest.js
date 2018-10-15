@@ -34,7 +34,7 @@ export default class TestNetRequest extends React.Component {
     };
 
     requestTrx = async () => {
-        alert('111')
+
         // let {account, onRequested} = this.props;
         // let {verificationCode} = this.state;
         //
@@ -100,8 +100,8 @@ export default class TestNetRequest extends React.Component {
     };
 
     canRequest = () => {
-        let {verificationCode} = this.state;
-        return verificationCode;
+        let {verificationCode, waitingForTrx} = this.state;
+        return !waitingForTrx && !!verificationCode;
     };
 
     render() {
