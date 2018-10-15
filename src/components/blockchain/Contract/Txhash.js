@@ -63,7 +63,6 @@ class Transactions extends React.Component {
       start: (page - 1) * pageSize,
       ...filter
     }).then((result) => {
-      console.log(result.data)
       return result.data
     });
 

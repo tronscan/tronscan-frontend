@@ -32,7 +32,7 @@ class VerifyContractCode extends Component {
                 },
                 {
                     "label":"bytecode_and_ABI",
-                    "show":true
+                    "show":false
                 }
             ],
             currIndex:0,
@@ -99,7 +99,6 @@ class VerifyContractCode extends Component {
                     newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
                 }
-                console.log('contract_address',value)
                 break;
             }
             case 'contract_name': {
@@ -157,7 +156,6 @@ class VerifyContractCode extends Component {
         });
     }
     handleReset = (e) => {
-        console.log(this.state.formVerify.abi_Encoded)
         let abi_EncodedReset = '';
         let abi_EncodedData = Object.assign({}, this.state.formVerify.abi_Encoded, { value: abi_EncodedReset });
         let formVerifyReset = Object.assign({}, this.state.formVerify, { abi_Encoded: abi_EncodedData });
@@ -176,7 +174,7 @@ class VerifyContractCode extends Component {
             },
             iSContractAddress:false
         },() => {
-            console.log(222)
+
         });
     }
     handleStartOver = () =>{
@@ -209,7 +207,7 @@ class VerifyContractCode extends Component {
         });
     };
 
-    handleVerifyCode = (e) =>{
+    handleVerifyCode = async (e) =>{
        e.preventDefault();
        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractAddress,captcha_code} = this.state;
        const newFieldObj = {value:'', valid: true, error: ''};
@@ -243,59 +241,55 @@ class VerifyContractCode extends Component {
            }
            return;
        }
-       xhr.get(`http://18.216.57.65:20111/api/contract/${contract_address.value}`).then((result) => {
-           let iSContractData = result.data.data
-           console.log('iSContractData============',iSContractData)
-           if (!iSContractData.length) {
-               console.log('iSContractData========',1111111111111111111)
-               this.setState({
-                   iSContractAddress: true
-               }, () => {
 
-               });
-               return;
-           }
-           xhr.get(`http://18.216.57.65:20111/api/contracts/code?contract=${contract_address.value}`).then((result) => {
-               let iSVerifiedContractData = result.data.data;
-               if(iSVerifiedContractData.address){
-                   this.setState({
-                       contractAddress: iSVerifiedContractData.address
-                   }, () => {
+        let iSContractData = await Client.getContractOverview(contract_address.value);
+        if (!iSContractData.data.length) {
+            this.setState({
+                iSContractAddress: true
+            }, () => {
 
-                   });
-               }else{
-                   let resource = contract_code.value
-                   let optimize = 1;
-                   let result = compile(resource, optimize);
-                   let arrContract = [];
-                   let arrByteCode = [];
-                   let arrAbi = [];
-                   for (var name in result.contracts) {
-                       arrContract.push(name);
-                       if (result.contracts[name].bytecode) {
-                           let bytecode = result.contracts[name].bytecode;
-                           arrByteCode.push(bytecode);
-                           let metadata = JSON.parse(result.contracts[name].metadata);
-                           let abi = JSON.stringify(metadata.output.abi);
-                           arrAbi.push(abi);
-                       }
-                   }
-                   let VerifyInfo = {
-                       address: contract_address.value,//合约地址
-                       name: contract_name.value,//合约名称
-                       compiler: contract_compiler.value, //编译器版本
-                       isSetting: contract_optimization.value,//是否优化
-                       source: contract_code.value,//合约源代码
-                       byteCode:arrByteCode[0],//编译生成的二进制代码
-                       abi:arrAbi[0],//编译生成的abi
-                       abiEncoded:abi_Encoded.value,//编译所需参数
-                       captchaCode:captcha_code
-                       // librarys:librarys
-                   }
-                   this.contractsVerify(VerifyInfo)
-               }
-           });
-       })
+            });
+            return;
+        }
+        let iSVerifiedContractData = await Client.getContractCode(contract_address.value);
+        if(iSVerifiedContractData.data.address){
+            this.setState({
+                contractAddress: iSVerifiedContractData.data.address
+            }, () => {
+
+            });
+        }else{
+            let resource = contract_code.value
+            let optimize = 1;
+            let result = compile(resource, optimize);
+            let arrContract = [];
+            let arrByteCode = [];
+            let arrAbi = [];
+            for (var name in result.contracts) {
+                arrContract.push(name);
+                if (result.contracts[name].bytecode) {
+                    let bytecode = result.contracts[name].bytecode;
+                    arrByteCode.push(bytecode);
+                    let metadata = JSON.parse(result.contracts[name].metadata);
+                    let abi = JSON.stringify(metadata.output.abi);
+                    arrAbi.push(abi);
+                }
+            }
+            let VerifyInfo = {
+                address: contract_address.value,//合约地址
+                name: contract_name.value,//合约名称
+                compiler: contract_compiler.value, //编译器版本
+                isSetting: contract_optimization.value,//是否优化
+                source: contract_code.value,//合约源代码
+                byteCode:arrByteCode[0],//编译生成的二进制代码
+                abi:arrAbi[0],//编译生成的abi
+                abiEncoded:abi_Encoded.value,//编译所需参数
+                captchaCode:captcha_code
+                // librarys:librarys
+            }
+            this.contractsVerify(VerifyInfo)
+        }
+
    }
 
   componentDidMount() {
