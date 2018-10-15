@@ -146,8 +146,8 @@ class Transactions extends React.Component {
                     </div>
                     <div id={"event-wapper"+index} className="event-wapper p-3">{
                       record.eventList.map(item => {
-                        return <div className="mb-1" key={item.name}>
-                        <span className="e-red">  <span className="e-blue">{item.name}</span></span>
+                        return <div className="mb-1 d-flex" key={item.name}>
+                        <span className="e-red mr-1">  <span className="e-blue">{item.name}</span></span>
                         {/* <AddressLink address={item.value}/> */}
                         <div>{item.value}</div>
                       </div>
