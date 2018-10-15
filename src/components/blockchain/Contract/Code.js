@@ -33,24 +33,21 @@ export default class Code extends React.Component {
   }
 
   async loadContractCode(id) {
-    //let contractCode = await Client.getContractCode(id);
+    let contractCode = await Client.getContractCode(id);
 
-    xhr.get(`http://18.216.57.65:20111/api/contracts/code?contract=${id}`).then((result) => {
-      let contractCode = result.data.data
-      this.setState({
-        name: contractCode.name,
-        compilerVersion: contractCode.compiler,
-        sourceCode: contractCode.source,
-        abi: contractCode.abi,
-        abiEncoded: contractCode.abiEncoded,
-        address: contractCode.address,
-        byteCode: contractCode.byteCode,
-        isSetting: contractCode.isSetting? 'Yes': 'No',
-        librarys: contractCode.librarys,
-      }, () => {
-        this.ace.editor.setValue(this.state.sourceCode);
-        this.ace.editor.clearSelection();
-      });
+    this.setState({
+      name: contractCode.data.name,
+      compilerVersion: contractCode.data.compiler,
+      sourceCode: contractCode.data.source,
+      abi: contractCode.data.abi,
+      abiEncoded: contractCode.data.abiEncoded,
+      address: contractCode.data.address,
+      byteCode: contractCode.data.byteCode,
+      isSetting: contractCode.data.isSetting? 'Yes': 'No',
+      librarys: contractCode.data.librarys,
+    }, () => {
+      this.ace.editor.setValue(this.state.sourceCode);
+      this.ace.editor.clearSelection();
     });
 
   }
@@ -115,7 +112,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={abi}
                         onChange={ev => this.setState({abi: ev.target.value})}/>
 
@@ -130,7 +127,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={byteCode}
                         onChange={ev => this.setState({byteCode: ev.target.value})}/>
 
@@ -145,7 +142,7 @@ export default class Code extends React.Component {
               </div>
               <textarea className="w-100 form-control"
                         rows="7"
-                        readonly="readonly"
+                        readOnly="readonly"
                         value={abiEncoded}
                         onChange={ev => this.setState({abiEncoded: ev.target.value})}/>
 

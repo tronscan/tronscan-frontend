@@ -1059,6 +1059,7 @@ export const messages = {
   "Optimization_Enabled": "Optimization Enabled",
   "Normal_Transactions": "Normal Transactions",
   "Verified_contracts": "verified contracts",
+  "Constructor_Arguments_tip": "Constructor Arguments",
 
   /*
   ##################################################################################

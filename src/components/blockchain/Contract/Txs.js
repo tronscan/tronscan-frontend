@@ -48,34 +48,21 @@ class Transactions extends React.Component {
 
     this.setState({loading: true});
 
-    // let transactions = await Client.getContractTxs({
-    //   sort: '-timestamp',
-    //   limit: pageSize,
-    //   start: (page - 1) * pageSize,
-    //   ...filter,
-    // });
-    xhr({
-      baseURL: 'http://18.216.57.65:20111',
-      url: `/api/contracts/transaction`,
-      method:'get',
-      params: {
-        sort: '-timestamp',
-        count: true,
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        ...filter
-      }
-      
-    }).then((result) => {
-      result.data.data.map( item => {
-        item.tip = item.ownAddress == filter.contract? 'out': 'in'
-      })
-  
-      this.setState({
-        transactions: result.data.data,
-        total: result.data.total,
-        loading: false,
-      });
+    let transactions = await Client.getContractTxs({
+      sort: '-timestamp',
+      limit: pageSize,
+      start: (page - 1) * pageSize,
+      ...filter,
+    });
+
+    transactions.data.map( item => {
+      item.tip = item.ownAddress == filter.contract? 'out': 'in'
+    })
+
+    this.setState({
+      transactions: transactions.data,
+      total: transactions.total,
+      loading: false,
     });
 
     

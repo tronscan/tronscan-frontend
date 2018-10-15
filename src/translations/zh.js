@@ -1049,6 +1049,7 @@ export const messages = {
   "Optimization_Enabled": "是否优化",
   "Normal_Transactions": "常规交易",
   "Verified_contracts": "已验证合约",
+  "Constructor_Arguments_tip": "构造函数参数",
 
   /*
   ##################################################################################
