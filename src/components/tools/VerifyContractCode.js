@@ -13,7 +13,6 @@ import getCompiler from "../../utils/compiler";
 import {Client} from "../../services/api";
 import xhr from "axios";
 import {AddressLink} from "../common/Links";
-import {Truncate} from "../common/text";
 
 var compile;
 class VerifyContractCode extends Component {
@@ -43,6 +42,7 @@ class VerifyContractCode extends Component {
             open20:false,
             contractAddress:'',
             captcha_code:"",
+            iSContractAddress:false,
             formVerify: {
                 contract_address: {
                     valid: false,
@@ -75,14 +75,14 @@ class VerifyContractCode extends Component {
                     error: ''
                 }
             },
-            contractInfo_abi: null,
-            contractInfo_abiEncoded: null,
-            contractInfo_address: null,
-            contractInfo_byteCode: null,
-            contractInfo_compiler: null,
+            contractInfo_abi: "",
+            contractInfo_abiEncoded: "",
+            contractInfo_address: "",
+            contractInfo_byteCode: "",
+            contractInfo_compiler: "",
             contractInfo_isSetting: null,
-            contractInfo_name: null,
-            contractInfo_source: null
+            contractInfo_name: "",
+            contractInfo_source: ""
 
         };
     }
@@ -99,7 +99,6 @@ class VerifyContractCode extends Component {
                     newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
                 }
-                console.log('contract_address',value)
                 break;
             }
             case 'contract_name': {
@@ -157,7 +156,6 @@ class VerifyContractCode extends Component {
         });
     }
     handleReset = (e) => {
-        console.log(this.state.formVerify.abi_Encoded)
         let abi_EncodedReset = '';
         let abi_EncodedData = Object.assign({}, this.state.formVerify.abi_Encoded, { value: abi_EncodedReset });
         let formVerifyReset = Object.assign({}, this.state.formVerify, { abi_Encoded: abi_EncodedData });
@@ -172,33 +170,20 @@ class VerifyContractCode extends Component {
                 contract_compiler:newCompiler,
                 contract_code:newData,
                 contract_optimization:newOptimization,
-                abi_Encoded: newData,
-
-            }
+                abi_Encoded: newData
+            },
+            iSContractAddress:false
         },() => {
-            console.log(222)
+
         });
     }
-    handleVerifyContractAddress(id) {
-        //let contractCode = await Client.getContractCode(id);
-
-        xhr.get(`http://18.216.57.65:20111/api/contracts/code?contract=${id}`).then((result) => {
-            let contractCode = result.data.data
-            console.log('contractCode=========',contractCode.address)
-            if(contractCode.address){
-                this.setState({
-                    contractAddress: contractCode.address
-                }, () => {
-
-                });
-            }
-        });
-
+    handleStartOver = () =>{
+        this.setState({
+            currIndex:0
+        })
     }
     contractsVerify = async (VerifyInfo) => {
         let contractData = await Client.contractsVerify(VerifyInfo);
-        console.log('contractData',contractData)
-        let show = {"label":"bytecode_and_ABI", "show":true};
         this.setState(preState=>({
             tabs:preState.tabs.filter(item=>{
                 return item.show=true;
@@ -218,30 +203,30 @@ class VerifyContractCode extends Component {
             contractInfo_source: contractInfo.source
 
         },() => {
-            console.log(333)
+
         });
-        console.log(this.state.tabs)
     };
-   handleVerifyCode = (e) => {
-        e.preventDefault();
-        const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractAddress,captcha_code} = this.state;
-        const newFieldObj = {value:'', valid: true, error: ''};
-        if (!contract_address.valid ) {
-            if (contract_address.value.length < 34 || contract_address.value.length > 34) {
-                newFieldObj.error = '**InvalidLength';
-                newFieldObj.valid = false;
-            } else if (contract_address.value.length === 0) {
-                newFieldObj.error = '**Required';
-                newFieldObj.valid = false;
-            }
-            this.setState({
-                formVerify: {
-                    ...this.state.formVerify,
-                    contract_address: newFieldObj
-                }
-            });
-            return;
-        }
+
+    handleVerifyCode = async (e) =>{
+       e.preventDefault();
+       const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractAddress,captcha_code} = this.state;
+       const newFieldObj = {value:'', valid: true, error: ''};
+       if (!contract_address.valid ) {
+           if (contract_address.value.length < 34 || contract_address.value.length > 34) {
+               newFieldObj.error = '**InvalidLength';
+               newFieldObj.valid = false;
+           } else if (contract_address.value.length === 0) {
+               newFieldObj.error = '**Required';
+               newFieldObj.valid = false;
+           }
+           this.setState({
+               formVerify: {
+                   ...this.state.formVerify,
+                   contract_address: newFieldObj
+               }
+           });
+           return;
+       }
        if (!contract_name.valid ) {
            if (contract_name.value.length === 0) {
                newFieldObj.error = '**Required';
@@ -257,417 +242,439 @@ class VerifyContractCode extends Component {
            return;
        }
 
+        let iSContractData = await Client.getContractOverview(contract_address.value);
+        if (!iSContractData.data.length) {
+            this.setState({
+                iSContractAddress: true
+            }, () => {
 
-       let resource = contract_code.value
-       let optimize = 1;
-       let result = compile(resource, optimize);
-       let arrContract = [];
-       let arrByteCode = [];
-       let arrAbi = [];
-       for (var name in result.contracts) {
-           arrContract.push(name);
-           if (result.contracts[name].bytecode) {
-               let bytecode = result.contracts[name].bytecode;
-               arrByteCode.push(bytecode);
-               let metadata = JSON.parse(result.contracts[name].metadata);
-               let abi = JSON.stringify(metadata.output.abi);
-               arrAbi.push(abi);
-           }
-       }
-        let VerifyInfo = {
-            address: contract_address.value,//合约地址
-            name: contract_name.value,//合约名称
-            compiler: contract_compiler.value, //编译器版本
-            isSetting: contract_optimization.value,//是否优化
-            source: contract_code.value,//合约源代码
-            byteCode:arrByteCode[0],//编译生成的二进制代码
-            abi:arrAbi[0],//编译生成的abi
-            abiEncoded:abi_Encoded.value,//编译所需参数
-            captchaCode:captcha_code
-            // librarys:librarys
+            });
+            return;
+        }
+        let iSVerifiedContractData = await Client.getContractCode(contract_address.value);
+        if(iSVerifiedContractData.data.address){
+            this.setState({
+                contractAddress: iSVerifiedContractData.data.address
+            }, () => {
+
+            });
+        }else{
+            let resource = contract_code.value
+            let optimize = 1;
+            let result = compile(resource, optimize);
+            let arrContract = [];
+            let arrByteCode = [];
+            let arrAbi = [];
+            for (var name in result.contracts) {
+                arrContract.push(name);
+                if (result.contracts[name].bytecode) {
+                    let bytecode = result.contracts[name].bytecode;
+                    arrByteCode.push(bytecode);
+                    let metadata = JSON.parse(result.contracts[name].metadata);
+                    let abi = JSON.stringify(metadata.output.abi);
+                    arrAbi.push(abi);
+                }
+            }
+            let VerifyInfo = {
+                address: contract_address.value,//合约地址
+                name: contract_name.value,//合约名称
+                compiler: contract_compiler.value, //编译器版本
+                isSetting: contract_optimization.value,//是否优化
+                source: contract_code.value,//合约源代码
+                byteCode:arrByteCode[0],//编译生成的二进制代码
+                abi:arrAbi[0],//编译生成的abi
+                abiEncoded:abi_Encoded.value,//编译所需参数
+                captchaCode:captcha_code
+                // librarys:librarys
+            }
+            this.contractsVerify(VerifyInfo)
         }
 
-        this.handleVerifyContractAddress(contract_address.value)
+   }
 
-        console.log('contract_address.value',contract_address.value)
-        setTimeout(()=> {
-            if(!contractAddress){
-                this.contractsVerify(VerifyInfo)
-            }
-        },800)
-
-
+  componentDidMount() {
+     this.getCompile()
+  }
+  async getCompile (){
+     compile = await getCompiler();
+  }
 
 
-    }
-     componentDidMount() {
-        this.getCompile()
-     }
-     async getCompile (){
-         compile = await getCompiler();
-     }
+  render() {
+    let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},contractInfo_abi, contractInfo_abiEncoded, contractInfo_address, contractInfo_byteCode, contractInfo_compiler, contractInfo_isSetting, contractInfo_name, contractInfo_source,iSContractAddress} = this.state;
+    let {intl} = this.props;
+    return (
+        <main className="contract container header-overlap">
+          <div className="card contract-code_body" style={styles.card}>
+            <div className="card-header list-style-body__header">
+              <ul className="nav nav-tabs card-header-tabs">
+                  {
+                      tabs.map((val,index) =>{
+                          return (
+                              <li className={val.show?"nav-item contract-show":"nav-item contract-hide"} onClick={(e) => this.handleClick(index)} key={index}>
+                                <a href="javascript:;"  className={ index == currIndex ? 'nav-link text-dark active' : 'nav-link text-dark'}>
+                            <span>
+                                <span>{tu(val.label)}</span>
+                            </span>
+                                </a>
+                              </li>
+                          )
+                      })
+                  }
+              </ul>
+            </div>
+            <div className={currIndex == 0? "contract-show":"contract-hide"}>
+              <div className="card-body contract-body">
+                <div>
+                  <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
+                  <p>
+                      {tu("step")} 1 : {tu("step_1")}
+                  </p>
+                  <p>
+                      {tu("step")} 2 : {tu("step_2")}
+                  </p>
+                  <p>
+                      {tu("step")} 3 : {tu("step_3")}
+                  </p>
+                  <hr/>
 
-
-    render() {
-        let {contractCode, selectedCompiler, compilers, abi,tabs,currIndex,contractAddress,contractName,id20,id24,open24,open20,formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},        contractInfo_abi, contractInfo_abiEncoded, contractInfo_address, contractInfo_byteCode, contractInfo_compiler, contractInfo_isSetting, contractInfo_name, contractInfo_source} = this.state;
-        let {intl} = this.props;
-        return (
-            <main className="contract container header-overlap">
-              <div className="card contract-code_body" style={styles.card}>
-                <div className="card-header list-style-body__header">
-                  <ul className="nav nav-tabs card-header-tabs">
-                      {
-                          tabs.map((val,index) =>{
-                              return (
-                                  <li className={val.show?"nav-item contract-show":"nav-item contract-hide"} onClick={(e) => this.handleClick(index)} key={index}>
-                                    <a href="javascript:;"  className={ index == currIndex ? 'nav-link text-dark active' : 'nav-link text-dark'}>
-                                <span>
-                                    <span>{tu(val.label)}</span>
-                                </span>
-                                    </a>
-                                  </li>
-                              )
-                          })
-                      }
-                  </ul>
+                  <p>
+                      {tu("contract_notes")}
+                  </p>
+                  <p>
+                    1. {tu("contract_notes_1")}
+                  </p>
+                  <p>
+                    2. {tu("contract_notes_2_1")}
+                    <a href="https://github.com/tronprotocol/tron-studio">
+                        {tu("contract_notes_2_2")}
+                    </a>
+                      {t("contract_notes_2_3")}
+                  </p>
+                  <p>
+                    3. {t("contract_notes_3")}
+                  </p>
+                  <p>
+                    4. {t("contract_notes_4")}
+                  </p>
+                  <p>
+                    5. {t("contract_notes_5")}
+                  </p>
+                  <p>
+                    6. {t("contract_notes_6")}
+                  </p>
                 </div>
-                <div className={currIndex == 0? "contract-show":"contract-hide"}>
-                  <div className="card-body contract-body">
-                    <div>
-                      <h5 className="card-title text-left contract-title">Verify and Publish your Solidity Source Code</h5>
-                      <p>
-                          {tu("step")} 1 : {tu("step_1")}
-                      </p>
-                      <p>
-                          {tu("step")} 2 : {tu("step_2")}
-                      </p>
-                      <p>
-                          {tu("step")} 3 : {tu("step_3")}
-                      </p>
-                      <hr/>
-
-                      <p>
-                          {tu("contract_notes")}
-                      </p>
-                      <p>
-                        1. {tu("contract_notes_1")}
-                      </p>
-                      <p>
-                        2. {tu("contract_notes_2_1")}
-                        <a href="https://github.com/tronprotocol/tron-studio">
-                            {tu("contract_notes_2_2")}
-                        </a>
-                          {t("contract_notes_2_3")}
-                      </p>
-                      <p>
-                        3. {t("contract_notes_3")}
-                      </p>
-                      <p>
-                        4. {t("contract_notes_4")}
-                      </p>
-                      <p>
-                        5. {t("contract_notes_5")}
-                      </p>
-                      <p>
-                        6. {t("contract_notes_6")}
-                      </p>
-                    </div>
+              </div>
+              <hr style={styles.hr}/>
+              <div className={!contractAddress? "card-body contract-body-input contract-show":"card-body contract-body-input contract-hide"}>
+                  <div className={iSContractAddress?"contract-show":"contract-hide"}>
+                      <div className="contract-address-unable-error mb-4">
+                          <div>
+                              {tu('sorry_unable_contract_address') }
+                          </div>
+                      </div>
                   </div>
-                  <hr style={styles.hr}/>
-                  <div className={!contractAddress? "card-body contract-body-input contract-show":"card-body contract-body-input contract-hide"}>
-                      <div className="row">
-                      <div className="col-md-4 mt-3 mt-md-0">
-                        <section>
-                          <label style={{whiteSpace: 'nowrap'}}>{tu("contract_address")}
-                              <span className="contract-error">{contract_address.error}</span>
-                          </label>
-                          <div className="d-flex contract-div-bg">
-                            <input type="text" className="form-control"
-                                   placeholder={intl.formatMessage({id: 'contract_address'})}
-                                   value={contract_address.value}
-                                   name="contract_address"
-                                   onInput={(e) => this.handleVerifyCodeChange('contract_address', e.target.value)}
-                            />
-                            <CopyText text={contract_address.value} className="ml-auto contract-copy mr-2"/>
-                          </div>
-                        </section>
+                  <div className="row">
+                  <div className="col-md-4 mt-3 mt-md-0">
+                    <section>
+                      <label style={{whiteSpace: 'nowrap'}}>{tu("contract_address")}
+                          <span className="contract-error">{contract_address.error}</span>
+                      </label>
+                      <div className="d-flex contract-div-bg">
+                        <input type="text" className="form-control"
+                               placeholder={intl.formatMessage({id: 'contract_address'})}
+                               value={contract_address.value}
+                               name="contract_address"
+                               onInput={(e) => this.handleVerifyCodeChange('contract_address', e.target.value)}
+                        />
+                        <CopyText text={contract_address.value} className="ml-auto contract-copy mr-2"/>
                       </div>
-                      <div className="col-md-4 mt-3 mt-md-0">
-                        <section>
-                          <label style={{whiteSpace: 'nowrap'}} className="d-flex">{tu("contract_name")}
-                            <div className="mt-1 ml-2">
-                              <QuestionMark placement="top" text="contract_name_tip"/>
-                            </div>
-                            <span className="contract-error">{contract_name.error}</span>
-                          </label>
-                          <div className="d-flex contract-div-bg">
-                            <input type="text" className="form-control"
-                                   placeholder={intl.formatMessage({id: 'contract_name'})}
-                                   value={contract_name.value}
-                                   name="contract_name"
-                                   onInput={(e) => this.handleVerifyCodeChange('contract_name', e.target.value)}
-                            />
-                            <CopyText text={contract_name.value} className="ml-auto contract-copy mr-2"/>
-                          </div>
-                        </section>
-                      </div>
-                      <div className="col-md-2 mt-3 mt-md-0">
-                        <section>
-                          <label style={{whiteSpace: 'nowrap'}}>{tu("compiler")}
-                          </label>
-                          <div>
-                            <select className="custom-select"
-                                    name="contract_compiler"
-                                    value={contract_compiler.value}
-                                    onChange={(e) => this.handleVerifyCodeChange('contract_compiler', e.target.value)}>
-                                {
-                                    compilers.map((compiler, index) => {
-                                        return (
-                                            <option key={index} value={compiler}>{compiler}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                          </div>
-                        </section>
-                      </div>
-                      <div className="col-md-2 mt-3 mt-md-0">
-                        <section>
-                          <label style={{whiteSpace: 'nowrap'}}>{tu("optimization")}
-                          </label>
-                          <div>
-                            <select className="custom-select"
-                                    name="contract_optimization"
-                                    value={contract_optimization.value}
-                                    onChange={(e) => this.handleVerifyCodeChange('contract_optimization', e.target.value)}
-                            >
-                              <option key={1} value={true}>Yes</option>
-                              <option key={0} value={false}>No</option>
-                            </select>
-                          </div>
-                        </section>
-                      </div>
-                    </div>
-
-                    <div className="row mt-3 contract-code">
-                      <div className="col-md-12 ">
-                        <div className="d-flex mb-1">
-                          <span className="mb-3">{tu("enter_contract_code")}</span>
-                            {/*<CopyText text={contractCode} className="ml-auto ml-1"/>*/}
-                            <span className="contract-error">{contract_code.error}</span>
-                        </div>
-                        <textarea className="w-100 form-control"
-                                  rows="11"
-                                  value={contract_code.value}
-                                  name="contract_code"
-                                  onChange={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
-                         />
-                      </div>
-                    </div>
-                    <hr style={styles.hr_32}/>
-                    <div className="row mt-3 contract-ABI">
-                      <div className="col-md-12 ">
-                        <p className="mb-3">
-                            {tu("following_optional_parameters")}
-                        </p>
-                        <div className="d-flex">
-                          <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
-                          <div className="mt-1 ml-2">
-                            <QuestionMark placement="top" text="constructor_arguments_ABIencoded_tip"/>
-                          </div>
-                        </div>
-                        <textarea className="w-100 form-control mt-3"
-                                  rows="1"
-                                  value={abi_Encoded.value}
-                                  name="abi_Encoded"
-                                  onChange={(e) => this.handleVerifyCodeChange('abi_Encoded', e.target.value)}/>
-
-                      </div>
-                      {/*<div className="col-md-12">*/}
-                        {/*<p className="mt-5">{tu("contract_library_address")}</p>*/}
-                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
-                          {/*<div className="col-md-5 contract-input">*/}
-                        {/*<span id={id20}*/}
-                              {/*onMouseOver={() => this.setState({open20: true})}*/}
-                              {/*onMouseOut={() => this.setState({open20: false})}>*/}
-                        {/*{tu("library_1_name")}:</span>*/}
-                            {/*<Tooltip placement="top" isOpen={open20} target={id20}>*/}
-                              {/*<span className="text-lowercase text-left">{t("library_1_name_tip")}</span>*/}
-                            {/*</Tooltip>*/}
-                            {/*<input type="text" className="form-control contract-input-s"/>*/}
-                          {/*</div>*/}
-                          {/*<div className="col-md-7 contract-input">*/}
-                        {/*<span*/}
-                            {/*id={id24}*/}
-                            {/*onMouseOver={() => this.setState({open24: true})}*/}
-                            {/*onMouseOut={() => this.setState({open24: false})}>*/}
-                          {/*{tu("library_contract_address")}:</span>*/}
-                            {/*<Tooltip placement="top" isOpen={open24} target={id24}>*/}
-                              {/*<span className="text-lowercase">{t("library_contract_address_tip")}</span>*/}
-                            {/*</Tooltip>*/}
-                            {/*<input type="text" className="form-control contract-input-l"/>*/}
-                          {/*</div>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
-                          {/*<div className="col-md-5 contract-input">*/}
-                            {/*<span>{tu("library_2_name")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-s"/>*/}
-                          {/*</div>*/}
-                          {/*<div className="col-md-7 contract-input">*/}
-                            {/*<span>{tu("library_contract_address")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-l"/>*/}
-                          {/*</div>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
-                          {/*<div className="col-md-5 contract-input">*/}
-                            {/*<span>{tu("library_3_name")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-s"/>*/}
-                          {/*</div>*/}
-                          {/*<div className="col-md-7 contract-input">*/}
-                            {/*<span>{tu("library_contract_address")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-l"/>*/}
-                          {/*</div>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
-                          {/*<div className="col-md-5 contract-input">*/}
-                            {/*<span>{tu("library_4_name")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-s"/>*/}
-                          {/*</div>*/}
-                          {/*<div className="col-md-7 contract-input">*/}
-                            {/*<span>{tu("library_contract_address")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-l"/>*/}
-                          {/*</div>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="row ml-0" style={styles.rowRight}>*/}
-                          {/*<div className="col-md-5 contract-input">*/}
-                            {/*<span>{tu("library_5_name")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-s"/>*/}
-                          {/*</div>*/}
-                          {/*<div className="col-md-7 contract-input">*/}
-                            {/*<span>{tu("library_contract_address")}:</span>*/}
-                            {/*<input type="text" className="form-control contract-input-l"/>*/}
-                          {/*</div>*/}
-                        {/*</div>*/}
-                      {/*</div>*/}
-                    </div>
-                    <hr/>
-
-                    <div className="float-left" >
-                      <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
-                        <button type="button" className="btn btn-lg btn-verify text-capitalize" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
-                        <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize" onClick={this.handleReset}>{tu('reset')}</button>
-                    </div>
+                    </section>
                   </div>
-                    <div className={contractAddress?"card-body contract-body contract-show":"card-body contract-body contract-hide"}>
-                      <div className="contract-address-has_verified">
-                          <div>
-                              {tu('contract_source_code_for') }
-                              &nbsp;&nbsp;
-                               <span className="contract_source_code_address">{contractAddress}</span>
-                              &nbsp;&nbsp;
-                              {t('has_already_been_verified') }
-                          </div>
-                          <div className="d-flex mt-2">
-                              <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
-                              &nbsp;&nbsp;
-                              <AddressLink address={contractAddress} isContract={true}>{tu('contract_source_code')}</AddressLink>
-                          </div>
+                  <div className="col-md-4 mt-3 mt-md-0">
+                    <section>
+                      <label style={{whiteSpace: 'nowrap'}} className="d-flex">{tu("contract_name")}
+                        <div className="mt-1 ml-2">
+                          <QuestionMark placement="top" text="contract_name_tip"/>
+                        </div>
+                        <span className="contract-error">{contract_name.error}</span>
+                      </label>
+                      <div className="d-flex contract-div-bg">
+                        <input type="text" className="form-control"
+                               placeholder={intl.formatMessage({id: 'contract_name'})}
+                               value={contract_name.value}
+                               name="contract_name"
+                               onInput={(e) => this.handleVerifyCodeChange('contract_name', e.target.value)}
+                        />
+                        <CopyText text={contract_name.value} className="ml-auto contract-copy mr-2"/>
                       </div>
+                    </section>
+                  </div>
+                  <div className="col-md-2 mt-3 mt-md-0">
+                    <section>
+                      <label style={{whiteSpace: 'nowrap'}}>{tu("compiler")}
+                      </label>
+                      <div>
+                        <select className="custom-select"
+                                name="contract_compiler"
+                                value={contract_compiler.value}
+                                onChange={(e) => this.handleVerifyCodeChange('contract_compiler', e.target.value)}>
+                            {
+                                compilers.map((compiler, index) => {
+                                    return (
+                                        <option key={index} value={compiler}>{compiler}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                      </div>
+                    </section>
+                  </div>
+                  <div className="col-md-2 mt-3 mt-md-0">
+                    <section>
+                      <label style={{whiteSpace: 'nowrap'}}>{tu("optimization")}
+                      </label>
+                      <div>
+                        <select className="custom-select"
+                                name="contract_optimization"
+                                value={contract_optimization.value}
+                                onChange={(e) => this.handleVerifyCodeChange('contract_optimization', e.target.value)}
+                        >
+                          <option key={1} value={true}>Yes</option>
+                          <option key={0} value={false}>No</option>
+                        </select>
+                      </div>
+                    </section>
                   </div>
                 </div>
-                <div className={currIndex == 0? "contract-hide":"contract-show"}>
-                  <div className="card-body byte-code_ABI contract-body pb-5">
-                    <div className="row">
-                      <div className="col-lg-12">
-                        <span>{tu('note')}: </span>
-                        <span></span>
-                        &nbsp;&nbsp;
-                        <span>{tu('txn')}: </span>
-                        <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-12 pt-3 byte-code_error">
-                        {/*<span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>*/}
-                        {/*<span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>*/}
-                        <span></span>
-                        {/*<p>Unable to Verify Contract source code.</p>*/}
-                      </div>
-                    </div>
-                    <hr/>
-                    <div className="row pt-3">
-                      <div className="col-lg-2">
-                        <span>{tu('Compiler_Text')}:</span>
-                      </div>
-                      <div className="col-lg-10">
-                        <span>{contractInfo_compiler}</span>
-                      </div>
-                    </div>
-                    <div className="row pt-3">
-                      <div className="col-lg-2">
-                        <span>{tu('Optimization_Enabled')}:</span>
-                      </div>
-                      <div className="col-lg-10">
-                        <span>0</span>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-12 pt-3">
-                        <span>{tu('constructor_arguements')}:</span>
-                      </div>
-                      <div className="col-lg-12 pt-3 contract-input">
-                        <input type="text" className="form-control"
-                               value={contractInfo_abiEncoded}
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-12 pt-3">
-                        <span>{tu('ContractName')}:</span>
-                      </div>
-                      <div className="col-lg-12 pt-3 contract-input">
-                        <input type="text" className="form-control"
-                               value={contractInfo_name}
-                        />
 
-                      </div>
+                <div className="row mt-3 contract-code">
+                  <div className="col-md-12 ">
+                    <div className="d-flex mb-1">
+                      <span className="mb-3">{tu("enter_contract_code")}</span>
+                        <span className="contract-error">{contract_code.error}</span>
                     </div>
-                    <div className="row">
-                      <div className="col-lg-12 pt-3">
-                        <span>{tu('Contract_Bytecode')}:</span>
-                      </div>
-                      <div className="col-lg-12 pt-3 contract-input">
-                    <textarea className="w-100 form-control mt-3"
+                    <textarea className="w-100 form-control"
                               rows="11"
-                              value={contractInfo_byteCode}
-                              onChange={ev => this.setState({abi: ev.target.value})}/>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-12 pt-3">
-                        <span>{tu('ContractABI')}:</span>
-                      </div>
-                      <div className="col-lg-12 pt-3 contract-input">
-                    <textarea className="w-100 form-control mt-3"
-                              rows="6"
-                              value={contractInfo_abi}
-                              onChange={ev => this.setState({abi: ev.target.value})}/>
-                      </div>
-                    </div>
-                    <div className="float-left pt-3 pb-3">
-                      <button type="button" className="btn btn-lg btn-start-over text-capitalize">Start Over</button>
-                    </div>
+                              value={contract_code.value}
+                              name="contract_code"
+                              onChange={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
+                     />
                   </div>
+                </div>
+                <hr style={styles.hr_32}/>
+                <div className="row mt-3 contract-ABI">
+                  <div className="col-md-12 ">
+                    <p className="mb-3">
+                        {tu("following_optional_parameters")}
+                    </p>
+                    <div className="d-flex">
+                      <p style={styles.s_title}>{tu("constructor_arguments_ABIencoded")}</p>
+                      <div className="mt-1 ml-2">
+                        <QuestionMark placement="top" text="constructor_arguments_ABIencoded_tip"/>
+                      </div>
+                    </div>
+                    <textarea className="w-100 form-control mt-3"
+                              rows="1"
+                              value={abi_Encoded.value}
+                              name="abi_Encoded"
+                              onChange={(e) => this.handleVerifyCodeChange('abi_Encoded', e.target.value)}/>
+
+                  </div>
+                  {/*<div className="col-md-12">*/}
+                    {/*<p className="mt-5">{tu("contract_library_address")}</p>*/}
+                    {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                      {/*<div className="col-md-5 contract-input">*/}
+                    {/*<span id={id20}*/}
+                          {/*onMouseOver={() => this.setState({open20: true})}*/}
+                          {/*onMouseOut={() => this.setState({open20: false})}>*/}
+                    {/*{tu("library_1_name")}:</span>*/}
+                        {/*<Tooltip placement="top" isOpen={open20} target={id20}>*/}
+                          {/*<span className="text-lowercase text-left">{t("library_1_name_tip")}</span>*/}
+                        {/*</Tooltip>*/}
+                        {/*<input type="text" className="form-control contract-input-s"/>*/}
+                      {/*</div>*/}
+                      {/*<div className="col-md-7 contract-input">*/}
+                    {/*<span*/}
+                        {/*id={id24}*/}
+                        {/*onMouseOver={() => this.setState({open24: true})}*/}
+                        {/*onMouseOut={() => this.setState({open24: false})}>*/}
+                      {/*{tu("library_contract_address")}:</span>*/}
+                        {/*<Tooltip placement="top" isOpen={open24} target={id24}>*/}
+                          {/*<span className="text-lowercase">{t("library_contract_address_tip")}</span>*/}
+                        {/*</Tooltip>*/}
+                        {/*<input type="text" className="form-control contract-input-l"/>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+
+                    {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                      {/*<div className="col-md-5 contract-input">*/}
+                        {/*<span>{tu("library_2_name")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-s"/>*/}
+                      {/*</div>*/}
+                      {/*<div className="col-md-7 contract-input">*/}
+                        {/*<span>{tu("library_contract_address")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-l"/>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+
+                    {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                      {/*<div className="col-md-5 contract-input">*/}
+                        {/*<span>{tu("library_3_name")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-s"/>*/}
+                      {/*</div>*/}
+                      {/*<div className="col-md-7 contract-input">*/}
+                        {/*<span>{tu("library_contract_address")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-l"/>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+
+                    {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                      {/*<div className="col-md-5 contract-input">*/}
+                        {/*<span>{tu("library_4_name")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-s"/>*/}
+                      {/*</div>*/}
+                      {/*<div className="col-md-7 contract-input">*/}
+                        {/*<span>{tu("library_contract_address")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-l"/>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+
+                    {/*<div className="row ml-0" style={styles.rowRight}>*/}
+                      {/*<div className="col-md-5 contract-input">*/}
+                        {/*<span>{tu("library_5_name")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-s"/>*/}
+                      {/*</div>*/}
+                      {/*<div className="col-md-7 contract-input">*/}
+                        {/*<span>{tu("library_contract_address")}:</span>*/}
+                        {/*<input type="text" className="form-control contract-input-l"/>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+                  {/*</div>*/}
+                </div>
+                <hr/>
+
+                <div className="float-left" >
+                  <ContractCodeRequest  handleCaptchaCode={this.handleCaptchaCode}/>
+                  <button type="button" className="btn btn-lg btn-verify text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleVerifyCode}>{tu('verify_and_publish')}</button>
+                  <button type="button" className="btn btn-lg ml-3 btn-reset text-capitalize mt-lg-3 mb-lg-4" onClick={this.handleReset}>{tu('reset')}</button>
                 </div>
               </div>
 
-            </main>
-        );
-    }
+                <div className={contractAddress?"card-body contract-body contract-show":"card-body contract-body contract-hide"}>
+                  <div className="contract-address-has_verified">
+                      <div>
+                          {tu('contract_source_code_for') }
+                          &nbsp;&nbsp;
+                           <span className="contract_source_code_address">{contractAddress}</span>
+                          &nbsp;&nbsp;
+                          {t('has_already_been_verified') }
+                      </div>
+                      <div className="d-flex mt-2">
+                          <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
+                          &nbsp;&nbsp;
+                          <AddressLink address={contractAddress} isContract={true}>{tu('contract_source_code')}</AddressLink>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div className={currIndex == 0? "contract-hide":"contract-show"}>
+              <div className="card-body byte-code_ABI contract-body pb-5 ">
+                <div className="row">
+                  <div className="col-lg-12 d-flex">
+                    <span>{tu('note')}: </span>
+                    <span className="click-here-to_view">{tu('contract_was_creating_during')}</span>
+                    &nbsp;&nbsp;
+                    <span>{tu('txn')}: </span>
+                    <div>
+                        <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3 byte-code_error">
+                    {/*<span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>*/}
+                    {/*<span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>*/}
+                    <span></span>
+                    {/*<p>Unable to Verify Contract source code.</p>*/}
+                  </div>
+                </div>
+                <hr/>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>{tu('Compiler_Text')}:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>{contractInfo_compiler}</span>
+                  </div>
+                </div>
+                <div className="row pt-3">
+                  <div className="col-lg-2">
+                    <span>{tu('Optimization_Enabled')}:</span>
+                  </div>
+                  <div className="col-lg-10">
+                    <span>{contractInfo_isSetting?"Yes":"No"}</span>
+                  </div>
+                </div>
+                  {
+                      contractInfo_abiEncoded?<div className="row">
+                          <div className="col-lg-12 pt-3">
+                              <span>{tu('constructor_arguements')}:</span>
+                          </div>
+                          <div className="col-lg-12 pt-3 contract-input">
+                              <input type="text"
+                                     className="form-control"
+                                     readOnly="readonly"
+                                     value={contractInfo_abiEncoded}
+                              />
+                          </div>
+                      </div>:""
+                  }
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>{tu('ContractName')}:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                    <input type="text" className="form-control"
+                           readOnly="readonly"
+                           value={contractInfo_name}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>{tu('Contract_Bytecode')}:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                <textarea className="w-100 form-control mt-3"
+                          rows="11"
+                          readOnly="readonly"
+                          value={contractInfo_byteCode}
+                          onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 pt-3">
+                    <span>{tu('ContractABI')}:</span>
+                  </div>
+                  <div className="col-lg-12 pt-3 contract-input">
+                <textarea className="w-100 form-control mt-3"
+                          rows="6"
+                          readOnly="readonly"
+                          value={contractInfo_abi}
+                          onChange={ev => this.setState({abi: ev.target.value})}/>
+                  </div>
+                </div>
+                <div className="float-left pt-3 pb-3">
+                  <button type="button" className="btn btn-lg btn-start-over text-capitalize" onClick={this.handleStartOver}>{tu('start_over')}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </main>
+    );
+}
 }
 
 const styles = {

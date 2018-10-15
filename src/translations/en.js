@@ -1139,5 +1139,7 @@ export const messages = {
   "contract_was_creating_during":"contract was creating during",
   "constructor_arguements":"Constructor Arguements Used (ABI-encoded)",
   "ContractBytecode":"ContractBytecode",
-  "ContractABI":"ContractABI"
+  "ContractABI":"ContractABI",
+  "start_over":"start_over",
+  "sorry_unable_contract_address":"Sorry！Unable to locate Contract code at "
 };
