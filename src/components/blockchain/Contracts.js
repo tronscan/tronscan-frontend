@@ -13,7 +13,29 @@ import xhr from "axios/index";
 import {API_URL} from "../../constants";
 import {TRXPrice} from "../common/Price";
 import { ONE_TRX} from "../../constants";
+import { Tooltip } from 'antd'
 
+
+function Nodetip({props, val}) {
+  // console.log(this)
+  let {intl } = props;
+  return (
+    <span>
+      {val.isLibrary && <img src={require("../../images/contract/book.png")}/> }
+
+      {val.isSetting &&
+      <Tooltip placement="top" title={intl.formatMessage({id: 'Optimization_Enabled'})}>
+        <img src={require("../../images/contract/linghst.png")}/>
+      </Tooltip>}
+
+      {val.isParameter &&
+      <Tooltip placement="top" title={intl.formatMessage({id: 'Constructor_Arguments_tip'})}>
+        <img src={require("../../images/contract/tools.png")}/>
+      </Tooltip>}
+
+      {(!val.isLibrary && !val.isSetting && !val.isParameter) && '-' }
+    </span>)
+}
 class Contracts extends React.Component {
 
   constructor() {
@@ -22,6 +44,7 @@ class Contracts extends React.Component {
     this.state = {
       contracts: [],
       total: 0,
+      loading: true
     };
   }
 
@@ -30,7 +53,7 @@ class Contracts extends React.Component {
   }
 
   componentDidUpdate() {
-    //checkPageChanged(this, this.loadContracts);
+    // this.loadContracts();
   }
 
   search = () => {
@@ -38,23 +61,18 @@ class Contracts extends React.Component {
   }
 
   loadContracts = async (page = 1, pageSize = 20) => {
-    xhr({
-      baseURL: 'http://18.216.57.65:20111',
-      url: `/api/contracts`,
-      method:'get',
-      params: {
-        confirm: 0,
-        sort: '-timestamp',
-        limit: pageSize,
-        start: (page - 1) * pageSize
-      }
-      
-    }).then((result) => {
-      if (result.data.data) {
+    this.setState({loading: true})
+    await Client.getContracts({
+      confirm: 0,
+      sort: '-timestamp',
+      limit: pageSize,
+      start: (page - 1) * pageSize
+    }).then(({data, total}) => {
+      if (data) {
         this.setState({
-          contracts: result.data.data,
+          contracts: data,
           loading: false,
-          total: result.data.total
+          total
         });
       }
     });
@@ -124,13 +142,7 @@ class Contracts extends React.Component {
         width: '90px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return (
-          <span>
-            {record.isLibrary && <i className="fa fa-columns mx-1"></i> }
-            {record.isSetting && <i className="fa fa-bolt mx-1"></i> }
-            {record.isParameter && <i className="fa fa-wrench mx-1"></i> }
-            {(!record.isLibrary && !record.isSetting && !record.isParameter) && '-' }
-          </span>)
+          return <Nodetip props={this.props} val={record}/>
         }
       },
       {

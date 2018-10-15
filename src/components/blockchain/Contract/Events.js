@@ -55,25 +55,24 @@ class Transactions extends React.Component {
     let {filter, isInternal = false} = this.props;
 
     this.setState({loading: true});
+    
+    let contractEvent = await Client.getContractEvent(filter.address);
 
-    // let transactions = await Client.getContractTxs({
-    //   sort: '-timestamp',
-    //   limit: pageSize,
-    //   start: (page - 1) * pageSize,
-    //   ...filter,
-    // });
-// ${filter.address}
-    xhr.get(`http://18.216.57.65:20111/api/contracts/event?contract=${filter.address}`).then((result) => {
-      this.setState({
-        transactions: result.data,
-        loading: false,
-      });
+    contractEvent.map(item => {
+      let eventList = []
+      forIn(item.result, (value, key) => {
+        eventList.push({
+          name: key,
+          value
+        })
+      })
+      item.eventList = eventList
+    })
+
+    this.setState({
+      transactions: contractEvent,
+      loading: false,
     });
-
-    // this.setState({
-    //   transactions: transactions.data,
-    //   loading: false,
-    // });
   };
 
   handleChange(value, index, string) {
@@ -108,7 +107,8 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-                  <AddressLink address={record.contract_address}/>
+                  {/* <AddressLink address={record.contract_address}/> */}
+                  <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
                   #<BlockNumberLink number={record.block_number}/><br/>
                   <TimeAgo date={record.block_timestamp}/>
                 </Truncate>
@@ -144,35 +144,15 @@ class Transactions extends React.Component {
                                
                                 <span className="e-blue"> uint256 <span className="e-red">_value</span></span>) */}
                     </div>
-                    { record.event_name == 'Transfer' &&
-                    <div id={"event-wapper"+index} className="event-wapper p-3">
-                    
-                      <div className="mb-1">
-                        <span className="e-blue"> address <span className="e-red">_from</span></span>
-                        <AddressLink address={record.result._from}/>
+                    <div id={"event-wapper"+index} className="event-wapper p-3">{
+                      record.eventList.map(item => {
+                        return <div className="mb-1" key={item.name}>
+                        <span className="e-blue">  <span className="e-red">{item.name}</span></span>
+                        {/* <AddressLink address={item.value}/> */}
+                        <div>{item.value}</div>
                       </div>
-                      <div className="mb-1">
-                        <span className="e-blue"> address <span className="e-red">_to</span></span>
-                        <AddressLink address={record.result._to}/>
-                      </div>
-                      <div className="mb-1">
-                        <span className="e-blue"> uint256 <span className="e-red">_value</span></span>
-                        <AddressLink address={record.result._value}/>
-                      </div>
-                    </div>}
-
-                    { record.event_name == "CreateReferral" &&
-                    <div id={"event-wapper"+index} className="event-wapper p-3">
-                    
-                      <div className="mb-1">
-                        <span className="e-blue"> uint256 <span className="e-red">_code</span></span>
-                        <AddressLink address={record.result._code}/>
-                      </div>
-                      <div className="mb-1">
-                        <span className="e-blue"> address <span className="e-red">_owner</span></span>
-                        <AddressLink address={record.result._owner}/>
-                      </div>
-                    </div>}
+                      })
+                    }</div>
                     
                     {record.row&&
                       <div className="event-topic">{
