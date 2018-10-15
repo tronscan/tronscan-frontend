@@ -21,16 +21,16 @@ function Nodetip({props, val}) {
   let {intl } = props;
   return (
     <span>
-      {val.isLibrary && <img src={require("../../images/contract/book.png")}/> }
+      {val.isLibrary && <img src={require("../../images/contract/book.png")} style={{height: '16px'}}/> }
 
       {val.isSetting &&
       <Tooltip placement="top" title={intl.formatMessage({id: 'Optimization_Enabled'})}>
-        <img src={require("../../images/contract/linghst.png")}/>
+        <img src={require("../../images/contract/linghst.png")} style={{height: '16px'}}/>
       </Tooltip>}
 
       {val.isParameter &&
       <Tooltip placement="top" title={intl.formatMessage({id: 'Constructor_Arguments_tip'})}>
-        <img src={require("../../images/contract/tools.png")}/>
+        <img src={require("../../images/contract/tools.png")} style={{height: '16px'}}/>
       </Tooltip>}
 
       {(!val.isLibrary && !val.isSetting && !val.isParameter) && '-' }

@@ -55,7 +55,7 @@ class Transactions extends React.Component {
     let {filter, isInternal = false} = this.props;
 
     this.setState({loading: true});
-    
+
     let contractEvent = await Client.getContractEvent(filter.address);
 
     contractEvent.map(item => {
@@ -147,7 +147,7 @@ class Transactions extends React.Component {
                     <div id={"event-wapper"+index} className="event-wapper p-3">{
                       record.eventList.map(item => {
                         return <div className="mb-1" key={item.name}>
-                        <span className="e-blue">  <span className="e-red">{item.name}</span></span>
+                        <span className="e-red">  <span className="e-blue">{item.name}</span></span>
                         {/* <AddressLink address={item.value}/> */}
                         <div>{item.value}</div>
                       </div>

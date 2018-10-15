@@ -186,15 +186,6 @@ class Transactions extends React.Component {
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transaction_info'})
 
-    // if (!loading && transactions.length === 0) {
-    //   if (!EmptyState) {
-    //     return (
-    //         <div className="p-3 text-center">{tu("no_transactions")}</div>
-    //     );
-    //   }
-    //   return <EmptyState/>;
-    // }
-
     return (
       <Fragment>
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
