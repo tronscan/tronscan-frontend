@@ -27,7 +27,7 @@ class VerifyContractCode extends Component {
                 },
                 {
                     "label":"bytecode_and_ABI",
-                    "show":true
+                    "show":false
                 }
             ],
             currIndex:0,
