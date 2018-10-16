@@ -164,17 +164,17 @@ class Transactions extends React.Component {
           return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       },
-      {
-        title: upperFirst(intl.formatMessage({id: 'TxFee'})),
-        dataIndex: 'txFee',
-        key: 'txFee',
-        align: 'right',
-        width: '120px',
-        className: 'ant_table',
-        render: (text, record, index) => {
-          return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
-        }
-      }
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'TxFee'})),
+      //   dataIndex: 'txFee',
+      //   key: 'txFee',
+      //   align: 'right',
+      //   width: '120px',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+      //   }
+      // }
     ];
     return column;
   }
