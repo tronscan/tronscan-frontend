@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {trim} from "lodash";
+import {trim, forIn} from "lodash";
 import {tu,t} from "../../utils/i18n";
 import {connect} from "react-redux";
 import {CopyText} from "../common/Copy";
@@ -86,9 +86,11 @@ class VerifyContractCode extends Component {
     handleVerifyCodeChange(field, value) {
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code}} = this.state;
 
+        // const newFieldObj = eval(field);
         const newFieldObj = {value, valid: true, error: ''};
-        switch (field) {
-            case 'contract_address': {
+        console.log(newFieldObj)
+        const contractList = {
+            contract_address() {
                 if (value.length < 34 || value.length > 34) {
                     newFieldObj.error = '**InvalidLength';
                     newFieldObj.valid = false;
@@ -96,31 +98,28 @@ class VerifyContractCode extends Component {
                     newFieldObj.error = '**Required';
                     newFieldObj.valid = false;
                 }
-                break;
-            }
-            case 'contract_name': {
-                if (value.length === 0) {
-                    newFieldObj.error = '**Required';
-                    newFieldObj.valid = false;
-                }
-                break;
-            }
-            case 'contract_compiler': {
-                if (value === 0) {
-                    newFieldObj.error = '**Required';
-                    newFieldObj.valid = false;
-                }
-                break;
-            }
-            case 'contract_code': {
+            },
+            contract_code() {
                 if (value.length === 0) {
                     newFieldObj.error = '** Please enter the contract source code';
                     newFieldObj.valid = false;
                 }
-                break;
+            },
+            contract_name() {
+                if (value.length === 0) {
+                    newFieldObj.error = '**Required';
+                    newFieldObj.valid = false;
+                }
+            },
+            contract_compiler() {
+                if (value.length === 0) {
+                    newFieldObj.error = '** Please enter the contract source code';
+                    newFieldObj.valid = false;
+                }
             }
         }
 
+        contractList[field]()
         
         if(field == 'contract_optimization'){
           newFieldObj.value = newFieldObj.value == 'true'
@@ -213,41 +212,18 @@ class VerifyContractCode extends Component {
     handleVerifyCode = async (e) =>{
         e.preventDefault();
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code,abi_Encoded},verified_contract_address,captcha_code} = this.state;
-        const address_newFieldObj = {value:'', valid: true, error: ''};
-        const name_newFieldObj = {value:'', valid: true, error: ''};
-        const code_newFieldObj = {value:'', valid: true, error: ''};
-        // if (!contract_address.valid ) {
-        //     if (contract_address.value.length === 0) {
-        //         address_newFieldObj.error = '**Required';
-        //         address_newFieldObj.valid = false;
-        //     }else if(contract_address.value.length < 34 || contract_address.value.length > 34){
-        //         address_newFieldObj.error = '**InvalidLength';
-        //         address_newFieldObj.valid = false;
-        //     }
-        // }
-        // if (!contract_name.valid ) {
-        //    if (contract_name.value.length === 0) {
-        //        name_newFieldObj.error = '**Required';
-        //        name_newFieldObj.valid = false;
-        //    };
-        // }
-        // if (!contract_code.valid ) {
-        //    if (contract_code.value.length === 0) {
-        //        code_newFieldObj.error = '**Required';
-        //        code_newFieldObj.valid = false;
-        //    }
-        // }
-        // this.setState({
-        //     formVerify: {
-        //         ...this.state.formVerify,
-        //         contract_address: address_newFieldObj,
-        //         contract_name: name_newFieldObj,
-        //         contract_code: code_newFieldObj
-        //     }
-        // });
-       // if(!contract_address.valid|| contract_name.valid ||contract_code.valid){
-       //     return;
-       // }
+    
+        const list = ['contract_address', 'contract_code']
+        list.map(item => {
+            setTimeout( () => {
+                this.handleVerifyCodeChange(item,  eval(item).value)
+            }, 100)
+        })
+
+        console.log(contract_address, contract_code)
+       if( !(contract_address.valid && contract_code.valid)){
+           return;
+       }
 
         let iSContractData = await Client.getContractOverview(contract_address.value);
         if (!iSContractData.data.length) {
@@ -538,7 +514,7 @@ class VerifyContractCode extends Component {
                               rows="11"
                               value={contract_code.value}
                               name="contract_code"
-                              onChange={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
+                              onInput={(e) => this.handleVerifyCodeChange('contract_code', e.target.value)}
                      />
                   </div>
                 </div>
