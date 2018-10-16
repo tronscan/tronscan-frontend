@@ -84,7 +84,12 @@ async function searchAddress(criteria) {
   });
 
   if (accounts.length === 1) {
-    return `#/address/${accounts[0].address}`;
+    if(accounts[0].accountType == 2){
+      return `#/contract/${accounts[0].address}`;
+    }else{
+      return `#/address/${accounts[0].address}`;
+    }
+    
   }
 }
 

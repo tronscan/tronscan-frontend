@@ -60,41 +60,39 @@ class SmartContract extends React.Component {
     this.setState({loading: true, address: {address: id} });
 
 
-    // let contract = await Client.getContractOverview(id);
-    xhr.get(`http://18.216.57.65:20111/api/contract/${id}`).then((result) => {
+    let contract = await Client.getContractOverview(id);
 
-      this.setState(prevProps => ({
-        loading: false,
-        contract:result.data.data[0],
-        tabs: {
-          ...prevProps.tabs,
-          transactions: {
-            id: "transactions",
-            path: "",
-            label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{contract: id}}  />
-          },
-          // Txns: {
-          //   id: "Txns",
-          //   path: "/Txns",
-          //   label: <span>{tu('token_txns')}</span>,
-          //   cmp: () => <Txhash filter={{address: id}} />,
-          // },
-          voters: {
-            id: "code",
-            path: "/code",
-            label: <span>{tu("Code")}</span>,
-            cmp: () => <Code filter={{address: id}} />,
-          },
-          events: {
-            id: "events",
-            path: "/events",
-            label: <span>{tu('Events')}</span>,
-            cmp: () => <Events filter={{address: id}} />,
-          }
+    this.setState(prevProps => ({
+      loading: false,
+      contract:contract.data[0],
+      tabs: {
+        ...prevProps.tabs,
+        transactions: {
+          id: "transactions",
+          path: "",
+          label: <span>{tu("transactions")}</span>,
+          cmp: () => <Transactions filter={{contract: id}}  />
+        },
+        // Txns: {
+        //   id: "Txns",
+        //   path: "/Txns",
+        //   label: <span>{tu('token_txns')}</span>,
+        //   cmp: () => <Txhash filter={{address: id}} />,
+        // },
+        voters: {
+          id: "code",
+          path: "/code",
+          label: <span>{tu("Code")}</span>,
+          cmp: () => <Code filter={{address: id}} />,
+        },
+        events: {
+          id: "events",
+          path: "/events",
+          label: <span>{tu('Events')}</span>,
+          cmp: () => <Events filter={{address: id}} />,
         }
-      }));
-    });
+      }
+    }));
 
    
   }
