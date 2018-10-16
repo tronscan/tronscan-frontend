@@ -12,7 +12,7 @@ import ContractCodeRequest from "./ContractCodeRequest";
 import getCompiler from "../../utils/compiler";
 import {Client} from "../../services/api";
 import {AddressLink} from "../common/Links";
-
+import {Link} from "react-router-dom";
 var compile;
 class VerifyContractCode extends Component {
 
@@ -223,7 +223,7 @@ class VerifyContractCode extends Component {
             this.setState({
                 verified_contract_address: iSVerifiedContractData.data.address
             }, () => {
-
+                document.documentElement.scrollTop = 500;
             });
         }else{
             let resource = contract_code.value
@@ -352,6 +352,7 @@ class VerifyContractCode extends Component {
    }
 
   componentDidMount() {
+
      this.getCompile()
   }
   async getCompile (){
@@ -502,7 +503,7 @@ class VerifyContractCode extends Component {
                   </div>
                   <div className="col-md-2 mt-3 mt-md-0">
                     <section>
-                      <label style={{whiteSpace: 'nowrap'}}>{tu("optimization")}
+                      <label style={{whiteSpace: 'nowrap'}}>{tu("contract_optimization")}
                       </label>
                       <div>
                         <select className="custom-select"
@@ -642,7 +643,12 @@ class VerifyContractCode extends Component {
                       <div className="d-flex mt-2">
                           <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
                           &nbsp;&nbsp;
-                          <AddressLink address={verified_contract_address} isContract={true}>{tu('contract_source_code')}</AddressLink>
+                          <Link
+                              to={`/contract/${verified_contract_address}/code`}
+                              className="address-link text-nowrap "
+                              >
+                              {tu('contract_source_code')}
+                          </Link>
                       </div>
                   </div>
               </div>
