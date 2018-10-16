@@ -320,6 +320,7 @@ export default function Contract({contract}) {
                       <h5>
                           <i className="fa fa-exchange-alt"></i>
                           {tu("trigger_smart_contract")}
+                          <small>{tu('normal_address_trigger_smart_contract')}</small>
                       </h5>
                   </div>
                   <table className="table">

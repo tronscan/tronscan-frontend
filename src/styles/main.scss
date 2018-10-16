@@ -905,6 +905,12 @@ th {
     transform: scale(0.9);
     margin-left: -1.25rem;
   }
+  .contract-header{
+    h6{
+      font-size: 12px;
+    }
+  }
+
 }
 
 ._context_right_click .react-contextmenu-wrapper .truncate-ellipsis {
@@ -1650,7 +1656,7 @@ h5 {
   padding-bottom: 20px;
   h6{
     padding: 30px 0;
-    font-size: 16px;
+    font-size: 1rem;
     margin: 0;
     color: #333;
 
@@ -1678,6 +1684,7 @@ h5 {
     margin-bottom: -1px;
     li{
       display: flex;
+      justify-content:space-between;
       min-height: 40px;
       padding: 10px 0;
       line-height: 1.4em;
@@ -1685,7 +1692,7 @@ h5 {
       color: #333;
 
       p{
-        width: 138px;
+        //width: 138px;
         margin: 0;
         
         &.plus{
@@ -1698,7 +1705,14 @@ h5 {
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .contract-header{
+    h6{
+      font-size: 12px;
+    }
+  }
 
+}
 .tip{
   width: 40px;
   height: 22px;

@@ -133,7 +133,7 @@ class Transfers extends React.Component {
         width: '180px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return record.tokenName == 'TRX'? 
+          return record.tokenName == 'TRX'?
                   <TRXPrice amount={record.amount / ONE_TRX}/>
                   :record.amount + ' ' + record.tokenName
 

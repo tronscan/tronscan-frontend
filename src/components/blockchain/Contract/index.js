@@ -128,10 +128,12 @@ class SmartContract extends React.Component {
                               <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
                               <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li>
                               <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
-                                {contract.trxCount} 
-                                <Tooltip placement="top" title={intl.formatMessage({id: 'Normal_Transactions'})}>
-                                  <span className="ml-1"> txns </span>
-                                </Tooltip>
+                                <p>
+                                    {contract.trxCount}
+                                  <Tooltip placement="top" title={intl.formatMessage({id: 'Normal_Transactions'})}>
+                                    <span className="ml-1"> txns </span>
+                                  </Tooltip>
+                                </p>
                               </li>
                               {/* <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>{contract.tokenContract}</li> */}
                             </ul>

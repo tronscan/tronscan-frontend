@@ -12,6 +12,8 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import {TRXPrice} from "../common/Price";
+import {ONE_TRX} from "../../constants";
 
 class ContractTrans extends React.Component {
 
@@ -62,14 +64,14 @@ class ContractTrans extends React.Component {
         }
         let result = null;
         if (date_start) {
-            result = await Client.getTransactions({
+            result = await Client.getContractTriggers({
                 sort: '-timestamp',
                 date_start: date_start,
                 date_to: date_to
             });
         }
         else {
-            result = await Client.getTransactions({
+            result = await Client.getContractTriggers({
                 sort: '-timestamp',
                 limit: pageSize,
                 start: (page - 1) * pageSize,
@@ -78,7 +80,7 @@ class ContractTrans extends React.Component {
             });
         }
         this.setState({
-            transactions: result.transactions,
+            transactions: result.triggers,
             loading: false,
             total: result.total
         });
@@ -138,18 +140,17 @@ class ContractTrans extends React.Component {
                 width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text}/>
+                    return <AddressLink address={text} isContract={true}/>
                 }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'value'})),
-                dataIndex: 'contractAddress',
-                key: 'contractAddress',
+                dataIndex: 'callValue',
+                key: 'callValue',
                 align: 'left',
-                width: '30%',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <AddressLink address={text}/>
+                    return <TRXPrice amount={text / ONE_TRX}/>
                 }
             },
 
@@ -162,7 +163,7 @@ class ContractTrans extends React.Component {
         let {transactions, total, loading} = this.state;
         let {match, intl} = this.props;
         let column = this.customizedColumn();
-        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
+        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_triggers_total'})
 
         return (
             <main className="container header-overlap pb-3 token_black">
