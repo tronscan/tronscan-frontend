@@ -63,8 +63,8 @@ class Transfers extends React.Component {
 
     transfers.map( item => {
       if(filter.address){
-        item.fromtip = item.transferFromAddress == filter.address
-        item.totip = item.transferToAddress == filter.address
+        item.fromtip = !(item.transferFromAddress == filter.address)
+        item.totip = !(item.transferToAddress == filter.address)
       }else{
         item.fromtip = true
         item.totip = true
