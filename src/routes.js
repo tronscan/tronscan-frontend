@@ -130,8 +130,8 @@ export const routes = [
   },{
   path: "/contracts",
     label: "contracts",
-    icon: 'fa fa-link',
-    component: () => <Redirect to="/blockchain/blocks"/>,
+    icon: 'fa fa-file-contract',
+    component: () => <Redirect to="/blockchain/contracts"/>,
     routes: [
       {
         path: "/contracts/contracts",
@@ -139,12 +139,12 @@ export const routes = [
         icon: 'fa fa-file',
         component: Contracts,
       },
-      {
-        path: "/contracts/contracts",
-        label: "contracts",
-        icon: 'fa fa-file',
-        component: Contracts,
-      }
+      // {
+      //   path: "/contracts/contracts",
+      //   label: "contracts",
+      //   icon: 'fa fa-file',
+      //   component: Contracts,
+      // }
     ]
   },
   {
@@ -263,6 +263,7 @@ export const routes = [
         path: "/tools/verify-contract-code",
         icon: "fa fa-check-square",
         component: VerifyContractCodeAsync,
+        showInMenu: false
       },
       {
         label: "transaction_viewer",

@@ -1037,6 +1037,7 @@ export const messages = {
   "Event_Logs": "事件日志",
   "With_Verified_Source_Codes_Only": "只包括已验证源码的合约",
   "verified_contract_source_codes_found": "条已验证合约",
+  "contract_source_codes_found": "条合约",
   "ContractName": "合约名称",
   "TxCount": "交易数",
   "Settings": "设置",

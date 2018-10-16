@@ -88,7 +88,7 @@ class Contracts extends React.Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '30%',
+        width: '40%',
         render: (text, record, index) => {
           return <Truncate>
                     <AddressLink address={text} isContract={true}>{text}</AddressLink>
@@ -168,7 +168,7 @@ class Contracts extends React.Component {
     let {contracts, total, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'verified_contract_source_codes_found'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_source_codes_found'})
 
     return (
       <main className="container header-overlap pb-3 token_black">
