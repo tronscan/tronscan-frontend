@@ -34,7 +34,6 @@ export default class TestNetRequest extends React.Component {
     };
 
     requestTrx = async () => {
-
         // let {account, onRequested} = this.props;
         // let {verificationCode} = this.state;
         //

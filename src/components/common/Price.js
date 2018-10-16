@@ -108,7 +108,7 @@ export class TRXPrice extends React.PureComponent {
   render() {
     let {open, id} = this.state;
     let {source,name,amount = 0, currency = "", showCurreny = true, showPopup = true, ...props} = this.props;
-      let ele = null;
+    let ele = null;
     return (
       <Consumer>
           {
