@@ -313,6 +313,27 @@ export default function Contract({contract}) {
                   </table>
               </Fragment>
           );
+      case "TRIGGERSMARTCONTRACT":
+          return (
+              <Fragment>
+                  <div className="card-body table-title">
+                      <h5>
+                          <i className="fa fa-exchange-alt"></i>
+                          {tu("trigger_smart_contract")}
+                      </h5>
+                  </div>
+                  <table className="table">
+                      <tbody>
+                      <Field label="contract_triggers_owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                      <Field label="contract_address"><AddressLink address={contract['contract_address']}/></Field>
+                      <tr>
+                          <th>{proposal}</th>
+                          <td>{proposalVal}</td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </Fragment>
+          );
     default:
       return (
           <Fragment>

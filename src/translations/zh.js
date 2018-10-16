@@ -1141,4 +1141,15 @@ export const messages = {
     "error_contract_ABI_for":"Sorry! The Compiled Contract ABI for",
     "unableto_verify_contract_source_code":"Unableto Verify Contract source code.",
     "contractname_found":"Contractname(s) found",
+    /*
+     ##################################################################################
+     #                                                                                #
+     # contract-type                                          #
+     #                                                                                #
+     ##################################################################################
+    */
+    "trigger_smart_contract":"触发智能合约",
+    "contract_triggers":"合约调用",
+    "contract_triggers_owner":"调用者",
+    "contract_triggers_owner_address":"调用者地址"
 };

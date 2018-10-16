@@ -35,6 +35,7 @@ import {
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
+import ContractTrans from "./components/blockchain/ContractTrans";
 import Transfers from "./components/blockchain/Transfers";
 import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
@@ -107,13 +108,13 @@ export const routes = [
         component: LiveAsync,
         showInMenu: false
       },
-      {
-        label: "inter_tnxl",
-        icon: `fa fa-random`,
-        path: "/blockchain/ContractInter",
-        component: ContractInter,
-        showInMenu: false
-      },
+      // {
+      //   label: "inter_tnxl",
+      //   icon: `fa fa-random`,
+      //   path: "/blockchain/ContractInter",
+      //   component: ContractInter,
+      //   showInMenu: false
+      // },
       {
         path: "/blockchain/foundation",
         label: "foundation",
@@ -139,12 +140,12 @@ export const routes = [
         icon: 'fa fa-file',
         component: Contracts,
       },
-      // {
-      //   path: "/contracts/contracts",
-      //   label: "contracts",
-      //   icon: 'fa fa-file',
-      //   component: Contracts,
-      // }
+      {
+        path: "/contracts/contract-triggers",
+        label: "contract_triggers",
+        icon: 'fa fa-users-cog',
+        component: ContractTrans,
+      }
     ]
   },
   {
@@ -258,13 +259,12 @@ export const routes = [
     label: "tools",
     icon: "fa fa-wrench",
     routes: [
-      {
-        label: "verify_contract_code",
-        path: "/tools/verify-contract-code",
-        icon: "fa fa-check-square",
-        component: VerifyContractCodeAsync,
-        showInMenu: false
-      },
+      // {
+      //   label: "verify_contract_code",
+      //   path: "/tools/verify-contract-code",
+      //   icon: "fa fa-check-square",
+      //   component: VerifyContractCodeAsync,
+      // },
       {
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",

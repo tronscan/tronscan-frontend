@@ -272,7 +272,6 @@ class VerifyContractCode extends Component {
                    <div className="contract-address-text_underline">
                        <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                    </div>
-
                </div>
                break;
            case 1001:
