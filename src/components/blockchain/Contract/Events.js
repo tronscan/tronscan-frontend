@@ -205,7 +205,7 @@ class Transactions extends React.Component {
                           scroll={{ x: 1000 }}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
-                            this.loadContracts(page, pageSize)
+                            this.loadTransactions(page, pageSize)
                           }}/>
           </div>
         </div>
