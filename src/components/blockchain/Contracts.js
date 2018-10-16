@@ -88,7 +88,7 @@ class Contracts extends React.Component {
         key: 'address',
         align: 'left',
         className: 'ant_table',
-        width: '200px',
+        width: '30%',
         render: (text, record, index) => {
           return <Truncate>
                     <AddressLink address={text} isContract={true}>{text}</AddressLink>
@@ -105,15 +105,15 @@ class Contracts extends React.Component {
           return <span>{text}</span>
         }
       },
-      {
-        title: upperFirst(intl.formatMessage({id: 'Compiler'})),
-        dataIndex: 'compiler',
-        key: 'compiler',
-        align: 'left',
-        render: (text, record, index) => {
-          return <span>{text}</span>
-        }
-      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'Compiler'})),
+      //   dataIndex: 'compiler',
+      //   key: 'compiler',
+      //   align: 'left',
+      //   render: (text, record, index) => {
+      //     return <span>{text}</span>
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({id: 'balance'})),
         dataIndex: 'balance',
@@ -128,37 +128,37 @@ class Contracts extends React.Component {
         title: upperFirst(intl.formatMessage({id: 'TxCount'})),
         dataIndex: 'trxCount',
         key: 'trxCount',
-        align: 'left',
+        align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
           return <FormattedNumber value={text}/>
         }
       },
-      {
-        title: upperFirst(intl.formatMessage({id: 'Settings'})),
-        dataIndex: 'isSetting',
-        key: 'isSetting',
-        align: 'left',
-        width: '90px',
-        className: 'ant_table',
-        render: (text, record, index) => {
-          return <Nodetip props={this.props} val={record}/>
-        }
-      },
-      {
-        title: upperFirst(intl.formatMessage({id: 'DateVerified'})),
-        dataIndex: 'dateVerified',
-        key: 'dateVerified',
-        align: 'right',
-        width: '170px',
-        className: 'ant_table',
-        render: (text, record, index) => {
-          return <div>
-                  <FormattedDate value={text}/>{' '}
-                  <FormattedTime value={text}/>
-                </div>
-        }
-      }
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'Settings'})),
+      //   dataIndex: 'isSetting',
+      //   key: 'isSetting',
+      //   align: 'left',
+      //   width: '90px',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return <Nodetip props={this.props} val={record}/>
+      //   }
+      // },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'DateVerified'})),
+      //   dataIndex: 'dateVerified',
+      //   key: 'dateVerified',
+      //   align: 'right',
+      //   width: '170px',
+      //   className: 'ant_table',
+      //   render: (text, record, index) => {
+      //     return <div>
+      //             <FormattedDate value={text}/>{' '}
+      //             <FormattedTime value={text}/>
+      //           </div>
+      //   }
+      // }
     ];
     return column;
   }

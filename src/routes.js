@@ -81,12 +81,12 @@ export const routes = [
         icon: "fa fa-users",
         component: AccountsAsync,
       },
-      {
-        path: "/blockchain/contracts",
-        label: "Verified_contracts",
-        icon: "fa fa-file",
-        component: Contracts,
-      },
+      // {
+      //   path: "/blockchain/contracts",
+      //   label: "Verified_contracts",
+      //   icon: "fa fa-file",
+      //   component: Contracts,
+      // },
       {
         label: "statistics",
         icon: `fa fa-chart-pie`,
@@ -119,14 +119,33 @@ export const routes = [
         label: "foundation",
         icon: "fa fa-address-book",
         component: FoundationAsync,
+      },
+      {
+        label: "nodes",
+        icon: 'fa fa-server',
+        path: "/blockchain/nodes",
+        component: NodesAsync,
       }
     ]
-  },
-  {
-    label: "nodes",
-    icon: 'fa fa-server',
-    path: "/nodes",
-    component: NodesAsync,
+  },{
+  path: "/contracts",
+    label: "contracts",
+    icon: 'fa fa-link',
+    component: () => <Redirect to="/blockchain/blocks"/>,
+    routes: [
+      {
+        path: "/contracts/contracts",
+        label: "contracts",
+        icon: 'fa fa-file',
+        component: Contracts,
+      },
+      {
+        path: "/contracts/contracts",
+        label: "contracts",
+        icon: 'fa fa-file',
+        component: Contracts,
+      }
+    ]
   },
   {
     label: "representatives",
