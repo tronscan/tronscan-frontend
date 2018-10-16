@@ -85,10 +85,7 @@ class VerifyContractCode extends Component {
     }
     handleVerifyCodeChange(field, value) {
         const {formVerify: {contract_address,contract_name,contract_compiler,contract_optimization,contract_code}} = this.state;
-
-        // const newFieldObj = eval(field);
         const newFieldObj = {value, valid: true, error: ''};
-        console.log(newFieldObj)
         const contractList = {
             contract_address() {
                 if (value.length < 34 || value.length > 34) {
@@ -104,22 +101,11 @@ class VerifyContractCode extends Component {
                     newFieldObj.error = '** Please enter the contract source code';
                     newFieldObj.valid = false;
                 }
-            },
-            contract_name() {
-                if (value.length === 0) {
-                    newFieldObj.error = '**Required';
-                    newFieldObj.valid = false;
-                }
-            },
-            contract_compiler() {
-                if (value.length === 0) {
-                    newFieldObj.error = '** Please enter the contract source code';
-                    newFieldObj.valid = false;
-                }
             }
         }
-
-        contractList[field]()
+        if(field == 'contract_address' || field == 'contract_code'){
+            contractList[field]()
+        }
         
         if(field == 'contract_optimization'){
           newFieldObj.value = newFieldObj.value == 'true'
@@ -219,8 +205,6 @@ class VerifyContractCode extends Component {
                 this.handleVerifyCodeChange(item,  eval(item).value)
             }, 100)
         })
-
-        console.log(contract_address, contract_code)
        if( !(contract_address.valid && contract_code.valid)){
            return;
        }
@@ -266,6 +250,9 @@ class VerifyContractCode extends Component {
                 source: contract_code.value,//合约源代码
                 byteCode:arrByteCode[0],//编译生成的二进制代码
                 abi:arrAbi[0],//编译生成的abi
+                //abi:'[{"constant":true,"name":"ceoAddress","outputs":[{"type":"address"}],"type":2,"stateMutability":2},{"name":"payForCeoAddress","type":2,"payable":true,"stateMutability":4},{"name":"payForContract","type":2,"payable":true,"stateMutability":4},{"constant":true,"name":"getContractBalance","outputs":[{"type":"address"},{"type":"uint256"}],"type":2,"stateMutability":2},{"constant":true,"name":"getCeoBalance","outputs":[{"type":"address"},{"type":"uint256"}],"type":2,"stateMutability":2},{"name":"withDrawFromContract","type":2,"stateMutability":3},{"type":1,"stateMutability":3}]',
+                //byteCode:'608060405234801561001057600080fd5b5060008054600160a060020a031990811633179091556001805490911630179055610227806100406000396000f3006080604052600436106100775763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630a0f8168811461007c5780631de0f768146100ba5780632ba28453146100c45780636f9fb98a146100cc5780639c363c2f14610111578063ccd3edc614610126575b600080fd5b34801561008857600080fd5b5061009161013b565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100c2610157565b005b6100c26101a1565b3480156100d857600080fd5b506100e16101a3565b6040805173ffffffffffffffffffffffffffffffffffffffff909316835260208301919091528051918290030190f35b34801561011d57600080fd5b506100e16101aa565b34801561013257600080fd5b506100c26101c9565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b6000805460405173ffffffffffffffffffffffffffffffffffffffff909116913480156108fc02929091818181858888f1935050505015801561019e573d6000803e3d6000fd5b50565b565b3080319091565b60005473ffffffffffffffffffffffffffffffffffffffff1680319091565b604051339081906000906305f5e1009082818181858883f193505050501580156101f7573d6000803e3d6000fd5b50505600a165627a7a72305839',
+                //abiEncoded:'96e2df2c9c5370014b73d321699a968dcd8209bb8281decfbafbfc34f41ff5b30029',
                 abiEncoded:abi_Encoded.value,//编译所需参数
                 captchaCode:captcha_code
                 // librarys:librarys
@@ -280,8 +267,9 @@ class VerifyContractCode extends Component {
        switch (code){
            case 0:
                ele = <div className="d-flex">
-                   <span>{tu('successfully_generated_byteCode')}</span>
-                   <div>
+                   <span className="click-here-to_view">{tu('successfully_generated_byteCode')}</span>
+                   &nbsp;
+                   <div className="contract-address-text_underline">
                        <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                    </div>
 
@@ -290,16 +278,20 @@ class VerifyContractCode extends Component {
            case 1001:
                ele = <div className="d-flex">
                    <span>{tu('error_construct_ABI_encoded')}</span>
-                   <span>{contractInfo_name}</span>
+                   &nbsp;
+                   <span>'{contractInfo_name}'</span>
                </div>
-               break;
+           break;
            case 1002:
                ele =<div>
                    <div className="d-flex">
-                       <span>{tu('error_construct_bytecode_for')}</span>
-                       <span>'{contract_name.value}'</span>
-                       <span>{tu('the_contract_creation_code_for')}</span>
-                       <div>
+                       <span className="click-here-to_view">{tu('error_construct_bytecode_for')}</span>
+                       &nbsp;
+                       <span className="click-here-to_view">'{contract_name.value}'</span>
+                       &nbsp;
+                       <span className="click-here-to_view">{tu('the_contract_creation_code_for')}</span>
+                       &nbsp;
+                       <div className="contract-address-text_underline">
                            <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                        </div>
                    </div>
@@ -309,10 +301,13 @@ class VerifyContractCode extends Component {
            case 1003:
                ele =<div>
                    <div className="d-flex">
-                       <span>{tu('error_construct_bytecode_for')}</span>
-                       <span>'{contract_name.value}'</span>
-                       <span>{tu('the_contract_creation_code_for')}</span>
-                       <div>
+                       <span className="click-here-to_view">{tu('error_construct_bytecode_for')}</span>
+                       &nbsp;
+                       <span className="click-here-to_view">'{contract_name.value}'</span>
+                       &nbsp;
+                       <span className="click-here-to_view">{tu('the_contract_creation_code_for')}</span>
+                       &nbsp;
+                       <div className="contract-address-text_underline">
                            <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                        </div>
                    </div>
@@ -320,13 +315,32 @@ class VerifyContractCode extends Component {
                    <div>{tu('unableto_verify_contract_source_code')}</div>
                </div>
                break;
+           case 1004:
+               ele = <div>
+                   <div className="d-flex">
+                       <span className="click-here-to_view">{tu('error_contract_ABI_for')}</span>
+                       &nbsp;
+                       <span className="click-here-to_view">'{contract_name.value}'</span>
+                       &nbsp;
+                       <span className="click-here-to_view">{tu('the_contract_creation_code_for')}</span>
+                       &nbsp;
+                       <div className="contract-address-text_underline">
+                           <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
+                       </div>
+                   </div>
+                   <div>{tu('unableto_verify_contract_source_code')}</div>
+               </div>
+               break;
            default:
                ele =<div>
                    <div className="d-flex">
-                       <span>{tu('error_construct_bytecode_for')}</span>
-                       <span>'{contract_name.value}'</span>
-                       <span>{tu('the_contract_creation_code_for')}</span>
-                       <div>
+                       <span className="click-here-to_view">{tu('error_construct_bytecode_for')}</span>
+                       &nbsp;
+                       <span className="click-here-to_view">'{contract_name.value}'</span>
+                       &nbsp;
+                       <span className="click-here-to_view">{tu('the_contract_creation_code_for')}</span>
+                       &nbsp;
+                       <div className="contract-address-text_underline">
                            <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                        </div>
                    </div>
@@ -414,13 +428,13 @@ class VerifyContractCode extends Component {
               <hr style={styles.hr}/>
               <div className={!verified_contract_address? "card-body contract-body-input contract-show":"card-body contract-body-input contract-hide"}>
                   <div className={is_contract_address?"contract-show":"contract-hide"}>
-                      <div className="contract-address-unable-error mb-4">
+                      <div className="mb-4">
                           <div className="d-flex">
-                              <span className="click-here-to_view">
+                              <span className="click-here-to_view contract-address-unable-error">
                                    {tu('sorry_unable_contract_address') }
                               </span>
                               &nbsp;&nbsp;
-                              <div style={styles.addressWidth}>
+                              <div style={styles.addressWidth} className="contract-address-text_underline">
                                   <AddressLink address={contractInfo_address} isContract={true}>{contract_address.value}</AddressLink>
                               </div>
                               <span className="click-here-to_view">
@@ -636,22 +650,20 @@ class VerifyContractCode extends Component {
             <div className={currIndex == 0? "contract-hide":"contract-show"}>
               <div className="card-body byte-code_ABI contract-body pb-5 ">
                 <div className="row">
-                  <div className="col-lg-12 ">
+                  <div className="col-lg-12 d-flex">
                     <span>{tu('note')}: </span>
+                    &nbsp;
                     <span className="click-here-to_view">{tu('contract_was_creating_during')}</span>
                     &nbsp;&nbsp;
                     <span>{tu('txn')}: </span>
-                    <div>
+                    &nbsp;
+                    <div className="contract-address-text_underline">
                         <AddressLink address={contractInfo_address} isContract={true}>{contractInfo_address}</AddressLink>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-lg-12 pt-3 byte-code_error">
-                    {/*<span>Sorry! The Compiled Contract ByteCode for 'Ballot' does NOT match the Contract Creation Code for </span>*/}
-                    {/*<span>[T28bc895765b823f1ab7eb3c0bf5e1f71602b48dca3c3ee77329]</span>*/}
-                    <span>{verify_status_message}</span>
-                    {/*<p>Unable to Verify Contract source code.</p>*/}
                       {
                           this.setVerifyStatus(verify_status_code)
                       }
@@ -768,3 +780,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(VerifyContractCode))
+
