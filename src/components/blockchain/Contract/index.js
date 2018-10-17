@@ -121,7 +121,7 @@ class SmartContract extends React.Component {
                       <div className="contract-header">
                         <h6><AddressLink address={contract.address} includeCopy={true}/></h6>
 
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex contract-header_list">
                           <div className="contract-header__item">
                             <h6 className="contract-header__title">{tu('contract_overview')}</h6>
                             <ul>

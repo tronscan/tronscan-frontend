@@ -1654,8 +1654,16 @@ h5 {
 
 .contract-header{
   padding-bottom: 20px;
+
+  &_list{
+    justify-content: space-between;
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+    }
+  }
+  
   h6{
-    padding: 30px 0;
+    padding: 30px 0 10px;
     font-size: 1rem;
     margin: 0;
     color: #333;
@@ -1668,6 +1676,10 @@ h5 {
 
   &__item{
     width: 46%;
+    padding-top: 20px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .verified {
@@ -1684,7 +1696,7 @@ h5 {
     margin-bottom: -1px;
     li{
       display: flex;
-      justify-content:space-between;
+      // justify-content:space-between;
       min-height: 40px;
       padding: 10px 0;
       line-height: 1.4em;
@@ -1692,7 +1704,7 @@ h5 {
       color: #333;
 
       p{
-        //width: 138px;
+        width: 138px;
         margin: 0;
         
         &.plus{
