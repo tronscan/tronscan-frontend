@@ -82,6 +82,12 @@ export const routes = [
         icon: "fa fa-users",
         component: AccountsAsync,
       },
+      {
+          path: "/contract/:id",
+          label: "contract",
+          component: SmartContract,
+          showInMenu: false,
+      },
       // {
       //   path: "/blockchain/contracts",
       //   label: "Verified_contracts",
@@ -145,13 +151,7 @@ export const routes = [
         label: "contract_triggers",
         icon: 'fa fa-users-cog',
         component: ContractTrans,
-      },
-      {
-          path: "/contracts/:id",
-          label: "contract",
-          component: SmartContract,
-          showInMenu: false,
-      },
+      }
     ]
   },
   {
