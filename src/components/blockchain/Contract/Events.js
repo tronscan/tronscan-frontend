@@ -58,7 +58,7 @@ class Transactions extends React.Component {
 
     let contractEvent = await Client.getContractEvent(filter.address);
 
-    const newList = contractEvent.map((item, index) => {
+    const newList = contractEvent.filter((item, index) => {
       let eventList = []
       forIn(item.result, (value, key) => {
         eventList.push({
@@ -67,8 +67,9 @@ class Transactions extends React.Component {
         })
       })
       item.eventList = eventList
-      return index %2 == 0&& item
+      if(index %2 == 0) return item
     })
+    console.log(newList)
 
     this.setState({
       transactions: newList,
