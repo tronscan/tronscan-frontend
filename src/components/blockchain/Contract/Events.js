@@ -68,23 +68,7 @@ class Transactions extends React.Component {
         })
       })
       item.eventList = eventList
-
-      // if(index %2 == 0){
-      //   console.log(contractEvent, index+1)
-      //   let bName = item.event_name == contractEvent[index+1].event_name
-      //   let bId = item.transaction_id == contractEvent[index+1].transaction_id
-
-      //   if(bName && bId){
-      //     newList.push(item) 
-      //   }else{
-      //     newList.push(item)
-      //     newList.push(contractEvent[index+1])
-      //   }
-      // }
-      // _.uniqBy([{ 'x': 1, 'y':1 }, { 'x': 2, 'y':2 }, { 'x': 1, 'y':2 }, { 'x': 2, 'y':1 }], 'x');
     })
-    console.log(uniqWith(contractEvent, isEqual))
-
     this.setState({
       transactions: uniqWith(contractEvent, isEqual),
       loading: false
