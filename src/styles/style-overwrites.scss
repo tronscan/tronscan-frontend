@@ -403,6 +403,9 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
     left: 38px;
     color: $text-block-dark;
     z-index: 1;
+    @media screen and (max-width: 768px) {
+      top: 43px;
+    }
   }
 }
 
