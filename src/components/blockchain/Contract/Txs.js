@@ -44,7 +44,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, isInternal = false} = this.props;
+    let {filter, intl, isInternal = false} = this.props;
 
     this.setState({loading: true});
 
@@ -58,11 +58,10 @@ class Transactions extends React.Component {
     transactions.data.map( item => {
       item.tip = item.ownAddress == filter.contract? 'out': 'in'
     })
-
     this.setState({
       transactions: transactions.data,
       total: transactions.total,
-      loading: false,
+      loading: false
     });
 
     
@@ -185,7 +184,7 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transaction_info'})
-
+    let locale  = {emptyText: intl.formatMessage({id: 'no_tnx'})}
     return (
       <Fragment>
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
@@ -193,7 +192,7 @@ class Transactions extends React.Component {
           <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
-                          column={column} data={transactions} total={total}
+                          column={column} data={transactions} total={total} locale={locale}
                           onPageChange={(page, pageSize) => {
                             this.loadContracts(page, pageSize)
                           }}/>

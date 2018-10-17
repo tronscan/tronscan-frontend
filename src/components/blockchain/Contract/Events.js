@@ -52,7 +52,7 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 40) => {
 
-    let {filter, isInternal = false} = this.props;
+    let {filter, intl, isInternal = false} = this.props;
 
     this.setState({loading: true});
 
@@ -68,10 +68,9 @@ class Transactions extends React.Component {
       })
       item.eventList = eventList
     })
-
     this.setState({
       transactions: contractEvent,
-      loading: false,
+      loading: false
     });
   };
 
@@ -191,7 +190,7 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_unit'})
-
+    let locale  = {emptyText: intl.formatMessage({id: 'no_event'})}
     return (
       <Fragment>
        
@@ -203,7 +202,7 @@ class Transactions extends React.Component {
               <SmartTable bordered={true} loading={loading}
                           // pagination={false}
                           scroll={{ x: 1000 }}
-                          column={column} data={transactions} total={total}
+                          column={column} data={transactions} total={total} locale={locale}
                           onPageChange={(page, pageSize) => {
                             this.loadTransactions(page, pageSize)
                           }}/>

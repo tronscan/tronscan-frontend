@@ -113,7 +113,7 @@ class ContractTrans extends React.Component {
                 }
             },
             {
-                title: upperFirst(intl.formatMessage({id: 'created'})),
+                title: upperFirst(intl.formatMessage({id: 'age'})),
                 dataIndex: 'timestamp',
                 key: 'timestamp',
                 align: 'left',
