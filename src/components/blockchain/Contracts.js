@@ -102,7 +102,7 @@ class Contracts extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <span>{text}</span>
+          return <span>{text || "-"}</span>
         }
       },
       // {

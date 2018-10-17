@@ -36,7 +36,7 @@ export default class Code extends React.Component {
     let contractCode = await Client.getContractCode(id);
 
     this.setState({
-      name: contractCode.data.name,
+      name: contractCode.data.name || "-",
       compilerVersion: contractCode.data.compiler,
       sourceCode: contractCode.data.source,
       abi: contractCode.data.abi,
@@ -72,7 +72,7 @@ export default class Code extends React.Component {
               <div className="d-flex justify-content-between">
                 <div className="contract-header__item">
                   <ul>
-                    <li><p className="plus">{tu("contract_name")}:</p>{name || '-'}</li>
+                    <li><p className="plus">{tu("contract_name")}:</p>{name}</li>
                     {/* <li><p className="plus">{tu('Optimization_Enabled')}: </p>{isSetting}</li> */}
                   </ul>
                 </div>

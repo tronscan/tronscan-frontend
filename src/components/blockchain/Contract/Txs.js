@@ -194,7 +194,7 @@ class Transactions extends React.Component {
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total} locale={locale}
                           onPageChange={(page, pageSize) => {
-                            this.loadContracts(page, pageSize)
+                            this.loadTransactions(page, pageSize)
                           }}/>
           </div>
         </div>
