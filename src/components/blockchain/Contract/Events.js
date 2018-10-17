@@ -125,7 +125,7 @@ class Transactions extends React.Component {
           return <Truncate>
                   {/* <AddressLink address={record.contract_address}/> */}
                   <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
-                  #<BlockNumberLink number={record.block_number}/><br/>
+                  <span className="contract-event-block-number">#</span><BlockNumberLink number={record.block_number}/><br/>
                   <TimeAgo date={record.block_timestamp}/>
                 </Truncate>
         }
