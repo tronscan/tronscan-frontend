@@ -119,7 +119,7 @@ class SmartContract extends React.Component {
                     <Fragment>
                       <div className="card list-style-header">
                       <div className="contract-header">
-                        <h6><AddressLink address={contract.address} includeCopy={true}/></h6>
+                        <h6><AddressLink address={contract.address} isContract={true} includeCopy={true}/></h6>
 
                         <div className="d-flex contract-header_list">
                           <div className="contract-header__item">
@@ -128,7 +128,7 @@ class SmartContract extends React.Component {
                               <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
                               {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}
                               <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
-                                <p>
+                                <p className="contract_trx_count">
                                     {contract.trxCount}
                                   <Tooltip placement="top" title={intl.formatMessage({id: 'Normal_Transactions'})}>
                                     <span className="ml-1"> txns </span>
