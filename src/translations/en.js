@@ -1161,7 +1161,7 @@ export const messages = {
   */
   "trigger_smart_contract":"Trigger Smart Contract",
   "normal_address_trigger_smart_contract":"Normal address trigger smart contract",
-  "contract_triggers":"Contract Triggers",
+  "trigger":"Contract Triggers",
   "contract_triggers_total":"Contract Triggers",
   "contract_triggers_owner":"Owner",
   "contract_triggers_owner_address":"Owner Address",

@@ -35,12 +35,12 @@ import {
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
-import ContractTrans from "./components/blockchain/ContractTrans";
 import Transfers from "./components/blockchain/Transfers";
 import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
+import ContractTrans from "./components/blockchain/ContractTrans";
 
 import {Redirect} from "react-router-dom";
 
@@ -128,32 +128,29 @@ export const routes = [
         component: FoundationAsync,
       }
     ]
-  },{
-  path: "/contracts",
-    label: "contracts",
-    icon: 'fa fa-file-contract',
-    component: () => <Redirect to="/contracts"/>,
-    routes: [
-      {
-        path: "/contracts",
-        label: "contracts",
-        icon: 'fa fa-file',
-        component: Contracts,
-      },
-      {
-        path: "/contracts/contract-triggers",
-        label: "contract_triggers",
-        icon: 'fa fa-users-cog',
-        component: ContractTrans,
-      }
-    ]
   },
   {
-    path: "/contract/:id",
-    label: "contract",
-    component: SmartContract,
-    showInMenu: false,
-},
+        path: "/contracts",
+        label: "contracts",
+        icon: 'fa fa-file-contract',
+        component: () => <Redirect to="/contracts/contracts"/>,
+        routes: [
+            {
+                label: "contracts",
+                icon: 'fa fa-file',
+                path: "/contracts/contracts",
+                component: Contracts,
+            },
+            {
+                path: "/contracts/contract-triggers",
+                label: "trigger",
+                icon: 'fa fa-users-cog',
+                component: ContractTrans,
+            }
+
+        ]
+    },
+
   {
     label: "representatives",
     path: "/representatives",
@@ -183,6 +180,12 @@ export const routes = [
     label: "representative",
     component: Representative,
     showInMenu: false,
+  },
+  {
+      path: "/contract/:id",
+      label: "contract",
+      component: SmartContract,
+      showInMenu: false,
   },
   {
     path: "/tokens",

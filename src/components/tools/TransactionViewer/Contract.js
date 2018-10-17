@@ -330,7 +330,7 @@ export default function Contract({contract}) {
                       {
                           contract['call_value']?
                           <Field label="value"><TRXPrice amount={contract['call_value'] / ONE_TRX}/></Field>
-                          :""
+                          :<Field label="value"><TRXPrice amount={0}/></Field>
                       }
 
 

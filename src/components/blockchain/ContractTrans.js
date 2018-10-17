@@ -19,7 +19,6 @@ class ContractTrans extends React.Component {
 
     constructor() {
         super();
-
         this.state = {
             transactions: [],
             total: 0,
@@ -28,23 +27,23 @@ class ContractTrans extends React.Component {
 
     // componentWillReceiveProps() {
     //   setTimeout(() => {
-    //     this.loadTransactions();
+    //     this.loadTriggers();
     //   }, 0)
     // }
 
     componentDidMount() {
-        this.loadTransactions();
+        this.loadTriggers();
     }
 
     componentDidUpdate() {
-        // checkPageChanged(this, this.loadTransactions);
+        // checkPageChanged(this, this.loadTriggers);
     }
 
     onChange = (page, pageSize) => {
-        this.loadTransactions(page, pageSize);
+        this.loadTriggers(page, pageSize);
     };
 
-    loadTransactions = async (page = 1, pageSize = 20) => {
+    loadTriggers = async (page = 1, pageSize = 20) => {
 
         let {location, match} = this.props;
         let date_to = match.params.date;
@@ -174,7 +173,7 @@ class ContractTrans extends React.Component {
                         <SmartTable bordered={true} loading={loading}
                                     column={column} data={transactions} total={total}
                                     onPageChange={(page, pageSize) => {
-                                        this.loadTransactions(page, pageSize)
+                                        this.loadTriggers(page, pageSize)
                                     }}/>
                     </div>
                 </div>
