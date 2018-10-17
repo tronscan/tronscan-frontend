@@ -132,10 +132,10 @@ export const routes = [
   path: "/contracts",
     label: "contracts",
     icon: 'fa fa-file-contract',
-    component: () => <Redirect to="/blockchain/contracts"/>,
+    component: () => <Redirect to="/contracts"/>,
     routes: [
       {
-        path: "/contracts/contracts",
+        path: "/contracts",
         label: "contracts",
         icon: 'fa fa-file',
         component: Contracts,
@@ -145,7 +145,13 @@ export const routes = [
         label: "contract_triggers",
         icon: 'fa fa-users-cog',
         component: ContractTrans,
-      }
+      },
+      {
+          path: "/contracts/:id",
+          label: "contract",
+          component: SmartContract,
+          showInMenu: false,
+      },
     ]
   },
   {
@@ -170,12 +176,6 @@ export const routes = [
     path: "/address/:id",
     label: "address",
     component: Address,
-    showInMenu: false,
-  },
-  {
-    path: "/contract/:id",
-    label: "contract",
-    component: SmartContract,
     showInMenu: false,
   },
   {

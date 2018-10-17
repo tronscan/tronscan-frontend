@@ -643,7 +643,7 @@ class VerifyContractCode extends Component {
                           <span className="click-here-to_view"> {tu('click_here_to_view')}</span>
                           &nbsp;&nbsp;
                           <Link
-                              to={`/contract/${verified_contract_address}/code`}
+                              to={`/contracts/${verified_contract_address}/code`}
                               className="address-link text-nowrap "
                               >
                               {tu('contract_source_code')}
