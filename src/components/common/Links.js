@@ -128,7 +128,7 @@ export class AddressLink extends React.PureComponent {
                 {children ? children : address}
               </Link> :
               <Link
-                  to={`/contract/${address}`}
+                  to={`/contracts/${address}`}
                   style={style}
                   className={"address-link text-nowrap " + className}
                   {...props}>
