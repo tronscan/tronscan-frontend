@@ -10,7 +10,7 @@ import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
 import SmartTable from "../../common/SmartTable"
-import {upperFirst, forIn} from "lodash";
+import {upperFirst, forIn, uniqWith, isEqual} from "lodash";
 import xhr from "axios/index";
 import {API_URL} from "../../../constants";
 import tronWeb from 'tronweb';
@@ -58,7 +58,8 @@ class Transactions extends React.Component {
 
     let contractEvent = await Client.getContractEvent(filter.address);
 
-    const newList = contractEvent.filter((item, index) => {
+    let newList = [] 
+    contractEvent.map((item, index) => {
       let eventList = []
       forIn(item.result, (value, key) => {
         eventList.push({
@@ -67,12 +68,25 @@ class Transactions extends React.Component {
         })
       })
       item.eventList = eventList
-      if(index %2 == 0) return item
+
+      // if(index %2 == 0){
+      //   console.log(contractEvent, index+1)
+      //   let bName = item.event_name == contractEvent[index+1].event_name
+      //   let bId = item.transaction_id == contractEvent[index+1].transaction_id
+
+      //   if(bName && bId){
+      //     newList.push(item) 
+      //   }else{
+      //     newList.push(item)
+      //     newList.push(contractEvent[index+1])
+      //   }
+      // }
+      // _.uniqBy([{ 'x': 1, 'y':1 }, { 'x': 2, 'y':2 }, { 'x': 1, 'y':2 }, { 'x': 2, 'y':1 }], 'x');
     })
-    console.log(newList)
+    console.log(uniqWith(contractEvent, isEqual))
 
     this.setState({
-      transactions: newList,
+      transactions: uniqWith(contractEvent, isEqual),
       loading: false
     });
   };
