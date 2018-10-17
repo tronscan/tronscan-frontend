@@ -326,11 +326,9 @@ export default function Contract({contract}) {
                   <table className="table">
                       <tbody>
                       <Field label="contract_triggers_owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                      <Field label="contract_address"><AddressLink address={contract['contract_address']}/></Field>
-                      <tr>
-                          <th>{proposal}</th>
-                          <td>{proposalVal}</td>
-                      </tr>
+                      <Field label="contract_address"><AddressLink address={contract['contract_address']} isContract={true}/></Field>
+                      <Field label="value"><TRXPrice amount={contract['call_value'] / ONE_TRX}/></Field>
+
                       </tbody>
                   </table>
               </Fragment>

@@ -1164,5 +1164,7 @@ export const messages = {
   "contract_triggers":"Contract Triggers",
   "contract_triggers_total":"Contract Triggers",
   "contract_triggers_owner":"Owner",
-  "contract_triggers_owner_address":"Owner Address"
+  "contract_triggers_owner_address":"Owner Address",
+  "no_tnx":"No Transaction",
+  "no_event":"No Event"
 };

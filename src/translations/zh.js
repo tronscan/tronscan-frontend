@@ -1153,5 +1153,7 @@ export const messages = {
     "contract_triggers":"合约调用",
     "contract_triggers_total":"次合约调用",
     "contract_triggers_owner":"调用者",
-    "contract_triggers_owner_address":"调用者地址"
+    "contract_triggers_owner_address":"调用者地址",
+    "no_tnx":"无交易",
+    "no_event":"无事件"
 };
