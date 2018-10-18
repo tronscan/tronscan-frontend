@@ -85,7 +85,7 @@ async function searchAddress(criteria) {
 
   if (accounts.length === 1) {
     if(accounts[0].accountType == 2){
-      return `#/contract/${accounts[0].address}`;
+      return `#/contract/${accounts[0].address}/code`;
     }else{
       return `#/address/${accounts[0].address}`;
     }
