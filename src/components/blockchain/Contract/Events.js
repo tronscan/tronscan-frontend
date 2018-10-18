@@ -192,18 +192,18 @@ class Transactions extends React.Component {
     let {transactions, total, loading, EmptyState = null} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'Events'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_event'})}
     return (
       <Fragment>
        
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        {/* <p>{tableInfo}</p> */}
-        <div className="row">
+        <p className="m-0 pt-3" style={{color: '#999999'}}>{tableInfo}</p>
+        <div className="row py-3">
           <div className="col-md-12 event-main">
               {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
-                          // pagination={false}
+                          pagination={false}
                           scroll={{ x: 1000 }}
                           column={column} data={transactions} total={total} locale={locale}
                           onPageChange={(page, pageSize) => {
