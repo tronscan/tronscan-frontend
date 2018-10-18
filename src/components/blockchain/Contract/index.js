@@ -84,13 +84,14 @@ class SmartContract extends React.Component {
           path: "/code",
           label: <span>{tu("Code")}</span>,
           cmp: () => <Code filter={{address: id}} />,
-        },
-        events: {
-          id: "events",
-          path: "/events",
-          label: <span>{tu('Events')}</span>,
-          cmp: () => <Events filter={{address: id}} />,
         }
+        //,
+        // events: {
+        //   id: "events",
+        //   path: "/events",
+        //   label: <span>{tu('Events')}</span>,
+        //   cmp: () => <Events filter={{address: id}} />,
+        // }
       }
     }));
 
