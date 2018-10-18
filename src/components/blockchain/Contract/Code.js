@@ -6,6 +6,7 @@ import {Client} from "../../../services/api";
 import xhr from "axios";
 import {API_URL} from "../../../constants";
 import { AddressLink} from "../../common/Links";
+import {TronLoader} from "../../common/loaders";
 
 
 export default class Code extends React.Component {
@@ -24,6 +25,7 @@ export default class Code extends React.Component {
       byteCode: "",
       isSetting: 'Yes',
       librarys: null,
+      loading: true
     };
   }
 
@@ -33,6 +35,7 @@ export default class Code extends React.Component {
   }
 
   async loadContractCode(id) {
+    this.setState({loading: true});
     let contractCode = await Client.getContractCode(id);
 
     this.setState({
@@ -45,6 +48,7 @@ export default class Code extends React.Component {
       byteCode: contractCode.data.byteCode,
       isSetting: contractCode.data.isSetting? 'Yes': 'No',
       librarys: contractCode.data.librarys,
+      loading: false
     }, () => {
       // this.ace.editor.setValue(this.state.sourceCode);
       // this.ace.editor.clearSelection();
@@ -59,11 +63,11 @@ export default class Code extends React.Component {
   }
 
   render() {
-    let {name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys} = this.state;
+    let {name, compilerVersion, sourceCode, abi, abiEncoded, address, byteCode, isSetting, librarys, loading} = this.state;
 
     return (
         <main className="container">
-
+           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 contract-header">
               <br/>

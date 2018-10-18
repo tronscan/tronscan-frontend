@@ -295,6 +295,7 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "After": "After",
   /*
   ##################################################################################
   #                                                                                #
@@ -1047,7 +1048,7 @@ export const messages = {
   "Event_Logs": "Event Logs",
   "With_Verified_Source_Codes_Only": "With Verified Source Codes Only",
   "verified_contract_source_codes_found": " verified contract source codes found",
-  "contract_source_codes_found": " contract source codes found",
+  "contract_source_codes_found": " contracts found",
   "ContractName": "ContractName",
   "TxCount": "TxCount",
   "Settings": "Settings",

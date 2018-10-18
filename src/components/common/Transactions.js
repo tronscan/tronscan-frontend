@@ -111,7 +111,7 @@ class Transactions extends React.Component {
     if (!loading && transactions && transactions.length === 0) {
       if (!EmptyState) {
         return (
-            <div className="p-3 text-center">{tu("no_transactions")}</div>
+            <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
         );
       }
       return <EmptyState/>;

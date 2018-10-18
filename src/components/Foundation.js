@@ -33,6 +33,9 @@ class Accounts extends Component {
     let planAddress = [
         {
             address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV'
+        },
+        {
+            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
         }
     ]
     this.setState({loading: true});

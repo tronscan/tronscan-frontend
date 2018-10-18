@@ -292,6 +292,7 @@ export const messages = {
   "unfreeze_trx_confirm_message": "确定要解冻TRX？",
   "unfreeze_assets": "解冻资产",
   "sure_to_unfreeze_unlocked_tokens_message": "您确定要解冻通证吗？",
+  "After": "晚于",
   /*
   ##################################################################################
   #                                                                                #

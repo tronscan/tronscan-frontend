@@ -115,7 +115,7 @@ class TokenHolders extends React.Component {
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
     if (!loading && addresses.length === 0) {
       return (
-          <div className="p-3 text-center">{tu("no_holders_found")}</div>
+          <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
       );
     }
     return (
