@@ -295,6 +295,7 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "After": "After",
   /*
   ##################################################################################
   #                                                                                #

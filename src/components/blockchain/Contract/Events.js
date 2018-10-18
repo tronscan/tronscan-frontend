@@ -69,7 +69,6 @@ class Transactions extends React.Component {
       item.eventList = eventList
       if(index %2 == 0) return item
     })
-    console.log(newList)
 
     this.setState({
       transactions: newList,
@@ -193,7 +192,17 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'Events'})
-    let locale  = {emptyText: intl.formatMessage({id: 'no_event'})}
+
+    if (!loading && transactions.length === 0) {
+      if (!EmptyState) {
+        return (
+            <div className="p-3 text-center no-data">{tu("no_event")}</div>
+        );
+      }
+
+      return <EmptyState/>;
+    }
+
     return (
       <Fragment>
        
@@ -205,7 +214,7 @@ class Transactions extends React.Component {
               <SmartTable bordered={true} loading={loading}
                           pagination={false}
                           scroll={{ x: 1000 }}
-                          column={column} data={transactions} total={total} locale={locale}
+                          column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadTransactions(page, pageSize)
                           }}/>

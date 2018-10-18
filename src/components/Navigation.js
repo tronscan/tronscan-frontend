@@ -32,6 +32,7 @@ import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
+import {Truncate} from "./common/text";
 
 class Navigation extends PureComponent {
 
@@ -332,21 +333,25 @@ class Navigation extends PureComponent {
                   <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
                     <li className=" py-1">
                       <div className="row" style={{width: 305}}>
+                      <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
                         {/* <div className="col-lg-2">
                           <Avatar size={45} value={account.address}/>
                         </div> */}
-                        <div className="col-lg-8">
-                          <b>{wallet.current.name || tu("account")}</b>
+                        <div>
+                          <b style={{color: '#333'}}>{wallet.current.name || tu("account")}</b>
                           <br/>
-                          <AddressLink
+                          {/* <AddressLink
                               address={account.address}
                               className="small text-truncate text-nowrap d-sm-inline-block"
-                              style={{width: 150}}/>
+                              style={{width: 150}}/> */}
+                           <Truncate><span>{account.address}</span></Truncate>
                         </div>
-                        <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center">
-                          <i className="fa fa-angle-right" aria-hidden="true"></i>
+                        {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
+                          <i className="fa fa-angle-right ml-3" aria-hidden="true"></i>
+                        {/* </Link> */}
                         </Link>
                       </div>
+                      
                     </li>
                     {
                       wallet.current.representative.enabled && (

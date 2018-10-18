@@ -112,11 +112,12 @@ export default class Blocks extends React.Component {
     if (!loading && blocks.length === 0) {
       if (!EmptyState) {
         return (
-          <div className="p-3 text-center">{t("no_blocks_found")}</div>
+          <div className="p-3 text-center  no-data">{t("no_blocks_found")}</div>
         );
       }
       return <EmptyState />;
     }
+
 
     return (
         <div className="token_black table_pos">

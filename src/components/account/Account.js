@@ -233,7 +233,7 @@ class Account extends Component {
           <thead className="thead-light">
           <tr>
             <th>{tu("balance")}</th>
-            <th className="text-right">{tu("expires")}</th>
+            <th className="text-right">{tu("unfreeze_time")}</th>
           </tr>
           </thead>
           <tbody>
@@ -244,6 +244,7 @@ class Account extends Component {
                     <TRXPrice amount={balance.amount / ONE_TRX}/>
                   </td>
                   <td className="text-right">
+                    <span className="mr-1">{tu('After')}</span>
                     <FormattedDate value={balance.expires}/>&nbsp;
                     <FormattedTime value={balance.expires}/>
                   </td>

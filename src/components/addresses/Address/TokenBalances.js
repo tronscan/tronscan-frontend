@@ -14,7 +14,7 @@ export function TokenBalances({tokenBalances, intl}) {
   
   if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
     return (
-        <div className="text-center p-3">
+        <div className="text-center p-3 no-data">
           {tu("no_tokens_found")}
         </div>
     );
