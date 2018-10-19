@@ -34,9 +34,9 @@ class Accounts extends Component {
         {
             address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV'
         },
-        // {
-        //     address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
-        // }
+        {
+            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
+        }
     ]
     this.setState({loading: true});
 
