@@ -42,11 +42,11 @@ class Account extends Component {
       temporaryName: "",
       resources: [
           {
-              label:"gain_bandwith",
+              label:"unfreeze_bandwidth",
               value:0
           },
           {
-              label:"gain_energy",
+              label:"unfreeze_energy",
               value:1
           }
       ],
@@ -251,7 +251,7 @@ class Account extends Component {
           {
               frozen.balances.length > 0 && <tr>
                 <td>
-                    {tu('gain_bandwith')}
+                    {tu('bandwidth')}
                 </td>
                 <td>
                   <TRXPrice amount={frozen.balances[0].amount / ONE_TRX}/>
@@ -266,7 +266,7 @@ class Account extends Component {
           {
               accountResource.frozen_balance > 0 && <tr>
                 <td>
-                    {tu('gain_energy')}
+                    {tu('energy')}
                 </td>
                 <td>
                   <TRXPrice amount={accountResource.frozen_balance / ONE_TRX}/>
@@ -436,9 +436,10 @@ class Account extends Component {
               title={tu("unfreeze_trx_confirm_message")}
               onConfirm={this.unfreeze}
               onCancel={this.hideModal}
+              style={{height: '300px'}}
           >
-              <div className="form-group">
-                <div className="mt-2 mb-2 text-left font-weight-bold">
+              <div className="form-group" style={{marginBottom:'36px'}}>
+                <div className="mt-3 mb-2 text-left" style={{color:'#666'}}>
                     {tu("please_select_the_type_of_unfreeze")}
                 </div>
                 <select className="custom-select"

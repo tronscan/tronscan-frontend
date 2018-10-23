@@ -1175,6 +1175,11 @@ export const messages = {
   "freeze_trx_gain_bandwith_energy":"You can gain bandwith or energy as well.",
   "freeze_type":"Freeze Type",
   "success_unfrozen_trx":"Successfully Unfrozen TRX",
-  "please_select_the_type_of_unfreeze":"Please select the type of unfreeze"
+  "please_select_the_type_of_unfreeze":"Please select the type of unfreeze",
+  "unfreeze_bandwidth":"Unfreeze the bandwidth account to get TRX",
+  "unfreeze_energy":"Unfreeze the energy account to get TRX"
+
+
+
 
 };

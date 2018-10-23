@@ -376,6 +376,11 @@ class Navigation extends PureComponent {
                       <FormattedNumber value={wallet.current.bandwidth.netRemaining}/> {tu("bandwidth")}
                       <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
+                    <Link className="dropdown-item" to="/account">
+                      <i className="fa fa-server mr-2"/>
+                      <FormattedNumber value={wallet.current.frozenEnergy / ONE_TRX}/> {tu("energy")}
+                      <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
+                    </Link>
                     <Link className="dropdown-item"
                           to={"/blockchain/transactions?address=" + account.address}>
                       <i className="fa fa-exchange-alt mr-2"/>
