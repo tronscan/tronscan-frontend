@@ -1167,5 +1167,13 @@ export const messages = {
   "contract_triggers_owner":"Owner",
   "contract_triggers_owner_address":"Owner Address",
   "no_tnx":"No Transaction",
-  "no_event":"No Event"
+  "no_event":"No Event",
+  "link_test_fauct":"test faucet",
+  "gain_bandwith":"Freeze TRX to gain bandwith",
+  "gain_energy":"Freeze TRX to gain energy",
+  "energy":"energy",
+  "freeze_trx_gain_bandwith_energy":"You can gain bandwith or energy as well.",
+  "freeze_type":"Freeze Type",
+  "success_unfrozen_trx":"Successfully Unfrozen TRX"
+
 };

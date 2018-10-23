@@ -11,6 +11,7 @@ const initialState = {
     total: 0,
     balances: [],
   },
+  accountResource:{}
 };
 
 export function accountReducer(state = initialState, action) {
@@ -26,13 +27,15 @@ export function accountReducer(state = initialState, action) {
 
     case SET_TOKEN_BALANCES: {
       let {balance: trxBalance = 0} = find(action.tokens, tb => tb.name.toUpperCase() === "TRX") || {};
-
       return {
         ...state,
         trxBalance,
         tokens: action.tokens,
         frozen: {
           ...action.frozen,
+        },
+        accountResource:{
+          ...action.accountResource,
         }
       }
     }

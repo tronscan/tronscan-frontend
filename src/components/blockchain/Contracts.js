@@ -17,7 +17,6 @@ import { Tooltip } from 'antd'
 
 
 function Nodetip({props, val}) {
-  // console.log(this)
   let {intl } = props;
   return (
     <span>

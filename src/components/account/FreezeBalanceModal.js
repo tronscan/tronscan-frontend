@@ -18,7 +18,18 @@ class FreezeBalanceModal extends React.PureComponent {
     this.state = {
       loading: false,
       confirmed: false,
-      amount: ""
+      amount: "",
+      resources: [
+        {
+          label:"gain_bandwith",
+          value:0
+        },
+        {
+          label:"gain_energy",
+          value:1
+        }
+      ],
+      selectedResource:0
     };
   }
 
@@ -59,10 +70,9 @@ class FreezeBalanceModal extends React.PureComponent {
   freeze = async () => {
 
     let {account, onError, privateKey} = this.props;
-    let {amount} = this.state;
+    let {amount,selectedResource} = this.state;
     this.setState({loading: true});
-
-    let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3)(account.key);
+    let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
     if (success) {
       this.confirmModal({amount});
       this.setState({loading: false});
@@ -70,10 +80,15 @@ class FreezeBalanceModal extends React.PureComponent {
       onError && onError();
     }
   };
+  resourceSelectChange = (value) => {
+    this.setState({
+        selectedResource: Number(value)
+    });
+  }
 
   render() {
 
-    let {amount, confirmed, loading} = this.state;
+    let {amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
 
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
@@ -98,7 +113,19 @@ class FreezeBalanceModal extends React.PureComponent {
                     style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
                     onChange={this.onAmountChanged}/>
               </div>
-
+              <div className="form-group">
+                <select className="custom-select"
+                  value={selectedResource}
+                  onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
+                    {
+                        resources.map((resource, index) => {
+                            return (
+                                <option key={index} value={resource.value}>{tu(resource.label)}</option>
+                            )
+                        })
+                    }
+                </select>
+              </div>
               <div className="form-check">
                 <input type="checkbox"
                        className="form-check-input"

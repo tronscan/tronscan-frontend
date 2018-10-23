@@ -10,6 +10,8 @@ import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
 
+
+
 class Blocks extends React.Component {
 
   constructor() {
@@ -46,6 +48,24 @@ class Blocks extends React.Component {
       total
     });
   };
+  setProducedName = (record) =>{
+        let ele = null;
+        if(record.witnessName){
+            ele = <span>
+          {record.witnessName}
+      </span>
+        }else{
+            if(record.number){
+                ele = <span>
+          {record.witnessAddress}
+        </span>
+            }else{
+                ele = <span>
+        </span>
+            }
+        }
+        return ele
+    }
 
   componentDidUpdate() {
     //checkPageChanged(this, this.loadBlocks);
@@ -94,7 +114,7 @@ class Blocks extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           //return <AddressLink address={text}/>
-            return <span>{text}</span>
+            return this.setProducedName(record)
         }
       },
       {

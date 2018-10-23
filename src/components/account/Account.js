@@ -39,7 +39,18 @@ class Account extends Component {
       issuedAsset: null,
       showBandwidth: false,
       privateKey: "",
-      temporaryName: ""
+      temporaryName: "",
+      resources: [
+          {
+              label:"gain_bandwith",
+              value:0
+          },
+          {
+              label:"gain_energy",
+              value:1
+          }
+      ],
+      selectedResource:0
     };
 
   }
@@ -222,9 +233,8 @@ class Account extends Component {
 
   renderFrozenTokens() {
 
-    let {frozen} = this.props;
-
-    if (frozen.balances.length === 0) {
+    let {frozen, accountResource,account} = this.props;
+    if (frozen.balances.length === 0 && accountResource.frozen_balance === 0) {
       return null;
     }
 
@@ -232,24 +242,41 @@ class Account extends Component {
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
+            <th>{tu("freeze_type")}</th>
             <th>{tu("balance")}</th>
             <th className="text-right">{tu("unfreeze_time")}</th>
           </tr>
           </thead>
           <tbody>
           {
-            frozen.balances.map((balance, index) => (
-                <tr key={index}>
-                  <td>
-                    <TRXPrice amount={balance.amount / ONE_TRX}/>
-                  </td>
-                  <td className="text-right">
-                    <span className="mr-1">{tu('After')}</span>
-                    <FormattedDate value={balance.expires}/>&nbsp;
-                    <FormattedTime value={balance.expires}/>
-                  </td>
-                </tr>
-            ))
+              frozen.balances.length > 0 && <tr>
+                <td>
+                    {tu('gain_bandwith')}
+                </td>
+                <td>
+                  <TRXPrice amount={frozen.balances[0].amount / ONE_TRX}/>
+                </td>
+                <td className="text-right">
+                  <span className="mr-1">{tu('After')}</span>
+                  <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
+                  <FormattedTime value={frozen.balances[0].expires}/>
+                </td>
+              </tr>
+          }
+          {
+              accountResource.frozen_balance > 0 && <tr>
+                <td>
+                    {tu('gain_energy')}
+                </td>
+                <td>
+                  <TRXPrice amount={accountResource.frozen_balance / ONE_TRX}/>
+                </td>
+                <td className="text-right">
+                  <span className="mr-1">{tu('After')}</span>
+                  <FormattedDate value={accountResource.expire_time}/>&nbsp;
+                  <FormattedTime value={accountResource.expire_time}/>
+                </td>
+              </tr>
           }
           </tbody>
         </table>
@@ -270,6 +297,7 @@ class Account extends Component {
             filter={{address: account.address}}/>
     )
   }
+
 
   onInputChange = (value) => {
     let {account} = this.props;
@@ -384,13 +412,18 @@ class Account extends Component {
       )
     });
   };
+  resourceSelectChange = (value) => {
+      this.setState({
+          selectedResource: Number(value)
+      });
+  }
 
   hideModal = () => {
     this.setState({modal: null});
   };
 
   showUnfreezeModal = async () => {
-    let {privateKey} = this.state;
+    let {privateKey,selectedResource,resources} = this.state;
     this.setState({
       modal: (
           <SweetAlert
@@ -404,8 +437,39 @@ class Account extends Component {
               onConfirm={this.unfreeze}
               onCancel={this.hideModal}
           >
+              <div className="form-group">
+                <select className="custom-select"
+                        value={selectedResource}
+                        onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
+                    {
+                        resources.map((resource, index) => {
+                            return (
+                                <option key={index} value={resource.value}>{tu(resource.label)}</option>
+                            )
+                        })
+                    }
+                </select>
+              </div>
+
           </SweetAlert>
       )
+      //   modal: (
+      //       <UnFreezeBalanceModal
+      //           frozenTrx={currentWallet.frozenTrx}
+      //           privateKey={privateKey}
+      //           onHide={this.hideModal}
+      //           onError={() => {
+      //               this.setState({
+      //                   modal: (
+      //                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
+      //                         Something went wrong while trying to freeze TRX
+      //                       </SweetAlert>
+      //                   )
+      //               });
+      //           }}
+      //           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
+      //       />
+      //   )
     })
   };
 
@@ -455,10 +519,10 @@ class Account extends Component {
 
   unfreeze = async () => {
     let {account} = this.props;
-    let {privateKey} = this.state;
+    let {privateKey,selectedResource} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeBalance(account.address)(account.key);
+    let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
     if (success) {
       this.setState({
         modal: (
@@ -762,10 +826,10 @@ class Account extends Component {
             </button>
           </div>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
-                  <h3 style={{color: '#44679F'}}>
+                  <h3 style={{color: '#C23631'}}>
                     <FormattedNumber value={currentWallet.bandwidth.netRemaining}/>
                   </h3>
                   {/* <a href="javascript:;"
@@ -777,10 +841,21 @@ class Account extends Component {
               </div>
             </div>
 
-            <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 bg-line_blue bg-image_vote">
+            <div className="col-md-3 mt-3 mt-md-0">
+              <div className="card h-100 bg-line_blue bg-image_engry">
                 <div className="card-body">
-                  <h3 style={{color: '#333'}}>
+                  <h3 style={{color: '#4A90E2'}}>
+                    <FormattedNumber value={currentWallet.frozenEnergy / ONE_TRX}/>
+                  </h3>
+                    {tu("energy")}
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-3 mt-3 mt-md-0">
+              <div className="card h-100 bg-line_yellow bg-image_vote">
+                <div className="card-body">
+                  <h3 style={{color: '#E0AE5C'}}>
                     <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX}/>
                   </h3>
                   TRON {tu("power")}
@@ -788,10 +863,10 @@ class Account extends Component {
               </div>
             </div>
 
-            <div className="col-md-4 mt-3 mt-md-0">
-              <div className="card h-100 bg-line_yellow bg-image_balance">
+            <div className="col-md-3 mt-3 mt-md-0">
+              <div className="card h-100 bg-line_green bg-image_balance">
                 <div className="card-body">
-                  <h3 style={{color: '#2EAC28'}}>
+                  <h3 style={{color: '#93C54B'}}>
                     <TRXPrice amount={currentWallet.balance / ONE_TRX}/>
                   </h3>
                   {tu("available_balance")}
@@ -986,8 +1061,11 @@ class Account extends Component {
 
                   <div className="card-body px-0 d-lg-flex justify-content-lg-between">
                     <p className="card-text" style={{maxWidth:'82%'}}>
-                      {tu("freeze_trx_premessage_0")}<Link
-                        to="/votes">{t("freeze_trx_premessage_link")}</Link><br/>{tu("freeze_trx_premessage_1")}
+                      {tu("freeze_trx_premessage_0")}
+                      <Link to="/votes">{t("freeze_trx_premessage_link")}</Link>
+                      {tu("freeze_trx_gain_bandwith_energy")}
+                      <br/>
+                      <br/>{tu("freeze_trx_premessage_1")}
                     </p>
                     <div>
                       {
@@ -1184,6 +1262,7 @@ function mapStateToProps(state) {
     tokenBalances: state.account.tokens,
     totalTransactions: state.account.totalTransactions,
     frozen: state.account.frozen,
+    accountResource: state.account.accountResource,
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     trxBalance: state.account.trxBalance,

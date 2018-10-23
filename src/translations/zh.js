@@ -1156,5 +1156,12 @@ export const messages = {
     "contract_triggers_owner":"调用者",
     "contract_triggers_owner_address":"调用者地址",
     "no_tnx":"无交易",
-    "no_event":"无事件"
+    "no_event":"无事件",
+    "link_test_fauct":"测试网水龙头",
+    "gain_bandwith":"冻结来获取带宽",
+    "gain_energy":"冻结来获取能量",
+    "energy":"能量",
+    "freeze_trx_gain_bandwith_energy":"同时，您也可以获得带宽或者能量。",
+    "freeze_type":"冻结类型",
+    "success_unfrozen_trx":"成功解冻TRX"
 };

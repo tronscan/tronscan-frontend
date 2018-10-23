@@ -298,9 +298,14 @@ export const routes = [
         label: "desktop_explorer"
       },
       {
-        url: "https://test.tronscan.org/#/",
+        url: "https://explorer.shasta.trongrid.io",
         icon: "fa fa-link",
         label: "link_test_server"
+      },
+      {
+        url: "https://www.trongrid.io/shasta",
+        icon: "fa fa-recycle",
+        label: "link_test_fauct"
       }
     ]
   },
