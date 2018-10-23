@@ -498,6 +498,24 @@ export const TokenDetailAsync = asyncComponent({
   )
 });
 
+// export const TokensExchangeAsync = asyncComponent({
+//   LoadingComponent: () => (
+//       <TronLoader/>
+//   ),
+//   resolve: () => new Promise(resolve =>
+//       // Webpack's code splitting API w/naming
+//       require.ensure(
+//           [],
+//           (require) => {
+//             $script("", () => {
+//               resolve(require("./Exchange/index"));
+//             });
+//           },
+//           'Exchange',
+//       )
+//   )
+// });
+
 
 
 

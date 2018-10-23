@@ -40,6 +40,7 @@ import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
+import Exchange from "./components/exchange/index";
 
 import {Redirect} from "react-router-dom";
 
@@ -186,7 +187,7 @@ export const routes = [
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
         component: TokensCreateAsync
-      },
+      }
     ]
   },
   {
@@ -208,13 +209,10 @@ export const routes = [
     showInMenu: false
   },
   {
-    path: "/markets",
-    label: "markets",
-    icon: "fa fa-chart-line",
-   // component: MarketsAsync
-    enurl: "https://coinmarketcap.com/currencies/tron/",
-    zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-    linkHref: true
+    label: "dex",
+    path: "/exchange",
+    icon: 'fas fa-exchange-alt',
+    component: Exchange
   },
   {
     path: "/votes",
@@ -284,14 +282,6 @@ export const routes = [
     ]
   },
   {
-    path: "list_trx",
-    label: "list_trx",
-    icon: "fa fa-plus",
-    enurl: "https://tron.network/exchangesList?lng=en",
-    zhurl: "https://tron.network/exchangesList?lng=zh",
-    linkHref: true
-  },
-  {
     path: "/help",
     label: "help",
     icon: "fa fa-question",
@@ -354,6 +344,30 @@ export const routes = [
       {
         url: "https://github.com/tronscan/tronscan-frontend/issues/new",
         label: "report_an_error",
+      },
+    ]
+  },
+  {
+    path: "/more",
+    label: "more",
+    icon: "fas fa-indent",
+    routes: [
+      {
+        path: "/markets",
+        label: "markets",
+        icon: "fa fa-chart-line",
+       // component: MarketsAsync
+        enurl: "https://coinmarketcap.com/currencies/tron/",
+        zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+        linkHref: true
+      },
+      {
+        path: "/more/list_trx",
+        label: "list_trx",
+        icon: "fa fa-plus",
+        enurl: "https://tron.network/exchangesList?lng=en",
+        zhurl: "https://tron.network/exchangesList?lng=zh",
+        linkHref: true
       },
     ]
   },
