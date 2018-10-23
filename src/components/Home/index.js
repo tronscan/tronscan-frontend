@@ -215,7 +215,7 @@ class Home extends Component {
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body d-flex pt-4 pb-4 home-stats">
                     <div className="col-md-2 col-sm-12 col-xs-12 ">
-                      <Link to="/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                      <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
                         <p className="m-0">{tu("online_nodes")}</p>
                       </Link>

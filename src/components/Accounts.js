@@ -12,6 +12,7 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "./common/loaders";
 import xhr from "axios/index";
 import {Client} from "../services/api";
+import { Tooltip } from 'antd'
 
 
 class Accounts extends Component {
@@ -137,7 +138,15 @@ class Accounts extends Component {
         className: 'ant_table',
         width: '40%',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.accountType ==2?
+            <span className="d-flex">
+              <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
+                <span><i className="far fa-file mr-1"></i></span>
+              </Tooltip>
+              
+              <AddressLink address={text} isContract={record.toAddressType ==2}/>
+            </span>:
+            <AddressLink address={text}/>
         }
       },
       {

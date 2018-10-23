@@ -14,7 +14,7 @@ class SendModal extends React.PureComponent {
     this.state = {
       isOpen,
       modal: (
-          <Modal backdrop={false} isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+          <Modal backdrop="static" isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered fiexd-none">
             <ModalHeader className="text-center" toggle={this.hideModal}>Send</ModalHeader>
             <ModalBody className="text-center">
               <SendForm to={to} onSend={this.onSend}/>

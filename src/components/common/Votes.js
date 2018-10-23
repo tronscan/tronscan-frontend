@@ -179,6 +179,8 @@ class Votes extends React.Component {
     if (!loading && votes.length === 0) {
       if (!EmptyState) {
         return (
+            filter.candidate?
+            <div className="p-3 text-center no-data">{t("no_voters_found")}</div>:
             <div className="p-3 text-center no-data">{t("no_votes_found")}</div>
         );
       }

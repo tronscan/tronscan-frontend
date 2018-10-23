@@ -1,15 +1,24 @@
 /* eslint-disable no-undef */
 import React, {Fragment} from "react";
+import {injectIntl} from "react-intl";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import {ONE_TRX} from "../../../constants";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink, TransactionHashLink} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
+import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
 import Transactions from "./Txs";
 import Code from "./Code";
+import Txhash from "./Txhash";
+import Events from "./Events";
+import {upperFirst} from "lodash";
+import {Truncate} from "../../common/text";
+import xhr from "axios/index";
+import {API_URL} from "../../../constants";
+import { Tooltip } from 'antd'
+
 
 class SmartContract extends React.Component {
 
@@ -55,46 +64,51 @@ class SmartContract extends React.Component {
 
     this.setState(prevProps => ({
       loading: false,
-      contract:contract.data,
+      contract:contract.data[0],
       tabs: {
         ...prevProps.tabs,
         transactions: {
           id: "transactions",
-          icon: "fas fa-handshake",
           path: "",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}}  />
+          cmp: () => <Transactions filter={{contract: id}}  />
         },
-
-        votes: {
-          id: "internal_transactions",
-          icon: "fa fa-bullhorn",
-          path: "/intr",
-          label: <span>{tu("internal_transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}} isInternal={true} />,
-        },
+        // Txns: {
+        //   id: "Txns",
+        //   path: "/Txns",
+        //   label: <span>{tu('token_txns')}</span>,
+        //   cmp: () => <Txhash filter={{address: id}} />,
+        // },
         voters: {
           id: "code",
-          icon: "fa fa-bullhorn",
           path: "/code",
-          label: <span>{tu("code")}</span>,
+          label: <span>{tu("Code")}</span>,
           cmp: () => <Code filter={{address: id}} />,
-        },
+        }
+        //,
+        // events: {
+        //   id: "events",
+        //   path: "/events",
+        //   label: <span>{tu('Events')}</span>,
+        //   cmp: () => <Events filter={{address: id}} />,
+        // }
       }
     }));
+
+   
   }
 
   render() {
 
     let {contract, tabs, loading} = this.state;
-    let {match} = this.props;
+    let {match, intl} = this.props;
 
     if (!contract) {
       return null;
     }
 
     return (
-        <main className="container header-overlap">
+        <main className="container header-overlap token_black">
           <div className="row">
             <div className="col-md-12 ">
               {
@@ -104,54 +118,52 @@ class SmartContract extends React.Component {
                       </TronLoader>
                     </div> :
                     <Fragment>
-                      <div className="card">
-                        <table className="table m-0">
-                          <tbody>
+                      <div className="card list-style-header">
+                      <div className="contract-header">
+                        <h6><AddressLink address={contract.address} isContract={true} includeCopy={true}/></h6>
 
-                          <tr>
-                            <th>{tu("address")}:</th>
-                            <td>
-                              <AddressLink address={contract.address} includeCopy={true}/>
-                            </td>
-                          </tr>
-                            <tr>
-                              <th>{tu("name")}:</th>
-                              <td>
-                                {contract.name}
-                              </td>
-                            </tr>
-                          <tr>
-                            <th>{tu("transactions")}:</th>
-                            <td>
-                              {123}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("balance")}:</th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li>
-                                  <TRXPrice amount={contract.balance / ONE_TRX}/>
-                                  （$ xxxxxx）
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("creator")}:</th>
-                            <td>
-                              <ul className="list-unstyled m-0">
-                                <li>
-                                  {"ZK"}
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
+                        <div className="d-flex contract-header_list">
+                          <div className="contract-header__item">
+                            <h6 className="contract-header__title">{tu('contract_overview')}</h6>
+                            <ul>
+                              <li><p>{upperFirst(intl.formatMessage({id: 'balance'}))}: </p><TRXPrice amount={parseInt(contract.balance) / ONE_TRX}/></li>
+                              {/* <li><p>{tu('trx_value')}: </p><TRXPrice amount={1} currency="USD" source="home"/></li> */}
+                              <li><p>{upperFirst(intl.formatMessage({id: 'transactions'}))}: </p>
+                                <p className="contract_trx_count">
+                                    {contract.trxCount}
+                                  <Tooltip placement="top" title={intl.formatMessage({id: 'Normal_Transactions'})}>
+                                    <span className="ml-1"> txns </span>
+                                  </Tooltip>
+                                </p>
+                              </li>
+                              {/* <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>{contract.tokenContract}</li> */}
+                            </ul>
+                          </div>
+                          <div className="contract-header__item">
+                            <h6 className="contract-header__title">{tu('Misc')}</h6>
+                            <ul>
+                              <li>
+                                <p>{tu('contract_creator')}:</p>
+                                {contract.creator &&
+                                  <div className="d-flex">
+                                    <span style={{width: '30%'}}>
+                                    <Truncate><AddressLink address={contract.creator.address} /></Truncate></span>
+                                    <span className="px-1">{tu('at_txn')}</span>
+                                    <span style={{width: '30%'}}>
+                                    <Truncate>
+                                      <TransactionHashLink hash={contract.creator.txHash}>{contract.creator.txHash}</TransactionHashLink>
+                                      </Truncate>
+                                    </span>
+                                  </div>
+                                }
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        </div>
                       </div>
-                      <div className="card mt-3">
-                        <div className="card-header">
+                      <div className="card mt-3 list-style-body">
+                        <div className="card-header list-style-body__header">
                           <ul className="nav nav-tabs card-header-tabs">
                             {
                               Object.values(tabs).map(tab => (
@@ -165,7 +177,7 @@ class SmartContract extends React.Component {
                             }
                           </ul>
                         </div>
-                        <div className="card-body p-0">
+                        <div className="card-body p-0 list-style-body__body">
                           <Switch>
                             {
                               Object.values(tabs).map(tab => (
@@ -196,4 +208,4 @@ const mapDispatchToProps = {
 };
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Address);
-export default SmartContract;
+export default injectIntl(SmartContract);

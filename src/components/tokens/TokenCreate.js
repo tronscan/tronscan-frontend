@@ -27,10 +27,11 @@ class TokenCreate extends Component {
 
     let startTime = new Date();
     startTime.setHours(0, 0, 0, 0);
+    startTime.setTime(startTime.getTime() + 24*60*60*1000)
 
     let endTime = new Date();
     endTime.setHours(0, 0, 0, 0);
-    endTime.setDate(startTime.getDate() + 90);
+    endTime.setTime(endTime.getTime() + 24*60*60*1000*2)
 
     this.state = {
       privateKey: "",

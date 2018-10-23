@@ -292,6 +292,7 @@ export const messages = {
   "unfreeze_trx_confirm_message": "确定要解冻TRX？",
   "unfreeze_assets": "解冻资产",
   "sure_to_unfreeze_unlocked_tokens_message": "您确定要解冻通证吗？",
+  "After": "晚于",
   /*
   ##################################################################################
   #                                                                                #
@@ -972,6 +973,9 @@ export const messages = {
   "vote_unit": "个候选人",
   "account_unit": "个账户",
   "address_unit": "个地址",
+  "contract_unit": "条已验证合约",
+  "inter_contract_unit": "条合约内部交易",
+
   /*
 ##################################################################################
 #                                                                                #
@@ -1002,6 +1006,52 @@ export const messages = {
   "not_started": "尚未开始",
   "no_token_to_buy": "抱歉，所有流通通证已发行完毕，请等待冻结的通证解锁后进行参与。",
 
+ /*
+##################################################################################
+#                                                                                #
+# contract page                                                                  #
+#                                                                                #
+##################################################################################
+*/
+
+  "Code": "代码",
+  "contract_overview": "合约概览",
+  "trx_value": "TRX价值",
+  "token_tracker": "通证追踪器",
+  "contract_creator": "合约创建者",
+  "at_txn": "于交易",
+  "token_txns": "通证交易",
+  "Events": "事件",
+  "TxHash": "交易哈希",
+  "Internal_Txns": "合约内部交易",
+  "ParentTxHash": "父哈希",
+  "TxFee": "手续费",
+  "contract_code_verified": "已验证的合约源码（精确匹配）",
+  "Contract_Source_Code": "合约源码",
+  "Contract_ABI": "合约ABI",
+  "Byte_code": "字节码",
+  "Constructor_Arguments": "构造函数参数（ABI已编码并且是合约字节码的最后一部分字节）",
+  "Library_Used": "使用的库",
+  "Copy": "复制",
+  "TxHash_Block_Age": "交易哈希|区块|年龄",
+  "Method": "方法",
+  "Event_Logs": "事件日志",
+  "With_Verified_Source_Codes_Only": "只包括已验证源码的合约",
+  "verified_contract_source_codes_found": "条已验证合约",
+  "contract_source_codes_found": "条合约",
+  "ContractName": "合约名称",
+  "TxCount": "交易数",
+  "Settings": "设置",
+  "DateVerified": "验证日期",
+  "Compiler": "编译器",
+  "Compiler_Text": "编译器版本",
+  "Contract_Internal_Transactions": "合约内部交易",
+  "Internal_Transactions_found": "条合约内部交易",
+  "Misc": "杂项",
+  "Optimization_Enabled": "是否优化",
+  "Normal_Transactions": "常规交易",
+  "Verified_contracts": "已验证合约",
+  "Constructor_Arguments_tip": "构造函数参数",
 
   /*
   ##################################################################################
@@ -1034,5 +1084,89 @@ export const messages = {
   "available_balance":"可用余额",
   "block_not_found":" 对不起，无法找到该区块。",
   "transaction_not_found":"对不起，无法找到该交易。",
-  "search_not_found":"对不起，无法找到您输入的搜索内容。"
+  "search_not_found":"对不起，无法找到您输入的搜索内容。",
+    /*
+   ##################################################################################
+   #                                                                                #
+   # verify-contract-code                                          #
+   #                                                                                #
+   ##################################################################################
+   */
+    "contract_source_code":"合约源码",
+    "bytecode_and_ABI":"ByteCode And ABI",
+    "verify_and_publish_your_solidity_source_code":"Verify and Publish your Solidity Source Code",
+    "step":"Step",
+    "step_1":"在下方输入您的合约源码。",
+    "step_2":"如果生成的字节码与现有的创建地址的字节码相匹配，则该合约得以验证。",
+    "step_3":"合约源码于线上发布，可由任何人公开验证。",
+    "contract_notes":"注意事项",
+    "contract_notes_1":"要验证接受构造函数参数的合约，请在下方方框内输入ABI已编码的函数参数。",
+    "contract_notes_2_1":"在欲调试的前提下，如果该合约在",
+    "contract_notes_2_2":" TRON studio",
+    "contract_notes_2_3":"中能正确编译，应也能在此正确编译。",
+    "contract_notes_3":"我们暂不支持使用“imports”的合约验证方式。",
+    "contract_notes_4":"我们不支持由另一合约所创建的合约的验证。",
+    "contract_notes_5":"每个合约的编译有最多45秒的等待时间。如果您的合约需要更长时间，我们将无法对其进行验证。",
+    "contract_notes_6":"更多功能将在下个版本体现。",
+    "contract_optimization":"优化",
+    "enter_contract_code":"请输入solidity合约代码",
+    "following_optional_parameters":"以下为可选参数",
+    "constructor_arguments_ABIencoded":"已编码的构造函数参数（只针对包含构造函数参数的合约）",
+    "contract_library_address":"合约库地址（只针对使用库的合约，最多支持5个）:",
+    "library_1_name":"Library_1 Name",
+    "library_2_name":"Library_2 Name",
+    "library_3_name":"Library_3 Name",
+    "library_4_name":"Library_4 Name",
+    "library_5_name":"Library_5 Name",
+    "library_contract_address":"Library Contract Address",
+    "verify_and_publish":"验证并发布",
+    "txn":"txn",
+    "contract_name_tip":"必须与源码中的合约名称相匹配，如果是一个多部分的合约，那么它需要与你部署的合约名称相匹配。",
+    "constructor_arguments_ABIencoded_tip":"这个选项只适用于含有构造函数参数的合约，如果你不确定是否含有那么你大概率不需要填这项。",
+    "library_1_name_tip":"这个选项只适用于使用了库的合约",
+    "library_contract_address_tip":"相对应的合约库地址",
+    "contract_source_code_for":"The Contract Source code for",
+    "has_already_been_verified":"has already been verified.",
+    "click_here_to_view":"Click here to view the",
+    "contract_was_creating_during":"contract was creating during",
+    "constructor_arguements":"Constructor Arguements Used (ABI-encoded)",
+    "ContractBytecode":"合约字节码",
+    "ContractABI":"合约ABI",
+    "start_over":"重新验证",
+    "sorry_unable_contract_address":"Sorry！Unable to locate Contract code at ",
+    "this_a_valid_contract_address":"this a valid contract address?",
+    "successfully_generated_byteCode":"Successfully generated ByteCode and ABI for Contract Address ",
+    "error_construct_ABI_encoded":"Missing Constructor Arguments/Library used for function ",
+    "error_construct_bytecode_for":"Sorry! The Compiled Contract ByteCode for ",
+    "the_contract_creation_code_for":" does NOT match the Contract Creation Code for ",
+    "error_contract_ABI_for":"Sorry! The Compiled Contract ABI for",
+    "unableto_verify_contract_source_code":"Unableto Verify Contract source code.",
+    "contractname_found":"Contractname(s) found",
+    /*
+     ##################################################################################
+     #                                                                                #
+     # contract-type                                          #
+     #                                                                                #
+     ##################################################################################
+    */
+    "trigger_smart_contract":"调用智能合约",
+    "normal_address_trigger_smart_contract":"普通地址调用合约",
+    "trigger":"合约调用",
+    "contract_triggers_total":"次合约调用",
+    "contract_triggers_owner":"调用者",
+    "contract_triggers_owner_address":"调用者地址",
+    "no_tnx":"无交易",
+    "no_event":"无事件",
+    "link_test_fauct":"测试网水龙头",
+    "gain_bandwith":"冻结来获取带宽",
+    "gain_energy":"冻结来获取能量",
+    "energy":"能量",
+    "freeze_trx_gain_bandwith_energy":"同时，您也可以获得带宽或者能量。",
+    "freeze_type":"冻结类型",
+    "success_unfrozen_trx":"成功解冻TRX",
+    "please_select_the_type_of_unfreeze":"请选择解冻类型",
+    "unfreeze_bandwidth":"解冻带宽账户来获取TRX",
+    "unfreeze_energy":"解冻能量账户来获取TRX"
+
+
 };

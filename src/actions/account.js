@@ -4,10 +4,11 @@ export const SET_TOKEN_BALANCES = 'SET_TOKEN_BALANCES';
 export const SET_RECENT_TRANSACTIONS = 'SET_RECENT_TRANSACTIONS';
 export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 
-export const setTokenBalances = (tokens = [], frozen = {}) => ({
+export const setTokenBalances = (tokens = [], frozen = {}, accountResource = {} ) => ({
   type: SET_TOKEN_BALANCES,
   tokens,
   frozen,
+  accountResource,
 });
 
 

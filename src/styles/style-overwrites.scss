@@ -354,7 +354,7 @@ body .token_black {
   }
 
 @each $image in addr, balance, band, frozen, heightst, lock, lowst,
-nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest,home,book{
+nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mostRank, node, nodest,home,book,engry{
 
   .bg-image_#{$image}{
     position: relative;
@@ -403,6 +403,9 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
     left: 38px;
     color: $text-block-dark;
     z-index: 1;
+    @media screen and (max-width: 768px) {
+      top: 43px;
+    }
   }
 }
 

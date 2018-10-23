@@ -61,6 +61,16 @@ class Transfers extends React.Component {
       ...filter,
     });
 
+    transfers.map( item => {
+      if(filter.address){
+        item.fromtip = !(item.transferFromAddress == filter.address)
+        item.totip = !(item.transferToAddress == filter.address)
+      }else{
+        item.fromtip = true
+        item.totip = true
+      }
+    })
+
     this.setState({
       page,
       transfers,
@@ -106,7 +116,9 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.fromtip?
+          <AddressLink address={text}/>:
+          <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -124,7 +136,9 @@ class Transfers extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={text}/>
+          return record.totip?
+          <AddressLink address={text}/>:
+          <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -158,7 +172,7 @@ class Transfers extends React.Component {
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (
-            <div className="p-3 text-center">{tu("no_transfers")}</div>
+            <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
         );
       }
 

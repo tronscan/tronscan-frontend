@@ -295,6 +295,7 @@ export const messages = {
   "unfreeze_trx_confirm_message": "Are you sure you want to unfreeze TRX?",
   "unfreeze_assets": "Unfreeze Assets",
   "sure_to_unfreeze_unlocked_tokens_message": "Are you sure you want to unfreeze unlocked tokens?",
+  "After": "After",
   /*
   ##################################################################################
   #                                                                                #
@@ -984,6 +985,8 @@ export const messages = {
   "voter_unit": "Voters",
   "account_unit": "accounts",
   "address_unit": "addresses",
+  "contract_unit": "verified contract source codes found",
+  "inter_contract_unit": "Internal Transactions found",
 
   /*
 ##################################################################################
@@ -1014,6 +1017,51 @@ export const messages = {
   "token_participate_tron": "Participate in TRON token issuance",
   "not_started": "Not started",
   "no_token_to_buy": "Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+
+/*
+##################################################################################
+#                                                                                #
+# contract page                                                                  #
+#                                                                                #
+##################################################################################
+*/
+
+  "Code": "Code",
+  "contract_overview": "Contract Overview",
+  "trx_value": "TRX Value",
+  "token_tracker": "Token Tracker",
+  "contract_creator": "Contract Creator",
+  "at_txn": "at txn",
+  "token_txns": "Token Txns",
+  "Events": "Events",
+  "TxHash": "TxHash",
+  "Internal_Txns": "Internal Txns",
+  "ParentTxHash": "ParentTxHash",
+  "TxFee": "[TxFee]",
+  "contract_code_verified": "Contract Source Code Verified (Exact Match)",
+  "Contract_ABI": "Contract ABI",
+  "Byte_code": "Byte code",
+  "Constructor_Arguments": "Constructor Arguments (ABI-Encoded and is the last bytes of the Contract Creation Code above) ",
+  "Copy": "Copy",
+  "TxHash_Block_Age": "TxHash | Block | Age",
+  "Method": "Method",
+  "Event_Logs": "Event Logs",
+  "With_Verified_Source_Codes_Only": "With Verified Source Codes Only",
+  "verified_contract_source_codes_found": " verified contract source codes found",
+  "contract_source_codes_found": " contracts found",
+  "ContractName": "ContractName",
+  "TxCount": "TxCount",
+  "Settings": "Settings",
+  "DateVerified": "DateVerified",
+  "Compiler": "Compiler",
+  "Compiler_Text": "Compiler Text",
+  "Contract_Internal_Transactions": "Contract Internal Transactions",
+  "Internal_Transactions_found": "Internal Transactions found",
+  "Misc": "Misc",
+  "Optimization_Enabled": "Optimization Enabled",
+  "Normal_Transactions": "Normal Transactions",
+  "Verified_contracts": "verified contracts",
+  "Constructor_Arguments_tip": "Constructor Arguments",
 
   /*
   ##################################################################################
@@ -1050,23 +1098,26 @@ export const messages = {
     /*
    ##################################################################################
    #                                                                                #
-   # Contract                                             #
+   # verify-contract-code                                          #
    #                                                                                #
    ##################################################################################
    */
   "contract_source_code":"Contract Source Code",
+  "bytecode_and_ABI":"ByteCode And ABI",
+  "verify_and_publish_your_solidity_source_code":"Verify and Publish your Solidity Source Code",
   "step":"Step",
   "step_1":"Enter your Contract Source Code below.",
   "step_2":"If the Bytecode generated matches the existingCreation Address Bytecode, the contract is then Verified.",
-  "step_3":"Contract Source Code is published online andpublicably verifiable by anyone.",
+  "step_3":"Contract Source Code is published online and publicably verifiable by anyone.",
   "contract_notes":"NOTES",
   "contract_notes_1":"To verify Contracts that accept Constructor arguments,please enter the ABI-encoded Arguments in the box below.",
   "contract_notes_2_1":"For debugging purposes if it compiles correctly at",
   "contract_notes_2_2":" TRON studio",
   "contract_notes_2_3":", it should also compile correctly here.",
   "contract_notes_3":'We do not support contract verification that use "imports" up to now.',
-  "contract_notes_4":"We do not support contract verification for contractscreated by another contract.",
-  "contract_notes_5":"There is a timeout of up to 45 secondsfor each contract compiled. If your contract takes longer than this we will notbe able to verify it.",
+  "contract_notes_4":"We do not support contract verification for contracts created by another contract.",
+  "contract_notes_5":"There is a timeout of up to 45 seconds for each contract compiled. If your contract takes longer than this we will not be able to verify it.",
+  "contract_notes_6":"More functions are coming in the next version.",
   "contract_address":"Contract Address",
   "contract_optimization":"Optimization",
   "enter_contract_code":"Enter the Solidity Contract Code below",
@@ -1080,5 +1131,55 @@ export const messages = {
   "library_5_name":"Library_5 Name",
   "library_contract_address":"Library Contract Address",
   "verify_and_publish":"Verify And Publish",
+  "txn":"txn",
+  "contract_name_tip":"Must match the ContractName in the Source Code or in a MultiPart Contract it should match the ContractName you deployed.",
+  "constructor_arguments_ABIencoded_tip":"This option ONLY applies to contracts that accept constructor arguments, if you are unsure you most likely do not need this.The constructor arguments should be in ABI-ENCODED values and will be appended to the contract bytecode.",
+  "library_1_name_tip":"This option ONLY applies to contracts that use libraries.",
+  "library_contract_address_tip":"Corresponding Contract Library Address.",
+  "contract_source_code_for":"The Contract Source code for",
+  "has_already_been_verified":"has already been verified.",
+  "click_here_to_view":"Click here to view the",
+  "contract_was_creating_during":"contract was creating during",
+  "constructor_arguements":"Constructor Arguements Used (ABI-encoded)",
+  "ContractBytecode":"ContractBytecode",
+  "ContractABI":"ContractABI",
+  "start_over":"Start Over",
+  "sorry_unable_contract_address":"Sorry！Unable to locate Contract code at ",
+  "this_a_valid_contract_address":"this a valid contract address?",
+  "successfully_generated_byteCode":"Successfully generated ByteCode and ABI for Contract Address ",
+  "error_construct_ABI_encoded":"Missing Constructor Arguments/Library used for function ",
+  "error_construct_bytecode_for":"Sorry! The Compiled Contract ByteCode for ",
+  "the_contract_creation_code_for":" does NOT match the Contract Creation Code for ",
+  "error_contract_ABI_for":"Sorry! The Compiled Contract ABI for",
+  "unableto_verify_contract_source_code":"Unableto Verify Contract source code.",
+  "contractname_found":"Contractname(s) found",
+  /*
+  ##################################################################################
+  #                                                                                #
+  # contract-type                                          #
+  #                                                                                #
+  ##################################################################################
+  */
+  "trigger_smart_contract":"Trigger Smart Contract",
+  "normal_address_trigger_smart_contract":"Normal address trigger smart contract",
+  "trigger":"Contract Triggers",
+  "contract_triggers_total":"Contract Triggers",
+  "contract_triggers_owner":"Owner",
+  "contract_triggers_owner_address":"Owner Address",
+  "no_tnx":"No Transaction",
+  "no_event":"No Event",
+  "link_test_fauct":"test faucet",
+  "gain_bandwith":"Freeze TRX to gain bandwith",
+  "gain_energy":"Freeze TRX to gain energy",
+  "energy":"energy",
+  "freeze_trx_gain_bandwith_energy":"You can gain bandwith or energy as well.",
+  "freeze_type":"Freeze Type",
+  "success_unfrozen_trx":"Successfully Unfrozen TRX",
+  "please_select_the_type_of_unfreeze":"Please select the type of unfreeze",
+  "unfreeze_bandwidth":"Unfreeze the bandwidth account to get TRX",
+  "unfreeze_energy":"Unfreeze the energy account to get TRX"
+
+
+
 
 };

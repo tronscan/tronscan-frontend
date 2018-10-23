@@ -157,7 +157,7 @@ class Transfers extends React.Component {
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (
-            <div className="p-3 text-center" style={{background:'white'}}>{tu("no_transfers")}</div>
+            <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
         );
       }
 

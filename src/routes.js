@@ -41,6 +41,7 @@ import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
 import Exchange from "./components/exchange/index";
+import ContractTrans from "./components/blockchain/ContractTrans";
 
 import {Redirect} from "react-router-dom";
 
@@ -51,6 +52,12 @@ export const routes = [
     icon: 'fa fa-link',
     component: () => <Redirect to="/blockchain/blocks"/>,
     routes: [
+      {
+          label: "nodes",
+          icon: 'fa fa-server',
+          path: "/blockchain/nodes",
+          component: NodesAsync,
+      },
       {
         path: "/blockchain/blocks",
         label: "blocks",
@@ -82,13 +89,12 @@ export const routes = [
         icon: "fa fa-users",
         component: AccountsAsync,
       },
-      {
-        path: "/blockchain/contracts",
-        label: "contracts",
-        icon: "fa fa-file",
-        component: Contracts,
-        showInMenu: false
-      },
+      // {
+      //   path: "/blockchain/contracts",
+      //   label: "Verified_contracts",
+      //   icon: "fa fa-file",
+      //   component: Contracts,
+      // },
       {
         label: "statistics",
         icon: `fa fa-chart-pie`,
@@ -109,13 +115,13 @@ export const routes = [
         component: LiveAsync,
         showInMenu: false
       },
-      {
-        label: "inter_tnxl",
-        icon: `fa fa-random`,
-        path: "/blockchain/ContractInter",
-        component: ContractInter,
-        showInMenu: false
-      },
+      // {
+      //   label: "inter_tnxl",
+      //   icon: `fa fa-random`,
+      //   path: "/blockchain/ContractInter",
+      //   component: ContractInter,
+      //   showInMenu: false
+      // },
       {
         path: "/blockchain/foundation",
         label: "foundation",
@@ -125,11 +131,27 @@ export const routes = [
     ]
   },
   {
-    label: "nodes",
-    icon: 'fa fa-server',
-    path: "/nodes",
-    component: NodesAsync,
-  },
+        path: "/contracts",
+        label: "contracts",
+        icon: 'fa fa-file-contract',
+        component: () => <Redirect to="/contracts/contracts"/>,
+        routes: [
+            {
+                label: "contracts",
+                icon: 'fa fa-file',
+                path: "/contracts/contracts",
+                component: Contracts,
+            },
+            {
+                path: "/contracts/contract-triggers",
+                label: "trigger",
+                icon: 'fa fa-users-cog',
+                component: ContractTrans,
+            }
+
+        ]
+    },
+
   {
     label: "representatives",
     path: "/representatives",
@@ -155,16 +177,16 @@ export const routes = [
     showInMenu: false,
   },
   {
-    path: "/contract/:id",
-    label: "contract",
-    component: SmartContract,
-    showInMenu: false,
-  },
-  {
     path: "/representative/:id",
     label: "representative",
     component: Representative,
     showInMenu: false,
+  },
+  {
+      path: "/contract/:id",
+      label: "contract",
+      component: SmartContract,
+      showInMenu: false,
   },
   {
     path: "/tokens",
@@ -238,13 +260,12 @@ export const routes = [
     label: "tools",
     icon: "fa fa-wrench",
     routes: [
-      {
-        label: "verify_contract_code",
-        path: "/tools/verify-contract-code",
-        icon: "fa fa-check-square",
-        component: VerifyContractCodeAsync,
-        showInMenu: false,
-      },
+      // {
+      //   label: "verify_contract_code",
+      //   path: "/tools/verify-contract-code",
+      //   icon: "fa fa-check-square",
+      //   component: VerifyContractCodeAsync,
+      // },
       {
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",
@@ -275,9 +296,14 @@ export const routes = [
         label: "desktop_explorer"
       },
       {
-        url: "https://test.tronscan.org/#/",
+        url: "https://explorer.shasta.trongrid.io",
         icon: "fa fa-link",
         label: "link_test_server"
+      },
+      {
+        url: "https://www.trongrid.io/shasta",
+        icon: "fa fa-recycle",
+        label: "link_test_fauct"
       }
     ]
   },

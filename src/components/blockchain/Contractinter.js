@@ -1,19 +1,17 @@
-/* eslint-disable no-undef */
 import React, {Fragment} from "react";
-import {tu} from "../../utils/i18n";
-import {loadTokens} from "../../actions/tokens";
+import { FormattedNumber, injectIntl} from "react-intl";
 import {connect} from "react-redux";
-import TimeAgo from "react-timeago";
-import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
-import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
-import {ONE_TRX} from "../../constants";
-import {getQueryParams} from "../../utils/url";
-import Paging from "../common/Paging";
-import {Sticky, StickyContainer} from "react-sticky";
-import {TRXPrice} from "../common/Price";
 import {Truncate} from "../common/text";
-import {filter} from "lodash";
+import SmartTable from "../common/SmartTable.js"
+import {TronLoader} from "../common/loaders";
+import {upperFirst, filter} from "lodash";
+import {loadTokens} from "../../actions/tokens";
+import {AddressLink, BlockNumberLink, TransactionHashLink} from "../common/Links";
+import TimeAgo from "react-timeago";
+import {TRXPrice} from "../common/Price";
+import {ONE_TRX} from "../../constants";
+
 class Contractinter extends React.Component {
 
     constructor() {
@@ -130,96 +128,119 @@ class Contractinter extends React.Component {
             total
         });
     };
-
-    render() {
-
+    customizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+          {
+            title: upperFirst(intl.formatMessage({id: 'block'})),
+            dataIndex: 'block',
+            key: 'block',
+            align: 'left',
+            width: '100px',
+            className: 'ant_table',
+            render: (text, record, index) => {
+              return <BlockNumberLink number={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'created'})),
+            dataIndex: 'timestamp',
+            key: 'timestamp',
+            align: 'left',
+            width: '120px',
+            className: 'ant_table',
+            render: (text, record, index) => {
+              return <TimeAgo date={text} />
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'parent_hash'})),
+            dataIndex: 'transactionHash',
+            key: 'transactionHash',
+            align: 'left',
+            render: (text, record, index) => {
+              return <Truncate>
+                        <TransactionHashLink hash={text}>{text}</TransactionHashLink>
+                     </Truncate>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'inter_type'})),
+            dataIndex: 'inter_type',
+            key: 'inter_type',
+            align: 'left',
+            className: 'ant_table',
+            render: (text, record, index) => {
+              return <span>cell</span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'from'})),
+            dataIndex: 'transferFromAddress',
+            key: 'transferFromAddress',
+            align: 'left',
+            className: 'ant_table',
+            render: (text, record, index) => {
+              return  <AddressLink address={text} />
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'to'})),
+            dataIndex: 'transferToAddress',
+            key: 'transferToAddress',
+            align: 'left',
+            className: 'ant_table',
+            render: (text, record, index) => {
+              return <AddressLink address={text} />
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'value'})),
+            dataIndex: 'isSetting',
+            key: 'isSetting',
+            align: 'right',
+            width: '120px',
+            className: 'ant_table',
+            render: (text, record, index) => {
+                return  <span>{
+                            record.tokenName.toUpperCase() === 'TRX' ?
+                            <Fragment>
+                                <TRXPrice amount={record.amount / ONE_TRX}/>
+                            </Fragment> :
+                            <Fragment>
+                                <FormattedNumber value={record.amount}/> {record.tokenName}
+                            </Fragment>
+                        }</span>
+            }
+          }
+        ];
+        return column;
+      }
+    
+      render() {
+    
         let {transfers, total, loading} = this.state;
-        let {match} = this.props;
-
+        let {match, intl} = this.props;
+        let column = this.customizedColumn();
+        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'inter_contract_unit'})
+    
         return (
-            <main className="container header-overlap pb-3">
-                <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-                    <span>{tu("inter_a_total")}</span>
-                    <span> {total} </span>
-                    <span>{tu("inter_transactions_found")}</span>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <StickyContainer>
-                            <div className="card">
-                                {
-                                    <Fragment>
-                                        <Sticky>
-                                            {
-                                                ({style}) => (
-                                                    <div style={{ zIndex: 100, ...style }} className="card-body bg-white py-3 border-bottom">
-                                                        <Paging onChange={this.onChange} loading={loading} url={match.url} total={total} />
-                                                    </div>
-                                                )
-                                            }
-                                        </Sticky>
-                                        <table className="table table-hover table-striped m-0 transactions-table">
-                                            <thead className="thead-dark">
-                                            <tr>
-                                                <th className="d-none d-md-table-cell" style={{ width: 100 }}>{tu("block")}</th>
-                                                <th className="d-none d-lg-table-cell" style={{ width: 125 }}>{tu("created")}</th>
-                                                <th style={{ width: 130 }}>{tu("parent_hash")}</th>
-                                                <th style={{ width: 100 }}>{tu("inter_type")}</th>
-                                                <th className="d-none d-md-table-cell">{tu("from")}</th>
-                                                <th className="d-none d-sm-table-cell">{tu("to")}</th>
-                                                <th className="">{tu("value")}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {
-                                                transfers.map((trx, index) => (
-                                                    <tr key={trx.parentHash}>
-
-                                                        <td className="d-none d-md-table-cell">
-                                                            <BlockNumberLink number={trx.block}/>
-                                                        </td>
-                                                        <td className="text-nowrap d-none d-lg-table-cell">
-                                                            <TimeAgo date={trx.timestamp} />
-                                                        </td>
-                                                        <th>
-                                                            <Truncate>
-                                                                <TransactionHashLink hash={trx.transactionHash}>{trx.transactionHash}</TransactionHashLink>
-                                                            </Truncate>
-                                                        </th>
-                                                        <td className="d-none d-md-table-cell">
-                                                                cell
-                                                        </td>
-                                                        <td className="d-none d-md-table-cell">
-                                                            <AddressLink address={trx.transferFromAddress} />
-                                                        </td>
-                                                        <td className="d-none d-sm-table-cell">
-                                                            <AddressLink address={trx.transferToAddress} />
-                                                        </td>
-                                                        <td className="text-nowrap">
-                                                            {
-                                                                trx.tokenName.toUpperCase() === 'TRX' ?
-                                                                    <Fragment>
-                                                                        <TRXPrice amount={trx.amount / ONE_TRX}/>
-                                                                    </Fragment> :
-                                                                    <Fragment>
-                                                                        <FormattedNumber value={trx.amount}/> {trx.tokenName}
-                                                                    </Fragment>
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            }
-                                            </tbody>
-                                        </table>
-                                    </Fragment>
-                                }
-                            </div>
-                        </StickyContainer>
-                    </div>
-                </div>
-            </main>
+          <main className="container header-overlap pb-3 token_black">
+          {loading && <div className="loading-style"><TronLoader/></div>}
+          <div className="row">
+            <div className="col-md-12 table_pos">
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              <SmartTable bordered={true} loading={loading}
+                          column={column} data={transfers} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.load(page, pageSize)
+                          }}/>
+            </div>
+          </div>
+        </main>
         )
-    }
+      }
+
 }
 
 function mapStateToProps(state) {
@@ -231,4 +252,4 @@ const mapDispatchToProps = {
     loadTokens,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contractinter);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Contractinter));
