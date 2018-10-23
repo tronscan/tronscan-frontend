@@ -1163,5 +1163,6 @@ export const messages = {
     "energy":"能量",
     "freeze_trx_gain_bandwith_energy":"同时，您也可以获得带宽或者能量。",
     "freeze_type":"冻结类型",
-    "success_unfrozen_trx":"成功解冻TRX"
+    "success_unfrozen_trx":"成功解冻TRX",
+    "please_select_the_type_of_unfreeze":"请选择解冻类型"
 };

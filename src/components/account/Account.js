@@ -438,13 +438,16 @@ class Account extends Component {
               onCancel={this.hideModal}
           >
               <div className="form-group">
+                <div className="mt-2 mb-2 text-left font-weight-bold">
+                    {tu("please_select_the_type_of_unfreeze")}
+                </div>
                 <select className="custom-select"
                         value={selectedResource}
                         onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
                     {
                         resources.map((resource, index) => {
                             return (
-                                <option key={index} value={resource.value}>{tu(resource.label)}</option>
+                                <option key={index} value={resource.value}>{t(resource.label)}</option>
                             )
                         })
                     }
@@ -797,7 +800,7 @@ class Account extends Component {
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet} = this.props;
+    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -815,7 +818,7 @@ class Account extends Component {
     }
 
     let hasFrozen = frozen.balances.length > 0;
-
+    let hasResourceFrozen =  accountResource.frozen_balance > 0
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
@@ -1069,7 +1072,7 @@ class Account extends Component {
                     </p>
                     <div>
                       {
-                        hasFrozen &&
+                          (hasFrozen || hasResourceFrozen) &&
                         <button className="btn btn-danger mr-2" onClick={() => {
                           this.showUnfreezeModal()
                         }}>
