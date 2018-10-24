@@ -152,7 +152,6 @@ class Address extends React.Component {
     // });
 
     let address = await Client.getAddress(id);
-    console.log('address',address.accountResource.frozen_balance_for_energy.frozen_balance)
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
