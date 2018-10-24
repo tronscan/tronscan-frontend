@@ -9,7 +9,7 @@ import {ONE_TRX} from "../../../constants";
 
 export function TokenBalances({tokenBalances, intl}) {
   let balances = filter(tokenBalances, function(o) {
-    return o.name != 'TRX'
+    return o.name != "TRX"
   })
   
   if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
@@ -47,8 +47,8 @@ export function TokenBalances({tokenBalances, intl}) {
 
   return (
       <div className="token_black table_pos">
-        {tokenBalances.length ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-        <SmartTable bordered={true} column={column} data={tokenBalances} total={tokenBalances.length}/>
+        {balances.length ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+        <SmartTable bordered={true} column={column} data={balances} total={balances.length}/>
       </div>
   )
 }
