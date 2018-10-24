@@ -22,7 +22,7 @@ export default class TransactionList extends Component {
   }
   render() {
     return (
-      <div className="exchange__kline p-3">
+      <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="1" onChange={this.callback}>
         <TabPane tab="交易记录" key="1">
           <TranList/>

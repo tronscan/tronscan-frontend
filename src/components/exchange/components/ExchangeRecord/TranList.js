@@ -48,9 +48,9 @@ export default class TranList extends Component {
         dataIndex: 'hash',
         key: 'hash',
         render: (text, record, index) => {
-          return <Truncate>
+          return <span className={record.status === 1? 'buy': 'sell'}><Truncate>
                   <TransactionHashLink hash={text}>{text}</TransactionHashLink>
-                </Truncate>
+                </Truncate></span>
         }
       },
       {
@@ -110,9 +110,6 @@ export default class TranList extends Component {
           pagination={false}
           rowKey={(record, index) => {
             return index
-          }}
-          rowClassName={(record, index) => {
-            return record.status === 1? 'bug': 'sell'
           }}
         />
 

@@ -81,7 +81,7 @@
     "qrcode": "^1.2.0",
     "qrcode.react": "^0.8.0",
     "qs": "^6.5.1",
-    "query-string": "^6.0.0",
+    "query-string": "^6.2.0",
     "raf": "3.4.0",
     "react": "^16.3.2",
     "react-ace": "^6.1.4",

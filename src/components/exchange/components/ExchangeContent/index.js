@@ -7,7 +7,6 @@ import xhr from "axios/index";
 
 import { Kline } from './Kline';
 import Transaction from './Transaction';
-import TransactionList from './TransactionList';
 
 import { Input } from 'antd';
 const Search = Input.Search;
@@ -36,9 +35,6 @@ class ExchangeList extends React.Component {
 
         {/* transaction */}
         <Transaction/>
-
-        {/* transaction list */}
-        <TransactionList/>
 
       </div>
     );

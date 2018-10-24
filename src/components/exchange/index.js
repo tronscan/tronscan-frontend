@@ -6,6 +6,8 @@ import {tu} from "../../utils/i18n";
 import xhr from "axios/index";
 import ExchangeList from "./components/ExchangeList/index";
 import ExchangeContent from "./components/ExchangeContent/index";
+import ExchangeRecord from "./components/ExchangeRecord/index";
+
 
 class Exchange extends React.Component {
 
@@ -22,7 +24,6 @@ class Exchange extends React.Component {
   }
 
   componentDidMount() {
-    
   }
 
   
@@ -30,7 +31,7 @@ class Exchange extends React.Component {
   render() {
     return (
       <main className="container header-overlap exchange">
-        <div className="d-flex">
+        <div className="d-flex mb-2">
           {/* 左侧 交易list */}
           <div style={{width: '380px'}}>
             <ExchangeList/>
@@ -41,6 +42,7 @@ class Exchange extends React.Component {
             <ExchangeContent/>
           </div>
         </div>
+        <ExchangeRecord/>
       </main>
     );
   }

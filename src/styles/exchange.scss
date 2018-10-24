@@ -1,4 +1,12 @@
 .exchange{
+  $red: #E60815;
+  $green: #69C265;
+  .col-red{
+    color: $red;
+  }
+  .col-green{
+    color: $green;
+  }
   hr{
     margin: 0.4rem 0;
   }
@@ -11,6 +19,7 @@
   // exchange list
   &-list{
     background: #fff;
+      height: 100%;
 
     h6{
       font-weight: bold;
@@ -40,6 +49,14 @@
           border-color: #fff;
           padding: 4px 8px!important;
         }
+      }
+    }
+    &-mark{
+      background: #fff;
+    }
+    &-explain{
+      &__content{
+        background: #F3F3F3;
       }
     }
   }
@@ -99,6 +116,38 @@
     }
     
   }
+
+  // __transactionlist
+  &__transactionlist{
+    background: #fff;
+
+    .buy{
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -9px;
+        bottom: 0;
+        height: 30px;
+        width: 2px;
+        background: #69C265;
+      }
+    }
+    .sell{
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -9px;
+        bottom: 0;
+        height: 30px;
+        width: 2px;
+        background: #E60815;
+      }
+    }
+  }
   
   .ant-tabs{
     &-ink-bar{
@@ -121,8 +170,15 @@
   // from
   .ant-form{
     &-item{
-      margin-bottom: 14px;
+      // margin-bottom: 14px;
+
+      &-label{
+        padding: 0;
+      }
     }
+  }
+  .has-error .ant-form-explain, .has-error .ant-form-split{
+    // font-size: 12px;
   }
 
   .ant-btn{
@@ -137,26 +193,24 @@
       height: 36px;
     }
   }
+  .ant-input-group-addon{
+    border-radius: 2px;
+  }
 
   .success{
     background: #69C265;
     color: #fff;
     border-color: #69C265;
     border-radius: 2px;
-
-    // &.ant-btn-clicked{
-    //   &:after{
-    //     background: #69C265;
-    //     color: #69C265;
-    //     border-color: #69C265;
-    //   }
-      
-    // }
   }
   .warning{
     background: #F5A623;
     color: #fff;
     border-color: #F5A623;
+    border-radius: 2px;
+  }
+
+  .ant-input{
     border-radius: 2px;
   }
 }
