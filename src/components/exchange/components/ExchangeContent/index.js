@@ -23,7 +23,7 @@ class ExchangeList extends React.Component {
   }
 
   componentDidMount() {
-    
+      
   }
 
   render() {

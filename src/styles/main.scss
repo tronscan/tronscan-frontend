@@ -1854,3 +1854,32 @@ h5 {
   transform: none!important;
 }
 
+.apply_btn {
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(197, 48, 40);
+  cursor: pointer;
+  font-size: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-plus-square:hover{
+  color: #ffffff;
+}
+.dex-inject{
+  font-size: 14px;
+  margin-right: 20px;
+  color: #69C265;
+  cursor: pointer;
+}
+.dex-divestment{
+  font-size: 14px;
+  margin-left: 20px;
+  margin-right: 8px;
+  color: #F5A623;
+  cursor: pointer;
+}

@@ -20,6 +20,8 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
+import CreateTxnPairModal from "./CreateTxnPairModal";
+import OperateTxnPairModal from "./OperateTxnPairModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
@@ -50,7 +52,8 @@ class Account extends Component {
               value:1
           }
       ],
-      selectedResource:0
+      selectedResource:0,
+      hasTransactionPair:0
     };
 
   }
@@ -457,23 +460,6 @@ class Account extends Component {
 
           </SweetAlert>
       )
-      //   modal: (
-      //       <UnFreezeBalanceModal
-      //           frozenTrx={currentWallet.frozenTrx}
-      //           privateKey={privateKey}
-      //           onHide={this.hideModal}
-      //           onError={() => {
-      //               this.setState({
-      //                   modal: (
-      //                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-      //                         Something went wrong while trying to freeze TRX
-      //                       </SweetAlert>
-      //                   )
-      //               });
-      //           }}
-      //           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
-      //       />
-      //   )
     })
   };
 
@@ -650,6 +636,26 @@ class Account extends Component {
       )
     });
   };
+  CreateTxnPair = () => {
+      this.setState({
+          modal: (
+              <CreateTxnPairModal
+                  onConfirm={(name) => this.updateName(name)}
+                  onCancel={this.hideModal}/>
+          )
+      });
+  };
+  OperateTxnPair = () => {
+      this.setState({
+          modal: (
+              <OperateTxnPairModal
+                  onConfirm={(name) => this.updateName(name)}
+                  onCancel={this.hideModal}/>
+          )
+      });
+  };
+
+
 
   changeGithubURL = async () => {
     this.setState({
@@ -1092,6 +1098,135 @@ class Account extends Component {
               </div>
             </div>
           </div>
+          {
+              !currentWallet.representative.enabled ?
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between">
+                            <h5 className="card-title text-center">
+                              我的交易对
+                            </h5>
+                            <p className="card-text">
+                              <a href="javascript:" className="float-right btn btn-default btn-sm btn-plus-square"
+                                 onClick={() => {
+                                     this.CreateTxnPair()
+                                 }}>
+                                <i className="fa fa-plus-square"></i>
+                                &nbsp;
+                                  {tu("创建交易对")}
+                              </a>
+                            </p>
+                          </div>
+                          <table className="table m-0 temp-table mt-4">
+                            <thead className="thead-light">
+                            <tr>
+                              <th>{tu("交易对")}</th>
+                              <th>{tu("余额")}</th>
+                              <th className="text-right"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>
+                                      {tu('IGG/MEETONE')}
+                                  </td>
+                                  <td>
+                                    <FormattedNumber value={20000000 / ONE_TRX}/>
+                                  </td>
+                                  <td className="text-right">
+                                    <span className="dex-inject"
+                                          onClick={() => {
+                                              this.OperateTxnPair()
+                                          }}
+                                    >
+                                      注资
+                                    </span>
+                                    |
+                                    <span className="dex-divestment"
+                                          onClick={() => {
+                                              this.OperateTxnPair()
+                                          }}
+                                    >
+                                      撤资
+                                    </span>
+                                  </td>
+                                </tr>
+                               <tr>
+                                 <td>
+                                     {tu('IGG/MEETONE')}
+                                 </td>
+                                 <td>
+                                   <FormattedNumber value={20000000 / ONE_TRX}/>
+                                 </td>
+                                 <td className="text-right">
+                                    <span className="dex-inject"
+                                          onClick={() => {
+                                              this.changeName()
+                                          }}
+                                    >
+                                      注资
+                                    </span>
+                                   |
+                                   <span className="dex-divestment">
+                                      撤资
+                                    </span>
+                                 </td>
+                               </tr>
+                               <tr>
+                                 <td>
+                                     {tu('IGG/MEETONE')}
+                                 </td>
+                                 <td>
+                                   <FormattedNumber value={20000000 / ONE_TRX}/>
+                                 </td>
+                                 <td className="text-right">
+                                    <span className="dex-inject"
+                                          onClick={() => {
+                                              this.changeName()
+                                          }}
+                                    >
+                                      注资
+                                    </span>
+                                   |
+                                   <span className="dex-divestment">
+                                      撤资
+                                    </span>
+                                 </td>
+                               </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div> :
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <h5 className="card-title text-center m-0">
+                            创建交易对
+                          </h5>
+                          <p className="pt-3">
+                            创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易
+                            对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易
+                            对创建交易对
+                          </p>
+                          <div className="m-auto">
+                            <a href="mailto:talent@tron.network?subject=Create A Deal Pair&amp;body=" className="apply_btn">Create Now</a>
+                            {/*<button className="apply-super-btn btn btn-success"*/}
+                                    {/*onClick={() => {*/}
+                                        {/*this.applyForDelegate()*/}
+                                    {/*}}>*/}
+                                {/*{tu("填写邮件")}*/}
+                            {/*</button>*/}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          }
           {
             currentWallet.representative.enabled ?
                 <div className="row mt-3">
