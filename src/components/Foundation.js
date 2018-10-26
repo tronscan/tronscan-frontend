@@ -178,13 +178,17 @@ class Accounts extends Component {
             </div>
 
             <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
-                <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank">
+                <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" className="tronics_plan_link">
                     <div className="card h-100 widget-icon">
                         <div className="card-body pl-4">
                             <h3>
-                                <FormattedNumber value={tronicsPlanTRX}/>
+                                <span className="tronics_plan_title">
+                                    <FormattedNumber value={tronicsPlanTRX}/>
+                                </span>
                             </h3>
-                            {tu("tronics_support_planTRX")}
+                            <span className="tronics_plan_dec">
+                                {tu("tronics_support_planTRX")}
+                            </span>
                         </div>
                     </div>
                 </a>

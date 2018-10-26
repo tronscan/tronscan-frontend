@@ -1857,5 +1857,21 @@ h5 {
     background-color: #C23631!important;
     color: #ffffff;
   }
+}
+.tronics_plan_link{
+    text-decoration: none!important;
+}
 
+.tronics_plan_dec{
+  text-decoration: underline;
+}
+.tronics_plan_link:hover{
+  .tronics_plan_dec{
+    &{
+      color: #C23631!important;
+      span{
+        color: #C23631!important;
+      }
+    }
+  }
 }
