@@ -457,23 +457,6 @@ class Account extends Component {
 
           </SweetAlert>
       )
-      //   modal: (
-      //       <UnFreezeBalanceModal
-      //           frozenTrx={currentWallet.frozenTrx}
-      //           privateKey={privateKey}
-      //           onHide={this.hideModal}
-      //           onError={() => {
-      //               this.setState({
-      //                   modal: (
-      //                       <SweetAlert warning title={tu("Error")} onConfirm={this.hideModal}>
-      //                         Something went wrong while trying to freeze TRX
-      //                       </SweetAlert>
-      //                   )
-      //               });
-      //           }}
-      //           onConfirm={({amount}) => this.showFreezeConfirmation(amount)}
-      //       />
-      //   )
     })
   };
 
@@ -834,7 +817,7 @@ class Account extends Component {
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
                   <h3 style={{color: '#C23631'}}>
-                    <FormattedNumber value={currentWallet.bandwidth.netRemaining}/>
+                    <FormattedNumber value={currentWallet.bandwidth.netRemaining + currentWallet.bandwidth.freeNetRemaining}/>
                   </h3>
                   {/* <a href="javascript:;"
                      onClick={() => this.setState(state => ({showBandwidth: !state.showBandwidth}))}>

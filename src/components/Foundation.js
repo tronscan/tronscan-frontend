@@ -28,7 +28,6 @@ class Accounts extends Component {
     this.loadAccounts();
   }
 
-
   loadAccounts = async (page = 1, pageSize = 20) => {
     let planAddress = [
         {
@@ -83,12 +82,9 @@ class Accounts extends Component {
 
 
   renderAccounts() {
-
-
     let {accounts, total, loadAccounts,open} = this.state;
     let {intl} = this.props;
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' 1000 ' + intl.formatMessage({id: 'address_unit'})
-
     let column = [
       {
         title: '#',
@@ -96,7 +92,13 @@ class Accounts extends Component {
         key: 'key',
         width: 100,
         align: 'left',
-        className: 'ant_table'
+        //className: 'ant_table ant_table_plan',
+        // rowClassName: (record,index) => {
+        //     console.log('record',record)
+        //     return (
+        //         record.isPlan?  'ant_table_plan' :'ant_table'
+        //     )
+        // }
       },
       {
         title: intl.formatMessage({id: 'address'}),
@@ -111,7 +113,7 @@ class Accounts extends Component {
                                         onMouseOver={() => this.setState({open: true})}
                                         onMouseOut={() => this.setState({open: false})}>
                                         <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
-                                        <AddressLink address={text}/>
+                                        <AddressLink address={text} truncate={false}/>
                                     </div>
                                     <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={open}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
                               </div>:<AddressLink address={text}/>
@@ -139,7 +141,7 @@ class Accounts extends Component {
                 <div className="card table_pos">
                   {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
                     <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank" style={{color:'#C23631'}}>{tu('tronics_support_plan')}></a></div> : ''}
-                    <Table bordered={true} columns={column} dataSource={accounts}
+                    <Table bordered={true} columns={column} dataSource={accounts} rowClassName={(record, index) => { return  record.isPlan ?  'ant_table_plan' :'' }}
                            onChange={(pagination) => {
                                this.loadAccounts(pagination.current, pagination.pageSize)
                            }}
@@ -152,7 +154,7 @@ class Accounts extends Component {
 
   render() {
 
-    let {match} = this.props;
+    let {match,intl} = this.props;
     let {total, loading,planAddress} = this.state;
     let tronicsPlanTRX = 0;
     for(let plan in planAddress){
@@ -176,16 +178,17 @@ class Accounts extends Component {
             </div>
 
             <div className="col-md-3 mt-3 mt-md-0 position-relative pr-0">
-              <div className="card h-100 widget-icon">
-                <div className="card-body pl-4">
-                  <h3>
-                    <FormattedNumber value={tronicsPlanTRX}/>
-                  </h3>
-                  {tu("tronics_support_planTRX")}
-                </div>
-              </div>
+                <a href={intl.locale == 'zh'?"https://tron.network/donation?lng=zh":"https://tron.network/donation?lng=en"} target="_blank">
+                    <div className="card h-100 widget-icon">
+                        <div className="card-body pl-4">
+                            <h3>
+                                <FormattedNumber value={tronicsPlanTRX}/>
+                            </h3>
+                            {tu("tronics_support_planTRX")}
+                        </div>
+                    </div>
+                </a>
             </div>
-
             <div className="col-md-3 mt-3 mt-md-0 pr-0">
               <div className="card h-100 widget-icon">
                 <div className="card-body pl-4 bg-image_home" >

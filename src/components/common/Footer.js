@@ -23,7 +23,7 @@ class Footer extends Component {
                                 <h5>TRON</h5>
                                 <div className="line"></div>
                                 <ul className="list-unstyled quick-links pt-3">
-                                    <li className="p-2"><HrefLink href="https://stateoftrondapps.com/"><i
+                                    <li className="p-2"><HrefLink href="https://dapphouse.org"><i
                                         className="fa fa-angle-right mr-4"/> DApps</HrefLink></li>
                                     <li className="p-2"><HrefLink
                                         href={activeLanguage == 'zh' ? 'https://tron.network/exchangesList?lng=zh' : 'https://tron.network/exchangesList?lng=en'}><i

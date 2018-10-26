@@ -17,7 +17,6 @@
     <meta property="og:site_name" content="Tron">
     <meta name="twitter:title" property="og:title" content="TRON BlockChain Explorer"/>
     <meta property="og:url" content="https://tronscan.org"/>
-    <meta name="description"  property="og:description" content="Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information."/>
     <meta name="keywords" content="tron浏览器,tronscan,孙宇晨,Justin sun,波场浏览器,波场区块链浏览器,区块链浏览器,trx 论坛,tron forums,trx forums,eos,qtum,neo,eth,Crypt">
     <meta name="twitter:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
     <meta property="og:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
@@ -29,9 +28,24 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-117929022-4');
     </script>
+    <script>
+        var description;
+        var lang = navigator.language||navigator.userLanguage;
+        lang = lang.substr(0, 2);
+        if(lang == 'zh'){
+            description = "Tronscan是波场的区块浏览器，让您探索、使用波场TRON区块链，实现交易、账户、代币、节点、投票和市场信息的相关功能。"
+        }else{
+            description = "Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information."
+        }
+        var meta = document.createElement("meta");
+        meta.setAttribute("name","description");
+        meta.setAttribute("property","og:description");
+        meta.setAttribute("content",description);
+        document.getElementsByTagName('head')[0].appendChild(meta)
+    </script>
+
 
   </head>
   <body>
