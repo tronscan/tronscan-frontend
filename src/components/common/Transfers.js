@@ -208,7 +208,7 @@ class Transfers extends React.Component {
                         {tableInfo}
                     </div>
                     <div className="table_pos_switch d-none d-md-block">
-                      <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                      <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" hoverText="only_TRX_transfers"/>
                     </div>
                   </div> : ''
           }
