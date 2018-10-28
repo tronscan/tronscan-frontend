@@ -4,13 +4,13 @@ import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
-import {FormattedNumber} from "react-intl";
+import {FormattedNumber,injectIntl} from "react-intl";
 import TimeAgo from "react-timeago";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 
-export default class Blocks extends React.Component {
+class Blocks extends React.Component {
 
   constructor(props) {
     super(props);
@@ -131,3 +131,6 @@ export default class Blocks extends React.Component {
     )
   }
 }
+
+
+export default injectIntl(Blocks)

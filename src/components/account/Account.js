@@ -7,6 +7,7 @@ import {injectIntl} from "react-intl";
 import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
+import { SwitchToken } from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, ExternalLink, HrefLink, TokenLink} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -50,7 +51,7 @@ class Account extends Component {
               value:1
           }
       ],
-      selectedResource:0
+      selectedResource:0,
     };
 
   }
@@ -99,15 +100,23 @@ class Account extends Component {
   };
 
   renderTokens() {
-
+    let {hideSmallCurrency} = this.state;
     let {tokenBalances = []} = this.props;
 
-    tokenBalances = _(tokenBalances)
-        .filter(tb => tb.name.toUpperCase() !== "TRX")
-        .filter(tb => tb.balance > 0)
-        .sortBy(tb => tb.name)
-        .value();
 
+    if(hideSmallCurrency){
+        tokenBalances = _(tokenBalances)
+            .filter(tb => tb.name.toUpperCase() !== "TRX")
+            .filter(tb => tb.balance > 10)
+            .sortBy(tb => tb.name)
+            .value();
+    }else{
+        tokenBalances = _(tokenBalances)
+            .filter(tb => tb.name.toUpperCase() !== "TRX")
+            .filter(tb => tb.balance > 0)
+            .sortBy(tb => tb.name)
+            .value();
+    }
     if (tokenBalances.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
@@ -782,8 +791,12 @@ class Account extends Component {
     window.location.hash = "#/myToken";
   }
 
+  handleSwitch = (val) => {
+      this.setState({hideSmallCurrency: val});
+  }
+
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
@@ -1017,9 +1030,13 @@ class Account extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
-                  <h5 className="card-title text-center m-0">
-                    {tu("tokens")}
-                  </h5>
+                  <div className="d-flex justify-content-between">
+                    <h5 className="card-title text-center m-0">
+                        {tu("tokens")}
+                    </h5>
+                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                  </div>
+
                   {this.renderTokens()}
                 </div>
               </div>

@@ -1,54 +1,129 @@
 import React from "react";
 import {tu} from "../../../utils/i18n";
-import {FormattedNumber} from "react-intl";
+import {FormattedNumber,injectIntl} from "react-intl";
 import {filter} from "lodash";
 import {TokenLink} from "../../common/Links";
+import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
-import {ONE_TRX} from "../../../constants";
+import _ from "lodash";
 
-export function TokenBalances({tokenBalances, intl}) {
-  let balances = filter(tokenBalances, function(o) {
-    return o.name != "TRX"
-  })
-  
-  if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
-    return (
-        <div className="text-center p-3 no-data">
-          {tu("no_tokens_found")}
-        </div>
-    );
-  }
-  let column = [
-    {
-      title: upperFirst(intl.formatMessage({id: 'token'})),
-      dataIndex: 'name',
-      key: 'name',
-      align: 'left',
-      className: 'ant_table',
-      render: (text, record, index) => {
-        return <TokenLink name={text} address={record.address}/>
-      }
-    },
-    {
-      title: upperFirst(intl.formatMessage({id: 'balance'})),
-      dataIndex: 'balance',
-      key: 'balance',
-      align: 'right',
-      className: 'ant_table',
-      render: (text, record, index) => {
-        return <FormattedNumber value={text}/>
-      }
-    },
+export  class TokenBalances extends React.Component {
 
-  ];
-  let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
+    constructor(props) {
+        super(props);
+        this.state = {
+            hideSmallCurrency:false,
+            balances:[],
+            emptyState: props.emptyState,
+        };
+    }
+
+    componentDidMount() {
+        this.load();
+    }
+
+    onChange = (page, pageSize) => {
+        this.load(page, pageSize);
+    };
+
+    load =  (page = 1, pageSize = 20) => {
+        let {hideSmallCurrency} = this.state;
+        let {tokenBalances} = this.props;
+        let balances;
+        console.log('hideSmallCurrency',hideSmallCurrency)
+        if(hideSmallCurrency){
+            balances = _(tokenBalances)
+                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.balance > 10)
+                .sortBy(tb => tb.name)
+                .value();
+        }else{
+            balances = _(tokenBalances)
+                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.balance > 0)
+                .sortBy(tb => tb.name)
+                .value();
+        }
+        console.log('balances',balances)
+        this.setState({
+            page,
+            balances,
+        });
+    };
+
+    handleSwitch = (val) => {
+        this.setState({
+            hideSmallCurrency: val
+        },() => {
+            this.load();
+        });
+    }
 
 
-  return (
-      <div className="token_black table_pos">
-        {balances.length ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-        <SmartTable bordered={true} column={column} data={balances} total={balances.length}/>
-      </div>
-  )
+    customizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: upperFirst(intl.formatMessage({id: 'token'})),
+                dataIndex: 'name',
+                key: 'name',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <TokenLink name={text} address={record.address}/>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'balance'})),
+                dataIndex: 'balance',
+                key: 'balance',
+                align: 'right',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <FormattedNumber value={text}/>
+                }
+            },
+
+        ];
+        return column;
+    }
+    render() {
+
+        let {page, total, pageSize, loading, balances, emptyState: EmptyState = null} = this.state;
+        let column = this.customizedColumn();
+        let {intl} = this.props;
+
+        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
+        if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
+            if (!EmptyState) {
+                return (
+                    <div className="text-center p-3 no-data">
+                        {tu("no_tokens_found")}
+                    </div>
+                );
+            }
+            return <EmptyState />;
+        }
+
+
+        return (
+            <div className="token_black table_pos">
+                {
+                    balances.length ?
+                        <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
+                          <div className="table_pos_info d-none d-md-block">
+                              {tableInfo}
+                          </div>
+                          <div className="table_pos_switch d-none d-md-block">
+                            <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                          </div>
+                        </div> : ''
+                }
+              <SmartTable bordered={true} column={column} data={balances} total={balances.length}/>
+            </div>
+        )
+    }
 }
+
+export default injectIntl(TokenBalances)

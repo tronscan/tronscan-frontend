@@ -20,8 +20,6 @@ import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 
 class Address extends React.Component {
-
-
   constructor({match}) {
     super();
 

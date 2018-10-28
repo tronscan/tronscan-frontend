@@ -400,7 +400,17 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   &_info{
     position: absolute;
     top: 26px;
-    left: 38px;
+    left: 0px;
+    color: $text-block-dark;
+    z-index: 1;
+    @media screen and (max-width: 768px) {
+      top: 43px;
+    }
+  }
+  &_switch{
+    position: absolute;
+    top: 26px;
+    left: 200px;
     color: $text-block-dark;
     z-index: 1;
     @media screen and (max-width: 768px) {

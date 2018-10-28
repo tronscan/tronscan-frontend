@@ -1166,7 +1166,10 @@ export const messages = {
     "success_unfrozen_trx":"成功解冻TRX",
     "please_select_the_type_of_unfreeze":"请选择解冻类型",
     "unfreeze_bandwidth":"解冻带宽账户来获取TRX",
-    "unfreeze_energy":"解冻能量账户来获取TRX"
+    "unfreeze_energy":"解冻能量账户来获取TRX",
+    "hide_small_currency":"隐藏小额币种",
+    "tokens_less_than_10":"通证数量小于10的币种",
+    "only_TRX_transfers":"只显示TRX转账",
 
 
 };

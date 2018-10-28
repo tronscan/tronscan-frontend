@@ -1177,9 +1177,9 @@ export const messages = {
   "success_unfrozen_trx":"Successfully Unfrozen TRX",
   "please_select_the_type_of_unfreeze":"Please select the type of unfreeze",
   "unfreeze_bandwidth":"Unfreeze the bandwidth account to get TRX",
-  "unfreeze_energy":"Unfreeze the energy account to get TRX"
-
-
-
+  "unfreeze_energy":"Unfreeze the energy account to get TRX",
+  "hide_small_currency":"Hide small balances",
+  "tokens_less_than_10":"Tokens with a quantity less than 10",
+  "only_TRX_transfers":"Only TRX transfers",
 
 };

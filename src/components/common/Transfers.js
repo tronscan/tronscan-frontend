@@ -14,6 +14,8 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {ContractTypes} from "../../utils/protocol";
+import {SwitchToken} from "./Switch";
+import _ from "lodash";
 
 class Transfers extends React.Component {
 
@@ -28,7 +30,8 @@ class Transfers extends React.Component {
       pageSize: 25,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
-      autoRefresh: props.autoRefresh || false
+      autoRefresh: props.autoRefresh || false,
+      hideSmallCurrency:false
     };
   }
 
@@ -45,10 +48,10 @@ class Transfers extends React.Component {
   };
 
   load = async (page = 1, pageSize = 20) => {
-
+    let transfersTRX;
     let {filter} = this.props;
 
-    let {showTotal} = this.state;
+    let {showTotal,hideSmallCurrency} = this.state;
 
     this.setState({loading: true});
 
@@ -71,14 +74,30 @@ class Transfers extends React.Component {
       }
     })
 
+    console.log("transfers",transfers)
+    if(hideSmallCurrency){
+        transfersTRX = _(transfers)
+            .filter(tb => tb.tokenName.toUpperCase() === "TRX")
+            .value();
+    }else{
+        transfersTRX = transfers
+
+    }
+    console.log("transfersTRX",transfersTRX)
     this.setState({
       page,
-      transfers,
+      transfers:transfersTRX,
       total,
       loading: false,
     });
   };
-
+  handleSwitch = (val) => {
+      this.setState({
+          hideSmallCurrency: val
+      },() => {
+          this.load();
+      });
+  }
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
@@ -182,7 +201,17 @@ class Transfers extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+          {
+              total ?
+                  <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
+                    <div className="table_pos_info d-none d-md-block">
+                        {tableInfo}
+                    </div>
+                    <div className="table_pos_switch d-none d-md-block">
+                      <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                    </div>
+                  </div> : ''
+          }
           <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
