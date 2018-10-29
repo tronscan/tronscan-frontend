@@ -799,6 +799,7 @@ class Account extends Component {
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
+    console.log('currentWallet',currentWallet)
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -846,7 +847,7 @@ class Account extends Component {
               <div className="card h-100 bg-line_blue bg-image_engry">
                 <div className="card-body">
                   <h3 style={{color: '#4A90E2'}}>
-                    <FormattedNumber value={currentWallet.frozenEnergy / ONE_TRX}/>
+                    <FormattedNumber value={currentWallet.bandwidth.energyRemaining}/>
                   </h3>
                     {tu("energy")}
                 </div>

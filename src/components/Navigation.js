@@ -378,7 +378,7 @@ class Navigation extends PureComponent {
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-server mr-2"/>
-                      <FormattedNumber value={wallet.current.frozenEnergy / ONE_TRX}/> {tu("energy")}
+                      <FormattedNumber value={wallet.current.bandwidth.energyRemaining}/> {tu("energy")}
                       <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <Link className="dropdown-item"
