@@ -1181,5 +1181,5 @@ export const messages = {
   "hide_small_currency":"Hide small balances",
   "tokens_less_than_10":"Tokens with a quantity less than 10",
   "only_TRX_transfers":"Only TRX transfers",
-
+  "no_transfers_found":"No transfers found",
 };

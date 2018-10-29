@@ -1170,6 +1170,6 @@ export const messages = {
     "hide_small_currency":"隐藏小额币种",
     "tokens_less_than_10":"通证数量小于10的币种",
     "only_TRX_transfers":"只显示TRX转账",
-
+    "no_transfers_found":"未查询到转账",
 
 };

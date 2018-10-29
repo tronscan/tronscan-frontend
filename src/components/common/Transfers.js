@@ -186,8 +186,7 @@ class Transfers extends React.Component {
     let column = this.customizedColumn();
     let {intl} = this.props;
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
-
-
+    let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
     // if (!loading && transfers.length === 0) {
     //   if (!EmptyState) {
     //     return (
@@ -209,7 +208,7 @@ class Transfers extends React.Component {
               <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
             </div>
           </div>
-          <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
+          <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
                       }}/>
