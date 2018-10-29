@@ -31,7 +31,6 @@ export  class TokenBalances extends React.Component {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances} = this.props;
         let balances;
-        console.log('hideSmallCurrency',hideSmallCurrency)
         if(hideSmallCurrency){
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
@@ -45,7 +44,6 @@ export  class TokenBalances extends React.Component {
                 .sortBy(tb => tb.name)
                 .value();
         }
-        console.log('balances',balances)
         this.setState({
             page,
             balances,

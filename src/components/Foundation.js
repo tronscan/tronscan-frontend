@@ -94,7 +94,6 @@ class Accounts extends Component {
         align: 'left',
         //className: 'ant_table ant_table_plan',
         // rowClassName: (record,index) => {
-        //     console.log('record',record)
         //     return (
         //         record.isPlan?  'ant_table_plan' :'ant_table'
         //     )

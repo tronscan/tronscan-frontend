@@ -25,34 +25,40 @@ class Transfers extends React.Component {
     this.state = {
       filter: {},
       transfers: [],
-      page: 0,
+      page: 1,
       total: 0,
-      pageSize: 25,
+      pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
-      hideSmallCurrency:true
+      hideSmallCurrency:true,
+      tokenName:"TRX"
     };
   }
 
   componentDidMount() {
-    this.load();
+    let {page, pageSize} = this.state;
+    this.load(page,pageSize);
 
     if (this.state.autoRefresh !== false) {
-      this.props.setInterval(() => this.load(), this.state.autoRefresh);
+      this.props.setInterval(() => this.load(page,pageSize), this.state.autoRefresh);
     }
   }
 
   onChange = (page, pageSize) => {
-    this.load(page, pageSize);
+      this.setState({
+          page:page,
+          pageSize:pageSize
+      },() => {
+          this.load(page, pageSize);
+      });
+
   };
 
-  load = async (page = 1, pageSize = 20) => {
+  load = async (page, pageSize) => {
     let transfersTRX;
     let {filter} = this.props;
-
-    let {showTotal,hideSmallCurrency} = this.state;
-
+    let {showTotal,hideSmallCurrency,tokenName} = this.state;
     this.setState({loading: true});
 
     let {transfers, total} = await Client.getTransfers({
@@ -61,6 +67,7 @@ class Transfers extends React.Component {
       start: (page - 1) * pageSize,
       count: showTotal ? true : null,
       total: this.state.total,
+      token: tokenName,
       ...filter,
     });
 
@@ -74,7 +81,6 @@ class Transfers extends React.Component {
       }
     })
 
-    console.log("transfers",transfers)
     if(hideSmallCurrency){
         transfersTRX = _(transfers)
             .filter(tb => tb.tokenName.toUpperCase() === "TRX")
@@ -83,7 +89,6 @@ class Transfers extends React.Component {
         transfersTRX = transfers
 
     }
-    console.log("transfersTRX",transfersTRX)
     this.setState({
       page,
       transfers:transfersTRX,
@@ -92,11 +97,23 @@ class Transfers extends React.Component {
     });
   };
   handleSwitch = (val) => {
-      this.setState({
-          hideSmallCurrency: val
-      },() => {
-          this.load();
-      });
+      let {page, pageSize} = this.state;
+      if(val){
+          this.setState({
+              hideSmallCurrency: val,
+              tokenName:"TRX",
+          },() => {
+              this.load(1,20);
+          });
+      }else {
+          this.setState({
+              hideSmallCurrency: val,
+              tokenName:'',
+          },() => {
+              this.load(1,20);
+          });
+      }
+
   }
   customizedColumn = () => {
     let {intl} = this.props;
@@ -185,8 +202,16 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
-    let Num = total - pageSize + transfers.length
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + Num + ' ' + intl.formatMessage({id: 'transfers_unit'})
+    //let Num ;
+    // let lastPage =  Math.ceil(total/pageSize);
+    // let lastPageNum =  total%pageSize;
+    // if(page<lastPage){
+    //     Num = total - pageSize + transfers.length;
+    // }else if(page === lastPage){
+    //     Num = total - lastPageNum + transfers.length;
+    // }
+
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
     // if (!loading && transfers.length === 0) {
     //   if (!EmptyState) {
@@ -203,7 +228,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
               {
-                  Num>0?<div className="table_pos_info d-none d-md-block">
+                  total>0?<div className="table_pos_info d-none d-md-block">
                       {tableInfo}
                     </div>:""
               }
@@ -213,7 +238,7 @@ class Transfers extends React.Component {
           </div>
           <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale}
                       onPageChange={(page, pageSize) => {
-                        this.load(page, pageSize)
+                        this.onChange(page, pageSize)
                       }}/>
         </div>
     )
