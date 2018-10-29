@@ -38,7 +38,7 @@ class Home extends Component {
 
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap?total=1");
+    let {data} = await xhr.get("http://18.216.57.65:20110/api/node");
     this.setState({
       onlineNodes: data.total
     })

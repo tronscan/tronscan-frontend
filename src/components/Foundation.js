@@ -21,7 +21,7 @@ class Accounts extends Component {
       loading: true,
       searchString: "",
       accounts: [],
-      total: 0,
+      total: 1000,
       open: false,
     }
   }
@@ -34,10 +34,12 @@ class Accounts extends Component {
   loadAccounts = async (page = 1, pageSize = 20) => {
     let planAddress = [
         {
-            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV'
+            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV',
+            balance: 48051405879291
         },
         {
-            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
+            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR',
+            balance: 47301714286684
         }
     ]
     this.setState({loading: true});
@@ -67,14 +69,14 @@ class Accounts extends Component {
         for(let address in planAddress){
             if(foundationAddress[item].address === planAddress[address].address){
                 foundationAddress[item].isPlan= true;
-                // planAddress[address].balance = parseFloat(trim(foundationAddress[item].balance.split('TRX')[0]));
             }
         }
     }
+
     this.setState({
         loading: false,
         accounts: foundationAddress,
-        total: data.data.data.pages,
+        total: data.data.data.total/ONE_TRX,
         planAddress:planAddress
     });
 
@@ -164,7 +166,7 @@ class Accounts extends Component {
     for(let plan in planAddress){
         tronicsPlanTRX += planAddress[plan].balance
     }
-    tronicsPlanTRX = Math.round(tronicsPlanTRX)
+    tronicsPlanTRX = Math.round(tronicsPlanTRX / ONE_TRX)
     let foundationTRX =  Math.round(total - tronicsPlanTRX)
     return (
         <main className="container header-overlap pb-3 token_black">
