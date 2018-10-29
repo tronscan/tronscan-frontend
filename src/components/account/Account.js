@@ -52,6 +52,7 @@ class Account extends Component {
           }
       ],
       selectedResource:0,
+      hideSmallCurrency:true
     };
 
   }

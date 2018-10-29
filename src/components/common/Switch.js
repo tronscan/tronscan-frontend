@@ -8,7 +8,7 @@ export class SwitchToken extends React.Component {
     constructor() {
         super();
         this.state = {
-            hideSmallCurrency: false,
+            hideSmallCurrency: true,
         };
     }
     handleToggle = (prop) => {
@@ -21,14 +21,17 @@ export class SwitchToken extends React.Component {
 
     render() {
         let {hideSmallCurrency} = this.state;
-        let {text,hoverText} = this.props;
+        let {text = "",hoverText = "",isHide = true} = this.props;
         return (
             <div className="card-title m-0 d-flex">
                 <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
                 <p className="ml-2 mr-2">{tu(text)}</p>
-                <div style={{marginTop:'0.2rem'}}>
-                    <QuestionMark placement="top" text={hoverText}/>
-                </div>
+                {
+                    isHide?<div style={{marginTop:'0.2rem'}}>
+                        <QuestionMark placement="top" text={hoverText}/>
+                    </div>:""
+                }
+
             </div>
         )
     }

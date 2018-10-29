@@ -13,7 +13,7 @@ export  class TokenBalances extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hideSmallCurrency:false,
+            hideSmallCurrency:true,
             balances:[],
             emptyState: props.emptyState,
         };

@@ -174,22 +174,38 @@ export default class SmartTable extends Component {
     const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
     
     return (
-        <div className="card table_pos">
-          <Table
-              bordered={bordered}
-              columns={columns}
-              rowKey={(record, index) => {
-                return index
-              }}
-              dataSource={data}
-              locale={locale}
-              scroll={scroll}
-              pagination={paginationStatus}
-              loading={loading}
-              onChange={this.handleTableChange}
-          />
+        <div>
+            {
+                data.length?<div className="card table_pos">
+                  <Table
+                      bordered={bordered}
+                      columns={columns}
+                      rowKey={(record, index) => {
+                          return index
+                      }}
+                      dataSource={data}
+                      locale={locale}
+                      scroll={scroll}
+                      pagination={paginationStatus}
+                      loading={loading}
+                      onChange={this.handleTableChange}
+                  /> </div>:<div className="card table_pos" style={{marginTop:"4rem"}}>
+                  <Table
+                      bordered={bordered}
+                      columns={columns}
+                      rowKey={(record, index) => {
+                          return index
+                      }}
+                      dataSource={data}
+                      locale={locale}
+                      scroll={scroll}
+                      pagination={paginationStatus}
+                      loading={loading}
+                      onChange={this.handleTableChange}
+                  />
+                </div>
+            }
         </div>
-
     )
   }
 }

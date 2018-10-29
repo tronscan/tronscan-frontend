@@ -156,7 +156,19 @@
             }
         }
     }
-
+    // 全局 table ant-switch 样式覆盖 ===============================
+    .table_pos_switch{
+        .ant-switch {
+            background-color: $border-color;
+            &-checked {
+                background-color: $main-red;
+            }
+            &-inner{
+                width: 2em;
+                text-align: center;
+            }
+        }
+    }
     // 全局ant-switch 样式覆盖 ===============================
     .ant-switch {
         background-color: $border-color;
@@ -167,7 +179,6 @@
             width: 3em;
             text-align: center;
         }
-        
     }
 
     @media screen and (max-width: 750px) {

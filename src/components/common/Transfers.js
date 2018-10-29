@@ -31,7 +31,7 @@ class Transfers extends React.Component {
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
-      hideSmallCurrency:false
+      hideSmallCurrency:true
     };
   }
 
@@ -87,7 +87,7 @@ class Transfers extends React.Component {
     this.setState({
       page,
       transfers:transfersTRX,
-      total,
+      total:transfersTRX.length,
       loading: false,
     });
   };
@@ -188,30 +188,27 @@ class Transfers extends React.Component {
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
 
 
-    if (!loading && transfers.length === 0) {
-      if (!EmptyState) {
-        return (
-            <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
-        );
-      }
-
-      return <EmptyState/>;
-    }
+    // if (!loading && transfers.length === 0) {
+    //   if (!EmptyState) {
+    //     return (
+    //         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
+    //     );
+    //   }
+    //
+    //   return <EmptyState/>;
+    // }
 
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {
-              total ?
-                  <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-                    <div className="table_pos_info d-none d-md-block">
-                        {tableInfo}
-                    </div>
-                    <div className="table_pos_switch d-none d-md-block">
-                      <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" hoverText="only_TRX_transfers"/>
-                    </div>
-                  </div> : ''
-          }
+          <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
+            <div className="table_pos_info d-none d-md-block">
+                {tableInfo}
+            </div>
+            <div className="table_pos_switch d-none d-md-block">
+              <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
+            </div>
+          </div>
           <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                       onPageChange={(page, pageSize) => {
                         this.load(page, pageSize)
