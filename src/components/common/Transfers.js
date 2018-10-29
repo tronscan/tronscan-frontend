@@ -87,7 +87,7 @@ class Transfers extends React.Component {
     this.setState({
       page,
       transfers:transfersTRX,
-      total:transfersTRX.length,
+      total:total,
       loading: false,
     });
   };
@@ -185,7 +185,7 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + (total - 20 + transfers.length) + ' ' + intl.formatMessage({id: 'transfers_unit'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
     // if (!loading && transfers.length === 0) {
     //   if (!EmptyState) {
