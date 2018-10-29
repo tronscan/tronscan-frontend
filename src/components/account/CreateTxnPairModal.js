@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {tu} from "../../utils/i18n";
+import {tu,t} from "../../utils/i18n";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import _ from "lodash";
 
@@ -153,7 +153,7 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>{tu("通证名称")}</label>
                             <select className="custom-select"
-                                value={}
+                               // value={}
                                 onChange={(e) => {this.resourceSelectChange(e.target.value)}}
 
                             >
