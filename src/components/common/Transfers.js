@@ -185,7 +185,8 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + (total - 20 + transfers.length) + ' ' + intl.formatMessage({id: 'transfers_unit'})
+    let Num = total - pageSize + transfers.length
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + Num + ' ' + intl.formatMessage({id: 'transfers_unit'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
     // if (!loading && transfers.length === 0) {
     //   if (!EmptyState) {
@@ -201,9 +202,11 @@ class Transfers extends React.Component {
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-            <div className="table_pos_info d-none d-md-block">
-                {tableInfo}
-            </div>
+              {
+                  Num>0?<div className="table_pos_info d-none d-md-block">
+                      {tableInfo}
+                    </div>:""
+              }
             <div className="table_pos_switch d-none d-md-block">
               <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
             </div>
