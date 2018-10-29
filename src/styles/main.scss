@@ -1875,3 +1875,16 @@ h5 {
     }
   }
 }
+
+.account-switch{
+  .ant-switch {
+    background-color: $border-color;
+    &-checked {
+      background-color: $main-red;
+    }
+    &-inner{
+      width: 2em;
+      text-align: center;
+    }
+  }
+}

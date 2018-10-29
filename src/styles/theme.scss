@@ -239,7 +239,9 @@ input,
 }
 
 .tooltip {
-  @extend .sandstone;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 500;
 }
 
 .close {

@@ -1031,7 +1031,7 @@ class Account extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between account-switch">
                     <h5 className="card-title text-center m-0">
                         {tu("tokens")}
                     </h5>

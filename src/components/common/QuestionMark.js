@@ -26,7 +26,7 @@ export class QuestionMark extends React.Component {
                     <i>?</i>
                 </div>
                 <Tooltip placement={placement} isOpen={open} target={id}>
-                    <span className="text-lowercase">{t(text)}</span>
+                    {t(text)}
                 </Tooltip>
             </div>
 
