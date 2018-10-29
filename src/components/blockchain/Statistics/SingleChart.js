@@ -125,8 +125,8 @@ class Statistics extends React.Component {
         let {intl} = this.props;
         let TronicsSupportPlanTotal = 48051406 + 47301714;
         let random = Math.random();
-        let balanceData = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
-        let TRONFoundationTotal = balanceData.data.total - TronicsSupportPlanTotal;
+        let balanceData = await xhr.get(`http://18.216.57.65:20110/api/fund?random="${random}&page_index=1&per_page=1`);
+        let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
         let {blocks} = await Client.getBlocks({
             limit: 1,
             sort: '-number',
