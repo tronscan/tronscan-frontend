@@ -15,8 +15,8 @@ class CreateTxnPairModal extends Component {
             secTokenIdArr:[],
             firstTokenID:"",
             secondTokenId:"",
-            firstTokenValue:"",
-            secondTokenValue:"",
+            firstTokenValue:0,
+            secondTokenValue:0,
             formTxnPair: {
                 txnpair_name_1: {
                     valid: false,
@@ -206,9 +206,11 @@ class CreateTxnPairModal extends Component {
                         </div>
                         <div className="col-md-6">
                             <label>{tu("余额")}
-                                <span>
+                                {
+                                    firstTokenBalances?<span>
                                      ({firstTokenBalances})
-                                </span>
+                                </span>:""
+                                }
                             </label>
                             <input className={"form-control" + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
                                    type="number"
@@ -248,9 +250,12 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>
                                 {tu("余额")}
-                                <span>
+                                {
+                                    secTokenBalances?<span>
                                     ({secTokenBalances})
-                                </span>
+                                </span>:""
+                                }
+
                             </label>
                             <input className={"form-control" + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
                                    type="number"
