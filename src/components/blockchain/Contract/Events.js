@@ -93,6 +93,9 @@ class Transactions extends React.Component {
     }
     oSele.innerHTML = statusmap[value]()
   }
+  getaddress(string) {
+    return tronWeb.address.fromHex(41 + string.split('0x')[1])
+  }
 
   customizedColumn = () => {
     let {intl, isInternal = false} = this.props;
@@ -107,7 +110,6 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-                  {/* <AddressLink address={record.contract_address}/> */}
                   <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
                   <span className="contract-event-block-number">#</span><BlockNumberLink number={record.block_number}/><br/>
                   <TimeAgo date={record.block_timestamp}/>
@@ -136,20 +138,24 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <div className="event">
-                    <div><a onClick={this.changeWapper.bind(this,index)}>{record.event_name}</a>
-
-                    {/* (index_topic_1<span className="e-blue"> address <span className="e-red">_from</span></span>,
-                                
-                    index_topic_2<span className="e-blue"> address  <span className="e-red">_to</span></span>,
-                               
-                                <span className="e-blue"> uint256 <span className="e-red">_value</span></span>) */}
+                    <div><a onClick={this.changeWapper.bind(this,index)} className="mr-2">{record.event_name}</a>
+                    ( {
+                       record.eventList.map(item => {
+                        return (
+                          <span className="e-blue" key={item.name}> {record.result_type[item.name]} <span className="e-red">{item.name}</span></span>
+                        )
+                       })
+                    } )
                     </div>
                     <div id={"event-wapper"+index} className="event-wapper p-3">{
                       record.eventList.map(item => {
-                        return <div className="mb-1 d-flex" key={item.name}>
-                        <span className="e-red mr-1">  <span className="e-blue">{item.name}</span></span>
-                        {/* <AddressLink address={item.value}/> */}
-                        <div>{item.value}</div>
+                        return <div className="mb-2" key={item.name}>
+                        <span className="e-blue mr-2">{record.result_type[item.name]} <span className="e-red">{item.name}</span></span>
+
+                        {record.result_type[item.name] == 'address'?
+                          <AddressLink address={this.getaddress(item.value)}/>:
+                          <div>{item.value}</div>
+                        }
                       </div>
                       })
                     }</div>
