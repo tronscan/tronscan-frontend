@@ -16,8 +16,10 @@
 
     <meta property="og:site_name" content="Tron">
     <meta name="twitter:title" property="og:title" content="TRON BlockChain Explorer"/>
+    <meta name="robots" content="noodp,noydir"/>
     <meta property="og:url" content="https://tronscan.org"/>
-    <meta name="keywords" content="tron浏览器,tronscan,孙宇晨,Justin sun,波场浏览器,波场区块链浏览器,区块链浏览器,trx 论坛,tron forums,trx forums,eos,qtum,neo,eth,Crypt">
+    <meta name="keywords" content="tronscan,explorer,trx,search,blockchain,crypto,currency,tron浏览器,孙宇晨,Justin sun,波场浏览器,波场区块链浏览器,区块链浏览器, 论坛,tron forums,trx forums,eos,qtum,neo,eth,Crypt">
+    <meta name="description" property="og:description" id="description" content="Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information.">
     <meta name="twitter:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
     <meta property="og:image" content="https://coin.top/production/js/2018-08-22-09-02-22_share-logo.png"/>
     <title>TRON BlockChain Explorer</title>
@@ -39,11 +41,8 @@
         }else{
             description = "Tronscan allows you to explore and search the TRON blockchain for transactions,accounts,tokens,nodes,votes and market information."
         }
-        var meta = document.createElement("meta");
-        meta.setAttribute("name","description");
-        meta.setAttribute("property","og:description");
-        meta.setAttribute("content",description);
-        document.getElementsByTagName('head')[0].appendChild(meta)
+         var meta = document.getElementById("description")
+         meta.setAttribute("content",description);
     </script>
 
 
@@ -54,9 +53,5 @@
     </noscript>
 
     <div id="root" class="h-100"></div>
-
-    <!--<div style="display: none;">-->
-      <!--<script src="https://s22.cnzz.com/z_stat.php?id=1273455549&web_id=1273455549" language="JavaScript"></script>-->
-    <!--</div>-->
   </body>
 </html>
