@@ -69,8 +69,11 @@ class Transactions extends React.Component {
       })
       item.eventList = eventList
     })
+    
+    const list = uniqWith(contractEvent, isEqual)
     this.setState({
-      transactions: uniqWith(contractEvent, isEqual),
+      transactions:list,
+      total: list.length,
       loading: false
     });
   };
@@ -215,7 +218,6 @@ class Transactions extends React.Component {
         <p className="m-0 pt-3" style={{color: '#999999'}}>{tableInfo}</p>
         <div className="row py-3">
           <div className="col-md-12 event-main">
-              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading}
                           pagination={false}
                           scroll={{ x: 1000 }}
