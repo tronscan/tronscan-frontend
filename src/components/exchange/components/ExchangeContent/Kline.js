@@ -30,7 +30,8 @@ class Kline extends React.Component {
       disabled_features: [
         "use_localstorage_for_settings",
         "volume_force_overlay",
-        "create_volume_indicator_by_default"
+        "create_volume_indicator_by_default",
+        "display_market_status"
       ],
       preset: "mobile",
       height: 263,
