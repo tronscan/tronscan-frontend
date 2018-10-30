@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {tu} from "../../../../utils/i18n";
 import xhr from "axios/index";
 
-import { Kline } from './Kline';
+import Kline from './Kline';
 import Transaction from './Transaction';
 
 import { Input } from 'antd';
