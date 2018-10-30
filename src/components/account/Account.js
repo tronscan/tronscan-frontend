@@ -42,6 +42,7 @@ class Account extends Component {
       showBandwidth: false,
       privateKey: "",
       temporaryName: "",
+      exchangesList:[],
       resources: [
           {
               label:"unfreeze_bandwidth",
@@ -95,6 +96,15 @@ class Account extends Component {
         issuedAsset: token,
       });
     });
+
+    if (currentWallet && currentWallet.allowExchange.length) {
+        let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
+        console.log('list',data)
+        this.setState({
+            exchangesList: data,
+        });
+
+    }
   };
 
   reloadTokens = () => {
@@ -300,7 +310,6 @@ class Account extends Component {
             filter={{address: account.address}}/>
     )
   }
-
 
   onInputChange = (value) => {
     let {account} = this.props;
@@ -637,11 +646,14 @@ class Account extends Component {
     });
   };
   CreateTxnPair = () => {
+      let {currentWallet} = this.props;
       this.setState({
           modal: (
               <CreateTxnPairModal
                   onConfirm={(name) => this.updateName(name)}
-                  onCancel={this.hideModal}/>
+                  onCancel={this.hideModal}
+                  currentWallet={currentWallet}
+              />
           )
       });
   };
@@ -806,7 +818,7 @@ class Account extends Component {
   }
 
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, exchangesList} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
@@ -1099,7 +1111,7 @@ class Account extends Component {
             </div>
           </div>
           {
-              !currentWallet.representative.enabled ?
+              currentWallet.allowExchange.length ?
                   <div className="row mt-3">
                     <div className="col-md-12">
                       <div className="card">
@@ -1128,75 +1140,53 @@ class Account extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                               <tr>
-                                  <td>
-                                      {tu('IGG/MEETONE')}
-                                  </td>
-                                  <td>
-                                    <FormattedNumber value={20000000 / ONE_TRX}/>
-                                  </td>
-                                  <td className="text-right">
+                            {
+                                exchangesList.length? exchangesList.map((exchange, index) => {
+                                    return (
+                                        <tr>
+                                          <td>
+                                              {exchange.exchange_name}
+                                          </td>
+                                          <td>
+                                            <FormattedNumber value={ exchange.first_token_balance / ONE_TRX}/>
+                                            /
+                                            <FormattedNumber value={ exchange.second_token_balance }/>
+                                          </td>
+                                          <td className="text-right">
                                     <span className="dex-inject"
                                           onClick={() => {
-                                              this.OperateTxnPair()
+                                              this.OperateTxnPair(exchange)
                                           }}
                                     >
                                       注资
                                     </span>
-                                    |
-                                    <span className="dex-divestment"
-                                          onClick={() => {
-                                              this.OperateTxnPair()
-                                          }}
-                                    >
+                                            |
+                                            <span className="dex-divestment"
+                                                  onClick={() => {
+                                                      this.OperateTxnPair(exchange)
+                                                  }}
+                                            >
                                       撤资
                                     </span>
+                                          </td>
+                                        </tr>
+                                    )
+                                }):<tr>
+                                  <td></td>
+                                  <td>
+                                      {tu('无交易对')}
                                   </td>
+                                  <td></td>
                                 </tr>
-                               <tr>
-                                 <td>
-                                     {tu('IGG/MEETONE')}
-                                 </td>
-                                 <td>
-                                   <FormattedNumber value={20000000 / ONE_TRX}/>
-                                 </td>
-                                 <td className="text-right">
-                                    <span className="dex-inject"
-                                          onClick={() => {
-                                              this.changeName()
-                                          }}
-                                    >
-                                      注资
-                                    </span>
-                                   |
-                                   <span className="dex-divestment">
-                                      撤资
-                                    </span>
-                                 </td>
-                               </tr>
-                               <tr>
-                                 <td>
-                                     {tu('IGG/MEETONE')}
-                                 </td>
-                                 <td>
-                                   <FormattedNumber value={20000000 / ONE_TRX}/>
-                                 </td>
-                                 <td className="text-right">
-                                    <span className="dex-inject"
-                                          onClick={() => {
-                                              this.changeName()
-                                          }}
-                                    >
-                                      注资
-                                    </span>
-                                   |
-                                   <span className="dex-divestment">
-                                      撤资
-                                    </span>
-                                 </td>
-                               </tr>
+                            }
                             </tbody>
                           </table>
+
+
+
+
+
+
                         </div>
                       </div>
                     </div>

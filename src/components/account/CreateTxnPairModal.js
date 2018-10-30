@@ -12,6 +12,11 @@ class CreateTxnPairModal extends Component {
         this.state = {
             name: "",
             disabled: false,
+            secTokenIdArr:[],
+            firstTokenID:"",
+            secondTokenId:"",
+            firstTokenValue:"",
+            secondTokenValue:"",
             formTxnPair: {
                 txnpair_name_1: {
                     valid: false,
@@ -37,12 +42,7 @@ class CreateTxnPairModal extends Component {
                     balance:'',
                     error: ''
                 }
-            },
-            tokens:[
-                {tokenName1:"TRON",
-                 tokenName2:"TRX"
-                },
-            ]
+            }
         };
     }
 
@@ -136,16 +136,40 @@ class CreateTxnPairModal extends Component {
     //     onCancel && onCancel();
     // };
 
-    resourceFirstTokenIDChange = (value) => {
+    firstTokenIDChange = (value) => {
+        let {currentWallet} = this.props;
+        let secTokenIdArr =  _.filter(currentWallet.allowExchange,{"first_token_id":value});
+        let firstTokenBalances =  _.find(currentWallet.tokenBalances,{"name":value});
+        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":secTokenIdArr[0].second_token_id});
+        console.log("firstTokenBalances1========",secTokenBalances)
+        console.log("secTokenBalances1======",secTokenBalances)
         this.setState({
-            firstTokenID: value
+            firstTokenID: value,
+            secTokenIdArr:secTokenIdArr,
+            firstTokenBalances:firstTokenBalances.balance,
+            secTokenBalances:secTokenBalances.balance
+        },() =>{
+
         });
     }
 
+    secondTokenIdChange = (value) => {
+        let {currentWallet} = this.props;
+        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":value});
+        console.log("secTokenBalances2=======",secTokenBalances)
+        this.setState({
+            secondTokenId: value,
+            secTokenBalances:secTokenBalances.balance
+        },() =>{
+
+        });
+    }
+
+
     render() {
-
-        let {modal, name, disabled,tokens} = this.state;
-
+        let {currentWallet} = this.props;
+         console.log('currentWallet',currentWallet)
+        let {modal, firstTokenID, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenValue,secondTokenValue, disabled} = this.state;
         let [isValid, errorMessage] = this.isValid();
 
         if (modal) {
@@ -164,14 +188,14 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>{tu("通证名称")}</label>
                             <select className="custom-select"
-                                // value={}
-                                onChange={(e) => {this.resourceTokenChange(e.target.value)}}
+                                value={firstTokenID}
+                                onChange={(e) => {this.firstTokenIDChange(e.target.value)}}
                             >
                                 <option value=''>{t("请选择通证名称")}</option>
                                 {
-                                    tokens.map((token, index) => {
+                                    currentWallet.allowExchange.map((token, index) => {
                                         return (
-                                            <option key={index} value={token.tokenName1}>{token.tokenName1}</option>
+                                            <option key={index} value={token.first_token_id}>{token.first_token_id}</option>
                                         )
                                     })
                                 }
@@ -181,12 +205,18 @@ class CreateTxnPairModal extends Component {
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <label>{tu("余额")}</label>
+                            <label>{tu("余额")}
+                                <span>
+                                     ({firstTokenBalances})
+                                </span>
+                            </label>
                             <input className={"form-control" + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
-                                   type="text"
-                                   placeholder="Account Name"
-                                   value={name}
-                                   onChange={(ev) => this.setState({name: ev.target.value})}/>
+                                   type="number"
+                                   placeholder="数量"
+                                   max={firstTokenBalances}
+                                   value={firstTokenValue}
+                                   onInput={(ev) => this.setState({firstTokenValue: ev.target.value})}
+                            />
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
                             </div>
@@ -196,21 +226,38 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>{tu("通证名称")}</label>
                             <select className="custom-select"
-                                //value={selectedResource}
-                                // onChange={(e) => {this.resourceSelectChange(e.target.value)}}
+                                value={secondTokenId}
+                                onChange={(e) => {this.secondTokenIdChange(e.target.value)}}
                             >
+                                {
+                                    !secTokenIdArr.length
+                                        ?
+                                        <option value=''>{t("请选择通证名称")}</option>
+                                        :
+                                        secTokenIdArr.map((token, index) => {
+                                        return (
+                                            <option key={index} value={token.second_token_id}>{token.second_token_id}</option>
+                                        )
+                                    })
+                                }
                             </select>
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <label>{tu("余额")}</label>
+                            <label>
+                                {tu("余额")}
+                                <span>
+                                    ({secTokenBalances})
+                                </span>
+                            </label>
                             <input className={"form-control" + ((name.length !== 0 && !isValid) ? " is-invalid" : "")}
-                                   type="text"
-                                   placeholder="Account Name"
-                                   value={name}
-                                   onChange={(ev) => this.setState({name: ev.target.value})}/>
+                                   type="number"
+                                   placeholder="数量"
+                                   max={secTokenBalances}
+                                   value={secondTokenValue}
+                                   onInput={(ev) => this.setState({secondTokenValue: ev.target.value})}/>
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
                             </div>
