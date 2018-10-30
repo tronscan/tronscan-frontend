@@ -38,6 +38,11 @@ class CreateTxnPairModal extends Component {
                     error: ''
                 }
             },
+            tokens:[
+                {tokenName1:"TRON",
+                 tokenName2:"TRX"
+                },
+            ]
         };
     }
 
@@ -119,21 +124,27 @@ class CreateTxnPairModal extends Component {
         });
     };
 
-    confirm = () => {
-        let {onConfirm} = this.props;
-        let {name} = this.state;
-        onConfirm && onConfirm(name);
-        this.setState({disabled: true});
-    };
+    // confirm = () => {
+    //     let {onConfirm} = this.props;
+    //     let {name} = this.state;
+    //     onConfirm && onConfirm(name);
+    //     this.setState({disabled: true});
+    // };
+    //
+    // cancel = () => {
+    //     let {onCancel} = this.props;
+    //     onCancel && onCancel();
+    // };
 
-    cancel = () => {
-        let {onCancel} = this.props;
-        onCancel && onCancel();
-    };
+    resourceFirstTokenIDChange = (value) => {
+        this.setState({
+            firstTokenID: value
+        });
+    }
 
     render() {
 
-        let {modal, name, disabled} = this.state;
+        let {modal, name, disabled,tokens} = this.state;
 
         let [isValid, errorMessage] = this.isValid();
 
@@ -153,11 +164,17 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>{tu("通证名称")}</label>
                             <select className="custom-select"
-                               // value={}
-                                onChange={(e) => {this.resourceSelectChange(e.target.value)}}
-
+                                // value={}
+                                onChange={(e) => {this.resourceTokenChange(e.target.value)}}
                             >
                                 <option value=''>{t("请选择通证名称")}</option>
+                                {
+                                    tokens.map((token, index) => {
+                                        return (
+                                            <option key={index} value={token.tokenName1}>{token.tokenName1}</option>
+                                        )
+                                    })
+                                }
                             </select>
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
