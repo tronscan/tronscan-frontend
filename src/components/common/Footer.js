@@ -54,8 +54,8 @@ class Footer extends Component {
                                             <i className="fa fa-angle-right mr-4"/> Documentation
                                         </HrefLink>
                                     </li>
-                                    <li className="p-2"><HrefLink href="http://wiki.tron.network/en/latest/"><i
-                                        className="fa fa-angle-right mr-4"/> Wiki</HrefLink></li>
+                                    <li className="p-2"><HrefLink href="https://developers.tron.network/"><i
+                                        className="fa fa-angle-right mr-4"/> Developer Hub</HrefLink></li>
                                 </ul>
                             </div>
                             <div className="col-xs-12 col-sm-4 col-md-4">
