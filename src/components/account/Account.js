@@ -636,7 +636,7 @@ class Account extends Component {
     }
   };
 
-  createTxnPair = async (firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => {
+  createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
       let {account, currentWallet} = this.props;
       let firstToken = firstTokenId;
       let secondToken = secondTokenId;
@@ -657,7 +657,7 @@ class Account extends Component {
               temporaryName: name,
               modal: (
                   <SweetAlert success title={tu("交易对已创建")} onConfirm={this.hideModal}>
-                      {tu("成功创建交易对")} <b>{firstToken/secondToken}</b>
+                      {tu("成功创建交易对")} <b> {firstTokenId}/{secondTokenId}</b>
                   </SweetAlert>
               )
           });
@@ -674,6 +674,58 @@ class Account extends Component {
       }
   };
 
+  injectExchange = async (exchangeId, tokenId, quant) => {
+        let {account, currentWallet} = this.props;
+        let {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+
+        if (success) {
+            this.setState({
+                temporaryName: name,
+                modal: (
+                    <SweetAlert success title={tu("注资已完成")} onConfirm={this.hideModal}>
+                        {tu("成功注资交易对")}
+                    </SweetAlert>
+                )
+            });
+
+            setTimeout(() => this.props.reloadWallet(), 1000);
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert warning title={tu("交易对注资失败")} onConfirm={this.hideModal}>
+                        {tu("交易对注资失败")}
+                    </SweetAlert>
+                )
+            })
+        }
+    };
+
+    withdrawExchange = async (exchangeId, tokenId, quant) => {
+        let {account, currentWallet} = this.props;
+        let {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+
+        if (success) {
+            this.setState({
+                temporaryName: name,
+                modal: (
+                    <SweetAlert success title={tu("撤资已完成")} onConfirm={this.hideModal}>
+                        {tu("成功撤资交易对")}
+                    </SweetAlert>
+                )
+            });
+
+            setTimeout(() => this.props.reloadWallet(), 1000);
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert warning title={tu("交易对撤资失败")} onConfirm={this.hideModal}>
+                        {tu("交易对撤资失败")}
+                    </SweetAlert>
+                )
+            })
+        }
+    };
+
   changeName = () => {
     this.setState({
       modal: (
@@ -681,30 +733,45 @@ class Account extends Component {
               onConfirm={(name) => this.updateName(name)}
               onCancel={this.hideModal}/>
       )
-    });
+    })
   };
+
   changeTxnPair = () => {
-      let {currentWallet} = this.props;
       this.setState({
           modal: (
               <CreateTxnPairModal
                   onCreate={(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => this.createTxnPair(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)}
                   onCancel={this.hideModal}
-                  currentWallet={currentWallet}
               />
           )
-      });
+      })
   };
-  OperateTxnPair = () => {
+
+  injectTxnPair = (exchange) => {
       this.setState({
           modal: (
               <OperateTxnPairModal
-                  onConfirm={(name) => this.updateName(name)}
-                  onCancel={this.hideModal}/>
+                  onInject={(exchangeId,tokenId,quant) => this.injectExchange(exchangeId,tokenId,quant)}
+                  onCancel={this.hideModal}
+                  exchange={exchange}
+                  inject={true}
+              />
           )
-      });
+      })
   };
 
+    withdrawTxnPair = (exchange) => {
+        this.setState({
+            modal: (
+                <OperateTxnPairModal
+                    onWithdraw={(exchangeId,tokenId,quant) => this.withdrawExchange(exchangeId,tokenId,quant)}
+                    onCancel={this.hideModal}
+                    exchange={exchange}
+                    inject={false}
+                />
+            )
+        })
+    };
 
 
   changeGithubURL = async () => {
@@ -1193,7 +1260,7 @@ class Account extends Component {
                                           <td className="text-right">
                                     <span className="dex-inject"
                                           onClick={() => {
-                                              this.OperateTxnPair(exchange)
+                                              this.injectTxnPair(exchange)
                                           }}
                                     >
                                       注资
@@ -1201,7 +1268,7 @@ class Account extends Component {
                                             |
                                             <span className="dex-divestment"
                                                   onClick={() => {
-                                                      this.OperateTxnPair(exchange)
+                                                      this.withdrawTxnPair(exchange)
                                                   }}
                                             >
                                       撤资

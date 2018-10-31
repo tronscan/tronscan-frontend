@@ -132,26 +132,16 @@ class CreateTxnPairModal extends React.PureComponent {
     };
 
     create = async () => {
-        // let {account, currentWallet} = this.props;
-        // let {privateKey} = this.state;
-        // console.log('account====',account)
-        // console.log('currentWallet====',currentWallet)
-        //console.log('secondTokenBalance22222====',secondTokenBalance)
-       // let {success} = await Client.createExchange(currentWallet.address, firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)(account.key);
-
         let {onCreate,currentWallet} = this.props;
         let {firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance} = this.state;
-        console.log('secondTokenId',secondTokenId)
-        console.log('firstTokenBalance',firstTokenBalance)
-        console.log('secondTokenBalance',secondTokenBalance)
         onCreate && onCreate(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance);
        this.setState({disabled: true});
     };
-    //
-    // cancel = () => {
-    //     let {onCancel} = this.props;
-    //     onCancel && onCancel();
-    // };
+
+    cancel = () => {
+        let {onCancel} = this.props;
+        onCancel && onCancel();
+    };
 
     firstTokenIdChange = (value) => {
         let {account,currentWallet} = this.props;
@@ -333,8 +323,8 @@ class CreateTxnPairModal extends React.PureComponent {
 function mapStateToProps(state) {
     return {
         account: state.app.account,
-        tokenBalances: state.account.tokens,
-        trxBalance: state.account.trxBalance,
+        wallet: state.wallet,
+        currentWallet: state.wallet.current,
     };
 }
 
