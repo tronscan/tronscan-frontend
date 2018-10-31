@@ -1,9 +1,11 @@
 import React from "react";
 import {injectIntl} from "react-intl";
+import { withRouter } from 'react-router'
 
 import {widget} from '../../../../lib/charting_library.min';
 import './datafeeds/udf/dist/polyfills.js';
 import {UDFCompatibleDatafeed} from './datafeeds/udf/dist/bundle';
+import Datafeed from './udf/index.js'
 
 class Kline extends React.Component {
 
@@ -16,34 +18,226 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-   
-    console.log(widget)
-    const tvwedget = new widget({
+    this.createWidget()
+  }
+
+  createWidget () {
+    const locale = this.props.intl.locale || 'en'
+    let interval = localStorage.getItem('interval');
+    if(!interval) {
+        interval = '60';
+        localStorage.setItem('interval', '60');
+    }
+
+    const tvWidget = new widget({
       symbol: 'AAPL',
-      interval: 'D',
+      interval: interval,
       container_id: "tv_chart_container",
       //	BEWARE: no trailing slash is expected in feed URL
-      datafeed: new UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
+      // datafeed: new UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
+      datafeed: new Datafeed.UDFCompatibleDatafeed(),
       library_path: "charting_library/",
-      locale: "zh",
+      locale: locale,
 
+      // disabled_features: [
+      //   "use_localstorage_for_settings",
+      //   "volume_force_overlay",
+      //   "create_volume_indicator_by_default",
+      //   "display_market_status",
+      //   "legend_context_menu"
+      // ],
+      // preset: "mobile",
       disabled_features: [
         "use_localstorage_for_settings",
         "volume_force_overlay",
+        "header_compare",
+        "header_symbol_search",
+        "header_resolutions",
+        "header_undo_redo",
+        "header_chart_tpye",
+        "header_screenshot",
+        "header_chart_type",
+        "display_market_stauts",
+        "study_templates",
+        "left_toolbar",
+        "go_to_date",
         "create_volume_indicator_by_default",
-        "display_market_status"
+        "display_market_status",
+        // "countdown"
       ],
-      preset: "mobile",
+      enabled_features: ["dont_show_boolean_study_arguments", "move_logo_to_main_pane", "hide_last_na_study_output", "legend_context_menu"],
       height: 263,
       fullscreen: false,
       autosize: true,
+
+      drawings_access: {
+        type: "black",
+        tools: [{
+          name: "Regression Trend"
+        }]
+      },
+      studies_overrides: {},
+      custom_css_url: "css/myself.css",
+      loading_screen: {
+        backgroundColor: "#fff"
+      },
+      timezone: "Asia/Shanghai", //默认时区
+      overrides: {
+        "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
+        volumePaneSize: "medium", //成交量大小的显示
+        "paneProperties.legendProperties.showLegend": false, //关闭左上角
+        //背景色，
+        "paneProperties.background": "#1a2330",
+        "paneProperties.vertGridProperties.color": "#2c3450",
+        "paneProperties.vertGridProperties.style": 0,
+        "paneProperties.horzGridProperties.color": "#2c3450",
+        "paneProperties.horzGridProperties.style": 0,
+        "symbolWatermarkProperties.transparency": 90,
+        "scalesProperties.textColor": "#AAA",
+        "paneProperties.topMargin": 5,
+        "paneProperties.bottomMargin": 5,
+        //蜡烛的样式
+        "mainSeriesProperties.candleStyle.upColor": "#589065",
+        "mainSeriesProperties.candleStyle.downColor": "#ae4e54",
+        "mainSeriesProperties.candleStyle.drawWick": true,
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderColor": "#589065",
+        "mainSeriesProperties.candleStyle.borderUpColor": "#589065",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#ae4e54",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#589065", //控制影线的颜色
+        "mainSeriesProperties.candleStyle.wickDownColor": "#ae4e54",
+        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+        "paneProperties.crossHairProperties.color": "#fff", //十字线的颜色
+        // "paneProperties.crossHairProperties.style":'0',
+        "mainSeriesProperties.areaStyle.color1": "rgba(255,255,255,0.1)",
+        "mainSeriesProperties.areaStyle.color2": "rgba(255,255,255,0.1)",
+        "mainSeriesProperties.areaStyle.linecolor": "#4e5b85",
+        "mainSeriesProperties.areaStyle.linestyle": 0,
+        "mainSeriesProperties.areaStyle.linewidth": 1,
+        "mainSeriesProperties.areaStyle.priceSource": "close"
+      },
+      favorites: {
+        chartTypes: ["Area", "Line"]
+      }
     });
     
-    tvwedget.onChartReady(() => {
-      const chart =	tvwedget.chart()
-      chart.setChartType(2)
-      chart.clearMarks()
+
+    tvWidget.MAStudies = [];
+    tvWidget.selectedIntervalButton = null;
+
+    tvWidget.onChartReady(() => {
+      const chart =	tvWidget.chart()
+      chart.setChartType(1)
+      
+        let mas = [{
+              day: 5,
+              color: "#9836ff"
+          }, {
+              day: 10,
+              color: "#ffe100"
+          }, {
+              day: 30,
+              color: "#ff4076"
+          }, {
+              day: 60,
+              color: "#49bd72"
+          }];
+        
+        let buttons = [
+          // {
+          //     label: this.locale === 'zh'?"分时":"Time",
+          //     resolution: "1",
+          //     chartType: 3
+          // }, 
+          {
+              label: "30min",
+              resolution: "30",
+              chartType: 2
+          },
+          {
+              label: "1hour",
+              resolution: "60",
+              chartType: 2
+          },
+           {
+              label: "4hour",
+              resolution: "240",
+              chartType: 2
+          },
+           {
+              label: "1day",
+              resolution: "D",
+              chartType: 2
+          },
+          {
+              label: "1week",
+              resolution: "W",
+              chartType: 2
+          },
+          {
+            label: "1mon",
+            resolution: "M",
+            chartType: 2
+        }
+          ]
+
+          // MAStudies
+          // mas.forEach(item => {
+          //     chart.createStudy("Moving Average", false, false, [item.day], entity => {
+          //         tvWidget.MAStudies.push(entity);
+          //     }, {"plot.color": item.color});
+          // })
+        chart.onIntervalChanged().subscribe(null, function (interval, obj) {
+            tvWidget.changingInterval = false;
+        });
+        buttons.forEach((item, index) => {
+          let button =  tvWidget.createButton()
+          if((chart.resolution() === item.resolution)) {
+              button.addClass('selected');
+              tvWidget.selectedIntervalButton = button;
+          }
+          console.log('resolution: ', chart.resolution())
+          button.attr("data-resolution", item.resolution)
+              .attr("data-chart-type", item.chartType === undefined ? 1 : item.chartType)
+              .html("<span>"+ item.label +"</span>")
+              .on("click", function() {
+                  if (!tvWidget.changingInterval && !button.hasClass("selected")) {
+                    // chart.setVisibleRange({from:Math.round(new Date().getTime()/1000)-10*24*60*60,to:Math.round(new Date().getTime()/1000) })
+                      let chartType = +button.attr("data-chart-type");
+                      let resolution = button.attr("data-resolution");
+
+                      if (chart.resolution() !== resolution) {
+                          tvWidget.changingInterval = true;
+                          chart.setResolution(resolution);
+                      }
+                      // if (chart.chartType() !== chartType) {
+                          // chart.setChartType(1);
+                      //     // widget.applyOverrides({
+                      //     // 	"mainSeriesProperties.style": chartType
+                      //     // });1537358229
+                      // }
+                      localStorage.setItem('interval', resolution)
+                      // storage.set('chartType', chart.chartType())
+                      updateSelectedIntervalButton(button);
+                      showMAStudies(chartType !== 3);
+                  }
+              })
+        })
+        function updateSelectedIntervalButton(button) {
+          tvWidget.selectedIntervalButton && tvWidget.selectedIntervalButton.removeClass("selected");
+          button.addClass("selected");
+          tvWidget.selectedIntervalButton = button;
+        }
+
+        function showMAStudies(visible) {
+          tvWidget.MAStudies.forEach(item => {
+              // chart.setEntityVisibility(item, true);
+          })
+        }
     })
+
+    
+
   }
 
   render() {
@@ -67,4 +261,4 @@ class Kline extends React.Component {
   }
 }
 
-export default injectIntl(Kline);
+export default injectIntl(withRouter(Kline));

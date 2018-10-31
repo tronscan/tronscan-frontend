@@ -12,6 +12,21 @@ export interface IDelegate<TFunc extends Function> extends ISubscription<TFunc> 
 export interface IDestroyable {
 	destroy(): void;
 }
+export interface FormatterParseResult {
+	res: boolean;
+}
+export interface ErrorFormatterParseResult extends FormatterParseResult {
+	error?: string;
+	res: false;
+}
+export interface SuccessFormatterParseResult extends FormatterParseResult {
+	res: true;
+	suggest?: string;
+}
+export interface IFormatter {
+	format(value: any): string;
+	parse?(value: string): ErrorFormatterParseResult | SuccessFormatterParseResult;
+}
 /**
  * This is the generic type useful for declaring a nominal type,
  * which does not structurally matches with the base type and
@@ -28,21 +43,6 @@ export interface IDestroyable {
 export declare type Nominal<T, Name extends string> = T & {
 	[Symbol.species]: Name;
 };
-export interface FormatterParseResult {
-	res: boolean;
-}
-export interface ErrorFormatterParseResult extends FormatterParseResult {
-	error?: string;
-	res: false;
-}
-export interface SuccessFormatterParseResult extends FormatterParseResult {
-	res: true;
-	suggest?: string;
-}
-export interface IFormatter {
-	format(value: any): string;
-	parse?(value: string): ErrorFormatterParseResult | SuccessFormatterParseResult;
-}
 export declare type StudyInputValueType = string | number | boolean;
 export declare type StudyOverrideValueType = string | number | boolean;
 export interface StudyOverrides {
@@ -140,7 +140,6 @@ export interface QuantityMetainfo {
 	min: number;
 	max: number;
 	step: number;
-	default?: number;
 }
 export interface InstrumentInfo {
 	qty: QuantityMetainfo;
@@ -212,7 +211,6 @@ export interface AccountInfo {
 	id: string;
 	name: string;
 	currency?: string;
-	currencySign?: string;
 }
 export interface AccountManagerColumn {
 	id?: string;
@@ -238,8 +236,8 @@ export interface AccountManagerTable {
 	title?: string;
 	columns: AccountManagerColumn[];
 	initialSorting?: SortingParameters;
-	changeDelegate: ISubscription<(data: {}) => void>;
-	getData(): Promise<{}[]>;
+	changeDelegate: IDelegate<(data: object) => void>;
+	getData(): Promise<object[]>;
 }
 export interface AccountManagerPage {
 	id: string;
@@ -298,9 +296,6 @@ export interface OrderDurationMetaInfo {
 	value: string;
 }
 export interface OrderDuration {
-	/**
-	 * type is OrderDurationMetaInfo.value
-	 */
 	type: string;
 	datetime?: number;
 }
@@ -324,8 +319,6 @@ export interface BrokerConfigFlags {
 	supportMarketBrackets?: boolean;
 	supportSymbolSearch?: boolean;
 	supportModifyDuration?: boolean;
-	supportModifyOrder?: boolean;
-	calculatePLUsingLast?: boolean;
 	requiresFIFOCloseTrades?: boolean;
 	supportBottomWidget?: boolean;
 	/**
@@ -369,45 +362,47 @@ export interface QuotesBase {
 	pricescale: number;
 	description: string;
 }
-export interface OrderDialogOptions {
-	customFields?: (TextWithCheckboxFieldMetaInfo | CustomInputFieldMetaInfo)[];
+export interface IBrokerConnectionAdapterFactory {
+	createDelegate<T extends Function>(): IDelegate<T>;
+	createWatchedValue<T>(value?: T): IWatchedValue<T>;
 }
-export interface BaseInputFieldValidatorResult {
-	valid: boolean;
-}
-export interface PositiveBaseInputFieldValidatorResult extends BaseInputFieldValidatorResult {
-	valid: true;
-}
-export interface NegativeBaseInputFieldValidatorResult extends BaseInputFieldValidatorResult {
-	valid: false;
-	errorMessage: string;
-}
-export declare type InputFieldValidatorResult = PositiveBaseInputFieldValidatorResult | NegativeBaseInputFieldValidatorResult;
-export declare type InputFieldValidator = (value: any) => InputFieldValidatorResult;
-export interface CustomInputFieldMetaInfo {
-	id: string;
-	title: string;
-	placeHolder: string;
-	value: any;
-	validator?: InputFieldValidator;
-	customInfo?: any;
-}
-export interface TextWithCheckboxValue {
-	text: string;
-	checked: boolean;
-}
-export interface TextWithCheckboxFieldCustomInfo {
-	checkboxTitle: string;
-	asterix?: boolean;
-}
-export declare type TextInputFieldValidator = (value: string) => InputFieldValidatorResult;
-export interface TextWithCheckboxFieldMetaInfo extends CustomInputFieldMetaInfo {
-	value: TextWithCheckboxValue;
-	customInfo: TextWithCheckboxFieldCustomInfo;
-	validator?: TextInputFieldValidator;
-}
-export interface CustomInputFieldsValues {
-	[fieldId: string]: TextWithCheckboxValue | any;
+export interface IBrokerConnectionAdapterHost {
+	factory: IBrokerConnectionAdapterFactory;
+	connectionStatusUpdate(status: ConnectionStatus, message?: string): void;
+	defaultFormatter(symbol: string): Promise<IFormatter>;
+	numericFormatter(decimalPlaces: number): Promise<IFormatter>;
+	defaultContextMenuActions(context: ITradeContext, params?: DefaultContextMenuActionsParams): Promise<ActionMetaInfo[]>;
+	defaultDropdownMenuActions(options?: Partial<DefaultDropdownActionsParams>): ActionMetaInfo[];
+	floatingTradingPanelVisibility(): IWatchedValue<boolean>;
+	domVisibility(): IWatchedValue<boolean>;
+	patchConfig(config: Partial<BrokerConfigFlags>): void;
+	setDurations(durations: OrderDurationMetaInfo[]): void;
+	orderUpdate(order: Order, isHistoryUpdate?: boolean): void;
+	orderPartialUpdate(id: string, orderChanges: Partial<Order>): void;
+	positionUpdate(position: Position, isHistoryUpdate?: boolean): void;
+	positionPartialUpdate(id: string, positionChanges: Partial<Position>): void;
+	tradeUpdate(trade: Trade, isHistoryUpdate?: boolean): void;
+	tradePartialUpdate(id: string, tradeChanges: Partial<Trade>): void;
+	executionUpdate(execution: Execution, isHistoryUpdate?: boolean): void;
+	fullUpdate(): void;
+	realtimeUpdate(symbol: string, data: TradingQuotes): void;
+	plUpdate(positionId: string, pl: number): void;
+	tradePLUpdate(tradeId: string, pl: number): void;
+	equityUpdate(equity: number): void;
+	domeUpdate(symbol: string, equity: DOMData): void;
+	showOrderDialog<T extends PreOrder>(order: T, handler: (order: T) => Promise<void>, focus?: OrderTicketFocusControl): Promise<void>;
+	showCancelOrderDialog(orderId: string, handler: () => void): Promise<void>;
+	showCancelMultipleOrdersDialog(symbol: string, side: Side | undefined, qty: number, handler: () => void): Promise<void>;
+	showCancelBracketsDialog(orderId: string, handler: () => void): Promise<void>;
+	showCancelMultipleBracketsDialog(orderId: string, handler: () => void): Promise<void>;
+	showClosePositionDialog(positionId: string, handler: () => void): Promise<void>;
+	showReversePositionDialog(position: Position, handler: () => void): Promise<void>;
+	showPositionBracketsDialog(position: Position | Trade, brackets: Brackets, focus: OrderTicketFocusControl | null, handler: (brackets: Brackets) => void): Promise<void>;
+	showNotification(title: string, text: string, notificationType?: NotificationType): void;
+	setButtonDropdownActions(descriptions: ActionMetaInfo[]): void;
+	activateBottomWidget(): Promise<void>;
+	showTradingProperties(): void;
+	symbolSnapshot(symbol: string): Promise<QuotesBase>;
 }
 export interface IBrokerCommon {
 	chartContextMenuActions(context: ITradeContext, options?: DefaultContextMenuActionsParams): Promise<ActionMetaInfo[]>;
@@ -426,55 +421,6 @@ export interface IBrokerCommon {
 	accountManagerInfo(): AccountManagerInfo;
 	formatter?(symbol: string): Promise<IFormatter>;
 	spreadFormatter?(symbol: string): Promise<IFormatter>;
-}
-export interface SuggestedQuantity {
-	changed: IDelegate<(symbol: string) => void>;
-	value(symbol: string): Promise<number>;
-	setValue(symbol: string, value: number): void;
-}
-export interface IBrokerConnectionAdapterFactory {
-	createDelegate<T extends Function>(): IDelegate<T>;
-	createWatchedValue<T>(value?: T): IWatchedValue<T>;
-}
-export interface IBrokerConnectionAdapterHost {
-	factory: IBrokerConnectionAdapterFactory;
-	connectionStatusUpdate(status: ConnectionStatus, message?: string): void;
-	defaultFormatter(symbol: string): Promise<IFormatter>;
-	numericFormatter(decimalPlaces: number): Promise<IFormatter>;
-	defaultContextMenuActions(context: ITradeContext, params?: DefaultContextMenuActionsParams): Promise<ActionMetaInfo[]>;
-	defaultDropdownMenuActions(options?: Partial<DefaultDropdownActionsParams>): ActionMetaInfo[];
-	floatingTradingPanelVisibility(): IWatchedValue<boolean>;
-	domVisibility(): IWatchedValue<boolean>;
-	silentOrdersPlacement(): IWatchedValue<boolean>;
-	patchConfig(config: Partial<BrokerConfigFlags>): void;
-	setDurations(durations: OrderDurationMetaInfo[]): void;
-	orderUpdate(order: Order, isHistoryUpdate?: boolean): void;
-	orderPartialUpdate(id: string, orderChanges: Partial<Order>): void;
-	positionUpdate(position: Position, isHistoryUpdate?: boolean): void;
-	positionPartialUpdate(id: string, positionChanges: Partial<Position>): void;
-	tradeUpdate(trade: Trade, isHistoryUpdate?: boolean): void;
-	tradePartialUpdate(id: string, tradeChanges: Partial<Trade>): void;
-	executionUpdate(execution: Execution, isHistoryUpdate?: boolean): void;
-	fullUpdate(): void;
-	realtimeUpdate(symbol: string, data: TradingQuotes): void;
-	plUpdate(positionId: string, pl: number): void;
-	tradePLUpdate(tradeId: string, pl: number): void;
-	equityUpdate(equity: number): void;
-	domeUpdate(symbol: string, equity: DOMData): void;
-	showOrderDialog<T extends PreOrder>(order: T, handler: (order: T, customFieldsResult?: CustomInputFieldsValues) => Promise<void>, focus?: OrderTicketFocusControl, options?: OrderDialogOptions): Promise<void>;
-	showCancelOrderDialog(orderId: string, handler: () => void): Promise<void>;
-	showCancelMultipleOrdersDialog(symbol: string, side: Side | undefined, qty: number, handler: () => void): Promise<void>;
-	showCancelBracketsDialog(orderId: string, handler: () => void): Promise<void>;
-	showCancelMultipleBracketsDialog(orderId: string, handler: () => void): Promise<void>;
-	showClosePositionDialog(positionId: string, handler: () => void): Promise<void>;
-	showReversePositionDialog(position: Position, handler: () => void): Promise<void>;
-	showPositionBracketsDialog(position: Position | Trade, brackets: Brackets, focus: OrderTicketFocusControl | null, handler: (brackets: Brackets) => void): Promise<void>;
-	showNotification(title: string, text: string, notificationType?: NotificationType): void;
-	setButtonDropdownActions(descriptions: ActionMetaInfo[]): void;
-	activateBottomWidget(): Promise<void>;
-	showTradingProperties(): void;
-	suggestedQty(): SuggestedQuantity;
-	symbolSnapshot(symbol: string): Promise<QuotesBase>;
 }
 export interface IBrokerWithoutRealtime extends IBrokerCommon {
 	subscribeDOME?(symbol: string): void;
@@ -556,8 +502,8 @@ export interface IDatafeedQuotesApi {
 	subscribeQuotes(symbols: string[], fastSymbols: string[], onRealtimeCallback: QuotesCallback, listenerGUID: string): void;
 	unsubscribeQuotes(listenerGUID: string): void;
 }
-export declare type CustomTimezones = 'America/New_York' | 'America/Los_Angeles' | 'America/Chicago' | 'America/Phoenix' | 'America/Toronto' | 'America/Vancouver' | 'America/Argentina/Buenos_Aires' | 'America/El_Salvador' | 'America/Sao_Paulo' | 'America/Bogota' | 'America/Caracas' | 'Europe/Moscow' | 'Europe/Athens' | 'Europe/Belgrade' | 'Europe/Berlin' | 'Europe/London' | 'Europe/Luxembourg' | 'Europe/Madrid' | 'Europe/Paris' | 'Europe/Rome' | 'Europe/Warsaw' | 'Europe/Istanbul' | 'Europe/Zurich' | 'Australia/Sydney' | 'Australia/Brisbane' | 'Australia/Adelaide' | 'Australia/ACT' | 'Asia/Almaty' | 'Asia/Ashkhabad' | 'Asia/Tokyo' | 'Asia/Taipei' | 'Asia/Singapore' | 'Asia/Shanghai' | 'Asia/Seoul' | 'Asia/Tehran' | 'Asia/Dubai' | 'Asia/Kolkata' | 'Asia/Hong_Kong' | 'Asia/Bangkok' | 'Asia/Chongqing' | 'Asia/Jerusalem' | 'Asia/Kuwait' | 'Asia/Muscat' | 'Asia/Qatar' | 'Asia/Riyadh' | 'Pacific/Auckland' | 'Pacific/Chatham' | 'Pacific/Fakaofo' | 'Pacific/Honolulu' | 'America/Mexico_City' | 'Africa/Cairo' | 'Africa/Johannesburg' | 'Asia/Kathmandu' | 'US/Mountain';
-export declare type Timezone = 'Etc/UTC' | CustomTimezones;
+export declare type CustomTimezones = 'America/New_York' | 'America/Los_Angeles' | 'America/Chicago' | 'America/Phoenix' | 'America/Toronto' | 'America/Vancouver' | 'America/Argentina/Buenos_Aires' | 'America/El_Salvador' | 'America/Sao_Paulo' | 'America/Bogota' | 'America/Caracas' | 'Europe/Moscow' | 'Europe/Athens' | 'Europe/Berlin' | 'Europe/London' | 'Europe/Madrid' | 'Europe/Paris' | 'Europe/Rome' | 'Europe/Warsaw' | 'Europe/Istanbul' | 'Europe/Zurich' | 'Australia/Sydney' | 'Australia/Brisbane' | 'Australia/Adelaide' | 'Australia/ACT' | 'Asia/Almaty' | 'Asia/Ashkhabad' | 'Asia/Tokyo' | 'Asia/Taipei' | 'Asia/Singapore' | 'Asia/Shanghai' | 'Asia/Seoul' | 'Asia/Tehran' | 'Asia/Dubai' | 'Asia/Kolkata' | 'Asia/Hong_Kong' | 'Asia/Bangkok' | 'Pacific/Auckland' | 'Pacific/Chatham' | 'Pacific/Fakaofo' | 'Pacific/Honolulu' | 'America/Mexico_City' | 'Africa/Johannesburg' | 'Asia/Kathmandu' | 'US/Mountain';
+export declare type Timezone = 'UTC' | CustomTimezones;
 export interface LibrarySymbolInfo {
 	/**
 	 * Symbol Name
@@ -692,8 +638,8 @@ export declare type DomeCallback = (data: DOMData) => void;
 export declare type ErrorCallback = (reason: string) => void;
 export interface IDatafeedChartApi {
 	calculateHistoryDepth?(resolution: ResolutionString, resolutionBack: ResolutionBackValues, intervalBack: number): HistoryDepth | undefined;
-	getMarks?(symbolInfo: LibrarySymbolInfo, from: number, to: number, onDataCallback: GetMarksCallback<Mark>, resolution: ResolutionString): void;
-	getTimescaleMarks?(symbolInfo: LibrarySymbolInfo, from: number, to: number, onDataCallback: GetMarksCallback<TimescaleMark>, resolution: ResolutionString): void;
+	getMarks?(symbolInfo: LibrarySymbolInfo, startDate: number, endDate: number, onDataCallback: GetMarksCallback<Mark>, resolution: ResolutionString): void;
+	getTimescaleMarks?(symbolInfo: LibrarySymbolInfo, startDate: number, endDate: number, onDataCallback: GetMarksCallback<TimescaleMark>, resolution: ResolutionString): void;
 	/**
 	 * This function is called if configuration flag supports_time is set to true when chart needs to know the server time.
 	 * The charting library expects callback to be called once.
@@ -819,7 +765,6 @@ export interface ISettingsAdapter {
 	removeValue(key: string): void;
 }
 export declare type IBasicDataFeed = IDatafeedChartApi & IExternalDatafeed;
-export declare type ThemeName = 'Light' | 'Dark';
 export interface ChartingLibraryWidgetOptions {
 	container_id: string;
 	datafeed: IBasicDataFeed | (IBasicDataFeed & IDatafeedQuotesApi);
@@ -861,7 +806,6 @@ export interface ChartingLibraryWidgetOptions {
 	save_load_adapter?: IExternalSaveLoadAdapter;
 	loading_screen?: LoadingScreenOptions;
 	settings_adapter?: ISettingsAdapter;
-	theme?: ThemeName;
 }
 export interface TradingTerminalWidgetOptions extends ChartingLibraryWidgetOptions {
 	brokerConfig?: SingleBrokerMetaInfo;
@@ -872,7 +816,7 @@ export interface TradingTerminalWidgetOptions extends ChartingLibraryWidgetOptio
 	brokerFactory?(host: IBrokerConnectionAdapterHost): IBrokerWithoutRealtime | IBrokerTerminal;
 }
 export declare type LayoutType = 's' | '2h' | '2-1' | '2v' | '3h' | '3v' | '3s' | '4' | '6' | '8';
-export declare type SupportedLineTools = 'text' | 'anchored_text' | 'note' | 'anchored_note' | 'double_curve' | 'arc' | 'icon' | 'arrow_up' | 'arrow_down' | 'arrow_left' | 'arrow_right' | 'price_label' | 'flag' | 'vertical_line' | 'horizontal_line' | 'horizontal_ray' | 'trend_line' | 'trend_angle' | 'arrow' | 'ray' | 'extended' | 'parallel_channel' | 'disjoint_angle' | 'flat_bottom' | 'pitchfork' | 'schiff_pitchfork_modified' | 'schiff_pitchfork' | 'balloon' | 'inside_pitchfork' | 'pitchfan' | 'gannbox' | 'gannbox_square' | 'gannbox_fixed' | 'gannbox_fan' | 'fib_retracement' | 'fib_trend_ext' | 'fib_speed_resist_fan' | 'fib_timezone' | 'fib_trend_time' | 'fib_circles' | 'fib_spiral' | 'fib_speed_resist_arcs' | 'fib_channel' | 'xabcd_pattern' | 'cypher_pattern' | 'abcd_pattern' | 'callout' | 'triangle_pattern' | '3divers_pattern' | 'head_and_shoulders' | 'fib_wedge' | 'elliott_impulse_wave' | 'elliott_triangle_wave' | 'elliott_triple_combo' | 'elliott_correction' | 'elliott_double_combo' | 'cyclic_lines' | 'time_cycles' | 'sine_line' | 'long_position' | 'short_position' | 'forecast' | 'date_range' | 'price_range' | 'date_and_price_range' | 'bars_pattern' | 'ghost_feed' | 'projection' | 'rectangle' | 'rotated_rectangle' | 'ellipse' | 'triangle' | 'polyline' | 'curve' | 'regression_trend' | 'cursor' | 'dot' | 'arrow_cursor' | 'eraser' | 'measure' | 'zoom' | 'brush';
+export declare type SupportedLineTools = 'text' | 'anchored_text' | 'note' | 'anchored_note' | 'double_curve' | 'arc' | 'icon' | 'arrow_up' | 'arrow_down' | 'arrow_left' | 'arrow_right' | 'price_label' | 'flag' | 'vertical_line' | 'horizontal_line' | 'horizontal_ray' | 'trend_line' | 'trend_angle' | 'arrow' | 'ray' | 'extended' | 'parallel_channel' | 'disjoint_angle' | 'flat_bottom' | 'pitchfork' | 'schiff_pitchfork_modified' | 'schiff_pitchfork' | 'balloon' | 'inside_pitchfork' | 'pitchfan' | 'gannbox' | 'gannbox_square' | 'gannbox_fan' | 'fib_retracement' | 'fib_trend_ext' | 'fib_speed_resist_fan' | 'fib_timezone' | 'fib_trend_time' | 'fib_circles' | 'fib_spiral' | 'fib_speed_resist_arcs' | 'fib_channel' | 'xabcd_pattern' | 'cypher_pattern' | 'abcd_pattern' | 'callout' | 'triangle_pattern' | '3divers_pattern' | 'head_and_shoulders' | 'fib_wedge' | 'elliott_impulse_wave' | 'elliott_triangle_wave' | 'elliott_triple_combo' | 'elliott_correction' | 'elliott_double_combo' | 'cyclic_lines' | 'time_cycles' | 'sine_line' | 'long_position' | 'short_position' | 'forecast' | 'date_range' | 'price_range' | 'date_and_price_range' | 'bars_pattern' | 'ghost_feed' | 'projection' | 'rectangle' | 'rotated_rectangle' | 'ellipse' | 'triangle' | 'polyline' | 'curve' | 'regression_trend' | 'cursor' | 'dot' | 'arrow_cursor' | 'eraser' | 'measure' | 'zoom' | 'brush';
 export interface IOrderLineAdapter {
 	remove(): void;
 	onModify(callback: () => void): this;
@@ -1012,7 +956,6 @@ export interface StudyInputValueItem {
 	id: StudyInputId;
 	value: StudyInputValueType;
 }
-export declare type StudyPriceScale = 'left' | 'right' | 'no-scale' | 'as-series';
 export interface IStudyApi {
 	isUserEditEnabled(): boolean;
 	setUserEditEnabled(enabled: boolean): void;
@@ -1023,7 +966,6 @@ export interface IStudyApi {
 	mergeDown(): void;
 	unmergeUp(): void;
 	unmergeDown(): void;
-	changePriceScale(newPriceScale: StudyPriceScale): void;
 	isVisible(): boolean;
 	setVisible(visible: boolean): void;
 	bringToFront(): void;
@@ -1056,21 +998,6 @@ export interface ILineDataSourceApi {
 	getPoints(): PricedPoint[];
 	setPoints(points: ShapePoint[]): void;
 }
-export declare const enum PriceScaleMode {
-	Normal = 0,
-	Log = 1,
-	Percentage = 2,
-}
-export interface IPriceScaleApi {
-	getMode(): PriceScaleMode;
-	setMode(newMode: PriceScaleMode): void;
-}
-export interface IPaneApi {
-	hasMainSeries(): boolean;
-	getLeftPriceScale(): IPriceScaleApi;
-	getRightPriceScale(): IPriceScaleApi;
-	getMainSourcePriceScale(): IPriceScaleApi | null;
-}
 export interface CrossHairMovedEventParams {
 	time: number;
 	price: number;
@@ -1083,7 +1010,7 @@ export interface VisiblePriceRange {
 	from: number;
 	to: number;
 }
-export declare type ChartActionId = 'chartProperties' | 'compareOrAdd' | 'scalesProperties' | 'tmzProperties' | 'paneObjectTree' | 'insertIndicator' | 'symbolSearch' | 'changeInterval' | 'timeScaleReset' | 'chartReset' | 'seriesHide' | 'studyHide' | 'lineToggleLock' | 'lineHide' | 'showLeftAxis' | 'showRightAxis' | 'scaleSeriesOnly' | 'drawingToolbarAction' | 'magnetAction' | 'stayInDrawingModeAction' | 'hideAllDrawingsAction' | 'hideAllMarks' | 'showCountdown' | 'showSeriesLastValue' | 'showSymbolLabelsAction' | 'showStudyLastValue' | 'showStudyPlotNamesAction' | 'undo' | 'redo' | 'paneRemoveAllStudiesDrawingTools';
+export declare type ChartActionId = 'chartProperties' | 'compareOrAdd' | 'scalesProperties' | 'tmzProperties' | 'paneObjectTree' | 'insertIndicator' | 'symbolSearch' | 'changeInterval' | 'timeScaleReset' | 'chartReset' | 'seriesHide' | 'studyHide' | 'lineToggleLock' | 'lineHide' | 'showLeftAxis' | 'showRightAxis' | 'scaleSeriesOnly' | 'drawingToolbarAction' | 'magnetAction' | 'stayInDrawingModeAction' | 'lockDrawingsAction' | 'hideAllDrawingsAction' | 'hideAllMarks' | 'showCountdown' | 'showSeriesLastValue' | 'showSymbolLabelsAction' | 'showStudyLastValue' | 'showStudyPlotNamesAction' | 'undo' | 'redo' | 'takeScreenshot' | 'paneRemoveAllStudiesDrawingTools';
 export declare const enum SeriesStyle {
 	Bars = 0,
 	Candles = 1,
@@ -1102,8 +1029,7 @@ export interface EntityInfo {
 	name: string;
 }
 export interface CreateStudyOptions {
-	checkLimit?: boolean;
-	priceScale?: StudyPriceScale;
+	checkLimit: boolean;
 }
 export interface CreateShapeOptions<TOverrides extends object> {
 	shape?: 'arrow_up' | 'arrow_down' | 'flag' | 'vertical_line' | 'horizontal_line';
@@ -1135,7 +1061,6 @@ export interface IChartWidgetApi {
 	onIntervalChanged(): ISubscription<(interval: ResolutionString, timeFrameParameters: {
 		timeframe?: string;
 	}) => void>;
-	onVisibleRangeChanged(): ISubscription<() => void>;
 	dataReady(callback: () => void): boolean;
 	crossHairMoved(callback: (params: CrossHairMovedEventParams) => void): void;
 	setVisibleRange(range: VisibleTimeRange, callback: () => void): void;
@@ -1174,21 +1099,7 @@ export interface IChartWidgetApi {
 	priceFormatter(): IFormatter;
 	chartType(): SeriesStyle;
 	setTimezone(timezone: 'exchange' | Timezone): void;
-	getPanes(): IPaneApi[];
 }
-export interface WatchListSymbolList extends WatchListSymbolListData {
-	id: string;
-}
-export interface WatchListSymbolListData {
-	symbols: string[];
-	title: string;
-}
-export interface WatchListSymbolListMap {
-	[listId: string]: WatchListSymbolList;
-}
-export declare type WatchListSymbolListAddedCallback = (listId: string, symbols: string[]) => void;
-export declare type WatchListSymbolListRemovedCallback = (listId: string) => void;
-export declare type WatchListSymbolListRenamedCallback = (listId: string, oldName: string, newName: string) => void;
 export declare type EditObjectDialogObjectType = 'mainSeries' | 'drawing' | 'study' | 'other';
 export interface EditObjectDialogEventParams {
 	objectType: EditObjectDialogObjectType;
@@ -1238,21 +1149,9 @@ export interface SaveChartToServerOptions {
 	defaultChartName?: string;
 }
 export interface WatchListApi {
-	defaultList(): string[];
-	getList(id?: string): string[] | null;
-	getAllLists(): WatchListSymbolListMap | null;
-	getActiveListId(): string | null;
+	getList(): string[];
 	setList(symbols: string[]): void;
-	updateList(listId: string, symbols: string[]): void;
-	renameList(listId: string, newName: string): void;
-	createList(listName?: string, symbols?: string[]): WatchListSymbolList | null;
-	saveList(list: WatchListSymbolList): boolean;
-	deleteList(listId: string): void;
 	onListChanged(): ISubscription<EmptyCallback>;
-	onActiveListChanged(): ISubscription<EmptyCallback>;
-	onListAdded(): ISubscription<WatchListSymbolListAddedCallback>;
-	onListRemoved(): ISubscription<WatchListSymbolListRemovedCallback>;
-	onListRenamed(): ISubscription<WatchListSymbolListRenamedCallback>;
 }
 export interface GrayedObject {
 	type: 'drawing' | 'study';
@@ -1320,9 +1219,6 @@ export interface IChartingLibraryWidget {
 	chartsCount(): number;
 	layout(): LayoutType;
 	setLayout(layout: LayoutType): void;
-	changeTheme(themeName: ThemeName): void;
-	takeScreenshot(): void;
-	lockAllDrawingTools(): IWatchedValue<boolean>;
 }
 export interface ChartingLibraryWidgetConstructor {
 	new (options: ChartingLibraryWidgetOptions | TradingTerminalWidgetOptions): IChartingLibraryWidget;

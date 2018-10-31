@@ -70,6 +70,7 @@
     "lockr": "^0.8.4",
     "lodash": "^4.17.5",
     "moment": "^2.22.2",
+    "natty-storage": "^2.2.0",
     "node-sass": "^4.8.3",
     "object-assign": "4.1.1",
     "pbkdf2": "^3.0.16",

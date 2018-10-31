@@ -6260,6 +6260,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+natty-storage@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/natty-storage/-/natty-storage-2.2.0.tgz#2739a0aa098f844fd35974510c9d0e63b0ca963e"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
