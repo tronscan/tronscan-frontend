@@ -28,6 +28,7 @@ import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import _ from "lodash";
 
+
 class Account extends Component {
 
   constructor() {
@@ -42,7 +43,6 @@ class Account extends Component {
       showBandwidth: false,
       privateKey: "",
       temporaryName: "",
-      exchangesList:[],
       resources: [
           {
               label:"unfreeze_bandwidth",
@@ -97,14 +97,14 @@ class Account extends Component {
       });
     });
 
-    if (currentWallet && currentWallet.allowExchange.length) {
-        let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
-        console.log('list',data)
-        this.setState({
-            exchangesList: data,
-        });
-
-    }
+    // if (currentWallet && currentWallet.allowExchange.length) {
+    //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
+    //     console.log('list',data)
+    //     this.setState({
+    //         exchangesList: data,
+    //     });
+    //
+    // }
   };
 
   reloadTokens = () => {
@@ -636,6 +636,44 @@ class Account extends Component {
     }
   };
 
+  createTxnPair = async (firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => {
+      let {account, currentWallet} = this.props;
+      let firstToken = firstTokenId;
+      let secondToken = secondTokenId;
+      let firstTokenBalanceNum = Number(firstTokenBalance)
+      let secondTokenBalanceNum = Number(secondTokenBalance)
+      if(firstTokenId === "TRX"){
+          firstToken = "_"
+          firstTokenBalanceNum = (Number(firstTokenBalance)) * ONE_TRX
+      }else if(secondTokenId === "TRX") {
+          secondToken = "_"
+          secondTokenBalanceNum = (Number(secondTokenBalance)) * ONE_TRX
+      }
+
+      let {success} = await Client.createExchange(currentWallet.address, firstToken,secondToken,firstTokenBalanceNum,secondTokenBalanceNum)(account.key);
+
+      if (success) {
+          this.setState({
+              temporaryName: name,
+              modal: (
+                  <SweetAlert success title={tu("交易对已创建")} onConfirm={this.hideModal}>
+                      {tu("成功创建交易对")} <b>{firstToken/secondToken}</b>
+                  </SweetAlert>
+              )
+          });
+
+          setTimeout(() => this.props.reloadWallet(), 1000);
+      } else {
+          this.setState({
+              modal: (
+                  <SweetAlert warning title={tu("交易对创建失败")} onConfirm={this.hideModal}>
+                      {tu("交易对创建失败")}
+                  </SweetAlert>
+              )
+          })
+      }
+  };
+
   changeName = () => {
     this.setState({
       modal: (
@@ -645,12 +683,12 @@ class Account extends Component {
       )
     });
   };
-  CreateTxnPair = () => {
+  changeTxnPair = () => {
       let {currentWallet} = this.props;
       this.setState({
           modal: (
               <CreateTxnPairModal
-                  onConfirm={(name) => this.updateName(name)}
+                  onCreate={(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => this.createTxnPair(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)}
                   onCancel={this.hideModal}
                   currentWallet={currentWallet}
               />
@@ -818,7 +856,7 @@ class Account extends Component {
   }
 
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, exchangesList} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
@@ -1123,7 +1161,7 @@ class Account extends Component {
                             <p className="card-text">
                               <a href="javascript:" className="float-right btn btn-default btn-sm btn-plus-square"
                                  onClick={() => {
-                                     this.CreateTxnPair()
+                                     this.changeTxnPair()
                                  }}>
                                 <i className="fa fa-plus-square"></i>
                                 &nbsp;
@@ -1141,16 +1179,16 @@ class Account extends Component {
                             </thead>
                             <tbody>
                             {
-                                exchangesList.length? exchangesList.map((exchange, index) => {
+                                currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
                                     return (
-                                        <tr>
+                                        <tr key={index}>
                                           <td>
-                                              {exchange.exchange_name}
+                                              {exchange.first_token_id === "_"?"TRX":exchange.first_token_id}/{exchange.second_token_id === "_"?"TRX":exchange.second_token_id}
                                           </td>
                                           <td>
-                                            <FormattedNumber value={ exchange.first_token_balance / ONE_TRX}/>
+                                            <FormattedNumber value={ exchange.first_token_id === "_"? exchange.first_token_balance / ONE_TRX : exchange.first_token_balance }/>
                                             /
-                                            <FormattedNumber value={ exchange.second_token_balance }/>
+                                            <FormattedNumber value={ exchange.second_token_id === "_"? exchange.second_token_balance / ONE_TRX : exchange.second_token_balance }/>
                                           </td>
                                           <td className="text-right">
                                     <span className="dex-inject"

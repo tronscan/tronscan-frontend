@@ -1,10 +1,16 @@
-import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {tu,t} from "../../utils/i18n";
+import {injectIntl} from "react-intl";
+import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
+import {tu, t} from "../../utils/i18n";
+import {FormattedNumber} from "react-intl";
+import {Client} from "../../services/api";
+import {ONE_TRX} from "../../constants";
+import {reloadWallet} from "../../actions/wallet";
+import {NumberField} from "../common/Fields";
 import _ from "lodash";
 
-class CreateTxnPairModal extends Component {
+class CreateTxnPairModal extends React.PureComponent {
 
     constructor() {
         super();
@@ -12,11 +18,12 @@ class CreateTxnPairModal extends Component {
         this.state = {
             name: "",
             disabled: false,
+            allowExchange:[],
             secTokenIdArr:[],
-            firstTokenID:"",
+            firstTokenId:"",
             secondTokenId:"",
-            firstTokenValue:0,
-            secondTokenValue:0,
+            firstTokenBalance:0,
+            secondTokenBalance:0,
             formTxnPair: {
                 txnpair_name_1: {
                     valid: false,
@@ -124,27 +131,40 @@ class CreateTxnPairModal extends Component {
         });
     };
 
-    // confirm = () => {
-    //     let {onConfirm} = this.props;
-    //     let {name} = this.state;
-    //     onConfirm && onConfirm(name);
-    //     this.setState({disabled: true});
-    // };
+    create = async () => {
+        // let {account, currentWallet} = this.props;
+        // let {privateKey} = this.state;
+        // console.log('account====',account)
+        // console.log('currentWallet====',currentWallet)
+        //console.log('secondTokenBalance22222====',secondTokenBalance)
+       // let {success} = await Client.createExchange(currentWallet.address, firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)(account.key);
+
+        let {onCreate,currentWallet} = this.props;
+        let {firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance} = this.state;
+        console.log('secondTokenId',secondTokenId)
+        console.log('firstTokenBalance',firstTokenBalance)
+        console.log('secondTokenBalance',secondTokenBalance)
+        onCreate && onCreate(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance);
+       this.setState({disabled: true});
+    };
     //
     // cancel = () => {
     //     let {onCancel} = this.props;
     //     onCancel && onCancel();
     // };
 
-    firstTokenIDChange = (value) => {
-        let {currentWallet} = this.props;
-        let secTokenIdArr =  _.filter(currentWallet.allowExchange,{"first_token_id":value});
+    firstTokenIdChange = (value) => {
+        let {account,currentWallet} = this.props;
+        let {allowExchange} = this.state;
+        console.log('account====',account)
+        console.log('currentWallet====',currentWallet)
+        let secTokenIdArr =  _.filter(allowExchange,{"first_token_id":value});
         let firstTokenBalances =  _.find(currentWallet.tokenBalances,{"name":value});
         let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":secTokenIdArr[0].second_token_id});
-        console.log("firstTokenBalances1========",secTokenBalances)
-        console.log("secTokenBalances1======",secTokenBalances)
+        console.log("secTokenIdArr========",secTokenIdArr)
         this.setState({
-            firstTokenID: value,
+            firstTokenId: value,
+            secondTokenId:secTokenIdArr[0].second_token_id,
             secTokenIdArr:secTokenIdArr,
             firstTokenBalances:firstTokenBalances.balance,
             secTokenBalances:secTokenBalances.balance
@@ -165,11 +185,36 @@ class CreateTxnPairModal extends Component {
         });
     }
 
+    exchangeToken(){
+        let {currentWallet} = this.props;
+        let allowExchange =   _.filter(currentWallet.allowExchange, function(o){
+            let block = true
+            currentWallet.exchanges.forEach(item => {
+                if((o.first_token_id == (item.first_token_id == "_"?"TRX":item.first_token_id)) && o.second_token_id == (item.second_token_id == "_"?"TRX":item.second_token_id)){
+                    block = false
+                }
+            })
+            return block
+        })
+        this.setState({
+            allowExchange: allowExchange
+        },() =>{
+
+        });
+
+
+    }
+    componentDidMount() {
+        this.exchangeToken()
+    }
+
+
+
 
     render() {
         let {currentWallet} = this.props;
          console.log('currentWallet',currentWallet)
-        let {modal, firstTokenID, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenValue,secondTokenValue, disabled} = this.state;
+        let {modal, firstTokenId, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenBalance,secondTokenBalance,allowExchange, disabled} = this.state;
         let [isValid, errorMessage] = this.isValid();
 
         if (modal) {
@@ -188,12 +233,14 @@ class CreateTxnPairModal extends Component {
                         <div className="col-md-6">
                             <label>{tu("通证名称")}</label>
                             <select className="custom-select"
-                                value={firstTokenID}
-                                onChange={(e) => {this.firstTokenIDChange(e.target.value)}}
+                                value={firstTokenId}
+                                onChange={(e) => {this.firstTokenIdChange(e.target.value)}}
                             >
-                                <option value=''>{t("请选择通证名称")}</option>
                                 {
-                                    currentWallet.allowExchange.map((token, index) => {
+                                    firstTokenId?"":<option value=''>{t("请选择通证名称")}</option>
+                                }
+                                {
+                                    allowExchange.map((token, index) => {
                                         return (
                                             <option key={index} value={token.first_token_id}>{token.first_token_id}</option>
                                         )
@@ -216,8 +263,8 @@ class CreateTxnPairModal extends Component {
                                    type="number"
                                    placeholder="数量"
                                    max={firstTokenBalances}
-                                   value={firstTokenValue}
-                                   onInput={(ev) => this.setState({firstTokenValue: ev.target.value})}
+                                   value={firstTokenBalance}
+                                   onInput={(ev) => this.setState({firstTokenBalance: ev.target.value})}
                             />
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
@@ -261,8 +308,8 @@ class CreateTxnPairModal extends Component {
                                    type="number"
                                    placeholder="数量"
                                    max={secTokenBalances}
-                                   value={secondTokenValue}
-                                   onInput={(ev) => this.setState({secondTokenValue: ev.target.value})}/>
+                                   value={secondTokenBalance}
+                                   onInput={(ev) => this.setState({secondTokenBalance: ev.target.value})}/>
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
                             </div>
@@ -274,7 +321,7 @@ class CreateTxnPairModal extends Component {
                                 // disabled={disabled || !isValid}
                                 className="btn btn-danger"
                                 style={{width:'100%'}}
-                                onClick={this.confirm}>{tu("创建")}</button>
+                                onClick={this.create}>{tu("创建")}</button>
                         </p>
                     </div>
                 </ModalBody>
@@ -284,9 +331,16 @@ class CreateTxnPairModal extends Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        account: state.app.account,
+        tokenBalances: state.account.tokens,
+        trxBalance: state.account.trxBalance,
+    };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    reloadWallet
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTxnPairModal)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(CreateTxnPairModal))
+
