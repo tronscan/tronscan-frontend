@@ -1,5 +1,5 @@
 import { storage,getDecimalsNum,getUTCDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
-// import { getHistoricalTimeRange,getSummarizedTimeRange} from '_api/exchange'
+
 import xhr from "axios/index";
 import _ from 'lodash'
 
@@ -99,39 +99,9 @@ Datafeeds.UDFCompatibleDatafeed.prototype.onReady = function(callback) {
  * onResolveErrorCallback function(reason)
  */
 Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, onSymbolResolvedCallback, onResolveErrorCallback) {
-    // let currentSymbolObj = storage.get('currentSymbolObj')
-    // if(!currentSymbolObj){
-    //     onResolveErrorCallback('unknown_symbol');
-    // }else{
-    //     setTimeout(() => {
-    //         let long = getDecimalsNum(currentSymbolObj.priceTickSize)
-    //         let response =  {
-    //             description: currentSymbolObj.symbol,
-    //             has_intraday: true,//否具有日内（分钟）历史数据
-    //             has_no_volume: false,//是否有成交量的数据
-    //             has_daily:true,
-    //             minmov: 1,
-    //             minmov2: 0,
-    //             intraday_multipliers:['1'],
-    //             name: currentSymbolObj.baseAsset,
-    //             // pointvalue: 1,
-    //             exchange:'55exchange',
-    //             pricescale: Math.pow(10,long),
-    //             session: "24x7",
-    //             supported_resolutions: ['1','5','30','60','240','D','W'],
-    //             ticker: currentSymbolObj.symbol,
-    //             timezone: "Asia/Shanghai",
-    //             type: 'bitcoin',
-    //             has_daily:true,
-    //             volume_precision:'3',//成交量精确度
-    //             has_empty_bars:false
-    //         }
-    //         onSymbolResolvedCallback(response);
-    //     })
-    // }
     let response = {
-        name: 'BTC/USDT',
-        ticker: 'BTC/USDT',
+        name: symbolName,
+        ticker: symbolName,
         description: '描述',
         session: '24x7',
         timezone: "UTC",
@@ -139,8 +109,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
         pricescale: 100,
         has_intraday: true,
         has_daily: true,
-        has_weekly_and_monthly: false,
-        // supported_resolutions: ['1', '5', '10', '30', '1H', '1D'],
+        has_weekly_and_monthly: true, //是否具有以W和M为单位的历史数据
     }
     onSymbolResolvedCallback(response);
 }
@@ -166,85 +135,46 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest) {
     let type = '';
     const typeMap = {
-        "30": '30min',
-        '60': '1h',
-        '240': '4h',
-        'D': '1d',
-        'W': '1w',
-        'M': '1m'
+        "30": {
+            type: '30min',
+            getutc: getUTCDay
+        },
+        '60': {
+            type: '1h',
+            getutc: getUTCDay
+        },
+        '240': {
+            type: '4h',
+            getutc: getUTCDay
+        },
+        'D': {
+            type: '1d',
+            getutc: getUTCDay
+        },
+        'W': {
+            type: '1w',
+            getutc: getUTCDay
+        },
+        'M': {
+            type: '1m',
+            getutc: getUTCDay
+        }
     }
-    type = typeMap[resolution];
-    let startDate = getUTCDay(from)
-    let endDate = getUTCDay(to)
+    type = typeMap[resolution].type;
+    let startDate = typeMap[resolution].getutc(from)
+    let endDate =  typeMap[resolution].getutc(to)
+    console.log(symbolInfo)
     //日级别以上接口
     getHistoricalTimeRange({
-        exchange_id:1,
+        exchange_id: symbolInfo.ticker,
         granularity:type,
-        time_start:from,
-        time_end:to
+        time_start:startDate,
+        time_end:endDate
     }).then(response => {
         const data = this._resolveData(response);
        
         onHistoryCallback(data.bars, data.meta);
     })
-    // switch (resolution) {
-    //     case 'D':
-    //         type = '1D';
-    //         let startDate = getUTCDay(from)
-    //         let endDate = getUTCDay(to)
-    //         //日级别以上接口
-    //         // exchange_id=2&time_start=1538092800&time_end=1538179200&granularity=1min
-    //         getHistoricalTimeRange({
-    //             exchange_id:storage.get('currentSymbol'),
-    //             granularity:type,
-    //             time_start:startDate,
-    //             time_end:endDate
-    //         }).then(response => {
-    //             const data = this._resolveData(response);
-    //             onHistoryCallback(data.bars, data.meta);
-    //         })
-    //         break;
-    //     // case '60'://查询小时历史
-    //     //     type = 'HOUR_1';
-    //     //     getSummarizedTimeRange({
-    //     //         symbol:storage.get('currentSymbol'),
-    //     //         interval:type,
-    //     //         startDateTime:getUTCHour(from),
-    //     //         endDateTime:getUTCHour(to)
-    //     //     }).then(response => {
-    //     //         // console.log('分钟K',response)
-    //     //         const data = this._resolveData(response);
-    //     //         onHistoryCallback(data.bars, data.meta);
-    //     //     })
-    //     //     break;
-    //     default:
-    //         //默认查一个月
-    //         type = '1M';
-    //         getHistoricalTimeRange({
-    //             symbol:storage.get('currentSymbol'),
-    //             interval:type,
-    //             // startDateTime:getUTCMinutes(to) - 3*24*60*60*1000,
-    //             startDateTime:getUTCMinutes(from),
-    //             endDateTime:getUTCMinutes(to)
-    //         }).then(response => {
-    //             const data = this._resolveData(response);
-    //             onHistoryCallback(data.bars, data.meta);
-    //         })
-    //         break;
-    // }
-
-
-    // onErrorCallback(reason)
-    // console.log()
-    // onHistoryCallback({
-    //     "t": [1535644800, 1535644800, 1535644800, 1535644800, 1535644800, 1535644800, 1535644800, 1535644800, 1486339200, 1486425600, 1486512000, 1486598400, 1486684800],
-    //     "o": [120.42, 121.67, 122.14, 120.93, 121.15, 127.03, 127.975, 128.31, 129.13, 130.54, 131.35, 131.65, 132.46],
-    //     "h": [122.1, 122.44, 122.35, 121.63, 121.39, 130.49, 129.39, 129.19, 130.5, 132.09, 132.22, 132.445, 132.94],
-    //     "l": [120.28, 121.6, 121.6, 120.66, 120.62, 127.01, 127.78, 128.16, 128.9, 130.45, 131.22, 131.12, 132.05],
-    //     "c": [121.88, 121.94, 121.95, 121.63, 121.35, 128.75, 128.53, 129.08, 130.29, 131.53, 132.04, 132.42, 132.12],
-    //     "v": [32586673, 26337576, 20562944, 30377503, 49200993, 111985040, 33710411, 24507301, 26845924, 38183841, 23004072, 28349859, 20065458],
-    //     "s": "ok"
-    // })
 }
 
 

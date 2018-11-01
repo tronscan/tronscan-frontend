@@ -22,7 +22,7 @@ class Transaction extends Component {
   // 获取 tokenname
   getTokenName() {
     const parsed = queryString.parse(this.props.location.search).token;
-    const tokens = parsed.split('_');
+    const tokens = parsed.split('/');
     
     this.setState({
       firstName: tokens[0],
@@ -82,7 +82,7 @@ class Transaction extends Component {
             <FormItem
               label={<span>Amout want to sell <QuestionMark text="这是提示"/></span>}
             >
-              {getFieldDecorator('note', {
+              {getFieldDecorator('note2', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
               <Input addonAfter={firstName} placeholder="input placeholder" size="large"/>
@@ -91,7 +91,7 @@ class Transaction extends Component {
             <FormItem
               label={<span>Expected to buy <QuestionMark text="这是提示"/></span>}
             >
-              {getFieldDecorator('note', {
+              {getFieldDecorator('note1', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
               <Input addonAfter={lastName} placeholder="input placeholder" size="large"/>

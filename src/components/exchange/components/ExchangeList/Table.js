@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 import {connect} from "react-redux";
 import {getSelectData} from "../../../../actions/exchange";
+import { filter, map } from 'lodash'
 
 class ExchangeTable extends React.Component {
 
@@ -48,61 +49,48 @@ class ExchangeTable extends React.Component {
   }
 
   getData() {
-    const data = [
-          {
-            "exchange_id":1,//交易对ID
-            "creator_address":"TFA1qpUkQ1yBDw4pgZKx25wEZAqkjGoZo1",//创建者
-            "first_token_id":"IGG",//第一个tokenID
-            "first_token_balance":10000,//第一个token 余额
-            "second_token_id":"TRX",//第二个tokenID
-            "second_token_balance":200,//第二个token 余额
-            "create_time":"1536416859000",//创建时间
-            "exchange_name":"IGG/TRX",//交易对名称
-            "price":0.0023,//交易对价格
-            "volume":3345.342,//24H成交量
-            "up_down_percent":"-6.64%",//涨幅
-            "high":0.0025,//最高价格
-            "low":0.002,//最低价格
-        },{
-          "exchange_id":2,//交易对ID
-          "creator_address":"TFA1qpUkQ1yBDw4pgZKx25wEZAqkjGoZo1",//创建者
-          "first_token_id":"IGG",//第一个tokenID
-          "first_token_balance":10000,//第一个token 余额
-          "second_token_id":"MEETONE",//第二个tokenID
-          "second_token_balance":200,//第二个token 余额
-          "create_time":"1536416859000",//创建时间
-          "exchange_name":"IGG/MEETONE",//交易对名称
-          "price":0.0023,//交易对价格
-          "volume":3345.342,//24H成交量
-          "up_down_percent":"+6.64%",//涨幅
-          "high":0.0025,//最高价格
-          "low":0.002,//最低价格
+    const parsed = queryString.parse(this.props.location.search).id;
+    const { dataSource } = this.props;
+
+    const currentData = filter(dataSource, item => {
+      return item.exchange_id == parsed
+    })
+
+    // 更新数据
+    if(dataSource.length){
+      if(!parsed){
+        this.onSetUrl(dataSource[0])
+      }else{
+        this.onSetUrl(currentData[0])
       }
-    ]
-    // this.setState({dataSource: data})
-    getSelectData(data)
-    
-    const parsed = queryString.parse(this.props.location.search).token;
-    
-    if(!parsed){
-      this.onSetUrl(data[0])
     }
+
+    // 获取选择状态
+    map(dataSource, item => {
+      if(item.exchange_id == parsed || !parsed){
+        item.isCurrent = true
+      }
+    })
   }
 
   onSetUrl(record) {
     const {getSelectData} = this.props
-    this.props.history.push('/exchange?token='+ record.exchange_name)
+    this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
     getSelectData(record)
      
   }
 
   componentDidMount() {
-    this.getData()
     this.getColumns()
   }
 
+  componentDidUpdate() {
+    this.getData()
+  }
+
   render() {
-    const {dataSource, columns} = this.state
+    const { columns} = this.state
+    const { dataSource } = this.props;
     return (
       <Table 
         dataSource={dataSource} 

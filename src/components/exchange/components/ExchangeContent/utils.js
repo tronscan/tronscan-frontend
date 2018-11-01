@@ -152,27 +152,27 @@ export function addSymbolSplitLine(symbol){
 }
 //获取当前时间对应零时区的整天 即零点 毫秒级别
 export function getUTCDay(unixDateParams){
-    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD 00:00:00Z')).unix()*1000;
+    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD 00:00:00Z')).unix();
     return unix;
 }
 //获取当前时间对应零时区的整小时 即分钟秒数为0  毫秒级别
 export function getUTCHour(unixDateParams){
-    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD HH:00:00Z')).unix()*1000;
+    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD HH:00:00Z')).unix();
     return unix;
 }
 //获取当前时间对应零时区的整分钟 即零秒 毫秒级别   unixDateParams （s）
 export function getUTCMinutes(unixDateParams){
-    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD HH:mm:00Z')).unix()*1000;
+    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD HH:mm:00Z')).unix();
     return unix;
 }
 //获取当前时间的上一分钟取整数 UTC
 export function getLastUTCMinutes(){
-    let unix =  moment(moment().subtract(1, 'minutes').format('YYYY-MM-DD HH:mm:00')).utc().unix()*1000;
+    let unix =  moment(moment().subtract(1, 'minutes').format('YYYY-MM-DD HH:mm:00')).utc().unix();
     return unix;
 }
 //获取当前时间的当前分钟 一分钟取整数 UTC
 export function getCurrentMinutes(){
-    let unix =  moment(moment().format('YYYY-MM-DD HH:mm:00')).utc().unix()*1000
+    let unix =  moment(moment().format('YYYY-MM-DD HH:mm:00')).utc().unix()
     return unix;
 }
 //是否是同一分钟
@@ -185,8 +185,8 @@ export function isSameHours(unix1,unix2){
 }
 //是否是同一天
 export function isSameUTCDay(unix1,unix2){
-    let start = moment(moment(unix1).utc().format('YYYY-MM-DD 00:00:00')+'Z').unix()*1000
-    let end = moment(moment(unix1).utc().format('YYYY-MM-DD 23:59:59')+'Z').unix()*1000
+    let start = moment(moment(unix1).utc().format('YYYY-MM-DD 00:00:00')+'Z').unix()
+    let end = moment(moment(unix1).utc().format('YYYY-MM-DD 23:59:59')+'Z').unix()
     if(unix2>=start && unix2<=end){
         return true
     }else{

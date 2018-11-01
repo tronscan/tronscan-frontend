@@ -6,6 +6,7 @@ import {widget} from '../../../../lib/charting_library.min';
 import './datafeeds/udf/dist/polyfills.js';
 import {UDFCompatibleDatafeed} from './datafeeds/udf/dist/bundle';
 import Datafeed from './udf/index.js'
+import {connect} from "react-redux";
 
 class Kline extends React.Component {
 
@@ -21,7 +22,12 @@ class Kline extends React.Component {
     this.createWidget()
   }
 
-  createWidget () {
+  componentDidUpdate() {
+    const { selectData } = this.props
+    this.createWidget(selectData.exchange_id)
+  }
+
+  createWidget (id) {
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
@@ -30,7 +36,7 @@ class Kline extends React.Component {
     }
 
     const tvWidget = new widget({
-      symbol: 'AAPL',
+      symbol: id,
       interval: interval,
       container_id: "tv_chart_container",
       //	BEWARE: no trailing slash is expected in feed URL
@@ -196,7 +202,7 @@ class Kline extends React.Component {
               button.addClass('selected');
               tvWidget.selectedIntervalButton = button;
           }
-          console.log('resolution: ', chart.resolution())
+
           button.attr("data-resolution", item.resolution)
               .attr("data-chart-type", item.chartType === undefined ? 1 : item.chartType)
               .html("<span>"+ item.label +"</span>")
@@ -241,15 +247,16 @@ class Kline extends React.Component {
   }
 
   render() {
+    const {selectData} = this.props
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
       <div className="d-flex exchange__kline__title">
-        <h5 className="mr-3">IGG/MEETONE ≈ <span>0.00245</span></h5>
-        <div className="mr-3">涨幅<span className="ex-red ml-2">-6.65%</span></div>
-        <div className="mr-3">高<span className=" ml-2">0.00245</span></div>
-        <div className="mr-3">低<span className=" ml-2">0.00245</span></div>
-        <div className="mr-3">24H成交量<span className=" ml-2">22332.23</span></div>
+        <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
+        <div className="mr-3">涨幅<span className="ex-red ml-2">{selectData.up_down_percent}</span></div>
+        <div className="mr-3">高<span className=" ml-2">{selectData.high}</span></div>
+        <div className="mr-3">低<span className=" ml-2">{selectData.low}</span></div>
+        <div className="mr-3">24H成交量<span className=" ml-2">{selectData.volume}</span></div>
       </div>
 
       <hr/>
@@ -261,4 +268,13 @@ class Kline extends React.Component {
   }
 }
 
-export default injectIntl(withRouter(Kline));
+function mapStateToProps(state) {
+  return {
+    selectData: state.exchange.data
+  };
+}
+
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)( injectIntl(withRouter(Kline)));

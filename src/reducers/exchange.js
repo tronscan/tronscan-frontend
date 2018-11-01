@@ -1,6 +1,7 @@
 import {SET_SELECT_DATA} from "../actions/exchange";
 
 const initialState = {
+  data: {}
 };
 
 export function exchangeReducer(state = initialState, action) {

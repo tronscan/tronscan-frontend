@@ -4,6 +4,7 @@ import {Client} from "../../../../services/api";
 import {Link} from "react-router-dom";
 import {tu} from "../../../../utils/i18n";
 import xhr from "axios/index";
+import { map } from 'lodash'
 
 import ExchangeTable from './Table';
 import { Explain} from './Explain';
@@ -18,19 +19,33 @@ class ExchangeList extends React.Component {
     super();
 
     this.state = {
-      data: {}
+      dataSource: []
     };
   }
 
   componentDidMount() {
+    this.getExchanges()
   }
 
-  getdata(data) {
-    console.log(data)
+  getExchanges = async () => {
+      let {data} = await Client.getExchangesList();
+      map(data.data, item => {
+        if(item.up_down_percent.indexOf('-') != -1){
+          item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+        }else{
+          item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+        }
+        
+      })
+      this.setState({
+          dataSource: data.data,
+      });
+
   }
+
 
   render() {
-    const {dataSource } = this.state;
+    const { dataSource } = this.state;
     return (
       <div className="exchange-list mr-2">
 
@@ -54,7 +69,7 @@ class ExchangeList extends React.Component {
 
           {/* 列表框 */}
           <div className="exchange-list__table">
-            <ExchangeTable getTableData={ data => this.setState({data})} />
+            <ExchangeTable dataSource={dataSource} />
           </div>
         </div>
 
