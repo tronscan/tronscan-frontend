@@ -1,23 +1,9 @@
 import { storage,getDecimalsNum,getUTCDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
 
-import xhr from "axios/index";
+import {Client} from "../../../../../services/api";
 import _ from 'lodash'
 
-function getHistoricalTimeRange(params){
-    // xhr.get('?')
-    return new Promise((resolve, reject) => {
-        
-        xhr.get('http://18.216.57.65:20111/api/exchange/kgraph', {
-            params: params
-        }).then(response => {
-            resolve(response.data)
-        }).catch((error) => {
-            reject(error)
-        })
-    })
-}
 const Datafeeds = {}
-let KlineSSE= null
 Datafeeds.UDFCompatibleDatafeed = function() {
     // 默认配置
     // https://b.aistock.ga/books/tradingview/book/JS-Api.html
@@ -163,15 +149,14 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
     type = typeMap[resolution].type;
     let startDate = typeMap[resolution].getutc(from)
     let endDate =  typeMap[resolution].getutc(to)
-    console.log(symbolInfo)
     //日级别以上接口
-    getHistoricalTimeRange({
+    Client.getExchangesKline({
         exchange_id: symbolInfo.ticker,
         granularity:type,
         time_start:startDate,
         time_end:endDate
     }).then(response => {
-        const data = this._resolveData(response);
+        const data = this._resolveData(response.data);
        
         onHistoryCallback(data.bars, data.meta);
     })

@@ -251,7 +251,12 @@ class Kline extends React.Component {
       {/* title 信息 */}
       <div className="d-flex exchange__kline__title">
         <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
-        <div className="mr-3">涨幅<span className="ex-red ml-2">{selectData.up_down_percent}</span></div>
+        <div className="mr-3">涨幅{
+          (selectData.up_down_percent && selectData.up_down_percent.indexOf('-') !=  -1)?
+          <span className='col-red ml-2'>{selectData.up_down_percent}</span>:
+          <span className='col-green ml-2'>{selectData.up_down_percent}</span>
+        }
+       </div>
         <div className="mr-3">高<span className=" ml-2">{selectData.high}</span></div>
         <div className="mr-3">低<span className=" ml-2">{selectData.low}</span></div>
         <div className="mr-3">24H成交量<span className=" ml-2">{selectData.volume}</span></div>
