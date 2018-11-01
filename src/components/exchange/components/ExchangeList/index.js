@@ -18,29 +18,27 @@ class ExchangeList extends React.Component {
     super();
 
     this.state = {
-      dataSource: [{
-        firstName: 'IGG',
-        lastName: 'TRX',
-        amount: 1231323,
-        range: 32
-      },
-      {
-        firstName: 'IGG',
-        lastName: 'TRX',
-        amount: 123123132123,
-        range: -32
-      },
-    ]
-      
-      
+      dataSource: []
     };
   }
 
   componentDidMount() {
+    this.getExchanges()
   }
 
+  getExchanges = async () => {
+      let {data} = await Client.getExchangesList();
+      console.log('list',data)
+      this.setState({
+          dataSource: data,
+      });
+
+  }
+
+
   render() {
-    const {dataSource } = this.state;
+    const { dataSource } = this.state;
+      console.log('dataSource',dataSource)
     return (
       <div className="exchange-list mr-2">
 

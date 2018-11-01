@@ -22,7 +22,7 @@ class Transaction extends Component {
   // 获取 tokenname
   getTokenName() {
     const parsed = queryString.parse(this.props.location.search).token;
-    const tokens = parsed.split('_');
+    const tokens = parsed.split('/');
     
     this.setState({
       firstName: tokens[0],

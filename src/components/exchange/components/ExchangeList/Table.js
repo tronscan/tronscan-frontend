@@ -78,13 +78,14 @@ class ExchangeTable extends React.Component {
           "low":0.002,//最低价格
       }
     ]
-    this.setState({dataSource: data})
-    
-    
+   //this.setState({dataSource: data})
+
+    const { dataSource } = this.props;
+    console.log('dataSource222=========',dataSource)
     const parsed = queryString.parse(this.props.location.search).token;
     
-    if(!parsed){
-      this.onSetUrl(data[0])
+    if(!parsed && dataSource.length){
+      this.onSetUrl(dataSource[0])
     }
   }
 
@@ -98,7 +99,8 @@ class ExchangeTable extends React.Component {
   }
 
   render() {
-    const {dataSource, columns} = this.state
+    const { columns} = this.state
+    const { dataSource } = this.props;
     return (
       <Table 
         dataSource={dataSource} 
