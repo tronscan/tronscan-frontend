@@ -91,6 +91,7 @@ class ExchangeTable extends React.Component {
 
   onSetUrl(record) {
      this.props.history.push('/exchange?token='+ record.exchange_name)
+
   }
 
   componentDidMount() {
