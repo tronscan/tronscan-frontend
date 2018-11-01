@@ -8,28 +8,33 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {tu} from "../../../../utils/i18n";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-
+import {ONE_TRX} from "../../../../constants";
 const FormItem = Form.Item;
 class Transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        modal: null,
     }
   }
 
   componentDidMount() {
-      let {account,currentWallet} = this.props;
-      console.log('account',account)
-      console.log("currentWallet",currentWallet)
   }
 
   handleSubmitBuy = (e) => {
-    e.preventDefault();
-    console.log(1111)
+      let {account,currentWallet,exchangeData} = this.props;
+      console.log('account',account)
+      console.log("currentWallet",currentWallet)
+      console.log('exchangeData',exchangeData)
+      e.preventDefault();
 
     this.props.form.validateFields(['first_quant_buy','second_quant_buy'],(err, values) => {
       if (!err) {
+          let token_id = exchangeData.second_token_id == "TRX"?"_":exchangeData.second_token_id;
+          let quant = exchangeData.first_token_id == "TRX"? values.second_quant_buy * ONE_TRX:values.second_quant_buy;
+          let expected = exchangeData.second_token_id == "TRX"? values.first_quant_buy * ONE_TRX:values.first_quant_buy;
+
+          this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected)
         console.log('Received values of form: ', values);
       }
     });
@@ -42,11 +47,18 @@ class Transaction extends Component {
     // "expected":
 
   handleSubmitSell = (e) => {
-      let { exchangeInfo } = this.state;
+      let {account,currentWallet,exchangeData} = this.props;
+      console.log('account',account)
+      console.log("currentWallet",currentWallet)
+      console.log('exchangeData',exchangeData)
       e.preventDefault();
       this.props.form.validateFields(['first_quant_sell','second_quant_sell'],(err, values) => {
           if (!err) {
-              this.exchangeTransaction(exchangeInfo.exchange_id, values.first_quant_sell)
+              let token_id = exchangeData.first_token_id == "TRX"?"_":exchangeData.first_token_id;
+              let quant = exchangeData.first_token_id == "TRX"? values.first_quant_sell * ONE_TRX:values.first_quant_sell;
+              let expected = exchangeData.second_token_id == "TRX"? values.second_quant_sell * ONE_TRX:values.second_quant_sell;
+
+              this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected)
               console.log('Received values of form: ', values);
           }
       });
@@ -56,7 +68,7 @@ class Transaction extends Component {
       let {account,currentWallet} = this.props;
       console.log('account',account)
       console.log("currentWallet",currentWallet)
-      let {success, code} = await Client.exchangeTransaction(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+      let {success, code} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
       if (success) {
           this.setState({
               modal: (
@@ -77,30 +89,32 @@ class Transaction extends Component {
       }
   };
 
-
+  hideModal = () => {
+        this.setState({modal: null});
+  };
   handleSecondValueBuy = (e) => {
-      let { selectData } = this.props
+      let { exchangeData } = this.props
       this.props.form.setFieldsValue({
-          second_quant_buy: e.target.value * selectData.price,
+          second_quant_buy: e.target.value * exchangeData.price,
       });
   }
 
   handleSecondValueSell = (e) => {
-      let { selectData } = this.props
+      let { exchangeData } = this.props
       this.props.form.setFieldsValue({
-          second_quant_sell: e.target.value * selectData.price,
+          second_quant_sell: e.target.value * exchangeData.price,
       });
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let {selectData} = this.props
+    let {exchangeData} = this.props
     return (
       <div className="exchange__transaction d-flex">
 
         {/* 买入模块 */}
         <div className="exchange__transaction__item mr-2 p-3">
-          <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{selectData.price}</span></h5>
+          <h5 className="mr-3">{exchangeData.exchange_name} ≈ <span>{exchangeData.price}</span></h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
             <FormItem
@@ -109,7 +123,7 @@ class Transaction extends Component {
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: '请输入交易数量' }],
                 })(
-                    <Input addonAfter={selectData.first_token_id}
+                    <Input addonAfter={exchangeData.first_token_id}
                            placeholder="input placeholder"
                            size="large"
                            type="number"
@@ -123,7 +137,7 @@ class Transaction extends Component {
             {getFieldDecorator('second_quant_buy', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
-              <Input addonAfter={selectData.second_token_id}
+              <Input addonAfter={exchangeData.second_token_id}
                      placeholder="input placeholder"
                      size="large"
                      type="number"
@@ -139,7 +153,7 @@ class Transaction extends Component {
 
         {/* 卖出模块 */}
         <div className="exchange__transaction__item  p-3">
-          <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{selectData.price}</span></h5>
+          <h5 className="mr-3">{exchangeData.exchange_name} ≈ <span>{exchangeData.price}</span></h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
             <FormItem
@@ -149,7 +163,7 @@ class Transaction extends Component {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
               <Input
-                  addonAfter={selectData.first_token_id}
+                  addonAfter={exchangeData.first_token_id}
                   placeholder="input placeholder"
                   size="large"
                   onChange={this.handleSecondValueSell}
@@ -162,7 +176,7 @@ class Transaction extends Component {
               {getFieldDecorator('second_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
-              <Input addonAfter={selectData.second_token_id} placeholder="input placeholder" size="large"/>
+              <Input addonAfter={exchangeData.second_token_id} placeholder="input placeholder" size="large"/>
             )}
             </FormItem>
             <FormItem>
@@ -178,7 +192,10 @@ class Transaction extends Component {
 
 function mapStateToProps(state) {
     return {
-      selectData: state.exchange.data
+        exchangeData: state.exchange.data,
+        account: state.app.account,
+        tokenBalances: state.account.tokens,
+        currentWallet: state.wallet.current,
     };
 }
 
