@@ -29,7 +29,8 @@ class ExchangeList extends React.Component {
 
   getExchanges = async () => {
       let {data} = await Client.getExchangesList();
-      map(data.data, item => {
+      console.log("data",data)
+      map(data, item => {
         if(item.up_down_percent.indexOf('-') != -1){
           item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
         }else{
@@ -38,7 +39,7 @@ class ExchangeList extends React.Component {
         
       })
       this.setState({
-          dataSource: data.data,
+          dataSource: data,
       });
 
   }

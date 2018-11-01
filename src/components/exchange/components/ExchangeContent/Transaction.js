@@ -4,11 +4,12 @@ import {QuestionMark} from "../../../common/QuestionMark";
 import { withRouter } from 'react-router'
 import queryString from 'query-string';
 import {Client} from "../../../../services/api";
+import SweetAlert from "react-bootstrap-sweetalert";
+import {tu} from "../../../../utils/i18n";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 
 const FormItem = Form.Item;
-
 class Transaction extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +19,15 @@ class Transaction extends Component {
   }
 
   componentDidMount() {
+      let {account,currentWallet} = this.props;
+      console.log('account',account)
+      console.log("currentWallet",currentWallet)
   }
 
   handleSubmitBuy = (e) => {
     e.preventDefault();
     console.log(1111)
+
     this.props.form.validateFields(['first_quant_buy','second_quant_buy'],(err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
@@ -30,17 +35,47 @@ class Transaction extends Component {
     });
   }
 
+    // "creatorAddress":"TFA1qpUkQ1yBDw4pgZKx25wEZAqkjGoZo1",//创建者
+    // "exchangeID":1,
+    // "tokenID":"IGG",//撤资token
+    // "quant":10000.2,//撤资数量
+    // "expected":
+
   handleSubmitSell = (e) => {
+      let { exchangeInfo } = this.state;
       e.preventDefault();
-      console.log(22222)
       this.props.form.validateFields(['first_quant_sell','second_quant_sell'],(err, values) => {
           if (!err) {
-
+              this.exchangeTransaction(exchangeInfo.exchange_id, values.first_quant_sell)
               console.log('Received values of form: ', values);
           }
       });
   }
 
+  exchangeTransaction = async (exchangeId, tokenId, quant, expected) => {
+      let {account,currentWallet} = this.props;
+      console.log('account',account)
+      console.log("currentWallet",currentWallet)
+      let {success, code} = await Client.exchangeTransaction(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+      if (success) {
+          this.setState({
+              modal: (
+                  <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
+                      {tu("transaction_success_message")}
+                  </SweetAlert>
+              )
+          });
+      } else {
+          this.setState({
+              modal: (
+                  <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
+                      {tu("transaction_error_message")}<br/>
+                    Code: {code}
+                  </SweetAlert>
+              ),
+          });
+      }
+  };
 
 
   handleSecondValueBuy = (e) => {
@@ -139,6 +174,7 @@ class Transaction extends Component {
     )
   }
 }
+
 
 function mapStateToProps(state) {
     return {
