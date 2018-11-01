@@ -18,25 +18,15 @@ class ExchangeList extends React.Component {
     super();
 
     this.state = {
-      dataSource: [{
-        firstName: 'IGG',
-        lastName: 'TRX',
-        amount: 1231323,
-        range: 32
-      },
-      {
-        firstName: 'IGG',
-        lastName: 'TRX',
-        amount: 123123132123,
-        range: -32
-      },
-    ]
-      
-      
+      data: {}
     };
   }
 
   componentDidMount() {
+  }
+
+  getdata(data) {
+    console.log(data)
   }
 
   render() {
@@ -64,7 +54,7 @@ class ExchangeList extends React.Component {
 
           {/* 列表框 */}
           <div className="exchange-list__table">
-            <ExchangeTable dataSource={dataSource}/>
+            <ExchangeTable getTableData={ data => this.setState({data})} />
           </div>
         </div>
 

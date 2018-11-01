@@ -16,7 +16,7 @@ class Transaction extends Component {
   }
 
   componentDidMount() {
-    this.getTokenName()
+    // this.getTokenName()
   }
 
   // 获取 tokenname

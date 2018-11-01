@@ -3,8 +3,9 @@ import { Table } from 'antd';
 import {QuestionMark} from "../../../common/QuestionMark";
 import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
+import {connect} from "react-redux";
+import {getSelectData} from "../../../../actions/exchange";
 
-// export function ExchangeTable({dataSource}) {
 class ExchangeTable extends React.Component {
 
   constructor() {
@@ -78,8 +79,8 @@ class ExchangeTable extends React.Component {
           "low":0.002,//最低价格
       }
     ]
-    this.setState({dataSource: data})
-    
+    // this.setState({dataSource: data})
+    getSelectData(data)
     
     const parsed = queryString.parse(this.props.location.search).token;
     
@@ -89,7 +90,10 @@ class ExchangeTable extends React.Component {
   }
 
   onSetUrl(record) {
-     this.props.history.push('/exchange?token='+ record.exchange_name)
+    const {getSelectData} = this.props
+    this.props.history.push('/exchange?token='+ record.exchange_name)
+    getSelectData(record)
+     
   }
 
   componentDidMount() {
@@ -119,4 +123,12 @@ class ExchangeTable extends React.Component {
   }
 }
 
-export default withRouter(ExchangeTable)
+function mapStateToProps(state) {
+  return {};
+}
+
+const mapDispatchToProps = {
+  getSelectData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ExchangeTable));
