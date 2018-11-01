@@ -3,8 +3,6 @@ import {injectIntl} from "react-intl";
 import { withRouter } from 'react-router'
 
 import {widget} from '../../../../lib/charting_library.min';
-import './datafeeds/udf/dist/polyfills.js';
-import {UDFCompatibleDatafeed} from './datafeeds/udf/dist/bundle';
 import Datafeed from './udf/index.js'
 import {connect} from "react-redux";
 
