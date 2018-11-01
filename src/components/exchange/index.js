@@ -1,12 +1,10 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
-import {Client} from "../../services/api";
-import {Link} from "react-router-dom";
-import {tu} from "../../utils/i18n";
-import xhr from "axios/index";
 import ExchangeList from "./components/ExchangeList/index";
 import ExchangeContent from "./components/ExchangeContent/index";
 import ExchangeRecord from "./components/ExchangeRecord/index";
+
+// import {TronLoader} from "./loaders";
 
 
 class Exchange extends React.Component {

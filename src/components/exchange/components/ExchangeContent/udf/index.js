@@ -88,7 +88,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
     let response = {
         name: symbolName,
         ticker: symbolName,
-        description: '描述',
+        // description: '描述',
         session: '24x7',
         timezone: "UTC",
         minmov: 1,
@@ -146,6 +146,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
             getutc: getUTCDay
         }
     }
+   
     type = typeMap[resolution].type;
     let startDate = typeMap[resolution].getutc(from)
     let endDate =  typeMap[resolution].getutc(to)
