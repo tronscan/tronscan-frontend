@@ -123,7 +123,7 @@ class Statistics extends React.Component {
 
     async loadTotalTRXSupply(){
         let {intl} = this.props;
-        let TronicsSupportPlanTotal = 48051406 + 47301714;
+        let TronicsSupportPlanTotal = 48051406 + 47301714 + 43778265 +  43765311;
         let random = Math.random();
         let balanceData = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
         let TRONFoundationTotal = balanceData.data.total - TronicsSupportPlanTotal;

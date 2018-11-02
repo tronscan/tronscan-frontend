@@ -35,6 +35,12 @@ class Accounts extends Component {
         },
         {
             address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
+        },
+        {
+          address:'TAv8VH5cnC5Vi5U4v5RMa9CU6pdbu7oGfu'
+        },
+        {
+          address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH'
         }
     ]
     this.setState({loading: true});
