@@ -1177,9 +1177,19 @@ export const messages = {
   "success_unfrozen_trx":"Successfully Unfrozen TRX",
   "please_select_the_type_of_unfreeze":"Please select the type of unfreeze",
   "unfreeze_bandwidth":"Unfreeze the bandwidth account to get TRX",
-  "unfreeze_energy":"Unfreeze the energy account to get TRX"
+  "unfreeze_energy":"Unfreeze the energy account to get TRX",
 
+  /*
+  ##################################################################################
+  #                                                                                #
+  # exchange                                         #
+  #                                                                                #
+  ##################################################################################
+ */
 
+  "apply_for_the_currency":"Apply for the currency",
+  "apply_for_process":"Apply for the currency process",
+  "apply_content":"If you want to add coins, please fill out the application form to provide information about the currency. After submitting the information, we will review the data as soon as possible. Please wait patiently before replying to the audit results."
 
 
 };

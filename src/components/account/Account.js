@@ -1287,11 +1287,6 @@ class Account extends Component {
                             </tbody>
                           </table>
 
-
-
-
-
-
                         </div>
                       </div>
                     </div>
@@ -1301,15 +1296,13 @@ class Account extends Component {
                       <div className="card">
                         <div className="card-body">
                           <h5 className="card-title text-center m-0">
-                            创建交易对
+                              {tu('apply_for_process')}
                           </h5>
                           <p className="pt-3">
-                            创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易
-                            对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易对创建交易
-                            对创建交易对
+                              {tu('apply_content')}
                           </p>
                           <div className="m-auto">
-                            <a href="mailto:talent@tron.network?subject=Create A Deal Pair&amp;body=" className="apply_btn">Create Now</a>
+                            <a href="javascript:;" className="apply_btn">{tu('apply_for_the_currency')}</a>
                             {/*<button className="apply-super-btn btn btn-success"*/}
                                     {/*onClick={() => {*/}
                                         {/*this.applyForDelegate()*/}

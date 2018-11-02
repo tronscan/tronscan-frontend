@@ -29,7 +29,7 @@ class Transaction extends Component {
   componentWillReceiveProps() {
     const { selectStatus } = this.props
     if(selectStatus){
-      this.props.form.resetFields();
+      //this.props.form.resetFields();
     }
   }
  
@@ -63,10 +63,10 @@ class Transaction extends Component {
       this.props.form.validateFields(['first_quant_sell','second_quant_sell'],(err, values) => {
           if (!err) {
               let token_id = exchangeData.first_token_id == "TRX"?"_":exchangeData.first_token_id;
-              let quant =  exchangeData.first_token_id == "TRX"? values.first_quant_sell * ONE_TRX:values.first_quant_sell;
-              let expected = exchangeData.second_token_id == "TRX"? values.second_quant_buy * ONE_TRX:values.second_quant_buy;
+              let quant =  exchangeData.first_token_id == "TRX"? Number(values.first_quant_sell) * ONE_TRX:Number(values.first_quant_sell);
+              let expected = exchangeData.second_token_id == "TRX"? values.second_quant_sell * ONE_TRX:values.second_quant_sell;
 
-              this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected,values)
+              this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected, values)
               console.log('Received values of form: ', values);
           }
       });
@@ -76,9 +76,12 @@ class Transaction extends Component {
       let {account,currentWallet,exchangeData} = this.props;
       console.log('account',account)
       console.log("currentWallet",currentWallet)
-      let {success, code,transaction} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+      let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+      console.log("success",success)
+      console.log("code",code)
+      console.log("transaction",transaction)
       if (success) {
-          let {success, code,transaction} = await Client.exchange({
+          await Client.exchange({
               creatorAddress:currentWallet.address,
               trx_hash:transaction.hash,
               exchangeID:exchangeData.exchange_id,
@@ -112,24 +115,31 @@ class Transaction extends Component {
   };
   handleSecondValueBuy = (e) => {
       let { exchangeData } = this.props
+      // this.setState({
+      //     second_quant_buy: e.target.value * exchangeData.price,
+      // });
       this.props.form.setFieldsValue({
-          second_quant_buy: e.target.value * exchangeData.price,
+          second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
       });
   }
 
   handleSecondValueSell = (e) => {
       let { exchangeData } = this.props
+      // this.setState({
+      //     second_quant_buy: e.target.value * exchangeData.price,
+      // });
       this.props.form.setFieldsValue({
-          second_quant_sell: e.target.value * exchangeData.price,
+          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
       });
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell} = this.props
+    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell} = this.props;
+    let {modal} = this.state;
     return (
       <div className="exchange__transaction d-flex">
-
+          {modal}
         {/* 买入模块 */}
         <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">{exchangeData.exchange_name} ≈ <span>{exchangeData.price}</span></h5>
@@ -145,6 +155,7 @@ class Transaction extends Component {
                            placeholder="input placeholder"
                            size="large"
                            type="text"
+                           //value={first_quant_buy}
                            onChange={this.handleSecondValueBuy}
                     />
                 )}
@@ -159,12 +170,13 @@ class Transaction extends Component {
                      placeholder="input placeholder"
                      size="large"
                      type="text"
+                     //value={second_quant_buy}
               />
             )}
             </FormItem>
 
             <FormItem>
-              <Button type="primary" className="success" size="large" htmlType="submit">BUY IGG</Button>
+              <Button type="primary" className="success" size="large" htmlType="submit">BUY {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>
@@ -185,6 +197,7 @@ class Transaction extends Component {
                   placeholder="input placeholder"
                   size="large"
                   type="text"
+                  //value={first_quant_sell}
                   onChange={this.handleSecondValueSell}
               />
             )}
@@ -199,11 +212,12 @@ class Transaction extends Component {
                      placeholder="input placeholder"
                      size="large"
                      type="text"
+                    // value={second_quant_sell}
               />
             )}
             </FormItem>
             <FormItem>
-              <Button type="primary" className="warning" size="large" htmlType="submit">SELL IGG</Button>
+              <Button type="primary" className="warning" size="large" htmlType="submit">SELL {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>

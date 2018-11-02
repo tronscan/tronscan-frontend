@@ -1166,7 +1166,19 @@ export const messages = {
     "success_unfrozen_trx":"成功解冻TRX",
     "please_select_the_type_of_unfreeze":"请选择解冻类型",
     "unfreeze_bandwidth":"解冻带宽账户来获取TRX",
-    "unfreeze_energy":"解冻能量账户来获取TRX"
+    "unfreeze_energy":"解冻能量账户来获取TRX",
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # exchange                                         #
+     #                                                                                #
+     ##################################################################################
+    */
+
+    "apply_for_the_currency":"申请上币",
+    "apply_for_process":"申请上币流程",
+    "apply_content":"如果您想上币，请填写申请表单提供上币的相关信息，提交信息后，我们将会第一时间进行资料审核。在审核结果回复前，请您耐心等待。"
 
 
 };

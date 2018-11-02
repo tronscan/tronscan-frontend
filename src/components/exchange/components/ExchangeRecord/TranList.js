@@ -19,6 +19,7 @@ class TranList extends Component {
     }
   }
 
+
   componentDidMount() {
     this.getColumns();
     
