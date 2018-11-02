@@ -20,10 +20,10 @@ class Kline extends React.Component {
     this.createWidget()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const { selectData, selectStatus } = this.props
-
-    if(selectStatus){
+    console.log(prevProps.selectData.exchange_id)
+    if(selectStatus || !prevProps.selectData.exchange_id){
       this.createWidget(selectData.exchange_id)
     }
   }
@@ -285,4 +285,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)( injectIntl(withRouter(Kline)));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(withRouter(Kline)));

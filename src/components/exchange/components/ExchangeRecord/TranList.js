@@ -21,12 +21,18 @@ class TranList extends Component {
 
   componentDidMount() {
     this.getColumns();
-    this.getData();
-    const getDataTime = setInterval(() => {
-      this.getData();
-    }, 3000)
+    
+    // const getDataTime = setInterval(() => {
+    //   this.getData();
+    // }, 3000)
 
-    this.setState({time: getDataTime})
+    // this.setState({time: getDataTime})
+  }
+
+  componentDidUpdate(prevProps) {
+    if(!prevProps.selectData.exchange_id){
+      this.getData()
+    }
   }
 
   componentWillUnmount() {

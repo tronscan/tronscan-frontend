@@ -37,13 +37,13 @@ Datafeeds.UDFCompatibleDatafeed.prototype._resolveData = function(response) {
     let meta = {
         noData: false,
     };
-    if (!response.data || response.data.length == 0) {
+    if (!response || !response.data || response.data.length == 0) {
         meta.noData = true;
     } else {
         bars =response.data.map(item => {
             let obj = {}
-            obj.close = Number(item.c)
             obj.time = Number(item.t*1000)
+            obj.close = Number(item.c)
             obj.open = Number(item.o)
             obj.high = Number(item.h)
             obj.low = Number(item.l)
@@ -52,7 +52,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype._resolveData = function(response) {
         })
     }
     return ({
-        bars: bars.reverse(),
+        bars: bars,
         meta: meta,
     });
 }
@@ -90,12 +90,15 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
         ticker: symbolName,
         // description: '描述',
         session: '24x7',
-        timezone: "UTC",
+        timezone: "Etc/UTC",
         minmov: 1,
-        pricescale: 100,
+        minmov2: 0,
+        pricescale: Math.pow(10,8),
+        type: 'bitcoin',
         has_intraday: true,
         has_daily: true,
         has_weekly_and_monthly: true, //是否具有以W和M为单位的历史数据
+        supported_resolutions: ['30','60','240','D','W', 'M'],
     }
     onSymbolResolvedCallback(response);
 }
@@ -158,6 +161,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
         time_end:endDate
     }).then(response => {
         const data = this._resolveData(response);
+        console.log(data)
         onHistoryCallback(data.bars, data.meta);
     })
 }
@@ -264,7 +268,22 @@ Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (reso
                 resolutionBack: 'D',
                 intervalBack: 100
             };
+        case 'M':
+            return {
+                resolutionBack: 'D',
+                intervalBack: 300
+            };
+        case '240':
+            return {
+                resolutionBack: 'D',
+                intervalBack: 5
+            };
         case '60':
+            return {
+                resolutionBack: 'D',
+                intervalBack: 3
+            };
+        case '30':
             return {
                 resolutionBack: 'D',
                 intervalBack: 3

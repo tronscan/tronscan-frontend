@@ -13,19 +13,25 @@ class Mytran extends Component {
     super(props);
     this.state = {
       dataSource: [],
-      columns: []
+      columns: [],
+      time: null
     }
   }
-
 
   componentDidMount() {
     this.getColumns();
     this.getData();
-    const getDataTime = setInterval(() => {
-      this.getData();
-    }, 3000)
+    // const getDataTime = setInterval(() => {
+    //   this.getData();
+    // }, 3000)
 
-    this.setState({time: getDataTime})
+    // this.setState({time: getDataTime})
+  }
+
+  componentDidUpdate(prevProps) {
+    if(!prevProps.selectData.exchange_id){
+      this.getData()
+    }
   }
 
   componentWillUnmount() {
@@ -35,7 +41,7 @@ class Mytran extends Component {
   getData = async () => {
     const {selectData} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({exchangeID: selectData.creator_address});
+      const {data} = await Client.getTransactionList({address: selectData.creator_address});
       this.setState({dataSource: data})
     }
   }

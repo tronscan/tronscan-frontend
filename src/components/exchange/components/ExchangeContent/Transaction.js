@@ -31,7 +31,7 @@ class Transaction extends Component {
 
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps() {
     const { selectStatus } = this.props
     if(selectStatus){
       this.props.form.resetFields();
