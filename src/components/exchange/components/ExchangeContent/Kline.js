@@ -21,8 +21,11 @@ class Kline extends React.Component {
   }
 
   componentDidUpdate() {
-    const { selectData } = this.props
-    this.createWidget(selectData.exchange_id)
+    const { selectData, selectStatus } = this.props
+
+    if(selectStatus){
+      this.createWidget(selectData.exchange_id)
+    }
   }
 
   createWidget (id) {
@@ -273,7 +276,9 @@ class Kline extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    selectData: state.exchange.data
+    selectData: state.exchange.data,
+
+    selectStatus: state.exchange.status
   };
 }
 

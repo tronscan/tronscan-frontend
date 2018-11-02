@@ -26,11 +26,11 @@ class ExchangeList extends React.Component {
 
   componentDidMount() {
     this.getExchanges()
-    // const getDataTime = setInterval(() => {
-    //   this.getExchanges();
-    // }, 3000)
+    const getDataTime = setInterval(() => {
+      this.getExchanges();
+    }, 5000)
 
-    // this.setState({time: getDataTime})
+    this.setState({time: getDataTime})
   }
 
   componentWillUnmount() {
@@ -40,7 +40,6 @@ class ExchangeList extends React.Component {
 
   getExchanges = async () => {
       let {data} = await Client.getExchangesList();
-      console.log("data",data)
       map(data, item => {
         if(item.up_down_percent.indexOf('-') != -1){
           item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'

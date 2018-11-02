@@ -21,6 +21,16 @@ class Transaction extends Component {
   componentDidMount() {
   }
 
+  componentDidUpdate() {
+    const { selectStatus } = this.props
+    console.log(selectStatus)
+    if(selectStatus){
+      console.log(111)
+this.props.form.resetFields();
+    }
+  }
+ 
+
   handleSubmitBuy = (e) => {
       let {account,currentWallet,exchangeData} = this.props;
       console.log('account',account)
@@ -193,6 +203,7 @@ class Transaction extends Component {
 function mapStateToProps(state) {
     return {
         exchangeData: state.exchange.data,
+        selectStatus: state.exchange.status,
         account: state.app.account,
         tokenBalances: state.account.tokens,
         currentWallet: state.wallet.current,

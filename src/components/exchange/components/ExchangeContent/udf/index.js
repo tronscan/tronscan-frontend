@@ -157,8 +157,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
         time_start:startDate,
         time_end:endDate
     }).then(response => {
-        const data = this._resolveData(response.data);
-       
+        const data = this._resolveData(response);
         onHistoryCallback(data.bars, data.meta);
     })
 }
