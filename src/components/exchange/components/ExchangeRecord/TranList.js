@@ -15,26 +15,30 @@ class TranList extends Component {
     this.state = {
       dataSource: [],
       columns: [],
-      time: null
+      //time: null
     }
   }
-
-  componentDidMount() {
-    this.getColumns();
-    this.getData();
-    const getDataTime = setInterval(() => {
+  componentDidUpdate(){
       this.getData();
-    }, 3000)
-
-    this.setState({time: getDataTime})
+  }
+  componentDidMount() {
+     this.getColumns();
+    // this.getData();
+    // const getDataTime = setInterval(() => {
+    //   this.getData();
+    // }, 100000)
+    //
+    // this.setState({time: getDataTime})
   }
 
-  componentWillUnmount() {
-    const {time} = this.state
-    clearInterval(time);
-  }
+  // componentWillUnmount() {
+  //   const {time} = this.state
+  //   clearInterval(time);
+  // }
+
   getData = async () => {
     const {selectData} = this.props
+    console.log('selectData',selectData)
     if(selectData.exchange_id){
       const {data} = await Client.getTransactionList({exchangeID: selectData.exchange_id});
       this.setState({dataSource: data})
@@ -90,7 +94,8 @@ class TranList extends Component {
         key: 'confirmed',
         align: 'center',
         render: (text, record, index) => {
-          return  text === 1? 
+          console.log("text",text)
+          return  text?
           <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
           <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>;
         }

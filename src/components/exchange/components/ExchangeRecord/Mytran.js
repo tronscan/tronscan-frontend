@@ -21,21 +21,21 @@ class Mytran extends Component {
   componentDidMount() {
     this.getColumns();
     this.getData();
-    const getDataTime = setInterval(() => {
-      this.getData();
-    }, 3000)
-
-    this.setState({time: getDataTime})
+    // const getDataTime = setInterval(() => {
+    //   this.getData();
+    // }, 3000000000000)
+    //
+    // this.setState({time: getDataTime})
   }
 
   componentWillUnmount() {
-    const {time} = this.state
-    clearInterval(time);
+    // const {time} = this.state
+    // clearInterval(time);
   }
   getData = async () => {
     const {selectData} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({exchangeID: selectData.creator_address});
+      const {data} = await Client.getTransactionList({address: selectData.creator_address});
       this.setState({dataSource: data})
     }
   }
@@ -89,7 +89,7 @@ class Mytran extends Component {
         key: 'confirmed',
         align: 'center',
         render: (text, record, index) => {
-          return  text === 1? 
+          return  text?
           <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
           <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>;
         }

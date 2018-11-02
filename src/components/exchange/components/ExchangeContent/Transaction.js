@@ -25,11 +25,6 @@ class Transaction extends Component {
   componentDidMount() {
 
   }
-  componentDidUpdate() {
-      const { selectData } = this.props
-
-
-  }
 
   componentDidUpdate() {
     const { selectStatus } = this.props
@@ -149,7 +144,7 @@ class Transaction extends Component {
                     <Input addonAfter={exchangeData.first_token_id}
                            placeholder="input placeholder"
                            size="large"
-                           type="number"
+                           type="text"
                            onChange={this.handleSecondValueBuy}
                     />
                 )}
@@ -163,7 +158,7 @@ class Transaction extends Component {
               <Input addonAfter={exchangeData.second_token_id}
                      placeholder="input placeholder"
                      size="large"
-                     type="number"
+                     type="text"
               />
             )}
             </FormItem>
@@ -189,6 +184,7 @@ class Transaction extends Component {
                   addonAfter={exchangeData.first_token_id}
                   placeholder="input placeholder"
                   size="large"
+                  type="text"
                   onChange={this.handleSecondValueSell}
               />
             )}
@@ -202,6 +198,7 @@ class Transaction extends Component {
               <Input addonAfter={exchangeData.second_token_id}
                      placeholder="input placeholder"
                      size="large"
+                     type="text"
               />
             )}
             </FormItem>
@@ -221,7 +218,6 @@ function mapStateToProps(state) {
         exchangeData: state.exchange.data,
         selectStatus: state.exchange.status,
         account: state.app.account,
-        tokenBalances: state.account.tokens,
         currentWallet: state.wallet.current,
     };
 }

@@ -26,16 +26,16 @@ class ExchangeList extends React.Component {
 
   componentDidMount() {
     this.getExchanges()
-    const getDataTime = setInterval(() => {
-      this.getExchanges();
-    }, 5000)
+    // const getDataTime = setInterval(() => {
+    //   this.getExchanges();
+    // }, 1000000000000)
 
-    this.setState({time: getDataTime})
+    //this.setState({time: getDataTime})
   }
 
   componentWillUnmount() {
-    const {time} = this.state
-    clearInterval(time);
+    // const {time} = this.state
+    // clearInterval(time);
   }
 
   getExchanges = async () => {
