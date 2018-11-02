@@ -23,10 +23,8 @@ class Transaction extends Component {
 
   componentDidUpdate() {
     const { selectStatus } = this.props
-    console.log(selectStatus)
     if(selectStatus){
-      console.log(111)
-this.props.form.resetFields();
+      this.props.form.resetFields();
     }
   }
  
