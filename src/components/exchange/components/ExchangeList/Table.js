@@ -54,8 +54,6 @@ class ExchangeTable extends React.Component {
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
-    console.log('dataSource',dataSource)
-    console.log('currentData',currentData)
 
     // 更新数据
     if(dataSource.length){
@@ -77,7 +75,6 @@ class ExchangeTable extends React.Component {
   onSetUrl(record) {
     const {getSelectData} = this.props
     this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
-    console.log('record',record)
     getSelectData(record, true)
      
   }

@@ -4,7 +4,7 @@ import ExchangeList from "./components/ExchangeList/index";
 import ExchangeContent from "./components/ExchangeContent/index";
 import ExchangeRecord from "./components/ExchangeRecord/index";
 
-// import {TronLoader} from "./loaders";
+import {TronLoader} from "../common/loaders";
 
 
 class Exchange extends React.Component {
@@ -29,6 +29,7 @@ class Exchange extends React.Component {
   render() {
     return (
       <main className="container header-overlap exchange">
+        {/* <div style={{position: 'absolute'}}><TronLoader/></div> */}
         <div className="d-flex mb-2">
           {/* 左侧 交易list */}
           <div style={{width: '380px'}}>

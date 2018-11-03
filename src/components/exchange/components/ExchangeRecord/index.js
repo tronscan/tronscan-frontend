@@ -18,7 +18,7 @@ export default class TransactionList extends Component {
     // this.fetch();
   }
   callback(key) {
-    console.log(key);
+    // console.log(key);
   }
   render() {
     return (

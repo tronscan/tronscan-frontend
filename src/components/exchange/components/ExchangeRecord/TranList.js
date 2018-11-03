@@ -31,7 +31,8 @@ class TranList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(!prevProps.selectData.exchange_id){
+    const { selectData } = this.props
+    if((prevProps.selectData.exchange_id != selectData.exchange_id)){
       this.getData()
     }
   }
@@ -43,7 +44,6 @@ class TranList extends Component {
 
   getData = async () => {
     const {selectData} = this.props
-    console.log('selectData',selectData)
     if(selectData.exchange_id){
       const {data} = await Client.getTransactionList({exchangeID: selectData.exchange_id});
       this.setState({dataSource: data})
@@ -99,7 +99,6 @@ class TranList extends Component {
         key: 'confirmed',
         align: 'center',
         render: (text, record, index) => {
-          console.log("text",text)
           return  text?
           <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
           <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>;
