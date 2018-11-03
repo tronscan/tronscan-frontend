@@ -21,8 +21,9 @@ class TranList extends Component {
 
 
   componentDidMount() {
+    const { selectData } = this.props
     this.getColumns();
-    
+    this.getData()
     // const getDataTime = setInterval(() => {
     //   this.getData();
     // }, 3000)

@@ -29,7 +29,8 @@ class Mytran extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(!prevProps.selectData.exchange_id){
+    const { selectData } = this.props
+    if((prevProps.selectData.exchange_id != selectData.exchange_id)){
       this.getData()
     }
   }
@@ -39,9 +40,9 @@ class Mytran extends Component {
     // clearInterval(time);
   }
   getData = async () => {
-    const {selectData} = this.props
+    const {selectData, currentWallet} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({address: selectData.creator_address});
+      const {data} = await Client.getTransactionList({address: currentWallet.address});
       this.setState({dataSource: data})
     }
   }
@@ -131,7 +132,8 @@ class Mytran extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectData: state.exchange.data
+    selectData: state.exchange.data,
+    currentWallet: state.wallet.current
   };
 }
 
