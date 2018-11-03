@@ -86,9 +86,9 @@ class Transaction extends Component {
               trx_hash:transaction.hash,
               exchangeID:exchangeData.exchange_id,
               first_token_id:exchangeData.first_token_id,
-              first_token_quant:values.first_quant_buy?values.first_quant_buy:values.first_quant_sell,//第一个token交易量
+              first_token_quant:values.first_quant_buy?parseFloat(values.first_quant_buy):parseFloat(values.first_quant_sell),//第一个token交易量
               second_token_id:exchangeData.second_token_id,
-              second_token_quant:values.second_quant_buy?values.second_quant_buy:values.second_quant_sell,//第二个token交易量
+              second_token_quant:values.second_quant_buy?parseFloat(values.second_quant_buy):parseFloat(values.second_quant_sell),//第二个token交易量
               price:exchangeData.price
           });
           this.setState({
