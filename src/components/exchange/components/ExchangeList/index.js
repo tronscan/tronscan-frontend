@@ -5,10 +5,10 @@ import {Link} from "react-router-dom";
 import {tu} from "../../../../utils/i18n";
 import xhr from "axios/index";
 import { map } from 'lodash'
-
 import ExchangeTable from './Table';
 import { Explain} from './Explain';
-
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Input } from 'antd';
 const Search = Input.Search;
 
@@ -79,9 +79,11 @@ class ExchangeList extends React.Component {
           </div>
 
           {/* 列表框 */}
-          <div className="exchange-list__table">
-            <ExchangeTable dataSource={dataSource} />
-          </div>
+          <PerfectScrollbar >
+              <div className="exchange-list__table" style={styles.list}>
+                <ExchangeTable dataSource={dataSource} />
+              </div>
+          </PerfectScrollbar>
         </div>
 
         {/* 说明 */}
@@ -94,3 +96,8 @@ class ExchangeList extends React.Component {
 
 
 export default injectIntl(ExchangeList);
+const styles = {
+    list: {
+        height: 320,
+    }
+};
