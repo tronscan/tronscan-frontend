@@ -156,7 +156,7 @@ class Transaction extends Component {
         <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">
           {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-          { firstBalance.name&&<span className="ml-2 text-sm">可用 {firstBalance.balance+' '+firstBalance.name}</span>}
+          { secondBalance.name&&<span className=" text-sm d-block">可用 {secondBalance.balance+' '+secondBalance.name}</span>}
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
@@ -200,7 +200,7 @@ class Transaction extends Component {
         <div className="exchange__transaction__item  p-3">
           <h5 className="mr-3">
             {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-            { secondBalance.name&&<span className="ml-2 text-sm">可卖 {secondBalance.balance+' '+secondBalance.name}</span>}
+            { firstBalance.name&&<span className="text-sm d-block">可卖 {firstBalance.balance+' '+firstBalance.name}</span>}
         </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
