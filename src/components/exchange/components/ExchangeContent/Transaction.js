@@ -75,7 +75,7 @@ class Transaction extends Component {
       this.props.form.validateFields(['first_quant_sell','second_quant_sell'],(err, values) => {
           if (!err) {
               let token_id = exchangeData.first_token_id == "TRX"?"_":exchangeData.first_token_id;
-              let quant =  exchangeData.first_token_id == "TRX"? Number(values.first_quant_sell) * ONE_TRX:Number(values.first_quant_sell);
+              let quant =  exchangeData.first_token_id == "TRX"? parseFloat(values.first_quant_sell) * ONE_TRX:parseFloat(values.first_quant_sell);
               let expected = exchangeData.second_token_id == "TRX"? values.second_quant_sell * ONE_TRX:values.second_quant_sell;
 
               this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected, values)
@@ -98,9 +98,9 @@ class Transaction extends Component {
               trx_hash:transaction.hash,
               exchangeID:exchangeData.exchange_id,
               first_token_id:exchangeData.first_token_id,
-              first_token_quant:values.first_quant_buy?parseFloat(values.first_quant_buy):parseFloat(values.first_quant_sell),//第一个token交易量
+              first_token_quant:values.first_quant_buy?parseFloat(values.first_quant_buy):parseFloat(values.first_quant_sell),
               second_token_id:exchangeData.second_token_id,
-              second_token_quant:values.second_quant_buy?parseFloat(values.second_quant_buy):parseFloat(values.second_quant_sell),//第二个token交易量
+              second_token_quant:values.second_quant_buy?parseFloat(values.second_quant_buy):parseFloat(values.second_quant_sell),
               price:exchangeData.price
           });
           this.setState({

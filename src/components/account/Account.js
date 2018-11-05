@@ -683,16 +683,16 @@ class Account extends Component {
                 temporaryName: name,
                 modal: (
                     <SweetAlert success title={tu("注资已完成")} onConfirm={this.hideModal}>
-                        {tu("成功注资交易对")}
+                        {tu("交易对注资成功")}
                     </SweetAlert>
                 )
             });
 
-            setTimeout(() => this.props.reloadWallet(), 1000);
+            setTimeout(() => this.props.reloadWallet(), 5000);
         } else {
             this.setState({
                 modal: (
-                    <SweetAlert warning title={tu("交易对注资失败")} onConfirm={this.hideModal}>
+                    <SweetAlert warning title={tu("注资未完成")} onConfirm={this.hideModal}>
                         {tu("交易对注资失败")}
                     </SweetAlert>
                 )
@@ -709,16 +709,16 @@ class Account extends Component {
                 temporaryName: name,
                 modal: (
                     <SweetAlert success title={tu("撤资已完成")} onConfirm={this.hideModal}>
-                        {tu("成功撤资交易对")}
+                        {tu("交易对撤资成功")}
                     </SweetAlert>
                 )
             });
 
-            setTimeout(() => this.props.reloadWallet(), 1000);
+            setTimeout(() => this.props.reloadWallet(), 5000);
         } else {
             this.setState({
                 modal: (
-                    <SweetAlert warning title={tu("交易对撤资失败")} onConfirm={this.hideModal}>
+                    <SweetAlert warning title={tu("撤资未完成")} onConfirm={this.hideModal}>
                         {tu("交易对撤资失败")}
                     </SweetAlert>
                 )
@@ -1301,8 +1301,13 @@ class Account extends Component {
                           <p className="pt-3">
                               {tu('apply_content')}
                           </p>
-                          <div className="m-auto">
-                            <a href="javascript:;" className="apply_btn">{tu('apply_for_the_currency')}</a>
+                          <div className="text-center">
+                              <button className="btn btn-danger"
+                                      // onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}
+                              >
+                                  {t("apply_for_the_currency")}
+                              </button>
+                            {/*<a href="javascript:;" className="apply_btn">{tu('apply_for_the_currency')}</a>*/}
                             {/*<button className="apply-super-btn btn btn-success"*/}
                                     {/*onClick={() => {*/}
                                         {/*this.applyForDelegate()*/}
