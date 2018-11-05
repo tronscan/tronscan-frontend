@@ -269,8 +269,8 @@ Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (reso
             };
         case 'M':
             return {
-                resolutionBack: 'D',
-                intervalBack: 30
+                resolutionBack: 'M',
+                intervalBack: 10
             };
         case '240':
             return {

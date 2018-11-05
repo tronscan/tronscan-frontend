@@ -9,6 +9,7 @@ import {tu} from "../../../../utils/i18n";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../constants";
+import {find} from 'lodash'
 const FormItem = Form.Item;
 class Transaction extends Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class Transaction extends Component {
         first_quant_buy:'',
         second_quant_buy:'',
         first_quant_sell:'',
-        second_quant_sell:''
+        second_quant_sell:'',
+        firstBalance: {},
+        secondBalance: {}
     }
   }
 
@@ -26,11 +29,20 @@ class Transaction extends Component {
 
   }
 
-  componentWillReceiveProps() {
-    const { selectStatus } = this.props
+  componentDidUpdate() {
+    const { selectStatus,currentWallet,exchangeData } = this.props
+    const { firstBalance, secondBalance } = this.state
     if(selectStatus){
       //this.props.form.resetFields();
     }
+
+    if(currentWallet && !firstBalance.name && !secondBalance.name ){
+        const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name });
+        const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name });
+
+        this.setState({firstBalance: first, secondBalance: second})
+    }
+    
   }
  
 
@@ -135,14 +147,17 @@ class Transaction extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell} = this.props;
-    let {modal} = this.state;
+    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell,account,currentWallet} = this.props;
+    let {modal,firstBalance,secondBalance} = this.state;
     return (
       <div className="exchange__transaction d-flex">
           {modal}
         {/* 买入模块 */}
         <div className="exchange__transaction__item mr-2 p-3">
-          <h5 className="mr-3">{exchangeData.exchange_name} ≈ <span>{exchangeData.price}</span></h5>
+          <h5 className="mr-3">
+          {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
+          { firstBalance.name&&<span className="ml-2 text-sm">可用 {firstBalance.balance+' '+firstBalance.name}</span>}
+          </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
             <FormItem
@@ -176,14 +191,17 @@ class Transaction extends Component {
             </FormItem>
 
             <FormItem>
-              <Button type="primary" className="success" size="large" htmlType="submit">BUY {exchangeData.first_token_id}</Button>
+              <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>BUY {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>
 
         {/* 卖出模块 */}
         <div className="exchange__transaction__item  p-3">
-          <h5 className="mr-3">{exchangeData.exchange_name} ≈ <span>{exchangeData.price}</span></h5>
+          <h5 className="mr-3">
+            {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
+            { secondBalance.name&&<span className="ml-2 text-sm">可卖 {secondBalance.balance+' '+secondBalance.name}</span>}
+        </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
             <FormItem
@@ -217,7 +235,7 @@ class Transaction extends Component {
             )}
             </FormItem>
             <FormItem>
-              <Button type="primary" className="warning" size="large" htmlType="submit">SELL {exchangeData.first_token_id}</Button>
+              <Button type="primary" className="warning" size="large" htmlType="submit" disabled={!account.address}>SELL {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>

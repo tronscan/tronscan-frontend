@@ -20,7 +20,7 @@ class Mytran extends Component {
 
   componentDidMount() {
     this.getColumns();
-    this.getData({current: 1, pageSize:20});
+    this.getData({current: 1, pageSize:15});
   }
 
   // componentDidUpdate(prevProps) {
@@ -50,7 +50,8 @@ class Mytran extends Component {
         dataIndex: 'trx_hash',
         key: 'trx_hash',
         render: (text, record, index) => {
-          return <span className={record.status === 1? 'buy': 'sell'}><Truncate>
+          // className={record.status === 1? 'buy': 'sell'}
+          return <span ><Truncate>
                   <TransactionHashLink hash={text}>{text}</TransactionHashLink>
                 </Truncate></span>
         }
@@ -119,9 +120,7 @@ class Mytran extends Component {
           onChange={pagination => this.getData(pagination)}
           pagination="both"
           pagination={{
-            position: 'both',
-            showSizeChanger: true,
-            defaultPageSize:20,
+            defaultPageSize:15,
             total
           }}
           rowKey={(record, index) => {

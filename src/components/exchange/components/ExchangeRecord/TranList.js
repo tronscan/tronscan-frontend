@@ -58,7 +58,8 @@ class TranList extends Component {
         dataIndex: 'trx_hash',
         key: 'trx_hash',
         render: (text, record, index) => {
-          return <span className={record.status === 1? 'buy': 'sell'}><Truncate>
+          // className={record.status === 1? 'buy': 'sell'}
+          return <span ><Truncate>
                   <TransactionHashLink hash={text}>{text}</TransactionHashLink>
                 </Truncate></span>
         }

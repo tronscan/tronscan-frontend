@@ -22,7 +22,6 @@ class Kline extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { selectData, selectStatus } = this.props
-    console.log(this)
     if(selectStatus || !prevProps.selectData.exchange_id){
       this.createWidget(selectData.exchange_id)
     }

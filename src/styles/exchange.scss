@@ -211,4 +211,21 @@
   .ant-input{
     border-radius: 2px;
   }
+
+  .ant-pagination.ant-table-pagination.ant-pagination{
+    margin-right: 0;
+  }
+
+  button[disabled],button[disabled]:hover{
+    background-color: #d1d3df;
+    color: #fff;
+    border-color: #d1d3df;
+
+  }
+
+  .text-sm{
+    font-size: 12px;
+    color: #999;
+  }
+  
 }
