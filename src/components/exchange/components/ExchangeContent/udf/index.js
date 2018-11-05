@@ -93,7 +93,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
         timezone: "Etc/UTC",
         minmov: 1,
         minmov2: 0,
-        pricescale: Math.pow(10,8),
+        pricescale: Math.pow(10,6),
         type: 'bitcoin',
         has_intraday: true,
         has_daily: true,
@@ -260,32 +260,32 @@ Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (reso
         case 'D':
             return {
                 resolutionBack: 'D',
-                intervalBack: 30
+                intervalBack: 100
             };
         case 'W':
             return {
                 resolutionBack: 'D',
-                intervalBack: 100
+                intervalBack: 30
             };
         case 'M':
             return {
                 resolutionBack: 'D',
-                intervalBack: 300
+                intervalBack: 30
             };
         case '240':
             return {
                 resolutionBack: 'D',
-                intervalBack: 5
+                intervalBack: 100
             };
         case '60':
             return {
                 resolutionBack: 'D',
-                intervalBack: 3
+                intervalBack: 150
             };
         case '30':
             return {
                 resolutionBack: 'D',
-                intervalBack: 3
+                intervalBack: 300
             };
         default:
             return {

@@ -146,7 +146,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
             <FormItem
-                label={<span>Expected to buy <QuestionMark text="这是提示"/></span>}
+                label={<span>Expected to buy</span>}
             >
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: '请输入交易数量' }],
@@ -161,7 +161,7 @@ class Transaction extends Component {
                 )}
             </FormItem>
             <FormItem
-              label={<span>Amout want to sell <QuestionMark text="这是提示"/></span>}
+              label={<span>Amout want to sell</span>}
             >
             {getFieldDecorator('second_quant_buy', {
                 rules: [{ required: true, message: '请输入交易数量' }],
@@ -187,7 +187,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
             <FormItem
-              label={<span>Amout want to sell <QuestionMark text="这是提示"/></span>}
+              label={<span>Amout want to sell</span>}
             >
               {getFieldDecorator('first_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
@@ -203,7 +203,7 @@ class Transaction extends Component {
             )}
             </FormItem>
             <FormItem
-              label={<span>Expected to buy <QuestionMark text="这是提示"/></span>}
+              label={<span>Expected to buy</span>}
             >
               {getFieldDecorator('second_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],

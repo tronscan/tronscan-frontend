@@ -14,36 +14,32 @@ class Mytran extends Component {
     this.state = {
       dataSource: [],
       columns: [],
-      time: null
+      total: 0
     }
   }
 
   componentDidMount() {
     this.getColumns();
-    this.getData();
-    // const getDataTime = setInterval(() => {
-    //   this.getData();
-    // }, 3000)
-
-    // this.setState({time: getDataTime})
+    this.getData({current: 1, pageSize:20});
   }
 
-  componentDidUpdate(prevProps) {
-    const { selectData } = this.props
-    if((prevProps.selectData.exchange_id != selectData.exchange_id)){
-      this.getData()
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { selectData } = this.props
+  //   if((prevProps.selectData.exchange_id != selectData.exchange_id)){
+  //     this.getData()
+  //   }
+  // }
 
-  componentWillUnmount() {
-    // const {time} = this.state
-    // clearInterval(time);
-  }
-  getData = async () => {
+  getData = async (palyload) => {
     const {selectData, currentWallet} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({address: currentWallet.address});
-      this.setState({dataSource: data})
+      const params = {
+        address: currentWallet.address,
+        start: (palyload.current-1) * palyload.pageSize,
+        limit: palyload.pageSize,
+      }
+      const {data, total} = await Client.getTransactionList(params);
+      this.setState({dataSource: data, total: total})
     }
   }
 
@@ -107,7 +103,7 @@ class Mytran extends Component {
   }
 
   render() {
-    let {dataSource, columns} = this.state
+    let {dataSource, columns, total} = this.state
     if (!dataSource || dataSource.length === 0) {
       return (
         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
@@ -119,7 +115,15 @@ class Mytran extends Component {
         <Table 
           dataSource={dataSource} 
           columns={columns} 
-          pagination={false}
+          // pagination={false}
+          onChange={pagination => this.getData(pagination)}
+          pagination="both"
+          pagination={{
+            position: 'both',
+            showSizeChanger: true,
+            defaultPageSize:20,
+            total
+          }}
           rowKey={(record, index) => {
             return index
           }}

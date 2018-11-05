@@ -68,7 +68,7 @@ class ExchangeList extends React.Component {
           {/* filter 筛选 */}
           <div className="exchange-list__filter d-flex justify-content-between align-items-center mb-3">
             <ul className="d-flex ">
-              <li className="mr-2">全部</li>
+              {/* <li className="mr-2">全部</li> */}
               {/* <li><i className="fas fa-star mr-1" style={{ color: '#F5A623'}}></i>自选</li> */}
             </ul>
             {/* <Search

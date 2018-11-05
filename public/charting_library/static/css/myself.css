@@ -35,3 +35,11 @@
 .chart-page .date-range-wrapper{
     display:none;
 }
+
+.chart-controls-bar{
+    /* height: 0; */
+}
+html{
+    height: 345px!important;
+    overflow: hidden;
+}
