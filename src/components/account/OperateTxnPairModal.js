@@ -53,7 +53,9 @@ class OperateTxnPairModal extends React.PureComponent{
         let {tokenId,tokenQuant} = this.state;
         if(tokenId == "TRX"){
             tokenId = "_";
-            tokenQuant = tokenQuant * ONE_TRX;
+            tokenQuant = parseFloat(tokenQuant * ONE_TRX);
+        }else{
+            tokenQuant = parseFloat(tokenQuant)
         }
         onInject && onInject(exchange.exchange_id, tokenId, tokenQuant);
         this.setState({disabled: true});
@@ -63,7 +65,9 @@ class OperateTxnPairModal extends React.PureComponent{
         let {tokenId,tokenQuant} = this.state;
         if(tokenId == "TRX"){
             tokenId = "_";
-            tokenQuant = tokenQuant;
+            tokenQuant = parseFloat(tokenQuant * ONE_TRX);
+        }else{
+            tokenQuant = parseFloat(tokenQuant)
         }
         onWithdraw && onWithdraw(exchange.exchange_id, tokenId, tokenQuant);
         this.setState({disabled: true});
@@ -115,7 +119,7 @@ class OperateTxnPairModal extends React.PureComponent{
                 <ModalBody>
                     <div className="row">
                         <div className="col-md-12">
-                            <label>{tu("选择您想要注资的通证：")}</label>
+                            {inject? <label>{tu("选择您想要注资的通证：")}</label>:<label>{tu("选择您想要撤资的通证：")}</label>}
                             <select className="custom-select"
                                     value={tokenId}
                                     onChange={(e) => {this.tokenIdChange(e.target.value)}}
@@ -155,7 +159,7 @@ class OperateTxnPairModal extends React.PureComponent{
                                 inject?
                                     <button
                                         // disabled={disabled || !isValid}
-                                        className="btn btn-danger"
+                                        className="btn btn-primary"
                                         style={{width:'100%'}}
                                         onClick={this.inject}>{tu("注资")}</button>:
                                     <button

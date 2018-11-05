@@ -44,7 +44,7 @@ class Navigation extends PureComponent {
     this.id = 0;
     this.loginFlag = false;
     this.state = {
-     // privateKey: 'E481ABEC438535FE8A3625E885768F1DA310BE583F5A2EAC481C27AF657E3C34',
+      privateKey: 'E481ABEC438535FE8A3625E885768F1DA310BE583F5A2EAC481C27AF657E3C34',
       search: "",
       popup: null,
       notifications: [],
@@ -63,7 +63,7 @@ class Navigation extends PureComponent {
 
   componentDidMount() {
       let {account} = this.props;
-      //this.login()
+      this.login()
   }
 
   setLanguage = (language) => {
