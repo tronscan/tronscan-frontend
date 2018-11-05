@@ -71,9 +71,11 @@ class ChangeNameModal extends Component {
                      placeholder="Account Name"
                      value={name}
                      onChange={(ev) => this.setState({name: ev.target.value})}/>
-              <div className="invalid-feedback text-center text-danger">
-                {errorMessage}
-              </div>
+                {errorMessage?
+                    <div className="invalid-feedback text-center text-danger">
+                      {errorMessage}
+                    </div>:""
+                }
             </p>
             <div className="pt-3">
               <p className="text-center">

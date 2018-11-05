@@ -15,9 +15,9 @@
                 border-bottom: none;
             }
         }
-        thead th {
+        thead tr th {
             color: $border-color;
-            border: none;
+            border: none!important;
         }
         h5,
         a {

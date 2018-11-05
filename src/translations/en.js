@@ -1189,7 +1189,8 @@ export const messages = {
 
   "apply_for_the_currency":"Apply for the currency",
   "apply_for_process":"Apply for the currency process",
-  "apply_content":"If you want to add coins, please fill out the application form to provide information about the currency. After submitting the information, we will review the data as soon as possible. Please wait patiently before replying to the audit results."
-
+  "apply_content":"If you want to add coins, please fill out the application form to provide information about the currency. After submitting the information, we will review the data as soon as possible. Please wait patiently before replying to the audit results.",
+  "operate_txn_pair_message": "Please enter an integer",
+  "withdraw_all":"Not fully divested",
 
 };
