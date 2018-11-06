@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-
 import TranList from './TranList';
 import Mytran from './Mytran';
 import {connect} from "react-redux";
-
+import {tu, tv} from "../../../../utils/i18n";
 import { Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 class TransactionList extends Component {
@@ -26,12 +25,12 @@ class TransactionList extends Component {
     return (
       <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="1" onChange={this.callback}>
-        <TabPane tab="交易记录" key="1">
+        <TabPane tab={tu("TxRecord")} key="1">
           <TranList/>
         </TabPane>
         {
           currentWallet &&
-          <TabPane tab="我的交易" key="2">
+          <TabPane tab={tu("my_transaction")} key="2">
             <Mytran/>
           </TabPane>
         }

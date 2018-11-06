@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import { Table } from 'antd';
 import {AddressLink, TransactionHashLink} from "../../../common/Links";
-import {FormattedDate, FormattedTime} from "react-intl";
+import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
 import {TRXPrice} from "../../../common/Price";
 import {ONE_TRX} from "../../../../constants";
 import {Truncate} from "../../../common/text";
 import {tu, tv} from "../../../../utils/i18n";
 import {Client} from "../../../../services/api";
 import {connect} from "react-redux";
+import { upperFirst } from 'lodash'
 class Mytran extends Component {
   constructor(props) {
     super(props);
@@ -44,9 +45,10 @@ class Mytran extends Component {
   }
 
   getColumns() {
+    let {intl} = this.props;
     const columns = [
       {
-        title: '交易哈希',
+        title: upperFirst(intl.formatMessage({id: 'TxHash'})),
         dataIndex: 'trx_hash',
         key: 'trx_hash',
         render: (text, record, index) => {
@@ -57,7 +59,7 @@ class Mytran extends Component {
         }
       },
       {
-        title: '交易时间',
+        title: upperFirst(intl.formatMessage({id: 'TxTime'})),
         dataIndex: 'createTime',
         key: 'createTime',
         width: '150px',
@@ -69,7 +71,7 @@ class Mytran extends Component {
         }
       },
       {
-        title: '地址',
+        title: upperFirst(intl.formatMessage({id: 'address'})),
         dataIndex: 'creatorAddress',
         key: 'creatorAddress',
         render: (text, record, index) => {
@@ -77,7 +79,7 @@ class Mytran extends Component {
         }
       },
       {
-        title: '交易金额',
+        title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
         dataIndex: 'quant',
         key: 'quant',
         width: '150px',
@@ -88,7 +90,7 @@ class Mytran extends Component {
         }
       },
       {
-        title: '状态',
+        title: upperFirst(intl.formatMessage({id: 'status'})),
         dataIndex: 'confirmed',
         key: 'confirmed',
         align: 'center',
@@ -118,7 +120,6 @@ class Mytran extends Component {
           columns={columns} 
           // pagination={false}
           onChange={pagination => this.getData(pagination)}
-          pagination="both"
           pagination={{
             defaultPageSize:15,
             total
@@ -143,4 +144,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Mytran);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Mytran));

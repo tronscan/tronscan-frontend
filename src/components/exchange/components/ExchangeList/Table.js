@@ -5,7 +5,8 @@ import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 import {connect} from "react-redux";
 import {getSelectData} from "../../../../actions/exchange";
-import { filter, map } from 'lodash'
+import { filter, map ,upperFirst} from 'lodash'
+import {injectIntl} from "react-intl";
 
 class ExchangeTable extends React.Component {
 
@@ -21,19 +22,20 @@ class ExchangeTable extends React.Component {
   }
 
   getColumns() {
+    let {intl} = this.props;
     const columns = [{
-      title: '交易对',
+      title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
       render: (text, record, index) => {
         return record.first_token_id +'/'+ record.second_token_id
       }
     }, {
-      title: '最新价格',
+      title: upperFirst(intl.formatMessage({id: 'last_price'})),
       dataIndex: 'price',
       key: 'price',
     }, 
     {
-      title: <span>涨幅</span>,
+      title:upperFirst(intl.formatMessage({id: 'pairs_change'})),
       dataIndex: 'up_down_percent',
       key: 'up_down_percent',
       render: (text, record, index) => {
@@ -119,4 +121,5 @@ const mapDispatchToProps = {
   getSelectData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ExchangeTable));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(withRouter(ExchangeTable)));
+

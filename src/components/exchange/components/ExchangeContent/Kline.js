@@ -1,11 +1,10 @@
 import React from "react";
 import {injectIntl} from "react-intl";
 import { withRouter } from 'react-router'
-
 import {widget} from '../../../../lib/charting_library.min';
 import Datafeed from './udf/index.js'
 import {connect} from "react-redux";
-
+import {tu, tv} from "../../../../utils/i18n";
 class Kline extends React.Component {
 
   constructor() {
@@ -254,15 +253,15 @@ class Kline extends React.Component {
       {/* title 信息 */}
       <div className="d-flex exchange__kline__title">
         <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
-        <div className="mr-3">涨幅{
+        <div className="mr-3">{tu('pairs_change')}{
           (selectData.up_down_percent && selectData.up_down_percent.indexOf('-') !=  -1)?
           <span className='col-red ml-2'>{selectData.up_down_percent}</span>:
           <span className='col-green ml-2'>{selectData.up_down_percent}</span>
         }
        </div>
-        <div className="mr-3">高<span className=" ml-2">{selectData.high}</span></div>
-        <div className="mr-3">低<span className=" ml-2">{selectData.low}</span></div>
-        <div className="mr-3">24H成交量<span className=" ml-2">{selectData.volume}</span></div>
+        <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
+        <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
+        <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume}</span></div>
       </div>
 
       <hr/>

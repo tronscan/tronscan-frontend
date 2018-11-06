@@ -63,7 +63,7 @@ class ExchangeList extends React.Component {
         {/* 市场 */}
         <div className="exchange-list-mark p-3">
           {/* 标题 */}
-          <h6>市场</h6>
+          <h6>{tu("marks")}</h6>
 
           {/* filter 筛选 */}
           <div className="exchange-list__filter d-flex justify-content-between align-items-center mb-3">

@@ -638,26 +638,14 @@ class Account extends Component {
 
   createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
       let {account, currentWallet} = this.props;
-      let firstToken = firstTokenId;
-      let secondToken = secondTokenId;
-      let firstTokenBalanceNum = Number(firstTokenBalance)
-      let secondTokenBalanceNum = Number(secondTokenBalance)
-      if(firstTokenId === "TRX"){
-          firstToken = "_"
-          firstTokenBalanceNum = (Number(firstTokenBalance)) * ONE_TRX
-      }else if(secondTokenId === "TRX") {
-          secondToken = "_"
-          secondTokenBalanceNum = (Number(secondTokenBalance)) * ONE_TRX
-      }
-
-      let {success} = await Client.createExchange(currentWallet.address, firstToken,secondToken,firstTokenBalanceNum,secondTokenBalanceNum)(account.key);
+      let {success} = await Client.createExchange(currentWallet.address, firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)(account.key);
 
       if (success) {
           this.setState({
               temporaryName: name,
               modal: (
-                  <SweetAlert success title={tu("交易对已创建")} onConfirm={this.hideModal}>
-                      {tu("成功创建交易对")} <b> {firstTokenId}/{secondTokenId}</b>
+                  <SweetAlert success onConfirm={this.hideModal}>
+                      {tu("successfully_created_pair")} <b> {firstTokenId}/{secondTokenId}</b>
                   </SweetAlert>
               )
           });
@@ -666,8 +654,8 @@ class Account extends Component {
       } else {
           this.setState({
               modal: (
-                  <SweetAlert warning title={tu("交易对创建失败")} onConfirm={this.hideModal}>
-                      {tu("交易对创建失败")}
+                  <SweetAlert warning  onConfirm={this.hideModal}>
+                      {tu("pair_creation_failed")}
                   </SweetAlert>
               )
           })
@@ -682,8 +670,8 @@ class Account extends Component {
             this.setState({
                 temporaryName: name,
                 modal: (
-                    <SweetAlert success title={tu("注资已完成")} onConfirm={this.hideModal}>
-                        {tu("交易对注资成功")}
+                    <SweetAlert success  onConfirm={this.hideModal}>
+                        {tu("successful_injection")}
                     </SweetAlert>
                 )
             });
@@ -692,8 +680,8 @@ class Account extends Component {
         } else {
             this.setState({
                 modal: (
-                    <SweetAlert warning title={tu("注资未完成")} onConfirm={this.hideModal}>
-                        {tu("交易对注资失败")}
+                    <SweetAlert warning onConfirm={this.hideModal}>
+                        {tu("sorry_injection_failed")}
                     </SweetAlert>
                 )
             })
@@ -708,8 +696,8 @@ class Account extends Component {
             this.setState({
                 temporaryName: name,
                 modal: (
-                    <SweetAlert success title={tu("撤资已完成")} onConfirm={this.hideModal}>
-                        {tu("交易对撤资成功")}
+                    <SweetAlert success onConfirm={this.hideModal}>
+                        {tu("successful_withdrawal")}
                     </SweetAlert>
                 )
             });
@@ -718,8 +706,8 @@ class Account extends Component {
         } else {
             this.setState({
                 modal: (
-                    <SweetAlert warning title={tu("撤资未完成")} onConfirm={this.hideModal}>
-                        {tu("交易对撤资失败")}
+                    <SweetAlert warning onConfirm={this.hideModal}>
+                        {tu("sorry_withdrawal_failed")}
                     </SweetAlert>
                 )
             })
@@ -1223,7 +1211,7 @@ class Account extends Component {
                         <div className="card-body">
                           <div className="d-flex justify-content-between">
                             <h5 className="card-title text-center">
-                              我的交易对
+                                {tu("my_trading_pairs")}
                             </h5>
                             <p className="card-text">
                               <a href="javascript:" className="float-right btn btn-default btn-sm btn-plus-square"
@@ -1232,15 +1220,15 @@ class Account extends Component {
                                  }}>
                                 <i className="fa fa-plus-square"></i>
                                 &nbsp;
-                                  {tu("创建交易对")}
+                                  {tu("create_trading_pairs")}
                               </a>
                             </p>
                           </div>
                           <table className="table m-0 temp-table mt-4">
                             <thead className="thead-light">
                             <tr>
-                              <th>{tu("交易对")}</th>
-                              <th>{tu("余额")}</th>
+                              <th>{tu("pairs")}</th>
+                              <th>{tu("balance")}</th>
                               <th className="text-right"></th>
                             </tr>
                             </thead>
@@ -1263,7 +1251,7 @@ class Account extends Component {
                                               this.injectTxnPair(exchange)
                                           }}
                                     >
-                                      注资
+                                        {tu("capital_injection")}
                                     </span>
                                             |
                                             <span className="dex-divestment"
@@ -1271,7 +1259,7 @@ class Account extends Component {
                                                       this.withdrawTxnPair(exchange)
                                                   }}
                                             >
-                                      撤资
+                                       {tu("capital_withdrawal")}
                                     </span>
                                           </td>
                                         </tr>
@@ -1279,7 +1267,7 @@ class Account extends Component {
                                 }):<tr>
                                   <td></td>
                                   <td>
-                                      {tu('无交易对')}
+                                      {tu('no_pairs')}
                                   </td>
                                   <td></td>
                                 </tr>
@@ -1302,18 +1290,11 @@ class Account extends Component {
                               {tu('apply_content')}
                           </p>
                           <div className="text-center">
-                              <button className="btn btn-danger"
-                                      // onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}
-                              >
+                            <a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">
+                              <button className="btn btn-danger">
                                   {t("apply_for_the_currency")}
                               </button>
-                            {/*<a href="javascript:;" className="apply_btn">{tu('apply_for_the_currency')}</a>*/}
-                            {/*<button className="apply-super-btn btn btn-success"*/}
-                                    {/*onClick={() => {*/}
-                                        {/*this.applyForDelegate()*/}
-                                    {/*}}>*/}
-                                {/*{tu("填写邮件")}*/}
-                            {/*</button>*/}
+                            </a>
                           </div>
                         </div>
                       </div>
