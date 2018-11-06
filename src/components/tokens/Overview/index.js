@@ -401,7 +401,10 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'participate'}),
         align: 'center',
         render: (text, record, index) => {
-          if (record.endTime < new Date() || record.issuedPercentage === 100)
+          if(record.isBlack){
+            return<button className="btn btn-secondary btn-sm" disabled>{tu("participate")}</button>
+          }
+          if (record.endTime < new Date() || record.issuedPercentage === 100 )
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else if (record.startTime > new Date())
             return <span style={{fontWeight: 'normal'}}>{tu("not_started")}</span>
