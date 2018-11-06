@@ -103,6 +103,7 @@ class Transaction extends Component {
               second_token_quant:values.second_quant_buy?parseFloat(values.second_quant_buy):parseFloat(values.second_quant_sell),
               price:exchangeData.price
           });
+          this.props.form.resetFields();
           this.setState({
               modal: (
                   <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>

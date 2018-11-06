@@ -46,7 +46,7 @@ class TranList extends Component {
   getData = async () => {
     const {selectData} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({exchangeID: selectData.exchange_id});
+      const {data} = await Client.getTransactionList({limit: 15, exchangeID: selectData.exchange_id});
       this.setState({dataSource: data})
     }
   }
