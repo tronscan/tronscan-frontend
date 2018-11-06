@@ -1226,7 +1226,15 @@ export const messages = {
   "TxTime":"Transaction Time",
   "TxAmount":"Transaction Amount",
   "TxRecord":"Transaction Record",
+  "TxAvailable":"Available",
   "my_transaction":"My Transaction",
+  "enter_the_trading_amount":"Enter the Trading Amount",
+  "BUY": "BUY",
+  "SELL": "SELL",
+  "estimated_cost":"Estimated Cost",
+  "estimated_revenue":"Estimated Revenue",
+  "slightly_cost":"Slightly increase the estimated cost, and the turnover rate will be higher.",
+  "slightly_revenue":"Slightly lower the estimated revenue, and the turnover rate will be higher.",
 
 
 };
