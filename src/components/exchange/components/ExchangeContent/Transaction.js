@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../constants";
 import {find} from 'lodash'
+
 const FormItem = Form.Item;
 class Transaction extends Component {
   constructor(props) {
@@ -166,7 +167,7 @@ class Transaction extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell,account,currentWallet} = this.props;
+    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell,account,currentWallet,intl} = this.props;
     let {modal,firstBalance,secondBalance} = this.state;
     return (
       <div className="exchange__transaction d-flex">
@@ -175,19 +176,19 @@ class Transaction extends Component {
         <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">
           {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-          { secondBalance.name&&<span className=" text-sm d-block">可用 {secondBalance.balance+' '+secondBalance.name}</span>}
+          { secondBalance.name&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>}
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
            
             <FormItem
-              label={<span>Amout want to sell</span>}
+              label={<span>{tu("estimated_cost")}<QuestionMark text="slightly_cost"/></span>}
             >
             {getFieldDecorator('second_quant_buy', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
               <Input addonAfter={exchangeData.second_token_id}
-                     placeholder="input placeholder"
+                     placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
                      //value={second_quant_buy}
@@ -213,7 +214,7 @@ class Transaction extends Component {
             </FormItem>
 
             <FormItem>
-              <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>BUY {exchangeData.first_token_id}</Button>
+              <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>{tu("BUY")}{exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>
@@ -222,7 +223,7 @@ class Transaction extends Component {
         <div className="exchange__transaction__item  p-3">
           <h5 className="mr-3">
             {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-            { firstBalance.name&&<span className="text-sm d-block">可卖 {firstBalance.balance+' '+firstBalance.name}</span>}
+            { firstBalance.name&&<span className="text-sm d-block">{tu("TxAvailable")} {firstBalance.balance+' '+firstBalance.name}</span>}
         </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
@@ -234,7 +235,7 @@ class Transaction extends Component {
               })(
               <Input
                   addonAfter={exchangeData.first_token_id}
-                  placeholder="input placeholder"
+                  placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                   size="large"
                   type="text"
                   //value={first_quant_sell}
@@ -243,13 +244,13 @@ class Transaction extends Component {
             )}
             </FormItem>
             <FormItem
-              label={<span>Expected to buy</span>}
+              label={<span>{tu("estimated_revenue")}<QuestionMark text="slightly_revenue"/></span> }
             >
               {getFieldDecorator('second_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
               <Input addonAfter={exchangeData.second_token_id}
-                     placeholder="input placeholder"
+                     placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
                     // value={second_quant_sell}
@@ -257,7 +258,7 @@ class Transaction extends Component {
             )}
             </FormItem>
             <FormItem>
-              <Button type="primary" className="warning" size="large" htmlType="submit" disabled={!account.address}>SELL {exchangeData.first_token_id}</Button>
+              <Button type="primary" className="warning" size="large" htmlType="submit" disabled={!account.address}>{tu("SELL")} {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>

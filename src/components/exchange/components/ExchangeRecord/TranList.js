@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import { Table } from 'antd';
 import {AddressLink, TransactionHashLink} from "../../../common/Links";
-import {FormattedDate, FormattedTime} from "react-intl";
+import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
 import {TRXPrice} from "../../../common/Price";
 import {ONE_TRX} from "../../../../constants";
 import {Truncate} from "../../../common/text";
 import {tu, tv} from "../../../../utils/i18n";
 import {Client} from "../../../../services/api";
 import {connect} from "react-redux";
+import {upperFirst} from 'lodash'
 
 class TranList extends Component {
   constructor(props) {
@@ -52,9 +53,10 @@ class TranList extends Component {
   }
 
   getColumns() {
+    let {intl} = this.props;
     const columns = [
       {
-        title: '交易哈希',
+        title: upperFirst(intl.formatMessage({id: 'TxHash'})),
         dataIndex: 'trx_hash',
         key: 'trx_hash',
         render: (text, record, index) => {
@@ -65,7 +67,7 @@ class TranList extends Component {
         }
       },
       {
-        title: '交易时间',
+        title: upperFirst(intl.formatMessage({id: 'TxTime'})),
         dataIndex: 'createTime',
         key: 'createTime',
         width: '150px',
@@ -77,7 +79,7 @@ class TranList extends Component {
         }
       },
       {
-        title: '地址',
+        title: upperFirst(intl.formatMessage({id: 'address'})),
         dataIndex: 'creatorAddress',
         key: 'creatorAddress',
         render: (text, record, index) => {
@@ -85,7 +87,7 @@ class TranList extends Component {
         }
       },
       {
-        title: '交易金额',
+        title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
         dataIndex: 'quant',
         key: 'quant',
         width: '150px',
@@ -96,7 +98,7 @@ class TranList extends Component {
         }
       },
       {
-        title: '状态',
+        title: upperFirst(intl.formatMessage({id: 'status'})),
         dataIndex: 'confirmed',
         key: 'confirmed',
         align: 'center',
@@ -142,4 +144,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TranList);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TranList));
