@@ -37,10 +37,13 @@ class Transaction extends Component {
     }
 
     if(currentWallet && !firstBalance.name && !secondBalance.name ){
-        const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name });
-        const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name });
-
-        this.setState({firstBalance: first, secondBalance: second})
+        if(currentWallet.tokenBalances.lenght>0){
+            const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name });
+            const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name });
+    
+            this.setState({firstBalance: first, secondBalance: second})
+        }
+       
     }
     
   }
@@ -141,10 +144,11 @@ class Transaction extends Component {
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
-      const data = await this.getCalcCount(e.target.value, exchangeData.first_token_id, exchangeData.exchange_id)
+      const data = await this.getCalcCount(e.target.value, exchangeData.second_token_id, exchangeData.exchange_id)
+      console.log(data)
       this.props.form.setFieldsValue({
         //   second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
-        second_quant_buy: data
+        first_quant_buy: data
       });
   }
 
@@ -175,21 +179,7 @@ class Transaction extends Component {
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
-            <FormItem
-                label={<span>Expected to buy</span>}
-            >
-                {getFieldDecorator('first_quant_buy', {
-                    rules: [{ required: true, message: '请输入交易数量' }],
-                })(
-                    <Input addonAfter={exchangeData.first_token_id}
-                           placeholder="input placeholder"
-                           size="large"
-                           type="text"
-                           //value={first_quant_buy}
-                           onChange={this.handleSecondValueBuy}
-                    />
-                )}
-            </FormItem>
+           
             <FormItem
               label={<span>Amout want to sell</span>}
             >
@@ -201,8 +191,25 @@ class Transaction extends Component {
                      size="large"
                      type="text"
                      //value={second_quant_buy}
+                     onChange={this.handleSecondValueBuy}
               />
             )}
+            </FormItem>
+
+             <FormItem
+                label={<span>Expected to buy</span>}
+            >
+                {getFieldDecorator('first_quant_buy', {
+                    rules: [{ required: true, message: '请输入交易数量' }],
+                })(
+                    <Input addonAfter={exchangeData.first_token_id}
+                           placeholder="input placeholder"
+                           size="large"
+                           type="text"
+                           //value={first_quant_buy}
+                           
+                    />
+                )}
             </FormItem>
 
             <FormItem>
