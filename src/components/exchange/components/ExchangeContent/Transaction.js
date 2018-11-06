@@ -123,26 +123,40 @@ class Transaction extends Component {
       }
   };
 
+  getCalcCount = async(count, name, id) => {
+    if(!count) return 0
+    const data = await Client.getExchangeCalc({
+        sell: count,
+        sellID: name,
+        exchangeID: id
+    })
+    return data.buyTokenQuant
+  }
+
   hideModal = () => {
         this.setState({modal: null});
   };
-  handleSecondValueBuy = (e) => {
+  handleSecondValueBuy = async (e) => {
       let { exchangeData } = this.props
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
+      const data = await this.getCalcCount(e.target.value, exchangeData.first_token_id, exchangeData.exchange_id)
       this.props.form.setFieldsValue({
-          second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
+        //   second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
+        second_quant_buy: data
       });
   }
 
-  handleSecondValueSell = (e) => {
+  handleSecondValueSell = async (e) => {
       let { exchangeData } = this.props
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
+      const data = await this.getCalcCount(e.target.value, exchangeData.first_token_id, exchangeData.exchange_id)
       this.props.form.setFieldsValue({
-          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
+        //   second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
+        second_quant_sell: data
       });
   }
 
