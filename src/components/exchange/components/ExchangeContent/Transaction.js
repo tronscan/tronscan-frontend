@@ -39,7 +39,7 @@ class Transaction extends Component {
 
     if((prevProps.currentWallet != currentWallet) || (prevProps.exchangeData != exchangeData) ){
         if(currentWallet != null){
-            const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name }) || {};
+            const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name }) || {balance:0,name:exchangeData.first_token_id};
             const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name }) || {};
             this.setState({firstBalance: first, secondBalance: second})
         }else{
@@ -72,9 +72,6 @@ class Transaction extends Component {
 
   handleSubmitSell = (e) => {
       let {account,currentWallet,exchangeData} = this.props;
-      console.log('account',account)
-      console.log("currentWallet",currentWallet)
-      console.log('exchangeData',exchangeData)
       e.preventDefault();
       this.props.form.validateFields(['first_quant_sell','second_quant_sell'],(err, values) => {
           if (!err) {
@@ -90,12 +87,7 @@ class Transaction extends Component {
 
   exchangeTransaction = async (exchangeId, tokenId, quant, expected,values) => {
       let {account,currentWallet,exchangeData} = this.props;
-      console.log('account',account)
-      console.log("currentWallet",currentWallet)
       let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
-      console.log("success",success)
-      console.log("code",code)
-      console.log("transaction",transaction)
       if (success) {
           await Client.exchange({
               creatorAddress:currentWallet.address,
@@ -175,9 +167,6 @@ class Transaction extends Component {
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
-           
-            
-
              <FormItem
                 label={<span>Expected to buy</span>}
             >
@@ -185,7 +174,7 @@ class Transaction extends Component {
                     rules: [{ required: true, message: '请输入交易数量' }],
                 })(
                     <Input addonAfter={exchangeData.first_token_id}
-                           placeholder="input placeholder"
+                           placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                            size="large"
                            type="text"
                            //value={first_quant_buy}
@@ -211,7 +200,7 @@ class Transaction extends Component {
             </FormItem>
 
             <FormItem>
-              <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>{tu("BUY")}{exchangeData.first_token_id}</Button>
+              <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>{tu("BUY")} {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
         </div>
