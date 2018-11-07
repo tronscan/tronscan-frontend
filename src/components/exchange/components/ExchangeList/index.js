@@ -81,7 +81,7 @@ class ExchangeList extends React.Component {
           {/* 列表框 */}
           <PerfectScrollbar >
               <div className="exchange-list__table" style={styles.list}>
-                <ExchangeTable dataSource={dataSource} />
+                <ExchangeTable dataSource={dataSource} props={this.props}/>
               </div>
           </PerfectScrollbar>
         </div>

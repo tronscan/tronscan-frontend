@@ -4,6 +4,7 @@ import Mytran from './Mytran';
 import {connect} from "react-redux";
 import {tu, tv} from "../../../../utils/i18n";
 import { Tabs } from 'antd';
+import {injectIntl} from "react-intl";
 const TabPane = Tabs.TabPane;
 class TransactionList extends Component {
   constructor(props) {
@@ -26,12 +27,12 @@ class TransactionList extends Component {
       <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="1" onChange={this.callback}>
         <TabPane tab={tu("TxRecord")} key="1">
-          <TranList/>
+          <TranList props={this.props}/>
         </TabPane>
         {
           currentWallet &&
           <TabPane tab={tu("my_transaction")} key="2">
-            <Mytran/>
+            <Mytran props={this.props}/>
           </TabPane>
         }
       </Tabs>
@@ -52,4 +53,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TransactionList));

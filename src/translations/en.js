@@ -1227,6 +1227,8 @@ export const messages = {
   "TxAmount":"Transaction Amount",
   "TxRecord":"Transaction Record",
   "TxAvailable":"Available",
+  "TxBuy":"Expected to buy",
+  "TxSell":"Amount want to sell",
   "my_transaction":"My Transaction",
   "enter_the_trading_amount":"Enter the Trading Amount",
   "BUY": "BUY",
