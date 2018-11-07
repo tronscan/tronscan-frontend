@@ -121,5 +121,5 @@ const mapDispatchToProps = {
   getSelectData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(withRouter(ExchangeTable)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(ExchangeTable)));
 

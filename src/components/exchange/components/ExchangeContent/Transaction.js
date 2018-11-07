@@ -30,21 +30,21 @@ class Transaction extends Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const { selectStatus,currentWallet,exchangeData } = this.props
     const { firstBalance, secondBalance } = this.state
     if(selectStatus){
       //this.props.form.resetFields();
     }
 
-    if(currentWallet && !firstBalance.name && !secondBalance.name ){
-        if(currentWallet.tokenBalances.lenght>0){
-            const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name });
-            const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name });
-    
+    if((prevProps.currentWallet != currentWallet) || (prevProps.exchangeData != exchangeData) ){
+        if(currentWallet != null){
+            const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name }) || {};
+            const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name }) || {};
             this.setState({firstBalance: first, secondBalance: second})
+        }else{
+            this.setState({firstBalance: {}, secondBalance: {}})
         }
-       
     }
     
   }
@@ -145,11 +145,8 @@ class Transaction extends Component {
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
-      const data = await this.getCalcCount(e.target.value, exchangeData.second_token_id, exchangeData.exchange_id)
-      console.log(data)
       this.props.form.setFieldsValue({
-        //   second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
-        first_quant_buy: data
+          second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value*1.01 * exchangeData.price).toFixed(6):e.target.value * exchangeData.price*1.01,
       });
   }
 
@@ -158,10 +155,8 @@ class Transaction extends Component {
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
-      const data = await this.getCalcCount(e.target.value, exchangeData.first_token_id, exchangeData.exchange_id)
       this.props.form.setFieldsValue({
-        //   second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value * exchangeData.price).toFixed(6):e.target.value * exchangeData.price,
-        second_quant_sell: data
+          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value*1.01 * exchangeData.price).toFixed(6):e.target.value * exchangeData.price*1.01,
       });
   }
 
@@ -176,26 +171,12 @@ class Transaction extends Component {
         <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">
           {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-          { secondBalance.name&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>}
+          { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>}
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
            
-            <FormItem
-              label={<span>{tu("estimated_cost")}<QuestionMark text="slightly_cost"/></span>}
-            >
-            {getFieldDecorator('second_quant_buy', {
-                rules: [{ required: true, message: '请输入交易数量' }],
-              })(
-              <Input addonAfter={exchangeData.second_token_id}
-                     placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
-                     size="large"
-                     type="text"
-                     //value={second_quant_buy}
-                     onChange={this.handleSecondValueBuy}
-              />
-            )}
-            </FormItem>
+            
 
              <FormItem
                 label={<span>Expected to buy</span>}
@@ -208,9 +189,25 @@ class Transaction extends Component {
                            size="large"
                            type="text"
                            //value={first_quant_buy}
+                           onChange={this.handleSecondValueBuy}
                            
                     />
                 )}
+            </FormItem>
+
+            <FormItem
+              label={<span>{tu("estimated_cost")}<QuestionMark text="slightly_cost"/></span>}
+            >
+            {getFieldDecorator('second_quant_buy', {
+                rules: [{ required: true, message: '请输入交易数量' }],
+              })(
+              <Input addonAfter={exchangeData.second_token_id}
+                     placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
+                     size="large"
+                     type="text"
+                     //value={second_quant_buy}
+              />
+            )}
             </FormItem>
 
             <FormItem>
@@ -223,7 +220,7 @@ class Transaction extends Component {
         <div className="exchange__transaction__item  p-3">
           <h5 className="mr-3">
             {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
-            { firstBalance.name&&<span className="text-sm d-block">{tu("TxAvailable")} {firstBalance.balance+' '+firstBalance.name}</span>}
+            { (firstBalance&&firstBalance.name)&&<span className="text-sm d-block">{tu("TxAvailable")} {firstBalance.balance+' '+firstBalance.name}</span>}
         </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
