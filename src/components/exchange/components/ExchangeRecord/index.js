@@ -21,8 +21,8 @@ class TransactionList extends Component {
     // console.log(key);
   }
   render() {
-    const { currentWallet } = this.props
-    console.log(currentWallet? 1: 0)
+    // const { currentWallet } = this.props
+      // console.log(currentWallet? 1: 0)
     return (
       <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="1" onChange={this.callback}>
@@ -30,7 +30,7 @@ class TransactionList extends Component {
           <TranList props={this.props}/>
         </TabPane>
         {
-          currentWallet &&
+          //currentWallet &&
           <TabPane tab={tu("my_transaction")} key="2">
             <Mytran props={this.props}/>
           </TabPane>
@@ -46,11 +46,13 @@ class TransactionList extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentWallet: state.wallet.current
+    //currentWallet: state.wallet.current
   };
 }
 
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TransactionList));
+//export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TransactionList));
+
+export default injectIntl(TransactionList);
