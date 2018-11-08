@@ -252,7 +252,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, r
 
 Datafeeds.UDFCompatibleDatafeed.prototype.unsubscribeBars = function (listenerGuid) {
     // socket.off('klineNotify')
-    console.log('tuiding------------')
+    // console.log('tuiding------------')
 }
 
 Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (resolution, resolutionBack, intervalBack) {

@@ -53,9 +53,6 @@ class Transaction extends Component {
 
   handleSubmitBuy = (e) => {
       let {account,currentWallet,exchangeData} = this.props;
-      console.log('account',account)
-      console.log("currentWallet",currentWallet)
-      console.log('exchangeData',exchangeData)
       e.preventDefault();
 
     this.props.form.validateFields(['first_quant_buy','second_quant_buy'],(err, values) => {
@@ -65,7 +62,6 @@ class Transaction extends Component {
           let expected =  exchangeData.first_token_id == "TRX"?values.first_quant_buy * ONE_TRX:values.first_quant_buy;
 
           this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected, values)
-          console.log('Received values of form: ', values);
       }
     });
   }
@@ -81,7 +77,6 @@ class Transaction extends Component {
               let expected = exchangeData.second_token_id == "TRX"? values.second_quant_sell * ONE_TRX:values.second_quant_sell;
 
               this.exchangeTransaction(exchangeData.exchange_id, token_id, quant, expected, values)
-              console.log('Received values of form: ', values);
           }
       });
   }

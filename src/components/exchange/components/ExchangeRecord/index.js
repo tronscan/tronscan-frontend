@@ -22,7 +22,6 @@ class TransactionList extends Component {
   }
   render() {
     const { currentWallet } = this.props
-      console.log( this.props)
     return (
       <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="1" onChange={this.callback}>

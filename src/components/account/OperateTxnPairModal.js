@@ -44,7 +44,6 @@ class OperateTxnPairModal extends React.PureComponent{
     inject = async () => {
         let {onInject, exchange} = this.props;
         let {tokenId,tokenQuant} = this.state;
-        console.log('exchange.exchange_id',exchange.exchange_id)
         if(tokenId == "TRX"){
             tokenId = "_";
             tokenQuant = parseFloat(tokenQuant * ONE_TRX);
@@ -78,7 +77,6 @@ class OperateTxnPairModal extends React.PureComponent{
     tokenIdChange = (value) => {
         let {currentWallet,exchange} = this.props;
         let tokenBalances =  exchange.first_token_id == value?exchange.first_token_balance:exchange.second_token_balance;
-        console.log('tokenBalances',tokenBalances)
 
         this.setState({
             tokenId: value,
@@ -99,7 +97,6 @@ class OperateTxnPairModal extends React.PureComponent{
         exchangeToken.push(secondTokenId)
         let {modal, tokenId,tokenQuant, disabled,tokenBalances} = this.state;
         let [isValid, errorMessage] = this.isValid();
-        console.log('errorMessage',errorMessage)
         if (modal) {
             return modal;
         }

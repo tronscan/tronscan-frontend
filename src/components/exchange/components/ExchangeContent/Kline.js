@@ -275,7 +275,6 @@ class Kline extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     selectData: state.exchange.data,
     selectStatus: state.exchange.status,
