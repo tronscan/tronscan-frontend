@@ -1171,5 +1171,5 @@ export const messages = {
     "tokens_less_than_10":"通证数量小于10的币种",
     "only_TRX_transfers":"只显示TRX转账",
     "no_transfers_found":"未查询到转账",
-
+    "current_MaxTPS":"当前/峰值TPS",
 };

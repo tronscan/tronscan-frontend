@@ -417,7 +417,26 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       top: 43px;
     }
   }
+  &_info_addr{
+    @media screen and (max-width: 768px) {
+      top: 20px;
+    }
+  }
+  &_switch_addr{
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 45px;
+    }
+  }
+
 }
+.table_pos_addr{
+  margin-top:0rem ;
+  @media screen and (max-width: 768px) {
+     margin-top:4rem ;
+  }
+}
+
 
 .live{
   .card{

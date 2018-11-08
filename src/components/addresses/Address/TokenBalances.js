@@ -104,20 +104,17 @@ export  class TokenBalances extends React.Component {
         //     }
         //     return <EmptyState />;
         // }
-
-
         return (
             <div className="token_black table_pos">
                 <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-none d-md-block">
+                  <div className="table_pos_info d-md-block table_pos_info_addr">
                       {tableInfo}
                   </div>
-                  <div className="table_pos_switch d-none d-md-block">
+                  <div className="table_pos_switch d-md-block table_pos_switch_addr">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
-               <SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale}/>
-
+               <SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
             </div>
         )
     }

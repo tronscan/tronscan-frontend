@@ -202,14 +202,6 @@ class Transfers extends React.Component {
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
-    //let Num ;
-    // let lastPage =  Math.ceil(total/pageSize);
-    // let lastPageNum =  total%pageSize;
-    // if(page<lastPage){
-    //     Num = total - pageSize + transfers.length;
-    // }else if(page === lastPage){
-    //     Num = total - lastPageNum + transfers.length;
-    // }
 
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
@@ -226,15 +218,13 @@ class Transfers extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {
-              total>0?<div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-                <div className="table_pos_info d-none d-md-block">{tableInfo}</div>
-                <div className="table_pos_switch d-none d-md-block">
-                  <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
-                </div>
-              </div>:""
-          }
-          <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale}
+           <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
+              <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo}</div>
+              <div className="table_pos_switch d-md-block table_pos_switch_addr">
+                <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
+              </div>
+            </div>
+          <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
                       onPageChange={(page, pageSize) => {
                         this.onChange(page, pageSize)
                       }}/>

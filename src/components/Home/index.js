@@ -16,6 +16,7 @@ import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
 import {LineReactHighChartTx, LineReactHighChartAdd} from "../common/LineCharts";
+import {channel} from "../../services/api";
 
 const subDays = require("date-fns/sub_days");
 
@@ -141,6 +142,7 @@ class Home extends Component {
   componentDidMount() {
     this.loadNodes();
     this.load();
+    this.reconnect();
     // constellationPreset(this.$ref, "Hot Sparks");
 
     // this.props.setInterval(() => {
@@ -149,8 +151,22 @@ class Home extends Component {
   }
 
 
+
   componentWillUnmount() {
     //clearConstellations();
+    this.listener && this.listener.close();
+  }
+
+  reconnect() {
+      this.listener && this.listener.close();
+      this.listener = channel("/tronblock");
+      this.listener.on("tron-block", info => {
+          this.setState({
+              maxTps:info.maxTps,
+              tps:info.tps,
+              blockHeight:info.maxBlock,
+          })
+      });
   }
 
   getLogo = () => {
@@ -165,7 +181,7 @@ class Home extends Component {
 
   render() {
     let {intl, activeLanguage} = this.props;
-    let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats} = this.state;
+    let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats,maxTps,tps} = this.state;
     return (
         <main className="home pb-0">
           <i className="main-icon-left"></i>
@@ -227,7 +243,13 @@ class Home extends Component {
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-3 col-sm-12 col-xs-12">
+                    <div className="col-md-2 col-sm-6">
+                      <Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        <p className="m-0">{tu("current_MaxTPS")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/transactions"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
@@ -241,18 +263,13 @@ class Home extends Component {
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-3 col-sm-12 col-xs-12">
+                    <div className="col-md-2 col-sm-12 col-xs-12">
                         <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
                           <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
                           <p className="m-0">{tu("pice_per_1trx")}</p>
                         </HrefLink>
                     </div>
-                    {/*<div className="col-md-2 col-sm-6">*/}
-                    {/*<Link to="/blockchain/stats/supply" className="hvr-underline-from-center hvr-underline-white text-muted">*/}
-                    {/*<h2><TRXBurned /></h2>*/}
-                    {/*<p className="m-0">{tu("burned_trx")}</p>*/}
-                    {/*</Link>*/}
-                    {/*</div>*/}
+
                   </div>
                 </div>
               </div>
@@ -317,98 +334,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          {/*<div className="pt-5 home-footer">*/}
-            {/*<div className="container">*/}
-              {/*<div className="row text-center text-xs-center text-sm-left text-md-left">*/}
-                {/*<div className="col-xs-12 col-sm-4 col-md-4">*/}
-                  {/*<h5>TRON</h5>*/}
-                  {/*<div className="line"></div>*/}
-                  {/*<ul className="list-unstyled quick-links pt-3">*/}
-                    {/*<li className="p-2"><HrefLink href="https://stateoftrondapps.com/"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> DApps</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink*/}
-                        {/*href={activeLanguage == 'zh' ? 'https://tron.network/exchangesList?lng=zh' : 'https://tron.network/exchangesList?lng=en'}><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> List TRX</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://medium.com/@Tronfoundation"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> TRON Labs</HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://www.facebook.com/tronfoundation/"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Facebook</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://twitter.com/tronfoundation"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Twitter</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://tronfoundation.slack.com/"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Slack</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://www.reddit.com/r/tronix"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Reddit</HrefLink></li>*/}
-                  {/*</ul>*/}
-                {/*</div>*/}
-                {/*<div className="col-xs-12 col-sm-4 col-md-4">*/}
-                  {/*<h5>Development</h5>*/}
-                  {/*<div className="line"></div>*/}
-                  {/*<ul className="list-unstyled quick-links pt-3">*/}
-                    {/*<li className="p-2"><HrefLink href="https://github.com/tronprotocol"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Github</HrefLink></li>*/}
-                    {/*<li className="p-2"><HrefLink href="https://github.com/tronprotocol/java-tron"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> java-tron</HrefLink></li>*/}
-                    {/*<li className="p-2">*/}
-                      {/*<HrefLink href="https://github.com/tronprotocol/Documentation">*/}
-                        {/*<i className="fa fa-angle-right mr-4"/> Documentation*/}
-                      {/*</HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="p-2"><HrefLink href="http://wiki.tron.network/en/latest/"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> Wiki</HrefLink></li>*/}
-                  {/*</ul>*/}
-                {/*</div>*/}
-                {/*<div className="col-xs-12 col-sm-4 col-md-4">*/}
-                  {/*<h5>Quick links</h5>*/}
-                  {/*<div className="line"></div>*/}
-                  {/*<ul className="list-unstyled quick-links pt-3">*/}
-                    {/*<li className="p-2"><Link to="/votes"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> {tu("vote_for_super_representatives")}*/}
-                    {/*</Link></li>*/}
-                    {/*<li className="p-2"><Link to="/representatives"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> {tu("view_super_representatives")}</Link></li>*/}
-                    {/*<li className="p-2"><Link to="/wallet/new"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> {tu("create_new_wallet")}</Link></li>*/}
-                    {/*<li className="p-2"><Link to="/tokens/view"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> {tu("view_tokens")}</Link></li>*/}
-                    {/*<li className="p-2"><Link to="/help/copyright"><i*/}
-                        {/*className="fa fa-angle-right mr-4"/> {tu("copyright")}</Link></li>*/}
-                  {/*</ul>*/}
-                {/*</div>*/}
-              {/*</div>*/}
-              {/*<div className="row">*/}
-                {/*<div className="col-xs-12 col-sm-12 col-md-12">*/}
-                  {/*<ul className="list-unstyled list-inline social text-center" style={{marginBottom: 4}}>*/}
-                    {/*<li className="list-inline-item">*/}
-                      {/*<HrefLink href="https://www.facebook.com/tronfoundation/"><i*/}
-                          {/*className="fab fa-facebook"/></HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="list-inline-item">*/}
-                      {/*<HrefLink href="https://www.github.com/tronprotocol"><i className="fab fa-github"/></HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="list-inline-item">*/}
-                      {/*<HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="list-inline-item">*/}
-                      {/*<HrefLink href="mailto:service@tron.network" target="_blank"><i*/}
-                          {/*className="fa fa-envelope"/></HrefLink>*/}
-                    {/*</li>*/}
-                    {/*<li className="list-inline-item">*/}
-                      {/*<HrefLink href="https://www.reddit.com/r/Tronix" target="_blank"><i*/}
-                          {/*className="fab fa-reddit-alien"/></HrefLink>*/}
-                    {/*</li>*/}
-                  {/*</ul>*/}
-                {/*</div>*/}
-                {/*<hr/>*/}
-              {/*</div>*/}
-              {/*<div className="row ">*/}
-                {/*<div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">*/}
-                  {/*<Link to="/help/copyright">Copyright© 2017-2018 tronscan.org</Link>*/}
-                {/*</div>*/}
-              {/*</div>*/}
-            {/*</div>*/}
-          {/*</div>*/}
+
         </main>
     )
   }
@@ -428,7 +354,7 @@ function mapStateToProps(state) {
   return {
     account: state.app.account,
     theme: state.app.theme,
-    activeLanguage: state.app.activeLanguage,
+    activeLanguage: state.app.activeLanguage
   };
 }
 
