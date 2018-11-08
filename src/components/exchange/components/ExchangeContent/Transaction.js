@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../constants";
 import {find} from 'lodash'
+import NumericInput from './NumericInput'
 
 const FormItem = Form.Item;
 class Transaction extends Component {
@@ -132,23 +133,23 @@ class Transaction extends Component {
   hideModal = () => {
         this.setState({modal: null});
   };
-  handleSecondValueBuy = async (e) => {
+  handleSecondValueBuy = async (value) => {
       let { exchangeData } = this.props
       // this.setState({
       //     second_quant_buy: e.target.value * exchangeData.price,
       // });
       this.props.form.setFieldsValue({
-          second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value*1.01 * exchangeData.price).toFixed(6):e.target.value * exchangeData.price*1.01,
+          second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(value*1.01 * exchangeData.price).toFixed(6):value * exchangeData.price*1.01,
       });
   }
 
-  handleSecondValueSell = async (e) => {
+  handleSecondValueSell = async (value) => {
       let { exchangeData } = this.props
       // this.setState({
-      //     second_quant_buy: e.target.value * exchangeData.price,
+      //     second_quant_buy: value * exchangeData.price,
       // });
       this.props.form.setFieldsValue({
-          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(e.target.value*1.01 * exchangeData.price).toFixed(6):e.target.value * exchangeData.price*1.01,
+          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(value*1.01 * exchangeData.price).toFixed(6):value * exchangeData.price*1.01,
       });
   }
 
@@ -173,7 +174,7 @@ class Transaction extends Component {
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: '请输入交易数量' }],
                 })(
-                    <Input addonAfter={exchangeData.first_token_id}
+                    <NumericInput addonAfter={exchangeData.first_token_id}
                            placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                            size="large"
                            type="text"
@@ -190,7 +191,7 @@ class Transaction extends Component {
             {getFieldDecorator('second_quant_buy', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
-              <Input addonAfter={exchangeData.second_token_id}
+              <NumericInput addonAfter={exchangeData.second_token_id}
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
@@ -219,7 +220,7 @@ class Transaction extends Component {
               {getFieldDecorator('first_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
-              <Input
+              <NumericInput
                   addonAfter={exchangeData.first_token_id}
                   placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                   size="large"
@@ -235,7 +236,7 @@ class Transaction extends Component {
               {getFieldDecorator('second_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
               })(
-              <Input addonAfter={exchangeData.second_token_id}
+              <NumericInput addonAfter={exchangeData.second_token_id}
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
