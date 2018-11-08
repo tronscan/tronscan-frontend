@@ -88,39 +88,40 @@ class Kline extends React.Component {
         backgroundColor: "#fff"
       },
       timezone: "Asia/Shanghai", //默认时区
+      theme: "Light",
       overrides: {
-        "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
-        volumePaneSize: "medium", //成交量大小的显示
+        // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
+        // volumePaneSize: "medium", //成交量大小的显示
         "paneProperties.legendProperties.showLegend": false, //关闭左上角
-        //背景色，
-        "paneProperties.background": "#1a2330",
-        "paneProperties.vertGridProperties.color": "#2c3450",
-        "paneProperties.vertGridProperties.style": 0,
-        "paneProperties.horzGridProperties.color": "#2c3450",
-        "paneProperties.horzGridProperties.style": 0,
-        "symbolWatermarkProperties.transparency": 90,
-        "scalesProperties.textColor": "#AAA",
-        "paneProperties.topMargin": 5,
-        "paneProperties.bottomMargin": 5,
-        //蜡烛的样式
-        "mainSeriesProperties.candleStyle.upColor": "#589065",
-        "mainSeriesProperties.candleStyle.downColor": "#ae4e54",
-        "mainSeriesProperties.candleStyle.drawWick": true,
-        "mainSeriesProperties.candleStyle.drawBorder": true,
-        "mainSeriesProperties.candleStyle.borderColor": "#589065",
-        "mainSeriesProperties.candleStyle.borderUpColor": "#589065",
-        "mainSeriesProperties.candleStyle.borderDownColor": "#ae4e54",
-        "mainSeriesProperties.candleStyle.wickUpColor": "#589065", //控制影线的颜色
-        "mainSeriesProperties.candleStyle.wickDownColor": "#ae4e54",
-        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
-        "paneProperties.crossHairProperties.color": "#fff", //十字线的颜色
-        // "paneProperties.crossHairProperties.style":'0',
-        "mainSeriesProperties.areaStyle.color1": "rgba(255,255,255,0.1)",
-        "mainSeriesProperties.areaStyle.color2": "rgba(255,255,255,0.1)",
-        "mainSeriesProperties.areaStyle.linecolor": "#4e5b85",
-        "mainSeriesProperties.areaStyle.linestyle": 0,
-        "mainSeriesProperties.areaStyle.linewidth": 1,
-        "mainSeriesProperties.areaStyle.priceSource": "close"
+        // //背景色，
+        // "paneProperties.background": "#fff",
+        // "paneProperties.vertGridProperties.color": "#2c3450",
+        // "paneProperties.vertGridProperties.style": 0,
+        // "paneProperties.horzGridProperties.color": "#2c3450",
+        // "paneProperties.horzGridProperties.style": 0,
+        // "symbolWatermarkProperties.transparency": 90,
+        // "scalesProperties.textColor": "#AAA",
+        // "paneProperties.topMargin": 5,
+        // "paneProperties.bottomMargin": 5,
+        // //蜡烛的样式
+        // "mainSeriesProperties.candleStyle.upColor": "#589065",
+        // "mainSeriesProperties.candleStyle.downColor": "#ae4e54",
+        // "mainSeriesProperties.candleStyle.drawWick": true,
+        // "mainSeriesProperties.candleStyle.drawBorder": true,
+        // "mainSeriesProperties.candleStyle.borderColor": "#589065",
+        // "mainSeriesProperties.candleStyle.borderUpColor": "#589065",
+        // "mainSeriesProperties.candleStyle.borderDownColor": "#ae4e54",
+        // "mainSeriesProperties.candleStyle.wickUpColor": "#589065", //控制影线的颜色
+        // "mainSeriesProperties.candleStyle.wickDownColor": "#ae4e54",
+        // "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+        // "paneProperties.crossHairProperties.color": "#fff", //十字线的颜色
+        // // "paneProperties.crossHairProperties.style":'0',
+        // "mainSeriesProperties.areaStyle.color1": "rgba(255,255,255,0.1)",
+        // "mainSeriesProperties.areaStyle.color2": "rgba(255,255,255,0.1)",
+        // "mainSeriesProperties.areaStyle.linecolor": "#4e5b85",
+        // "mainSeriesProperties.areaStyle.linestyle": 0,
+        // "mainSeriesProperties.areaStyle.linewidth": 1,
+        // "mainSeriesProperties.areaStyle.priceSource": "close"
       },
       favorites: {
         chartTypes: ["Area", "Line"]
