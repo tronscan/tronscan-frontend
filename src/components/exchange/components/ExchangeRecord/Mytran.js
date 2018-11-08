@@ -96,8 +96,8 @@ class Mytran extends Component {
         align: 'center',
         render: (text, record, index) => {
           return  text?
-          <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-          <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>;
+          <span className="badge badge-success text-uppercase badge-success-radius">{tu("Confirmed")}</span> :
+          <span className="badge badge-danger text-uppercase badge-danger-radius">{tu("Unconfirmed")}</span>;
         }
       }
     ]

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Form, Input, Button, Radio } from 'antd';
-import {QuestionMark} from "../../../common/QuestionMark";
+import { QuestionMark } from "../../../common/QuestionMark";
 import { withRouter } from 'react-router'
 import queryString from 'query-string';
 import {Client} from "../../../../services/api";
@@ -185,7 +185,7 @@ class Transaction extends Component {
             </FormItem>
 
             <FormItem
-              label={<span>{tu("estimated_cost")}<QuestionMark text="slightly_cost"/></span>}
+              label={<span>{tu("estimated_cost")} <span className="tx-question-mark"><QuestionMark text="slightly_cost"/></span></span>}
             >
             {getFieldDecorator('second_quant_buy', {
                 rules: [{ required: true, message: '请输入交易数量' }],
@@ -230,7 +230,7 @@ class Transaction extends Component {
             )}
             </FormItem>
             <FormItem
-              label={<span>{tu("estimated_revenue")}<QuestionMark text="slightly_revenue"/></span> }
+              label={<span>{tu("estimated_revenue")}<span className="tx-question-mark"><QuestionMark text="slightly_revenue"/></span></span> }
             >
               {getFieldDecorator('second_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],
