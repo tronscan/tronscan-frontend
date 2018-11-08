@@ -32,16 +32,13 @@ class Transaction extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { selectStatus,currentWallet,exchangeData } = this.props
-    const { firstBalance, secondBalance } = this.state
-    if(selectStatus){
-      //this.props.form.resetFields();
-    }
+    const { selectStatus,currentWallet,exchangeData, activeLanguage } = this.props
 
-    if((prevProps.currentWallet != currentWallet) || (prevProps.exchangeData != exchangeData) ){
+    if((prevProps.currentWallet != currentWallet) || (prevProps.exchangeData != exchangeData) || (prevProps.activeLanguage != activeLanguage) ){
+        this.props.form.resetFields();
         if(currentWallet != null){
             const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name }) || {balance:0,name:exchangeData.first_token_id};
-            const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name }) || {};
+            const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name }) || {balance:0,name:exchangeData.second_token_id};
             this.setState({firstBalance: first, secondBalance: second})
         }else{
             this.setState({firstBalance: {}, secondBalance: {}})
@@ -167,7 +164,7 @@ class Transaction extends Component {
                 label={<span>{tu("TxBuy")}</span>}
             >
                 {getFieldDecorator('first_quant_buy', {
-                    rules: [{ required: true, message: '请输入交易数量' }],
+                    rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
                 })(
                     <NumericInput addonAfter={exchangeData.first_token_id}
                            placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
@@ -184,7 +181,7 @@ class Transaction extends Component {
               label={<span>{tu("estimated_cost")} <span className="tx-question-mark"><QuestionMark text="slightly_cost"/></span></span>}
             >
             {getFieldDecorator('second_quant_buy', {
-                rules: [{ required: true, message: '请输入交易数量' }],
+                rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
               })(
               <NumericInput addonAfter={exchangeData.second_token_id}
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
@@ -213,7 +210,7 @@ class Transaction extends Component {
               label={<span>{tu("TxSell")}</span>}
             >
               {getFieldDecorator('first_quant_sell', {
-                rules: [{ required: true, message: '请输入交易数量' }],
+                rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
               })(
               <NumericInput
                   addonAfter={exchangeData.first_token_id}
@@ -229,7 +226,7 @@ class Transaction extends Component {
               label={<span>{tu("estimated_revenue")}<span className="tx-question-mark"><QuestionMark text="slightly_revenue"/></span></span> }
             >
               {getFieldDecorator('second_quant_sell', {
-                rules: [{ required: true, message: '请输入交易数量' }],
+                rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
               })(
               <NumericInput addonAfter={exchangeData.second_token_id}
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}

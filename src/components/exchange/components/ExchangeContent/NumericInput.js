@@ -55,7 +55,6 @@ class NumericInput extends React.Component {
           {...this.props}
           onChange={this.onChange}
           onBlur={this.onBlur}
-          placeholder="Input a number"
           maxLength="25"
         />
       // </Tooltip>
