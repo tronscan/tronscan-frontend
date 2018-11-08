@@ -1304,7 +1304,8 @@ class Account extends Component {
                               {tu('apply_for_process')}
                           </h5>
                           <p className="pt-3">
-                              {tu('apply_content')}
+                              {tu('token_application_instructions_1')}
+                              {tu('token_application_instructions_2')}
                           </p>
                           <div className="text-center">
                             <a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">
