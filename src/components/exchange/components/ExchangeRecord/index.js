@@ -29,7 +29,7 @@ class TransactionList extends Component {
           <TranList props={this.props}/>
         </TabPane>
         {
-          //currentWallet &&
+          currentWallet &&
           <TabPane tab={tu("my_transaction")} key="2">
             <Mytran props={this.props}/>
           </TabPane>
