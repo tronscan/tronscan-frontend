@@ -46,6 +46,7 @@ class Mytran extends Component {
 
   getColumns() {
     let {intl} = this.props;
+    let {dataSource, total} = this.state
     const columns = [
       {
         title: upperFirst(intl.formatMessage({id: 'TxHash'})),
@@ -101,8 +102,22 @@ class Mytran extends Component {
         }
       }
     ]
+    return (
+          <Table
+              dataSource={dataSource}
+              columns={columns}
+              // pagination={false}
+              onChange={pagination => this.getData(pagination)}
+              pagination={{
+                  defaultPageSize:15,
+                  total
+              }}
+              rowKey={(record, index) => {
+                  return index
+              }}
+          />
+    )
 
-   this.setState({columns})
   }
 
   render() {
@@ -115,19 +130,7 @@ class Mytran extends Component {
 
     return (
       <div className="exchange__tranlist">
-        <Table 
-          dataSource={dataSource} 
-          columns={columns} 
-          // pagination={false}
-          onChange={pagination => this.getData(pagination)}
-          pagination={{
-            defaultPageSize:15,
-            total
-          }}
-          rowKey={(record, index) => {
-            return index
-          }}
-        />
+          {this.getColumns()}
 
     </div>)
   }

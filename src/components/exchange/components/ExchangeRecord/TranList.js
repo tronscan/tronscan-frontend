@@ -53,6 +53,7 @@ class TranList extends Component {
   }
 
   getColumns() {
+    let {dataSource} = this.state;
     let {intl} = this.props;
     const columns = [
       {
@@ -104,17 +105,26 @@ class TranList extends Component {
         align: 'center',
         render: (text, record, index) => {
           return  text?
-          <span className="badge badge-success text-uppercase">{tu("Confirmed")}</span> :
-          <span className="badge badge-danger text-uppercase">{tu("Unconfirmed")}</span>;
+          <span className="badge badge-success text-uppercase badge-success-radius">{tu("Confirmed")}</span> :
+          <span className="badge badge-danger text-uppercase badge-success-radius">{tu("Unconfirmed")}</span>;
         }
       }
     ]
 
-   this.setState({columns})
+    return (
+        <Table
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            rowKey={(record, index) => {
+                return index
+            }}
+        />
+    )
   }
 
   render() {
-    let {dataSource, columns} = this.state
+    let {dataSource, columns} = this.state;
     if (!dataSource || dataSource.length === 0) {
       return (
         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
@@ -122,15 +132,7 @@ class TranList extends Component {
     }
     return (
       <div className="exchange__tranlist">
-        <Table 
-          dataSource={dataSource} 
-          columns={columns} 
-          pagination={false}
-          rowKey={(record, index) => {
-            return index
-          }}
-        />
-
+          {this.getColumns()}
     </div>)
   }
 }

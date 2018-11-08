@@ -653,7 +653,7 @@ class Account extends Component {
               temporaryName: name,
               modal: (
                   <SweetAlert success onConfirm={this.hideModal}>
-                      {tu("successfully_created_pair")} <b> {firstTokenId}/{secondTokenId}</b>
+                      {tu("successfully_created_pair")}
                   </SweetAlert>
               )
           });

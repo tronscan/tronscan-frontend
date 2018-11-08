@@ -162,7 +162,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
              <FormItem
-                label={<span>{tu("TxBuy")}</span>}
+                label={<span>{tu("BUY")}</span>}
             >
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
@@ -208,7 +208,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
             <FormItem
-              label={<span>{tu("TxSell")}</span>}
+              label={<span>{tu("SELL")}</span>}
             >
               {getFieldDecorator('first_quant_sell', {
                 rules: [{ required: true, message: intl.formatMessage({id: 'enter_the_trading_amount'}) }],
