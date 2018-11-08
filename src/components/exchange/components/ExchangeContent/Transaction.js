@@ -260,6 +260,7 @@ function mapStateToProps(state) {
         selectStatus: state.exchange.status,
         account: state.app.account,
         currentWallet: state.wallet.current,
+        activeLanguage:  state.app.activeLanguage,
     };
 }
 

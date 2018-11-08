@@ -20,8 +20,8 @@ class Kline extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { selectData, selectStatus } = this.props
-    if(selectStatus || !prevProps.selectData.exchange_id){
+    const { selectData, selectStatus, activeLanguage } = this.props
+    if(selectStatus || !prevProps.selectData.exchange_id || (prevProps.activeLanguage != activeLanguage)){
       this.createWidget(selectData.exchange_id)
     }
   }
@@ -275,14 +275,15 @@ class Kline extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     selectData: state.exchange.data,
-
-    selectStatus: state.exchange.status
+    selectStatus: state.exchange.status,
+    activeLanguage:  state.app.activeLanguage,
   };
 }
 
 const mapDispatchToProps = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(withRouter(Kline)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Kline)));

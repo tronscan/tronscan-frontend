@@ -137,7 +137,8 @@ class TranList extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectData: state.exchange.data
+    selectData: state.exchange.data,
+    activeLanguage:  state.app.activeLanguage,
   };
 }
 

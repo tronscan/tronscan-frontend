@@ -12,7 +12,7 @@ import { Input } from 'antd';
 const Search = Input.Search;
 
 
-class ExchangeList extends React.Component {
+class ExchangeContent extends React.Component {
 
   constructor() {
     super();
@@ -42,4 +42,4 @@ class ExchangeList extends React.Component {
 }
 
 
-export default injectIntl(ExchangeList);
+export default injectIntl(ExchangeContent);
