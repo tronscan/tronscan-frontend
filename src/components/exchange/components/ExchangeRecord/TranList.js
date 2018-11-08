@@ -25,11 +25,11 @@ class TranList extends Component {
     const { selectData } = this.props
     this.getColumns();
     this.getData()
-    // const getDataTime = setInterval(() => {
-    //   this.getData();
-    // }, 3000)
+    const getDataTime = setInterval(() => {
+      this.getData();
+    }, 10000)
 
-    // this.setState({time: getDataTime})
+    this.setState({time: getDataTime})
   }
 
   componentDidUpdate(prevProps) {
@@ -39,10 +39,10 @@ class TranList extends Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   const {time} = this.state
-  //   clearInterval(time);
-  // }
+  componentWillUnmount() {
+    const {time} = this.state
+    clearInterval(time);
+  }
 
   getData = async () => {
     const {selectData} = this.props

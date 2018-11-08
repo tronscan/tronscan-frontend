@@ -10,6 +10,8 @@ import { Explain} from './Explain';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Input } from 'antd';
+import {filter} from 'lodash'
+
 const Search = Input.Search;
 
 
@@ -26,17 +28,17 @@ class ExchangeList extends React.Component {
 
   componentDidMount() {
     this.getExchanges()
-    // const getDataTime = setInterval(() => {
-    //   this.getExchanges();
-    // }, 10000)
+    const getDataTime = setInterval(() => {
+      this.getExchanges();
+    }, 10000)
 
-    // this.setState({time: getDataTime})
+    this.setState({time: getDataTime})
   }
 
-  // componentWillUnmount() {
-  //   const {time} = this.state
-  //   clearInterval(time);
-  // }
+  componentWillUnmount() {
+    const {time} = this.state
+    clearInterval(time);
+  }
 
   getExchanges = async () => {
       let {data} = await Client.getExchangesList();
@@ -48,8 +50,13 @@ class ExchangeList extends React.Component {
         }
         
       })
+      let exchangesList = filter(data,function (o) {
+          return  o.exchange_id != 1
+      })
+
+      console.log("dataSource",exchangesList)
       this.setState({
-          dataSource: data,
+          dataSource: exchangesList,
       });
 
   }

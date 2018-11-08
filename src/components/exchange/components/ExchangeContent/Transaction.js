@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../constants";
 import {find} from 'lodash'
+
 import NumericInput from './NumericInput'
 
 const FormItem = Form.Item;
@@ -82,6 +83,14 @@ class Transaction extends Component {
       let {account,currentWallet,exchangeData} = this.props;
       let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
       if (success) {
+          this.props.form.resetFields();
+          this.setState({
+              modal: (
+                  <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
+                      {tu("transaction_success_message")}
+                  </SweetAlert>
+              )
+          });
           await Client.exchange({
               creatorAddress:currentWallet.address,
               trx_hash:transaction.hash,
@@ -92,20 +101,11 @@ class Transaction extends Component {
               second_token_quant:values.second_quant_buy?parseFloat(values.second_quant_buy):parseFloat(values.second_quant_sell),
               price:exchangeData.price
           });
-          this.props.form.resetFields();
-          this.setState({
-              modal: (
-                  <SweetAlert success title={tu("transaction_success")} onConfirm={this.hideModal}>
-                      {tu("transaction_success_message")}
-                  </SweetAlert>
-              )
-          });
       } else {
           this.setState({
               modal: (
                   <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
                       {tu("transaction_error_message")}<br/>
-                    Code: {code}
                   </SweetAlert>
               ),
           });
