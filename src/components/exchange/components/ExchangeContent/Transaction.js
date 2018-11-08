@@ -34,9 +34,8 @@ class Transaction extends Component {
 
   componentDidUpdate(prevProps) {
     const { selectStatus,currentWallet,exchangeData, activeLanguage } = this.props
-
     if((prevProps.currentWallet != currentWallet) || (prevProps.exchangeData != exchangeData) || (prevProps.activeLanguage != activeLanguage) ){
-        this.props.form.resetFields();
+
         if(currentWallet != null){
             const first = find(currentWallet.tokenBalances, function(o) { return exchangeData.first_token_id === o.name }) || {balance:0,name:exchangeData.first_token_id};
             const second = find(currentWallet.tokenBalances, function(o) { return exchangeData.second_token_id === o.name }) || {balance:0,name:exchangeData.second_token_id};
@@ -45,7 +44,9 @@ class Transaction extends Component {
             this.setState({firstBalance: {}, secondBalance: {}})
         }
     }
-    
+    if(prevProps.exchangeData.exchange_id != exchangeData.exchange_id) {
+        this.props.form.resetFields();
+    }
   }
  
 
@@ -141,7 +142,7 @@ class Transaction extends Component {
       //     second_quant_buy: value * exchangeData.price,
       // });
       this.props.form.setFieldsValue({
-          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(value*1.01 * exchangeData.price).toFixed(6):value * exchangeData.price*1.01,
+          second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(value*0.99 * exchangeData.price).toFixed(6):value * exchangeData.price*0.99,
       });
   }
 

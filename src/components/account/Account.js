@@ -100,7 +100,6 @@ class Account extends Component {
 
     // if (currentWallet && currentWallet.allowExchange.length) {
     //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
-    //     console.log('list',data)
     //     this.setState({
     //         exchangesList: data,
     //     });

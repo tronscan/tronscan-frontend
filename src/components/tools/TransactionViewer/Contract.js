@@ -282,10 +282,10 @@ export default function Contract({contract}) {
                 <tbody>
                     <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
                     <Field label="token_name">{contract.name}</Field>
-                    <Field label="total_supply">{contract.totalSupply}</Field>
-                    <Field label="TRX_exchange_rate">{contract.trxNum / ONE_TRX} : {contract.num}</Field>
-                    <Field label="start_time"><FormattedDate value={contract.startTime}/></Field>
-                    <Field label="end_time"><FormattedDate value={contract.endTime}/></Field>
+                    <Field label="total_supply">{contract.total_supply}</Field>
+                    <Field label="TRX_exchange_rate">{contract.trx_num / ONE_TRX} : {contract.num}</Field>
+                    <Field label="start_time"><FormattedDate value={contract.start_time}/></Field>
+                    <Field label="end_time"><FormattedDate value={contract.end_time}/></Field>
                     <Field label="description">{contract.description}</Field>
                     <Field label="URL"><ExternalLink url={contract.url}/></Field>
                 </tbody>

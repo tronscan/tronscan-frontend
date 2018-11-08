@@ -18,7 +18,7 @@ class TransactionList extends Component {
     // this.fetch();
   }
   callback(key) {
-    // console.log(key);
+
   }
   render() {
     const { currentWallet } = this.props

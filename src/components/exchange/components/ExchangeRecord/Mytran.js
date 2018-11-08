@@ -138,7 +138,6 @@ function mapStateToProps(state) {
   return {
     selectData: state.exchange.data,
     currentWallet: state.wallet.current,
-
     activeLanguage:  state.app.activeLanguage,
   };
 }

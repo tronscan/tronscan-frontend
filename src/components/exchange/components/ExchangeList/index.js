@@ -50,13 +50,11 @@ class ExchangeList extends React.Component {
         }
         
       })
-      let exchangesList = filter(data,function (o) {
-          return  o.exchange_id != 1
-      })
-
-      console.log("dataSource",exchangesList)
+      // let exchangesList = filter(data,function (o) {
+      //     return  o.exchange_id != 1
+      // })
       this.setState({
-          dataSource: exchangesList,
+          dataSource: data,
       });
 
   }

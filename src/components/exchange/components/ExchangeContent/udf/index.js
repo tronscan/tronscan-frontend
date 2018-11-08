@@ -191,7 +191,6 @@ Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, r
     // let baseURL = window.location.protocol+'//'+window.location.host
     // KlineSSE = new EventSource(`${baseURL}/quote/realTime.stream?symbol=${currentSymbol}&${currentSymbol}_least=1&${currentSymbol}_startTime=${queryTime}`)
     // KlineSSE.onopen = function(e) {
-    //      console.log("K线行情推送连接已经建立：", this.readyState);
     // };
     // KlineSSE.addEventListener('_RESULT', function(e) {
     //     //每次推送一条记录
@@ -246,13 +245,11 @@ Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, r
     //         }
     // })
     // KlineSSE.addEventListener('_ERROR', function(e) {
-    //     console.log('K线专属推送:',JSON.parse(e.data).error.message)
     // })
 }
 
 Datafeeds.UDFCompatibleDatafeed.prototype.unsubscribeBars = function (listenerGuid) {
     // socket.off('klineNotify')
-    // console.log('tuiding------------')
 }
 
 Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (resolution, resolutionBack, intervalBack) {
@@ -297,7 +294,6 @@ Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (reso
 };
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getServerTime = function (callback) {
-    // console.log(123123,'serverTIme')
     // wsRequest('server_time').then(response => {
     //     callback(response);
     // })
