@@ -1,4 +1,4 @@
-import { storage,getDecimalsNum,getUTCDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
+import { storage,getDecimalsNum,getUTCDay,getUTCCurrentDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
 
 import {Client} from "../../../../../services/api";
 import _ from 'lodash'
@@ -124,6 +124,10 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest) {
     let type = '';
     const typeMap = {
+        "1": {
+            type: '1min',
+            getutc: getUTCDay
+        },
         "30": {
             type: '30min',
             getutc: getUTCDay
@@ -158,7 +162,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
         exchange_id: symbolInfo.ticker,
         granularity:type,
         time_start:startDate,
-        time_end:endDate
+        time_end:to
     }).then(response => {
         const data = this._resolveData(response);
         onHistoryCallback(data.bars, data.meta);

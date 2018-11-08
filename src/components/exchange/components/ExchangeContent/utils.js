@@ -155,6 +155,12 @@ export function getUTCDay(unixDateParams){
     let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD 00:00:00Z')).unix();
     return unix;
 }
+
+export function s(unixDateParams){
+    let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD 23:59:59Z')).unix();
+    return unix;
+}
+
 //获取当前时间对应零时区的整小时 即分钟秒数为0  毫秒级别
 export function getUTCHour(unixDateParams){
     let unix =  moment(moment.unix(unixDateParams).utc().format('YYYY-MM-DD HH:00:00Z')).unix();
