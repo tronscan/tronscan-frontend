@@ -100,7 +100,6 @@ class Account extends Component {
 
     // if (currentWallet && currentWallet.allowExchange.length) {
     //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
-    //     console.log('list',data)
     //     this.setState({
     //         exchangesList: data,
     //     });
@@ -654,7 +653,7 @@ class Account extends Component {
               temporaryName: name,
               modal: (
                   <SweetAlert success onConfirm={this.hideModal}>
-                      {tu("successfully_created_pair")} <b> {firstTokenId}/{secondTokenId}</b>
+                      {tu("successfully_created_pair")}
                   </SweetAlert>
               )
           });
