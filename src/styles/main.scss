@@ -26,6 +26,8 @@ $color-grey: #d2d1d1;
 @import "representative";
 //@import "animations";
 //@import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
+
+@import "exchange";
 body {
   overflow-y: scroll;
 }
@@ -51,6 +53,9 @@ a {
     text-decoration: none;
     transition: color 0.5s ease;
   }
+}
+button:focus{
+  outline:none!important;
 }
 
 .logo {
@@ -1887,4 +1892,44 @@ h5 {
       text-align: center;
     }
   }
+}
+.apply_btn {
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(197, 48, 40);
+  cursor: pointer;
+  font-size: 12px;
+  display: block;
+  margin: 0 auto;
+}
+.apply_btn:hover{
+  color: #ffffff;
+}
+
+.btn-plus-square:hover{
+  color: #ffffff;
+}
+.dex-inject{
+  font-size: 14px;
+  margin-right: 20px;
+  color: #69C265;
+  cursor: pointer;
+}
+.dex-divestment{
+  font-size: 14px;
+  margin-left: 20px;
+  margin-right: 8px;
+  color: #F5A623;
+  cursor: pointer;
+}
+
+.tx-question-mark{
+  margin-left: 4px;
+  margin-top: -6px;
+}
+.badge-success-radius{
+  border-radius: 29px;
 }

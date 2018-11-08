@@ -1182,4 +1182,65 @@ export const messages = {
   "tokens_less_than_10":"Tokens with a quantity less than 10",
   "only_TRX_transfers":"Only TRX transfers",
   "no_transfers_found":"No transfers found",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # exchange                                         #
+  #                                                                                #
+  ##################################################################################
+ */
+
+  "apply_for_the_currency":"Apply for the currency",
+  "apply_for_process":"Apply for the currency process",
+  "apply_content":"If you want to add coins, please fill out the application form to provide information about the currency. After submitting the information, we will review the data as soon as possible. Please wait patiently before replying to the audit results.",
+  "operate_txn_pair_message": "Please enter an integer",
+  "withdraw_all":"Not fully divested",
+  "creat_valid":"Cannot exceed account balance",
+  "my_trading_pairs":"My Trading Pairs",
+  "create_trading_pairs":"Create Trading Pairs",
+  "pairs": "Pairs",
+  "no_pairs":"No Pairs",
+  "capital_injection":"Capital Injection",
+  "capital_withdrawal":"Capital Withdrawal",
+  "pair_has_been_created":"Pair has been created",
+  "successfully_created_pair":"Successfully created a deal pair",
+  "pair_creation_failed":"pair creation failed",
+  "successful_injection":"Successful Injection",
+  "sorry_injection_failed":"Sorry, injection failed",
+  "successful_withdrawal":"Successful Withdrawal",
+  "sorry_withdrawal_failed":"Sorry, withdrawal failed",
+  "select_the_name_of_the_Token":"Please select the name of the Token",
+  "enter_the_amount":"Enter the Amount",
+  "choose_a_Token_for_capital_injection":"Choose a Token for Capital Injection:",
+  "choose_a_Token_for_capital_withdrawal":"Choose a Token for Capital Withdrawal:",
+  "injection_amount":"Injection Amount:",
+  "withdrawal_amount":"Withdrawal Amount:",
+  "last_price": "Last price",
+  "pairs_change": "Change",
+  "H": "H",
+  "L": "L",
+  "O": "O",
+  "C": "C",
+  "24H_VOL": "24H VOL",
+  "token_application_instructions_title":"Token Application Instructions",
+  "token_application_instructions_1":"If you would like to list your token, please fill in the application with information of the token.",
+  "token_application_instructions_2":"After receiving your application, we will conclude the review of your application in 3 - 5 business days. ",
+  "click_here_to_apply":"Click here to apply",
+  "TxTime":"Transaction Time",
+  "TxAmount":"Transaction Amount",
+  "TxRecord":"Transaction Record",
+  "TxAvailable":"Available",
+  "TxBuy":"Expected to buy",
+  "TxSell":"Amount want to sell",
+  "my_transaction":"My Transaction",
+  "enter_the_trading_amount":"Enter the Trading Amount",
+  "BUY": "BUY",
+  "SELL": "SELL",
+  "estimated_cost":"Estimated Cost",
+  "estimated_revenue":"Estimated Revenue",
+  "slightly_cost":"Slightly increase the estimated cost, and the turnover rate will be higher.",
+  "slightly_revenue":"Slightly lower the estimated revenue, and the turnover rate will be higher.",
+
+
 };

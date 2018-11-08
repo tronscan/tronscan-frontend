@@ -61,9 +61,9 @@
     humps "^2.0.1"
     prop-types "^15.5.7"
 
-"@tronscan/client@^0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.18.tgz#33e70b8d2e2c6dc7a2f35a304b5be7aedc1365fa"
+"@tronscan/client@^0.2.23":
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.23.tgz#a1f4b8e49ed4c4b6278761c8ee85335e0c8e7350"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -6260,6 +6260,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+natty-storage@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/natty-storage/-/natty-storage-2.2.0.tgz#2739a0aa098f844fd35974510c9d0e63b0ca963e"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -7455,9 +7459,9 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.0.0.tgz#8b8f39447b73e8290d6f5e3581779218e9171142"
+query-string@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.2.0.tgz#468edeb542b7e0538f9f9b1aeb26f034f19c86e1"
   dependencies:
     decode-uri-component "^0.2.0"
     strict-uri-encode "^2.0.0"

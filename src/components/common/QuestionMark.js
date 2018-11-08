@@ -19,7 +19,7 @@ export class QuestionMark extends React.Component {
         let {text, placement} = this.props;
 
         return (
-            <div>
+            <div className="d-inline-block">
                 <div className="question-mark" id={id}
                      onMouseOver={() => this.setState({open: true})}
                      onMouseOut={() => this.setState({open: false})}>

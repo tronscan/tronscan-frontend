@@ -98,7 +98,7 @@ class Notifications extends React.Component {
 
     this.listener = channel("/address-" + wallet.current.address);
     this.listener.on("transfer", trx => {
-
+      console.log('trx',trx)
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
         amount = amount / ONE_TRX;
@@ -122,6 +122,7 @@ class Notifications extends React.Component {
 
 
     this.listener.on("vote", vote => {
+        console.log('vote',vote)
       if (vote.candidateAddress === wallet.current.address) {
         sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
           icon: require("../../images/tron-logo.jpg")

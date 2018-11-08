@@ -21,11 +21,14 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
 import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
+import CreateTxnPairModal from "./CreateTxnPairModal";
+import OperateTxnPairModal from "./OperateTxnPairModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import _ from "lodash";
+
 
 class Account extends Component {
 
@@ -94,6 +97,15 @@ class Account extends Component {
         issuedAsset: token,
       });
     });
+
+    // if (currentWallet && currentWallet.allowExchange.length) {
+    //     let {data,total} = await Client.getExchangesList({'address':currentWallet.address});
+    //     console.log('list',data)
+    //     this.setState({
+    //         exchangesList: data,
+    //     });
+    //
+    // }
   };
 
   reloadTokens = () => {
@@ -307,7 +319,6 @@ class Account extends Component {
             filter={{address: account.address}}/>
     )
   }
-
 
   onInputChange = (value) => {
     let {account} = this.props;
@@ -634,6 +645,84 @@ class Account extends Component {
     }
   };
 
+  createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
+      let {account, currentWallet} = this.props;
+      let {success} = await Client.createExchange(currentWallet.address, firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)(account.key);
+
+      if (success) {
+          this.setState({
+              temporaryName: name,
+              modal: (
+                  <SweetAlert success onConfirm={this.hideModal}>
+                      {tu("successfully_created_pair")} <b> {firstTokenId}/{secondTokenId}</b>
+                  </SweetAlert>
+              )
+          });
+
+          setTimeout(() => this.props.reloadWallet(), 1000);
+      } else {
+          this.setState({
+              modal: (
+                  <SweetAlert warning  onConfirm={this.hideModal}>
+                      {tu("pair_creation_failed")}
+                  </SweetAlert>
+              )
+          })
+      }
+  };
+
+  injectExchange = async (exchangeId, tokenId, quant) => {
+        let {account, currentWallet} = this.props;
+        let {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+
+        if (success) {
+            this.setState({
+                temporaryName: name,
+                modal: (
+                    <SweetAlert success  onConfirm={this.hideModal}>
+                        {tu("successful_injection")}
+                    </SweetAlert>
+                )
+            });
+
+            setTimeout(() => this.props.reloadWallet(), 5000);
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert warning onConfirm={this.hideModal}>
+                        {tu("sorry_injection_failed")}
+                    </SweetAlert>
+                )
+            })
+        }
+    };
+
+    withdrawExchange = async (exchangeId, tokenId, quant) => {
+        let {account, currentWallet} = this.props;
+        let {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+
+        if (success) {
+            this.setState({
+                temporaryName: name,
+                modal: (
+                    <SweetAlert success onConfirm={this.hideModal}>
+                        {tu("successful_withdrawal")}
+                    </SweetAlert>
+                )
+            });
+
+            setTimeout(() => this.props.reloadWallet(), 5000);
+        } else {
+            this.setState({
+                modal: (
+                    <SweetAlert warning onConfirm={this.hideModal}>
+                        {tu("sorry_withdrawal_failed")}
+                    </SweetAlert>
+                )
+            })
+        }
+    };
+
   changeName = () => {
     this.setState({
       modal: (
@@ -641,8 +730,46 @@ class Account extends Component {
               onConfirm={(name) => this.updateName(name)}
               onCancel={this.hideModal}/>
       )
-    });
+    })
   };
+
+  changeTxnPair = () => {
+      this.setState({
+          modal: (
+              <CreateTxnPairModal
+                  onCreate={(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => this.createTxnPair(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)}
+                  onCancel={this.hideModal}
+              />
+          )
+      })
+  };
+
+  injectTxnPair = (exchange) => {
+      this.setState({
+          modal: (
+              <OperateTxnPairModal
+                  onInject={(exchangeId,tokenId,quant) => this.injectExchange(exchangeId,tokenId,quant)}
+                  onCancel={this.hideModal}
+                  exchange={exchange}
+                  inject={true}
+              />
+          )
+      })
+  };
+
+    withdrawTxnPair = (exchange) => {
+        this.setState({
+            modal: (
+                <OperateTxnPairModal
+                    onWithdraw={(exchangeId,tokenId,quant) => this.withdrawExchange(exchangeId,tokenId,quant)}
+                    onCancel={this.hideModal}
+                    exchange={exchange}
+                    inject={false}
+                />
+            )
+        })
+    };
+
 
   changeGithubURL = async () => {
     this.setState({
@@ -1093,6 +1220,104 @@ class Account extends Component {
               </div>
             </div>
           </div>
+          {
+              currentWallet.allowExchange.length ?
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between">
+                            <h5 className="card-title text-center">
+                                {tu("my_trading_pairs")}
+                            </h5>
+                            <p className="card-text">
+                              <a href="javascript:" className="float-right btn btn-default btn-sm btn-plus-square"
+                                 onClick={() => {
+                                     this.changeTxnPair()
+                                 }}>
+                                <i className="fa fa-plus-square"></i>
+                                &nbsp;
+                                  {tu("create_trading_pairs")}
+                              </a>
+                            </p>
+                          </div>
+                          <table className="table m-0 temp-table mt-4">
+                            <thead className="thead-light">
+                            <tr>
+                              <th>{tu("pairs")}</th>
+                              <th>{tu("balance")}</th>
+                              <th className="text-right"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
+                                    return (
+                                        <tr key={index}>
+                                          <td>
+                                              {exchange.first_token_id === "_"?"TRX":exchange.first_token_id}/{exchange.second_token_id === "_"?"TRX":exchange.second_token_id}
+                                          </td>
+                                          <td>
+                                            <FormattedNumber value={ exchange.first_token_id === "_"? exchange.first_token_balance / ONE_TRX : exchange.first_token_balance }/>
+                                            /
+                                            <FormattedNumber value={ exchange.second_token_id === "_"? exchange.second_token_balance / ONE_TRX : exchange.second_token_balance }/>
+                                          </td>
+                                          <td className="text-right">
+                                    <span className="dex-inject"
+                                          onClick={() => {
+                                              this.injectTxnPair(exchange)
+                                          }}
+                                    >
+                                        {tu("capital_injection")}
+                                    </span>
+                                            |
+                                            <span className="dex-divestment"
+                                                  onClick={() => {
+                                                      this.withdrawTxnPair(exchange)
+                                                  }}
+                                            >
+                                       {tu("capital_withdrawal")}
+                                    </span>
+                                          </td>
+                                        </tr>
+                                    )
+                                }):<tr>
+                                  <td></td>
+                                  <td>
+                                      {tu('no_pairs')}
+                                  </td>
+                                  <td></td>
+                                </tr>
+                            }
+                            </tbody>
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div> :
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <h5 className="card-title text-center m-0">
+                              {tu('apply_for_process')}
+                          </h5>
+                          <p className="pt-3">
+                              {tu('apply_content')}
+                          </p>
+                          <div className="text-center">
+                            <a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">
+                              <button className="btn btn-danger">
+                                  {t("apply_for_the_currency")}
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          }
           {
             currentWallet.representative.enabled ?
                 <div className="row mt-3">
