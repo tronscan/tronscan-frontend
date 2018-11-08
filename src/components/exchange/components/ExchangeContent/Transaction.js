@@ -168,7 +168,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
              <FormItem
-                label={<span>Expected to buy</span>}
+                label={<span>{tu("TxBuy")}</span>}
             >
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: '请输入交易数量' }],
@@ -214,7 +214,7 @@ class Transaction extends Component {
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmitSell} >
             <FormItem
-              label={<span>Amout want to sell</span>}
+              label={<span>{tu("TxSell")}</span>}
             >
               {getFieldDecorator('first_quant_sell', {
                 rules: [{ required: true, message: '请输入交易数量' }],

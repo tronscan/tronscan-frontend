@@ -10,19 +10,17 @@ import {injectIntl} from "react-intl";
 
 class ExchangeTable extends React.Component {
 
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
       columns: [],
-      dataSource: []
-      
-      
+      dataSource: [],
     };
   }
 
+
   getColumns() {
-    let {intl} = this.props;
+    let {intl,dataSource} = this.props;
     const columns = [{
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
@@ -47,7 +45,23 @@ class ExchangeTable extends React.Component {
       }
     }];
 
-    this.setState({columns})
+    return (
+        <Table
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            rowKey={(record, index) => {
+                return index
+            }}
+            onRow={(record) => {
+                return {
+                    onClick: () => {
+                        this.onSetUrl(record)
+                    }
+                }
+            }}
+        />
+    )
   }
 
   getData() {
@@ -82,8 +96,7 @@ class ExchangeTable extends React.Component {
   }
 
   componentDidMount() {
-    this.getColumns()
-    //this.getData()
+
   }
 
   componentDidUpdate() {
@@ -91,24 +104,10 @@ class ExchangeTable extends React.Component {
   }
 
   render() {
-    const { columns} = this.state
-    const { dataSource } = this.props;
     return (
-      <Table 
-        dataSource={dataSource} 
-        columns={columns} 
-        pagination={false}
-        rowKey={(record, index) => {
-          return index
-        }}
-        onRow={(record) => {
-          return {
-            onClick: () => {
-              this.onSetUrl(record)
-            }
-          }
-        }}
-      />
+        <div>
+            {this.getColumns()}
+        </div>
     )
   }
 }
