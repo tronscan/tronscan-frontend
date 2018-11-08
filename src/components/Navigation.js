@@ -44,7 +44,6 @@ class Navigation extends PureComponent {
     this.id = 0;
     this.loginFlag = false;
     this.state = {
-      //privateKey: 'E481ABEC438535FE8A3625E885768F1DA310BE583F5A2EAC481C27AF657E3C34',
       search: "",
       popup: null,
       notifications: [],
@@ -63,7 +62,6 @@ class Navigation extends PureComponent {
 
   componentDidMount() {
       let {account} = this.props;
-     // this.login()
   }
 
   setLanguage = (language) => {
@@ -98,10 +96,6 @@ class Navigation extends PureComponent {
       return false;
     }
 
-    //if (isAddressValid(privateKey))
-    //  return true;
-    //else
-    //  return false;
 
     if (privateKey.length !== 64) {
       return false;
@@ -325,7 +319,6 @@ class Navigation extends PureComponent {
       );
 
     }
-    //Lockr.set("account_address", account.address);
 
     return (
         <Fragment>
