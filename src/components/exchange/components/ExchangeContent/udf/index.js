@@ -28,7 +28,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype._defaultConfiguration = function() {
         supports_marks: false,
         supports_timescale_marks: false,
         supports_time: false,
-        supported_resolutions: ['1','30','60','240','D','W', 'M'],
+        supported_resolutions: ['5','30','60','240','D','W', 'M'],
     };
 };
 
@@ -98,7 +98,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
         has_intraday: true,
         has_daily: true,
         has_weekly_and_monthly: true, //是否具有以W和M为单位的历史数据
-        supported_resolutions: ['1','30','60','240','D','W', 'M'],
+        supported_resolutions: ['5','30','60','240','D','W', 'M'],
     }
     onSymbolResolvedCallback(response);
 }
@@ -124,8 +124,8 @@ Datafeeds.UDFCompatibleDatafeed.prototype.resolveSymbol = function (symbolName, 
 Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest) {
     let type = '';
     const typeMap = {
-        "1": {
-            type: '1min',
+        "5": {
+            type: '5min',
             getutc: getUTCDay
         },
         "30": {
