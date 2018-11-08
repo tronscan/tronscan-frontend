@@ -358,6 +358,10 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
 
   .bg-image_#{$image}{
     position: relative;
+    *{
+      position: relative;
+      z-index: 1
+    }
     &:before{
       content: '';
       position: absolute;

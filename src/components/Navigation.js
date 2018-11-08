@@ -44,7 +44,6 @@ class Navigation extends PureComponent {
     this.id = 0;
     this.loginFlag = false;
     this.state = {
-      privateKey: '',
       search: "",
       popup: null,
       notifications: [],
@@ -59,6 +58,10 @@ class Navigation extends PureComponent {
        this.loginFlag = true;
      }
     */
+  }
+
+  componentDidMount() {
+      let {account} = this.props;
   }
 
   setLanguage = (language) => {
@@ -93,10 +96,6 @@ class Navigation extends PureComponent {
       return false;
     }
 
-    //if (isAddressValid(privateKey))
-    //  return true;
-    //else
-    //  return false;
 
     if (privateKey.length !== 64) {
       return false;
@@ -320,7 +319,6 @@ class Navigation extends PureComponent {
       );
 
     }
-    //Lockr.set("account_address", account.address);
 
     return (
         <Fragment>
@@ -485,6 +483,7 @@ class Navigation extends PureComponent {
     let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
+    
     return (
         <div className="header-top">
           {popup}
@@ -598,6 +597,20 @@ class Navigation extends PureComponent {
                                           key={subRoute.url}
                                           className="dropdown-item text-uppercase"
                                           href={subRoute.url}>
+                                        {subRoute.icon &&
+                                        <i className={subRoute.icon + " mr-2"}/>}
+                                        {tu(subRoute.label)}
+                                        {subRoute.badge &&
+                                        <Badge value={subRoute.badge}/>}
+                                      </HrefLink>
+                                  );
+                                }
+                                if (!isUndefined(subRoute.enurl) || !isUndefined(subRoute.zhurl)) {
+                                  return (
+                                      <HrefLink
+                                          key={subRoute.enurl}
+                                          className="dropdown-item text-uppercase"
+                                          href={activeLanguage == 'zh' ? subRoute.zhurl : subRoute.enurl}>
                                         {subRoute.icon &&
                                         <i className={subRoute.icon + " mr-2"}/>}
                                         {tu(subRoute.label)}
