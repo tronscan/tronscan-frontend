@@ -253,7 +253,7 @@ class Kline extends React.Component {
   }
 
   render() {
-    const {selectData} = this.props
+    const {selectData} = this.props;
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -267,7 +267,7 @@ class Kline extends React.Component {
        </div>
         <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
         <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-        <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume}</span></div>
+        <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span></div>
       </div>
 
       <hr/>
