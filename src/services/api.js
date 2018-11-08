@@ -9,5 +9,5 @@ export function buildClient(account) {
 
 export function channel(path, options) {
   // return io(process.env.API_URL + path, options);
-  return io('https://api.tronscan.org/socket.io' + path, options);
+  return io('https://wlcyapi.tronscan.org/socket.io' + path, options);
 }

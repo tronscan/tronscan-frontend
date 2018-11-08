@@ -999,7 +999,7 @@ export const messages = {
   "issue_progress": "Progress",
   "fund_raised": "Fund Raised",
   "issuing_price": "Issuing Price",
-  "buy_token_info": "你想要购买多少数量的通证？",
+  "buy_token_info": "How much tokens do you want to buy?？",
   "reputation": "Reputation",
   "issue_time": "Issuing Time ",
   "success_receive": "Successfully received",
