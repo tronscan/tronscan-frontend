@@ -152,12 +152,7 @@ export const routes = [
         ]
     },
 
-  {
-    label: "representatives",
-    path: "/representatives",
-    icon: "fa fa-rocket",
-    component: RepresentativesAsync
-  },
+
   {
     path: "/block/:id",
     label: "block",
@@ -235,6 +230,12 @@ export const routes = [
     path: "/exchange",
     icon: 'fas fa-exchange-alt',
     component: Exchange
+  },
+  {
+      label: "representatives",
+      path: "/representatives",
+      icon: "fa fa-rocket",
+      component: RepresentativesAsync
   },
   {
     path: "/votes",
