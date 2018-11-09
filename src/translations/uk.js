@@ -869,6 +869,184 @@ export const messages = {
   "supply_notes": "Crowdsale and pre-sale available globally, except in the US, China, and Japan",
   "14_day_transaction_history": "14 day Transaction History",
   "14_day_address_growth": "14 day Address Growth",
+    /*
+      ##################################################################################
+      #                                                                                #
+      # ICO--rating page                                                              #
+      #                                                                                #
+      ##################################################################################
+    */
+    "TRONRating": "TRON Token Rating",
+    "rating_title": "Tronscan Token Reputation System",
+    "modify_on": "Modified on",
+    "rating_description": "The Tronscan Reputation System aims at helping users to understand, differentiate and assess different tokens. When you visit the token page, the Reputation is classified into 5 categories:",
+    "rating_status_1": "Review Pending",
+    "rating_status_1_desc_a": "Not yet reviewed",
+    "rating_status_2": "OK",
+    "rating_status_2_desc": "An “OK” Reputation is not an endorsement or recommendation, but meets the following criteria:",
+    "rating_status_2_desc_a": "Provide sufficient and accurate information",
+    "rating_status_2_desc_b": "Has precise project goals and communication channels",
+    "rating_status_2_desc_c": "Accessible information of the project founders/ investors/ consultants",
+    "rating_status_2_desc_d": "The token is traded/listed on a cryptocurrency exchange with AML/KYC inspection",
+    "rating_status_2_desc_e": "ICO has been completed or active for no less than 3 months",
+    "rating_status_2_desc_f": "A major milestone has been achieved",
+    "rating_status_3": "Neutral",
+    "rating_status_3_desc": "A 'neutral' Reputation means that the information about the project and the team is relatively transparent.",
+    "rating_status_3_desc_a": "Provide necessary and sufficient information (official website, logo, official contact email, white paper)",
+    "rating_status_3_desc_b": "A professional public profile of team members and consultants is posted online (Indicate the project in LinkedIn Personal Profile)",
+    "rating_status_3_desc_c": "Provide social media materials",
+    "rating_status_4": "Insufficient Information",
+    "rating_status_4_desc_a": "Has not provided necessary and sufficient information (official website, logo, official contact email, white paper)",
+    "rating_status_4_desc_b": "There is no information showing that the project has ongoing operational progress",
+    "rating_status_5": "False Information",
+    "rating_status_5_desc_a": "Use false identity to issue token",
+    "rating_status_5_desc_b": "There is information indicating that the fraud/phishing/fraud/spamming or misrepresentation behavior related to this token has not been properly handled, or the token has other 'dangerous' signs.",
+    "rating_disclaimer": "DISCLAIMER",
+    "disclaimer_desc_1": "Tronscan does not endorse, approve or condemn any services or projects related to the token contracts displayed on the Tronscan. Users should always conduct research with due diligence before taking any action related to the token, especially when it comes to value investing.",
+    "disclaimer_desc_2": "Reputation associated with this service may or may not be accurate as they are based on subjective evaluations and/or reports from the community. We take no sides, nor do we guarantee or conduct any level of responsibility/accuracy/reliability evaluation; our reputation evaluation cannot be deemed as any behavioral advice, especially investment advice.",
+    "disclaimer_desc_3": "We reserve the right to interpret the symbolic reputation of the token on this page, and we are not obligated to provide any feedback for the refusal. We reserve the right to delete or update information (including reputation) once there is falseness or discrepancies of the information.",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # ICO--myToken page                                                              #
+    #                                                                                #
+    ##################################################################################
+  */
+    "my_token": "My Token",
+    "my_token_desc_1": "The information related to the token will be displayed on the token page. Each token based on the comprehensiveness and authenticity of the information will get a",
+    "tron_rating": "Token Reputation",
+    "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@tron.network via your company email or certified email with necessary credentials.",
+    "brief_info": "Brief Introduction",
+    "website_official": "Official website",
+    "white_paper": "White Paper",
+    "GitHub": "GitHub",
+    "country": "Country/Region",
+    "social_link": "Social Media Link",
+    "download_excel": "Download the template",
+    "no_message": "N/A (Please send an email to complete this information)",
+    "insufficient_message": "Insufficient information",
+    "token_detail": "Token Detail",
+    "contact_us": "Contact us",
+    "my_token": "My Token",
+    "try_later": "Please try it later",
+    "contract_address": "Contract Address",
+
+    /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--create token page                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
+    "basic_info": "Basic Information",
+    "basic_info_desc": "Token basic information ",
+    "exchange_setting": "Issuance Setting",
+    "exchange_setting_desc": "Set the issuing price and time frame for tokens",
+    "freeze_setting": "Frozen Setting",
+    "freeze_setting_desc": "Freeze part of the tokens for a period of time",
+    "confirm_setting": "Confirm Setting",
+    "confirm_setting_desc": "Confirm all your information",
+    "token_logo": "Token LOGO",
+    "image_restraint_desc": "resolution 1:1, suggested format jpg/png",
+    "prev_step": "Previous",
+    "freeze_on": "ON",
+    "freeze_off": "OFF",
+    "freeze_not_valid": "Freeze function off",
+    "no_logo_error": "no logo found",
+    "confirm_issue_info": "Please make sure that the following information is correct, as the smart contract cannot be modified once it is written into the block chain.",
+    "tick_checkbox": "Need to tick the Checkbox",
+    "change_info": "If the information is not correct, please",
+    "total": "total",
+    "a_totle": "A Total of",
+    "transaction_info": "transactions found",
+    "hold_addr": "Token Holders",
+    "transactions_unit": "Transactions",
+    "transfers_unit": "Transfers",
+    "block_unit": "Blocks",
+    "record_unit": "Transactions",
+    "token_unit": "Tokens",
+    "vote_unit": "candidates",
+    "voter_unit": "Voters",
+    "account_unit": "accounts",
+    "address_unit": "addresses",
+    "contract_unit": "verified contract source codes found",
+    "inter_contract_unit": "Internal Transactions found",
+
+    /*
+  ##################################################################################
+  #                                                                                #
+  # ICO--participate page                                                         #
+  #                                                                                #
+  ##################################################################################
+  */
+
+    "issue_progress": "Progress",
+    "fund_raised": "Fund Raised",
+    "issuing_price": "Issuing Price",
+    "buy_token_info": "How much tokens do you want to buy?",
+    "reputation": "Reputation",
+    "issue_time": "Issuing Time ",
+    "success_receive": "Successfully received",
+    "circulating_supply": "Circulating Supply",
+    "issue_info": "Issuance Info",
+    "transferring": "In progress",
+    "in_progress": "In progress",
+    "fail_transaction": "Transaction failed",
+    "records": "Records",
+    "part_total": "A total of ",
+    "part_pass": "tokens found",
+    "view_total": "A Total of",
+    "view_pass": "Tokens to participate",
+    "token_overview_tron": "Overview of TRON token market",
+    "token_participate_tron": "Participate in TRON token issuance",
+    "not_started": "Not started",
+    "no_token_to_buy": "Sorry, all the circulating supply has been issued, please wait the tokens to be unfrozen to participate.",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # contract page                                                                  #
+    #                                                                                #
+    ##################################################################################
+    */
+
+    "Code": "Code",
+    "contract_overview": "Contract Overview",
+    "trx_value": "TRX Value",
+    "token_tracker": "Token Tracker",
+    "contract_creator": "Contract Creator",
+    "at_txn": "at txn",
+    "token_txns": "Token Txns",
+    "Events": "Events",
+    "TxHash": "TxHash",
+    "Internal_Txns": "Internal Txns",
+    "ParentTxHash": "ParentTxHash",
+    "TxFee": "[TxFee]",
+    "contract_code_verified": "Contract Source Code Verified (Exact Match)",
+    "Contract_ABI": "Contract ABI",
+    "Byte_code": "Byte code",
+    "Constructor_Arguments": "Constructor Arguments (ABI-Encoded and is the last bytes of the Contract Creation Code above) ",
+    "Copy": "Copy",
+    "TxHash_Block_Age": "TxHash | Block | Age",
+    "Method": "Method",
+    "Event_Logs": "Event Logs",
+    "With_Verified_Source_Codes_Only": "With Verified Source Codes Only",
+    "verified_contract_source_codes_found": " verified contract source codes found",
+    "contract_source_codes_found": " contracts found",
+    "ContractName": "ContractName",
+    "TxCount": "TxCount",
+    "Settings": "Settings",
+    "DateVerified": "DateVerified",
+    "Compiler": "Compiler",
+    "Compiler_Text": "Compiler Text",
+    "Contract_Internal_Transactions": "Contract Internal Transactions",
+    "Internal_Transactions_found": "Internal Transactions found",
+    "Misc": "Misc",
+    "Optimization_Enabled": "Optimization Enabled",
+    "Normal_Transactions": "Normal Transactions",
+    "Verified_contracts": "verified contracts",
+    "Constructor_Arguments_tip": "Constructor Arguments",
 
   /*
   ##################################################################################
