@@ -313,6 +313,12 @@ class Address extends React.Component {
                                   <AddressLink address={address.address} includeCopy={true}/>
                                 </td>
                               </tr>
+                              {!address.representative.enabled?<tr>
+                                <th>{tu("name")}:</th>
+                                <td>
+                                  <span>{address.name?address.name:"-"}</span>
+                                </td>
+                              </tr>:"" }
 
                               <tr>
                                 <th>{tu("transfers")}:</th>
