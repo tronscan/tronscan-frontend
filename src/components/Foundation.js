@@ -11,7 +11,8 @@ import xhr from "axios/index";
 import {trim} from "lodash";
 import {Tooltip} from "reactstrap";
 import {TRXPrice} from "./common/Price";
-import {ONE_TRX} from "../constants";
+import {ONE_TRX,API_URL} from "../constants";
+
 class Accounts extends Component {
 
   constructor() {
@@ -42,10 +43,12 @@ class Accounts extends Component {
 
         },
         {
-          address:'TAv8VH5cnC5Vi5U4v5RMa9CU6pdbu7oGfu'
+            address:'TAv8VH5cnC5Vi5U4v5RMa9CU6pdbu7oGfu',
+            balance:43765311477181
         },
         {
-          address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH'
+            address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH',
+            balance:43778265726411
 
         }
     ]
@@ -55,7 +58,7 @@ class Accounts extends Component {
 
     let random = Math.random();
     // let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
-    let data = await xhr.get(`http://18.216.57.65:20110/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
+    let data = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
 
     function compare(property) {
         return function (obj1, obj2) {
