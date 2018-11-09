@@ -17,6 +17,7 @@ import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
 import {LineReactHighChartTx, LineReactHighChartAdd} from "../common/LineCharts";
 import {channel} from "../../services/api";
+import {API_URL} from "../../constants";
 
 const subDays = require("date-fns/sub_days");
 
@@ -39,7 +40,7 @@ class Home extends Component {
 
   async loadNodes() {
     // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap?total=1");
+    let {data} = await xhr.get(`${API_URL}/api/node`);
     this.setState({
       onlineNodes: data.total
     })

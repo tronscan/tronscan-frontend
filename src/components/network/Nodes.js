@@ -10,6 +10,7 @@ import {NodeMapAsync} from "./NodeMap/async";
 import {getQueryParam} from "../../utils/url";
 import {WidgetIcon} from "../common/Icon";
 import BarReact from "../common/BarChart";
+import {API_URL} from "../../constants";
 
 class Nodes extends Component {
 
@@ -90,7 +91,7 @@ class Nodes extends Component {
 
   loadNodes = async () => {
     // let {nodes, status} = await Client.getNodeLocations();
-    let {data} = await xhr.get("https://server.tron.network/api/v2/node/nodemap");
+    let {data} = await xhr.get(`${API_URL}/api/nodemap`);
 
     this.setState({
       nodes: data.data,

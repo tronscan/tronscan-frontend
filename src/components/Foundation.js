@@ -10,6 +10,8 @@ import {Table, Input, Button, Icon} from 'antd';
 import xhr from "axios/index";
 import {trim} from "lodash";
 import {Tooltip} from "reactstrap";
+import {TRXPrice} from "./common/Price";
+import {ONE_TRX} from "../constants";
 class Accounts extends Component {
 
   constructor() {
@@ -19,7 +21,7 @@ class Accounts extends Component {
       loading: true,
       searchString: "",
       accounts: [],
-      total: 0,
+      total: 1000,
       open: false,
     }
   }
@@ -31,16 +33,20 @@ class Accounts extends Component {
   loadAccounts = async (page = 1, pageSize = 20) => {
     let planAddress = [
         {
-            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV'
+            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV',
+            balance: 48051405879291
         },
         {
-            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR'
+            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR',
+            balance: 47301714286684
+
         },
         {
           address:'TAv8VH5cnC5Vi5U4v5RMa9CU6pdbu7oGfu'
         },
         {
           address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH'
+
         }
     ]
     this.setState({loading: true});
@@ -48,7 +54,8 @@ class Accounts extends Component {
     //let data = await xhr.get("https://server.tron.network/api/v2/node/balance?page_index=" + page +"&per_page="+pageSize);
 
     let random = Math.random();
-    let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
+    // let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
+    let data = await xhr.get(`http://18.216.57.65:20110/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
 
     function compare(property) {
         return function (obj1, obj2) {
@@ -63,20 +70,20 @@ class Accounts extends Component {
 
         }
     }
-    data.data.data.sort(compare('key'));
-    let foundationAddress  = data.data.data
+    data.data.data.data.sort(compare('key'));
+    let foundationAddress  = data.data.data.data
     for(let item in foundationAddress){
         for(let address in planAddress){
             if(foundationAddress[item].address === planAddress[address].address){
                 foundationAddress[item].isPlan= true;
-                planAddress[address].balance = parseFloat(trim(foundationAddress[item].balance.split('TRX')[0]));
             }
         }
     }
+
     this.setState({
         loading: false,
         accounts: foundationAddress,
-        total: data.data.total,
+        total: data.data.data.total/ONE_TRX,
         planAddress:planAddress
     });
 
@@ -131,6 +138,9 @@ class Accounts extends Component {
         key: 'balance',
         width: 200,
         align: 'right',
+        render: (text, record, index) => {
+          return <TRXPrice amount={text / ONE_TRX}/>
+        }
       }
     ];
     return (
@@ -165,7 +175,7 @@ class Accounts extends Component {
     for(let plan in planAddress){
         tronicsPlanTRX += planAddress[plan].balance
     }
-    tronicsPlanTRX = Math.round(tronicsPlanTRX)
+    tronicsPlanTRX = Math.round(tronicsPlanTRX / ONE_TRX)
     let foundationTRX =  Math.round(total - tronicsPlanTRX)
     return (
         <main className="container header-overlap pb-3 token_black">
