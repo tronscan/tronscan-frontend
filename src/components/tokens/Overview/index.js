@@ -402,7 +402,7 @@ class TokenOverview extends Component {
         align: 'center',
         render: (text, record, index) => {
           if(record.isBlack){
-            return<button className="btn btn-secondary btn-sm" disabled>{tu("participate")}</button>
+            return<button className="btn btn-secondary btn-block btn-sm" disabled>{tu("participate")}</button>
           }
           if (record.endTime < new Date() || record.issuedPercentage === 100 )
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
