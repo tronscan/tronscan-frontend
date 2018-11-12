@@ -25,6 +25,7 @@ class Home extends Component {
 
   constructor() {
     super();
+    this.listener = null;
     this.state = {
       search: '',
       isShaking: false,
@@ -102,7 +103,9 @@ class Home extends Component {
       addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
-      totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress
+      totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
+      maxTps:blocks[0]? 691 : 0,
+      tps: blocks[0] ? Math.floor((blocks[0].nrOfTrx)/3) : 0,
     });
 
   }
@@ -162,7 +165,7 @@ class Home extends Component {
 
   reconnect() {
       this.listener && this.listener.close();
-      this.listener = channel("/tronblock");
+      this.listener = channel("/tronblock",{transports: ['websocket']});
       this.listener.on("tron-block", info => {
           this.setState({
               maxTps:info.maxTps,
@@ -246,8 +249,8 @@ class Home extends Component {
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
-                    <div className="col-md-2 col-sm-6">
-                      <div className="hvr-underline-from-center hvr-underline-white text-muted">
+                    <div className="col-md-2 col-sm-12 col-xs-12">
+                      <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
@@ -359,6 +362,7 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    blocks: state.blockchain.blocks,
     account: state.app.account,
     theme: state.app.theme,
     activeLanguage: state.app.activeLanguage
