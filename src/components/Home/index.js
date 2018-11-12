@@ -34,7 +34,9 @@ class Home extends Component {
       blockHeight: 0,
       transactionPerDay: 0,
       txOverviewStats: null,
-      addressesStats: null
+      addressesStats: null,
+      maxTps:0,
+      tps:0,
     };
   }
 
