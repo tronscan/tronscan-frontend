@@ -71,7 +71,7 @@ class TranList extends Component {
         title: upperFirst(intl.formatMessage({id: 'TxTime'})),
         dataIndex: 'createTime',
         key: 'createTime',
-        width: '150px',
+        width: '200px',
         render: (text, record, index) => {
           return <span>
             <FormattedDate value={Number(text)}/>&nbsp;
