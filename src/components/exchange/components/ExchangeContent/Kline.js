@@ -257,17 +257,22 @@ class Kline extends React.Component {
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
-      <div className="d-flex exchange__kline__title">
-        <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
-        <div className="mr-3">{tu('pairs_change')}{
-          (selectData.up_down_percent && selectData.up_down_percent.indexOf('-') !=  -1)?
-          <span className='col-red ml-2'>{selectData.up_down_percent}</span>:
-          <span className='col-green ml-2'>{selectData.up_down_percent}</span>
-        }
-       </div>
-        <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
-        <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-        <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span></div>
+      <div className="d-flex flex-md-wrap exchange__kline__title">
+        <div className="d-flex">
+          <h5 className="mr-3">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
+          <div className="mr-3">{tu('pairs_change')}{
+            (selectData.up_down_percent && selectData.up_down_percent.indexOf('-') !=  -1)?
+            <span className='col-red ml-2'>{selectData.up_down_percent}</span>:
+            <span className='col-green ml-2'>{selectData.up_down_percent}</span>
+            }
+          </div>
+        </div>
+        <div className="d-flex">
+          <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
+          <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
+          <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span></div>
+        </div>
+        
       </div>
 
       <hr/>
