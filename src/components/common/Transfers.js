@@ -218,16 +218,35 @@ class Transfers extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-           <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-              <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo}</div>
-              <div className="table_pos_switch d-md-block table_pos_switch_addr">
-                <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
-              </div>
-            </div>
-          <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
-                      onPageChange={(page, pageSize) => {
-                        this.onChange(page, pageSize)
-                      }}/>
+            {
+                transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
+                  <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo}</div>
+                  <div className="table_pos_switch d-md-block table_pos_switch_addr">
+                    <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
+                  </div>
+                </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
+                  <div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}</div>
+                  <div className="table_pos_switch d-md-block table_pos_switch_addr2">
+                    <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
+                  </div>
+                </div>
+            }
+
+            {
+                transfers.length?
+                  <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
+                              onPageChange={(page, pageSize) => {
+                                  this.onChange(page, pageSize)
+                              }}/> :<div className="pt-5">
+                  <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
+                              onPageChange={(page, pageSize) => {
+                                  this.onChange(page, pageSize)
+                              }}/>
+                </div>
+            }
+
+
+
         </div>
     )
   }
