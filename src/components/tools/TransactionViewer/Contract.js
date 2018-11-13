@@ -284,8 +284,12 @@ export default function Contract({contract}) {
                     <Field label="token_name">{contract.name}</Field>
                     <Field label="total_supply">{contract.total_supply}</Field>
                     <Field label="TRX_exchange_rate">{contract.trx_num / ONE_TRX} : {contract.num}</Field>
-                    <Field label="start_time"><FormattedDate value={contract.start_time}/></Field>
-                    <Field label="end_time"><FormattedDate value={contract.end_time}/></Field>
+                    <Field label="start_time">
+                        {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.start_time}/> : "-"}
+                    </Field>
+                    <Field label="end_time">
+                        {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.end_time}/> : "-"}
+                    </Field>
                     <Field label="description">{contract.description}</Field>
                     <Field label="URL"><ExternalLink url={contract.url}/></Field>
                 </tbody>

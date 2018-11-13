@@ -24,15 +24,14 @@ class TokenInfo extends React.Component {
             <tr>
               <th style={{borderTop: '0px'}}>{tu("start_date")}:</th>
               <td style={{borderTop: '0px'}}>
-                <FormattedDate value={token.startTime}/>{' '}
-                <FormattedTime value={token.startTime}/>
+                {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.startTime}/>{' '}<FormattedTime value={token.startTime}/></span>:"-"}
               </td>
             </tr>
             <tr>
               <th>{tu("end_date")}:</th>
               <td>
-                <FormattedDate value={token.endTime}/>{' '}
-                <FormattedTime value={token.endTime}/>
+
+                {token.endTime - token.startTime >1000 ? <span><FormattedDate value={token.endTime}/>{' '}<FormattedTime value={token.endTime}/></span>:"-"}
               </td>
             </tr>
             <tr>

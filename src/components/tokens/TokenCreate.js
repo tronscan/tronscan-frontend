@@ -149,10 +149,6 @@ class TokenCreate extends Component {
       })(account.key);
 
       if (result.success) {
-        let result_img = await xhr.post(API_URL+ "/api/uploadLogo", {
-          imageData: logoData,
-          owner_address: account.address
-        });
 
         this.setState({
           isTokenCreated: true,
@@ -170,6 +166,12 @@ class TokenCreate extends Component {
                 {tu("token_link_message_2")}
               </SweetAlert>
         });
+        if(logoData){
+            let result_img = await xhr.post(API_URL+ "/api/uploadLogo", {
+                imageData: logoData,
+                owner_address: account.address
+            });
+        }
       } else {
         this.setState({
           modal: (

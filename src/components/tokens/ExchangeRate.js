@@ -85,10 +85,18 @@ export class ExchangeRate extends PureComponent {
   switchFreeze = (checked) => {
     this.setState({showTime: checked});
     if (!checked) {
-      this.setState({
-        startTime: '',
-        endTime: ''
-      });
+        let startTime = new Date();
+        //startTime.setHours(0, 0, 0, 0);
+
+        startTime.setTime(startTime.getTime()+ 60*1000)
+
+        let endTime = new Date();
+        //endTime.setHours(0, 0, 0, 0);
+        endTime.setTime(endTime.getTime() + 61*1000)
+        this.setState({
+            startTime,
+            endTime
+        });
     }else{
       let startTime = new Date();
       startTime.setHours(0, 0, 0, 0);

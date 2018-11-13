@@ -1099,15 +1099,13 @@ class Account extends Component {
                       <tr>
                         <th>{tu("start_date")}:</th>
                         <td>
-                          <FormattedDate value={issuedAsset.startTime}/>{' '}
-                          <FormattedTime value={issuedAsset.startTime}/>
+                          {issuedAsset.endTime - issuedAsset.startTime >1000 ? <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime value={issuedAsset.startTime}/></span>:"-"}
                         </td>
                       </tr>
                       <tr>
                         <th>{tu("end_date")}:</th>
                         <td>
-                          <FormattedDate value={issuedAsset.endTime}/>{' '}
-                          <FormattedTime value={issuedAsset.endTime}/>
+                          {issuedAsset.endTime - issuedAsset.startTime >1000 ? <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime value={issuedAsset.endTime}/></span>:"-"}
                         </td>
                       </tr>
                       <tr>
