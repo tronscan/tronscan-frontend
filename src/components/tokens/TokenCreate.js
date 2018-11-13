@@ -116,7 +116,8 @@ class TokenCreate extends Component {
     let {logoData} = this.state;
 
     console.log(this.state.startTime)
-    return 
+    console.log(this.state.endTime)
+    // return
 
     this.setState({
       modal:
@@ -140,8 +141,8 @@ class TokenCreate extends Component {
         totalSupply: this.state.totalSupply,
         num: this.state.numberOfCoins,
         trxNum: this.state.numberOfTron * ONE_TRX,
-        startTime: this.state.startTime,
-        endTime: this.state.endTime,
+        startTime: this.state.startTime?this.state.startTime:"",
+        endTime: this.state.endTime?this.state.endTime:"",
         description: this.state.description,
         url: this.state.url,
         frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
