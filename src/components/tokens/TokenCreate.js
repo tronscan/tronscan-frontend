@@ -115,6 +115,9 @@ class TokenCreate extends Component {
     let {account, intl} = this.props;
     let {logoData} = this.state;
 
+    console.log(this.state.startTime)
+    return 
+
     this.setState({
       modal:
           <SweetAlert
