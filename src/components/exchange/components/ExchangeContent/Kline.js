@@ -5,6 +5,7 @@ import {widget} from '../../../../lib/charting_library.min';
 import Datafeed from './udf/index.js'
 import {connect} from "react-redux";
 import {tu, tv} from "../../../../utils/i18n";
+import { TRXPrice } from "../../../common/Price";
 class Kline extends React.Component {
 
   constructor() {
@@ -44,13 +45,13 @@ class Kline extends React.Component {
       library_path: "charting_library/",
       locale: locale,
 
-      // disabled_features: [
-      //   "use_localstorage_for_settings",
-      //   "volume_force_overlay",
-      //   "create_volume_indicator_by_default",
-      //   "display_market_status",
-      //   "legend_context_menu"
-      // ],
+       disabled_features: [
+        "use_localstorage_for_settings",
+        "volume_force_overlay",
+        "create_volume_indicator_by_default",
+        "display_market_status",
+        "legend_context_menu"
+       ],
       // preset: "mobile",
       disabled_features: [
         "use_localstorage_for_settings",
@@ -91,7 +92,7 @@ class Kline extends React.Component {
       theme: "Light",
       overrides: {
         // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
-        // volumePaneSize: "medium", //成交量大小的显示
+        "volumePaneSize": "medium", //成交量大小的显示
         "paneProperties.legendProperties.showLegend": false, //关闭左上角
         // //背景色，
         // "paneProperties.background": "#fff",
@@ -254,6 +255,7 @@ class Kline extends React.Component {
 
   render() {
     const {selectData} = this.props;
+    console.log('selectData',selectData)
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -270,7 +272,11 @@ class Kline extends React.Component {
         <div className="d-flex">
           <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
           <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-          <div className="mr-3">{tu('24H_VOL')}<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span></div>
+          <div className="mr-3">{tu('24H_VOL')}
+            <span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>
+              ≈
+            <TRXPrice amount={selectData.svolume} />
+          </div>
         </div>
         
       </div>

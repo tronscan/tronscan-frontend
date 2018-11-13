@@ -83,7 +83,7 @@ class Mytran extends Component {
         title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
         dataIndex: 'quant',
         key: 'quant',
-        width: '150px',
+        width: '200px',
         render: (text, record, index) => {
           return  record.tokenName == 'TRX'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
