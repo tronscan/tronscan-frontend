@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { Form, Input, Button, Radio } from 'antd';
 import { QuestionMark } from "../../../common/QuestionMark";
 import { withRouter } from 'react-router'
-import queryString from 'query-string';
 import {Client} from "../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {tu} from "../../../../utils/i18n";
@@ -19,10 +18,6 @@ class Transaction extends Component {
     super(props);
     this.state = {
         modal: null,
-        first_quant_buy:'',
-        second_quant_buy:'',
-        first_quant_sell:'',
-        second_quant_sell:'',
         firstBalance: {},
         secondBalance: {}
     }
@@ -128,9 +123,6 @@ class Transaction extends Component {
   };
   handleSecondValueBuy = async (value) => {
       let { exchangeData } = this.props
-      // this.setState({
-      //     second_quant_buy: e.target.value * exchangeData.price,
-      // });
       this.props.form.setFieldsValue({
           second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(value*1.01 * exchangeData.price).toFixed(6):value * exchangeData.price*1.01,
       });
@@ -138,9 +130,6 @@ class Transaction extends Component {
 
   handleSecondValueSell = async (value) => {
       let { exchangeData } = this.props
-      // this.setState({
-      //     second_quant_buy: value * exchangeData.price,
-      // });
       this.props.form.setFieldsValue({
           second_quant_sell: exchangeData.second_token_id == "TRX" ? parseFloat(value*0.99 * exchangeData.price).toFixed(6):value * exchangeData.price*0.99,
       });
@@ -148,7 +137,7 @@ class Transaction extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let {exchangeData, first_quant_buy, second_quant_buy,first_quant_sell,second_quant_sell,account,currentWallet,intl} = this.props;
+    let {exchangeData,account,currentWallet,intl} = this.props;
     let {modal,firstBalance,secondBalance} = this.state;
     return (
       <div className="exchange__transaction d-flex">
@@ -171,7 +160,6 @@ class Transaction extends Component {
                            placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                            size="large"
                            type="text"
-                           //value={first_quant_buy}
                            onChange={this.handleSecondValueBuy}
                            
                     />
@@ -188,7 +176,6 @@ class Transaction extends Component {
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
-                     //value={second_quant_buy}
               />
             )}
             </FormItem>
@@ -218,7 +205,6 @@ class Transaction extends Component {
                   placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                   size="large"
                   type="text"
-                  //value={first_quant_sell}
                   onChange={this.handleSecondValueSell}
               />
             )}
@@ -233,7 +219,6 @@ class Transaction extends Component {
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
-                    // value={second_quant_sell}
               />
             )}
             </FormItem>

@@ -114,13 +114,12 @@ class Confirm extends Component {
                 </tr>
                 <tr>
                   <td className="text-nowrap">{tu("start_date")}:</td>
-                  <td>{startTime?<FormattedDate value={startTime}/>: '-'}</td>
+                  <td>{endTime - startTime > 1000 ?  <FormattedDate value={startTime}/> : "-"}</td>
                 </tr>
                 <tr>
                   <td className="text-nowrap borderBottom">{tu("end_date")}:</td>
-                  <td className="borderBottom">{endTime? <FormattedDate value={endTime}/>: '-'}</td>
+                  <td className="borderBottom">{endTime - startTime > 1000 ?  <FormattedDate value={endTime}/> : "-"}</td>
                 </tr>
-
                 </tbody>
               </table>
 

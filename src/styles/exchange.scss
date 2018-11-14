@@ -59,7 +59,15 @@
     }
     .exchange__transaction{
       flex-direction: column;
-      div:nth-child(1){
+      .sweet-alert{
+        width: 90%!important;
+        margin-left: -170px!important;
+        margin-top: -220px!important;
+        div{
+          margin: 10px 110px!important;
+        }
+      }
+      .exchange__transaction__item:nth-child(1){
         margin-right: 0!important;
       }
       div:nth-child(2){
@@ -68,6 +76,7 @@
       h5{
         font-size: 1rem;
       }
+
     }
     .exchange__transactionlist{
       .ant-table-content{

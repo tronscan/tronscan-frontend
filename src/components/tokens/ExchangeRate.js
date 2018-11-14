@@ -124,7 +124,6 @@ export class ExchangeRate extends PureComponent {
 
   render() {
     let {numberOfCoins, numberOfTron, name, startTime, endTime,showTime} = this.state;
-    console.log( this.state)
 
     let {errors} = this.state;
 

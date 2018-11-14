@@ -84,7 +84,7 @@ class TokenCreate extends Component {
     this.setState({
       modal: null,
     }, () => {
-      window.location.hash = "#/myToken";
+      window.location.hash = "#/tokens/list";
     });
   }
   preSubmit = () => {
@@ -114,10 +114,6 @@ class TokenCreate extends Component {
   submit = async () => {
     let {account, intl} = this.props;
     let {logoData} = this.state;
-
-    console.log(this.state.startTime)
-    console.log(this.state.endTime)
-    // return
 
     this.setState({
       modal:
