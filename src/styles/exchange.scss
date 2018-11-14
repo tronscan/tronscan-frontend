@@ -13,6 +13,11 @@
   h5{
     margin-bottom: 0;
   }
+  .exchange-table-row-active{
+    td{
+      background-color: rgba(194, 54, 49, 0.2)!important;
+    }
+  }
   &-box{
     display: flex;
     &-left{
@@ -98,7 +103,7 @@
         background-color: #F3F3F3;
         &:hover{
           & > td{
-            background-color: rgba(194, 54, 49, 0.3)
+            background-color: rgba(194, 54, 49, 0.2)
           }
         }
         td, th{

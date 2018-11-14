@@ -44,7 +44,7 @@ class Kline extends React.Component {
       datafeed: new Datafeed.UDFCompatibleDatafeed(),
       library_path: "charting_library/",
       locale: locale,
-      preset: "mobile",
+      //preset: "mobile",
       disabled_features: [
         "use_localstorage_for_settings",
         "volume_force_overlay",
@@ -65,7 +65,7 @@ class Kline extends React.Component {
         // "countdown"
       ],
       enabled_features: ["dont_show_boolean_study_arguments", "move_logo_to_main_pane", "hide_last_na_study_output", "legend_context_menu"],
-      height: 500,
+      height: 490,
       fullscreen: false,
       autosize: true,
 

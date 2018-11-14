@@ -15,6 +15,7 @@ class ExchangeTable extends React.Component {
     this.state = {
       columns: [],
       dataSource: [],
+      activeIndex:2,
     };
   }
 
@@ -53,6 +54,7 @@ class ExchangeTable extends React.Component {
             rowKey={(record, index) => {
                 return index
             }}
+            rowClassName={this.setActiveClass}
             onRow={(record) => {
                 return {
                     onClick: () => {
@@ -64,6 +66,10 @@ class ExchangeTable extends React.Component {
     )
   }
 
+
+  setActiveClass = (record, index) => {
+    return record.exchange_id === this.state.activeIndex ? "exchange-table-row-active": "";
+  }
   getData() {
     const parsed = queryString.parse(this.props.location.search).id;
     const { dataSource, getSelectData } = this.props;
@@ -89,7 +95,10 @@ class ExchangeTable extends React.Component {
   }
 
   onSetUrl(record) {
-    const {getSelectData} = this.props
+    const {getSelectData} = this.props;
+    this.setState({
+        activeIndex:record.exchange_id //获取点击行的索引
+    })
     this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
     getSelectData(record, true)
      
