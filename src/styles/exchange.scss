@@ -61,10 +61,12 @@
       flex-direction: column;
       .sweet-alert{
         width: 90%!important;
-        margin-left: -170px!important;
+        left: 50%;
+        top: 50%;
+        margin-left: 5px!important;
         margin-top: -220px!important;
         div{
-          margin: 10px 110px!important;
+         // margin: 10px 110px!important;
         }
       }
       .exchange__transaction__item:nth-child(1){
