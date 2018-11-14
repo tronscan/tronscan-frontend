@@ -78,7 +78,7 @@ class ExchangeList extends React.Component {
             </ul>
             {/* <Search
               placeholder="input search text"
-              onSearch={value => console.log(value)}
+
               style={{ width: 200 }}
             /> */}
           </div>
@@ -103,6 +103,6 @@ class ExchangeList extends React.Component {
 export default injectIntl(ExchangeList);
 const styles = {
     list: {
-        height: 320,
+        height: 370,
     }
 };
