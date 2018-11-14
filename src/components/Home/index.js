@@ -104,8 +104,6 @@ class Home extends Component {
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
       totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,
-      maxTps:blocks[0]? 691 : 0,
-      tps: blocks[0] ? Math.floor((blocks[0].nrOfTrx)/3) : 0,
     });
 
   }
@@ -254,10 +252,6 @@ class Home extends Component {
                         <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
                         <p className="m-0">{tu("current_MaxTPS")}</p>
                       </div>
-                      {/*<Link to="/" className="hvr-underline-from-center hvr-underline-white text-muted">*/}
-                        {/*<h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>*/}
-                        {/*<p className="m-0">{tu("current_MaxTPS")}</p>*/}
-                      {/*</Link>*/}
                     </div>
                     <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/transactions"
