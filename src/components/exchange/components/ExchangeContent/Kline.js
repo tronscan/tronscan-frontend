@@ -44,15 +44,7 @@ class Kline extends React.Component {
       datafeed: new Datafeed.UDFCompatibleDatafeed(),
       library_path: "charting_library/",
       locale: locale,
-
-       disabled_features: [
-        "use_localstorage_for_settings",
-        "volume_force_overlay",
-        "create_volume_indicator_by_default",
-        "display_market_status",
-        "legend_context_menu"
-       ],
-      // preset: "mobile",
+      preset: "mobile",
       disabled_features: [
         "use_localstorage_for_settings",
         "volume_force_overlay",
@@ -255,7 +247,6 @@ class Kline extends React.Component {
 
   render() {
     const {selectData} = this.props;
-    console.log('selectData',selectData)
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}

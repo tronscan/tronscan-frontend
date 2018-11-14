@@ -56,22 +56,22 @@ class TranList extends Component {
     let {dataSource} = this.state;
     let {intl} = this.props;
     const columns = [
-      {
-        title: upperFirst(intl.formatMessage({id: 'TxHash'})),
-        dataIndex: 'trx_hash',
-        key: 'trx_hash',
-        render: (text, record, index) => {
-          // className={record.status === 1? 'buy': 'sell'}
-          return <span ><Truncate>
-                  <TransactionHashLink hash={text}>{text}</TransactionHashLink>
-                </Truncate></span>
-        }
-      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'TxHash'})),
+      //   dataIndex: 'trx_hash',
+      //   key: 'trx_hash',
+      //   render: (text, record, index) => {
+      //     // className={record.status === 1? 'buy': 'sell'}
+      //     return <span ><Truncate>
+      //             <TransactionHashLink hash={text}>{text}</TransactionHashLink>
+      //           </Truncate></span>
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({id: 'TxTime'})),
         dataIndex: 'createTime',
         key: 'createTime',
-        width: '200px',
+        //width: '200px',
         render: (text, record, index) => {
           return <span>
             <FormattedDate value={Number(text)}/>&nbsp;
@@ -79,19 +79,19 @@ class TranList extends Component {
           </span>
         }
       },
-      {
-        title: upperFirst(intl.formatMessage({id: 'address'})),
-        dataIndex: 'creatorAddress',
-        key: 'creatorAddress',
-        render: (text, record, index) => {
-          return  <AddressLink address={text}/>
-        }
-      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'address'})),
+      //   dataIndex: 'creatorAddress',
+      //   key: 'creatorAddress',
+      //   render: (text, record, index) => {
+      //     return  <AddressLink address={text}/>
+      //   }
+      // },
       {
         title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
         dataIndex: 'quant',
         key: 'quant',
-        width: '200px',
+        //width: '200px',
         render: (text, record, index) => {
           return  record.tokenID == '_'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>

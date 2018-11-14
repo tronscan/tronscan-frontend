@@ -30,14 +30,14 @@ class Exchange extends React.Component {
     return (
       <main className="container header-overlap exchange">
         {/* <div style={{position: 'absolute'}}><TronLoader/></div> */}
-        <div className="d-flex mb-2">
+        <div className="exchange-box mb-2">
           {/* 左侧 交易list */}
-          <div style={{width: '380px'}}>
+          <div className="exchange-box-left">
             <ExchangeList/>
           </div>
 
           {/* 右侧内容信息，包图表、交易、历史记录 */}
-          <div style={{flex: '1'}}>
+          <div className="exchange-box-right">
             <ExchangeContent/>
           </div>
         </div>

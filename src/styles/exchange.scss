@@ -13,6 +13,64 @@
   h5{
     margin-bottom: 0;
   }
+  &-box{
+    display: flex;
+    &-left{
+      width: 380px;
+    }
+    &-right{
+      flex: 1;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    &-box{
+      display: flex;
+      flex-direction: column;
+      &-left{
+        width: 100%;
+        .ant-table-content{
+          width: 100%;
+        }
+      }
+      &-right{
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+    }
+    .exchange-list{
+      margin-right: 0!important;
+    }
+    .exchange__kline__title{
+      flex-direction: column;
+      h5{
+        font-size: 14px;
+      }
+      div:nth-child(1){
+        flex-direction: column;
+      }
+      div:nth-child(2){
+        flex-direction: column;
+      }
+    }
+    .exchange__transaction{
+      flex-direction: column;
+      div:nth-child(1){
+        margin-right: 0!important;
+      }
+      div:nth-child(2){
+        margin-top: 0.5rem!important;
+      }
+      h5{
+        font-size: 1rem;
+      }
+    }
+    .exchange__transactionlist{
+      .ant-table-content{
+        width: 150%;
+        font-size: 12px;
+      }
+    }
+  }
 
   // exchange list
   &-list{
@@ -40,7 +98,7 @@
         background-color: #F3F3F3;
         &:hover{
           & > td{
-            background-color: rgba(194, 54, 49, 0.1)
+            background-color: rgba(194, 54, 49, 0.3)
           }
         }
         td, th{
