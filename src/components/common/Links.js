@@ -121,7 +121,7 @@ export class AddressLink extends React.PureComponent {
           {
             !isContract ?
               <Link
-                  to={`/address/${address}`}
+                  to={`/address/${address}/token-balances`}
                   style={style}
                   className={"address-link text-nowrap " + className}
                   {...props}>

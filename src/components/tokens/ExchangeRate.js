@@ -86,13 +86,9 @@ export class ExchangeRate extends PureComponent {
     this.setState({showTime: checked});
     if (!checked) {
         let startTime = new Date();
-        //startTime.setHours(0, 0, 0, 0);
-
-        startTime.setTime(startTime.getTime()+ 60*1000)
-
+        startTime.setTime(startTime.getTime()+ 120*1000);
         let endTime = new Date();
-        //endTime.setHours(0, 0, 0, 0);
-        endTime.setTime(endTime.getTime() + 61*1000)
+        endTime.setTime(endTime.getTime() + 121*1000);
         this.setState({
             startTime,
             endTime
@@ -100,11 +96,11 @@ export class ExchangeRate extends PureComponent {
     }else{
       let startTime = new Date();
       startTime.setHours(0, 0, 0, 0);
-      startTime.setTime(startTime.getTime() + 24*60*60*1000)
+      startTime.setTime(startTime.getTime() + 24*60*60*1000);
 
       let endTime = new Date();
       endTime.setHours(0, 0, 0, 0);
-      endTime.setTime(endTime.getTime() + 24*60*60*1000*2)
+      endTime.setTime(endTime.getTime() + 24*60*60*1000*2);
 
       this.setState({
         startTime,
@@ -201,9 +197,17 @@ export class ExchangeRate extends PureComponent {
               </legend>
 
               <div className="form-row mb-3">
-                <p className="col-md-12">
-                  {tu("participation_message_0")}{name}{tu("participation_message_1")}
-                </p>
+
+                {showTime &&
+                  <p className="col-md-12">
+                      {tu("participation_message_0")}{name}{tu("participation_message_1")}
+                  </p>
+                }
+                {!showTime &&
+                  <p className="col-md-12">
+                      {tu("participation_message_2")}
+                  </p>
+                }
                 <Switch checkedChildren={intl.formatMessage({id: 'freeze_on'})}
                         unCheckedChildren={intl.formatMessage({id: 'freeze_off'})}
                         onChange={this.switchFreeze}

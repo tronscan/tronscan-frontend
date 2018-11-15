@@ -27,7 +27,7 @@ export class SwitchToken extends React.Component {
                 <Switch checked={hideSmallCurrency} onChange={this.handleToggle('hideSmallCurrency')} />
                 <p className="ml-2 mr-2">{tu(text)}</p>
                 {
-                    isHide?<div style={{marginTop:'0.2rem'}}>
+                    isHide?<div>
                         <QuestionMark placement="top" text={hoverText}/>
                     </div>:""
                 }

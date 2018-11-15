@@ -395,7 +395,7 @@ class TokenList extends Component {
         className: 'ant_table _text_nowrap'
       },
       {
-        title: intl.formatMessage({id: 'issue_time'}),
+        title: intl.formatMessage({id: 'created_token_time'}),
         dataIndex: 'dateCreated',
         key: 'dateCreated',
         render: (text, record, index) => {
