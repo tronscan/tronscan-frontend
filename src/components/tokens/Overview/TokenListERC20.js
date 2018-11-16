@@ -46,10 +46,10 @@ class TokenList extends Component {
         let total
 
         if (filter.name){
-            result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+            result = await xhr.get(API_URL+"/api/token/trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['data'].length;
         }else{
-            result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+            result = await xhr.get(API_URL+"/api/token/trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
             total = result.data['total'];
         }
 
