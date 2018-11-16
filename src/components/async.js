@@ -388,6 +388,24 @@ export const TokenListAsync = asyncComponent({
   )
 });
 
+export const TokenERR20ListAsync = asyncComponent({
+    LoadingComponent: () => (
+        <TronLoader/>
+    ),
+    resolve: () => new Promise(resolve =>
+        // Webpack's code splitting API w/naming
+        require.ensure(
+            [],
+            (require) => {
+                $script("", () => {
+                    resolve(require("./tokens/Overview/TokenListERC20"));
+                });
+            },
+            'TokenList',
+        )
+    )
+});
+
 export const TokensCreateAsync = asyncComponent({
   LoadingComponent: () => (
       <TronLoader/>

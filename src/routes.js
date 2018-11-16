@@ -26,6 +26,7 @@ import {
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
+  TokenERR20ListAsync,
   TokensCreateAsync,
   AccountsAsync,
   FoundationAsync,
@@ -190,16 +191,25 @@ export const routes = [
     component: TokenOverviewAsync,
     routes: [
       {
+          label: "overview_ERC20",
+          path: "/tokens/list-erc20",
+          icon: 'fa fa-list',
+          component: TokenERR20ListAsync
+      },
+      '-',
+      {
         label: "overview",
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenListAsync
-      }, {
+      },
+      {
         label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
         component: TokenOverviewAsync
-      }, {
+      },
+      {
         label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
