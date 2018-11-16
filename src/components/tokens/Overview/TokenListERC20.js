@@ -46,18 +46,21 @@ class TokenList extends Component {
         let total
 
         if (filter.name){
-            result = await xhr.get(API_URL+"/api/token/trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+            result = await xhr.get(API_URL+"/api/token_trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['data'].length;
         }else{
-            result = await xhr.get(API_URL+"/api/token/trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
-            total = result.data['total'];
+            //result = await xhr.get(API_URL+"/api/token_trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+            result = await xhr.get(API_URL+"/api/token_trc20");
+           // total = result.data['total'];
         }
 
-        let tokens = result.data['data'];
+        //let tokens = result.data['data'];
+        let tokens = result.data['trc20_tokens'];
+        console.log('tokens',result)
 
-        if (tokens.length === 0) {
-            toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
-        }
+        // if (tokens.length === 0) {
+        //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
+        // }
 
         this.setState({
             loading: false,
