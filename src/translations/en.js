@@ -1242,5 +1242,7 @@ export const messages = {
   "slightly_cost":"Slightly increase the estimated cost, and the turnover rate will be higher.",
   "slightly_revenue":"Slightly lower the estimated revenue, and the turnover rate will be higher.",
   "participation_message_2":"The issue time is not enabled, which means users cannot participate in the token on tronscan.",
-  "created_token_time":"Created"
+  "created_token_time":"Created",
+  "committee":"TRON committee",
+  "TRON_network_parameters":"TRON network parameters",
 };

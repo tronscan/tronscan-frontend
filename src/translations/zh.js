@@ -1232,5 +1232,16 @@ export const messages = {
     "slightly_cost":"略微提高预估花费，可提升成交概率。",
     "slightly_revenue":"略微降低预估收入，可提升成交概率。",
     "participation_message_2":"不启用发行时间，即用户不能在浏览器参与通证发行。",
-    "created_token_time":"创建时间"
+    "created_token_time":"创建时间",
+    "committee":"TRON委员会",
+    "committee_dec_1":"委员会用于修改Tron网络动态参数，如出块奖励、交易费用等等。",
+    "committee_dec_2":"委员会由当前的27个超级代表组成。",
+    "committee_dec_3":"每个超级代表都具有提议权、对提议的投票权。",
+    "committee_dec_4":"当提议在有效期内获得19个代表及以上的赞成票时，该提议获得通过，并在下个维护期内进行网络参数修改。",
+    "get_committee_proposal":"查看委员会提议",
+    "TRON_network_parameters":"TRON网络参数",
+    "commission_proposed":"委员会提议",
+    "TRONSR":"TRON SR",
+    "learn_more":"更多"
+
 };

@@ -1933,3 +1933,41 @@ h5 {
 .badge-success-radius{
   border-radius: 29px;
 }
+
+.committee{
+  .committee-title{
+    display: flex;
+    margin-top: 60px;
+    h2{
+      width: 106px;
+      height: 106px;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+  }
+  .network-parameters{
+    .ant-table{
+      border: 1px solid #d8d8d8;
+    }
+    .ant-table thead th{
+      background-color:#f3f3f3;
+    }
+    .ant-table tbody tr:nth-child(even){
+      background-color:#f3f3f3;
+      &:hover{
+        td{
+          background-color: rgba(255, 255, 255, 0.5)
+        }
+      }
+    }
+    .ant-table tbody tr:nth-child(odd){
+      background-color:#ffffff;
+      &:hover{
+        td{
+          background-color: rgba(243,243,243, 0.3)
+
+        }
+      }
+    }
+  }
+}

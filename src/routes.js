@@ -42,7 +42,9 @@ import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
 import Exchange from "./components/exchange/index";
 import ContractTrans from "./components/blockchain/ContractTrans";
-
+import Committee from "./components/committee/index";
+import Proposal from "./components/committee/Proposal";
+import ProposalInfo from "./components/committee/ProposalInfo";
 import {Redirect} from "react-router-dom";
 
 export const routes = [
@@ -231,18 +233,35 @@ export const routes = [
     icon: 'fas fa-exchange-alt',
     component: Exchange
   },
+
   {
-      label: "representatives",
-      path: "/representatives",
-      icon: "fa fa-rocket",
-      component: RepresentativesAsync
+      label: "TRONSR",
+      path: "/sr",
+      icon: "fas fa-chess-queen",
+      component: RepresentativesAsync,
+      routes: [
+          {
+              label: "representatives",
+              path: "/sr/representatives",
+              icon: "fa fa-rocket",
+              component: RepresentativesAsync
+          },
+          {
+              label: "votes",
+              path: "/sr/votes",
+              icon: 'fas fa-comment',
+              component: VoteOverviewAsync
+          },
+          {
+              label: "committee",
+              path: "/sr/committee",
+              icon: 'fas fa-users',
+              component: Committee
+          },
+
+      ]
   },
-  {
-    path: "/votes",
-    label: "votes",
-    icon: 'fas fa-comment',
-    component: VoteOverviewAsync
-  },
+
   {
     path: "/votes-live",
     label: "live",
@@ -251,16 +270,27 @@ export const routes = [
     showInMenu: false,
   },
   {
-    path: "/account",
-    label: "account",
-    showInMenu: false,
-    component: AccountAsync,
+      path: "/account",
+      label: "account",
+      showInMenu: false,
+      component: AccountAsync,
   },
   {
-    path: "/tools",
-    label: "tools",
-    icon: "fa fa-wrench",
-    routes: [
+      path: "/proposal",
+      label: "commission_proposed",
+      component: Proposal,
+      showInMenu: false,
+  },
+  {
+      path: "/proposal/:id",
+      component:ProposalInfo,
+      showInMenu: false,
+  },
+  {
+      path: "/tools",
+      label: "tools",
+      icon: "fa fa-wrench",
+      routes: [
       // {
       //   label: "verify_contract_code",
       //   path: "/tools/verify-contract-code",
