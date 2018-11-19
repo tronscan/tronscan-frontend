@@ -14,6 +14,8 @@ import {ContractTypes} from "../../../utils/protocol";
 import {trim} from "lodash";
 import {hextoString} from "@tronscan/client/src/utils/bytes";
 import {Alert} from "reactstrap";
+import {setLanguage} from "../../../actions/app"
+import queryString from 'query-string';
 
 class Transaction extends React.Component {
 
@@ -41,7 +43,9 @@ class Transaction extends React.Component {
 
   componentDidMount() {
     document.documentElement.scrollTop = 0;
-    let {match} = this.props;
+    let {match,location} = this.props;
+    let lang = queryString.parse(location.search).lang;
+    this.props.setLanguage(lang);
     this.load(match.params.hash);
   }
 
@@ -193,6 +197,8 @@ function mapStateToProps(state) {
   return {};
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    setLanguage,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transaction);

@@ -6,7 +6,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
 import {Client} from "../../../services/api";
-import {TokenLink} from "../../common/Links";
+import {TokenTRC20Link ,AddressLink} from "../../common/Links";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
@@ -17,6 +17,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
+
 
 class TokenList extends Component {
 
@@ -47,14 +48,12 @@ class TokenList extends Component {
 
         if (filter.name){
             result = await xhr.get(API_URL+"/api/token_trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
-            total = result.data['data'].length;
+            total = result.data['trc20_tokens'].length;
         }else{
-            //result = await xhr.get(API_URL+"/api/token_trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
-            result = await xhr.get(API_URL+"/api/token_trc20");
-           // total = result.data['total'];
+            result = await xhr.get(API_URL+"/api/token_trc20?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+            total = result.data['total'];
         }
 
-        //let tokens = result.data['data'];
         let tokens = result.data['trc20_tokens'];
         console.log('tokens',result)
 
@@ -347,7 +346,7 @@ class TokenList extends Component {
                 width: '50%',
                 render: (text, record, index) => {
                     return <div className="table-imgtext">
-                        {record.imgUrl ?
+                        {record.icon_url ?
                             <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
                                 style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
                             <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
@@ -355,10 +354,10 @@ class TokenList extends Component {
                         }
 
                         <div>
-                            <h5><TokenLink name={record.name}
-                                           namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
+                            <h5><TokenTRC20Link name={record.name}
+                                           namePlus={record.name + ' (' + record.symbol + ')'} address={record.contract_address}/>
                             </h5>
-                            <p>{record.description}</p>
+                            <p>{record.token_desc}</p>
                         </div>
                     </div>
                 }
@@ -368,7 +367,13 @@ class TokenList extends Component {
                 align: 'center',
                 className: 'ant_table d-none d-md-table-cell _text_nowrap',
                 render: (text, record, index) => {
-                    return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>
+                    return <div>
+                        {
+                            record.price && record.total_supply?
+                                <div><FormattedNumber value={record.total_supply * record.price} maximumFractionDigits={1}/> TRX</div>:
+                                <div>N/A TRX</div>
+                        }
+                    </div>
                 }
             },
             {
@@ -380,29 +385,34 @@ class TokenList extends Component {
                 render: (text, record, index) => {
                     let lowerText = toLower(text)
                     return <div>
-                        {text && intl.formatMessage({id: text})}
-                        {/*<img src={require('../../../images/state/' + lowerText + '.png')} className="ml-1 faceico"/>*/}
+                        {
+                            record.price?
+                                <div><FormattedNumber value={record.total_supply} maximumFractionDigits={1}/> TRX</div>:
+                                <div>N/A TRX</div>
+
+
+                        }
                     </div>
                 }
             },
             {
                 title: intl.formatMessage({id: 'total_tokens'}),
-                dataIndex: 'issuedPercentage',
-                key: 'issuedPercentage',
+                dataIndex: 'total_supply',
+                key: 'total_supply',
                 render: (text, record, index) => {
                     if (text === null)
                         text = 0;
-                    return <div><FormattedNumber value={text} maximumFractionDigits={1}/>%</div>
+                    return <div><FormattedNumber value={text} maximumFractionDigits={1}/></div>
                 },
                 align: 'center',
                 className: 'ant_table _text_nowrap'
             },
             {
                 title: intl.formatMessage({id: 'contract_address'}),
-                dataIndex: 'dateCreated',
-                key: 'dateCreated',
+                dataIndex: 'contract_address',
+                key: 'contract_address',
                 render: (text, record, index) => {
-                    return <FormattedDate value={text}/>
+                    return <AddressLink address={record.contract_address} isContract={true} />
                 },
                 align: 'center',
                 className: 'ant_table'

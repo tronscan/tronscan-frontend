@@ -191,8 +191,8 @@ export const routes = [
     component: TokenOverviewAsync,
     routes: [
       {
-          label: "overview_ERC20",
-          path: "/tokens/list-erc20",
+          label: "overview_TRC20",
+          path: "/tokens/trc20",
           icon: 'fa fa-list',
           component: TokenERR20ListAsync
       },

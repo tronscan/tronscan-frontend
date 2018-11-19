@@ -1233,7 +1233,7 @@ export const messages = {
     "slightly_revenue":"略微降低预估收入，可提升成交概率。",
     "participation_message_2":"不启用发行时间，即用户不能在浏览器参与通证发行。",
     "created_token_time":"创建时间",
-    "overview_ERC20": "ERC20 概览",
+    "overview_TRC20": "TRC20 概览",
     "pice_per_onetrx": "价格（TRX）",
     "total_tokens":"代币总量"
 };

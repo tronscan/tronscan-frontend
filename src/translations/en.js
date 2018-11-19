@@ -1243,7 +1243,7 @@ export const messages = {
   "slightly_revenue":"Slightly lower the estimated revenue, and the turnover rate will be higher.",
   "participation_message_2":"The issue time is not enabled, which means users cannot participate in the token on tronscan.",
   "created_token_time":"Created",
-  "overview_ERC20": "ERC20 Overview",
+  "overview_TRC20": "TRC20 Overview",
   "pice_per_onetrx": "Price (TRX)",
   "total_tokens":"Total tokens"
 };
