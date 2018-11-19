@@ -109,7 +109,7 @@ class Proposal extends React.Component {
             render: (text, record, index) => {
                 return (
                     <Link
-                        to={`/proposal/${record.proposalId}`}
+                        to={`/proposals/${record.proposalId}`}
                         className="float-right text-primary btn btn-default btn-sm">
                         {tu("learn_more")}
                     </Link>

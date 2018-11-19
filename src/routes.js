@@ -31,7 +31,8 @@ import {
   FoundationAsync,
   NodesAsync,
   LiveAsync,
-  TokenDetailAsync
+  TokenDetailAsync,
+  ProposalDetailAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
@@ -44,7 +45,6 @@ import Exchange from "./components/exchange/index";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposal from "./components/committee/Proposal";
-import ProposalInfo from "./components/committee/ProposalInfo";
 import {Redirect} from "react-router-dom";
 
 export const routes = [
@@ -282,9 +282,9 @@ export const routes = [
       showInMenu: false,
   },
   {
-      path: "/proposal/:id",
-      component:ProposalInfo,
-      showInMenu: false,
+      path: "/proposals/:id",
+      label: "commission_proposed",
+      component:ProposalDetailAsync,
   },
   {
       path: "/tools",

@@ -516,6 +516,23 @@ export const TokenDetailAsync = asyncComponent({
 //   )
 // });
 
+export const ProposalDetailAsync = asyncComponent({
+    LoadingComponent: () => (
+        <TronLoader/>
+    ),
+    resolve: () => new Promise(resolve =>
+        // Webpack's code splitting API w/naming
+        require.ensure(
+            [],
+            (require) => {
+                $script("", () => {
+                    resolve(require("./committee/ProposalDetail/index"));
+                });
+            },
+            'ProposalDetail',
+        )
+    )
+});
 
 
 
