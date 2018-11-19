@@ -26,7 +26,7 @@ import {
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
-  TokenERR20ListAsync,
+  TokenTRC20ListAsync,
   TokensCreateAsync,
   AccountsAsync,
   FoundationAsync,
@@ -194,7 +194,7 @@ export const routes = [
           label: "overview_TRC20",
           path: "/tokens/trc20",
           icon: 'fa fa-list',
-          component: TokenERR20ListAsync
+          component: TokenTRC20ListAsync
       },
       '-',
       {

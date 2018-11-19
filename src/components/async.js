@@ -388,7 +388,7 @@ export const TokenListAsync = asyncComponent({
   )
 });
 
-export const TokenERR20ListAsync = asyncComponent({
+export const TokenTRC20ListAsync = asyncComponent({
     LoadingComponent: () => (
         <TronLoader/>
     ),
@@ -398,7 +398,7 @@ export const TokenERR20ListAsync = asyncComponent({
             [],
             (require) => {
                 $script("", () => {
-                    resolve(require("./tokens/Overview/TokenListERC20"));
+                    resolve(require("./tokens/Overview/TokenListTRC20"));
                 });
             },
             'TokenList',
