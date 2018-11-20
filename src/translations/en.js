@@ -1244,6 +1244,7 @@ export const messages = {
   "participation_message_2":"The issue time is not enabled, which means users cannot participate in the token on tronscan.",
   "created_token_time":"Created",
   "overview_TRC20": "TRC20 Overview",
+  "overview_TRC10":"TRC10 Overview",
   "pice_per_onetrx": "Price (TRX)",
   "total_tokens":"Total tokens"
 };

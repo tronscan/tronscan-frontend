@@ -10,15 +10,20 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import {SR_MAX_COUNT} from "../../constants";
 import {RepresentativesRingPieReact} from "../common/RingPieChart";
 import {Link} from "react-router-dom";
+import {Client} from "../../services/api";
 
 class Representatives extends Component {
   constructor() {
     super();
+    this.state = {
+        latestBlock:'',
+    }
   }
 
   componentDidMount() {
     this.props.loadWitnesses();
     this.props.loadStatisticData();
+    this.getLatestBlock();
   }
   getPiechart() {
     let {intl} = this.props;
@@ -41,8 +46,14 @@ class Representatives extends Component {
     return pieChartData
   }
 
+    getLatestBlock = async () => {
+        let latestBlock = await Client.getLatestBlock();
+        this.setState({
+            latestBlock:latestBlock.number
+        });
+    };
   renderWitnesses(witnesses) {
-
+    let { latestBlock } = this.state;
     if (witnesses.length === 0) {
       return (
           <div className="card">
@@ -54,9 +65,11 @@ class Representatives extends Component {
     }
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
+    superRepresentatives[0]['latestBlockNumber'] = 0
     superRepresentatives.map( account => {
-          account.latestBlockNumber  > 0  ? account.producer = true :  account.producer = false;
+        Number(latestBlock) -  account.latestBlockNumber  < 100 ? account.producer = true :  account.producer = false;
     })
+
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
     return (
         <div className="card border-0 represent__table w-1000">

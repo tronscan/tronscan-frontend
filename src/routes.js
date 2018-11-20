@@ -198,7 +198,7 @@ export const routes = [
       },
       '-',
       {
-        label: "overview",
+        label: "overview_TRC10",
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenListAsync

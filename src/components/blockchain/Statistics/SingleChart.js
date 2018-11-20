@@ -301,7 +301,7 @@ class Statistics extends React.Component {
         }
 
         this.setState({
-            txOverviewStats: temp,
+            txOverviewStats:  temp.slice(0, temp.length - 1),
             addressesStats: addressesTemp,
             blockSizeStats: blockSizeStatsTemp,
             blockchainSizeStats: blockchainSizeStatsTemp,

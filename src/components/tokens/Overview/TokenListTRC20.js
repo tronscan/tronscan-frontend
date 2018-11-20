@@ -55,6 +55,9 @@ class TokenList extends Component {
         }
 
         let tokens = result.data['trc20_tokens'];
+        tokens.map((item,index) =>{
+            item.index = index + 1
+        })
 
         // if (tokens.length === 0) {
         //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
@@ -108,6 +111,7 @@ class TokenList extends Component {
                 title: '#',
                 dataIndex: 'index',
                 key: 'index',
+                width: '48px',
                 align: 'center',
                 className: 'ant_table _text_nowrap',
             },
@@ -187,7 +191,8 @@ class TokenList extends Component {
                     return <AddressLink address={record.contract_address} isContract={true} />
                 },
                 align: 'center',
-                className: 'ant_table'
+                className: 'ant_table',
+               // width: '350px',
             },
 
         ];
