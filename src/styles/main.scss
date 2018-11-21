@@ -1938,11 +1938,10 @@ h5 {
   .committee-title{
     display: flex;
     margin-top: 60px;
-    h2{
-      width: 106px;
-      height: 106px;
-      background-color: #ffffff;
-      border-radius: 50%;
+    img{
+      width: 102px;
+      height: 102px;
+      display: block;
     }
   }
   .network-parameters{

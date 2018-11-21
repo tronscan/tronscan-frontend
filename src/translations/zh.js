@@ -1233,6 +1233,15 @@ export const messages = {
     "slightly_revenue":"略微降低预估收入，可提升成交概率。",
     "participation_message_2":"不启用发行时间，即用户不能在浏览器参与通证发行。",
     "created_token_time":"创建时间",
+
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # commottee                                         #
+     #                                                                                #
+     ##################################################################################
+    */
     "committee":"TRON委员会",
     "committee_dec_1":"委员会用于修改Tron网络动态参数，如出块奖励、交易费用等等。",
     "committee_dec_2":"委员会由当前的27个超级代表组成。",
@@ -1242,6 +1251,48 @@ export const messages = {
     "TRON_network_parameters":"TRON网络参数",
     "commission_proposed":"委员会提议",
     "TRONSR":"TRON SR",
-    "learn_more":"更多"
+    "learn_more":"更多",
+    "propose_number":"序号",
+    "propose_parameters":"参数",
+    "propose_current_value":"当前值",
+    "propose_hour":"小时",
+    "propose_1":"提议修改超级代表时间间隔",
+    "propose_2":"提议修改账户升级为超级代表的费用",
+    "propose_3":"提议修改创建账户费用",
+    "propose_4":"提议修改TRX抵扣带宽的费用",
+    "propose_5":"提议修改资产发行费用",
+    "propose_6":"提议修改超级代表出块奖励",
+    "propose_7":"提议修改分给前127名超级代表及候选人的奖励",
+    "propose_8":"提议修改创建账户的费用",
+    "propose_9":"提议修改创建账户的费用",
+    "propose_10":"提议开启虚拟机功能",
+    "propose_11":"提议清除GR的创世票数",
+    "propose_12":"提议修改1 energy的费用",
+    "propose_13":"提议修改创建交易对的费用",
+    "propose_14":"提议修改一条交易的最大执行时间",
+    "propose_activate":"开启",
+    "propose_finished":"已完成",
+    "proposal_content_info":"提议内容",
+    "proposer":"提议者",
+    "proposal_time_of_creation":"创建时间(UTC)",
+    "proposal_time_of_expire":"失效时间(UTC)",
+    "proposal_status":"提议状态",
+    "proposal_to":"为 ",
+    "no_commission_proposed_found": "未查询到委员会提议",
+    "proposal_effective":"已生效",
+    "proposal_voting":"投票中",
+    "proposal_ineffective":"已失效",
+    "proposal_cancelled":"已取消",
+    "proposal":"提议",
+
+
+
+
+
+
+
+
+
+
 
 };

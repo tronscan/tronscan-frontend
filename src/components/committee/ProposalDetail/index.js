@@ -36,6 +36,7 @@ class ProposalDetail extends React.Component {
 
 
     render() {
+        let {match} = this.props;
         let {proposal,loading} = this.state;
         return (
             <main className="container header-overlap committee">
@@ -44,82 +45,38 @@ class ProposalDetail extends React.Component {
                         {
                             loading ? <div className="card">
                                     <TronLoader>
-                                        {tu("loading_address")} {proposal.proposalId}
+                                         # {match.params.id}{tu('proposal')}
                                     </TronLoader>
                                 </div> :
                                 <Fragment>
                                     <div className="card list-style-header">
                                         {
-                                            proposal.proposalId &&
+                                            match.params.id &&
                                             <div className="card-body">
                                                 <h5 className="card-title m-0">
-                                                    <i className="fa fa-cube mr-2"/>
-                                                    {tu("representatives")}
+                                                    {/*<i className="fa fa-cube mr-2"/>*/}
+                                                    # {match.params.id}{tu('proposal')}
                                                 </h5>
                                             </div>
                                         }
                                         <div className="row">
                                             <div className="col-md-12">
+                                                <table className="table m-0">
+                                                <tbody>
+                                                <tr>
+                                                    <th>{tu("proposer")}:</th>
+                                                    <td>{proposal.proposer.name?proposal.proposer.name:proposal.proposer.address}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>{tu("proposal_time_of_creation")}:</th>
+                                                    <td>{proposal.proposer.name?proposal.proposer.name:proposal.proposer.address}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>{tu("proposal_time_of_expire")}:</th>
+                                                    <td>{proposal.proposer.name?proposal.proposer.name:proposal.proposer.address}</td>
+                                                </tr>
 
-                                                {/*<table className="table m-0">*/}
-                                                {/*<tbody>*/}
-                                                {/*{*/}
-                                                {/*Boolean(rank) &&*/}
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("rank_real_time")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*{rank}*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
-                                                {/*}*/}
-                                                {/*{*/}
-                                                {/*address.representative.enabled &&*/}
-                                                {/*<Fragment>*/}
-                                                {/*{*/}
-                                                {/*address.name &&*/}
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("name")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*{address.name}*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
-                                                {/*}*/}
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("website")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*<ExternalLink url={address.representative.url}/>*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("blocks_produced")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*<FormattedNumber value={blocksProduced}/>*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
-                                                {/*</Fragment>*/}
-                                                {/*}*/}
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("address")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*<AddressLink address={address.address} includeCopy={true}/>*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
-                                                {/*{!address.representative.enabled?<tr>*/}
-                                                {/*<th>{tu("name")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*<span>{address.name?address.name:"-"}</span>*/}
-                                                {/*</td>*/}
-                                                {/*</tr>:"" }*/}
 
-                                                {/*<tr>*/}
-                                                {/*<th>{tu("transfers")}:</th>*/}
-                                                {/*<td>*/}
-                                                {/*<i className="fa fa-arrow-down text-success"/>&nbsp;*/}
-                                                {/*<span>{stats.transactions_in}</span>&nbsp;*/}
-                                                {/*<i className="fa fa-arrow-up  text-danger"/>&nbsp;*/}
-                                                {/*<span>{stats.transactions_out}</span>&nbsp;*/}
-                                                {/*</td>*/}
-                                                {/*</tr>*/}
                                                 {/*<tr>*/}
                                                 {/*<th>{tu("balance")}:</th>*/}
                                                 {/*<td>*/}
@@ -165,9 +122,9 @@ class ProposalDetail extends React.Component {
                                                 {/*</ul>*/}
                                                 {/*</td>*/}
                                                 {/*</tr>*/}
-                                                {/*}*/}
-                                                {/*</tbody>*/}
-                                                {/*</table>*/}
+                                                }
+                                                </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>

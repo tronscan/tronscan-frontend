@@ -44,7 +44,7 @@ import SmartContract from "./components/blockchain/Contract";
 import Exchange from "./components/exchange/index";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
-import Proposal from "./components/committee/Proposal";
+import Proposals from "./components/committee/Proposals";
 import {Redirect} from "react-router-dom";
 
 export const routes = [
@@ -276,15 +276,16 @@ export const routes = [
       component: AccountAsync,
   },
   {
-      path: "/proposal",
+      path: "/proposals",
       label: "commission_proposed",
-      component: Proposal,
+      component: Proposals,
       showInMenu: false,
   },
   {
-      path: "/proposals/:id",
+      path: "/proposal/:id",
       label: "commission_proposed",
       component:ProposalDetailAsync,
+      showInMenu: false,
   },
   {
       path: "/tools",
