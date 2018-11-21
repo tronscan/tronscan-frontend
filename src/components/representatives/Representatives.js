@@ -65,11 +65,9 @@ class Representatives extends Component {
     }
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
-    superRepresentatives[0]['latestBlockNumber'] = 0
     superRepresentatives.map( account => {
         Number(latestBlock) -  account.latestBlockNumber  < 100 ? account.producer = true :  account.producer = false;
     })
-
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
     return (
         <div className="card border-0 represent__table w-1000">

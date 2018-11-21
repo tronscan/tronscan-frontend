@@ -206,13 +206,17 @@ class TokenList extends Component {
         let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
         return (
             <main className="container header-overlap token_black">
-                {alert}
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 {
                     <div className="row">
                         <div className="col-md-12 table_pos">
                             {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-                            <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                            <a className="apply-trc20" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
+                                <button className="btn btn-danger">
+                                    {tu('application_entry')}
+                                </button>
+                            </a>
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                                         onPageChange={(page, pageSize) => {
                                             this.loadPage(page, pageSize)
                                         }}/>

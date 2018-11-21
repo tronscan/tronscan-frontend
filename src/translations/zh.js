@@ -1215,7 +1215,7 @@ export const messages = {
     "C": "收",
     "24H_VOL": "24H成交量",
     "token_application_instructions_title":"上币申请说明",
-    "token_application_instructions_1":"为了提供更好的使用体验，申请上币需要填写表单，提供您币种的详细信息，收到资料后，我们将会在3~5个工作日内完成资料审核。不经过审核的代币，将会被隐藏。",
+    "token_application_instructions_1":"为了提供更好的使用体验，申请上币需要填写表单，提供您币种的详细信息，审核通过的TOKEN会在一周内收到邮件反馈。不经过审核的TOKEN，将会被隐藏。",
     "click_here_to_apply":"点击申请",
     "TxTime":"交易时间",
     "TxAmount":"交易金额",
@@ -1236,5 +1236,6 @@ export const messages = {
     "overview_TRC20":"TRC20 概览",
     "overview_TRC10":"TRC10 概览",
     "pice_per_onetrx": "价格（TRX）",
-    "total_tokens":"代币总量"
+    "total_tokens":"代币总量",
+    "application_entry":"申请录入",
 };

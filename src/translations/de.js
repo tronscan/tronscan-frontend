@@ -1218,7 +1218,7 @@ export const messages = {
   "C": "C",
   "24H_VOL": "24H VOL",
   "token_application_instructions_title": "Token Application Instructions",
-  "token_application_instructions_1":"For better user experience, please fill in the application with detailed information about the token that you would like to issue. After receiving your application, we will conclude the review of the information that you have submitted in 3 - 5 business days. Tokens without review will be hidden.",
+  "token_application_instructions_1":"For better user experience, please fill in the application with detailed information about the token that you would like to issue. Once the token passes the review, we will email you in a week.  Tokens without review will be hidden.",
   "click_here_to_apply": "Click here to apply",
   "TxTime": "Transaction Time",
   "TxAmount": "Transaction Amount",
@@ -1236,4 +1236,9 @@ export const messages = {
   "slightly_revenue": "Slightly lower the estimated revenue, and the turnover rate will be higher.",
   "participation_message_2":"The issue time is not enabled, which means users cannot participate in the token on tronscan.",
   "created_token_time":"Created",
+  "overview_TRC20": "TRC20 Overview",
+  "overview_TRC10":"TRC10 Overview",
+  "pice_per_onetrx": "Price (TRX)",
+  "total_tokens":"Total tokens",
+  "application_entry":"Application Entry",
 };
