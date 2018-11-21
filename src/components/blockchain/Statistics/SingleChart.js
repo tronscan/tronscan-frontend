@@ -123,7 +123,7 @@ class Statistics extends React.Component {
 
     async loadTotalTRXSupply(){
         let {intl} = this.props;
-        let TronicsSupportPlanTotal = 48051406 + 47301714 + 43778265 +  43765311;
+        let TronicsSupportPlanTotal = Math.abs((48051405879291 + 47301714286684 + 43765311477181 +  43778265726411) / ONE_TRX).toFixed(2);
         let random = Math.random();
         let balanceData = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=1&per_page=1`);
         let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
@@ -140,7 +140,7 @@ class Statistics extends React.Component {
         let genesisNum = 100000000000;
         let independenceDayBurned = 1000000000;
         let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal + TronicsSupportPlanTotal).toFixed(2);
+        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
         let supplyTypesChartData = [
             {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
             {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
@@ -301,7 +301,7 @@ class Statistics extends React.Component {
         }
 
         this.setState({
-            txOverviewStats: temp,
+            txOverviewStats:  temp.slice(0, temp.length - 1),
             addressesStats: addressesTemp,
             blockSizeStats: blockSizeStatsTemp,
             blockchainSizeStats: blockchainSizeStatsTemp,

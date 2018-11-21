@@ -25,6 +25,16 @@ export const TokenLink = ({name, namePlus, address, children, ...props}) => {
   }
 };
 
+export const TokenTRC20Link = ({name, namePlus, address, children, ...props}) => {
+
+    if (name && !namePlus) {
+        return <a href="javascript:;" >{children || name}</a>
+    }
+    if (namePlus && name) {
+        return <a href="javascript:;" >{children || namePlus}</a>
+    }
+};
+
 export class AddressLink extends React.PureComponent {
 
   constructor() {

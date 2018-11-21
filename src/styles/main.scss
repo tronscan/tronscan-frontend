@@ -1970,3 +1970,13 @@ h5 {
     }
   }
 }
+.apply-trc20{
+  margin-top: -35px;
+  position: absolute;
+  right: 16px;
+  @media only screen and (max-width: 768px) {
+    margin-top: -25px;
+    position: absolute;
+    right: 10px;
+  }
+}

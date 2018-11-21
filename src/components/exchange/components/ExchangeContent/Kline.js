@@ -31,8 +31,8 @@ class Kline extends React.Component {
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
-        interval = '60';
-        localStorage.setItem('interval', '60');
+        interval = '30';
+        localStorage.setItem('interval', '30');
     }
 
     const tvWidget = new widget({

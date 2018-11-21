@@ -26,6 +26,7 @@ import {
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
+  TokenTRC20ListAsync,
   TokensCreateAsync,
   AccountsAsync,
   FoundationAsync,
@@ -192,16 +193,25 @@ export const routes = [
     component: TokenOverviewAsync,
     routes: [
       {
-        label: "overview",
+          label: "overview_TRC20",
+          path: "/tokens/trc20",
+          icon: 'fa fa-list',
+          component: TokenTRC20ListAsync
+      },
+      '-',
+      {
+        label: "overview_TRC10",
         path: "/tokens/list",
         icon: 'fa fa-list',
         component: TokenListAsync
-      }, {
+      },
+      {
         label: "participate",
         path: "/tokens/view",
         icon: 'fas fa-coins',
         component: TokenOverviewAsync
-      }, {
+      },
+      {
         label: "create",
         path: "/tokens/create",
         icon: 'fa fa-plus-square',
