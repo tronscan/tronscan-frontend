@@ -65,10 +65,10 @@ class Representatives extends Component {
     }
 
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
-    superRepresentatives.map( account => {
-        Number(latestBlock) -  account.latestBlockNumber  < 100 ? account.producer = true :  account.producer = false;
-    })
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
+    superRepresentatives.map( account => {
+        Number(latestBlock) -  account.latestBlockNumber  < 100 ? account.representerStatus = true :  account.representerStatus = false;
+    })
     return (
         <div className="card border-0 represent__table w-1000">
           <table className="table table-hover table-striped bg-white m-0 sr" style={{border: '1px solid #DFD7CA'}}>
@@ -236,7 +236,7 @@ function Row({account, showSync = true, index, state, props}) {
           showSync ?
               <td className="text-center">
                 {
-                  account.producer ?
+                  account.representerStatus?
                       <span key="no" className="text-success"><i className="fas fa-circle"/></span> :
                       <span key="yes" className="text-danger"><i className="fa fa-times"/></span>
                 }
