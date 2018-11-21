@@ -38,7 +38,6 @@ class Proposal extends React.Component {
             limit: pageSize,
             start: (page-1) * pageSize,
         });
-        console.log('proposal',proposal)
         let parametersArr = [
             'MAINTENANCE_TIME_INTERVAL',
             'ACCOUNT_UPGRADE_COST',
@@ -57,7 +56,6 @@ class Proposal extends React.Component {
         ];
         for(let item in proposal){
             for(let j in proposal[item]['paramters']){
-                console.log('j==========',proposal[item]['paramters'][j])
                 proposal[item]['key'] = parametersArr[j];
                 proposal[item]['proposalVal'] = proposal[item]['paramters'][j];
             }

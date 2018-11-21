@@ -1277,8 +1277,8 @@ export const messages = {
     "propose_finished":"已完成",
     "proposal_content_info":"提议内容",
     "proposer":"提议者",
-    "proposal_time_of_creation":"创建时间(UTC)",
-    "proposal_time_of_expire":"失效时间(UTC)",
+    "proposal_time_of_creation":"创建时间 (UTC)",
+    "proposal_time_of_expire":"失效时间 (UTC)",
     "proposal_status":"提议状态",
     "proposal_to":"为 ",
     "no_commission_proposed_found": "未查询到委员会提议",
@@ -1287,6 +1287,8 @@ export const messages = {
     "proposal_ineffective":"已失效",
     "proposal_cancelled":"已取消",
     "proposal":"提议",
+    "approvers_of_the_proposal":"提议赞成者",
+    "total_approving_votes":"总赞成数",
 
 
 

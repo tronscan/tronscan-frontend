@@ -1289,8 +1289,8 @@ export const messages = {
   "propose_finished":"Finished",
   "proposal_content_info":"Proposal Content",
   "proposer":"Proposer",
-  "proposal_time_of_creation":"Time of Creation(UTC)",
-  "proposal_time_of_expire":"Time of Expire(UTC)",
+  "proposal_time_of_creation":"Time of Creation (UTC)",
+  "proposal_time_of_expire":"Time of Expire (UTC)",
   "proposal_status":"Proposal Status",
   "proposal_to":" to ",
   "no_commission_proposed_found": "No Commission Proposed Found",
@@ -1299,6 +1299,7 @@ export const messages = {
   "proposal_ineffective":"Ineffective",
   "proposal_cancelled":"Cancelled",
   "proposal":"Proposal",
-
+  "approvers_of_the_proposal":"Approvers of the Proposal",
+  "total_approving_votes":"Total Approving Votes",
 
 };

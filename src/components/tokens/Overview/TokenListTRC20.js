@@ -95,7 +95,6 @@ class TokenList extends Component {
         //     this.setSearch();
         // }
         // if (this.state.filter !== prevState.filter) {
-        //     console.log("SEARCH CHANGED!");
         //     this.loadPage();
         // }
     }

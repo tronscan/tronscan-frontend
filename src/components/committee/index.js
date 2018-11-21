@@ -42,7 +42,6 @@ class Committee extends React.Component {
 
     async getChainparameters() {
         let { tronParameters } = await Client.getChainparameters();
-        console.log('tronParameters',tronParameters)
         tronParameters.map(item => {
             switch (item['key']){
                 case "MAINTENANCE_TIME_INTERVAL":
@@ -113,7 +112,6 @@ class Committee extends React.Component {
             dataIndex: 'name',
             key: 'name',
             render: (text, record, index) => {
-                console.log('record',record)
                 return <span>
                      {text && intl.formatMessage({id: text})}
                 </span>
