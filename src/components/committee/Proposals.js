@@ -163,8 +163,8 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_9'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
-                            <span>TRX</span>
+                            <span className='col-green'>{text}</span> &nbsp;
+                            <span>bandwith/byte</span>
                         </div>
                     }
                     {

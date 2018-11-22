@@ -764,6 +764,17 @@ th {
   float: none;
 }
 
+
+
+
+@media (min-width: 768px){
+  .home-stats > div h2 span {
+    font-size: 22px;
+  }
+  .home-stats > div p span {
+    font-size: 12px;
+  }
+}
 @media (max-width: 767.98px) {
   .logo {
     margin-top: 6px;
@@ -1969,6 +1980,21 @@ h5 {
       }
     }
   }
+  @media only screen and (max-width: 768px) {
+    .committee-title{
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+      img{
+        width: 61px;
+        height: 61px;
+        display: block;
+      }
+      p{
+        text-align: center;
+      }
+    }
+  }
 }
 .apply-trc20{
   margin-top: -35px;
@@ -1978,5 +2004,30 @@ h5 {
     margin-top: -25px;
     position: absolute;
     right: 10px;
+  }
+}
+
+.approvers-proposal{
+  width: 900px;
+  .approvers-proposal-item{
+    width: 150px;
+    display: inline-block;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+    .approvers-proposal-item{
+       width: 100%;
+      //font-size: 12px;
+    }
+    .proposal-message{
+      width:150px;
+    }
+  }
+}
+.proposal-message{
+  width:100%;
+  @media only screen and (max-width: 768px) {
+    width:150px;
   }
 }

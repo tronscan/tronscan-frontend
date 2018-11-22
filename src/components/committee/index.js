@@ -152,7 +152,7 @@ class Committee extends React.Component {
                         record.key == 'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
                     }
                     {
                         record.key == 'ALLOW_CREATION_OF_CONTRACTS' && <div>
