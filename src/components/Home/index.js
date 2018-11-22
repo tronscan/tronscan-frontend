@@ -51,8 +51,6 @@ class Home extends Component {
 
   async loadAccounts() {
     let { totalAccounts } = await Client.getAccounts();
-    // let accountData = await xhr.get("http://18.216.57.65:20110/api/account");
-    // let totalAccounts = accountData.total;
     this.setState({
       totalAccounts: totalAccounts
     })
@@ -66,8 +64,6 @@ class Home extends Component {
     });
 
     let { txOverviewStats } = await Client.getTxOverviewStats();
-    // let overviewData = await xhr.get("http://18.216.57.65:20110/api/stats/overview");
-    // let txOverviewStats = overviewData.data.data;
     let temp = [];
     let addressesTemp = [];
     for (let txs in txOverviewStats) {
