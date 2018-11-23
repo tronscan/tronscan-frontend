@@ -262,7 +262,7 @@ class Proposal extends React.Component {
                     {
                         text == 'CANCELED' &&
                         <div>
-                            <span className="badge text-uppercase badge-success-radius">{tu("proposal_cancelled")}</span>
+                            <span className="badge badge-secondary text-uppercase badge-success-radius">{tu("proposal_cancelled")}</span>
                         </div>
                     }
                 </div>

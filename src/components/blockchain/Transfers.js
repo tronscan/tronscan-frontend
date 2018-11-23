@@ -138,7 +138,19 @@ class Transfers extends React.Component {
                   :record.amount + ' ' + record.tokenName
 
         }
-      }
+      },
+      // {
+      //     title: upperFirst(intl.formatMessage({id: 'status'})),
+      //     dataIndex: 'confirmed',
+      //     key: 'confirmed',
+      //     align: 'center',
+      //     className: 'ant_table',
+      //     render: (text, record, index) => {
+      //         return record.confirmed?
+      //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
+      //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
+      //     },
+      // }
     ];
     return column;
   }

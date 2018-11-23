@@ -83,11 +83,19 @@ h6{
     padding: 3px 14px;
 
     &-danger{
-        background: rgba(194,54,49,0.20);
+        background: rgba(194,54,49,0.2);
         color: $main-red;
     }
     &-success{
-        background: rgba(105,194,101,0.20);
+        background: rgba(105,194,101,0.2);
         color: #2EAC28;
+    }
+    &-warning{
+        background: rgba(244,124,60,0.2);
+        color: #F47C3C;
+    }
+    &-secondary{
+        background: rgba(142,140,132,0.2);
+        color: #8E8C84;
     }
 }

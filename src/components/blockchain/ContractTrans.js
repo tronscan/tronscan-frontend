@@ -14,6 +14,7 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
+import {QuestionMark} from "../common/QuestionMark.js"
 
 class ContractTrans extends React.Component {
 
@@ -169,7 +170,7 @@ class ContractTrans extends React.Component {
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row">
                     <div className="col-md-12 table_pos">
-                        {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                        {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
                         <SmartTable bordered={true} loading={loading}
                                     column={column} data={transactions} total={total}
                                     onPageChange={(page, pageSize) => {

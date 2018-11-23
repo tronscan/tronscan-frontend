@@ -11,6 +11,7 @@ import {Truncate} from "./text";
 import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
+import {QuestionMark} from "./QuestionMark";
 
 class Transactions extends React.Component {
 
@@ -97,6 +98,18 @@ class Transactions extends React.Component {
           return <span>{ContractTypes[text]}</span>
         }
       },
+      // {
+      //     title: upperFirst(intl.formatMessage({id: 'status'})),
+      //     dataIndex: 'confirmed',
+      //     key: 'confirmed',
+      //     align: 'center',
+      //     className: 'ant_table',
+      //     render: (text, record, index) => {
+      //         return record.confirmed?
+      //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
+      //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
+      //     },
+      // }
     ];
     return column;
   }
@@ -120,7 +133,7 @@ class Transactions extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
           <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
                       onPageChange={(page, pageSize) => {
                         this.loadTransactions(page, pageSize)

@@ -20,6 +20,7 @@ import * as messages_no from "./no.js";
 import * as messages_cs from "./cs.js";
 import * as messages_th from "./th.js";
 import * as messages_ru from "./ru.js";
+import * as messages_ja from "./ja.js";
 
 import {addLocaleData} from 'react-intl';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -43,6 +44,7 @@ import noLocaleData from 'react-intl/locale-data/no';
 import csLocaleData from 'react-intl/locale-data/cs';
 import thLocaleData from 'react-intl/locale-data/th';
 import ruLocaleData from 'react-intl/locale-data/ru';
+import jaLocaleData from 'react-intl/locale-data/ja';
 
 addLocaleData([
   ...nlLocaleData,
@@ -66,6 +68,7 @@ addLocaleData([
   ...noLocaleData,
   ...thLocaleData,
   ...ruLocaleData,
+  ...jaLocaleData,
 ]);
 
 export const languages = {
@@ -91,4 +94,5 @@ export const languages = {
   'cs': messages_cs.messages,
   'th': messages_th.messages,
   'ru': messages_ru.messages,
+  'ja': messages_ja.messages,
 };

@@ -15,6 +15,7 @@ import xhr from "axios";
 import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
+import {QuestionMark} from "../../common/QuestionMark.js"
 import { Tooltip } from 'antd'
 
 class Transactions extends React.Component {
@@ -200,7 +201,7 @@ class Transactions extends React.Component {
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row">
           <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {

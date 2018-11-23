@@ -15,6 +15,7 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {ContractTypes} from "../../utils/protocol";
 import {SwitchToken} from "./Switch";
+import {QuestionMark} from "./QuestionMark";
 import _ from "lodash";
 
 class Transfers extends React.Component {
@@ -193,6 +194,18 @@ class Transfers extends React.Component {
           </Fragment>
         }
       },
+      // {
+      //     title: upperFirst(intl.formatMessage({id: 'status'})),
+      //     dataIndex: 'confirmed',
+      //     key: 'confirmed',
+      //     align: 'center',
+      //     className: 'ant_table',
+      //     render: (text, record, index) => {
+      //         return record.confirmed?
+      //             <span className="badge badge-success text-uppercase">{intl.formatMessage({id:'Confirmed'})}</span> :
+      //             <span className="badge badge-danger text-uppercase">{intl.formatMessage({id: 'Unconfirmed'})}</span>
+      //     },
+      // }
     ];
     return column;
   }
@@ -220,12 +233,12 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo}</div>
+                  <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo} <span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}</div>
+                  <div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>

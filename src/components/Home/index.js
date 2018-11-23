@@ -159,7 +159,7 @@ class Home extends Component {
 
   reconnect() {
       this.listener && this.listener.close();
-      this.listener = channel("/tronblock",{transports: ['websocket']});
+      this.listener = channel("/tronblock",{ forceNew:true });
       this.listener.on("tron-block", info => {
           this.setState({
               maxTps:info.maxTps,

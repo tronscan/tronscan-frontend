@@ -50,7 +50,7 @@ export const messages = {
   "register": "注册",
   "login": "登录",
   "height": "高度",
-  "age": "年龄",
+  "age": "块龄",
   "bytes": "字节",
   "MByte": "兆字节",
   "produced_by": "出块者",
@@ -1289,7 +1289,7 @@ export const messages = {
     "proposal":"提议",
     "approvers_of_the_proposal":"提议赞成者",
     "total_approving_votes":"总赞成数",
-
+    "to_provide_a_better_experience":"为提供更好的使用体验，该统计数字每分钟更新一次",
 
 
 };

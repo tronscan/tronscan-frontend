@@ -89,14 +89,13 @@ class Notifications extends React.Component {
 
   reconnect() {
     let {wallet} = this.props;
-
     this.listener && this.listener.close();
 
     if (!wallet.isOpen) {
       return;
     }
 
-    this.listener = channel("/address-" + wallet.current.address);
+    this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
     this.listener.on("transfer", trx => {
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {

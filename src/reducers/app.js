@@ -34,6 +34,7 @@ const initialState = {
     pl: "Polski",
     cs: "Ceský",
     zh: "简体中文",
+    ja: "日本語",
     fa: "فارسی",
     ar: "العربية",
     ko: "한국어",

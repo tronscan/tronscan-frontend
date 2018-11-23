@@ -192,8 +192,7 @@ class Block extends React.Component {
                               <th>{tu("witness")}:</th>
                               <td>
                                 <Truncate>
-                                  <AddressLink address={block.witnessAddress} includeCopy={true}/>
-
+                                  <AddressLink address={block.witnessAddress} includeCopy={true}>{block.witnessName}</AddressLink>
                                 </Truncate>
                               </td>
                             </tr>
