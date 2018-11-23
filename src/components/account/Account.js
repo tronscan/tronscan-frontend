@@ -1460,7 +1460,6 @@ class Account extends Component {
                   <div className="text-center">
                     {
                       !showBuyTokens && <button className="btn btn-danger"
-                                                style={{width: '240px'}}
                                                 onClick={() => this.setState(state => ({showBuyTokens: !state.showBuyTokens}))}>
                         {t("buy_trx_using_changelly")}
                       </button>

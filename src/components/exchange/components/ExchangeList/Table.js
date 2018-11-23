@@ -26,7 +26,7 @@ class ExchangeTable extends React.Component {
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
       render: (text, record, index) => {
-        return record.first_token_id +'/'+ record.second_token_id
+        return record.exchange_abbr_name
       }
     }, {
       title: upperFirst(intl.formatMessage({id: 'last_price'})),

@@ -107,7 +107,6 @@ class Block extends React.Component {
 
     let {block, tabs, loading, totalTransactions, notFound} = this.state;
     let {activeLanguage, match} = this.props;
-
     if (notFound) {
       return (
           <main className="container header-overlap">

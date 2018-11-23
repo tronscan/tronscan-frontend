@@ -1163,6 +1163,11 @@ export const messages = {
     "please_select_the_type_of_unfreeze":"解凍タイプを選択してください",
     "unfreeze_bandwidth":"バンド幅を解凍してTRXを獲得する",
     "unfreeze_energy":"パワーを解凍してTRXを獲得する",
+    "hide_small_currency":"Hide small balances",
+    "tokens_less_than_10":"Tokens with a quantity less than 10",
+    "only_TRX_transfers":"Only TRX transfers",
+    "no_transfers_found":"No transfers found",
+    "current_MaxTPS":"現在のTPS/ピークTPS",
 
     /*
      ##################################################################################
@@ -1223,6 +1228,64 @@ export const messages = {
     "estimated_revenue":"推定所得",
     "slightly_cost":"推定コストを僅か増加すれば、ボリュームが増えられる",
     "slightly_revenue":"推定所得を僅か減少すれば、ボリュームが増えられる",
+    "participation_message_2":"The issue time is not enabled, which means users cannot participate in the token on tronscan.",
+    "created_token_time":"Created",
+    "overview_TRC20": "TRC20トークン概要",
+    "overview_TRC10":"トークン概要",
+    "pice_per_onetrx": "Price (TRX)",
+    "total_tokens":"Total tokens",
+    "application_entry":"Application Entry",
 
-
+    /*
+     ##################################################################################
+     #                                                                                #
+     # commottee                                         #
+     #                                                                                #
+     ##################################################################################
+    */
+    "committee":"TRON Committee",
+    "committee_dec_1":"TRON Committee is for modifying the dynamic parameters on the TRON network, e.g. block generation rewards, transaction fees, etc.",
+    "committee_dec_2":"The Committee consists of the current 27 Super Representatives (SRs).",
+    "committee_dec_3":"Each SR has the right to propose and vote on proposals.",
+    "committee_dec_4":"When a proposal receives 19 votes or more from the SRs within the valid time frame, the proposal will be approved and its network parameters will be modified in the next maintenance period.",
+    "get_committee_proposal":"Check committee proposals",
+    "TRON_network_parameters":"TRON network parameters",
+    "commission_proposed":"Committee proposals",
+    "TRONSR":"TRON SR",
+    "learn_more":"Learn More",
+    "propose_number":"Number",
+    "propose_parameters":"Parameter",
+    "propose_current_value":"Current Value",
+    "propose_hour":"Hour",
+    "propose_1":"Propose to modify the maintenance interval of SR ",
+    "propose_2":"Propose to modify the cost of applying for SR account",
+    "propose_3":"Propose to modify the account creation fee",
+    "propose_4":"Propose to modify the amount of TRX used to gain extra bandwidth",
+    "propose_5":"Propose to modify asset issuance fee",
+    "propose_6":"Propose to modify SR block generation reward",
+    "propose_7":"Propose to modify the rewards given to the top 27 SRs and the following 100 candidates",
+    "propose_8":"Propose to modify the cost of account creation",
+    "propose_9":"Propose to modify the consumption of bandwith",
+    "propose_10":"Propose to activate the Virtual Machine (VM)",
+    "propose_11":"Propose to remove the GR Genesis votes",
+    "propose_12":"Propose to modify the fee of 1 energy",
+    "propose_13":"Propose to modify the cost of trading pair creation",
+    "propose_14":"Propose to modify the maximum execution time of one transaction",
+    "propose_activate":"Activate",
+    "propose_finished":"Finished",
+    "proposal_content_info":"Proposal Content",
+    "proposer":"Proposer",
+    "proposal_time_of_creation":"Time of Creation (UTC)",
+    "proposal_time_of_expire":"Time of Expire (UTC)",
+    "proposal_status":"Proposal Status",
+    "proposal_to":" to ",
+    "no_commission_proposed_found": "No Commission Proposed Found",
+    "proposal_effective":"Effective",
+    "proposal_voting":"Voting",
+    "proposal_ineffective":"Ineffective",
+    "proposal_cancelled":"Cancelled",
+    "proposal":"Proposal",
+    "approvers_of_the_proposal":"Approvers of the Proposal",
+    "total_approving_votes":"Total Approving Votes",
+    "to_provide_a_better_experience":"To provide a better experience, this statistic is updated every minute."
 }
