@@ -1301,6 +1301,7 @@ export const messages = {
   "proposal":"Proposal",
   "approvers_of_the_proposal":"Approvers of the Proposal",
   "total_approving_votes":"Total Approving Votes",
-  "to_provide_a_better_experience":"To provide a better experience, this statistic is updated every minute."
-
+  "to_provide_a_better_experience":"To provide a better experience, this statistic is updated every minute.",
+  "TRC10_token":"TRC10 Token",
+  "TRC20_token":"TRC20 Token",
 };

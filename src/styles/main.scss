@@ -2032,3 +2032,42 @@ h5 {
     width:150px;
   }
 }
+
+.account-token-tab{
+  a:nth-child(1){
+    color: #FF7D00!important;
+
+    border-color: #FF7D00;
+    &:hover{
+      background-color: #FF7D00;
+      color: #ffffff;
+    }
+    &.active{
+      background-color: #FF7D00;
+      span{
+        color: #ffffff;
+      }
+    }
+    span{
+      color: #FF7D00;
+    }
+  }
+  a:nth-child(2){
+    color: #69C265!important;
+
+    border-color: #69C265;
+    &:hover{
+      background-color: #69C265;
+      color: #ffffff;
+    }
+    &.active{
+      background-color: #69C265;
+      span{
+        color: #ffffff;
+      }
+    }
+    span{
+      color: #69C265;
+    }
+  }
+}

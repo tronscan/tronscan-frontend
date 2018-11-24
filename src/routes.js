@@ -33,6 +33,7 @@ import {
   NodesAsync,
   LiveAsync,
   TokenDetailAsync,
+  Token20DetailAsync,
   ProposalDetailAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
@@ -223,6 +224,12 @@ export const routes = [
     path: "/token/:name/:address",
     label: "token",
     component: TokenDetailAsync,
+    showInMenu: false,
+  },
+  {
+    path: "/token20/:name/:address",
+    label: "token",
+    component: Token20DetailAsync,
     showInMenu: false,
   },
   {

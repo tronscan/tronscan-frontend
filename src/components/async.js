@@ -516,6 +516,24 @@ export const TokenDetailAsync = asyncComponent({
   )
 });
 
+export const Token20DetailAsync = asyncComponent({
+    LoadingComponent: () => (
+        <TronLoader/>
+    ),
+    resolve: () => new Promise(resolve =>
+        // Webpack's code splitting API w/naming
+        require.ensure(
+            [],
+            (require) => {
+                $script("", () => {
+                    resolve(require("./tokens/Token20Detail/index"));
+                });
+            },
+            'Token20Detail',
+        )
+    )
+});
+
 // export const TokensExchangeAsync = asyncComponent({
 //   LoadingComponent: () => (
 //       <TronLoader/>
