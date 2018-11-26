@@ -15,7 +15,8 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-
+import {Select} from 'antd';
+const { Option, OptGroup } = Select;
 class SendForm extends React.Component {
 
   constructor(props) {
@@ -314,6 +315,19 @@ class SendForm extends React.Component {
                   ))
                 }
               </select>
+              <Select
+                  defaultValue="lucy"
+                  style={{ width: 200 }}
+                  onChange={(ev) => this.setState({token: ev.target.value})}
+              >
+                <OptGroup label="Manager">
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                </OptGroup>
+                <OptGroup label="Engineer">
+                  <Option value="Yiminghe">yiminghe</Option>
+                </OptGroup>
+              </Select>
             </div>
           </div>
           <div className="form-group">

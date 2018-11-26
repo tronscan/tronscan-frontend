@@ -64,13 +64,12 @@ class Account extends Component {
   }
 
   componentDidMount() {
-    let {account} = this.props;
-    if (account.isLoggedIn) {
-      this.reloadTokens();
-      this.loadAccount();
-      this.getTRC20Tokens();
-    }
-
+      let {account} = this.props;
+      if (account.isLoggedIn) {
+          this.reloadTokens();
+          this.loadAccount();
+          this.getTRC20Tokens();
+      }
   }
 
   componentDidUpdate(prevProps) {
@@ -132,19 +131,22 @@ class Account extends Component {
       );
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=timestamp&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
-      tokens20.map(async item =>{
-          item.token20_name = item.name + '(' + item.symbol + ')';
-          let  contractInstance = await tronWeb.contract().at(item.contract_address);
-          let  balanceData = await contractInstance.balanceOf(account.address).call();
-          item.token20_balance = balanceData.balance.toString() / Math.pow(10,item.decimals);
-          return item
-      })
-      this.setState({
-          tokens20: tokens20
-      });
+      if(tronWeb.eventServer){
+          tokens20.map(async item =>{
+              item.token20_name = item.name + '(' + item.symbol + ')';
+              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  balanceData = await contractInstance.balanceOf(account.address).call();
+              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
 
-
-
+              }else{
+                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }
+              return item
+          });
+          this.setState({
+              tokens20: tokens20
+          });
+      }
 
   }
    renderTRC20Tokens() {
@@ -1013,7 +1015,6 @@ class Account extends Component {
 
   handleTRC20Token = () => {
       this.setState({tokenTRC10: false});
-
   }
 
   render() {
