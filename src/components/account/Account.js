@@ -130,18 +130,21 @@ class Account extends Component {
           eventServer,
           privateKey
       );
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=name&start=0&limit=20");
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=timestamp&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       tokens20.map(async item =>{
           item.token20_name = item.name + '(' + item.symbol + ')';
           let  contractInstance = await tronWeb.contract().at(item.contract_address);
           let  balanceData = await contractInstance.balanceOf(account.address).call();
-          item.token20_balance = balanceData.balance.toString() /Math.pow(10,item.decimals);
+          item.token20_balance = balanceData.balance.toString() / Math.pow(10,item.decimals);
           return item
       })
       this.setState({
           tokens20: tokens20
       });
+
+
+
 
   }
    renderTRC20Tokens() {
@@ -181,7 +184,7 @@ class Account extends Component {
               tokens20.map((token) => (
                 <tr key={token.token20_name}>
                   <td>
-                    <TokenTRC20Link name={token.name} address={token.contract_address}/>
+                    <TokenTRC20Link name={token.name} address={token.contract_address} namePlus={token.name + ' (' + token.symbol + ')'} />
                   </td>
                   <td className="text-right">
                     <FormattedNumber value={token.token20_balance}/>
