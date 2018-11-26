@@ -78,6 +78,7 @@ class Account extends Component {
     if ((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) {
       this.reloadTokens();
       this.loadAccount();
+      this.getTRC20Tokens();
     }
   }
 
@@ -120,9 +121,9 @@ class Account extends Component {
       let {account} = this.props;
       const privateKey = account.key;
       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      const fullNode = new HttpProvider('https://api.shasta.trongrid.io'); // Full node http endpoint
-      const solidityNode = new HttpProvider('https://api.shasta.trongrid.io'); // Solidity node http endpoint
-      const eventServer = 'https://api.shasta.trongrid.io/'; // Contract events http endpoint
+      const fullNode = new HttpProvider('https://api.trongrid.io'); // Full node http endpoint
+      const solidityNode = new HttpProvider('https://api.trongrid.io'); // Solidity node http endpoint
+      const eventServer = 'https://api.trongrid.io/'; // Contract events http endpoint
       const tronWeb = new TronWeb(
           fullNode,
           solidityNode,
@@ -134,8 +135,8 @@ class Account extends Component {
       tokens20.map(async item =>{
           item.token20_name = item.name + '(' + item.symbol + ')';
           let  contractInstance = await tronWeb.contract().at(item.contract_address);
-          let  balanceData = await contractInstance.balanceOf(account.address).call()
-          item.token20_balance = balanceData.balance.toString() /Math.pow(10,item.decimals)
+          let  balanceData = await contractInstance.balanceOf(account.address).call();
+          item.token20_balance = balanceData.balance.toString() /Math.pow(10,item.decimals);
           return item
       })
       this.setState({
@@ -158,6 +159,7 @@ class Account extends Component {
             .sortBy(tb => tb.token20_name)
             .value();
     }
+
     if (tokens20.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
@@ -1008,6 +1010,7 @@ class Account extends Component {
 
   handleTRC20Token = () => {
       this.setState({tokenTRC10: false});
+
   }
 
   render() {

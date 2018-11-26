@@ -52,11 +52,9 @@ class Token20Detail extends React.Component {
 
     this.setState({loading: true, token: {name}});
      let result = await xhr.get(API_URL+"/api/token_trc20?sort=name&start=0&limit=20");
-     console.log("result",result)
 
       let tokens = result.data.trc20_tokens;
       let token  =_.find(tokens, function(o) { return o.contract_address == address; });
-      console.log('token',token);
       this.setState({
       loading: false,
       token,
