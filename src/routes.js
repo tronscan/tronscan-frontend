@@ -196,7 +196,7 @@ export const routes = [
       {
           label: "overview_TRC20",
           path: "/tokens/trc20",
-          icon: 'fa fa-list',
+          icon: 'fas fa-table',
           component: TokenTRC20ListAsync
       },
       '-',
@@ -424,7 +424,7 @@ export const routes = [
   },
   {
     path: "/more",
-    label: "more",
+    label: "nav_more",
     icon: "fas fa-indent",
     routes: [
       {

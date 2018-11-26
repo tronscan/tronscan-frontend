@@ -1292,6 +1292,7 @@ export const messages = {
     "to_provide_a_better_experience":"为提供更好的使用体验，该统计数字每分钟更新一次",
     "TRC10_token":"TRC10 通证",
     "TRC20_token":"TRC20 通证",
-    "TRC20_decimals":"精度"
+    "TRC20_decimals":"精度",
+    "nav_more":"更多",
 
 };
