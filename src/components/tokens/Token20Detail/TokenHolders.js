@@ -2,11 +2,12 @@ import React, {Fragment} from "react";
 import {tu} from "../../../utils/i18n";
 import {AddressLink} from "../../common/Links";
 import {Client} from "../../../services/api";
-import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
 import {upperFirst} from "lodash";
+import xhr from "axios/index";
+import {API_URL, ONE_TRX} from "../../../constants";
 
 class TokenHolders extends React.Component {
 
@@ -38,13 +39,16 @@ class TokenHolders extends React.Component {
     let {filter} = this.props;
     this.setState({loading: true});
 
-    let {addresses, total} = await Client.getTokenHolders(filter.token, {
-      sort: '-balance',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      count: true
-    });
-
+    // let {addresses, total} = await Client.getTokenHolders(filter.token, {
+    //   sort: '-balance',
+    //   limit: pageSize,
+    //   start: (page - 1) * pageSize,
+    //   count: true
+    // });
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+     console.log('Holders',data)
+    let addresses = data.token_holders;
+    let total= data.total;
     for (let index in addresses) {
       addresses[index].index = parseInt(index) + 1;
     }
@@ -73,13 +77,13 @@ class TokenHolders extends React.Component {
         dataIndex: 'address',
         key: 'address',
         render: (text, record, index) => {
-          return <AddressLink address={record.address}/>
+          return <AddressLink address={record.holder_address}/>
         }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'quantity'})),
-        dataIndex: 'transactionHash',
-        key: 'transactionHash',
+        dataIndex: 'balance',
+        key: 'balance',
         width: '20%',
         align: 'right',
         className: 'ant_table',
@@ -96,7 +100,7 @@ class TokenHolders extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <div><FormattedNumber
-              value={(((record.balance) / token.totalSupply) * 100)}
+              value={(((record.balance) / token.total_supply) * 100)}
               maximumFractionDigits={6}
           /> %
           </div>

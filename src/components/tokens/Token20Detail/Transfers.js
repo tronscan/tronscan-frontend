@@ -49,8 +49,9 @@ class Transfers extends React.Component {
     let {showTotal} = this.state;
 
     this.setState({loading: true});
-    let { data } = await xhr.get(API_URL+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token);
-    let transfers = data.Data
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let transfers = data.token_transfers;
+    console.log('transfers',transfers);
     let total = data.total
 
     // let {transfers, total} = await Client.getTransfers({
@@ -83,8 +84,8 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-            <TransactionHashLink hash={record.transactionHash}>
-              {record.transactionHash}
+            <TransactionHashLink hash={record.transaction_id}>
+              {record.transaction_id}
             </TransactionHashLink>
           </Truncate>
 
@@ -106,7 +107,7 @@ class Transfers extends React.Component {
         key: 'transferFromAddress',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferFromAddress}/>
+          return <AddressLink address={record.from_address}/>
         }
       },
       {
@@ -123,7 +124,7 @@ class Transfers extends React.Component {
         key: 'transferToAddress',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <AddressLink address={record.transferToAddress}/>
+          return <AddressLink address={record.to_address}/>
         },
       },
       {
@@ -134,10 +135,9 @@ class Transfers extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <div>{record.tokenName === "TRX" ?
-              <TRXPrice amount={record.amount / ONE_TRX}/> :
-              <span><FormattedNumber value={record.amount}/> {record.tokenName}</span>}
-          </div>
+            return <span>
+                    <FormattedNumber value={record.quant}/>  {record.tokenName}
+                </span>
 
         },
       }

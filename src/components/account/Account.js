@@ -9,9 +9,9 @@ import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import { SwitchToken } from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
-import {AddressLink, ExternalLink, HrefLink, TokenLink} from "../common/Links";
+import {AddressLink, ExternalLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {IS_TESTNET, ONE_TRX} from "../../constants";
+import {IS_TESTNET, ONE_TRX, API_URL} from "../../constants";
 import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {login} from "../../actions/app";
@@ -27,6 +27,7 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import TronWeb from 'tronweb';
 import _ from "lodash";
 
 
@@ -55,7 +56,9 @@ class Account extends Component {
           }
       ],
       selectedResource:0,
-      hideSmallCurrency:true
+      hideSmallCurrency:true,
+      tokenTRC10:true,
+      tokens20:[]
     };
 
   }
@@ -65,7 +68,9 @@ class Account extends Component {
     if (account.isLoggedIn) {
       this.reloadTokens();
       this.loadAccount();
+      this.getTRC20Tokens();
     }
+
   }
 
   componentDidUpdate(prevProps) {
@@ -111,25 +116,49 @@ class Account extends Component {
     this.props.reloadWallet();
   };
 
-  renderTokens() {
-    let {hideSmallCurrency} = this.state;
-    let {tokenBalances = []} = this.props;
+  async getTRC20Tokens(){
+      let {account} = this.props;
+      const privateKey = account.key;
+      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+      const fullNode = new HttpProvider('https://api.shasta.trongrid.io'); // Full node http endpoint
+      const solidityNode = new HttpProvider('https://api.shasta.trongrid.io'); // Solidity node http endpoint
+      const eventServer = 'https://api.shasta.trongrid.io/'; // Contract events http endpoint
+      const tronWeb = new TronWeb(
+          fullNode,
+          solidityNode,
+          eventServer,
+          privateKey
+      );
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=name&start=0&limit=20");
+      let tokens20 = result.data.trc20_tokens;
+      tokens20.map(async item =>{
+          item.token20_name = item.name + '(' + item.symbol + ')';
+          let  contractInstance = await tronWeb.contract().at(item.contract_address);
+          let  balanceData = await contractInstance.balanceOf(account.address).call()
+          item.token20_balance = balanceData.balance.toString() /Math.pow(10,item.decimals)
+          return item
+      })
+      this.setState({
+          tokens20: tokens20
+      });
 
-
+  }
+   renderTRC20Tokens() {
+    let {hideSmallCurrency,tokens20} = this.state;
     if(hideSmallCurrency){
-        tokenBalances = _(tokenBalances)
-            .filter(tb => tb.name.toUpperCase() !== "TRX")
-            .filter(tb => tb.balance > 10)
-            .sortBy(tb => tb.name)
+        tokens20 = _(tokens20)
+            .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+            .filter(tb => tb.token20_balance > 10)
+            .sortBy(tb => tb.token20_name)
             .value();
     }else{
-        tokenBalances = _(tokenBalances)
-            .filter(tb => tb.name.toUpperCase() !== "TRX")
-            .filter(tb => tb.balance > 0)
-            .sortBy(tb => tb.name)
+        tokens20 = _(tokens20)
+            .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+            .filter(tb => tb.token20_balance > 0)
+            .sortBy(tb => tb.token20_name)
             .value();
     }
-    if (tokenBalances.length === 0) {
+    if (tokens20.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
             {tu("no_tokens")}
@@ -147,13 +176,13 @@ class Account extends Component {
           </thead>
           <tbody>
           {
-            tokenBalances.map((token) => (
-                <tr key={token.name}>
+              tokens20.map((token) => (
+                <tr key={token.token20_name}>
                   <td>
-                    <TokenLink name={token.name} address={token.address}/>
+                    <TokenTRC20Link name={token.name} address={token.contract_address}/>
                   </td>
                   <td className="text-right">
-                    <FormattedNumber value={token.balance}/>
+                    <FormattedNumber value={token.token20_balance}/>
                   </td>
                 </tr>
             ))
@@ -162,6 +191,57 @@ class Account extends Component {
         </table>
     )
   }
+
+  renderTokens() {
+        let {hideSmallCurrency} = this.state;
+        let {tokenBalances = []} = this.props;
+
+        if(hideSmallCurrency){
+            tokenBalances = _(tokenBalances)
+                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.balance > 10)
+                .sortBy(tb => tb.name)
+                .value();
+        }else{
+            tokenBalances = _(tokenBalances)
+                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.balance > 0)
+                .sortBy(tb => tb.name)
+                .value();
+        }
+        if (tokenBalances.length === 0) {
+            return (
+                <div className="text-center d-flex justify-content-center p-4">
+                    {tu("no_tokens")}
+                </div>
+            );
+        }
+
+        return (
+            <table className="table mt-3 temp-table">
+              <thead className="thead-light">
+              <tr>
+                <th>{tu("name")}</th>
+                <th className="text-right">{tu("balance")}</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
+                  tokenBalances.map((token) => (
+                      <tr key={token.name}>
+                        <td>
+                          <TokenLink name={token.name} address={token.address}/>
+                        </td>
+                        <td className="text-right">
+                          <FormattedNumber value={token.balance}/>
+                        </td>
+                      </tr>
+                  ))
+              }
+              </tbody>
+            </table>
+        )
+    }
 
   renderBandwidth() {
 
@@ -922,8 +1002,16 @@ class Account extends Component {
       this.setState({hideSmallCurrency: val});
   }
 
+  handleTRC10Token = () => {
+      this.setState({tokenTRC10: true});
+  }
+
+  handleTRC20Token = () => {
+      this.setState({tokenTRC10: false});
+  }
+
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency} = this.state;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency,tokenTRC10} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
@@ -1161,8 +1249,27 @@ class Account extends Component {
                     </h5>
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
-
-                  {this.renderTokens()}
+                  <div className="account-token-tab">
+                    <a href="javascript:"
+                       className={"btn btn-default btn-sm" + (tokenTRC10?' active':'')}
+                       onClick={this.handleTRC10Token}>
+                        {tu("TRC10_token")}
+                    </a>
+                    <a href="javascript:"
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10?'':' active')}
+                       onClick={this.handleTRC20Token}>
+                        {tu("TRC20_token")}
+                    </a>
+                  </div>
+                    {
+                        tokenTRC10?<div>
+                                {this.renderTokens()}
+                            </div>
+                            :
+                            <div>
+                                {this.renderTRC20Tokens()}
+                            </div>
+                    }
                 </div>
               </div>
             </div>

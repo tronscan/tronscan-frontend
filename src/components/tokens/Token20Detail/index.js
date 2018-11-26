@@ -18,6 +18,7 @@ import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {Link} from "react-router-dom";
 import {some, toLower} from "lodash";
 import xhr from "axios/index";
+import _ from "lodash";
 
 class Token20Detail extends React.Component {
 
@@ -50,12 +51,13 @@ class Token20Detail extends React.Component {
   loadToken = async (name,address) => {
 
     this.setState({loading: true, token: {name}});
+     let result = await xhr.get(API_URL+"/api/token_trc20?sort=name&start=0&limit=20");
+     console.log("result",result)
 
-    //let token = await Client.getToken(name);
-    let result = await xhr.get(API_URL+"/api/token?name=" + name+"&owner="+address);
-    let token = result.data.data[0];
-
-    this.setState({
+      let tokens = result.data.trc20_tokens;
+      let token  =_.find(tokens, function(o) { return o.contract_address == address; });
+      console.log('token',token);
+      this.setState({
       loading: false,
       token,
       tabs: [
@@ -71,14 +73,14 @@ class Token20Detail extends React.Component {
           icon: "",
           path: "/transfers",
           label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: name}}/>
+          cmp: () => <Transfers filter={{token: address}}/>
         },
         {
           id: "holders",
           icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: name}} token={{totalSupply: token.totalSupply}}/>
+          cmp: () => <TokenHolders filter={{token: address}} token={{total_supply: token.total_supply}}/>
         },
       ]
     });
@@ -376,22 +378,22 @@ class Token20Detail extends React.Component {
                       <div className="card-body">
                         <div className="d-flex">
                           {token && token.imgUrl ?
-                              <img className='token-logo' src={token.imgUrl}/> :
+                              <img className='token-logo' src={token.icon_url}/> :
                               <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
                           <div style={{width: '70%'}}>
                             <h5 className="card-title">
-                              {token.name} ({token.abbr})
+                              {token.name} ({token.symbol})
                             </h5>
-                            <p className="card-text">{token.description}</p>
+                            <p className="card-text">{token.token_desc}</p>
                           </div>
-                          <div className="ml-auto">
-                            {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&
-                            <button className="btn btn-default btn-xs d-inline-block"
-                                    onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
-                            }
-                            <a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a>
-                          </div>
+                          {/*<div className="ml-auto">*/}
+                            {/*{(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&*/}
+                            {/*<button className="btn btn-default btn-xs d-inline-block"*/}
+                                    {/*onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>*/}
+                            {/*}*/}
+                            {/*<a href={"#/myToken?address="+ token.ownerAddress} className="btn btn-danger btn-xs d-inline-block token-detail-btn">{tu("update_token")}</a>*/}
+                          {/*</div>*/}
                         </div>
                       </div>
                       <Information token={token}></Information>
