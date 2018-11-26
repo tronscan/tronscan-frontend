@@ -1267,4 +1267,6 @@
   "proposal":"Proposal",
   "approvers_of_the_proposal":"Approvers of the Proposal",
   "total_approving_votes":"Total Approving Votes",
+  "to_provide_a_better_experience":"To provide a better experience, this statistic is updated every minute.",
+  "nav_more":"more",
 };

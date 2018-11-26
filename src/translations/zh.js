@@ -1290,6 +1290,6 @@ export const messages = {
     "approvers_of_the_proposal":"提议赞成者",
     "total_approving_votes":"总赞成数",
     "to_provide_a_better_experience":"为提供更好的使用体验，该统计数字每分钟更新一次",
-
+    "nav_more":"更多",
 
 };
