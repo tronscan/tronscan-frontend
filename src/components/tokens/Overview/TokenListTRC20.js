@@ -177,7 +177,7 @@ class TokenList extends Component {
                 render: (text, record, index) => {
                     if (text === null)
                         text = 0;
-                    return <div><FormattedNumber value={record.total_supply} maximumFractionDigits={1}/></div>
+                    return <div><FormattedNumber value={record.total_supply / (Math.pow(10,record.decimals))} maximumFractionDigits={1}/></div>
                 },
                 align: 'center',
                 className: 'ant_table _text_nowrap'

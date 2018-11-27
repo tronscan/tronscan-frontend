@@ -20,16 +20,16 @@ export function Information({token}) {
   const tokenList = [
     { 
       name: 'total_supply', 
-      content: <FormattedNumber value={token.total_supply}/>
+      content: <FormattedNumber value={token.total_supply / (Math.pow(10,token.decimals))}/>
     },
     {
       name: 'contract_address',
       content:  <AddressLink address={token.contract_address} isContract={true} />
     },
-    {
-      name: 'token_holders',
-      content: <FormattedNumber value={token.total_supply}/>
-    },
+    // {
+    //   name: 'token_holders',
+    //   content: <FormattedNumber value={token.total_supply}/>
+    // },
     {
       name: 'TRC20_decimals',
       content: <FormattedNumber value={token.decimals}/>

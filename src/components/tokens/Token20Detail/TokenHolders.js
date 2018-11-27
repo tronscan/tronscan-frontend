@@ -117,10 +117,10 @@ class TokenHolders extends React.Component {
   doSearch = async () => {
       let {intl,filter} = this.props;
       let {search} = this.state;
-      if (!isAddressValid(search)){
-          let result = await  xhr.get(API_URL+"/api/token_trc20/holders?holder_address=" + search + "&contract_address=" + filter.token);
+      //if (!isAddressValid(search)){
+          let result = await  xhr.get(API_URL+"/api/token_trc20/holder_balance?contract_address=" + filter.token +"&holder_address=" + search);
 
-      }
+      //}
 
       // if (result === true) {
       //     this.setState({search: ""});
@@ -171,7 +171,6 @@ class TokenHolders extends React.Component {
                               this.loadTokenHolders(page, pageSize)
                           }}/>
             </div>
-
           </div>
         </div>
       </Fragment>

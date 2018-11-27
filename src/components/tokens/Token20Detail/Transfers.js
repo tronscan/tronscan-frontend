@@ -75,7 +75,7 @@ class Transfers extends React.Component {
   };
 
   customizedColumn = () => {
-    let {intl} = this.props;
+    let {intl,token} = this.props;
     let column = [
       {
         title: upperFirst(intl.formatMessage({id: 'hash'})),
@@ -98,7 +98,7 @@ class Transfers extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={record.timestamp}/>
+          return <TimeAgo date={Number(record.block_ts)}/>
         }
       },
       {
@@ -136,7 +136,7 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
             return <span>
-                    <FormattedNumber value={record.quant}/>  {record.tokenName}
+                    <FormattedNumber value={record.quant / token.decimals}/>  {token.name}
                 </span>
 
         },
@@ -153,7 +153,6 @@ class Transfers extends React.Component {
     let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
-      transfers = []
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (
