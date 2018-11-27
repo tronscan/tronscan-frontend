@@ -2071,3 +2071,71 @@ h5 {
     }
   }
 }
+
+.exchange-title{
+   display: flex;
+   margin-bottom: 10px;
+   position: relative;
+  .beginners-guide{
+    font-size: 12px;
+    color: #999999;
+    a{
+      margin-left: 5px;
+    }
+  }
+
+  .tron-ad{
+    display: flex;
+    position: absolute;
+    font-size: 12px;
+    color: #666;
+    left: 380px;
+    img{
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin-top: -2px;
+    }
+    div{
+      margin-left: 5px;
+    }
+
+  }
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+    position: relative;
+    .beginners-guide{
+      font-size: 12px;
+      margin: 0 auto;
+      color: #999999;
+      a{
+        margin-left: 5px;
+      }
+    }
+    .tron-ad{
+      display: flex;
+      position: absolute;
+      font-size: 12px;
+      color: #666;
+      left: -15px;
+      top: 20px;
+      transform: scale(0.9);
+      img{
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin-top: -2px;
+      }
+      div{
+        white-space: nowrap;
+        margin-left: 5px;
+      }
+      a{
+        white-space: nowrap;
+      }
+
+    }
+  }
+}

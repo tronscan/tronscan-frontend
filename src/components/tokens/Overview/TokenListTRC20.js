@@ -47,10 +47,10 @@ class TokenList extends Component {
         let total
 
         if (filter.name){
-            result = await xhr.get(API_URL+"/api/token_trc20?sort=timestamp&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+            result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['trc20_tokens'].length;
         }else{
-            result = await xhr.get(API_URL+"/api/token_trc20?sort=timestamp&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+            result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
             total = result.data['total'];
         }
 
@@ -146,7 +146,7 @@ class TokenList extends Component {
                         {
                             record.price && record.total_supply?
                                 <div><FormattedNumber value={record.total_supply * record.price} maximumFractionDigits={1}/> TRX</div>:
-                                <div>N/A TRX</div>
+                                <span style={{color: '#666666'}}>-</span>
                         }
                     </div>
                 }
@@ -163,7 +163,7 @@ class TokenList extends Component {
                         {
                             record.price?
                                 <div><FormattedNumber value={record.price} maximumFractionDigits={1}/> TRX</div>:
-                                <div>N/A TRX</div>
+                                <span style={{color: '#666666'}}>-</span>
 
 
                         }

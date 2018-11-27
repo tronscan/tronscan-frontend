@@ -1294,5 +1294,7 @@ export const messages = {
     "TRC20_token":"TRC20 通证",
     "TRC20_decimals":"精度",
     "nav_more":"更多",
-
+    "beginners_guide":"新手引导",
+    "TRONdice":"TRONdice 即将开启首次分红!",
+    "Join_TRONdice":"-加入 TRONdice!"
 };

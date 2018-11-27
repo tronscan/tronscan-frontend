@@ -1306,4 +1306,7 @@ export const messages = {
   "TRC20_token":"TRC20 Token",
   "TRC20_decimals":"Precision",
   "nav_more":"more",
+  "beginners_guide":"Beginner's guide",
+  "TRONdice":"TRONdice is about to open its first dividend!",
+  "Join_TRONdice":"-Join TRONdice!"
 };
