@@ -1308,4 +1308,7 @@ export const messages = {
   "nav_more":"more",
   "no_holders_found":"No Token Holders Found",
   "search_TRC20": "Search Address",
+  "beginners_guide":"Beginner's guide",
+  "TRONdice":"TRONdice is about to open its first dividend!",
+  "Join_TRONdice":"-Join TRONdice!"
 };

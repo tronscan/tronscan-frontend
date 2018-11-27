@@ -129,7 +129,7 @@ class Account extends Component {
           eventServer,
           privateKey
       );
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=timestamp&start=0&limit=50");
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       if(tronWeb.eventServer){
           tokens20.map(async item =>{

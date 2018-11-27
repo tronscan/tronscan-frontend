@@ -1296,5 +1296,7 @@ export const messages = {
     "nav_more":"更多",
     "no_holders_found":"无通证持有者",
     "search_TRC20": "搜索地址",
-
+    "beginners_guide":"新手引导",
+    "TRONdice":"TRONdice 即将开启首次分红!",
+    "Join_TRONdice":"-加入 TRONdice!"
 };
