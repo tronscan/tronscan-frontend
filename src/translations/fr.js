@@ -1291,4 +1291,10 @@ export const messages = {
   "TRC20_token":"TRC20 Token",
   "TRC20_decimals":"Precision",
   "nav_more":"more",
+  "no_holders_found":"No Token Holders Found",
+  "search_TRC20": "Search Address",
+  "beginners_guide":"Beginner's guide",
+  "TRONdice":"TRONdice is about to open its first dividend!",
+  "Join_TRONdice":"-Join TRONdice!",
+  "search_TRC20_error":" Please enter the correct address"
 };
