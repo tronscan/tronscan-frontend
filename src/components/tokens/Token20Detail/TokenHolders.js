@@ -8,6 +8,8 @@ import {TronLoader} from "../../common/loaders";
 import {upperFirst} from "lodash";
 import xhr from "axios/index";
 import {API_URL, ONE_TRX} from "../../../constants";
+import {toastr} from 'react-redux-toastr'
+import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 
 class TokenHolders extends React.Component {
 
@@ -15,6 +17,7 @@ class TokenHolders extends React.Component {
     super(props);
 
     this.state = {
+      search: "",
       filter: {},
       addresses: [],
       page: 0,
@@ -111,9 +114,27 @@ class TokenHolders extends React.Component {
 
     return column;
   }
+  doSearch = async () => {
+      let {intl,filter} = this.props;
+      let {search} = this.state;
+      if (!isAddressValid(search)){
+          let result = await  xhr.get(API_URL+"/api/token_trc20/holders?holder_address=" + search + "&contract_address=" + filter.token);
+
+      }
+
+      // if (result === true) {
+      //     this.setState({search: ""});
+      // } else if (result !== null) {
+      //     window.location.hash = result;
+      //     this.setState({search: ""});
+      // } else {
+      //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
+      // }
+  };
 
   render() {
-    let {addresses, total, loading} = this.state;
+    let {addresses, total, loading,search} = this.state;
+
     let {intl} = this.props
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
@@ -127,11 +148,30 @@ class TokenHolders extends React.Component {
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
         <div className="row transfers">
           <div className="col-md-12 table_pos">
+            <div className="nav-searchbar" style={styles.searchBox}>
+              <div className="token20-input-group input-group">
+                <div className="token20-search">
+                  <input type="text"
+                         className="form-control p-2 bg-white border-0 box-shadow-none"
+                          value={search}
+                          onChange={ev => this.setState({search: ev.target.value})}
+                         placeholder={intl.formatMessage({id: "search_TRC20"})}/>
+                  <div className="input-group-append">
+                    <button className="btn box-shadow-none" onClick={this.doSearch}>
+                      <i className="fa fa-search"/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
-            <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
-                        onPageChange={(page, pageSize) => {
-                          this.loadTokenHolders(page, pageSize)
-                        }}/>
+            <div style={styles.table}>
+              <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
+                          onPageChange={(page, pageSize) => {
+                              this.loadTokenHolders(page, pageSize)
+                          }}/>
+            </div>
+
           </div>
         </div>
       </Fragment>
@@ -139,5 +179,11 @@ class TokenHolders extends React.Component {
   }
 
 }
+const styles = {
+    searchBox:{
+        background: '#fff',
+        paddingTop: 10,
+    }
+};
 
 export default injectIntl(TokenHolders);

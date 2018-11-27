@@ -1306,4 +1306,6 @@ export const messages = {
   "TRC20_token":"TRC20 Token",
   "TRC20_decimals":"Precision",
   "nav_more":"more",
+  "no_holders_found":"No Token Holders Found",
+  "search_TRC20": "Search Address",
 };

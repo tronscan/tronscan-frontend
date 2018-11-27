@@ -387,7 +387,7 @@ export const messages = {
   "quote_token_amount": "二级通证数额",
   "base_token_amount": "基本通证数额",
   "creating_a_token": "发行通证",
-  "available": "可供购买",
+  "available": "可用",
   "testnet": "测试网",
   "days_to_freeze": "冻结天数",
   "trx_token_fee_message": "发行新通证将花费1024TRX",
@@ -1294,5 +1294,7 @@ export const messages = {
     "TRC20_token":"TRC20 通证",
     "TRC20_decimals":"精度",
     "nav_more":"更多",
+    "no_holders_found":"无通证持有者",
+    "search_TRC20": "搜索地址",
 
 };

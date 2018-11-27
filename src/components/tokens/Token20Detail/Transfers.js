@@ -153,7 +153,7 @@ class Transfers extends React.Component {
     let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
-    
+      transfers = []
     if (!loading && transfers.length === 0) {
       if (!EmptyState) {
         return (

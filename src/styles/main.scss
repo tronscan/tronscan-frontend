@@ -2071,3 +2071,30 @@ h5 {
     }
   }
 }
+.token20-input-group{
+   height: 40px;
+   .token20-search{
+     display: flex;
+     position: absolute;
+     right: 22px;
+     input{
+       fontSize: 13px;
+       width: 260px;
+       min-width: 260px;
+     }
+   }
+
+   @media only screen and (max-width: 768px) {
+     height: 40px;
+     .token20-search{
+       display: flex;
+       position: absolute;
+       right: 22px;
+       input{
+         fontSize: 13px;
+         width: 220px;
+         min-width: 200px;
+       }
+     }
+   }
+}

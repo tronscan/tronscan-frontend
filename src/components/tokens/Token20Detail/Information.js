@@ -37,7 +37,7 @@ export function Information({token}) {
     {
       name: 'website', 
       content:  token.home_page?
-          <ExternalLink url={token.url}/> :
+          <ExternalLink url={token.home_page}/> :
           <span style={{color: '#d8d8d8'}}>-</span>
 
     },
@@ -49,7 +49,7 @@ export function Information({token}) {
     },
     {
         name: 'social_link',
-        content:  <div className="d-flex">
+        content: token.social_media? <div className="d-flex">
             {/*{token['social_media'] && token['social_media'].map((media, index) => {*/}
                 {/*return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>*/}
                   {/*<a href={media.url}>*/}
@@ -59,7 +59,7 @@ export function Information({token}) {
             {/*})}*/}
             {/*{ !social_display && <span style={{color: '#d8d8d8'}}>-</span> }*/}
           <span>{token.social_media}</span>
-        </div>
+        </div>:<span style={{color: '#d8d8d8'}}>-</span>
     },
     {
       name: 'GitHub', 
