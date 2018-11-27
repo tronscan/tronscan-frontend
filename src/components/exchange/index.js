@@ -27,13 +27,14 @@ class Exchange extends React.Component {
   
 
   render() {
+    let {intl} = this.props;
     return (
         <div className="container header-overlap">
           <div className="exchange-title">
             <div className="beginners-guide">
               <i className="fas fa-book-open"></i>
-              <a href="https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf"  target="_blank" >{tu('beginners_guide')}</a>
-            </div>
+              <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" >{tu('beginners_guide')}</a>
+          </div>
             <div className="tron-ad">
               <img src={require('../../images/dice-logo.png')} alt=""/>
               <div>{tu('TRONdice')}</div>

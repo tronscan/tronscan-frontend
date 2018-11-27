@@ -51,7 +51,6 @@ class Transfers extends React.Component {
     this.setState({loading: true});
     let { data } = await xhr.get(API_URL+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let transfers = data.token_transfers;
-    console.log('transfers',transfers);
     let total = data.total
 
     // let {transfers, total} = await Client.getTransfers({
@@ -136,7 +135,7 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
             return <span>
-                    <FormattedNumber value={record.quant / token.decimals}/>  {token.name}
+                    <FormattedNumber value={record.quant / (Math.pow(10,token.decimals))}/>  {token.name}
                 </span>
 
         },
@@ -150,6 +149,9 @@ class Transfers extends React.Component {
   render() {
 
     let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
+    if(total == 0){
+        transfers =[];
+    }
     let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});

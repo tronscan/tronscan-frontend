@@ -1310,5 +1310,6 @@ export const messages = {
   "search_TRC20": "Search Address",
   "beginners_guide":"Beginner's guide",
   "TRONdice":"TRONdice is about to open its first dividend!",
-  "Join_TRONdice":"-Join TRONdice!"
+  "Join_TRONdice":"-Join TRONdice!",
+  "search_TRC20_error":" Please enter the correct address"
 };

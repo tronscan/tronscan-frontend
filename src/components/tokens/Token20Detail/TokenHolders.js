@@ -49,7 +49,6 @@ class TokenHolders extends React.Component {
     //   count: true
     // });
     let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
-     console.log('Holders',data)
     let addresses = data.token_holders;
     let total= data.total;
     for (let index in addresses) {
@@ -91,7 +90,7 @@ class TokenHolders extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={record.balance}/>
+          return <FormattedNumber value={Number(record.balance) / (Math.pow(10,token.decimals))}/>
         }
       },
       {
@@ -116,25 +115,31 @@ class TokenHolders extends React.Component {
   }
   doSearch = async () => {
       let {intl,filter} = this.props;
-      let {search} = this.state;
-      //if (!isAddressValid(search)){
+      let {search,addresses} = this.state;
+      let resultData = [];
+      if (isAddressValid(search)){
           let result = await  xhr.get(API_URL+"/api/token_trc20/holder_balance?contract_address=" + filter.token +"&holder_address=" + search);
+          result.data.index = 1
+          resultData.push(result.data);
+          this.setState({
+              addresses:resultData,
+              search: ""
+          });
+      }else {
+          toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_TRC20_error'}));
+          this.setState({
+              search: ""
+          });
+      }
 
-      //}
 
-      // if (result === true) {
-      //     this.setState({search: ""});
-      // } else if (result !== null) {
-      //     window.location.hash = result;
-      //     this.setState({search: ""});
-      // } else {
-      //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
-      // }
   };
 
   render() {
     let {addresses, total, loading,search} = this.state;
-
+      if(total == 0){
+          addresses =[];
+      }
     let {intl} = this.props
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})

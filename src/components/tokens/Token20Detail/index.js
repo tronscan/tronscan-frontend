@@ -51,7 +51,7 @@ class Token20Detail extends React.Component {
   loadToken = async (name,address) => {
 
     this.setState({loading: true, token: {name}});
-     let result = await xhr.get(API_URL+"/api/token_trc20?sort=name&start=0&limit=20");
+     let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=20");
 
       let tokens = result.data.trc20_tokens;
       let token  =_.find(tokens, function(o) { return o.contract_address == address; });
@@ -78,7 +78,7 @@ class Token20Detail extends React.Component {
           icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: address}} token={{total_supply: token.total_supply}}/>
+          cmp: () => <TokenHolders filter={{token: address}} token={token}/>
         },
       ]
     });
@@ -375,7 +375,7 @@ class Token20Detail extends React.Component {
                     <div className="card">
                       <div className="card-body">
                         <div className="d-flex">
-                          {token && token.imgUrl ?
+                          {token && token.icon_url ?
                               <img className='token-logo' src={token.icon_url}/> :
                               <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
@@ -399,9 +399,7 @@ class Token20Detail extends React.Component {
 
                     <div className="card mt-3 border_table">
                       <div className="card-header">
-                        <ul className="nav nav-tabs card-header-tabs" style={{
-                          height: '50px', marginTop: '-12px', marginLeft: '-20px'
-                        }}>
+                        <ul className="nav nav-tabs card-header-tabs" style={{marginTop: '-12px', marginLeft: '-20px'}}>
                           {
                             tabs.map(tab => (
                                 <li key={tab.id} className="nav-item">

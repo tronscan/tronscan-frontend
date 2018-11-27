@@ -76,7 +76,7 @@ class Transaction extends Component {
   }
 
   exchangeTransaction = async (exchangeId, tokenId, quant, expected,values) => {
-      let {account,currentWallet,exchangeData} = this.props;
+      let {account,currentWallet,exchangeData,intl} = this.props;
       let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
       if (success) {
           this.props.form.resetFields();
@@ -102,6 +102,8 @@ class Transaction extends Component {
               modal: (
                   <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
                       {tu("transaction_error_message")}<br/>
+                      <i className="fas fa-book-open"></i>
+                      <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" style={{marginLeft:5}}>{tu('beginners_guide')}</a>
                   </SweetAlert>
               ),
           });

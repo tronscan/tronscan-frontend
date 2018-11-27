@@ -147,7 +147,7 @@ export class TRXPrice extends React.PureComponent {
                           ele = <Fragment>
                             <FormattedNumber
                                 value={this.renderPrice(amount, priceValues)}
-                                maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 2}>
+                                maximumFractionDigits={priceValues.currencies[currency.toUpperCase() || priceValues.priceShown.toUpperCase()].fractions || 3}>
                                 {value => <span id={id}
                                                 onMouseOver={() => this.setState({open: true})}
                                                 onMouseOut={() => this.setState({open: false})}

@@ -399,9 +399,7 @@ class TokenDetail extends React.Component {
 
                     <div className="card mt-3 border_table">
                       <div className="card-header">
-                        <ul className="nav nav-tabs card-header-tabs" style={{
-                          height: '50px', marginTop: '-12px', marginLeft: '-20px'
-                        }}>
+                        <ul className="nav nav-tabs card-header-tabs" style={{marginTop: '-12px', marginLeft: '-20px'}}>
                           {
                             tabs.map(tab => (
                                 <li key={tab.id} className="nav-item">

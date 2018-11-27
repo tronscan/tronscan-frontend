@@ -20,7 +20,6 @@ import xhr from "axios/index";
 
 
 class TokenList extends Component {
-
     constructor(props) {
         super(props);
 
