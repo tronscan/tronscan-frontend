@@ -123,6 +123,7 @@ class TokenHolders extends React.Component {
           resultData.push(result.data);
           this.setState({
               addresses:resultData,
+              total:1,
               search: ""
           });
       }else {
