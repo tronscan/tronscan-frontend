@@ -931,7 +931,7 @@ export const messages = {
   "my_token": "My Token",
   "my_token_desc_1": "The information related to the token will be displayed on the token page. Each token based on the comprehensiveness and authenticity of the information will get a",
   "tron_rating": "Token Reputation",
-  "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@tron.network via your company email or certified email with necessary credentials.",
+  "my_token_desc_2": "If you need to update your information, please send the updates using the following Excel template to token@trx.market via your company email or certified email with necessary credentials.",
   "brief_info": "Brief Introduction",
   "website_official": "Official website",
   "white_paper": "White Paper",
@@ -1311,5 +1311,7 @@ export const messages = {
   "beginners_guide":"Beginner's guide",
   "TRONdice":"TRONdice is about to open its first dividend!",
   "Join_TRONdice":"-Join TRONdice!",
-  "search_TRC20_error":" Please enter the correct address"
+  "search_TRC20_error":" Please enter the correct address",
+  "dex_announcement":"notice:",
+  "regulations_on_trading_pairs":"Regulations on Trading Pairs"
 };

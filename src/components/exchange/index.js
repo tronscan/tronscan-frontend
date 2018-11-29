@@ -31,15 +31,17 @@ class Exchange extends React.Component {
     return (
         <div className="container header-overlap">
           <div className="exchange-title">
-            <div className="beginners-guide">
-              <i className="fas fa-book-open"></i>
-              <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" >{tu('beginners_guide')}</a>
-          </div>
+            <div className="tron-announcement">
+              <img src={require('../../images/announcement-logo.png')} alt=""/>
+              <div>{tu('dex_announcement')}</div>
+              <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-29-11-51-06.pdf":"https://coin.top/production/js/2018-11-29-11-52-31Regulations_on_Trading_Pairs.pdf"} target="_blank" >{tu('regulations_on_trading_pairs')}</a>
+            </div>
             <div className="tron-ad">
               <img src={require('../../images/dice-logo.png')} alt=""/>
               <div>{tu('TRONdice')}</div>
               <a href="https://trondice.org"  target="_blank" >{tu('Join_TRONdice')}</a>
             </div>
+
           </div>
 
           <main className="exchange">

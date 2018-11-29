@@ -62,13 +62,21 @@ class ExchangeList extends React.Component {
 
   render() {
     const { dataSource } = this.state;
+    let {intl} = this.props;
     return (
       <div className="exchange-list mr-2">
 
         {/* 市场 */}
         <div className="exchange-list-mark p-3">
           {/* 标题 */}
-          <h6>{tu("marks")}</h6>
+          <div className="market-title">
+              <h6>{tu("marks")}</h6>
+              <div className="beginners-guide">
+                  <i className="fas fa-book-open"></i>
+                  <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" >{tu('beginners_guide')}</a>
+              </div>
+          </div>
+
 
           {/* filter 筛选 */}
           <div className="exchange-list__filter d-flex justify-content-between align-items-center mb-3">

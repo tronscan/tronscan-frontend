@@ -920,7 +920,7 @@ export const messages = {
   "my_token": "我发行的通证",
   "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
   "tron_rating": "波场通证信誉评级",
-  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tron.network",
+  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@trx.market",
   "brief_info": "简介",
   "website_official": "官方网站",
   "white_paper": "白皮书",
@@ -1299,6 +1299,7 @@ export const messages = {
     "beginners_guide":"新手引导",
     "TRONdice":"TRONdice 即将开启首次分红!",
     "Join_TRONdice":"-加入 TRONdice!",
-    "search_TRC20_error":"请输入正确的地址"
-
+    "search_TRC20_error":"请输入正确的地址",
+    "dex_announcement":"公告:",
+    "regulations_on_trading_pairs":"交易对管理和规范"
 };
