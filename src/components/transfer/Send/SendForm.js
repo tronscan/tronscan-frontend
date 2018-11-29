@@ -7,7 +7,7 @@ import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import SendOption from "./../SendOption";
 import {find, round} from "lodash";
-import {ONE_TRX} from "../../../constants";
+import {ONE_TRX,API_URL} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import {FormattedNumber} from "react-intl";
@@ -15,8 +15,12 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import TronWeb from 'tronweb';
+import _ from "lodash";
+import xhr from "axios";
 import {Select} from 'antd';
 const { Option, OptGroup } = Select;
+
 class SendForm extends React.Component {
 
   constructor(props) {
@@ -32,6 +36,7 @@ class SendForm extends React.Component {
       isLoading: false,
       toAccount: null,
       modal: null,
+      tokens20:[],
     };
   }
 
@@ -165,20 +170,22 @@ class SendForm extends React.Component {
 
   componentDidMount() {
     this.refreshTokenBalances();
+
     //this.setAddress(this.props.to);
+
   }
 
   refreshTokenBalances = () => {
     let {account} = this.props;
     if (account.isLoggedIn) {
       this.props.reloadWallet();
+      this.getTRC20Tokens();
     }
   };
 
   componentDidUpdate() {
     let {tokenBalances} = this.props;
     let {token} = this.state;
-
     if (!token && tokenBalances.length > 0) {
       this.setState({
         token: tokenBalances[0].name,
@@ -253,11 +260,54 @@ class SendForm extends React.Component {
     this.setState({note});
   };
 
+  handleTokenChange = (value) => {
+    console.log('token',value)
+      this.setState({ token: value });
+  }
+
+  async getTRC20Tokens(){
+      let {account} = this.props;
+      const privateKey = account.key;
+      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+      const fullNode = new HttpProvider('https://api.trongrid.io'); // Full node http endpoint
+      const solidityNode = new HttpProvider('https://api.trongrid.io'); // Solidity node http endpoint
+      const eventServer = 'https://api.trongrid.io/'; // Contract events http endpoint
+      const tronWeb = new TronWeb(
+          fullNode,
+          solidityNode,
+          eventServer,
+          privateKey
+      );
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let tokens20 = result.data.trc20_tokens;
+          tokens20.map(async item =>{
+              item.token20_name = item.name + '(' + item.symbol + ')';
+              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  balanceData = await contractInstance.balanceOf(account.address).call();
+              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
+
+              }else{
+                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }
+              return item
+          });
+          console.log('tokens2011111111',tokens20)
+          let tokens = _(tokens20)
+              .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+              .filter(tb => tb.balance > 0)
+              .sortBy(tb => tb.token20_name)
+              .value();
+          this.setState({
+              tokens20: tokens20
+          });
+          console.log('tokens2222',tokens)
+
+  }
   render() {
 
     let {intl, tokenBalances, account} = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey} = this.state;
-
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20} = this.state;
+    console.log('tokenBalances',tokenBalances)
     let isToValid = to.length !== 0 && isAddressValid(to);
     let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
@@ -302,32 +352,43 @@ class SendForm extends React.Component {
           }
           <div className="form-group">
             <label>{tu("token")}</label>
-            <div className="input-group mb-3">
-              <select
-                  className="form-control"
-                  onChange={(ev) => this.setState({token: ev.target.value})}
-                  value={token}>
-                {
-                  tokenBalances.map((tokenBalance, index) => (
-                      <SendOption key={index}
-                                  name={tokenBalance.name}
-                                  balance={tokenBalance.balance}/>
-                  ))
-                }
-              </select>
-              {/*<Select*/}
-                  {/*defaultValue="lucy"*/}
-                  {/*style={{ width: 200 }}*/}
+            <div className="input-group mb-3"  style={{height:36}}>
+              {/*<select*/}
+                  {/*className="form-control"*/}
                   {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
-              {/*>*/}
-                {/*<OptGroup label="Manager">*/}
-                  {/*<Option value="jack">Jack</Option>*/}
-                  {/*<Option value="lucy">Lucy</Option>*/}
-                {/*</OptGroup>*/}
-                {/*<OptGroup label="Engineer">*/}
-                  {/*<Option value="Yiminghe">yiminghe</Option>*/}
-                {/*</OptGroup>*/}
-              {/*</Select>*/}
+                  {/*value={token}>*/}
+                {/*{*/}
+                  {/*tokenBalances.map((tokenBalance, index) => (*/}
+                      {/*<SendOption key={index}*/}
+                                  {/*name={tokenBalance.name}*/}
+                                  {/*balance={tokenBalance.balance}/>*/}
+                  {/*))*/}
+                {/*}*/}
+              {/*</select>*/}
+              <Select
+                  onChange={this.handleTokenChange}
+                  value={token}
+              >
+                <OptGroup label={tu('TRC10_token')} key="TRC10">
+                    {
+                        tokenBalances.map((tokenBalance, index) => (
+                            <Option value={tokenBalance.name} key={index}>
+                                 {tokenBalance.name} ({tokenBalance.balance} {intl.formatMessage({id: "available"})})
+                            </Option>
+                        ))
+                    }
+                </OptGroup>
+
+                <OptGroup label={tu('TRC20_token')} key="TRC20">
+                    {
+                        tokens20.map((token, index) => (
+                            <Option value={token.name} key={index}>
+                                {token.name} ({token.balance} {intl.formatMessage({id: "available"})})
+                            </Option>
+                        ))
+                    }
+                </OptGroup>
+              </Select>
             </div>
           </div>
           <div className="form-group">

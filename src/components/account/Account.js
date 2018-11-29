@@ -147,7 +147,6 @@ class Account extends Component {
               tokens20: tokens20
           });
       }
-
   }
    renderTRC20Tokens() {
     let {hideSmallCurrency,tokens20} = this.state;
