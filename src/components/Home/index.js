@@ -96,7 +96,7 @@ class Home extends Component {
     }
     this.setState({
       txOverviewStats: temp.slice(temp.length - 15, temp.length - 1),
-      addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length),
+      addressesStats: addressesTemp.slice(addressesTemp.length - 14, addressesTemp.length-1),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
       totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,

@@ -73,7 +73,7 @@ class ExchangeList extends React.Component {
               <h6>{tu("marks")}</h6>
               <div className="beginners-guide">
                   <i className="fas fa-book-open"></i>
-                  <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" >{tu('beginners_guide')}</a>
+                  <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/20181130053556.pdf"} target="_blank" >{tu('beginners_guide')}</a>
               </div>
           </div>
 

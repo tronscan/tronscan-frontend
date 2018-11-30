@@ -1295,7 +1295,10 @@ export const messages = {
   "no_holders_found":"No Token Holders Found",
   "search_TRC20": "Search Address",
   "beginners_guide":"Beginner's guide",
-  "TRONdice":"TRONdice is about to open its first dividend!",
+  "TRONdice":"TRONdice is about to open its first TRX dividend!",
   "Join_TRONdice":"-Join TRONdice!",
-  "search_TRC20_error":" Please enter the correct address"
+  "search_TRC20_error":" Please enter the correct address",
+  "dex_announcement":"notice:",
+  "regulations_on_trading_pairs":"Regulations on Trading Pairs",
+  "How_to_trade_on_DEX":"How to trade on DEX",
 };

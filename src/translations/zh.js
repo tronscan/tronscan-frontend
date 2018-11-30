@@ -1297,9 +1297,10 @@ export const messages = {
     "no_holders_found":"无通证持有者",
     "search_TRC20": "搜索地址",
     "beginners_guide":"新手引导",
-    "TRONdice":"TRONdice 即将开启首次分红!",
-    "Join_TRONdice":"-加入 TRONdice!",
+    "TRONdice":"TRONdice 即将开始首次TRX分红!",
+    "Join_TRONdice":"-开始dice游戏!",
     "search_TRC20_error":"请输入正确的地址",
     "dex_announcement":"公告:",
-    "regulations_on_trading_pairs":"交易对管理和规范"
+    "regulations_on_trading_pairs":"交易对管理和规范",
+    "How_to_trade_on_DEX":"DEX交易攻略"
 };
