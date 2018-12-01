@@ -103,7 +103,7 @@ class Transaction extends Component {
                   <SweetAlert danger title={tu("transaction_error")} onConfirm={this.hideModal}>
                       {tu("transaction_error_message")}<br/>
                       <i className="fas fa-book-open"></i>
-                      <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-27-09-31-26DEX.pdf":"https://coin.top/production/js/2018-11-27-14-01-15DEX_guidebook.pdf"} target="_blank" style={{marginLeft:5}}>{tu('beginners_guide')}</a>
+                      <a href={intl.locale == 'zh'?"https://coin.top/production/js/20181130053419.pdf":"https://coin.top/production/js/20181130053308.pdf"} target="_blank" style={{marginLeft:5}}>{tu('How_to_trade_on_DEX')}</a>
                   </SweetAlert>
               ),
           });

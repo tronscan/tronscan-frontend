@@ -26,30 +26,38 @@ class ProposalDetail extends React.Component {
     async load(id) {
         this.setState({loading: true});
         let {data} = await Client.getProposalById(id);
+
         let parametersArr = [
-            'MAINTENANCE_TIME_INTERVAL',
-            'ACCOUNT_UPGRADE_COST',
-            'CREATE_ACCOUNT_FEE',
-            'TRANSACTION_FEE',
-            'ASSET_ISSUE_FEE',
-            'WITNESS_PAY_PER_BLOCK',
-            'WITNESS_STANDBY_ALLOWANCE',
-            'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT',
-            'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE',
-            'ALLOW_CREATION_OF_CONTRACTS',
-            'REMOVE_THE_POWER_OF_THE_GR',
-            'ENERGY_FEE',
-            'EXCHANGE_CREATE_FEE',
-            'MAX_CPU_TIME_OF_ONE_TX',
+            'getMaintenanceTimeInterval',
+            'getAccountUpgradeCost',
+            'getCreateAccountFee',
+            'getTransactionFee',
+            'getAssetIssueFee',
+            'getWitnessPayPerBlock',
+            'getWitnessStandbyAllowance',
+            'getCreateNewAccountFeeInSystemContract',
+            'getCreateNewAccountBandwidthRate',
+            'getAllowCreationOfContracts',
+            'getRemoveThePowerOfTheGr',
+            'getEnergyFee',
+            'getExchangeCreateFee',
+            'getMaxCpuTimeOfOneTx',
+            'getAllowUpdateAccountName',
+            'getAllowSameTokenName',
+            'getAllowDelegateResource',
+            'getTotalEnergyLimit',
+            'getAllowTvmTransferTrc10',
         ];
+
         for(let item in data.paramters){
             data.key = parametersArr[item];
-            data.proposalVal =  data.paramters[item];
+            data.proposalVal = data.paramters[item];
         }
         this.setState({
             proposal: data,
             loading: false,
         })
+        console.log('proposal',this.state.proposal)
     }
 
 
@@ -107,7 +115,7 @@ class ProposalDetail extends React.Component {
                                                                 <th>{tu("proposal_content_info")}:</th>
                                                                 <td>
                                                                     {
-                                                                        proposal.key == 'MAINTENANCE_TIME_INTERVAL' &&
+                                                                        proposal.key == 'getMaintenanceTimeInterval' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_1'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -116,7 +124,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'ACCOUNT_UPGRADE_COST' &&
+                                                                        proposal.key == 'getAccountUpgradeCost' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_2'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -125,7 +133,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'CREATE_ACCOUNT_FEE' &&
+                                                                        proposal.key == 'getCreateAccountFee' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_3'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -134,7 +142,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'TRANSACTION_FEE' &&
+                                                                        proposal.key == 'getTransactionFee' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_4'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -143,7 +151,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'ASSET_ISSUE_FEE' &&
+                                                                        proposal.key == 'getAssetIssueFee' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_5'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -152,7 +160,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'WITNESS_PAY_PER_BLOCK' &&
+                                                                        proposal.key == 'getWitnessPayPerBlock' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_6'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -161,7 +169,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'WITNESS_STANDBY_ALLOWANCE' &&
+                                                                        proposal.key == 'getWitnessStandbyAllowance' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_7'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -169,7 +177,7 @@ class ProposalDetail extends React.Component {
                                                                             <span>TRX</span></div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT' &&
+                                                                        proposal.key == 'getCreateNewAccountFeeInSystemContract' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_8'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -177,7 +185,7 @@ class ProposalDetail extends React.Component {
                                                                             <span>TRX</span></div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE' &&
+                                                                        proposal.key == 'getCreateNewAccountBandwidthRate' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_9'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -186,20 +194,20 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'ALLOW_CREATION_OF_CONTRACTS' &&
+                                                                        proposal.key == 'getAllowCreationOfContracts' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_10'})}</span>
                                                                             <span className='col-green'>{tu('propose_activate')}</span>
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'REMOVE_THE_POWER_OF_THE_GR' &&
+                                                                        proposal.key == 'getRemoveThePowerOfTheGr' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_11'})}</span>
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'ENERGY_FEE' &&
+                                                                        proposal.key == 'getEnergyFee' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_12'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -207,7 +215,7 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'EXCHANGE_CREATE_FEE' &&
+                                                                        proposal.key == 'getExchangeCreateFee' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_13'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -215,11 +223,63 @@ class ProposalDetail extends React.Component {
                                                                         </div>
                                                                     }
                                                                     {
-                                                                        proposal.key == 'MAX_CPU_TIME_OF_ONE_TX' &&
+                                                                        proposal.key == 'getMaxCpuTimeOfOneTx' &&
                                                                         <div className="proposal-message">
                                                                             <span>{ intl.formatMessage({id: 'propose_14'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                             <span className='col-green'>{proposal.proposalVal} ms</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowUpdateAccountName' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_15'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowSameTokenName' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_16'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowDelegateResource' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_17'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getTotalEnergyLimit' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span className='col-green'>{proposal.proposalVal}</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowTvmTransferTrc10' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_19'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                                                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                                                            }
                                                                         </div>
                                                                     }
                                                                 </td>

@@ -90,7 +90,7 @@ class Footer extends Component {
                                         <HrefLink href="https://twitter.com/tronfoundation"><i className="fab fa-twitter"/></HrefLink>
                                     </li>
                                     <li className="list-inline-item">
-                                        <HrefLink href="mailto:service@tron.network" target="_blank"><i
+                                        <HrefLink href="mailto:feedback@trx.market" target="_blank"><i
                                             className="fa fa-envelope"/></HrefLink>
                                     </li>
                                     <li className="list-inline-item">

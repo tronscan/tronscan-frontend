@@ -920,7 +920,7 @@ export const messages = {
   "my_token": "我发行的通证",
   "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
   "tron_rating": "波场通证信誉评级",
-  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tron.network",
+  "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@trx.market",
   "brief_info": "简介",
   "website_official": "官方网站",
   "white_paper": "白皮书",
@@ -1273,6 +1273,13 @@ export const messages = {
     "propose_12":"提议修改1 energy的费用",
     "propose_13":"提议修改创建交易对的费用",
     "propose_14":"提议修改一条交易的最大执行时间",
+    "propose_15":"提议是否允许更改账户名称",
+    "propose_16":"提议允许通证同名",
+    "propose_17":"提议允许资源委派",
+    "propose_18":"提议修改总Energy上限",
+    "propose_19":"提议允许智能合约转TRC-10的通证",
+    "propose_not_allowed":"不允许",
+    "propose_allowed":"允许",
     "propose_activate":"开启",
     "propose_finished":"已完成",
     "proposal_content_info":"提议内容",
@@ -1297,8 +1304,10 @@ export const messages = {
     "no_holders_found":"无通证持有者",
     "search_TRC20": "搜索地址",
     "beginners_guide":"新手引导",
-    "TRONdice":"TRONdice 即将开启首次分红!",
-    "Join_TRONdice":"-加入 TRONdice!",
-    "search_TRC20_error":"请输入正确的地址"
-
+    "TRONdice":"TRONdice 即将开始首次TRX分红!",
+    "Join_TRONdice":"-开始dice游戏!",
+    "search_TRC20_error":"请输入正确的地址",
+    "dex_announcement":"公告:",
+    "regulations_on_trading_pairs":"交易对管理和规范",
+    "How_to_trade_on_DEX":"DEX交易攻略"
 };

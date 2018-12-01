@@ -2100,7 +2100,7 @@ h5 {
 }
 .exchange-title{
    display: flex;
-   margin-bottom: 10px;
+   margin-bottom: 22px;
    position: relative;
   .beginners-guide{
     font-size: 12px;
@@ -2126,6 +2126,22 @@ h5 {
       margin-left: 5px;
     }
 
+  }
+  .tron-announcement{
+    display: flex;
+    position: absolute;
+    font-size: 12px;
+    color: #666;
+    left: 0px;
+    img{
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin-top: -2px;
+    }
+    div{
+      margin-left: 5px;
+    }
   }
   @media only screen and (max-width: 768px) {
     display: flex;
@@ -2163,6 +2179,46 @@ h5 {
       }
 
     }
+    .tron-announcement{
+      display: flex;
+      position: absolute;
+      font-size: 12px;
+      color: #666;
+      left: 0px;
+      img{
+        width: 18px;
+        height: 18px;
+        display: block;
+        margin-top: -2px;
+      }
+      div{
+        margin-left: 5px;
+      }
+    }
   }
 
+}
+
+.market-title{
+  display: flex;
+  .beginners-guide{
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 2px;
+    color: #999999;
+    a{
+      margin-left: 5px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .beginners-guide{
+      font-size: 12px;
+      margin-top: 4px;
+      color: #999999;
+      transform: scale(0.9);
+      a{
+        margin-left: 5px;
+      }
+    }
+  }
 }
