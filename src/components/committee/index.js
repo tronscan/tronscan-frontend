@@ -44,47 +44,62 @@ class Committee extends React.Component {
         let { tronParameters } = await Client.getChainparameters();
         tronParameters.map(item => {
             switch (item['key']){
-                case "MAINTENANCE_TIME_INTERVAL":
+                case "getMaintenanceTimeInterval":
                     item.name = 'propose_1';
                 break;
-                case "ACCOUNT_UPGRADE_COST":
+                case "getAccountUpgradeCost":
                     item.name = 'propose_2';
                 break;
-                case "CREATE_ACCOUNT_FEE":
+                case "getCreateAccountFee":
                     item.name = 'propose_3';
                 break;
-                case "TRANSACTION_FEE":
+                case "getTransactionFee":
                     item.name = 'propose_4';
                 break;
-                case "ASSET_ISSUE_FEE":
+                case "getAssetIssueFee":
                     item.name = 'propose_5';
                 break;
-                case "WITNESS_PAY_PER_BLOCK":
+                case "getWitnessPayPerBlock":
                     item.name = 'propose_6';
                 break;
-                case "WITNESS_STANDBY_ALLOWANCE":
+                case "getWitnessStandbyAllowance":
                     item.name = 'propose_7';
                 break;
-                case "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT":
+                case "getCreateNewAccountFeeInSystemContract":
                     item.name = 'propose_8';
                 break;
-                case "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE":
+                case "getCreateNewAccountBandwidthRate":
                     item.name = 'propose_9';
                 break;
-                case "ALLOW_CREATION_OF_CONTRACTS":
+                case "getAllowCreationOfContracts":
                     item.name = 'propose_10';
                 break;
-                case "REMOVE_THE_POWER_OF_THE_GR":
+                case "getRemoveThePowerOfTheGr":
                     item.name = 'propose_11';
                 break;
-                case "ENERGY_FEE":
+                case "getEnergyFee":
                     item.name = 'propose_12';
                 break;
-                case "EXCHANGE_CREATE_FEE":
+                case "getExchangeCreateFee":
                     item.name = 'propose_13';
                 break;
-                case "MAX_CPU_TIME_OF_ONE_TX":
+                case "getMaxCpuTimeOfOneTx":
                     item.name = 'propose_14';
+                break;
+                case "getAllowUpdateAccountName":
+                    item.name = 'propose_15';
+                break;
+                case "getAllowSameTokenName":
+                    item.name = 'propose_16';
+                break;
+                case "getAllowDelegateResource":
+                    item.name = 'propose_17';
+                break;
+                case "getTotalEnergyLimit":
+                    item.name = 'propose_18';
+                break;
+                case "getAllowTvmTransferTrc10":
+                    item.name = 'propose_19';
                 break;
 
             }
@@ -126,72 +141,109 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return  <div>
                     {
-                        record.key == 'MAINTENANCE_TIME_INTERVAL' && <div><span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
+                        record.key == 'getMaintenanceTimeInterval' && <div><span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
                             intl.formatMessage({id: "propose_hour"})
                         }</span></div>
                     }
                     {
-                        record.key == 'ACCOUNT_UPGRADE_COST' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getAccountUpgradeCost' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_ACCOUNT_FEE' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getCreateAccountFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'TRANSACTION_FEE' && <div><span className='col-green'>{text}</span> &nbsp;<span>Sun/byte</span></div>
+                        record.key == 'getTransactionFee' && <div><span className='col-green'>{text}</span> &nbsp;<span>Sun/byte</span></div>
                     }
                     {
-                        record.key == 'ASSET_ISSUE_FEE' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getAssetIssueFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'WITNESS_PAY_PER_BLOCK' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getWitnessPayPerBlock' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'WITNESS_STANDBY_ALLOWANCE' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getWitnessStandbyAllowance' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
+                        record.key == 'getCreateNewAccountBandwidthRate' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
                     }
                     {
-                        record.key == 'ALLOW_CREATION_OF_CONTRACTS' && <div>
+                        record.key == 'getAllowCreationOfContracts' && <div>
                             {
                                 <span className='col-green'>{tu('propose_activate')}</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'REMOVE_THE_POWER_OF_THE_GR' && <div>
+                        record.key == 'getRemoveThePowerOfTheGr' && <div>
                             {
                                 <span className='col-green'>{tu('propose_finished')}</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'ENERGY_FEE' && <div>
+                        record.key == 'getEnergyFee' && <div>
                             {
                                 <span className='col-green'>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'EXCHANGE_CREATE_FEE' && <div>
+                        record.key == 'getExchangeCreateFee' && <div>
                             {
                                 <span className='col-green'>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'MAX_CPU_TIME_OF_ONE_TX' && <div>
+                        record.key == 'getMaxCpuTimeOfOneTx' && <div>
                             {
                                 <span className='col-green'>{text} ms</span>
                             }
                         </div>
                     }
+                    {
+                        record.key == 'getAllowUpdateAccountName' && <div>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowSameTokenName' && <div>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowDelegateResource' && <div>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
 
-
-
+                    {
+                        record.key == 'getTotalEnergyLimit' && <div>
+                            {
+                                <span className='col-green'>{text}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowTvmTransferTrc10' && <div>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
 
 
                 </div>

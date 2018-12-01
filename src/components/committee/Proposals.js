@@ -39,20 +39,25 @@ class Proposal extends React.Component {
             start: (page-1) * pageSize,
         });
         let parametersArr = [
-            'MAINTENANCE_TIME_INTERVAL',
-            'ACCOUNT_UPGRADE_COST',
-            'CREATE_ACCOUNT_FEE',
-            'TRANSACTION_FEE',
-            'ASSET_ISSUE_FEE',
-            'WITNESS_PAY_PER_BLOCK',
-            'WITNESS_STANDBY_ALLOWANCE',
-            'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT',
-            'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE',
-            'ALLOW_CREATION_OF_CONTRACTS',
-            'REMOVE_THE_POWER_OF_THE_GR',
-            'ENERGY_FEE',
-            'EXCHANGE_CREATE_FEE',
-            'MAX_CPU_TIME_OF_ONE_TX',
+            'getMaintenanceTimeInterval',
+            'getAccountUpgradeCost',
+            'getCreateAccountFee',
+            'getTransactionFee',
+            'getAssetIssueFee',
+            'getWitnessPayPerBlock',
+            'getWitnessStandbyAllowance',
+            'getCreateNewAccountFeeInSystemContract',
+            'getCreateNewAccountBandwidthRate',
+            'getAllowCreationOfContracts',
+            'getRemoveThePowerOfTheGr',
+            'getEnergyFee',
+            'getExchangeCreateFee',
+            'getMaxCpuTimeOfOneTx',
+            'getAllowUpdateAccountName',
+            'getAllowSameTokenName',
+            'getAllowDelegateResource',
+            'getTotalEnergyLimit',
+            'getAllowTvmTransferTrc10',
         ];
         for(let item in proposal){
             for(let j in proposal[item]['paramters']){
@@ -88,7 +93,7 @@ class Proposal extends React.Component {
             render: (text, record, index) => {
                 return  <div>
                     {
-                        record.key == 'MAINTENANCE_TIME_INTERVAL' &&
+                        record.key == 'getMaintenanceTimeInterval' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_1'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -98,7 +103,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'ACCOUNT_UPGRADE_COST' &&
+                        record.key == 'getAccountUpgradeCost' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_2'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -107,7 +112,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'CREATE_ACCOUNT_FEE' &&
+                        record.key == 'getCreateAccountFee' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_3'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -116,7 +121,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'TRANSACTION_FEE' &&
+                        record.key == 'getTransactionFee' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_4'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -125,7 +130,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'ASSET_ISSUE_FEE' &&
+                        record.key == 'getAssetIssueFee' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_5'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -134,7 +139,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'WITNESS_PAY_PER_BLOCK' &&
+                        record.key == 'getWitnessPayPerBlock' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_6'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -143,7 +148,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'WITNESS_STANDBY_ALLOWANCE' &&
+                        record.key == 'getWitnessStandbyAllowance' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_7'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -151,7 +156,7 @@ class Proposal extends React.Component {
                             <span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT' &&
+                        record.key == 'getCreateNewAccountFeeInSystemContract' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_8'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -159,7 +164,7 @@ class Proposal extends React.Component {
                             <span>TRX</span></div>
                     }
                     {
-                        record.key == 'CREATE_NEW_ACCOUNT_BANDWIDTH_RATE' &&
+                        record.key == 'getCreateNewAccountBandwidthRate' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_9'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -168,20 +173,20 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'ALLOW_CREATION_OF_CONTRACTS' &&
+                        record.key == 'getAllowCreationOfContracts' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_10'})}</span>
                             <span className='col-green'>{tu('propose_activate')}</span>
                         </div>
                     }
                     {
-                        record.key == 'REMOVE_THE_POWER_OF_THE_GR' &&
+                        record.key == 'getRemoveThePowerOfTheGr' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_11'})}</span>
                         </div>
                     }
                     {
-                        record.key == 'ENERGY_FEE' &&
+                        record.key == 'getEnergyFee' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_12'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -189,7 +194,7 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'EXCHANGE_CREATE_FEE' &&
+                        record.key == 'getExchangeCreateFee' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_13'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
@@ -197,15 +202,66 @@ class Proposal extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'MAX_CPU_TIME_OF_ONE_TX' &&
+                        record.key == 'getMaxCpuTimeOfOneTx' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_14'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             <span className='col-green'>{text} ms</span>
                         </div>
                     }
+                    {
+                        record.key == 'getAllowUpdateAccountName' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_15'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowSameTokenName' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_16'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowDelegateResource' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_17'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyLimit' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            <span className='col-green'>{text}</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowTvmTransferTrc10' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_19'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
+                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
                 </div>
-
             }
         },
         {
