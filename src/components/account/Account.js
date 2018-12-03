@@ -12,7 +12,7 @@ import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, ExternalLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {IS_TESTNET, ONE_TRX, API_URL} from "../../constants";
-import {Client} from "../../services/api";
+import {Client, tronWeb} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {login} from "../../actions/app";
 import ApplyForDelegate from "./ApplyForDelegate";
@@ -119,16 +119,7 @@ class Account extends Component {
   async getTRC20Tokens(){
       let {account} = this.props;
       const privateKey = account.key;
-      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      const fullNode = new HttpProvider('https://api.trongrid.io'); // Full node http endpoint
-      const solidityNode = new HttpProvider('https://api.trongrid.io'); // Solidity node http endpoint
-      const eventServer = 'https://api.trongrid.io/'; // Contract events http endpoint
-      const tronWeb = new TronWeb(
-          fullNode,
-          solidityNode,
-          eventServer,
-          privateKey
-      );
+      tronWeb.setPrivateKey(account.key);
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       if(tronWeb.eventServer){
@@ -137,7 +128,7 @@ class Account extends Component {
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
-
+                  item.token20_balance = 0;
               }else{
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
               }
@@ -153,7 +144,7 @@ class Account extends Component {
     if(hideSmallCurrency){
         tokens20 = _(tokens20)
             .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
-            .filter(tb => tb.token20_balance > 10)
+            .filter(tb => tb.token20_balance >= 10)
             .sortBy(tb => tb.token20_name)
             .value();
     }else{
@@ -171,7 +162,6 @@ class Account extends Component {
           </div>
       );
     }
-
     return (
         <table className="table mt-3 temp-table">
           <thead className="thead-light">
@@ -188,7 +178,7 @@ class Account extends Component {
                     <TokenTRC20Link name={token.name} address={token.contract_address} namePlus={token.name + ' (' + token.symbol + ')'} />
                   </td>
                   <td className="text-right">
-                    <FormattedNumber value={token.token20_balance}/>
+                    <FormattedNumber value={token.token20_balance} maximumFractionDigits={token.decimals}/>
                   </td>
                 </tr>
             ))
@@ -205,7 +195,7 @@ class Account extends Component {
         if(hideSmallCurrency){
             tokenBalances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
-                .filter(tb => tb.balance > 10)
+                .filter(tb => tb.balance >= 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
