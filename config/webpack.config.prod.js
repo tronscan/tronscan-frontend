@@ -168,6 +168,7 @@ module.exports = {
                 "transform-class-properties",
                 "transform-async-to-generator",
                 "transform-object-rest-spread",
+                "transform-decorators-legacy",
                 ['import', [{ libraryName: "antd", style: 'css' }]]
               ],
               presets: [

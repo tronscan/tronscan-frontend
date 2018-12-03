@@ -8,7 +8,8 @@ import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import _ from "lodash";
 
-export  class TokenBalances extends React.Component {
+@injectIntl
+export class TokenBalances extends React.Component {
 
     constructor(props) {
         super(props);
@@ -119,5 +120,3 @@ export  class TokenBalances extends React.Component {
         )
     }
 }
-
-export default injectIntl(TokenBalances)

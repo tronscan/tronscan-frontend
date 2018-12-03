@@ -19,9 +19,19 @@ import {LineReactHighChartTx, LineReactHighChartAdd} from "../common/LineCharts"
 import {channel} from "../../services/api";
 import {API_URL} from "../../constants";
 
-const subDays = require("date-fns/sub_days");
-
-class Home extends Component {
+@connect(
+  state => (
+    {
+      blocks: state.blockchain.blocks,
+      account: state.app.account,
+      theme: state.app.theme,
+      activeLanguage: state.app.activeLanguage
+    }
+  ),
+)
+@withTimers
+@injectIntl
+export default class Home extends Component {
 
   constructor() {
     super();
@@ -150,23 +160,21 @@ class Home extends Component {
     // }, 6000);
   }
 
-
-
   componentWillUnmount() {
     //clearConstellations();
     this.listener && this.listener.close();
   }
 
   reconnect() {
-      this.listener && this.listener.close();
-      this.listener = channel("/tronblock",{ forceNew:true });
-      this.listener.on("tron-block", info => {
-          this.setState({
-              maxTps:info.maxTps,
-              tps:info.tps,
-              blockHeight:info.maxBlock,
-          })
-      });
+    this.listener && this.listener.close();
+    this.listener = channel("/tronblock", {forceNew: true});
+    this.listener.on("tron-block", info => {
+      this.setState({
+        maxTps: info.maxTps,
+        tps: info.tps,
+        blockHeight: info.maxBlock,
+      })
+    });
   }
 
   getLogo = () => {
@@ -348,18 +356,4 @@ const styles = {
     border: 'none',
     borderRadius: 0
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    blocks: state.blockchain.blocks,
-    account: state.app.account,
-    theme: state.app.theme,
-    activeLanguage: state.app.activeLanguage
-  };
-}
-
-const mapDispatchToProps = {};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(Home)))
+};

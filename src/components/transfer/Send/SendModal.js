@@ -6,7 +6,13 @@ import SendForm from "./SendForm";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 
-class SendModal extends React.PureComponent {
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+  })
+)
+export default class SendModal extends React.PureComponent {
 
   constructor({isOpen = false, to = ""}) {
     super();
@@ -55,14 +61,3 @@ class SendModal extends React.PureComponent {
     return modal;
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-  };
-}
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SendModal)

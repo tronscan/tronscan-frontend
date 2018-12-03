@@ -48,6 +48,7 @@ import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
 import {Redirect} from "react-router-dom";
+import {LedgerComponent} from "./hw/ledger/LedgerComponent";
 
 export const routes = [
   {
@@ -459,6 +460,14 @@ export const routes = [
     showSubMenu: false,
     showSubHeader: false,
     component: DemoAsync,
+  },
+  {
+    path: "/hw",
+    label: "hardware",
+    showInMenu: true,
+    showSubMenu: false,
+    showSubHeader: false,
+    component: LedgerComponent,
   },
   {
     path: "/",

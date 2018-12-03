@@ -16,8 +16,23 @@ import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {Select} from 'antd';
+import {withTronWeb} from "../../../utils/tronWeb";
+
 const { Option, OptGroup } = Select;
-class SendForm extends React.Component {
+
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+  }),
+  {
+    login,
+    reloadWallet,
+  }
+)
+@injectIntl
+@withTronWeb
+export default class SendForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,15 +57,7 @@ class SendForm extends React.Component {
   isValid = () => {
     let {to, token, amount, privateKey} = this.state;
     let {account} = this.props;
-    /*
-       if (!privateKey || privateKey.length !== 64) {
-         return false;
-       }
 
-      if(privateKey && privateKey.length === 64 && pkToAddress(privateKey) !== account.address){
-         return false;
-       }
-    */
     return isAddressValid(to) && token !== "" && this.getSelectedTokenBalance() >= amount && amount > 0 && to !== account.address;
   };
 
@@ -63,23 +70,45 @@ class SendForm extends React.Component {
 
     this.setState({isLoading: true, modal: null});
 
-    if (token === "TRX") {
-      amount = amount * ONE_TRX;
-    }
+    try {
 
-    let {success} = await Client.sendWithNote(token, account.address, to, amount, note)(account.key);
+      let success = false;
 
-    if (success) {
-      this.refreshTokenBalances();
+      if (token === "TRX") {
+        const { result } = await this.props.tronWeb().trx.sendTrx(to, amount * ONE_TRX, {
+          address: account.address,
+        });
 
-      onSend && onSend();
-      //two work flows!
+        success = result;
+      } else {
+        const { result } = await this.props.tronWeb().trx.sendToken(to, amount, token, {
+          address: account.address,
+        });
+        success = result;
+      }
 
-      this.setState({
-        sendStatus: 'success',
-        isLoading: false,
-      });
-    } else {
+      if (success) {
+        this.refreshTokenBalances();
+
+        onSend && onSend();
+
+        this.setState({
+          sendStatus: 'success',
+          isLoading: false,
+        });
+      } else {
+        this.setState({
+          sendStatus: 'failure',
+          isLoading: false,
+        });
+
+        setTimeout(() => {
+          this.setState({
+            sendStatus: 'waiting',
+          });
+        }, 2000);
+      }
+    } catch(e) {
       this.setState({
         sendStatus: 'failure',
         isLoading: false,
@@ -91,6 +120,7 @@ class SendForm extends React.Component {
         });
       }, 2000);
     }
+
   };
 
   confirmSend = () => {
@@ -315,19 +345,6 @@ class SendForm extends React.Component {
                   ))
                 }
               </select>
-              {/*<Select*/}
-                  {/*defaultValue="lucy"*/}
-                  {/*style={{ width: 200 }}*/}
-                  {/*onChange={(ev) => this.setState({token: ev.target.value})}*/}
-              {/*>*/}
-                {/*<OptGroup label="Manager">*/}
-                  {/*<Option value="jack">Jack</Option>*/}
-                  {/*<Option value="lucy">Lucy</Option>*/}
-                {/*</OptGroup>*/}
-                {/*<OptGroup label="Engineer">*/}
-                  {/*<Option value="Yiminghe">yiminghe</Option>*/}
-                {/*</OptGroup>*/}
-              {/*</Select>*/}
             </div>
           </div>
           <div className="form-group">
@@ -352,36 +369,22 @@ class SendForm extends React.Component {
             </div>
           </div>
 
-          <div className="form-group">
-            <label>{tu("note")}</label>
-            <div className="input-group mb-3">
-            <textarea
-                onChange={(ev) => this.setNote(ev.target.value)}
-                className={"form-control"}
-                value={note}
-            />
-              <div className="invalid-feedback">
-                {tu("fill_a_valid_address")}
-                {/* tu("invalid_address") */}
-              </div>
-            </div>
-          </div>
+          {/*<div className="form-group">*/}
+            {/*<label>{tu("note")}</label>*/}
+            {/*<div className="input-group mb-3">*/}
+            {/*<textarea*/}
+                {/*onChange={(ev) => this.setNote(ev.target.value)}*/}
+                {/*className={"form-control"}*/}
+                {/*value={note}*/}
+            {/*/>*/}
+              {/*<div className="invalid-feedback">*/}
+                {/*{tu("fill_a_valid_address")}*/}
+                {/*/!* tu("invalid_address") *!/*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
           {this.renderFooter()}
         </form>
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-  };
-}
-
-const mapDispatchToProps = {
-  login,
-  reloadWallet,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SendForm))
