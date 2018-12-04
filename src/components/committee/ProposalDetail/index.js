@@ -57,7 +57,6 @@ class ProposalDetail extends React.Component {
             proposal: data,
             loading: false,
         })
-        console.log('proposal',this.state.proposal)
     }
 
 

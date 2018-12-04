@@ -34,7 +34,7 @@ export  class TokenBalances extends React.Component {
         if(hideSmallCurrency){
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
-                .filter(tb => tb.balance > 10)
+                .filter(tb => tb.balance >= 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
