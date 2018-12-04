@@ -20,20 +20,20 @@ export default function Contract({ contract }) {
           </div>
           <table className="table">
             <tbody>
-            <Field label="From">
-              {TronWeb.address.fromHex(contractParams.owner_address)}
-            </Field>
-            <Field label="To">
-              {TronWeb.address.fromHex(contractParams.to_address)}
-            </Field>
-            <Field label="To Name">
-              <AccountName
-                address={TronWeb.address.fromHex(contractParams.to_address)}
-                loading={() => <span>Loading...</span>} />
-            </Field>
-            <Field label="Amount">
-              <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
-            </Field>
+              <Field label="From">
+                {TronWeb.address.fromHex(contractParams.owner_address)}
+              </Field>
+              <Field label="To">
+                {TronWeb.address.fromHex(contractParams.to_address)}
+              </Field>
+              <Field label="To Name">
+                <AccountName
+                  address={TronWeb.address.fromHex(contractParams.to_address)}
+                  loading={() => <span>Loading...</span>} />
+              </Field>
+              <Field label="Amount">
+                <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
+              </Field>
             </tbody>
           </table>
         </Fragment>
@@ -75,7 +75,9 @@ export default function Contract({ contract }) {
             <h5 className="card-title text-center">Apply for Super Representative</h5>
           </div>
           <table className="table">
-            <Field label="URL">{TronWeb.toUtf8(contractParams.url)}</Field>
+            <tbody>
+              <Field label="URL">{TronWeb.toUtf8(contractParams.url)}</Field>
+            </tbody>
           </table>
         </Fragment>
       );
@@ -103,7 +105,6 @@ export default function Contract({ contract }) {
             <h5 className="card-title text-center">Issue Token</h5>
           </div>
           <table className="table">
-            {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
             <Field label="Token Name">{contractParams.name}</Field>
             <Field label="Total Supply">{contractParams.totalSupply}</Field>
             <Field label="TRX Amount">{contractParams.trxNum}</Field>

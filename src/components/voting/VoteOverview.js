@@ -19,6 +19,7 @@ import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteTimer} from "../../actions/votes";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {withTronWeb} from "../../utils/tronWeb";
 
 
 
@@ -65,6 +66,7 @@ function VoteChange({value, arrow = false}) {
   }
 )
 @withTimers
+@withTronWeb
 @injectIntl
 export default class VoteOverview extends React.Component {
 
@@ -383,9 +385,9 @@ export default class VoteOverview extends React.Component {
 
     const tronWeb = this.props.tronWeb();
 
-    const voteTransaction = tronWeb.vote(witnessVotes, currentWallet.address);
-    const signedTransaction = await tronWeb.sign(voteTransaction);
-    const {result} = await tronWeb.sendRawTransaction(signedTransaction);
+    const voteTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, currentWallet.address);
+    const signedTransaction = await tronWeb.trx.sign(voteTransaction);
+    const {result} = await tronWeb.trx.sendRawTransaction(signedTransaction);
 
 
     if (result) {

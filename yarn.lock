@@ -84,9 +84,9 @@
   dependencies:
     events "^3.0.0"
 
-"@tronscan/client@^0.2.27":
-  version "0.2.27"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.27.tgz#60fee4787ccf60b2bfa05a91c0616283e1247191"
+"@tronscan/client@^0.2.28":
+  version "0.2.28"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.28.tgz#ef5a9f9ff1a6984f70e96ba5a715dc9fd6c11712"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"

@@ -16,6 +16,7 @@ import {withTronWeb} from "../../utils/tronWeb";
     account: state.app.account,
     tokenBalances: state.account.tokens,
     trxBalance: state.account.trxBalance,
+    wallet: state.app.wallet,
   }),
   {
     reloadWallet
@@ -86,7 +87,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
     let {amount,selectedResource} = this.state;
     this.setState({loading: true});
 
-    let {result} = await this.props.tronWeb().freezeBalance(amount * ONE_TRX, 3, selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
+    let {result} = await this.props.tronWeb().trx.freezeBalance(amount * ONE_TRX, 3, selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
       address: wallet.address,
     });
 
@@ -109,6 +110,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     let {amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
+    console.log(resources);
 
     let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
     return (
@@ -134,15 +136,13 @@ export default class FreezeBalanceModal extends React.PureComponent {
               </div>
               <div className="form-group">
                 <select className="custom-select"
-                  value={selectedResource}
-                  onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
-                    {
-                        resources.map((resource, index) => {
-                            return (
-                                <option key={index} value={resource.value}>{t(resource.label)}</option>
-                            )
-                        })
-                    }
+                        value={selectedResource}
+                        onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
+                  {
+                    resources.map(resource => (
+                      <option key={resource.value} value={resource.value}>{intl.formatMessage({ id: resource.label })}</option>
+                    ))
+                  }
                 </select>
               </div>
               <div className="form-check">

@@ -79,12 +79,12 @@ export default class Account extends Component {
   }
 
   componentDidMount() {
-      let {account} = this.props;
-      if (account.isLoggedIn) {
-          this.reloadTokens();
-          this.loadAccount();
-          this.getTRC20Tokens();
-      }
+    let {account} = this.props;
+    if (account.isLoggedIn) {
+      this.reloadTokens();
+      this.loadAccount();
+      this.getTRC20Tokens();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -133,26 +133,31 @@ export default class Account extends Component {
 
   async getTRC20Tokens() {
     let {account} = this.props;
-    const tronWeb = this.props.tronWeb();
-    let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
-    let tokens20 = result.data.trc20_tokens;
-    if (tronWeb.eventServer) {
-      for (const item of tokens20) {
-        item.token20_name = `${item.name}(${item.symbol})`;
-        let contractInstance = await tronWeb.contract().at(item.contract_address);
-        let balanceData = await contractInstance.balanceOf(account.address).call();
-        if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
+    try {
 
-        } else {
-          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+      const tronWeb = this.props.tronWeb();
+      let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let tokens20 = result.data.trc20_tokens;
+      if (tronWeb.eventServer) {
+        for (const item of tokens20) {
+          item.token20_name = `${item.name}(${item.symbol})`;
+          let contractInstance = await tronWeb.contract().at(item.contract_address);
+          let balanceData = await contractInstance.balanceOf(account.address).call();
+          if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
+
+          } else {
+            item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+          }
         }
+
+        this.setState({
+          tokens20,
+        });
       }
 
-      this.setState({
-        tokens20,
-      });
+    } catch(e) {
+      console.error(e);
     }
-
   }
 
    renderTRC20Tokens() {
@@ -478,7 +483,11 @@ export default class Account extends Component {
   };
 
   showUnfreezeModal = async () => {
-    let {privateKey,selectedResource,resources} = this.state;
+    let {selectedResource,resources} = this.state;
+    let {intl} = this.props;
+
+    console.log("resources", resources);
+
     this.setState({
       modal: (
           <SweetAlert
@@ -501,11 +510,9 @@ export default class Account extends Component {
                         value={selectedResource}
                         onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
                     {
-                        resources.map((resource, index) => {
-                            return (
-                                <option key={index} value={resource.value}>{t(resource.label)}</option>
-                            )
-                        })
+                        resources.map(resource => (
+                          <option key={resource.value} value={resource.value}>{intl.formatMessage({ id: resource.label })}</option>
+                        ))
                     }
                 </select>
               </div>
@@ -560,12 +567,12 @@ export default class Account extends Component {
   };
 
   unfreeze = async () => {
-    let {wallet} = this.props;
+    let {currentWallet} = this.props;
     let {selectedResource} = this.state;
     this.hideModal();
 
-    let {result} = await this.props.tronWeb().unfreezeBalance(selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
-      address: wallet.address,
+    let {result} = await this.props.tronWeb().trx.unfreezeBalance(selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
+      address: currentWallet.address,
     });
 
     if (result) {
@@ -632,7 +639,7 @@ export default class Account extends Component {
   updateName = async (name) => {
     let {wallet} = this.props;
 
-    let {result} = await this.props.tronWeb().updateAccount(name, {
+    let {result} = await this.props.tronWeb().trx.updateAccount(name, {
       address: wallet.address,
     });
 
@@ -956,19 +963,19 @@ export default class Account extends Component {
 
   toissuedAsset = () => {
     window.location.hash = "#/myToken";
-  }
+  };
 
   handleSwitch = (val) => {
       this.setState({hideSmallCurrency: val});
-  }
+  };
 
   handleTRC10Token = () => {
       this.setState({tokenTRC10: true});
-  }
+  };
 
   handleTRC20Token = () => {
       this.setState({tokenTRC10: false});
-  }
+  };
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency,tokenTRC10} = this.state;
@@ -990,7 +997,7 @@ export default class Account extends Component {
     }
 
     let hasFrozen = frozen.balances.length > 0;
-    let hasResourceFrozen =  accountResource.frozen_balance > 0
+    let hasResourceFrozen =  accountResource.frozen_balance > 0;
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
