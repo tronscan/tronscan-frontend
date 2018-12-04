@@ -1316,7 +1316,7 @@ export const messages = {
   "no_holders_found":"No Token Holders Found",
   "search_TRC20": "Search Address",
   "beginners_guide":"Beginner's guide",
-  "TRONdice":"TTRONdice Play the game and get dice coin; hold dice coin and get TRX dividend!",
+  "TRONdice":"TRONdice Play the game and get dice coin; hold dice coin and get TRX dividend!",
   "Join_TRONdice":"-Join TRONdice!",
   "search_TRC20_error":" Please enter the correct address",
   "dex_announcement":"notice:",
