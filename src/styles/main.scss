@@ -910,6 +910,66 @@ and (max-device-width : 1024px){
     display: none;
   }
 }
+.about{
+  p{
+    margin:0;
+    padding:0;
+  }
+  .about_item{
+    text-align: center;
+    font-size: 14px;
+    color: #333333;
+    padding:50px 100px;
+    h4{
+      font-size: 20px;
+      color: #333333;
+    }
+    &:first-child{
+      border-bottom: 1px solid #eee;
+    }
+    &:last-child{
+      border-top: 1px solid #eee;
+    }
+    .about_img_list{
+      margin-top:30px;
+      .img_box{
+        position: relative;
+        overflow: hidden;
+        &:hover{
+          .img_desc{
+            height:80px;
+          }  
+        }
+        .img_item{
+          width:280px;
+          height:280px;
+          margin:20px auto 0;
+          display: block;
+        }
+        .img_desc{
+          position: absolute;
+          bottom:0;
+          left:0;
+          right:0;
+          margin: auto;
+          background: rgba(0,0,0,0.60);
+          border-radius: 0 0 2px 2px;
+          width:280px;
+          color:#fff;
+          font-size: 16px;
+          line-height:34px;
+          transition:height 0.3s;
+          overflow: hidden;
+          height:34px;
+          .desc_none{
+            font-size:12px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .token-cards:hover {

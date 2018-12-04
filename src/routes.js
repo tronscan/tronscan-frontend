@@ -1,5 +1,5 @@
 import React from "react";
-import {filter, flatten} from "lodash";
+import { filter, flatten } from "lodash";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
 import Address from "./components/addresses/Address";
@@ -23,6 +23,7 @@ import {
   MyTokenAsync,
   TRONRatingAsync,
   CopyrightAsync,
+  AboutAsync,
   LedgerHelpAsync,
   TokenOverviewAsync,
   TokenListAsync,
@@ -47,53 +48,52 @@ import Exchange from "./components/exchange/index";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export const routes = [
   {
     path: "/blockchain",
     label: "blockchain",
-    icon: 'fa fa-link',
-    component: () => <Redirect to="/blockchain/blocks"/>,
+    icon: "fa fa-link",
+    component: () => <Redirect to="/blockchain/blocks" />,
     routes: [
       {
-          label: "nodes",
-          icon: 'fa fa-server',
-          path: "/blockchain/nodes",
-          component: NodesAsync,
+        label: "nodes",
+        icon: "fa fa-server",
+        path: "/blockchain/nodes",
+        component: NodesAsync
       },
       {
         path: "/blockchain/blocks",
         label: "blocks",
-        icon: 'fa fa-cubes',
-        component: Blocks,
+        icon: "fa fa-cubes",
+        component: Blocks
       },
       {
-        icon: 'fas fa-handshake',
+        icon: "fas fa-handshake",
         path: "/blockchain/transactions",
         label: "transactions",
         component: Transactions
       },
       {
-        icon: 'fas fa-handshake',
+        icon: "fas fa-handshake",
         path: "/blockchain/transactions/:date",
         label: "daily_transactions",
         component: Transactions,
         showInMenu: false
       },
       {
-        icon: 'fa fa-exchange-alt',
+        icon: "fa fa-exchange-alt",
         path: "/blockchain/transfers",
         label: "transfers",
-        component: Transfers,
+        component: Transfers
       },
       {
         path: "/blockchain/accounts",
         label: "accounts",
         icon: "fa fa-users",
-        component: AccountsAsync,
-      },
-      // {
+        component: AccountsAsync
+      }, // {
       //   path: "/blockchain/contracts",
       //   label: "Verified_contracts",
       //   icon: "fa fa-file",
@@ -118,8 +118,7 @@ export const routes = [
         path: "/blockchain/live",
         component: LiveAsync,
         showInMenu: false
-      },
-      // {
+      }, // {
       //   label: "inter_tnxl",
       //   icon: `fa fa-random`,
       //   path: "/blockchain/ContractInter",
@@ -130,62 +129,54 @@ export const routes = [
         path: "/blockchain/foundation",
         label: "foundation",
         icon: "fa fa-address-book",
-        component: FoundationAsync,
+        component: FoundationAsync
       }
     ]
   },
   {
-        path: "/contracts",
+    path: "/contracts",
+    label: "contracts",
+    icon: "fa fa-file-contract",
+    component: () => <Redirect to="/contracts/contracts" />,
+    routes: [
+      {
         label: "contracts",
-        icon: 'fa fa-file-contract',
-        component: () => <Redirect to="/contracts/contracts"/>,
-        routes: [
-            {
-                label: "contracts",
-                icon: 'fa fa-file',
-                path: "/contracts/contracts",
-                component: Contracts,
-            },
-            {
-                path: "/contracts/contract-triggers",
-                label: "trigger",
-                icon: 'fa fa-users-cog',
-                component: ContractTrans,
-            }
-
-        ]
-    },
-
-
-  {
-    path: "/block/:id",
-    label: "block",
-    component: Block,
-    showInMenu: false,
+        icon: "fa fa-file",
+        path: "/contracts/contracts",
+        component: Contracts
+      },
+      {
+        path: "/contracts/contract-triggers",
+        label: "trigger",
+        icon: "fa fa-users-cog",
+        component: ContractTrans
+      }
+    ]
   },
+  { path: "/block/:id", label: "block", component: Block, showInMenu: false },
   {
     path: "/transaction/:hash",
     label: "transaction",
     component: Transaction,
-    showInMenu: false,
+    showInMenu: false
   },
   {
     path: "/address/:id",
     label: "address",
     component: Address,
-    showInMenu: false,
+    showInMenu: false
   },
   {
     path: "/representative/:id",
     label: "representative",
     component: Representative,
-    showInMenu: false,
+    showInMenu: false
   },
   {
-      path: "/contract/:id",
-      label: "contract",
-      component: SmartContract,
-      showInMenu: false,
+    path: "/contract/:id",
+    label: "contract",
+    component: SmartContract,
+    showInMenu: false
   },
   {
     path: "/tokens",
@@ -194,28 +185,28 @@ export const routes = [
     component: TokenOverviewAsync,
     routes: [
       {
-          label: "overview_TRC20",
-          path: "/tokens/trc20",
-          icon: 'fas fa-table',
-          component: TokenTRC20ListAsync
+        label: "overview_TRC20",
+        path: "/tokens/trc20",
+        icon: "fas fa-table",
+        component: TokenTRC20ListAsync
       },
-      '-',
+      "-",
       {
         label: "overview_TRC10",
         path: "/tokens/list",
-        icon: 'fa fa-list',
+        icon: "fa fa-list",
         component: TokenListAsync
       },
       {
         label: "participate",
         path: "/tokens/view",
-        icon: 'fas fa-coins',
+        icon: "fas fa-coins",
         component: TokenOverviewAsync
       },
       {
         label: "create",
         path: "/tokens/create",
-        icon: 'fa fa-plus-square',
+        icon: "fa fa-plus-square",
         component: TokensCreateAsync
       }
     ]
@@ -224,13 +215,13 @@ export const routes = [
     path: "/token/:name/:address",
     label: "token",
     component: TokenDetailAsync,
-    showInMenu: false,
+    showInMenu: false
   },
   {
     path: "/token20/:name/:address",
     label: "token",
     component: Token20DetailAsync,
-    showInMenu: false,
+    showInMenu: false
   },
   {
     label: "update_token",
@@ -247,68 +238,65 @@ export const routes = [
   {
     label: "dex",
     path: "/exchange",
-    icon: 'fas fa-exchange-alt',
+    icon: "fas fa-exchange-alt",
     component: Exchange
   },
-
   {
-      label: "TRONSR",
-      path: "/sr",
-      icon: "fas fa-chess-queen",
-      component: RepresentativesAsync,
-      routes: [
-          {
-              label: "representatives",
-              path: "/sr/representatives",
-              icon: "fa fa-rocket",
-              component: RepresentativesAsync
-          },
-          {
-              label: "votes",
-              path: "/sr/votes",
-              icon: 'fas fa-comment',
-              component: VoteOverviewAsync
-          },
-          {
-              label: "committee",
-              path: "/sr/committee",
-              icon: 'fas fa-users',
-              component: Committee
-          },
-
-      ]
+    label: "TRONSR",
+    path: "/sr",
+    icon: "fas fa-chess-queen",
+    component: RepresentativesAsync,
+    routes: [
+      {
+        label: "representatives",
+        path: "/sr/representatives",
+        icon: "fa fa-rocket",
+        component: RepresentativesAsync
+      },
+      {
+        label: "votes",
+        path: "/sr/votes",
+        icon: "fas fa-comment",
+        component: VoteOverviewAsync
+      },
+      {
+        label: "committee",
+        path: "/sr/committee",
+        icon: "fas fa-users",
+        component: Committee
+      }
+    ]
   },
-
   {
     path: "/votes-live",
     label: "live",
-    icon: 'fas fa-comment',
+    icon: "fas fa-comment",
     component: VoteLiveAsync,
+    showInMenu: false
+  },
+  {
+    path: "/account",
+    label: "account",
     showInMenu: false,
+    component: AccountAsync
   },
   {
-      path: "/account",
-      label: "account",
-      showInMenu: false,
-      component: AccountAsync,
+    path: "/proposals",
+    label: "commission_proposed",
+    component: Proposals,
+    showInMenu: false
   },
   {
-      path: "/proposals",
-      label: "commission_proposed",
-      component: Proposals,
-      showInMenu: false,
+    path: "/proposal/:id",
+    label: "commission_proposed",
+    component: ProposalDetailAsync,
+    showInMenu: false
   },
   {
-      path: "/proposal/:id",
-      label: "commission_proposed",
-      component:ProposalDetailAsync,
-      showInMenu: false,
-  },
-  {
-      path: "/tools",
-      label: "tools",
-      icon: "fa fa-wrench",
-      routes: [
+    path: "/tools",
+    label: "tools",
+    icon: "fa fa-wrench",
+    routes: [
       // {
       //   label: "verify_contract_code",
       //   path: "/tools/verify-contract-code",
@@ -319,19 +307,19 @@ export const routes = [
         label: "transaction_viewer",
         path: "/tools/transaction-viewer",
         icon: "fa fa-eye",
-        component: TransactionViewerAsync,
+        component: TransactionViewerAsync
       },
       {
         label: "node_tester",
         path: "/tools/node-tester",
         icon: "fa fa-server",
-        component: NodeTesterAsync,
+        component: NodeTesterAsync
       },
       {
         label: "tron_convert_tool",
         path: "/tools/tron-convert-tool",
         icon: "fa fa-random",
-        component: TronConvertToolAsync,
+        component: TronConvertToolAsync
       },
       {
         path: "/tools/system",
@@ -362,17 +350,17 @@ export const routes = [
     icon: "fa fa-question",
     component: null,
     routes: [
-      'TRON',
+      "TRON",
       {
         url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
-        label: "what_is_tron",
+        label: "what_is_tron"
       },
-      '-',
-      'Tronscan',
+      "-",
+      "Tronscan",
       {
         label: "frequently_asked_questions",
         component: FaqAsync,
-        path: "/help/faq",
+        path: "/help/faq"
       },
       {
         label: "copyright",
@@ -381,45 +369,40 @@ export const routes = [
         showInMenu: false
       },
       {
+        label: "about",
+        component: AboutAsync,
+        path: "/help/about",
+        showInMenu: false
+      },
+      {
         label: "ledger_guide",
         component: LedgerHelpAsync,
-        path: "/help/ledger",
+        path: "/help/ledger"
       },
-      {
-        url: "https://t.me/tronscan",
-        label: "telegram_updates",
-      },
-
-      '-',
+      { url: "https://t.me/tronscan", label: "telegram_updates" },
+      "-",
       "Community",
-      {
-        url: "https://www.reddit.com/r/tronix",
-        label: "reddit",
-      },
-      {
-        url: "https://t.me/tronscantalk",
-        label: "telegram",
-      },
-      '-',
+      { url: "https://www.reddit.com/r/tronix", label: "reddit" },
+      { url: "https://t.me/tronscantalk", label: "telegram" },
+      "-",
       "Development",
+      { url: "https://api.tronscan.org", label: "tron_explorer_api" },
       {
-        url: "https://api.tronscan.org",
-        label: "tron_explorer_api"
+        url:
+          "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",
+        label: "tron_architechure"
       },
       {
-        url: "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",
-        label: "tron_architechure",
+        url:
+          "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
+        label: "tron_protobuf_doc"
       },
-      {
-        url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
-        label: "tron_protobuf_doc",
-      },
-      '-',
+      "-",
       "Feedback",
       {
         url: "https://github.com/tronscan/tronscan-frontend/issues/new",
-        label: "report_an_error",
-      },
+        label: "report_an_error"
+      }
     ]
   },
   {
@@ -430,8 +413,7 @@ export const routes = [
       {
         path: "/markets",
         label: "markets",
-        icon: "fa fa-chart-line",
-       // component: MarketsAsync
+        icon: "fa fa-chart-line", // component: MarketsAsync
         enurl: "https://coinmarketcap.com/currencies/tron/",
         zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
         linkHref: true
@@ -443,14 +425,14 @@ export const routes = [
         enurl: "https://tron.network/exchangesList?lng=en",
         zhurl: "https://tron.network/exchangesList?lng=zh",
         linkHref: true
-      },
+      }
     ]
   },
   {
     path: "/wallet/new",
     label: "wallet",
     showInMenu: false,
-    component: WalletWizardAsync,
+    component: WalletWizardAsync
   },
   {
     path: "/demo",
@@ -458,7 +440,7 @@ export const routes = [
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
-    component: DemoAsync,
+    component: DemoAsync
   },
   {
     path: "/",
@@ -466,9 +448,10 @@ export const routes = [
     showInMenu: false,
     showSubMenu: false,
     showSubHeader: false,
-    component: Home,
-  },
-
+    component: Home
+  }
 ];
 
-export const flatRoutes = flatten(routes.map(route => [...(route.routes || []), route]));
+export const flatRoutes = flatten(
+  routes.map(route => [...(route.routes || []), route])
+);
