@@ -435,15 +435,6 @@ class Navigation extends PureComponent {
                   {/*Login with Private Key*/}
                   <li className="px-3 py-3">
                       <div className="text-center">
-                        <label>{tu("ledger")}</label>
-                      </div>
-                      <button className="btn btn-danger btn-block mt-3"
-                              onClick={this.loginWithLedger}>
-                        {tu("open_ledger")}
-                      </button>
-                    </li>
-                  <li className="px-3 py-3">
-                      <div className="text-center">
                         <label>{tu("private_key")}</label>
                         <input
                             type="text"
@@ -469,6 +460,16 @@ class Navigation extends PureComponent {
                                accept=".txt"/>
                       </div>
 
+                    </li>
+                    {/*Login with Ledger*/}
+                    <li className="px-3 py-3">
+                      <div className="text-center">
+                        <label>{tu("ledger")}</label>
+                      </div>
+                      <button className="btn btn-danger btn-block mt-3"
+                              onClick={this.loginWithLedger}>
+                        {tu("open_ledger")}
+                      </button>
                     </li>
                     {/* <li className="dropdown-divider blod"/> */}
                     {

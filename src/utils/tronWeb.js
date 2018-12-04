@@ -9,6 +9,7 @@ import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {PulseLoader} from "react-spinners";
 import Contract from "../hw/ledger/TransactionConfirmation";
+import {ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY} from "../constants";
 
 
 export function withTronWeb(InnerComponent) {
@@ -40,38 +41,52 @@ export function withTronWeb(InnerComponent) {
     };
 
     buildTransactionSigner(tronWeb) {
-      const { account } = this.props;
+      const { account, wallet } = this.props;
 
       return async (transaction) => {
 
+        if (!wallet.isOpen) {
+          throw new Error("wallet is not open");
+        }
+
         try {
 
-          this.setState({
-            modal: await this.buildModal(transaction)
-          });
+         switch (wallet.type) {
+           case ACCOUNT_LEDGER:
 
-          try {
+             this.setState({
+               modal: await this.buildModal(transaction)
+             });
 
-            const transactionObj = transactionJsonToProtoBuf(transaction);
-            const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
-            let raw = transactionObj.getRawData();
-            const contractObj = raw.getContractList()[0];
-            let contractType = contractObj.getType();
+             try {
 
-            const ledgerBridge = new LedgerBridge();
+               const transactionObj = transactionJsonToProtoBuf(transaction);
+               const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
+               let raw = transactionObj.getRawData();
+               const contractObj = raw.getContractList()[0];
+               let contractType = contractObj.getType();
 
-            const signedResponse = await ledgerBridge.signTransaction({
-              hex: rawDataHex,
-              contractType,
-            });
+               const ledgerBridge = new LedgerBridge();
 
-            transaction.signature = [ Buffer.from(signedResponse).toString('hex') ];
+               const signedResponse = await ledgerBridge.signTransaction({
+                 hex: rawDataHex,
+                 contractType,
+               });
 
-            return transaction; // tronWeb.utils.crypto.signTransaction(account.key, transaction);
-          }
-          finally {
-            this.hideModal();
-          }
+               transaction.signature = [ Buffer.from(signedResponse).toString('hex') ];
+
+               return transaction;
+             }
+             finally {
+               this.hideModal();
+             }
+
+             break;
+
+           case ACCOUNT_PRIVATE_KEY:
+             return tronWeb.utils.crypto.signTransaction(account.key, transaction);
+         }
+
 
         } catch(e) {
           console.error(e);
@@ -129,6 +144,7 @@ export function withTronWeb(InnerComponent) {
   return connect(
     state => ({
       account: state.app.account,
+      wallet: state.app.wallet,
     }),
     null,
     null,

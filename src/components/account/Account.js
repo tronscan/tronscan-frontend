@@ -542,11 +542,13 @@ export default class Account extends Component {
   };
 
   claimRewards = async () => {
+    let {currentWallet, tronWeb} = this.props;
 
-    let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
-    let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
-    if (success) {
+    let transaction = await tronWeb().transactionBuilder.withdrawBlockRewards(currentWallet.address);
+    const signedTransaction = await tronWeb().trx.sign(transaction);
+    const {result} = await tronWeb().trx.sendRawTransaction(signedTransaction);
+
+    if (result) {
       this.setState({
         modal: (
             <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
@@ -559,7 +561,6 @@ export default class Account extends Component {
         modal: (
             <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
               {tu("claim_rewards_error_message")}<br/>
-              {code}
             </SweetAlert>
         )
       });
@@ -667,7 +668,7 @@ export default class Account extends Component {
 
   updateWebsite = async (url) => {
     let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
+
     let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
 
     if (success) {
@@ -692,29 +693,29 @@ export default class Account extends Component {
   };
 
   createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
-      let {account, currentWallet} = this.props;
-      let {success} = await Client.createExchange(currentWallet.address, firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)(account.key);
+    let {account, currentWallet} = this.props;
+    let {success} = await Client.createExchange(currentWallet.address, firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)(account.key);
 
-      if (success) {
-          this.setState({
-              temporaryName: name,
-              modal: (
-                  <SweetAlert success onConfirm={this.hideModal}>
-                      {tu("successfully_created_pair")}
-                  </SweetAlert>
-              )
-          });
+    if (success) {
+      this.setState({
+        temporaryName: name,
+        modal: (
+          <SweetAlert success onConfirm={this.hideModal}>
+            {tu("successfully_created_pair")}
+          </SweetAlert>
+        )
+      });
 
-          setTimeout(() => this.props.reloadWallet(), 1000);
-      } else {
-          this.setState({
-              modal: (
-                  <SweetAlert warning  onConfirm={this.hideModal}>
-                      {tu("pair_creation_failed")}
-                  </SweetAlert>
-              )
-          })
-      }
+      setTimeout(() => this.props.reloadWallet(), 1000);
+    } else {
+      this.setState({
+        modal: (
+          <SweetAlert warning onConfirm={this.hideModal}>
+            {tu("pair_creation_failed")}
+          </SweetAlert>
+        )
+      })
+    }
   };
 
   injectExchange = async (exchangeId, tokenId, quant) => {
