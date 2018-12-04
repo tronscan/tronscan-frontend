@@ -377,7 +377,6 @@ class Address extends React.Component {
                               }
                               </tbody>
                             </table>
-
                           </div>
                           {
                             /*

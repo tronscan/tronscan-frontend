@@ -137,7 +137,7 @@ export default class Account extends Component {
     let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
     let tokens20 = result.data.trc20_tokens;
     if (tronWeb.eventServer) {
-      tokens20.forEach(async item => {
+      for (const item of tokens20) {
         item.token20_name = `${item.name}(${item.symbol})`;
         let contractInstance = await tronWeb.contract().at(item.contract_address);
         let balanceData = await contractInstance.balanceOf(account.address).call();
@@ -146,10 +146,10 @@ export default class Account extends Component {
         } else {
           item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
         }
-      });
+      }
 
       this.setState({
-        tokens20: tokens20
+        tokens20,
       });
     }
 
