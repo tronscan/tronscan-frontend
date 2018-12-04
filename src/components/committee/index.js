@@ -42,8 +42,32 @@ class Committee extends React.Component {
 
     async getChainparameters() {
         let { tronParameters } = await Client.getChainparameters();
+        let parametersArr = [
+            'getMaintenanceTimeInterval',
+            'getAccountUpgradeCost',
+            'getCreateAccountFee',
+            'getTransactionFee',
+            'getAssetIssueFee',
+            'getWitnessPayPerBlock',
+            'getWitnessStandbyAllowance',
+            'getCreateNewAccountFeeInSystemContract',
+            'getCreateNewAccountBandwidthRate',
+            'getAllowCreationOfContracts',
+            'getRemoveThePowerOfTheGr',
+            'getEnergyFee',
+            'getExchangeCreateFee',
+            'getMaxCpuTimeOfOneTx',
+            'getAllowUpdateAccountName',
+            'getAllowSameTokenName',
+            'getAllowDelegateResource',
+            'getTotalEnergyLimit',
+            'getAllowTvmTransferTrc10',
+        ];
+        for(let item in tronParameters){
+            tronParameters[item].proposalVal = parametersArr[item];
+        }
         tronParameters.map(item => {
-            switch (item['key']){
+            switch (item['proposalVal']){
                 case "getMaintenanceTimeInterval":
                     item.name = 'propose_1';
                 break;
@@ -141,71 +165,71 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return  <div>
                     {
-                        record.key == 'getMaintenanceTimeInterval' && <div><span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
+                        record.proposalVal == 'getMaintenanceTimeInterval' && <div><span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
                             intl.formatMessage({id: "propose_hour"})
                         }</span></div>
                     }
                     {
-                        record.key == 'getAccountUpgradeCost' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getAccountUpgradeCost' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getCreateAccountFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getCreateAccountFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getTransactionFee' && <div><span className='col-green'>{text}</span> &nbsp;<span>Sun/byte</span></div>
+                        record.proposalVal == 'getTransactionFee' && <div><span className='col-green'>{text}</span> &nbsp;<span>Sun/byte</span></div>
                     }
                     {
-                        record.key == 'getAssetIssueFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getAssetIssueFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getWitnessPayPerBlock' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getWitnessPayPerBlock' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getWitnessStandbyAllowance' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getWitnessStandbyAllowance' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.proposalVal == 'getCreateNewAccountFeeInSystemContract' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.key == 'getCreateNewAccountBandwidthRate' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
+                        record.proposalVal == 'getCreateNewAccountBandwidthRate' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
                     }
                     {
-                        record.key == 'getAllowCreationOfContracts' && <div>
+                        record.proposalVal == 'getAllowCreationOfContracts' && <div>
                             {
                                 <span className='col-green'>{tu('propose_activate')}</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getRemoveThePowerOfTheGr' && <div>
+                        record.proposalVal == 'getRemoveThePowerOfTheGr' && <div>
                             {
                                 <span className='col-green'>{tu('propose_finished')}</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getEnergyFee' && <div>
+                        record.proposalVal == 'getEnergyFee' && <div>
                             {
                                 <span className='col-green'>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getExchangeCreateFee' && <div>
+                        record.proposalVal == 'getExchangeCreateFee' && <div>
                             {
                                 <span className='col-green'>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getMaxCpuTimeOfOneTx' && <div>
+                        record.proposalVal == 'getMaxCpuTimeOfOneTx' && <div>
                             {
                                 <span className='col-green'>{text} ms</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getAllowUpdateAccountName' && <div>
+                        record.proposalVal == 'getAllowUpdateAccountName' && <div>
                             {
                                 text? <span className='col-green'>{tu('propose_allowed')}</span>:
                                 <span className='col-green'>{tu('propose_not_allowed')}</span>
@@ -213,7 +237,7 @@ class Committee extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'getAllowSameTokenName' && <div>
+                        record.proposalVal == 'getAllowSameTokenName' && <div>
                             {
                                 text? <span className='col-green'>{tu('propose_allowed')}</span>:
                                     <span className='col-green'>{tu('propose_not_allowed')}</span>
@@ -221,7 +245,7 @@ class Committee extends React.Component {
                         </div>
                     }
                     {
-                        record.key == 'getAllowDelegateResource' && <div>
+                        record.proposalVal == 'getAllowDelegateResource' && <div>
                             {
                                 text? <span className='col-green'>{tu('propose_allowed')}</span>:
                                     <span className='col-green'>{tu('propose_not_allowed')}</span>
@@ -230,14 +254,14 @@ class Committee extends React.Component {
                     }
 
                     {
-                        record.key == 'getTotalEnergyLimit' && <div>
+                        record.proposalVal == 'getTotalEnergyLimit' && <div>
                             {
                                 <span className='col-green'>{text}</span>
                             }
                         </div>
                     }
                     {
-                        record.key == 'getAllowTvmTransferTrc10' && <div>
+                        record.proposalVal == 'getAllowTvmTransferTrc10' && <div>
                             {
                                 text? <span className='col-green'>{tu('propose_allowed')}</span>:
                                     <span className='col-green'>{tu('propose_not_allowed')}</span>

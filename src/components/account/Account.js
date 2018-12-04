@@ -195,7 +195,7 @@ class Account extends Component {
         if(hideSmallCurrency){
             tokenBalances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
-                .filter(tb => tb.balance >= 10)
+                .filter(tb => tb.balance > 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
@@ -1570,7 +1570,7 @@ class Account extends Component {
                   </div>
                   {
                     showBuyTokens && <iframe
-                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9d1448c106fd&address=" + currentWallet.address + "&amount=100&ref_id=x600ducoeoei16mc&color=28cf00"}
+                        src={"https://changelly.com/widget/v1?auth=email&from=USD&to=TRX&merchant_id=9i8693nbi7bzkyrr&address=" + currentWallet.address + "&amount=100&ref_id=9i8693nbi7bzkyrr&color=28cf00"}
                         height="500" className="changelly" scrolling="no"
                         style={{overflowY: 'hidden', border: 'none', width: '100%'}}> {t("cant_load_widget")}
                     </iframe>
