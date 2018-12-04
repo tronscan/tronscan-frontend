@@ -3,23 +3,21 @@ import {connect} from "react-redux";
 import {t, tu} from "../../utils/i18n";
 import {loadRecentTransactions} from "../../actions/account";
 import xhr from "axios";
-import {injectIntl} from "react-intl";
-import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime} from "react-intl";
+import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
-import { SwitchToken } from "../common/Switch";
+import {SwitchToken} from "../common/Switch";
 import FreezeBalanceModal from "./FreezeBalanceModal";
-import {AddressLink, ExternalLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
+import {AddressLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {IS_TESTNET, ONE_TRX, API_URL} from "../../constants";
+import {API_URL, IS_TESTNET, ONE_TRX} from "../../constants";
 import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {login} from "../../actions/app";
 import ApplyForDelegate from "./ApplyForDelegate";
-import {filter, trim} from "lodash";
+import _, {filter, trim} from "lodash";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import QRImageCode from "../common/QRImageCode";
-import {WidgetIcon} from "../common/Icon";
 import ChangeNameModal from "./ChangeNameModal";
 import CreateTxnPairModal from "./CreateTxnPairModal";
 import OperateTxnPairModal from "./OperateTxnPairModal";
@@ -27,11 +25,28 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import TronWeb from 'tronweb';
-import _ from "lodash";
+import {withTronWeb} from "../../utils/tronWeb";
 
-
-class Account extends Component {
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+    totalTransactions: state.account.totalTransactions,
+    frozen: state.account.frozen,
+    accountResource: state.account.accountResource,
+    wallet: state.wallet,
+    currentWallet: state.wallet.current,
+    trxBalance: state.account.trxBalance,
+  }),
+  {
+    login,
+    loadRecentTransactions,
+    reloadWallet,
+  },
+)
+@withTronWeb
+@injectIntl
+export default class Account extends Component {
 
   constructor() {
     super();
@@ -116,88 +131,81 @@ class Account extends Component {
     this.props.reloadWallet();
   };
 
-  async getTRC20Tokens(){
-      let {account} = this.props;
-      const privateKey = account.key;
-      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
-      const fullNode = new HttpProvider('https://api.trongrid.io'); // Full node http endpoint
-      const solidityNode = new HttpProvider('https://api.trongrid.io'); // Solidity node http endpoint
-      const eventServer = 'https://api.trongrid.io/'; // Contract events http endpoint
-      const tronWeb = new TronWeb(
-          fullNode,
-          solidityNode,
-          eventServer,
-          privateKey
-      );
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      let tokens20 = result.data.trc20_tokens;
-      if(tronWeb.eventServer){
-          tokens20.map(async item =>{
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
+  async getTRC20Tokens() {
+    let {account} = this.props;
+    const tronWeb = this.props.tronWeb();
+    let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let tokens20 = result.data.trc20_tokens;
+    if (tronWeb.eventServer) {
+      tokens20.forEach(async item => {
+        item.token20_name = `${item.name}(${item.symbol})`;
+        let contractInstance = await tronWeb.contract().at(item.contract_address);
+        let balanceData = await contractInstance.balanceOf(account.address).call();
+        if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
 
-              }else{
-                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }
-              return item
-          });
-          this.setState({
-              tokens20: tokens20
-          });
-      }
+        } else {
+          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+        }
+      });
+
+      this.setState({
+        tokens20: tokens20
+      });
+    }
 
   }
+
    renderTRC20Tokens() {
-    let {hideSmallCurrency,tokens20} = this.state;
-    if(hideSmallCurrency){
-        tokens20 = _(tokens20)
-            .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
-            .filter(tb => tb.token20_balance > 10)
-            .sortBy(tb => tb.token20_name)
-            .value();
-    }else{
-        tokens20 = _(tokens20)
-            .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
-            .filter(tb => tb.token20_balance > 0)
-            .sortBy(tb => tb.token20_name)
-            .value();
-    }
+     let {hideSmallCurrency, tokens20} = this.state;
 
-    if (tokens20.length === 0) {
-      return (
-          <div className="text-center d-flex justify-content-center p-4">
-            {tu("no_tokens")}
-          </div>
-      );
-    }
+     if (hideSmallCurrency) {
+       tokens20 = _(tokens20)
+         .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+         .filter(tb => tb.token20_balance > 10)
+         .sortBy(tb => tb.token20_name)
+         .value();
+     } else {
+       tokens20 = _(tokens20)
+         .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+         .filter(tb => tb.token20_balance > 0)
+         .sortBy(tb => tb.token20_name)
+         .value();
+     }
 
-    return (
-        <table className="table mt-3 temp-table">
-          <thead className="thead-light">
-          <tr>
-            <th>{tu("name")}</th>
-            <th className="text-right">{tu("balance")}</th>
-          </tr>
-          </thead>
-          <tbody>
-          {
-              tokens20.map((token) => (
-                <tr key={token.token20_name}>
-                  <td>
-                    <TokenTRC20Link name={token.name} address={token.contract_address} namePlus={token.name + ' (' + token.symbol + ')'} />
-                  </td>
-                  <td className="text-right">
-                    <FormattedNumber value={token.token20_balance}/>
-                  </td>
-                </tr>
-            ))
-          }
-          </tbody>
-        </table>
-    )
-  }
+     if (tokens20.length === 0) {
+       return (
+         <div className="text-center d-flex justify-content-center p-4">
+           {tu("no_tokens")}
+         </div>
+       );
+     }
+
+     return (
+       <table className="table mt-3 temp-table">
+         <thead className="thead-light">
+         <tr>
+           <th>{tu("name")}</th>
+           <th className="text-right">{tu("balance")}</th>
+         </tr>
+         </thead>
+         <tbody>
+         {
+           tokens20.map((token) => (
+             <tr key={token.token20_name}>
+               <td>
+                 <TokenTRC20Link name={token.name} address={token.contract_address}
+                                 namePlus={token.name + ' (' + token.symbol + ')'}/>
+               </td>
+               <td className="text-right">
+                 <FormattedNumber value={token.token20_balance}/>
+               </td>
+             </tr>
+           ))
+         }
+         </tbody>
+       </table>
+     )
+   }
 
   renderTokens() {
         let {hideSmallCurrency} = this.state;
@@ -418,69 +426,8 @@ class Account extends Component {
     }
     this.setState({privateKey: value})
     this.privateKey.value = value;
-  }
-  confirmPrivateKey = (param) => {
-    let {privateKey} = this.state;
-    let {account} = this.props;
+  };
 
-    let confirm = null;
-    if (param === 'freeze')
-      confirm = this.showFreezeBalance;
-    if (param === 'unfreeze')
-      confirm = this.showUnfreezeModal;
-    if (param === 'applySR')
-      confirm = this.applyForDelegate;
-    if (param === 'claimRewards')
-      confirm = this.claimRewards;
-    if (param === 'unfreezeAssetsConfirmation')
-      confirm = this.unfreezeAssetsConfirmation;
-    if (param === 'changeName')
-      confirm = this.changeName;
-    if (param === 'changeWebsite')
-      confirm = this.changeWebsite;
-    if (param === 'changeGithubURL')
-      confirm = this.changeGithubURL;
-
-
-    let reConfirm = () => {
-      if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if (pkToAddress(this.privateKey.value) === account.address)
-          confirm();
-      }
-    }
-
-    this.setState({
-      modal: (
-          <SweetAlert
-              info
-              showCancel
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("confirm")}
-              confirmBtnBsStyle="success"
-              cancelBtnBsStyle="default"
-              title={tu("confirm_private_key")}
-              onConfirm={reConfirm}
-              onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
-          >
-            <div className="form-group">
-              <div className="input-group mb-3">
-                <input type="text"
-                       ref={ref => this.privateKey = ref}
-                       onChange={(ev) => {
-                         this.onInputChange(ev.target.value)
-                       }}
-                       className="form-control is-invalid"
-                />
-                <div className="invalid-feedback">
-                  {tu("fill_a_valid_private_key")}
-                </div>
-              </div>
-            </div>
-          </SweetAlert>
-      )
-    });
-  }
   showFreezeBalance = () => {
 
     let {privateKey} = this.state;
@@ -519,11 +466,12 @@ class Account extends Component {
       )
     });
   };
+
   resourceSelectChange = (value) => {
       this.setState({
           selectedResource: Number(value)
       });
-  }
+  };
 
   hideModal = () => {
     this.setState({modal: null});
@@ -612,12 +560,15 @@ class Account extends Component {
   };
 
   unfreeze = async () => {
-    let {account} = this.props;
-    let {privateKey,selectedResource} = this.state;
+    let {wallet} = this.props;
+    let {selectedResource} = this.state;
     this.hideModal();
 
-    let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
-    if (success) {
+    let {result} = await this.props.tronWeb().unfreezeBalance(selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
+      address: wallet.address,
+    });
+
+    if (result) {
       this.setState({
         modal: (
             <SweetAlert success title="TRX Unfrozen" onConfirm={this.hideModal}>
@@ -639,7 +590,7 @@ class Account extends Component {
 
   unfreezeAssets = async () => {
     let {account} = this.props;
-    let {privateKey} = this.state;
+
     this.hideModal();
 
     let {success} = await Client.unfreezeAssets(account.address)(account.key);
@@ -679,17 +630,19 @@ class Account extends Component {
   };
 
   updateName = async (name) => {
-    let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
-    let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
+    let {wallet} = this.props;
 
-    if (success) {
+    let {result} = await this.props.tronWeb().updateAccount(name, {
+      address: wallet.address,
+    });
+
+    if (result) {
       this.setState({
         temporaryName: name,
         modal: (
-            <SweetAlert success title={tu("name_changed")} onConfirm={this.hideModal}>
-              {tu("successfully_changed_name_to_message")} <b>{name}</b>
-            </SweetAlert>
+          <SweetAlert success title={tu("name_changed")} onConfirm={this.hideModal}>
+            {tu("successfully_changed_name_to_message")} <b>{name}</b>
+          </SweetAlert>
         )
       });
 
@@ -697,9 +650,9 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-            <SweetAlert warning title={tu("unable_to_rename_title")} onConfirm={this.hideModal}>
-              {tu("unable_to_rename_message")}
-            </SweetAlert>
+          <SweetAlert warning title={tu("unable_to_rename_title")} onConfirm={this.hideModal}>
+            {tu("unable_to_rename_message")}
+          </SweetAlert>
         )
       })
     }
@@ -1332,7 +1285,7 @@ class Account extends Component {
             </div>
           </div>
           {
-              currentWallet.allowExchange.length ?
+            (currentWallet.allowExchange && currentWallet.allowExchange.length) ?
                   <div className="row mt-3">
                     <div className="col-md-12">
                       <div className="card">
@@ -1595,27 +1548,6 @@ class Account extends Component {
   }
 }
 
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    totalTransactions: state.account.totalTransactions,
-    frozen: state.account.frozen,
-    accountResource: state.account.accountResource,
-    wallet: state.wallet,
-    currentWallet: state.wallet.current,
-    trxBalance: state.account.trxBalance,
-  };
-}
-
-const mapDispatchToProps = {
-  login,
-  loadRecentTransactions,
-  reloadWallet,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Account))
 
 const styles = {
   iconEntropy: {

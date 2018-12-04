@@ -8,22 +8,24 @@ export default class LedgerBridge {
     this.path = "44'/195'/0'/0/0";
   }
 
-  async listenForConnection() {
-    return new Promise(resolve => {
-      const sub = Transport.listen({
-        next: async e => {
-          if (e.type === "add") {
-            sub.unsubscribe();
-            resolve(e);
-          }
-        },
-        error: error => {
-          console.log("GOT ERROR", error);
-        },
-        complete: () => {
-          console.log("DONE");
-        }
-      });
+  async checkForConnection(confirm = false) {
+    return new Promise(async (resolve, reject) => {
+      const transport = await Transport.create();
+      try {
+        const trx = new AppTrx(transport);
+        let {address} = await trx.getAddress(this.path, confirm);
+        resolve({
+          address,
+          connected: true,
+        });
+      } catch(e) {
+        resolve({
+          address: false,
+          connected: false,
+        });
+      } finally {
+        transport.close();
+      }
     });
   }
   async getAddress() {
@@ -31,8 +33,8 @@ export default class LedgerBridge {
       const transport = await Transport.create();
       try {
         const trx = new AppTrx(transport);
-        let address = await trx.getAddress(this.path);
-        resolve(address.address);
+        let {address} = await trx.getAddress(this.path);
+        resolve(address);
       } catch(e) {
         reject(e);
       } finally {

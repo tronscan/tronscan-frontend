@@ -13,7 +13,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
   let {app} = getState();
 
   if (app.account.isLoggedIn) {
-    let {balances, frozen, accountResource,...wallet} = await Client.getAccountByAddressNew(app.account.address);
+    let {balances, frozen, accountResource,...wallet} = await Client.getAccountByAddress(app.account.address);
     wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance;
     wallet.frozenTrx = frozen.total + accountResource.frozen_balance_for_energy.frozen_balance;
     dispatch(setActiveWallet(wallet));

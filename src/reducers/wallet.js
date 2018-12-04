@@ -21,7 +21,6 @@ export function walletReducer(state = initialState, action) {
     }
 
     case SET_ACTIVE_WALLET: {
-       //console.log("SET WALLET", action);
 
       return {
         ...state,

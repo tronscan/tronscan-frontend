@@ -52,26 +52,18 @@ export function withTronWeb(InnerComponent) {
 
           try {
 
-            console.log(transaction);
             const transactionObj = transactionJsonToProtoBuf(transaction);
             const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
             let raw = transactionObj.getRawData();
             const contractObj = raw.getContractList()[0];
             let contractType = contractObj.getType();
 
-            console.log("contractJsonToProtoBuf", transactionObj, rawDataHex, contractType);
             const ledgerBridge = new LedgerBridge();
-
-            console.log("for address", await ledgerBridge.getAddress());
 
             const signedResponse = await ledgerBridge.signTransaction({
               hex: rawDataHex,
               contractType,
             });
-
-
-
-            console.log("signedResponse", signedResponse);
 
             transaction.signature = [ Buffer.from(signedResponse).toString('hex') ];
 
@@ -84,8 +76,6 @@ export function withTronWeb(InnerComponent) {
         } catch(e) {
           console.error(e);
         }
-
-
       };
     }
 

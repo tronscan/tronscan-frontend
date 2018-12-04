@@ -20,6 +20,8 @@ import {withTimers} from "../../utils/timing";
 import {loadVoteTimer} from "../../actions/votes";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 
+
+
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
     return (
@@ -46,7 +48,25 @@ function VoteChange({value, arrow = false}) {
   )
 }
 
-class VoteOverview extends React.Component {
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+    wallet: state.wallet,
+    currentWallet: state.app.wallet,
+    flags: state.app.flags,
+    voteList: state.voting.voteList,
+    voteTimer: state.voting.voteTimer,
+  }),
+  {
+    login,
+    reloadWallet,
+    loadVoteTimer,
+  }
+)
+@withTimers
+@injectIntl
+export default class VoteOverview extends React.Component {
 
   constructor() {
     super();
@@ -63,7 +83,7 @@ class VoteOverview extends React.Component {
       colors: palette('mpn65', 20),
       votesList: {},
       liveVotes: null,
-      goSignedIn:false
+      goSignedIn: false
     };
   }
 
@@ -166,7 +186,7 @@ class VoteOverview extends React.Component {
   loadVotes = async () => {
 
     let {voteList} = this.props;
-    
+
     if (voteList.length === 0) {
       this.setState({loading: true});
     }
@@ -345,56 +365,13 @@ class VoteOverview extends React.Component {
     else {
       this.privateKey.className = "form-control is-invalid";
     }
-    this.setState({privateKey: value})
+    this.setState({privateKey: value});
     this.privateKey.value = value;
-  }
+  };
 
-  confirmPrivateKey = (param) => {
-    let {privateKey} = this.state;
-    let {account} = this.props;
-
-    let reConfirm = () => {
-      if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if (pkToAddress(this.privateKey.value) === account.address)
-          this.submitVotes();
-      }
-    }
-
-    this.setState({
-      modal: (
-          <SweetAlert
-              info
-              showCancel
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("confirm")}
-              confirmBtnBsStyle="success"
-              cancelBtnBsStyle="default"
-              title={tu("confirm_private_key")}
-              onConfirm={reConfirm}
-              onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
-          >
-            <div className="form-group">
-              <div className="input-group mb-3">
-                <input type="text"
-                       ref={ref => this.privateKey = ref}
-                       onChange={(ev) => {
-                         this.onInputChange(ev.target.value)
-                       }}
-                       className="form-control is-invalid"
-                />
-                <div className="invalid-feedback">
-                  {tu("fill_a_valid_private_key")}
-                </div>
-              </div>
-            </div>
-          </SweetAlert>
-      )
-    });
-  }
   submitVotes = async () => {
-    let {account} = this.props;
-    let {votes, privateKey} = this.state;
+    let {currentWallet} = this.props;
+    let {votes} = this.state;
 
     this.setState({submittingVotes: true,});
 
@@ -404,9 +381,14 @@ class VoteOverview extends React.Component {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+    const tronWeb = this.props.tronWeb();
 
-    if (success) {
+    const voteTransaction = tronWeb.vote(witnessVotes, currentWallet.address);
+    const signedTransaction = await tronWeb.sign(voteTransaction);
+    const {result} = await tronWeb.sendRawTransaction(signedTransaction);
+
+
+    if (result) {
       setTimeout(() => this.props.reloadWallet(), 1200);
       setTimeout(() => this.setState({votesSubmitted: false,}), 5000);
 
@@ -444,8 +426,8 @@ class VoteOverview extends React.Component {
 
     let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet} = this.props;
-    let candidates = votesList.data || []
-  
+    let candidates = votesList.data || [];
+
     let filteredCandidates = candidates.map((v, i) => Object.assign({
       rank: i
     }, v));
@@ -697,23 +679,3 @@ class VoteOverview extends React.Component {
     );
   }
 }
-
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    wallet: state.wallet,
-    flags: state.app.flags,
-    voteList: state.voting.voteList,
-    voteTimer: state.voting.voteTimer,
-  };
-}
-
-const mapDispatchToProps = {
-  login,
-  reloadWallet,
-  loadVoteTimer,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(VoteOverview)))

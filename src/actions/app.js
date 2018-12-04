@@ -11,6 +11,7 @@ export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const LOGIN = 'LOGIN';
 export const LOGIN_PK = 'LOGIN_PK';
 export const LOGIN_ADDRESS = 'LOGIN_ADDRESS';
+export const LOGIN_LEDGER = 'LOGIN_LEDGER';
 export const LOGOUT = 'LOGOUT';
 export const ENABLE_FLAG = 'ENABLE_FLAG';
 export const DISABLE_FLAG = 'DISABLE_FLAG';
@@ -49,6 +50,11 @@ export const setLoginWithAddress = (address) => ({
   address,
 });
 
+export const setLoginWithLedger = (address) => ({
+  type: LOGIN_LEDGER,
+  address,
+});
+
 export const logout = () => ({
   type: LOGOUT,
 });
@@ -83,6 +89,16 @@ export const login = (privateKey) => async (dispatch, getState) => {
 export const loginWithAddress = (address) => async (dispatch, getState) => {
 
   dispatch(setLoginWithAddress(address));
+
+  setTimeout(() => {
+    dispatch(reloadWallet());
+    dispatch(loadRecentTransactions(address));
+  }, 50);
+};
+
+export const loginWithLedger = (address) => async (dispatch, getState) => {
+
+  dispatch(setLoginWithLedger(address));
 
   setTimeout(() => {
     dispatch(reloadWallet());

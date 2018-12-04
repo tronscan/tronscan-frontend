@@ -74,7 +74,7 @@ export default class Trx {
       )
       .then(response => {
         let result = {};
-        result.privateKey = response.slice(0, 65);
+        result.publicKey = response.slice(0, 65);
         result.address = response.slice(67, 101).toString();
         return result;
       });

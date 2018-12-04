@@ -3,7 +3,7 @@ import Lockr from "lockr";
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
-  LOGIN, LOGIN_ADDRESS,
+  LOGIN, LOGIN_ADDRESS, LOGIN_LEDGER,
   LOGIN_PK,
   LOGOUT,
   SET_ACCOUNTS,
@@ -14,7 +14,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {IS_DESKTOP} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -54,6 +54,11 @@ const initialState = {
     key: undefined,
     address: undefined,
     isLoggedIn: false,
+  },
+  wallet: {
+    type: undefined,
+    isOpen: false,
+    address: undefined,
   },
   activeCurrency: Lockr.get("currency", 'TRX'),
   currencyConversions: [
@@ -140,44 +145,70 @@ export function appReducer(state = initialState, action) {
       return {
         ...state,
         account: {
+          type: ACCOUNT_PRIVATE_KEY,
           key: base64DecodeFromString(action.password),
           isLoggedIn: true,
           address: passwordToAddress(action.password)
-        }
+        },
+        wallet: {
+          type: ACCOUNT_PRIVATE_KEY,
+          address: passwordToAddress(action.password),
+          isOpen: true,
+        },
       };
     }
 
     case LOGIN_PK: {
 
-      if (IS_DESKTOP) {
-        Lockr.set("account_key", action.privateKey);
-        Lockr.rm("account_address");
-      }
-
       return {
         ...state,
         account: {
+          type: ACCOUNT_PRIVATE_KEY,
           key: action.privateKey,
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
-        }
+        },
+        wallet: {
+          type: ACCOUNT_PRIVATE_KEY,
+          address: pkToAddress(action.privateKey),
+          isOpen: true,
+        },
       };
     }
 
     case LOGIN_ADDRESS: {
 
-      if (IS_DESKTOP) {
-        Lockr.rm("account_key");
-        // Lockr.set("account_address", action.address);
-      }
+      return {
+        ...state,
+        account: {
+          type: ACCOUNT_ADDRESS,
+          key: false,
+          isLoggedIn: true,
+          address: action.address
+        },
+        wallet: {
+          type: ACCOUNT_ADDRESS,
+          address: action.address,
+          isOpen: true,
+        },
+      };
+    }
+
+    case LOGIN_LEDGER: {
 
       return {
         ...state,
         account: {
+          type: ACCOUNT_LEDGER,
           key: false,
           isLoggedIn: true,
-          address: action.address
-        }
+          address: action.address,
+        },
+        wallet: {
+          type: ACCOUNT_LEDGER,
+          address: action.address,
+          isOpen: true,
+        },
       };
     }
 
@@ -189,7 +220,12 @@ export function appReducer(state = initialState, action) {
         account: {
           key: undefined,
           isLoggedIn: false,
-        }
+        },
+        wallet: {
+          type: undefined,
+          address: undefined,
+          isOpen: false,
+        },
       }
     }
 

@@ -23,6 +23,7 @@ const { Option, OptGroup } = Select;
 @connect(
   state => ({
     account: state.app.account,
+    wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
   }),
   {
@@ -65,10 +66,13 @@ export default class SendForm extends React.Component {
    * Send the transaction
    */
   send = async () => {
-    let {to, token, amount, note, privateKey} = this.state;
-    let {account, onSend} = this.props;
+    let {to, token, amount} = this.state;
+    let {onSend, wallet} = this.props;
 
-    this.setState({isLoading: true, modal: null});
+    this.setState({
+      isLoading: true,
+      modal: null
+    });
 
     try {
 
@@ -76,14 +80,15 @@ export default class SendForm extends React.Component {
 
       if (token === "TRX") {
         const { result } = await this.props.tronWeb().trx.sendTrx(to, amount * ONE_TRX, {
-          address: account.address,
+          address: wallet.address,
         });
 
         success = result;
       } else {
         const { result } = await this.props.tronWeb().trx.sendToken(to, amount, token, {
-          address: account.address,
+          address: wallet.address,
         });
+
         success = result;
       }
 
@@ -199,8 +204,8 @@ export default class SendForm extends React.Component {
   }
 
   refreshTokenBalances = () => {
-    let {account} = this.props;
-    if (account.isLoggedIn) {
+    let {wallet} = this.props;
+    if (wallet.isOpen) {
       this.props.reloadWallet();
     }
   };

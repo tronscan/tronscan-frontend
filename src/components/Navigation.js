@@ -1,6 +1,6 @@
 /*eslint-disable no-script-url*/
 import React, {Fragment, PureComponent} from 'react'
-import {injectIntl} from "react-intl";
+import {FormattedNumber, injectIntl} from "react-intl";
 import logo from '../images/tron-banner-inverted.png'
 import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
@@ -9,13 +9,11 @@ import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
 import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
-import {tu, t} from "../utils/i18n"
+import {tu} from "../utils/i18n"
 import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
-import {Badge} from "reactstrap"
-import Avatar from "./common/Avatar"
-import {AddressLink, HrefLink} from "./common/Links"
-import {FormattedNumber} from "react-intl"
+import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
+import {HrefLink} from "./common/Links"
 import {IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
@@ -27,12 +25,11 @@ import Notifications from "./account/Notifications";
 import SendModal from "./transfer/Send/SendModal";
 import {bytesToString} from "@tronscan/client/src/utils/bytes";
 import {hexStr2byteArray} from "@tronscan/client/src/lib/code";
-import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import ReceiveModal from "./transfer/Receive/ReceiveModal";
 import {toastr} from 'react-redux-toastr'
-import Lockr from "lockr";
-import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
+import LedgerAccess from "../hw/ledger/LedgerAccess";
+
 
 class Navigation extends PureComponent {
 
@@ -138,7 +135,7 @@ class Navigation extends PureComponent {
   };
 
   hideModal = () => {
-    this.setState({popup: null});
+    this.setState({ popup: null });
   };
 
   unlockKeyFile = (password, contents) => {
@@ -201,7 +198,7 @@ class Navigation extends PureComponent {
     let type = getSearchType(search);
 
     let result = await doSearch(search, type);
-    
+
     if (result === true) {
       this.setState({search: ""});
     } else if (result !== null) {
@@ -305,6 +302,29 @@ class Navigation extends PureComponent {
     console.log("LOGIN WITH MOBILE");
   };
 
+  loginWithLedger = () => {
+    console.log("LOGIN WITH LEDGER");
+
+    this.openLedgerModal();
+  };
+
+  openLedgerModal = () => {
+    this.setState({
+      popup: (
+        <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" >
+          <ModalHeader className="text-center" toggle={this.hideModal}>
+            Open Ledger
+          </ModalHeader>
+          <ModalBody className="p-0">
+            <LedgerAccess onClose={this.hideModal} />
+          </ModalBody>
+          <ModalFooter>
+          </ModalFooter>
+        </Modal>
+      )
+    });
+  };
+
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
@@ -349,7 +369,7 @@ class Navigation extends PureComponent {
                         {/* </Link> */}
                         </Link>
                       </div>
-                      
+
                     </li>
                     {
                       wallet.current.representative.enabled && (
@@ -412,6 +432,16 @@ class Navigation extends PureComponent {
                     {tu("open_wallet")}
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
+                  {/*Login with Private Key*/}
+                  <li className="px-3 py-3">
+                      <div className="text-center">
+                        <label>{tu("ledger")}</label>
+                      </div>
+                      <button className="btn btn-danger btn-block mt-3"
+                              onClick={this.loginWithLedger}>
+                        {tu("open_ledger")}
+                      </button>
+                    </li>
                   <li className="px-3 py-3">
                       <div className="text-center">
                         <label>{tu("private_key")}</label>
@@ -427,7 +457,7 @@ class Navigation extends PureComponent {
                         {tu("sign_in")}
                       </button>
                     </li>
-                    {/* <li className="dropdown-divider blod"/> */}
+                    {/*Login with KeyStore*/}
                     <li className="px-3 py-3 ">
                       <div className="text-center">
                         <label>{tu("keystore_file")}</label>
@@ -483,7 +513,7 @@ class Navigation extends PureComponent {
     let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
-    
+
     return (
         <div className="header-top">
           {popup}
@@ -708,7 +738,7 @@ class Navigation extends PureComponent {
                   </div>
                 </div>
               </div> */}
-              
+
             </div>
           }
         </div>

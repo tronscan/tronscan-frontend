@@ -9,8 +9,21 @@ import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
+import {withTronWeb} from "../../utils/tronWeb";
 
-class FreezeBalanceModal extends React.PureComponent {
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+    trxBalance: state.account.trxBalance,
+  }),
+  {
+    reloadWallet
+  }
+)
+@injectIntl
+@withTronWeb
+export default class FreezeBalanceModal extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -21,17 +34,17 @@ class FreezeBalanceModal extends React.PureComponent {
       amount: "",
       resources: [
         {
-          label:"gain_bandwith",
-          value:0
+          label: "gain_bandwith",
+          value: 0
         },
         {
-          label:"gain_energy",
-          value:1
+          label: "gain_energy",
+          value: 1
         }
       ],
-      selectedResource:0
+      selectedResource: 0
     };
-  }
+  };
 
   componentDidMount() {
     this.props.reloadWallet();
@@ -69,22 +82,28 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {account, onError, privateKey} = this.props;
+    let {wallet, onError} = this.props;
     let {amount,selectedResource} = this.state;
     this.setState({loading: true});
-    let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
-    if (success) {
+
+    let {result} = await this.props.tronWeb().freezeBalance(amount * ONE_TRX, 3, selectedResource === 0 ? "BANDWIDTH" : "ENERGY", {
+      address: wallet.address,
+    });
+
+
+    if (result) {
       this.confirmModal({amount});
       this.setState({loading: false});
     } else {
       onError && onError();
     }
   };
+
   resourceSelectChange = (value) => {
     this.setState({
         selectedResource: Number(value)
     });
-  }
+  };
 
   render() {
 
@@ -151,17 +170,3 @@ class FreezeBalanceModal extends React.PureComponent {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    trxBalance: state.account.trxBalance,
-  };
-}
-
-const mapDispatchToProps = {
-  reloadWallet
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(FreezeBalanceModal))
