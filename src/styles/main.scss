@@ -937,13 +937,13 @@ and (max-device-width : 1024px){
         overflow: hidden;
         &:hover{
           .img_desc{
-            height:80px;
+            height:auto;
+            padding-bottom: 10px;
           }  
         }
         .img_item{
-          width:280px;
-          height:280px;
-          margin:20px auto 0;
+          width:100%;
+          margin:30px auto 0;
           display: block;
         }
         .img_desc{
@@ -954,7 +954,9 @@ and (max-device-width : 1024px){
           margin: auto;
           background: rgba(0,0,0,0.60);
           border-radius: 0 0 2px 2px;
-          width:280px;
+          width:calc(100% - 30px);
+          padding-left: 10px;
+          padding-right: 10px;
           color:#fff;
           font-size: 16px;
           line-height:34px;
@@ -967,6 +969,11 @@ and (max-device-width : 1024px){
           }
         }
       }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .about_item{
+      padding:10px
     }
   }
 }
@@ -1885,7 +1892,7 @@ h5 {
    i{
       font-size: 10px;
       font-style: normal;
-      transform: scale(0.9);
+      //transform: scale(0.9);
    }
 }
 

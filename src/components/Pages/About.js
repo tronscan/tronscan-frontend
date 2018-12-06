@@ -8,12 +8,14 @@ export default class About extends Component {
     super()
     this.state = {
       imgList:[
-        {"name":"HarryXu","img":"pic1.png"},
+        {"name":"Adolph","img":"pic8.png"},
         {"name":"Skye","img":"pic5.png"},
         {"name":"Ariml","img":"pic2.png"},
+        {"name":"HarryXu","img":"pic1.png"},
         {"name":"Lee","img":"pic6.png"},
         {"name":"YanZheng","img":"pic3.png"},
-        {"name":"Zach","img":"pic4.png"}
+        {"name":"Zach","img":"pic4.png"},
+        {"name":"Vincent Lau","img":"pic7.png"},
       ] 
     }
   }
@@ -37,7 +39,7 @@ export default class About extends Component {
                   
                   { 
                     imgList.map((item) =>(
-                      <div className="col-xs-12 col-sm-4 col-md-4 img_box" key={item.name}>
+                      <div className="col-xs-12 col-sm-3 col-md-3 img_box" key={item.name}>
                           <img className="img_item" src={require(`../../images/photo/${item.img}`)}/>
                           <div className="img_desc">
                               <p>{item.name}</p>

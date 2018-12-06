@@ -7,6 +7,7 @@ import {t, tu} from "../../../utils/i18n";
 import {trim} from "lodash";
 import {Client} from "../../../services/api";
 import {TokenLink} from "../../common/Links";
+import {QuestionMark} from "../../common/QuestionMark";
 import {getQueryParam} from "../../../utils/url";
 import SearchInput from "../../../utils/SearchInput";
 import {toastr} from 'react-redux-toastr'
@@ -28,6 +29,7 @@ class TokenList extends Component {
       buyAmount: 0,
       loading: false,
       total: 0,
+      totalAll:0,
       filter: {},
     };
 
@@ -43,14 +45,17 @@ class TokenList extends Component {
     this.setState({loading: true});
     let token;
     let result;
-    let total
+    let total;
+    let totalAll;
 
     if (filter.name){
       result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
       total = result.data['data'].length;
+      totalAll = result.data['totalAll'];
     }else{
       result = await xhr.get(API_URL+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
       total = result.data['total'];
+      totalAll = result.data['totalAll'];
     }
     
     let tokens = result.data['data'];
@@ -63,8 +68,9 @@ class TokenList extends Component {
       loading: false,
       tokens,
       total,
+      totalAll
     });
-    return total;
+   // return total;
   };
 
   componentDidMount() {
@@ -426,10 +432,10 @@ class TokenList extends Component {
   }
 
   render() {
-    let {tokens, alert, loading, total} = this.state;
+    let {tokens, alert, loading, total, totalAll} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
+    let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
     return (
         <main className="container header-overlap token_black">
           {alert}
@@ -437,7 +443,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan"></QuestionMark></span></div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadPage(page, pageSize)

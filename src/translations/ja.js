@@ -15,11 +15,11 @@ export const messages = {
     #                                                                                #
     #         Template for translating the tronscan.org website                      #
     #         Version: 1.6-13082018                                                  #
-    #         Update Date: 13.08.2018                                                #
+    #         Update Date: 06.12.2018                                                #
     #         Language: English                                                      #
     #         Status: Approved Version                                               #
     #         Number of checks: 4                                                    #
-    #         Participants: Rovak,PMD3VSolution,DrKaradenizli                        #
+    #         Participants: Rovak,PMD3VSolution,DrKaradenizli,Harry                        #
     #                                                                                #
     ##################################################################################
     #                                                                                #
@@ -1271,7 +1271,7 @@ export const messages = {
     "propose_13":"トレードペアの作成費用を修正しようと提議します",
     "propose_14":"提一つの取引の最大実行時間を修正しようと提議します",
     "propose_15":"アカウント名を変更しますか",
-    "propose_16":"Propose to allow the same token name",
+    "propose_16":"トークンの同名を可能にすると提案する",
     "propose_17":"リソース配分をしますか",
     "propose_18":"総エネルギー上限を編集しますか",
     "propose_19":"知能知能コントラクトコントラクトををTRC10TRC10  トークントークンにに\t切切りり替替えますかえますか",
@@ -1294,19 +1294,19 @@ export const messages = {
     "approvers_of_the_proposal":"賛成者",
     "total_approving_votes":"総賛成数",
     "to_provide_a_better_experience":"より良い経験を提供するために、この統計は毎分更新されます。",
-    "TRC10_token":"TRC10 Token",
-    "TRC20_token":"TRC20 Token",
-    "TRC20_decimals":"Precision",
-    "nav_more":"もっと",
-    "no_holders_found":"No Token Holders Found",
-    "search_TRC20": "Search Address",
-    "beginners_guide":"Beginner's guide",
+    "TRC10_token":"TRC10トークン",
+    "TRC20_token":"TRC20トークン",
+    "TRC20_decimals":"精度",
+    "nav_more":"もっと多い",
+    "no_holders_found":"トークン保有者がいない",
+    "search_TRC20": "アドレスを検索する",
+    "beginners_guide":"初心者へのご案内",
     "TRONdice":"TRONdiceゲームでdiceコインを獲得します！diceコインの持ち主はTRX配当がもらえます！",
     "Join_TRONdice":"-diceゲームを始めよう！",
-    "search_TRC20_error":" Please enter the correct address",
-    "dex_announcement":"notice:",
-    "regulations_on_trading_pairs":"Regulations on Trading Pairs",
-    "How_to_trade_on_DEX":"How to trade on DEX",
+    "search_TRC20_error":"正しいアドレスを入力してください",
+    "dex_announcement":"公告:",
+    "regulations_on_trading_pairs":"トレードペアに対する管理と制限",
+    "How_to_trade_on_DEX":"DEXの取引案内",
     /*
      ##################################################################################
      #                                                                                #
@@ -1326,5 +1326,16 @@ export const messages = {
    "Ariml":"ページのデザインのためのより多くのアイデアを提供する",
    "Lee":"日本語版の翻訳をたくさんする",
    "YanZheng":"バックエンドの技術サポートを提供する",
-   "Zach":"バックエンドの技術とテストのサポートを提供する"
+   "Zach":"バックエンドの技術とテストのサポートを提供する",
+   "Adolph":"ブロックチェーン業界の最新動向を調査し、tronscanの製品設計とポジショニングに多くの貢献をしました",
+   "Vincent Lau":"多くのブロックチェーン技術サポートを提供",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # new variables    2018-12-06                                    #
+    #                                                                                #
+    ##################################################################################
+    */
+    "newly_issued_token_by_tronscan":"新しく発行されたトークンは、tronscanによって監査された後でのみオンラインになることができます。 監査に合格しなかった場合は表示されません",
 }

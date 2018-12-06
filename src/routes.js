@@ -386,7 +386,7 @@ export const routes = [
       { url: "https://t.me/tronscantalk", label: "telegram" },
       "-",
       "Development",
-      { url: "https://api.tronscan.org", label: "tron_explorer_api" },
+      { url: "https://wlcyapi.tronscan.org/swagger/index.html", label: "tron_explorer_api" },
       {
         url:
           "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",

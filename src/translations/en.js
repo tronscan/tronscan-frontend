@@ -1322,25 +1322,38 @@ export const messages = {
   "dex_announcement":"notice:",
   "regulations_on_trading_pairs":"Regulations on Trading Pairs",
   "How_to_trade_on_DEX":"How to trade on DEX",
-    /*
-     ##################################################################################
-     #                                                                                #
-     # about 关于我们                                         #
-     #                                                                                #
-     ##################################################################################
-    */
-    "about_us":"About Us",
-     "what_we_do":"What are we doing?",
-    "Transcan_desc":"Tronscan is the first block explorer based on TRON. It not only includes some basic functions of the block explorer, such as search query transactions, accounts, blocks, nodes, smart contracts; data statistics and queries on the chain, but also directly supports token creation. At the same time, Tronscan also has a built-in web wallet and Bancor-based DEX, which enriches the Tronscan application matrix.",
-    "Our_team":"Community Contributor",
-    "Team_desc":"Our team is the Blockchain Welfare Foundation in Malta and has been actively involved in the ecological construction of TRON. The team consists of more than 30 people all over the world, mostly developers and operators. In the future, we will be bound to the TRON ecological development in the long run. To perfect the Tronscan, we will also develop DApps based on TRON.",
-    "User_many":"Tronscan users all over the world",
-    "User_many_desc":"Every day, TRON supporters from around the world use the Tronscan block explorer, where they can query the details of the transaction and experience the latest features of TRON.",
-    "HarryXu":"Provide front-end technical support ",
-    "Skye":"Collect community comments and help solve them",
-    "Ariml":"Provide more inspiration for the design of the page",
-    "Lee":"Do a lot work of translation for the Japanese version",
-    "YanZheng":"Provide back-end technical support",
-    "Zach":"Provide back-end technical&test support"
-   
+
+  /*
+   ##################################################################################
+   #                                                                                #
+   # about us                                         #
+   #                                                                                #
+   ##################################################################################
+  */
+  "about_us":"About Us",
+   "what_we_do":"What are we doing?",
+  "Transcan_desc":"Tronscan is the first block explorer based on TRON. It not only includes some basic functions of the block explorer, such as search query transactions, accounts, blocks, nodes, smart contracts; data statistics and queries on the chain, but also directly supports token creation. At the same time, Tronscan also has a built-in web wallet and Bancor-based DEX, which enriches the Tronscan application matrix.",
+  "Our_team":"Community Contributor",
+  "Team_desc":"Our team is the Blockchain Welfare Foundation in Malta and has been actively involved in the ecological construction of TRON. The team consists of more than 30 people all over the world, mostly developers and operators. In the future, we will be bound to the TRON ecological development in the long run. To perfect the Tronscan, we will also develop DApps based on TRON.",
+  "User_many":"Tronscan users all over the world",
+  "User_many_desc":"Every day, TRON supporters from around the world use the Tronscan block explorer, where they can query the details of the transaction and experience the latest features of TRON.",
+  "HarryXu":"Provide front-end technical support ",
+  "Skye":"Collect community comments and help solve them",
+  "Ariml":"Provide more inspiration for the design of the page",
+  "Lee":"Do a lot work of translation for the Japanese version",
+  "YanZheng":"Provide back-end technical support",
+  "Zach":"Provide back-end technical&test support",
+  "Adolph":"Investigating the latest developments in the blockchain industry, making a lot of contributions to tronscan's product design and positioning",
+  "Vincent Lau":"Provide a lot blockchain technical support",
+
+  /*
+  ##################################################################################
+  #                                                                                #
+  # new variables    2018-12-06                                    #
+  #                                                                                #
+  ##################################################################################
+  */
+  "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
+
+
 };
