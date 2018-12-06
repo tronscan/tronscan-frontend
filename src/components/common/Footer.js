@@ -53,11 +53,11 @@ class Footer extends Component {
                       <i className="fa fa-angle-right mr-4" /> Twitter
                     </HrefLink>
                   </li>
-                  <li className="p-2">
-                    <HrefLink href="https://tronfoundation.slack.com/">
-                      <i className="fa fa-angle-right mr-4" /> Slack
-                    </HrefLink>
-                  </li>
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://tronfoundation.slack.com/">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> Slack*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
                   <li className="p-2">
                     <HrefLink href="https://www.reddit.com/r/tronix">
                       <i className="fa fa-angle-right mr-4" /> Reddit
@@ -96,13 +96,13 @@ class Footer extends Component {
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
-                    <Link to="/votes">
+                    <Link to="/sr/votes">
                       <i className="fa fa-angle-right mr-4" />{" "}
                       {tu("vote_for_super_representatives")}
                     </Link>
                   </li>
                   <li className="p-2">
-                    <Link to="/representatives">
+                    <Link to="/sr/representatives">
                       <i className="fa fa-angle-right mr-4" />{" "}
                       {tu("view_super_representatives")}
                     </Link>

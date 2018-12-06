@@ -67,7 +67,7 @@ class Representatives extends Component {
     let superRepresentatives = sortBy(filter(witnesses, w => w.producer), w => w.votes * -1);
     let candidateRepresentatives = sortBy(filter(witnesses, w => !w.producer), w => w.votes * -1);
     superRepresentatives.map( account => {
-        Number(latestBlock) -  account.latestBlockNumber  < 100 ? account.representerStatus = true :  account.representerStatus = false;
+        Number(latestBlock) -  account.latestBlockNumber  < 1000 ? account.representerStatus = true :  account.representerStatus = false;
     })
     return (
         <div className="card border-0 represent__table w-1000">

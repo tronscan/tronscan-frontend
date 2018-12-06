@@ -152,6 +152,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
             type: '1m',
             getutc: getUTCDay
         }
+
     }
     type = typeMap[resolution].type;
     let startDate = typeMap[resolution].getutc(from)
@@ -256,43 +257,49 @@ Datafeeds.UDFCompatibleDatafeed.prototype.unsubscribeBars = function (listenerGu
 }
 
 Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (resolution, resolutionBack, intervalBack) {
-    switch(resolution){
+    switch (resolution) {
         case 'D':
             return {
                 resolutionBack: 'D',
                 intervalBack: 120
-            };
+            }
         case 'W':
             return {
                 resolutionBack: 'M',
                 intervalBack: 12
-            };
+            }
         case 'M':
             return {
                 resolutionBack: 'M',
-                intervalBack: 24
-            };
+                intervalBack: 12
+            }
         case '240':
             return {
                 resolutionBack: 'D',
-                intervalBack: 100
-            };
+                intervalBack: 25
+            }
         case '60':
             return {
                 resolutionBack: 'D',
-                intervalBack: 150
-            };
+                intervalBack: 6
+            }
         case '30':
             return {
                 resolutionBack: 'D',
-                intervalBack: 300
-            };
+                intervalBack: 3
+            }
+        case '5':
+            return {
+                resolutionBack: 'D',
+                intervalBack: 0.6
+            }
         default:
             return {
                 resolutionBack: 'D',
-                intervalBack: 3
-            };
+                intervalBack: 1
+            }
     }
+
 
 };
 

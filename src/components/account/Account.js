@@ -195,7 +195,7 @@ class Account extends Component {
         if(hideSmallCurrency){
             tokenBalances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
-                .filter(tb => tb.balance > 10)
+                .filter(tb => tb.balance >= 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
