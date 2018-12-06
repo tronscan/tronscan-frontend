@@ -2289,3 +2289,36 @@ h5 {
     }
   }
 }
+
+.dex-tab{
+  display: flex;
+  margin-bottom: 2px;
+  .btn{
+     width: 5.525rem;
+     height: 2rem;
+     font-size: 14px;
+     border:1px solid #F3F3F3;
+     background-color: #fff;
+     font-weight: 400;
+     &.active{
+       background-color: #F3F3F3;
+       span{
+         color: #C53028;
+       }
+     }
+     &:hover{
+       span{
+         color: #C53028;
+       }
+     }
+     span{
+        color: #666666;
+     }
+  }
+  a:nth-child(1){
+    border-radius: 2px 0 0 0;
+  }
+  a:nth-child(2){
+    border-radius: 0 2px 0 0;
+  }
+}

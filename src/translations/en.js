@@ -1322,7 +1322,6 @@ export const messages = {
   "dex_announcement":"notice:",
   "regulations_on_trading_pairs":"Regulations on Trading Pairs",
   "How_to_trade_on_DEX":"How to trade on DEX",
-
   /*
    ##################################################################################
    #                                                                                #
@@ -1331,7 +1330,7 @@ export const messages = {
    ##################################################################################
   */
   "about_us":"About Us",
-   "what_we_do":"What are we doing?",
+  "what_we_do":"What are we doing?",
   "Transcan_desc":"Tronscan is the first block explorer based on TRON. It not only includes some basic functions of the block explorer, such as search query transactions, accounts, blocks, nodes, smart contracts; data statistics and queries on the chain, but also directly supports token creation. At the same time, Tronscan also has a built-in web wallet and Bancor-based DEX, which enriches the Tronscan application matrix.",
   "Our_team":"Community Contributor",
   "Team_desc":"Our team is the Blockchain Welfare Foundation in Malta and has been actively involved in the ecological construction of TRON. The team consists of more than 30 people all over the world, mostly developers and operators. In the future, we will be bound to the TRON ecological development in the long run. To perfect the Tronscan, we will also develop DApps based on TRON.",
@@ -1354,6 +1353,5 @@ export const messages = {
   ##################################################################################
   */
   "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
-
-
+    x
 };

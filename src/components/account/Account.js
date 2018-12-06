@@ -1246,12 +1246,12 @@ class Account extends Component {
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                   <div className="account-token-tab">
-                    <a href="javascript:"
+                    <a href="javascript:;"
                        className={"btn btn-default btn-sm" + (tokenTRC10?' active':'')}
                        onClick={this.handleTRC10Token}>
                         {tu("TRC10_token")}
                     </a>
-                    <a href="javascript:"
+                    <a href="javascript:;"
                        className={"btn btn-default btn-sm ml-2" + (tokenTRC10?'':' active')}
                        onClick={this.handleTRC20Token}>
                         {tu("TRC20_token")}

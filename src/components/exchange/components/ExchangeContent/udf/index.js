@@ -299,8 +299,6 @@ Datafeeds.UDFCompatibleDatafeed.prototype.calculateHistoryDepth = function (reso
                 intervalBack: 1
             }
     }
-
-
 };
 
 Datafeeds.UDFCompatibleDatafeed.prototype.getServerTime = function (callback) {

@@ -6,12 +6,11 @@ const initialState = {
 };
 
 export function exchangeReducer(state = initialState, action) {
-
   switch (action.type) {
     case SET_SELECT_DATA: {
       return {
         ...state,
-        data: action.data,
+        data: action.data?action.data:{},
       }
     }
     case SET_SELECT_STATUS: {
