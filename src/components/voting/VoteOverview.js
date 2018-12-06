@@ -49,6 +49,9 @@ function VoteChange({value, arrow = false}) {
   )
 }
 
+@withTimers
+@withTronWeb
+@injectIntl
 @connect(
   state => ({
     account: state.app.account,
@@ -65,9 +68,6 @@ function VoteChange({value, arrow = false}) {
     loadVoteTimer,
   }
 )
-@withTimers
-@withTronWeb
-@injectIntl
 export default class VoteOverview extends React.Component {
 
   constructor() {
