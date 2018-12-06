@@ -274,7 +274,7 @@ class SendForm extends React.Component {
 
   componentDidUpdate() {
     let {tokenBalances} = this.props;
-    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).sortBy(tb => tb.name).value();
+    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
     let {token,tokens20} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState({
@@ -397,7 +397,7 @@ class SendForm extends React.Component {
 
     let {intl, tokenBalances, account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20} = this.state;
-    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).sortBy(tb => tb.name).value();
+    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
     tokenBalances.map(item =>{
         item.token_name_type = item.name + '-TRC10';
         return item
