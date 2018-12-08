@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import {getSelectData} from "../../../../actions/exchange";
 import { filter, map ,upperFirst} from 'lodash'
 import {injectIntl} from "react-intl";
+import Lockr from "lockr";
+import _ from "lodash";
 
 class ExchangeTable extends React.Component {
 
@@ -14,21 +16,33 @@ class ExchangeTable extends React.Component {
     super(props);
     this.state = {
       columns: [],
-      dataSource: [],
-      activeIndex:2,
+      dataSource: props.dataSource,
+      activeIndex:props.activeIndex,
+      optional:[],
+      optionalBok:false,
     };
   }
 
-
   getColumns() {
-    let {intl,dataSource} = this.props;
+    let {intl,setCollection} = this.props;
+    let { dataSource } = this.state;
     const columns = [{
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
       render: (text, record, index) => {
-        return record.exchange_abbr_name
+        return <div>
+          <span className="optional-star">
+              <span onClick={(ev) => {setCollection(ev,record.exchange_id,index)}}>
+                  {
+                      record.optionalBok ? <i className="star_red"></i> : <i className="star"></i>
+                  }
+              </span>
+          </span>
+          <span className="exchange-abbr-name">{record.exchange_abbr_name}</span>
+        </div>
       }
-    }, {
+    },
+    {
       title: upperFirst(intl.formatMessage({id: 'last_price'})),
       dataIndex: 'price',
       key: 'price',
@@ -47,22 +61,25 @@ class ExchangeTable extends React.Component {
     }];
 
     return (
-        <Table
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}
-            rowKey={(record, index) => {
-                return index
-            }}
-            rowClassName={this.setActiveClass}
-            onRow={(record) => {
-                return {
-                    onClick: () => {
-                        this.onSetUrl(record)
-                    }
-                }
-            }}
-        />
+      <Table
+          dataSource={dataSource}
+          columns={columns}
+          pagination={false}
+          rowKey={(record, index) => {
+              return index
+          }}
+          rowClassName={this.setActiveClass}
+          onRow={(record) => {
+               return {
+                   onClick: () => {
+                       this.onSetUrl(record)
+                   },
+                   // onClick: (e) => {
+                   //     this.props.setCollection(e,record.exchange_id)
+                   // },
+              }
+          }}
+      />
     )
   }
 
@@ -72,19 +89,24 @@ class ExchangeTable extends React.Component {
   }
   getData() {
     const parsed = queryString.parse(this.props.location.search).id;
-    const { dataSource, getSelectData } = this.props;
+    const {getSelectData } = this.props;
+    let { dataSource } = this.state;
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
-
     // 更新数据
     if(dataSource.length){
-      if(!parsed){
-        this.onSetUrl(dataSource[0])
-      }else{
-        getSelectData(currentData[0])
-      }
+        if(!parsed){
+            this.onSetUrl(dataSource[0])
+        }else{
+            getSelectData(currentData[0])
+            this.setState({
+                activeIndex:currentData[0].exchange_id //获取点击行的索引
+            },()=>{
+            })
+        }
     }
+
 
     // 获取选择状态
     map(dataSource, item => {
@@ -98,6 +120,7 @@ class ExchangeTable extends React.Component {
     const {getSelectData} = this.props;
     this.setState({
         activeIndex:record.exchange_id //获取点击行的索引
+    },() => {
     })
     this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
     getSelectData(record, true)
@@ -106,10 +129,31 @@ class ExchangeTable extends React.Component {
 
   componentDidMount() {
 
+
   }
 
-  componentDidUpdate() {
-    this.getData()
+  componentDidUpdate(prevProps) {
+    let { dataSource,tab } = this.props;
+
+    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+       this.getData()
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+      const { activeIndex } = this.state;
+      const {getSelectData} = this.props;
+      this.setState({
+          dataSource: nextProps.dataSource,
+      });
+      if(activeIndex !== nextProps.activeIndex && nextProps.activeIndex){
+          let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
+          getSelectData(record[0],true)
+      }
+      if(nextProps.activeIndex){
+          this.setState({
+              activeIndex:nextProps.activeIndex,
+          });
+      }
   }
 
   render() {

@@ -380,7 +380,6 @@ class SendForm extends React.Component {
               }else{
                   item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
-
               return item
           });
           setTimeout(()=>{

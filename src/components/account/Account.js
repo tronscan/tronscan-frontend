@@ -27,7 +27,6 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import TronWeb from 'tronweb';
 import _ from "lodash";
 
 
@@ -128,9 +127,9 @@ class Account extends Component {
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
-                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
               }else{
-                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
               return item
           });

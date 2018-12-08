@@ -263,10 +263,10 @@ class Kline extends React.Component {
         <div className="d-flex">
           <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
           <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-          <div className="mr-3">{tu('24H_VOL')}
-            <span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>
-              ≈
-            <TRXPrice amount={selectData.svolume} />
+          <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume} /></span>
+            {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
+              {/*≈*/}
+
           </div>
         </div>
         
