@@ -127,10 +127,10 @@ class Account extends Component {
               item.token20_name = item.name + '(' + item.symbol + ')';
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
-                  item.token20_balance = 0;
-              }else{
+              if(balanceData.balance){
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
               return item
           });

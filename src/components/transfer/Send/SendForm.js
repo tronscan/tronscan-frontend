@@ -120,7 +120,7 @@ class SendForm extends React.Component {
       tronWeb.setPrivateKey(account.key);
       let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
       let  contractInstance = await tronWeb.contract().at(contractAddress);
-      const transctionId = await contractInstance.transfer(to, amount * Math.pow(10, decimals)).send();
+      const transctionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
       if (transctionId) {
           this.refreshTokenBalances();
           onSend && onSend();
@@ -375,11 +375,12 @@ class SendForm extends React.Component {
               item.token_name_type = item.name + '-TRC20';
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
-                  item.balance = 0;
-              }else{
+              if(balanceData.balance){
                   item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
+
               return item
           });
           setTimeout(()=>{
