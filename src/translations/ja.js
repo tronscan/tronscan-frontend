@@ -1301,7 +1301,7 @@ export const messages = {
     "no_holders_found":"トークン保有者がいない",
     "search_TRC20": "アドレスを検索する",
     "beginners_guide":"初心者へのご案内",
-    "TRONdice":"TRONdiceゲームでdiceコインを獲得します！diceコインの持ち主はTRX配当がもらえます！",
+    "TRONdice":"diceコインの持ち主はTRX配当がもらえます！",
     "Join_TRONdice":"-diceゲームを始めよう！",
     "search_TRC20_error":"正しいアドレスを入力してください",
     "dex_announcement":"公告:",
