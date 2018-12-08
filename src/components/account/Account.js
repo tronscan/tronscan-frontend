@@ -127,9 +127,9 @@ class Account extends Component {
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
               }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
               return item
           });
