@@ -35,14 +35,16 @@ class ExchangeList extends React.Component {
             search:'',
             searchExchangesList: [],
             showSearch:false,
-            activeIndex:''
+            activeIndex:'',
+            optionalDisable:false,
+            searchAddId:false
         };
     }
 
     componentDidMount() {
-        this.getExchanges()
+        this.getExchangesAllList();
         const getDataTime = setInterval(() => {
-            this.getExchanges();
+            this.getExchangesAllList();
         }, 10000)
 
         this.setState({time: getDataTime})
@@ -53,27 +55,8 @@ class ExchangeList extends React.Component {
         clearInterval(time);
         Lockr.set("DEX", 'Main');
     }
-
-    getExchanges = async () => {
-        let { data } = await Client.getExchangesList();
+    getExchangesAllList = async () =>{
         let { exchangesAllList }= await Client.getexchangesAllList();
-        let tab;
-        let exchangesList;
-
-        if(Lockr.get("DEX")){
-            tab = Lockr.get("DEX");
-        }else{
-            Lockr.set("DEX", 'Main');
-            tab = 'Main'
-        }
-
-        map(data, item => {
-            if (item.up_down_percent.indexOf('-') != -1) {
-                item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            } else {
-                item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            }
-        })
         map(exchangesAllList, item => {
             if (item.up_down_percent.indexOf('-') != -1) {
                 item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
@@ -81,12 +64,33 @@ class ExchangeList extends React.Component {
                 item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
             }
         })
-
+        this.setState({
+            exchangesAllList: exchangesAllList,
+        },() => {
+            this.getExchanges();
+        });
+    }
+    getExchanges = async () => {
+        let { exchangesAllList} = this.state;
+        let { data } = await Client.getExchangesList();
+        let tab,exchangesList;
+        if(Lockr.get("DEX")){
+            tab = Lockr.get("DEX");
+        }else{
+            Lockr.set("DEX", 'Main');
+            tab = 'Main'
+        }
+        map(data, item => {
+            if (item.up_down_percent.indexOf('-') != -1) {
+                item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+            } else {
+                item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+            }
+        });
         exchangesList = data.map(item => {
             item.optionalBok = false;
             return item
-        })
-
+        });
         if (Lockr.get('optional')) {
             let optional = Lockr.get('optional');
             for (let i in exchangesAllList) {
@@ -110,7 +114,7 @@ class ExchangeList extends React.Component {
 
         let unreviewedTokenList = _(exchangesAllList)
             .filter(o => o['optionalBok'] == true)
-            // .sortBy(o => -o.svolume)
+            .sortBy(o => -o.first_token_abbr)
             .value();
 
 
@@ -119,30 +123,35 @@ class ExchangeList extends React.Component {
             unreviewedTokenList: unreviewedTokenList,
             dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
             tokenAudited: tab == 'Main' ? true : false,
+            optionalDisable:true,
+            exchangesAllList:exchangesAllList
+        },() => {
         });
     }
 
     handleAuditedToken = () => {
         const {getSelectData} = this.props;
-        const {auditedTokenList} = this.state;
+        const {auditedTokenList,optionalDisable} = this.state;
+        if(!optionalDisable) return;
         Lockr.set("DEX", 'Main');
         this.setState({
             tokenAudited: true,
             dataSource: auditedTokenList,
             showSearch:false,
         });
-        if(auditedTokenList.length){
+        if(auditedTokenList.length > 0){
             this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
             getSelectData(auditedTokenList[0], true)
             this.setState({
-                activeIndex:auditedTokenList[0].exchange_id
+                activeIndex:auditedTokenList[0].exchange_id,
             });
         }
     }
 
     handleUnreviewedToken = () => {
         const {getSelectData} = this.props;
-        const {unreviewedTokenList} = this.state;
+        const {unreviewedTokenList,optionalDisable} = this.state;
+        if(!optionalDisable) return;
         Lockr.set("DEX", 'GEM');
         this.setState({
             tokenAudited: false,
@@ -153,10 +162,9 @@ class ExchangeList extends React.Component {
             this.props.history.push('/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id)
             getSelectData(unreviewedTokenList[0], true)
             this.setState({
-                activeIndex:unreviewedTokenList[0].exchange_id
+                activeIndex:unreviewedTokenList[0].exchange_id,
             });
         }
-
     }
 
     setCollection = (ev,id, index) => {
@@ -215,14 +223,20 @@ class ExchangeList extends React.Component {
             dataSource: unreviewedTokenList,
             showSearch:false,
             search:'',
-            activeIndex:id
+            activeIndex:id,
+            searchAddId:true,
         },() => {
             this.getExchanges();
         });
     }
+    setSearchAddId(){
+        this.setState({
+            searchAddId:false,
+        })
+    }
 
     render() {
-        const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex} = this.state;
+        const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
         let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
@@ -273,7 +287,9 @@ class ExchangeList extends React.Component {
                         showSearch ?
                         <PerfectScrollbar>
                             <div className="exchange-list__table" style={styles.list}>
-                                <SearchTable dataSource={searchExchangesList} props={this.props} tab={tab}
+                                <SearchTable dataSource={searchExchangesList}
+                                             props={this.props}
+                                             tab={tab}
                                              setExchangeId={(id) => this.setExchangeId(id)}
                                              activeIndex={activeIndex}
                                 />
@@ -281,9 +297,13 @@ class ExchangeList extends React.Component {
                         </PerfectScrollbar>:
                         <PerfectScrollbar>
                             <div className="exchange-list__table" style={styles.list}>
-                                <ExchangeTable dataSource={dataSource} props={this.props} tab={tab}
+                                <ExchangeTable dataSource={dataSource}
+                                               props={this.props}
+                                               tab={tab}
                                                setCollection ={(ev,id, index) => this.setCollection(ev,id,index)}
                                                activeIndex={activeIndex}
+                                               searchAddId={searchAddId}
+                                               setSearchAddId={() => this.setSearchAddId()}
                                 />
                             </div>
                         </PerfectScrollbar>

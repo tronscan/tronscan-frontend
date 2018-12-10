@@ -50,7 +50,19 @@ class Accounts extends Component {
             address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH',
             balance:43778265726411
 
-        }
+        },
+        {
+            address:'TJCT4patUUunwqJkBusWzG6xdfWCcaQ9YN',
+            balance:40084942291066
+        },
+        {
+            address:'TXStuWCx1rX7Kw61CGjQaGyz9DjQEoLHNA',
+            balance:30849150245777
+        },
+        {
+            address:'TPu2anzdQwyX6karyramGnQBoMwdpJSvXH',
+            balance:26800712361681
+        },
     ]
     this.setState({loading: true});
 

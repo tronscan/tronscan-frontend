@@ -101,8 +101,9 @@ class ExchangeTable extends React.Component {
         }else{
             getSelectData(currentData[0])
             this.setState({
-                activeIndex:currentData[0].exchange_id //获取点击行的索引
+                activeIndex:currentData[0].exchange_id
             },()=>{
+
             })
         }
     }
@@ -140,16 +141,22 @@ class ExchangeTable extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-      const { activeIndex } = this.state;
-      const {getSelectData} = this.props;
+      const {getSelectData,setSearchAddId} = this.props;
       this.setState({
           dataSource: nextProps.dataSource,
       });
-      if(activeIndex !== nextProps.activeIndex && nextProps.activeIndex){
+      if(this.props.searchAddId){
           let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
+          this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
           getSelectData(record[0],true)
+          this.setState({
+              activeIndex:nextProps.activeIndex,
+          },()=>{
+              this.props.setSearchAddId()
+          });
       }
-      if(nextProps.activeIndex){
+
+      if(this.props.tab !== nextProps.tab){
           this.setState({
               activeIndex:nextProps.activeIndex,
           });
