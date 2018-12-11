@@ -45,6 +45,7 @@ import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
 import Exchange from "./components/exchange/index";
+import Notice from "./components/exchange/notice";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
@@ -240,6 +241,12 @@ export const routes = [
     path: "/exchange",
     icon: "fas fa-exchange-alt",
     component: Exchange
+  },
+  {
+    label: "notice",
+    path: "/notice/:id",
+    //icon: "fas fa-exchange-alt",
+    component: Notice
   },
   {
     label: "TRONSR",

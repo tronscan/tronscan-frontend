@@ -1334,4 +1334,12 @@ export const messages = {
     */
     "newly_issued_token_by_tronscan": "The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
 
+    /*
+   ##################################################################################
+   #                                                                                #
+   # notice  2018-12-10                                     #
+   #                                                                                #
+   ##################################################################################
+  */
+    "OthersArticle":"Articles in this group",
 };
