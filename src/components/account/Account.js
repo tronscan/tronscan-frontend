@@ -44,17 +44,7 @@ class Account extends Component {
       showBandwidth: false,
       privateKey: "",
       temporaryName: "",
-      resources: [
-          {
-              label:"unfreeze_bandwidth",
-              value:0
-          },
-          {
-              label:"unfreeze_energy",
-              value:1
-          }
-      ],
-      selectedResource:0,
+      selectedResource:null,
       hideSmallCurrency:true,
       tokenTRC10:true,
       tokens20:[]
@@ -514,13 +504,23 @@ class Account extends Component {
   }
 
   hideModal = () => {
-    this.setState({modal: null});
+      this.setState({
+          modal: null,
+      });
   };
+
+  hideFreezeModal = () =>{
+      this.setState({
+          modal: null,
+          selectedResource:null
+      });
+  }
 
   showUnfreezeModal = async () => {
     let {privateKey,selectedResource,resources} = this.state;
+    let {intl} = this.props;
     this.setState({
-      modal: (
+        modal: (
           <SweetAlert
               info
               showCancel
@@ -530,7 +530,7 @@ class Account extends Component {
               cancelBtnText={tu("cancel")}
               title={tu("unfreeze_trx_confirm_message")}
               onConfirm={this.unfreeze}
-              onCancel={this.hideModal}
+              onCancel={this.hideFreezeModal}
               style={{height: '300px'}}
           >
               <div className="form-group" style={{marginBottom:'36px'}}>
@@ -540,18 +540,14 @@ class Account extends Component {
                 <select className="custom-select"
                         value={selectedResource}
                         onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
-                    {
-                        resources.map((resource, index) => {
-                            return (
-                                <option key={index} value={resource.value}>{t(resource.label)}</option>
-                            )
-                        })
-                    }
+                        <option value="0">{intl.formatMessage({id: "unfreeze_bandwidth"})}</option>
+                        <option value="1">{intl.formatMessage({id: "unfreeze_energy"})}</option>
                 </select>
               </div>
 
           </SweetAlert>
-      )
+      ),
+
     })
   };
 
@@ -603,12 +599,14 @@ class Account extends Component {
     let {account} = this.props;
     let {privateKey,selectedResource} = this.state;
     this.hideModal();
-
+    if(!selectedResource) {
+        selectedResource = 0
+    }
     let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
     if (success) {
       this.setState({
         modal: (
-            <SweetAlert success title="TRX Unfrozen" onConfirm={this.hideModal}>
+            <SweetAlert success title="TRX Unfrozen" onConfirm={this.hideFreezeModal}>
               {tu("success_unfrozen_trx")}
             </SweetAlert>
         )
@@ -617,7 +615,7 @@ class Account extends Component {
     } else {
       this.setState({
         modal: (
-            <SweetAlert warning title={tu("unable_to_unfreeze")} onConfirm={this.hideModal}>
+            <SweetAlert warning title={tu("unable_to_unfreeze")} onConfirm={this.hideFreezeModal}>
               {tu("unable_unfreeze_trx_message")}
             </SweetAlert>
         ),

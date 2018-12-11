@@ -120,7 +120,8 @@ class FreezeBalanceModal extends React.PureComponent {
                     {
                         resources.map((resource, index) => {
                             return (
-                                <option key={index} value={resource.value}>{t(resource.label)}</option>
+                                <option key={index} value={resource.value}>{intl.formatMessage({id: resource.label})}</option>
+
                             )
                         })
                     }
