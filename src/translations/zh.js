@@ -275,6 +275,7 @@ export const messages = {
     "freeze_trx_premessage_0": `再次冻结TRX获得TRON Power并解锁其他功能。例如，使用TRON Power可以`,
     "freeze_trx_premessage_link": "为超级代表投票。",
     "freeze_trx_premessage_1": ` 冻结的TRX将会被“锁定”三天，在此期间冻结的TRX不能用于交易，三天过后可以解冻TRX并正常用于交易。`,
+    "freeze_trx_premessage_2": ` 每次冻结只能获得带宽或者能量中的一种，不可同时获取这两种资源。用户解冻某一种资源时，之前的投票全部失效。如需使用剩下的TRON Power 投票，用户需要重新进行投票操作。`,
     "trx_amount": "TRX数额",
     "token_freeze_confirm_message_0": "确认冻结",
     "token_freeze_confirm_message_1": "至少3天",

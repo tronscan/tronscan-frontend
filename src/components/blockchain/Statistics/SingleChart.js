@@ -69,6 +69,7 @@ class Statistics extends React.Component {
         let chartName = match.params.chartName;
         switch (chartName){
             case 'supply':
+
                 this.loadTotalTRXSupply();
                 setInterval(() => {
                     this.loadTotalTRXSupply();
@@ -120,51 +121,78 @@ class Statistics extends React.Component {
                 }))
         });
     }
-
-    async loadTotalTRXSupply(){
+    loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
-        let TronicsSupportPlanTotal = Math.abs((48051405879291 + 47301714286684 + 43765311477181 +  43778265726411 + 40084942291066 + 30849150245777 + 26800712361681 ) / ONE_TRX).toFixed(2);
-        let random = Math.random();
-        let balanceData = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=1&per_page=1`);
-        let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
-        let {blocks} = await Client.getBlocks({
-            limit: 1,
-            sort: '-number',
-        });
-        let blockHeight = blocks[0] ? blocks[0].number : 0;
-        let nodeRewardsNum = blockHeight * 16;
-        let blockProduceRewardsNum = blockHeight * 32;
-        let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
-        let startFeeBurnedNum = Math.abs(-9223372036854.775808)
-        let feeBurnedNum = (startFeeBurnedNum - Math.abs(address.balance / ONE_TRX)).toFixed(2);
-        let genesisNum = 100000000000;
-        let independenceDayBurned = 1000000000;
-        let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
-        let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
-        let supplyTypesChartData = [
-            {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
-            {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
+        const {funds} = await Client.getFundsSupply();
 
+        let supplyTypesChartData = [
+            {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
+            {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*currentTotalSupply)).toFixed(2);
+        let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
             supplyTypesChart: supplyTypesChartData,
-            genesisNum:intl.formatNumber(genesisNum),
-            blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
-            nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
-            independenceDayBurned:intl.formatNumber(independenceDayBurned),
-            feeBurnedNum:intl.formatNumber(feeBurnedNum),
-            currentTotalSupply:currentTotalSupply,
+            genesisNum:intl.formatNumber(funds.genesisBlockIssue),
+            blockProduceRewardsNum:intl.formatNumber(funds.totalBlockPay),
+            nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
+            independenceDayBurned:intl.formatNumber(funds.burnPerDay),
+            feeBurnedNum:intl.formatNumber(funds.burnByCharge),
+            currentTotalSupply:funds.totalTurnOver,
             priceUSD:priceUSD,
             priceBTC:priceBTC,
             marketCapitalization:marketCapitalization,
-            foundationFreeze:intl.formatNumber(TRONFoundationTotal),
-            circulatingNum:intl.formatNumber(circulatingNum)
+            foundationFreeze:intl.formatNumber(funds.fundTrx),
+            circulatingNum:intl.formatNumber(funds.turnOver)
         });
     }
+
+    // async loadTotalTRXSupply(){
+    //     let {intl} = this.props;
+    //     let TronicsSupportPlanTotal = Math.abs((48051405879291 + 47301714286684 + 43765311477181 +  43778265726411 + 40084942291066 + 30849150245777 + 26800712361681 ) / ONE_TRX).toFixed(2);
+    //     let random = Math.random();
+    //     let balanceData = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=1&per_page=1`);
+    //     let TRONFoundationTotal = balanceData.data.data.total/ONE_TRX - TronicsSupportPlanTotal;
+    //     let {blocks} = await Client.getBlocks({
+    //         limit: 1,
+    //         sort: '-number',
+    //     });
+    //     let blockHeight = blocks[0] ? blocks[0].number : 0;
+    //     let nodeRewardsNum = blockHeight * 16;
+    //     let blockProduceRewardsNum = blockHeight * 32;
+    //     let address = await Client.getAddress('TLsV52sRDL79HXGGm9yzwKibb6BeruhUzy');
+    //     let startFeeBurnedNum = Math.abs(-9223372036854.775808)
+    //     let feeBurnedNum = (startFeeBurnedNum - Math.abs(address.balance / ONE_TRX)).toFixed(2);
+    //     let genesisNum = 100000000000;
+    //     let independenceDayBurned = 1000000000;
+    //     let currentTotalSupply = genesisNum + blockProduceRewardsNum + nodeRewardsNum - independenceDayBurned - feeBurnedNum;
+    //     let circulatingNum = (currentTotalSupply  - TRONFoundationTotal).toFixed(2);
+    //     let supplyTypesChartData = [
+    //         {value: circulatingNum, name: 'circulating_supply', selected: true,sliced: true},
+    //         {value: TRONFoundationTotal, name: 'total_frozen', selected: false,sliced: false},
+    //
+    //     ]
+    //     let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/tronix/?convert=EUR`);
+    //     let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
+    //     let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
+    //     let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*currentTotalSupply)).toFixed(2);
+    //     this.setState({
+    //         supplyTypesChart: supplyTypesChartData,
+    //         genesisNum:intl.formatNumber(genesisNum),
+    //         blockProduceRewardsNum:intl.formatNumber(blockProduceRewardsNum),
+    //         nodeRewardsNum:intl.formatNumber(nodeRewardsNum),
+    //         independenceDayBurned:intl.formatNumber(independenceDayBurned),
+    //         feeBurnedNum:intl.formatNumber(feeBurnedNum),
+    //         currentTotalSupply:currentTotalSupply,
+    //         priceUSD:priceUSD,
+    //         priceBTC:priceBTC,
+    //         marketCapitalization:marketCapitalization,
+    //         foundationFreeze:intl.formatNumber(TRONFoundationTotal),
+    //         circulatingNum:intl.formatNumber(circulatingNum)
+    //     });
+    // }
     async loadPieChart(){
         let {intl} = this.props;
         let {statisticData} = await Client.getStatisticData()

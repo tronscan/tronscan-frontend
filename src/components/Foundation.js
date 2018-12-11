@@ -12,6 +12,7 @@ import {trim} from "lodash";
 import {Tooltip} from "reactstrap";
 import {TRXPrice} from "./common/Price";
 import {ONE_TRX,API_URL} from "../constants";
+import {Client} from "../services/api";
 
 class Accounts extends Component {
 
@@ -23,55 +24,25 @@ class Accounts extends Component {
       searchString: "",
       accounts: [],
       total: 1000,
-      open: false,
+      tronicsPlanTRX:0,
+      foundationTRX:0,
     }
   }
 
   componentDidMount() {
     this.loadAccounts();
   }
-
+  handleHover(key) {
+    this.setState((prevS,props)=>({
+        [key]: !prevS[key]
+    }));
+  }
   loadAccounts = async (page = 1, pageSize = 20) => {
-    let planAddress = [
-        {
-            address:'TRA7vZqzFxycHjYrrjbjh5iTaywSmDefSV',
-            balance: 48051405879291
-        },
-        {
-            address:'TN4fJGCqurpmoWS4d6BXDiqZxGPvhacmVR',
-            balance: 47301714286684
-
-        },
-        {
-            address:'TAv8VH5cnC5Vi5U4v5RMa9CU6pdbu7oGfu',
-            balance:43765311477181
-        },
-        {
-            address:'TYRcL4wx2K5NCaHQwNsgoXabkUiNkce3QH',
-            balance:43778265726411
-
-        },
-        {
-            address:'TJCT4patUUunwqJkBusWzG6xdfWCcaQ9YN',
-            balance:40084942291066
-        },
-        {
-            address:'TXStuWCx1rX7Kw61CGjQaGyz9DjQEoLHNA',
-            balance:30849150245777
-        },
-        {
-            address:'TPu2anzdQwyX6karyramGnQBoMwdpJSvXH',
-            balance:26800712361681
-        },
-    ]
     this.setState({loading: true});
-
-    //let data = await xhr.get("https://server.tron.network/api/v2/node/balance?page_index=" + page +"&per_page="+pageSize);
-
+    const {list} = await Client.getlistdonators();
     let random = Math.random();
-    // let data = await xhr.get("https://server.tron.network/api/v2/node/balance_info?random=" + random);
     let data = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
-
+    const {funds} = await Client.getFundsSupply();
     function compare(property) {
         return function (obj1, obj2) {
 
@@ -86,10 +57,10 @@ class Accounts extends Component {
         }
     }
     data.data.data.data.sort(compare('key'));
-    let foundationAddress  = data.data.data.data
+    let foundationAddress  = data.data.data.data;
     for(let item in foundationAddress){
-        for(let address in planAddress){
-            if(foundationAddress[item].address === planAddress[address].address){
+        for(let address in list){
+            if(foundationAddress[item].address === list[address]){
                 foundationAddress[item].isPlan= true;
             }
         }
@@ -98,8 +69,10 @@ class Accounts extends Component {
     this.setState({
         loading: false,
         accounts: foundationAddress,
-        total: data.data.data.total/ONE_TRX,
-        planAddress:planAddress
+        total: funds.fundSumBalance / ONE_TRX ,
+        tronicsPlanTRX:funds.donateBalance / ONE_TRX,
+        foundationTRX:funds.fundTrx,
+        planAddress:list
     });
 
 
@@ -137,15 +110,18 @@ class Accounts extends Component {
               record.isPlan?  <div><div className="d-flex"
                                         style={{width:300}}
                                         id={"Tronics-Support-Plan_"+record.key}
-                                        onMouseOver={() => this.setState({open: true})}
-                                        onMouseOut={() => this.setState({open: false})}>
+                                        onMouseOver={(prevS,props) => this.setState({[record.key]: true})}
+                                        onMouseOut={() => this.setState({[record.key]: false})}>
                                         <i className="fas fa-heart" style={{color:'#C23631', marginTop:3,marginRight:5}}></i>
                                         <AddressLink address={text} truncate={false}/>
                                     </div>
-                                    <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={open}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
+                                    <Tooltip placement="top" target={"Tronics-Support-Plan_"+record.key} isOpen={this.state[record.key]}> <span className="text-capitalize">{tu("tronics_support_plan_recipient_address")}</span></Tooltip>
                               </div>:<AddressLink address={text}/>
           )
         }
+
+
+
       },
       {
         title: intl.formatMessage({id: 'balance'}),
@@ -185,13 +161,7 @@ class Accounts extends Component {
   render() {
 
     let {match,intl} = this.props;
-    let {total, loading,planAddress} = this.state;
-    let tronicsPlanTRX = 0;
-    for(let plan in planAddress){
-        tronicsPlanTRX += planAddress[plan].balance
-    }
-    tronicsPlanTRX = Math.round(tronicsPlanTRX / ONE_TRX)
-    let foundationTRX =  Math.round(total - tronicsPlanTRX)
+    let {total, tronicsPlanTRX,foundationTRX,loading,planAddress} = this.state;
     return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row foundation_title">

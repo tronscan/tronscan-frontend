@@ -44,6 +44,11 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fa fa-angle-right mr-4" /> Discord
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
                     <HrefLink href="https://www.facebook.com/tronfoundation/">
                       <i className="fa fa-angle-right mr-4" /> Facebook
                     </HrefLink>
@@ -53,11 +58,6 @@ class Footer extends Component {
                       <i className="fa fa-angle-right mr-4" /> Twitter
                     </HrefLink>
                   </li>
-                  {/*<li className="p-2">*/}
-                    {/*<HrefLink href="https://tronfoundation.slack.com/">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> Slack*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
                   <li className="p-2">
                     <HrefLink href="https://www.reddit.com/r/tronix">
                       <i className="fa fa-angle-right mr-4" /> Reddit

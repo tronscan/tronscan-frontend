@@ -276,6 +276,7 @@ export const messages = {
     "freeze_trx_premessage_0": `再びTRXを凍結すればTRONパワーが得られます。例えば、TRONパワーより`,
     "freeze_trx_premessage_link": "スーパー代表に投票できます。",
     "freeze_trx_premessage_1": ` 凍結されたTRXはロックになる。この時期に、凍結されたTRXは取引に使われない。三日後にTRXを解凍で、取引に使われる。`,
+    "freeze_trx_premessage_2":` 毎回の凍結にはバンド幅またはエネルギーのうちの一種のみが得られるが、同時に獲得することができません。ユーザーはあるリソースを解凍するとき、この前の投票がすべて無効になります。残ったTRON　powerを投票に使いたい場合、もう一度の投票が必要です。`,
     "trx_amount": "TRX数",
     "token_freeze_confirm_message_0": "凍結を確認する",
     "token_freeze_confirm_message_1": "少なくとも三日",
@@ -1338,4 +1339,7 @@ export const messages = {
     ##################################################################################
     */
     "newly_issued_token_by_tronscan":"新しく発行されたトークンは、tronscanによって監査された後でのみオンラインになることができます。 監査に合格しなかった場合は表示されません",
+    "Favorites":"オプション",
+    "dex_search_dec":"取引したい通貨の略称を入力してください",
+
 }

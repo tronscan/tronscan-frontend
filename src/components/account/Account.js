@@ -1291,12 +1291,14 @@ class Account extends Component {
                   </h5>
 
                   <div className="card-body px-0 d-lg-flex justify-content-lg-between">
-                    <p className="card-text" style={{maxWidth:'82%'}}>
+                    <p className="card-text freeze-trx-premessage">
                       {tu("freeze_trx_premessage_0")}
                       <Link to="/votes">{t("freeze_trx_premessage_link")}</Link>
                       {tu("freeze_trx_gain_bandwith_energy")}
                       <br/>
                       <br/>{tu("freeze_trx_premessage_1")}
+                      <br/>
+                      <br/>{tu("freeze_trx_premessage_2")}
                     </p>
                     <div>
                       {

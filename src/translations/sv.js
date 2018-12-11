@@ -1329,6 +1329,9 @@ export const messages = {
     ##################################################################################
     */
     "newly_issued_token_by_tronscan": "The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
+    "Favorites":"Favorites",
+    "dex_search_dec":"Enter the Abbreviation of the token",
+    "freeze_trx_premessage_2":`Either one of bandwidth or energy can be acquired by each freeze. You cannot acquire both resources at the same time. When a user unfreeze a certain resource, his previous votes will be completely voided. If a user would like to vote using the remaining TRON Power, he will have to perform his voting operations all over again.`,
 
 
 };

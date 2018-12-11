@@ -276,8 +276,9 @@ export const messages = {
   "freeze_trx_premessage_0": `TRX can be frozen to gain TRON Power and enable additional features.
    For example, with TRON Power you can `,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
+  "freeze_trx_premessage_1": `Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
+  "freeze_trx_premessage_2":`Either one of bandwidth or energy can be acquired by each freeze. You cannot acquire both resources at the same time. When a user unfreeze a certain resource, his previous votes will be completely voided. If a user would like to vote using the remaining TRON Power, he will have to perform his voting operations all over again.`,
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
