@@ -276,6 +276,7 @@ export const messages = {
     "freeze_trx_premessage_0": `再びTRXを凍結すればTRONパワーが得られます。例えば、TRONパワーより`,
     "freeze_trx_premessage_link": "スーパー代表に投票できます。",
     "freeze_trx_premessage_1": ` 凍結されたTRXはロックになる。この時期に、凍結されたTRXは取引に使われない。三日後にTRXを解凍で、取引に使われる。`,
+    "freeze_trx_premessage_2":` 毎回の凍結にはバンド幅またはエネルギーのうちの一種のみが得られるが、同時に獲得することができません。ユーザーはあるリソースを解凍するとき、この前の投票がすべて無効になります。残ったTRON　powerを投票に使いたい場合、もう一度の投票が必要です。`,
     "trx_amount": "TRX数",
     "token_freeze_confirm_message_0": "凍結を確認する",
     "token_freeze_confirm_message_1": "少なくとも三日",
@@ -1301,7 +1302,7 @@ export const messages = {
     "no_holders_found":"トークン保有者がいない",
     "search_TRC20": "アドレスを検索する",
     "beginners_guide":"初心者へのご案内",
-    "TRONdice":"TRONdiceゲームでdiceコインを獲得します！diceコインの持ち主はTRX配当がもらえます！",
+    "TRONdice":"diceコインの持ち主はTRX配当がもらえます！",
     "Join_TRONdice":"-diceゲームを始めよう！",
     "search_TRC20_error":"正しいアドレスを入力してください",
     "dex_announcement":"公告:",
@@ -1338,8 +1339,9 @@ export const messages = {
     ##################################################################################
     */
     "newly_issued_token_by_tronscan":"新しく発行されたトークンは、tronscanによって監査された後でのみオンラインになることができます。 監査に合格しなかった場合は表示されません",
-
-    /*
+    "Favorites":"オプション",
+    "dex_search_dec":"取引したい通貨の略称を入力してください",
+  /*
    ##################################################################################
    #                                                                                #
    # notice  2018-12-10                                     #
@@ -1348,3 +1350,5 @@ export const messages = {
   */
     "OthersArticle":"Articles in this group",
 }
+
+

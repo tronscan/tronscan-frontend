@@ -27,8 +27,8 @@ import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import TronWeb from 'tronweb';
 import _ from "lodash";
+
 
 
 class Account extends Component {
@@ -127,10 +127,10 @@ class Account extends Component {
               item.token20_name = item.name + '(' + item.symbol + ')';
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if (typeof balanceData.balance === 'undefined' || balanceData.balance === null || !balanceData.balance) {
-                  item.token20_balance = 0;
-              }else{
+              if(balanceData.balance){
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
               return item
           });
@@ -1246,12 +1246,12 @@ class Account extends Component {
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                   <div className="account-token-tab">
-                    <a href="javascript:"
+                    <a href="javascript:;"
                        className={"btn btn-default btn-sm" + (tokenTRC10?' active':'')}
                        onClick={this.handleTRC10Token}>
                         {tu("TRC10_token")}
                     </a>
-                    <a href="javascript:"
+                    <a href="javascript:;"
                        className={"btn btn-default btn-sm ml-2" + (tokenTRC10?'':' active')}
                        onClick={this.handleTRC20Token}>
                         {tu("TRC20_token")}
@@ -1292,12 +1292,14 @@ class Account extends Component {
                   </h5>
 
                   <div className="card-body px-0 d-lg-flex justify-content-lg-between">
-                    <p className="card-text" style={{maxWidth:'82%'}}>
+                    <p className="card-text freeze-trx-premessage">
                       {tu("freeze_trx_premessage_0")}
                       <Link to="/votes">{t("freeze_trx_premessage_link")}</Link>
                       {tu("freeze_trx_gain_bandwith_energy")}
                       <br/>
                       <br/>{tu("freeze_trx_premessage_1")}
+                      <br/>
+                      <br/>{tu("freeze_trx_premessage_2")}
                     </p>
                     <div>
                       {

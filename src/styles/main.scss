@@ -2228,7 +2228,7 @@ h5 {
       position: absolute;
       font-size: 12px;
       color: #666;
-      left: -15px;
+      left: -20px;
       top: 30px;
       transform: scale(0.9);
       img{
@@ -2287,5 +2287,80 @@ h5 {
         margin-left: 5px;
       }
     }
+  }
+}
+
+.dex-tab{
+  display: flex;
+  margin-bottom: 6px;
+  .btn{
+     width: 7.525rem;
+     height: 2rem;
+     font-size: 14px;
+     border:1px solid #F3F3F3;
+     background-color: #fff;
+     font-weight: 400;
+     i{
+       font-style: normal;
+       color: #D8D8D8;
+     }
+     &.active{
+       background-color: #F3F3F3;
+       span{
+         color: #C53028;
+       }
+       i{
+         color: #C53028!important;
+       }
+     }
+     &:hover{
+       color: #C53028!important;
+       span{
+         color: #C53028;
+       }
+     }
+     span{
+        color: #666666;
+     }
+
+  }
+  a:nth-child(1){
+    border-radius: 2px 0 0 0;
+  }
+  a:nth-child(2){
+    border-radius: 0 2px 0 0;
+  }
+}
+
+.dex-search{
+  margin-bottom: 6px;
+}
+.optional-star{
+  cursor: pointer;
+  position: absolute;
+  z-index: 999;
+  .star{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    background-image: url('../images/dex_star.png');
+    background-size: 100% 100%;
+  }
+  .star_red{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    background-image: url('../images/dex_star_red.png');
+    background-size: 100% 100%;
+  }
+
+}
+.exchange-abbr-name{
+  margin-left: 20px;
+}
+.freeze-trx-premessage{
+  max-width: 82%;
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
   }
 }

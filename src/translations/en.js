@@ -276,8 +276,9 @@ export const messages = {
   "freeze_trx_premessage_0": `TRX can be frozen to gain TRON Power and enable additional features.
    For example, with TRON Power you can `,
   "freeze_trx_premessage_link": "vote for Super Representatives.",
-  "freeze_trx_premessage_1": ` Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
+  "freeze_trx_premessage_1": `Frozen tokens are "locked" for a period of 3 days. During this period the frozen TRX cannot be traded.
    After this period you can unfreeze the TRX and trade the tokens.`,
+  "freeze_trx_premessage_2":`Either one of bandwidth or energy can be acquired by each freeze. You cannot acquire both resources at the same time. When a user unfreeze a certain resource, his previous votes will be completely voided. If a user would like to vote using the remaining TRON Power, he will have to perform his voting operations all over again.`,
   "trx_amount": "TRX Amount",
   "token_freeze_confirm_message_0": "I confirm to freeze ",
   "token_freeze_confirm_message_1": "for at least of 3 days",
@@ -1316,13 +1317,12 @@ export const messages = {
   "no_holders_found":"No Token Holders Found",
   "search_TRC20": "Search Address",
   "beginners_guide":"Beginner's guide",
-  "TRONdice":"TRONdice Play the game and get dice coin; hold dice coin and get TRX dividend!",
+  "TRONdice":"Hold dice coin and get TRX dividend!",
   "Join_TRONdice":"-Join TRONdice!",
   "search_TRC20_error":" Please enter the correct address",
   "dex_announcement":"notice:",
   "regulations_on_trading_pairs":"Regulations on Trading Pairs",
   "How_to_trade_on_DEX":"How to trade on DEX",
-
   /*
    ##################################################################################
    #                                                                                #
@@ -1331,7 +1331,7 @@ export const messages = {
    ##################################################################################
   */
   "about_us":"About Us",
-   "what_we_do":"What are we doing?",
+  "what_we_do":"What are we doing?",
   "Transcan_desc":"Tronscan is the first block explorer based on TRON. It not only includes some basic functions of the block explorer, such as search query transactions, accounts, blocks, nodes, smart contracts; data statistics and queries on the chain, but also directly supports token creation. At the same time, Tronscan also has a built-in web wallet and Bancor-based DEX, which enriches the Tronscan application matrix.",
   "Our_team":"Community Contributor",
   "Team_desc":"Our team is the Blockchain Welfare Foundation in Malta and has been actively involved in the ecological construction of TRON. The team consists of more than 30 people all over the world, mostly developers and operators. In the future, we will be bound to the TRON ecological development in the long run. To perfect the Tronscan, we will also develop DApps based on TRON.",
@@ -1354,7 +1354,8 @@ export const messages = {
   ##################################################################################
   */
   "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
-
+  "Favorites":"Favorites",
+  "dex_search_dec":"Enter the Abbreviation of the token",
   /*
     ##################################################################################
     #                                                                                #
@@ -1363,6 +1364,7 @@ export const messages = {
     ##################################################################################
    */
   "OthersArticle":"Articles in this group",
+
 
 
 };
