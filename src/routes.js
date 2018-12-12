@@ -246,7 +246,8 @@ export const routes = [
     label: "notice",
     path: "/notice/:id",
     //icon: "fas fa-exchange-alt",
-    component: Notice
+    component: Notice,
+    showInMenu: false
   },
   {
     label: "TRONSR",

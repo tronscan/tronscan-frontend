@@ -22,7 +22,7 @@
     }
   }
   .notice{
-    height: 40px;
+    min-height: 40px;
     background-color: #fff;
     display: flex;
     padding:0 20px;
@@ -82,23 +82,32 @@
       height: 100%;
     }
     .exchange-box-left{
-      .list{
-        padding:12px 0;
-        min-height: 40px;
-        line-height: 20px;
-        font-size: 14px;
-        color: #333;
-        border-bottom:1px solid #eee;
-        display: block;
-      }
-      .list.active{
-        color: #C53028;
-      }
       &-title{
         font-size: 14px;
         color: #999;
         padding-bottom: 12px;
         border-bottom:1px solid #eee;
+      }
+      .exchange-list-mark{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .list-wrap{
+          flex:1;
+          overflow-y:scroll;
+          .list{
+            padding:12px 0;
+            min-height: 40px;
+            line-height: 20px;
+            font-size: 14px;
+            color: #333;
+            border-bottom:1px solid #eee;
+            display: block;
+          }
+          .list.active{
+            color: #C53028;
+          }
+        }
       }
     }
     .exchange-box-right{
@@ -141,8 +150,31 @@
     }
   }
   @media screen and (max-width: 768px) {
+    .notice{
+      flex-direction: column;
+      align-items: flex-start;
+      .notice-wrap{
+        padding: 0;
+        flex-direction: column;
+        .item{
+          margin: 0;
+        }
+      }
+    }
     .notice-box{
-
+      .exchange-list{
+        .list-wrap{
+          height: 190px;
+          overflow-y: scroll;
+        }
+        //height: 230px;
+        //overflow-y: scroll;
+      }
+      .exchange-box-right-content{
+        img{
+          width: 100%;
+        }
+      }
     }
     &-box{
       display: flex;

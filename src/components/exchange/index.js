@@ -68,10 +68,8 @@ class Exchange extends React.Component {
                   }
               </div>
                 {
-                  this.state.notice.length>0?<Link to={'/notice/'+this.state.notice[0].id}>{tu('learn_more')}</Link>:null
-
+                  this.state.notice.length>0?<Link to={'/notice/'+this.state.notice[0].id}>{tu('learn_more')}></Link>:null
                 }
-              <a href="">{tu('learn_more')}></a>
             </div>
               {/* <div style={{position: 'absolute'}}><TronLoader/></div> */}
             <div className="exchange-box mb-2">

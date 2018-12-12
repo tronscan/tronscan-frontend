@@ -48,9 +48,11 @@ class Notice extends React.Component {
                                     <div className="exchange-box-left-title">
                                         {tu('OthersArticle')}
                                     </div>
+                                    <div className="list-wrap">
                                     {
-                                        this.state.notice.map(v=><Link to={'/notice/'+v.id} key={v.id} className={"list"+(id==v.id?" active":"")}>{v['title'+lg]}</Link>)
+                                        this.state.notice.map(v=><Link to={'/notice/'+v.id} repalce="true" key={v.id} className={"list"+(id==v.id?" active":"")}>{v['title'+lg]}</Link>)
                                     }
+                                    </div>
                                 </div>
                             </div>
                         </div>
