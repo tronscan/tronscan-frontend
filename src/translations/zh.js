@@ -1343,5 +1343,6 @@ export const messages = {
     "newly_issued_token_by_tronscan": "新发行的通证需要经过tronscan审核并通过后才能上线，未通过审核则不予显示",
     "Favorites":"自选",
     "dex_search_dec":"输入想交易代币的简称",
-
+    "TRC20_exchange_online":"TRC20交易所上线啦",
+    "Trade_on_TRXMarket":"去TRXMarket交易"
 };

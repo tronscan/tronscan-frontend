@@ -34,7 +34,7 @@ class Exchange extends React.Component {
             <div className="tron-announcement">
               <img src={require('../../images/announcement-logo.png')} alt=""/>
               <div>{tu('dex_announcement')}</div>
-              <a href={intl.locale == 'zh'?"https://coin.top/production/js/2018-11-29-11-51-06.pdf":"https://coin.top/production/js/2018-11-29-11-52-31Regulations_on_Trading_Pairs.pdf"} target="_blank" >{tu('regulations_on_trading_pairs')}</a>
+              <a href="https://trx.market" target="_blank" >{tu('TRC20_exchange_online')}</a>
             </div>
             <div className="tron-ad">
               <img src={require('../../images/dice-logo.png')} alt=""/>

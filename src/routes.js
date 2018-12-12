@@ -236,7 +236,15 @@ export const routes = [
     showInMenu: false
   },
   {
-    label: "dex",
+    path: "/TRXMarket",
+    label: "TRXMarket",
+    icon: "fas fa-rocket",
+    enurl: "https://trx.market",
+    zhurl: "https://trx.market",
+    linkHref: true
+  },
+  {
+    label: "DEX",
     path: "/exchange",
     icon: "fas fa-exchange-alt",
     component: Exchange
