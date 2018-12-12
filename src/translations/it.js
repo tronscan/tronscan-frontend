@@ -1336,5 +1336,6 @@ export const messages = {
     "Favorites":"Favorites",
     "dex_search_dec":"Enter the Abbreviation of the token",
     "freeze_trx_premessage_2":`Either one of bandwidth or energy can be acquired by each freeze. You cannot acquire both resources at the same time. When a user unfreeze a certain resource, his previous votes will be completely voided. If a user would like to vote using the remaining TRON Power, he will have to perform his voting operations all over again.`,
-
+    "TRC20_exchange_online":"TRC20 exchange is online now",
+    "Trade_on_TRXMarket":"Trade on TRXMarket",
 };
