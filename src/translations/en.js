@@ -1356,6 +1356,8 @@ export const messages = {
   "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
   "Favorites":"Favorites",
   "dex_search_dec":"Enter the Abbreviation of the token",
+  "TRC20_exchange_online":"TRC20 exchange is online now",
+  "Trade_on_TRXMarket":"Trade on TRXMarket",
   /*
     ##################################################################################
     #                                                                                #
