@@ -55,7 +55,7 @@
           }
         }
         .title{
-          max-width:268px;
+          max-width:250px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow:ellipsis;
@@ -81,12 +81,10 @@
     }
     & > a{
       color: #C53028;
-      display: flex;
-      align-items: center;
+      height: 40px;
+      line-height: 40px;
       span{
-        height: 100%;
-        display: flex;
-        align-items: center;
+        line-height:40px;
       }
     }
   }
@@ -179,6 +177,8 @@
     .notice{
       flex-direction: column;
       align-items: flex-start;
+      padding-top:10px;
+      padding-bottom:10px;
       .notice-wrap{
         padding: 0;
         flex-direction: column;
