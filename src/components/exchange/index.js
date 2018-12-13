@@ -24,7 +24,7 @@ class Exchange extends React.Component {
   }
 
   async componentDidMount() {
-      const {data} = await Client.getNotices({limit:3});
+      const {data} = await Client.getNotices({limit:3,sort:'-timestamp'});
       this.setState({notice:data})
   }
 

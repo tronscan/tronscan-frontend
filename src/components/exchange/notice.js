@@ -16,7 +16,7 @@ class Notice extends React.Component {
     async componentDidMount() {
         const {match} = this.props;
         const {id} = match.params;
-        const {data} = await Client.getNotices();
+        const {data} = await Client.getNotices({sort:'-timestamp'});
         //const focus = data.filter(v=>v.id == id)[0];
         //const date = Utc2BeijingDateTime(focus.createTime.replace(/\s/,'T')+'Z');
         this.setState({notice:data});
