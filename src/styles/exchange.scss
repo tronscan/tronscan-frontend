@@ -51,7 +51,7 @@
         }
         &:hover{
           .title{
-            color: rgba(197,48,40,1);
+            color: rgba(60,9,6,0.80);
           }
         }
         .title{
@@ -144,6 +144,9 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
+        .author{
+          color: #C23631;
+        }
         .line{
           width: 1px;
           height: 12px;
@@ -189,9 +192,14 @@
         //height: 230px;
         //overflow-y: scroll;
       }
-      .exchange-box-right-content{
-        img{
-          width: 100%;
+      .exchange-box-right{
+        &-title{
+          font-size: 14px;
+        }
+        &-content{
+          img{
+            width: 100%;
+          }
         }
       }
     }

@@ -62,7 +62,7 @@ class Notice extends React.Component {
                                     {focus['title'+lg]}
                                 </div>
                                 <div className="exchange-box-right-vice-title">
-                                    {focus.user}
+                                    <span className="author">TRXMarket</span>
                                     <div className="line"></div>
                                     <TimeAgo date={date} />
                                 </div>
