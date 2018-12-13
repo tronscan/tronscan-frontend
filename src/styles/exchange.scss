@@ -62,8 +62,9 @@
           color: rgba(197,48,40,.8);
         }
         .date{
-          width: 44px;
+          width: 50px;
           color: #999;
+          text-align: right;
         }
         &:first-child{
           margin-left: 0;
@@ -83,6 +84,9 @@
       display: flex;
       align-items: center;
       span{
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
     }
   }
