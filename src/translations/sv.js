@@ -1335,4 +1335,15 @@ export const messages = {
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
 
+    /*
+   ##################################################################################
+   #                                                                                #
+   # notice  2018-12-10                                     #
+   #                                                                                #
+   ##################################################################################
+  */
+    "OthersArticle":"Articles in this group",
+    "donateAddress":"DONATE"
+
+
 };

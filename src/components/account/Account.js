@@ -30,6 +30,7 @@ import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import _ from "lodash";
 
 
+
 class Account extends Component {
 
   constructor() {
@@ -128,7 +129,7 @@ class Account extends Component {
           });
       }
   }
-   renderTRC20Tokens() {
+  renderTRC20Tokens() {
     let {hideSmallCurrency,tokens20} = this.state;
     if(hideSmallCurrency){
         tokens20 = _(tokens20)
@@ -769,7 +770,7 @@ class Account extends Component {
         }
     };
 
-    withdrawExchange = async (exchangeId, tokenId, quant) => {
+  withdrawExchange = async (exchangeId, tokenId, quant) => {
         let {account, currentWallet} = this.props;
         let {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
 
@@ -829,7 +830,7 @@ class Account extends Component {
       })
   };
 
-    withdrawTxnPair = (exchange) => {
+  withdrawTxnPair = (exchange) => {
         this.setState({
             modal: (
                 <OperateTxnPairModal
@@ -1547,7 +1548,8 @@ class Account extends Component {
               </div>
             </div>
           }
-          <div className="row mt-3">
+        {/*
+        <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
@@ -1578,6 +1580,7 @@ class Account extends Component {
               </div>
             </div>
           </div>
+          */}
         </main>
     )
   }

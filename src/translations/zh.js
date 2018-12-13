@@ -1344,5 +1344,15 @@ export const messages = {
     "Favorites":"自选",
     "dex_search_dec":"输入想交易代币的简称",
     "TRC20_exchange_online":"TRC20交易所上线啦",
-    "Trade_on_TRXMarket":"去TRXMarket交易"
+    "Trade_on_TRXMarket":"去TRXMarket交易",
+
+    /*
+     ##################################################################################
+     #                                                                                #
+     # notice  2018-12-10                                     #
+     #                                                                                #
+     ##################################################################################
+    */
+    "OthersArticle":"此组别内的文章",
+    "donateAddress":"捐赠"
 };
