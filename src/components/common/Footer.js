@@ -140,7 +140,7 @@ class Footer extends Component {
                         <img src={require('../../images/footer/icon-heart.png')} alt=""/>
                         {tu('donateAddress')}
                         <span>:</span></div>
-                    <Link to={`/account/${donate_address}`} className="after">{donate_address}</Link>
+                    <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
                 </div>
             </div>
             <div className="row">
