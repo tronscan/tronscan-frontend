@@ -1351,5 +1351,6 @@ export const messages = {
    ##################################################################################
   */
     "OthersArticle":"Articles in this group",
+    "donateAddress":"寄贈する"
 }
 

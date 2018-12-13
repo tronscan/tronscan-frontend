@@ -294,19 +294,54 @@ tr a {
 
 .home-footer {
   background-color: #fafbfc;
+  a{
+    color: #6b757c;
+  }
+  h5{
+    color: #2c2c2c;
+  }
+  .footer-link{
+    color: #2c2c2c;
+  }
+  .donate{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+    &>div{
+      color: #fff;
+      height: 30px;
+      width: 434px;
+      border:1px solid #be2b24;
+      border-radius:15px;
+      display: flex;
+      align-items: center;
+      .after{
+        margin-left: 8px;
+        height: 28px;
+        line-height:28px;
+      }
+      .before{
+        width: 112px;
+        height: 100%;
+        background-color: #be2b24;
+        border-radius:15px 0 0 15px;
+        background-image: url("../images/footer/icon-heart.png");
+        background-repeat: no-repeat;
+        background-position:10px 8px;
+        padding-left:30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        span{
+          height: 28px;
+          line-height:28px;
+        }
+      }
+    }
+  }
 }
 
-.home-footer a {
-  color: #6b757c;
-}
 
-.home-footer h5 {
-  color: #2c2c2c;
-}
-
-.home-footer .footer-link {
-  color: #2c2c2c;
-}
 
 .navbar-login {
   width: 305px;

@@ -1349,5 +1349,6 @@ export const messages = {
        ##################################################################################
       */
     "OthersArticle":"Articles in this group",
+    "donateAddress":"DONATE"
 
 };
