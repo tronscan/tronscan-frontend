@@ -1357,5 +1357,16 @@ export const messages = {
   "Favorites":"Favorites",
   "dex_search_dec":"Enter the Abbreviation of the token",
   "TRC20_exchange_online":"TRC20 exchange is online now",
-  "Trade_on_TRXMarket":"Trade on TRXMarket"
+  "Trade_on_TRXMarket":"Trade on TRXMarket",
+  /*
+    ##################################################################################
+    #                                                                                #
+    # notice  2018-12-10                                     #
+    #                                                                                #
+    ##################################################################################
+   */
+  "OthersArticle":"Articles in this group",
+  "donateAddress":"DONATE"
+
+
 };

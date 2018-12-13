@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { withTimers } from "../../utils/timing";
-import { tu } from "../../utils/i18n";
+import { tu,pure_t } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
 import { HrefLink } from "../common/Links";
 
@@ -12,6 +12,7 @@ class Footer extends Component {
     super();
   }
   render() {
+    const donate_address = 'TTzPiwbBedv7E8p4FkyPyeqq4RVoqRL3TW';
     let { intl, activeLanguage } = this.props;
     return (
       <main className="home pb-0">
@@ -132,6 +133,15 @@ class Footer extends Component {
                   </li>
                 </ul>
               </div>
+            </div>
+            <div className="row donate">
+                <div>
+                    <div className="before">
+                        <img src={require('../../images/footer/icon-heart.png')} alt=""/>
+                        {tu('donateAddress')}
+                        <span>:</span></div>
+                    <Link to={`/address/${donate_address}`} className="after">{donate_address}</Link>
+                </div>
             </div>
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-12">
