@@ -49,15 +49,20 @@
         &:first-child{
           margin: 0;
         }
+        &:hover{
+          .title{
+            color: rgba(197,48,40,1);
+          }
+        }
         .title{
-          width:276px;
-          color: #666;
-          flex:1;
+          max-width:268px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow:ellipsis;
+          color: rgba(197,48,40,.8);
         }
         .date{
+          width: 44px;
           color: #999;
         }
         &:first-child{
@@ -68,13 +73,17 @@
           width: 6px;
           height: 6px;
           border-radius: 6px;
-          background-color: rgba(197,48,40,0.20);
+          background-color: rgba(197,48,40,.8);
           margin-right: 8px;
         }
       }
     }
     & > a{
       color: #C53028;
+      display: flex;
+      align-items: center;
+      span{
+      }
     }
   }
   &-box{

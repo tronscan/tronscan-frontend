@@ -25,7 +25,7 @@ class Notice extends React.Component {
         let {intl,match} = this.props;
         const {id} = match.params;
         const focus = this.state.notice.length>0 ? this.state.notice.filter(v=>v.id == id)[0]:{};
-        const date = focus.createTime?Utc2BeijingDateTime(focus.createTime.replace(/\s/,'T')+'Z'):'';
+        const date = focus.createTime?Utc2BeijingDateTime(focus.createTime.replace(/\s/,'T')+'Z'):'2018-01-01T00:00:00Z';
         const info = focus.extInfo ? JSON.parse(focus.extInfo):[];
         let lg = '';
         if(intl.locale === 'zh'){
