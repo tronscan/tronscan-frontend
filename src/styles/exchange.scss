@@ -22,6 +22,7 @@
     }
   }
   .notice{
+    width: 100%;
     min-height: 40px;
     background-color: #fff;
     display: flex;
@@ -37,15 +38,24 @@
       flex:1;
       padding:0 20px;
       display: flex;
-      flex-direction: row;
+      flex-wrap: nowrap;
       .item{
+        flex:1;
         display: flex;
-        margin-left: 100px;
         align-items: center;
         cursor: pointer;
         font-size: 12px;
+        margin-left: 20px;
+        &:first-child{
+          margin: 0;
+        }
         .title{
+          width:276px;
           color: #666;
+          flex:1;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow:ellipsis;
         }
         .date{
           color: #999;

@@ -61,7 +61,7 @@ class Exchange extends React.Component {
                   {
                       this.state.notice.map(v=>
                           <Link className="item" key={v.id} to={'/notice/'+v.id}>
-                              <span className="title">{v['title'+lg]}</span>
+                              <span title={v['title'+lg]} className="title">{v['title'+lg]}</span>
                               <span className="date">({v.createTime.substring(5,10)})</span>
                           </Link>
                       )

@@ -136,8 +136,11 @@ class Footer extends Component {
             </div>
             <div className="row donate">
                 <div>
-                    <div className="before">{tu('donateAddress')}<span>:</span></div>
-                    <div className="after">{donate_address}</div>
+                    <div className="before">
+                        <img src={require('../../images/footer/icon-heart.png')} alt=""/>
+                        {tu('donateAddress')}
+                        <span>:</span></div>
+                    <Link to={`/account/${donate_address}`} className="after">{donate_address}</Link>
                 </div>
             </div>
             <div className="row">

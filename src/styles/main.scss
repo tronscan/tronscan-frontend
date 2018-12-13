@@ -316,22 +316,22 @@ tr a {
       display: flex;
       align-items: center;
       .after{
-        margin-left: 8px;
-        height: 28px;
-        line-height:28px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .before{
         width: 112px;
         height: 100%;
         background-color: #be2b24;
         border-radius:15px 0 0 15px;
-        background-image: url("../images/footer/icon-heart.png");
-        background-repeat: no-repeat;
-        background-position:10px 8px;
-        padding-left:30px;
         display: flex;
-        flex-direction: row;
         align-items: center;
+        justify-content: center;
+        img{
+          margin-right: 6px;
+        }
         span{
           height: 28px;
           line-height:28px;
