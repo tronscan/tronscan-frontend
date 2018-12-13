@@ -559,9 +559,10 @@ class Navigation extends PureComponent {
                               :
                               <NavLink
                                   className="nav-link"
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown' }  : {})}
                                   activeClassName="active"
-                                  to={route.path}>
+                                  to={route.path}
+                              >
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
