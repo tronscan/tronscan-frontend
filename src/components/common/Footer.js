@@ -56,7 +56,7 @@ class Footer extends Component {
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://t.me/tronscan">
                       <i className="fa fa-angle-right mr-4" /> Telegram
                     </HrefLink>
                   </li>
@@ -66,7 +66,7 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://twitter.com/tronscan3">
                       <i className="fa fa-angle-right mr-4" /> Twitter-tronscan
                     </HrefLink>
                   </li>
@@ -145,7 +145,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="row donate">
+            <div className="row donate mt-4">
                 <div>
                     <div className="before">
                         <img src={require('../../images/footer/icon-heart.png')} alt=""/>

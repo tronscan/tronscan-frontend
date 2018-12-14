@@ -559,6 +559,13 @@ $color:#C23631;
   .home-footer{
     background-color: $color-grey-100;
   }
+  .home-footer{
+      ul{
+          li{
+              white-space: nowrap;
+          }
+      }
+  }
   .home-footer a {
     color: $white;
   }
@@ -569,7 +576,7 @@ $color:#C23631;
     color: $white;
   }
   .home-footer .line{
-    width: 100%;
+    width: 95%;
     height: 1px;
     background-color: #FFFFFF;
   }

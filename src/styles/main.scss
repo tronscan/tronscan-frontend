@@ -2408,4 +2408,46 @@ h5 {
       }
     }
   }
+  .nav-item{
+    &:hover{
+      .more-menu {
+        display: block;
+        display: flex;
+      }
+    }
+  }
+
+}
+
+.more-menu{
+  right: 0;
+  flex-direction: row;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 10rem;
+  padding: 1rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 0.875rem;
+  color: #3E3F3A;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  display: flex;
+  display: none;
+}
+
+.more-menu-line{
+
+  width: 0;
+  margin: 0;
+  height: 93%;
+  overflow: hidden;
+  border-left: 1px solid #F8F5F0;
+  position: absolute;
 }
