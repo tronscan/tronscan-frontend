@@ -644,7 +644,7 @@
   "what_is_tron": "ما هو ترون",
   "tron_explorer_api": "الواجهة البرمجية (API) لمستكشف ترون",
   "tron_architechure": "هندسة ترون",
-  "tron_protobuf_doc": "توثيق ترون بروتوبوف (Protobuf)",
+  "tron_protobuf_doc": "TRON Protobuf Doc",
   "report_an_error": "بلغ عن مشكلة/مقترح",
   "frequently_asked_questions": "Frequently Asked Questions",
   "telegram_updates": "Telegram Updates",

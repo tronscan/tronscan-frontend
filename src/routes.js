@@ -423,32 +423,32 @@ export const routes = [
       }
     ]
   },
+  // {
+  //   path: "/more",
+  //   label: "nav_more",
+  //   icon: "fas fa-indent",
+  //   routes: [
+  //     {
+  //       path: "/markets",
+  //       label: "markets",
+  //       icon: "fa fa-chart-line", // component: MarketsAsync
+  //       enurl: "https://coinmarketcap.com/currencies/tron/",
+  //       zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+  //       linkHref: true
+  //     },
+  //     {
+  //       path: "/more/list_trx",
+  //       label: "list_trx",
+  //       icon: "fa fa-plus",
+  //       enurl: "https://tron.network/exchangesList?lng=en",
+  //       zhurl: "https://tron.network/exchangesList?lng=zh",
+  //       linkHref: true
+  //     }
+  //   ]
+  // },
   {
-    path: "/more",
-    label: "nav_more",
-    icon: "fas fa-indent",
-    routes: [
-      {
-        path: "/markets",
-        label: "markets",
-        icon: "fa fa-chart-line", // component: MarketsAsync
-        enurl: "https://coinmarketcap.com/currencies/tron/",
-        zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-        linkHref: true
-      },
-      {
-        path: "/more/list_trx",
-        label: "list_trx",
-        icon: "fa fa-plus",
-        enurl: "https://tron.network/exchangesList?lng=en",
-        zhurl: "https://tron.network/exchangesList?lng=zh",
-        linkHref: true
-      }
-    ]
-  },
-  {
-      path: "/more2",
-      label: "NewMore",
+      path: "/more",
+      label: "nav_more",
       icon: "fas fa-indent",
       routes: [
             [
@@ -497,27 +497,33 @@ export const routes = [
                   "Documentation",
                 {
                     url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
+                    icon: "fa fa-globe",
                     label: "what_is_tron"
                 },
                 {
                     url: "https://dn-peiwo-web.qbox.me/Design_Book_of_TRON_Architecture1.4.pdf",
+                    icon:"fa fa-outdent",
                     label: "tron_architechure"
                 },
                 {
                     url: "https://dn-peiwo-web.qbox.me/TRON%20Protobuf%20Protocol%20Document.pdf",
+                    icon:"fa fa-book",
                     label: "tron_protobuf_doc"
                 },
                 {
                     url: "https://wlcyapi.tronscan.org/swagger/index.html",
+                    icon:"fa fa-building",
                     label: "tron_explorer_api"
                 },
                 {
                     label: "frequently_asked_questions",
+                    icon:"fa fa-question",
                     component: FaqAsync,
                     path: "/help/faq"
                 },
                 {
                     label: "ledger_guide",
+                    icon:"fa fa-tags",
                     component: LedgerHelpAsync,
                     path: "/help/ledger"
                 },
@@ -557,6 +563,7 @@ export const routes = [
                   "Other",
                   {
                       url: "https://dapphouse.org",
+                      icon:"fa fa-archive",
                       label: "DApps"
                   },
                   {

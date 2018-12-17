@@ -663,7 +663,7 @@ export const messages = {
     "what_is_tron": "¿Qué es TRON?",
     "tron_explorer_api": "TRON Explorer API",
     "tron_architechure": "Arquitectura de TRON",
-    "tron_protobuf_doc": "Documentación de TRON Protobuf",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "Informe de un error / sugerencia",
     "frequently_asked_questions": "Preguntas Frecuentes",
     "telegram_updates": "Novedades en Telegram",

@@ -560,7 +560,7 @@ class Navigation extends PureComponent {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className="nav-link"
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
@@ -568,7 +568,7 @@ class Navigation extends PureComponent {
                               </HrefLink>
                               :
                               <NavLink
-                                  className="nav-link"
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown' }  : {})}
                                   activeClassName="active"
                                   to={route.path}
@@ -580,7 +580,7 @@ class Navigation extends PureComponent {
                         }
 
                         {
-                          route.routes &&  route.label !=="NewMore" &&
+                          route.routes &&  route.label !=="nav_more" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -647,11 +647,11 @@ class Navigation extends PureComponent {
                           </div>
                         }
                         {
-                            route.routes &&  route.label == "NewMore" &&
+                            route.routes &&  route.label == "nav_more" &&
                             <div className="dropdown-menu more-menu" style={{left:'auto'}}>
                                 {
                                     route.routes && route.routes.map((subRoute, index) => {
-                                        return  <div className="">
+                                        return  <div className="" key={index}>
                                                 <div className="more-menu-line"></div>
                                             {
                                                 subRoute.map((Route,j) => {
@@ -719,7 +719,6 @@ class Navigation extends PureComponent {
                   ))}
                 </ul>
                 <ul className="navbar-nav navbar-right">
-
                   <li className="nav-item dropdown navbar-right">
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"

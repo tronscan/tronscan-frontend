@@ -644,7 +644,7 @@ export const messages = {
     "what_is_tron": "TRON คืออะไร",
     "tron_explorer_api": "TRON Explorer API",
     "tron_architechure": "สถาปัตยกรรมของ TRON",
-    "tron_protobuf_doc": "คู่มือใช้งาน Protobuf ใน TRON ",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "ส่งข้อบกพร่อง / ข้อเสนอแนะ",
     "frequently_asked_questions": "คำถามที่พบบ่อย",
     "telegram_updates": "รับข่าวสารทาง Telegram",

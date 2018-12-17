@@ -651,7 +651,7 @@ export const messages = {
   "what_is_tron": "TRONとは",
   "tron_explorer_api": "TRONエクスプローラーAPI",
   "tron_architechure": "TRONストラクチャー",
-  "tron_protobuf_doc": "TRON Protobufファイル",
+  "tron_protobuf_doc": "TRON PROTOBUFドキュメント",
   "report_an_error": "バグ・意見を提出する",
   "frequently_asked_questions": "よくある質問",
   "telegram_updates": "Telegramを更新する",
