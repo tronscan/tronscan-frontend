@@ -49,6 +49,7 @@ import Notice from "./components/exchange/notice";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
+import Trxmarket from './components/trxmarket/index'
 import { Redirect } from "react-router-dom";
 
 export const routes = [
@@ -240,9 +241,10 @@ export const routes = [
     path: "/TRXMarket",
     label: "TRXMarket",
     icon: "fas fa-rocket",
-    enurl: "https://trx.market",
-    zhurl: "https://trx.market",
-    linkHref: true
+    component:Trxmarket
+    // enurl: "https://trx.market",
+    // zhurl: "https://trx.market",
+    // linkHref: true
   },
   {
     label: "DEX",
