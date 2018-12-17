@@ -662,7 +662,7 @@ export const messages = {
     "what_is_tron": "TRON چیست",
     "tron_explorer_api": "مرورگر TRON API",
     "tron_architechure": "معماری TRON",
-    "tron_protobuf_doc": "مستندات TRON Protobuf",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "خطا / پیشنهاد ی را ارسال کنید",
     "frequently_asked_questions": "سوالات متداول",
     "telegram_updates": "به روز رسانی ها در تلگرام",

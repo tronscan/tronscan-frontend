@@ -657,7 +657,7 @@
     "what_is_tron": "Czym jest TRON?",
     "tron_explorer_api": "API Eksploratora TRON",
     "tron_architechure": "Architektura TRON",
-    "tron_protobuf_doc": "Dokumentacja TRON Protobuf",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "Zgłoś błąd / propozycję",
     "frequently_asked_questions": "Często zadawane pytania",
     "telegram_updates": "Aktualizacje z Telegramu",

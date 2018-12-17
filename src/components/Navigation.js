@@ -483,7 +483,17 @@ class Navigation extends PureComponent {
     let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
-    
+
+    // console.log('route.routes',routes)
+    //   routes[23].routes.map((subRoute, index) => {
+    //       if (subRoute !== '-') {
+    //           for (let i in subRoute) {
+    //                subRoute[i].map((Route, j) => {
+    //                   console.log('Route',Route)
+    //                })
+    //           }
+    //       }
+    //   })
     return (
         <div className="header-top">
           {popup}
@@ -550,7 +560,7 @@ class Navigation extends PureComponent {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className="nav-link"
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
@@ -558,10 +568,11 @@ class Navigation extends PureComponent {
                               </HrefLink>
                               :
                               <NavLink
-                                  className="nav-link"
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
+                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown' }  : {})}
                                   activeClassName="active"
-                                  to={route.path}>
+                                  to={route.path}
+                              >
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
@@ -569,7 +580,7 @@ class Navigation extends PureComponent {
                         }
 
                         {
-                          route.routes &&
+                          route.routes &&  route.label !=="nav_more" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -635,11 +646,79 @@ class Navigation extends PureComponent {
                             }
                           </div>
                         }
+                        {
+                            route.routes &&  route.label == "nav_more" &&
+                            <div className="dropdown-menu more-menu" style={{left:'auto'}}>
+                                {
+                                    route.routes && route.routes.map((subRoute, index) => {
+                                        return  <div className="" key={index}>
+                                                <div className="more-menu-line"></div>
+                                            {
+                                                subRoute.map((Route,j) => {
+                                                    if (isString(Route)) {
+                                                        return (
+                                                            <h6 key={j}
+                                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                                        )
+                                                    }
+
+                                                    if (Route.showInMenu === false) {
+                                                        return null;
+                                                    }
+
+                                                    if (!isUndefined(Route.url)) {
+                                                        return (
+                                                            <HrefLink
+                                                                key={Route.url}
+                                                                className="dropdown-item text-uppercase"
+                                                                href={Route.url}>
+                                                                {Route.icon &&
+                                                                <i className={Route.icon + " mr-2"}/>}
+                                                                {tu(Route.label)}
+                                                                {Route.badge &&
+                                                                <Badge value={Route.badge}/>}
+                                                            </HrefLink>
+                                                        );
+                                                    }
+                                                    if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                                        return (
+                                                            <HrefLink
+                                                                key={Route.enurl}
+                                                                className="dropdown-item text-uppercase"
+                                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                                                {Route.icon &&
+                                                                <i className={Route.icon + " mr-2"}/>}
+                                                                {tu(Route.label)}
+                                                                {Route.badge &&
+                                                                <Badge value={Route.badge}/>}
+                                                            </HrefLink>
+                                                        );
+                                                    }
+
+                                                    return (
+                                                        <Link
+                                                            key={Route.path}
+                                                            className="dropdown-item text-uppercase"
+                                                            to={Route.path}>
+                                                            {Route.icon &&
+                                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                                            {tu(Route.label)}
+                                                            {Route.badge && <Badge value={Route.badge}/>}
+                                                        </Link>
+                                                    );
+                                                })
+                                            }
+                                        </div>
+
+
+                                    })
+                                }
+                            </div>
+                        }
                       </li>
                   ))}
                 </ul>
                 <ul className="navbar-nav navbar-right">
-
                   <li className="nav-item dropdown navbar-right">
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"

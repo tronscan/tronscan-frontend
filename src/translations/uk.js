@@ -662,7 +662,7 @@ export const messages = {
     "what_is_tron": "Що таке TRON",
     "tron_explorer_api": "TRON Explorer API",
     "tron_architechure": "TRON Архітектура",
-    "tron_protobuf_doc": "TRON Protobuf документація",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "Надіслати помилку / пропозицію",
     "frequently_asked_questions": " Питання що часто задаються",
     "telegram_updates": "інформування через Telegram ",

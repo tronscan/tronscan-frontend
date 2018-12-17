@@ -653,7 +653,7 @@ export const messages = {
     "what_is_tron": "რა არის ტრონი",
     "tron_explorer_api": "ტრონ ექსპლორერ API",
     "tron_architechure": "ტრონის არქიტექტურა",
-    "tron_protobuf_doc": "ტრონის Protobuf დოკუმენტაცია",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "დაუშვით ბაგი / წინადადება",
     "frequently_asked_questions": "ხშირად დასმული შეკითხვები",
     "telegram_updates": "Telegram განახლებები",

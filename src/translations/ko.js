@@ -657,7 +657,7 @@ export const messages = {
     "what_is_tron": "트론의 정의",
     "tron_explorer_api": "트론 탐색기 API",
     "tron_architechure": "트론 아키텍처",
-    "tron_protobuf_doc": "트론 프로토콜 버퍼 문서(Protobuf)",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "버그 제보 및 건의",
     "frequently_asked_questions": "자주 묻는 질문(FAQ)",
     "telegram_updates": "트론스캔 공식 텔레그램",

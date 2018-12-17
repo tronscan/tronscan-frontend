@@ -43,11 +43,6 @@ class Footer extends Component {
                       <i className="fa fa-angle-right mr-4" /> Medium
                     </HrefLink>
                   </li>
-                  <li className="p-2">
-                    <HrefLink href="https://www.reddit.com/r/tronix">
-                      <i className="fa fa-angle-right mr-4" /> Reddit
-                    </HrefLink>
-                  </li>
 
                 </ul>
               </div>
@@ -56,7 +51,7 @@ class Footer extends Component {
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://t.me/tronscan">
                       <i className="fa fa-angle-right mr-4" /> Telegram
                     </HrefLink>
                   </li>
@@ -65,11 +60,11 @@ class Footer extends Component {
                       <i className="fa fa-angle-right mr-4" /> Discord
                     </HrefLink>
                   </li>
-                  <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i className="fa fa-angle-right mr-4" /> Twitter-tronscan
-                    </HrefLink>
-                  </li>
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://twitter.com/tronscan3">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">
                       <i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}
@@ -145,7 +140,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="row donate">
+            <div className="row donate mt-4">
                 <div>
                     <div className="before">
                         <img src={require('../../images/footer/icon-heart.png')} alt=""/>
@@ -166,15 +161,15 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="list-inline-item">
-                    <HrefLink href="https://www.github.com/tronprotocol">
+                    <HrefLink href="https://github.com/tronscan/tronscan-frontend">
                       <i className="fab fa-github" />
                     </HrefLink>
                   </li>
-                  <li className="list-inline-item">
-                    <HrefLink href="https://twitter.com/tronfoundation">
-                      <i className="fab fa-twitter" />
-                    </HrefLink>
-                  </li>
+                  {/*<li className="list-inline-item">*/}
+                    {/*<HrefLink href="https://twitter.com/tronscan3">*/}
+                      {/*<i className="fab fa-twitter" />*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
                   <li className="list-inline-item">
                     <HrefLink href="mailto:feedback@trx.market" target="_blank">
                       <i className="fa fa-envelope" />
