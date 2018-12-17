@@ -87,6 +87,11 @@ button:focus{
 .dropdown-menu-right {
   z-index: 10000;
 }
+.dropdown-toggle{
+  &:after{
+    vertical-align: .1em;
+  }
+}
 
 .sub-header {
   h4 {
@@ -2423,7 +2428,7 @@ h5 {
   right: 0;
   flex-direction: row;
   position: absolute;
-  top: 100%;
+  top: 90%;
   right: 0;
   z-index: 1000;
   float: left;
