@@ -2399,3 +2399,13 @@ h5 {
     max-width: 100%;
   }
 }
+
+.navbar-nav {
+  .nav-item{
+    &:hover{
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}

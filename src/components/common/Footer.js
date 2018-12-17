@@ -19,7 +19,7 @@ class Footer extends Component {
         <div className="pt-5 home-footer">
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
-              <div className="col-xs-12 col-sm-4 col-md-4">
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>TRON</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
@@ -29,24 +29,8 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink
-                      href={
-                        activeLanguage == "zh"
-                          ? "https://tron.network/exchangesList?lng=zh"
-                          : "https://tron.network/exchangesList?lng=en"
-                      }
-                    >
-                      <i className="fa fa-angle-right mr-4" /> List TRX
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://medium.com/@Tronfoundation">
-                      <i className="fa fa-angle-right mr-4" /> TRON Labs
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i className="fa fa-angle-right mr-4" /> Discord
+                    <HrefLink href="https://twitter.com/tronfoundation">
+                      <i className="fa fa-angle-right mr-4" /> Twitter
                     </HrefLink>
                   </li>
                   <li className="p-2">
@@ -55,8 +39,8 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://twitter.com/tronfoundation">
-                      <i className="fa fa-angle-right mr-4" /> Twitter
+                    <HrefLink href="https://medium.com/@Tronfoundation">
+                      <i className="fa fa-angle-right mr-4" /> Medium
                     </HrefLink>
                   </li>
                   <li className="p-2">
@@ -64,9 +48,42 @@ class Footer extends Component {
                       <i className="fa fa-angle-right mr-4" /> Reddit
                     </HrefLink>
                   </li>
+
                 </ul>
               </div>
-              <div className="col-xs-12 col-sm-4 col-md-4">
+              <div className="col-xs-12 col-sm-3 col-md-3">
+                <h5>Tronscan</h5>
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
+                  <li className="p-2">
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fa fa-angle-right mr-4" /> Telegram
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fa fa-angle-right mr-4" /> Discord
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fa fa-angle-right mr-4" /> Twitter-tronscan
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">
+                      <i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <Link to="/help/about">
+                      <i className="fa fa-angle-right mr-4" />
+                        {tu('about_us')}
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>Development</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
@@ -92,7 +109,7 @@ class Footer extends Component {
                   </li>
                 </ul>
               </div>
-              <div className="col-xs-12 col-sm-4 col-md-4">
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>Quick links</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
@@ -123,12 +140,6 @@ class Footer extends Component {
                   <li className="p-2">
                     <Link to="/help/copyright">
                       <i className="fa fa-angle-right mr-4" /> {tu("copyright")}
-                    </Link>
-                  </li>
-                  <li className="p-2">
-                    <Link to="/help/about">
-                      <i className="fa fa-angle-right mr-4" />
-                      {tu('about_us')}
                     </Link>
                   </li>
                 </ul>

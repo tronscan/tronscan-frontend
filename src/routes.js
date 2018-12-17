@@ -49,7 +49,6 @@ import Notice from "./components/exchange/notice";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
-import Trxmarket from './components/trxmarket/index'
 import { Redirect } from "react-router-dom";
 
 export const routes = [
@@ -237,19 +236,13 @@ export const routes = [
     path: "/rating",
     showInMenu: false
   },
-  // {
-  //   path: "/TRXMarket",
-  //   label: "TRXMarket",
-  //   icon: "fas fa-rocket",
-  //   enurl: "https://trx.market",
-  //   zhurl: "https://trx.market",
-  //   linkHref: true
-  // },
   {
     path: "/TRXMarket",
     label: "TRXMarket",
     icon: "fas fa-rocket",
-    component: Trxmarket
+    enurl: "https://trx.market",
+    zhurl: "https://trx.market",
+    linkHref: true
   },
   {
     label: "DEX",
@@ -450,6 +443,29 @@ export const routes = [
         linkHref: true
       }
     ]
+  },
+  {
+      path: "/more",
+      label: "NewMore",
+      icon: "fas fa-indent",
+      routes: [
+          {
+              path: "/markets",
+              label: "markets",
+              icon: "fa fa-chart-line", // component: MarketsAsync
+              enurl: "https://coinmarketcap.com/currencies/tron/",
+              zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+              linkHref: true
+          },
+          {
+              path: "/more/list_trx",
+              label: "list_trx",
+              icon: "fa fa-plus",
+              enurl: "https://tron.network/exchangesList?lng=en",
+              zhurl: "https://tron.network/exchangesList?lng=zh",
+              linkHref: true
+          }
+      ]
   },
   {
     path: "/wallet/new",
