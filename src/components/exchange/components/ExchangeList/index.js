@@ -10,7 +10,7 @@ import SearchTable from './SearchTable';
 import {Explain} from './Explain';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {filter} from 'lodash'
+import {filter, cloneDeep} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
 import {getSelectData} from "../../../../actions/exchange";
@@ -139,7 +139,27 @@ class ExchangeList extends React.Component {
         let { data } = await Client.getexchanges20();
 
         listGrount.dex20 = {}
-        // this.setState(listGrount['dex20']: {
+        let newList =  cloneDeep(data.rows).map(item => {
+            item.exchange_id = item.id
+            item.exchange_name = item.fTokenName+'/'+item.sTokenName
+            item.exchange_abbr_name = item.fShortName+'/'+item.sShortName
+            item.first_token_id = item.fTokenName
+            item.second_token_id = item.sTokenName
+            item.first_token_abbr = item.fShortName
+            item.second_token_abbr = item.sShortName
+            item.price = (item.price / item.sPrecision).toFixed(item.sPrecision)
+            item.volume = parseInt(item.volume / item.fPrecision)
+            item.svolume = parseInt(item.volume24h / item.sPrecision)
+            item.high = item.highestPrice24h
+            item.low = item.lowestPrice24h
+            if (item.gain.indexOf('-') != -1) {
+                item.up_down_percent = '-' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+            } else {
+                item.up_down_percent = '+' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+            }
+
+        })
+        // this.setState({listGrount['dex20']: {
         //     exchange_id: 1
         // })
         console.log(data.rows)
