@@ -444,29 +444,29 @@ export const routes = [
       }
     ]
   },
-  {
-      path: "/more",
-      label: "NewMore",
-      icon: "fas fa-indent",
-      routes: [
-          {
-              path: "/markets",
-              label: "markets",
-              icon: "fa fa-chart-line", // component: MarketsAsync
-              enurl: "https://coinmarketcap.com/currencies/tron/",
-              zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
-              linkHref: true
-          },
-          {
-              path: "/more/list_trx",
-              label: "list_trx",
-              icon: "fa fa-plus",
-              enurl: "https://tron.network/exchangesList?lng=en",
-              zhurl: "https://tron.network/exchangesList?lng=zh",
-              linkHref: true
-          }
-      ]
-  },
+  // {
+  //     path: "/more",
+  //     label: "NewMore",
+  //     icon: "fas fa-indent",
+  //     routes: [
+  //         {
+  //             path: "/markets",
+  //             label: "markets",
+  //             icon: "fa fa-chart-line", // component: MarketsAsync
+  //             enurl: "https://coinmarketcap.com/currencies/tron/",
+  //             zhurl: "https://coinmarketcap.com/zh/currencies/tron/",
+  //             linkHref: true
+  //         },
+  //         {
+  //             path: "/more/list_trx",
+  //             label: "list_trx",
+  //             icon: "fa fa-plus",
+  //             enurl: "https://tron.network/exchangesList?lng=en",
+  //             zhurl: "https://tron.network/exchangesList?lng=zh",
+  //             linkHref: true
+  //         }
+  //     ]
+  // },
   {
     path: "/wallet/new",
     label: "wallet",
