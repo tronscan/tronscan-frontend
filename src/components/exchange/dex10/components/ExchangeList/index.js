@@ -48,7 +48,6 @@ class ExchangeList extends React.Component {
 
     componentDidMount() {
         this.getExchangesAllList();
-        this.getExchanges20()
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
         }, 10000)
