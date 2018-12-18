@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {Client} from "../../../../../services/api";
-import {Client20} from '../../../api'
+import {Client20} from "../../../api";
 import {Link} from "react-router-dom";
 import {tu} from "../../../../../utils/i18n";
 import xhr from "axios/index";

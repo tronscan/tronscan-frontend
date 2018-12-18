@@ -7,6 +7,7 @@ import {ONE_TRX} from "../../../../../constants";
 import {Truncate} from "../../../../common/text";
 import {tu, tv} from "../../../../../utils/i18n";
 import {Client} from "../../../../../services/api";
+import {Client20} from "../../../../../services/api";
 import {connect} from "react-redux";
 import {upperFirst} from 'lodash'
 
