@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import TranList from './TranList';
 import Mytran from './Mytran';
 import {connect} from "react-redux";
-import {tu, tv} from "../../../../utils/i18n";
+import {tu, tv} from "../../../../../utils/i18n";
 import { Tabs } from 'antd';
 import {injectIntl} from "react-intl";
 const TabPane = Tabs.TabPane;

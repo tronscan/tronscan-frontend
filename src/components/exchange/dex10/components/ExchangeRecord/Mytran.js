@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import { Table } from 'antd';
-import {AddressLink, TransactionHashLink} from "../../../common/Links";
+import {AddressLink, TransactionHashLink} from "../../../../common/Links";
 import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
-import {TRXPrice} from "../../../common/Price";
-import {ONE_TRX} from "../../../../constants";
-import {Truncate} from "../../../common/text";
-import {tu, tv} from "../../../../utils/i18n";
-import {Client} from "../../../../services/api";
+import {TRXPrice} from "../../../../common/Price";
+import {ONE_TRX} from "../../../../../constants";
+import {Truncate} from "../../../../common/text";
+import {tu, tv} from "../../../../../utils/i18n";
+import {Client} from "../../../../../services/api";
 import {connect} from "react-redux";
 import { upperFirst } from 'lodash'
 class Mytran extends Component {

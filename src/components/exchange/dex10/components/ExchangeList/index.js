@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
-import {Client} from "../../../../services/api";
+import {Client} from "../../../../../services/api";
 import {Link} from "react-router-dom";
-import {tu} from "../../../../utils/i18n";
+import {tu} from "../../../../../utils/i18n";
 import xhr from "axios/index";
 import {map} from 'lodash'
 import ExchangeTable from './Table';
@@ -10,14 +10,14 @@ import SearchTable from './SearchTable';
 import {Explain} from './Explain';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {filter} from 'lodash'
+import {filter, cloneDeep} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
-import {getSelectData} from "../../../../actions/exchange";
+import {getSelectData} from "../../../../../actions/exchange";
 import {connect} from "react-redux";
 import Lockr from "lockr";
-import {QuestionMark} from "../../../common/QuestionMark";
-import {Input} from 'antd';
+import {QuestionMark} from "../../../../common/QuestionMark";
+import {Input, Radio} from 'antd';
 
 const Search = Input.Search;
 
@@ -28,7 +28,7 @@ class ExchangeList extends React.Component {
         this.state = {
             dataSource: [],
             time: null,
-            tokenAudited: true,
+            tokenAudited: 'trx_20',
             exchangesList: [],
             optional:  Lockr.get('optional')?Lockr.get('optional'):[],
             optionalBok: false,
@@ -37,12 +37,18 @@ class ExchangeList extends React.Component {
             showSearch:false,
             activeIndex:'',
             optionalDisable:false,
-            searchAddId:false
+            searchAddId:false,
+            listGrount: {
+                dex: [],
+                dex20: [],
+                favorites: []
+            } 
         };
     }
 
     componentDidMount() {
         this.getExchangesAllList();
+        this.getExchanges20()
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
         }, 10000)
@@ -122,11 +128,41 @@ class ExchangeList extends React.Component {
             auditedTokenList: exchangesList,
             unreviewedTokenList: unreviewedTokenList,
             dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
-            tokenAudited: tab == 'Main' ? true : false,
+            // tokenAudited: tab == 'Main' ? true : false,
             optionalDisable:true,
             exchangesAllList:exchangesAllList
         },() => {
         });
+    }
+    getExchanges20 = async () => {
+        let {listGrount} = this.state
+        let { data } = await Client.getexchanges20();
+
+        listGrount.dex20 = {}
+        let newList =  cloneDeep(data.rows).map(item => {
+            item.exchange_id = item.id
+            item.exchange_name = item.fTokenName+'/'+item.sTokenName
+            item.exchange_abbr_name = item.fShortName+'/'+item.sShortName
+            item.first_token_id = item.fTokenName
+            item.second_token_id = item.sTokenName
+            item.first_token_abbr = item.fShortName
+            item.second_token_abbr = item.sShortName
+            item.price = (item.price / item.sPrecision).toFixed(item.sPrecision)
+            item.volume = parseInt(item.volume / item.fPrecision)
+            item.svolume = parseInt(item.volume24h / item.sPrecision)
+            item.high = item.highestPrice24h
+            item.low = item.lowestPrice24h
+            if (item.gain.indexOf('-') != -1) {
+                item.up_down_percent = '-' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+            } else {
+                item.up_down_percent = '+' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+            }
+
+        })
+        // this.setState({listGrount['dex20']: {
+        //     exchange_id: 1
+        // })
+        console.log(data.rows)
     }
 
     handleAuditedToken = () => {
@@ -165,6 +201,10 @@ class ExchangeList extends React.Component {
                 activeIndex:unreviewedTokenList[0].exchange_id,
             });
         }
+    }
+
+    handleSelectData = (type) => {
+        this.setState({tokenAudited: type})
     }
 
     setCollection = (ev,id, index) => {
@@ -263,13 +303,18 @@ class ExchangeList extends React.Component {
                     </div>
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
-                            onClick={this.handleAuditedToken}>
+                            className={"btn btn-sm" + (tokenAudited == 'trx_20' ? ' active' : '')}
+                            onClick={() => this.handleSelectData('trx_20')}>
+                            {tu("TRX_20")}
+                        </div>
+                        <div
+                            className={"btn btn-sm" + (tokenAudited == 'trx_10' ? ' active' : '')}
+                            onClick={() => this.handleSelectData('trx_10')}>
                             {tu("TRX")}
                         </div>
                         <div
-                            className={"btn btn-sm" + (tokenAudited ? '' : ' active')}
-                            onClick={this.handleUnreviewedToken}>
+                            className={"btn btn-sm" + (tokenAudited == 'trx_audited' ? ' active' : ' ')}
+                            onClick={() => this.handleSelectData('trx_audited')}>
                             <i>
                                 <i className="fas fa-star"></i> {tu("Favorites")}
                             </i>

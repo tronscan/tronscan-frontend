@@ -1,11 +1,11 @@
 import React from "react";
 import {injectIntl} from "react-intl";
 import { withRouter } from 'react-router'
-import {widget} from '../../../../lib/charting_library.min';
+import {widget} from '../../../../../lib/charting_library.min';
 import Datafeed from './udf/index.js'
 import {connect} from "react-redux";
-import {tu, tv} from "../../../../utils/i18n";
-import { TRXPrice } from "../../../common/Price";
+import {tu, tv} from "../../../../../utils/i18n";
+import { TRXPrice } from "../../../../common/Price";
 class Kline extends React.Component {
 
   constructor() {
