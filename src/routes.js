@@ -242,10 +242,9 @@ export const routes = [
     path: "/TRXMarket",
     label: "TRXMarket",
     icon: "fas fa-rocket",
-    component:Trxmarket
-    // enurl: "https://trx.market",
-    // zhurl: "https://trx.market",
-    // linkHref: true
+    enurl: "https://trx.market",
+    zhurl: "https://trx.market",
+    linkHref: true
   },
   {
     label: "DEX",
