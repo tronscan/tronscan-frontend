@@ -1,6 +1,7 @@
 import {Client as ApiClient} from "@tronscan/client";
 import io from 'socket.io-client';
 import TronWeb from 'tronweb';
+import xhr from "axios/index";
 
 const ServerNode =  "https://api.trongrid.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
@@ -25,3 +26,18 @@ export function channel(path, options) {
     return io('https://wlcyapi.tronscan.org/socket.io' + path, options);
     //return io('http://172.16.20.207:20110/socket.io' + path, options);
 }
+
+class ApiClient20 {
+  constructor(){
+    this.apiUrl = 'https://api.trx.market'
+  }
+
+  async getexchanges20(options= {}){
+    let {data} = await xhr.get(`${this.apiUrl}/api/exchange/marketPair/list`, {
+        params: options
+    });
+    return data
+  }
+}
+
+export const Client20 = new ApiClient20()
