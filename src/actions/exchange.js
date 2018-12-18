@@ -7,6 +7,8 @@ import { cloneDeep } from 'lodash'
 export const SET_SELECT_DATA = 'SET_SELECT_DATA';
 export const SET_SELECT_STATUS = 'SET_SELECT_STATUS';
 export const SET_EXCHANGE20_LIST = 'SET_EXCHANGE20_LIST';
+export const SET_COLLECTION = 'SET_COLLECTION';
+
 
 
 export const setSelectData = (data) => ({
@@ -22,6 +24,11 @@ export const setSelectStatus = (status) => ({
 export const setExchanges20 = (list = []) => ({
   type: SET_EXCHANGE20_LIST,
   list,
+});
+
+export const setCollection = (payload) => ({
+  type: SET_COLLECTION,
+  payload,
 });
 
 
