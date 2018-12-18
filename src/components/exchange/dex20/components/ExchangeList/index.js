@@ -14,11 +14,12 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import {filter, cloneDeep} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
-import {getSelectData} from "../../../../../actions/exchange";
+import {getSelectData, getExchanges20} from "../../../../../actions/exchange";
 import {connect} from "react-redux";
 import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
 import {Input, Radio} from 'antd';
+import queryString from 'query-string';
 
 const Search = Input.Search;
 
@@ -48,8 +49,9 @@ class ExchangeList extends React.Component {
     }
 
     componentDidMount() {
+        const {getExchanges20} = this.props;
         this.getExchangesAllList();
-        this.getExchanges20()
+        getExchanges20()
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
         }, 10000)
@@ -134,36 +136,6 @@ class ExchangeList extends React.Component {
             exchangesAllList:exchangesAllList
         },() => {
         });
-    }
-    getExchanges20 = async () => {
-        let {listGrount} = this.state
-        let { data } = await Client20.getexchanges20();
-
-        listGrount.dex20 = {}
-        let newList =  cloneDeep(data.rows).map(item => {
-            item.exchange_id = item.id
-            item.exchange_name = item.fTokenName+'/'+item.sTokenName
-            item.exchange_abbr_name = item.fShortName+'/'+item.sShortName
-            item.first_token_id = item.fTokenName
-            item.second_token_id = item.sTokenName
-            item.first_token_abbr = item.fShortName
-            item.second_token_abbr = item.sShortName
-            item.price = (item.price / item.sPrecision).toFixed(item.sPrecision)
-            item.volume = parseInt(item.volume / item.fPrecision)
-            item.svolume = parseInt(item.volume24h / item.sPrecision)
-            item.high = item.highestPrice24h
-            item.low = item.lowestPrice24h
-            if (item.gain.indexOf('-') != -1) {
-                item.up_down_percent = '-' + Math.abs(Number(item.gain).toFixed(2)) + '%'
-            } else {
-                item.up_down_percent = '+' + Math.abs(Number(item.gain).toFixed(2)) + '%'
-            }
-
-        })
-        // this.setState({listGrount['dex20']: {
-        //     exchange_id: 1
-        // })
-        console.log(data.rows)
     }
 
     handleAuditedToken = () => {
@@ -278,7 +250,7 @@ class ExchangeList extends React.Component {
 
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
-        let {intl} = this.props;
+        let {intl, exchange20List} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
             <div className="exchange-list mr-2">
@@ -343,14 +315,7 @@ class ExchangeList extends React.Component {
                         </PerfectScrollbar>:
                         <PerfectScrollbar>
                             <div className="exchange-list__table" style={styles.list}>
-                                <ExchangeTable dataSource={dataSource}
-                                               props={this.props}
-                                               tab={tab}
-                                               setCollection ={(ev,id, index) => this.setCollection(ev,id,index)}
-                                               activeIndex={activeIndex}
-                                               searchAddId={searchAddId}
-                                               setSearchAddId={() => this.setSearchAddId()}
-                                />
+                                <ExchangeTable dataSource={exchange20List}/>
                             </div>
                         </PerfectScrollbar>
                     }
@@ -367,11 +332,13 @@ class ExchangeList extends React.Component {
 function mapStateToProps(state) {
     return {
         activeLanguage:  state.app.activeLanguage,
+        exchange20List: state.exchange.list_20
     };
 }
 
 const mapDispatchToProps = {
     getSelectData,
+    getExchanges20
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(ExchangeList)));

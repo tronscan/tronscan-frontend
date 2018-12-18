@@ -1,4 +1,4 @@
-import {SET_SELECT_DATA, SET_SELECT_STATUS} from "../actions/exchange";
+import {SET_SELECT_DATA, SET_SELECT_STATUS, SET_EXCHANGE20_LIST} from "../actions/exchange";
 
 const initialState = {
   data: {},
@@ -17,6 +17,12 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         status: action.status,
+      }
+    }
+    case SET_EXCHANGE20_LIST: {
+      return {
+        ...state,
+        list_20: action.list,
       }
     }
     default:
