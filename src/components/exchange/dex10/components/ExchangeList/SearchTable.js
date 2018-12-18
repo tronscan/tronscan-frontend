@@ -1,10 +1,10 @@
 import React from "react";
 import {Table} from 'antd';
-import {QuestionMark} from "../../../common/QuestionMark";
+import {QuestionMark} from "../../../../common/QuestionMark";
 import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 import {connect} from "react-redux";
-import {getSelectData} from "../../../../actions/exchange";
+import {getSelectData} from "../../../../../actions/exchange";
 import {filter, map, upperFirst} from 'lodash'
 import {injectIntl} from "react-intl";
 import Lockr from "lockr";

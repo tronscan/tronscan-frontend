@@ -1,12 +1,12 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom"
 import {injectIntl} from "react-intl";
-import {Client} from '../../services/api'
+import {Client} from '../../../services/api'
 import ExchangeList from "./components/ExchangeList/index";
 import ExchangeContent from "./components/ExchangeContent/index";
 import ExchangeRecord from "./components/ExchangeRecord/index";
-import {tu} from "../../utils/i18n"
-import {TronLoader} from "../common/loaders";
+import {tu} from "../../../utils/i18n"
+import {TronLoader} from "../../common/loaders";
 
 
 class Exchange extends React.Component {
@@ -56,7 +56,7 @@ class Exchange extends React.Component {
           */}
           <main className="exchange">
             <div className="notice">
-              <img src={require('../../images/announcement-logo.png')} alt=""/>
+              <img src={require('../../../images/announcement-logo.png')} alt=""/>
               <div className="notice-wrap">
                   {
                       this.state.notice.map(v=>

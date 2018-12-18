@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import { Form, Input, Button, Radio } from 'antd';
-import { QuestionMark } from "../../../common/QuestionMark";
+import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from 'react-router'
-import {Client} from "../../../../services/api";
+import {Client} from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
-import {tu} from "../../../../utils/i18n";
+import {tu} from "../../../../../utils/i18n";
 import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
-import {ONE_TRX} from "../../../../constants";
+import {ONE_TRX} from "../../../../../constants";
 import {find} from 'lodash'
 
 import NumericInput from './NumericInput'

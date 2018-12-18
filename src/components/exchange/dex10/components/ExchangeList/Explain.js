@@ -1,5 +1,5 @@
 import React from "react";
-import {tu} from "../../../../utils/i18n";
+import {tu} from "../../../../../utils/i18n";
 export function Explain() {
 
   return (

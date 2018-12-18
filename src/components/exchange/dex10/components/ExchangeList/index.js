@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
-import {Client} from "../../../../services/api";
+import {Client} from "../../../../../services/api";
 import {Link} from "react-router-dom";
-import {tu} from "../../../../utils/i18n";
+import {tu} from "../../../../../utils/i18n";
 import xhr from "axios/index";
 import {map} from 'lodash'
 import ExchangeTable from './Table';
@@ -13,10 +13,10 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import {filter, cloneDeep} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
-import {getSelectData} from "../../../../actions/exchange";
+import {getSelectData} from "../../../../../actions/exchange";
 import {connect} from "react-redux";
 import Lockr from "lockr";
-import {QuestionMark} from "../../../common/QuestionMark";
+import {QuestionMark} from "../../../../common/QuestionMark";
 import {Input, Radio} from 'antd';
 
 const Search = Input.Search;

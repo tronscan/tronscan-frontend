@@ -1,6 +1,6 @@
 import { storage,getDecimalsNum,getUTCDay,getUTCCurrentDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
 
-import {Client} from "../../../../../services/api";
+import {Client} from "../../../../../../services/api";
 import _ from 'lodash'
 
 const Datafeeds = {}
