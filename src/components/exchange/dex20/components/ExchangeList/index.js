@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {Client} from "../../../../../services/api";
+import {Client20} from '../../../api'
 import {Link} from "react-router-dom";
 import {tu} from "../../../../../utils/i18n";
 import xhr from "axios/index";
@@ -136,7 +137,7 @@ class ExchangeList extends React.Component {
     }
     getExchanges20 = async () => {
         let {listGrount} = this.state
-        let { data } = await Client.getexchanges20();
+        let { data } = await Client20.getexchanges20();
 
         listGrount.dex20 = {}
         let newList =  cloneDeep(data.rows).map(item => {
