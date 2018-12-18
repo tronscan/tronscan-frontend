@@ -73,10 +73,7 @@ class ExchangeTable extends React.Component {
                return {
                    onClick: () => {
                        this.onSetUrl(record)
-                   },
-                   // onClick: (e) => {
-                   //     this.props.setCollection(e,record.exchange_id)
-                   // },
+                   }
               }
           }}
       />
@@ -89,8 +86,7 @@ class ExchangeTable extends React.Component {
   }
   getData() {
     const parsed = queryString.parse(this.props.location.search).id;
-    const {getSelectData } = this.props;
-    let { dataSource } = this.state;
+    const {getSelectData,dataSource } = this.props;
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
@@ -108,59 +104,55 @@ class ExchangeTable extends React.Component {
         }
     }
 
-
     // 获取选择状态
     map(dataSource, item => {
       if(item.exchange_id == parsed || !parsed){
         item.isCurrent = true
       }
     })
+    this.setState({dataSource})
   }
 
   onSetUrl(record) {
     const {getSelectData} = this.props;
     this.setState({
         activeIndex:record.exchange_id //获取点击行的索引
-    },() => {
     })
-    this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
+    this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
     getSelectData(record, true)
      
   }
 
   componentDidMount() {
-
-
   }
 
   componentDidUpdate(prevProps) {
-    let { dataSource,tab } = this.props;
-
-    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    let { dataSource } = this.props;
+    if ( dataSource.length && dataSource != prevProps.dataSource) {
        this.getData()
     }
   }
   componentWillReceiveProps(nextProps) {
-      const {getSelectData,setSearchAddId} = this.props;
-      this.setState({
-          dataSource: nextProps.dataSource,
-      });
-      if(this.props.searchAddId){
-          let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
-          this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
-          getSelectData(record[0],true)
-          this.setState({
-              activeIndex:nextProps.activeIndex,
-          },()=>{
-              this.props.setSearchAddId()
-          });
-      }
+      // const {getSelectData,setSearchAddId} = this.props;
+      // this.setState({
+      //     dataSource: nextProps.dataSource,
+      // });
+      // if(this.props.searchAddId){
+      //     let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
+      //     this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
+      //     // getSelectData(record[0],true)
+      //     this.setState({
+      //         activeIndex:nextProps.activeIndex,
+      //     },()=>{
+      //         this.props.setSearchAddId()
+      //     });
+      // }
 
-      if(this.props.tab !== nextProps.tab){
-          this.setState({
-              activeIndex:nextProps.activeIndex,
-          });
-      }
+      // if(this.props.tab !== nextProps.tab){
+      //     this.setState({
+      //         activeIndex:nextProps.activeIndex,
+      //     });
+      // }
   }
 
   render() {
