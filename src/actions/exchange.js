@@ -30,11 +30,6 @@ export const getSelectData = (data, isSelect = false) => async (dispatch) => {
     dispatch(setSelectStatus(isSelect))
 };
 
-export const getExchange = (data, isSelect = false) => async (dispatch) => {
-  dispatch(setSelectData(data));
-  dispatch(setSelectStatus(isSelect))
-};
-
 export const getExchanges20 = () => async (dispatch,getState) => {
   let { data } = await Client20.getexchanges20();
 

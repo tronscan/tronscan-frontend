@@ -50,7 +50,7 @@ class ExchangeList extends React.Component {
 
     componentDidMount() {
         const {getExchanges20} = this.props;
-        this.getExchangesAllList();
+        // this.getExchangesAllList();
         getExchanges20()
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
@@ -64,79 +64,79 @@ class ExchangeList extends React.Component {
         clearInterval(time);
         Lockr.set("DEX", 'Main');
     }
-    getExchangesAllList = async () =>{
-        let { exchangesAllList }= await Client.getexchangesAllList();
-        map(exchangesAllList, item => {
-            if (item.up_down_percent.indexOf('-') != -1) {
-                item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            } else {
-                item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            }
-        })
-        this.setState({
-            exchangesAllList: exchangesAllList,
-        },() => {
-            this.getExchanges();
-        });
-    }
-    getExchanges = async () => {
-        let { exchangesAllList} = this.state;
-        let { data } = await Client.getExchangesList();
-        let tab,exchangesList;
-        if(Lockr.get("DEX")){
-            tab = Lockr.get("DEX");
-        }else{
-            Lockr.set("DEX", 'Main');
-            tab = 'Main'
-        }
-        map(data, item => {
-            if (item.up_down_percent.indexOf('-') != -1) {
-                item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            } else {
-                item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-            }
-        });
-        exchangesList = data.map(item => {
-            item.optionalBok = false;
-            return item
-        });
-        if (Lockr.get('optional')) {
-            let optional = Lockr.get('optional');
-            for (let i in exchangesAllList) {
-                for (let j in optional) {
-                    if (exchangesAllList[i].exchange_id == optional[j]) {
-                        exchangesAllList[i].optionalBok = true;
-                    }
-                }
-            }
-        }
-        if (Lockr.get('optional')) {
-            let optional = Lockr.get('optional');
-            for (let i in exchangesList) {
-                for (let j in optional) {
-                    if (exchangesList[i].exchange_id == optional[j]) {
-                        exchangesList[i].optionalBok = true;
-                    }
-                }
-            }
-        }
+    // getExchangesAllList = async () =>{
+    //     let { exchangesAllList }= await Client.getexchangesAllList();
+    //     map(exchangesAllList, item => {
+    //         if (item.up_down_percent.indexOf('-') != -1) {
+    //             item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+    //         } else {
+    //             item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+    //         }
+    //     })
+    //     this.setState({
+    //         exchangesAllList: exchangesAllList,
+    //     },() => {
+    //         this.getExchanges();
+    //     });
+    // }
+    // getExchanges = async () => {
+    //     let { exchangesAllList} = this.state;
+    //     let { data } = await Client.getExchangesList();
+    //     let tab,exchangesList;
+    //     if(Lockr.get("DEX")){
+    //         tab = Lockr.get("DEX");
+    //     }else{
+    //         Lockr.set("DEX", 'Main');
+    //         tab = 'Main'
+    //     }
+    //     map(data, item => {
+    //         if (item.up_down_percent.indexOf('-') != -1) {
+    //             item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+    //         } else {
+    //             item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+    //         }
+    //     });
+    //     exchangesList = data.map(item => {
+    //         item.optionalBok = false;
+    //         return item
+    //     });
+    //     if (Lockr.get('optional')) {
+    //         let optional = Lockr.get('optional');
+    //         for (let i in exchangesAllList) {
+    //             for (let j in optional) {
+    //                 if (exchangesAllList[i].exchange_id == optional[j]) {
+    //                     exchangesAllList[i].optionalBok = true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     if (Lockr.get('optional')) {
+    //         let optional = Lockr.get('optional');
+    //         for (let i in exchangesList) {
+    //             for (let j in optional) {
+    //                 if (exchangesList[i].exchange_id == optional[j]) {
+    //                     exchangesList[i].optionalBok = true;
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        let unreviewedTokenList = _(exchangesAllList)
-            .filter(o => o['optionalBok'] == true)
-            .sortBy(o => -o.first_token_abbr)
-            .value();
+    //     let unreviewedTokenList = _(exchangesAllList)
+    //         .filter(o => o['optionalBok'] == true)
+    //         .sortBy(o => -o.first_token_abbr)
+    //         .value();
 
 
-        this.setState({
-            auditedTokenList: exchangesList,
-            unreviewedTokenList: unreviewedTokenList,
-            dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
-            // tokenAudited: tab == 'Main' ? true : false,
-            optionalDisable:true,
-            exchangesAllList:exchangesAllList
-        },() => {
-        });
-    }
+    //     this.setState({
+    //         auditedTokenList: exchangesList,
+    //         unreviewedTokenList: unreviewedTokenList,
+    //         dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
+    //         // tokenAudited: tab == 'Main' ? true : false,
+    //         optionalDisable:true,
+    //         exchangesAllList:exchangesAllList
+    //     },() => {
+    //     });
+    // }
 
     handleAuditedToken = () => {
         const {getSelectData} = this.props;
