@@ -11,6 +11,7 @@ import {Client20} from "../../../../../services/api";
 import {connect} from "react-redux";
 import {upperFirst} from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
+import {setLastprice} from '../../../../../actions/exchange'
 
 class TranList extends Component {
   constructor(props) {
@@ -47,11 +48,17 @@ class TranList extends Component {
   }
 
   getData = async () => {
-    const {selectData} = this.props
+    const {selectData,setLastprice} = this.props
     if(selectData.exchange_id){
       const {code,data} = await Client20.getTransactionList({limit: 20,start:0, pairID: selectData.exchange_id});
       if(code === 0){
         this.setState({dataSource: data.rows})
+        let row0 = data.rows[0]
+        let obj = {
+          value: row0.price,
+          type: row0.order_type
+        }
+        setLastprice(obj)
       }
     }
   }
@@ -125,6 +132,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  setLastprice
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(TranList));

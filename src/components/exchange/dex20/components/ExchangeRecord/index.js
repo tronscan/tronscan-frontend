@@ -25,7 +25,7 @@ class TransactionList extends Component {
     const { currentWallet } = this.props
     return (
       <div className="exchange__transactionlist p-3">
-      <Tabs defaultActiveKey="1" onChange={this.callback}>
+      <Tabs defaultActiveKey="2" onChange={this.callback}>
         <TabPane tab={tu("trc20_CurOrder")} key="1">
           <Curorder props={this.props}/>
         </TabPane>

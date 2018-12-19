@@ -5,6 +5,7 @@ import {tu} from "../../../../../utils/i18n";
 import { Table } from 'antd';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
+import { Icon } from 'antd';
 
 class Register extends Component{
     constructor(){
@@ -50,8 +51,8 @@ class Register extends Component{
 
     render(){
        
-        let {sellList,buyList,lastPrice} = this.state;
-        let {intl,pairs} = this.props;
+        let {sellList,buyList} = this.state;
+        let {intl,pairs,lastPrice} = this.props;
         
         let first_token =  pairs.fShortName ? '(' + pairs.fShortName + ')' : '';
         let second_token = pairs.sShortName ? '(' + pairs.sShortName + ')' : ''
@@ -64,7 +65,7 @@ class Register extends Component{
             title: '',
             key: 'sell',
             render: (text, record, index) => {
-              return <div>
+              return <div className="col-red">
                 {intl.formatMessage({id: 'trc20_sell'})}{(index+1)}
               </div>
             }
@@ -90,23 +91,23 @@ class Register extends Component{
             title: '',
             key: 'buy',
             render: (text, record, index) => {
-              return <div>
+              return <div className="col-green">
                 {intl.formatMessage({id: 'trc20_buy'})}{(index+1)}
               </div>
             }
           },
           {
-            title: trc20_price,
+            title: '',
             dataIndex: 'price',
             key: 'price',
           }, 
           {
-            title:trc20_amount,
+            title:'',
             dataIndex: 'amount',
             key: 'amount'
           },
           {
-            title:trc20_accumulative,
+            title:'',
             dataIndex: 'cje',
             key: 'cje'
           }
@@ -115,7 +116,12 @@ class Register extends Component{
 
         return (
             <div className="ant-table-content">
-
+                <div class="new_price">
+                  {tu('trc20_new_price')}: 
+                  {
+                    lastPrice.type === 0 ? <span className="col-green up">{lastPrice.value}<Icon type="arrow-up" /></span> : <span className="col-red down">{lastPrice.value}<Icon type="arrow-down" /></span>
+                  } 
+                </div>
                 <Table
                     dataSource={sellList}
                     columns={sell_columns}
@@ -125,13 +131,8 @@ class Register extends Component{
                         return `sell_${index}`
                     }}
                     rowClassName={this.setActiveClass}
+                    className="table_bottom"
                 />
-
-                <div>
-                    当前价格：{lastPrice.value}{pairs.id}
-                </div>
-
-                
                 <Table
                     dataSource={buyList}
                     columns={buy_columns}
@@ -234,10 +235,7 @@ class Register extends Component{
 function mapStateToProps(state) {
     return {
         pairs: state.exchange.data,
-        lastPrice:{
-            value: '0.04998',
-            type: 0
-        }
+        lastPrice:state.exchange.last_price ? state.exchange.last_price : {}
     };
   }
   

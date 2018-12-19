@@ -1485,5 +1485,6 @@ export const messages = {
    "trc20_token_info_ths_4": "24h最高价",
    "trc20_token_info_ths_5": "24h最低价",
    "trc20_token_info_ths_6": "24h成交量",
-   "trc20_token_info_ths_7": "24h交易量"  
+   "trc20_token_info_ths_7": "24h交易量",
+   "trc20_new_price":"最新价"
 };

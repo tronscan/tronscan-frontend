@@ -1,0 +1,42 @@
+.exchange20{
+    .exchange-list{
+        background:none;
+    }
+    .exchange-list-mark{
+        height:470px;
+        
+        
+    }
+    .exchange-list-explain{
+        height:370px;
+    }
+    .exchange-list-mark,.exchange-list-explain{
+       background:#fff;
+    }
+    .scrollbar-container{
+        height:auto;
+    }
+    .anticon{
+        vertical-align: middle;
+    }
+    .new_price{
+        line-height:30px;
+    }
+
+    .table_bottom{
+        border-bottom: 1px solid #EEEEEE;
+        padding-bottom: 5px;
+        
+    }
+
+    .ant-tabs-nav .ant-tabs-tab-active{
+        background:#C23631;
+        color:#fff;
+    }
+    .ant-tabs-nav-container{
+        line-height: 1;
+    }
+    .ant-tabs-ink-bar{
+        display: none!important;
+    }
+}

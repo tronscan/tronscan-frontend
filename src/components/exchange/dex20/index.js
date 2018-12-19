@@ -54,7 +54,7 @@ class Exchange extends React.Component {
             </div>
           </div>
           */}
-          <main className="exchange">
+          <main className="exchange exchange20">
             <div className="notice">
               <img src={require('../../../images/announcement-logo.png')} alt=""/>
               <div className="notice-wrap">
