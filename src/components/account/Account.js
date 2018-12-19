@@ -12,7 +12,7 @@ import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, ExternalLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {IS_TESTNET, ONE_TRX, API_URL} from "../../constants";
-import {Client, tronWeb} from "../../services/api";
+import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {login} from "../../actions/app";
 import ApplyForDelegate from "./ApplyForDelegate";
@@ -108,14 +108,12 @@ class Account extends Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      const privateKey = account.key;
-      tronWeb.setPrivateKey(account.key);
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
-      if(tronWeb.eventServer){
+      if(account.tronWeb.eventServer){
           tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);

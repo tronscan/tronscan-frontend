@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import React, {Fragment} from "react";
 import {injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
-import {Client, tronWeb} from "../../../services/api";
+import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import SendOption from "./../SendOption";
 import {find, round} from "lodash";
@@ -117,9 +117,8 @@ class SendForm extends React.Component {
       let TokenName =  token.substring(0,token.length-6);
       let {account, onSend} = this.props;
       this.setState({isLoading: true, modal: null});
-      tronWeb.setPrivateKey(account.key);
       let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-      let  contractInstance = await tronWeb.contract().at(contractAddress);
+      let  contractInstance = await account.tronWeb.contract().at(contractAddress);
       const transctionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
       if (transctionId) {
           this.refreshTokenBalances();
@@ -366,14 +365,12 @@ class SendForm extends React.Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      let privateKey = account.key;
-      tronWeb.setPrivateKey(privateKey);
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
           tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
               item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
                   item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);

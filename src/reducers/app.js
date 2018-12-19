@@ -1,5 +1,5 @@
 import Lockr from "lockr";
-
+import TronWeb from 'tronweb';
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
@@ -137,7 +137,7 @@ export function appReducer(state = initialState, action) {
 
       Lockr.set("account_key", base64DecodeFromString(action.password));
 
-      return {
+        return {
         ...state,
         account: {
           key: base64DecodeFromString(action.password),
@@ -153,6 +153,18 @@ export function appReducer(state = initialState, action) {
         Lockr.set("account_key", action.privateKey);
         Lockr.rm("account_address");
       }
+      const ServerNode =  "https://api.trongrid.io";
+      const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
+      const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
+      const solidityNode = new HttpProvider(ServerNode); // Solidity node http endpoint
+      const eventServer = ServerNode; // Contract events http endpoint
+      const privateKey = action.privateKey;
+      const tronWeb = new TronWeb(
+          fullNode,
+          solidityNode,
+          eventServer,
+          privateKey
+      );
 
       return {
         ...state,
@@ -160,6 +172,7 @@ export function appReducer(state = initialState, action) {
           key: action.privateKey,
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
+          tronWeb:tronWeb,
         }
       };
     }
