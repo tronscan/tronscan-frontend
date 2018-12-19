@@ -10,7 +10,6 @@ class Register extends Component{
     constructor(){
         super()
         this.state = {
-            pairs: {"id":30,"volume":368993269577200,"gain":"0.086012","price":50000,"fPrecision":6,"sPrecision":6,"fTokenName":"TRONdice","sTokenName":"TRX","fShortName":"DICE","sShortName":"TRX","fTokenAddr":"THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur","sTokenAddr":"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb","highestPrice24h":0.057,"lowestPrice24h":0.04,"volume24h":9662143305886,"unit":"TRX"},
             sellList: [],
             buyList: [],
             timer: null,
@@ -36,7 +35,8 @@ class Register extends Component{
 
     componentDidUpdate(prevProps,nextProps){
         let { timer } = this.state;
-        if(prevProps.pairs.id != nextProps.pairs.id){
+        let {pairs} = this.props;
+        if(prevProps.pairs.id != pairs.id){
             this.getData()
             clearInterval(timer)
             this.setState({
@@ -45,6 +45,7 @@ class Register extends Component{
                 }, 3000)
             })
         }
+
     }
 
     render(){
@@ -127,7 +128,7 @@ class Register extends Component{
                 />
 
                 <div>
-                    当前价格：{lastPrice.value}
+                    当前价格：{lastPrice.value}{pairs.id}
                 </div>
 
                 
@@ -148,8 +149,12 @@ class Register extends Component{
 
 
     async getData(){
-        let {pairs} = this.state;
+        let {pairs} = this.props;
         let exchangeId = pairs.id || '';
+
+        if(!exchangeId){
+          return ;
+        }
         let { data,code } = await Client20.getRegisterList(exchangeId);
         
         if (code === 0) {
@@ -164,7 +169,9 @@ class Register extends Component{
     }
 
     async getList(data,type){
-        let {pairs} =  this.state;
+        let {pairs} =  this.props;
+        let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
+
         let obj1 = {}
       let obj2 = {}
       let listN = []
@@ -199,10 +206,10 @@ class Register extends Component{
           let key = index;
           listN.push({
             key:key+1,
-            price: (+v).toFixed(pairs.sPrecision),
+            price: (+v).toFixed(sPrecision),
             amount: amount.toFixed(2),
             curTurnover: curTurnover,
-            cje: cje.toFixed(pairs.sPrecision)
+            cje: cje.toFixed(sPrecision)
           })
           amount_list.push(amount)
         })
@@ -226,7 +233,7 @@ class Register extends Component{
 
 function mapStateToProps(state) {
     return {
-        pairs: {"id":30,"volume":368993269577200,"gain":"0.086012","price":50000,"fPrecision":6,"sPrecision":6,"fTokenName":"TRONdice","sTokenName":"TRX","fShortName":"DICE","sShortName":"TRX","fTokenAddr":"THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur","sTokenAddr":"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb","highestPrice24h":0.057,"lowestPrice24h":0.04,"volume24h":9662143305886,"unit":"TRX"},
+        pairs: state.exchange.data,
         lastPrice:{
             value: '0.04998',
             type: 0

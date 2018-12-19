@@ -46,11 +46,18 @@ class ApiClient20 {
   }
 
   async getCurrentList(query) {
-    console.log('query',query)
+   
     let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/user/order`,{
       params: query
     });
 
+    return data;
+  }
+
+  async getTransactionList(query) {
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/latestOrders`,{
+      params: query
+    });
     return data;
   }
 

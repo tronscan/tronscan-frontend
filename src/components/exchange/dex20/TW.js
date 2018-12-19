@@ -1,3 +1,4 @@
+
 const contranctAddress = 'TGq7uRgKED5G8kYpEoQybR9p9xtcVa5GTD' //'TFFzJbnqNuochqPQtLrJgtJ695aRakfKiW' //'TPXkfbV6tdvbWt5vA261yNC3NCR6QHsrQe'
 /**
  * 获取合约

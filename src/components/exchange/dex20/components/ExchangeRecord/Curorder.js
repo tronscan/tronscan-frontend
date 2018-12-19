@@ -7,6 +7,12 @@ import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import {upperFirst} from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
+import { Wallet } from 'ethers';
+import { Modal, Button } from 'antd';
+import SweetAlert from "react-bootstrap-sweetalert";
+import {cancelOrder} from '../../TW'
+
+const confirm = Modal.confirm;
 
 class Curorder extends Component{
     constructor(){
@@ -14,19 +20,52 @@ class Curorder extends Component{
         this.state = {
             start: 0,
             limit: 50,
-            list:[]
-            // list:[{"id":19976,"fShortName":"BET","sShortName":"TRX","volume":100,"price":0.1,"orderType":1,"orderTime":"1545101722239","orderID":"7291","schedule":"0.0000","curTurnover":0,"orderStatus":0},{"id":14419,"fShortName":"BET","sShortName":"TRX","volume":100,"price":0.1,"orderType":1,"orderTime":"1544696681304","orderID":"2444","schedule":"0.0000","curTurnover":0,"orderStatus":0}]
-
+            list:[],
+            timer:null,
+            modal: null
         }
+
+        this.cancelOrder = this.cancelOrder.bind(this)
     }
 
     componentDidMount(){
+        let {timer} = this.state;
         this.getData()
+        clearInterval(timer)
+        this.setState({
+            timer : setInterval(() => {
+                this.getData()
+            }, 3000)
+        })
+        
+
+    }
+
+    componentDidUpdate(prevProps){
+        let {timer} = this.state
+        let {wallet} = this.props;
+        if(prevProps.wallet != wallet){
+            clearInterval(timer)
+            this.setState({
+                timer : setInterval(() => {
+                    this.getData()
+                }, 3000)
+            })
+        }
     }
 
     render(){
-        let {list} = this.state;
+        let {list,modal} = this.state;
         let {intl} = this.props;
+        
+
+
+        if (!list || list.length === 0) {
+            return (
+                <div className="p-3 text-center no-data">{tu("trc20_no_data")}</div>
+            );
+        }
+
         const columns = [
             {
               title: upperFirst(intl.formatMessage({id: 'trc20_cur_order_header_order_time'})),
@@ -84,13 +123,15 @@ class Curorder extends Component{
                 dataIndex: 'cancel',
                 key: 'cancel',
                 render: (text, record, index) => {
-                    return <span>{tu('trc20_cur_order_cancel')}</span>
+                    return <span onClick={()=>this.cancelOrder(record)}>{tu('trc20_cur_order_cancel')}</span>
                   },
                 align: 'center'
               }
           ]
         return (
+            
             <div className="exchange__tranlist">
+            { modal }
                 <Table
                     dataSource={list}
                     columns={columns}
@@ -124,9 +165,53 @@ class Curorder extends Component{
             this.setState({list})
             
           }
-
-
     }
+
+    cancelOrder(record){
+        console.log(123,record)
+        let {intl} = this.props;
+        let _this = this;
+        confirm({
+            title: intl.formatMessage({id: 'trc20_prompt'}),
+            content:intl.formatMessage({id: 'trc20_cancel_order_confirm'}),
+            okText: intl.formatMessage({id: 'trc20_confirm'}),
+            cancelText: intl.formatMessage({id: 'trc20_cancel'}),
+            onOk() {
+                if (record.orderID) {
+                    _this.cancleOrderFun(record)
+                  }
+            },
+            onCancel() {},
+          });
+    }
+
+    async cancleOrderFun(item){
+        try {
+            const _id = await cancelOrder(item.orderID)
+            if (_id) {
+                this.setState({
+                    modal: (
+                        <SweetAlert success title={tu("transaction_success")}  onConfirm={this.hideModal}>
+                            {tu("trc20_order_success")}
+                        </SweetAlert>
+                    )
+                });
+              
+            }
+          } catch (err) {
+            this.setState({
+                modal: (
+                    <SweetAlert success title={tu("transaction_error")}  onConfirm={this.hideModal}>
+                        {tu("trc20_cancel_order_fail")}
+                    </SweetAlert>
+                )
+            });
+          }
+    }
+
+    hideModal = () => {
+        this.setState({modal: null});
+  }
 
     numFormat(v) {
         return v
@@ -141,8 +226,8 @@ class Curorder extends Component{
 function mapStateToProps(state) {
     
     return {
-        app:state.app ? state.app:{}
-        
+        app:state.app ? state.app:{},
+        wallet:state.wallet ? state.wallet.isOpen : false
     };
   }
   

@@ -52,11 +52,11 @@ class ExchangeList extends React.Component {
         const {getExchanges20} = this.props;
         // this.getExchangesAllList();
         getExchanges20()
-        const getDataTime = setInterval(() => {
-            this.getExchangesAllList();
-        }, 10000)
+        // const getDataTime = setInterval(() => {
+        //     this.getExchangesAllList();
+        // }, 10000)
 
-        this.setState({time: getDataTime})
+        // this.setState({time: getDataTime})
     }
 
     componentWillUnmount() {

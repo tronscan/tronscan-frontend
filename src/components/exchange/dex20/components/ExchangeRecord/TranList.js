@@ -10,6 +10,7 @@ import {Client} from "../../../../../services/api";
 import {Client20} from "../../../../../services/api";
 import {connect} from "react-redux";
 import {upperFirst} from 'lodash'
+import {dateFormat} from '../../../../../utils/DateTime'
 
 class TranList extends Component {
   constructor(props) {
@@ -22,10 +23,10 @@ class TranList extends Component {
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     const { selectData } = this.props
+    await this.getData()
     this.getColumns();
-    this.getData()
     const getDataTime = setInterval(() => {
       this.getData();
     }, 10000)
@@ -48,70 +49,48 @@ class TranList extends Component {
   getData = async () => {
     const {selectData} = this.props
     if(selectData.exchange_id){
-      const {data} = await Client.getTransactionList({limit: 15, exchangeID: selectData.exchange_id});
-      this.setState({dataSource: data})
+      const {code,data} = await Client20.getTransactionList({limit: 20,start:0, pairID: selectData.exchange_id});
+      if(code === 0){
+        this.setState({dataSource: data.rows})
+      }
     }
   }
 
   getColumns() {
     let {dataSource} = this.state;
-    let {intl} = this.props;
+    let {intl,selectData} = this.props;
+    let first_token =  selectData.fShortName ? '(' + selectData.fShortName + ')' : '';
     const columns = [
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'TxHash'})),
-      //   dataIndex: 'trx_hash',
-      //   key: 'trx_hash',
-      //   render: (text, record, index) => {
-      //     // className={record.status === 1? 'buy': 'sell'}
-      //     return <span ><Truncate>
-      //             <TransactionHashLink hash={text}>{text}</TransactionHashLink>
-      //           </Truncate></span>
-      //   }
-      // },
       {
-        title: upperFirst(intl.formatMessage({id: 'TxTime'})),
-        dataIndex: 'createTime',
-        key: 'createTime',
-        //width: '200px',
+        title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_time'})),
+        dataIndex: 'orderTime',
+        key: 'orderTime',
         render: (text, record, index) => {
           return <span>
-            <FormattedDate value={Number(text)}/>&nbsp;
-            <FormattedTime value={Number(text)}/>&nbsp;
+            {dateFormat(record.orderTime)}
           </span>
         }
       },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'address'})),
-      //   dataIndex: 'creatorAddress',
-      //   key: 'creatorAddress',
-      //   render: (text, record, index) => {
-      //     return  <AddressLink address={text}/>
-      //   }
-      // },
       {
-        title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
-        dataIndex: 'quant',
-        key: 'quant',
-        //width: '200px',
+        title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_price'})),
+        dataIndex: 'price',
+        key: 'price',
         render: (text, record, index) => {
-          return  record.tokenID == '_'? 
-          <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.quant + ' ' + record.tokenID
+          return  <span className={[record.order_type === 1 ? 'col-red':'col-green']}>{record.price}</span>
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'status'})),
-        dataIndex: 'confirmed',
-        key: 'confirmed',
+        title: upperFirst(intl.formatMessage({id: 'trc20_trans_record_header_amount'})+first_token),
+        dataIndex: 'volume',
+        key: 'volume',
         align: 'center',
         render: (text, record, index) => {
-          return  text?
-          <span className="badge badge-success text-uppercase badge-success-radius">{tu("Confirmed")}</span> :
-          <span className="badge badge-danger text-uppercase badge-success-radius">{tu("Unconfirmed")}</span>;
+          return  record.volume + ' ' + record.unit
         }
       }
     ]
 
+    
     return (
         <Table
             dataSource={dataSource}

@@ -95,9 +95,10 @@ class ExchangeTable extends React.Component {
         if(!parsed){
             this.onSetUrl(dataSource[0])
         }else{
+
             getSelectData(currentData[0])
             this.setState({
-                activeIndex:currentData[0].exchange_id
+                activeIndex:currentData[0] ? currentData[0].exchange_id : ''
             },()=>{
 
             })
