@@ -539,14 +539,14 @@ class Navigation extends PureComponent {
                     }
                     {
                       isTRONlinkLogin?  <div className="login-mask">
-                          <ul className="login-import" style={{width: 400}}>
-                            <li className="px-3 py-4">
+                          <div className="login-import" style={{width: 400}}>
+                            <div className="px-3 py-4">
                               <div className="text-center">
                                 <label>TRONlink登录</label>
                               </div>
-                            </li>
+                            </div>
                               {/* <li className="dropdown-divider blod"/> */}
-                            <li className="px-3 py-4">
+                            <div className="px-3 py-4">
                               {/*<div className="text-center">*/}
                                 {/*<label>{tu("keystore_file")}</label>*/}
                                 {/*<button className="btn btn-danger btn-block" onClick={this.selectFile}>*/}
@@ -557,12 +557,12 @@ class Navigation extends PureComponent {
                                        {/*accept=".txt"/>*/}
                               {/*</div>*/}
 
-                            </li>
+                            </div>
                               {/* <li className="dropdown-divider blod"/> */}
                               {
                                   flags.mobileLogin &&
                                   <Fragment>
-                                    <li className="px-3 py-4 ">
+                                    <div className="px-3 py-4 ">
                                       <div className="text-center">
                                         <label>{tu("Mobile Login")}</label>
                                         <button className="btn btn-success btn-block"
@@ -570,17 +570,17 @@ class Navigation extends PureComponent {
                                             {tu("login_mobile")}
                                         </button>
                                       </div>
-                                    </li>
+                                    </div>
                                       {/* <li className="dropdown-divider"/> */}
                                   </Fragment>
                               }
-                            <li className="px-3 py-4">
+                            <div className="px-3 py-4">
                               <button className="btn btn-warning btn-block"
                                       onClick={this.loginWithTronLink}>
                                   {tu("TRONlink登录")}
                               </button>
-                            </li>
-                          </ul>
+                            </div>
+                          </div>
                         </div> :''
                     }
 
