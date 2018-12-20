@@ -61,17 +61,30 @@ class ApiClient20 {
     return data;
   }
 
-  /**
-   * 当前价格
-   */
   async  getCurrentPrice(id) {
     let {data} = await xhr.get(`${this.apiUrl}/api/exchange/topprice/${id}`)
     return data;
   }
 
 
-  
+  async getKlineData20(query) {
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/kchart`,{
+      params: query
+    });
+    return data;
+  }
 
+  async gettokenInfo20(query) {
+    let {data}  = await xhr.get(`https://wlcyapi.tronscan.org/api/token_trc20`,{
+      params: {
+        sort: 'issue_time',
+        start: 0,
+        limit: 100,
+        ...query
+      }
+    });
+    return data;
+  }
 
 }
 
