@@ -30,7 +30,7 @@ class ExchangeList extends React.Component {
         this.state = {
             dataSource: [],
             time: null,
-            tokenAudited: 'trx_20',
+            tokenAudited: true,
             exchangesList: [],
             optional:  Lockr.get('optional')?Lockr.get('optional'):[],
             optionalBok: false,
@@ -50,207 +50,46 @@ class ExchangeList extends React.Component {
 
     componentDidMount() {
         const {getExchanges20} = this.props;
-        // this.getExchangesAllList();
         getExchanges20()
-        // const getDataTime = setInterval(() => {
-        //     this.getExchangesAllList();
-        // }, 10000)
+        const getDataTime = setInterval(() => {
+            getExchanges20()
+        }, 10000)
 
-        // this.setState({time: getDataTime})
+        this.setState({time: getDataTime})
     }
 
     componentWillUnmount() {
         const {time} = this.state;
         clearInterval(time);
-        Lockr.set("DEX", 'Main');
     }
-    // getExchangesAllList = async () =>{
-    //     let { exchangesAllList }= await Client.getexchangesAllList();
-    //     map(exchangesAllList, item => {
-    //         if (item.up_down_percent.indexOf('-') != -1) {
-    //             item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-    //         } else {
-    //             item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-    //         }
-    //     })
-    //     this.setState({
-    //         exchangesAllList: exchangesAllList,
-    //     },() => {
-    //         this.getExchanges();
-    //     });
-    // }
-    // getExchanges = async () => {
-    //     let { exchangesAllList} = this.state;
-    //     let { data } = await Client.getExchangesList();
-    //     let tab,exchangesList;
-    //     if(Lockr.get("DEX")){
-    //         tab = Lockr.get("DEX");
-    //     }else{
-    //         Lockr.set("DEX", 'Main');
-    //         tab = 'Main'
-    //     }
-    //     map(data, item => {
-    //         if (item.up_down_percent.indexOf('-') != -1) {
-    //             item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-    //         } else {
-    //             item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
-    //         }
-    //     });
-    //     exchangesList = data.map(item => {
-    //         item.optionalBok = false;
-    //         return item
-    //     });
-    //     if (Lockr.get('optional')) {
-    //         let optional = Lockr.get('optional');
-    //         for (let i in exchangesAllList) {
-    //             for (let j in optional) {
-    //                 if (exchangesAllList[i].exchange_id == optional[j]) {
-    //                     exchangesAllList[i].optionalBok = true;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     if (Lockr.get('optional')) {
-    //         let optional = Lockr.get('optional');
-    //         for (let i in exchangesList) {
-    //             for (let j in optional) {
-    //                 if (exchangesList[i].exchange_id == optional[j]) {
-    //                     exchangesList[i].optionalBok = true;
-    //                 }
-    //             }
-    //         }
-    //     }
 
-    //     let unreviewedTokenList = _(exchangesAllList)
-    //         .filter(o => o['optionalBok'] == true)
-    //         .sortBy(o => -o.first_token_abbr)
-    //         .value();
-
-
-    //     this.setState({
-    //         auditedTokenList: exchangesList,
-    //         unreviewedTokenList: unreviewedTokenList,
-    //         dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
-    //         // tokenAudited: tab == 'Main' ? true : false,
-    //         optionalDisable:true,
-    //         exchangesAllList:exchangesAllList
-    //     },() => {
-    //     });
-    // }
-
-    handleAuditedToken = () => {
-        const {getSelectData} = this.props;
-        const {auditedTokenList,optionalDisable} = this.state;
-        if(!optionalDisable) return;
-        Lockr.set("DEX", 'Main');
-        this.setState({
-            tokenAudited: true,
-            dataSource: auditedTokenList,
-            showSearch:false,
-        });
-        if(auditedTokenList.length > 0){
-            this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
-            getSelectData(auditedTokenList[0], true)
-            this.setState({
-                activeIndex:auditedTokenList[0].exchange_id,
-            });
+    componentDidUpdate(prevProps) {
+        let { exchange20List } = this.props;
+        let {tokenAudited} = this.state
+        if ( exchange20List != prevProps.exchange20List) {
+            this.setData(tokenAudited)
         }
     }
+    setData(type){
+       
+        let { exchange20List } = this.props;
+        if(type){
+            this.setState({dataSource: exchange20List})
+        }else{
+            let new20List = exchange20List.filter(item => item.isChecked)
 
-    handleUnreviewedToken = () => {
-        const {getSelectData} = this.props;
-        const {unreviewedTokenList,optionalDisable} = this.state;
-        if(!optionalDisable) return;
-        Lockr.set("DEX", 'GEM');
-        this.setState({
-            tokenAudited: false,
-            dataSource: unreviewedTokenList,
-            showSearch:false,
-        });
-        if(unreviewedTokenList.length > 0){
-            this.props.history.push('/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id)
-            getSelectData(unreviewedTokenList[0], true)
-            this.setState({
-                activeIndex:unreviewedTokenList[0].exchange_id,
-            });
+            this.setState({dataSource: new20List})
         }
     }
-
     handleSelectData = (type) => {
         this.setState({tokenAudited: type})
-    }
-
-    setCollection = (ev,id, index) => {
-        ev.stopPropagation();
-        let {dataSource} = this.state;
-        this.addOptional(id);
-        dataSource[index].optionalBok = !dataSource[index].optionalBok;
-        this.setState({
-            dataSource
-        },()=>{
-            this.getExchanges();
-        });
-    }
-
-    addOptional = (id) =>{
-        let {optional} = this.state;
-
-        if (optional.indexOf(id) == -1) {
-            optional.push(id)
-            this.setState({
-                optional
-            });
-        } else {
-            optional = _.remove(optional, (n) => {
-                return n !== id;
-            });
-            this.setState({
-                optional
-            });
-        }
-        Lockr.set('optional', optional);
-    }
-
-    handleSearch = async(e) => {
-        let {search} = this.state;
-        let {data} = await Client.getExchangesList({
-            name:search
-        });
-        this.setState({
-            searchExchangesList:data,
-            showSearch:true
-        });
-    }
-    setExchangeId  = (id) =>{
-        const {unreviewedTokenList,optional} = this.state;
-        if (optional.indexOf(id) == -1) {
-            optional.push(id)
-            this.setState({
-                optional
-            });
-        }
-        Lockr.set("DEX", 'GEM');
-        Lockr.set('optional', optional);
-        this.setState({
-            tokenAudited: false,
-            dataSource: unreviewedTokenList,
-            showSearch:false,
-            search:'',
-            activeIndex:id,
-            searchAddId:true,
-        },() => {
-            this.getExchanges();
-        });
-    }
-    setSearchAddId(){
-        this.setState({
-            searchAddId:false,
-        })
+        this.setData(type)
+        
     }
 
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
-        let {intl, exchange20List} = this.props;
+        let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
             <div className="exchange-list mr-2">
@@ -276,46 +115,27 @@ class ExchangeList extends React.Component {
                     </div>
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_20' ? ' active' : '')}
-                            onClick={() => this.handleSelectData('trx_20')}>
+                            className={"btn btn-sm" + (tokenAudited? ' active' : '')}
+                            onClick={() => this.handleSelectData(true)}>
                             {tu("TRX_20")}
                         </div>
+                        
+                        <Link className={"btn btn-sm" } to="/exchange">{tu("TRX")}</Link>
                         <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_10' ? ' active' : '')}
-                            onClick={() => this.handleSelectData('trx_10')}>
-                            {tu("TRX")}
-                        </div>
-                        <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_audited' ? ' active' : ' ')}
-                            onClick={() => this.handleSelectData('trx_audited')}>
+                            className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}
+                            onClick={() => this.handleSelectData(false)}>
                             <i>
                                 <i className="fas fa-star"></i> {tu("Favorites")}
                             </i>
                         </div>
                     </div>
                     <div className="dex-search">
-                        <Search
-                            placeholder={intl.formatMessage({id: "dex_search_dec"})}
-                            value={search}
-                            onSearch={this.handleSearch}
-                            onChange={ev => this.setState({search: ev.target.value})}
-                        />
+                        
                     </div>
                     {
-                        showSearch ?
                         <PerfectScrollbar>
                             <div className="exchange-list__table" style={styles.list}>
-                                <SearchTable dataSource={searchExchangesList}
-                                             props={this.props}
-                                             tab={tab}
-                                             setExchangeId={(id) => this.setExchangeId(id)}
-                                             activeIndex={activeIndex}
-                                />
-                            </div>
-                        </PerfectScrollbar>:
-                        <PerfectScrollbar>
-                            <div className="exchange-list__table" style={styles.list}>
-                                <ExchangeTable dataSource={exchange20List}/>
+                                <ExchangeTable dataSource={dataSource} />
                             </div>
                         </PerfectScrollbar>
                     }

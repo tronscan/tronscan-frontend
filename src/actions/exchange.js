@@ -1,7 +1,9 @@
 import {Client} from "../services/api";
 import {Client20} from "../services/api";
+import Lockr from "lockr";
+import { remove } from 'lodash';
 
-import { cloneDeep } from 'lodash'
+import { cloneDeep,concat } from 'lodash'
 
 
 export const SET_SELECT_DATA = 'SET_SELECT_DATA';
@@ -37,14 +39,14 @@ export const setLastprice = (obj) => ({
   obj,
 });
 
-
 export const getSelectData = (data, isSelect = false) => async (dispatch) => {
     dispatch(setSelectData(data));
     dispatch(setSelectStatus(isSelect))
 };
 
-export const getExchanges20 = () => async (dispatch,getState) => {
+export const getExchanges20 = () => async (dispatch) => {
   let { data } = await Client20.getexchanges20();
+  let f20_list =  Lockr.get('dex20')|| []
 
   let newList =  cloneDeep(data.rows).map((item, index) => {
       item.exchange_id = item.id
@@ -59,6 +61,7 @@ export const getExchanges20 = () => async (dispatch,getState) => {
       item.svolume = parseInt(item.volume24h / Math.pow(10,item.sPrecision))
       item.high = item.highestPrice24h
       item.low = item.lowestPrice24h
+      item.token_type = 'dex20'
       if (item.gain.indexOf('-') != -1) {
           item.up_down_percent = '-' + Math.abs(Number(item.gain).toFixed(2)) + '%'
           item.isUp = false
@@ -66,11 +69,13 @@ export const getExchanges20 = () => async (dispatch,getState) => {
           item.up_down_percent = '+' + Math.abs(Number(item.gain).toFixed(2)) + '%'
           item.isUp = true
       }
+      f20_list.map(id => {
+        if(item.exchange_id == id){
+          item.isChecked = true
+        }
+      })
       
      return item
   })
-  
   dispatch(setExchanges20(newList))
 }
-
-
