@@ -77,7 +77,9 @@ export const login = (privateKey) => async (dispatch, getState) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(getState().app.account.address));
-//  }
+
+  // }
+
 };
 
 export const loginWithAddress = (address) => async (dispatch, getState) => {

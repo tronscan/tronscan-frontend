@@ -51,9 +51,9 @@ class TranList extends Component {
     const {selectData,setLastprice} = this.props
     if(selectData.exchange_id){
       const {code,data} = await Client20.getTransactionList({limit: 20,start:0, pairID: selectData.exchange_id});
-      if(code === 0){
+      if(code === 0 && data){
         this.setState({dataSource: data.rows})
-        let row0 = data.rows[0]
+        let row0 = data.rows ? data.rows[0] : {price:0,type:0}
         let obj = {
           value: row0.price,
           type: row0.order_type

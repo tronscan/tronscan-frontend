@@ -11,7 +11,6 @@ import {ONE_TRX} from "../../../../../constants";
 import {find} from 'lodash'
 
 import NumericInput from './NumericInput'
-import Buy from './buy'
 
 const FormItem = Form.Item;
 class Transaction extends Component {
@@ -51,7 +50,6 @@ class Transaction extends Component {
       e.preventDefault();
 
     this.props.form.validateFields(['first_quant_buy','second_quant_buy'],(err, values) => {
-       
       if (!err) {
           let token_id = exchangeData.second_token_id == "TRX"?"_":exchangeData.second_token_id;
           let quant = exchangeData.second_token_id == "TRX"?values.second_quant_buy * ONE_TRX:values.second_quant_buy;
@@ -130,7 +128,6 @@ class Transaction extends Component {
       this.props.form.setFieldsValue({
           second_quant_buy: exchangeData.second_token_id == "TRX" ? parseFloat(value*1.01 * exchangeData.price).toFixed(6):value * exchangeData.price*1.01,
       });
-
   }
 
   handleSecondValueSell = async (value) => {
@@ -148,8 +145,7 @@ class Transaction extends Component {
       <div className="exchange__transaction d-flex">
           {modal}
         {/* 买入模块 */}
-        <Buy onSubmit={this.handleSubmitBuy} onChange={this.handleSecondValueBuy} exchangeTransaction={this.exchangeTransaction}/>
-        {/* <div className="exchange__transaction__item mr-2 p-3">
+        <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">
           {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
           { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>}
@@ -190,7 +186,7 @@ class Transaction extends Component {
               <Button type="primary" className="success" size="large" htmlType="submit" disabled={!account.address}>{tu("BUY")} {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
-        </div> */}
+        </div>
 
         {/* 卖出模块 */}
         <div className="exchange__transaction__item  p-3">
@@ -225,7 +221,6 @@ class Transaction extends Component {
                      placeholder={intl.formatMessage({id: 'enter_the_trading_amount'})}
                      size="large"
                      type="text"
-                    
               />
             )}
             </FormItem>
