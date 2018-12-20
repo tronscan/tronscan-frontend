@@ -3,7 +3,9 @@ import TronWeb from 'tronweb';
 import {
   DISABLE_FLAG,
   ENABLE_FLAG,
-  LOGIN, LOGIN_ADDRESS,
+  LOGIN,
+  LOGIN_ADDRESS,
+  LOGIN_TRONLINK,
   LOGIN_PK,
   LOGOUT,
   SET_ACCOUNTS,
@@ -194,9 +196,27 @@ export function appReducer(state = initialState, action) {
       };
     }
 
+    case LOGIN_TRONLINK:{
+
+        if (IS_DESKTOP) {
+            Lockr.rm("account_key");
+            // Lockr.set("account_address", action.address);
+        }
+        return {
+            ...state,
+            account: {
+                key: false,
+                isLoggedIn: true,
+                address: action.address,
+                tronWeb:action.tronWeb,
+            }
+        };
+    }
+
     case LOGOUT: {
       Lockr.rm("account_key");
       Lockr.rm("account_address");
+      Lockr.set("islogin",0)
       return {
         ...state,
         account: {

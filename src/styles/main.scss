@@ -2465,3 +2465,36 @@ h5 {
   position: absolute;
 }
 
+.login-mask{
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  z-index: 9999;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  .login-import{
+    border: none;
+    background: transparent;
+    padding: 0;
+    float: none;
+    border-radius: 2px;
+    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 10rem;
+    margin: 0.125rem 0 0;
+    font-size: 0.875rem;
+    color: #3E3F3A;
+    text-align: left;
+    list-style: none;
+    background-clip: padding-box;
+  }
+  .login-tronlink{
+
+  }
+}
+

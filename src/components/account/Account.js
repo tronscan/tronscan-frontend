@@ -55,6 +55,7 @@ class Account extends Component {
 
   componentDidMount() {
       let {account} = this.props;
+
       if (account.isLoggedIn) {
           this.reloadTokens();
           this.loadAccount();
@@ -110,7 +111,7 @@ class Account extends Component {
       let {account} = this.props;
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
-      if(account.tronWeb.eventServer){
+      //if(account.tronWeb.eventServer){
           tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
               let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
@@ -125,7 +126,7 @@ class Account extends Component {
           this.setState({
               tokens20: tokens20
           });
-      }
+     // }
   }
   renderTRC20Tokens() {
     let {hideSmallCurrency,tokens20} = this.state;

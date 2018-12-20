@@ -10,7 +10,7 @@ import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
 import {tu, t} from "../utils/i18n"
-import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
+import {enableFlag, login, loginWithAddress, loginWithTronLink, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
@@ -47,6 +47,9 @@ class Navigation extends PureComponent {
       search: "",
       popup: null,
       notifications: [],
+      isImportAccount:false,
+      isTRONlinkLogin:false,
+      count:0,
     };
   }
 
@@ -62,6 +65,29 @@ class Navigation extends PureComponent {
 
   componentDidMount() {
       let {account} = this.props;
+
+  }
+  componentWillMount(){
+      let {count} = this.state;
+      if (Lockr.get("islogin")) {
+          //this.isauot = true
+          let timer = null
+          timer = setInterval(() => {
+              const tronWeb = window.tronWeb;
+              const address = tronWeb.defaultAddress.base58;
+              if (tronWeb && address) {
+                  this.props.loginWithTronLink(address,tronWeb);
+                  clearInterval(timer)
+              } else {
+                  count++
+                  if (count > 30) {
+                      count = 0
+                      Lockr.set("islogin",0)
+                      //this.isauot = false
+                  }
+              }
+          }, 100)
+      }
   }
 
   setLanguage = (language) => {
@@ -177,7 +203,11 @@ class Navigation extends PureComponent {
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
-    this.setState({privateKey: ''});
+    this.setState({
+        privateKey: '',
+        isImportAccount:false,
+        isTRONlinkLogin:false,
+    });
     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
 
@@ -305,10 +335,39 @@ class Navigation extends PureComponent {
     console.log("LOGIN WITH MOBILE");
   };
 
+  loginWithTronLink = () =>{
+      const tronWeb = window.tronWeb;
+      // 没有下载 tronlink
+      if (!tronWeb) {
+          // this.noDown = true
+          // this.loading = false
+          return
+      }
+
+      // 没有登录 tronlink
+      const address = tronWeb.defaultAddress.base58;
+      if (!address) {
+          //this.noDown = true
+          //this.loading = false
+          Lockr.set("islogin", 0);
+          return
+      }
+
+      // 已登录 tronlink
+      if (address) {
+          //this.isauot = true
+          Lockr.set("islogin", 1);
+          this.props.loginWithTronLink(address,tronWeb);
+          setTimeout(() => {
+              this.setState({isImportAccount: false})
+          }, 1000)
+      }
+  };
+
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-
+    let {isImportAccount, isTRONlinkLogin } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -407,61 +466,125 @@ class Navigation extends PureComponent {
                     </li>
                   </ul>
                 </li> :
-                <li className="nav-item dropdown nav nav_input">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                <li className="dropdown nav nav_input">
+                  <a className="nav-link dropdown-toggle nav-item" href="javascript:">
                     {tu("open_wallet")}
+                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
+                      <li className="px-3 py-3" onClick={() => this.setState({isTRONlinkLogin: true})}>
+                        <a className="dropdown-item text-uppercase"
+                           href="javascript:;">
+                          使用TRONlink登录
+                        </a>
+                      </li>
+                      <li className="px-3 py-3" onClick={() => this.setState({isImportAccount: true})}>
+                        <a className="dropdown-item text-uppercase" href="javascript:;">导入账户登录</a>
+                      </li>
+                    </ul>
                   </a>
-                  <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
-                  <li className="px-3 py-3">
-                      <div className="text-center">
-                        <label>{tu("private_key")}</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            onChange={ev => this.setState({privateKey: ev.target.value})}
-                            placeholder=""/>
-                      </div>
-                      <button className="btn btn-danger btn-block mt-3"
-                              disabled={!this.isLoginValid()}
-                              onClick={this.login}>
-                        {tu("sign_in")}
-                      </button>
-                    </li>
-                    {/* <li className="dropdown-divider blod"/> */}
-                    <li className="px-3 py-3 ">
-                      <div className="text-center">
-                        <label>{tu("keystore_file")}</label>
-                        <button className="btn btn-danger btn-block" onClick={this.selectFile}>
-                          {tu("select_file")}
-                        </button>
-                        <input type="file" ref={this.fileRef} className="d-none"
-                               onChange={this.onFileSelected}
-                               accept=".txt"/>
-                      </div>
 
-                    </li>
-                    {/* <li className="dropdown-divider blod"/> */}
                     {
-                      flags.mobileLogin &&
-                      <Fragment>
-                        <li className="px-3 py-3 ">
-                          <div className="text-center">
-                            <label>{tu("Mobile Login")}</label>
-                            <button className="btn btn-success btn-block"
-                                    onClick={this.loginWithMobileDevice}>
-                              {tu("login_mobile")}
+                      isImportAccount?  <div className="login-mask">
+                        <ul className="login-import" style={{width: 400}}>
+                          <li className="px-3 py-4">
+                            <div className="text-center">
+                              <label>{tu("private_key")}</label>
+                              <input
+                                  type="text"
+                                  className="form-control"
+                                  onChange={ev => this.setState({privateKey: ev.target.value})}
+                                  placeholder=""/>
+                            </div>
+                            <button className="btn btn-danger btn-block mt-3"
+                                    disabled={!this.isLoginValid()}
+                                    onClick={this.login}>
+                                {tu("sign_in")}
                             </button>
-                          </div>
-                        </li>
-                        {/* <li className="dropdown-divider"/> */}
-                      </Fragment>
+                          </li>
+                            {/* <li className="dropdown-divider blod"/> */}
+                          <li className="px-3 py-4">
+                            <div className="text-center">
+                              <label>{tu("keystore_file")}</label>
+                              <button className="btn btn-danger btn-block" onClick={this.selectFile}>
+                                  {tu("select_file")}
+                              </button>
+                              <input type="file" ref={this.fileRef} className="d-none"
+                                     onChange={this.onFileSelected}
+                                     accept=".txt"/>
+                            </div>
+
+                          </li>
+                            {/* <li className="dropdown-divider blod"/> */}
+                            {
+                                flags.mobileLogin &&
+                                <Fragment>
+                                  <li className="px-3 py-4 ">
+                                    <div className="text-center">
+                                      <label>{tu("Mobile Login")}</label>
+                                      <button className="btn btn-success btn-block"
+                                              onClick={this.loginWithMobileDevice}>
+                                          {tu("login_mobile")}
+                                      </button>
+                                    </div>
+                                  </li>
+                                    {/* <li className="dropdown-divider"/> */}
+                                </Fragment>
+                            }
+                          <li className="px-3 py-4">
+                            <Link className="btn btn-primary btn-block" to="/wallet/new">
+                                {tu("create_wallet")}
+                            </Link>
+                          </li>
+                        </ul>
+                      </div> :''
                     }
-                    <li className="px-3 py-3">
-                      <Link className="btn btn-primary btn-block" to="/wallet/new">
-                        {tu("create_wallet")}
-                      </Link>
-                    </li>
-                  </ul>
+                    {
+                      isTRONlinkLogin?  <div className="login-mask">
+                          <ul className="login-import" style={{width: 400}}>
+                            <li className="px-3 py-4">
+                              <div className="text-center">
+                                <label>TRONlink登录</label>
+                              </div>
+                            </li>
+                              {/* <li className="dropdown-divider blod"/> */}
+                            <li className="px-3 py-4">
+                              {/*<div className="text-center">*/}
+                                {/*<label>{tu("keystore_file")}</label>*/}
+                                {/*<button className="btn btn-danger btn-block" onClick={this.selectFile}>*/}
+                                    {/*{tu("select_file")}*/}
+                                {/*</button>*/}
+                                {/*<input type="file" ref={this.fileRef} className="d-none"*/}
+                                       {/*onChange={this.onFileSelected}*/}
+                                       {/*accept=".txt"/>*/}
+                              {/*</div>*/}
+
+                            </li>
+                              {/* <li className="dropdown-divider blod"/> */}
+                              {
+                                  flags.mobileLogin &&
+                                  <Fragment>
+                                    <li className="px-3 py-4 ">
+                                      <div className="text-center">
+                                        <label>{tu("Mobile Login")}</label>
+                                        <button className="btn btn-success btn-block"
+                                                onClick={this.loginWithMobileDevice}>
+                                            {tu("login_mobile")}
+                                        </button>
+                                      </div>
+                                    </li>
+                                      {/* <li className="dropdown-divider"/> */}
+                                  </Fragment>
+                              }
+                            <li className="px-3 py-4">
+                              <button className="btn btn-warning btn-block"
+                                      onClick={this.loginWithTronLink}>
+                                  {tu("TRONlink登录")}
+                              </button>
+                            </li>
+                          </ul>
+                        </div> :''
+                    }
+
+
                 </li>
           }
         </Fragment>
@@ -484,16 +607,6 @@ class Navigation extends PureComponent {
 
     let activeComponent = this.getActiveComponent();
 
-    // console.log('route.routes',routes)
-    //   routes[23].routes.map((subRoute, index) => {
-    //       if (subRoute !== '-') {
-    //           for (let i in subRoute) {
-    //                subRoute[i].map((Route, j) => {
-    //                   console.log('Route',Route)
-    //                })
-    //           }
-    //       }
-    //   })
     return (
         <div className="header-top">
           {popup}
@@ -829,6 +942,7 @@ const mapDispatchToProps = {
   logout,
   login,
   loginWithAddress,
+  loginWithTronLink,
   setActiveCurrency,
   setTheme,
   enableFlag,

@@ -11,11 +11,13 @@ export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const LOGIN = 'LOGIN';
 export const LOGIN_PK = 'LOGIN_PK';
 export const LOGIN_ADDRESS = 'LOGIN_ADDRESS';
+export const LOGIN_TRONLINK = 'LOGIN_TRONLINK';
 export const LOGOUT = 'LOGOUT';
 export const ENABLE_FLAG = 'ENABLE_FLAG';
 export const DISABLE_FLAG = 'DISABLE_FLAG';
 export const SET_THEME = 'SET_THEME';
 export const SET_SYNC_STATUS = 'SET_SYNC_STATUS';
+
 
 export const setLanguage = (language = 'en') => ({
   type: SET_LANGUAGE,
@@ -49,6 +51,12 @@ export const setLoginWithAddress = (address) => ({
   address,
 });
 
+export const setLoginWithTronLink = (address,tronWeb) => ({
+    type: LOGIN_TRONLINK,
+    address,
+    tronWeb:tronWeb
+});
+
 export const logout = () => ({
   type: LOGOUT,
 });
@@ -80,6 +88,8 @@ export const login = (privateKey) => async (dispatch, getState) => {
  // }
 };
 
+
+
 export const loginWithAddress = (address) => async (dispatch, getState) => {
 
   dispatch(setLoginWithAddress(address));
@@ -88,6 +98,15 @@ export const loginWithAddress = (address) => async (dispatch, getState) => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
   }, 50);
+};
+
+export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState) => {
+
+    dispatch(setLoginWithTronLink(address,tronWeb));
+    setTimeout(() => {
+        dispatch(reloadWallet());
+        dispatch(loadRecentTransactions(address));
+    }, 50);
 };
 
 export const loadAccounts = () => async (dispatch) => {
