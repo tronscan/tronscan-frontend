@@ -1,3 +1,65 @@
+body{
+  @media (min-width: 1000px){
+    .modal-dialog{
+      max-width: 600px;
+      .modal-title{
+        flex-direction: column;
+      }
+    }
+    .trade_pair_title{
+      &>p{
+        a{
+          float: right;
+        }
+      }
+    }
+  }
+  @media (max-width: 560px){
+    .trade_pair_title{
+      display: flex;
+      flex-direction: column;
+      &>h5{
+        display: flex;
+        flex-direction: column;
+        span{
+          &:last-child{
+            margin-top: 6px;
+          }
+        }
+      }
+      &>p{
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .modal-header{
+      .modal-title{
+        flex-direction: column;
+      }
+    }
+  }
+  .modal-header{
+    .modal-title{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & > span{
+        &:nth-child(2) {
+          font-size: 12px;
+          color: #C23631;
+          &:before {
+            content: '('
+          }
+          &:after {
+            content: ')'
+          }
+        }
+      }
+    }
+  }
+
+}
+
 body .token_black {
   // font-weight: lighter; // 覆盖 btn 样式
   // 全局card样式覆盖
@@ -162,7 +224,19 @@ body .token_black {
     span > span {
       color: $gold !important;
     }
-
+    span{
+      &:nth-child(2){
+        color: #C23631;
+        font-size: 12px;
+        margin-left: 20px;
+        &:before{
+          content:'('
+        }
+        &:after{
+          content:')'
+        }
+      }
+    }
   }
   .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
     display: none !important;

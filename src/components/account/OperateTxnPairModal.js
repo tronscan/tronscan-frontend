@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu, t} from "../../utils/i18n";
+import {tu, t,option_t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
@@ -16,7 +16,7 @@ class OperateTxnPairModal extends React.PureComponent{
         super();
 
         this.state = {
-            tokenId: "",
+            tokenId: "_",
             tokenBalances:"",
             tokenQuant:"",
             disabled: false,
@@ -24,10 +24,13 @@ class OperateTxnPairModal extends React.PureComponent{
     }
 
     isValid = () => {
-        let {tokenQuant,tokenBalances} = this.state;
-        let {inject} = this.props;
+        let {tokenQuant} = this.state;
+        let {inject,currentWallet} = this.props;
+        const tokenBalances = currentWallet.balance/1000000;
         if (!inject && tokenQuant >= tokenBalances) {
             return [false, tu("withdraw_all")]
+        }else if(this.props.dealPairTrxLimit && tokenQuant < this.props.dealPairTrxLimit){
+            return [false, tu("pool_revert")]
         }
         if(!/^([1-9][0-9]+|[1-9])$/.test(tokenQuant)){
             return [false, tu("operate_txn_pair_message")];
@@ -42,31 +45,27 @@ class OperateTxnPairModal extends React.PureComponent{
     };
 
     inject = async () => {
+        console.log(ONE_TRX);
         let {onInject, exchange} = this.props;
-        let {tokenId,tokenQuant} = this.state;
-        if(tokenId == "TRX"){
-            tokenId = "_";
-            tokenQuant = parseFloat(tokenQuant * ONE_TRX);
-        }else{
-            tokenQuant = parseFloat(tokenQuant)
-        }
-        onInject && onInject(exchange.exchange_id, tokenId, tokenQuant);
-
+        let {tokenQuant} = this.state;
+        const tokenId = "_";
+        const quant = parseFloat(tokenQuant * ONE_TRX);
+        onInject && onInject(exchange.exchange_id, tokenId, quant);
         this.setState({disabled: true});
     };
     withdraw = async () => {
         let {onWithdraw, exchange} = this.props;
-        let {tokenId,tokenQuant} = this.state;
-        if(tokenId == "TRX"){
-            tokenId = "_";
-            tokenQuant = parseFloat(tokenQuant * ONE_TRX);
-        }else{
-            tokenQuant = parseFloat(tokenQuant)
-        }
-        onWithdraw && onWithdraw(exchange.exchange_id, tokenId, tokenQuant);
-
+        let {tokenQuant} = this.state;
+        // if(tokenId == "TRX"){
+        //     tokenId = "_";
+        //     tokenQuant = parseFloat(tokenQuant * ONE_TRX);
+        // }else{
+        //     tokenQuant = parseFloat(tokenQuant)
+        // }
+        const tokenId = "_";
+        const quant = parseFloat(tokenQuant * ONE_TRX);
+        onWithdraw && onWithdraw(exchange.exchange_id, tokenId, quant);
         this.setState({disabled: true});
-
     };
 
     cancel = () => {
@@ -89,7 +88,7 @@ class OperateTxnPairModal extends React.PureComponent{
 
 
     render() {
-        let {exchange,inject,intl} = this.props;
+        let {exchange,inject,intl,dealPairTrxLimit} = this.props;
         let exchangeToken = [];
         let firstTokenId = exchange.first_token_id == "_"? "TRX":exchange.first_token_id;
         let secondTokenId = exchange.second_token_id == "_"? "TRX":exchange.second_token_id
@@ -100,7 +99,6 @@ class OperateTxnPairModal extends React.PureComponent{
         if (modal) {
             return modal;
         }
-
         return (
             <Modal isOpen={true} toggle={this.cancel} fade={false} size="md" className="modal-dialog-centered">
                 <ModalHeader className="text-center" toggle={this.cancel}>
@@ -111,18 +109,19 @@ class OperateTxnPairModal extends React.PureComponent{
                         <div className="col-md-12">
                             {inject? <label>{tu("choose_a_Token_for_capital_injection")}</label>:<label>{tu("choose_a_Token_for_capital_withdrawal")}</label>}
                             <select className="custom-select"
-                                    value={tokenId}
+                                    defaultValue="TRX"
                                     onChange={(e) => {this.tokenIdChange(e.target.value)}}
                             >
                                 {
-                                    tokenId?"":<option value=''>{tu("select_the_name_of_the_Token")}</option>
+                                   //tokenId?"":option_t("select_the_name_of_the_Token")
                                 }
                                 {
-                                    exchangeToken.map((token, index) => {
-                                        return (
-                                            <option key={index} value={token}>{token}</option>
-                                        )
-                                    })
+                                    // exchangeToken.map((token, index) => {
+                                    //     return (
+                                    //         <option key={index} value={token}>{token}</option>
+                                    //     )
+                                    // })
+                                    <option value="TRX">TRX</option>
                                 }
                             </select>
                         </div>
@@ -133,7 +132,7 @@ class OperateTxnPairModal extends React.PureComponent{
                             <input className={"form-control text-center " + ((tokenQuant.length !== 0 && !isValid) ? " is-invalid" : "")}
                                    type="text"
                                    placeholder={intl.formatMessage({id: 'enter_the_amount'})}
-                                   value={tokenQuant}
+                                   defaultValue={tokenQuant}
                                    onInput={(ev) => this.setState({tokenQuant: ev.target.value})}/>
                             <div className="invalid-feedback text-center text-danger">
                                 {errorMessage}
@@ -150,12 +149,11 @@ class OperateTxnPairModal extends React.PureComponent{
                                         style={{width:'100%'}}
                                         onClick={this.inject}>{tu("capital_injection")}</button>:
                                     <button
-                                        disabled={disabled || !isValid}
+                                        disabled={this.state.tokenQuant === '' ||  this.state.tokenQuant > exchange.second_token_balance - dealPairTrxLimit}
                                         className="btn btn-warning"
                                         style={{width:'100%'}}
                                         onClick={this.withdraw}>{tu("capital_withdrawal")}</button>
                             }
-
                         </p>
                     </div>
                 </ModalBody>

@@ -1212,7 +1212,7 @@ export const messages = {
     "C": "クローズ",
     "24H_VOL": "24時間の取引量",
     "token_application_instructions_title":"コイン発行について",
-    "token_application_instructions_1":"良い体験を得るため、トークンを発行するにはシートを書く必要があります。シートでトークンの詳しい情報を提供してください。審査に合格のトークンは一週間以内にメールで通知を受け取ります。審査に不合格のトークンは隠されます。",
+    "token_application_instructions_1":"DEX（分散型取引所）に上場するには申し込みが必要です。審査を通過するトークンがDEXのトークンリストに展示されます。審査をされないトークンはDEXリストに展示されなく、検索されたら取引できます。",
     "click_here_to_apply":"適用するにはクリックしてください",
     "TxTime":"取引時間",
     "TxAmount":"取引金額",
@@ -1351,6 +1351,19 @@ export const messages = {
    ##################################################################################
   */
     "OthersArticle":"Articles in this group",
-    "donateAddress":"寄贈する"
+    "donateAddress":"寄贈する",
+
+
+    /*
+      *  2018-12-18
+    * */
+    "create_deal_pair":"Create Trading Pairs",
+    "add_deal_pair_desc":"Trading pair creation is available.",
+    "click_create":"click here to create",
+    "deal_pair_tip":"At least 100,000 TRX in your balance",
+    "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
+    "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
+    "publish_price":"Your offering price is",
+    "pool_revert":"The balance of TRX in pool should be no less than 100,000"
 }
 
