@@ -73,19 +73,18 @@ export const setActiveCurrency = (currency) => ({
 });
 
 export const login = (privateKey) => async (dispatch, getState) => {
-
-  /*if(Lockr.get("account_address")) {
-    await dispatch(loginWithPrivateKey(privateKey));
-    return
-  }
-  else {
-  */
+  // Lockr.set("account_key", privateKey)
+  // if(Lockr.get("account_address")) {
+  //   await dispatch(loginWithPrivateKey(privateKey));
+  //   return
+  // }
+  // else {
     dispatch(setWalletLoading(true));
     await dispatch(loginWithPrivateKey(privateKey));
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(getState().app.account.address));
- // }
+  //}
 };
 
 

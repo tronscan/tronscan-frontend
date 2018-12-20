@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import React from "react";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
-import {tu, t} from "../../utils/i18n";
+import {tu, t,option_t} from "../../utils/i18n";
 import {FormattedNumber} from "react-intl";
 import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
@@ -41,13 +41,15 @@ class CreateTxnPairModal extends React.PureComponent {
         return [true];
     };
     isValidSecondToken = () => {
-        let {secTokenBalances,secondTokenBalance} = this.state;
+        let {secondTokenBalance} = this.state;
+        const secTokenBalances = this.props.currentWallet.balance/1000000;
         if ( secondTokenBalance > secTokenBalances) {
             return [false, tu("creat_valid")]
-
+        }else if(secondTokenBalance < this.props.dealPairTrxLimit){
+            return [false, tu("create_deal_pair_input_tip")]
         }
         if(!/^([1-9][0-9]+|[1-9])$/.test(secondTokenBalance)){
-            return [false, tu("operate_txn_pair_message")];
+            return [false, tu("isValidSecondToken")];
         }
         return [true];
     };
@@ -62,13 +64,7 @@ class CreateTxnPairModal extends React.PureComponent {
         let {firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance} = this.state;
         let firstTokenBalanceNum = parseFloat(firstTokenBalance)
         let secondTokenBalanceNum = parseFloat(secondTokenBalance)
-        if(firstTokenId === "TRX"){
-            firstTokenId = "_"
-            firstTokenBalanceNum = (parseFloat(firstTokenBalance)) * ONE_TRX
-        }else if(secondTokenId === "TRX") {
-            secondTokenId = "_"
             secondTokenBalanceNum = (parseFloat(secondTokenBalance)) * ONE_TRX
-        }
         onCreate && onCreate(firstTokenId,secondTokenId,firstTokenBalanceNum,secondTokenBalanceNum);
         this.setState({disabled: true});
     };
@@ -81,12 +77,12 @@ class CreateTxnPairModal extends React.PureComponent {
     firstTokenIdChange = (value) => {
         let {account,currentWallet} = this.props;
         let {allowExchange} = this.state;
-        let secTokenIdArr =  _.filter(allowExchange,{"first_token_id":value});
+        let secTokenIdArr =  _.filter(allowExchange,{"name":value});
         let firstTokenBalances =  _.find(currentWallet.tokenBalances,{"name":value});
-        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":secTokenIdArr[0].second_token_id});
+        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":"TRX"});
         this.setState({
             firstTokenId: value,
-            secondTokenId:secTokenIdArr[0].second_token_id,
+            secondTokenId:"_",
             secTokenIdArr:secTokenIdArr,
             firstTokenBalances:firstTokenBalances?firstTokenBalances.balance:0,
             secTokenBalances:secTokenBalances?secTokenBalances.balance:0
@@ -108,15 +104,20 @@ class CreateTxnPairModal extends React.PureComponent {
 
     exchangeToken(){
         let {currentWallet} = this.props;
-        let allowExchange =   _.filter(currentWallet.allowExchange, function(o){
-            let block = true
-            currentWallet.exchanges.forEach(item => {
-                if((o.first_token_id == (item.first_token_id == "_"?"TRX":item.first_token_id)) && o.second_token_id == (item.second_token_id == "_"?"TRX":item.second_token_id)){
-                    block = false
-                }
-            })
-            return block
-        })
+        // let allowExchange =   _.filter(currentWallet.allowExchange, function(o){
+        //     let block = true
+        //     currentWallet.exchanges.forEach(item => {
+        //         if((o.first_token_id == (item.first_token_id == "_"?"TRX":item.first_token_id)) && o.second_token_id == (item.second_token_id == "_"?"TRX":item.second_token_id)){
+        //             block = false
+        //         }
+        //     })
+        //     return block
+        // })
+        let allowExchange = currentWallet.tokenBalances.filter(v=>{
+            if(v.balance > 0 && v.name !== 'TRX'){
+                return v;
+            }
+        });
         this.setState({
             allowExchange: allowExchange
         },() =>{
@@ -137,17 +138,18 @@ class CreateTxnPairModal extends React.PureComponent {
         let {modal, firstTokenId, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenBalance,secondTokenBalance,allowExchange, disabled} = this.state;
         let [isValid, errorMessageFirstToken] = this.isValidFirstToken();
         let [isValid2, errorMessageSecondToken] = this.isValidSecondToken();
-
         if (modal) {
             return modal;
         }
-
         return (
             <Modal isOpen={true} toggle={this.cancel} fade={false} size="md" className="modal-dialog-centered">
                 <ModalHeader className="text-center" toggle={this.cancel}>
+                    <div>
                     <i className="fa fa-plus-square"></i>
                     &nbsp;
                     {tu("create_trading_pairs")}
+                    </div>
+                    {tu("create_deal_pair_input_tip2")}
                 </ModalHeader>
                 <ModalBody>
                     <div className="row">
@@ -158,12 +160,12 @@ class CreateTxnPairModal extends React.PureComponent {
                                 onChange={(e) => {this.firstTokenIdChange(e.target.value)}}
                             >
                                 {
-                                    firstTokenId?"":<option value=''>{t("select_the_name_of_the_Token")}</option>
+                                    firstTokenId?"":option_t("select_the_name_of_the_Token")
                                 }
                                 {
                                     allowExchange.map((token, index) => {
                                         return (
-                                            <option key={index} value={token.first_token_id}>{token.first_token_id}</option>
+                                            <option key={index} value={token.name}>{token.name}</option>
                                         )
                                     })
                                 }
@@ -181,7 +183,7 @@ class CreateTxnPairModal extends React.PureComponent {
                                    type="text"
                                    placeholder={intl.formatMessage({id: 'enter_the_amount'})}
                                    max={firstTokenBalances}
-                                   value={firstTokenBalance}
+                                   defaultValue={firstTokenBalance}
                                    onInput={(ev) => this.setState({firstTokenBalance: ev.target.value})}
                             />
                             <div className="invalid-feedback text-left text-danger">
@@ -197,15 +199,16 @@ class CreateTxnPairModal extends React.PureComponent {
                                 onChange={(e) => {this.secondTokenIdChange(e.target.value)}}
                             >
                                 {
-                                    !secTokenIdArr.length
-                                        ?
-                                        <option value=''>{t("select_the_name_of_the_Token")}</option>
-                                        :
-                                        secTokenIdArr.map((token, index) => {
-                                        return (
-                                            <option key={index} value={token.second_token_id}>{token.second_token_id}</option>
-                                        )
-                                    })
+                                    // !secTokenIdArr.length
+                                    //     ?
+                                    //     option_t("select_the_name_of_the_Token")
+                                    //     :
+                                    //     secTokenIdArr.map((token, index) => {
+                                    //     return (
+                                    //         <option key={index} value={token.second_token_id}>{token.second_token_id}</option>
+                                    //     )
+                                    // })
+                                    <option value="TRX">TRX</option>
                                 }
                             </select>
                         </div>
@@ -223,13 +226,23 @@ class CreateTxnPairModal extends React.PureComponent {
                                    type="text"
                                    placeholder={intl.formatMessage({id: 'enter_the_amount'})}
                                    max={secTokenBalances}
-                                   value={secondTokenBalance}
+                                   defaultValue={secondTokenBalance}
                                    onInput={(ev) => this.setState({secondTokenBalance: ev.target.value})}/>
                             <div className="invalid-feedback text-left text-danger">
                                 {errorMessageSecondToken}
                             </div>
                         </div>
                     </div>
+                    {
+                        this.state.firstTokenId && this.state.firstTokenBalance && this.state.secondTokenBalance >= this.props.dealPairTrxLimit?
+                            <div className="row mt-4">
+                                <div className="col-md-12">
+                                    {tu('publish_price')}:<span>{this.state.firstTokenId}/TRX ≈ {(this.state.firstTokenBalance/this.state.secondTokenBalance).toFixed(6)}</span>
+                                </div>
+                            </div>
+                            :
+                            null
+                    }
                     <div className="pt-4">
                         <p className="text-center">
                             <button
