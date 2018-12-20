@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 import {connect} from "react-redux";
 import {getSelectData} from "../../../../../actions/exchange";
-import { filter, map ,upperFirst} from 'lodash'
+import { filter, map ,upperFirst, remove} from 'lodash'
 import {injectIntl} from "react-intl";
 import Lockr from "lockr";
 import _ from "lodash";
@@ -24,7 +24,7 @@ class ExchangeTable extends React.Component {
   }
 
   getColumns() {
-    let {intl,setCollection} = this.props;
+    let {intl} = this.props;
     let { dataSource } = this.state;
     const columns = [{
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
@@ -32,9 +32,9 @@ class ExchangeTable extends React.Component {
       render: (text, record, index) => {
         return <div>
           <span className="optional-star">
-              <span onClick={(ev) => {setCollection(ev,record.exchange_id,index)}}>
+              <span onClick={(ev) => {this.setFavorites(ev,record,index)}}>
                   {
-                      record.optionalBok ? <i className="star_red"></i> : <i className="star"></i>
+                      record.isChecked ? <i className="star_red"></i> : <i className="star"></i>
                   }
               </span>
           </span>
@@ -79,28 +79,51 @@ class ExchangeTable extends React.Component {
       />
     )
   }
+  setFavorites(ev, record){
+    let {dataSource} = this.state
+    let list =  Lockr.get('dex20')|| []
+    if(list.indexOf(record.id) != -1){
+      var a = remove(list, o => o == record.id)
+    }else{
+      list.push(record.id)
+    }
+    
+    Lockr.set('dex20', list)
+    let newdataSource = dataSource.map(item => {
+      if(record.id == item.exchange_id){
+        item.isChecked = !item.isChecked
+      }
+      return item
+    })
+    this.setState({dataSource: newdataSource})
+    ev.stopPropagation();
+  }
 
 
   setActiveClass = (record, index) => {
+    // return record.exchange_id === this.state.activeIndex ? "exchange-table-row-active": "";
     return record.exchange_id === this.state.activeIndex ? "exchange-table-row-active": "";
   }
   getData() {
     const parsed = queryString.parse(this.props.location.search).id;
     const {getSelectData,dataSource } = this.props;
-    const currentData = filter(dataSource, item => {
-      return item.exchange_id == parsed
-    })
+
     // 更新数据
     if(dataSource.length){
         if(!parsed){
             this.onSetUrl(dataSource[0])
         }else{
+          const currentData = filter(dataSource, item => {
+            return item.exchange_id == parsed
+          })
+          if(currentData.length){
             getSelectData(currentData[0])
             this.setState({
                 activeIndex:currentData[0].exchange_id
-            },()=>{
-
             })
+          }else{
+            this.onSetUrl(dataSource[0])
+          }
         }
     }
 
@@ -169,7 +192,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getSelectData,
+  getSelectData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(ExchangeTable)));

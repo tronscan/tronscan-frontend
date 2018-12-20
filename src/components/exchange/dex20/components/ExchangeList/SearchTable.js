@@ -23,8 +23,9 @@ class SearchTable extends React.Component {
     }
 
     getColumns() {
-        let {intl, setCollection} = this.props;
+        let {intl} = this.props;
         let {dataSource} = this.state;
+        console.log(dataSource)
         const columns = [{
             title: 'ID',
             key: 'ID',
@@ -116,11 +117,6 @@ class SearchTable extends React.Component {
         setExchangeId(record.exchange_id)
     }
 
-    componentDidMount() {
-
-
-    }
-
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -138,6 +134,7 @@ class SearchTable extends React.Component {
 }
 
 function mapStateToProps(state) {
+    
     return {};
 }
 
