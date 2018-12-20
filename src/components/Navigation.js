@@ -68,15 +68,14 @@ class Navigation extends PureComponent {
 
   }
   componentWillMount(){
-      let {count} = this.state;
+      let count = 0;
       if (Lockr.get("islogin")) {
           //this.isauot = true
           let timer = null
           timer = setInterval(() => {
               const tronWeb = window.tronWeb;
-              const address = tronWeb.defaultAddress.base58;
-              if (tronWeb && address) {
-                  this.props.loginWithTronLink(address,tronWeb);
+              if (tronWeb && tronWeb.defaultAddress.base58) {
+                  this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
                   clearInterval(timer)
               } else {
                   count++
@@ -84,6 +83,7 @@ class Navigation extends PureComponent {
                       count = 0
                       Lockr.set("islogin",0)
                       //this.isauot = false
+                      clearInterval(timer)
                   }
               }
           }, 100)
