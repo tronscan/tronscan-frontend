@@ -33,6 +33,7 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
+import { Icon } from 'antd';
 
 class Navigation extends PureComponent {
 
@@ -49,7 +50,7 @@ class Navigation extends PureComponent {
       notifications: [],
       isImportAccount:false,
       isTRONlinkLogin:false,
-      count:0,
+      loginWarning:false
     };
   }
 
@@ -336,10 +337,11 @@ class Navigation extends PureComponent {
   };
 
   loginWithTronLink = () =>{
+      const { loginWarning } = this.state;
       const tronWeb = window.tronWeb;
       // 没有下载 tronlink
       if (!tronWeb) {
-          // this.noDown = true
+          this.setState({loginWarning:true});
           // this.loading = false
           return
       }
@@ -347,7 +349,7 @@ class Navigation extends PureComponent {
       // 没有登录 tronlink
       const address = tronWeb.defaultAddress.base58;
       if (!address) {
-          //this.noDown = true
+          this.setState({loginWarning:true});
           //this.loading = false
           Lockr.set("islogin", 0);
           return
@@ -358,16 +360,24 @@ class Navigation extends PureComponent {
           //this.isauot = true
           Lockr.set("islogin", 1);
           this.props.loginWithTronLink(address,tronWeb);
+          //console.log('tronWeb',tronWeb)
           setTimeout(() => {
               this.setState({isImportAccount: false})
           }, 1000)
       }
   };
 
+  closeLoginModel = () => {
+      this.setState({
+          isImportAccount: false,
+          isTRONlinkLogin: false
+      })
+  };
+
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-    let {isImportAccount, isTRONlinkLogin } = this.state;
+    let {isImportAccount, isTRONlinkLogin, loginWarning } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -469,22 +479,26 @@ class Navigation extends PureComponent {
                 <li className="dropdown nav nav_input">
                   <a className="nav-link dropdown-toggle nav-item" href="javascript:">
                     {tu("open_wallet")}
-                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
-                      <li className="px-3 py-3" onClick={() => this.setState({isTRONlinkLogin: true})}>
-                        <a className="dropdown-item text-uppercase"
-                           href="javascript:;">
-                          使用TRONlink登录
-                        </a>
+                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
+                      <li className="px-2 py-2" onClick={() => this.setState({isTRONlinkLogin: true, isImportAccount:false})}>
+                        <div className="dropdown-item text-uppercase text-center">
+                            {tu('sign_in_with_TRONlink')}
+                        </div>
                       </li>
-                      <li className="px-3 py-3" onClick={() => this.setState({isImportAccount: true})}>
-                        <a className="dropdown-item text-uppercase" href="javascript:;">导入账户登录</a>
+                      <li className="px-2 py-2" onClick={() => this.setState({isImportAccount: true, isTRONlinkLogin: false})}>
+                        <div className="dropdown-item text-uppercase text-center">
+                            {tu('import_a_wallet')}
+                        </div>
                       </li>
                     </ul>
                   </a>
 
                     {
                       isImportAccount?  <div className="login-mask">
-                        <ul className="login-import" style={{width: 400}}>
+                        <ul className="login-import">
+                          <div className="login-cancel" onClick={this.closeLoginModel}>
+                            <Icon type="close" />
+                          </div>
                           <li className="px-3 py-4">
                             <div className="text-center">
                               <label>{tu("private_key")}</label>
@@ -539,26 +553,25 @@ class Navigation extends PureComponent {
                     }
                     {
                       isTRONlinkLogin?  <div className="login-mask">
-                          <div className="login-import" style={{width: 400}}>
+                          <div className="login-tronlink">
+                            <div className="login-cancel" onClick={this.closeLoginModel}>
+                              <Icon type="close" />
+                            </div>
                             <div className="px-3 py-4">
                               <div className="text-center">
-                                <label>TRONlink登录</label>
+                                <label>{tu('sign_in_TRONlink')}</label>
                               </div>
                             </div>
                               {/* <li className="dropdown-divider blod"/> */}
-                            <div className="px-3 py-4">
-                              {/*<div className="text-center">*/}
-                                {/*<label>{tu("keystore_file")}</label>*/}
-                                {/*<button className="btn btn-danger btn-block" onClick={this.selectFile}>*/}
-                                    {/*{tu("select_file")}*/}
-                                {/*</button>*/}
-                                {/*<input type="file" ref={this.fileRef} className="d-none"*/}
-                                       {/*onChange={this.onFileSelected}*/}
-                                       {/*accept=".txt"/>*/}
-                              {/*</div>*/}
-
+                            <div className="px-3 py-2 tronlink-pic">
+                              <img src={require("../images/tronlink.png")} alt="TRONlink"/>
                             </div>
-                              {/* <li className="dropdown-divider blod"/> */}
+                            <div className="text-center pt-2" style={{color:'#C23631'}}>
+                                {
+                                    loginWarning ? tu('sign_in_TRONlink_warning') : ''
+                                }
+                            </div>
+
                               {
                                   flags.mobileLogin &&
                                   <Fragment>
@@ -577,8 +590,13 @@ class Navigation extends PureComponent {
                             <div className="px-3 py-4">
                               <button className="btn btn-warning btn-block"
                                       onClick={this.loginWithTronLink}>
-                                  {tu("TRONlink登录")}
+                                  {tu("sign_in_TRONlink")}
                               </button>
+                            </div>
+                            <div className="text-center px-3 pb-4 install-TRONlink">
+                              <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec">
+                                  {tu('uninstall_TRONlink')}>>
+                              </a>
                             </div>
                           </div>
                         </div> :''
@@ -853,7 +871,7 @@ class Navigation extends PureComponent {
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"
                        href="javascript:">{activeLanguage.toUpperCase()}</a>
-                    <div className="dropdown-menu">
+                    <div className="dropdown-menu languages-menu">
                       {
                         Object.keys(languages).map(language => (
                             <a key={language}
