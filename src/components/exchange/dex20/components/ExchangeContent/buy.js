@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Form, Input, Button, Radio } from 'antd';
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from 'react-router'
-import {Client} from "../../../../../services/api";
+import {Client,Client20} from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {tu} from "../../../../../utils/i18n";
 import {connect} from "react-redux";
@@ -14,6 +14,7 @@ import { Slider } from 'antd';
 
 import NumericInput from './NumericInput'
 import {getDecimalsNum,onlyInputNumAndPoint} from '../../../../../utils/number'
+
 const marks = {
     0: '',
     25: '',
@@ -50,13 +51,81 @@ class Buy extends Component{
 
     componentDidMount(){
         this.setBalance()
+        this.getCurrentPrice()
     }
 
     componentDidUpdate(prevProps){
-        let {exchangeData} = this.props;
-        if(prevProps.exchangeData != exchangeData){
+        let {price,firstBalance,amount} = this.state;
+        let {exchangeData,quickSelect} = this.props;
+        if(prevProps.exchangeData != exchangeData && prevProps.exchangeData.id != exchangeData.id){
             this.setBalance()
+            this.getCurrentPrice()
         }
+
+        
+
+        if(quickSelect && quickSelect != prevProps.quickSelect && quickSelect.b){
+                let n = quickSelect.b;
+                let newPrice = 0;
+                let newAmount = 0;
+                if(quickSelect.type != 'buy'){
+                    return ;
+                }
+            if(!prevProps.quickSelect.price || prevProps.quickSelect.price != n.price){
+                
+                newPrice = n.price
+                if (n.amount * n.price <= firstBalance) {
+                    newAmount = n.amount
+
+                } else {
+                    newAmount = parseInt(firstBalance / n.price)
+                }
+
+                firstBalance && this.setSlider() && this.transTotal()
+                this.setState({
+                    secondError:'',
+                    firstError:'',
+                    price:newPrice,
+                    amount:newAmount
+                },()=>{
+                    firstBalance && (this.setSlider() || this.transTotal())
+                   
+                })
+
+                this.props.form.setFieldsValue({
+                    first_quant_buy:newPrice,
+                    second_quant_buy: newAmount
+                });
+        
+              } else {
+                if (n.amount != amount) {
+                    newPrice = n.price
+                   
+                  if (n.amount * n.price <= firstBalance) {
+                    newAmount = n.amount
+                    
+                  } else {
+                      newAmount = parseInt(firstBalance / n.price)
+                  }
+                    
+                    this.setState({
+                        secondError:'',
+                        firstError:'',
+                        price:newPrice,
+                        amount:newAmount
+                    },()=>{
+                        firstBalance && (this.setSlider() || this.transTotal())
+
+                    })
+    
+                    this.props.form.setFieldsValue({
+                        first_quant_buy:newPrice,
+                        second_quant_buy: newAmount
+                    });
+                }
+              }
+            }
+        
     }
 
 
@@ -65,65 +134,66 @@ class Buy extends Component{
         const { getFieldDecorator } = this.props.form;
         let {exchangeData,account,intl,onSubmit,onChange,exchangeTransaction} = this.props;
         let {modal,firstBalance,total,secondError,firstError,limitError,trs_proportion} = this.state;
-        console.log('trs_proportion',trs_proportion)
+      
 
 
         return (
             <div className="exchange__transaction__item mr-2 p-3">
+            {modal}
           <h5 className="mr-3">
           {exchangeData.fShortName}/{exchangeData.sShortName} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
           {/* { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} */}
           </h5>
           <hr/>
           <Form layout="vertical" onSubmit={this.handleSubmit}>
-             <FormItem
-                label={<span>{tu("trc20_price")}</span>}
-            >
+             <FormItem>
                 {getFieldDecorator('first_quant_buy', {
                     rules: [{ required: true, message: intl.formatMessage({id: 'trc20_enter_the_trading_price'}) }],
                 })(
-                    <NumericInput addonAfter={exchangeData.sShortName}
-                           placeholder={intl.formatMessage({id: 'trc20_enter_the_trading_price'})}
-                           size="large"
-                           type="text"
-                           onKeyPress={(e)=>this.onpress(e)}
-                           onChange={this.handleValueBuy0}
-                           onFocus={(e) => this.onfocus(e,1)}
-                           onBlur={(e) => this.onblur(e,1)}
+                    <NumericInput 
+                        addonBefore={intl.formatMessage({id: 'trc20_price'})}
+                        addonAfter={exchangeData.sShortName}
+                        placeholder={intl.formatMessage({id: 'trc20_enter_the_trading_price'})}
+                        size="large"
+                        type="text"
+                        onKeyPress={(e)=>this.onpress(e)}
+                        onChange={this.handleValueBuy0}
+                        onFocus={(e) => this.onfocus(e,1)}
+                        onBlur={(e) => this.onblur(e,1)}
                     />
                 )}
-                <div>{firstError}</div>
-                <div>{limitError}</div>
-            </FormItem>
-
-            <FormItem
-              label={<span>{tu("trc20_amount")} <span className="tx-question-mark"><QuestionMark text="slightly_cost"/></span></span>}
-            >
-            {getFieldDecorator('second_quant_buy', {
-                rules: [{ required: true, message: intl.formatMessage({id: 'trc20_enter_the_trading_amount'}) }],
-              })(
-              <NumericInput addonAfter={exchangeData.fShortName}
-                     placeholder={intl.formatMessage({id: 'trc20_enter_the_trading_amount'})}
-                     size="large"
-                     type="text"
-                     onKeyPress={this.onpress}
-                     onChange={this.handleValueBuy1}
-                     onFocus={(e) => this.onfocus(e,2)}
-                     onBlur={(e)=>this.onblur(e,2)}
-              />
-              
-            )}
-            <div>{secondError}</div>
-            </FormItem>
-                
-            <FormItem
-                label={<span>{ tu('trc20_available_balance') } <span className="tx-question-mark">{firstBalance}{ exchangeData.sShortName }</span></span>}
-            >
+                <div className="col-red">{firstError}</div>
+                <div className="col-red">{limitError}</div>
             </FormItem>
 
             <FormItem>
-                <Slider marks={marks} value={trs_proportion} defaultValue={0} step={null} tipFormatter={formatter} onChange={this.slideChange}/>
+            {getFieldDecorator('second_quant_buy', {
+                rules: [{ required: true, message: intl.formatMessage({id: 'trc20_enter_the_trading_amount'}) }],
+              })(
+                <NumericInput 
+                        addonBefore={intl.formatMessage({id: 'trc20_amount'})}
+                        addonAfter={exchangeData.fShortName}
+                        placeholder={intl.formatMessage({id: 'trc20_enter_the_trading_amount'})}
+                        size="large"
+                        type="text"
+                        onKeyPress={this.onpress}
+                        onChange={this.handleValueBuy1}
+                        onFocus={(e) => this.onfocus(e,2)}
+                        onBlur={(e)=>this.onblur(e,2)}
+                />
+              )}
+                <div className="col-red">{secondError}</div>
             </FormItem>
+            <div className="mb-3">
+                {<span>{ tu('trc20_available_balance') } <span className="tx-question-mark">{firstBalance}{ exchangeData.sShortName }</span></span>}
+            </div>
+                
+            <div className="mb-3">
+                <Slider marks={marks} value={trs_proportion} defaultValue={0} step={null} tipFormatter={formatter} onChange={this.slideChange}/>
+
+            </div>
+           
+          
 
             <div className="d-flex justify-content-between">
                 <p className="text">{ tu('trc20_volume') }：</p>
@@ -194,22 +264,35 @@ class Buy extends Component{
           _amountB: amount * price * secondPrecision
         }
 
-        console.log(data)
-        // let id
-        // try {
-        //   id = await buyByContract(data)
-        //   if (id) {
-        //     this.$message({
-        //       message: this.$t('exchange.order_success'),
-        //       type: 'success',
-        //       duration: 3000
-        //     })
-        //     this.setBalance()
-        //   }
-        // } catch (error) {
-        //   console.log(error)
-        //   this.$message.error(this.$t('exchange.order_fail'))
-        // }
+        let id
+        try {
+          id = await buyByContract(data)
+          console.log(id)
+          if (id) {
+
+            this.setState({
+                modal: (
+                    <SweetAlert success title={tu("transaction_success")}  onConfirm={this.hideModal}>
+                        {tu("trc20_order_success")}
+                    </SweetAlert>
+                )
+            });
+            this.setBalance()
+          }
+        } catch (error) {
+          this.setState({
+            modal: (
+                <SweetAlert error title={tu("transaction_error")}  onConfirm={this.hideModal}>
+                    {tu("trc20_order_fail")}
+                </SweetAlert>
+                )
+            });
+        
+        }
+    }
+
+    hideModal = () => {
+            this.setState({modal: null});
     }
 
 
@@ -342,10 +425,8 @@ class Buy extends Component{
       }
 
       onfocus(e, type) {
-        let firstError ,secondError;
-        type === 1 ? (firstError = '' && this.setState({firstError:firstError})) : (secondError = '' && this.setState({secondError:secondError}))
+        type === 1 ? (this.setState({firstError:''})) : (this.setState({secondError:''}))
         this.setState({limitError:''})
-
       }
 
       onpress(e) {
@@ -401,9 +482,41 @@ class Buy extends Component{
 
           
       }
+
+      getCurrentPrice(){
+    
+          let {exchangeData} = this.props;
+        
+          if(!exchangeData.id){
+              return ;
+          }
+
+          let id = exchangeData.id;
+
+          const secondPrecision = Math.pow(10, (exchangeData.sPrecision || 8)) 
+          let price  = 0;
+            Client20.getCurrentPrice(id).then(res => {
+                if ((res.code === 0 && res.data)) {
+                    if (res.data.sellLowPrice) {
+                        price = res.data.sellLowPrice / secondPrecision
+
+                    } else {
+                        price = exchangeData.price / secondPrecision
+                    }
+                    this.setState({
+                        price:price
+                    },()=>{
+                        this.props.form.setFieldsValue({
+                            first_quant_buy:price
+                        });
+                    })
+                }
+            })
+      }
 }
 
 function mapStateToProps(state) {
+
 
     return {
         exchangeData: state.exchange.data,
@@ -411,11 +524,12 @@ function mapStateToProps(state) {
         account: state.app.account,
         currentWallet: state.wallet.current,
         activeLanguage:  state.app.activeLanguage,
+        quickSelect:state.exchange.quick_select ? state.exchange.quick_select : {},
     };
 }
 
 const mapDispatchToProps = {
-
+    
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Form.create()(withRouter(Buy))));

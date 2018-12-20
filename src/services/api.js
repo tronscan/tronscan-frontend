@@ -61,6 +61,14 @@ class ApiClient20 {
     return data;
   }
 
+  /**
+   * 当前价格
+   */
+  async  getCurrentPrice(id) {
+    let {data} = await xhr.get(`${this.apiUrl}/api/exchange/topprice/${id}`)
+    return data;
+  }
+
 
   
 
