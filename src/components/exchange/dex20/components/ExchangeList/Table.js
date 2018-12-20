@@ -108,22 +108,19 @@ class ExchangeTable extends React.Component {
     const parsed = queryString.parse(this.props.location.search).id;
     const {getSelectData,dataSource } = this.props;
 
+    const currentData = filter(dataSource, item => {
+      return item.exchange_id == parsed
+    })
+
     // 更新数据
     if(dataSource.length){
-        if(!parsed){
+        if(!parsed || !currentData.length){
             this.onSetUrl(dataSource[0])
         }else{
-          const currentData = filter(dataSource, item => {
-            return item.exchange_id == parsed
-          })
-          if(currentData.length){
-            getSelectData(currentData[0])
+          getSelectData(currentData[0])
             this.setState({
-                activeIndex:currentData[0].exchange_id
-            })
-          }else{
-            this.onSetUrl(dataSource[0])
-          }
+              activeIndex:currentData[0].exchange_id
+          })
         }
     }
 

@@ -119,11 +119,8 @@ class ExchangeList extends React.Component {
                             onClick={() => this.handleSelectData(true)}>
                             {tu("TRX_20")}
                         </div>
-                        <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_10' ? ' active' : '')}
-                            onClick={() => this.handleSelectData('trx_10')}>
-                            {tu("TRX")}
-                        </div>
+                        
+                        <Link className={"btn btn-sm" } to="/exchange">{tu("TRX")}</Link>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}
                             onClick={() => this.handleSelectData(false)}>

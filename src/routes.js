@@ -250,14 +250,14 @@ export const routes = [
     label: "DEX",
     path: "/exchange",
     icon: "fas fa-exchange-alt",
-    component: Exchange
+    component: Exchange,
+    showInMenu: false
   },
   {
     label: "DEX",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
-    showInMenu: false
   },
   {
     label: "notice",

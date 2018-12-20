@@ -28,7 +28,7 @@ class ExchangeList extends React.Component {
         this.state = {
             dataSource: [],
             time: null,
-            tokenAudited: 'trx_20',
+            tokenAudited: true,
             exchangesList: [],
             optional:  Lockr.get('optional')?Lockr.get('optional'):[],
             optionalBok: false,
@@ -272,18 +272,14 @@ class ExchangeList extends React.Component {
                         </ul>
                     </div>
                     <div className="dex-tab">
+                        <Link className={"btn btn-sm" } to="/exchange20">{tu("TRX_20")}</Link>
                         <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_20' ? ' active' : '')}
-                            onClick={() => this.handleSelectData('trx_20')}>
-                            {tu("TRX_20")}
-                        </div>
-                        <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_10' ? ' active' : '')}
+                            className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={() => this.handleSelectData('trx_10')}>
                             {tu("TRX")}
                         </div>
                         <div
-                            className={"btn btn-sm" + (tokenAudited == 'trx_audited' ? ' active' : ' ')}
+                            className={"btn btn-sm" + (tokenAudited ? ' ' : 'active')}
                             onClick={() => this.handleSelectData('trx_audited')}>
                             <i>
                                 <i className="fas fa-star"></i> {tu("Favorites")}
