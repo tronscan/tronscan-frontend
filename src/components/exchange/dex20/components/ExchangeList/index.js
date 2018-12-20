@@ -54,8 +54,13 @@ class ExchangeList extends React.Component {
         getExchangesAllList()
         const getDataTime = setInterval(() => {
             getExchanges20()
+            getExchangesAllList()
         }, 10000)
         this.setState({time: getDataTime})
+        if(Lockr.get('DEX') != 'Main' ){
+            this.setState({tokenAudited: false})
+        }
+        
     }
 
     componentWillUnmount() {
@@ -77,7 +82,7 @@ class ExchangeList extends React.Component {
             this.setState({dataSource: exchange20List})
         }else{
             let new20List = exchange20List.filter(item => item.isChecked)
-            let newallList = exchangeallList.filter(item => item.isChecked)
+            let newallList = exchangeallList? exchangeallList.filter(item => item.isChecked): []
 
             const newList = _(new20List)
                             .concat(newallList).value()
@@ -86,7 +91,14 @@ class ExchangeList extends React.Component {
     }
     handleSelectData = (type) => {
         this.setState({tokenAudited: type})
+        if(!type){
+            Lockr.set('DEX', 'GEM')
+        }else{
+            Lockr.set('DEX', 'Main')
+        }
         this.setData(type)
+       
+        
         
     }
 

@@ -54,11 +54,14 @@ class TranList extends Component {
       if(code === 0 && data){
         this.setState({dataSource: data.rows})
         let row0 = data.rows ? data.rows[0] : {price:0,type:0}
-        let obj = {
-          value: row0.price,
-          type: row0.order_type
+        if(row0){
+          let obj = {
+            value: row0.price,
+            type: row0.order_type
+          }
+          setLastprice(obj)
         }
-        setLastprice(obj)
+        
       }
     }
   }

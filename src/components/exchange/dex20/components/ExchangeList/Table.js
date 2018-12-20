@@ -81,28 +81,46 @@ class ExchangeTable extends React.Component {
   }
   setFavorites(ev, record){
     let {dataSource} = this.state
-    let list =  Lockr.get('dex20')|| []
-    if(list.indexOf(record.id) != -1){
-      var a = remove(list, o => o == record.id)
+    if(record.token_type == 'dex20'){
+      let list =  Lockr.get('dex20')|| []
+      if(list.indexOf(record.id) != -1){
+        var a = remove(list, o => o == record.id)
+      }else{
+        list.push(record.id)
+      }
+      
+      Lockr.set('dex20', list)
     }else{
-      list.push(record.id)
+      // let {dataSource} = this.state
+      let list =  Lockr.get('optional')|| []
+      if(list.indexOf(record.exchange_id) != -1){
+        var a = remove(list, o => o == record.exchange_id)
+      }else{
+        list.push(record.exchange_id)
+      }
+      
+      Lockr.set('optional', list)
     }
-    
-    Lockr.set('dex20', list)
     let newdataSource = dataSource.map(item => {
-      if(record.id == item.exchange_id){
+      if(record.exchange_id == item.exchange_id && record.exchange_name == item.exchange_name){
         item.isChecked = !item.isChecked
       }
       return item
     })
-    this.setState({dataSource: newdataSource})
+    if(Lockr.get('DEX') == 'GEM'){
+      let new20List = dataSource.filter(item => item.isChecked)
+      this.setState({dataSource: new20List})
+    }else{
+      this.setState({dataSource: newdataSource})
+    }
+    
     ev.stopPropagation();
   }
 
 
   setActiveClass = (record, index) => {
     // return record.exchange_id === this.state.activeIndex ? "exchange-table-row-active": "";
-    return record.exchange_id === this.state.activeIndex ? "exchange-table-row-active": "";
+    return record.token_type == 'dex20' && (record.exchange_id === this.state.activeIndex) ? "exchange-table-row-active": "";
   }
   getData() {
     const parsed = queryString.parse(this.props.location.search).id;
@@ -111,10 +129,13 @@ class ExchangeTable extends React.Component {
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
+    console.log(Lockr.get('DEX'), parsed)
 
     // 更新数据
     if(dataSource.length){
+        !parsed && Lockr.set('DEX', 'Main')
         if(!parsed || !currentData.length){
+            Lockr.set('DEX', 'Main')
             this.onSetUrl(dataSource[0])
         }else{
           this.onSetUrl(currentData[0], true)
@@ -132,7 +153,6 @@ class ExchangeTable extends React.Component {
 
   onSetUrl(record, type) {
     const {getSelectData} = this.props;
-    console.log(this.props)
     
     if(record.token_type != 'dex20'){
       this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)

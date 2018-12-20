@@ -32,7 +32,7 @@ class ExchangeTable extends React.Component {
       render: (text, record, index) => {
         return <div>
           <span className="optional-star">
-              <span onClick={(ev) => {setCollection(ev,record.exchange_id,index)}}>
+              <span onClick={(ev) => {setCollection(ev,record.exchange_id,index,record)}}>
                   {
                       record.optionalBok ? <i className="star_red"></i> : <i className="star"></i>
                   }
@@ -96,18 +96,13 @@ class ExchangeTable extends React.Component {
     })
     // 更新数据
     if(dataSource.length){
-        if(!parsed){
-            this.onSetUrl(dataSource[0])
-        }else{
-            getSelectData(currentData[0])
-            this.setState({
-                activeIndex:currentData[0].exchange_id
-            },()=>{
-
-            })
-        }
+      !parsed && Lockr.set('DEX', 'Main')
+      if(!parsed || !currentData.length){
+          this.onSetUrl(dataSource[0])
+      }else{
+        this.onSetUrl(currentData[0], true)
+      }
     }
-
 
     // 获取选择状态
     map(dataSource, item => {
@@ -117,14 +112,21 @@ class ExchangeTable extends React.Component {
     })
   }
 
-  onSetUrl(record) {
+  onSetUrl(record,type) {
     const {getSelectData} = this.props;
+    if(record.token_type == 'dex20'){
+      this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
+      return
+    }
     this.setState({
         activeIndex:record.exchange_id //获取点击行的索引
     },() => {
     })
-    this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
     getSelectData(record, true)
+    if(!type){
+      this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
+    }
+   
      
   }
 

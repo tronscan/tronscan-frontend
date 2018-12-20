@@ -10,14 +10,14 @@ import SearchTable from './SearchTable';
 import {Explain} from './Explain';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {filter, cloneDeep} from 'lodash'
+import {filter} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
-import {getSelectData} from "../../../../../actions/exchange";
+import {getSelectData,getExchanges20} from "../../../../../actions/exchange";
 import {connect} from "react-redux";
 import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
-import {Input, Radio} from 'antd';
+import {Input} from 'antd';
 
 const Search = Input.Search;
 
@@ -37,17 +37,14 @@ class ExchangeList extends React.Component {
             showSearch:false,
             activeIndex:'',
             optionalDisable:false,
-            searchAddId:false,
-            listGrount: {
-                dex: [],
-                dex20: [],
-                favorites: []
-            } 
+            searchAddId:false
         };
     }
 
     componentDidMount() {
+        const {getExchanges20} = this.props
         this.getExchangesAllList();
+        getExchanges20()
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
         }, 10000)
@@ -77,6 +74,7 @@ class ExchangeList extends React.Component {
     }
     getExchanges = async () => {
         let { exchangesAllList} = this.state;
+        let {exchange20List} = this.props
         let { data } = await Client.getExchangesList();
         let tab,exchangesList;
         if(Lockr.get("DEX")){
@@ -116,8 +114,19 @@ class ExchangeList extends React.Component {
                 }
             }
         }
+        if (Lockr.get('dex20')) {
+            let dex20list = Lockr.get('dex20');
+            for (let i in exchange20List) {
+                for (let j in dex20list) {
+                    if (exchange20List[i].exchange_id == dex20list[j]) {
+                        exchange20List[i].optionalBok = true;
+                    }
+                }
+            }
+        }
 
-        let unreviewedTokenList = _(exchangesAllList)
+        let newlist = _.concat(exchangesAllList,exchange20List)
+        let unreviewedTokenList = _(newlist)
             .filter(o => o['optionalBok'] == true)
             .sortBy(o => -o.first_token_abbr)
             .value();
@@ -127,13 +136,12 @@ class ExchangeList extends React.Component {
             auditedTokenList: exchangesList,
             unreviewedTokenList: unreviewedTokenList,
             dataSource: tab == 'Main' ? exchangesList : unreviewedTokenList,
-            // tokenAudited: tab == 'Main' ? true : false,
+            tokenAudited: tab == 'Main' ? true : false,
             optionalDisable:true,
             exchangesAllList:exchangesAllList
         },() => {
         });
     }
-
 
     handleAuditedToken = () => {
         const {getSelectData} = this.props;
@@ -173,14 +181,10 @@ class ExchangeList extends React.Component {
         }
     }
 
-    handleSelectData = (type) => {
-        this.setState({tokenAudited: type})
-    }
-
-    setCollection = (ev,id, index) => {
+    setCollection = (ev,id, index,record) => {
         ev.stopPropagation();
         let {dataSource} = this.state;
-        this.addOptional(id);
+        this.addOptional(id,record.token_type=='dex20');
         dataSource[index].optionalBok = !dataSource[index].optionalBok;
         this.setState({
             dataSource
@@ -189,23 +193,36 @@ class ExchangeList extends React.Component {
         });
     }
 
-    addOptional = (id) =>{
-        let {optional} = this.state;
+    addOptional = (id,type) =>{
+        if(!type){
+            let {optional} = this.state;
 
-        if (optional.indexOf(id) == -1) {
-            optional.push(id)
-            this.setState({
-                optional
-            });
-        } else {
-            optional = _.remove(optional, (n) => {
-                return n !== id;
-            });
-            this.setState({
-                optional
-            });
+            if (optional.indexOf(id) == -1) {
+                optional.push(id)
+                this.setState({
+                    optional
+                });
+            } else {
+                optional = _.remove(optional, (n) => {
+                    return n !== id;
+                });
+                this.setState({
+                    optional
+                });
+            }
+            Lockr.set('optional', optional);
+        }else{
+            let optional =  Lockr.get('dex20')|| []
+
+            if (optional.indexOf(id) == -1) {
+                optional.push(id)
+            } else {
+                optional = _.remove(optional, (n) => {
+                    return n !== id;
+                });
+            }
+            Lockr.set('dex20', optional)
         }
-        Lockr.set('optional', optional);
     }
 
     handleSearch = async(e) => {
@@ -275,12 +292,12 @@ class ExchangeList extends React.Component {
                         <Link className={"btn btn-sm" } to="/exchange20">{tu("TRX_20")}</Link>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
-                            onClick={() => this.handleSelectData('trx_10')}>
+                            onClick={this.handleAuditedToken}>
                             {tu("TRX")}
                         </div>
                         <div
-                            className={"btn btn-sm" + (tokenAudited ? ' ' : 'active')}
-                            onClick={() => this.handleSelectData('trx_audited')}>
+                            className={"btn btn-sm" + (tokenAudited ? '' : ' active')}
+                            onClick={this.handleUnreviewedToken}>
                             <i>
                                 <i className="fas fa-star"></i> {tu("Favorites")}
                             </i>
@@ -311,7 +328,7 @@ class ExchangeList extends React.Component {
                                 <ExchangeTable dataSource={dataSource}
                                                props={this.props}
                                                tab={tab}
-                                               setCollection ={(ev,id, index) => this.setCollection(ev,id,index)}
+                                               setCollection ={(ev,id, index, record) => this.setCollection(ev,id,index,record)}
                                                activeIndex={activeIndex}
                                                searchAddId={searchAddId}
                                                setSearchAddId={() => this.setSearchAddId()}
@@ -332,11 +349,13 @@ class ExchangeList extends React.Component {
 function mapStateToProps(state) {
     return {
         activeLanguage:  state.app.activeLanguage,
+        exchange20List: state.exchange.list_20,
     };
 }
 
 const mapDispatchToProps = {
     getSelectData,
+    getExchanges20
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(ExchangeList)));
