@@ -116,7 +116,7 @@ class Register extends Component{
 
         return (
             <div className="ant-table-content">
-                <div class="new_price">
+                <div className="new_price">
                   {tu('trc20_new_price')}: 
                   {
                     lastPrice.type === 0 ? <span className="col-green up">{lastPrice.value}<Icon type="arrow-up" /></span> : <span className="col-red down">{lastPrice.value}<Icon type="arrow-down" /></span>
