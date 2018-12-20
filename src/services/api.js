@@ -61,6 +61,12 @@ class ApiClient20 {
     return data;
   }
 
+  async  getCurrentPrice(id) {
+    let {data} = await xhr.get(`${this.apiUrl}/api/exchange/topprice/${id}`)
+    return data;
+  }
+
+
   async getKlineData20(query) {
     let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/kchart`,{
       params: query
@@ -79,9 +85,6 @@ class ApiClient20 {
     });
     return data;
   }
-
-  
-
 
 }
 

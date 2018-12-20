@@ -13,6 +13,7 @@ export const SET_EXCHANGE10_LIST = 'SET_EXCHANGE10_LIST';
 export const SET_EXCHANGEALL_LIST = 'SET_EXCHANGEALL_LIST';
 export const SET_COLLECTION = 'SET_COLLECTION';
 export const SET_LASTPRICE = 'SET_LASTPRICE';
+export const SET_QUICKSELCET = 'SET_QUICKSELCET'
 
 
 
@@ -48,6 +49,11 @@ export const setCollection = (payload) => ({
 
 export const setLastprice = (obj) => ({
   type: SET_LASTPRICE,
+  obj,
+});
+
+export const setQuickSelect = (obj) => ({
+  type: SET_QUICKSELCET,
   obj,
 });
 

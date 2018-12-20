@@ -6,6 +6,7 @@ import { Table } from 'antd';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import { Icon } from 'antd';
+import {setQuickSelect} from '../../../../../actions/exchange'
 
 class Register extends Component{
     constructor(){
@@ -52,7 +53,7 @@ class Register extends Component{
     render(){
        
         let {sellList,buyList} = this.state;
-        let {intl,pairs,lastPrice} = this.props;
+        let {intl,pairs,lastPrice,setQuickSelect} = this.props;
         
         let first_token =  pairs.fShortName ? '(' + pairs.fShortName + ')' : '';
         let second_token = pairs.sShortName ? '(' + pairs.sShortName + ')' : ''
@@ -132,6 +133,23 @@ class Register extends Component{
                     }}
                     rowClassName={this.setActiveClass}
                     className="table_bottom"
+                    onRow={(record) => {
+                      return {
+                        // 点击行
+                        onClick: () => {
+                          let obj = {
+                            b: {
+                              price: Number(record.price),
+                              amount: parseInt(record.amount)
+                            },
+                            type: 'sell'
+                          }
+                          setQuickSelect(obj)
+                 
+                        }      
+                
+                      };
+                    }}
                 />
                 <Table
                     dataSource={buyList}
@@ -141,6 +159,23 @@ class Register extends Component{
                         return `buy_${index}`
                     }}
                     rowClassName={this.setActiveClass}
+                    onRow={(record) => {
+                      return {
+                        // 点击行
+                        onClick: () => {
+                          let obj = {
+                            b: {
+                              price: Number(record.price),
+                              amount: parseInt(record.amount)
+                            },
+                            type: 'buy'
+                          }
+                          console.log('buy',obj)
+                          setQuickSelect(obj)
+                        }      
+                
+                      }
+                    }}
                 /> 
 
             
@@ -240,7 +275,7 @@ function mapStateToProps(state) {
   }
   
   const mapDispatchToProps = {
-    
+    setQuickSelect
   };
   
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Register)));
