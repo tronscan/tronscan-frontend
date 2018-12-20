@@ -95,7 +95,7 @@ class ExchangeList extends React.Component {
             <div className="exchange-list mr-2">
 
                 {/* 市场 */}
-                <div className="exchange-list-mark p-3">
+                <div className="exchange-list-mark p-3 mb-2">
                     {/* 标题 */}
                     <div className="market-title">
                         <h6>{tu("marks")}</h6>
@@ -168,6 +168,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectInt
 
 const styles = {
     list: {
-        height: 370,
+        height: 320,
     }
 };

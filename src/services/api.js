@@ -38,6 +38,33 @@ class ApiClient20 {
     });
     return data
   }
+
+  async getRegisterList(id) {
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/orderList/${id}`);
+
+    return data;
+  }
+
+  async getCurrentList(query) {
+   
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/user/order`,{
+      params: query
+    });
+
+    return data;
+  }
+
+  async getTransactionList(query) {
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/latestOrders`,{
+      params: query
+    });
+    return data;
+  }
+
+
+  
+
+
 }
 
 export const Client20 = new ApiClient20()

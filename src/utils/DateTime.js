@@ -1,3 +1,4 @@
+import moment from 'moment'
 export function Utc2BeijingDateTime(utc_datetime){
     const T_pos = utc_datetime.indexOf('T');
     const Z_pos = utc_datetime.indexOf('Z');
@@ -12,3 +13,7 @@ export function Utc2BeijingDateTime(utc_datetime){
     const time = new Date(parseInt(timestamp) * 1000).toString().match(/\d{2}:\d{2}:\d{2}/)[0];
     return date + ' ' + time;
 }
+
+export function dateFormat(v) {
+    return moment.unix(v / 1000).format('YYYY-MM-DD HH:mm:ss')
+  }

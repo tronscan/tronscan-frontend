@@ -1497,5 +1497,6 @@ export const messages = {
     "trc20_token_info_ths_4": "24h High",
     "trc20_token_info_ths_5": "24h Low",
     "trc20_token_info_ths_6": "24h Volume",
-    "trc20_token_info_ths_7": "24h Volume"
+    "trc20_token_info_ths_7": "24h Volume",
+    "trc20_new_price":"Latest price"
 };

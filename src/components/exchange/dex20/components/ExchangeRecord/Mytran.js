@@ -7,8 +7,11 @@ import {ONE_TRX} from "../../../../../constants";
 import {Truncate} from "../../../../common/text";
 import {tu, tv} from "../../../../../utils/i18n";
 import {Client} from "../../../../../services/api";
+import {Client20} from "../../../../../services/api";
 import {connect} from "react-redux";
 import { upperFirst } from 'lodash'
+import {dateFormat} from '../../../../../utils/DateTime'
+
 class Mytran extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +38,15 @@ class Mytran extends Component {
     const {selectData, currentWallet} = this.props
     if(selectData.exchange_id){
       const params = {
-        address: currentWallet.address,
+        uAddr: currentWallet.address, 
         start: (palyload.current-1) * palyload.pageSize,
         limit: palyload.pageSize,
+        status: '1,2,3'
       }
-      const {data, total} = await Client.getTransactionList(params);
-      this.setState({dataSource: data, total: total})
+      const {data, code} = await Client20.getCurrentList(params);
+      if(code === 0){
+        this.setState({dataSource: data.rows, total: data.total})
+      }
     }
   }
 
@@ -48,57 +54,54 @@ class Mytran extends Component {
     let {intl} = this.props;
     let {dataSource, total} = this.state
     const columns = [
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'TxHash'})),
-      //   dataIndex: 'trx_hash',
-      //   key: 'trx_hash',
-      //   render: (text, record, index) => {
-      //     // className={record.status === 1? 'buy': 'sell'}
-      //     return <span ><Truncate>
-      //             <TransactionHashLink hash={text}>{text}</TransactionHashLink>
-      //           </Truncate></span>
-      //   }
-      // },
       {
-        title: upperFirst(intl.formatMessage({id: 'TxTime'})),
-        dataIndex: 'createTime',
-        key: 'createTime',
-        width: '200px',
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_time'})),
+        dataIndex: 'orderTime',
+        key: 'orderTime',
         render: (text, record, index) => {
-          return <span>
-            <FormattedDate value={Number(text)}/>&nbsp;
-            <FormattedTime value={Number(text)}/>&nbsp;
-          </span>
-        }
-      },
-      // {
-      //   title: upperFirst(intl.formatMessage({id: 'address'})),
-      //   dataIndex: 'creatorAddress',
-      //   key: 'creatorAddress',
-      //   render: (text, record, index) => {
-      //     return  <AddressLink address={text}/>
-      //   }
-      // },
-      {
-        title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
-        dataIndex: 'quant',
-        key: 'quant',
-        width: '200px',
-        render: (text, record, index) => {
-          return  record.tokenName == 'TRX'? 
-          <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.quant + ' ' + record.tokenID
+          return <span >{dateFormat(record.orderTime)}</span>
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'status'})),
-        dataIndex: 'confirmed',
-        key: 'confirmed',
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_type'})),
+        dataIndex: 'orderType',
+        key: 'orderType',
+        render: (text, record, index) => {
+          return record.orderType === 0 ? <span className="col-green">{tu('trc20_BUY')}</span> : <span className="col-red">{tu('trc20_SELL')}</span>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_price'})),
+        dataIndex: 'price',
+        key: 'price'
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_amount'})),
+        dataIndex: 'volume',
+        key: 'volume',
+        render: (text, record, index) => {
+          return   <span>{ record.volume } { record.fShortName }</span>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_volume'})),
+        dataIndex: 'curTurnover',
+        key: 'curTurnover',
         align: 'center',
         render: (text, record, index) => {
-          return  text?
-          <span className="badge badge-success text-uppercase badge-success-radius">{tu("Confirmed")}</span> :
-          <span className="badge badge-danger text-uppercase badge-danger-radius">{tu("Unconfirmed")}</span>;
+          return   <span>{ this.numFormat(record.curTurnover.toFixed(4))}{ record.sShortName }</span>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
+        dataIndex: 'orderStatus',
+        key: 'orderStatus',
+        align: 'center',
+        render: (text, record, index) => {
+          return  <span>
+          {record.orderStatus === 1 && <span className="status finish">{tu('trc20_my_trans_finish')}</span> }
+           { (record.orderStatus === 2 || record.orderStatus === 3) && <span className="status">{tu('trc20_my_trans_cancle')}</span>}
+        </span>
         }
       }
     ]
@@ -124,7 +127,7 @@ class Mytran extends Component {
     let {dataSource, columns, total} = this.state
     if (!dataSource || dataSource.length === 0) {
       return (
-        <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
+        <div className="p-3 text-center no-data">{tu("trc20_no_data")}</div>
       );
     }
 
@@ -133,6 +136,13 @@ class Mytran extends Component {
           {this.getColumns()}
 
     </div>)
+  }
+
+
+  numFormat(v) {
+    return v
+      .toString()
+      .replace(/(^|\s)\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
   }
 }
 

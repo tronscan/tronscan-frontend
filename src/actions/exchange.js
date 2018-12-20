@@ -10,6 +10,7 @@ export const SET_SELECT_DATA = 'SET_SELECT_DATA';
 export const SET_SELECT_STATUS = 'SET_SELECT_STATUS';
 export const SET_EXCHANGE20_LIST = 'SET_EXCHANGE20_LIST';
 export const SET_COLLECTION = 'SET_COLLECTION';
+export const SET_LASTPRICE = 'SET_LASTPRICE';
 
 
 
@@ -28,6 +29,15 @@ export const setExchanges20 = (list = []) => ({
   list,
 });
 
+export const setCollection = (payload) => ({
+  type: SET_COLLECTION,
+  payload,
+});
+
+export const setLastprice = (obj) => ({
+  type: SET_LASTPRICE,
+  obj,
+});
 
 export const getSelectData = (data, isSelect = false) => async (dispatch) => {
     dispatch(setSelectData(data));
