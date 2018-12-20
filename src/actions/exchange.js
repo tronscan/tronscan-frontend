@@ -1,7 +1,7 @@
 import {Client} from "../services/api";
 import {Client20} from "../services/api";
 import Lockr from "lockr";
-import { remove } from 'lodash';
+import { remove,map } from 'lodash';
 
 import { cloneDeep,concat } from 'lodash'
 
@@ -9,6 +9,8 @@ import { cloneDeep,concat } from 'lodash'
 export const SET_SELECT_DATA = 'SET_SELECT_DATA';
 export const SET_SELECT_STATUS = 'SET_SELECT_STATUS';
 export const SET_EXCHANGE20_LIST = 'SET_EXCHANGE20_LIST';
+export const SET_EXCHANGE10_LIST = 'SET_EXCHANGE10_LIST';
+export const SET_EXCHANGEALL_LIST = 'SET_EXCHANGEALL_LIST';
 export const SET_COLLECTION = 'SET_COLLECTION';
 export const SET_LASTPRICE = 'SET_LASTPRICE';
 
@@ -28,6 +30,16 @@ export const setExchanges20 = (list = []) => ({
   type: SET_EXCHANGE20_LIST,
   list,
 });
+export const setExchanges10 = (list = []) => ({
+  type: SET_EXCHANGE10_LIST,
+  list,
+});
+export const setExchangesAll = (list = []) => ({
+  type: SET_EXCHANGEALL_LIST,
+  list,
+});
+
+
 
 export const setCollection = (payload) => ({
   type: SET_COLLECTION,
@@ -78,4 +90,52 @@ export const getExchanges20 = () => async (dispatch) => {
      return item
   })
   dispatch(setExchanges20(newList))
+}
+
+
+export const getExchangesAllList = () => async (dispatch) => {
+  let { exchangesAllList }= await Client.getexchangesAllList();
+  let f_list =  Lockr.get('optional')|| []
+  map(exchangesAllList, item => {
+    if (item.up_down_percent.indexOf('-') != -1) {
+      item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+      item.isUp = false
+    } else {
+        item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+        item.isUp = true
+    }
+    item.token_type = 'dex10'
+
+    f_list.map(id => {
+      if(item.exchange_id == id){
+        item.isChecked = true
+      }
+    })
+  })
+
+  
+  
+  dispatch(setExchangesAll(exchangesAllList))
+}
+
+export const getExchanges = () => async (dispatch) => {
+  let { data } = await Client.getExchangesList();
+  let f_list =  Lockr.get('optional')|| []
+  map(data, item => {
+    if (item.up_down_percent.indexOf('-') != -1) {
+      item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+      item.isUp = false
+    } else {
+        item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+        item.isUp = true
+    }
+    item.token_type = 'dex10'
+
+    f_list.map(id => {
+      if(item.exchange_id == id){
+        item.isChecked = true
+      }
+    })
+  })
+  dispatch(setExchanges10(data))
 }

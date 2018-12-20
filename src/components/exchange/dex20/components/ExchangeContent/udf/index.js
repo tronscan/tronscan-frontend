@@ -1,6 +1,7 @@
 import { storage,getDecimalsNum,getUTCDay,getUTCCurrentDay,getUTCHour,getUTCMinutes,isSameMinutes,getLastUTCMinutes,getHOLCObj,getCurrentMinutes} from "../utils"
 
-import {Client} from "../../../../../../services/api";
+import {Client20} from "../../../../../../services/api";
+
 import _ from 'lodash'
 
 const Datafeeds = {}
@@ -158,7 +159,7 @@ Datafeeds.UDFCompatibleDatafeed.prototype.getBars = function(symbolInfo, resolut
     let startDate = typeMap[resolution].getutc(from)
     let endDate =  typeMap[resolution].getutc(to)
     //日级别以上接口
-    Client.getExchangesKline({
+    Client20.getKlineData20({
         exchange_id: symbolInfo.ticker,
         granularity:type,
         time_start:startDate,

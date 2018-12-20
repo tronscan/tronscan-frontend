@@ -5,7 +5,7 @@ import {Client20} from "../../../api";
 import {Link} from "react-router-dom";
 import {tu} from "../../../../../utils/i18n";
 import xhr from "axios/index";
-import {map} from 'lodash'
+import {map, concat} from 'lodash'
 import ExchangeTable from './Table';
 import SearchTable from './SearchTable';
 import {Explain} from './Explain';
@@ -14,7 +14,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import {filter, cloneDeep} from 'lodash'
 import _ from "lodash";
 import {withRouter} from 'react-router-dom';
-import {getSelectData, getExchanges20} from "../../../../../actions/exchange";
+import {getSelectData, getExchanges20,getExchanges,getExchangesAllList} from "../../../../../actions/exchange";
 import {connect} from "react-redux";
 import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
@@ -49,12 +49,12 @@ class ExchangeList extends React.Component {
     }
 
     componentDidMount() {
-        const {getExchanges20} = this.props;
+        const {getExchanges20,getExchangesAllList} = this.props;
         getExchanges20()
+        getExchangesAllList()
         const getDataTime = setInterval(() => {
             getExchanges20()
         }, 10000)
-
         this.setState({time: getDataTime})
     }
 
@@ -72,13 +72,16 @@ class ExchangeList extends React.Component {
     }
     setData(type){
        
-        let { exchange20List } = this.props;
+        let { exchange20List,exchangeallList } = this.props;
         if(type){
             this.setState({dataSource: exchange20List})
         }else{
             let new20List = exchange20List.filter(item => item.isChecked)
+            let newallList = exchangeallList.filter(item => item.isChecked)
 
-            this.setState({dataSource: new20List})
+            const newList = _(new20List)
+                            .concat(newallList).value()
+            this.setState({dataSource: newList})
         }
     }
     handleSelectData = (type) => {
@@ -152,13 +155,17 @@ class ExchangeList extends React.Component {
 function mapStateToProps(state) {
     return {
         activeLanguage:  state.app.activeLanguage,
-        exchange20List: state.exchange.list_20
+        exchange20List: state.exchange.list_20,
+        exchange10List: state.exchange.list_10,
+        exchangeallList: state.exchange.list_all,
     };
 }
 
 const mapDispatchToProps = {
     getSelectData,
-    getExchanges20
+    getExchanges20,
+    getExchangesAllList,
+    getExchanges
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(ExchangeList)));
