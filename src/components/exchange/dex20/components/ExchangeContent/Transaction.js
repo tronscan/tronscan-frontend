@@ -12,6 +12,7 @@ import {find} from 'lodash'
 
 import NumericInput from './NumericInput'
 import Buy from './buy'
+import Sell from './sell'
 
 const FormItem = Form.Item;
 class Transaction extends Component {
@@ -148,7 +149,7 @@ class Transaction extends Component {
       <div className="exchange__transaction d-flex">
           {modal}
         {/* 买入模块 */}
-        <Buy onSubmit={this.handleSubmitBuy} onChange={this.handleSecondValueBuy} exchangeTransaction={this.exchangeTransaction}/>
+        <Buy />
         {/* <div className="exchange__transaction__item mr-2 p-3">
           <h5 className="mr-3">
           {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
@@ -193,7 +194,8 @@ class Transaction extends Component {
         </div> */}
 
         {/* 卖出模块 */}
-        <div className="exchange__transaction__item  p-3">
+        <Sell />
+        {/* <div className="exchange__transaction__item  p-3">
           <h5 className="mr-3">
             {exchangeData.exchange_name} ≈ {exchangeData.price && <span>{Number(exchangeData.price).toFixed(6)}</span>}
             { (firstBalance&&firstBalance.name)&&<span className="text-sm d-block">{tu("TxAvailable")} {firstBalance.balance+' '+firstBalance.name}</span>}
@@ -233,7 +235,7 @@ class Transaction extends Component {
               <Button type="primary" className="warning" size="large" htmlType="submit" disabled={!account.address}>{tu("SELL")} {exchangeData.first_token_id}</Button>
             </FormItem>
           </Form>
-        </div>
+        </div> */}
       </div>
     )
   }

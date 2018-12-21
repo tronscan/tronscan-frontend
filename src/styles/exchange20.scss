@@ -1,49 +1,59 @@
-.exchange20{
-    .exchange-list{
-        background:none;
-    }
-    .exchange-list-mark{
-        height:471px;
-        
-        
-    }
-    .exchange-list-explain{
-        height:370px;
-    }
-    .exchange-list-mark,.exchange-list-explain{
-       background:#fff;
-    }
-    .scrollbar-container{
-        height:auto;
-    }
-    .anticon{
-        vertical-align: middle;
-    }
-    .new_price{
-        line-height:30px;
-    }
+.exchange20 {
+  .exchange-list {
+    background: none;
+  }
+  .exchange-list-mark {
+    height: 471px;
+  }
+  .exchange-list-explain {
+  }
+  .exchange-list-mark,
+  .exchange-list-explain {
+    background: #fff;
+  }
+  .scrollbar-container {
+    height: auto;
+  }
+  .anticon {
+    vertical-align: middle;
+  }
+  .new_price {
+    line-height: 30px;
+  }
 
-    .table_bottom{
-        border-bottom: 1px solid #EEEEEE;
-        padding-bottom: 5px;
-        
-    }
+  .table_bottom {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 5px;
+  }
 
-    .ant-tabs-nav .ant-tabs-tab-active{
-        background:#C23631;
-        color:#fff;
-    }
-    .ant-tabs-nav-container{
-        line-height: 1;
-    }
-    .ant-tabs-ink-bar{
-        display: none!important;
-    }
-   
-    .ant-slider-with-marks{
-        margin-bottom:0;
-    }
-    .ant-form{
-        margin-top: 20px;
-    }
+  .ant-tabs-nav .ant-tabs-tab-active {
+    background: #c23631;
+    color: #fff;
+  }
+  .ant-tabs-nav-container {
+    line-height: 1;
+  }
+  .ant-tabs-ink-bar {
+    display: none !important;
+  }
+
+  .ant-slider-with-marks {
+    margin-bottom: 0;
+  }
+  .ant-form {
+    margin-top: 20px;
+  }
+  .no-padding {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .height24 {
+    height: 31px !important;
+    font-size: 12px;
+  }
+
+  .exchange-list .ant-table tr:hover > td {
+    font-weight: bold;
+    background-color: none;
+  }
 }
