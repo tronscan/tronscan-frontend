@@ -1366,5 +1366,10 @@ export const messages = {
     "create_deal_pair_input_tip":"底池TRX必须大于10万",
     "create_deal_pair_input_tip2":"交易对创建成功后，上线发行价格无法更改，每次创建需消耗1024 TRX",
     "publish_price":"您的发行价格是",
-    "pool_revert":"底池的TRX余额不能少于100，000"
+    "pool_revert":"底池的TRX余额不能少于100，000",
+    "sign_in_with_TRONlink":"使用TRONlink登录",
+    "import_a_wallet":"导入账户登录",
+    "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
+    "sign_in_TRONlink":"TRONlink登录",
+    "uninstall_TRONlink":"还没有安装TRONlink？点击这里",
 };

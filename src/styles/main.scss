@@ -2464,7 +2464,20 @@ h5 {
   border-left: 1px solid #F8F5F0;
   position: absolute;
 }
-
+.nav-login-wallet li{
+  &:hover{
+    background-color: #F3F3F3;
+    cursor: pointer;
+    color: #C23631;
+  }
+  div{
+    &:hover{
+      background-color: #F3F3F3;
+      cursor: pointer;
+      color: #C23631;
+    }
+  }
+}
 .login-mask{
   position: fixed;
   background-color: rgba(0,0,0,0.5);
@@ -2474,9 +2487,10 @@ h5 {
   right: 0;
   top:0;
   bottom: 0;
-  .login-import{
+  .login-import, .login-tronlink{
+    width: 400px;
     border: none;
-    background: transparent;
+    background: #ffffff;
     padding: 0;
     float: none;
     border-radius: 2px;
@@ -2493,8 +2507,46 @@ h5 {
     list-style: none;
     background-clip: padding-box;
   }
-  .login-tronlink{
-
+  .tronlink-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 86px;
+      height: 86px;
+      display: block;
+    }
   }
+  .login-cancel{
+    position: absolute;
+    right:10px;
+    top:5px;
+    cursor: pointer;
+    color: #D8D8D8;
+    &:hover{
+      color: #C23631;
+    }
+  }
+  .install-TRONlink{
+    a{
+      color: #C23631;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .login-import, .login-tronlink{
+      width: 340px;
+      top: 40%;
+    }
+  }
+}
+
+.dropdown-menu{
+  margin-top: -4px;
+}
+.languages-menu{
+  left: -10px;
 }
 

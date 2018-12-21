@@ -1364,6 +1364,12 @@ export const messages = {
     "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
     "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
     "publish_price":"Your offering price is",
-    "pool_revert":"The balance of TRX in pool should be no less than 100,000"
+    "pool_revert":"The balance of TRX in pool should be no less than 100,000",
+    "sign_in_with_TRONlink":"TRONlinkでログイン",
+    "import_a_wallet":"アカウントインポート",
+    "sign_in_TRONlink_warning":"TRONlinkをインストールしてページを更新してください",
+    "sign_in_TRONlink":"TRONlinkでログイン",
+    "uninstall_TRONlink":"まだTRONlinkをインストールしていない？ ここをクリック",
+
 }
 

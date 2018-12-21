@@ -1367,17 +1367,23 @@ export const messages = {
   "OthersArticle":"Articles in this group",
   "donateAddress":"DONATE",
 
-    /*
-      *  2018-12-18
-    * */
-    "create_deal_pair":"Create Trading Pairs",
-    "add_deal_pair_desc":"Trading pair creation is available.",
-    "click_create":"click here to create",
-    "deal_pair_tip":"At least 100,000 TRX in your balance",
-    "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
-    "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
-    "publish_price":"Your offering price is",
-    "pool_revert":"The balance of TRX in pool should be no less than 100,000"
+  /*
+    *  2018-12-18
+  * */
+  "create_deal_pair":"Create Trading Pairs",
+  "add_deal_pair_desc":"Trading pair creation is available.",
+  "click_create":"click here to create",
+  "deal_pair_tip":"At least 100,000 TRX in your balance",
+  "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
+  "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
+  "publish_price":"Your offering price is",
+  "pool_revert":"The balance of TRX in pool should be no less than 100,000",
+  "sign_in_with_TRONlink":"Sign in with TRONlink",
+  "import_a_wallet":"Import a wallet",
+  "sign_in_TRONlink_warning":"Please install TRONlink and refresh the page",
+  "sign_in_TRONlink":"Sign in with TRONlink",
+  "uninstall_TRONlink":"Haven't installed TRONlink yet? Click here",
+
 
 
 };
