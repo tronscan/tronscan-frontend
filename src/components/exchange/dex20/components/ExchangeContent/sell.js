@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { ONE_TRX } from "../../../../../constants";
 import { find } from "lodash";
-import { getBalance, sellByContract } from "../../TW";
+import { TW } from "../../TW";
 import { Slider } from "antd";
 
 import NumericInput from "./NumericInput";
@@ -58,11 +58,16 @@ class Sell extends Component {
 
   componentDidUpdate(prevProps) {
     let { price, firstBalance, amount } = this.state;
-    let { exchangeData, quickSelect } = this.props;
+    let { exchangeData, quickSelect, account } = this.props;
     if (
       prevProps.exchangeData != exchangeData &&
       prevProps.exchangeData.id != exchangeData.id
     ) {
+      this.setBalance();
+      this.getCurrentPrice();
+    }
+
+    if (prevProps.account.address != account.address) {
       this.setBalance();
       this.getCurrentPrice();
     }
@@ -154,7 +159,7 @@ class Sell extends Component {
     } = this.state;
 
     return (
-      <div className="exchange__transaction__item mr-2 p-3">
+      <div className="exchange__transaction__item p-3">
         {modal}
         <h5 className="mr-3">
           {exchangeData.fShortName}/{exchangeData.sShortName} ≈{" "}
@@ -226,11 +231,10 @@ class Sell extends Component {
           </div>
 
           <div className="d-flex justify-content-between tran-amount mb-3">
-            <p className="text">{tu("trc20_volume")}：</p>
-            <b className="text-lg">
-              {total}
-              {exchangeData.sShortName}
-            </b>
+            <p className="text">
+              {tu("trc20_volume")}：{total}
+            </p>
+            <b className="text-lg">{exchangeData.sShortName}</b>
           </div>
 
           {/* <FormItem> */}
@@ -311,10 +315,11 @@ class Sell extends Component {
       _amountA: amountA,
       _price: price * secondPrecision,
       _tokenB: tokenB,
-      _amountB: amountB
+      _amountB: amountB,
+      tronWeb: account.tronWeb
     };
     try {
-      const id = await sellByContract(data);
+      const id = await TW.sellByContract(data);
       if (id) {
         this.setState({
           modal: (
@@ -358,10 +363,11 @@ class Sell extends Component {
     let _b = 0;
 
     if (account.address && exchangeData.fTokenAddr) {
-      _b = await getBalance({
+      _b = await TW.getBalance({
         _tokenA: exchangeData.fTokenAddr,
         _uToken: account.address,
-        _precision: exchangeData.fPrecision
+        _precision: exchangeData.fPrecision,
+        tronWeb: account.tronWeb
       });
     }
 

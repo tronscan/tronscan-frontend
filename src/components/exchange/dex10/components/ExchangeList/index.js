@@ -7,7 +7,7 @@ import xhr from "axios/index";
 import {map} from 'lodash'
 import ExchangeTable from './Table';
 import SearchTable from './SearchTable';
-import {Explain} from './Explain';
+import Explain from './Explain';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {filter} from 'lodash'

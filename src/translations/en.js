@@ -662,10 +662,9 @@ export const messages = {
   "what_is_tron": "What is TRON",
   "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architecture",
-  "tron_protobuf_doc": "TRON Protobuf Documentation",
+  "tron_protobuf_doc": "TRON Protobuf Doc",
   "report_an_error": "Submit a bug / suggestion",
-  "frequently_asked_questions": "Frequently Asked Questions",
-  "telegram_updates": "Telegram Updates",
+  "frequently_asked_questions": "FAQ",
   "telegram": "Telegram",
   /*
   ##################################################################################
@@ -1225,8 +1224,8 @@ export const messages = {
   "O": "O",
   "C": "C",
   "24H_VOL": "24H VOL",
-  "token_application_instructions_title":"Token Application Instructions",
-  "token_application_instructions_1":"For better user experience, please fill in the application with detailed information about the token that you would like to issue. Once the token passes the review, we will email you in a week.  Tokens without review will be hidden.",
+  "token_application_instructions_title":"Apply Token Listing",
+  "token_application_instructions_1":"Tokens that have passed the review will be displayed on the DEX list. Unreviewed tokens can be traded by search function.",
   "click_here_to_apply":"Click here to apply",
   "TxTime":"Transaction Time",
   "TxAmount":"Transaction Amount",
@@ -1498,5 +1497,24 @@ export const messages = {
     "trc20_token_info_ths_5": "24h Low",
     "trc20_token_info_ths_6": "24h Volume",
     "trc20_token_info_ths_7": "24h Volume",
-    "trc20_new_price":"Latest price"
+    "trc20_new_price":"Latest price",
+
+
+  /*
+    *  2018-12-18
+  * */
+  "create_deal_pair":"Create Trading Pairs",
+  "add_deal_pair_desc":"Trading pair creation is available.",
+  "click_create":"click here to create",
+  "deal_pair_tip":"At least 100,000 TRX in your balance",
+  "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
+  "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
+  "publish_price":"Your offering price is",
+  "pool_revert":"The balance of TRX in pool should be no less than 100,000",
+  "sign_in_with_TRONlink":"Sign in with TRONlink",
+  "import_a_wallet":"Import a wallet",
+  "sign_in_TRONlink_warning":"Please install TRONlink and refresh the page",
+  "sign_in_TRONlink":"Sign in with TRONlink",
+  "uninstall_TRONlink":"Haven't installed TRONlink yet? Click here",
+
 };

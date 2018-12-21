@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { upperFirst } from "lodash";
 
 export function t(id) {
-  return <FormattedMessage id={id} />;
+  return <FormattedMessage textComponent="option" id={id} />;
 }
 
 export function tu(id) {
@@ -12,6 +12,14 @@ export function tu(id) {
       {txt => <span>{upperFirst(txt)}</span>}
     </FormattedMessage>
   );
+}
+
+export function option_t(id) {
+    return (
+        <FormattedMessage id={id}>
+            {txt => <option>{upperFirst(txt)}</option>}
+        </FormattedMessage>
+    );
 }
 
 export function tv(id, values) {

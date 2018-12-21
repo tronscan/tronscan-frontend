@@ -1215,8 +1215,8 @@ export const messages = {
     "O": "开",
     "C": "收",
     "24H_VOL": "24H成交量",
-    "token_application_instructions_title": "上币申请说明",
-    "token_application_instructions_1": "为了提供更好的使用体验，申请上币需要填写表单，提供您币种的详细信息，审核通过的TOKEN会在一周内收到邮件反馈。不经过审核的TOKEN，将会被隐藏。",
+    "token_application_instructions_title": "上币申请",
+    "token_application_instructions_1": "申请DEX上币需要填写表单，审核通过的TOKEN会上架DEX列表显示。未经过审核的TOKEN，只能搜索后进行交易。",
     "click_here_to_apply": "点击申请",
     "TxTime": "交易时间",
     "TxAmount": "交易金额",
@@ -1486,5 +1486,24 @@ export const messages = {
    "trc20_token_info_ths_5": "24h最低价",
    "trc20_token_info_ths_6": "24h成交量",
    "trc20_token_info_ths_7": "24h交易量",
-   "trc20_new_price":"最新价"
+   "trc20_new_price":"最新价",
+
+
+    /*
+    *  2018-12-18
+    * */
+    "create_deal_pair":"创建交易对",
+    "add_deal_pair_desc":"现已开放交易对创建。",
+    "click_create":"点击创建",
+    "deal_pair_tip":"池底至少注资100,000 TRX",
+    "create_deal_pair_input_tip":"底池TRX必须大于10万",
+    "create_deal_pair_input_tip2":"交易对创建成功后，上线发行价格无法更改，每次创建需消耗1024 TRX",
+    "publish_price":"您的发行价格是",
+    "pool_revert":"底池的TRX余额不能少于100，000",
+    "sign_in_with_TRONlink":"使用TRONlink登录",
+    "import_a_wallet":"导入账户登录",
+    "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
+    "sign_in_TRONlink":"TRONlink登录",
+    "uninstall_TRONlink":"还没有安装TRONlink？点击这里",
+
 };

@@ -657,7 +657,7 @@ export const messages = {
     "what_is_tron": "트론의 정의",
     "tron_explorer_api": "트론 탐색기 API",
     "tron_architechure": "트론 아키텍처",
-    "tron_protobuf_doc": "트론 프로토콜 버퍼 문서(Protobuf)",
+    "tron_protobuf_doc": "TRON Protobuf Doc",
     "report_an_error": "버그 제보 및 건의",
     "frequently_asked_questions": "자주 묻는 질문(FAQ)",
     "telegram_updates": "트론스캔 공식 텔레그램",
@@ -1204,8 +1204,8 @@ export const messages = {
     "O": "O",
     "C": "C",
     "24H_VOL": "24H VOL",
-    "token_application_instructions_title": "Token Application Instructions",
-    "token_application_instructions_1": "For better user experience, please fill in the application with detailed information about the token that you would like to issue. Once the token passes the review, we will email you in a week.  Tokens without review will be hidden.",
+    "token_application_instructions_title": "Apply Token Listing",
+    "token_application_instructions_1": "Tokens that have passed the review will be displayed on the DEX list. Unreviewed tokens can be traded by search function.",
     "click_here_to_apply": "Click here to apply",
     "TxTime": "Transaction Time",
     "TxAmount": "Transaction Amount",
@@ -1345,5 +1345,17 @@ export const messages = {
    ##################################################################################
   */
     "OthersArticle":"Articles in this group",
-    "donateAddress":"DONATE"
+    "donateAddress":"DONATE",
+
+    /*
+      *  2018-12-18
+    * */
+    "create_deal_pair":"Create Trading Pairs",
+    "add_deal_pair_desc":"Trading pair creation is available.",
+    "click_create":"click here to create",
+    "deal_pair_tip":"At least 100,000 TRX in your balance",
+    "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
+    "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
+    "publish_price":"Your offering price is",
+    "pool_revert":"The balance of TRX in pool should be no less than 100,000"
 };

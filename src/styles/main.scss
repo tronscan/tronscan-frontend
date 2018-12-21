@@ -88,6 +88,11 @@ button:focus{
 .dropdown-menu-right {
   z-index: 10000;
 }
+.dropdown-toggle{
+  &:after{
+    vertical-align: .1em;
+  }
+}
 
 .sub-header {
   h4 {
@@ -424,16 +429,23 @@ tr a {
 /* Mobile fixes */
 
 @media only screen and (max-width: 768px) {
+  .more-menu{
+    min-width:100% !important;
+    flex-direction: column !important;
+  }
+  .more-menu-line{
+    border:none !important;
+  }
   // Menu
   .navbar-collapse {
     padding-top: 10px;
   }
   .navbar-collapse .dropdown-menu.show {
-    background-color: #353a40;
-    border: 0px;
+    //background-color: #353a40;
+    //border: 0px;
   }
   .navbar-collapse .dropdown-menu.show .dropdown-item {
-    color: #d2d1d1;
+    //color: #d2d1d1;
   }
   .navbar-collapse .dropdown-menu.show .dropdown-item:hover {
     background-color: #353a40;
@@ -1844,6 +1856,7 @@ h5 {
     }
   }
 
+
 }
 .tip{
   width: 40px;
@@ -2400,3 +2413,141 @@ h5 {
     max-width: 100%;
   }
 }
+
+.navbar-nav {
+  .nav-item{
+    &:hover{
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+
+  .nav-item{
+    &:hover{
+      .more-menu {
+        display: block;
+        display: flex;
+      }
+    }
+  }
+
+}
+
+.more-menu{
+  right: 0;
+  flex-direction: row;
+  position: absolute;
+  top: 90%;
+  right: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 10rem;
+  padding: 1rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 0.875rem;
+  color: #3E3F3A;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  display: flex;
+  display: none;
+}
+
+.more-menu-line{
+  width: 0;
+  margin: 0;
+  height: 85%;
+  overflow: hidden;
+  border-left: 1px solid #F8F5F0;
+  position: absolute;
+}
+.nav-login-wallet li{
+  &:hover{
+    background-color: #F3F3F3;
+    cursor: pointer;
+    color: #C23631;
+  }
+  div{
+    &:hover{
+      background-color: #F3F3F3;
+      cursor: pointer;
+      color: #C23631;
+    }
+  }
+}
+.login-mask{
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  z-index: 9999;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  .login-import, .login-tronlink{
+    width: 400px;
+    border: none;
+    background: #ffffff;
+    padding: 0;
+    float: none;
+    border-radius: 2px;
+    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 10rem;
+    margin: 0.125rem 0 0;
+    font-size: 0.875rem;
+    color: #3E3F3A;
+    text-align: left;
+    list-style: none;
+    background-clip: padding-box;
+  }
+  .tronlink-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 86px;
+      height: 86px;
+      display: block;
+    }
+  }
+  .login-cancel{
+    position: absolute;
+    right:10px;
+    top:5px;
+    cursor: pointer;
+    color: #D8D8D8;
+    &:hover{
+      color: #C23631;
+    }
+  }
+  .install-TRONlink{
+    a{
+      color: #C23631;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .login-import, .login-tronlink{
+      width: 340px;
+      top: 40%;
+    }
+  }
+}
+
+.dropdown-menu{
+  margin-top: -4px;
+}
+.languages-menu{
+  left: -10px;
+}
+

@@ -25,3 +25,5 @@ build-desktop
 build-native
 
 update-to-*
+
+/web.tar*

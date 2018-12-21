@@ -12,7 +12,7 @@ import FreezeBalanceModal from "./FreezeBalanceModal";
 import {AddressLink, ExternalLink, HrefLink, TokenLink, TokenTRC20Link} from "../common/Links";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {IS_TESTNET, ONE_TRX, API_URL} from "../../constants";
-import {Client, tronWeb} from "../../services/api";
+import {Client} from "../../services/api";
 import {reloadWallet} from "../../actions/wallet";
 import {login} from "../../actions/app";
 import ApplyForDelegate from "./ApplyForDelegate";
@@ -48,13 +48,15 @@ class Account extends Component {
       selectedResource:null,
       hideSmallCurrency:true,
       tokenTRC10:true,
-      tokens20:[]
+      tokens20:[],
+      dealPairTrxLimit:100000
     };
 
   }
 
   componentDidMount() {
       let {account} = this.props;
+
       if (account.isLoggedIn) {
           this.reloadTokens();
           this.loadAccount();
@@ -108,14 +110,12 @@ class Account extends Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      const privateKey = account.key;
-      tronWeb.setPrivateKey(account.key);
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
-      if(tronWeb.eventServer){
+      //if(account.tronWeb.eventServer){
           tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
@@ -127,7 +127,7 @@ class Account extends Component {
           this.setState({
               tokens20: tokens20
           });
-      }
+     // }
   }
   renderTRC20Tokens() {
     let {hideSmallCurrency,tokens20} = this.state;
@@ -812,6 +812,7 @@ class Account extends Component {
               <CreateTxnPairModal
                   onCreate={(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => this.createTxnPair(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)}
                   onCancel={this.hideModal}
+                  dealPairTrxLimit={this.state.dealPairTrxLimit}
               />
           )
       })
@@ -838,6 +839,7 @@ class Account extends Component {
                     onCancel={this.hideModal}
                     exchange={exchange}
                     inject={false}
+                    dealPairTrxLimit={this.state.dealPairTrxLimit}
                 />
             )
         })
@@ -1006,7 +1008,7 @@ class Account extends Component {
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency,tokenTRC10} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource} = this.props;
+    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource,trxBalance} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1268,7 +1270,103 @@ class Account extends Component {
               </div>
             </div>
           </div>
-
+            <div className="row mt-3">
+                <div className="col-md-12">
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="d-flex justify-content-between trade_pair_title">
+                                <h5 className="card-title text-center">
+                                    {tu("my_trading_pairs")}
+                                    {tu("deal_pair_tip")}
+                                </h5>
+                                <p className="card-text">
+                                    <a href="javascript:" className={trxBalance >= this.state.dealPairTrxLimit?"btn btn-default btn-sm btn-plus-square":"float-right btn btn-default btn-sm btn-plus-square disabled"}
+                                       onClick={() => {
+                                           this.changeTxnPair()
+                                       }}>
+                                        <i className="fa fa-plus-square"></i>
+                                        &nbsp;
+                                        {tu("create_trading_pairs")}
+                                    </a>
+                                </p>
+                            </div>
+                            <div style={{overflowX:'auto'}}>
+                            <table className="table m-0 temp-table mt-4">
+                                <thead className="thead-light">
+                                <tr>
+                                    <th>{tu("pairs")}</th>
+                                    <th>{tu("balance")}</th>
+                                    <th className="text-right"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>
+                                                    {exchange.first_token_id === "_"?"TRX":exchange.first_token_id}/{exchange.second_token_id === "_"?"TRX":exchange.second_token_id}
+                                                </td>
+                                                <td>
+                                                    <FormattedNumber value={ exchange.first_token_id === "_"? exchange.first_token_balance / ONE_TRX : exchange.first_token_balance }/>
+                                                    /
+                                                    <FormattedNumber value={ exchange.second_token_id === "_"? exchange.second_token_balance / ONE_TRX : exchange.second_token_balance }/>
+                                                </td>
+                                                <td className="text-right" style={{display:'flex',flexDirection:'row',justifyContent:'flex-end'}}>
+                                    <div className="dex-inject" style={{whiteSpace:'nowrap'}}
+                                          onClick={() => {
+                                              this.injectTxnPair(exchange)
+                                          }}
+                                    >
+                                        {tu("capital_injection")}
+                                    </div>
+                                                    |
+                                                    <div className="dex-divestment" style={{whiteSpace:'nowrap'}}
+                                                          onClick={() => {
+                                                              this.withdrawTxnPair(exchange)
+                                                          }}
+                                                    >
+                                       {tu("capital_withdrawal")}
+                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    }):<tr>
+                                        <td></td>
+                                        <td>
+                                            {tu('no_pairs')}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/*<div className="row mt-3">*/}
+                {/*<div className="col-md-12">*/}
+                    {/*<div className="card">*/}
+                        {/*<div className="card-body">*/}
+                            {/*<h5 className="card-title text-center m-0">*/}
+                                {/*{tu('apply_for_process')}*/}
+                            {/*</h5>*/}
+                            {/*<p className="pt-3">*/}
+                                {/*{tu('token_application_instructions_1')}*/}
+                            {/*</p>*/}
+                            {/*<div className="text-center">*/}
+                                {/*<a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">*/}
+                                    {/*<button className="btn btn-danger">*/}
+                                        {/*{t("apply_for_the_currency")}*/}
+                                    {/*</button>*/}
+                                {/*</a>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+            {/*</div>*/}
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
@@ -1320,105 +1418,7 @@ class Account extends Component {
               </div>
             </div>
           </div>
-          {
-              currentWallet.allowExchange.length ?
-                  <div className="row mt-3">
-                    <div className="col-md-12">
-                      <div className="card">
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <h5 className="card-title text-center">
-                                {tu("my_trading_pairs")}
-                            </h5>
-                            <p className="card-text">
-                              <a href="javascript:" className="float-right btn btn-default btn-sm btn-plus-square"
-                                 onClick={() => {
-                                     this.changeTxnPair()
-                                 }}>
-                                <i className="fa fa-plus-square"></i>
-                                &nbsp;
-                                  {tu("create_trading_pairs")}
-                              </a>
-                            </p>
-                          </div>
-                          <table className="table m-0 temp-table mt-4">
-                            <thead className="thead-light">
-                            <tr>
-                              <th>{tu("pairs")}</th>
-                              <th>{tu("balance")}</th>
-                              <th className="text-right"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
-                                    return (
-                                        <tr key={index}>
-                                          <td>
-                                              {exchange.first_token_id === "_"?"TRX":exchange.first_token_id}/{exchange.second_token_id === "_"?"TRX":exchange.second_token_id}
-                                          </td>
-                                          <td>
-                                            <FormattedNumber value={ exchange.first_token_id === "_"? exchange.first_token_balance / ONE_TRX : exchange.first_token_balance }/>
-                                            /
-                                            <FormattedNumber value={ exchange.second_token_id === "_"? exchange.second_token_balance / ONE_TRX : exchange.second_token_balance }/>
-                                          </td>
-                                          <td className="text-right">
-                                    <span className="dex-inject"
-                                          onClick={() => {
-                                              this.injectTxnPair(exchange)
-                                          }}
-                                    >
-                                        {tu("capital_injection")}
-                                    </span>
-                                            |
-                                            <span className="dex-divestment"
-                                                  onClick={() => {
-                                                      this.withdrawTxnPair(exchange)
-                                                  }}
-                                            >
-                                       {tu("capital_withdrawal")}
-                                    </span>
-                                          </td>
-                                        </tr>
-                                    )
-                                }):<tr>
-                                  <td></td>
-                                  <td>
-                                      {tu('no_pairs')}
-                                  </td>
-                                  <td></td>
-                                </tr>
-                            }
-                            </tbody>
-                          </table>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div> :
-                  <div className="row mt-3">
-                    <div className="col-md-12">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title text-center m-0">
-                              {tu('apply_for_process')}
-                          </h5>
-                          <p className="pt-3">
-                              {tu('token_application_instructions_1')}
-                          </p>
-                          <div className="text-center">
-                            <a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">
-                              <button className="btn btn-danger">
-                                  {t("apply_for_the_currency")}
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-          }
-          {
+            {
             currentWallet.representative.enabled ?
                 <div className="row mt-3">
                   <div className="col-md-12">

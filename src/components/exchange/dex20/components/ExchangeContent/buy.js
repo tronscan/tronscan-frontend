@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Radio } from "antd";
+import { Form, Input, Button, Radio,Slider } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router";
 import { Client, Client20 } from "../../../../../services/api";
@@ -9,8 +9,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { ONE_TRX } from "../../../../../constants";
 import { find } from "lodash";
-import { getBalance, buyByContract } from "../../TW";
-import { Slider } from "antd";
+import { TW } from "../../TW";
 
 import NumericInput from "./NumericInput";
 import {
@@ -58,11 +57,17 @@ class Buy extends Component {
 
   componentDidUpdate(prevProps) {
     let { price, firstBalance, amount } = this.state;
-    let { exchangeData, quickSelect } = this.props;
+    let { exchangeData, quickSelect, account } = this.props;
+
     if (
       prevProps.exchangeData != exchangeData &&
       prevProps.exchangeData.id != exchangeData.id
     ) {
+      this.setBalance();
+      this.getCurrentPrice();
+    }
+
+    if (prevProps.account.address != account.address) {
       this.setBalance();
       this.getCurrentPrice();
     }
@@ -209,7 +214,7 @@ class Buy extends Component {
               <span>
                 {tu("trc20_available_balance")}{" "}
                 <span className="tx-question-mark">
-                  {firstBalance} {exchangeData.sShortName}
+                  {account.address ? firstBalance : 0} {exchangeData.sShortName}
                 </span>
               </span>
             }
@@ -226,11 +231,10 @@ class Buy extends Component {
           </div>
 
           <div className="d-flex justify-content-between tran-amount mb-3">
-            <p className="text">{tu("trc20_volume")}：</p>
-            <b className="text-lg">
-              {total}
-              {exchangeData.sShortName}
-            </b>
+            <p className="text">
+              {tu("trc20_volume")}：{total}
+            </p>
+            <b className="text-lg">{exchangeData.sShortName}</b>
           </div>
 
           {/* <FormItem> */}
@@ -294,13 +298,14 @@ class Buy extends Component {
       _amountA: amount * firstPrecision,
       _tokenB: tokenB,
       _price: price * secondPrecision,
-      _amountB: amount * price * secondPrecision
+      _amountB: amount * price * secondPrecision,
+      tronWeb: account.tronWeb
     };
 
     let id;
     try {
-      id = await buyByContract(data);
-      console.log(id);
+      id = await TW.buyByContract(data);
+
       if (id) {
         this.setState({
           modal: (
@@ -341,13 +346,14 @@ class Buy extends Component {
     if (account.address && exchangeData.sTokenAddr) {
       if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
         _b =
-          (await window.tronWeb.trx.getUnconfirmedBalance(account.address)) /
+          (await account.tronWeb.trx.getUnconfirmedBalance(account.address)) /
           Math.pow(10, exchangeData.sPrecision);
       } else {
-        _b = await getBalance({
+        _b = await TW.getBalance({
           _tokenA: exchangeData.sTokenAddr,
           _uToken: account.address,
-          _precision: exchangeData.sPrecision
+          _precision: exchangeData.sPrecision,
+          tronWeb: account.tronWeb
         });
       }
     }

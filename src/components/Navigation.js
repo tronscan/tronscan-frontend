@@ -10,7 +10,7 @@ import {flatRoutes, routes} from "../routes"
 import {Link, NavLink, withRouter} from "react-router-dom"
 import {filter, find, isString, isUndefined, trim} from "lodash"
 import {tu, t} from "../utils/i18n"
-import {enableFlag, login, loginWithAddress, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
+import {enableFlag, login, loginWithAddress, loginWithTronLink, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
@@ -33,6 +33,7 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
+import { Icon } from 'antd';
 
 class Navigation extends PureComponent {
 
@@ -47,6 +48,9 @@ class Navigation extends PureComponent {
       search: "",
       popup: null,
       notifications: [],
+      isImportAccount:false,
+      isTRONlinkLogin:false,
+      loginWarning:false
     };
   }
 
@@ -62,6 +66,29 @@ class Navigation extends PureComponent {
 
   componentDidMount() {
       let {account} = this.props;
+
+  }
+  componentWillMount(){
+      let count = 0;
+      if (Lockr.get("islogin")) {
+          //this.isauot = true
+          let timer = null
+          timer = setInterval(() => {
+              const tronWeb = window.tronWeb;
+              if (tronWeb && tronWeb.defaultAddress.base58) {
+                  this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
+                  clearInterval(timer)
+              } else {
+                  count++
+                  if (count > 30) {
+                      count = 0
+                      Lockr.set("islogin",0)
+                      //this.isauot = false
+                      clearInterval(timer)
+                  }
+              }
+          }, 100)
+      }
   }
 
   setLanguage = (language) => {
@@ -177,7 +204,11 @@ class Navigation extends PureComponent {
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
-    this.setState({privateKey: ''});
+    this.setState({
+        privateKey: '',
+        isImportAccount:false,
+        isTRONlinkLogin:false,
+    });
     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
 
@@ -305,10 +336,48 @@ class Navigation extends PureComponent {
     console.log("LOGIN WITH MOBILE");
   };
 
+  loginWithTronLink = () =>{
+      const { loginWarning } = this.state;
+      const tronWeb = window.tronWeb;
+      // 没有下载 tronlink
+      if (!tronWeb) {
+          this.setState({loginWarning:true});
+          // this.loading = false
+          return
+      }
+
+      // 没有登录 tronlink
+      const address = tronWeb.defaultAddress.base58;
+      if (!address) {
+          this.setState({loginWarning:true});
+          //this.loading = false
+          Lockr.set("islogin", 0);
+          return
+      }
+
+      // 已登录 tronlink
+      if (address) {
+          //this.isauot = true
+          Lockr.set("islogin", 1);
+          this.props.loginWithTronLink(address,tronWeb);
+          //console.log('tronWeb',tronWeb)
+          setTimeout(() => {
+              this.setState({isImportAccount: false})
+          }, 1000)
+      }
+  };
+
+  closeLoginModel = () => {
+      this.setState({
+          isImportAccount: false,
+          isTRONlinkLogin: false
+      })
+  };
+
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-
+    let {isImportAccount, isTRONlinkLogin, loginWarning } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -407,61 +476,133 @@ class Navigation extends PureComponent {
                     </li>
                   </ul>
                 </li> :
-                <li className="nav-item dropdown nav nav_input">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:">
+                <li className="dropdown nav nav_input">
+                  <a className="nav-link dropdown-toggle nav-item" href="javascript:">
                     {tu("open_wallet")}
+                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
+                      <li className="px-2 py-2" onClick={() => this.setState({isTRONlinkLogin: true, isImportAccount:false})}>
+                        <div className="dropdown-item text-uppercase text-center">
+                            {tu('sign_in_with_TRONlink')}
+                        </div>
+                      </li>
+                      <li className="px-2 py-2" onClick={() => this.setState({isImportAccount: true, isTRONlinkLogin: false})}>
+                        <div className="dropdown-item text-uppercase text-center">
+                            {tu('import_a_wallet')}
+                        </div>
+                      </li>
+                    </ul>
                   </a>
-                  <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
-                  <li className="px-3 py-3">
-                      <div className="text-center">
-                        <label>{tu("private_key")}</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            onChange={ev => this.setState({privateKey: ev.target.value})}
-                            placeholder=""/>
-                      </div>
-                      <button className="btn btn-danger btn-block mt-3"
-                              disabled={!this.isLoginValid()}
-                              onClick={this.login}>
-                        {tu("sign_in")}
-                      </button>
-                    </li>
-                    {/* <li className="dropdown-divider blod"/> */}
-                    <li className="px-3 py-3 ">
-                      <div className="text-center">
-                        <label>{tu("keystore_file")}</label>
-                        <button className="btn btn-danger btn-block" onClick={this.selectFile}>
-                          {tu("select_file")}
-                        </button>
-                        <input type="file" ref={this.fileRef} className="d-none"
-                               onChange={this.onFileSelected}
-                               accept=".txt"/>
-                      </div>
 
-                    </li>
-                    {/* <li className="dropdown-divider blod"/> */}
                     {
-                      flags.mobileLogin &&
-                      <Fragment>
-                        <li className="px-3 py-3 ">
-                          <div className="text-center">
-                            <label>{tu("Mobile Login")}</label>
-                            <button className="btn btn-success btn-block"
-                                    onClick={this.loginWithMobileDevice}>
-                              {tu("login_mobile")}
-                            </button>
+                      isImportAccount?  <div className="login-mask">
+                        <ul className="login-import">
+                          <div className="login-cancel" onClick={this.closeLoginModel}>
+                            <Icon type="close" />
                           </div>
-                        </li>
-                        {/* <li className="dropdown-divider"/> */}
-                      </Fragment>
+                          <li className="px-3 py-4">
+                            <div className="text-center">
+                              <label>{tu("private_key")}</label>
+                              <input
+                                  type="text"
+                                  className="form-control"
+                                  onChange={ev => this.setState({privateKey: ev.target.value})}
+                                  placeholder=""/>
+                            </div>
+                            <button className="btn btn-danger btn-block mt-3"
+                                    disabled={!this.isLoginValid()}
+                                    onClick={this.login}>
+                                {tu("sign_in")}
+                            </button>
+                          </li>
+                            {/* <li className="dropdown-divider blod"/> */}
+                          <li className="px-3 py-4">
+                            <div className="text-center">
+                              <label>{tu("keystore_file")}</label>
+                              <button className="btn btn-danger btn-block" onClick={this.selectFile}>
+                                  {tu("select_file")}
+                              </button>
+                              <input type="file" ref={this.fileRef} className="d-none"
+                                     onChange={this.onFileSelected}
+                                     accept=".txt"/>
+                            </div>
+
+                          </li>
+                            {/* <li className="dropdown-divider blod"/> */}
+                            {
+                                flags.mobileLogin &&
+                                <Fragment>
+                                  <li className="px-3 py-4 ">
+                                    <div className="text-center">
+                                      <label>{tu("Mobile Login")}</label>
+                                      <button className="btn btn-success btn-block"
+                                              onClick={this.loginWithMobileDevice}>
+                                          {tu("login_mobile")}
+                                      </button>
+                                    </div>
+                                  </li>
+                                    {/* <li className="dropdown-divider"/> */}
+                                </Fragment>
+                            }
+                          <li className="px-3 py-4">
+                            <Link className="btn btn-primary btn-block" to="/wallet/new">
+                                {tu("create_wallet")}
+                            </Link>
+                          </li>
+                        </ul>
+                      </div> :''
                     }
-                    <li className="px-3 py-3">
-                      <Link className="btn btn-primary btn-block" to="/wallet/new">
-                        {tu("create_wallet")}
-                      </Link>
-                    </li>
-                  </ul>
+                    {
+                      isTRONlinkLogin?  <div className="login-mask">
+                          <div className="login-tronlink">
+                            <div className="login-cancel" onClick={this.closeLoginModel}>
+                              <Icon type="close" />
+                            </div>
+                            <div className="px-3 py-4">
+                              <div className="text-center">
+                                <label>{tu('sign_in_TRONlink')}</label>
+                              </div>
+                            </div>
+                              {/* <li className="dropdown-divider blod"/> */}
+                            <div className="px-3 py-2 tronlink-pic">
+                              <img src={require("../images/tronlink.png")} alt="TRONlink"/>
+                            </div>
+                            <div className="text-center pt-2" style={{color:'#C23631'}}>
+                                {
+                                    loginWarning ? tu('sign_in_TRONlink_warning') : ''
+                                }
+                            </div>
+
+                              {
+                                  flags.mobileLogin &&
+                                  <Fragment>
+                                    <div className="px-3 py-4 ">
+                                      <div className="text-center">
+                                        <label>{tu("Mobile Login")}</label>
+                                        <button className="btn btn-success btn-block"
+                                                onClick={this.loginWithMobileDevice}>
+                                            {tu("login_mobile")}
+                                        </button>
+                                      </div>
+                                    </div>
+                                      {/* <li className="dropdown-divider"/> */}
+                                  </Fragment>
+                              }
+                            <div className="px-3 py-4">
+                              <button className="btn btn-warning btn-block"
+                                      onClick={this.loginWithTronLink}>
+                                  {tu("sign_in_TRONlink")}
+                              </button>
+                            </div>
+                            <div className="text-center px-3 pb-4 install-TRONlink">
+                              <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec">
+                                  {tu('uninstall_TRONlink')}>>
+                              </a>
+                            </div>
+                          </div>
+                        </div> :''
+                    }
+
+
                 </li>
           }
         </Fragment>
@@ -483,7 +624,7 @@ class Navigation extends PureComponent {
     let {search, popup, notifications} = this.state;
 
     let activeComponent = this.getActiveComponent();
-    
+
     return (
         <div className="header-top">
           {popup}
@@ -550,7 +691,7 @@ class Navigation extends PureComponent {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className="nav-link"
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
@@ -558,10 +699,11 @@ class Navigation extends PureComponent {
                               </HrefLink>
                               :
                               <NavLink
-                                  className="nav-link"
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
+                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
+                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown' }  : {})}
                                   activeClassName="active"
-                                  to={route.path}>
+                                  to={route.path}
+                              >
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
                                 {tu(route.label)}
@@ -569,7 +711,7 @@ class Navigation extends PureComponent {
                         }
 
                         {
-                          route.routes &&
+                          route.routes &&  route.label !=="nav_more" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -635,11 +777,79 @@ class Navigation extends PureComponent {
                             }
                           </div>
                         }
+                        {
+                            route.routes &&  route.label == "nav_more" &&
+                            <div className="dropdown-menu more-menu" style={{left:'auto'}}>
+                                {
+                                    route.routes && route.routes.map((subRoute, index) => {
+                                        return  <div className="" key={index}>
+                                                <div className="more-menu-line"></div>
+                                            {
+                                                subRoute.map((Route,j) => {
+                                                    if (isString(Route)) {
+                                                        return (
+                                                            <h6 key={j}
+                                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                                        )
+                                                    }
+
+                                                    if (Route.showInMenu === false) {
+                                                        return null;
+                                                    }
+
+                                                    if (!isUndefined(Route.url)) {
+                                                        return (
+                                                            <HrefLink
+                                                                key={Route.url}
+                                                                className="dropdown-item text-uppercase"
+                                                                href={Route.url}>
+                                                                {Route.icon &&
+                                                                <i className={Route.icon + " mr-2"}/>}
+                                                                {tu(Route.label)}
+                                                                {Route.badge &&
+                                                                <Badge value={Route.badge}/>}
+                                                            </HrefLink>
+                                                        );
+                                                    }
+                                                    if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                                        return (
+                                                            <HrefLink
+                                                                key={Route.enurl}
+                                                                className="dropdown-item text-uppercase"
+                                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                                                {Route.icon &&
+                                                                <i className={Route.icon + " mr-2"}/>}
+                                                                {tu(Route.label)}
+                                                                {Route.badge &&
+                                                                <Badge value={Route.badge}/>}
+                                                            </HrefLink>
+                                                        );
+                                                    }
+
+                                                    return (
+                                                        <Link
+                                                            key={Route.path}
+                                                            className="dropdown-item text-uppercase"
+                                                            to={Route.path}>
+                                                            {Route.icon &&
+                                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                                            {tu(Route.label)}
+                                                            {Route.badge && <Badge value={Route.badge}/>}
+                                                        </Link>
+                                                    );
+                                                })
+                                            }
+                                        </div>
+
+
+                                    })
+                                }
+                            </div>
+                        }
                       </li>
                   ))}
                 </ul>
                 <ul className="navbar-nav navbar-right">
-
                   <li className="nav-item dropdown navbar-right">
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"
@@ -661,7 +871,7 @@ class Navigation extends PureComponent {
                     <a className="nav-link dropdown-toggle dropdown-menu-right "
                        data-toggle="dropdown"
                        href="javascript:">{activeLanguage.toUpperCase()}</a>
-                    <div className="dropdown-menu">
+                    <div className="dropdown-menu languages-menu">
                       {
                         Object.keys(languages).map(language => (
                             <a key={language}
@@ -750,6 +960,7 @@ const mapDispatchToProps = {
   logout,
   login,
   loginWithAddress,
+  loginWithTronLink,
   setActiveCurrency,
   setTheme,
   enableFlag,
