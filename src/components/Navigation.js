@@ -35,7 +35,7 @@ import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { Icon } from 'antd';
 
-class Navigation extends PureComponent {
+class Navigation extends React.Component {
 
   constructor() {
     super();
@@ -50,12 +50,12 @@ class Navigation extends PureComponent {
       notifications: [],
       isImportAccount:false,
       isTRONlinkLogin:false,
-      loginWarning:false
+      loginWarning:false,
+      address:'',
     };
   }
 
-  componentDidUpdate() {
-    let {intl, account, wallet} = this.props;
+  componentDidUpdate(prevProps) {
     /*
     if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
@@ -64,32 +64,50 @@ class Navigation extends PureComponent {
     */
   }
 
+
+  componentWillMount(){
+      this.reLoginWithTronLink();
+  }
   componentDidMount() {
       let {account} = this.props;
+      let _this = this;
+      window.addEventListener('message',function(e){
+          if(e.data.message){
+              _this.setState({ address: e.data.message.data});
+          }
+      })
 
   }
-  componentWillMount(){
-      let count = 0;
-      if (Lockr.get("islogin")) {
-          //this.isauot = true
-          let timer = null
-          timer = setInterval(() => {
-              const tronWeb = window.tronWeb;
-              if (tronWeb && tronWeb.defaultAddress.base58) {
-                  this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
-                  clearInterval(timer)
-              } else {
-                  count++
-                  if (count > 30) {
-                      count = 0
-                      Lockr.set("islogin",0)
-                      //this.isauot = false
-                      clearInterval(timer)
-                  }
-              }
-          }, 100)
+  componentWillUpdate(nextProps,nextState)  {
+      if(nextState.address !== this.state.address){
+          this.reLoginWithTronLink();
       }
   }
+  componentWillUnmount() {
+      this.listener && this.listener.close();
+  }
+
+ reLoginWithTronLink = () => {
+     if (Lockr.get("islogin")) {
+         let timer = null;
+         let count = 0;
+         timer = setInterval(() => {
+             const tronWeb = window.tronWeb;
+             if (tronWeb && tronWeb.defaultAddress.base58) {
+                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
+                 this.setState({ address: tronWeb.defaultAddress.base58});
+                 clearInterval(timer)
+             } else {
+                 count++
+                 if (count > 30) {
+                     count = 0
+                     Lockr.set("islogin",0)
+                     clearInterval(timer)
+                 }
+             }
+         }, 100)
+     }
+ }
 
   setLanguage = (language) => {
     this.props.setLanguage(language);
@@ -102,7 +120,6 @@ class Navigation extends PureComponent {
   login = () => {
     let {intl} = this.props;
     let {privateKey} = this.state;
-
     if (trim(privateKey) === "external") {
       this.props.enableFlag("mobileLogin");
     } else {
@@ -212,9 +229,6 @@ class Navigation extends PureComponent {
     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
 
-  componentWillUnmount() {
-    this.listener && this.listener.close();
-  }
 
   getActiveComponent() {
     let {router} = this.props;
@@ -360,7 +374,6 @@ class Navigation extends PureComponent {
           //this.isauot = true
           Lockr.set("islogin", 1);
           this.props.loginWithTronLink(address,tronWeb);
-          //console.log('tronWeb',tronWeb)
           setTimeout(() => {
               this.setState({isImportAccount: false})
           }, 1000)
@@ -370,14 +383,15 @@ class Navigation extends PureComponent {
   closeLoginModel = () => {
       this.setState({
           isImportAccount: false,
-          isTRONlinkLogin: false
+          isTRONlinkLogin: false,
+          loginWarning:false,
       })
   };
 
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-    let {isImportAccount, isTRONlinkLogin, loginWarning } = this.state;
+    let {isImportAccount, isTRONlinkLogin, loginWarning, address } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -393,6 +407,7 @@ class Navigation extends PureComponent {
         <Fragment>
           {
             (account.isLoggedIn && wallet.isOpen) ?
+
                 <li className="nav-item dropdown token_black nav">
                   <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                     {tu("wallet")}

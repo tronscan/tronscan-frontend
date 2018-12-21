@@ -15,14 +15,20 @@
     height: auto;
   }
   .anticon {
-    vertical-align: middle;
+    vertical-align: text-top;
+    font-size:21px;
   }
   .new_price {
     line-height: 30px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eee;
+    font-size: 18px;
+    background:#fffbf4 ;
   }
 
   .table_bottom {
-    border-bottom: 1px solid #eeeeee;
+    
     padding-bottom: 5px;
   }
 
@@ -55,5 +61,14 @@
   .exchange-list .ant-table tr:hover > td {
     font-weight: bold;
     background-color: none;
+  }
+
+  .register{
+    .ant-table tr{
+        background: none;
+    }
+    .ant-table-thead > tr > th{
+        background: none;
+    }
   }
 }

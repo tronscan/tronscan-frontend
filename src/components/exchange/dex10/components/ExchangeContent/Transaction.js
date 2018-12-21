@@ -421,7 +421,7 @@ class Transaction extends Component {
                 />
               )}
             </FormItem>
-            <div class="mb-3">
+            <div className="mb-3">
             {firstBalance && firstBalance.name && (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}

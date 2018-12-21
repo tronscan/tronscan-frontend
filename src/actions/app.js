@@ -48,10 +48,11 @@ export const setLoginWithAddress = address => ({
   address
 });
 
-export const setLoginWithTronLink = (address, tronWeb) => ({
-  type: LOGIN_TRONLINK,
-  address,
-  tronWeb: tronWeb
+
+export const setLoginWithTronLink = (address,tronWeb) => ({
+    type: LOGIN_TRONLINK,
+    address,
+    tronWeb
 });
 
 export const logout = () => ({
@@ -92,15 +93,16 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   }, 50);
 };
 
-export const loginWithTronLink = (address, tronWeb) => async (
-  dispatch,
-  getState
-) => {
-  dispatch(setLoginWithTronLink(address, tronWeb));
-  setTimeout(() => {
-    dispatch(reloadWallet());
-    dispatch(loadRecentTransactions(address));
-  }, 50);
+
+export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
+
+    dispatch(setWalletLoading(true));
+    await dispatch(setLoginWithTronLink(address,tronWeb));
+    //setTimeout(() => {
+    await dispatch(reloadWallet());
+    dispatch(setWalletLoading(false));
+    await dispatch(loadRecentTransactions(address));
+    //},50)
 };
 
 export const loadAccounts = () => async dispatch => {

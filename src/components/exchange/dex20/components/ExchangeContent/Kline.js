@@ -264,9 +264,11 @@ class Kline extends React.Component {
   getTokenInfo () {
     const { selectData } = this.props
     Client20.gettokenInfo20().then(({trc20_tokens}) => {
-      const newObj = trc20_tokens.filter(o => o.name == selectData.first_token_id)[0]
-      this.setState({tokeninfoItem: newObj})
-      this.setState({tokeninfo: trc20_tokens})
+      if(trc20_tokens){
+        const newObj = trc20_tokens.filter(o => o.name == selectData.first_token_id)[0]
+        this.setState({tokeninfoItem: newObj})
+        this.setState({tokeninfo: trc20_tokens})
+      }
     })
    
   }

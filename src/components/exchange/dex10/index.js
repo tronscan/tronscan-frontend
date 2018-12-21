@@ -59,16 +59,18 @@ class Exchange extends React.Component {
               <img src={require('../../../images/announcement-logo.png')} alt=""/>
               <div className="notice-wrap">
                   {
+                    this.state.notice && this.state.notice.length > 0 ? 
                       this.state.notice.map(v=>
                           <Link className="item" key={v.id} to={'/notice/'+v.id}>
                               <span title={v['title'+lg]} className="title">{v['title'+lg]}</span>
                               <span className="date">({v.createTime.substring(5,10)})</span>
                           </Link>
                       )
+                      : ''
                   }
               </div>
                 {
-                  this.state.notice.length>0?<Link to={'/notice/'+this.state.notice[0].id}>{tu('learn_more')}></Link>:null
+                  this.state.notice && this.state.notice.length>0?<Link to={'/notice/'+this.state.notice[0].id}>{tu('learn_more')}></Link>:null
                 }
             </div>
               {/* <div style={{position: 'absolute'}}><TronLoader/></div> */}

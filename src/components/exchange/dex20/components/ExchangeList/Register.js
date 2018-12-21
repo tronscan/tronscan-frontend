@@ -116,13 +116,8 @@ class Register extends Component{
 
 
         return (
-            <div className="ant-table-content">
-                <div className="new_price">
-                  {tu('trc20_new_price')}: 
-                  {
-                    lastPrice.type === 0 ? <span className="col-green up">{lastPrice.value}<Icon type="arrow-up" /></span> : <span className="col-red down">{lastPrice.value}<Icon type="arrow-down" /></span>
-                  } 
-                </div>
+            <div className="ant-table-content register">
+                
                 <Table
                     dataSource={sellList}
                     columns={sell_columns}
@@ -151,6 +146,12 @@ class Register extends Component{
                       };
                     }}
                 />
+                <div className="new_price">
+                  {/* {tu('trc20_new_price')}:  */}
+                  {
+                    lastPrice.type === 0 ? <span className="col-green up">{lastPrice.value}<Icon type="arrow-up" /></span> : <span className="col-red down">{lastPrice.value}<Icon type="arrow-down" /></span>
+                  } 
+                </div>
                 <Table
                     dataSource={buyList}
                     columns={buy_columns}
