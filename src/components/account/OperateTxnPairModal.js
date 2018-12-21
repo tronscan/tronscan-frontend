@@ -45,7 +45,6 @@ class OperateTxnPairModal extends React.PureComponent{
     };
 
     inject = async () => {
-        console.log(ONE_TRX);
         let {onInject, exchange} = this.props;
         let {tokenQuant} = this.state;
         const tokenId = "_";

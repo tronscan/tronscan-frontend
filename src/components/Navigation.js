@@ -471,13 +471,12 @@ class Navigation extends PureComponent {
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 320}}>
                       <li className="px-3 py-3" onClick={() => this.setState({isTRONlinkLogin: true})}>
-                        <a className="dropdown-item text-uppercase"
-                           href="javascript:;">
+                        <span className="dropdown-item text-uppercase">
                           使用TRONlink登录
-                        </a>
+                        </span>
                       </li>
                       <li className="px-3 py-3" onClick={() => this.setState({isImportAccount: true})}>
-                        <a className="dropdown-item text-uppercase" href="javascript:;">导入账户登录</a>
+                        <span className="dropdown-item text-uppercase">导入账户登录</span>
                       </li>
                     </ul>
                   </a>
