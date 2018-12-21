@@ -16,6 +16,7 @@ import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import _ from "lodash";
+import Lockr from "lockr";
 import xhr from "axios";
 import {Select} from 'antd';
 const { Option, OptGroup } = Select;
@@ -67,12 +68,55 @@ class SendForm extends React.Component {
       let {token} = this.state;
       let TokenType =  token.substr(token.length-5,5);
       if(TokenType == 'TRC10'){
-          this.token10Send()
+          if (Lockr.get("islogin")) {
+              this.tokenSendWithTronLink();
+          }else {
+              this.token10Send()
+          }
+
       }else if(TokenType == 'TRC20'){
           this.token20Send()
       }
   };
 
+  tokenSendWithTronLink = async() => {
+      let {to, token, amount, note, privateKey} = this.state;
+      let TokenName =  token.substring(0,token.length-6);
+      let {account, onSend} = this.props;
+      let data;
+      this.setState({isLoading: true, modal: null});
+
+      if (TokenName === "TRX") {
+          amount = amount * ONE_TRX;
+          data = await account.tronWeb.trx.sendTransaction(to, amount, false);
+          console.log('success',data)
+      }
+
+      //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
+
+      if (data.result) {
+          this.refreshTokenBalances();
+
+          onSend && onSend();
+          //two work flows!
+
+          this.setState({
+              sendStatus: 'success',
+              isLoading: false,
+          });
+      } else {
+          this.setState({
+              sendStatus: 'failure',
+              isLoading: false,
+          });
+
+          setTimeout(() => {
+              this.setState({
+                  sendStatus: 'waiting',
+              });
+          }, 2000);
+      }
+  }
 
   token10Send = async () => {
     let {to, token, amount, note, privateKey} = this.state;
