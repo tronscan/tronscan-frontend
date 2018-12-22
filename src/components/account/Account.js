@@ -637,10 +637,21 @@ class Account extends Component {
   unfreezeAssets = async () => {
     let {account} = this.props;
     let {privateKey} = this.state;
+    let res;
     this.hideModal();
+      if(this.state.isTronLink === 1){
+          const { tronWeb } = account;
+          const unSignTransaction = await tronWeb.fullNode.request('wallet/unfreezeasset', {
+              owner_address: tronWeb.defaultAddress.hex,
+          }, 'post');
+          const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+          res = result;
+      } else {
+          let {success} = await Client.unfreezeAssets(account.address)(account.key);
+          res = success;
+      }
 
-    let {success} = await Client.unfreezeAssets(account.address)(account.key);
-    if (success) {
+    if (res) {
       this.setState({
         modal: (
             <SweetAlert success title={tu("tokens_unfrozen")} onConfirm={this.hideModal}>
