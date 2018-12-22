@@ -73,7 +73,6 @@ class SendForm extends React.Component {
           }else {
               this.token10Send()
           }
-
       }else if(TokenType == 'TRC20'){
           this.token20Send()
       }
@@ -83,18 +82,21 @@ class SendForm extends React.Component {
       let {to, token, amount, note, privateKey} = this.state;
       let TokenName =  token.substring(0,token.length-6);
       let {account, onSend} = this.props;
-      let data;
+      let result,success;
       this.setState({isLoading: true, modal: null});
 
       if (TokenName === "TRX") {
           amount = amount * ONE_TRX;
-          data = await account.tronWeb.trx.sendTransaction(to, amount, false);
-          console.log('success',data)
+          result = await account.tronWeb.trx.sendTransaction(to, amount, false);
+          success = result.result;
+      }else{
+          result = await account.tronWeb.trx.sendToken(to, amount, TokenName, false);
+          success = result.result;
       }
 
       //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
 
-      if (data.result) {
+      if (success) {
           this.refreshTokenBalances();
 
           onSend && onSend();

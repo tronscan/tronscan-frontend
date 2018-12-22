@@ -77,8 +77,8 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
-        //API_URL: process.env.API_URL || `https://wlcyapi.tronscan.org`,
-        API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
+        API_URL: process.env.API_URL || `https://wlcyapi.tronscan.org`,
+        //API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
         NET: process.env.NET || `mainnet`,
         DESKTOP: process.env.DESKTOP || `false`,
       }
