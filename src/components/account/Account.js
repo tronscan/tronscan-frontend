@@ -117,7 +117,7 @@ class Account extends Component {
       let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       //if(account.tronWeb.eventServer){
-          tokens20.map(async item =>{
+      tokens20 &&  tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
               let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
@@ -889,6 +889,11 @@ class Account extends Component {
   changeGithubURL = async () => {
     this.setState({
       modal: (
+        this.state.isTronLink === 1?
+          <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
+              {tu("change_login_method")}
+          </SweetAlert>
+          :
           <SweetAlert
               input
               showCancel
@@ -960,13 +965,10 @@ class Account extends Component {
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");
     if(this.state.isTronLink === 1) {
-        <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
-
-        </SweetAlert>
         // const { tronWeb } = account;
         // const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
         // await transactionResultManager(unSignTransaction,tronWeb)
-
+        return;
     } else {
         await Client.updateSuperRepresentative(key, {
             address: currentWallet.address,
@@ -1479,7 +1481,8 @@ class Account extends Component {
                                   onClick={() => {
                                     this.claimRewards()
                                   }}
-                                  disabled={currentWallet.representative.allowance === 0}>
+                                  disabled={currentWallet.representative.allowance === 0}
+                          >
                             {tu("claim_rewards")}
                           </button>
                           {
@@ -1552,7 +1555,8 @@ class Account extends Component {
                       }
                     </div>
                   </div>
-                </div> :
+                </div>
+                :
                 <div className="row mt-3">
                   <div className="col-md-12">
                     <div className="card">

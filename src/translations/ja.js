@@ -1370,6 +1370,8 @@ export const messages = {
     "sign_in_TRONlink_warning":"TRONlinkをインストールしてページを更新してください",
     "sign_in_TRONlink":"TRONlinkでログイン",
     "uninstall_TRONlink":"まだTRONlinkをインストールしていない？ ここをクリック",
+    "change_login_method":"TRONlinkログインは現在この機能をサポートしていません。プライベートキーまたはキーストアファイルを使用してログインしてください。"
+
 
 }
 
