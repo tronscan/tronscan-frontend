@@ -83,14 +83,15 @@ class SendForm extends React.Component {
       let TokenName =  token.substring(0,token.length-6);
       let {account, onSend} = this.props;
       let result,success;
+      const { tronWeb } = account;
       this.setState({isLoading: true, modal: null});
 
       if (TokenName === "TRX") {
           amount = amount * ONE_TRX;
-          result = await account.tronWeb.trx.sendTransaction(to, amount, false);
+          result = await tronWeb.trx.sendTransaction(to, amount, false);
           success = result.result;
       }else{
-          result = await account.tronWeb.trx.sendToken(to, amount, TokenName, false);
+          result = await tronWeb.trx.sendToken(to, amount, TokenName, false);
           success = result.result;
       }
 

@@ -609,12 +609,31 @@ class Account extends Component {
   unfreeze = async () => {
     let {account} = this.props;
     let {privateKey,selectedResource} = this.state;
+    let res,type;
     this.hideModal();
     if(!selectedResource) {
         selectedResource = 0
     }
-    let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
-    if (success) {
+    if (Lockr.get("islogin")) {
+      const { tronWeb } = account;
+      if(!selectedResource){
+        type = 'BANDWIDTH';
+      }else{
+        type = 'ENERGY';
+      }
+        try {
+            const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58);
+            const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+            res = result;
+        } catch (e) {
+             console.log(e)
+        }
+    }else {
+      let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
+      res = success
+    }
+
+    if (res) {
       this.setState({
         modal: (
             <SweetAlert success title="TRX Unfrozen" onConfirm={this.hideFreezeModal}>

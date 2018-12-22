@@ -19,6 +19,8 @@ import Confirm from "./Confirm.js"
 import xhr from "axios/index";
 import {TronLoader} from "../common/loaders";
 import {Steps} from 'antd';
+import {transactionResultManager} from "../../utils/tron";
+import Lockr from "lockr";
 
 class TokenCreate extends Component {
 
@@ -114,7 +116,8 @@ class TokenCreate extends Component {
   submit = async () => {
     let {account, intl} = this.props;
     let {logoData} = this.state;
-
+    let res,createInfo,errorInfo;
+    const { tronWeb } = account;
     this.setState({
       modal:
           <SweetAlert
@@ -128,25 +131,57 @@ class TokenCreate extends Component {
           </SweetAlert>,
       loading: true
     });
+    console.log('this.state.startTime',this.state.startTime)
+    console.log('this.state.startTime',this.state.endTime)
+      if (Lockr.get("islogin")) {
+              const unSignTransaction = await tronWeb.transactionBuilder.createToken({
+                  name: trim(this.state.name),
+                  abbreviation: trim(this.state.abbr),
+                  description: this.state.description,
+                  url: this.state.url,
+                  totalSupply: this.state.totalSupply,
+                  tokenRatio: this.state.numberOfCoins,
+                  trxRatio: this.state.numberOfTron * ONE_TRX,
+                  saleStart: Date.parse(this.state.startTime),
+                  saleEnd:  Date.parse(this.state.endTime),
+                  freeBandwidth:0,
+                  freeBandwidthLimit:0,
+                  frozenAmount:this.state.frozenSupply[0].amount,
+                  frozenDuration:this.state.frozenSupply[0].days,
+              }, tronWeb.defaultAddress.hex).catch (function (e) {
+                  errorInfo = e;
+              })
+              console.log('unSignTransaction',unSignTransaction)
+              if(!unSignTransaction){
+                  res = false;
+              }else{
+                  const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+                  res = result;
+              }
 
-    try {
-      let result = await Client.createToken({
-        address: account.address,
-        name: trim(this.state.name),
-        shortName: trim(this.state.abbr),
-        totalSupply: this.state.totalSupply,
-        num: this.state.numberOfCoins,
-        trxNum: this.state.numberOfTron * ONE_TRX,
-        startTime: this.state.startTime?this.state.startTime:"",
-        endTime: this.state.endTime?this.state.endTime:"",
-        description: this.state.description,
-        url: this.state.url,
-        frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
-      })(account.key);
 
-      if (result.success) {
+      }else {
+           createInfo = await Client.createToken({
+              address: account.address,
+              name: trim(this.state.name),
+              shortName: trim(this.state.abbr),
+              totalSupply: this.state.totalSupply,
+              num: this.state.numberOfCoins,
+              trxNum: this.state.numberOfTron * ONE_TRX,
+              startTime: this.state.startTime?this.state.startTime:"",
+              endTime: this.state.endTime?this.state.endTime:"",
+              description: this.state.description,
+              url: this.state.url,
+              frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
+          })(account.key);
+          res = createInfo.success
+          errorInfo = createInfo.message;
+      }
 
+
+      if (res) {
         this.setState({
+          loading: false,
           isTokenCreated: true,
           modal:
               <SweetAlert
@@ -170,6 +205,7 @@ class TokenCreate extends Component {
         }
       } else {
         this.setState({
+          loading: false,
           modal: (
               <SweetAlert
                   error
@@ -178,15 +214,11 @@ class TokenCreate extends Component {
                   onConfirm={this.hideModal}
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
-                {result.message}
+                  {errorInfo}
               </SweetAlert>
           )
         });
       }
-
-    } finally {
-      this.setState({loading: false});
-    }
   };
 
   isLoggedIn = () => {
