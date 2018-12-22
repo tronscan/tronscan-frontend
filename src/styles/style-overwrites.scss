@@ -3,7 +3,11 @@ body{
     .modal-dialog{
       max-width: 600px;
       .modal-title{
-        flex-direction: column;
+        &>div{
+          white-space: nowrap;
+        }
+        //flex-direction: column;
+        //align-items: flex-start !important;
       }
     }
     .trade_pair_title{

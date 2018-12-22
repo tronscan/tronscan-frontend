@@ -576,11 +576,18 @@ class Account extends Component {
   };
 
   claimRewards = async () => {
-
+    let res;
     let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
-    let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
-    if (success) {
+    if(this.state.isTronLink === 1){
+        const { tronWeb } = account;
+        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58);
+        const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+        res = result;
+    } else {
+        let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
+        res = success;
+    }
+    if (res) {
       this.setState({
         modal: (
             <SweetAlert success title={tu("rewards_claimed")} onConfirm={this.hideModal}>
@@ -592,8 +599,7 @@ class Account extends Component {
       this.setState({
         modal: (
             <SweetAlert danger title={tu("could_not_claim_rewards")} onConfirm={this.hideModal}>
-              {tu("claim_rewards_error_message")}<br/>
-              {code}
+              {tu("claim_rewards_error_message")}
             </SweetAlert>
         )
       });
@@ -675,7 +681,6 @@ class Account extends Component {
     if(this.state.isTronLink === 1){
         const { tronWeb } = account;
         const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {account_name:tronWeb.fromUtf8(name),owner_address:tronWeb.defaultAddress.hex}, 'post');
-        console.log(unSignTransaction);
         const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
         res = result;
     }else{
@@ -950,23 +955,26 @@ class Account extends Component {
   };
 
   updateGithubURL = async (url) => {
-
     let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
     let key = await Client.auth(account.key);
-
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");
+    if(this.state.isTronLink === 1) {
+        <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
 
-    await Client.updateSuperRepresentative(key, {
-      address: currentWallet.address,
-      githubLink,
-    });
+        </SweetAlert>
+        // const { tronWeb } = account;
+        // const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
+        // await transactionResultManager(unSignTransaction,tronWeb)
 
+    } else {
+        await Client.updateSuperRepresentative(key, {
+            address: currentWallet.address,
+            githubLink,
+        });
+    }
     this.loadAccount();
   };
-
-
   changeWebsite = () => {
     this.setState({
       modal: (
