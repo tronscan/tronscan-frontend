@@ -143,8 +143,8 @@ class TokenList extends Component {
                 render: (text, record, index) => {
                     return <div>
                         {
-                            record.price && record.total_supply?
-                                <div><FormattedNumber value={record.total_supply * record.price} maximumFractionDigits={1}/> TRX</div>:
+                            record.price && record.total_supply_with_decimals?
+                                <div><FormattedNumber value={record.total_supply_with_decimals * record.price} maximumFractionDigits={1}/> TRX</div>:
                                 <span style={{color: '#666666'}}>-</span>
                         }
                     </div>
@@ -171,12 +171,12 @@ class TokenList extends Component {
             },
             {
                 title: intl.formatMessage({id: 'total_tokens'}),
-                dataIndex: 'total_supply',
+                dataIndex: 'total_supply_with_decimals',
                 key: 'total_supply',
                 render: (text, record, index) => {
                     if (text === null)
                         text = 0;
-                    return <div><FormattedNumber value={record.total_supply / (Math.pow(10,record.decimals))} maximumFractionDigits={1}/></div>
+                    return <div><FormattedNumber value={record.total_supply_with_decimals / (Math.pow(10,record.decimals))} maximumFractionDigits={1}/></div>
                 },
                 align: 'center',
                 className: 'ant_table _text_nowrap'

@@ -1370,6 +1370,12 @@ export const messages = {
     "create_deal_pair_input_tip":"No less than 100,000 TRX in the pool",
     "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
     "publish_price":"Your offering price is",
-    "pool_revert":"The balance of TRX in pool should be no less than 100,000"
+    "pool_revert":"The balance of TRX in pool should be no less than 100,000",
+    "sign_in_with_TRONlink":"Sign in with TRONlink",
+    "import_a_wallet":"Import a wallet",
+    "sign_in_TRONlink_warning":"Please install TRONlink and refresh the page",
+    "sign_in_TRONlink":"Sign in with TRONlink",
+    "uninstall_TRONlink":"Haven't installed TRONlink yet? Click here",
+    "change_login_method":"TRONlink login does not support this function at present, please use private key or keystore file to login ."
 
 };

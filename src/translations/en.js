@@ -1517,5 +1517,6 @@ export const messages = {
   "sign_in_TRONlink_warning":"Please install TRONlink and refresh the page",
   "sign_in_TRONlink":"Sign in with TRONlink",
   "uninstall_TRONlink":"Haven't installed TRONlink yet? Click here",
+  "change_login_method":"TRONlink login does not support this function at present, please use private key or keystore file to login ."
 
 };

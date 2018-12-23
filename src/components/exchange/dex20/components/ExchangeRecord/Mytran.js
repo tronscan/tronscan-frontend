@@ -30,19 +30,19 @@ class Mytran extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { is_update_tran } = this.props
-    console.log(is_update_tran)
-    if(is_update_tran){
+    let { is_update_tran } = this.props
+    if(prevProps.is_update_tran != is_update_tran){
       this.getData({current: 1, pageSize:15})
       setUpdateTran(false)
     }
   }
 
   getData = async (palyload) => {
-    const {selectData, currentWallet} = this.props
+    const {selectData,account} = this.props
+   
     if(selectData.exchange_id){
       const params = {
-        uAddr: currentWallet.address, 
+        uAddr: account.address, 
         start: (palyload.current-1) * palyload.pageSize,
         limit: palyload.pageSize,
         status: '1,2,3'
@@ -152,10 +152,12 @@ class Mytran extends Component {
 
 
 function mapStateToProps(state) {
+  
   return {
     selectData: state.exchange.data,
     currentWallet: state.wallet.current,
     activeLanguage:  state.app.activeLanguage,
+    account:state.app.account,
     is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false
   };
 }

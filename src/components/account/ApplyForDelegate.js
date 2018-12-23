@@ -6,6 +6,7 @@ import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {WITNESS_CREATE_COST} from "../../constants";
 import {FormattedNumber} from "react-intl";
+import {transactionResultManager} from "../../utils/tron";
 
 const {isWebUri} = require('valid-url');
 
@@ -34,14 +35,22 @@ class ApplyForDelegate extends Component {
   };
 
   doApply = async () => {
-    let {account, privateKey} = this.props;
+    let res;
+    let {account,isTronLink} = this.props;
     let {url} = this.state;
 
     this.setState({loading: true});
-
-    let {success} = await Client.applyForDelegate(account.address, url)(account.key);
+    if(isTronLink === 1){
+      const {tronWeb} = account;
+      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex,url);
+      const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
+      res = result;
+    } else {
+      let {success} = await Client.applyForDelegate(account.address, url)(account.key);
+      res = success;
+    }
     this.setState({loading: false});
-    if (success) {
+    if (res) {
       this.confirm();
     } else {
       this.setState({
