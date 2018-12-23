@@ -496,7 +496,7 @@ export const routes = [
             [
                   "Documentation",
                 {
-                    url: "https://dn-peiwo-web.qbox.me/What_is_TRON1.4.pdf",
+                    url: "https://tron.network/static/doc/white_paper_v_2_0.pdf",
                     icon: "fa fa-globe",
                     label: "what_is_tron"
                 },
