@@ -1441,6 +1441,7 @@ export const messages = {
    "trc20_cancel":"取消",
    "trc20_confirm":"确定",
    "trc20_prompt":"提示",
+   "trc20_cancel_order_fail":"取消订单失败",
    "trc20_order_success":"提交成功",
    "trc20_order_fail":"提交失败",
    "trc20_downLoad_wallet1":"请下载",

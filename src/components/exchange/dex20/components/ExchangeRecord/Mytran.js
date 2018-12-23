@@ -11,6 +11,8 @@ import {Client20} from "../../../../../services/api";
 import {connect} from "react-redux";
 import { upperFirst } from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
+import {setUpdateTran} from '../../../../../actions/exchange'
+
 
 class Mytran extends Component {
   constructor(props) {
@@ -27,12 +29,14 @@ class Mytran extends Component {
     this.getData({current: 1, pageSize:15});
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { selectData } = this.props
-  //   if((prevProps.selectData.exchange_id != selectData.exchange_id)){
-  //     this.getData()
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { is_update_tran } = this.props
+    console.log(is_update_tran)
+    if(is_update_tran){
+      this.getData({current: 1, pageSize:15})
+      setUpdateTran(false)
+    }
+  }
 
   getData = async (palyload) => {
     const {selectData, currentWallet} = this.props
@@ -152,10 +156,12 @@ function mapStateToProps(state) {
     selectData: state.exchange.data,
     currentWallet: state.wallet.current,
     activeLanguage:  state.app.activeLanguage,
+    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false
   };
 }
 
 const mapDispatchToProps = {
+  setUpdateTran
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Mytran));
