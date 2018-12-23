@@ -364,7 +364,7 @@ class Transaction extends Component {
               )}
             </FormItem>
             <div className="mb-3">
-                { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} 
+                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.balance + " " + secondBalance.name: 0}</span>} 
             </div>
             <div className="mb-3">
             <Slider
@@ -372,6 +372,7 @@ class Transaction extends Component {
             //   value={trs_proportion}
               defaultValue={0}
               tipFormatter={formatter}
+              disabled={!account.address}
               onChange={(value) => this.slideChangebuy(value)}
             />
           </div>
@@ -466,10 +467,10 @@ class Transaction extends Component {
               )}
             </FormItem>
             <div className="mb-3">
-            {firstBalance && firstBalance.name && (
+            { (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}
-                {firstBalance.balance + " " + firstBalance.name}
+                {(firstBalance && firstBalance.name)?firstBalance.balance + " " + firstBalance.name: 0}
                 </span>
             )}             
             </div>
@@ -478,6 +479,7 @@ class Transaction extends Component {
               marks={marks}
               defaultValue={0}
               tipFormatter={formatter}
+              disabled={!account.address}
               onChange={this.slideChangesell}
             />
           </div>
