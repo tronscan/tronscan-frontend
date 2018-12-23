@@ -102,7 +102,7 @@ class TokenHolders extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <div><FormattedNumber
-              value={(((record.balance) / token.total_supply) * 100)}
+              value={(((record.balance) / token.total_supply_with_decimals) * 100)}
               maximumFractionDigits={6}
           /> %
           </div>

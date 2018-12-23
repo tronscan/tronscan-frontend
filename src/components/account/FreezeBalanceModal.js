@@ -9,6 +9,8 @@ import {Client} from "../../services/api";
 import {ONE_TRX} from "../../constants";
 import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
+import {transactionResultManager} from "../../utils/tron";
+import Lockr from "lockr";
 
 class FreezeBalanceModal extends React.PureComponent {
 
@@ -71,9 +73,24 @@ class FreezeBalanceModal extends React.PureComponent {
 
     let {account, onError, privateKey} = this.props;
     let {amount,selectedResource} = this.state;
+    let res,type;
     this.setState({loading: true});
-    let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
-    if (success) {
+    if (Lockr.get("islogin")) {
+        const { tronWeb } = account;
+        if(!selectedResource){
+            type = 'BANDWIDTH';
+        }else{
+            type = 'ENERGY';
+        }
+        const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58);
+        const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+        res = result;
+    }else {
+        let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
+        res = success
+    }
+
+    if (res) {
       this.confirmModal({amount});
       this.setState({loading: false});
     } else {

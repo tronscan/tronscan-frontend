@@ -32,7 +32,7 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("total_supply")}:</th>
               <td>
-                <FormattedNumber value={token.total_supply / (Math.pow(10,token.decimals))}/>
+                <FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))}/>
               </td>
             </tr>
             <tr>
