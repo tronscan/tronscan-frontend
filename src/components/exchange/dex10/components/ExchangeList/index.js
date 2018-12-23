@@ -55,7 +55,6 @@ class ExchangeList extends React.Component {
     componentWillUnmount() {
         const {time} = this.state;
         clearInterval(time);
-        Lockr.set("DEX", 'Main');
     }
     getExchangesAllList = async () =>{
         let { exchangesAllList }= await Client.getexchangesAllList();

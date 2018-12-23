@@ -1487,6 +1487,13 @@ export const messages = {
    "trc20_token_info_ths_6": "24h成交量",
    "trc20_token_info_ths_7": "24h交易量",
    "trc20_new_price":"最新价",
+   "trc20_exchange_status": "交易对状态",
+   "trc20_examine": "已审核",
+   "trc20_unexamine": "未审核",
+   "trc20_id": "ID",
+   "trc20_first_token": "名称",
+   "trc20_balance": "余额",
+   "trc20_second_token": "名称",
 
 
     /*

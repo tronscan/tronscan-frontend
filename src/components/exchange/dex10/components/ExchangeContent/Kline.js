@@ -257,7 +257,6 @@ class Kline extends React.Component {
     const { selectData } = this.props
     Client.getIssuedAsset(selectData.first_owner_address)
       .then(({data}) => {
-        console.log(data)
         this.setState({tokeninfoItem: data.data[0]})
       })
    
@@ -266,7 +265,7 @@ class Kline extends React.Component {
   render() {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
-    console.log(tokeninfoItem)
+    console.log(selectData)
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -298,23 +297,37 @@ class Kline extends React.Component {
         </div>
         {(tokeninfoItem && detailShow) &&
         <div className="kline_detail p-3">
-          <p className="kline_detail__inr"><b className="mr-2">{tu('trc20_token_info_Token_Info')}</b>{tokeninfoItem.description}</p>
+          {/* <p className="kline_detail__inr"><b className="mr-2">{tu('trc20_token_info_Token_Info')}</b>{tokeninfoItem.description}</p> */}
           <ul className="">
             <li>
-              <p className="title">{tu('trc20_token_info_Total_Name')}</p>
-              <p className="value">{tokeninfoItem.name}</p>
+              <p className="title">{tu('trc20_exchange_status')}</p>
+              <p className="value">
+              {
+                 selectData.status == 0?
+                 <span className="badge badge-success-block text-uppercase">{tu("trc20_examine")}</span> :
+                 <span className="badge badge-danger-block text-uppercase">{tu("trc20_unexamine")}</span>
+              }
+              </p>
             </li>
             <li>
-              <p className="title">{tu('trc20_token_info_Token_Symbol')}</p>
-              <p className="value">{tokeninfoItem.abbr}</p>
+              <p className="title">{tu('trc20_id')}</p>
+              <p className="value">{selectData.exchange_id}</p>
             </li>
             <li>
-              <p className="title">{tu('trc20_token_info_Total_Supply')}</p>
-              <p className="value"><FormattedNumber value={tokeninfoItem.availableSupply}/></p>
+              <p className="title">{tu('trc20_first_token')}</p>
+              <p className="value">{selectData.first_token_abbr}</p>
             </li>
             <li>
-              <p className="title">{tu('trc20_token_info_Website')}</p>
-              <a href={tokeninfoItem.home_page} target="_bank">{tokeninfoItem.url}</a>
+              <p className="title">{tu('trc20_balance')}</p>
+              <p className="value"><FormattedNumber value={selectData.first_token_balance}/></p>
+            </li>
+            <li>
+              <p className="title">{tu('trc20_second_token')}</p>
+              <p className="value">{selectData.second_token_abbr}</p>
+            </li>
+            <li>
+              <p className="title">{tu('trc20_balance')}</p>
+              <p className="value"><FormattedNumber value={selectData.second_token_balance}/></p>
             </li>
           </ul>
         </div>}

@@ -1498,6 +1498,13 @@ export const messages = {
     "trc20_token_info_ths_6": "24h Volume",
     "trc20_token_info_ths_7": "24h Volume",
     "trc20_new_price":"Latest price",
+    "trc20_exchange_status": "Trading Pair Status",
+   "trc20_examine": "Reviewed",
+   "trc20_unexamine": "Unreviewed",
+   "trc20_id": "ID",
+   "trc20_first_token": "First Token",
+   "trc20_balance": "balance",
+   "trc20_second_token": "Second Token",
 
 
   /*

@@ -60,6 +60,12 @@ class ApiClient20 {
     });
     return data;
   }
+  async getExchangeCalc(query) {
+    let {data}  = await xhr.get(`https://wlcyapi.tronscan.org/api/exchange/calc`,{
+      params: query
+    });
+    return data;
+  }
 
   async  getCurrentPrice(id) {
     let {data} = await xhr.get(`${this.apiUrl}/api/exchange/topprice/${id}`)

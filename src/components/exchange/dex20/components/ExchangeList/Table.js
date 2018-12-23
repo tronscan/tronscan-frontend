@@ -129,13 +129,12 @@ class ExchangeTable extends React.Component {
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
-    console.log(Lockr.get('DEX'), parsed)
+    console.log(currentData[0])
 
     // 更新数据
     if(dataSource.length){
         !parsed && Lockr.set('DEX', 'Main')
         if(!parsed || !currentData.length){
-            Lockr.set('DEX', 'Main')
             this.onSetUrl(dataSource[0])
         }else{
           this.onSetUrl(currentData[0], true)

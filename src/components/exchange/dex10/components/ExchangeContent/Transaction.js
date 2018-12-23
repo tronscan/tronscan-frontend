@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Button, Radio,Slider } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
 import { withRouter } from "react-router";
-import { Client } from "../../../../../services/api";
+import { Client, Client20 } from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { tu } from "../../../../../utils/i18n";
 import { connect } from "react-redux";
@@ -31,7 +31,11 @@ class Transaction extends Component {
       modal: null,
       firstBalance: {},
       secondBalance: {},
-      trs_proportion: 0
+      trs_proportion: 0,
+      buy_amount: 0,
+      buy_money: 0,
+      sell_amount: 0,
+      sell_money: 0
     };
   }
 
@@ -241,6 +245,50 @@ class Transaction extends Component {
     });
   };
 
+  slideChangebuy (value) {
+    clearTimeout(this.time)
+    this.time = setTimeout(() => {
+        const {secondBalance} = this.state
+        const {exchangeData} = this.props
+        const buyMoney = parseInt(secondBalance.balance * value / 100)
+
+        console.log(value, secondBalance)
+
+        Client20.getExchangeCalc({
+            exchangeID: exchangeData.exchange_id,
+            sell: buyMoney,
+            sellID: exchangeData.second_token_id
+        }).then(({buyTokenQuant}) => {
+            this.props.form.setFieldsValue({
+                second_quant_buy:buyMoney,
+                first_quant_buy: buyTokenQuant
+            })
+        })
+    },500)
+  }
+
+  slideChangesell = (value) => {
+    clearTimeout(this.time)
+    this.time = setTimeout(() => {
+        const {firstBalance} = this.state
+        const {exchangeData} = this.props
+        const sellMoney = parseInt(firstBalance.balance * value / 100)
+
+        console.log(value, firstBalance)
+
+        Client20.getExchangeCalc({
+            exchangeID: exchangeData.exchange_id,
+            sell: sellMoney,
+            sellID: exchangeData.first_token_id
+        }).then(({buyTokenQuant}) => {
+            this.props.form.setFieldsValue({
+                second_quant_sell:buyTokenQuant,
+                first_quant_sell: sellMoney
+            })
+        })
+    },500)
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     let { exchangeData, account, currentWallet, intl } = this.props;
@@ -325,10 +373,10 @@ class Transaction extends Component {
             <div className="mb-3">
             <Slider
               marks={marks}
-              value={trs_proportion}
+            //   value={trs_proportion}
               defaultValue={0}
               tipFormatter={formatter}
-            //   onChange={this.slideChange}
+              onChange={(value) => this.slideChangebuy(value)}
             />
           </div>
 
@@ -432,10 +480,9 @@ class Transaction extends Component {
             <div className="mb-3">
             <Slider
               marks={marks}
-              value={trs_proportion}
               defaultValue={0}
               tipFormatter={formatter}
-            //   onChange={this.slideChange}
+              onChange={this.slideChangesell}
             />
           </div>
             <FormItem>
