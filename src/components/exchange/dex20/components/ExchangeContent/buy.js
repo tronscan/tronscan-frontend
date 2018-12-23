@@ -180,6 +180,7 @@ class Buy extends Component {
                 })}
                 size="large"
                 type="text"
+                disabled={!account.address}
                 onKeyPress={e => this.onpress(e)}
                 onChange={this.handleValueBuy0}
                 onFocus={e => this.onfocus(e, 1)}
@@ -201,6 +202,7 @@ class Buy extends Component {
                 })}
                 size="large"
                 type="text"
+                disabled={!account.address}
                 onKeyPress={this.onpress}
                 onChange={this.handleValueBuy1}
                 onFocus={e => this.onfocus(e, 2)}
@@ -225,6 +227,7 @@ class Buy extends Component {
               marks={marks}
               value={trs_proportion}
               defaultValue={0}
+              disabled={!account.address}
               tipFormatter={formatter}
               onChange={this.slideChange}
             />

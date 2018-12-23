@@ -19,6 +19,8 @@ import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteTimer} from "../../actions/votes";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {transactionResultManager} from "../../utils/tron";
+import Lockr from "lockr";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -395,7 +397,7 @@ class VoteOverview extends React.Component {
   submitVotes = async () => {
     let {account} = this.props;
     let {votes, privateKey} = this.state;
-
+    let res;
     this.setState({submittingVotes: true,});
 
     let witnessVotes = {};
@@ -403,10 +405,21 @@ class VoteOverview extends React.Component {
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
-
-    let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
-
-    if (success) {
+      console.log('witnessVotes==========',witnessVotes)
+    if (Lockr.get("islogin")) {
+        const { tronWeb } = account;
+        try {
+            const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, tronWeb.defaultAddress.hex);
+            const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+            res = result;
+        } catch (e) {
+            console.log(e)
+        }
+    }else{
+        let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+        res = success
+    }
+    if (res) {
       setTimeout(() => this.props.reloadWallet(), 1200);
       setTimeout(() => this.setState({votesSubmitted: false,}), 5000);
 

@@ -20,7 +20,7 @@ export function Information({token}) {
   const tokenList = [
     { 
       name: 'total_supply', 
-      content: <FormattedNumber value={token.total_supply / (Math.pow(10,token.decimals))}/>
+      content: <FormattedNumber value={token.total_supply_with_decimals / (Math.pow(10,token.decimals))}/>
     },
     {
       name: 'contract_address',

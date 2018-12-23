@@ -1441,6 +1441,7 @@ export const messages = {
    "trc20_cancel":"取消",
    "trc20_confirm":"确定",
    "trc20_prompt":"提示",
+   "trc20_cancel_order_fail":"取消订单失败",
    "trc20_order_success":"提交成功",
    "trc20_order_fail":"提交失败",
    "trc20_downLoad_wallet1":"请下载",
@@ -1512,5 +1513,5 @@ export const messages = {
     "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
     "sign_in_TRONlink":"TRONlink登录",
     "uninstall_TRONlink":"还没有安装TRONlink？点击这里",
-
+    "change_login_method":"TRONlink登录暂不支持该功能，请您选择其他登录方式。",
 };

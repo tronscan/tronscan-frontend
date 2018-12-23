@@ -1453,6 +1453,7 @@ export const messages = {
     "trc20_confirm":"Yes",
     "trc20_prompt":"Warning",
     "trc20_order_success":"Submitted successfully",
+    "trc20_cancel_order_fail":"Cancel order fail",
     "trc20_order_fail":"Failure to submit",
     "trc20_downLoad_wallet1":"Please download wallet",
     "trc20_downLoad_wallet2":" to start your trade",
@@ -1523,5 +1524,6 @@ export const messages = {
   "sign_in_TRONlink_warning":"Please install TRONlink and refresh the page",
   "sign_in_TRONlink":"Sign in with TRONlink",
   "uninstall_TRONlink":"Haven't installed TRONlink yet? Click here",
+  "change_login_method":"TRONlink login does not support this function at present, please use private key or keystore file to login ."
 
 };

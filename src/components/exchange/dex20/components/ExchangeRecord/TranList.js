@@ -19,20 +19,21 @@ class TranList extends Component {
     this.state = {
       dataSource: [],
       columns: [],
+      getDataTime:null
       //time: null
     }
   }
 
 
   async componentDidMount() {
-    const { selectData } = this.props
+    let { selectData,getDataTime } = this.props
     await this.getData()
     this.getColumns();
-    const getDataTime = setInterval(() => {
+    const time = setInterval(() => {
       this.getData();
     }, 10000)
 
-    this.setState({time: getDataTime})
+    this.setState({getDataTime: time})
   }
 
   componentDidUpdate(prevProps) {
@@ -43,8 +44,8 @@ class TranList extends Component {
   }
 
   componentWillUnmount() {
-    const {time} = this.state
-    clearInterval(time);
+    const {getDataTime} = this.state
+    clearInterval(getDataTime);
   }
 
   getData = async () => {
