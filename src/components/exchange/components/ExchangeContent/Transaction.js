@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Form, Input, Button, Radio } from 'antd';
 import { QuestionMark } from "../../../common/QuestionMark";
+import {transactionResultManager} from "../../../../utils/tron";
 import { withRouter } from 'react-router'
 import {Client} from "../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -9,6 +10,8 @@ import {connect} from "react-redux";
 import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../constants";
 import {find} from 'lodash'
+import Lockr from "lockr";
+
 
 import NumericInput from './NumericInput'
 
@@ -77,8 +80,23 @@ class Transaction extends Component {
 
   exchangeTransaction = async (exchangeId, tokenId, quant, expected,values) => {
       let {account,currentWallet,exchangeData,intl} = this.props;
-      let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
-      if (success) {
+      let res,transactionHash;
+      if (Lockr.get("islogin")) {
+          const { tronWeb } = account;
+          const unSignTransaction = await tronWeb.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWeb.defaultAddress.hex);
+          const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
+          const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+          transactionHash = signedTransaction.txID;
+          console.log('tronWeb.defaultPrivateKey======', tronWeb.defaultPrivateKey)
+          console.log('signedTransaction======',signedTransaction.txID)
+          console.log('result======',result)
+          res = result;
+      }else {
+          let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+          transactionHash = transaction.hash
+          res = success
+      }
+      if (res) {
           this.props.form.resetFields();
           this.setState({
               modal: (
@@ -89,7 +107,7 @@ class Transaction extends Component {
           });
           await Client.exchange({
               creatorAddress:currentWallet.address,
-              trx_hash:transaction.hash,
+              trx_hash:transactionHash,
               exchangeID:exchangeData.exchange_id,
               first_token_id:exchangeData.first_token_id,
               first_token_quant:values.first_quant_buy?parseFloat(values.first_quant_buy):parseFloat(values.first_quant_sell),
