@@ -110,7 +110,6 @@ class RecentTransfers extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state.blockchain)
   return {
     transactions: state.blockchain.transactions,
     activeLanguage: state.app.activeLanguage,

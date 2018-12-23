@@ -43,8 +43,8 @@ class ExchangeList extends React.Component {
 
     componentDidMount() {
         const {getExchanges20} = this.props
-        this.getExchangesAllList();
         getExchanges20()
+        this.getExchangesAllList();
         const getDataTime = setInterval(() => {
             this.getExchangesAllList();
         }, 10000)
@@ -73,7 +73,7 @@ class ExchangeList extends React.Component {
     }
     getExchanges = async () => {
         let { exchangesAllList} = this.state;
-        let {exchange20List} = this.props
+        let {exchange20List = []} = this.props
         let { data } = await Client.getExchangesList();
         let tab,exchangesList;
         if(Lockr.get("DEX")){

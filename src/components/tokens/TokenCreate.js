@@ -131,8 +131,6 @@ class TokenCreate extends Component {
           </SweetAlert>,
       loading: true
     });
-    console.log('this.state.startTime',this.state.startTime)
-    console.log('this.state.startTime',this.state.endTime)
       if (Lockr.get("islogin")) {
               const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                   name: trim(this.state.name),
@@ -151,7 +149,6 @@ class TokenCreate extends Component {
               }, tronWeb.defaultAddress.hex).catch (function (e) {
                   errorInfo = e;
               })
-              console.log('unSignTransaction',unSignTransaction)
               if(!unSignTransaction){
                   res = false;
               }else{

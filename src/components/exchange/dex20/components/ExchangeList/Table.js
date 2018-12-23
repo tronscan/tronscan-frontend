@@ -129,7 +129,6 @@ class ExchangeTable extends React.Component {
     const currentData = filter(dataSource, item => {
       return item.exchange_id == parsed
     })
-    console.log(currentData[0])
 
     // 更新数据
     if(dataSource.length){

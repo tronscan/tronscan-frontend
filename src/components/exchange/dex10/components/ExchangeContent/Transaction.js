@@ -252,8 +252,6 @@ class Transaction extends Component {
         const {exchangeData} = this.props
         const buyMoney = parseInt(secondBalance.balance * value / 100)
 
-        console.log(value, secondBalance)
-
         Client20.getExchangeCalc({
             exchangeID: exchangeData.exchange_id,
             sell: buyMoney,
@@ -273,8 +271,6 @@ class Transaction extends Component {
         const {firstBalance} = this.state
         const {exchangeData} = this.props
         const sellMoney = parseInt(firstBalance.balance * value / 100)
-
-        console.log(value, firstBalance)
 
         Client20.getExchangeCalc({
             exchangeID: exchangeData.exchange_id,

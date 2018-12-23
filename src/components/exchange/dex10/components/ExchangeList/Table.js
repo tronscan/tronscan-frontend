@@ -115,7 +115,6 @@ class ExchangeTable extends React.Component {
   onSetUrl(record,type) {
     const {getSelectData} = this.props;
     if(record.token_type == 'dex20'){
-      debugger
       this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
       return
     }

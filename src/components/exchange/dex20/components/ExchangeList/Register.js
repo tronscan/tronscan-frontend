@@ -176,7 +176,6 @@ class Register extends Component{
                             },
                             type: 'buy'
                           }
-                          console.log('buy',obj)
                           setQuickSelect(obj)
                         }      
                 

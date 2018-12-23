@@ -265,7 +265,6 @@ class Kline extends React.Component {
   render() {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
-    console.log(selectData)
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}

@@ -25,7 +25,6 @@ class SearchTable extends React.Component {
     getColumns() {
         let {intl} = this.props;
         let {dataSource} = this.state;
-        console.log(dataSource)
         const columns = [{
             title: 'ID',
             key: 'ID',
