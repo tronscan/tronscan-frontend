@@ -50,6 +50,11 @@ class Register extends Component{
 
     }
 
+    componentWillUnmount(){
+      let { timer } = this.state;
+      clearInterval(timer)
+    }
+
     render(){
        
         let {sellList,buyList} = this.state;

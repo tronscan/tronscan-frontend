@@ -54,6 +54,13 @@ class Curorder extends Component {
     }
   }
 
+  componentWillUnmount(){
+    let { timer } = this.state;
+    clearInterval(timer);
+  }
+
+
+
   render() {
     let { list, modal } = this.state;
     let { intl } = this.props;
