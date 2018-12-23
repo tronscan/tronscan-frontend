@@ -1,5 +1,5 @@
 
-import {SET_SELECT_DATA, SET_SELECT_STATUS, SET_EXCHANGE20_LIST,SET_LASTPRICE,SET_EXCHANGE10_LIST,SET_EXCHANGEALL_LIST,SET_QUICKSELCET} from "../actions/exchange";
+import {SET_SELECT_DATA, SET_SELECT_STATUS, SET_EXCHANGE20_LIST,SET_LASTPRICE,SET_EXCHANGE10_LIST,SET_EXCHANGEALL_LIST,SET_QUICKSELCET,SET_UPDATE_TRAN} from "../actions/exchange";
 
 const initialState = {
   data: {},
@@ -48,6 +48,12 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         quick_select: action.obj,
+      }
+    }
+    case SET_UPDATE_TRAN:{
+      return {
+        ...state,
+        is_update_tran: action.is_update_tran,
       }
     }
     default:

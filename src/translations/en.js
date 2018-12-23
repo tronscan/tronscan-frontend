@@ -1453,6 +1453,7 @@ export const messages = {
     "trc20_confirm":"Yes",
     "trc20_prompt":"Warning",
     "trc20_order_success":"Submitted successfully",
+    "trc20_cancel_order_fail":"Cancel order fail",
     "trc20_order_fail":"Failure to submit",
     "trc20_downLoad_wallet1":"Please download wallet",
     "trc20_downLoad_wallet2":" to start your trade",

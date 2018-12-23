@@ -14,6 +14,7 @@ export const SET_EXCHANGEALL_LIST = 'SET_EXCHANGEALL_LIST';
 export const SET_COLLECTION = 'SET_COLLECTION';
 export const SET_LASTPRICE = 'SET_LASTPRICE';
 export const SET_QUICKSELCET = 'SET_QUICKSELCET'
+export const SET_UPDATE_TRAN = 'SET_UPDATE_TRAN'
 
 
 
@@ -56,6 +57,13 @@ export const setQuickSelect = (obj) => ({
   type: SET_QUICKSELCET,
   obj,
 });
+
+export const setUpdateTran = (is_update_tran)=>({
+  type: SET_UPDATE_TRAN,
+  is_update_tran,
+})
+
+
 
 export const getSelectData = (data, isSelect = false) => async (dispatch) => {
     dispatch(setSelectData(data));

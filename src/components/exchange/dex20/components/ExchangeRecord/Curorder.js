@@ -11,6 +11,8 @@ import { Wallet } from "ethers";
 import { Modal, Button } from "antd";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { TW } from "../../TW";
+import {setUpdateTran} from '../../../../../actions/exchange'
+
 
 const confirm = Modal.confirm;
 
@@ -207,10 +209,11 @@ class Curorder extends Component {
   }
 
   async cancleOrderFun(item) {
-    let { app } = this.props;
-    let tronweb = app.account ? app.account.tronweb : window.tronweb;
+    let { app ,setUpdateTran} = this.props;
+
+    let tronWeb = app.account ? app.account.tronWeb : window.tronWeb;
     try {
-      const _id = await TW.cancelOrder(item.orderID, tronweb);
+      const _id = await TW.cancelOrder(item.orderID, tronWeb);
       if (_id) {
         this.setState({
           modal: (
@@ -223,6 +226,9 @@ class Curorder extends Component {
             </SweetAlert>
           )
         });
+
+        setUpdateTran(true)
+
       }
     } catch (err) {
       this.setState({
@@ -257,7 +263,9 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setUpdateTran
+};
 
 export default connect(
   mapStateToProps,
