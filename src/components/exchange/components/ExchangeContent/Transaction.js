@@ -87,9 +87,6 @@ class Transaction extends Component {
           const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
           const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
           transactionHash = signedTransaction.txID;
-          console.log('tronWeb.defaultPrivateKey======', tronWeb.defaultPrivateKey)
-          console.log('signedTransaction======',signedTransaction.txID)
-          console.log('result======',result)
           res = result;
       }else {
           let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
