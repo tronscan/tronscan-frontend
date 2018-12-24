@@ -88,13 +88,16 @@ class Navigation extends React.Component {
   }
 
  reLoginWithTronLink = () => {
+     let {intl} = this.props;
      if (Lockr.get("islogin")) {
          let timer = null;
          let count = 0;
          timer = setInterval(() => {
              const tronWeb = window.tronWeb;
              if (tronWeb && tronWeb.defaultAddress.base58) {
-                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
+                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb).then(() => {
+                     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+                 });
                  this.setState({ address: tronWeb.defaultAddress.base58});
                  clearInterval(timer)
              } else {
@@ -354,6 +357,7 @@ class Navigation extends React.Component {
   };
 
   loginWithTronLink = () =>{
+      let {intl} = this.props;
       const { loginWarning } = this.state;
       const tronWeb = window.tronWeb;
       // 没有下载 tronlink
@@ -376,10 +380,10 @@ class Navigation extends React.Component {
       if (address) {
           //this.isauot = true
           Lockr.set("islogin", 1);
-          this.props.loginWithTronLink(address,tronWeb);
-          setTimeout(() => {
+          this.props.loginWithTronLink(address,tronWeb).then(() => {
+              toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
               this.setState({isImportAccount: false})
-          }, 1000)
+          });
       }
   };
 
