@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 import { upperFirst } from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
 import {setUpdateTran} from '../../../../../actions/exchange'
-
+import {TronLoader} from "../../../../common/loaders";
 
 class Mytran extends Component {
   constructor(props) {
@@ -20,7 +20,8 @@ class Mytran extends Component {
     this.state = {
       dataSource: [],
       columns: [],
-      total: 0
+      total: 0,
+      isLoading:true
     }
   }
 
@@ -32,6 +33,9 @@ class Mytran extends Component {
   componentDidUpdate(prevProps) {
     let { is_update_tran } = this.props
     if(prevProps.is_update_tran != is_update_tran){
+      this.setState({
+        isLoading:true
+      })
       this.getData({current: 1, pageSize:15})
       setUpdateTran(false)
     }
@@ -48,6 +52,9 @@ class Mytran extends Component {
         status: '1,2,3'
       }
       const {data, code} = await Client20.getCurrentList(params);
+      this.setState({
+        isLoading:false
+      })
       if(code === 0){
         this.setState({dataSource: data.rows, total: data.total})
       }
@@ -128,7 +135,7 @@ class Mytran extends Component {
   }
 
   render() {
-    let {dataSource, columns, total} = this.state
+    let {dataSource, columns, total,isLoading} = this.state
     if (!dataSource || dataSource.length === 0) {
       return (
         <div className="p-3 text-center no-data">{tu("trc20_no_data")}</div>
@@ -137,7 +144,8 @@ class Mytran extends Component {
 
     return (
       <div className="exchange__tranlist">
-          {this.getColumns()}
+      
+          {isLoading ? <TronLoader/> : this.getColumns()}
 
     </div>)
   }

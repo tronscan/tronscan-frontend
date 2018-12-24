@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {upperFirst} from 'lodash'
 import {dateFormat} from '../../../../../utils/DateTime'
 import {setLastprice} from '../../../../../actions/exchange'
+import {TronLoader} from "../../../../common/loaders";
 
 class TranList extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class TranList extends Component {
     this.state = {
       dataSource: [],
       columns: [],
-      getDataTime:null
+      getDataTime:null,
+      isLoading:true
       //time: null
     }
   }
@@ -29,6 +31,7 @@ class TranList extends Component {
     let { selectData,getDataTime } = this.props
     await this.getData()
     this.getColumns();
+    clearInterval(getDataTime);
     const time = setInterval(() => {
       this.getData();
     }, 10000)
@@ -37,9 +40,18 @@ class TranList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { selectData } = this.props
+    const { selectData,getDataTime } = this.props
     if((prevProps.selectData.exchange_id != selectData.exchange_id)){
-      this.getData()
+      clearInterval(getDataTime);
+      this.setState({
+        isLoading:true
+      })
+      this.getData();
+      const time = setInterval(() => {
+        this.getData();
+      }, 10000)
+  
+      this.setState({getDataTime: time})
     }
   }
 
@@ -52,6 +64,9 @@ class TranList extends Component {
     const {selectData,setLastprice} = this.props
     if(selectData.exchange_id){
       const {code,data} = await Client20.getTransactionList({limit: 20,start:0, pairID: selectData.exchange_id});
+      this.setState({
+        isLoading:false
+      })
       if(code === 0 && data){
         this.setState({dataSource: data.rows})
         let row0 = data.rows ? data.rows[0] : {price:0,type:0}
@@ -68,7 +83,7 @@ class TranList extends Component {
   }
 
   getColumns() {
-    let {dataSource} = this.state;
+    let {dataSource,isLoading} = this.state;
     let {intl,selectData} = this.props;
     let first_token =  selectData.fShortName ? '(' + selectData.fShortName + ')' : '';
     const columns = [
@@ -103,6 +118,8 @@ class TranList extends Component {
 
     
     return (
+      <div>
+      {isLoading ?  <TronLoader/> :
         <Table
             dataSource={dataSource}
             columns={columns}
@@ -111,6 +128,9 @@ class TranList extends Component {
                 return index
             }}
         />
+      }
+      </div>
+          
     )
   }
 
