@@ -1008,21 +1008,26 @@ class Account extends Component {
     this.loadAccount();
   };
   changeWebsite = () => {
-    this.setState({
-      modal: (
-          <SweetAlert
-              input
-              showCancel
-              cancelBtnBsStyle="default"
-              title={tu("change_website")}
-              placeHolder="https://"
-              onCancel={this.hideModal}
-              validationMsg={tu("you_must_enter_url")}
-              onConfirm={(name) => this.updateWebsite(name)}>
-            {tu("specify_the_url")}
-          </SweetAlert>
-      )
-    });
+      this.setState({
+              modal: (
+                  this.state.isTronLink === 1?
+                  <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
+                      {tu("change_login_method")}
+                  </SweetAlert>
+                  :
+                  <SweetAlert
+                      input
+                      showCancel
+                      cancelBtnBsStyle="default"
+                      title={tu("change_website")}
+                      placeHolder="https://"
+                      onCancel={this.hideModal}
+                      validationMsg={tu("you_must_enter_url")}
+                      onConfirm={(name) => this.updateWebsite(name)}>
+                      {tu("specify_the_url")}
+                  </SweetAlert>
+              )
+          });
   };
 
   applyForDelegate = () => {

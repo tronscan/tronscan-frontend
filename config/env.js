@@ -80,7 +80,7 @@ function getClientEnvironment(publicUrl) {
 
         //API_URL: process.env.API_URL || `https://wlcyapi.tronscan.org`,
         API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
-        //API_URL: process.env.API_URL || `https://api.shasta.tronscan.org`,
+        //API_URL: process.env.API_URL || `http://18.216.57.65:20112`,
 
         NET: process.env.NET || `mainnet`,
         DESKTOP: process.env.DESKTOP || `false`,
