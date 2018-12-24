@@ -69,7 +69,7 @@ class Account extends Component {
 
   componentDidUpdate(prevProps) {
     let {account} = this.props;
-    if ((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) {
+    if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink:Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
