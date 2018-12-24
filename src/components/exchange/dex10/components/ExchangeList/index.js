@@ -37,7 +37,8 @@ class ExchangeList extends React.Component {
             showSearch:false,
             activeIndex:'',
             optionalDisable:false,
-            searchAddId:false
+            searchAddId:false,
+            tagLock: true
         };
     }
 
@@ -124,10 +125,9 @@ class ExchangeList extends React.Component {
             }
         }
 
-        let newlist = _.concat(exchangesAllList,exchange20List)
+        let newlist = _.concat(exchange20List,exchangesAllList)
         let unreviewedTokenList = _(newlist)
             .filter(o => o['optionalBok'] == true)
-            .sortBy(o => -o.first_token_abbr)
             .value();
 
 
@@ -143,21 +143,28 @@ class ExchangeList extends React.Component {
     }
 
     handleAuditedToken = () => {
+        
         const {getSelectData} = this.props;
         const {auditedTokenList,optionalDisable} = this.state;
-        if(!optionalDisable) return;
-        Lockr.set("DEX", 'Main');
-        this.setState({
-            tokenAudited: true,
-            dataSource: auditedTokenList,
-            showSearch:false,
-        });
-        if(auditedTokenList.length > 0){
-            this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
-            getSelectData(auditedTokenList[0], true)
+        const {tagLock} = this.state
+        if(tagLock){
+            if(!optionalDisable) return;
+            Lockr.set("DEX", 'Main');
             this.setState({
-                activeIndex:auditedTokenList[0].exchange_id,
+                tokenAudited: true,
+                dataSource: auditedTokenList,
+                showSearch:false,
             });
+            if(auditedTokenList.length > 0){
+                this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
+                getSelectData(auditedTokenList[0], true)
+                this.setState({
+                    activeIndex:auditedTokenList[0].exchange_id,
+                });
+            }
+            setTimeout(() => {
+                this.setState({tagLock: true})
+            }, 1000);
         }
     }
 
@@ -260,6 +267,11 @@ class ExchangeList extends React.Component {
             searchAddId:false,
         })
     }
+    
+    gotoTrc20 = () => {
+        Lockr.set('DEX', 'Main')
+        this.props.history.push('exchange20')
+    }
 
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
@@ -288,7 +300,11 @@ class ExchangeList extends React.Component {
                         </ul>
                     </div>
                     <div className="dex-tab">
-                        <Link className={"btn btn-sm" } to="/exchange20"><span>TRC 20</span></Link>
+                        <div
+                            className={"btn btn-sm"}
+                            onClick={() => this.gotoTrc20()}>
+                            TRC 20
+                        </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>

@@ -38,7 +38,7 @@ class ExchangeTable extends React.Component {
               {
                 record.token_type == 'dex20'
                 ?<img src={require("../../../../../images/svg/20.svg")}/>
-                :<img src={require("../../../../../images/svg/10.png")}/>
+                :<img src={require("../../../../../images/svg/10.svg")}/>
               }
             </div>
           }
@@ -144,7 +144,6 @@ class ExchangeTable extends React.Component {
 
     // 更新数据
     if(dataSource.length){
-        !parsed && Lockr.set('DEX', 'Main')
         if(!parsed || !currentData.length){
             this.onSetUrl(dataSource[0])
         }else{
@@ -190,7 +189,7 @@ class ExchangeTable extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { dataSource } = this.props;
-    if ( dataSource.length && dataSource != prevProps.dataSource) {
+    if ( dataSource != prevProps.dataSource) {
        this.getData()
     }
   }

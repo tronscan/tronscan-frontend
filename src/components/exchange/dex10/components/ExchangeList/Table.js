@@ -39,7 +39,7 @@ class ExchangeTable extends React.Component {
               {
                 record.token_type == 'dex20'
                 ?<img src={require("../../../../../images/svg/20.svg")}/>
-                :<img src={require("../../../../../images/svg/10.png")}/>
+                :<img src={require("../../../../../images/svg/10.svg")}/>
               }
             </div>
           }
@@ -108,7 +108,6 @@ class ExchangeTable extends React.Component {
     })
     // 更新数据
     if(dataSource.length){
-      !parsed && Lockr.set('DEX', 'Main')
       if(!parsed || !currentData.length){
           this.onSetUrl(dataSource[0])
       }else{
@@ -126,6 +125,7 @@ class ExchangeTable extends React.Component {
 
   onSetUrl(record,type) {
     const {getSelectData} = this.props;
+    if(!record.exchange_id)return
     if(record.token_type == 'dex20'){
       this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
       return
@@ -156,7 +156,8 @@ class ExchangeTable extends React.Component {
   componentDidUpdate(prevProps) {
     let { dataSource,tab } = this.props;
 
-    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    // if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    if ( dataSource != prevProps.dataSource) {
        this.getData()
     }
   }

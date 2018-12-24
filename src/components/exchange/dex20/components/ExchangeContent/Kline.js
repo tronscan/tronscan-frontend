@@ -22,7 +22,7 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-    this.createWidget()
+    // this.createWidget()
   }
 
   componentDidUpdate (prevProps) {

@@ -100,11 +100,12 @@ class Transaction extends Component {
     const {buy_amount} = this.state
     e.preventDefault();
 
-    this.props.form.validateFields(
-      ["first_quant_buy", "second_quant_buy"],
+    this.props.form.validateFieldsAndScroll(
+      ["first_quant_buy"],
       (err, values) => {
         values.second_quant_buy = buy_amount
         if (!err) {
+          console.log(!err)
           let token_id =
             exchangeData.second_token_id == "TRX"
               ? "_"
@@ -134,9 +135,10 @@ class Transaction extends Component {
     const {sell_amount} = this.state
     e.preventDefault();
     this.props.form.validateFields(
-      ["first_quant_sell", "second_quant_sell"],
+      ["first_quant_sell"],
       (err, values) => {
         values.second_quant_buy = sell_amount
+        console.log(values)
         if (!err) {
           let token_id =
             exchangeData.first_token_id == "TRX"
@@ -334,14 +336,22 @@ class Transaction extends Component {
 
   validateBuyBanlace = (rule, value, callback) => {
     const {intl,exchangeData} = this.props
-    if (value == '0' || value == '') {
-      callback(new Error(intl.formatMessage({id: "enter_the_trading_amount"})))
-    } else if (value*exchangeData.price > this.state.secondBalance) {
-      callback(new Error(intl.formatMessage({id: "trc20_not_enough"})))
+    if (value*exchangeData.price > this.state.secondBalance.balance) {
+      callback(intl.formatMessage({id: "trc20_not_enough"}))
     } else {
       callback()
     }
   }
+
+  validateSellBanlace = (rule, value, callback) => {
+    const {intl} = this.props
+    if (value > this.state.firstBalance.balance) {
+      callback(intl.formatMessage({id: "trc20_not_enough"}))
+    } else {
+      callback()
+    }
+  }
+  
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -376,15 +386,13 @@ class Transaction extends Component {
             <FormItem>
               {getFieldDecorator("first_quant_buy", {
                 rules: [
-                  // {
-                  //   required: true,
-                  //   message: intl.formatMessage({
-                  //     id: "enter_the_trading_amount"
-                  //   })
-                  // }
                   {
-                    validator: this.validateBuyBanlace, trigger: 'blur'
-                  }
+                    required: true,
+                    message: intl.formatMessage({
+                      id: "enter_the_trading_amount"
+                    })
+                  },
+                  { validator: this.validateBuyBanlace }
                 ]
               })(
                 <NumericInput
@@ -495,7 +503,8 @@ class Transaction extends Component {
                     message: intl.formatMessage({
                       id: "enter_the_trading_amount"
                     })
-                  }
+                  },
+                  { validator: this.validateSellBanlace }
                 ]
               })(
                 <NumericInput

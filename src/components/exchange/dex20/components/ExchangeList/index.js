@@ -87,11 +87,8 @@ class ExchangeList extends React.Component {
         }else{
             let new20List = exchange20List.filter(item => item.isChecked)
             let newallList = exchangeallList? exchangeallList.filter(item => item.isChecked): []
-
             let unreviewedTokenList = _(new20List)
-            .concat(newallList)
-            .sortBy(o => -o.first_token_abbr)
-            .value();
+            .concat(newallList).value();
             this.setState({dataSource: unreviewedTokenList})
         }
     }
@@ -105,12 +102,19 @@ class ExchangeList extends React.Component {
                 Lockr.set('DEX', 'Main')
             }
             this.setData(type)
-            
+
             setTimeout(() => {
                 this.setState({tagLock: true})
             }, 1000);
         }
     }
+
+    gotoTrc10 = () => {
+        Lockr.set('DEX', 'Main')
+        this.props.history.push('exchange')
+    }
+
+    // https://debug.tronscan.org/#/exchange20?token=TRONdice/TRX&id=30
 
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
@@ -143,8 +147,11 @@ class ExchangeList extends React.Component {
                             onClick={() => this.handleSelectData(true)}>
                             TRC 20
                         </div>
-                        
-                        <Link className={"btn btn-sm" } to="/exchange"><span>TRC 10</span></Link>
+                        <div
+                            className={"btn btn-sm"}
+                            onClick={() => this.gotoTrc10()}>
+                            TRC 10
+                        </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}
                             onClick={() => this.handleSelectData(false)}>
