@@ -1372,5 +1372,5 @@ export const messages = {
     "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
     "sign_in_TRONlink":"TRONlink登录",
     "uninstall_TRONlink":"还没有安装TRONlink？点击这里",
-    "change_login_method":"TRONlink登录暂不支持该功能，请您选择其他登录方式。",
+    "change_login_method":"TRONlink登录暂不支持该功能，请您选择导入钱包登录。",
 };
