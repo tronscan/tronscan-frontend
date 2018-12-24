@@ -55,7 +55,6 @@ class ChangeNameModal extends Component {
     let {modal, name, disabled} = this.state;
 
     let [isValid, errorMessage] = this.isValid();
-
     if (modal) {
       return modal;
     }
@@ -74,7 +73,7 @@ class ChangeNameModal extends Component {
                 {errorMessage?
                     <div className="invalid-feedback text-center text-danger">
                       {errorMessage}
-                    </div>:""
+                    </div>:null
                 }
             </p>
             <div className="pt-3">
