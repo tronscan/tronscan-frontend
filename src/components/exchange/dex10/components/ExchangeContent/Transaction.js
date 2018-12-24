@@ -34,7 +34,9 @@ class Transaction extends Component {
       firstBalance: {},
       secondBalance: {},
       trs_proportion: 0,
-        timer: null
+      timer: null,
+      buy_amount: 0,
+      sell_amount: 0
     };
   }
 
@@ -54,7 +56,14 @@ class Transaction extends Component {
       prevProps.exchangeData != exchangeData ||
       prevProps.activeLanguage != activeLanguage
     ) {
+      if(currentWallet != null){
         this.getBalance()
+        clearInterval(this.state.timer);
+        const timer = setInterval(() => {
+          this.getBalance()
+        }, 10000);
+        this.setState({timer})
+      }
     }
     if (prevProps.exchangeData.exchange_id != exchangeData.exchange_id) {
       this.props.form.resetFields();
@@ -73,8 +82,6 @@ class Transaction extends Component {
         exchangeData,
         activeLanguage
     } = this.props;
-
-    const timer = setInterval(() => {
       if (currentWallet != null) {
         const first = find(currentWallet.tokenBalances, function(o) {
           return exchangeData.first_token_id === o.name;
@@ -82,24 +89,21 @@ class Transaction extends Component {
         const second = find(currentWallet.tokenBalances, function(o) {
           return exchangeData.second_token_id === o.name;
         }) || { balance: 0, name: exchangeData.second_token_id };
-
-        if(first||second){
-            this.setState({ firstBalance: first, secondBalance: second });
-        }
+        this.setState({ firstBalance: first, secondBalance: second });
       } else {
         this.setState({ firstBalance: {}, secondBalance: {} });
       }
-    }, 10000);
-    this.setState({timer})
   }
 
   handleSubmitBuy = e => {
     let { account, currentWallet, exchangeData } = this.props;
+    const {buy_amount} = this.state
     e.preventDefault();
 
     this.props.form.validateFields(
       ["first_quant_buy", "second_quant_buy"],
       (err, values) => {
+        values.second_quant_buy = buy_amount
         if (!err) {
           let token_id =
             exchangeData.second_token_id == "TRX"
@@ -111,9 +115,8 @@ class Transaction extends Component {
               : values.second_quant_buy;
           let expected =
             exchangeData.first_token_id == "TRX"
-              ? values.first_quant_buy * ONE_TRX
-              : values.first_quant_buy;
-
+              ? 1/ONE_TRX
+              : 1;
           this.exchangeTransaction(
             exchangeData.exchange_id,
             token_id,
@@ -128,10 +131,12 @@ class Transaction extends Component {
 
   handleSubmitSell = e => {
     let { account, currentWallet, exchangeData } = this.props;
+    const {sell_amount} = this.state
     e.preventDefault();
     this.props.form.validateFields(
       ["first_quant_sell", "second_quant_sell"],
       (err, values) => {
+        values.second_quant_buy = sell_amount
         if (!err) {
           let token_id =
             exchangeData.first_token_id == "TRX"
@@ -143,9 +148,8 @@ class Transaction extends Component {
               : parseFloat(values.first_quant_sell);
           let expected =
             exchangeData.second_token_id == "TRX"
-              ? values.second_quant_sell * ONE_TRX
-              : values.second_quant_sell;
-
+              ? 1
+              :1;
           this.exchangeTransaction(
             exchangeData.exchange_id,
             token_id,
@@ -252,28 +256,44 @@ class Transaction extends Component {
   };
   handleSecondValueBuy = async value => {
     let { exchangeData } = this.props;
-    this.props.form.setFieldsValue({
-      second_quant_buy:
-        exchangeData.second_token_id == "TRX"
-          ? parseFloat(value * 1.01 * exchangeData.price).toFixed(6)
-          : value * exchangeData.price * 1.01
-    });
+    // this.props.form.setFieldsValue({
+    //   second_quant_buy:
+    //     exchangeData.second_token_id == "TRX"
+    //       ? parseFloat(value * 1.01 * exchangeData.price).toFixed(6)
+    //       : value * exchangeData.price * 1.01
+    // });
+    this.setState({
+      buy_amount: exchangeData.second_token_id == "TRX"
+      ? parseFloat(value * 1.01 * exchangeData.price).toFixed(6)
+      : value * exchangeData.price * 1.01
+    })
   };
 
   handleSecondValueSell = async value => {
     let { exchangeData } = this.props;
-    this.props.form.setFieldsValue({
-      second_quant_sell:
+    // this.props.form.setFieldsValue({
+    //   second_quant_sell:
+    //     exchangeData.second_token_id == "TRX"
+    //       ? parseFloat(value * 0.99 * exchangeData.price).toFixed(6)
+    //       : value * exchangeData.price * 0.99
+    // });
+    const {buyTokenQuant} = await Client20.getExchangeCalc({
+      exchangeID: exchangeData.exchange_id,
+      sell: value,
+      sellID: exchangeData.first_token_id
+    })
+    this.setState({
+      sell_amount:
         exchangeData.second_token_id == "TRX"
-          ? parseFloat(value * 0.99 * exchangeData.price).toFixed(6)
-          : value * exchangeData.price * 0.99
+          ? parseFloat(buyTokenQuant ).toFixed(6)
+          : buyTokenQuant
     });
   };
 
   slideChangebuy (value) {
     clearTimeout(this.time)
     this.time = setTimeout(() => {
-        const {secondBalance} = this.state
+        const {secondBalance,buy_amount} = this.state
         const {exchangeData} = this.props
         const buyMoney = parseInt(secondBalance.balance * value / 100)
 
@@ -283,9 +303,10 @@ class Transaction extends Component {
             sellID: exchangeData.second_token_id
         }).then(({buyTokenQuant}) => {
             this.props.form.setFieldsValue({
-                second_quant_buy:buyMoney,
-                first_quant_buy: buyTokenQuant
+                first_quant_buy: buyTokenQuant,
+                second_quant_sell:buyMoney
             })
+            this.setState({buy_amount: buyMoney})
         })
     },500)
   }
@@ -306,6 +327,7 @@ class Transaction extends Component {
                 second_quant_sell:buyTokenQuant,
                 first_quant_sell: sellMoney
             })
+            this.setState({sell_amount: buyTokenQuant})
         })
     },500)
   }
@@ -313,7 +335,7 @@ class Transaction extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     let { exchangeData, account, currentWallet, intl } = this.props;
-    let { modal, firstBalance, secondBalance,trs_proportion } = this.state;
+    let { modal, firstBalance, secondBalance,buy_amount,sell_amount } = this.state;
     return (
       <div className="exchange__transaction d-flex">
         {modal}
@@ -328,6 +350,18 @@ class Transaction extends Component {
           </h5>
           <hr />
           <Form layout="vertical" onSubmit={this.handleSubmitBuy}>
+          <FormItem>
+            <NumericInput
+              addonBefore={intl.formatMessage({
+                id: "trc20_price"
+              })}
+              addonAfter={exchangeData.second_token_id}
+              size="large"
+              type="text"
+              disabled
+              value={Number(exchangeData.price || 0).toFixed(6)}
+            />
+            </FormItem>
             <FormItem>
               {getFieldDecorator("first_quant_buy", {
                 rules: [
@@ -353,18 +387,7 @@ class Transaction extends Component {
                 />
               )}
             </FormItem>
-
-            {/* <FormItem
-              label={
-                <span>
-                  {tu("estimated_cost")}{" "}
-                  <span className="tx-question-mark">
-                    <QuestionMark text="slightly_cost" />
-                  </span>
-                </span>
-              }
-            > */}
-            <FormItem>
+            {/* <FormItem>
               {getFieldDecorator("second_quant_buy", {
                 rules: [
                   {
@@ -387,7 +410,7 @@ class Transaction extends Component {
                   type="text"
                 />
               )}
-            </FormItem>
+            </FormItem> */}
             <div className="mb-3">
                 { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.balance + " " + secondBalance.name: 0}</span>} 
             </div>
@@ -401,8 +424,14 @@ class Transaction extends Component {
               onChange={(value) => this.slideChangebuy(value)}
             />
           </div>
+          <div className="d-flex justify-content-between tran-amount mb-3">
+            <p className="text">
+              {tu("trc20_volume")}：{buy_amount}
+            </p>
+            <b className="text-lg">{exchangeData.second_token_id}</b>
+          </div>
 
-            <FormItem>
+            {/* <FormItem> */}
               <Button
                 type="primary"
                 className="success"
@@ -412,7 +441,7 @@ class Transaction extends Component {
               >
                 {tu("BUY")} {exchangeData.first_token_id}
               </Button>
-            </FormItem>
+            {/* </FormItem> */}
           </Form>
         </div>
 
@@ -432,6 +461,18 @@ class Transaction extends Component {
           </h5>
           <hr />
           <Form layout="vertical" onSubmit={this.handleSubmitSell}>
+            <FormItem>
+              <NumericInput
+                addonBefore={intl.formatMessage({
+                  id: "trc20_price"
+                })}
+                addonAfter={exchangeData.second_token_id}
+                size="large"
+                type="text"
+                disabled
+                value={Number(exchangeData.price || 0).toFixed(6)}
+              />
+            </FormItem>
             <FormItem>
               {getFieldDecorator("first_quant_sell", {
                 rules: [
@@ -467,7 +508,7 @@ class Transaction extends Component {
                 </span>
               }
             > */}
-            <FormItem>
+            {/* <FormItem>
               {getFieldDecorator("second_quant_sell", {
                 rules: [
                   {
@@ -490,7 +531,7 @@ class Transaction extends Component {
                   type="text"
                 />
               )}
-            </FormItem>
+            </FormItem> */}
             <div className="mb-3">
             { (
                 <span className="text-sm d-block">
@@ -508,7 +549,13 @@ class Transaction extends Component {
               onChange={this.slideChangesell}
             />
           </div>
-            <FormItem>
+          <div className="d-flex justify-content-between tran-amount mb-3">
+            <p className="text">
+              {tu("trc20_volume")}：{sell_amount}
+            </p>
+            <b className="text-lg">{exchangeData.second_token_id}</b>
+          </div>
+            {/* <FormItem> */}
               <Button
                 type="primary"
                 className="warning"
@@ -518,7 +565,7 @@ class Transaction extends Component {
               >
                 {tu("SELL")} {exchangeData.first_token_id}
               </Button>
-            </FormItem>
+            {/* </FormItem> */}
           </Form>
         </div>
       </div>

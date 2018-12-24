@@ -34,7 +34,7 @@ class Kline extends React.Component {
     ){
       this.createWidget(selectData.exchange_id)
      
-      const newObj = tokeninfo.filter(o => o.name == selectData.first_token_id)[0]
+      const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
       this.setState({tokeninfoItem: newObj, detailShow: false})
       
     }
@@ -326,7 +326,7 @@ class Kline extends React.Component {
             </li>
             <li>
               <p className="title">{tu('trc20_token_info_Total_Supply')}</p>
-              <p className="value"><FormattedNumber value={tokeninfoItem.total_supply/Math.pow(10,tokeninfoItem.decimals)}/></p>
+              <p className="value"><FormattedNumber value={Number(tokeninfoItem.total_supply_with_decimals)/Math.pow(10,tokeninfoItem.decimals)}/></p>
             </li>
             <li>
               <p className="title">{tu('trc20_token_info_Website')}</p>
