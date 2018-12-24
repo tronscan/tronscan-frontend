@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Radio,Slider } from "antd";
 import { QuestionMark } from "../../../../common/QuestionMark";
+import {transactionResultManager} from "../../../../../utils/tron";
 import { withRouter } from "react-router";
 import { Client, Client20 } from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -9,6 +10,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { ONE_TRX } from "../../../../../constants";
 import { find } from "lodash";
+import Lockr from "lockr";
 
 import NumericInput from "./NumericInput";
 
@@ -32,10 +34,7 @@ class Transaction extends Component {
       firstBalance: {},
       secondBalance: {},
       trs_proportion: 0,
-      buy_amount: 0,
-      buy_money: 0,
-      sell_amount: 0,
-      sell_money: 0
+        timer: null
     };
   }
 
@@ -55,6 +54,27 @@ class Transaction extends Component {
       prevProps.exchangeData != exchangeData ||
       prevProps.activeLanguage != activeLanguage
     ) {
+        this.getBalance()
+    }
+    if (prevProps.exchangeData.exchange_id != exchangeData.exchange_id) {
+      this.props.form.resetFields();
+    }
+  }
+
+  componentWillUnmount() {
+    const {timer} = this.state;
+    clearInterval(timer);
+}
+
+  getBalance(){
+    const {
+        selectStatus,
+        currentWallet,
+        exchangeData,
+        activeLanguage
+    } = this.props;
+
+    const timer = setInterval(() => {
       if (currentWallet != null) {
         const first = find(currentWallet.tokenBalances, function(o) {
           return exchangeData.first_token_id === o.name;
@@ -62,14 +82,15 @@ class Transaction extends Component {
         const second = find(currentWallet.tokenBalances, function(o) {
           return exchangeData.second_token_id === o.name;
         }) || { balance: 0, name: exchangeData.second_token_id };
-        this.setState({ firstBalance: first, secondBalance: second });
+
+        if(first||second){
+            this.setState({ firstBalance: first, secondBalance: second });
+        }
       } else {
         this.setState({ firstBalance: {}, secondBalance: {} });
       }
-    }
-    if (prevProps.exchangeData.exchange_id != exchangeData.exchange_id) {
-      this.props.form.resetFields();
-    }
+    }, 10000);
+    this.setState({timer})
   }
 
   handleSubmitBuy = e => {
@@ -145,19 +166,23 @@ class Transaction extends Component {
     values
   ) => {
     let { account, currentWallet, exchangeData, intl } = this.props;
-    let {
-      success,
-      code,
-      transaction,
-      message
-    } = await Client.transactionExchange(
-      currentWallet.address,
-      exchangeId,
-      tokenId,
-      quant,
-      expected
-    )(account.key);
-    if (success) {
+    let res,transactionHash;
+    if (Lockr.get("islogin")) {
+        const { tronWeb } = account;
+        const unSignTransaction = await tronWeb.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWeb.defaultAddress.hex);
+        const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
+        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+        transactionHash = signedTransaction.txID;
+        res = result;
+    }else {
+        let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
+        transactionHash = transaction.hash
+        res = success
+    }
+
+
+
+    if (res) {
       this.props.form.resetFields();
       this.setState({
         modal: (
@@ -172,7 +197,7 @@ class Transaction extends Component {
       });
       await Client.exchange({
         creatorAddress: currentWallet.address,
-        trx_hash: transaction.hash,
+        trx_hash: transactionHash,
         exchangeID: exchangeData.exchange_id,
         first_token_id: exchangeData.first_token_id,
         first_token_quant: values.first_quant_buy
@@ -364,7 +389,7 @@ class Transaction extends Component {
               )}
             </FormItem>
             <div className="mb-3">
-                { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} 
+                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.balance + " " + secondBalance.name: 0}</span>} 
             </div>
             <div className="mb-3">
             <Slider
@@ -372,6 +397,7 @@ class Transaction extends Component {
             //   value={trs_proportion}
               defaultValue={0}
               tipFormatter={formatter}
+              disabled={!account.address}
               onChange={(value) => this.slideChangebuy(value)}
             />
           </div>
@@ -466,10 +492,10 @@ class Transaction extends Component {
               )}
             </FormItem>
             <div className="mb-3">
-            {firstBalance && firstBalance.name && (
+            { (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}
-                {firstBalance.balance + " " + firstBalance.name}
+                {(firstBalance && firstBalance.name)?firstBalance.balance + " " + firstBalance.name: 0}
                 </span>
             )}             
             </div>
@@ -478,6 +504,7 @@ class Transaction extends Component {
               marks={marks}
               defaultValue={0}
               tipFormatter={formatter}
+              disabled={!account.address}
               onChange={this.slideChangesell}
             />
           </div>

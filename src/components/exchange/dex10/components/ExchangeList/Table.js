@@ -72,7 +72,7 @@ class ExchangeTable extends React.Component {
           onRow={(record) => {
                return {
                    onClick: () => {
-                       this.onSetUrl(record)
+                       this.docodUrl(record)
                    },
                    // onClick: (e) => {
                    //     this.props.setCollection(e,record.exchange_id)
@@ -128,6 +128,12 @@ class ExchangeTable extends React.Component {
     }
    
      
+  }
+  docodUrl(record){
+    clearTimeout(this.time)
+    this.time = setTimeout(() => {
+      this.onSetUrl(record)
+    }, 500);
   }
 
   componentDidMount() {
