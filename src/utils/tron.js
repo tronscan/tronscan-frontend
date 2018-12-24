@@ -13,6 +13,9 @@ export async function transactionResultManager(transaction,tronWeb){
     });
     if(signedTransaction){
         const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+        if(!broadcast.result){
+            broadcast.result = false;
+        }
         return broadcast;
     }else{
         return {result:false};
