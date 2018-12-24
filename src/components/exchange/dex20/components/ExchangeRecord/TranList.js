@@ -27,10 +27,10 @@ class TranList extends Component {
   }
 
 
-  async componentDidMount() {
+  componentDidMount() {
     let { selectData } = this.props
     let {timer} = this.state;
-    await this.getData()
+    this.getData()
     this.getColumns();
     clearInterval(timer);
     this.setState({

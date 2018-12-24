@@ -108,7 +108,6 @@ class ExchangeList extends React.Component {
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
         let {intl} = this.props;
-        console.log(tokenAudited)
         return (
             <div className="exchange-list mr-2">
 
