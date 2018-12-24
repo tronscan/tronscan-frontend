@@ -24,7 +24,6 @@ import queryString from 'query-string';
 const Search = Input.Search;
 
 class ExchangeList extends React.Component {
-
     constructor() {
         super();
         this.state = {
@@ -33,7 +32,7 @@ class ExchangeList extends React.Component {
             tokenAudited: true,
             exchangesList: [],
             optional:  Lockr.get('optional')?Lockr.get('optional'):[],
-            optionalBok: false,
+            optionalBok: true,
             search:'',
             searchExchangesList: [],
             showSearch:false,
@@ -57,7 +56,11 @@ class ExchangeList extends React.Component {
             getExchangesAllList()
         }, 10000)
         this.setState({time: getDataTime})
-        if(Lockr.get('DEX') != 'Main' ){
+        const dex = Lockr.get('DEX')
+        if(!dex){
+            Lockr.set('DEX', 'Main')
+        }
+        if(dex == 'GEM' ){
             this.setState({tokenAudited: false})
         }
         
@@ -105,7 +108,6 @@ class ExchangeList extends React.Component {
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
         let {intl} = this.props;
-        let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
             <div className="exchange-list mr-2">
 
