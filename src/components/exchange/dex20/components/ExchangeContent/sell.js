@@ -79,15 +79,16 @@ class Sell extends Component {
       if (quickSelect.type != "sell") {
         return;
       }
+
       if (
         !prevProps.quickSelect.price ||
         prevProps.quickSelect.price != n.price
       ) {
         newPrice = n.price;
-        if (n.amount * n.price <= firstBalance) {
+        if (n.amount  <= firstBalance) {
           newAmount = n.amount;
         } else {
-          newAmount = parseInt(firstBalance / n.price);
+          newAmount = parseInt(firstBalance);
         }
 
         firstBalance && this.setSlider() && this.transTotal();
@@ -111,10 +112,10 @@ class Sell extends Component {
         if (n.amount != amount) {
           newPrice = n.price;
 
-          if (n.amount * n.price <= firstBalance) {
+          if (n.amount  <= firstBalance) {
             newAmount = n.amount;
           } else {
-            newAmount = parseInt(firstBalance / n.price);
+            newAmount = parseInt(firstBalance );
           }
 
           this.setState(
@@ -180,7 +181,6 @@ class Sell extends Component {
                 })}
                 size="large"
                 type="text"
-                maxlength="20"
                 disabled={!account.address}
                 onKeyPress={e => this.onpress(e)}
                 onChange={this.handleValueBuy0}
@@ -203,7 +203,6 @@ class Sell extends Component {
                 })}
                 size="large"
                 type="text"
-                maxlength="20"
                 disabled={!account.address}
                 onKeyPress={this.onpress}
                 onChange={this.handleValueBuy1}
@@ -417,7 +416,7 @@ class Sell extends Component {
       },
       () => {
         this.props.form.setFieldsValue({
-          first_quant_buy: value1
+          first_quant_sell: value1
         })
         firstBalance && this.setSlider();
         this.transTotal();
@@ -435,6 +434,8 @@ class Sell extends Component {
       precision = precision - _p;
     }
     let value1 = onlyInputNumAndPoint(value, precision);
+
+  
     // this.setMaxLen(value, precision)
     this.setState(
       {
@@ -442,7 +443,7 @@ class Sell extends Component {
       },
       () => {
         this.props.form.setFieldsValue({
-          second_quant_buy: value1
+          second_quant_sell: value1
         })
         firstBalance && this.setSlider();
         this.transTotal();
@@ -452,7 +453,7 @@ class Sell extends Component {
 
   setSlider() {
     let { price, amount, firstBalance } = this.state;
-    let trs_proportion = (price * amount * 100) / firstBalance;
+    let trs_proportion = (amount * 100) / firstBalance;
 
     this.setState({
       trs_proportion: trs_proportion
@@ -472,7 +473,7 @@ class Sell extends Component {
             id: "trc20_enter_the_trading_amount"
           })) && this.setState({ secondError: secondError });
     } else {
-      if (price * amount > firstBalance) {
+      if (amount > firstBalance) {
         secondError = intl.formatMessage({ id: "trc20_balance_tip" });
         this.setState({ secondError: secondError });
       }
@@ -516,19 +517,22 @@ class Sell extends Component {
     if (!price) {
       return;
     }
+
+
     let precision = exchangeData.sPrecision;
     if (price) {
       const _s = price.toString().split(".")[1];
       const _p = (_s && _s.length) || 0;
       precision = precision - _p;
     }
-    let _a = (firstBalance * value) / (100 * price);
+    let _a = (firstBalance * value) / 100;
     const _l = getDecimalsNum(_a);
     if (_l <= precision) {
     } else {
       _a = _a.toString();
       _a = Number(_a.substring(0, _a.lastIndexOf(".") + precision + 1));
     }
+
 
     this.setState(
       {

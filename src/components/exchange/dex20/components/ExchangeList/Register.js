@@ -131,7 +131,7 @@ class Register extends Component{
                 {isLoading ? <TronLoader/> :
                 <Fragment>
                 <Table
-                    dataSource={sellList.reverse()}
+                    dataSource={sellList}
                     columns={sell_columns}
                     pagination={false}
                     rowKey={(record, index) => {
@@ -212,7 +212,7 @@ class Register extends Component{
             if (data) {
                 this.setState ({
                     buyList:await this.getList(data.buy, 1),
-                    sellList:await this.getList(data.sell)
+                    sellList:(await this.getList(data.sell)).reverse()
                 })
                 
             }
