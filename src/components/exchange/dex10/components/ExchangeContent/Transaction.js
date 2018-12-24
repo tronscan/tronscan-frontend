@@ -138,7 +138,6 @@ class Transaction extends Component {
       ["first_quant_sell"],
       (err, values) => {
         values.second_quant_buy = sell_amount
-        console.log(values)
         if (!err) {
           let token_id =
             exchangeData.first_token_id == "TRX"
@@ -337,7 +336,7 @@ class Transaction extends Component {
   validateBuyBanlace = (rule, value, callback) => {
     const {intl,exchangeData} = this.props
     if (value*exchangeData.price > this.state.secondBalance.balance) {
-      callback(intl.formatMessage({id: "trc20_not_enough"}))
+      callback(intl.formatMessage({id: "trc20_balance_tip"}))
     } else {
       callback()
     }
@@ -346,7 +345,7 @@ class Transaction extends Component {
   validateSellBanlace = (rule, value, callback) => {
     const {intl} = this.props
     if (value > this.state.firstBalance.balance) {
-      callback(intl.formatMessage({id: "trc20_not_enough"}))
+      callback(intl.formatMessage({id: "trc20_balance_tip"}))
     } else {
       callback()
     }
@@ -448,7 +447,7 @@ class Transaction extends Component {
           </div>
           <div className="d-flex justify-content-between tran-amount mb-3">
             <p className="text">
-              {tu("trc20_volume")}：{buy_amount}
+              {tu("estimated_cost")}：{buy_amount}
             </p>
             <b className="text-lg">{exchangeData.second_token_id}</b>
           </div>
@@ -574,7 +573,7 @@ class Transaction extends Component {
           </div>
           <div className="d-flex justify-content-between tran-amount mb-3">
             <p className="text">
-              {tu("trc20_volume")}：{sell_amount}
+              {tu("estimated_revenue")}：{sell_amount}
             </p>
             <b className="text-lg">{exchangeData.second_token_id}</b>
           </div>

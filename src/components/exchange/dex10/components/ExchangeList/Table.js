@@ -142,10 +142,14 @@ class ExchangeTable extends React.Component {
      
   }
   docodUrl(record){
-    clearTimeout(this.time)
-    this.time = setTimeout(() => {
+    const {klineLock} = this.props
+    if(klineLock){
       this.onSetUrl(record)
-    }, 500);
+    }
+    // clearTimeout(this.time)
+    // this.time = setTimeout(() => {
+    //   this.onSetUrl(record)
+    // }, 500);
   }
 
   componentDidMount() {
@@ -155,9 +159,8 @@ class ExchangeTable extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { dataSource,tab } = this.props;
-
-    // if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
-    if ( dataSource != prevProps.dataSource) {
+    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    // if (!dataSource.length || dataSource[0].exchange_id != prevProps.dataSource[0].exchange_id) {
        this.getData()
     }
   }
@@ -194,7 +197,9 @@ class ExchangeTable extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    klineLock: state.exchange.klineLock
+  };
 }
 
 const mapDispatchToProps = {

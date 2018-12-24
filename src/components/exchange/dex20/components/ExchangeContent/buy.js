@@ -394,7 +394,6 @@ class Buy extends Component {
     let precision = exchangeData.sPrecision;
     if (amount) {
       const _p = getDecimalsNum(+amount);
-      console.log(_p)
       precision = precision - _p;
     }
     let value1 = onlyInputNumAndPoint(value, precision);

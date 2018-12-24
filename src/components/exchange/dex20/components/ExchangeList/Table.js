@@ -178,10 +178,14 @@ class ExchangeTable extends React.Component {
   }
 
   docodUrl(record){
-    clearTimeout(this.time)
-    this.time = setTimeout(() => {
+    const {klineLock} = this.props
+    if(klineLock){
       this.onSetUrl(record)
-    }, 500);
+    }
+    // clearTimeout(this.time)
+    // this.time = setTimeout(() => {
+    //   this.onSetUrl(record)
+    // }, 500);
   }
 
   componentDidMount() {
@@ -226,7 +230,8 @@ class ExchangeTable extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    klineLock: state.exchange.klineLock};
 }
 
 const mapDispatchToProps = {

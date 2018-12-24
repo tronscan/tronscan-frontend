@@ -93,8 +93,8 @@ class ExchangeList extends React.Component {
         }
     }
     handleSelectData = (type) => {
-        const {tagLock} = this.state
-        if(tagLock){
+        const {klineLock} = this.props
+        if(klineLock){
             this.setState({tokenAudited: type, tagLock: false})
             if(!type){
                 Lockr.set('DEX', 'GEM')
@@ -102,16 +102,15 @@ class ExchangeList extends React.Component {
                 Lockr.set('DEX', 'Main')
             }
             this.setData(type)
-
-            setTimeout(() => {
-                this.setState({tagLock: true})
-            }, 1000);
         }
     }
 
     gotoTrc10 = () => {
-        Lockr.set('DEX', 'Main')
-        this.props.history.push('exchange')
+        const {klineLock} = this.props
+        if(klineLock){
+            Lockr.set('DEX', 'Main')
+            this.props.history.push('exchange')
+        }
     }
 
     // https://debug.tronscan.org/#/exchange20?token=TRONdice/TRX&id=30
@@ -186,6 +185,7 @@ function mapStateToProps(state) {
         exchange20List: state.exchange.list_20,
         exchange10List: state.exchange.list_10,
         exchangeallList: state.exchange.list_all,
+        klineLock: state.exchange.klineLock,
     };
 }
 

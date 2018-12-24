@@ -144,10 +144,9 @@ class ExchangeList extends React.Component {
 
     handleAuditedToken = () => {
         
-        const {getSelectData} = this.props;
+        const {getSelectData, klineLock} = this.props;
         const {auditedTokenList,optionalDisable} = this.state;
-        const {tagLock} = this.state
-        if(tagLock){
+        if(klineLock){
             if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
@@ -162,9 +161,6 @@ class ExchangeList extends React.Component {
                     activeIndex:auditedTokenList[0].exchange_id,
                 });
             }
-            setTimeout(() => {
-                this.setState({tagLock: true})
-            }, 1000);
         }
     }
 
@@ -269,8 +265,11 @@ class ExchangeList extends React.Component {
     }
     
     gotoTrc20 = () => {
-        Lockr.set('DEX', 'Main')
-        this.props.history.push('exchange20')
+        const {klineLock} = this.props
+        if(klineLock){
+            Lockr.set('DEX', 'Main')
+            this.props.history.push('exchange20')
+        }
     }
 
     render() {
@@ -365,6 +364,7 @@ function mapStateToProps(state) {
     return {
         activeLanguage:  state.app.activeLanguage,
         exchange20List: state.exchange.list_20,
+        klineLock: state.exchange.klineLock,
     };
 }
 

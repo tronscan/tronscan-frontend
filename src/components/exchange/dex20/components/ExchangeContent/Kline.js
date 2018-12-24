@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {tu, tv} from "../../../../../utils/i18n";
 import { TRXPrice } from "../../../../common/Price";
 import {Client20} from "../../../../../services/api";
+import {change10lock} from "../../../../../actions/exchange";
 import { Icon } from 'antd';
 
 class Kline extends React.Component {
@@ -17,7 +18,8 @@ class Kline extends React.Component {
     this.state = {
       tokeninfo: [],
       tokeninfoItem: {},
-      detailShow: false
+      detailShow: false,
+      tvWidget: null
     }
   }
 
@@ -26,12 +28,13 @@ class Kline extends React.Component {
   }
 
   componentDidUpdate (prevProps) {
-    const {tokeninfo} = this.state
+    const {tokeninfo, tvWidget} = this.state
     const { selectData,selectStatus, activeLanguage } = this.props
 
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
+      tvWidget && tvWidget.remove()
       this.createWidget(selectData.exchange_id)
      
       const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
@@ -43,14 +46,20 @@ class Kline extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    const { tvWidget } = this.state
+    tvWidget && tvWidget.remove()
+  }
+
   createWidget (id) {
+    const {change10lock} = this.props
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
         interval = '30';
         localStorage.setItem('interval', '30');
     }
-
+    change10lock(false)
     const tvWidget = new widget({
       symbol: id,
       interval: interval,
@@ -136,12 +145,15 @@ class Kline extends React.Component {
         chartTypes: ["Area", "Line"]
       }
     });
+   
     
 
     tvWidget.MAStudies = [];
     tvWidget.selectedIntervalButton = null;
 
     tvWidget.onChartReady(() => {
+      this.setState({tvWidget})
+      change10lock(true)
       const chart =	tvWidget.chart()
       chart.setChartType(1)
       
@@ -354,6 +366,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  change10lock
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Kline)));

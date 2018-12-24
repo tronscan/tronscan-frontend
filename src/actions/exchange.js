@@ -15,6 +15,8 @@ export const SET_COLLECTION = 'SET_COLLECTION';
 export const SET_LASTPRICE = 'SET_LASTPRICE';
 export const SET_QUICKSELCET = 'SET_QUICKSELCET'
 export const SET_UPDATE_TRAN = 'SET_UPDATE_TRAN'
+export const SET_10_LOCK = 'SET_10_LOCK'
+
 
 
 
@@ -63,6 +65,14 @@ export const setUpdateTran = (is_update_tran)=>({
   is_update_tran,
 })
 
+export const change10lockstatus = (type)=>({
+  type: SET_10_LOCK,
+  lock: type
+})
+
+export const change10lock = (type) => async (dispatch) => {
+  dispatch(change10lockstatus(type))
+}
 
 
 export const getSelectData = (data, isSelect = false) => async (dispatch) => {
@@ -153,3 +163,4 @@ export const getExchanges = () => async (dispatch) => {
   })
   dispatch(setExchanges10(data))
 }
+
