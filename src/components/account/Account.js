@@ -739,11 +739,19 @@ class Account extends Component {
   };
 
   updateWebsite = async (url) => {
+    let res;
     let {account, currentWallet} = this.props;
-    let {privateKey} = this.state;
-    let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
+    if(this.state.isTronLink === 1){
+        const tronWeb = account.tronWeb;
+        const unSignTransaction = await tronWeb.fullNode.request('wallet/updatewitness', {update_url:tronWeb.fromUtf8(url),owner_address:tronWeb.defaultAddress.hex}, 'post');
+        const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
+        res = result;
+    } else {
+        let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
+        res = success;
+    }
 
-    if (success) {
+    if (res) {
       this.setState({
         modal: (
             <SweetAlert success title={tu("url_changed")} onConfirm={this.hideModal}>
@@ -803,8 +811,8 @@ class Account extends Component {
         let {account, currentWallet} = this.props;
         if(this.state.isTronLink === 1){
           const { tronWeb } = account;
-          const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
-          const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+          const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
+          const {result} = await transactionResultManager(unSignTransaction,tronWeb);
           res = result;
         } else {
           const {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
@@ -837,7 +845,7 @@ class Account extends Component {
         let {account, currentWallet} = this.props;
         if(this.state.isTronLink === 1){
             const { tronWeb } = account;
-            const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
+            const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
             const {result} = await transactionResultManager(unSignTransaction,tronWeb)
             res = result;
         } else {
@@ -1010,11 +1018,6 @@ class Account extends Component {
   changeWebsite = () => {
       this.setState({
               modal: (
-                  this.state.isTronLink === 1?
-                  <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
-                      {tu("change_login_method")}
-                  </SweetAlert>
-                  :
                   <SweetAlert
                       input
                       showCancel
@@ -1105,7 +1108,6 @@ class Account extends Component {
           </main>
       );
     }
-
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen =  accountResource.frozen_balance > 0
     return (
