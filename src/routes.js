@@ -253,7 +253,7 @@ export const routes = [
     showInMenu: false
   },
   {
-    label: "DEX",
+    label: " ",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,

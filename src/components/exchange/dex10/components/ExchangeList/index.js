@@ -288,11 +288,11 @@ class ExchangeList extends React.Component {
                         </ul>
                     </div>
                     <div className="dex-tab">
-                        <Link className={"btn btn-sm" } to="/exchange20">{tu("TRX_20")}</Link>
+                        <Link className={"btn btn-sm" } to="/exchange20"><span>TRC 20</span></Link>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>
-                            {tu("TRX")}
+                           TRC 10
                         </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? '' : ' active')}

@@ -332,6 +332,17 @@ class Transaction extends Component {
     },500)
   }
 
+  validateBuyBanlace = (rule, value, callback) => {
+    const {intl,exchangeData} = this.props
+    if (value == '0' || value == '') {
+      callback(new Error(intl.formatMessage({id: "enter_the_trading_amount"})))
+    } else if (value*exchangeData.price > this.state.secondBalance) {
+      callback(new Error(intl.formatMessage({id: "trc20_not_enough"})))
+    } else {
+      callback()
+    }
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     let { exchangeData, account, currentWallet, intl } = this.props;
@@ -365,11 +376,14 @@ class Transaction extends Component {
             <FormItem>
               {getFieldDecorator("first_quant_buy", {
                 rules: [
+                  // {
+                  //   required: true,
+                  //   message: intl.formatMessage({
+                  //     id: "enter_the_trading_amount"
+                  //   })
+                  // }
                   {
-                    required: true,
-                    message: intl.formatMessage({
-                      id: "enter_the_trading_amount"
-                    })
+                    validator: this.validateBuyBanlace, trigger: 'blur'
                   }
                 ]
               })(

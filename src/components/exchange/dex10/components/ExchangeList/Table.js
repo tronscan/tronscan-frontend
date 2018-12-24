@@ -26,11 +26,23 @@ class ExchangeTable extends React.Component {
   getColumns() {
     let {intl,setCollection} = this.props;
     let { dataSource } = this.state;
+    let isfov = Lockr.get('DEX') == 'GEM'
+
     const columns = [{
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
       render: (text, record, index) => {
-        return <div>
+        return <div className="position-relative">
+          {
+            isfov &&
+            <div className="fov_tip">
+              {
+                record.token_type == 'dex20'
+                ?<img src={require("../../../../../images/svg/20.svg")}/>
+                :<img src={require("../../../../../images/svg/10.png")}/>
+              }
+            </div>
+          }
           <span className="optional-star">
               <span onClick={(ev) => {setCollection(ev,record.exchange_id,index,record)}}>
                   {
