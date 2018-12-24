@@ -169,7 +169,7 @@ class Buy extends Component {
           {/* { (secondBalance&& secondBalance.name)&&<span className=" text-sm d-block">{tu("TxAvailable")} {secondBalance.balance+' '+secondBalance.name}</span>} */}
         </h5>
         <hr />
-        <Form layout="vertical" onSubmit={this.handleSubmit}>
+        <Form layout="vertical">
           <FormItem className="no-padding">
             {getFieldDecorator("first_quant_buy")(
               <NumericInput
@@ -247,8 +247,9 @@ class Buy extends Component {
             type="primary"
             className="success mb-1"
             size="large"
-            htmlType="submit"
+            htmlType="button"
             disabled={!account.address}
+            onClick={this.handleSubmit}
           >
             {tu("BUY")} &nbsp;{exchangeData.fShortName}
           </Button>
