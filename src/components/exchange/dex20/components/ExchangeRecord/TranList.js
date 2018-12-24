@@ -24,13 +24,14 @@ class TranList extends Component {
       isLoading:true
       //time: null
     }
+    this.componentWillUnmount = this.componentWillUnmount.bind(this)
   }
 
 
-  async componentDidMount() {
+  componentDidMount() {
     let { selectData } = this.props
     let {timer} = this.state;
-    await this.getData()
+    this.getData()
     this.getColumns();
     clearInterval(timer);
     this.setState({
@@ -45,11 +46,11 @@ class TranList extends Component {
     const { selectData } = this.props
     const {timer} = this.state;
     if((prevProps.selectData.exchange_id != selectData.exchange_id)){
-      clearInterval(timer);
       this.setState({
         isLoading:true
       })
       this.getData();
+      clearInterval(timer)
       this.setState({
         timer: setInterval(() => {
           this.getData();
@@ -59,7 +60,7 @@ class TranList extends Component {
   }
 
   componentWillUnmount() {
-    const {timer} = this.state
+    const {timer} = this.state;
     clearInterval(timer);
   }
 

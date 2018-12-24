@@ -180,6 +180,7 @@ class Sell extends Component {
                 })}
                 size="large"
                 type="text"
+                maxlength="20"
                 disabled={!account.address}
                 onKeyPress={e => this.onpress(e)}
                 onChange={this.handleValueBuy0}
@@ -202,6 +203,7 @@ class Sell extends Component {
                 })}
                 size="large"
                 type="text"
+                maxlength="20"
                 disabled={!account.address}
                 onKeyPress={this.onpress}
                 onChange={this.handleValueBuy1}
@@ -414,6 +416,9 @@ class Sell extends Component {
         price: value1
       },
       () => {
+        this.props.form.setFieldsValue({
+          first_quant_buy: value1
+        })
         firstBalance && this.setSlider();
         this.transTotal();
       }
@@ -436,6 +441,9 @@ class Sell extends Component {
         amount: value1
       },
       () => {
+        this.props.form.setFieldsValue({
+          second_quant_buy: value1
+        })
         firstBalance && this.setSlider();
         this.transTotal();
       }

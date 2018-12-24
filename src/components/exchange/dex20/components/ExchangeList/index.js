@@ -184,6 +184,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectInt
 
 const styles = {
     list: {
-        height: 320,
+        // height: 320,
+        height:220
     }
 };
