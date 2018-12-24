@@ -246,17 +246,19 @@ export const routes = [
     linkHref: true
   },
   {
-    label: "DEX",
+    label: "DEX10",
     path: "/exchange",
     icon: "fas fa-exchange-alt",
     component: Exchange,
-    showInMenu: false
+    showInMenu: false,
+    none: true
   },
   {
-    label: " ",
+    label: "DEX",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
+    none: true
   },
   {
     label: "notice",

@@ -905,6 +905,8 @@ class Navigation extends React.Component {
             </div>
           </nav>
           {
+            activeComponent.none? <div className="container pt-5 pb-4"></div>
+            :
             (activeComponent && activeComponent.showSubHeader !== false) &&
             <div className="container d-flex sub-header">
               {
@@ -918,24 +920,6 @@ class Navigation extends React.Component {
                   }
                 </h4>
               }
-
-              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
-                <div className="input-group">
-                  <input type="text"
-                         className="form-control p-2 bg-white border-0 box-shadow-none"
-                         style={styles.search}
-                         value={search}
-                         onKeyDown={this.onSearchKeyDown}
-                         onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder={intl.formatMessage({id: "search_description1"})}/>
-                  <div className="input-group-append">
-
-                    <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
-                      <i className="fa fa-search"/>
-                    </button>
-                  </div>
-                </div>
-              </div> */}
               
             </div>
           }

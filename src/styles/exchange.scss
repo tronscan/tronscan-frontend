@@ -9,7 +9,7 @@
   #first_quant_sell,
   #second_quant_sell {
     background-color: #f3f3f3 !important;
-    border-color: #f3f3f3 !important;
+    // border-color: #f3f3f3 !important;
   }
   .tran-amount {
     border: 1px solid #eeeeee;
@@ -463,8 +463,13 @@
       height: 36px;
     }
   }
-  .ant-input-group-addon {
-    border-radius: 2px;
+  .ant-input-group{
+    &-addon:first-child{
+      border-radius: 2px 0 0 2px;
+    }
+    &-addon:last-child{
+      border-radius:  0 2px 2px 0;
+    }
   }
 
   .success {
