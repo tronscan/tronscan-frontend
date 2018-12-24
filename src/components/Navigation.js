@@ -51,6 +51,7 @@ class Navigation extends React.Component {
       isImportAccount:false,
       isTRONlinkLogin:false,
       loginWarning:false,
+      signInWarning:false,
       address:'',
     };
   }
@@ -170,6 +171,7 @@ class Navigation extends React.Component {
       isImportAccount: false,
       isTRONlinkLogin: false,
       loginWarning:false,
+      signInWarning:false,
       popup: (
           <SweetAlert
               input
@@ -362,7 +364,7 @@ class Navigation extends React.Component {
   loginWithTronLink(e){
       let {intl} = this.props;
       e.stopPropagation();
-      const { loginWarning } = this.state;
+      const { loginWarning, signInWarning } = this.state;
       const tronWeb = window.tronWeb;
       // 没有下载 tronlink
       if (!tronWeb) {
@@ -374,7 +376,7 @@ class Navigation extends React.Component {
       // 没有登录 tronlink
       const address = tronWeb.defaultAddress.base58;
       if (!address) {
-          this.setState({loginWarning:true});
+          this.setState({signInWarning:true});
           //this.loading = false
           Lockr.set("islogin", 0);
           return
@@ -398,6 +400,7 @@ class Navigation extends React.Component {
           isImportAccount: false,
           isTRONlinkLogin: false,
           loginWarning:false,
+          signInWarning:false
       })
   };
 
@@ -429,7 +432,7 @@ class Navigation extends React.Component {
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-    let {isImportAccount, isTRONlinkLogin, loginWarning, address } = this.state;
+    let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -622,6 +625,9 @@ class Navigation extends React.Component {
                             <div className="text-center pt-2" style={{color:'#C23631'}}>
                                 {
                                     loginWarning ? tu('sign_in_TRONlink_warning') : ''
+                                }
+                                {
+                                    signInWarning ? tu('sign_in_TRONlink_warning_0') : ''
                                 }
                             </div>
 
