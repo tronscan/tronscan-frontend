@@ -162,6 +162,9 @@ class Navigation extends React.Component {
 
   openPasswordPrompt = (contents) => {
     this.setState({
+      isImportAccount: false,
+      isTRONlinkLogin: false,
+      loginWarning:false,
       popup: (
           <SweetAlert
               input
@@ -558,7 +561,7 @@ class Navigation extends React.Component {
                                     {/* <li className="dropdown-divider"/> */}
                                 </Fragment>
                             }
-                          <li className="px-3 py-4">
+                          <li className="px-3 py-4" onClick={this.closeLoginModel}>
                             <Link className="btn btn-primary btn-block" to="/wallet/new">
                                 {tu("create_wallet")}
                             </Link>
