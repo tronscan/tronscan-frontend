@@ -180,6 +180,7 @@ class Buy extends Component {
                 })}
                 size="large"
                 type="text"
+                maxLength="10"
                 disabled={!account.address}
                 onKeyPress={e => this.onpress(e)}
                 onChange={this.handleValueBuy0}
@@ -202,6 +203,7 @@ class Buy extends Component {
                 })}
                 size="large"
                 type="text"
+                maxLength="20"
                 disabled={!account.address}
                 onKeyPress={this.onpress}
                 onChange={this.handleValueBuy1}
@@ -391,6 +393,7 @@ class Buy extends Component {
     let precision = exchangeData.sPrecision;
     if (amount) {
       const _p = getDecimalsNum(+amount);
+      console.log(_p)
       precision = precision - _p;
     }
     let value1 = onlyInputNumAndPoint(value, precision);
@@ -400,6 +403,9 @@ class Buy extends Component {
         price: value1
       },
       () => {
+        this.props.form.setFieldsValue({
+          first_quant_buy: value1
+        })
         firstBalance && this.setSlider();
         this.transTotal();
       }
@@ -422,6 +428,9 @@ class Buy extends Component {
         amount: value1
       },
       () => {
+        this.props.form.setFieldsValue({
+          second_quant_buy: value1
+        })
         firstBalance && this.setSlider();
         this.transTotal();
       }

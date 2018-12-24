@@ -21,7 +21,8 @@ class Register extends Component{
                 value: '0.04998',
                 type: 0
             },
-            isLoading:true
+            isLoading:true,
+            limit:8
         }
     }
 
@@ -62,7 +63,7 @@ class Register extends Component{
 
     render(){
        
-        let {sellList,buyList,isLoading} = this.state;
+        let {sellList,buyList,isLoading,limit} = this.state;
         let {intl,pairs,lastPrice,setQuickSelect} = this.props;
         
         let first_token =  pairs.fShortName ? '(' + pairs.fShortName + ')' : '';
@@ -77,7 +78,7 @@ class Register extends Component{
             key: 'sell',
             render: (text, record, index) => {
               return <div className="col-red">
-                {intl.formatMessage({id: 'trc20_sell'})}{(index+1)}
+                {intl.formatMessage({id: 'trc20_sell'})}{(limit-index)}
               </div>
             }
           },
@@ -148,7 +149,7 @@ class Register extends Component{
                               price: Number(record.price),
                               amount: parseInt(record.amount)
                             },
-                            type: 'sell'
+                            type: 'buy'
                           }
                           setQuickSelect(obj)
                  
@@ -180,7 +181,7 @@ class Register extends Component{
                               price: Number(record.price),
                               amount: parseInt(record.amount)
                             },
-                            type: 'buy'
+                            type: 'sell'
                           }
                           setQuickSelect(obj)
                         }      
@@ -211,7 +212,7 @@ class Register extends Component{
             if (data) {
                 this.setState ({
                     buyList:await this.getList(data.buy, 1),
-                    sellList:await this.getList(data.sell)
+                    sellList:(await this.getList(data.sell)).reverse()
                 })
                 
             }
@@ -219,6 +220,7 @@ class Register extends Component{
     }
 
     async getList(data,type){
+      let {limit} = this.state;
         let {pairs} =  this.props;
         let sPrecision = pairs.sPrecision ? pairs.sPrecision : 6;
 
@@ -269,7 +271,7 @@ class Register extends Component{
         // } else {
         //   this.sellMax = _max
         // }
-        listN.length > 5 && (listN.length = 5)
+        listN.length > limit && (listN.length = limit)
       }
       
       return listN

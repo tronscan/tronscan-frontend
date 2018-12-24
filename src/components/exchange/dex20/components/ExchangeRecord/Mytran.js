@@ -111,7 +111,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return  <span>
           {record.orderStatus === 1 && <span className="status finish">{tu('trc20_my_trans_finish')}</span> }
-           { (record.orderStatus === 2 || record.orderStatus === 3) && <span className="status">{tu('trc20_my_trans_cancle')}</span>}
+           { (record.orderStatus === 2 || record.orderStatus === 3) && <span className="status fail">{tu('trc20_my_trans_cancle')}</span>}
         </span>
         }
       }
@@ -129,6 +129,7 @@ class Mytran extends Component {
               rowKey={(record, index) => {
                   return index
               }}
+              className="my-tran"
           />
     )
 

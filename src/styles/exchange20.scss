@@ -3,10 +3,13 @@
     background: none;
   }
   .exchange-list-mark {
-    height: 471px;
+    // height: 471px;
+    // height:328px;
+    height:410px;
   }
   .exchange-list-explain {
-    height:370px;
+    // height:370px;
+    height:431px;
   }
   .exchange-list-mark,
   .exchange-list-explain {
@@ -67,9 +70,28 @@
   .register{
     .ant-table tr{
         background: none;
+        line-height: 12px;
     }
     .ant-table-thead > tr > th{
         background: none;
     }
   }
+
+  .my-tran{
+    .fail{
+      color:#F15454;
+      background:rgba(241,84,84,0.1);
+      padding:2px 5px;
+      border-radius: 5px;
+    
+    }
+    .finish{
+      color:#69C265;
+      background:rgba(105,194,101,0.1);
+      padding:2px 5px;
+      border-radius:5px;
+    }
+  }
+
+
 }

@@ -136,7 +136,7 @@ class Curorder extends Component {
           return (
             <span>
               {this.numFormat(record.curTurnover.toFixed(4))}
-              {record.fShortName}
+              {record.sShortName}
             </span>
           );
         },
@@ -161,7 +161,7 @@ class Curorder extends Component {
         key: "cancel",
         render: (text, record, index) => {
           return (
-            <span onClick={() => this.cancelOrder(record)}>
+            <span onClick={() => this.cancelOrder(record)} style={{color:'#409eff'}}>
               {tu("trc20_cur_order_cancel")}
             </span>
           );
