@@ -405,7 +405,6 @@ class VoteOverview extends React.Component {
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
-      console.log('witnessVotes==========',witnessVotes)
     if (Lockr.get("islogin")) {
         const { tronWeb } = account;
         try {
