@@ -20,7 +20,7 @@ function formatNumber(value) {
 class NumericInput extends React.Component {
   onChange = (e) => {
     const { value } = e.target;
-    const reg = /^(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    const reg = /^(0|[1-9][0-9]*)?$/;
     if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
       this.props.onChange(value);
     }
@@ -54,7 +54,7 @@ class NumericInput extends React.Component {
         <Input
           {...this.props}
           onChange={this.onChange}
-          maxLength="30"
+          maxLength="15"
         />
       // </Tooltip>
     );

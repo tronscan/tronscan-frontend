@@ -43,7 +43,8 @@ class ExchangeList extends React.Component {
                 dex: [],
                 dex20: [],
                 favorites: []
-            } 
+            },
+            tagLock: true
         };
     }
 
@@ -87,22 +88,28 @@ class ExchangeList extends React.Component {
             let new20List = exchange20List.filter(item => item.isChecked)
             let newallList = exchangeallList? exchangeallList.filter(item => item.isChecked): []
 
-            const newList = _(new20List)
-                            .concat(newallList).value()
-            this.setState({dataSource: newList})
+            let unreviewedTokenList = _(new20List)
+            .concat(newallList)
+            .sortBy(o => -o.first_token_abbr)
+            .value();
+            this.setState({dataSource: unreviewedTokenList})
         }
     }
     handleSelectData = (type) => {
-        this.setState({tokenAudited: type})
-        if(!type){
-            Lockr.set('DEX', 'GEM')
-        }else{
-            Lockr.set('DEX', 'Main')
+        const {tagLock} = this.state
+        if(tagLock){
+            this.setState({tokenAudited: type, tagLock: false})
+            if(!type){
+                Lockr.set('DEX', 'GEM')
+            }else{
+                Lockr.set('DEX', 'Main')
+            }
+            this.setData(type)
+            
+            setTimeout(() => {
+                this.setState({tagLock: true})
+            }, 1000);
         }
-        this.setData(type)
-       
-        
-        
     }
 
     render() {
@@ -134,10 +141,10 @@ class ExchangeList extends React.Component {
                         <div
                             className={"btn btn-sm" + (tokenAudited? ' active' : '')}
                             onClick={() => this.handleSelectData(true)}>
-                            {tu("TRX_20")}
+                            TRC 20
                         </div>
                         
-                        <Link className={"btn btn-sm" } to="/exchange">{tu("TRX")}</Link>
+                        <Link className={"btn btn-sm" } to="/exchange"><span>TRC 10</span></Link>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}
                             onClick={() => this.handleSelectData(false)}>
