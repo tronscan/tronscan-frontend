@@ -12,7 +12,7 @@ import { Modal, Button } from "antd";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { TW } from "../../TW";
 import {setUpdateTran} from '../../../../../actions/exchange'
-
+import {TronLoader} from "../../../../common/loaders";
 
 const confirm = Modal.confirm;
 
@@ -24,7 +24,8 @@ class Curorder extends Component {
       limit: 50,
       list: [],
       timer: null,
-      modal: null
+      modal: null,
+      isLoading:true
     };
 
     this.cancelOrder = this.cancelOrder.bind(this);
@@ -46,6 +47,11 @@ class Curorder extends Component {
     let { wallet } = this.props;
     if (prevProps.wallet != wallet) {
       clearInterval(timer);
+      
+      this.setState({
+        isLoading:true
+      })
+      this.getData();
       this.setState({
         timer: setInterval(() => {
           this.getData();
@@ -62,7 +68,7 @@ class Curorder extends Component {
 
 
   render() {
-    let { list, modal } = this.state;
+    let { list, modal,isLoading } = this.state;
     let { intl } = this.props;
 
     if (!list || list.length === 0) {
@@ -166,14 +172,16 @@ class Curorder extends Component {
     return (
       <div className="exchange__tranlist">
         {modal}
-        <Table
-          dataSource={list}
-          columns={columns}
-          pagination={false}
-          rowKey={(record, index) => {
-            return `${index}`;
-          }}
-        />
+        {isLoading ? <TronLoader/> :
+          <Table
+            dataSource={list}
+            columns={columns}
+            pagination={false}
+            rowKey={(record, index) => {
+              return `${index}`;
+            }}
+          />
+        }
       </div>
     );
   }
@@ -188,6 +196,9 @@ class Curorder extends Component {
 
     let obj = { start, limit, uAddr, status: "0" };
     let { data, code } = await Client20.getCurrentList(obj);
+    this.setState({
+      isLoading:false
+    })
     if (code === 0) {
       let list = [];
       if (data && data.rows && data.rows.length > 0) {

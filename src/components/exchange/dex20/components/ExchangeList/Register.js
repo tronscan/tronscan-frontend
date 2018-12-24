@@ -1,4 +1,4 @@
-import React ,{Component} from 'react'
+import React ,{Component,Fragment} from 'react'
 import {injectIntl} from "react-intl";
 import {Client20} from "../../../../../services/api";
 import {tu} from "../../../../../utils/i18n";
@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import { Icon } from 'antd';
 import {setQuickSelect} from '../../../../../actions/exchange'
+import {TronLoader} from "../../../../common/loaders";
 
 class Register extends Component{
     constructor(){
@@ -19,7 +20,8 @@ class Register extends Component{
             lastPrice:{
                 value: '0.04998',
                 type: 0
-            }
+            },
+            isLoading:true
         }
     }
 
@@ -39,6 +41,9 @@ class Register extends Component{
         let { timer } = this.state;
         let {pairs} = this.props;
         if(prevProps.pairs.id != pairs.id){
+            this.setState({
+              isLoading:true
+            })
             this.getData()
             clearInterval(timer)
             this.setState({
@@ -57,7 +62,7 @@ class Register extends Component{
 
     render(){
        
-        let {sellList,buyList} = this.state;
+        let {sellList,buyList,isLoading} = this.state;
         let {intl,pairs,lastPrice,setQuickSelect} = this.props;
         
         let first_token =  pairs.fShortName ? '(' + pairs.fShortName + ')' : '';
@@ -122,7 +127,8 @@ class Register extends Component{
 
         return (
             <div className="ant-table-content register">
-                
+                {isLoading ? <TronLoader/> :
+                <Fragment>
                 <Table
                     dataSource={sellList}
                     columns={sell_columns}
@@ -181,9 +187,9 @@ class Register extends Component{
                 
                       }
                     }}
-                /> 
-
-            
+                />
+                </Fragment>
+              }
             </div>
         )
     }
@@ -197,6 +203,9 @@ class Register extends Component{
           return ;
         }
         let { data,code } = await Client20.getRegisterList(exchangeId);
+        this.setState({
+          isLoading:false
+        })
         
         if (code === 0) {
             if (data) {
