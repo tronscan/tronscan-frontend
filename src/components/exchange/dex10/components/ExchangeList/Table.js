@@ -171,8 +171,11 @@ class ExchangeTable extends React.Component {
       });
       if(this.props.searchAddId){
           let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
-          this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
-          getSelectData(record[0],true)
+          if(record.length > 0){
+            this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
+            getSelectData(record[0],true)
+          }
+         
           this.setState({
               activeIndex:nextProps.activeIndex,
           },()=>{

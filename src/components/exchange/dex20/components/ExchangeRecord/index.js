@@ -11,18 +11,30 @@ class TransactionList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     
+      isLoad:false
     }
+    
   }
 
   componentDidMount() {
     // this.fetch();
   }
-  callback(key) {
+  callback=(key) =>{
 
+    if(key == 3){
+      this.setState({
+        isLoad:true
+      })
+    }else{
+      this.setState({
+        isLoad:false
+      })
+    }
+    
   }
   render() {
     const { currentWallet } = this.props
+    const {isLoad} = this.state
     return (
       <div className="exchange__transactionlist p-3">
       <Tabs defaultActiveKey="2" onChange={this.callback}>
@@ -35,7 +47,7 @@ class TransactionList extends Component {
         {
           currentWallet &&
           <TabPane tab={tu("trc20_my_transaction")} key="3">
-            <Mytran props={this.props}/>
+            <Mytran props={this.props}  isLoad={isLoad}/>
           </TabPane>
         }
       </Tabs>
