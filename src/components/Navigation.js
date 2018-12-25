@@ -394,7 +394,6 @@ class Navigation extends React.Component {
   };
 
   closeLoginModel = (e) => {
-      console.log(666666)
       e.stopPropagation()
       this.setState({
           isImportAccount: false,
@@ -405,28 +404,22 @@ class Navigation extends React.Component {
   };
 
   clickLoginWithTronLink(e){
-      console.log(1111)
       e.stopPropagation()
       this.setState({
           isTRONlinkLogin: true,
           isImportAccount: false
       },() =>{
-          console.log('isTRONlinkLogin======11111',this.state.isTRONlinkLogin)
-          console.log('isImportAccount======11111',this.state.isImportAccount)
+
       });
-      console.log(22222)
   }
   clickLoginWithPk (e){
-      console.log(3333)
       e.stopPropagation()
       this.setState({
           isTRONlinkLogin: false,
           isImportAccount: true
       },() =>{
-          console.log('isTRONlinkLogin======22222',this.state.isTRONlinkLogin)
-          console.log('isImportAccount======22222',this.state.isImportAccount)
+
       })
-      console.log(44444)
   }
 
   renderWallet() {

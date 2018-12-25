@@ -39,7 +39,6 @@ class Kline extends React.Component {
       || (prevProps.activeLanguage != activeLanguage))
       || !prevProps
     ){
-      console.log('selectData==========',selectData)
       tvWidget && tvWidget.remove()
       this.createWidget(selectData.exchange_id)
      
