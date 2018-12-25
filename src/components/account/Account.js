@@ -34,10 +34,8 @@ import Lockr from "lockr";
 
 
 class Account extends Component {
-
   constructor() {
     super();
-
     this.state = {
       modal: null,
       showFreezeBalance: false,
@@ -580,7 +578,7 @@ class Account extends Component {
     let {account, currentWallet} = this.props;
     if(this.state.isTronLink === 1){
         const { tronWeb } = account;
-        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58);
+        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e=>false);
         const {result} = await transactionResultManager(unSignTransaction,tronWeb)
         res = result;
     } else {
@@ -622,7 +620,7 @@ class Account extends Component {
         type = 'ENERGY';
       }
         try {
-            const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58);
+            const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58).catch(e=>false);
             const {result} = await transactionResultManager(unSignTransaction,tronWeb)
             res = result;
         } catch (e) {
@@ -662,7 +660,7 @@ class Account extends Component {
           const { tronWeb } = account;
           const unSignTransaction = await tronWeb.fullNode.request('wallet/unfreezeasset', {
               owner_address: tronWeb.defaultAddress.hex,
-          }, 'post');
+          }, 'post').catch(e=>false);
           const {result} = await transactionResultManager(unSignTransaction,tronWeb)
           res = result;
       } else {
@@ -710,7 +708,7 @@ class Account extends Component {
     let {account, currentWallet} = this.props;
     if(this.state.isTronLink === 1){
         const { tronWeb } = account;
-        const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {account_name:tronWeb.fromUtf8(name),owner_address:tronWeb.defaultAddress.hex}, 'post');
+        const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {account_name:tronWeb.fromUtf8(name),owner_address:tronWeb.defaultAddress.hex}, 'post').catch(e=>false);
         const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
         res = result;
     }else{
@@ -777,7 +775,7 @@ class Account extends Component {
       let {account, currentWallet} = this.props;
       if(this.state.isTronLink === 1){
             const { tronWeb } = account;
-            const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId,firstTokenBalance,secondTokenBalance,tronWeb.defaultAddress.hex);
+            const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId,firstTokenBalance,secondTokenBalance,tronWeb.defaultAddress.hex).catch(e=>false);
             const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
             res = result;
       }else{
@@ -1473,7 +1471,7 @@ class Account extends Component {
                   <div className="card-body px-0 d-lg-flex justify-content-lg-between">
                     <p className="card-text freeze-trx-premessage">
                       {tu("freeze_trx_premessage_0")}
-                      <Link to="/votes">{t("freeze_trx_premessage_link")}</Link>
+                      <Link to="/sr/votes">{t("freeze_trx_premessage_link")}</Link>
                       {tu("freeze_trx_gain_bandwith_energy")}
                       <br/>
                       <br/>{tu("freeze_trx_premessage_1")}
