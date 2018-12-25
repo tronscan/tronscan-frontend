@@ -673,7 +673,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "open_wallet": "Open Wallet",
+  "open_wallet": "Sign in",
   "private_key": "Private Key",
   "keystore_file": "Keystore File",
   "select_file": "Select File",

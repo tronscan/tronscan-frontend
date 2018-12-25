@@ -123,7 +123,7 @@ import { injectIntl } from "react-intl";
 
 class ApiTW {
   constructor() {
-    this.contranctAddress = "TGq7uRgKED5G8kYpEoQybR9p9xtcVa5GTD";
+    this.contranctAddress = "TPmSRkEnJTSUj7pshdPqy26HdL6hj9YJiC";
   }
 
   /**

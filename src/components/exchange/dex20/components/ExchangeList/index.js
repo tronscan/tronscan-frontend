@@ -144,12 +144,12 @@ class ExchangeList extends React.Component {
                         <div
                             className={"btn btn-sm" + (tokenAudited? ' active' : '')}
                             onClick={() => this.handleSelectData(true)}>
-                            TRC 20
+                            TRC20
                         </div>
                         <div
                             className={"btn btn-sm"}
                             onClick={() => this.gotoTrc10()}>
-                            TRC 10
+                            TRC10
                         </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}

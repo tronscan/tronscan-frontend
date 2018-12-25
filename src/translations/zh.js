@@ -666,7 +666,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "open_wallet": "打开钱包",
+    "open_wallet": "登录",
     "private_key": "私钥",
     "keystore_file": "密钥库文件",
     "select_file": "选择文档",
