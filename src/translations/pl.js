@@ -654,7 +654,7 @@
     #                                                                                #
     ##################################################################################
     */
-    "what_is_tron": "Czym jest TRON?",
+    "what_is_tron": "TRON whitepaper V2.0",
     "tron_explorer_api": "API Eksploratora TRON",
     "tron_architechure": "Architektura TRON",
     "tron_protobuf_doc": "TRON Protobuf Doc",
