@@ -654,7 +654,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "what_is_tron": "트론의 정의",
+    "what_is_tron": "트론 백서 V2.0",
     "tron_explorer_api": "트론 탐색기 API",
     "tron_architechure": "트론 아키텍처",
     "tron_protobuf_doc": "TRON Protobuf Doc",

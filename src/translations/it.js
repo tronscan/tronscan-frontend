@@ -656,7 +656,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "what_is_tron": "Cos'è TRON",
+    "what_is_tron": "TRON whitepaper V2.0",
     "tron_explorer_api": "API TRON Explorer",
     "tron_architechure": "Architettura TRON",
     "tron_protobuf_doc": "TRON Protobuf Doc",

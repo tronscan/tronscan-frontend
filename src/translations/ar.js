@@ -641,7 +641,7 @@
   #                                                                                #
   ##################################################################################
   */
-  "what_is_tron": "ما هو ترون",
+  "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "الواجهة البرمجية (API) لمستكشف ترون",
   "tron_architechure": "هندسة ترون",
   "tron_protobuf_doc": "TRON Protobuf Doc",
