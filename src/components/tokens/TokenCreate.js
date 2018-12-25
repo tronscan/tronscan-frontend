@@ -189,9 +189,7 @@ class TokenCreate extends Component {
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
                 {tu("token_issued_successfully")}<br/>
-                {tu("token_link_message_0")}
-                {tu("token_link_message_1")}
-                {tu("token_link_message_2")}
+                {tu("Create_token_link_message_0")}
               </SweetAlert>
         });
         if(logoData){

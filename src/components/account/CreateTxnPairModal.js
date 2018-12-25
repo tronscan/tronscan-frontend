@@ -237,7 +237,7 @@ class CreateTxnPairModal extends React.PureComponent {
                         this.state.firstTokenId && this.state.firstTokenBalance && this.state.secondTokenBalance >= this.props.dealPairTrxLimit?
                             <div className="row mt-4">
                                 <div className="col-md-12">
-                                    {tu('publish_price')}:<span>{this.state.firstTokenId}/TRX ≈ {(this.state.firstTokenBalance/this.state.secondTokenBalance).toFixed(6)}</span>
+                                    {tu('publish_price')}:<span>{this.state.firstTokenId}/TRX ≈ {(this.state.secondTokenBalance/this.state.firstTokenBalance).toFixed(6)}</span>
                                 </div>
                             </div>
                             :

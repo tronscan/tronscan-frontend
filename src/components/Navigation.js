@@ -51,6 +51,7 @@ class Navigation extends React.Component {
       isImportAccount:false,
       isTRONlinkLogin:false,
       loginWarning:false,
+      signInWarning:false,
       address:'',
     };
   }
@@ -88,13 +89,16 @@ class Navigation extends React.Component {
   }
 
  reLoginWithTronLink = () => {
+     let {intl} = this.props;
      if (Lockr.get("islogin")) {
          let timer = null;
          let count = 0;
          timer = setInterval(() => {
              const tronWeb = window.tronWeb;
              if (tronWeb && tronWeb.defaultAddress.base58) {
-                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb);
+                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb).then(() => {
+                     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+                 });
                  this.setState({ address: tronWeb.defaultAddress.base58});
                  clearInterval(timer)
              } else {
@@ -117,7 +121,8 @@ class Navigation extends React.Component {
     this.props.setActiveCurrency(currency);
   };
 
-  login = () => {
+  login(e){
+    e.stopPropagation();
     let {intl} = this.props;
     let {privateKey} = this.state;
     if (trim(privateKey) === "external") {
@@ -148,7 +153,8 @@ class Navigation extends React.Component {
     return true;
   };
 
-  selectFile = () => {
+  selectFile(e){
+    e.stopPropagation();
     this.fileRef.current.click();
   };
 
@@ -165,6 +171,7 @@ class Navigation extends React.Component {
       isImportAccount: false,
       isTRONlinkLogin: false,
       loginWarning:false,
+      signInWarning:false,
       popup: (
           <SweetAlert
               input
@@ -220,7 +227,8 @@ class Navigation extends React.Component {
     }
   };
 
-  logout = () => {
+  logout (e){
+      e.stopPropagation();
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
@@ -353,8 +361,10 @@ class Navigation extends React.Component {
     console.log("LOGIN WITH MOBILE");
   };
 
-  loginWithTronLink = () =>{
-      const { loginWarning } = this.state;
+  loginWithTronLink(e){
+      let {intl} = this.props;
+      e.stopPropagation();
+      const { loginWarning, signInWarning } = this.state;
       const tronWeb = window.tronWeb;
       // 没有下载 tronlink
       if (!tronWeb) {
@@ -366,7 +376,7 @@ class Navigation extends React.Component {
       // 没有登录 tronlink
       const address = tronWeb.defaultAddress.base58;
       if (!address) {
-          this.setState({loginWarning:true});
+          this.setState({signInWarning:true});
           //this.loading = false
           Lockr.set("islogin", 0);
           return
@@ -376,25 +386,53 @@ class Navigation extends React.Component {
       if (address) {
           //this.isauot = true
           Lockr.set("islogin", 1);
-          this.props.loginWithTronLink(address,tronWeb);
-          setTimeout(() => {
+          this.props.loginWithTronLink(address,tronWeb).then(() => {
+              toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
               this.setState({isImportAccount: false})
-          }, 1000)
+          });
       }
   };
 
-  closeLoginModel = () => {
+  closeLoginModel = (e) => {
+      console.log(666666)
+      e.stopPropagation()
       this.setState({
           isImportAccount: false,
           isTRONlinkLogin: false,
           loginWarning:false,
+          signInWarning:false
       })
   };
+
+  clickLoginWithTronLink(e){
+      console.log(1111)
+      e.stopPropagation()
+      this.setState({
+          isTRONlinkLogin: true,
+          isImportAccount: false
+      },() =>{
+          console.log('isTRONlinkLogin======11111',this.state.isTRONlinkLogin)
+          console.log('isImportAccount======11111',this.state.isImportAccount)
+      });
+      console.log(22222)
+  }
+  clickLoginWithPk (e){
+      console.log(3333)
+      e.stopPropagation()
+      this.setState({
+          isTRONlinkLogin: false,
+          isImportAccount: true
+      },() =>{
+          console.log('isTRONlinkLogin======22222',this.state.isTRONlinkLogin)
+          console.log('isImportAccount======22222',this.state.isImportAccount)
+      })
+      console.log(44444)
+  }
 
   renderWallet() {
 
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-    let {isImportAccount, isTRONlinkLogin, loginWarning, address } = this.state;
+    let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address } = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -490,31 +528,31 @@ class Navigation extends React.Component {
                     <li className="dropdown-divider"/>
                     <li className=" pt-1 pb-2">
                       <button className="btn btn-danger btn-block"
-                              onClick={this.logout}>{tu("sign_out")}</button>
+                              onClick={(e) => {this.logout(e)}}>{tu("sign_out")}</button>
                     </li>
                   </ul>
                 </li> :
                 <li className="dropdown nav nav_input">
-                  <a className="nav-link dropdown-toggle nav-item" href="javascript:">
+                  <div className="nav-link dropdown-toggle nav-item">
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
-                      <li className="px-2 py-2" onClick={() => this.setState({isTRONlinkLogin: true, isImportAccount:false})}>
+                      <li className="px-2 py-2" onClick={(e) => {this.clickLoginWithTronLink(e)}}>
                         <div className="dropdown-item text-uppercase text-center">
                             {tu('sign_in_with_TRONlink')}
                         </div>
                       </li>
-                      <li className="px-2 py-2" onClick={() => this.setState({isImportAccount: true, isTRONlinkLogin: false})}>
+                      <li className="px-2 py-2" onClick={(e) => {this.clickLoginWithPk(e)}}>
                         <div className="dropdown-item text-uppercase text-center">
                             {tu('import_a_wallet')}
                         </div>
                       </li>
                     </ul>
-                  </a>
+                  </div>
 
                     {
                       isImportAccount?  <div className="login-mask">
                         <ul className="login-import">
-                          <div className="login-cancel" onClick={this.closeLoginModel}>
+                          <div className="login-cancel" onClick={(e) => {this.closeLoginModel(e)}}>
                             <Icon type="close" />
                           </div>
                           <li className="px-3 py-4">
@@ -528,7 +566,7 @@ class Navigation extends React.Component {
                             </div>
                             <button className="btn btn-danger btn-block mt-3"
                                     disabled={!this.isLoginValid()}
-                                    onClick={this.login}>
+                                    onClick={(e) => {this.login(e)}}>
                                 {tu("sign_in")}
                             </button>
                           </li>
@@ -536,7 +574,7 @@ class Navigation extends React.Component {
                           <li className="px-3 py-4">
                             <div className="text-center">
                               <label>{tu("keystore_file")}</label>
-                              <button className="btn btn-danger btn-block" onClick={this.selectFile}>
+                              <button className="btn btn-danger btn-block" onClick={(e) => {this.selectFile(e)}}>
                                   {tu("select_file")}
                               </button>
                               <input type="file" ref={this.fileRef} className="d-none"
@@ -561,7 +599,7 @@ class Navigation extends React.Component {
                                     {/* <li className="dropdown-divider"/> */}
                                 </Fragment>
                             }
-                          <li className="px-3 py-4" onClick={this.closeLoginModel}>
+                          <li className="px-3 py-4" onClick={(e) => {this.closeLoginModel(e)}}>
                             <Link className="btn btn-primary btn-block" to="/wallet/new">
                                 {tu("create_wallet")}
                             </Link>
@@ -572,7 +610,7 @@ class Navigation extends React.Component {
                     {
                       isTRONlinkLogin?  <div className="login-mask">
                           <div className="login-tronlink">
-                            <div className="login-cancel" onClick={this.closeLoginModel}>
+                            <div className="login-cancel" onClick={(e) => {this.closeLoginModel(e)}}>
                               <Icon type="close" />
                             </div>
                             <div className="px-3 py-4">
@@ -587,6 +625,9 @@ class Navigation extends React.Component {
                             <div className="text-center pt-2" style={{color:'#C23631'}}>
                                 {
                                     loginWarning ? tu('sign_in_TRONlink_warning') : ''
+                                }
+                                {
+                                    signInWarning ? tu('sign_in_TRONlink_warning_0') : ''
                                 }
                             </div>
 
@@ -607,7 +648,7 @@ class Navigation extends React.Component {
                               }
                             <div className="px-3 py-4">
                               <button className="btn btn-warning btn-block"
-                                      onClick={this.loginWithTronLink}>
+                                      onClick={(e) => {this.loginWithTronLink(e)}}>
                                   {tu("sign_in_TRONlink")}
                               </button>
                             </div>

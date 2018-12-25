@@ -8,7 +8,16 @@ export const tronAddresses = [
 ];
 
 export async function transactionResultManager(transaction,tronWeb){
-    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey);
-    const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-    return broadcast;
+    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e=>{
+        return false;
+    });
+    if(signedTransaction){
+        const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+        if(!broadcast.result){
+            broadcast.result = false;
+        }
+        return broadcast;
+    }else{
+        return {result:false};
+    }
 }

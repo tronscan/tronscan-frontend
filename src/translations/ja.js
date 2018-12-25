@@ -1370,8 +1370,9 @@ export const messages = {
     "sign_in_TRONlink_warning":"TRONlinkをインストールしてページを更新してください",
     "sign_in_TRONlink":"TRONlinkでログイン",
     "uninstall_TRONlink":"まだTRONlinkをインストールしていない？ ここをクリック",
-    "change_login_method":"TRONlinkログインは現在この機能をサポートしていません。プライベートキーまたはキーストアファイルを使用してログインしてください。"
-
+    "change_login_method":"TRONlinkログインは現在この機能をサポートしていません。プライベートキーまたはキーストアファイルを使用してログインしてください。",
+    "Create_token_link_message_0": "トークンは、Tronscanのトークンレビューに合格した場合にのみ一覧表示されます。",
+    "sign_in_TRONlink_warning_0":"TRONlinkウォレットにログインしてください！",
 
 }
 

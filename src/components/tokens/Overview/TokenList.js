@@ -17,7 +17,9 @@ import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst, toLower} from "lodash";
 import {TronLoader} from "../../common/loaders";
+import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
+import Lockr from "lockr";
 
 class TokenList extends Component {
 
@@ -261,18 +263,31 @@ class TokenList extends Component {
 
     let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
+      let res;
+      if (Lockr.get("islogin")) {
+          const { tronWeb } = account;
+          try {
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex);
+              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              res = result;
+          } catch (e) {
+              console.log(e)
+          }
+      }else {
+          let isSuccess = await Client.participateAsset(
+              currentWallet.address,
+              token.ownerAddress,
+              token.name,
+              buyAmount * token.price)(account.key);
+          res = isSuccess.success
+      }
 
-    let isSuccess = await Client.participateAsset(
-        currentWallet.address,
-        token.ownerAddress,
-        token.name,
-        buyAmount * token.price)(account.key);
 
-    if (isSuccess) {
+    if (res) {
       this.setState({
         activeToken: null,
         confirmedParticipate: true,
-        participateSuccess: isSuccess,
+        participateSuccess: res,
         buyAmount: 0,
       });
 

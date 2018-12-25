@@ -88,11 +88,23 @@ class SendForm extends React.Component {
 
       if (TokenName === "TRX") {
           amount = amount * ONE_TRX;
-          result = await tronWeb.trx.sendTransaction(to, amount, false);
-          success = result.result;
+          result = await tronWeb.trx.sendTransaction(to, amount, false).catch(function (e) {
+              console.log(e)
+          });
+          if(result){
+              success = result.result;
+          }else{
+              success = false;
+          }
+
       }else{
           result = await tronWeb.trx.sendToken(to, amount, TokenName, false);
           success = result.result;
+          if(result){
+              success = result.result;
+          }else{
+              success = false;
+          }
       }
 
       //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
