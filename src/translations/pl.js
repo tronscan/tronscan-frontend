@@ -1197,6 +1197,7 @@
     "choose_a_Token_for_capital_withdrawal": "Choose a Token for Capital Withdrawal:",
     "injection_amount": "Injection Amount:",
     "withdrawal_amount": "Withdrawal Amount:",
+    "marks": "TRONDEX",
     "last_price": "Last price",
     "pairs_change": "Change",
     "H": "H",
