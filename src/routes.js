@@ -237,14 +237,14 @@ export const routes = [
     path: "/rating",
     showInMenu: false
   },
-  {
-    path: "/TRXMarket",
-    label: "TRXMarket",
-    icon: "fas fa-rocket",
-    enurl: "https://trx.market",
-    zhurl: "https://trx.market",
-    linkHref: true
-  },
+  // {
+  //   path: "/TRXMarket",
+  //   label: "TRXMarket",
+  //   icon: "fas fa-rocket",
+  //   enurl: "https://trx.market",
+  //   zhurl: "https://trx.market",
+  //   linkHref: true
+  // },
   {
     label: "DEX10",
     path: "/exchange",
@@ -254,7 +254,7 @@ export const routes = [
     none: true
   },
   {
-    label: "DEX",
+    label: "TRONDEX",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
