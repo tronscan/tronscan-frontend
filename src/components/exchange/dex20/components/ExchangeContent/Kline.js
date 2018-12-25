@@ -24,16 +24,22 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-    // this.createWidget()
+    const {tokeninfo, tvWidget} = this.state
+    const { selectData} = this.props
+    tvWidget && tvWidget.remove()
+    this.createWidget(selectData.exchange_id)
+    const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
+    this.setState({tokeninfoItem: newObj, detailShow: false})
   }
 
   componentDidUpdate (prevProps) {
     const {tokeninfo, tvWidget} = this.state
     const { selectData,selectStatus, activeLanguage } = this.props
-
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
+      || !prevProps
     ){
+      console.log('selectData==========',selectData)
       tvWidget && tvWidget.remove()
       this.createWidget(selectData.exchange_id)
      

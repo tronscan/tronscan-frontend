@@ -32,7 +32,8 @@ class Kline extends React.Component {
     const { selectData, selectStatus, activeLanguage } = this.props
     const { tvWidget } = this.state
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
-      || (prevProps.activeLanguage != activeLanguage))
+      || (prevProps.activeLanguage != activeLanguage)) || 
+      !prevProps
     ){
       this.createWidget(selectData.exchange_id)
       this.getTokenInfo()

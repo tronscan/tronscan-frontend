@@ -175,7 +175,10 @@ class ExchangeList extends React.Component {
             showSearch:false,
         });
         if(unreviewedTokenList.length > 0){
-            this.props.history.push('/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id)
+            let favFirst = unreviewedTokenList[0];
+            let url = ''
+            favFirst.token_type == "dex20" ? url='/exchange20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
+            this.props.history.push(url)
             getSelectData(unreviewedTokenList[0], true)
             this.setState({
                 activeIndex:unreviewedTokenList[0].exchange_id,
