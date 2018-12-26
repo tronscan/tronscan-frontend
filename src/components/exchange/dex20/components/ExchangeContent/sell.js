@@ -284,9 +284,7 @@ class Sell extends Component {
       limitError,
       firstBalance
     } = this.state;
-    this.setState({
-      buttonLoading:true
-    })
+    
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
     if (price * amount < 10) {
@@ -312,6 +310,9 @@ class Sell extends Component {
     }
 
     //   this.isOrder = true
+    this.setState({
+      buttonLoading:true
+    })
     this.orderSubmit();
   };
 

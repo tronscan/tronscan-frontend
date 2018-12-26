@@ -278,9 +278,7 @@ class Buy extends Component {
   handleSubmit = e => {
     let { price, amount, secondError, firstError, limitError,buttonLoading } = this.state;
     let { intl } = this.props;
-    this.setState({
-      buttonLoading:true
-    })
+    
     if (price * amount < 10) {
       this.setState({
         secondError: intl.formatMessage({ id: "trc20_enter_10" })
@@ -305,6 +303,9 @@ class Buy extends Component {
       return;
     }
     //   this.isOrder = true
+    this.setState({
+      buttonLoading:true
+    })
     this.orderSubmit();
   };
 

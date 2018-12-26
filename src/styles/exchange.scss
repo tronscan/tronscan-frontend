@@ -479,9 +479,10 @@
     border-radius: 2px;
   }
   .warning {
-    background: #f5a623;
+    background: #e60815;
+
     color: #fff;
-    border-color: #f5a623;
+    border-color: #e60815;
     border-radius: 2px;
   }
 
@@ -574,6 +575,9 @@
 
 
 @media only screen and (max-width: 768px) {
+  // .exchange__kline{
+  //   overflow: hidden;
+  // }
   .kline_detail{
     ul{
       overflow-x: scroll;
