@@ -45,7 +45,9 @@ class Sell extends Component {
       firstError: false,
       secondError: false,
       limitError: "",
-      trs_proportion: 0
+      trs_proportion: 0,
+      balanceTimer:null,
+      buttonLoading:false
     };
 
     this.slideChange = this.slideChange.bind(this);
@@ -156,7 +158,8 @@ class Sell extends Component {
       secondError,
       firstError,
       limitError,
-      trs_proportion
+      trs_proportion,
+      buttonLoading
     } = this.state;
 
     return (
@@ -249,6 +252,7 @@ class Sell extends Component {
             htmlType="button"
             disabled={!account.address}
             onClick={this.handleSubmit}
+            loading={buttonLoading}
           >
             {tu("trc20_SELL")}&nbsp; {exchangeData.fShortName}
           </Button>
@@ -267,6 +271,9 @@ class Sell extends Component {
       limitError,
       firstBalance
     } = this.state;
+    this.setState({
+      buttonLoading:true
+    })
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
     if (price * amount < 10) {
@@ -337,12 +344,25 @@ class Sell extends Component {
             </SweetAlert>
           )
         });
-
+        this.setState({
+          buttonLoading:false
+        })
         this.setBalance();
+        if(account.key){
+          let timer = setInterval(()=>{
+            this.setBalance();
+          },1000)
+          this.setState({
+            balanceTimer:timer
+          })
+        }
       }
     } catch (error) {
       console.log(error);
       //   this.isOrder = false
+      this.setState({
+        buttonLoading:false
+      })
 
       this.setState({
         modal: (
@@ -364,6 +384,7 @@ class Sell extends Component {
 
   async setBalance() {
     let { account, exchangeData } = this.props;
+    let {firstBalance,balanceTimer} = this.state;
 
     let _b = 0;
 
@@ -373,6 +394,13 @@ class Sell extends Component {
         _uToken: account.address,
         _precision: exchangeData.fPrecision,
         tronWeb: account.tronWeb
+      });
+    }
+
+    if(_b != firstBalance){
+      clearInterval(balanceTimer)
+      this.setState({
+        balanceTimer: null
       });
     }
 

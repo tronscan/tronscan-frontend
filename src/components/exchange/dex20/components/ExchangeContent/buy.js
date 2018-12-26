@@ -44,7 +44,9 @@ class Buy extends Component {
       firstError: false,
       secondError: false,
       limitError: "",
-      trs_proportion: 0
+      trs_proportion: 0,
+      balanceTimer:null,
+      buttonLoading:false
     };
 
     this.slideChange = this.slideChange.bind(this);
@@ -56,8 +58,9 @@ class Buy extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { price, firstBalance, amount } = this.state;
+    let { price, firstBalance, amount,balanceTimer } = this.state;
     let { exchangeData, quickSelect, account } = this.props;
+
 
     if (
       prevProps.exchangeData != exchangeData &&
@@ -155,7 +158,8 @@ class Buy extends Component {
       secondError,
       firstError,
       limitError,
-      trs_proportion
+      trs_proportion,
+      buttonLoading
     } = this.state;
 
     return (
@@ -250,6 +254,7 @@ class Buy extends Component {
             htmlType="button"
             disabled={!account.address}
             onClick={this.handleSubmit}
+            loading={buttonLoading}
           >
             {tu("BUY")} &nbsp;{exchangeData.fShortName}
           </Button>
@@ -260,8 +265,11 @@ class Buy extends Component {
   }
 
   handleSubmit = e => {
-    let { price, amount, secondError, firstError, limitError } = this.state;
+    let { price, amount, secondError, firstError, limitError,buttonLoading } = this.state;
     let { intl } = this.props;
+    this.setState({
+      buttonLoading:true
+    })
     if (price * amount < 10) {
       this.setState({
         secondError: intl.formatMessage({ id: "trc20_enter_10" })
@@ -291,7 +299,7 @@ class Buy extends Component {
 
   async orderSubmit() {
     let { exchangeData, account } = this.props;
-    let { amount, price } = this.state;
+    let { amount, price,balanceTimer } = this.state;
     let tokenA = exchangeData.fTokenAddr;
     let tokenB = exchangeData.sTokenAddr;
 
@@ -324,9 +332,25 @@ class Buy extends Component {
             </SweetAlert>
           )
         });
+
         this.setBalance();
+        this.setState({
+          buttonLoading:false
+        })
+        
+        if(account.key){
+          let timer = setInterval(()=>{
+            this.setBalance();
+          },1000)
+          this.setState({
+            balanceTimer:timer
+          })
+        }
       }
     } catch (error) {
+      this.setState({
+        buttonLoading:false
+      })
       this.setState({
         modal: (
           <SweetAlert
@@ -347,6 +371,7 @@ class Buy extends Component {
 
   async setBalance() {
     let { account, exchangeData } = this.props;
+    let {firstBalance,balanceTimer} = this.state
 
     let _b = 0;
     if (account.address && exchangeData.sTokenAddr) {
@@ -362,6 +387,12 @@ class Buy extends Component {
           tronWeb: account.tronWeb
         });
       }
+    }
+    if(_b != firstBalance){
+      clearInterval(balanceTimer)
+      this.setState({
+        balanceTimer: null
+      });
     }
     this.setState({
       firstBalance: _b
