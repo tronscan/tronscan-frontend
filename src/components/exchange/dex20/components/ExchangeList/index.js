@@ -131,6 +131,8 @@ class ExchangeList extends React.Component {
                             <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
                                target="_blank">{tu('beginners_guide')}</a>
                         </div>
+                        <div className="beginners-guide"><a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
+                               target="_blank">{tu('token_application_instructions_title')}</a></div>
                     </div>
 
                     {/* filter 筛选 */}
