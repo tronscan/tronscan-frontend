@@ -8,6 +8,7 @@ import {tu, tv} from "../../../../../utils/i18n";
 import { TRXPrice } from "../../../../common/Price";
 import {Client20} from "../../../../../services/api";
 import {change10lock} from "../../../../../actions/exchange";
+import {TokenTRC20Link} from "../../../../common/Links";
 import { Icon } from 'antd';
 
 class Kline extends React.Component {
@@ -332,7 +333,9 @@ class Kline extends React.Component {
           <ul className="">
             <li>
               <p className="title">{tu('trc20_token_info_Total_Name')}</p>
-              <p className="value">{tokeninfoItem.name}</p>
+              <p className="value" style={{"textDecoration":"underline"}}>
+                <TokenTRC20Link name={tokeninfoItem.name} address={tokeninfoItem.contract_address} />
+              </p>
             </li>
             <li>
               <p className="title">{tu('trc20_token_info_Token_Symbol')}</p>
