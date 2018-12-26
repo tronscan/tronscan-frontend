@@ -11,6 +11,8 @@ import { ONE_TRX } from "../../../../../constants";
 import { find } from "lodash";
 import { TW } from "../../TW";
 import { Slider } from "antd";
+import {setUpdateTran} from '../../../../../actions/exchange'
+
 
 import NumericInput from "./NumericInput";
 import {
@@ -60,7 +62,18 @@ class Sell extends Component {
 
   componentDidUpdate(prevProps) {
     let { price, firstBalance, amount } = this.state;
-    let { exchangeData, quickSelect, account } = this.props;
+    let { exchangeData, quickSelect, account,is_update_tran } = this.props;
+
+    if(prevProps.is_update_tran != is_update_tran){
+      let timer = setInterval(()=>{
+        this.setBalance();
+      },1000)
+      this.setState({
+        balanceTimer:timer
+      })
+      setUpdateTran(!is_update_tran)
+    }
+
     if (
       prevProps.exchangeData != exchangeData &&
       prevProps.exchangeData.id != exchangeData.id
@@ -619,11 +632,15 @@ function mapStateToProps(state) {
     account: state.app.account,
     currentWallet: state.wallet.current,
     activeLanguage: state.app.activeLanguage,
-    quickSelect: state.exchange.quick_select ? state.exchange.quick_select : {}
+    quickSelect: state.exchange.quick_select ? state.exchange.quick_select : {},
+    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false
+
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setUpdateTran
+};
 
 export default connect(
   mapStateToProps,
