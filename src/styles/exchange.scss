@@ -549,7 +549,6 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    overflow: scroll;
   }
   li {
     margin-right: 20px;
@@ -568,4 +567,13 @@
 .badge-danger-block{
   background:#E60815;
   color: #fff;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .kline_detail{
+    ul{
+      overflow-x: scroll;
+    }
+  }
 }
