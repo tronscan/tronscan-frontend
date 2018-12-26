@@ -408,7 +408,7 @@ class VoteOverview extends React.Component {
     if (Lockr.get("islogin")) {
         const { tronWeb } = account;
         try {
-            const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, tronWeb.defaultAddress.hex);
+            const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, tronWeb.defaultAddress.hex).catch(e=>false);
             const {result} = await transactionResultManager(unSignTransaction,tronWeb)
             res = result;
         } catch (e) {
