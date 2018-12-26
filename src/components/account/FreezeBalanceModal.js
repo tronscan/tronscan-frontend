@@ -102,6 +102,11 @@ class FreezeBalanceModal extends React.PureComponent {
     });
   }
 
+  componentWillUnmount(){
+      this.setState = (state,callback)=>{
+          return;
+      };
+  }
   render() {
 
     let {amount, confirmed, loading, resources, selectedResource} = this.state;
