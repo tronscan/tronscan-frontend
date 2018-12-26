@@ -25,12 +25,16 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-    // const { selectData, selectStatus, activeLanguage } = this.props
-    // const { tvWidget } = this.state
-    // tvWidget && tvWidget.remove()
-    // this.setState({tvWidget:null})
-    // this.createWidget(selectData.exchange_id)
-    //   this.getTokenInfo()
+    try{
+      const { selectData, selectStatus, activeLanguage } = this.props
+      const { tvWidget } = this.state
+      tvWidget && tvWidget.remove()
+      this.setState({tvWidget:null})
+      this.createWidget(selectData.exchange_id)
+      this.getTokenInfo()
+    }catch(err){
+      console.log(err)
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -39,9 +43,16 @@ class Kline extends React.Component {
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      tvWidget && tvWidget.remove()
+      
       // this.setState({tvWidget:null})
-      this.createWidget(selectData.exchange_id)
+      try{
+        tvWidget && tvWidget.remove()
+        this.createWidget(selectData.exchange_id)
+      }catch(err){
+        console.log(err)
+      }
+      
+      
       this.getTokenInfo()
       
     }
@@ -62,6 +73,7 @@ class Kline extends React.Component {
         localStorage.setItem('interval', '30');
     }
     change10lock(false)
+    
     const tvWidget = new widget({
       symbol: id,
       interval: interval,

@@ -20,36 +20,47 @@ class Kline extends React.Component {
       tokeninfo: [],
       tokeninfoItem: {},
       detailShow: false,
-      tvWidget: null
+      tvWidget: null,
+      tvStatus:true
     }
   }
 
   componentDidMount() {
-    // const {tokeninfo, tvWidget} = this.state
-    // const { selectData} = this.props
-    // tvWidget && tvWidget.remove()
-    // this.setState({tvWidget:null})
-    // this.createWidget(selectData.exchange_id)
-    // const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
-    // this.setState({tokeninfoItem: newObj, detailShow: false})
+    try{
+      const {tokeninfo, tvWidget} = this.state
+      const { selectData} = this.props
+      tvWidget && tvWidget.remove()
+      this.setState({tvWidget:null})
+      this.createWidget(selectData.exchange_id)
+      const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
+      this.setState({tokeninfoItem: newObj, detailShow: false})
+    }catch(err){
+      console.log(err)
+    }
+    
   }
 
   componentDidUpdate (prevProps) {
     const {tokeninfo, tvWidget} = this.state
     const { selectData,selectStatus, activeLanguage } = this.props
+
+    if(!tokeninfo.length && (selectData.exchange_id)){
+      this.getTokenInfo()
+    }
+
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      tvWidget && tvWidget.remove()
-      // this.setState({tvWidget:null})
-      this.createWidget(selectData.exchange_id)
-     
-      const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
-      this.setState({tokeninfoItem: newObj, detailShow: false})
       
-    }
-    if(!tokeninfo.length && (selectData.exchange_id)){
-      this.getTokenInfo()
+      try{
+        tvWidget && tvWidget.remove()
+        this.createWidget(selectData.exchange_id)
+        const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
+        this.setState({tokeninfoItem: newObj, detailShow: false})
+      }catch(err){
+        console.log(err)
+      }
+     
     }
   }
 
@@ -275,8 +286,7 @@ class Kline extends React.Component {
           })
         }
     })
-
-    
+ 
 
   }
 
@@ -293,7 +303,7 @@ class Kline extends React.Component {
   }
 
   render() {
-    const {tokeninfoItem,detailShow} = this.state
+    const {tokeninfoItem,detailShow,tvStatus} = this.state
     const {selectData} = this.props;
     
     return (
