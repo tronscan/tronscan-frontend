@@ -139,7 +139,7 @@ class Register extends Component{
                         return `sell_${index}`
                     }}
                     rowClassName={this.setActiveClass}
-                    className="table_bottom"
+                    className="table_bottom buy"
                     onRow={(record) => {
                       return {
                         // 点击行
@@ -172,6 +172,7 @@ class Register extends Component{
                         return `buy_${index}`
                     }}
                     rowClassName={this.setActiveClass}
+                    className="sell"
                     onRow={(record) => {
                       return {
                         // 点击行

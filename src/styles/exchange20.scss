@@ -68,9 +68,22 @@
   }
 
   .register{
+    .buy{
+      tr{
+       
+        color:#e60815
+      }
+    }
+    .sell{
+      tr{
+        color:#69c265;
+      }
+    }
+
     .ant-table tr{
         background: none;
         line-height: 12px;
+
     }
     .ant-table-thead > tr > th{
         background: none;
