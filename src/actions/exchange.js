@@ -99,10 +99,10 @@ export const getExchanges20 = () => async (dispatch) => {
       item.low = item.lowestPrice24h
       item.token_type = 'dex20'
       if (item.gain.indexOf('-') != -1) {
-          item.up_down_percent = '-' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+          item.up_down_percent = '-' + Math.abs(Number(item.gain*100).toFixed(2)) + '%'
           item.isUp = false
       } else {
-          item.up_down_percent = '+' + Math.abs(Number(item.gain).toFixed(2)) + '%'
+          item.up_down_percent = '+' + Math.abs(Number(item.gain*100).toFixed(2)) + '%'
           item.isUp = true
       }
       f20_list.map(id => {

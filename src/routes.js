@@ -254,7 +254,7 @@ export const routes = [
     none: true
   },
   {
-    label: "TRONDEX",
+    label: "DEX",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
