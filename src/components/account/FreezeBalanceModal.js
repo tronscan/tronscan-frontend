@@ -119,15 +119,17 @@ class FreezeBalanceModal extends React.PureComponent {
                 <div className="text-left _power">{tu("current_power")}: <span
                     style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
                 </div>
-
-                <NumberField
-                    min={1}
-                    decimals={0}
-                    value={amount}
-                    placeholder={intl.formatMessage({id: 'trx_amount'})}
-                    className="form-control text-left"
-                    style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
-                    onChange={this.onAmountChanged}/>
+                <div style={{position:'relative'}}>
+                  <button onClick={(e)=>{this.setState({amount:Math.floor(trxBalance)});e.target.parentNode.getElementsByTagName('input')[0].focus()}} style={{position:'absolute',right:0,top:0,background:'none',height:'35px',border:'none',cursor:'pointer'}}>MAX</button>
+                  <NumberField
+                      min={1}
+                      decimals={0}
+                      value={amount}
+                      placeholder={intl.formatMessage({id: 'trx_amount'})}
+                      className="form-control text-left"
+                      style={{marginTop: '12px', background: "#F3F3F3", border: "1px solid #EEEEEE"}}
+                      onChange={this.onAmountChanged}/>
+                </div>
               </div>
               <div className="form-group">
                 <select className="custom-select"

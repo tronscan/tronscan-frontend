@@ -829,6 +829,9 @@ and (max-device-width : 1024px){
     margin-top: 6px;
     margin-right: 6px;
   }
+  .nav-item .nav-login-wallet{
+    display: none !important;
+  }
   .nav-item .nav-login-wallet,
   .nav-item .account-dropdown-menu {
     position: absolute;

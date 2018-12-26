@@ -38,11 +38,10 @@ class ApplyForDelegate extends Component {
     let res;
     let {account,isTronLink} = this.props;
     let {url} = this.state;
-
     this.setState({loading: true});
     if(isTronLink === 1){
       const {tronWeb} = account;
-      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex,url);
+      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex,url).catch(e=>false);
       const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
       res = result;
     } else {
