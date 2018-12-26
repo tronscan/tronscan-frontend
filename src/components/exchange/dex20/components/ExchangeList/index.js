@@ -130,12 +130,14 @@ class ExchangeList extends React.Component {
                 <div className="exchange-list-mark p-3 mb-2">
                     {/* 标题 */}
                     <div className="market-title">
+                       <div className="d-flex">
                         <h6>{tu("marks")}</h6>
-                        <div className="beginners-guide">
-                            <i className="fas fa-book-open"></i>
-                            <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
-                               target="_blank">{tu('beginners_guide')}</a>
-                        </div>
+                            <div className="beginners-guide">
+                                <i className="fas fa-book-open"></i>
+                                <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
+                                target="_blank">{tu('beginners_guide')}</a>
+                            </div>
+                       </div>
                         <div className="beginners-guide"><a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
                                target="_blank">{tu('token_application_instructions_title')}</a></div>
                     </div>
