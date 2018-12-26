@@ -25,12 +25,12 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-    const { selectData, selectStatus, activeLanguage } = this.props
-    const { tvWidget } = this.state
-    tvWidget && tvWidget.remove()
-    this.setState({tvWidget:null})
-    this.createWidget(selectData.exchange_id)
-      this.getTokenInfo()
+    // const { selectData, selectStatus, activeLanguage } = this.props
+    // const { tvWidget } = this.state
+    // tvWidget && tvWidget.remove()
+    // this.setState({tvWidget:null})
+    // this.createWidget(selectData.exchange_id)
+    //   this.getTokenInfo()
   }
 
   componentDidUpdate(prevProps) {
@@ -40,7 +40,7 @@ class Kline extends React.Component {
       || (prevProps.activeLanguage != activeLanguage))
     ){
       tvWidget && tvWidget.remove()
-      this.setState({tvWidget:null})
+      // this.setState({tvWidget:null})
       this.createWidget(selectData.exchange_id)
       this.getTokenInfo()
       
