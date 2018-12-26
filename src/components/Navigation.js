@@ -34,6 +34,7 @@ import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { Icon } from 'antd';
+import isMobile from '../utils/isMobile';
 
 class Navigation extends React.Component {
 
@@ -423,7 +424,6 @@ class Navigation extends React.Component {
   }
 
   renderWallet() {
-
     let {account, totalTransactions = 0, flags, wallet} = this.props;
     let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address } = this.state;
     if (wallet.isLoading) {
@@ -526,7 +526,7 @@ class Navigation extends React.Component {
                   </ul>
                 </li> :
                 <li className="dropdown nav nav_input">
-                  <div className="nav-link dropdown-toggle nav-item">
+                  <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {isMobile && this.clickLoginWithPk(e)}}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
                       <li className="px-2 py-2" onClick={(e) => {this.clickLoginWithTronLink(e)}}>
