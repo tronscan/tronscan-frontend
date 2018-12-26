@@ -27,6 +27,7 @@ class Kline extends React.Component {
     const {tokeninfo, tvWidget} = this.state
     const { selectData} = this.props
     tvWidget && tvWidget.remove()
+    this.setState({tvWidget:null})
     this.createWidget(selectData.exchange_id)
     const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
     this.setState({tokeninfoItem: newObj, detailShow: false})
@@ -39,6 +40,7 @@ class Kline extends React.Component {
       || (prevProps.activeLanguage != activeLanguage))
     ){
       tvWidget && tvWidget.remove()
+      this.setState({tvWidget:null})
       this.createWidget(selectData.exchange_id)
      
       const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
