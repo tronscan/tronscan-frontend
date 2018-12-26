@@ -641,7 +641,7 @@
   #                                                                                #
   ##################################################################################
   */
-  "what_is_tron": "ما هو ترون",
+  "what_is_tron": "TRON whitepaper V2.0",
   "tron_explorer_api": "الواجهة البرمجية (API) لمستكشف ترون",
   "tron_architechure": "هندسة ترون",
   "tron_protobuf_doc": "TRON Protobuf Doc",
@@ -655,7 +655,7 @@
   #                                                                                #
   ##################################################################################
   */
-  "open_wallet": "افتح المحفظة",
+ "open_wallet": "Sign in",
   "private_key": "المفتاح الخاص",
   "keystore_file": "ملف تخزين المفتاح",
   "select_file": "اختر ملف",
@@ -1185,6 +1185,7 @@
   "choose_a_Token_for_capital_withdrawal": "Choose a Token for Capital Withdrawal:",
   "injection_amount": "Injection Amount:",
   "withdrawal_amount": "Withdrawal Amount:",
+  "marks": "TRONDEX",
   "last_price": "Last price",
   "pairs_change": "Change",
   "H": "H",

@@ -1,0 +1,97 @@
+.exchange20 {
+  .exchange-list {
+    background: none;
+  }
+  .exchange-list-mark {
+    // height: 471px;
+    // height:328px;
+    height:410px;
+  }
+  .exchange-list-explain {
+    // height:370px;
+    height:431px;
+  }
+  .exchange-list-mark,
+  .exchange-list-explain {
+    background: #fff;
+  }
+  .scrollbar-container {
+    height: auto;
+  }
+  .new_price .anticon {
+    vertical-align: text-top;
+    font-size:21px;
+  }
+  .new_price {
+    line-height: 30px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eee;
+    font-size: 18px;
+    background:#fff ;
+  }
+
+  .table_bottom {
+    
+    padding-bottom: 5px;
+  }
+
+  .ant-tabs-nav .ant-tabs-tab-active {
+    background: #c23631;
+    color: #fff;
+  }
+  .ant-tabs-nav-container {
+    line-height: 1;
+  }
+  .ant-tabs-ink-bar {
+    display: none !important;
+  }
+
+  .ant-slider-with-marks {
+    margin-bottom: 0;
+  }
+  .ant-form {
+    margin-top: 20px;
+  }
+  .no-padding {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .height24 {
+    height: 31px !important;
+    font-size: 12px;
+  }
+
+  .exchange-list .ant-table tr:hover > td {
+    font-weight: bold;
+    background-color: none;
+  }
+
+  .register{
+    .ant-table tr{
+        background: none;
+        line-height: 12px;
+    }
+    .ant-table-thead > tr > th{
+        background: none;
+    }
+  }
+
+  .my-tran{
+    .fail{
+      color:#F15454;
+      background:rgba(241,84,84,0.1);
+      padding:2px 5px;
+      border-radius: 5px;
+    
+    }
+    .finish{
+      color:#69C265;
+      background:rgba(105,194,101,0.1);
+      padding:2px 5px;
+      border-radius:5px;
+    }
+  }
+
+
+}

@@ -28,6 +28,7 @@ $color-grey: #d2d1d1;
 //@import "node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 
 @import "exchange";
+@import "exchange20";
 body {
   overflow-y: scroll;
 }
@@ -2354,6 +2355,7 @@ h5 {
      }
      &.active{
        background-color: #F3F3F3;
+       color: #C53028;
        span{
          color: #C53028;
        }

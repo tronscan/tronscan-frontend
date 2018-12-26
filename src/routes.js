@@ -44,7 +44,8 @@ import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
-import Exchange from "./components/exchange/index";
+import Exchange from "./components/exchange/dex10/index";
+import Exchange20 from "./components/exchange/dex20/index";
 import Notice from "./components/exchange/notice";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
@@ -236,19 +237,28 @@ export const routes = [
     path: "/rating",
     showInMenu: false
   },
+  // {
+  //   path: "/TRXMarket",
+  //   label: "TRXMarket",
+  //   icon: "fas fa-rocket",
+  //   enurl: "https://trx.market",
+  //   zhurl: "https://trx.market",
+  //   linkHref: true
+  // },
   {
-    path: "/TRXMarket",
-    label: "TRXMarket",
-    icon: "fas fa-rocket",
-    enurl: "https://trx.market",
-    zhurl: "https://trx.market",
-    linkHref: true
-  },
-  {
-    label: "DEX",
+    label: "DEX10",
     path: "/exchange",
     icon: "fas fa-exchange-alt",
-    component: Exchange
+    component: Exchange,
+    showInMenu: false,
+    none: true
+  },
+  {
+    label: "TRONDEX",
+    path: "/exchange20",
+    icon: "fas fa-exchange-alt",
+    component: Exchange20,
+    none: true
   },
   {
     label: "notice",

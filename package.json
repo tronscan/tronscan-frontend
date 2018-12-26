@@ -127,7 +127,6 @@
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "three": "^0.92.0",
-    "tronweb": "^2.1.9",
     "tronwebcompiler": "^1.0.0",
     "url-loader": "0.6.2",
     "uuid": "^3.2.1",
@@ -199,7 +198,8 @@
   "description": "<h1 align=\"center\">tronscan<br></h1>",
   "main": "desktop/main.js",
   "devDependencies": {
-    "mocha": "^5.0.5"
+    "mocha": "^5.0.5",
+    "tronweb": "^2.1.17"
   },
   "repository": {
     "type": "git",

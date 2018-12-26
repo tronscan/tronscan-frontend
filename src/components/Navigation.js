@@ -394,7 +394,6 @@ class Navigation extends React.Component {
   };
 
   closeLoginModel = (e) => {
-      console.log(666666)
       e.stopPropagation()
       this.setState({
           isImportAccount: false,
@@ -405,28 +404,22 @@ class Navigation extends React.Component {
   };
 
   clickLoginWithTronLink(e){
-      console.log(1111)
       e.stopPropagation()
       this.setState({
           isTRONlinkLogin: true,
           isImportAccount: false
       },() =>{
-          console.log('isTRONlinkLogin======11111',this.state.isTRONlinkLogin)
-          console.log('isImportAccount======11111',this.state.isImportAccount)
+
       });
-      console.log(22222)
   }
   clickLoginWithPk (e){
-      console.log(3333)
       e.stopPropagation()
       this.setState({
           isTRONlinkLogin: false,
           isImportAccount: true
       },() =>{
-          console.log('isTRONlinkLogin======22222',this.state.isTRONlinkLogin)
-          console.log('isImportAccount======22222',this.state.isImportAccount)
+
       })
-      console.log(44444)
   }
 
   renderWallet() {
@@ -946,6 +939,8 @@ class Navigation extends React.Component {
             </div>
           </nav>
           {
+            activeComponent.none? <div className="container pt-5 pb-4"></div>
+            :
             (activeComponent && activeComponent.showSubHeader !== false) &&
             <div className="container d-flex sub-header">
               {
@@ -959,24 +954,6 @@ class Navigation extends React.Component {
                   }
                 </h4>
               }
-
-              {/* <div className="ml-auto py-3 hidden-mobile nav-searchbar">
-                <div className="input-group">
-                  <input type="text"
-                         className="form-control p-2 bg-white border-0 box-shadow-none"
-                         style={styles.search}
-                         value={search}
-                         onKeyDown={this.onSearchKeyDown}
-                         onChange={ev => this.setState({search: ev.target.value})}
-                         placeholder={intl.formatMessage({id: "search_description1"})}/>
-                  <div className="input-group-append">
-
-                    <button className="btn btn-grey box-shadow-none" onClick={this.doSearch}>
-                      <i className="fa fa-search"/>
-                    </button>
-                  </div>
-                </div>
-              </div> */}
               
             </div>
           }
