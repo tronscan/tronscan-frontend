@@ -254,7 +254,7 @@ export const routes = [
     none: true
   },
   {
-    label: "DEX",
+    label: "TRXMarket",
     path: "/exchange20",
     icon: "fas fa-exchange-alt",
     component: Exchange20,
