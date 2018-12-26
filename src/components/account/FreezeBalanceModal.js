@@ -82,7 +82,7 @@ class FreezeBalanceModal extends React.PureComponent {
         }else{
             type = 'ENERGY';
         }
-        const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58);
+        const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e=>false);
         const {result} = await transactionResultManager(unSignTransaction,tronWeb)
         res = result;
     }else {
@@ -120,7 +120,7 @@ class FreezeBalanceModal extends React.PureComponent {
                     style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
                 </div>
                 <div style={{position:'relative'}}>
-                  <button onClick={(e)=>{this.setState({amount:Math.floor(trxBalance)});e.target.parentNode.getElementsByTagName('input')[0].focus()}} style={{position:'absolute',right:0,top:0,background:'none',height:'35px',border:'none',cursor:'pointer'}}>MAX</button>
+                  <button type="button" onClick={(e)=>{this.setState({amount:Math.floor(trxBalance)})}} style={{position:'absolute',right:0,top:0,background:'none',height:'35px',border:'none',cursor:'pointer'}}>MAX</button>
                   <NumberField
                       min={1}
                       decimals={0}

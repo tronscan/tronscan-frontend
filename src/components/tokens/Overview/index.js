@@ -257,7 +257,7 @@ class TokenOverview extends Component {
     if (Lockr.get("islogin")) {
         const { tronWeb } = account;
         try {
-            const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex);
+            const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
             const {result} = await transactionResultManager(unSignTransaction,tronWeb);
             res = result;
         } catch (e) {
