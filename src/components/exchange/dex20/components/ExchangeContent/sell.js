@@ -348,14 +348,14 @@ class Sell extends Component {
           buttonLoading:false
         })
         this.setBalance();
-        if(account.key){
-          let timer = setInterval(()=>{
-            this.setBalance();
-          },1000)
-          this.setState({
-            balanceTimer:timer
-          })
-        }
+       
+        let timer = setInterval(()=>{
+          this.setBalance();
+        },1000)
+        this.setState({
+          balanceTimer:timer
+        })
+        
       }
     } catch (error) {
       console.log(error);

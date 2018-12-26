@@ -165,25 +165,30 @@ class ExchangeList extends React.Component {
     }
 
     handleUnreviewedToken = () => {
-        const {getSelectData} = this.props;
-        const {unreviewedTokenList,optionalDisable} = this.state;
-        if(!optionalDisable) return;
-        Lockr.set("DEX", 'GEM');
-        this.setState({
-            tokenAudited: false,
-            dataSource: unreviewedTokenList,
-            showSearch:false,
-        });
-        if(unreviewedTokenList.length > 0){
-            let favFirst = unreviewedTokenList[0];
-            let url = ''
-            favFirst.token_type == "dex20" ? url='/exchange20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
-            this.props.history.push(url)
-            getSelectData(unreviewedTokenList[0], true)
+        try{
+            const {getSelectData} = this.props;
+            const {unreviewedTokenList,optionalDisable} = this.state;
+            if(!optionalDisable) return;
+            Lockr.set("DEX", 'GEM');
             this.setState({
-                activeIndex:unreviewedTokenList[0].exchange_id,
+                tokenAudited: false,
+                dataSource: unreviewedTokenList,
+                showSearch:false,
             });
+            if(unreviewedTokenList.length > 0){
+                let favFirst = unreviewedTokenList[0];
+                let url = ''
+                favFirst.token_type == "dex20" ? url='/exchange20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
+                this.props.history.push(url)
+                getSelectData(unreviewedTokenList[0], true)
+                this.setState({
+                    activeIndex:unreviewedTokenList[0].exchange_id,
+                });
+            }
+        }catch(err){
+            console.log(err)
         }
+        
     }
 
     setCollection = (ev,id, index,record) => {

@@ -338,14 +338,14 @@ class Buy extends Component {
           buttonLoading:false
         })
         
-        if(account.key){
-          let timer = setInterval(()=>{
-            this.setBalance();
-          },1000)
-          this.setState({
-            balanceTimer:timer
-          })
-        }
+      
+        let timer = setInterval(()=>{
+          this.setBalance();
+        },1000)
+        this.setState({
+          balanceTimer:timer
+        })
+        
       }
     } catch (error) {
       this.setState({

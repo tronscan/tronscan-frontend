@@ -93,16 +93,21 @@ class ExchangeList extends React.Component {
         }
     }
     handleSelectData = (type) => {
-        const {klineLock} = this.props
-        if(klineLock){
-            this.setState({tokenAudited: type, tagLock: false})
-            if(!type){
-                Lockr.set('DEX', 'GEM')
-            }else{
-                Lockr.set('DEX', 'Main')
+        try{
+            const {klineLock} = this.props
+            if(klineLock){
+                this.setState({tokenAudited: type, tagLock: false})
+                if(!type){
+                    Lockr.set('DEX', 'GEM')
+                }else{
+                    Lockr.set('DEX', 'Main')
+                }
+                this.setData(type)
             }
-            this.setData(type)
+        }catch(err){
+            console.log(err)
         }
+        
     }
 
     gotoTrc10 = () => {
