@@ -299,11 +299,15 @@ class Kline extends React.Component {
   render() {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
+    let imgDefault = require('../../../../../images/logo_default.png')
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
       <div className="d-flex mb-3 exchange__kline__title position-relative">{
-          <img src={ tokeninfoItem? tokeninfoItem.imgUrl : ''} style={{width: '46px', height: '46px'}}/>
+          tokeninfoItem && tokeninfoItem.imgUrl ?
+          <img src={ tokeninfoItem.imgUrl } style={{width: '46px', height: '46px'}}/>: 
+          <img src={imgDefault} style={{width: '46px', height: '46px'}}/>
+
         }
         <div className="ml-3">
         <div className="d-flex mb-1">

@@ -70,7 +70,10 @@ class Mytran extends Component {
         dataIndex: 'orderTime',
         key: 'orderTime',
         render: (text, record, index) => {
-          return <span >{dateFormat(record.orderTime)}</span>
+          return <span>
+          <FormattedDate value={Number(record.orderTime)}/> &nbsp;
+          <FormattedTime value={Number(record.orderTime)}/>&nbsp;
+        </span>
         }
       },
       {

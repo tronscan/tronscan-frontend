@@ -97,8 +97,9 @@ class TranList extends Component {
         key: 'orderTime',
         render: (text, record, index) => {
           return <span>
-            {dateFormat(record.orderTime)}
-          </span>
+          <FormattedDate value={Number(record.orderTime)}/> &nbsp;
+          <FormattedTime value={Number(record.orderTime)}/>&nbsp;
+        </span>
         }
       },
       {
