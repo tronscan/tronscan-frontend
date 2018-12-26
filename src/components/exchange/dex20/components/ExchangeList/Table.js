@@ -64,7 +64,6 @@ class ExchangeTable extends React.Component {
       dataIndex: 'up_down_percent',
       key: 'up_down_percent',
       render: (text, record, index) => {
-        console.log(11,text)
         return (
           text.indexOf('-') != -1?
           <span className='col-red'>{text}</span>:
