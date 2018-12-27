@@ -310,8 +310,8 @@ class Kline extends React.Component {
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
       <div className="d-flex mb-3 exchange__kline__title position-relative">{
-        tokeninfoItem && tokeninfoItem.imgUrl ?
-        <img src={ tokeninfoItem.imgUrl } style={{width: '46px', height: '46px'}}/>: 
+        tokeninfoItem && tokeninfoItem.icon_url ?
+        <img src={ tokeninfoItem.icon_url } style={{width: '46px', height: '46px'}}/>:
         <img src={imgDefault} style={{width: '46px', height: '46px'}}/>
       }
         
