@@ -47,6 +47,7 @@ class ProposalDetail extends React.Component {
             'getAllowDelegateResource',
             'getTotalEnergyLimit',
             'getAllowTvmTransferTrc10',
+            'getTotalEnergyLimitNew',
         ];
 
         for(let item in data.paramters){
@@ -279,6 +280,14 @@ class ProposalDetail extends React.Component {
                                                                                 proposal.proposalVal? <span className='col-green'>{tu('propose_allowed')}</span>:
                                                                                     <span className='col-green'>{tu('propose_not_allowed')}</span>
                                                                             }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getTotalEnergyLimitNew' &&
+                                                                        <div className="proposal-message">
+                                                                            <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span className='col-green'>{proposal.proposalVal}</span>
                                                                         </div>
                                                                     }
                                                                 </td>
