@@ -1499,122 +1499,122 @@ class Account extends Component {
               </div>
             </div>
           </div>
-            {
-            currentWallet.representative.enabled ?
-                <div className="row mt-3">
-                  <div className="col-md-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title text-center">
-                          {tu("Super Representatives")}
-                        </h5>
-                        <p className="card-text">
-                          {tu("sr_receive_reward_message_0")}
-                        </p>
-                        <div className="text-center">
-                          <button className="btn btn-success"
-                                  onClick={() => {
-                                    this.claimRewards()
-                                  }}
-                                  disabled={currentWallet.representative.allowance === 0}
-                          >
-                            {tu("claim_rewards")}
-                          </button>
-                          {
-                            currentWallet.representative.allowance > 0 ?
-                                <p className="m-0 mt-3 text-success">
-                                  Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                               className="font-weight-bold"/>
-                                </p> :
-                                <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
-                                  No rewards to claim
-                                </p>
-                          }
-                        </div>
-                        <hr/>
-                        <h5 className="card-title text-center">
-                          {tu("landing_page")}
-                        </h5>
-                        <div className="text-center">
-                          <p className="card-text text-center">
-                            {tu("create_sr_landing_page_message_0")}
-                          </p>
-                          <p className="text-center">
-                            <HrefLink className="btn btn-danger"
-                                      href="https://github.com/tronscan/tronsr-template#readme">
-                              {tu("show_more_information_publish_sr_page")}
-                            </HrefLink>
-                          </p>
-                          {
-                            !this.hasGithubLink() &&
-                            <Fragment>
-                              <p className="card-text text-center">
-                                {tu("set_github_url_message_0")}
-                              </p>
-                              <p className="text-center">
-                                <button className="btn btn-dark mr-2" onClick={() => {
-                                  this.changeGithubURL()
-                                }}>
-                                  {tu("set_github_link")}
-                                </button>
-                              </p>
-                            </Fragment>
-                          }
-                        </div>
-                      </div>
-                      {
-                        this.hasGithubLink() &&
-                        <table className="table m-0">
-                          <tbody>
-                          <tr>
-                            <th>{tu("Github Link")}:</th>
-                            <td>
-                              <HrefLink href={"http://github.com/" + sr.githubLink}
-                                        target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
-                              <a href="javascript:;" className="float-right text-primary"
-                                 onClick={() => {
-                                   this.changeGithubURL()
-                                 }}>
-                                {tu("Change Github Link")}
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{tu("Representative Page")}</th>
-                            <td><Link className="text-primary"
-                                      to={`/representative/${currentWallet.address}`}>View</Link>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      }
-                    </div>
-                  </div>
-                </div>
-                :
-                <div className="row mt-3">
-                  <div className="col-md-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title text-center m-0">
-                          {tu("Super Representatives")}
-                        </h5>
-                        <p className="pt-3">
-                          {tu("apply_for_delegate_predescription")}
-                        </p>
-                        <div className="text-center">
-                          <button className="apply-super-btn btn btn-success"
-                                  onClick={() => {
-                            this.applyForDelegate()
-                          }}>
-                            {tu("apply_super_representative_candidate")}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          }
+            {/*{*/}
+            {/*currentWallet.representative.enabled ?*/}
+                {/*<div className="row mt-3">*/}
+                  {/*<div className="col-md-12">*/}
+                    {/*<div className="card">*/}
+                      {/*<div className="card-body">*/}
+                        {/*<h5 className="card-title text-center">*/}
+                          {/*{tu("Super Representatives")}*/}
+                        {/*</h5>*/}
+                        {/*<p className="card-text">*/}
+                          {/*{tu("sr_receive_reward_message_0")}*/}
+                        {/*</p>*/}
+                        {/*<div className="text-center">*/}
+                          {/*<button className="btn btn-success"*/}
+                                  {/*onClick={() => {*/}
+                                    {/*this.claimRewards()*/}
+                                  {/*}}*/}
+                                  {/*disabled={currentWallet.representative.allowance === 0}*/}
+                          {/*>*/}
+                            {/*{tu("claim_rewards")}*/}
+                          {/*</button>*/}
+                          {/*{*/}
+                            {/*currentWallet.representative.allowance > 0 ?*/}
+                                {/*<p className="m-0 mt-3 text-success">*/}
+                                  {/*Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}*/}
+                                                               {/*className="font-weight-bold"/>*/}
+                                {/*</p> :*/}
+                                {/*<p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>*/}
+                                  {/*No rewards to claim*/}
+                                {/*</p>*/}
+                          {/*}*/}
+                        {/*</div>*/}
+                        {/*<hr/>*/}
+                        {/*<h5 className="card-title text-center">*/}
+                          {/*{tu("landing_page")}*/}
+                        {/*</h5>*/}
+                        {/*<div className="text-center">*/}
+                          {/*<p className="card-text text-center">*/}
+                            {/*{tu("create_sr_landing_page_message_0")}*/}
+                          {/*</p>*/}
+                          {/*<p className="text-center">*/}
+                            {/*<HrefLink className="btn btn-danger"*/}
+                                      {/*href="https://github.com/tronscan/tronsr-template#readme">*/}
+                              {/*{tu("show_more_information_publish_sr_page")}*/}
+                            {/*</HrefLink>*/}
+                          {/*</p>*/}
+                          {/*{*/}
+                            {/*!this.hasGithubLink() &&*/}
+                            {/*<Fragment>*/}
+                              {/*<p className="card-text text-center">*/}
+                                {/*{tu("set_github_url_message_0")}*/}
+                              {/*</p>*/}
+                              {/*<p className="text-center">*/}
+                                {/*<button className="btn btn-dark mr-2" onClick={() => {*/}
+                                  {/*this.changeGithubURL()*/}
+                                {/*}}>*/}
+                                  {/*{tu("set_github_link")}*/}
+                                {/*</button>*/}
+                              {/*</p>*/}
+                            {/*</Fragment>*/}
+                          {/*}*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
+                      {/*{*/}
+                        {/*this.hasGithubLink() &&*/}
+                        {/*<table className="table m-0">*/}
+                          {/*<tbody>*/}
+                          {/*<tr>*/}
+                            {/*<th>{tu("Github Link")}:</th>*/}
+                            {/*<td>*/}
+                              {/*<HrefLink href={"http://github.com/" + sr.githubLink}*/}
+                                        {/*target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>*/}
+                              {/*<a href="javascript:;" className="float-right text-primary"*/}
+                                 {/*onClick={() => {*/}
+                                   {/*this.changeGithubURL()*/}
+                                 {/*}}>*/}
+                                {/*{tu("Change Github Link")}*/}
+                              {/*</a>*/}
+                            {/*</td>*/}
+                          {/*</tr>*/}
+                          {/*<tr>*/}
+                            {/*<th>{tu("Representative Page")}</th>*/}
+                            {/*<td><Link className="text-primary"*/}
+                                      {/*to={`/representative/${currentWallet.address}`}>View</Link>*/}
+                            {/*</td>*/}
+                          {/*</tr>*/}
+                          {/*</tbody>*/}
+                        {/*</table>*/}
+                      {/*}*/}
+                    {/*</div>*/}
+                  {/*</div>*/}
+                {/*</div>*/}
+                {/*:*/}
+                {/*<div className="row mt-3">*/}
+                  {/*<div className="col-md-12">*/}
+                    {/*<div className="card">*/}
+                      {/*<div className="card-body">*/}
+                        {/*<h5 className="card-title text-center m-0">*/}
+                          {/*{tu("Super Representatives")}*/}
+                        {/*</h5>*/}
+                        {/*<p className="pt-3">*/}
+                          {/*{tu("apply_for_delegate_predescription")}*/}
+                        {/*</p>*/}
+                        {/*<div className="text-center">*/}
+                          {/*<button className="apply-super-btn btn btn-success"*/}
+                                  {/*onClick={() => {*/}
+                            {/*this.applyForDelegate()*/}
+                          {/*}}>*/}
+                            {/*{tu("apply_super_representative_candidate")}*/}
+                          {/*</button>*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+                  {/*</div>*/}
+                {/*</div>*/}
+          {/*}*/}
           {
             IS_TESTNET && <div className="row mt-3">
               <div className="col-md-12">
