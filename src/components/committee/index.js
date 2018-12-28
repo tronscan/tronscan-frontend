@@ -42,6 +42,8 @@ class Committee extends React.Component {
 
     async getChainparameters() {
         let { tronParameters } = await Client.getChainparameters();
+        let EnergyLimitNew   = {key: "getMaintenanceTimeInterval", value: 100000000000};
+        tronParameters.push(EnergyLimitNew)
         let parametersArr = [
             'getMaintenanceTimeInterval',
             'getAccountUpgradeCost',
@@ -62,6 +64,7 @@ class Committee extends React.Component {
             'getAllowDelegateResource',
             'getTotalEnergyLimit',
             'getAllowTvmTransferTrc10',
+            'getTotalEnergyLimitNew',
         ];
         for(let item in tronParameters){
             tronParameters[item].proposalVal = parametersArr[item];
@@ -125,6 +128,10 @@ class Committee extends React.Component {
                 case "getAllowTvmTransferTrc10":
                     item.name = 'propose_19';
                 break;
+                case "getTotalEnergyLimitNew":
+                    item.name = 'propose_18';
+                break;
+
 
             }
         })
@@ -265,6 +272,13 @@ class Committee extends React.Component {
                             {
                                 text? <span className='col-green'>{tu('propose_allowed')}</span>:
                                     <span className='col-green'>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.proposalVal == 'getTotalEnergyLimitNew' && <div>
+                            {
+                                <span className='col-green'>{text}</span>
                             }
                         </div>
                     }
