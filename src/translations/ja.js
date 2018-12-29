@@ -1513,6 +1513,10 @@ export const messages = {
     "change_login_method":"TRONlinkログインは現在この機能をサポートしていません。プライベートキーまたはキーストアファイルを使用してログインしてください。",
     "Create_token_link_message_0": "トークンは、Tronscanのトークンレビューに合格した場合にのみ一覧表示されます。",
     "sign_in_TRONlink_warning_0":"TRONlinkウォレットにログインしてください！",
+    "account_ad":"TRONdiceをプレイしてdiceトークンを獲得しよう！さらにdiceトークンを抵当にし、TRXの配当を得られます！",
+    "bandwidth_tip":"TRONでは、検索以外すべての操作が帯域幅を必要とします，毎日システムが各有効アカウントに5000帯域幅を無料で提供します，ユーザーはTRXを凍結することで帯域幅を得られます。",
+    "energy_tip":"TRONでは、スマートコントラクトの作成と実行がEnergyを必要とします，ユーザーはTRXを凍結することでEnergyを得られます。",
+    "power_tip":"TRON Power（TP）はSRへの投票に使います，ユーザーはTRXを凍結することでTRON Powerを得られます。",
 
 }
 

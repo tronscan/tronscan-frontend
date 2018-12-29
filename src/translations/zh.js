@@ -1516,4 +1516,9 @@ export const messages = {
     "change_login_method":"TRONlink登录暂不支持该功能，请您选择导入钱包登录。",
     "Create_token_link_message_0": "该通证经过Tronscan审核，审核成功方可展示在通证列表中",
     "sign_in_TRONlink_warning_0":"请登录TRONlink钱包！",
+    "account_ad":"TRONdice 玩游戏得dice币，抵押dice币每日得TRX分红",
+    "bandwidth_tip":"在波场，除查询之外的任何交易都需要消耗带宽,系统每天给每个激活账户赠送5000带宽,用户可以通过冻结trx获得带宽。",
+    "energy_tip":"在波场，智能合约的创建和调用都需要消耗能量，用户可以通过冻结trx获得能量。",
+    "power_tip":"投票权(TP)用来给TRON SR投票,用户可以通过冻结TRX来获得投票权。",
+
 };

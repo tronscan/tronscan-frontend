@@ -72,7 +72,7 @@ class TokenList extends Component {
       total,
       totalAll
     });
-   // return total;
+    return total;
   };
 
   componentDidMount() {
@@ -376,7 +376,7 @@ class TokenList extends Component {
               <h5><TokenLink name={record.name}
                              namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
-              <p>{record.description}</p>
+              <p style={{wordBreak: "break-all"}}>{record.description}</p>
             </div>
           </div>
         }
@@ -459,10 +459,16 @@ class TokenList extends Component {
             <div className="row">
               <div className="col-md-12 table_pos">
                 {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan"></QuestionMark></span></div> : ''}
+                {/*<SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}*/}
+                            {/*onPageChange={(page, pageSize) => {*/}
+                              {/*this.loadPage(page, pageSize)*/}
+                            {/*}}/>*/}
+
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
-                            onPageChange={(page, pageSize) => {
-                              this.loadPage(page, pageSize)
-                            }}/>
+                            rowClassName="table-row" onPageChange={(page, pageSize) => {
+                    this.loadPage(page, pageSize)
+                }}/>
+
               </div>
             </div>
           }

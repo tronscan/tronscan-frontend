@@ -1507,5 +1507,9 @@
     "change_login_method":"TRONlink login does not support this function at present, please use private key or keystore file to login .",
     "Create_token_link_message_0": "The token will be listed only if it has passed the token review of tronscan.",
     "sign_in_TRONlink_warning_0":"Please log in to the TRONlink wallet!",
+    "account_ad":"Win dice tokens by playing TRONDice. Pledge dice tokens to win TRX dividends every day",
+    "bandwidth_tip":"On TRON, bandwidths will be consumed with any transaction but query 5,000 bandwidths will be given to each activated account every day by the system. Users can earn bandwidths by freezing TRX.",
+    "energy_tip":"On TRON, the creation and triggering of smart contracts consume Energy. Users can gain Energy through freezing TRX.",
+    "power_tip":"TRON Power (TP) is used for voting for TRON SRs. Users can gain TP through freezing TRX.",
 
 };

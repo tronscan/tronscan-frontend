@@ -5,7 +5,7 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {Client} from "../../../services/api";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber} from "react-intl";
-import {AddressLink, TransactionHashLink} from "../../common/Links";
+import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import {TronLoader} from "../../common/loaders";
@@ -13,7 +13,7 @@ import Transactions from "./Txs";
 import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
-import {upperFirst} from "lodash";
+import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
 import {API_URL} from "../../../constants";
@@ -27,15 +27,16 @@ class SmartContract extends React.Component {
     super();
 
     this.state = {
-      showQrCode: false,
-      loading: true,
-      blocksProduced: 0,
-      address: {
-        address: "",
-        balance: 0,
-        tokenBalances: {},
-      }
-    };
+        showQrCode: false,
+        loading: true,
+        blocksProduced: 0,
+        address: {
+            address: "",
+            balance: 0,
+            tokenBalances: {},
+        },
+        token20: null
+    }
   }
 
   componentDidMount() {
@@ -61,9 +62,15 @@ class SmartContract extends React.Component {
 
 
     let contract = await Client.getContractOverview(id);
+    let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let tokens20 = result.data.trc20_tokens;
+    let token20 = _(tokens20)
+        .filter(tb => tb.contract_address === id)
+        .value();
 
     this.setState(prevProps => ({
       loading: false,
+      token20:token20[0],
       contract:contract.data[0],
       tabs: {
         ...prevProps.tabs,
@@ -97,9 +104,10 @@ class SmartContract extends React.Component {
    
   }
 
+
   render() {
 
-    let {contract, tabs, loading} = this.state;
+    let {contract, tabs, loading, token20} = this.state;
     let {match, intl} = this.props;
 
     if (!contract) {
@@ -135,7 +143,11 @@ class SmartContract extends React.Component {
                                   </Tooltip>
                                 </p>
                               </li>
-                              {/* <li className="border-bottom-0"><p>{tu('token_tracker')}: </p>{contract.tokenContract}</li> */}
+                              {
+                                token20&& <li><p>{tu('token_tracker')}: </p>
+                                  <TokenTRC20Link name={token20.name} address={token20.contract_address} namePlus={token20.name + ' (' + token20.symbol + ')'} />
+                                </li>
+                              }
                             </ul>
                           </div>
                           <div className="contract-header__item">
@@ -206,5 +218,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Address);
 export default injectIntl(SmartContract);
