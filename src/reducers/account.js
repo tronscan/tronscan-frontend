@@ -30,6 +30,7 @@ export function accountReducer(state = initialState, action) {
       return {
         ...state,
         trxBalance,
+        tokens20:action.trc20token,
         tokens: action.tokens,
         frozen: {
           ...action.frozen,

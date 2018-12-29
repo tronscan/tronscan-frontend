@@ -13,11 +13,11 @@ export const reloadWallet = () => async (dispatch, getState) => {
   let {app} = getState();
 
   if (app.account.isLoggedIn) {
-    let {balances, frozen, accountResource,...wallet} = await Client.getAccountByAddressNew(app.account.address);
+    let {balances, trc20token_balances, frozen, accountResource,...wallet} = await Client.getAccountByAddressNew(app.account.address);
     wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance;
     wallet.frozenTrx = frozen.total + accountResource.frozen_balance_for_energy.frozen_balance;
     dispatch(setActiveWallet(wallet));
-    dispatch(setTokenBalances(balances, frozen, accountResource.frozen_balance_for_energy));
+    dispatch(setTokenBalances(balances, trc20token_balances, frozen, accountResource.frozen_balance_for_energy));
 
   }
 };
