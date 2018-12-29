@@ -351,10 +351,10 @@ class Sell extends Component {
           modal: (
             <SweetAlert
               success
-              title={tu("transaction_success")}
+              title={tu("trc20_order_success")}
               onConfirm={this.hideModal}
             >
-              {tu("trc20_order_success")}
+              {/*{tu("trc20_order_success")}*/}
             </SweetAlert>
           )
         });
