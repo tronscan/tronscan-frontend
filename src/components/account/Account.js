@@ -1133,7 +1133,7 @@ class Account extends Component {
                   </a> */}
                   {tu("bandwidth")}
                   <span className="ml-2">
-                      <QuestionMark placement="top" text="contract_name_tip"/>
+                      <QuestionMark placement="top" text="bandwidth_tip" />
                   </span>
                 </div>
               </div>
@@ -1147,7 +1147,7 @@ class Account extends Component {
                   </h3>
                     {tu("energy")}
                     <span className="ml-2">
-                      <QuestionMark placement="top" text="contract_name_tip"/>
+                      <QuestionMark placement="top" text="energy_tip"/>
                   </span>
                 </div>
               </div>
@@ -1161,7 +1161,7 @@ class Account extends Component {
                   </h3>
                     TRON {tu("power")}
                     <span className="ml-2">
-                      <QuestionMark placement="top" text="contract_name_tip"/>
+                      <QuestionMark placement="top" text="power_tip"/>
                   </span>
                 </div>
               </div>

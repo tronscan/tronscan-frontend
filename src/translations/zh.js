@@ -1018,7 +1018,7 @@ export const messages = {
     "Code": "代码",
     "contract_overview": "合约概览",
     "trx_value": "TRX价值",
-    "token_tracker": "通证追踪器",
+    "token_tracker": "通证",
     "contract_creator": "合约创建者",
     "at_txn": "于交易",
     "token_txns": "通证交易",
