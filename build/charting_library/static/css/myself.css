@@ -1,0 +1,47 @@
+
+/* fff 这是原黑色 */
+.chart-page{
+    background: #fff;
+}
+.chart-page .loading-indicator{
+    background-color:#fff;
+}
+.chart-page .layout__area--top .header-chart-panel-sizer .header-chart-panel-content .left .group .button{
+    background:#fff;
+    border:0;
+    color: #999;
+}
+.chart-page .layout__area--top .header-chart-panel-sizer .header-chart-panel-content .left .header-group-properties{
+    float:right;
+}
+.chart-page .layout__area--top .header-chart-panel-sizer .header-chart-panel-content .left .header-group-indicators{
+    float:right;
+}
+.chart-page .layout__area--top .header-chart-panel-sizer .header-chart-panel-content .left .header-group-fullscreen{
+    float:right;
+}
+.chart-page .header-chart-panel .group .button:hover,
+.chart-page .header-chart-panel .group .button.selected {
+    background: #eee !important;
+    color: #999;
+}
+.chart-page .chart-controls-bar{
+    background: #fff;
+}
+.chart-page .chart-container{
+    border: 0;
+}
+#loading-indicator{
+    background: #fff !important;
+}
+.chart-page .date-range-wrapper{
+    display:none;
+}
+
+.chart-controls-bar{
+    /* height: 0; */
+}
+html{
+    height: 395px!important;
+    overflow: hidden;
+}
