@@ -78,12 +78,12 @@ class RecentTransfers extends Component {
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
                                          address={transfer.transferFromAddress} truncate={false}>
-                              {transfer.transferFromAddress.substr(0, 15)}...
+                              {transfer.transferFromAddress.substr(0, 13)}...
                             </AddressLink>
                             <span className="color-grey-300 mr-2">{tu("to")}</span>
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
                                          address={transfer.transferToAddress} truncate={false}>
-                              {transfer.transferToAddress.substr(0, 15)}...
+                              {transfer.transferToAddress.substr(0, 13)}...
                             </AddressLink><br/>
                           </div>
                           <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word"
