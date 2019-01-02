@@ -106,7 +106,7 @@ class ExchangeList extends React.Component {
                 this.setData(type)
                 setTimeout(() => {
                     this.setState({tagLock: true})
-                }, 300);
+                }, 500);
             }
         }catch(err){
             console.log(err)
