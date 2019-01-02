@@ -171,7 +171,7 @@ class Footer extends Component {
                     {/*</HrefLink>*/}
                   {/*</li>*/}
                   <li className="list-inline-item">
-                    <HrefLink href="mailto:feedback@trx.market" target="_blank">
+                    <HrefLink href="mailto:feedback@tronscan.org" target="_blank">
                       <i className="fa fa-envelope" />
                     </HrefLink>
                   </li>
