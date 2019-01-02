@@ -41,7 +41,7 @@ class TranList extends Component {
 
   componentWillUnmount() {
     const {time} = this.state
-    clearInterval(time);
+    time && clearInterval(time);
   }
 
   getData = async () => {
