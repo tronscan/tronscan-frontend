@@ -12,12 +12,14 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import { DatePicker } from 'antd';
+import moment from 'moment';
+const RangePicker = DatePicker.RangePicker;
+
 
 class Transactions extends React.Component {
-
   constructor() {
     super();
-
     this.state = {
       transactions: [],
       total: 0,
@@ -156,6 +158,11 @@ class Transactions extends React.Component {
     return column;
   }
 
+  onChangeDate(dates, dateStrings) {
+      console.log('From: ', dates[0], ', to: ', dates[1]);
+      console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+  }
+
   render() {
 
     let {transactions, total, loading} = this.state;
@@ -169,6 +176,12 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              <div className="apply-trc20" style={{width:"300px"}}>
+                <RangePicker
+                    ranges={{ Today: [moment(), moment()], 'This Month': [moment().startOf('month'), moment().endOf('month')] }}
+                    onChange={this.onChangeDate}
+                />
+              </div>
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
