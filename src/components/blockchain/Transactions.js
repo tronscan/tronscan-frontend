@@ -22,7 +22,7 @@ const RangePicker = DatePicker.RangePicker;
 class Transactions extends React.Component {
   constructor() {
     super();
-    this.start = new Date(new Date().toLocaleDateString()).getTime() - new Date().getTimezoneOffset() * 60 * 1000;
+    this.start = new Date(new Date().toLocaleDateString()).getTime();
     this.end = new Date().getTime();
     this.state = {
       transactions: [],
