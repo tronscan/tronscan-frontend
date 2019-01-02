@@ -2559,3 +2559,47 @@ h5 {
   left: -10px;
 }
 
+.transactions-rangePicker{
+  margin-top: -35px;
+  position: absolute;
+  right: 16px;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: -20px;
+    position: absolute;
+    right: 8px;
+  }
+}
+//.ant-calendar-picker-container{
+//  .ant-tag-blue{
+//    color: #C23631;
+//    background-color: rgba(194,54,49,0.2);
+//    border-color: rgba(194,54,49,0.4);
+//  }
+//  .ant-calendar-ok-btn{
+//    background-color: rgba(194,54,49,0.2);
+//    color: #C23631;
+//    border-color: rgba(194,54,49,0.4);
+//  }
+//  .ant-calendar .ant-calendar-ok-btn:active, .ant-calendar .ant-calendar-ok-btn.active {
+//    color: #fff;
+//    background-color: #C23631;
+//    border-color: #C23631;
+//  }
+//  .ant-calendar .ant-calendar-ok-btn:hover, .ant-calendar .ant-calendar-ok-btn:focus {
+//    color: #fff;
+//    background-color: rgba(194, 54, 49, 0.4);
+//    border-color: rgba(194, 54, 49, 0.4);
+//  }
+//  .ant-calendar-date{
+//    background-color: #C23631;
+//  }
+//  .ant-calendar-date:hover{
+//    background-color: rgba(194,54,49,0.2)
+//  }
+//  .ant-calendar-date:active{
+//    color: #fff;
+//    background-color: #C23631;
+//  }
+//}
+

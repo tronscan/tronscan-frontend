@@ -75,6 +75,7 @@ class Transactions extends React.Component {
         date_start: date_start,
         date_to: date_to
       });
+
     }
     else {
       let req = {
@@ -192,10 +193,16 @@ class Transactions extends React.Component {
   }
 
   onChangeDate = (dates, dateStrings) => {
-    //console.log('From: ', new Date(dateStrings[0]).getTime(), ', to: ', new Date(dateStrings[1]).getTime());
     this.start = new Date(dateStrings[0]).getTime();
     this.end = new Date(dateStrings[1]).getTime();
     this.loadTransactions();
+  }
+  disabledDate = (time) => {
+      if(!time){
+          return false
+      }else{
+          return time < moment().subtract(7, "days") || time > moment().add(7, 'd')
+      }
   }
 
   render() {
@@ -211,12 +218,18 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <div className="apply-trc20" style={{width: "300px"}}>
+              <div className="transactions-rangePicker" style={{width: "350px"}}>
                 <RangePicker
+                    defaultValue={[moment(this.start),moment(this.end)]}
                     ranges={{
-                      Today: [moment(), moment()],
-                      'This Month': [moment().startOf('month'), moment().endOf('month')]
+                        'Today': [moment().startOf('day'),moment()],
+                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                        'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
+                        // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
                     }}
+                    disabledDate={this.disabledDate}
+                    showTime
+                    format="YYYY/MM/DD HH:mm:ss"
                     onChange={this.onChangeDate}
                 />
               </div>
