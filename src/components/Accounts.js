@@ -12,7 +12,7 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "./common/loaders";
 import xhr from "axios/index";
 import {Client} from "../services/api";
-import { Tooltip } from 'antd'
+import {Tooltip} from 'antd'
 
 
 class Accounts extends Component {
@@ -35,18 +35,41 @@ class Accounts extends Component {
   loadAccounts = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
-
-    let { accounts } = await Client.getAccounts({
+    let req = {
+      "from": (page - 1) * pageSize,
+      "size": pageSize,
+      "sort": {"balance": "desc"}
+    }
+    let {data} = await xhr.post(`https://apilist.tronscan.org/accounts/accounts/_search`, req);
+    let accounts = [];
+    let total = data.hits.total;
+    for (let record of data.hits.hits) {
+      let power = 0;
+      if (record['_source']['frozen']) {
+        for (let f of record['_source']['frozen']) {
+          power = power + f.frozen_balance;
+        }
+      }
+      accounts.push({
+        address: record['_source']['address'],
+        balance: record['_source']['balance']?record['_source']['balance']:0,
+        dateCreated: record['_source']['date_created'],
+        power: power,
+      });
+    }
+    /*
+    let {accounts} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    let { txOverviewStats } = await Client.getTxOverviewStats();
+    */
+    // let {txOverviewStats} = await Client.getTxOverviewStats();
 
     this.setState({
       loading: false,
       accounts: accounts,
-      total: txOverviewStats[txOverviewStats.length-1].totalAddress
+      total: total
     });
   };
 
@@ -138,15 +161,15 @@ class Accounts extends Component {
         className: 'ant_table',
         width: '40%',
         render: (text, record, index) => {
-          return record.accountType ==2?
-            <span className="d-flex">
+          return record.accountType == 2 ?
+              <span className="d-flex">
               <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
                 <span><i className="far fa-file mr-1"></i></span>
               </Tooltip>
               
-              <AddressLink address={text} isContract={record.toAddressType ==2}/>
-            </span>:
-            <AddressLink address={text}/>
+              <AddressLink address={text} isContract={record.toAddressType == 2}/>
+            </span> :
+              <AddressLink address={text}/>
         }
       },
       {
@@ -215,7 +238,7 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)

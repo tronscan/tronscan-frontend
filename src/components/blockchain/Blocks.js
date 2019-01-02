@@ -9,7 +9,7 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
-
+import xhr from "axios/index";
 
 
 class Blocks extends React.Component {
@@ -35,37 +35,54 @@ class Blocks extends React.Component {
   loadBlocks = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
-
-    let {blocks, total} = await Client.getBlocks({
-      sort: '-number',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-    });
-
+    let req = {
+      "from": (page - 1) * pageSize,
+      "size": pageSize,
+      "sort": {"date_created": "desc"}
+    }
+    let {data} = await xhr.post(`https://apilist.tronscan.org/blocks/blocks/_search`, req);
+    let blocks = [];
+    let total = data.hits.total;
+    for (let record of data.hits.hits) {
+      blocks.push({
+        number: record['_source']['number'],
+        nrOfTrx: record['_source']['transactions'],
+        size: record['_source']['size'],
+        timestamp: record['_source']['date_created'],
+        witnessName: record['_source']['witness_name'],
+      });
+    }
+    /*
+        let {blocks, total} = await Client.getBlocks({
+          sort: '-number',
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+        });
+    */
     this.setState({
       loading: false,
       blocks,
       total
     });
   };
-  setProducedName = (record) =>{
-        let ele = null;
-        if(record.witnessName){
-            ele = <span>
+  setProducedName = (record) => {
+    let ele = null;
+    if (record.witnessName) {
+      ele = <span>
           {record.witnessName}
       </span>
-        }else{
-            if(record.number){
-                ele = <span>
+    } else {
+      if (record.number) {
+        ele = <span>
           {record.witnessAddress}
         </span>
-            }else{
-                ele = <span>
+      } else {
+        ele = <span>
         </span>
-            }
-        }
-        return ele
+      }
     }
+    return ele
+  }
 
   componentDidUpdate() {
     //checkPageChanged(this, this.loadBlocks);
@@ -114,7 +131,7 @@ class Blocks extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           //return <AddressLink address={text}/>
-            return this.setProducedName(record)
+          return this.setProducedName(record)
         }
       },
       {
@@ -156,7 +173,8 @@ class Blocks extends React.Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?
+                    <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)
