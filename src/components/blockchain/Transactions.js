@@ -12,20 +12,24 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
-import { DatePicker } from 'antd';
+import {DatePicker} from 'antd';
 import moment from 'moment';
+import xhr from "axios/index";
+
 const RangePicker = DatePicker.RangePicker;
 
 
 class Transactions extends React.Component {
   constructor() {
     super();
+    this.start = new Date(new Date().toLocaleDateString()).getTime() - new Date().getTimezoneOffset() * 60 * 1000;
+    this.end = new Date().getTime();
     this.state = {
       transactions: [],
       total: 0,
     };
   }
-  
+
   // componentWillReceiveProps() {
   //   setTimeout(() => {
   //     this.loadTransactions();
@@ -63,6 +67,8 @@ class Transactions extends React.Component {
       }
     }
     let result = null;
+    let transactions = [];
+    let total = 0;
     if (date_start) {
       result = await Client.getTransactions({
         sort: '-timestamp',
@@ -71,18 +77,45 @@ class Transactions extends React.Component {
       });
     }
     else {
+      let req = {
+        "query": {
+          "bool": {
+            "must": [
+              {"range": {"date_created": {"gt": this.start, "lt": this.end}}}
+            ]
+          }
+        },
+        "from": (page - 1) * pageSize,
+        "size": pageSize,
+        "sort": {"date_created": "desc"}
+      }
+      let {data} = await xhr.post(`https://apilist.tronscan.org/transactions/transactions/_search`, req);
+      transactions = [];
+      total = data.hits.total;
+      for (let record of data.hits.hits) {
+        transactions.push({
+          id: '',
+          block: record['_source']['block'],
+          hash: record['_source']['hash'],
+          timestamp: record['_source']['date_created'],
+          ownerAddress: record['_source']['owner_address'],
+          contractType: record['_source']['contract_type'],
+        });
+      }
+      /*
       result = await Client.getTransactions({
-        sort: '-timestamp',
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        total: this.state.total,
-        ...searchParams,
-      });
+          sort: '-timestamp',
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          total: this.state.total,
+          ...searchParams,
+        });
+        */
     }
     this.setState({
-      transactions: result.transactions,
+      transactions: transactions,
       loading: false,
-      total: result.total
+      total: total
     });
   };
 
@@ -139,7 +172,7 @@ class Transactions extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <span>{ContractTypes[text]}</span>
+          return <span>{text}</span>
         },
       },
       // {
@@ -158,9 +191,11 @@ class Transactions extends React.Component {
     return column;
   }
 
-  onChangeDate(dates, dateStrings) {
-      console.log('From: ', dates[0], ', to: ', dates[1]);
-      console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+  onChangeDate = (dates, dateStrings) => {
+    //console.log('From: ', new Date(dateStrings[0]).getTime(), ', to: ', new Date(dateStrings[1]).getTime());
+    this.start = new Date(dateStrings[0]).getTime();
+    this.end = new Date(dateStrings[1]).getTime();
+    this.loadTransactions();
   }
 
   render() {
@@ -176,9 +211,12 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <div className="apply-trc20" style={{width:"300px"}}>
+              <div className="apply-trc20" style={{width: "300px"}}>
                 <RangePicker
-                    ranges={{ Today: [moment(), moment()], 'This Month': [moment().startOf('month'), moment().endOf('month')] }}
+                    ranges={{
+                      Today: [moment(), moment()],
+                      'This Month': [moment().startOf('month'), moment().endOf('month')]
+                    }}
                     onChange={this.onChangeDate}
                 />
               </div>
