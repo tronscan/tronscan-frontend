@@ -72,7 +72,7 @@ class Transaction extends Component {
 
   componentWillUnmount() {
     const {timer} = this.state;
-    clearInterval(timer);
+    timer && clearInterval(timer);
 }
 
   getBalance(){

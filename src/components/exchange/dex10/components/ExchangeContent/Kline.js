@@ -24,17 +24,18 @@ class Kline extends React.Component {
     };
   }
 
-  componentDidMount() {
-    try{
-      const { selectData, selectStatus, activeLanguage } = this.props
-      const { tvWidget } = this.state
-      tvWidget && tvWidget.remove()
-      this.createWidget(selectData.exchange_id)
-      this.getTokenInfo()
-    }catch(err){
-      console.log(err)
-    }
-  }
+  // componentDidMount() {
+  //   try{
+  //     const { selectData, selectStatus, activeLanguage } = this.props
+  //     const { tvWidget } = this.state
+  //     console.log('tvWidget1:',tvWidget)
+  //     tvWidget && tvWidget.remove()
+  //     this.createWidget(selectData.exchange_id)
+  //     this.getTokenInfo()
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
   componentDidUpdate(prevProps) {
     const { selectData, selectStatus, activeLanguage } = this.props
@@ -42,7 +43,6 @@ class Kline extends React.Component {
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      
       // this.setState({tvWidget:null})
       try{
         tvWidget && tvWidget.remove()

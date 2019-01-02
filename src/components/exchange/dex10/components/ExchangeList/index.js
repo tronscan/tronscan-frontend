@@ -55,7 +55,7 @@ class ExchangeList extends React.Component {
 
     componentWillUnmount() {
         const {time} = this.state;
-        clearInterval(time);
+        time && clearInterval(time);
     }
     getExchangesAllList = async () =>{
         let { exchangesAllList }= await Client.getexchangesAllList();
@@ -145,14 +145,15 @@ class ExchangeList extends React.Component {
     handleAuditedToken = () => {
         
         const {getSelectData, klineLock} = this.props;
-        const {auditedTokenList,optionalDisable} = this.state;
-        if(klineLock){
+        const {auditedTokenList,optionalDisable,tagLcok} = this.state;
+        if(klineLock && tagLcok){
             if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
                 tokenAudited: true,
                 dataSource: auditedTokenList,
                 showSearch:false,
+                tagLock: false
             });
             if(auditedTokenList.length > 0){
                 this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
@@ -161,6 +162,9 @@ class ExchangeList extends React.Component {
                     activeIndex:auditedTokenList[0].exchange_id,
                 });
             }
+            setTimeout(() => {
+                this.setState({tagLock: true})
+            }, 500);
         }
     }
 
@@ -274,7 +278,8 @@ class ExchangeList extends React.Component {
     
     gotoTrc20 = () => {
         const {klineLock} = this.props
-        if(klineLock){
+        const { tagLock } = this.state
+        if(klineLock&&tagLock){
             Lockr.set('DEX', 'Main')
             this.props.history.push('exchange20')
         }
