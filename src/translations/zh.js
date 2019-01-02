@@ -921,7 +921,7 @@ export const messages = {
     "my_token": "我发行的通证",
     "my_token_desc_1": "通证相关信息信息将展示在通证页，同时依据信息全面性和真实性获得",
     "tron_rating": "波场通证信誉评级",
-    "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@trx.market",
+    "my_token_desc_2": "如需修改信息，请使用公司邮箱或附其他证明文件，将修改信息按表格形式发送至token@tronscan.org",
     "brief_info": "简介",
     "website_official": "官方网站",
     "white_paper": "白皮书",

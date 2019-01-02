@@ -50,7 +50,7 @@ class TokenInfo extends React.Component {
               <td colSpan="2">
                 <i className="fa fa-exclamation-circle" aria-hidden="true"
                    style={{color: '#999999', marginRight: '10px'}}></i>
-                <span style={{color: '#999999', fontSize: '12px'}}>{tu('change_info')}</span>&nbsp;<a href='mailto:token@trx.market' style={{color:'red',fontSize: '12px'}}>{tu('contact_us')}</a></td>
+                <span style={{color: '#999999', fontSize: '12px'}}>{tu('change_info')}</span>&nbsp;<a href='mailto:token@tronscan.org' style={{color:'red',fontSize: '12px'}}>{tu('contact_us')}</a></td>
             </tr>
 
             </tbody>
