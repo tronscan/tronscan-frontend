@@ -57,7 +57,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.yAxis.allowDecimals = true;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'k'
+                    return this.value/1000 + 'K'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
@@ -91,6 +91,13 @@ export class LineReactHighChartAdd extends React.Component {
             _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
             _config.yAxis.tickAmount = 5;
             _config.yAxis.min = 0;
+            _config.yAxis.labels.formatter = function() {
+                if(this.value < 1000000){
+                    return this.value/1000 + 'K'
+                }else if(this.value >= 1000000){
+                    return this.value/1000000 + 'M'
+                }
+            }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
@@ -158,7 +165,7 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.tickInterval = 1000000;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'k'
+                    return this.value/1000 + 'K'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
@@ -191,6 +198,13 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.title.text = intl.formatMessage({id: 'transactions_per_day'});
             _config.yAxis.tickAmount = 6;
             _config.yAxis.min = 0;
+            _config.yAxis.labels.formatter = function() {
+                if(this.value < 1000000){
+                    return this.value/1000 + 'K'
+                }else if(this.value >= 1000000){
+                    return this.value/1000000 + 'M'
+                }
+            }
             _config.series[0].marker.enabled = false;
             _config.series[0].pointInterval = 24 * 3600 * 1000;
             _config.series[0].pointStart = Date.UTC(2018, 5, 25);
