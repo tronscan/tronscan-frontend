@@ -13,12 +13,18 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
+import {DatePicker} from 'antd';
+import moment from "moment/moment";
+import xhr from "axios/index";
+
+const RangePicker = DatePicker.RangePicker;
 
 class Transfers extends React.Component {
 
   constructor() {
     super();
-
+    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.end = new Date().getTime();
     this.state = {
       transfers: [],
       total: 0,
@@ -52,7 +58,34 @@ class Transfers extends React.Component {
           break;
       }
     }
-
+    let req = {
+      "query": {
+        "bool": {
+          "must": [
+            {"range": {"date_created": {"gt": this.start, "lt": this.end}}}
+          ]
+        }
+      },
+      "from": (page - 1) * pageSize,
+      "size": pageSize,
+      "sort": {"date_created": "desc"}
+    }
+    let {data} = await xhr.post(`https://apilist.tronscan.org/transfers/transfers/_search`, req);
+    let transfers = [];
+    let total = data.hits.total;
+    for (let record of data.hits.hits) {
+      transfers.push({
+        id: '',
+        block: record['_source']['block'],
+        transactionHash: record['_source']['hash'],
+        timestamp: record['_source']['date_created'],
+        transferFromAddress: record['_source']['owner_address'],
+        transferToAddress: record['_source']['to_address'],
+        amount: record['_source']['amount'],
+        tokenName: record['_source']['token_name'],
+      });
+    }
+    /*
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
@@ -60,7 +93,7 @@ class Transfers extends React.Component {
       total: this.state.total,
       ...searchParams,
     });
-
+    */
     this.setState({
       transfers,
       loading: false,
@@ -133,9 +166,9 @@ class Transfers extends React.Component {
         width: '180px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return record.tokenName == 'TRX'?
-                  <TRXPrice amount={record.amount / ONE_TRX}/>
-                  :record.amount + ' ' + record.tokenName
+          return record.tokenName == 'trx' ?
+              <TRXPrice amount={record.amount / ONE_TRX}/>
+              : record.amount + ' ' + record.tokenName
 
         }
       },
@@ -154,7 +187,18 @@ class Transfers extends React.Component {
     ];
     return column;
   }
-
+  onChangeDate = (dates, dateStrings) => {
+    this.start = new Date(dateStrings[0]).getTime();
+    this.end = new Date(dateStrings[1]).getTime();
+    this.load();
+  }
+  disabledDate = (time) => {
+    if(!time){
+      return false
+    }else{
+      return time < moment().subtract(7, "days") || time > moment().add(7, 'd')
+    }
+  }
   render() {
 
     let {transfers, total, loading} = this.state;
@@ -167,7 +211,22 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              <div className="transactions-rangePicker" style={{width: "350px"}}>
+                <RangePicker
+                    defaultValue={[moment(this.start), moment(this.end)]}
+                    ranges={{
+                      'Today': [moment().startOf('day'), moment()],
+                      'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                      'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
+                      // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
+                    }}
+                    disabledDate={this.disabledDate}
+                    showTime
+                    format="YYYY/MM/DD HH:mm:ss"
+                    onChange={this.onChangeDate}
+                />
+              </div>
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {
                             this.load(page, pageSize)
