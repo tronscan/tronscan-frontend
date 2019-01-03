@@ -14,6 +14,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
 import {ContractTypes} from "../../utils/protocol";
+import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import {QuestionMark} from "./QuestionMark";
 import _ from "lodash";
@@ -71,7 +72,9 @@ class Transfers extends React.Component {
       token: tokenName,
       ...filter,
     });
-
+// console.log(transfers)tokenName,amount
+const newlist = rebuildList(transfers.map(o => {o.tokenName = '1000001'; return o}), 'tokenName', 'amount')
+console.log(newlist)
     transfers.map( item => {
       if(filter.address){
         item.fromtip = !(item.transferFromAddress == filter.address)
