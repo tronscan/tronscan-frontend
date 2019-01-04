@@ -49,7 +49,7 @@ class Transfers extends React.Component {
     let {showTotal} = this.state;
 
     this.setState({loading: true});
-    let { data } = await xhr.get(API_URL+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token);
+    let { data } = await xhr.get("http://172.16.21.104:8080"+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token+ "&address="+filter.address);
     let transfers = data.Data
     let total = data.total
 
