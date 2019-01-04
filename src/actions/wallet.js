@@ -79,7 +79,6 @@ export const reloadWallet = () => async (dispatch, getState) => {
     //   ]
     let balances_new = rebuildList(balances, 'name', 'balance')
    // wallet.tokens20List = result.data.trc20_tokens;
-      console.log('wallet',wallet)
     dispatch(setActiveWallet(wallet));
     dispatch(setTokenBalances(balances_new, trc20token_balances, frozen, accountResource.frozen_balance_for_energy));
   }

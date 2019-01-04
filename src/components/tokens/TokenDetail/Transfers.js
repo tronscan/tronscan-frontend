@@ -55,7 +55,6 @@ class Transfers extends React.Component {
     let { data } = await xhr.get("http://172.16.20.200:8080"+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token+ "&address="+filter.address);
 
     let transfers = rebuildList(data.Data,'tokenName','amount');
-    console.log(transfers)
     let total = data.total
 
     // let {transfers, total} = await Client.getTransfers({

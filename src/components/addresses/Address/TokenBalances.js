@@ -33,8 +33,6 @@ export  class TokenBalances extends React.Component {
         let {tokenBalances} = this.props;
         let balances;
 
-        // const tokenBalances = rebuildList(list, 'name', 'balance')
-        // console.log(tokenBalances)
 
         if(hideSmallCurrency){
             balances = _(tokenBalances)

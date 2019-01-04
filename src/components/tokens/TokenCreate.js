@@ -132,7 +132,6 @@ class TokenCreate extends Component {
           </SweetAlert>,
       loading: true
     });
-    console.log('this.state.precision',this.state.precision)
       if (Lockr.get("islogin")) {
               const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                   name: trim(this.state.name),

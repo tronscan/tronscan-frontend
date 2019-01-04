@@ -466,12 +466,18 @@ class SendForm extends React.Component {
   render() {
 
     let {intl, tokenBalances, account} = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20} = this.state;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20,decimals} = this.state;
     tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
     tokenBalances.map(item =>{
         item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
         return item
     });
+    let placeholder = '0.000000';
+    let num = 0;
+    if(decimals || decimals == 0){
+       placeholder =num.toFixed(decimals)
+    }
+
     let isToValid = to.length !== 0 && isAddressValid(to);
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
@@ -570,7 +576,8 @@ class SendForm extends React.Component {
                      onChange={(ev) => this.setAmount(ev.target.value)}
                      className={"form-control " + (!isAmountValid ? "is-invalid" : "")}
                      value={amount}
-                     placeholder='0.000000'/>
+                     placeholder={placeholder}
+              />
               <div className="input-group-append">
                 <button className="btn btn-outline-secondary"
                         type="button"
