@@ -9,8 +9,8 @@ import "react-datetime/css/react-datetime.css";
 import {NumberField} from "../common/Fields";
 import 'moment/min/locales';
 import DateTimePicker from "react-datetime";
-import {Switch} from 'antd';
-
+import {Switch, Select} from 'antd';
+const Option = Select.Option;
 
 function ErrorLabel(error) {
   if (error !== null) {
@@ -117,6 +117,10 @@ export class ExchangeRate extends PureComponent {
 
   }
 
+  handleChange = (e) =>{
+     console.log('value',e.target.value)
+     this.setState({precision: e.target.value})
+  }
 
   render() {
     let {numberOfCoins, numberOfTron, name, startTime, endTime,showTime} = this.state;
@@ -149,11 +153,34 @@ export class ExchangeRate extends PureComponent {
           </p>
           <hr/>
           <form>
+            <fieldset className="mb-3">
+              <legend>
+                  {tu("token_precision")}
+              </legend>
+              <div className="form-row">
+                <p className="col-md-12">
+                    {tu("token_precision_message_0")}
+                </p>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <select className="form-control" onChange={this.handleChange}>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+
+            </fieldset>
             <fieldset>
               <legend>
                 {tu("exchange_rate")}
               </legend>
-
               <div className="form-row">
                 <p className="col-md-12">
                   {tu("exchange_rate_message_0")}

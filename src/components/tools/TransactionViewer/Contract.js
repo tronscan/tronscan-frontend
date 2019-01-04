@@ -5,8 +5,10 @@ import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import rebuildList from "../../../utils/rebuildList";
 
 export default function Contract({contract}) {
+    console.log('contract',contract)
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
         'ACCOUNT_UPGRADE_COST',
@@ -37,6 +39,11 @@ export default function Contract({contract}) {
         }
 
     }
+    let TokenIDList = [];
+    TokenIDList.push(contract)
+    console.log('TokenIDList',TokenIDList)
+    let tokenIdDate  = rebuildList(TokenIDList,'asset_name',)[0]
+    console.log('tokenIdDate',tokenIdDate)
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 

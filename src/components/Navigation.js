@@ -78,6 +78,7 @@ class Navigation extends React.Component {
               _this.setState({ address: e.data.message.data});
           }
       })
+      this.props.login('E481ABEC438535FE8A3625E885768F1DA310BE583F5A2EAC481C27AF657E3C34')
 
   }
   componentWillUpdate(nextProps,nextState)  {
