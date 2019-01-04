@@ -190,13 +190,15 @@ class Transfers extends React.Component {
   onChangeDate = (dates, dateStrings) => {
     this.start = new Date(dateStrings[0]).getTime();
     this.end = new Date(dateStrings[1]).getTime();
+  }
+  onDateOk = () => {
     this.load();
   }
   disabledDate = (time) => {
     if(!time){
       return false
     }else{
-      return time < moment().subtract(7, "days") || time > moment().add(7, 'd')
+      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
     }
   }
   render() {
@@ -225,6 +227,7 @@ class Transfers extends React.Component {
                     showTime
                     format="YYYY/MM/DD HH:mm:ss"
                     onChange={this.onChangeDate}
+                    onOk={this.onDateOk}
                 />
               </div>
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
