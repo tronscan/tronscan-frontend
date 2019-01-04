@@ -17,7 +17,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {Link} from "react-router-dom";
 import {some, toLower} from "lodash";
+import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
+import Lockr from "lockr";
 
 class TokenDetail extends React.Component {
 
@@ -88,18 +90,31 @@ class TokenDetail extends React.Component {
 
     let {account, currentWallet} = this.props;
     let {buyAmount, privateKey} = this.state;
+      let res;
+      if (Lockr.get("islogin")) {
+          const { tronWeb } = account;
+          try {
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
+              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              res = result;
+          } catch (e) {
+              console.log(e)
+          }
+      }else {
+          let isSuccess = await Client.participateAsset(
+              currentWallet.address,
+              token.ownerAddress,
+              token.name,
+              buyAmount * token.price)(account.key);
+          res = isSuccess.success
+      }
 
-    let isSuccess = await Client.participateAsset(
-        currentWallet.address,
-        token.ownerAddress,
-        token.name,
-        buyAmount * token.price)(account.key);
 
-    if (isSuccess.success) {
+    if (res) {
       this.setState({
         activeToken: null,
         confirmedParticipate: true,
-        participateSuccess: isSuccess.success,
+        participateSuccess: res,
         buyAmount: 0,
       });
       this.props.reloadWallet();
