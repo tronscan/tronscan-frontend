@@ -2559,3 +2559,11 @@ h5 {
   left: -10px;
 }
 
+.nav_notice{
+  a{
+    text-decoration: none;
+    &:focus,&:visited,&:active{
+      text-decoration: none;
+    }
+  } 
+}

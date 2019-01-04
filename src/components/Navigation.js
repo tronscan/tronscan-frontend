@@ -728,7 +728,7 @@ class Navigation extends React.Component {
                     </div>
                 }
                 {
-                  <div className="col text-danger text-center py-2 d-none d-md-block text-truncate">
+                  announcement&& <div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">
                     <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}} className="mr-1"/>
                     <Link to={'/notice/'+announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
                   </div>
@@ -771,7 +771,7 @@ class Navigation extends React.Component {
                 <span className="navbar-toggler-icon"/>
               </button>
               {
-                <div className="col text-danger d-md-none">
+                announcement &&<div className="col text-danger d-md-none">
                   <div className="">
                  
                   <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px',height: '16px'}} className="mr-1"/>
