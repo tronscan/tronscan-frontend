@@ -42,7 +42,8 @@ class TokenHolders extends React.Component {
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize,
-      count: true
+      count: true,
+      address: filter.address
     });
 
     for (let index in addresses) {
@@ -112,25 +113,25 @@ class TokenHolders extends React.Component {
     let {addresses, total, loading} = this.state;
     let {intl} = this.props
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'hold_addr'})
+    let tableInfo = intl.formatMessage({id: 'a_totle'}) + ' ' + total + ' ' + intl.formatMessage({id: 'hold_addr'})
     if (!loading && addresses.length === 0) {
       return (
           <div className="p-3 text-center no-data">{tu("no_holders_found")}</div>
       );
     }
     return (
-      <Fragment>
-        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <div className="row transfers">
-          <div className="col-md-12 table_pos">
-            {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
-            <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
-                        onPageChange={(page, pageSize) => {
-                          this.loadTokenHolders(page, pageSize)
-                        }}/>
+        <Fragment>
+          {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
+          <div className="row transfers">
+            <div className="col-md-12 table_pos">
+              {/* {total?<div className="table_pos_info d-none d-md-block">{tableInfo}</div>: ''} */}
+              <SmartTable border={false} loading={loading} column={column} data={addresses} total={total}
+                          onPageChange={(page, pageSize) => {
+                            this.loadTokenHolders(page, pageSize)
+                          }}/>
+            </div>
           </div>
-        </div>
-      </Fragment>
+        </Fragment>
     )
   }
 
