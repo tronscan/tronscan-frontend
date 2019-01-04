@@ -15,11 +15,13 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import rebuildList from "../../../utils/rebuildList";
 import _ from "lodash";
 import Lockr from "lockr";
 import xhr from "axios";
 import {Select} from 'antd';
 const { Option, OptGroup } = Select;
+
 
 class SendForm extends React.Component {
 
@@ -67,14 +69,14 @@ class SendForm extends React.Component {
   send =() =>{
       let {token} = this.state;
       let TokenType =  token.substr(token.length-5,5);
-      if(TokenType == 'TRC10'){
+      if(TokenType == 'TRC20'){
+          this.token20Send()
+      }else if(TokenType == 'TRC10'){
           if (Lockr.get("islogin")) {
               this.tokenSendWithTronLink();
           }else {
               this.token10Send()
           }
-      }else if(TokenType == 'TRC20'){
-          this.token20Send()
       }
   };
 
@@ -134,14 +136,17 @@ class SendForm extends React.Component {
   }
 
   token10Send = async () => {
-    let {to, token, amount, note, privateKey} = this.state;
-    let TokenName =  token.substring(0,token.length-6);
+    let {to, token, amount, note, decimals} = this.state;
+    let list = token.split('-')
+    let TokenName =  list[1];
     let {account, onSend} = this.props;
 
     this.setState({isLoading: true, modal: null});
 
-    if (TokenName === "TRX") {
+    if (TokenName === 'TRX') {
       amount = amount * ONE_TRX;
+    }else{
+      amount = amount * Math.pow(10, decimals)
     }
 
     let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
@@ -206,7 +211,13 @@ class SendForm extends React.Component {
   confirmSend = () => {
 
     let {to, token, amount} = this.state;
-    let TokenName =  token.substring(0,token.length-6);
+    let list = token.split('-')
+    let TokenName =  list[0];
+    let TokenID;
+    if(list[1] !== '_'){
+        TokenID = list[1];
+    }
+
     this.setState({
       modal: (
           <SweetAlert
@@ -226,7 +237,8 @@ class SendForm extends React.Component {
                   maximumFractionDigits={7}
                   minimunFractionDigits={7}
                   value={amount}/>{' '}
-              {TokenName + ' '}
+              {TokenName}
+              {TokenID && '[' + TokenID + ']'}
           </span><br/>
             {tu("to")}<br/>
             {to}
@@ -257,7 +269,7 @@ class SendForm extends React.Component {
         }else{
             if (amount !== '') {
                 amount = parseFloat(amount);
-                amount = round(amount,0);
+                amount = round(amount,decimals);
                 if (amount <= 0) {
                     amount = 0;
                 }
@@ -283,9 +295,11 @@ class SendForm extends React.Component {
     let {tokenBalances} = this.props;
     let {token,tokens20} = this.state;
     let TokenType =  token.substr(token.length-5,5);
-    let TokenName =  token.substring(0,token.length-6);
+    let list = token.split('-')
+    let TokenName =  list[1];
     if (token && TokenType == 'TRC10') {
-        let balance = parseFloat(find(tokenBalances, t => t.name === TokenName).balance);
+        let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).balance);
+        let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){
             this.setState({
                 decimals: 6,
@@ -293,7 +307,7 @@ class SendForm extends React.Component {
             })
         }else{
             this.setState({
-                decimals: 0,
+                decimals: TokenDecimals,
                 balance:balance
             })
         }
@@ -336,7 +350,7 @@ class SendForm extends React.Component {
     let {token,tokens20} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState({
-        token: tokenBalances[0].name + '-TRC10',
+        token: tokenBalances[0].map_token_name + '-' +tokenBalances[0].map_token_id + '-TRC10',
       },() =>{
         this.getSelectedTokenBalance()
       })
@@ -455,7 +469,7 @@ class SendForm extends React.Component {
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20} = this.state;
     tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
     tokenBalances.map(item =>{
-        item.token_name_type = item.name + '-TRC10';
+        item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
         return item
     });
     let isToValid = to.length !== 0 && isAddressValid(to);
@@ -518,12 +532,20 @@ class SendForm extends React.Component {
               <Select
                   onChange={this.handleTokenChange}
                   value={token}
+
               >
                 <OptGroup label={tu('TRC10_token')} key="TRC10">
                     {
                         tokenBalances.map((tokenBalance, index) => (
                             <Option value={tokenBalance.token_name_type} key={index}>
-                                 {tokenBalance.name} ({tokenBalance.balance} {intl.formatMessage({id: "available"})})
+                                <span> {tokenBalance.map_token_name}
+                                    {
+                                        tokenBalance.map_token_id !== '_'?
+                                            <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenBalance.map_token_id}]</span>
+                                            :""
+                                    }
+                                    ({tokenBalance.map_amount} {intl.formatMessage({id: "available"})})</span>
+
                             </Option>
                         ))
                     }

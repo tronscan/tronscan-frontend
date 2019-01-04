@@ -1517,6 +1517,8 @@ export const messages = {
     "bandwidth_tip":"TRONでは、検索以外すべての操作が帯域幅を必要とします，毎日システムが各有効アカウントに5000帯域幅を無料で提供します，ユーザーはTRXを凍結することで帯域幅を得られます。",
     "energy_tip":"TRONでは、スマートコントラクトの作成と実行がEnergyを必要とします，ユーザーはTRXを凍結することでEnergyを得られます。",
     "power_tip":"TRON Power（TP）はSRへの投票に使います，ユーザーはTRXを凍結することでTRON Powerを得られます。",
+    "token_precision":"トークンプレシジョン",
+    "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
 
 }
 

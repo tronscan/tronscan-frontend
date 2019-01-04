@@ -7,7 +7,6 @@ export default (list, tokenId, amount) =>{
   const tokenmap = localStorage.getItem('tokensMap')
   IDmap = tokenmap?JSON.parse(tokenmap): {}
 
-  
   if(newList){
     if(typeof tokenId === 'string'){
       newList.map(item => {

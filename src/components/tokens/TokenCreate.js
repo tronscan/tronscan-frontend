@@ -46,6 +46,7 @@ class TokenCreate extends Component {
       endTime: endTime,
       description: "",
       url: "",
+      precision:"0",
       confirmed: false,
       loading: false,
       isTokenCreated: false,
@@ -131,6 +132,7 @@ class TokenCreate extends Component {
           </SweetAlert>,
       loading: true
     });
+    console.log('this.state.precision',this.state.precision)
       if (Lockr.get("islogin")) {
               const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                   name: trim(this.state.name),
@@ -170,6 +172,7 @@ class TokenCreate extends Component {
               description: this.state.description,
               url: this.state.url,
               frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
+              precision:Number(this.state.precision),
           })(account.key);
           res = createInfo.success
           errorInfo = createInfo.message;

@@ -78,6 +78,7 @@ class Navigation extends React.Component {
               _this.setState({ address: e.data.message.data});
           }
       })
+    
 
   }
   componentWillUpdate(nextProps,nextState)  {
