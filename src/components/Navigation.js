@@ -35,6 +35,7 @@ import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { Icon } from 'antd';
 import isMobile from '../utils/isMobile';
+import {Client} from '../services/api'
 
 class Navigation extends React.Component {
 
@@ -54,6 +55,8 @@ class Navigation extends React.Component {
       loginWarning:false,
       signInWarning:false,
       address:'',
+      announcement: '',
+      announId: 80
     };
   }
 
@@ -78,6 +81,7 @@ class Navigation extends React.Component {
               _this.setState({ address: e.data.message.data});
           }
       })
+      this.getAnnouncement()
 
   }
   componentWillUpdate(nextProps,nextState)  {
@@ -87,6 +91,18 @@ class Navigation extends React.Component {
   }
   componentWillUnmount() {
       this.listener && this.listener.close();
+  }
+
+  async getAnnouncement(){
+    const { announId } = this.state
+    let {intl} = this.props;
+    const {data} = await Client.getNotices({sort:'-timestamp'});
+    if(data.length){
+      const list = data.filter(o=> o.id == announId)[0]
+      const annt = intl.locale === 'zh'? list.titleCN: list.titleEN
+      this.setState({ announcement: annt});
+    }
+    
   }
 
  reLoginWithTronLink = () => {
@@ -673,7 +689,7 @@ class Navigation extends React.Component {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications} = this.state;
+    let {search, popup, notifications, announcement, announId} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -698,6 +714,9 @@ class Navigation extends React.Component {
                     <div className="col text-danger text-center py-2">
                       Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                     </div>
+                }
+                {
+                  <div className="col text-danger text-center py-2 d-none d-md-block"><Link to={'/notice/'+announId}>{announcement}</Link></div>
                 }
               <div className="ml-auto d-flex">
                 { this.props.location.pathname != '/'&&
@@ -736,6 +755,9 @@ class Navigation extends React.Component {
                       data-target="#navbar-top">
                 <span className="navbar-toggler-icon"/>
               </button>
+              {
+                <div className="col text-danger d-md-none"><Link to={'/notice/'+announId}>{announcement}</Link></div>
+              }
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
