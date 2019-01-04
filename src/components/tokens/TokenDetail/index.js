@@ -54,7 +54,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true, token: {name}});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get(API_URL+"/api/token?name=" + name+"&owner="+address);
+    let result = await xhr.get("http://172.16.20.200:8080"+"/api/token?name=" + name+"&owner="+address);
     let token = result.data.data[0];
 
     this.setState({
@@ -80,7 +80,7 @@ class TokenDetail extends React.Component {
           icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: name}} token={{totalSupply: token.totalSupply}}/>
+          cmp: () => <TokenHolders filter={{token: name, address: address}} token={{totalSupply: token.totalSupply}}/>
         },
       ]
     });
