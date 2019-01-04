@@ -9,6 +9,7 @@ import {tu, tv} from "../../../../../utils/i18n";
 import {Client} from "../../../../../services/api";
 import {connect} from "react-redux";
 import { upperFirst } from 'lodash'
+import rebuildList from "../../../../../utils/rebuildList";
 class Mytran extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +41,8 @@ class Mytran extends Component {
         limit: palyload.pageSize,
       }
       const {data, total} = await Client.getTransactionList(params);
-      this.setState({dataSource: data, total: total})
+      const newdata = rebuildList(data,'first_token_id','quant')
+      this.setState({dataSource: newdata, total: total})
     }
   }
 
@@ -87,7 +89,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return  record.tokenName == 'TRX'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.quant + ' ' + record.tokenID
+          :record.map_amount + ' ' + record.tokenID
         }
       },
       {

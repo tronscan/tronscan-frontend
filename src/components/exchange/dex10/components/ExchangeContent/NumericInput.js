@@ -20,7 +20,9 @@ function formatNumber(value) {
 class NumericInput extends React.Component {
   onChange = (e) => {
     const { value } = e.target;
-    const reg = /^(0|[1-9][0-9]*)?$/;
+    const num = this.props.precision
+    // const reg = /^(0|[1-9][0-9]*)(\.[0-9]{0,num})?$/;
+    const reg = new RegExp('^(0|[1-9][0-9]*)(\\.[0-9]{0,'+num+'})?$')
     if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
       this.props.onChange(value);
     }

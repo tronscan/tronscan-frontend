@@ -17,6 +17,8 @@ import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import {QuestionMark} from "./QuestionMark";
+import {NameWithId} from "./names";
+
 import _ from "lodash";
 
 class Transfers extends React.Component {
@@ -63,7 +65,7 @@ class Transfers extends React.Component {
     let {showTotal,hideSmallCurrency,tokenName} = this.state;
     this.setState({loading: true});
 
-    let {transfers, total} = await Client.getTransfers({
+    let {transfers: list, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
@@ -72,9 +74,9 @@ class Transfers extends React.Component {
       token: tokenName,
       ...filter,
     });
-// console.log(transfers)tokenName,amount
-const newlist = rebuildList(transfers.map(o => {o.tokenName = '1000001'; return o}), 'tokenName', 'amount')
-console.log(newlist)
+
+    const transfers = rebuildList(list, 'tokenName', 'amount')
+
     transfers.map( item => {
       if(filter.address){
         item.fromtip = !(item.transferFromAddress == filter.address)
@@ -87,7 +89,7 @@ console.log(newlist)
 
     if(hideSmallCurrency){
         transfersTRX = _(transfers)
-            .filter(tb => tb.tokenName.toUpperCase() === "TRX")
+            .filter(tb => tb.tokenName === "_" || tb.tokenName === "TRX")
             .value();
     }else{
         transfersTRX = transfers
@@ -188,13 +190,7 @@ console.log(newlist)
         align: 'right',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return <Fragment>
-            {
-              record.tokenName === "TRX" ?
-                  <TRXPrice amount={record.amount / ONE_TRX}/> :
-                  <span><FormattedNumber value={record.amount}/> {record.tokenName}</span>
-            }
-          </Fragment>
+          return <NameWithId value={record}/>
         }
       },
       // {

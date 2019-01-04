@@ -118,6 +118,7 @@ class Transaction extends Component {
             exchangeData.first_token_id == "TRX"
               ? 1/ONE_TRX
               : 1;
+
           this.exchangeTransaction(
             exchangeData.exchange_id,
             token_id,
@@ -146,7 +147,7 @@ class Transaction extends Component {
           let quant =
             exchangeData.first_token_id == "TRX"
               ? parseFloat(values.first_quant_sell) * ONE_TRX
-              : parseFloat(values.first_quant_sell);
+              : parseFloat(values.first_quant_sell) * Math.pow(10,exchangeData.map_token_precision);
           let expected =
             exchangeData.second_token_id == "TRX"
               ? 1
@@ -356,6 +357,7 @@ class Transaction extends Component {
     const { getFieldDecorator } = this.props.form;
     let { exchangeData, account, currentWallet, intl } = this.props;
     let { modal, firstBalance, secondBalance,buy_amount,sell_amount } = this.state;
+
     return (
       <div className="exchange__transaction d-flex">
         {modal}
@@ -404,6 +406,7 @@ class Transaction extends Component {
                   })}
                   size="large"
                   type="text"
+                  precision={exchangeData.map_token_precision}
                   onChange={this.handleSecondValueBuy}
                 />
               )}

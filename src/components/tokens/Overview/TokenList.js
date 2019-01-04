@@ -382,6 +382,14 @@ class TokenList extends Component {
         }
       },
       {
+        title: "ID",
+        render: (text, record, index) => {
+          return <div>{record.id}</div>
+        },
+        align: 'center',
+        className: 'ant_table d-none d-md-table-cell _text_nowrap'
+      },
+      {
         title: intl.formatMessage({id: 'fund_raised'}),
         render: (text, record, index) => {
           return <div><FormattedNumber value={record.participated / ONE_TRX} maximumFractionDigits={1}/> TRX</div>

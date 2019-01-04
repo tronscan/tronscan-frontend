@@ -1,4 +1,6 @@
-export default (list, tokenId, amount) =>{
+import {upperCase} from 'lodash'
+
+export default (list=[], tokenId, amount) =>{
   let IDmap = {}
   let newList = list.map(item => item)
 
@@ -6,35 +8,57 @@ export default (list, tokenId, amount) =>{
   IDmap = tokenmap?JSON.parse(tokenmap): {}
 
   if(newList){
-    newList.map(item => {
-      const id = item[tokenId]
-      
-      if(!(IDmap[id] || id == "_")){
-        console.log('版本没有更新')
-        return
-      }
+    if(typeof tokenId === 'string'){
+      newList.map(item => {
 
-      if(id == '_'){
-        item.map_token_name = 'TRX'
-        item.map_token_id = id
-        item.map_token_precision = 6
-        item.map_amount = amount?item[amount] / Math.pow(10,6): 0
-      }else{
-        const list = IDmap[id].split('_')
+        const id = item[tokenId]
+        
+        if(id == '_' || upperCase(id) == "TRX"){
+          setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0)
+        }
+        if(IDmap[id]){
+          const list = IDmap[id].split('_')
+          setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0)
+        }
+        if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
+          setItem(item, item[tokenId], 0, 0, item[amount])
+        }
 
-        item.map_token_name = list[0]
-        item.map_token_id = list[1]
-        item.map_token_precision = list[2]
-        item.map_amount = amount? item[amount] / Math.pow(10,list[2]): 0
-      }
-     
-      return item
-    })
-    console.log(newList)
+        return item
+      })
+    }else{
+      newList.map(item => {
+        tokenId.map((tid,index) => {
+          const id = item[tid]
+          
+          if(id == '_' || upperCase(id) == "TRX"){
+            setItem(item, 'TRX', id, 6, amount[index]?item[amount[index]] / Math.pow(10,6): 0,index)
+          }
+          if(IDmap[id]){
+            const list = IDmap[id].split('_')
+            setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,index)
+          }
+          if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
+            setItem(item, item[tid], 0, 0, item[amount[index]],index)
+          }
+        })
+
+        return item
+      })
+    }
     return newList
     
     
   }else{
     console.log('token id is undefined!!')
   }
+}
+
+function setItem(item,name,id,pre,amount,index=''){
+  index = index == 0? '': index
+  item['map_token_name'+index] = name
+  item['map_token_id'+index] = id
+  item['map_token_precision'+index] = pre
+  item['map_amount'+index] =amount
+  return item
 }

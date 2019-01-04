@@ -22,6 +22,12 @@ export function Information({token}) {
       name: 'total_supply', 
       content: <FormattedNumber value={token.totalSupply}/>
     },{ 
+      name: 'ID', 
+      content: <span>{token.id}</span>
+    },{ 
+      name: 'TRC20_decimals', 
+      content: <span>{token.precision || '-'}</span>
+    },{ 
       name: 'reputation', 
       content:  <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
                   {tu(token.reputation)}
