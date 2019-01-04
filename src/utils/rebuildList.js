@@ -1,6 +1,6 @@
 import {upperCase} from 'lodash'
 
-export default (list, tokenId, amount) =>{
+export default (list=[], tokenId, amount) =>{
   let IDmap = {}
   let newList = list.map(item => item)
 
