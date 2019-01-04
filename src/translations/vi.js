@@ -1519,6 +1519,7 @@ export const messages = {
     "bandwidth_tip":"On TRON, bandwidths will be consumed with any transaction but query 5,000 bandwidths will be given to each activated account every day by the system. Users can earn bandwidths by freezing TRX.",
     "energy_tip":"On TRON, the creation and triggering of smart contracts consume Energy. Users can gain Energy through freezing TRX.",
     "power_tip":"TRON Power (TP) is used for voting for TRON SRs. Users can gain TP through freezing TRX.",
-
+    "token_precision":"Token Precision",
+    "token_precision_message_0":"Set the precision of the token as required, the range is 0-6",
 
 };

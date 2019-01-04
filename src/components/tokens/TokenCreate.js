@@ -148,6 +148,7 @@ class TokenCreate extends Component {
                   freeBandwidthLimit:0,
                   frozenAmount:this.state.frozenSupply[0].amount,
                   frozenDuration:this.state.frozenSupply[0].days,
+                  precision:Number(this.state.precision),
               }, tronWeb.defaultAddress.hex).catch (function (e) {
                   errorInfo = e;
               })
