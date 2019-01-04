@@ -36,7 +36,7 @@ class Transfers extends React.Component {
       emptyState: props.emptyState,
       autoRefresh: props.autoRefresh || false,
       hideSmallCurrency:true,
-      tokenName:"TRX"
+      tokenName:"_"
     };
   }
 
