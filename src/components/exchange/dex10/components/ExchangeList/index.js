@@ -18,6 +18,7 @@ import {connect} from "react-redux";
 import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
 import {Input} from 'antd';
+import rebuildList from "../../../../../utils/rebuildList";
 
 const Search = Input.Search;
 
@@ -66,8 +67,16 @@ class ExchangeList extends React.Component {
                 item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
             }
         })
+        const data = rebuildList(exchangesAllList, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
+  
+        const newData = data.map(item => {
+          item.first_token_id = item.map_token_name
+          item.second_token_id = item.map_token_name1
+          return item
+        })
+        
         this.setState({
-            exchangesAllList: exchangesAllList,
+            exchangesAllList: newData,
         },() => {
             this.getExchanges();
         });
@@ -90,7 +99,16 @@ class ExchangeList extends React.Component {
                 item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
             }
         });
-        exchangesList = data.map(item => {
+
+        const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
+
+        const newData = exchange10.map(item => {
+            item.first_token_id = item.map_token_name
+            item.second_token_id = item.map_token_name1
+            return item
+        })
+
+        exchangesList = newData.map(item => {
             item.optionalBok = false;
             return item
         });
@@ -129,8 +147,9 @@ class ExchangeList extends React.Component {
         let unreviewedTokenList = _(newlist)
             .filter(o => o['optionalBok'] == true)
             .value();
-
-
+        
+        
+       
         this.setState({
             auditedTokenList: exchangesList,
             unreviewedTokenList: unreviewedTokenList,

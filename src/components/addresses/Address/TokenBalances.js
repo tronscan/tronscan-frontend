@@ -7,6 +7,7 @@ import {SwitchToken} from "../../common/Switch";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import _ from "lodash";
+import rebuildList from "../../../utils/rebuildList";
 
 export  class TokenBalances extends React.Component {
 
@@ -31,6 +32,10 @@ export  class TokenBalances extends React.Component {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances} = this.props;
         let balances;
+
+        // const tokenBalances = rebuildList(list, 'name', 'balance')
+        // console.log(tokenBalances)
+
         if(hideSmallCurrency){
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "TRX")
@@ -66,6 +71,7 @@ export  class TokenBalances extends React.Component {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
                 dataIndex: 'name',
                 key: 'name',
+                width: '20%',
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
@@ -73,9 +79,29 @@ export  class TokenBalances extends React.Component {
                 }
             },
             {
+                title: 'ID',
+                dataIndex: 'map_token_id',
+                key: 'map_token_id',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
+                title: upperFirst(intl.formatMessage({id: 'TRC20_decimals'})),
+                dataIndex: 'map_token_precision',
+                key: 'map_token_precision',
+                align: 'left',
+                className: 'ant_table',
+                render: (text, record, index) => {
+                    return <span>{text}</span>
+                }
+            },
+            {
                 title: upperFirst(intl.formatMessage({id: 'balance'})),
-                dataIndex: 'balance',
-                key: 'balance',
+                dataIndex: 'map_amount',
+                key: 'map_amount',
                 align: 'right',
                 className: 'ant_table',
                 render: (text, record, index) => {

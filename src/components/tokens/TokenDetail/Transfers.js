@@ -12,6 +12,8 @@ import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
+import {NameWithId} from "../../common/names";
+import rebuildList from "../../../utils/rebuildList";
 
 class Transfers extends React.Component {
 
@@ -50,7 +52,8 @@ class Transfers extends React.Component {
 
     this.setState({loading: true});
     let { data } = await xhr.get(API_URL+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token);
-    let transfers = data.Data
+    let transfers = rebuildList(data.Data,'tokenName','amount')
+    console.log(transfers)
     let total = data.total
 
     // let {transfers, total} = await Client.getTransfers({
@@ -134,10 +137,7 @@ class Transfers extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <div>{record.tokenName === "TRX" ?
-              <TRXPrice amount={record.amount / ONE_TRX}/> :
-              <span><FormattedNumber value={record.amount}/> {record.tokenName}</span>}
-          </div>
+          return <NameWithId value={record}/>
 
         },
       }

@@ -2,6 +2,7 @@ import {Client} from "../services/api";
 import {Client20} from "../services/api";
 import Lockr from "lockr";
 import { remove,map } from 'lodash';
+import rebuildList from "../utils/rebuildList";
 
 import { cloneDeep,concat } from 'lodash'
 
@@ -138,8 +139,14 @@ export const getExchangesAllList = () => async (dispatch) => {
   })
 
   
+  const data = rebuildList(exchangesAllList, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
   
-  dispatch(setExchangesAll(exchangesAllList))
+  const newData = data.map(item => {
+    item.first_token_id = item.map_token_name
+    item.second_token_id = item.map_token_name1
+    return item
+  })
+  dispatch(setExchangesAll(newData))
 }
 
 export const getExchanges = () => async (dispatch) => {
@@ -161,6 +168,14 @@ export const getExchanges = () => async (dispatch) => {
       }
     })
   })
-  dispatch(setExchanges10(data))
+  const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
+  
+  const newData = exchange10.map(item => {
+    item.first_token_id = item.map_token_name
+    item.second_token_id = item.map_token_name1
+    return item
+  })
+  
+  dispatch(setExchanges10(newData))
 }
 

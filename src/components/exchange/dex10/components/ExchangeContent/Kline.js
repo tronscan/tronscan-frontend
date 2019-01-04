@@ -300,6 +300,7 @@ class Kline extends React.Component {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
     let imgDefault = require('../../../../../images/logo_default.png')
+
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -325,7 +326,7 @@ class Kline extends React.Component {
           </div>
           <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
           <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-          <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume} /></span>
+          <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume/Math.pow(10,6)} /></span>
             {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
               {/*≈*/}
 
@@ -358,7 +359,7 @@ class Kline extends React.Component {
             </li>
             <li>
               <p className="title">{tu('trc20_balance')}</p>
-              <p className="value"><FormattedNumber value={selectData.first_token_balance}/></p>
+              <p className="value"><FormattedNumber value={selectData.map_amount}/></p>
             </li>
             <li>
               <p className="title">{tu('trc20_second_token')}</p>
@@ -366,7 +367,7 @@ class Kline extends React.Component {
             </li>
             <li>
               <p className="title">{tu('trc20_balance')}</p>
-              <p className="value"><FormattedNumber value={selectData.second_token_balance}/></p>
+              <p className="value"><FormattedNumber value={selectData.map_amount1}/></p>
             </li>
           </ul>
         </div>}

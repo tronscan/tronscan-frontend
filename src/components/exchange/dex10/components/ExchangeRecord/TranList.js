@@ -9,6 +9,7 @@ import {tu, tv} from "../../../../../utils/i18n";
 import {Client} from "../../../../../services/api";
 import {connect} from "react-redux";
 import {upperFirst} from 'lodash'
+import rebuildList from "../../../../../utils/rebuildList";
 
 class TranList extends Component {
   constructor(props) {
@@ -48,7 +49,8 @@ class TranList extends Component {
     const {selectData} = this.props
     if(selectData.exchange_id){
       const {data} = await Client.getTransactionList({limit: 15, exchangeID: selectData.exchange_id});
-      this.setState({dataSource: data})
+      const newdata = rebuildList(data,'first_token_id','quant')
+      this.setState({dataSource: newdata})
     }
   }
 
@@ -95,7 +97,7 @@ class TranList extends Component {
         render: (text, record, index) => {
           return  record.tokenID == '_'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.quant + ' ' + record.tokenID
+          :record.map_amount + ' ' + record.tokenID
         }
       },
       {

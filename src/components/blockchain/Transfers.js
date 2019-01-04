@@ -16,6 +16,8 @@ import {ONE_TRX} from "../../constants";
 import {DatePicker} from 'antd';
 import moment from "moment/moment";
 import xhr from "axios/index";
+import {NameWithId} from "../common/names";
+import rebuildList from "../../utils/rebuildList";
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -85,6 +87,9 @@ class Transfers extends React.Component {
         tokenName: record['_source']['token_name'],
       });
     }
+   
+    const transfersList = rebuildList(transfers, 'tokenName', 'amount')
+    console.log(transfersList)
     /*
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
@@ -95,7 +100,7 @@ class Transfers extends React.Component {
     });
     */
     this.setState({
-      transfers,
+      transfers:transfersList,
       loading: false,
       total
     });
@@ -166,9 +171,7 @@ class Transfers extends React.Component {
         width: '180px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return record.tokenName == 'trx' ?
-              <TRXPrice amount={record.amount / ONE_TRX}/>
-              : record.amount + ' ' + record.tokenName
+          return <NameWithId value={record}/>
 
         }
       },
