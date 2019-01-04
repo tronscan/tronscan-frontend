@@ -8,7 +8,6 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../utils/rebuildList";
 
 export default function Contract({contract}) {
-    console.log('contract',contract)
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
         'ACCOUNT_UPGRADE_COST',
@@ -41,9 +40,7 @@ export default function Contract({contract}) {
     }
     let TokenIDList = [];
     TokenIDList.push(contract)
-    console.log('TokenIDList',TokenIDList)
-    let tokenIdDate  = rebuildList(TokenIDList,'asset_name',)[0]
-    console.log('tokenIdDate',tokenIdDate)
+    let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -83,8 +80,14 @@ export default function Contract({contract}) {
                 <tbody>
                   <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
                   <Field label="to"><AddressLink address={contract['to_address']}/></Field>
-                  <Field label="amount">{contract.amount}</Field>
-                  <Field label="token">{contract['asset_name']}</Field>
+                  <Field label="amount">{tokenIdData.map_amount}</Field>
+                  <Field label="token">{tokenIdData['map_token_name']}
+                      {
+                          tokenIdData.map_token_id ?
+                              <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenIdData.map_token_id}]</span>
+                              :""
+                      }
+                  </Field>
                 </tbody>
               </table>
             </div>

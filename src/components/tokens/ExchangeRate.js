@@ -118,7 +118,6 @@ export class ExchangeRate extends PureComponent {
   }
 
   handleChange = (e) =>{
-     console.log('value',e.target.value)
      this.setState({precision: e.target.value})
   }
 

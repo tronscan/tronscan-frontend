@@ -31,6 +31,7 @@ import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
 import _ from "lodash";
 import Lockr from "lockr";
+import rebuildList from "../../utils/rebuildList";
 
 
 
@@ -198,6 +199,7 @@ class Account extends Component {
                 .sortBy(tb => tb.name)
                 .value();
         }
+
         if (tokenBalances.length === 0) {
             return (
                 <div className="text-center d-flex justify-content-center p-4">
@@ -211,6 +213,8 @@ class Account extends Component {
               <thead className="thead-light">
               <tr>
                 <th>{tu("name")}</th>
+                <th>ID</th>
+                <th>{tu("TRC20_decimals")}</th>
                 <th className="text-right">{tu("balance")}</th>
               </tr>
               </thead>
@@ -219,10 +223,16 @@ class Account extends Component {
                   tokenBalances.map((token) => (
                       <tr key={token.name}>
                         <td>
-                          <TokenLink name={token.name} address={token.address}/>
+                          <TokenLink name={token.map_token_name} address={token.address}/>
+                        </td>
+                        <td>
+                          <div className="tokenBalances_id">{token.map_token_id}</div>
+                        </td>
+                        <td>
+                          <div>{token.map_token_precision}</div>
                         </td>
                         <td className="text-right">
-                          <FormattedNumber value={token.balance}/>
+                          <FormattedNumber value={token.map_amount}/>
                         </td>
                       </tr>
                   ))
@@ -1397,13 +1407,14 @@ class Account extends Component {
                                     currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
                                         return (
                                             <tr key={index}>
-                                                <td>
-                                                    {exchange.first_token_id === "_"?"TRX":exchange.first_token_id}/{exchange.second_token_id === "_"?"TRX":exchange.second_token_id}
+                                                <td style={{position: 'relative'}}>
+                                                    {exchange.map_token_name === "_"?"TRX":exchange.map_token_name}/{exchange.map_token_name1 === "_"?"TRX":exchange.map_token_name1}
+                                                    <div style={{fontSize:12,color:'#999',position:'absolute',bottom:0}}>[ID:{exchange.map_token_id}]</div>
                                                 </td>
                                                 <td>
-                                                    <FormattedNumber value={ exchange.first_token_id === "_"? exchange.first_token_balance / ONE_TRX : exchange.first_token_balance }/>
+                                                    <FormattedNumber value={ exchange.map_amount }/>
                                                     /
-                                                    <FormattedNumber value={ exchange.second_token_id === "_"? exchange.second_token_balance / ONE_TRX : exchange.second_token_balance }/>
+                                                    <FormattedNumber value={ exchange.map_amount1 }/>
                                                 </td>
                                                 <td className="text-right" style={{display:'flex',flexDirection:'row',justifyContent:'flex-end'}}>
                                     <div className="dex-inject" style={{whiteSpace:'nowrap'}}

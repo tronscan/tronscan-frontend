@@ -24,6 +24,9 @@ class CreateTxnPairModal extends React.PureComponent {
             secondTokenId:"",
             firstTokenBalance:"",
             secondTokenBalance:"",
+            firstTokenAmount:"",
+            secTokenAmount:"",
+            firstTokenPrecision:"",
         };
     }
 
@@ -61,10 +64,9 @@ class CreateTxnPairModal extends React.PureComponent {
     };
     create = async () => {
         let {onCreate,currentWallet} = this.props;
-        let {firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance} = this.state;
-        let firstTokenBalanceNum = parseFloat(firstTokenBalance)
-        let secondTokenBalanceNum = parseFloat(secondTokenBalance)
-            secondTokenBalanceNum = (parseFloat(secondTokenBalance)) * ONE_TRX
+        let {firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance,firstTokenPrecision} = this.state;
+        let firstTokenBalanceNum =  Math.ceil(parseFloat(firstTokenBalance) * Math.pow(10,firstTokenPrecision))
+        let secondTokenBalanceNum = (parseFloat(secondTokenBalance)) * ONE_TRX;
         onCreate && onCreate(firstTokenId,secondTokenId,firstTokenBalanceNum,secondTokenBalanceNum);
         this.setState({disabled: true});
     };
@@ -77,15 +79,18 @@ class CreateTxnPairModal extends React.PureComponent {
     firstTokenIdChange = (value) => {
         let {account,currentWallet} = this.props;
         let {allowExchange} = this.state;
-        let secTokenIdArr =  _.filter(allowExchange,{"name":value});
-        let firstTokenBalances =  _.find(currentWallet.tokenBalances,{"name":value});
-        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"name":"TRX"});
+        let secTokenIdArr =  _.filter(allowExchange,{"map_token_id":value});
+        let firstTokenBalances =  _.find(currentWallet.tokenBalances,{"map_token_id":value});
+        let secTokenBalances =  _.find(currentWallet.tokenBalances,{"map_token_name":"TRX"});
         this.setState({
             firstTokenId: value,
             secondTokenId:"_",
             secTokenIdArr:secTokenIdArr,
             firstTokenBalances:firstTokenBalances?firstTokenBalances.balance:0,
-            secTokenBalances:secTokenBalances?secTokenBalances.balance:0
+            secTokenBalances:secTokenBalances?secTokenBalances.balance:0,
+            firstTokenAmount:firstTokenBalances?firstTokenBalances.map_amount:0,
+            secTokenAmount:secTokenBalances?secTokenBalances.map_amount:0,
+            firstTokenPrecision:firstTokenBalances.map_token_precision,
         },() =>{
 
         });
@@ -135,7 +140,7 @@ class CreateTxnPairModal extends React.PureComponent {
 
     render() {
         let {currentWallet,intl} = this.props;
-        let {modal, firstTokenId, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenBalance,secondTokenBalance,allowExchange, disabled} = this.state;
+        let {modal, firstTokenId, secTokenIdArr,secondTokenId,firstTokenBalances,secTokenBalances,firstTokenBalance,secondTokenBalance,allowExchange, disabled,firstTokenAmount,secTokenAmount} = this.state;
         let [isValid, errorMessageFirstToken] = this.isValidFirstToken();
         let [isValid2, errorMessageSecondToken] = this.isValidSecondToken();
         if (modal) {
@@ -165,7 +170,10 @@ class CreateTxnPairModal extends React.PureComponent {
                                 {
                                     allowExchange.map((token, index) => {
                                         return (
-                                            <option key={index} value={token.name}>{token.name}</option>
+                                            <option key={index} value={token.map_token_id}>
+                                                {token.map_token_name}
+                                                [ID:{token.map_token_id}]
+                                            </option>
                                         )
                                     })
                                 }
@@ -174,8 +182,8 @@ class CreateTxnPairModal extends React.PureComponent {
                         <div className="col-md-6">
                             <label>{tu("balance")}
                                 {
-                                    firstTokenBalances>=0 ?<span>
-                                     ({firstTokenBalances})
+                                    firstTokenAmount>=0 ?<span>
+                                     ({firstTokenAmount})
                                 </span>:""
                                 }
                             </label>
@@ -216,8 +224,8 @@ class CreateTxnPairModal extends React.PureComponent {
                             <label>
                                 {tu("balance")}
                                 {
-                                    secTokenBalances >=0?<span>
-                                    ({secTokenBalances})
+                                    secTokenAmount >=0?<span>
+                                    ({secTokenAmount})
                                 </span>:""
                                 }
 

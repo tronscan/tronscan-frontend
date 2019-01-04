@@ -89,7 +89,6 @@ class Transfers extends React.Component {
     }
    
     const transfersList = rebuildList(transfers, 'tokenName', 'amount')
-    console.log(transfersList)
     /*
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',

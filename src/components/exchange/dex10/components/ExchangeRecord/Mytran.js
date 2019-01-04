@@ -89,7 +89,7 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return  record.tokenName == 'TRX'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.map_amount + ' ' + record.tokenID
+          :record.map_amount + ' ' + record.map_token_name
         }
       },
       {

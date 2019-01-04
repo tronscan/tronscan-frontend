@@ -97,7 +97,7 @@ class TranList extends Component {
         render: (text, record, index) => {
           return  record.tokenID == '_'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
-          :record.map_amount + ' ' + record.tokenID
+          :record.map_amount + ' ' + record.map_token_name
         }
       },
       {

@@ -16,10 +16,60 @@ export const reloadWallet = () => async (dispatch, getState) => {
   let {app} = getState();
 
   if (app.account.isLoggedIn) {
-    let {balances, trc20token_balances, frozen, accountResource,...wallet} = await Client.getAccountByAddressNew(app.account.address);
+    let {balances, trc20token_balances, frozen, accountResource, tokenBalances,exchanges,...wallet} = await Client.getAccountByAddressNew(app.account.address);
    // let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
     wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance;
     wallet.frozenTrx = frozen.total + accountResource.frozen_balance_for_energy.frozen_balance;
+    wallet.exchanges = rebuildList(exchanges, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance']);
+    wallet.tokenBalances= rebuildList(tokenBalances, 'name', 'balance')
+      // wallet.tokenBalances= [
+      //        {
+      //            address: "TU1LUTYDMG6iihimUpAmdnnBthawPKh1cm",
+      //            balance: 22,
+      //            map_amount: 22,
+      //            map_token_id: "1001090",
+      //            map_token_name: "TRONONE",
+      //            map_token_precision: 1,
+      //            name: "TRONONE"
+      //        },
+      //     {
+      //         address: "TGkTrnr7aBVVJA4rFrA7XdzCGkyFSABGT4",
+      //         balance: 1,
+      //         map_amount: 1,
+      //         map_token_id: "1001466",
+      //         map_token_name: "Tronics",
+      //         map_token_precision: 2,
+      //         name: "Tronics",
+      //     },
+      //       {
+      //           address: "TTbioAsbefqWxtoGk3MsKkUw7jgtFKPH9E",
+      //           balance: 8,
+      //           map_amount: 8,
+      //           map_token_id: "1001377",
+      //           map_token_name: "ALLEExchange",
+      //           map_token_precision: 3,
+      //           name: "ALLEExchange",
+      //       },
+      // {
+      //     address: "TFFFyJ6w6bgDa5tciErgrjWGyTPSyE8qRy",
+      //     balance: 99988200,
+      //     map_amount: 99988200,
+      //     map_token_id: "1001810",
+      //     map_token_name: "Colorpop",
+      //     map_token_precision: 4,
+      //     name: "Colorpop",
+      // },
+      // {
+      //     address: "TN8p9sUqKgdnvWqbE4dCq6bTV6GhkpZhXP",
+      //     balance: 842,
+      //     map_amount: 842,
+      //     map_token_id: "1000526",
+      //     map_token_name: "HashCoin",
+      //     map_token_precision: 5,
+      //     name: "HashCoin",
+      // }
+      // ]
+
     // balances =  [
     //     {"name":"TRX","address":"TA561MxvhxM4f81mU7bx9oipGP5zowTbhL","balance":0.018652,"tokenName":"_"},
     //     {"name":"LuckyChipsCoin","address":"TYMmLJeReBpsGT1nA51LkjJf3ipP9JD2ej","balance":1,"tokenName":"1000564"},
@@ -29,6 +79,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
     //   ]
     let balances_new = rebuildList(balances, 'name', 'balance')
    // wallet.tokens20List = result.data.trc20_tokens;
+      console.log('wallet',wallet)
     dispatch(setActiveWallet(wallet));
     dispatch(setTokenBalances(balances_new, trc20token_balances, frozen, accountResource.frozen_balance_for_energy));
   }
