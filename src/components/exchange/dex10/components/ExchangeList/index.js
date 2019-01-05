@@ -171,8 +171,9 @@ class ExchangeList extends React.Component {
     handleAuditedToken = () => {
         
         const {getSelectData, klineLock} = this.props;
-        const {auditedTokenList,optionalDisable,tagLcok} = this.state;
-        if(klineLock && tagLcok){
+        const {auditedTokenList,optionalDisable,tagLock} = this.state;
+        
+        if(klineLock && tagLock){
             if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
