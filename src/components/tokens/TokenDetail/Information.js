@@ -26,7 +26,7 @@ export function Information({token}) {
       content: <span>{token.id}</span>
     },{ 
       name: 'TRC20_decimals', 
-      content: <span>{token.precision || '-'}</span>
+      content: <span>{token.precision == 0 || token.precision ? token.precision : '_'}</span>
     },{ 
       name: 'reputation', 
       content:  <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
