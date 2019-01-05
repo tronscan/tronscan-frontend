@@ -67,6 +67,7 @@ class ExchangeList extends React.Component {
             } else {
                 item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
             }
+            item.price = Number(item.price.toFixed(6))
         })
         const data = rebuildList(exchangesAllList, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
   
@@ -101,6 +102,7 @@ class ExchangeList extends React.Component {
             } else {
                 item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
             }
+            item.price = Number(item.price.toFixed(6))
         });
 
         const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])

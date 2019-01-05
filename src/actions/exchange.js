@@ -99,6 +99,7 @@ export const getExchanges20 = () => async (dispatch) => {
       item.high = item.highestPrice24h
       item.low = item.lowestPrice24h
       item.token_type = 'dex20'
+      
       if (item.gain.indexOf('-') != -1) {
           item.up_down_percent = '-' + Math.abs(Number(item.gain*100).toFixed(2)) + '%'
           item.isUp = false
@@ -130,6 +131,7 @@ export const getExchangesAllList = () => async (dispatch) => {
         item.isUp = true
     }
     item.token_type = 'dex10'
+    item.price = Number(item.price.toFixed(6))
 
     f_list.map(id => {
       if(item.exchange_id == id){
@@ -163,6 +165,7 @@ export const getExchanges = () => async (dispatch) => {
         item.isUp = true
     }
     item.token_type = 'dex10'
+    item.price = Number(item.price.toFixed(6))
 
     f_list.map(id => {
       if(item.exchange_id == id){
