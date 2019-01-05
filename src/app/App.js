@@ -12,10 +12,10 @@ export default class App {
   }
 
   async getTokensMap() {
-    let {data} = await xhr.get(`https://apilist.tronscan.org/asset_issue_contract/asset_issue_contract/_search`);
-    for (var i = 0; i < data.hits.hits.length; i++) {
-      if (!tokensMap[data.hits.hits[i]['_source'].id]) {
-        tokensMap[data.hits.hits[i]['_source'].id] = data.hits.hits[i]['_source'].name + '_' + data.hits.hits[i]['_source'].id + '_' + data.hits.hits[i]['_source'].precision;
+    let {data} = await xhr.get(`https://apilist.tronscan.org/api/token`);
+    for (var i = 0; i < data.length; i++) {
+      if (!tokensMap[data[i].id]) {
+        tokensMap[data[i].id] = data[i].name + '_' + data[i].id + '_' + data[i].precision;
       }
     }
     localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
