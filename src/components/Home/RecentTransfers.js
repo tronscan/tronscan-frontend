@@ -11,6 +11,7 @@ import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import {NameWithId} from "../common/names";
 
 class RecentTransfers extends Component {
 
@@ -89,7 +90,8 @@ class RecentTransfers extends Component {
                           <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word"
                                style={styles.nowrap}>
                             <div className="color-grey-200" style={{flex: 1}}>
-                              <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/>
+                              {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
+                              <NameWithId value={transfer}/>
                             </div>
                             <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                               <TimeAgo date={transfer.timestamp}/>

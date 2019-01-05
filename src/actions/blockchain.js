@@ -1,4 +1,5 @@
 import {Client} from "../services/api";
+import rebuildList from "../utils/rebuildList";
 
 export const SET_TRANSACTIONS = 'SET_TRANSACTIONS';
 export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
@@ -28,10 +29,12 @@ export const loadBlocks = () => async (dispatch) => {
 };
 
 export const loadTransactions = () => async (dispatch) => {
-  let {transfers} = await Client.getTransfers({
+  let {transfers: list} = await Client.getTransfers({
     order: '-timestamp',
     limit: 15,
   });
+  
+  const transfers = rebuildList(list, 'tokenName', 'amount')
   dispatch(setTransactions(transfers));
 };
 
