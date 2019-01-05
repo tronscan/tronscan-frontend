@@ -6,6 +6,7 @@ import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../utils/rebuildList";
+import {toUtf8} from 'tronweb'
 
 export default function Contract({contract}) {
     let parametersArr = [
@@ -291,8 +292,8 @@ export default function Contract({contract}) {
             <table className="table">
                 <tbody>
                     <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                    <Field label="token_name">{contract.name}</Field>
-                    <Field label="total_supply">{contract.total_supply}</Field>
+                    <Field label="token_name">{toUtf8(contract.name)}</Field>
+                    <Field label="total_supply"><FormattedNumber value={contract.total_supply/ Math.pow(10,contract.precision)}/></Field>
                     <Field label="TRX_exchange_rate">{contract.trx_num / ONE_TRX} : {contract.num}</Field>
                     <Field label="start_time">
                         {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.start_time}/> : "-"}
@@ -300,8 +301,8 @@ export default function Contract({contract}) {
                     <Field label="end_time">
                         {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.end_time}/> : "-"}
                     </Field>
-                    <Field label="description">{contract.description}</Field>
-                    <Field label="URL"><ExternalLink url={contract.url}/></Field>
+                    <Field label="description">{toUtf8(contract.description)}</Field>
+                    <Field label="URL"><ExternalLink url={toUtf8(contract.url)}/></Field>
                 </tbody>
             </table>
           </Fragment>

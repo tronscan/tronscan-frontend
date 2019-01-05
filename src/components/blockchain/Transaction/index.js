@@ -17,6 +17,7 @@ import {Alert} from "reactstrap";
 import {setLanguage} from "../../../actions/app"
 import queryString from 'query-string';
 
+
 class Transaction extends React.Component {
 
   constructor() {
@@ -70,6 +71,7 @@ class Transaction extends React.Component {
         });
         return;
     }
+    
     this.setState({
       loading: false,
       transaction,
