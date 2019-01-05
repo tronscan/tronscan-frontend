@@ -144,8 +144,11 @@ export const getExchangesAllList = () => async (dispatch) => {
   const newData = data.map(item => {
     item.first_token_id = item.map_token_name
     item.second_token_id = item.map_token_name1
+    item.exchange_name = item.map_token_name+'/'+item.map_token_name1
+    item.exchange_abbr_name = item.map_token_name+'/'+item.map_token_name1
     return item
   })
+  console.log(newData)
   dispatch(setExchangesAll(newData))
 }
 
@@ -173,6 +176,8 @@ export const getExchanges = () => async (dispatch) => {
   const newData = exchange10.map(item => {
     item.first_token_id = item.map_token_name
     item.second_token_id = item.map_token_name1
+    item.exchange_name = item.map_token_name+'/'+item.map_token_name1
+    item.exchange_abbr_name = item.map_token_name+'/'+item.map_token_name1
     return item
   })
   

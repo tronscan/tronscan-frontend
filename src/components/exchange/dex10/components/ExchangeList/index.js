@@ -60,6 +60,7 @@ class ExchangeList extends React.Component {
     }
     getExchangesAllList = async () =>{
         let { exchangesAllList }= await Client.getexchangesAllList();
+        
         map(exchangesAllList, item => {
             if (item.up_down_percent.indexOf('-') != -1) {
                 item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
@@ -84,7 +85,7 @@ class ExchangeList extends React.Component {
     getExchanges = async () => {
         let { exchangesAllList} = this.state;
         let {exchange20List = []} = this.props
-        let { data } = await Client.getExchangesList();
+        let { Data: data } = await Client.getExchangesList();
         let tab,exchangesList;
         if(Lockr.get("DEX")){
             tab = Lockr.get("DEX");
@@ -102,9 +103,11 @@ class ExchangeList extends React.Component {
 
         const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
 
-        const newData = exchange10.map(item => {
+        const newData = data.map(item => {
             item.first_token_id = item.map_token_name
             item.second_token_id = item.map_token_name1
+            item.exchange_name = item.map_token_name+'/'+item.map_token_name1
+            item.exchange_abbr_name = item.map_token_name+'/'+item.map_token_name1
             return item
         })
 
