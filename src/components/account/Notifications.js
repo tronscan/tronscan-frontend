@@ -7,9 +7,10 @@ import {channel} from "../../services/api";
 import {connect} from "react-redux";
 import {reloadWallet} from "../../actions/wallet";
 import {tu} from "../../utils/i18n";
+import {NameWithId} from "../common/names";
+import rebuildList from "../../utils/rebuildList";
 
 function Notification({account, notification}) {
-
   switch (notification.type) {
     case "transfer":
 
@@ -24,7 +25,7 @@ function Notification({account, notification}) {
               <div className="media">
                 <i className="fa fa-sort-up fa-2x text-danger m-2"/>
                 <div className="media-body">
-                  <h6 className="m-0 text-danger">Send {amount} {notification.tokenName}</h6>
+                  <h6 className="m-0 text-danger">Send <NameWithId value={notification}/></h6>
                   to <AddressLink address={notification.transferToAddress} truncate={false}/>
                 </div>
               </div>
@@ -36,7 +37,7 @@ function Notification({account, notification}) {
               <div className="media">
                 <i className="fa fa-sort-down fa-2x text-success m-2"/>
                 <div className="media-body">
-                  <h6 className="m-0 text-success">Received {amount} {notification.tokenName}</h6>
+                  <h6 className="m-0 text-success">Received <NameWithId value={notification}/></h6>
                   from <AddressLink address={notification.transferFromAddress} truncate={false}/>
                 </div>
               </div>
@@ -97,6 +98,8 @@ class Notifications extends React.Component {
 
     this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
     this.listener.on("transfer", trx => {
+     
+     
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
         amount = amount / ONE_TRX;
@@ -108,13 +111,18 @@ class Notifications extends React.Component {
         });
       }
 
-      this.setState(state => ({
-        notifications: [{
-          id: this.id++,
+      
+      this.setState(state => {
+        const list = [{
+          id: trx.transactionHash,
           type: "transfer",
           ...trx,
-        }, ...state.notifications.slice(0, 9)]
-      }));
+        }, ...this.state.notifications.slice(0, 9)]
+        const newtrx = rebuildList(list, 'tokenName', 'amount')
+        return {
+          notifications: newtrx
+        }
+      });
       this.props.reloadWallet();
     });
 
