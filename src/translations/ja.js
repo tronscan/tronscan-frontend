@@ -1519,6 +1519,6 @@ export const messages = {
     "power_tip":"TRON Power（TP）はSRへの投票に使います，ユーザーはTRXを凍結することでTRON Powerを得られます。",
     "token_precision":"トークンプレシジョン",
     "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
-
+    "check_my_token":"私のトークンをチェック",
 }
 
