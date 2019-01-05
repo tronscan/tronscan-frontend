@@ -35,6 +35,7 @@ class Blocks extends React.Component {
   loadBlocks = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
+    /*
     let req = {
       "from": (page - 1) * pageSize,
       "size": pageSize,
@@ -52,13 +53,13 @@ class Blocks extends React.Component {
         witnessName: record['_source']['witness_name'],
       });
     }
-    /*
-        let {blocks, total} = await Client.getBlocks({
-          sort: '-number',
-          limit: pageSize,
-          start: (page - 1) * pageSize,
-        });
-    */
+   */
+    let {blocks, total} = await Client.getBlocks({
+      sort: '-number',
+      limit: pageSize,
+      start: (page - 1) * pageSize,
+    });
+
     this.setState({
       loading: false,
       blocks,

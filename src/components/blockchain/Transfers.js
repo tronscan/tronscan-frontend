@@ -60,6 +60,7 @@ class Transfers extends React.Component {
           break;
       }
     }
+    /*
     let req = {
       "query": {
         "bool": {
@@ -87,9 +88,9 @@ class Transfers extends React.Component {
         tokenName: record['_source']['token_name'],
       });
     }
-   
-    const transfersList = rebuildList(transfers, 'tokenName', 'amount')
-    /*
+   */
+
+
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
@@ -97,9 +98,9 @@ class Transfers extends React.Component {
       total: this.state.total,
       ...searchParams,
     });
-    */
+    const transfersList = rebuildList(transfers, 'tokenName', 'amount');
     this.setState({
-      transfers:transfersList,
+      transfers: transfersList,
       loading: false,
       total
     });
@@ -197,12 +198,13 @@ class Transfers extends React.Component {
     this.load();
   }
   disabledDate = (time) => {
-    if(!time){
+    if (!time) {
       return false
-    }else{
+    } else {
       return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
     }
   }
+
   render() {
 
     let {transfers, total, loading} = this.state;
@@ -216,22 +218,25 @@ class Transfers extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <div className="transactions-rangePicker" style={{width: "350px"}}>
-                <RangePicker
-                    defaultValue={[moment(this.start), moment(this.end)]}
-                    ranges={{
-                      'Today': [moment().startOf('day'), moment()],
-                      'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                      'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
-                      // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
-                    }}
-                    disabledDate={this.disabledDate}
-                    showTime
-                    format="YYYY/MM/DD HH:mm:ss"
-                    onChange={this.onChangeDate}
-                    onOk={this.onDateOk}
-                />
-              </div>
+              {/*
+                <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  <RangePicker
+                      defaultValue={[moment(this.start), moment(this.end)]}
+                      ranges={{
+                        'Today': [moment().startOf('day'), moment()],
+                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                        'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
+                        // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
+                      }}
+                      disabledDate={this.disabledDate}
+                      showTime
+                      format="YYYY/MM/DD HH:mm:ss"
+                      onChange={this.onChangeDate}
+                      onOk={this.onDateOk}
+                  />
+                </div>
+                */
+              }
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {
                             this.load(page, pageSize)

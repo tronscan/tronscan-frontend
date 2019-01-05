@@ -78,6 +78,7 @@ class Transactions extends React.Component {
 
     }
     else {
+      /*
       let req = {
         "query": {
           "bool": {
@@ -103,20 +104,20 @@ class Transactions extends React.Component {
           contractType: record['_source']['contract_type'],
         });
       }
-      /*
-      result = await Client.getTransactions({
+      */
+       result = await Client.getTransactions({
           sort: '-timestamp',
           limit: pageSize,
           start: (page - 1) * pageSize,
           total: this.state.total,
           ...searchParams,
         });
-        */
+
     }
     this.setState({
-      transactions: transactions,
+      transactions: result.transactions,
       loading: false,
-      total: total
+      total: result.total
     });
   };
 
@@ -220,22 +221,25 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              <div className="transactions-rangePicker" style={{width: "350px"}}>
-                <RangePicker
-                    defaultValue={[moment(this.start),moment(this.end)]}
-                    ranges={{
-                        'Today': [moment().startOf('day'),moment()],
+              { /*
+                <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  <RangePicker
+                      defaultValue={[moment(this.start), moment(this.end)]}
+                      ranges={{
+                        'Today': [moment().startOf('day'), moment()],
                         'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
                         'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
                         // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
-                    }}
-                    disabledDate={this.disabledDate}
-                    showTime
-                    format="YYYY/MM/DD HH:mm:ss"
-                    onChange={this.onChangeDate}
-                    onOk={this.onDateOk}
-                />
-              </div>
+                      }}
+                      disabledDate={this.disabledDate}
+                      showTime
+                      format="YYYY/MM/DD HH:mm:ss"
+                      onChange={this.onChangeDate}
+                      onOk={this.onDateOk}
+                  />
+                </div>
+                */
+              }
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {

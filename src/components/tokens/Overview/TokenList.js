@@ -51,11 +51,11 @@ class TokenList extends Component {
     let totalAll;
 
     if (filter.name){
-      result = await xhr.get("http://172.16.20.200:8080"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get("http://172.16.21.104:8080"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
       total = result.data['data'].length;
       totalAll = result.data['totalAll'];
     }else{
-      result = await xhr.get("http://172.16.20.200:8080"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+      result = await xhr.get("http://172.16.21.104:8080"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }

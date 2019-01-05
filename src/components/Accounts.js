@@ -35,6 +35,7 @@ class Accounts extends Component {
   loadAccounts = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
+    /*
     let req = {
       "from": (page - 1) * pageSize,
       "size": pageSize,
@@ -57,19 +58,19 @@ class Accounts extends Component {
         power: power,
       });
     }
-    /*
+    */
     let {accounts} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
-    */
-    // let {txOverviewStats} = await Client.getTxOverviewStats();
+
+     let {txOverviewStats} = await Client.getTxOverviewStats();
 
     this.setState({
       loading: false,
       accounts: accounts,
-      total: total
+      total: txOverviewStats[txOverviewStats.length-1].totalAddress
     });
   };
 
