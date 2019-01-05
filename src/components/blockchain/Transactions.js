@@ -174,7 +174,7 @@ class Transactions extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <span>{text}</span>
+          return <span>{ContractTypes[text]}</span>
         },
       },
       // {
