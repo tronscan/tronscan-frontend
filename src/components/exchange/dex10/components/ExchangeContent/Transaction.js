@@ -562,7 +562,7 @@ class Transaction extends Component {
             { (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}
-                {(firstBalance && firstBalance.name)?firstBalance.map_amount + " " + firstBalance.map_token_name: 0}
+                {((firstBalance && firstBalance.map_amount)?firstBalance.map_amount : 0)+ " " + exchangeData.map_token_name}
                 </span>
             )}             
             </div>
