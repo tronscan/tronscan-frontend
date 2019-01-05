@@ -12,7 +12,7 @@
   "LedgerHelp.js": "static/js/LedgerHelp.a88d3b86.chunk.js",
   "Live.js": "static/js/Live.d1cdf409.chunk.js",
   "Markets.js": "static/js/Markets.80a01532.chunk.js",
-  "MyToken.js": "static/js/MyToken.f1744722.chunk.js",
+  "MyToken.js": "static/js/MyToken.7c478477.chunk.js",
   "NodeMap.js": "static/js/NodeMap.7d1f3b0a.chunk.js",
   "NodeTester.js": "static/js/NodeTester.942a350a.chunk.js",
   "Nodes.js": "static/js/Nodes.2abec041.chunk.js",
@@ -24,10 +24,10 @@
   "System.js": "static/js/System.fbe8b5cf.chunk.js",
   "TRONRating.js": "static/js/TRONRating.1a954a89.chunk.js",
   "Token20Detail.js": "static/js/Token20Detail.8464ec8e.chunk.js",
-  "TokenDetail.js": "static/js/TokenDetail.cecc61e2.chunk.js",
+  "TokenDetail.js": "static/js/TokenDetail.a75fc585.chunk.js",
   "TokenList.js": "static/js/TokenList.77aa775b.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.fa151bb8.chunk.js",
-  "TokensCreate.js": "static/js/TokensCreate.bcc0c5a4.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.cc851c1f.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.849b1272.chunk.js",
   "TronConvertTool.js": "static/js/TronConvertTool.98fa141f.chunk.js",
   "VerifyContractCode.js": "static/js/VerifyContractCode.bd683965.chunk.js",
@@ -37,7 +37,7 @@
   "bootstrap.css": "d26ecc887c12f855a908679dae6704e3.css",
   "languages.js": "static/js/languages.e59acd1b.chunk.js",
   "main.css": "static/css/main.9858a8f9.css",
-  "main.js": "static/js/main.e428a8ed.js",
+  "main.js": "static/js/main.466fbd73.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -70,5 +70,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.56220645.js"
+  "vendors.js": "static/js/vendors.0e8b7fbe.js"
 }

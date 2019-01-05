@@ -148,7 +148,6 @@ export const getExchangesAllList = () => async (dispatch) => {
     item.exchange_abbr_name = item.map_token_name+'/'+item.map_token_name1
     return item
   })
-  console.log(newData)
   dispatch(setExchangesAll(newData))
 }
 
