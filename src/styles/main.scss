@@ -2607,3 +2607,11 @@ h5 {
 //  }
 //}
 
+.nav_notice{
+  a{
+    text-decoration: none;
+    &:focus,&:visited,&:active{
+      text-decoration: none;
+    }
+  } 
+}

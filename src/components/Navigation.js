@@ -35,6 +35,7 @@ import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
 import { Icon } from 'antd';
 import isMobile from '../utils/isMobile';
+import {Client} from '../services/api'
 
 class Navigation extends React.Component {
 
@@ -54,17 +55,20 @@ class Navigation extends React.Component {
       loginWarning:false,
       signInWarning:false,
       address:'',
+      announcement: '',
+      annountime: '1-1',
+      announId: 80
     };
   }
 
-  componentDidUpdate(prevProps) {
+  // componentDidUpdate(prevProps) {
     /*
     if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
        this.loginFlag = true;
      }
     */
-  }
+  // }
 
 
   componentWillMount(){
@@ -78,16 +82,38 @@ class Navigation extends React.Component {
               _this.setState({ address: e.data.message.data});
           }
       })
-    
-
+      this.getAnnouncement()
   }
   componentWillUpdate(nextProps,nextState)  {
+     
       if(nextState.address !== this.state.address){
           this.reLoginWithTronLink();
+         
       }
+      
   }
   componentWillUnmount() {
       this.listener && this.listener.close();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {activeLanguage} = this.props
+    if(activeLanguage !=  prevProps.activeLanguage){
+      this.getAnnouncement()
+    }
+  }
+
+  async getAnnouncement(){
+    const { announId } = this.state
+    let {activeLanguage} = this.props;
+    
+    const {data} = await Client.getNotices({sort:'-timestamp'});
+    if(data.length){
+      const list = data.filter(o=> o.id == announId)[0]
+      const annt = activeLanguage === 'zh'? list.titleCN: list.titleEN
+      this.setState({ announcement: annt, annountime: list.createTime.substring(5,10)});
+    }
+    
   }
 
  reLoginWithTronLink = () => {
@@ -674,7 +700,7 @@ class Navigation extends React.Component {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications} = this.state;
+    let {search, popup, notifications, announcement, announId,annountime} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -699,6 +725,12 @@ class Navigation extends React.Component {
                     <div className="col text-danger text-center py-2">
                       Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                     </div>
+                }
+                {
+                  announcement&& <div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">
+                    <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}} className="mr-1"/>
+                    <Link to={'/notice/'+announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
+                  </div>
                 }
               <div className="ml-auto d-flex">
                 { this.props.location.pathname != '/'&&
@@ -737,6 +769,15 @@ class Navigation extends React.Component {
                       data-target="#navbar-top">
                 <span className="navbar-toggler-icon"/>
               </button>
+              {
+                announcement &&<div className="col text-danger d-md-none">
+                  <div className="">
+                 
+                  <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px',height: '16px'}} className="mr-1"/>
+                  <Link to={'/notice/'+announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
+                  </div>
+                </div>
+              }
               <div className="collapse navbar-collapse" id="navbar-top">
                 <ul className="navbar-nav mr-auto">
                   {filter(routes, r => r.showInMenu !== false).map(route => (
