@@ -52,7 +52,7 @@ class Transfers extends React.Component {
 
     this.setState({loading: true});
 
-    let { data } = await xhr.get("http://172.16.21.104:8080"+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token+ "&address="+filter.address);
+    let { data } = await xhr.get("https://apilist.tronscan.org"+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token+ "&address="+filter.address);
 
     let transfers = rebuildList(data.Data,'tokenName','amount');
     let total = data.total
