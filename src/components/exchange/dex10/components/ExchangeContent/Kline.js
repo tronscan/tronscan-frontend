@@ -353,7 +353,7 @@ class Kline extends React.Component {
             <li>
               <p className="title">{tu('trc20_first_token')}</p>
               <p className="value" style={{"textDecoration":"underline"}}>
-                  <TokenLink name={selectData.first_token_abbr} address={selectData.first_owner_address}/>
+                  <TokenLink name={selectData.map_token_name} address={selectData.first_owner_address}/>
               </p>
             </li>
             <li>
@@ -362,7 +362,7 @@ class Kline extends React.Component {
             </li>
             <li>
               <p className="title">{tu('trc20_second_token')}</p>
-              <p className="value">{selectData.second_token_abbr}</p>
+              <p className="value">{selectData.map_token_name1}</p>
             </li>
             <li>
               <p className="title">{tu('trc20_balance')}</p>

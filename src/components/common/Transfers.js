@@ -11,7 +11,7 @@ import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
-import {upperFirst} from "lodash";
+import {upperFirst,upperCase} from "lodash";
 import {TronLoader} from "./loaders";
 import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
@@ -89,7 +89,7 @@ class Transfers extends React.Component {
 
     if(hideSmallCurrency){
         transfersTRX = _(transfers)
-            .filter(tb => tb.tokenName === "_" || tb.tokenName === "TRX")
+            .filter(tb => tb.tokenName === "_" || upperCase(tb.tokenName) === "TRX")
             .value();
     }else{
         transfersTRX = transfers

@@ -41,7 +41,7 @@ class Mytran extends Component {
         limit: palyload.pageSize,
       }
       const {data, total} = await Client.getTransactionList(params);
-      const newdata = rebuildList(data,'first_token_id','quant')
+      const newdata = rebuildList(data,'tokenID','quant')
       this.setState({dataSource: newdata, total: total})
     }
   }
@@ -87,6 +87,7 @@ class Mytran extends Component {
         key: 'quant',
         width: '200px',
         render: (text, record, index) => {
+          console.log(record)
           return  record.tokenName == 'TRX'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>
           :record.map_amount + ' ' + record.map_token_name
