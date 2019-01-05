@@ -82,7 +82,7 @@ class Transaction extends Component {
         exchangeData,
         activeLanguage
     } = this.props;
-    
+
       if (currentWallet != null) {
         const first = find(currentWallet.tokenBalances, function(o) {
           return exchangeData.first_token_id === o.map_token_name;
@@ -144,7 +144,7 @@ class Transaction extends Component {
           let token_id =
             exchangeData.first_token_id == "TRX"
               ? "_"
-              : exchangeData.first_token_id;
+              : exchangeData.map_token_id;
           let quant =
             exchangeData.first_token_id == "TRX"
               ? parseFloat(values.first_quant_sell) * ONE_TRX
