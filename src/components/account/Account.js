@@ -1084,7 +1084,8 @@ class Account extends Component {
   };
 
   toissuedAsset = () => {
-    window.location.hash = "#/myToken";
+    let {issuedAsset} = this.state;
+    window.location.hash = "#/token/" + issuedAsset.name + '/' + issuedAsset.ownerAddress;
   }
 
   handleSwitch = (val) => {
