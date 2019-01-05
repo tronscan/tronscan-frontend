@@ -107,7 +107,7 @@ class Transfers extends React.Component {
       if(val){
           this.setState({
               hideSmallCurrency: val,
-              tokenName:"TRX",
+              tokenName:"_",
           },() => {
               this.load(1,20);
           });
