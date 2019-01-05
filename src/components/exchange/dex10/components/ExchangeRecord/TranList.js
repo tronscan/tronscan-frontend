@@ -49,7 +49,7 @@ class TranList extends Component {
     const {selectData} = this.props
     if(selectData.exchange_id){
       const {data} = await Client.getTransactionList({limit: 15, exchangeID: selectData.exchange_id});
-      const newdata = rebuildList(data,'first_token_id','quant')
+      const newdata = rebuildList(data,'tokenID','quant')
       this.setState({dataSource: newdata})
     }
   }
