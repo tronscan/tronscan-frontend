@@ -192,7 +192,10 @@ class TokenCreate extends Component {
                   style={{marginLeft: '-240px', marginTop: '-195px'}}
               >
                 {tu("token_issued_successfully")}<br/>
-                {tu("Create_token_link_message_0")}
+                {tu("Create_token_link_message_0")}<br/><br/>
+                  <Link to="/account" className="mt-2 check_my_token" style={{color: "#C23631 !important" }}>
+                      {tu("check_my_token")}>>
+                  </Link>
               </SweetAlert>
         });
         if(logoData){

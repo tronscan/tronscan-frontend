@@ -122,7 +122,7 @@ export class ExchangeRate extends PureComponent {
   }
 
   render() {
-    let {numberOfCoins, numberOfTron, name, startTime, endTime,showTime} = this.state;
+    let {numberOfCoins, numberOfTron, name, startTime, endTime, precision, showTime} = this.state;
 
     let {errors} = this.state;
 
@@ -163,7 +163,7 @@ export class ExchangeRate extends PureComponent {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <select className="form-control" onChange={this.handleChange}>
+                  <select className="form-control" onChange={this.handleChange} value={precision}>
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

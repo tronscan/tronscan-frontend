@@ -1522,5 +1522,7 @@ export const messages = {
     "power_tip":"投票权(TP)用来给TRON SR投票,用户可以通过冻结TRX来获得投票权。",
     "token_precision":"通证精度",
     "token_precision_message_0":"根据需要设置通证的精度，精度范围是0-6",
+    "check_my_token":"查看我发行的通证",
+
 
 };
