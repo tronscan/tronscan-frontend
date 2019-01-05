@@ -84,7 +84,7 @@ class TokenList extends Component {
     if (nameQuery.length > 0) {
       this.setState({
         filter: {
-          name: `%25${nameQuery}%25`,
+          name: `${nameQuery}`,
         }
       });
     } else {
