@@ -467,7 +467,10 @@ class SendForm extends React.Component {
 
     let {intl, tokenBalances, account} = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20,decimals} = this.state;
-    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
+    tokenBalances = _(tokenBalances)
+        .filter(tb => tb.balance > 0)
+        .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
+        .value();
     tokenBalances.map(item =>{
         item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
         return item
