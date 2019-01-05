@@ -82,12 +82,13 @@ class Transaction extends Component {
         exchangeData,
         activeLanguage
     } = this.props;
+    
       if (currentWallet != null) {
         const first = find(currentWallet.tokenBalances, function(o) {
-          return exchangeData.first_token_id === o.name;
+          return exchangeData.first_token_id === o.map_token_name;
         }) || { balance: 0, name: exchangeData.first_token_id };
         const second = find(currentWallet.tokenBalances, function(o) {
-          return exchangeData.second_token_id === o.name;
+          return exchangeData.second_token_id === o.map_token_name;
         }) || { balance: 0, name: exchangeData.second_token_id };
         this.setState({ firstBalance: first, secondBalance: second });
       } else {
@@ -436,7 +437,7 @@ class Transaction extends Component {
               )}
             </FormItem> */}
             <div className="mb-3">
-                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.balance + " " + secondBalance.name: 0}</span>} 
+                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.map_amount + " " + secondBalance.map_token_name: 0}</span>} 
             </div>
             <div className="mb-3">
             <Slider
@@ -561,7 +562,7 @@ class Transaction extends Component {
             { (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}
-                {(firstBalance && firstBalance.name)?firstBalance.balance + " " + firstBalance.name: 0}
+                {(firstBalance && firstBalance.name)?firstBalance.map_amount + " " + firstBalance.map_token_name: 0}
                 </span>
             )}             
             </div>
