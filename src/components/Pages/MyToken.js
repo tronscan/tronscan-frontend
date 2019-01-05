@@ -8,7 +8,7 @@ import {TokenLink} from "../common/Links";
 import xhr from "axios/index";
 import {API_URL} from "../../constants";
 import Address from '../addresses/Address';
-
+import {Client} from "../../services/api";
 
 class MyToken extends Component {
   constructor() {
@@ -45,14 +45,12 @@ class MyToken extends Component {
     }
   }
 
-  checkExistingToken = (walletAddress) => {
-      xhr.get(API_URL+"/api/token?owner=" + walletAddress).then((result) => {
-          if (result.data.data[0]) {
-              this.setState({
-                  issuedAsset: result.data.data[0],
-              });
-          }
 
+  checkExistingToken = (walletAddress) => {
+      Client.getIssuedAsset(walletAddress).then(({token}) => {
+          this.setState({
+              issuedAsset: token,
+          });
       });
   };
 
@@ -117,7 +115,10 @@ class MyToken extends Component {
                       <tbody>
                       <tr>
                         <td style={{borderTop: '0px'}}>{tu("name_of_the_token")}:</td>
-                        <td style={{borderTop: '0px'}}><TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/></td>
+                        <td style={{borderTop: '0px'}}>
+                          <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
+                          <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                        </td>
                       </tr>
                       <tr>
                         <td>{tu("brief_info")}:</td>

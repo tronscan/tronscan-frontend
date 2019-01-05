@@ -298,7 +298,7 @@ class SendForm extends React.Component {
     let list = token.split('-')
     let TokenName =  list[1];
     if (token && TokenType == 'TRC10') {
-        let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).balance);
+        let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
         let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){
             this.setState({

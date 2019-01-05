@@ -132,20 +132,22 @@ class TokenCreate extends Component {
           </SweetAlert>,
       loading: true
     });
+    let frozenSupplyAmount =  this.state.frozenSupply[0].amount * Math.pow(10,Number(this.state.precision));
+    let frozenSupply =  [{amount: frozenSupplyAmount, days:  this.state.frozenSupply[0].days}];
       if (Lockr.get("islogin")) {
               const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                   name: trim(this.state.name),
                   abbreviation: trim(this.state.abbr),
                   description: this.state.description,
                   url: this.state.url,
-                  totalSupply: this.state.totalSupply,
+                  totalSupply: this.state.totalSupply * Math.pow(10,Number(this.state.precision)),
                   tokenRatio: this.state.numberOfCoins,
                   trxRatio: this.state.numberOfTron * ONE_TRX,
                   saleStart: Date.parse(this.state.startTime),
                   saleEnd:  Date.parse(this.state.endTime),
                   freeBandwidth:0,
                   freeBandwidthLimit:0,
-                  frozenAmount:this.state.frozenSupply[0].amount,
+                  frozenAmount:frozenSupplyAmount,
                   frozenDuration:this.state.frozenSupply[0].days,
                   precision:Number(this.state.precision),
               }, tronWeb.defaultAddress.hex).catch (function (e) {
@@ -164,14 +166,14 @@ class TokenCreate extends Component {
               address: account.address,
               name: trim(this.state.name),
               shortName: trim(this.state.abbr),
-              totalSupply: this.state.totalSupply,
+              totalSupply: this.state.totalSupply * Math.pow(10,Number(this.state.precision)),
               num: this.state.numberOfCoins,
               trxNum: this.state.numberOfTron * ONE_TRX,
               startTime: this.state.startTime?this.state.startTime:"",
               endTime: this.state.endTime?this.state.endTime:"",
               description: this.state.description,
               url: this.state.url,
-              frozenSupply: filter(this.state.frozenSupply, fs => fs.amount > 0),
+              frozenSupply: filter(frozenSupply, fs => fs.amount > 0),
               precision:Number(this.state.precision),
           })(account.key);
           res = createInfo.success

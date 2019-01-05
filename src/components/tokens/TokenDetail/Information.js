@@ -20,7 +20,7 @@ export function Information({token}) {
   const tokenList = [
     { 
       name: 'total_supply', 
-      content: <FormattedNumber value={token.totalSupply}/>
+      content: <FormattedNumber value={token.precision ? token.totalSupply / Math.pow(10,token.precision) :token.totalSupply}/>
     },{ 
       name: 'ID', 
       content: <span>{token.id}</span>

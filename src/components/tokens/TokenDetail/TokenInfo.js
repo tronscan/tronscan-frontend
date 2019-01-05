@@ -49,7 +49,7 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("total_supply")}:</th>
               <td>
-                <FormattedNumber value={token.totalSupply}/>
+                <FormattedNumber value={token.precision ? token.totalSupply / Math.pow(10,token.precision) :token.totalSupply}/>
               </td>
             </tr>
             <tr>
