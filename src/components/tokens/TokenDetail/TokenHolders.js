@@ -59,7 +59,7 @@ class TokenHolders extends React.Component {
 
   };
   customizedColumn = () => {
-    let {intl, token} = this.props;
+    let {intl, token,tokenPrecision} = this.props;
     let column = [
       {
         title: '#',
@@ -85,7 +85,7 @@ class TokenHolders extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={record.balance}/>
+          return <FormattedNumber value={record.balance/ Math.pow(10,tokenPrecision.precision)}/>
         }
       },
       {

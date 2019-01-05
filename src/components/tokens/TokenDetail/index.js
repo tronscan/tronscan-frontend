@@ -80,7 +80,7 @@ class TokenDetail extends React.Component {
           icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: name, address: address}} token={{totalSupply: token.totalSupply}}/>
+          cmp: () => <TokenHolders filter={{token: name, address: address}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
         },
       ]
     });
