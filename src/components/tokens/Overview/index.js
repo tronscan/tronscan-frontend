@@ -35,7 +35,7 @@ class TokenOverview extends Component {
 
     let nameQuery = trim(getQueryParam(props.location, "search"));
     if (nameQuery.length > 0) {
-      this.state.filter.name = `%25${nameQuery}%25`;
+      this.state.filter.name = `${nameQuery}`;
     }
   }
 

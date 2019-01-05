@@ -96,7 +96,7 @@ async function searchAddress(criteria) {
 async function searchToken(criteria) {
 
   let {tokens} = await Client.getTokens({
-    name: `%${criteria}%`,
+    name: `${criteria}`,
     limit: 2,
   });
 
