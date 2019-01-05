@@ -188,13 +188,13 @@ class Account extends Component {
 
         if(hideSmallCurrency){
             tokenBalances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance >= 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
             tokenBalances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance > 0)
                 .sortBy(tb => tb.name)
                 .value();
@@ -1281,6 +1281,7 @@ class Account extends Component {
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
                           <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
+                            <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>
                       <tr>
