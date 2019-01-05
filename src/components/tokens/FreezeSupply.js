@@ -64,9 +64,8 @@ export class FreezeSupply extends Component {
 
       if (trim(frozen.days) !== "")
         frozen.days = parseInt(frozen.days);
-
-      frozen.amount = frozen.amount > 0 || frozen.amount === "" ? frozen.amount : 0;
-      frozen.days = frozen.days > 0 || frozen.days === "" ? frozen.days : 1;
+        frozen.amount = frozen.amount > 0 || frozen.amount === "" ? frozen.amount : 0;
+        frozen.days = frozen.days > 0 || frozen.days === "" ? frozen.days : 1;
     }
 
     this.setState({
