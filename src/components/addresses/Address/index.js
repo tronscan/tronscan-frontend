@@ -18,6 +18,7 @@ import xhr from "axios/index";
 import {sortBy} from "lodash";
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
+import rebuildList from "../../../utils/rebuildList";
 
 class Address extends React.Component {
   constructor({match}) {
@@ -153,6 +154,8 @@ class Address extends React.Component {
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
+    address.tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
+    address.balances = rebuildList(address.balances, 'name', 'balance')
 
     let stats = await Client.getAddressStats(id);
 
@@ -245,6 +248,7 @@ class Address extends React.Component {
     pathname.replace(rex, function (a, b) {
       tabName = b
     })
+    console.log(address)
     return (
         <main className="container header-overlap">
           <div className="row">
@@ -344,7 +348,7 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li>
-                                      <TRXPrice showCurreny={false} amount={(address.frozen.total + address.accountResource.frozen_balance_for_energy.frozen_balance) / ONE_TRX}/>
+                                      <TRXPrice showCurreny={false} amount={(address.frozen.total + address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0) / ONE_TRX}/>
                                     </li>
                                   </ul>
                                 </td>
@@ -354,9 +358,9 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li>
-                                      <TRXPrice amount={(address.balance + address.frozen.total + address.accountResource.frozen_balance_for_energy.frozen_balance) / ONE_TRX}/>{' '}
+                                      <TRXPrice amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX}/>{' '}
                                       <span className="small">(<TRXPrice
-                                          amount={(address.balance + address.frozen.total) / ONE_TRX} currency="USD"
+                                          amount={(address.balance + address.frozen.total+(address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX} currency="USD"
                                           showPopup={false}/>)</span>
                                     </li>
                                   </ul>

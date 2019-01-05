@@ -33,16 +33,15 @@ export  class TokenBalances extends React.Component {
         let {tokenBalances} = this.props;
         let balances;
 
-
         if(hideSmallCurrency){
             balances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance >= 10)
                 .sortBy(tb => tb.name)
                 .value();
         }else{
             balances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "TRX")
+                .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance > 0)
                 .sortBy(tb => tb.name)
                 .value();
@@ -67,8 +66,8 @@ export  class TokenBalances extends React.Component {
         let column = [
             {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
-                dataIndex: 'name',
-                key: 'name',
+                dataIndex: 'map_token_name',
+                key: 'map_token_name',
                 width: '20%',
                 align: 'left',
                 className: 'ant_table',
