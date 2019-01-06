@@ -477,8 +477,7 @@ class Account extends Component {
 
     let {privateKey} = this.state;
 
-    let {trxBalance, currentWallet} = this.props;
-
+    let {trxBalance, currentWallet,account} = this.props;
     if (trxBalance === 0) {
       this.setState({
         modal: (

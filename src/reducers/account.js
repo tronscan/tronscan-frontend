@@ -26,7 +26,7 @@ export function accountReducer(state = initialState, action) {
     }
 
     case SET_TOKEN_BALANCES: {
-      let {balance: trxBalance = 0} = find(action.tokens, tb => tb.name.toUpperCase() === "TRX") || {};
+      let {map_amount: trxBalance = 0} = find(action.tokens, tb => tb.name.toUpperCase() === "_") || {};
       return {
         ...state,
         trxBalance,
