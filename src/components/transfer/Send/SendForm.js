@@ -81,7 +81,7 @@ class SendForm extends React.Component {
   };
 
   tokenSendWithTronLink = async() => {
-      let {to, token, amount, note, privateKey} = this.state;
+      let {to, token, amount, note, privateKey,decimals} = this.state;
       let list = token.split('-')
       let TokenName =  list[1];
       let {account, onSend} = this.props;
@@ -101,6 +101,7 @@ class SendForm extends React.Component {
           }
 
       }else{
+          amount = amount * Math.pow(10,decimals);
           result = await tronWeb.trx.sendToken(to, amount, TokenName, false);
           success = result.result;
           if(result){
