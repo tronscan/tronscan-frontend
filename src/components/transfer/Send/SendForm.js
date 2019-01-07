@@ -82,13 +82,14 @@ class SendForm extends React.Component {
 
   tokenSendWithTronLink = async() => {
       let {to, token, amount, note, privateKey} = this.state;
-      let TokenName =  token.substring(0,token.length-6);
+      let list = token.split('-')
+      let TokenName =  list[1];
       let {account, onSend} = this.props;
       let result,success;
       const { tronWeb } = account;
       this.setState({isLoading: true, modal: null});
 
-      if (TokenName === "TRX") {
+      if (TokenName === "_") {
           amount = amount * ONE_TRX;
           result = await tronWeb.trx.sendTransaction(to, amount, false).catch(function (e) {
               console.log(e)
@@ -214,7 +215,7 @@ class SendForm extends React.Component {
     let list = token.split('-')
     let TokenName =  list[0];
     let TokenID;
-    if(list[1] !== '_'){
+    if(list[1] !== '_' && list[1] !== 'TRC20'){
         TokenID = list[1];
     }
 
@@ -296,8 +297,8 @@ class SendForm extends React.Component {
     let {token,tokens20} = this.state;
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
-    let TokenName =  list[1];
     if (token && TokenType == 'TRC10') {
+        let TokenName =  list[1];
         let balance = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_amount);
         let TokenDecimals = parseFloat(find(tokenBalances, t => t.map_token_id === TokenName).map_token_precision);
         if(TokenName == 'TRX'){
@@ -312,6 +313,7 @@ class SendForm extends React.Component {
             })
         }
     }else if(token && TokenType == 'TRC20'){
+        let TokenName =  list[0];
         let balance = parseFloat(find(tokens20, t => t.name === TokenName).balance);
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
