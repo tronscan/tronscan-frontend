@@ -20,6 +20,7 @@ import _ from "lodash";
 import Lockr from "lockr";
 import xhr from "axios";
 import {Select} from 'antd';
+import isMobile from '../../../utils/isMobile';
 const { Option, OptGroup } = Select;
 
 
@@ -214,6 +215,8 @@ class SendForm extends React.Component {
     let list = token.split('-')
     let TokenName =  list[0];
     let TokenID;
+
+    const style = isMobile? {}: {marginLeft: '-240px', marginTop: '-195px'}
     if(list[1] !== '_'){
         TokenID = list[1];
     }
@@ -229,7 +232,7 @@ class SendForm extends React.Component {
               title={tu("confirm_transaction")}
               onConfirm={this.send}
               onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
+              style={style}
           >
             {tu("transfer_confirm_info")}<br/>
             <span className="font-weight-bold">{' '}
@@ -241,7 +244,7 @@ class SendForm extends React.Component {
               {TokenID && '[' + TokenID + ']'}
           </span><br/>
             {tu("to")}<br/>
-            {to}
+            <div className="text-truncate">{to}</div>
           </SweetAlert>
       )
     });
