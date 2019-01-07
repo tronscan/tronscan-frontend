@@ -92,7 +92,7 @@ class Token20Detail extends React.Component {
     let isSuccess = await Client.participateAsset(
         currentWallet.address,
         token.ownerAddress,
-        token.name,
+        token.id,
         buyAmount * token.price)(account.key);
 
     if (isSuccess.success) {
