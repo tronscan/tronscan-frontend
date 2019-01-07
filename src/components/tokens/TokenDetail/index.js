@@ -94,7 +94,7 @@ class TokenDetail extends React.Component {
       if (Lockr.get("islogin")) {
           const { tronWeb } = account;
           try {
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
               const {result} = await transactionResultManager(unSignTransaction,tronWeb);
               res = result;
           } catch (e) {
@@ -104,7 +104,7 @@ class TokenDetail extends React.Component {
           let isSuccess = await Client.participateAsset(
               currentWallet.address,
               token.ownerAddress,
-              token.name,
+              token.id,
               buyAmount * token.price)(account.key);
           res = isSuccess.success
       }
