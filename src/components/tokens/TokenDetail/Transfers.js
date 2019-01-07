@@ -78,6 +78,7 @@ class Transfers extends React.Component {
   };
 
   customizedColumn = () => {
+    console.log(this.state.transfers)
     let {intl} = this.props;
     let column = [
       {
