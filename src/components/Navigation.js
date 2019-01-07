@@ -78,14 +78,14 @@ class Navigation extends React.Component {
       let {account} = this.props;
       let _this = this;
       window.addEventListener('message',function(e){
-          if(e.data.message){
+
+          if(e.data.message && isAddressValid(e.data.message.data)){
               _this.setState({ address: e.data.message.data});
           }
       })
       this.getAnnouncement()
   }
   componentWillUpdate(nextProps,nextState)  {
-     
       if(nextState.address !== this.state.address){
           this.reLoginWithTronLink();
          
