@@ -469,7 +469,7 @@ class Navigation extends React.Component {
           {
             (account.isLoggedIn && wallet.isOpen) ?
 
-                <li className="nav-item dropdown token_black nav">
+                <li className="nav-static dropdown token_black nav">
                   <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                     {tu("wallet")}
                   </a>

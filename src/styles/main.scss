@@ -833,13 +833,15 @@ and (max-device-width : 1024px){
     display: none !important;
   }
   .nav-item .nav-login-wallet,
-  .nav-item .account-dropdown-menu {
+  .nav-item .account-dropdown-menu,
+  .nav-static .nav-login-wallet,
+  .nav-static .account-dropdown-menu{
     position: absolute;
     float: none;
     left: auto;
     right: -16px;
   }
-  .nav-item .wallet-notifications {
+  .nav-item .wallet-notifications,.nav-static .wallet-notifications {
     position: absolute;
     float: none;
     left: -100px;
@@ -850,7 +852,7 @@ and (max-device-width : 1024px){
   }
   .wallet-nav {
     flex-direction: row;
-    .nav-item {
+    .nav-item,.nav-static {
       margin-left: 10px;
     }
   }
