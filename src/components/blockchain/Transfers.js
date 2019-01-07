@@ -95,7 +95,8 @@ class Transfers extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
-      total: this.state.total,
+      start_timestamp: this.start,
+      end_timestamp: this.end,
       ...searchParams,
     });
     const transfersList = rebuildList(transfers, 'tokenName', 'amount');
@@ -218,15 +219,13 @@ class Transfers extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              {/*
+              {
                 <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
                         'Today': [moment().startOf('day'), moment()],
                         'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                        'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
-                        // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
                       }}
                       disabledDate={this.disabledDate}
                       showTime
@@ -235,7 +234,7 @@ class Transfers extends React.Component {
                       onOk={this.onDateOk}
                   />
                 </div>
-                */
+
               }
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {
