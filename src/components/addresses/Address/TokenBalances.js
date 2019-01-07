@@ -102,7 +102,7 @@ export  class TokenBalances extends React.Component {
                 align: 'right',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <FormattedNumber value={text}/>
+                    return <FormattedNumber value={text}  maximumFractionDigits={Number(record.map_token_precision)}/>
                 }
             },
 

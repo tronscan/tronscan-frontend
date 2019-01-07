@@ -57,7 +57,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.yAxis.allowDecimals = true;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'K'
+                    return this.value/1000 + 'k'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
@@ -93,7 +93,7 @@ export class LineReactHighChartAdd extends React.Component {
             _config.yAxis.min = 0;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'K'
+                    return this.value/1000 + 'k'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
@@ -159,13 +159,14 @@ export class LineReactHighChartTx extends React.Component {
                     _config.series[0].data.push(temp);
                 })
             }
-            //_config.yAxis.min = 0;
             _config.chart.spacingTop = 20;
+            _config.yAxis.tickAmount = 4;
+            _config.yAxis.allowDecimals = true;
             _config.exporting.enabled = false;
             _config.yAxis.tickInterval = 1000000;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'K'
+                    return this.value/1000 + 'k'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
@@ -200,7 +201,7 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.min = 0;
             _config.yAxis.labels.formatter = function() {
                 if(this.value < 1000000){
-                    return this.value/1000 + 'K'
+                    return this.value/1000 + 'k'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
                 }
