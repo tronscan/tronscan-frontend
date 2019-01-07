@@ -107,7 +107,7 @@ class ExchangeList extends React.Component {
 
         const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
 
-        const newData = data.map(item => {
+        const newData = exchange10.map(item => {
             item.first_token_id = item.map_token_name
             item.second_token_id = item.map_token_name1
             item.exchange_name = item.map_token_name+'/'+item.map_token_name1
