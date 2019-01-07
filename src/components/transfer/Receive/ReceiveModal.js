@@ -28,7 +28,7 @@ class ReceiveModal extends React.PureComponent {
 
     this.setState({
       modal: (
-          <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered">
+          <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered" style={{width: '400px'}}>
             <ModalHeader className="text-center" toggle={this.hideModal}>{tu("receive")}</ModalHeader>
             <ModalBody className="text-center">
               <h5 className="py-2">{tu("send_to_following_address")}</h5>

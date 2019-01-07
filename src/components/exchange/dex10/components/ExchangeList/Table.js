@@ -159,7 +159,7 @@ class ExchangeTable extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { dataSource,tab } = this.props;
-    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    if ( dataSource && dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
     // if (!dataSource.length || dataSource[0].exchange_id != prevProps.dataSource[0].exchange_id) {
        this.getData()
     }

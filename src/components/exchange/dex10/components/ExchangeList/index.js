@@ -107,7 +107,7 @@ class ExchangeList extends React.Component {
 
         const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
 
-        const newData = data.map(item => {
+        const newData = exchange10.map(item => {
             item.first_token_id = item.map_token_name
             item.second_token_id = item.map_token_name1
             item.exchange_name = item.map_token_name+'/'+item.map_token_name1
@@ -172,9 +172,9 @@ class ExchangeList extends React.Component {
         
         const {getSelectData, klineLock} = this.props;
         const {auditedTokenList,optionalDisable,tagLock} = this.state;
-        
-        if(klineLock && tagLock){
-            if(!optionalDisable) return;
+        // klineLock && tagLock
+        if(tagLock){
+            // if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
                 tokenAudited: true,
@@ -182,7 +182,7 @@ class ExchangeList extends React.Component {
                 showSearch:false,
                 tagLock: false
             });
-            if(auditedTokenList.length > 0){
+            if(auditedTokenList && (auditedTokenList.length > 0)){
                 this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
                 getSelectData(auditedTokenList[0], true)
                 this.setState({
@@ -306,7 +306,8 @@ class ExchangeList extends React.Component {
     gotoTrc20 = () => {
         const {klineLock} = this.props
         const { tagLock } = this.state
-        if(klineLock&&tagLock){
+        // klineLock&&tagLock
+        if(tagLock){
             Lockr.set('DEX', 'Main')
             this.props.history.push('exchange20')
         }

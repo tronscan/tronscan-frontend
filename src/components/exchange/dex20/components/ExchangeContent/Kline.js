@@ -80,7 +80,7 @@ class Kline extends React.Component {
     const tvWidget = new widget({
       symbol: id,
       interval: interval,
-      container_id: "tv_chart_container",
+      container_id: "tv_chart_container_20",
       //	BEWARE: no trailing slash is expected in feed URL
       // datafeed: new UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
       datafeed: new Datafeed.UDFCompatibleDatafeed(),
@@ -371,7 +371,7 @@ class Kline extends React.Component {
 
       <hr/>
 
-      <div className="exchange__kline__pic" id='tv_chart_container'></div>
+      <div className="exchange__kline__pic" id='tv_chart_container_20'></div>
 
     </div>
     )
