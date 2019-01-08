@@ -78,7 +78,7 @@ class ExchangeList extends React.Component {
             item.exchange_abbr_name = item.exchange_abbr_name
             return item
         })
-        
+
         this.setState({
             exchangesAllList: newData,
         },() => {

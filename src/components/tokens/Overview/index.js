@@ -17,6 +17,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import {transactionResultManager} from "../../../utils/tron";
+import {round} from "lodash";
 import xhr from "axios/index";
 import Lockr from "lockr";
 
@@ -30,6 +31,7 @@ class TokenOverview extends Component {
       buyAmount: 0,
       loading: false,
       total: 0,
+      amount: '',
       filter: {},
     };
 
@@ -130,9 +132,10 @@ class TokenOverview extends Component {
   }
 
   preBuyTokens = (token) => {
-    let {buyAmount} = this.state;
+    let {buyAmount,amount} = this.state;
     let {currentWallet, wallet} = this.props;
-
+    amount = parseFloat(amount);
+    amount = round(amount, 6);
     if (!wallet.isOpen) {
       this.setState({
         alert: (
@@ -176,6 +179,7 @@ class TokenOverview extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
+                      onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                       onChange={(e) => {
                         this.onBuyInputChange(e.target.value, token.price, token.remaining)
                       }}
