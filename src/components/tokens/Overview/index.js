@@ -363,7 +363,7 @@ class TokenOverview extends Component {
                     style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
             <div>
-              <h5><TokenLink name={record.name}
+              <h5><TokenLink name={record.name} id={record.id}
                              namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
               <p style={{wordBreak: "break-all"}}>{record.description}</p>

@@ -222,7 +222,7 @@ class Account extends Component {
                   tokenBalances.map((token) => (
                       <tr key={token.name}>
                         <td>
-                          <TokenLink name={token.map_token_name} address={token.address}/>
+                          <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
                         </td>
                         <td>
                           <div className="tokenBalances_id">{token.map_token_id}</div>
@@ -1279,7 +1279,7 @@ class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
+                          <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
                             <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>

@@ -15,13 +15,13 @@ export const WitnessLink = ({address}) => (
     <Link to={`/witness/${address}`}>{address}</Link>
 );
 
-export const TokenLink = ({name, namePlus, address, children, ...props}) => {
+export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
 
   if (name && !namePlus) {
-    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || name}</Link>
+    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
   }
   if (namePlus && name) {
-    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
+    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
   }
 };
 

@@ -38,24 +38,29 @@ class TokenDetail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
+    this.loadToken(decodeURI(match.params.id));
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
-    if (match.params.name !== prevProps.match.params.name) {
-      this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
+    if (match.params.id !== prevProps.match.params.id) {
+      this.loadToken(decodeURI(match.params.id));
     }
   }
 
-  loadToken = async (name,address) => {
+  loadToken = async (id) => {
 
-    this.setState({loading: true, token: {name}});
+    this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?name=" + name+"&owner="+address);
+    let result = await xhr.get("http://172.16.20.200:8899"+"/api/token?id=" + id);
     let token = result.data.data[0];
+
+    if(!token){
+      this.setState({loading: false,token: null});
+      return;
+    }
 
     this.setState({
       loading: false,
@@ -73,14 +78,14 @@ class TokenDetail extends React.Component {
           icon: "",
           path: "/transfers",
           label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: name, address: address}}/>
+          cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
         },
         {
           id: "holders",
           icon: "",
           path: "/holders",
           label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: name, address: address}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
+          cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
         },
       ]
     });
@@ -409,7 +414,7 @@ class TokenDetail extends React.Component {
                           </div>
                         </div>
                       </div>
-                      <Information token={token}></Information>
+                      {token&&<Information token={token}></Information>}
                     </div>
 
                     <div className="card mt-3 border_table">

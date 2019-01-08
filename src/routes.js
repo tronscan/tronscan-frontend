@@ -214,7 +214,7 @@ export const routes = [
     ]
   },
   {
-    path: "/token/:name/:address",
+    path: "/token/:id",
     label: "token",
     component: TokenDetailAsync,
     showInMenu: false
