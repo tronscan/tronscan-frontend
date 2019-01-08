@@ -105,13 +105,14 @@ class Transactions extends React.Component {
         });
       }
       */
-       result = await Client.getTransactions({
-          sort: '-timestamp',
-          limit: pageSize,
-          start: (page - 1) * pageSize,
-          total: this.state.total,
-          ...searchParams,
-        });
+      result = await Client.getTransactions({
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        start_timestamp:this.start,
+        end_timestamp:this.end,
+        ...searchParams,
+      });
 
     }
     this.setState({
@@ -201,11 +202,11 @@ class Transactions extends React.Component {
     this.loadTransactions();
   }
   disabledDate = (time) => {
-      if(!time){
-          return false
-      }else{
-          return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
-      }
+    if (!time) {
+      return false
+    } else {
+      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+    }
   }
 
   render() {
@@ -221,15 +222,13 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
-              { /*
+              {
                 <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
                         'Today': [moment().startOf('day'), moment()],
                         'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                        'This Week': [moment().startOf('isoWeek'), moment().endOf('isoWeek')],
-                        // 'Last Week': [moment().subtract('isoWeek', 1).startOf('isoWeek'), moment().subtract('isoWeek', 1).endOf('isoWeek')]
                       }}
                       disabledDate={this.disabledDate}
                       showTime
@@ -238,7 +237,7 @@ class Transactions extends React.Component {
                       onOk={this.onDateOk}
                   />
                 </div>
-                */
+
               }
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}

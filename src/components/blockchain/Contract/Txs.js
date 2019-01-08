@@ -16,13 +16,18 @@ import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import {QuestionMark} from "../../common/QuestionMark.js"
-import { Tooltip } from 'antd'
+import {Tooltip} from 'antd'
+import moment from "moment/moment";
+import {DatePicker} from "antd/lib/index";
+
+const RangePicker = DatePicker.RangePicker;
 
 class Transactions extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.end = new Date().getTime();
     this.state = {
       filter: {},
       transactions: [],
@@ -53,27 +58,41 @@ class Transactions extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
+      start_timestamp: this.start,
+      end_timestamp: this.end,
       ...filter,
     });
 
-    transactions.data.map( item => {
-      item.tip = item.ownAddress == filter.contract? 'out': 'in'
+    transactions.data.map(item => {
+      item.tip = item.ownAddress == filter.contract ? 'out' : 'in'
     })
     this.setState({
       transactions: transactions.data,
       total: transactions.total,
       loading: false
     });
-
-    
   };
 
+  onChangeDate = (dates, dateStrings) => {
+    this.start = new Date(dateStrings[0]).getTime();
+    this.end = new Date(dateStrings[1]).getTime();
+  }
+  onDateOk = () => {
+    this.loadTransactions();
+  }
+  disabledDate = (time) => {
+    if (!time) {
+      return false
+    } else {
+      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+    }
+  }
   customizedColumn = () => {
     let {intl, isInternal = false} = this.props;
-    
+
     let column = [
       {
-        title: upperFirst(intl.formatMessage({id: isInternal? 'ParentTxHash': 'TxHash'})),
+        title: upperFirst(intl.formatMessage({id: isInternal ? 'ParentTxHash' : 'TxHash'})),
         dataIndex: 'txHash',
         key: 'txHash',
         align: 'left',
@@ -81,10 +100,10 @@ class Transactions extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           return <Truncate>
-                  <TransactionHashLink hash={text}>
-                    {text}
-                  </TransactionHashLink>
-                </Truncate>
+            <TransactionHashLink hash={text}>
+              {text}
+            </TransactionHashLink>
+          </Truncate>
         }
       },
       {
@@ -106,7 +125,7 @@ class Transactions extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <TimeAgo date={text}/>
+          return <TimeAgo date={text}/>
         }
       },
       {
@@ -115,16 +134,16 @@ class Transactions extends React.Component {
         key: 'ownAddress',
         align: 'left',
         render: (text, record, index) => {
-          return record.tip == 'in'?
-          <span className="d-flex">
-            {record.ownAddressType ==2 &&
+          return record.tip == 'in' ?
+              <span className="d-flex">
+            {record.ownAddressType == 2 &&
             <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
-            
-            <AddressLink address={text} isContract={record.ownAddressType ==2}/>
-          </span>:
-          <Truncate><span>{text}</span></Truncate>
+
+                <AddressLink address={text} isContract={record.ownAddressType == 2}/>
+          </span> :
+              <Truncate><span>{text}</span></Truncate>
         }
       },
       // {
@@ -141,16 +160,16 @@ class Transactions extends React.Component {
         key: 'toAddress',
         align: 'left',
         render: (text, record, index) => {
-          return record.tip == 'out'?
-          <span className="d-flex">
-            {record.toAddressType ==2 &&
+          return record.tip == 'out' ?
+              <span className="d-flex">
+            {record.toAddressType == 2 &&
             <Tooltip placement="top" title={intl.formatMessage({id: 'contracts'})}>
               <span><i className="far fa-file mr-1"></i></span>
             </Tooltip>}
-            
-            <AddressLink address={text} isContract={record.toAddressType ==2}/>
-          </span>:
-          <Truncate><span>{text}</span></Truncate>
+
+                <AddressLink address={text} isContract={record.toAddressType == 2}/>
+          </span> :
+              <Truncate><span>{text}</span></Truncate>
         }
       },
       {
@@ -161,7 +180,7 @@ class Transactions extends React.Component {
         width: '120px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return  <TRXPrice amount={parseInt(text) / ONE_TRX}/>
+          return <TRXPrice amount={parseInt(text) / ONE_TRX}/>
         }
       },
       // {
@@ -197,20 +216,41 @@ class Transactions extends React.Component {
     }
 
     return (
-      <Fragment>
-        {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
-        <div className="row">
-          <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
+        <Fragment>
+          {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
+          <div className="row">
+            <div className="col-md-12 table_pos">
+              {total ?
+                  <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top"
+                                                                                                         text="to_provide_a_better_experience"></QuestionMark></span>
+                  </div> : ''}
+              {
+                <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  <RangePicker
+                      defaultValue={[moment(this.start), moment(this.end)]}
+                      ranges={{
+                        'Today': [moment().startOf('day'), moment()],
+                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                      }}
+                      disabledDate={this.disabledDate}
+                      showTime
+                      format="YYYY/MM/DD HH:mm:ss"
+                      onChange={this.onChangeDate}
+                      onOk={this.onDateOk}
+                  />
+                </div>
+
+              }
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadTransactions(page, pageSize)
                           }}/>
+            </div>
           </div>
-        </div>
-      </Fragment>
-    )}
+        </Fragment>
+    )
+  }
 }
 
 export default injectIntl(Transactions)

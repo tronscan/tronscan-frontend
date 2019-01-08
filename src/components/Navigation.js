@@ -92,6 +92,7 @@ class Navigation extends React.Component {
     window.addEventListener('message', function (e) {
       if (e.data.message) {
         _this.setState({address: e.data.message.data});
+
       }
     })
     this.getAnnouncement();
@@ -101,12 +102,9 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-
     if (nextState.address !== this.state.address) {
       this.reLoginWithTronLink();
-
     }
-
   }
 
   componentWillUnmount() {
@@ -517,7 +515,7 @@ class Navigation extends React.Component {
           {
             (account.isLoggedIn && wallet.isOpen) ?
 
-                <li className="nav-item dropdown token_black nav">
+                <li className="nav-static dropdown token_black nav">
                   <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                     {tu("wallet")}
                   </a>

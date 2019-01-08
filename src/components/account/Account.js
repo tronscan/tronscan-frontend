@@ -185,7 +185,6 @@ class Account extends Component {
   renderTokens() {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances = []} = this.props;
-
         if(hideSmallCurrency){
             tokenBalances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
@@ -232,7 +231,7 @@ class Account extends Component {
                           <div>{token.map_token_precision}</div>
                         </td>
                         <td className="text-right">
-                          <FormattedNumber value={token.map_amount}/>
+                          <FormattedNumber value={token.map_amount} maximumFractionDigits={Number(token.map_token_precision)}/>
                         </td>
                       </tr>
                   ))

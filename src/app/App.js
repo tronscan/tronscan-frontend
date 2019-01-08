@@ -6,7 +6,7 @@ export default class App {
 
   constructor(options = {}) {
     this.options = options;
-    localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
+    // localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
     this.getTokensMap();
     this.setExternalLinkHandler(null);
   }

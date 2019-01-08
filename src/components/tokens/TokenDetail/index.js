@@ -94,7 +94,7 @@ class TokenDetail extends React.Component {
       if (Lockr.get("islogin")) {
           const { tronWeb } = account;
           try {
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.name,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
               const {result} = await transactionResultManager(unSignTransaction,tronWeb);
               res = result;
           } catch (e) {
@@ -104,7 +104,7 @@ class TokenDetail extends React.Component {
           let isSuccess = await Client.participateAsset(
               currentWallet.address,
               token.ownerAddress,
-              token.name,
+              token.id,
               buyAmount * token.price)(account.key);
           res = isSuccess.success
       }
@@ -159,7 +159,7 @@ class TokenDetail extends React.Component {
               title={tu("confirm_private_key")}
               onConfirm={reConfirm}
               onCancel={() => this.setState({alert: null})}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
+              // style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
             <div className="form-group">
               <div className="input-group mb-3">
@@ -206,7 +206,7 @@ class TokenDetail extends React.Component {
             <SweetAlert
                 info
                 showConfirm={false}
-                style={{ width: '30rem', height: '18.75rem',left:'50%',marginLeft:'-15rem'}}
+                // style={{ width: '30rem', height: '18.75rem',left:'50%',marginLeft:'-15rem'}}
             >
               <div className="token-sweet-alert">
                 <a className="close" onClick={() => {
@@ -228,7 +228,7 @@ class TokenDetail extends React.Component {
         alert: (
             <SweetAlert
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
               <div className="mt-5 token-sweet-alert" style={{textAlign: 'left'}}>
                 <a style={{float: 'right', marginTop: '-45px'}} onClick={() => {
@@ -275,7 +275,7 @@ class TokenDetail extends React.Component {
             <SweetAlert
                 warning
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
@@ -297,7 +297,7 @@ class TokenDetail extends React.Component {
             <SweetAlert
                 warning
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
@@ -328,7 +328,7 @@ class TokenDetail extends React.Component {
               showCancel={false}
               cancelBtnBsStyle="default"
               title={intl.formatMessage({id: 'transferring'})}
-              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+              // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
           </SweetAlert>
       ),
@@ -341,7 +341,7 @@ class TokenDetail extends React.Component {
             <SweetAlert
                 success
                 showConfirm={false}
-                style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+                // style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
             >
               <div className="mt-5 token-sweet-alert">
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {

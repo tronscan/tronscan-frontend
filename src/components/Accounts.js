@@ -59,18 +59,18 @@ class Accounts extends Component {
       });
     }
     */
-    let {accounts} = await Client.getAccounts({
+    let {accounts, total} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
 
-     let {txOverviewStats} = await Client.getTxOverviewStats();
+     // let {txOverviewStats} = await Client.getTxOverviewStats();
 
     this.setState({
       loading: false,
       accounts: accounts,
-      total: txOverviewStats[txOverviewStats.length-1].totalAddress
+      total: total
     });
   };
 
