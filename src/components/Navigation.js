@@ -315,6 +315,7 @@ class Navigation extends React.Component {
   onSearchKeyDown = (ev) => {
     if (ev.keyCode === 13) {
       this.doSearch();
+      $('#_searchBox').css({display: 'none'});
     }
   };
 
