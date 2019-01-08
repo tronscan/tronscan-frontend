@@ -803,7 +803,7 @@ class Navigation extends React.Component {
                 </div>
               }
               <div className="ml-auto d-flex">
-                {this.props.location.pathname != '/' &&
+                {
                 <div className="hidden-mobile nav-searchbar">
                   <div className="input-group dropdown">
                     <input type="text"
@@ -826,25 +826,25 @@ class Navigation extends React.Component {
                                 return <a className="dropdown-item text-uppercase" onClick={() => {
                                   this.afterSearch("#/block/" + result.value)
                                 }}
-                                          key={index}>{result.desc + ': '}<Truncate>{result.value}</Truncate></a>
+                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                               }
                               if (result.desc === 'Token') {
                                 return <a className="dropdown-item text-uppercase" onClick={() => {
                                   this.afterSearch("#/token/" + result.value)
                                 }}
-                                          key={index}>{result.desc + ': '}<Truncate>{result.value}</Truncate></a>
+                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                               }
                               if (result.desc === 'Address') {
                                 return <a className="dropdown-item text-uppercase" onClick={() => {
                                   this.afterSearch("#/address/" + result.value)
                                 }}
-                                          key={index}>{result.desc + ': '}<Truncate>{result.value}</Truncate></a>
+                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                               }
                               if (result.desc === 'TxHash') {
                                 return <a className="dropdown-item text-uppercase" onClick={() => {
                                   this.afterSearch("#/transaction/" + result.value)
                                 }}
-                                          key={index}>{result.desc + ': '}<Truncate>{result.value}</Truncate></a>
+                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                               }
                             }
                         )
