@@ -25,7 +25,7 @@ import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {IS_TESTNET, ONE_TRX} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -46,12 +46,13 @@ import {Icon} from 'antd';
 import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
+import xhr from "axios/index";
 
 class Navigation extends React.Component {
 
   constructor() {
     super();
-    this.callAjax = debounce(this.callAjax, 300);
+    this.callAjax = debounce(this.callAjax, 500);
     this.fileRef = React.createRef();
     this.id = 0;
     this.loginFlag = false;
@@ -323,7 +324,7 @@ class Navigation extends React.Component {
     this.callAjax(ev.target.value);
   }
 
-  callAjax = (value) => {
+  callAjax = async (value) => {
     let {search} = this.state;
     console.log(search);
     if (search === "") {
@@ -331,14 +332,22 @@ class Navigation extends React.Component {
       $('#_searchBox').css({display: 'none'});
       return;
     }
-    $('#_searchBox').css({display: 'block'});
-    let results = [
+
+    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + search);
+    let results = result.data;
+    /*let results = [
       {desc: 'Token', value: "IGG 1000029"},
       {desc: 'Block', value: "1000029"},
       {desc: 'Address', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
-    ];
+    ];*/
+
     this.setState({searchResults: results});
+    if(results.length) {
+      $('#_searchBox').css({display: 'block'});
+    }else{
+      $('#_searchBox').css({display: 'none'});
+    }
   }
 
   afterSearch = (hash) => {
@@ -804,54 +813,54 @@ class Navigation extends React.Component {
               }
               <div className="ml-auto d-flex">
                 {
-                <div className="hidden-mobile nav-searchbar">
-                  <div className="input-group dropdown">
-                    <input type="text"
-                           className="form-control p-2 bg-white border-0 box-shadow-none"
-                           style={styles.search}
-                           value={search}
-                           onKeyDown={this.onSearchKeyDown}
-                           onChange={this.onSearchChange}
-                           onClick={this.callAjax}
-                           placeholder={intl.formatMessage({id: "search_description1"})}/>
-                    <div className="input-group-append">
-                      <button className="btn box-shadow-none" onClick={this.doSearch}>
-                        <i className="fa fa-search"/>
-                      </button>
-                    </div>
-                    <div className="dropdown-menu" id="_searchBox" style={{width: '100%'}}>
-                      {
-                        searchResults && searchResults.map((result, index) => {
-                              if (result.desc === 'Block') {
-                                return <a className="dropdown-item text-uppercase" onClick={() => {
-                                  this.afterSearch("#/block/" + result.value)
-                                }}
-                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                  <div className="hidden-mobile nav-searchbar">
+                    <div className="input-group dropdown">
+                      <input type="text"
+                             className="form-control p-2 bg-white border-0 box-shadow-none"
+                             style={styles.search}
+                             value={search}
+                             onKeyDown={this.onSearchKeyDown}
+                             onChange={this.onSearchChange}
+                             onClick={this.callAjax}
+                             placeholder={intl.formatMessage({id: "search_description1"})}/>
+                      <div className="input-group-append">
+                        <button className="btn box-shadow-none" onClick={this.doSearch}>
+                          <i className="fa fa-search"/>
+                        </button>
+                      </div>
+                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%'}}>
+                        {
+                          searchResults && searchResults.map((result, index) => {
+                                if (result.desc === 'Block') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/block/" + result.value)
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Token') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/token/" + result.value)
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/address/" + result.value)
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/transaction/" + result.value)
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
                               }
-                              if (result.desc === 'Token') {
-                                return <a className="dropdown-item text-uppercase" onClick={() => {
-                                  this.afterSearch("#/token/" + result.value)
-                                }}
-                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
-                              }
-                              if (result.desc === 'Address') {
-                                return <a className="dropdown-item text-uppercase" onClick={() => {
-                                  this.afterSearch("#/address/" + result.value)
-                                }}
-                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
-                              }
-                              if (result.desc === 'TxHash') {
-                                return <a className="dropdown-item text-uppercase" onClick={() => {
-                                  this.afterSearch("#/transaction/" + result.value)
-                                }}
-                                          key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
-                              }
-                            }
-                        )
-                      }
+                          )
+                        }
+                      </div>
                     </div>
                   </div>
-                </div>
                 }
                 <div className="navbar navbar-expand-md navbar-dark py-0">
                   <ul className="navbar-nav navbar-right wallet-nav">
@@ -861,6 +870,54 @@ class Navigation extends React.Component {
                     {this.renderWallet()}
                   </ul>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="hidden-PC nav-searchbar">
+            <div className="input-group dropdown">
+              <input type="text"
+                     className="form-control p-2 bg-white border-0 box-shadow-none"
+                     style={styles.search}
+                     value={search}
+                     onKeyDown={this.onSearchKeyDown}
+                     onChange={this.onSearchChange}
+                     onClick={this.callAjax}
+                     placeholder={intl.formatMessage({id: "search_description1"})}/>
+              <div className="input-group-append">
+                <button className="btn box-shadow-none" onClick={this.doSearch}>
+                  <i className="fa fa-search"/>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="_searchBox" style={{width: '100%'}}>
+                {
+                  searchResults && searchResults.map((result, index) => {
+                        if (result.desc === 'Block') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/block/" + result.value)
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Token') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/token/" + result.value)
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Address') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/address/" + result.value)
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'TxHash') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/transaction/" + result.value)
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                      }
+                  )
+                }
               </div>
             </div>
           </div>

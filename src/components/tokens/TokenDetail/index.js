@@ -54,7 +54,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("http://172.16.20.200:8899"+"/api/token?id=" + id);
+    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id);
     let token = result.data.data[0];
 
     if(!token){
