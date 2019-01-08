@@ -134,8 +134,6 @@ class TokenOverview extends Component {
   preBuyTokens = (token) => {
     let {buyAmount,amount} = this.state;
     let {currentWallet, wallet} = this.props;
-    amount = parseFloat(amount);
-    amount = round(amount, 6);
     if (!wallet.isOpen) {
       this.setState({
         alert: (
@@ -179,7 +177,6 @@ class TokenOverview extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
-                      onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                       onChange={(e) => {
                         this.onBuyInputChange(e.target.value, token.price, token.remaining)
                       }}
