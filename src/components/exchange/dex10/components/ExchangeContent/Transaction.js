@@ -175,12 +175,16 @@ class Transaction extends Component {
     let { account, currentWallet, exchangeData, intl } = this.props;
     let res,transactionHash;
     if (Lockr.get("islogin")) {
-        const { tronWeb } = account;
-        const unSignTransaction = await tronWeb.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWeb.defaultAddress.hex);
-        const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
-        const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
-        transactionHash = signedTransaction.txID;
-        res = result;
+        try {
+            const {tronWeb} = account;
+            const unSignTransaction = await tronWeb.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWeb.defaultAddress.hex);
+            const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
+            const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
+            transactionHash = signedTransaction.txID;
+            res = result;
+        }catch (e) {
+            console.log(e)
+        }
     }else {
         let {success, code,transaction,message} = await Client.transactionExchange(currentWallet.address,exchangeId, tokenId, quant, expected)(account.key);
         transactionHash = transaction.hash
@@ -244,16 +248,6 @@ class Transaction extends Component {
     }
   };
 
-  getCalcCount = async (count, name, id) => {
-    if (!count) return 0;
-    const data = await Client.getExchangeCalc({
-      sell: count,
-      sellID: name,
-      exchangeID: id
-    });
-    return data.buyTokenQuant;
-  };
-
   hideModal = () => {
     this.setState({ modal: null });
   };
@@ -267,8 +261,8 @@ class Transaction extends Component {
     // });
     this.setState({
       buy_amount: exchangeData.second_token_id == "TRX"
-      ? parseFloat(value * 1.01 * exchangeData.price).toFixed(6)
-      : value * exchangeData.price * 1.01
+      ? parseFloat(value * 1.05 * exchangeData.price).toFixed(6)
+      : value * 1.05 * exchangeData.price
     })
   };
 
@@ -280,16 +274,16 @@ class Transaction extends Component {
     //       ? parseFloat(value * 0.99 * exchangeData.price).toFixed(6)
     //       : value * exchangeData.price * 0.99
     // });
-    const {buyTokenQuant} = await Client20.getExchangeCalc({
-      exchangeID: exchangeData.exchange_id,
-      sell: value,
-      sellID: exchangeData.first_token_id
-    })
+    // const {buyTokenQuant} = await Client20.getExchangeCalc({
+    //   exchangeID: exchangeData.exchange_id,
+    //   sell: value,
+    //   sellID: exchangeData.first_token_id
+    // })
     this.setState({
       sell_amount:
         exchangeData.second_token_id == "TRX"
-          ? parseFloat(buyTokenQuant ).toFixed(6)
-          : buyTokenQuant
+          ? parseFloat(value * 0.95 * exchangeData.price).toFixed(6)
+          : parseFloat(value * exchangeData.price * 0.95)
     });
   };
 
@@ -298,19 +292,21 @@ class Transaction extends Component {
     this.time = setTimeout(() => {
         const {secondBalance,buy_amount} = this.state
         const {exchangeData} = this.props
-        const buyMoney = parseInt(secondBalance.balance * value / 100)
-
-        Client20.getExchangeCalc({
-            exchangeID: exchangeData.exchange_id,
-            sell: buyMoney,
-            sellID: exchangeData.second_token_id
-        }).then(({buyTokenQuant}) => {
-            this.props.form.setFieldsValue({
-                first_quant_buy: buyTokenQuant,
-                second_quant_sell:buyMoney
-            })
-            this.setState({buy_amount: buyMoney})
+        const buyMoney = ((parseInt(secondBalance.balance * value / 100)) / ONE_TRX);
+        const buyTokenQuant = parseInt((buyMoney / exchangeData.price) * 0.95)
+        // Client20.getExchangeCalc({
+        //     exchangeID: exchangeData.exchange_id,
+        //     sell: buyMoney,
+        //     sellID: exchangeData.second_token_id
+        // }).then(({buyTokenQuant}) => {
+        //
+        //
+        // })
+        this.props.form.setFieldsValue({
+            first_quant_buy: buyTokenQuant,
+            second_quant_sell:buyMoney
         })
+        this.setState({buy_amount: buyMoney})
     },500)
   }
 
@@ -320,18 +316,20 @@ class Transaction extends Component {
         const {firstBalance} = this.state
         const {exchangeData} = this.props
         const sellMoney = parseInt(firstBalance.balance * value / 100)
+        // Client20.getExchangeCalc({
+        //     exchangeID: exchangeData.exchange_id,
+        //     sell: sellMoney,
+        //     sellID: exchangeData.first_token_id
+        // }).then(({buyTokenQuant}) => {
+        //
+        // })
 
-        Client20.getExchangeCalc({
-            exchangeID: exchangeData.exchange_id,
-            sell: sellMoney,
-            sellID: exchangeData.first_token_id
-        }).then(({buyTokenQuant}) => {
-            this.props.form.setFieldsValue({
-                second_quant_sell:buyTokenQuant,
-                first_quant_sell: sellMoney
-            })
-            this.setState({sell_amount: buyTokenQuant})
+        const buyTokenQuant = parseFloat(sellMoney * 0.95 * exchangeData.price).toFixed(6)
+        this.props.form.setFieldsValue({
+            second_quant_sell:buyTokenQuant,
+            first_quant_sell: sellMoney
         })
+        this.setState({sell_amount: buyTokenQuant})
     },500)
   }
 
@@ -562,7 +560,7 @@ class Transaction extends Component {
             { (
                 <span className="text-sm d-block">
                 {tu("TxAvailable")}{" "}
-                {((firstBalance && firstBalance.map_amount)?firstBalance.map_amount : 0)+ " " + exchangeData.map_token_name}
+            {((firstBalance && firstBalance.map_amount)?firstBalance.map_amount : 0)+ " " + (exchangeData.map_token_name?exchangeData.map_token_name:"")}
                 </span>
             )}             
             </div>
