@@ -243,6 +243,7 @@ class TokenDetail extends React.Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
+                      onKeyUp={(e)=>{ e.target.value = e.target.value.replace(/[^\d*]/g,'') }}
                       onChange={(e) => {
                         this.onBuyInputChange(e.target.value, token.price, token.remaining)
                       }}
