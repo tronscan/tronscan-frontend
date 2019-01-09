@@ -63,7 +63,6 @@ class Contracts extends React.Component {
     this.setState({loading: true})
     await Client.getContracts({
       confirm: 0,
-      sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize
     }).then(({data, total}) => {

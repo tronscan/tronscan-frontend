@@ -92,7 +92,7 @@ class Nodes extends Component {
   loadNodes = async () => {
     // let {nodes, status} = await Client.getNodeLocations();
     let {data} = await xhr.get(`${API_URL}/api/nodemap`);
-
+   // let {data} = await xhr.get(`https://apilist.tronscan.org/api/nodemap`);
     this.setState({
       nodes: data.data,
       syncStatus: null,

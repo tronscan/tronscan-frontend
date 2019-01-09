@@ -834,25 +834,25 @@ class Navigation extends React.Component {
                           searchResults && searchResults.map((result, index) => {
                                 if (result.desc === 'Block') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/block/" + result.value)
+                                    this.afterSearch("#/block/" + trim(result.value))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
                                 if (result.desc === 'Token') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/token/" + result.value)
+                                    this.afterSearch("#/token/" + trim(result.value.split(' ')[1]))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
                                 if (result.desc === 'Address') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/address/" + result.value)
+                                    this.afterSearch("#/address/" + trim(result.value))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
                                 if (result.desc === 'TxHash') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/transaction/" + result.value)
+                                    this.afterSearch("#/transaction/" + trim(result.value))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
