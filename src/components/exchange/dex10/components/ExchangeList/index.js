@@ -183,7 +183,7 @@ class ExchangeList extends React.Component {
                 tagLock: false
             });
             if(auditedTokenList && (auditedTokenList.length > 0)){
-                this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
+                this.props.history.push('/exchange/trc10?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
                 getSelectData(auditedTokenList[0], true)
                 this.setState({
                     activeIndex:auditedTokenList[0].exchange_id,
@@ -209,7 +209,7 @@ class ExchangeList extends React.Component {
             if(unreviewedTokenList.length > 0){
                 let favFirst = unreviewedTokenList[0];
                 let url = ''
-                favFirst.token_type == "dex20" ? url='/exchange20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
+                favFirst.token_type == "dex20" ? url='/exchange/trc20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange/trc10?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
                 this.props.history.push(url)
                 getSelectData(unreviewedTokenList[0], true)
                 this.setState({
@@ -309,7 +309,7 @@ class ExchangeList extends React.Component {
         // klineLock&&tagLock
         if(tagLock){
             Lockr.set('DEX', 'Main')
-            this.props.history.push('exchange20')
+            this.props.history.push('trc20')
         }
     }
 

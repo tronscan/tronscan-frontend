@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {tu, tv} from "../../../../../utils/i18n";
 import { TRXPrice } from "../../../../common/Price";
 import {Client} from "../../../../../services/api";
-import {change10lock} from "../../../../../actions/exchange";
+import {change10lock, setWidget} from "../../../../../actions/exchange";
 import {TokenLink} from "../../../../common/Links";
 import { Icon } from 'antd';
 
@@ -37,17 +37,19 @@ class Kline extends React.Component {
   // }
 
   componentDidUpdate(prevProps) {
-    const { selectData, selectStatus, activeLanguage } = this.props
+    const { selectData, selectStatus, activeLanguage, widget } = this.props
     const { tvWidget } = this.state
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      // this.setState({tvWidget:null})
-      try{
-        tvWidget && tvWidget.remove()
+      if(!widget){
         this.createWidget(selectData.exchange_id)
-      }catch(err){
-        console.log(err)
+      }else {
+        console.log(tvWidget)
+        console.log(selectData.exchange_id, localStorage.getItem('interval'))
+        tvWidget.setSymbol(selectData.exchange_id, localStorage.getItem('interval'), () => {
+          console.log('set success')
+        })
       }
       
       
@@ -56,14 +58,14 @@ class Kline extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    const { tvWidget } = this.state
-    tvWidget && tvWidget.remove()
-  }
+  // componentWillUnmount() {
+  //   const { tvWidget } = this.state
+  //   tvWidget && tvWidget.remove()
+  // }
 
 
   createWidget (id) {
-    const {change10lock} = this.props
+    const {change10lock, setWidget} = this.props
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
@@ -166,6 +168,7 @@ class Kline extends React.Component {
 
     tvWidget.onChartReady(() => {
       this.setState({tvWidget})
+      setWidget({widget: tvWidget, type: 'trc10'})
       change10lock(true)
       const chart =	tvWidget.chart()
       chart.setChartType(1)
@@ -386,11 +389,13 @@ function mapStateToProps(state) {
     selectData: state.exchange.data,
     selectStatus: state.exchange.status,
     activeLanguage:  state.app.activeLanguage,
+    widget: state.exchange.trc10
   };
 }
 
 const mapDispatchToProps = {
-  change10lock
+  change10lock,
+  setWidget
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Kline)));

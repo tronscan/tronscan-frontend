@@ -125,7 +125,7 @@ class ExchangeList extends React.Component {
         this.props.history.push('exchange')
     }
 
-    // https://debug.tronscan.org/#/exchange20?token=TRONdice/TRX&id=30
+    // https://debug.tronscan.org/#/exchange/trc20?token=TRONdice/TRX&id=30
 
     render() {
         const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
