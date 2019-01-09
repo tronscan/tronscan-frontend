@@ -117,12 +117,10 @@ class ExchangeList extends React.Component {
     gotoTrc10 = () => {
         const { tagLock } = this.state
         const {klineLock} = this.props
-        // if(klineLock&&tagLock){
-        //     Lockr.set('DEX', 'Main')
-        //     this.props.history.push('exchange')
-        // }
-        Lockr.set('DEX', 'Main')
-        this.props.history.push('exchange')
+        if(klineLock&&tagLock){
+            Lockr.set('DEX', 'Main')
+            this.props.history.push('trc10')
+        }
     }
 
     // https://debug.tronscan.org/#/exchange/trc20?token=TRONdice/TRX&id=30

@@ -173,7 +173,7 @@ class ExchangeList extends React.Component {
         const {getSelectData, klineLock} = this.props;
         const {auditedTokenList,optionalDisable,tagLock} = this.state;
         // klineLock && tagLock
-        if(tagLock){
+        if(klineLock && tagLock){
             // if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
@@ -306,15 +306,15 @@ class ExchangeList extends React.Component {
     gotoTrc20 = () => {
         const {klineLock} = this.props
         const { tagLock } = this.state
-        // klineLock&&tagLock
-        if(tagLock){
+
+        if(klineLock&&tagLock){
             Lockr.set('DEX', 'Main')
             this.props.history.push('trc20')
         }
     }
 
     render() {
-        const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
+        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
         let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (

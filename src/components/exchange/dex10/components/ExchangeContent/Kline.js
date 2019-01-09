@@ -19,8 +19,7 @@ class Kline extends React.Component {
 
     this.state = {
       tokeninfoItem: {},
-      detailShow: false,
-      tvWidget: undefined
+      detailShow: false
     };
   }
 
@@ -37,31 +36,25 @@ class Kline extends React.Component {
   // }
 
   componentDidUpdate(prevProps) {
-    const { selectData, selectStatus, activeLanguage, widget } = this.props
-    const { tvWidget } = this.state
+    const { selectData, selectStatus, activeLanguage, widget,setWidget } = this.props
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
       if(!widget){
         this.createWidget(selectData.exchange_id)
       }else {
-        console.log(tvWidget)
-        console.log(selectData.exchange_id, localStorage.getItem('interval'))
-        tvWidget.setSymbol(selectData.exchange_id, localStorage.getItem('interval'), () => {
-          console.log('set success')
-        })
+        widget.chart().setSymbol(selectData.exchange_id.toString())
       }
-      
       
       this.getTokenInfo()
       
     }
   }
 
-  // componentWillUnmount() {
-  //   const { tvWidget } = this.state
-  //   tvWidget && tvWidget.remove()
-  // }
+  componentWillUnmount() {
+    const { setWidget } = this.props
+    setWidget({widget: null, type: 'trc10'})
+  }
 
 
   createWidget (id) {
@@ -167,9 +160,6 @@ class Kline extends React.Component {
     tvWidget.selectedIntervalButton = null;
 
     tvWidget.onChartReady(() => {
-      this.setState({tvWidget})
-      setWidget({widget: tvWidget, type: 'trc10'})
-      change10lock(true)
       const chart =	tvWidget.chart()
       chart.setChartType(1)
       
@@ -283,6 +273,8 @@ class Kline extends React.Component {
               // chart.setEntityVisibility(item, true);
           })
         }
+        setWidget({widget: tvWidget, type: 'trc10'})
+        change10lock(true)
     })
 
     

@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {tu, tv} from "../../../../../utils/i18n";
 import { TRXPrice } from "../../../../common/Price";
 import {Client20} from "../../../../../services/api";
-import {change10lock} from "../../../../../actions/exchange";
+import {change10lock,setWidget} from "../../../../../actions/exchange";
 import {TokenTRC20Link} from "../../../../common/Links";
 import { Icon } from 'antd';
 
@@ -20,56 +20,49 @@ class Kline extends React.Component {
       tokeninfo: [],
       tokeninfoItem: {},
       detailShow: false,
-      tvWidget: null,
       tvStatus:true
     }
   }
 
   componentDidMount() {
-    try{
-      const {tokeninfo, tvWidget} = this.state
-      const { selectData} = this.props
-      tvWidget && tvWidget.remove()
-      this.createWidget(selectData.exchange_id)
-      const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
-      this.setState({tokeninfoItem: newObj, detailShow: false})
-    }catch(err){
-      console.log(err)
-    }
+    const {tokeninfo, tvWidget} = this.state
+    const { selectData} = this.props
+    this.createWidget(selectData.exchange_id)
+    const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
+    this.setState({tokeninfoItem: newObj, detailShow: false})
     
   }
 
   componentDidUpdate (prevProps) {
-    const {tokeninfo, tvWidget} = this.state
-    const { selectData,selectStatus, activeLanguage } = this.props
-
+    const {tokeninfo} = this.state
+    const { selectData,selectStatus, activeLanguage ,widget} = this.props
+    
     if(!tokeninfo.length && (selectData.exchange_id)){
       this.getTokenInfo()
     }
-
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      
-      try{
-        tvWidget && tvWidget.remove()
-        this.createWidget(selectData.exchange_id)
-        const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
-        this.setState({tokeninfoItem: newObj, detailShow: false})
-      }catch(err){
-        console.log(err)
-      }
      
+      if(!widget){
+        this.createWidget(selectData.exchange_id)
+      }else {
+        widget.chart().setSymbol(selectData.exchange_id.toString())
+      }
+
+      const newObj = tokeninfo.filter(o => o.symbol == selectData.fShortName)[0]
+      this.setState({tokeninfoItem: newObj, detailShow: false})
+    
     }
   }
 
   componentWillUnmount() {
-    const { tvWidget } = this.state
-    tvWidget && tvWidget.remove()
+    const { setWidget } = this.props
+    setWidget({widget: null, type: 'trc20'})
   }
 
   createWidget (id) {
-    const {change10lock} = this.props
+    const {change10lock,setWidget} = this.props
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
@@ -80,7 +73,7 @@ class Kline extends React.Component {
     const tvWidget = new widget({
       symbol: id,
       interval: interval,
-      container_id: "tv_chart_container_20",
+      container_id: "tv_chart_container",
       //	BEWARE: no trailing slash is expected in feed URL
       // datafeed: new UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
       datafeed: new Datafeed.UDFCompatibleDatafeed(),
@@ -169,8 +162,6 @@ class Kline extends React.Component {
     tvWidget.selectedIntervalButton = null;
 
     tvWidget.onChartReady(() => {
-      this.setState({tvWidget})
-      change10lock(true)
       const chart =	tvWidget.chart()
       chart.setChartType(1)
       
@@ -284,9 +275,10 @@ class Kline extends React.Component {
               // chart.setEntityVisibility(item, true);
           })
         }
-    })
- 
 
+        setWidget({widget: tvWidget, type: 'trc20'})
+        change10lock(true)
+    })
   }
 
   getTokenInfo () {
@@ -303,7 +295,7 @@ class Kline extends React.Component {
 
   render() {
     const {tokeninfoItem,detailShow,tvStatus} = this.state
-    const {selectData} = this.props;
+    const {selectData,widget} = this.props;
     let imgDefault = require('../../../../../images/logo_default.png')
 
     return (
@@ -371,7 +363,7 @@ class Kline extends React.Component {
 
       <hr/>
 
-      <div className="exchange__kline__pic" id='tv_chart_container_20'></div>
+      <div className="exchange__kline__pic" id='tv_chart_container'></div>
 
     </div>
     )
@@ -383,11 +375,13 @@ function mapStateToProps(state) {
     selectData: state.exchange.data,
     selectStatus: state.exchange.status,
     activeLanguage:  state.app.activeLanguage,
+    widget: state.exchange.trc20
   };
 }
 
 const mapDispatchToProps = {
-  change10lock
+  change10lock,
+  setWidget
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Kline)));

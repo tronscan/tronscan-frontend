@@ -264,6 +264,7 @@ export const routes = [
   {
     label: "TRXMarket",
     path: "/exchange/:type",
+    redirect: '/exchange/trc20',
     icon: "fas fa-exchange-alt",
     component: Exchangetrc,
     none: true
