@@ -15,7 +15,7 @@ export default class App {
     let {data} = await xhr.get(`https://apilist.tronscan.org/api/token?limit=3000`);
     for (var i = 0; i < data.data.length; i++) {
       if (!tokensMap[data.data[i].id]) {
-        tokensMap[data.data[i].id] = data.data[i].name + '_' + data.data[i].id + '_' + data.data[i].precision;
+        tokensMap[data.data[i].id] = data.data[i].name + '_' + data.data[i].id + '_' + data.data[i].precision+'_'+data.data[i].abbr;
       }
     }
     localStorage.setItem('tokensMap', JSON.stringify(tokensMap));
