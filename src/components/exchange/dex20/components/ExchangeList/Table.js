@@ -164,7 +164,7 @@ class ExchangeTable extends React.Component {
     const {getSelectData} = this.props;
     
     if(record.token_type != 'dex20'){
-      this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
+      this.props.history.push('/exchange/trc10?token='+ record.exchange_name+'&id='+record.exchange_id)
       return
     }
     this.setState({
@@ -172,7 +172,7 @@ class ExchangeTable extends React.Component {
     })
     getSelectData(record, true)
     if(!type){
-      this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
+      this.props.history.push('/exchange/trc20?token='+ record.exchange_name+'&id='+record.exchange_id)
     }
      
   }
@@ -204,7 +204,7 @@ class ExchangeTable extends React.Component {
       // });
       // if(this.props.searchAddId){
       //     let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
-      //     this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
+      //     this.props.history.push('/exchange/trc10?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
       //     // getSelectData(record[0],true)
       //     this.setState({
       //         activeIndex:nextProps.activeIndex,

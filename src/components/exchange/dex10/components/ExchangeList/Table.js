@@ -127,7 +127,7 @@ class ExchangeTable extends React.Component {
     const {getSelectData} = this.props;
     if(!record.exchange_id)return
     if(record.token_type == 'dex20'){
-      this.props.history.push('/exchange20?token='+ record.exchange_name+'&id='+record.exchange_id)
+      this.props.history.push('/exchange/trc20?token='+ record.exchange_name+'&id='+record.exchange_id)
       return
     }
     this.setState({
@@ -136,7 +136,7 @@ class ExchangeTable extends React.Component {
     })
     getSelectData(record, true)
     if(!type){
-      this.props.history.push('/exchange?token='+ record.exchange_name+'&id='+record.exchange_id)
+      this.props.history.push('/exchange/trc10?token='+ record.exchange_name+'&id='+record.exchange_id)
     }
    
      
@@ -159,8 +159,7 @@ class ExchangeTable extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { dataSource,tab } = this.props;
-
-    if ( dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab) {
+    if ( !dataSource || (dataSource.length && prevProps.dataSource.length !== dataSource.length && dataSource[0].exchange_id && prevProps.tab === tab)) {
     // if (!dataSource.length || dataSource[0].exchange_id != prevProps.dataSource[0].exchange_id) {
        this.getData()
       
@@ -174,7 +173,7 @@ class ExchangeTable extends React.Component {
       if(this.props.searchAddId){
           let record =  _.filter(nextProps.dataSource, (o) => { return o.exchange_id == nextProps.activeIndex; });
           if(record.length > 0){
-            this.props.history.push('/exchange?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
+            this.props.history.push('/exchange/trc10?token='+ record[0].exchange_name+'&id='+record[0].exchange_id)
             getSelectData(record[0],true)
           }
          

@@ -17,6 +17,7 @@ export const SET_LASTPRICE = 'SET_LASTPRICE';
 export const SET_QUICKSELCET = 'SET_QUICKSELCET'
 export const SET_UPDATE_TRAN = 'SET_UPDATE_TRAN'
 export const SET_10_LOCK = 'SET_10_LOCK'
+export const SET_WIDGET = 'SET_WIDGET'
 
 
 
@@ -70,6 +71,13 @@ export const change10lockstatus = (type)=>({
   type: SET_10_LOCK,
   lock: type
 })
+
+export const setWidgetaBytype = (payload)=>({
+  type: SET_WIDGET,
+  data: payload
+})
+
+
 
 export const change10lock = (type) => async (dispatch) => {
   dispatch(change10lockstatus(type))
@@ -186,3 +194,6 @@ export const getExchanges = () => async (dispatch) => {
   dispatch(setExchanges10(newData))
 }
 
+export const setWidget = (payload) => async (dispatch) => {
+  dispatch(setWidgetaBytype(payload))
+}

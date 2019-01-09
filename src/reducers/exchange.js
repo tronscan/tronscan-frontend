@@ -1,10 +1,12 @@
 
-import {SET_SELECT_DATA, SET_SELECT_STATUS, SET_EXCHANGE20_LIST,SET_LASTPRICE,SET_EXCHANGE10_LIST,SET_EXCHANGEALL_LIST,SET_QUICKSELCET,SET_UPDATE_TRAN,SET_10_LOCK} from "../actions/exchange";
+import {SET_SELECT_DATA, SET_SELECT_STATUS, SET_EXCHANGE20_LIST,SET_LASTPRICE,SET_EXCHANGE10_LIST,SET_EXCHANGEALL_LIST,SET_QUICKSELCET,SET_UPDATE_TRAN,SET_10_LOCK,SET_WIDGET} from "../actions/exchange";
 
 const initialState = {
   data: {},
   status: false,
-  klineLock: true
+  klineLock: true,
+  trc10: null,
+  trc20: null
 };
 
 export function exchangeReducer(state = initialState, action) {
@@ -61,6 +63,12 @@ export function exchangeReducer(state = initialState, action) {
       return {
         ...state,
         klineLock: action.lock,
+      }
+    }
+    case SET_WIDGET:{
+      return {
+        ...state,
+        [action.data.type]: action.data.widget,
       }
     }
     

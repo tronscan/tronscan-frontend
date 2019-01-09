@@ -111,7 +111,7 @@ class SearchTable extends React.Component {
             activeIndex: record.exchange_id //获取点击行的索引
         })
 
-        this.props.history.push('/exchange?token=' + record.exchange_name + '&id=' + record.exchange_id)
+        this.props.history.push('/exchange/trc10?token=' + record.exchange_name + '&id=' + record.exchange_id)
         getSelectData(record, true)
         setExchangeId(record.exchange_id)
     }
