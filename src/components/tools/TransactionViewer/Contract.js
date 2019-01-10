@@ -167,7 +167,7 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="account_name">{contract['account_name']}</Field>
+                <Field label="account_name">{toUtf8(contract['account_name'])}</Field>
               </tbody>
             </table>
           </Fragment>

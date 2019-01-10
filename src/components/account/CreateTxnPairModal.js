@@ -119,7 +119,7 @@ class CreateTxnPairModal extends React.PureComponent {
         //     return block
         // })
         let allowExchange = currentWallet.tokenBalances.filter(v=>{
-            if(v.balance > 0 && v.name !== 'TRX'){
+            if(v.balance > 0 && v.name !== '_'){
                 return v;
             }
         });
