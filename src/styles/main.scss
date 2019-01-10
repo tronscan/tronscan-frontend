@@ -2572,6 +2572,18 @@ h5 {
     right: 8px;
   }
 }
+.transactions-rangePicker-txs{
+  margin-top: -35px;
+  position: absolute;
+  right: 16px;
+
+  @media only screen and (max-width: 768px) {
+    transform: scale(0.9);
+    margin-top: -30px;
+    position: absolute;
+    right: -9px;
+  }
+}
 
 .tokenBalances_id{
   color: #999999;

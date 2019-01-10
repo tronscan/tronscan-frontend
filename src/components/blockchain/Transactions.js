@@ -223,7 +223,7 @@ class Transactions extends React.Component {
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               {
-                <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  total ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
@@ -236,7 +236,7 @@ class Transactions extends React.Component {
                       onChange={this.onChangeDate}
                       onOk={this.onDateOk}
                   />
-                </div>
+                </div> : ''
 
               }
               <SmartTable bordered={true} loading={loading}

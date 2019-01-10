@@ -219,13 +219,13 @@ class Transactions extends React.Component {
         <Fragment>
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
-            <div className="col-md-12 table_pos">
+            <div className="col-md-12 table_pos mt-5">
               {total ?
-                  <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top"
+                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top"
                                                                                                          text="to_provide_a_better_experience"></QuestionMark></span>
                   </div> : ''}
               {
-                <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
@@ -238,7 +238,7 @@ class Transactions extends React.Component {
                       onChange={this.onChangeDate}
                       onOk={this.onDateOk}
                   />
-                </div>
+                </div>:''
 
               }
               <SmartTable bordered={true} loading={loading}

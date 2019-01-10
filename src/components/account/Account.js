@@ -51,7 +51,7 @@ class Account extends Component {
       hideSmallCurrency:true,
       tokenTRC10:true,
       tokens20:[],
-      dealPairTrxLimit:1,
+      dealPairTrxLimit:100000,
       isTronLink:0
     };
 
