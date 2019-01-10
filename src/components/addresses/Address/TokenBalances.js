@@ -72,7 +72,7 @@ export  class TokenBalances extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <TokenLink name={text} address={record.address}/>
+                    return <TokenLink name={text} address={record.record.owner_address}/>
                 }
             },
             {
