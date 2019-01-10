@@ -41,6 +41,7 @@ class NumericInput extends React.Component {
 
   render() {
     const { value } = this.props;
+    let maxLength = 15;
     const title = value ? (
       <span className="numeric-input-title">
         {value !== '-' ? formatNumber(value) : '-'}
@@ -56,7 +57,7 @@ class NumericInput extends React.Component {
         <Input
           {...this.props}
           onChange={this.onChange}
-          maxLength="15"
+          maxLength={maxLength}
         />
       // </Tooltip>
     );
