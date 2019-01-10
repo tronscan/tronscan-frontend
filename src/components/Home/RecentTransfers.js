@@ -12,7 +12,7 @@ import {withTimers} from "../../utils/timing";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {NameWithId} from "../common/names";
-
+import _ from "lodash";
 class RecentTransfers extends Component {
 
   constructor() {
@@ -91,7 +91,7 @@ class RecentTransfers extends Component {
                                style={styles.nowrap}>
                             <div className="color-grey-200" style={{flex: 1}}>
                               {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
-                              <NameWithId value={transfer}/>
+                              <NameWithId value={transfer} type="abbr"/>
                             </div>
                             <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                               <TimeAgo date={transfer.timestamp}/>

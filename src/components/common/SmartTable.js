@@ -176,7 +176,7 @@ export default class SmartTable extends Component {
     return (
         <div>
             {
-                addr?<div className="card table_pos table_pos_addr">
+                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"")}>
                   <Table
                       bordered={bordered}
                       columns={columns}

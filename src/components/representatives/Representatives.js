@@ -178,7 +178,7 @@ class Representatives extends Component {
                         <div style={{height: 326, background: '#fff'}} className="pt-2 bg-line_blue">
                           <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={{border:0}}>
                             <h6 className="m-0 lh-150" style={{fontSize:16}}>
-                              <Link to="blockchain/stats/pieChart">
+                              <Link to="/blockchain/stats/pieChart">
                                   {tu("produce_distribution")}
                               </Link>
                             </h6>
