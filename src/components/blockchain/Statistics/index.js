@@ -366,7 +366,8 @@ class Statistics extends React.Component {
                         {tu("volume_24")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
-                         style={{width: 240, filter: 'grayscale(100%)'}}/>
+                         style={{width: 240, filter: 'grayscale(100%)'}}
+                         className="ml-5 mt-2"/>
                   </Link>
                 </div>
               </div>
