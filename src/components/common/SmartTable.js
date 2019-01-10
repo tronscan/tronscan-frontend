@@ -170,7 +170,6 @@ export default class SmartTable extends Component {
   render() {
 
     let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr} = this.props;
-    console.log('data',data)
     let columns = this.setColumn(column);
     const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
     
