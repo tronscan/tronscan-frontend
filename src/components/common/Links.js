@@ -28,10 +28,10 @@ export const TokenLink = ({id, name, namePlus, address, children, ...props}) => 
 export const TokenTRC20Link = ({name, namePlus, address, children, ...props}) => {
 
     if (name && !namePlus) {
-        return <Link to={`/token20/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || name}</Link>
+        return <Link to={`/token20/${encodeURI(address)}`} {...props}>{children || name}</Link>
     }
     if (name && namePlus) {
-        return <Link to={`/token20/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
+        return <Link to={`/token20/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
     }
 };
 

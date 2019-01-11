@@ -37,20 +37,20 @@ class Token20Detail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
+    this.loadToken(decodeURI(match.params.address));
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.name !== prevProps.match.params.name) {
-      this.loadToken(decodeURI(match.params.name),decodeURI(match.params.address));
+      this.loadToken(decodeURI(match.params.address));
     }
   }
 
-  loadToken = async (name,address) => {
+  loadToken = async (address) => {
 
-    this.setState({loading: true, token: {name}});
+    this.setState({loading: true});
      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
 
       let tokens = result.data.trc20_tokens;

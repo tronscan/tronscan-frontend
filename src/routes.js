@@ -220,7 +220,7 @@ export const routes = [
     showInMenu: false
   },
   {
-    path: "/token20/:name/:address",
+    path: "/token20/:address",
     label: "token",
     component: Token20DetailAsync,
     showInMenu: false

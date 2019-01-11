@@ -297,19 +297,33 @@ class Navigation extends React.Component {
   doSearch = async () => {
 
     let {intl} = this.props;
-    let {search} = this.state;
-    let type = getSearchType(search);
 
-    let result = await doSearch(search, type);
-
-    if (result === true) {
-      this.setState({search: ""});
-    } else if (result !== null) {
-      window.location.hash = result;
-      this.setState({search: ""});
-    } else {
+    let {searchResults} = this.state;
+    console.log(searchResults);
+    if (searchResults && searchResults.length) {
+      if (searchResults[0].desc === 'Block') {
+        this.afterSearch("#/block/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'Token-TRC20') {
+        this.afterSearch("#/token20/" + trim(searchResults[0].value.split(' ')[1]));
+      }
+      if (searchResults[0].desc === 'Token-TRC10') {
+        this.afterSearch("#/token/" + trim(searchResults[0].value.split(' ')[1]));
+      }
+      if (searchResults[0].desc === 'Address') {
+        this.afterSearch("#/address/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'Contract') {
+        this.afterSearch("#/contract/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'TxHash') {
+        this.afterSearch("#/transaction/" + trim(searchResults[0].value));
+      }
+    }
+    else {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
     }
+
   };
 
   onSearchKeyDown = (ev) => {
@@ -327,26 +341,28 @@ class Navigation extends React.Component {
 
   callAjax = async (value) => {
     let {search} = this.state;
-    console.log(search);
     if (search === "") {
       this.setState({searchResults: null});
       $('#_searchBox').css({display: 'none'});
       return;
     }
 
-    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + search);
+    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + trim(search));
     let results = result.data;
     /*let results = [
-      {desc: 'Token', value: "IGG 1000029"},
+      {desc: 'Token-TRC10', value: "IGG 1000029"},
+      {desc: 'Token-TRC20', value: "IGG 1000029"},
       {desc: 'Block', value: "1000029"},
       {desc: 'Address', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
+      {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
       {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
+
     ];*/
 
     this.setState({searchResults: results});
-    if(results.length) {
+    if (results.length) {
       $('#_searchBox').css({display: 'block'});
-    }else{
+    } else {
       $('#_searchBox').css({display: 'none'});
     }
   }
@@ -838,7 +854,13 @@ class Navigation extends React.Component {
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
-                                if (result.desc === 'Token') {
+                                if (result.desc === 'Token-TRC20') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/token20/" + trim(result.value.split(' ')[1]))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Token-TRC10') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
                                     this.afterSearch("#/token/" + trim(result.value.split(' ')[1]))
                                   }}
@@ -847,6 +869,12 @@ class Navigation extends React.Component {
                                 if (result.desc === 'Address') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
                                     this.afterSearch("#/address/" + trim(result.value))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/contract/" + trim(result.value))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
