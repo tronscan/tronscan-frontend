@@ -243,10 +243,20 @@ function Row({account, showSync = true, index, state, props}) {
               </td> : <td>&nbsp;</td>
         }
         <td className="text-center  d-none d-lg-table-cell">
-          <BlockNumberLink number={account.latestBlockNumber}/>
+            {
+                account.latestBlockNumber?
+                <BlockNumberLink number={account.latestBlockNumber}/>:
+                '-'
+            }
+
         </td>
         <td className="text-center d-none d-lg-table-cell">
-          <FormattedNumber value={account.producedTotal}/>
+            {
+                account.producedTotal?
+                <FormattedNumber value={account.producedTotal}/>:
+                '-'
+            }
+
         </td>
         <td className="text-center d-none d-lg-table-cell">
           {
