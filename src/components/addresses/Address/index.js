@@ -84,7 +84,7 @@ class Address extends React.Component {
   }
 
   componentWillUnmount() {
-   // this.live && this.live.close();
+    // this.live && this.live.close();
   }
 
   async loadVotes(address) {
@@ -235,8 +235,9 @@ class Address extends React.Component {
 
   render() {
 
-    let {address, tabs, stats, loading, blocksProduced, media, candidates, rank ,totalVotes} = this.state;
+    let {address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
+    let addr = match.params.id;
     let uploadURL = "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
 
     if (!address) {
@@ -313,15 +314,15 @@ class Address extends React.Component {
                               <tr>
                                 <th>{tu("address")}:</th>
                                 <td>
-                                  <AddressLink address={address.address} includeCopy={true}/>
+                                  <AddressLink address={addr} includeCopy={true}/>
                                 </td>
                               </tr>
-                              {!address.representative.enabled?<tr>
+                              {!address.representative.enabled ? <tr>
                                 <th>{tu("name")}:</th>
                                 <td>
-                                  <span>{address.name?address.name:"-"}</span>
+                                  <span>{address.name ? address.name : "-"}</span>
                                 </td>
-                              </tr>:"" }
+                              </tr> : ""}
 
                               <tr>
                                 <th>{tu("transfers")}:</th>
@@ -347,7 +348,8 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li>
-                                      <TRXPrice showCurreny={false} amount={(address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX}/>
+                                      <TRXPrice showCurreny={false}
+                                                amount={(address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}/>
                                     </li>
                                   </ul>
                                 </td>
@@ -357,9 +359,11 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li>
-                                      <TRXPrice amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX}/>{' '}
+                                      <TRXPrice
+                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}/>{' '}
                                       <span className="small">(<TRXPrice
-                                          amount={(address.balance + address.frozen.total+(address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX} currency="USD"
+                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}
+                                          currency="USD"
                                           showPopup={false}/>)</span>
                                     </li>
                                   </ul>
