@@ -305,10 +305,10 @@ class Navigation extends React.Component {
         this.afterSearch("#/block/" + trim(searchResults[0].value));
       }
       if (searchResults[0].desc === 'Token-TRC20') {
-        this.afterSearch("#/token20/" + trim(searchResults[0].value.split(' ')[1]));
+        this.afterSearch("#/token20/" + trim(searchResults[0].value.split(' ')[searchResults[0].value.split(' ').length-1]));
       }
       if (searchResults[0].desc === 'Token-TRC10') {
-        this.afterSearch("#/token/" + trim(searchResults[0].value.split(' ')[1]));
+        this.afterSearch("#/token/" + trim(searchResults[0].value.split(' ')[searchResults[0].value.split(' ').length-1]));
       }
       if (searchResults[0].desc === 'Address') {
         this.afterSearch("#/address/" + trim(searchResults[0].value));
@@ -845,7 +845,7 @@ class Navigation extends React.Component {
                           <i className="fa fa-search"/>
                         </button>
                       </div>
-                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%'}}>
+                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
                         {
                           searchResults && searchResults.map((result, index) => {
                                 if (result.desc === 'Block') {
@@ -856,13 +856,13 @@ class Navigation extends React.Component {
                                 }
                                 if (result.desc === 'Token-TRC20') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/token20/" + trim(result.value.split(' ')[1]))
+                                    this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
                                 if (result.desc === 'Token-TRC10') {
                                   return <a className="dropdown-item text-uppercase" onClick={() => {
-                                    this.afterSearch("#/token/" + trim(result.value.split(' ')[1]))
+                                    this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
                                   }}
                                             key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                                 }
@@ -917,30 +917,42 @@ class Navigation extends React.Component {
                   <i className="fa fa-search"/>
                 </button>
               </div>
-              <div className="dropdown-menu" id="_searchBox" style={{width: '100%'}}>
+              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
                 {
                   searchResults && searchResults.map((result, index) => {
                         if (result.desc === 'Block') {
                           return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/block/" + result.value)
+                            this.afterSearch("#/block/" + trim(result.value))
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                         }
-                        if (result.desc === 'Token') {
+                        if (result.desc === 'Token-TRC20') {
                           return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/token/" + result.value)
+                            this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Token-TRC10') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                         }
                         if (result.desc === 'Address') {
                           return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/address/" + result.value)
+                            this.afterSearch("#/address/" + trim(result.value))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Contract') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/contract/" + trim(result.value))
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                         }
                         if (result.desc === 'TxHash') {
                           return <a className="dropdown-item text-uppercase" onClick={() => {
-                            this.afterSearch("#/transaction/" + result.value)
+                            this.afterSearch("#/transaction/" + trim(result.value))
                           }}
                                     key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
                         }
