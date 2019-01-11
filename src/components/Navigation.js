@@ -984,7 +984,7 @@ class Navigation extends React.Component {
                                   className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
                                   {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
-                                  to={route.path}
+                                  to={route.redirect? route.redirect: route.path}
                               >
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}

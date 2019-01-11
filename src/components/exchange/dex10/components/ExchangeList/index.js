@@ -78,7 +78,7 @@ class ExchangeList extends React.Component {
             item.exchange_abbr_name = item.exchange_abbr_name
             return item
         })
-        
+
         this.setState({
             exchangesAllList: newData,
         },() => {
@@ -107,7 +107,7 @@ class ExchangeList extends React.Component {
 
         const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
 
-        const newData = data.map(item => {
+        const newData = exchange10.map(item => {
             item.first_token_id = item.map_token_name
             item.second_token_id = item.map_token_name1
             item.exchange_name = item.map_token_name+'/'+item.map_token_name1
@@ -172,9 +172,9 @@ class ExchangeList extends React.Component {
         
         const {getSelectData, klineLock} = this.props;
         const {auditedTokenList,optionalDisable,tagLock} = this.state;
-        
+        // klineLock && tagLock
         if(klineLock && tagLock){
-            if(!optionalDisable) return;
+            // if(!optionalDisable) return;
             Lockr.set("DEX", 'Main');
             this.setState({
                 tokenAudited: true,
@@ -182,8 +182,8 @@ class ExchangeList extends React.Component {
                 showSearch:false,
                 tagLock: false
             });
-            if(auditedTokenList.length > 0){
-                this.props.history.push('/exchange?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
+            if(auditedTokenList && (auditedTokenList.length > 0)){
+                this.props.history.push('/exchange/trc10?token=' + auditedTokenList[0].exchange_name + '&id=' + auditedTokenList[0].exchange_id)
                 getSelectData(auditedTokenList[0], true)
                 this.setState({
                     activeIndex:auditedTokenList[0].exchange_id,
@@ -209,7 +209,7 @@ class ExchangeList extends React.Component {
             if(unreviewedTokenList.length > 0){
                 let favFirst = unreviewedTokenList[0];
                 let url = ''
-                favFirst.token_type == "dex20" ? url='/exchange20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
+                favFirst.token_type == "dex20" ? url='/exchange/trc20?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id :url='/exchange/trc10?token=' + unreviewedTokenList[0].exchange_name + '&id=' + unreviewedTokenList[0].exchange_id
                 this.props.history.push(url)
                 getSelectData(unreviewedTokenList[0], true)
                 this.setState({
@@ -268,11 +268,11 @@ class ExchangeList extends React.Component {
 
     handleSearch = async(e) => {
         let {search} = this.state;
-        let {data} = await Client.getExchangesList({
+        let {exchangesAllList} = await Client.getexchangesAllList({
             name:search
         });
         this.setState({
-            searchExchangesList:data,
+            searchExchangesList:exchangesAllList,
             showSearch:true
         });
     }
@@ -306,14 +306,15 @@ class ExchangeList extends React.Component {
     gotoTrc20 = () => {
         const {klineLock} = this.props
         const { tagLock } = this.state
+
         if(klineLock&&tagLock){
             Lockr.set('DEX', 'Main')
-            this.props.history.push('exchange20')
+            this.props.history.push('trc20')
         }
     }
 
     render() {
-        const {dataSource, tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
+        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
         let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (

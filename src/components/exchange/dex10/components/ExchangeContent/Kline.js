@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {tu, tv} from "../../../../../utils/i18n";
 import { TRXPrice } from "../../../../common/Price";
 import {Client} from "../../../../../services/api";
-import {change10lock} from "../../../../../actions/exchange";
+import {change10lock, setWidget} from "../../../../../actions/exchange";
 import {TokenLink} from "../../../../common/Links";
 import { Icon } from 'antd';
 
@@ -19,8 +19,7 @@ class Kline extends React.Component {
 
     this.state = {
       tokeninfoItem: {},
-      detailShow: false,
-      tvWidget: undefined
+      detailShow: false
     };
   }
 
@@ -37,19 +36,15 @@ class Kline extends React.Component {
   // }
 
   componentDidUpdate(prevProps) {
-    const { selectData, selectStatus, activeLanguage } = this.props
-    const { tvWidget } = this.state
+    const { selectData, selectStatus, activeLanguage, widget,setWidget } = this.props
     if( (selectData.exchange_id !=prevProps.selectData.exchange_id
       || (prevProps.activeLanguage != activeLanguage))
     ){
-      // this.setState({tvWidget:null})
-      try{
-        tvWidget && tvWidget.remove()
+      if(!widget){
         this.createWidget(selectData.exchange_id)
-      }catch(err){
-        console.log(err)
+      }else {
+        widget.chart().setSymbol(selectData.exchange_id.toString())
       }
-      
       
       this.getTokenInfo()
       
@@ -57,13 +52,13 @@ class Kline extends React.Component {
   }
 
   componentWillUnmount() {
-    const { tvWidget } = this.state
-    tvWidget && tvWidget.remove()
+    const { setWidget } = this.props
+    setWidget({widget: null, type: 'trc10'})
   }
 
 
   createWidget (id) {
-    const {change10lock} = this.props
+    const {change10lock, setWidget} = this.props
     const locale = this.props.intl.locale || 'en'
     let interval = localStorage.getItem('interval');
     if(!interval) {
@@ -165,8 +160,6 @@ class Kline extends React.Component {
     tvWidget.selectedIntervalButton = null;
 
     tvWidget.onChartReady(() => {
-      this.setState({tvWidget})
-      change10lock(true)
       const chart =	tvWidget.chart()
       chart.setChartType(1)
       
@@ -280,6 +273,8 @@ class Kline extends React.Component {
               // chart.setEntityVisibility(item, true);
           })
         }
+        setWidget({widget: tvWidget, type: 'trc10'})
+        change10lock(true)
     })
 
     
@@ -299,7 +294,8 @@ class Kline extends React.Component {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
     let imgDefault = require('../../../../../images/logo_default.png')
-
+    let high = Number(selectData.high).toFixed(6);
+    let low = Number(selectData.low).toFixed(6);
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -323,12 +319,11 @@ class Kline extends React.Component {
             <span className='col-green ml-2'>{selectData.up_down_percent}</span>
             }
           </div>
-          <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
-          <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
-          <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume/Math.pow(10,6)} /></span>
+          <div className="mr-3">{tu('H')}<span className=" ml-2">{high}</span></div>
+          <div className="mr-3">{tu('L')}<span className=" ml-2">{low}</span></div>
+          <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume} /></span>
             {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
               {/*≈*/}
-
           </div>
         </div>
         </div>
@@ -340,7 +335,7 @@ class Kline extends React.Component {
               <p className="title">{tu('trc20_exchange_status')}</p>
               <p className="value">
               {
-                 selectData.status == 0?
+                 selectData.status == 1?
                  <span className="badge badge-success-block text-uppercase">{tu("trc20_examine")}</span> :
                  <span className="badge badge-danger-block text-uppercase">{tu("trc20_unexamine")}</span>
               }
@@ -386,11 +381,13 @@ function mapStateToProps(state) {
     selectData: state.exchange.data,
     selectStatus: state.exchange.status,
     activeLanguage:  state.app.activeLanguage,
+    widget: state.exchange.trc10
   };
 }
 
 const mapDispatchToProps = {
-  change10lock
+  change10lock,
+  setWidget
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(injectIntl(Kline)));

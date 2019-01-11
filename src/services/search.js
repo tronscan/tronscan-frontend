@@ -54,13 +54,11 @@ async function searchBlockNumber(criteria) {
 }
 
 async function searchTxHash(criteria) {
-  let {transactions} = await Client.getTransactions({
-    hash: criteria,
-    limit: 1,
-  });
 
-  if (transactions.length === 1 && transactions[0].hash) {
-    return `#/transaction/${transactions[0].hash}`;
+  let transaction = await Client.getTransactionByHash(criteria);
+
+  if (transaction['hash']) {
+    return `#/transaction/${transaction.hash}`;
   }
 }
 async function searchTxHash(criteria) {

@@ -841,7 +841,16 @@ th {
   .nav-item .wallet-notifications, .nav-static .wallet-notifications {
     position: absolute;
     float: none;
-    left: -100px;
+    // left: -200px;
+    right: -70px;
+    left: auto;
+    width: 250px;
+  }
+  .nav-item .wallet-notifications{
+    *{font-size: 10px;}
+    .media-body{
+      width: 200px;
+    }
   }
   .transfer-cell span {
     display: block;

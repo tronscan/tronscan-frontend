@@ -127,20 +127,20 @@ export class AddressLink extends React.PureComponent {
     }
 
     let wrap = (
-        <Fragment>
+        <div className="d-flex">
           {
             !isContract ?
               <Link
                   to={`/address/${address}/token-balances`}
                   style={style}
-                  className={"address-link text-nowrap " + className}
+                  className={"text-truncate address-link  " + className}
                   {...props}>
                 {children ? children : address}
               </Link> :
               <Link
                   to={`/contract/${address}/code`}
                   style={style}
-                  className={"address-link text-nowrap " + className}
+                  className={"text-truncate address-link " + className}
                   {...props}>
                 {children ? children : address}
               </Link>
@@ -149,7 +149,7 @@ export class AddressLink extends React.PureComponent {
             includeCopy &&
             <CopyText text={address} className="ml-1"/>
           }
-        </Fragment>
+        </div>
     );
 
     if (truncate) {
