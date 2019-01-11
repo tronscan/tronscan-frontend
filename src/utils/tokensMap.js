@@ -1,5 +1,6 @@
 export const tokensMap = {
   "1000001": "SEED_1000001_0_SEED",
+<<<<<<< HEAD
   "1000002": "TRX_1000002_0_TRX",
   "1000003": "IPFS_1000003_0_IPFS",
   "1000004": "Bitcoin_1000004_0_BTC",
@@ -7,10 +8,14 @@ export const tokensMap = {
   "1000006": "TRXTestCoin_1000006_0_TRX",
   "1000007": "GlobalSocialChain_1000007_0_GSC",
   "1000008": "justinsuntron_1000008_0_SUN",
+=======
+  "1000007": "GlobalSocialChain_1000007_0_GSC",
+>>>>>>> dev2019
   "1000009": "STRX_1000009_0_STRX",
   "1000010": "CharityCompassionCoin_1000010_0_CCC",
   "1000011": "TronCash_1000011_0_TRXC",
   "1000012": "TRXCash_1000012_0_TRXC",
+<<<<<<< HEAD
   "1000013": "TON_1000013_0_TON",
   "1000014": "beco_1000014_0_BCA",
   "1000015": "XRP_1000015_0_XRP",
@@ -18,6 +23,11 @@ export const tokensMap = {
   "1000017": "Tarquin_1000017_0_Tarq",
   "1000018": "TWX_1000018_0_TWX",
   "1000019": "DEX_1000019_0_DEX",
+=======
+  "1000014": "beco_1000014_0_BCA",
+  "1000017": "Tarquin_1000017_0_Tarq",
+  "1000018": "TWX_1000018_0_TWX",
+>>>>>>> dev2019
   "1000020": "IRONCOIN_1000020_0_IRC",
   "1000021": "FAIRCOIN_1000021_0_FAIR",
   "1000022": "game_1000022_0_GTC",
@@ -27,13 +37,17 @@ export const tokensMap = {
   "1000026": "Litetron_1000026_0_LTRX",
   "1000027": "DIN_1000027_0_DIN",
   "1000028": "Eureka_1000028_0_ET",
+<<<<<<< HEAD
   "1000029": "Ethereum_1000029_0_ETH",
+=======
+>>>>>>> dev2019
   "1000030": "Evertell_1000030_0_EVR",
   "1000031": "ForoMarketers_1000031_0_FMKT",
   "1000032": "EMG_1000032_0_EMG",
   "1000033": "Food_1000033_0_FOOD",
   "1000034": "ZTron_1000034_0_ZTN",
   "1000035": "MishimaCoin_1000035_0_PHAN",
+<<<<<<< HEAD
   "1000036": "TRONBITCOIN_1000036_0_TBTC",
   "1000037": "BlackBusinessCoin_1000037_0_BBC",
   "1000038": "BlackDollar_1000038_0_BLKD",
@@ -44,6 +58,13 @@ export const tokensMap = {
   "1000043": "CoinPrepper_1000043_0_CPPP",
   "1000044": "RealEstateNetworkTron_1000044_0_RENT",
   "1000045": "Alibaba_1000045_0_BABA",
+=======
+  "1000037": "BlackBusinessCoin_1000037_0_BBC",
+  "1000039": "ActionInSense_1000039_0_AST",
+  "1000040": "Shintocoin_1000040_0_SHIN",
+  "1000042": "Blesscoin_1000042_0_BLESS",
+  "1000043": "CoinPrepper_1000043_0_CPPP",
+>>>>>>> dev2019
   "1000046": "BitPound_1000046_0_BPND",
   "1000047": "Hilo_1000047_0_HLO",
   "1000048": "GlobalPropertyClub_1000048_0_GPC",
@@ -57,9 +78,13 @@ export const tokensMap = {
   "1000056": "MHawk_1000056_0_HAWK",
   "1000057": "RELIC_1000057_0_RLC",
   "1000058": "IamRICH_1000058_0_iRICH",
+<<<<<<< HEAD
   "1000059": "ZZZ_1000059_0_ZZZ",
   "1000060": "cosmicEN_1000060_0_CEN",
   "1000061": "Mystery_1000061_0_MYST",
+=======
+  "1000060": "cosmicEN_1000060_0_CEN",
+>>>>>>> dev2019
   "1000062": "Diamond_1000062_0_DMD",
   "1000063": "PiedPiperCoin_1000063_0_PPC",
   "1000064": "TLCOIN_1000064_0_TLC",
@@ -70,11 +95,17 @@ export const tokensMap = {
   "1000069": "ThoreExchange_1000069_0_THE",
   "1000070": "Deliveron_1000070_0_DLN",
   "1000071": "Thorecash_1000071_0_TCH",
+<<<<<<< HEAD
   "1000072": "Decentraland_1000072_0_MANA",
   "1000073": "AlphaMineSuperCorporation_1000073_0_AMSC",
   "1000074": "TRONIX_1000074_0_TRX",
   "1000075": "Dust_1000075_0_DUST",
   "1000076": "TrumpCoin_1000076_0_TRUMP",
+=======
+  "1000073": "AlphaMineSuperCorporation_1000073_0_AMSC",
+  "1000074": "TRONIX_1000074_0_TRX",
+  "1000075": "Dust_1000075_0_DUST",
+>>>>>>> dev2019
   "1000077": "PornToken_1000077_0_PT",
   "1000078": "Hello_1000078_0_Hello",
   "1000079": "HoweyCoin_1000079_0_HYC",
@@ -83,7 +114,10 @@ export const tokensMap = {
   "1000082": "VBucks_1000082_0_VB",
   "1000083": "BullToken_1000083_0_BULL",
   "1000084": "AAA_1000084_0_AAA",
+<<<<<<< HEAD
   "1000085": "ACE_1000085_0_ACE",
+=======
+>>>>>>> dev2019
   "1000086": "Perogies_1000086_0_PEROG",
   "1000087": "GRUB_1000087_0_UDOG",
   "1000088": "ATRON_1000088_0_token",
@@ -92,6 +126,7 @@ export const tokensMap = {
   "1000091": "CoxxxCoin_1000091_0_CXC",
   "1000092": "Luck_1000092_0_Luck",
   "1000093": "OnePiece_1000093_0_OPC",
+<<<<<<< HEAD
   "1000094": "CheapAirGoCoin_1000094_0_CAGC",
   "1000095": "McAfeeToken_1000095_0_MAT",
   "1000096": "URUNIT_1000096_0_URUN",
@@ -99,15 +134,24 @@ export const tokensMap = {
   "1000098": "ZTX_1000098_0_ZTX",
   "1000099": "ThankYou_1000099_0_THX",
   "1000100": "Thanks_1000100_0_THX",
+=======
+  "1000096": "URUNIT_1000096_0_URUN",
+  "1000097": "AirDropTicket_1000097_0_ADT",
+  "1000098": "ZTX_1000098_0_ZTX",
+>>>>>>> dev2019
   "1000101": "Respect_1000101_0_RP",
   "1000102": "RecepTayyipErdogan_1000102_0_RTE",
   "1000103": "Livesoccer_1000103_0_LSC",
   "1000104": "BlizzardBucks_1000104_0_WoW",
   "1000105": "VERSUS_1000105_0_VSU",
   "1000106": "BLiXbit_1000106_0_BLiX",
+<<<<<<< HEAD
   "1000107": "TRXSeed_1000107_0_TRXS",
   "1000108": "TRXHealthcare_1000108_0_TRXH",
   "1000109": "Amazon_1000109_0_AMZN",
+=======
+  "1000108": "TRXHealthcare_1000108_0_TRXH",
+>>>>>>> dev2019
   "1000110": "TEFOOD_1000110_0_TFD",
   "1000111": "GoodVibesDonation_1000111_0_GVD",
   "1000112": "Quetzal_1000112_0_GQT",
@@ -124,9 +168,12 @@ export const tokensMap = {
   "1000123": "OMEGANINE_1000123_0_OMNI",
   "1000124": "KRYPTONITETOKEN_1000124_0_KRYPT",
   "1000125": "GameofTrons_1000125_0_GoT",
+<<<<<<< HEAD
   "1000126": "TronPower_1000126_0_TRXP",
   "1000127": "TRON_1000127_0_token",
   "1000128": "eBay_1000128_0_EBAY",
+=======
+>>>>>>> dev2019
   "1000129": "STEPPING_1000129_0_STEP",
   "1000130": "OXYCOIN_1000130_0_OXY",
   "1000131": "TronEurope_1000131_0_TRXE",
@@ -135,7 +182,10 @@ export const tokensMap = {
   "1000134": "GildedGold_1000134_0_GILD",
   "1000135": "Flower_1000135_0_FLWR",
   "1000136": "WHALE_1000136_0_WHALE",
+<<<<<<< HEAD
   "1000137": "LUCK_1000137_0_LUCK",
+=======
+>>>>>>> dev2019
   "1000138": "VOTE_1000138_0_VOTE",
   "1000139": "BurnThoseTRX_1000139_0_BTT",
   "1000140": "BettingSystemTest_1000140_0_BST",
@@ -148,12 +198,18 @@ export const tokensMap = {
   "1000147": "MakeMeMillionaire_1000147_0_MMM",
   "1000148": "Fay_1000148_0_FAY",
   "1000149": "LooniX_1000149_0_LIX",
+<<<<<<< HEAD
   "1000150": "CRseven_1000150_0_CRsvn",
   "1000151": "ENCOM_1000151_0_ENCOM",
   "1000152": "HELP_1000152_0_HELP",
   "1000153": "LizardX_1000153_0_LZX",
   "1000154": "WTF_1000154_0_WTF",
   "1000155": "BullLiquidLUCK_1000155_0_BLL",
+=======
+  "1000152": "HELP_1000152_0_HELP",
+  "1000153": "LizardX_1000153_0_LZX",
+  "1000154": "WTF_1000154_0_WTF",
+>>>>>>> dev2019
   "1000156": "PUBT_1000156_0_BTK",
   "1000157": "SunArtToken_1000157_0_SATrn",
   "1000158": "TronsKid_1000158_0_Trxk",
@@ -163,7 +219,10 @@ export const tokensMap = {
   "1000162": "TRONHOOD_1000162_0_TRXH",
   "1000163": "JPMorgan_1000163_0_JPM",
   "1000164": "Rely_1000164_0_RLY",
+<<<<<<< HEAD
   "1000165": "Skypeople_1000165_0_sky",
+=======
+>>>>>>> dev2019
   "1000166": "CryptoChain_1000166_0_CCT",
   "1000167": "GVX_1000167_0_GVX",
   "1000168": "abc_1000168_0_xvgmt",
@@ -177,10 +236,14 @@ export const tokensMap = {
   "1000176": "ofoBike_1000176_0_ofo",
   "1000177": "CauseAidan_1000177_0_AIDAN",
   "1000178": "Dreamcoin_1000178_0_DRM",
+<<<<<<< HEAD
   "1000179": "IDEA_1000179_0_IDEA",
   "1000180": "LGBT_1000180_0_LGBT",
   "1000181": "KrMaToken_1000181_0_KrMa",
   "1000182": "DICE_1000182_0_DICE",
+=======
+  "1000181": "KrMaToken_1000181_0_KrMa",
+>>>>>>> dev2019
   "1000183": "ZYON_1000183_0_ZYX",
   "1000184": "KlassicCarParts_1000184_0_KCP",
   "1000185": "MonsterTokens_1000185_0_MT",
@@ -193,7 +256,10 @@ export const tokensMap = {
   "1000192": "UMBRA_1000192_0_DARK",
   "1000193": "FacebookCredits_1000193_0_FBC",
   "1000194": "Herpes_1000194_0_HERP",
+<<<<<<< HEAD
   "1000195": "FacebookExchange_1000195_0_FBX",
+=======
+>>>>>>> dev2019
   "1000196": "CryptoQuarryCoin_1000196_0_CQC",
   "1000197": "Origami_1000197_0_ORG",
   "1000198": "BrewMastersToken_1000198_0_BMT",
@@ -204,6 +270,7 @@ export const tokensMap = {
   "1000203": "TeamTronics_1000203_0_TMT",
   "1000204": "TRONIUM_1000204_0_TRM",
   "1000205": "DJ$_1000205_0_DJ$",
+<<<<<<< HEAD
   "1000206": "amatron_1000206_0_ATRX",
   "1000207": "TRXrewards_1000207_0_TRXR",
   "1000208": "SUNcoin_1000208_0_SUN",
@@ -211,13 +278,22 @@ export const tokensMap = {
   "1000210": "SimpleToken_1000210_0_STK",
   "1000211": "CollegeFund_1000211_0_CF",
   "1000212": "NintendoCoin_1000212_0_TNIN",
+=======
+  "1000207": "TRXrewards_1000207_0_TRXR",
+  "1000209": "WiTronix_1000209_0_WIT",
+  "1000210": "SimpleToken_1000210_0_STK",
+  "1000211": "CollegeFund_1000211_0_CF",
+>>>>>>> dev2019
   "1000213": "Leaf_1000213_0_LEAF",
   "1000214": "TRXFitness_1000214_0_TRXF",
   "1000215": "FilmFestivalCoin_1000215_0_FFC",
   "1000216": "BRANCH_1000216_0_FRUIT",
+<<<<<<< HEAD
   "1000217": "Hacker_1000217_0_HKR",
   "1000218": "HappyBirthday_1000218_0_HB",
   "1000219": "GoodLuck_1000219_0_GL",
+=======
+>>>>>>> dev2019
   "1000220": "USMCvet_1000220_0_USA",
   "1000221": "SwissTRX_1000221_0_STRX",
   "1000222": "SiliconBeach_1000222_0_SBC",
@@ -239,7 +315,10 @@ export const tokensMap = {
   "1000238": "HighFive_1000238_0_HF",
   "1000239": "TRAN_1000239_0_ECO",
   "1000240": "MedalCeremony_1000240_0_MEDAL",
+<<<<<<< HEAD
   "1000241": "seed_1000241_0_SEED",
+=======
+>>>>>>> dev2019
   "1000242": "Seed_1000242_0_Seed",
   "1000243": "ThumbsUp_1000243_0_Y",
   "1000244": "FullCountAtBat_1000244_0_FCB",
@@ -248,7 +327,10 @@ export const tokensMap = {
   "1000247": "WhoreCoin_1000247_0_ZWC",
   "1000248": "LOVE_1000248_0_LOVE",
   "1000249": "AUSTIN_1000249_0_ATX",
+<<<<<<< HEAD
   "1000250": "hope_1000250_0_HP",
+=======
+>>>>>>> dev2019
   "1000251": "CyberTron_1000251_0_CTRX",
   "1000252": "SlEED_1000252_0_SEED",
   "1000253": "GrantforEducation_1000253_0_GRA",
@@ -257,18 +339,26 @@ export const tokensMap = {
   "1000256": "TRONCASH_1000256_0_TRXC",
   "1000257": "Seara_1000257_0_Seara",
   "1000258": "zOilMarineGroup_1000258_0_OMGt",
+<<<<<<< HEAD
   "1000259": "USDT_1000259_0_USDT",
+=======
+>>>>>>> dev2019
   "1000260": "EURT_1000260_0_EURT",
   "1000261": "CNYT_1000261_0_CNYT",
   "1000262": "GBPT_1000262_0_GBPT",
   "1000263": "JPYT_1000263_0_JPYT",
   "1000264": "KRWT_1000264_0_KRWT",
   "1000265": "INRT_1000265_0_INRT",
+<<<<<<< HEAD
   "1000266": "OakleighBuilders_1000266_0_OKB",
   "1000267": "ZAX_1000267_0_ZAX",
   "1000268": "PEACE_1000268_0_PEACE",
   "1000269": "KARMA_1000269_0_KARMA",
   "1000270": "GIFT_1000270_0_GIFT",
+=======
+  "1000267": "ZAX_1000267_0_ZAX",
+  "1000268": "PEACE_1000268_0_PEACE",
+>>>>>>> dev2019
   "1000271": "GURU_1000271_0_GURU",
   "1000272": "LOGIC_1000272_0_LOGIC",
   "1000273": "LIKE_1000273_0_LIKE",
@@ -284,7 +374,10 @@ export const tokensMap = {
   "1000283": "Heart_1000283_0_HEART",
   "1000284": "HEART_1000284_0_HEART",
   "1000285": "euBRASIL_1000285_0_Real",
+<<<<<<< HEAD
   "1000286": "OBAMA_1000286_0_OBAMA",
+=======
+>>>>>>> dev2019
   "1000287": "TRXstardogTRX_1000287_0_STRDG",
   "1000288": "RickAndMortyCoin_1000288_0_zRAM",
   "1000289": "DFWTOKEN_1000289_0_DFW",
@@ -299,6 +392,7 @@ export const tokensMap = {
   "1000298": "Scientology_1000298_0_LRON",
   "1000299": "ZZZDOGETRXZZ_1000299_0_TRXDg",
   "1000300": "DubaiPAY_1000300_0_DPAY",
+<<<<<<< HEAD
   "1000301": "$EED_1000301_0_$EED",
   "1000302": "WorldOfWarcraft_1000302_0_WOW",
   "1000303": "Fortnite_1000303_0_FORT",
@@ -310,6 +404,13 @@ export const tokensMap = {
   "1000309": "Peppermill_1000309_0_MILL",
   "1000310": "TronMinerCoin_1000310_0_TMC",
   "1000311": "VIP_1000311_0_VIP",
+=======
+  "1000302": "WorldOfWarcraft_1000302_0_WOW",
+  "1000306": "IntergalacticSilver_1000306_0_IGS",
+  "1000307": "TronLoot_1000307_0_LOOT",
+  "1000309": "Peppermill_1000309_0_MILL",
+  "1000310": "TronMinerCoin_1000310_0_TMC",
+>>>>>>> dev2019
   "1000312": "SHALOM_1000312_0_SHALOM",
   "1000313": "BLOCK_1000313_0_BLOCK",
   "1000314": "TronMason_1000314_0_FREE",
@@ -327,7 +428,10 @@ export const tokensMap = {
   "1000326": "WortUndIdeenreich_1000326_0_IDEEn",
   "1000327": "KIDsFuture_1000327_0_KIDs",
   "1000328": "TRs_1000328_0_TRs",
+<<<<<<< HEAD
   "1000329": "UFCcoin_1000329_0_UFC",
+=======
+>>>>>>> dev2019
   "1000330": "VIPs_1000330_0_VIP",
   "1000331": "Burger_1000331_0_BGT",
   "1000332": "Hop_1000332_0_HOP",
@@ -336,22 +440,32 @@ export const tokensMap = {
   "1000335": "SexParty_1000335_0_SEX",
   "1000336": "TronWatch_1000336_0_TRXW",
   "1000337": "NUGGET_1000337_0_NUGT",
+<<<<<<< HEAD
   "1000338": "RestEatWatch_1000338_0_REW",
+=======
+>>>>>>> dev2019
   "1000339": "TREX_1000339_0_TREX",
   "1000340": "Credits_1000340_0_CDX",
   "1000341": "BurnNote_1000341_0_BURN",
   "1000342": "Monet_1000342_0_Monet",
   "1000343": "Pixelnerd_1000343_0_PNERD",
   "1000344": "Trumputin_1000344_0_TP",
+<<<<<<< HEAD
   "1000345": "ShitCoinClassic_1000345_0_SCC",
   "1000346": "TRXGAMECOIN_1000346_0_TGC",
   "1000347": "PornHub_1000347_0_SEXY",
+=======
+  "1000346": "TRXGAMECOIN_1000346_0_TGC",
+>>>>>>> dev2019
   "1000348": "Renta_1000348_0_RENTA",
   "1000349": "NoneOfOurBusiness_1000349_0_NOOB",
   "1000350": "StudentDreams_1000350_0_STU",
   "1000351": "TronTreasure_1000351_0_JEWEL",
   "1000352": "TRONSWAP_1000352_0_TRSW",
+<<<<<<< HEAD
   "1000353": "WWGoneWGA_1000353_0_Q",
+=======
+>>>>>>> dev2019
   "1000354": "BOLDMANCAPITAL_1000354_0_BOLD",
   "1000355": "DiamondTex_1000355_0_DTX",
   "1000356": "TICKET_1000356_0_TIC",
@@ -360,24 +474,36 @@ export const tokensMap = {
   "1000359": "Honey_1000359_0_Bee",
   "1000360": "SeinenKyougikai_1000360_0_SNKG",
   "1000361": "Cricket_1000361_0_CRIC",
+<<<<<<< HEAD
   "1000362": "Qanon_1000362_0_Q",
+=======
+>>>>>>> dev2019
   "1000363": "Mulligan_1000363_0_MULG",
   "1000364": "Satoshi_1000364_0_SATO",
   "1000365": "DrillCash_1000365_0_DRILL",
   "1000366": "LiveNodesNetwork_1000366_0_LNNET",
   "1000367": "OmiseGO_1000367_0_OMG",
   "1000368": "Polymath_1000368_0_POLY",
+<<<<<<< HEAD
   "1000369": "Bancor_1000369_0_BNT",
   "1000370": "Golem_1000370_0_GNT",
   "1000371": "BAT_1000371_0_BAT",
   "1000372": "StatusNetwork_1000372_0_SNT",
   "1000373": "ZRX_1000373_0_ZRX",
+=======
+  "1000370": "Golem_1000370_0_GNT",
+  "1000371": "BAT_1000371_0_BAT",
+  "1000372": "StatusNetwork_1000372_0_SNT",
+>>>>>>> dev2019
   "1000374": "AION_1000374_0_AION",
   "1000375": "Salvatio_1000375_0_SVT",
   "1000376": "FunFair_1000376_0_FUN",
   "1000377": "Augur_1000377_0_REP",
+<<<<<<< HEAD
   "1000378": "Aeternity_1000378_0_AE",
   "1000379": "Bytom_1000379_0_BTM",
+=======
+>>>>>>> dev2019
   "1000380": "BURN_1000380_0_BURN",
   "1000381": "PabloEscobar_1000381_0_PE",
   "1000382": "$TRXLottery_1000382_0_TRXL",
@@ -388,6 +514,7 @@ export const tokensMap = {
   "1000387": "Schmeckles_1000387_0_SHM",
   "1000388": "MundoVapoCoin_1000388_0_VAPO",
   "1000389": "SendItCoin_1000389_0_Sic",
+<<<<<<< HEAD
   "1000390": "TRXSecurityToken_1000390_0_TRXS",
   "1000391": "IBIZALUXURY_1000391_0_IBZ",
   "1000392": "PLAYSTATION_1000392_0_PST",
@@ -395,11 +522,18 @@ export const tokensMap = {
   "1000394": "swissALPS_1000394_0_tSAM",
   "1000395": "SocialMedia_1000395_0_MEDIA",
   "1000396": "Messenger_1000396_0_msg",
+=======
+  "1000391": "IBIZALUXURY_1000391_0_IBZ",
+  "1000392": "PLAYSTATION_1000392_0_PST",
+  "1000393": "FakeNews_1000393_0_FALSE",
+  "1000395": "SocialMedia_1000395_0_MEDIA",
+>>>>>>> dev2019
   "1000397": "MovieCoin_1000397_0_MOVIE",
   "1000398": "Kebab_1000398_0_KBB",
   "1000399": "Cookies_1000399_0_Coo",
   "1000400": "Taxi_1000400_0_TAX",
   "1000401": "EisBall_1000401_0_EIS",
+<<<<<<< HEAD
   "1000402": "PayPal_1000402_0_PYPL",
   "1000403": "BEATs_1000403_0_BEAT",
   "1000404": "TogetherWeStand_1000404_0_TWS",
@@ -416,6 +550,18 @@ export const tokensMap = {
   "1000415": "SWAG_1000415_0_SWAG",
   "1000416": "fErMaX_1000416_0_fMX",
   "1000417": "UBER_1000417_0_UBER",
+=======
+  "1000403": "BEATs_1000403_0_BEAT",
+  "1000404": "TogetherWeStand_1000404_0_TWS",
+  "1000406": "REcoin_1000406_0_RE",
+  "1000407": "ProjectEarthCoin_1000407_0_PEC",
+  "1000409": "NRA_1000409_0_NRA",
+  "1000411": "WinnieThePooh_1000411_0_POOH",
+  "1000412": "Bikes_1000412_0_BIK",
+  "1000413": "Drink_1000413_0_DRK",
+  "1000415": "SWAG_1000415_0_SWAG",
+  "1000416": "fErMaX_1000416_0_fMX",
+>>>>>>> dev2019
   "1000418": "BullionTroyGrain_1000418_0_BTG",
   "1000419": "RoadStar_1000419_0_STAR",
   "1000420": "STAR_1000420_0_STX",
@@ -430,6 +576,7 @@ export const tokensMap = {
   "1000429": "Karlsruher_1000429_0_KARL",
   "1000430": "BOOK_1000430_0_WRT",
   "1000431": "TronTom_1000431_0_TRT",
+<<<<<<< HEAD
   "1000432": "$JcSkyHighTreeService$_1000432_0_$Tree$",
   "1000433": "TDEX_1000433_0_TDEX",
   "1000434": "Time_1000434_0_TIC",
@@ -437,6 +584,12 @@ export const tokensMap = {
   "1000436": "UnitedStatesofAmerica_1000436_0_USA",
   "1000437": "ZenSayCoin_1000437_0_ZNSY",
   "1000438": "TronLitecoin_1000438_0_TLTC",
+=======
+  "1000433": "TDEX_1000433_0_TDEX",
+  "1000434": "Time_1000434_0_TIC",
+  "1000435": "BUTTJUICE_1000435_0_BUTT",
+  "1000437": "ZenSayCoin_1000437_0_ZNSY",
+>>>>>>> dev2019
   "1000439": "MedicalInformation_1000439_0_MI",
   "1000440": "TombishMusic_1000440_0_BISH",
   "1000441": "TronUkPay_1000441_0_TUP",
@@ -457,6 +610,7 @@ export const tokensMap = {
   "1000456": "Water_1000456_0_WTT",
   "1000457": "WonderWomen_1000457_0_REB",
   "1000458": "WonderWoman_1000458_0_WoW",
+<<<<<<< HEAD
   "1000459": "TeslaCoin_1000459_0_TESLA",
   "1000460": "TimToken_1000460_0_Tim",
   "1000461": "TillToken_1000461_0_Till",
@@ -465,6 +619,12 @@ export const tokensMap = {
   "1000464": "NERD_1000464_0_NERD",
   "1000465": "CryptocurrencyOrganizer_1000465_0_CO",
   "1000466": "TronEnergy_1000466_0_TronE",
+=======
+  "1000460": "TimToken_1000460_0_Tim",
+  "1000463": "BullionCoin_1000463_0_XBC",
+  "1000464": "NERD_1000464_0_NERD",
+  "1000465": "CryptocurrencyOrganizer_1000465_0_CO",
+>>>>>>> dev2019
   "1000467": "DICKS_1000467_0_DICK",
   "1000468": "FUTURE_1000468_0_FTR",
   "1000469": "SEX_1000469_0_SEX",
@@ -472,10 +632,15 @@ export const tokensMap = {
   "1000471": "TronBank_1000471_0_BANK",
   "1000472": "BRGR_1000472_0_BRGR",
   "1000473": "Melonen_1000473_0_MEO",
+<<<<<<< HEAD
   "1000474": "BONER_1000474_0_BNR",
   "1000475": "TronWeeklyJournal_1000475_0_TRWJ",
   "1000476": "RealWorldGaming_1000476_0_RWG",
   "1000477": "bittorrent_1000477_0_",
+=======
+  "1000475": "TronWeeklyJournal_1000475_0_TRWJ",
+  "1000476": "RealWorldGaming_1000476_0_RWG",
+>>>>>>> dev2019
   "1000478": "TRXNodeTest_1000478_0_TNT",
   "1000479": "OPERON_1000479_0_ORX",
   "1000480": "GOLD_1000480_0_GOLD",
@@ -489,9 +654,13 @@ export const tokensMap = {
   "1000488": "Vincoloelettronico_1000488_0_VinE",
   "1000489": "Vessel_1000489_0_HIN",
   "1000490": "Kiss_1000490_0_KISS",
+<<<<<<< HEAD
   "1000491": "BitTorrent_1000491_0_BTT",
   "1000492": "INVESTCrypto_1000492_0_INV",
   "1000493": "Pornhub_1000493_0_PHB",
+=======
+  "1000492": "INVESTCrypto_1000492_0_INV",
+>>>>>>> dev2019
   "1000494": "Durex_1000494_0_drx",
   "1000495": "DragonBallCoin_1000495_0_DBC",
   "1000496": "ArsenalFan_1000496_0_ASB",
@@ -506,6 +675,7 @@ export const tokensMap = {
   "1000505": "DadBod_1000505_0_DBOD",
   "1000506": "CHANGE_1000506_0_CHNG",
   "1000507": "BestFriendsForever_1000507_0_BFF",
+<<<<<<< HEAD
   "1000508": "TRONETHEREUM_1000508_0_TEHT",
   "1000509": "TRONAUCTIONS_1000509_0_TAS",
   "1000510": "BAGGI_1000510_0_bgi",
@@ -513,13 +683,22 @@ export const tokensMap = {
   "1000512": "TRONBITCOINGOLD_1000512_0_TBTG",
   "1000513": "Tronpix_1000513_0_PIX",
   "1000514": "GOD_1000514_0_GOD",
+=======
+  "1000509": "TRONAUCTIONS_1000509_0_TAS",
+  "1000510": "BAGGI_1000510_0_bgi",
+  "1000512": "TRONBITCOINGOLD_1000512_0_TBTG",
+  "1000513": "Tronpix_1000513_0_PIX",
+>>>>>>> dev2019
   "1000515": "TSPElite_1000515_0_TSPE",
   "1000516": "STOCK_1000516_0_STOCK",
   "1000517": "FUD_1000517_0_FUD",
   "1000518": "SuckerPunch_1000518_0_SUCK",
   "1000519": "dashboardclub_1000519_0_DBCT",
+<<<<<<< HEAD
   "1000520": "binance_1000520_0_BNC",
   "1000521": "GoodLuckToken_1000521_0_GLT",
+=======
+>>>>>>> dev2019
   "1000522": "ActivEightCoin_1000522_0_Activ",
   "1000523": "SHARES_1000523_0_SHRS",
   "1000524": "LuckyPenny_1000524_0_LPX",
@@ -538,9 +717,12 @@ export const tokensMap = {
   "1000537": "TRXMonthlyLottery_1000537_0_TRXML",
   "1000538": "YEEZY_1000538_0_YEZ",
   "1000539": "Coin_1000539_0_CASH",
+<<<<<<< HEAD
   "1000540": "WeChat_1000540_0_WCT",
   "1000541": "RingCoin_1000541_0_RC",
   "1000542": "FomoThreeD_1000542_0_FOM",
+=======
+>>>>>>> dev2019
   "1000543": "DISLIKE_1000543_0_DSK",
   "1000544": "dislike_1000544_0_DLE",
   "1000545": "JesusLovesYou_1000545_0_JLUV",
@@ -583,27 +765,40 @@ export const tokensMap = {
   "1000582": "tronvietnam_1000582_0_TVN",
   "1000583": "IndoDetik_1000583_0_IDK",
   "1000584": "BTCL_1000584_0_BTCL",
+<<<<<<< HEAD
   "1000585": "Reddit_1000585_0_RDT",
+=======
+>>>>>>> dev2019
   "1000586": "TokenOfAppreciation_1000586_0_TOA",
   "1000587": "Peach_1000587_0_Peach",
   "1000588": "Gemcoin_1000588_0_GEM",
   "1000589": "TimeCube_1000589_0_T&C",
+<<<<<<< HEAD
   "1000590": "BullShitCoin_1000590_0_BSC",
   "1000591": "TRXMoon_1000591_0_TRXM",
   "1000592": "HATE_1000592_0_HATE",
   "1000593": "FuckYou_1000593_0_FU",
+=======
+  "1000592": "HATE_1000592_0_HATE",
+>>>>>>> dev2019
   "1000594": "likes_1000594_0_likes",
   "1000595": "TronSpark_1000595_0_SPARK",
   "1000596": "AftermathIslandsToken_1000596_0_AIT",
   "1000597": "like_1000597_0_like",
+<<<<<<< HEAD
   "1000598": "EthereumClassic_1000598_0_ETC",
+=======
+>>>>>>> dev2019
   "1000599": "TronWan_1000599_0_TRW",
   "1000600": "PyThronX_1000600_0_PTX",
   "1000601": "LoveToken_1000601_0_LVE",
   "1000602": "Dutchcoin_1000602_0_NLD",
   "1000603": "TWEETHEART_1000603_0_XOXO",
   "1000604": "TheLOneCrewToken_1000604_0_LOCT",
+<<<<<<< HEAD
   "1000605": "nana_1000605_0_NANA",
+=======
+>>>>>>> dev2019
   "1000606": "Sephiroth_1000606_0_SEPH",
   "1000607": "gift_1000607_0_gift",
   "1000608": "guru_1000608_0_guru",
@@ -616,6 +811,7 @@ export const tokensMap = {
   "1000615": "cric_1000615_0_cric",
   "1000616": "CARE_1000616_0_CARE",
   "1000617": "care_1000617_0_care",
+<<<<<<< HEAD
   "1000618": "DEXX_1000618_0_DEXX",
   "1000619": "Prayer_1000619_0_PRAY",
   "1000620": "OMG_1000620_0_OMG",
@@ -623,6 +819,12 @@ export const tokensMap = {
   "1000622": "Cool_1000622_0_Cool",
   "1000623": "GoSeedMe_1000623_0_GSM",
   "1000624": "DogCoin_1000624_0_DC",
+=======
+  "1000619": "Prayer_1000619_0_PRAY",
+  "1000620": "OMG_1000620_0_OMG",
+  "1000621": "LMAO_1000621_0_LMAO",
+  "1000623": "GoSeedMe_1000623_0_GSM",
+>>>>>>> dev2019
   "1000625": "ArcadiaTron_1000625_0_ACT",
   "1000626": "HappyCoin_1000626_0_XXX",
   "1000627": "Forkids_1000627_0_Kids",
@@ -630,26 +832,38 @@ export const tokensMap = {
   "1000629": "CITYUPTAKESubToken_1000629_0_BAGS",
   "1000630": "Unicorn_1000630_0_UNC",
   "1000631": "GOAT_1000631_0_GOAT",
+<<<<<<< HEAD
   "1000632": "GTC_1000632_0_GTC",
   "1000633": "EGG_1000633_0_EGG",
   "1000634": "EXP_1000634_0_EXP",
   "1000635": "TRONSCAN_1000635_0_TSN",
+=======
+  "1000633": "EGG_1000633_0_EGG",
+  "1000634": "EXP_1000634_0_EXP",
+>>>>>>> dev2019
   "1000636": "ModernSportsGroup_1000636_0_MSG",
   "1000637": "JaychouToken_1000637_0_JAY",
   "1000638": "uTorrent_1000638_0_uTor",
   "1000639": "DigitalTelecom_1000639_0_DiTe",
   "1000640": "DigitalNICE_1000640_0_DNC",
+<<<<<<< HEAD
   "1000641": "SexTronsPartys_1000641_0_STP",
+=======
+>>>>>>> dev2019
   "1000642": "DoYourOwnResearch_1000642_0_DYOR",
   "1000643": "TRONRIPPLE_1000643_0_TXRP",
   "1000644": "Air_1000644_0_AIR",
   "1000645": "TRXTwitter_1000645_0_Tweet",
+<<<<<<< HEAD
   "1000646": "TRONEOS_1000646_0_TEOS",
   "1000647": "TRONSTELLAR_1000647_0_TXLM",
   "1000648": "UpVote_1000648_0_UP",
   "1000649": "DownVote_1000649_0_DOWN",
   "1000650": "%ATM_1000650_0_ATM",
   "1000651": "TRONGRID_1000651_0_GRID",
+=======
+  "1000649": "DownVote_1000649_0_DOWN",
+>>>>>>> dev2019
   "1000652": "dislikes_1000652_0_dlike",
   "1000653": "Likes_1000653_0_Likes",
   "1000654": "Dislikes_1000654_0_Dlike",
@@ -663,16 +877,23 @@ export const tokensMap = {
   "1000662": "art_1000662_0_art",
   "1000663": "Dekaay_1000663_0_Deka",
   "1000664": "CryptoTravels_1000664_0_ZcT",
+<<<<<<< HEAD
   "1000665": "ZOE_1000665_0_ZOE",
   "1000666": "ShitCoinPlatinum_1000666_0_SCP",
   "1000667": "McDonaldsCoin_1000667_0_MCD",
+=======
+  "1000666": "ShitCoinPlatinum_1000666_0_SCP",
+>>>>>>> dev2019
   "1000668": "ShareToken_1000668_0_SHR",
   "1000669": "SHR_1000669_0_SHR",
   "1000670": "RevShare_1000670_0_REV",
   "1000671": "EdX_1000671_0_EdX",
   "1000672": "LAMBO_1000672_0_LAMBO",
   "1000673": "Dollar_1000673_0_USD",
+<<<<<<< HEAD
   "1000674": "Euro_1000674_0_EUR",
+=======
+>>>>>>> dev2019
   "1000675": "1MILLION$TRX_1000675_0_TMT",
   "1000676": "FutureShock_1000676_0_FS",
   "1000677": "Sushi_1000677_0_Sushi",
@@ -690,13 +911,19 @@ export const tokensMap = {
   "1000689": "TRONBITCOINBAG_1000689_0_TBTCB",
   "1000690": "JesusDiedForYou_1000690_0_JDFU",
   "1000691": "BelieveInJesus_1000691_0_BIJ",
+<<<<<<< HEAD
   "1000692": "1Million-TRX-Lottery_1000692_0_Lotto",
+=======
+>>>>>>> dev2019
   "1000693": "Rockstar_1000693_0_ROCK",
   "1000694": "CryptoGamesToken_1000694_0_CGT",
   "1000695": "SpaceBucks_1000695_0_SXB",
   "1000696": "TronDisasterReliefToken_1000696_0_DRT",
   "1000697": "DITN_1000697_0_DITN",
+<<<<<<< HEAD
   "1000698": "Bittorrent_1000698_0_BITT",
+=======
+>>>>>>> dev2019
   "1000699": "utorrent_1000699_0_uTorr",
   "1000700": "ecotron_1000700_0_ect",
   "1000701": "CommunityCoin_1000701_0_CMC",
@@ -704,8 +931,11 @@ export const tokensMap = {
   "1000703": "Egolom_1000703_0_EGO",
   "1000704": "ZenCoin_1000704_0_ZEN",
   "1000705": "PARTY_1000705_0_PARTY",
+<<<<<<< HEAD
   "1000706": "Cosmos_1000706_0_COS",
   "1000707": "DonaldTrumpCoin_1000707_0_DTC",
+=======
+>>>>>>> dev2019
   "1000708": "Sadaqa_1000708_0_Sadaqa",
   "1000709": "Alivio_1000709_0_ALIV",
   "1000710": "LaughingMyAssOff_1000710_0_LMAO",
@@ -713,12 +943,18 @@ export const tokensMap = {
   "1000712": "DigiTRON_1000712_0_DTN",
   "1000713": "CryptoGameToken_1000713_0_CGT1",
   "1000714": "BadHairDay_1000714_0_BHD",
+<<<<<<< HEAD
   "1000715": "TRXPlanet_1000715_0_TRXPL",
+=======
+>>>>>>> dev2019
   "1000716": "TTFM_1000716_0_TTFM",
   "1000717": "Cybertron_1000717_0_CTRX",
   "1000718": "RCC_1000718_0_RCC",
   "1000719": "CryptoCardiB_1000719_0_Cardi",
+<<<<<<< HEAD
   "1000720": "TGC_1000720_0_TGC",
+=======
+>>>>>>> dev2019
   "1000721": "Pandora_1000721_0_PAN",
   "1000722": "Detschland_1000722_0_Euro",
   "1000723": "Datarie_1000723_0_GCS",
@@ -726,7 +962,10 @@ export const tokensMap = {
   "1000725": "IntergalacticGold_1000725_0_igg",
   "1000726": "SugarCaneCoin_1000726_0_SCC",
   "1000727": "TRONCHAT_1000727_0_TCHAT",
+<<<<<<< HEAD
   "1000728": "igg_1000728_0_igg",
+=======
+>>>>>>> dev2019
   "1000729": "Seedit_1000729_0_tip",
   "1000730": "CoffeeTRX_1000730_0_Cfee",
   "1000731": "GoSeedit_1000731_0_SEED",
@@ -736,15 +975,22 @@ export const tokensMap = {
   "1000735": "Igg_1000735_0_Igg",
   "1000736": "iGG_1000736_0_iGG",
   "1000737": "IgG_1000737_0_IgG",
+<<<<<<< HEAD
   "1000738": "lGG_1000738_0_lGG",
+=======
+>>>>>>> dev2019
   "1000739": "iGg_1000739_0_iGg",
   "1000740": "igG_1000740_0_igG",
   "1000741": "ag_1000741_0_ag",
   "1000742": "PerfesserCoin_1000742_0_PRF",
+<<<<<<< HEAD
   "1000743": "MacCoin_1000743_0_Mac",
   "1000744": "NBACoin_1000744_0_NBA",
   "1000745": "Bithumb_1000745_0_BTM",
   "1000746": "HuobiToken_1000746_0_HT",
+=======
+  "1000745": "Bithumb_1000745_0_BTM",
+>>>>>>> dev2019
   "1000747": "ZAKAT_1000747_0_ZAKAT",
   "1000748": "IWillBuyUrSEEDReadDescriptionNOW_1000748_0_BUYsD",
   "1000749": "VISIONNINE_1000749_0_V9",
@@ -784,7 +1030,10 @@ export const tokensMap = {
   "1000783": "LittleLeprechaun_1000783_0_LLEP",
   "1000784": "BabyLeprechaun_1000784_0_BLEP",
   "1000785": "LuckyLeprechaun_1000785_0_LEPL",
+<<<<<<< HEAD
   "1000786": "Huangcecollege_1000786_0_HC",
+=======
+>>>>>>> dev2019
   "1000787": "BBOK_1000787_0_BBOK",
   "1000788": "TronGamble_1000788_0_TGB",
   "1000789": "AirdropTestToken_1000789_0_ATT",
@@ -798,6 +1047,7 @@ export const tokensMap = {
   "1000797": "Support_1000797_0_SUP",
   "1000798": "HANDSHAKE_1000798_0_HANDSHAKE",
   "1000799": "IGGP_1000799_0_IGGP",
+<<<<<<< HEAD
   "1000800": "Java_1000800_0_JAVA",
   "1000801": "Python_1000801_0_PYTH",
   "1000802": "EthLend_1000802_0_LEND",
@@ -808,16 +1058,27 @@ export const tokensMap = {
   "1000807": "FirstBlood_1000807_0_FST",
   "1000808": "robocoin_1000808_0_robo",
   "1000809": "EnjinCoin_1000809_0_ENJ",
+=======
+  "1000803": "Linux_1000803_0_LNX",
+  "1000806": "ROBOCOIN_1000806_0_ROBO",
+  "1000808": "robocoin_1000808_0_robo",
+>>>>>>> dev2019
   "1000810": "Civic_1000810_0_CVC",
   "1000811": "RoboQuarter_1000811_0_RbQ",
   "1000812": "Korea_1000812_0_KOR",
   "1000813": "Whale_1000813_0_Whale",
+<<<<<<< HEAD
   "1000814": "MGG_1000814_0_MGG",
+=======
+>>>>>>> dev2019
   "1000815": "Altice_1000815_0_AUSA",
   "1000816": "ENND_1000816_0_ENND",
   "1000817": "COIN_1000817_0_COIN",
   "1000818": "AGG_1000818_0_AGG",
+<<<<<<< HEAD
   "1000819": "AI_1000819_0_AI",
+=======
+>>>>>>> dev2019
   "1000820": "mmmmm_1000820_0_mmm",
   "1000821": "James_1000821_0_king",
   "1000822": "TEG_1000822_0_TEG",
@@ -831,7 +1092,10 @@ export const tokensMap = {
   "1000830": "Carbonite_1000830_0_Car",
   "1000831": "Rain_1000831_0_Rain",
   "1000832": "RAIN_1000832_0_RAIN",
+<<<<<<< HEAD
   "1000833": "Alipay_1000833_0_ALP",
+=======
+>>>>>>> dev2019
   "1000834": "ZZZZZB_1000834_0_ZZB",
   "1000835": "ZXM_1000835_0_ZXM",
   "1000836": "CloudVinylCoin_1000836_0_CVC",
@@ -861,6 +1125,7 @@ export const tokensMap = {
   "1000860": "beer_1000860_0_BEER",
   "1000861": "TronSilver_1000861_0_AG",
   "1000862": "Interken_1000862_0_IKN",
+<<<<<<< HEAD
   "1000863": "Raybotron_1000863_0_RBT",
   "1000864": "BabaTron_1000864_0_BBT",
   "1000865": "TronInvestGroup_1000865_0_TIG",
@@ -873,6 +1138,15 @@ export const tokensMap = {
   "1000872": "QTRON_1000872_0_QTRX",
   "1000873": "CryptoHub_1000873_0_HUB",
   "1000874": "TronBitcoinCash_1000874_0_TBCH",
+=======
+  "1000864": "BabaTron_1000864_0_BBT",
+  "1000865": "TronInvestGroup_1000865_0_TIG",
+  "1000867": "TelosTestToken_1000867_0_TTT",
+  "1000868": "DPOSTOKENIBC_1000868_0_DPOS",
+  "1000871": "GYMRewards_1000871_0_GYM",
+  "1000872": "QTRON_1000872_0_QTRX",
+  "1000873": "CryptoHub_1000873_0_HUB",
+>>>>>>> dev2019
   "1000875": "Tickets_1000875_0_Win",
   "1000876": "CaribbeanDecentralizedCrypto_1000876_0_CDC",
   "1000877": "Crawdaddycoin_1000877_0_CDC",
@@ -882,6 +1156,7 @@ export const tokensMap = {
   "1000881": "NonSense_1000881_0_N",
   "1000882": "PAKISTANdam_1000882_0_PDM",
   "1000883": "TokenLottery_1000883_0_ATRX",
+<<<<<<< HEAD
   "1000884": "TRONEX_1000884_0_TEX",
   "1000885": "Pizza_1000885_0_PZA",
   "1000886": "Goodactions_1000886_0_Good",
@@ -893,6 +1168,15 @@ export const tokensMap = {
   "1000892": "Stratus_1000892_0_STS",
   "1000893": "ReynaToken_1000893_0_REY",
   "1000894": "Petro_1000894_0_PTR",
+=======
+  "1000885": "Pizza_1000885_0_PZA",
+  "1000886": "Goodactions_1000886_0_Good",
+  "1000887": "Donut_1000887_0_DONUT",
+  "1000889": "bgptest_1000889_0_bgpt",
+  "1000890": "Bioinformatics_1000890_0_BIO",
+  "1000891": "DEG_1000891_0_DEG",
+  "1000893": "ReynaToken_1000893_0_REY",
+>>>>>>> dev2019
   "1000895": "Genesix_1000895_0_GNX",
   "1000896": "Gazua_1000896_0_GZA",
   "1000897": "DEXCoin_1000897_0_XDX",
@@ -901,14 +1185,20 @@ export const tokensMap = {
   "1000900": "SEG_1000900_0_SEG",
   "1000901": "Palestine_1000901_0_Allah",
   "1000902": "DreamX_1000902_0_drmx",
+<<<<<<< HEAD
   "1000903": "Telegram_1000903_0_TLG",
+=======
+>>>>>>> dev2019
   "1000904": "loveit_1000904_0_LIT",
   "1000905": "APC_1000905_0_APC",
   "1000906": "Punahou_1000906_0_PUNS",
   "1000907": "RUOKToken_1000907_0_RUOK",
   "1000908": "NCG_1000908_0_NCG",
   "1000909": "AlphaCoin_1000909_0_ALF",
+<<<<<<< HEAD
   "1000910": "Tronbaba_1000910_0_TBB",
+=======
+>>>>>>> dev2019
   "1000911": "SafeDriverNetwork_1000911_0_SDN",
   "1000912": "Lottery_1000912_0_LOTTO",
   "1000913": "iheartit_1000913_0_ihi",
@@ -920,13 +1210,19 @@ export const tokensMap = {
   "1000919": "FwelcoES_1000919_0_FWES",
   "1000920": "TeddyBear_1000920_0_BEAR",
   "1000921": "BocahNakal_1000921_0_BocahNakal",
+<<<<<<< HEAD
   "1000922": "Walmart_1000922_0_WLMT",
+=======
+>>>>>>> dev2019
   "1000923": "VirtualReality_1000923_0_VR",
   "1000924": "TronWanje_1000924_0_TronW",
   "1000925": "RESPECTGOLDENTICKET_1000925_0_RGOLD",
   "1000926": "TronExchange_1000926_0_TronX",
   "1000927": "AAFood_1000927_0_afo",
+<<<<<<< HEAD
   "1000928": "MicrosoftToken_1000928_0_MSFT",
+=======
+>>>>>>> dev2019
   "1000929": "SAFFRON_1000929_0_SAFE",
   "1000930": "GhostNote_1000930_0_GNOTE",
   "1000931": "AllDayAllNightPoker_1000931_0_ADNP",
@@ -938,7 +1234,10 @@ export const tokensMap = {
   "1000937": "Cherry_1000937_0_CHRY",
   "1000938": "eFilingPlus_1000938_0_EFILE",
   "1000939": "REVOLUTION_1000939_0_REV",
+<<<<<<< HEAD
   "1000940": "Sesameseed_1000940_0_SEED",
+=======
+>>>>>>> dev2019
   "1000941": "VeTronHealth_1000941_0_VTN",
   "1000942": "Dilithium_1000942_0_DLT",
   "1000943": "GEMS_1000943_0_gems",
@@ -946,10 +1245,15 @@ export const tokensMap = {
   "1000945": "EMStoken_1000945_0_EMS",
   "1000946": "PEACECOIN_1000946_0_PCC",
   "1000947": "Chocolate_1000947_0_CHOC",
+<<<<<<< HEAD
   "1000948": "SEEDpresale_1000948_0_SEED",
   "1000949": "CAASA_1000949_0_CAASA",
   "1000950": "VortexCoin_1000950_0_XVX",
   "1000951": "FFS_1000951_0_FFS",
+=======
+  "1000949": "CAASA_1000949_0_CAASA",
+  "1000950": "VortexCoin_1000950_0_XVX",
+>>>>>>> dev2019
   "1000952": "CryptoTrade_1000952_0_CTR",
   "1000953": "OK_1000953_0_OK",
   "1000954": "ok_1000954_0_ok",
@@ -957,6 +1261,7 @@ export const tokensMap = {
   "1000956": "oK_1000956_0_oK",
   "1000957": "NoFucksGiven_1000957_0_NFG",
   "1000958": "XMAS_1000958_0_XMAS",
+<<<<<<< HEAD
   "1000959": "WatsonAI_1000959_0_WAI",
   "1000960": "TronWatchmarket_1000960_0_TWM",
   "1000961": "TronMarketWatch_1000961_0_TMW",
@@ -965,13 +1270,22 @@ export const tokensMap = {
   "1000964": "AllahCoin_1000964_0_AC",
   "1000965": "Hotdog_1000965_0_HOTD",
   "1000966": "TWM_1000966_0_TWM",
+=======
+  "1000961": "TronMarketWatch_1000961_0_TMW",
+  "1000962": "AnimalRescue_1000962_0_AR",
+  "1000964": "AllahCoin_1000964_0_AC",
+  "1000965": "Hotdog_1000965_0_HOTD",
+>>>>>>> dev2019
   "1000967": "BEERCOIN_1000967_0_BEER",
   "1000968": "Egg_1000968_0_EGG",
   "1000969": "PRO_1000969_0_PRO",
   "1000970": "Tronimals_1000970_0_TRA",
   "1000971": "EGGUITY_1000971_0_EGGTY",
+<<<<<<< HEAD
   "1000972": "Samsung_1000972_0_SST",
   "1000973": "Huawei_1000973_0_HWT",
+=======
+>>>>>>> dev2019
   "1000974": "ARCH_1000974_0_ARCH",
   "1000975": "PLANKTONS_1000975_0_PTON",
   "1000976": "Tronwatchmarket_1000976_0_TWM",
@@ -982,15 +1296,22 @@ export const tokensMap = {
   "1000981": "TRONBEAN_1000981_0_BEAN",
   "1000982": "Btcmillionaire_1000982_0_Btcm",
   "1000983": "Makememillionaire_1000983_0_MKM",
+<<<<<<< HEAD
   "1000984": "MediaWiki_1000984_0_WM",
+=======
+>>>>>>> dev2019
   "1000985": "Santa_1000985_0_Santa",
   "1000986": "MICASA_1000986_0_CASA",
   "1000987": "GreenWaterpower_1000987_0_GWP",
   "1000988": "Pagemesh_1000988_0_PMSH",
   "1000989": "WHEN_1000989_0_WHEN",
+<<<<<<< HEAD
   "1000990": "KentuckyFriedCoin_1000990_0_KFC",
   "1000991": "CRBN_1000991_0_CRBN",
   "1000992": "LoveHeart_1000992_0_LVH",
+=======
+  "1000991": "CRBN_1000991_0_CRBN",
+>>>>>>> dev2019
   "1000993": "DANCE_1000993_0_DANCE",
   "1000994": "Pikachu_1000994_0_PIKA",
   "1000995": "Bulbasaur_1000995_0_BULBA",
@@ -1016,9 +1337,13 @@ export const tokensMap = {
   "1001015": "Apples_1001015_0_APP",
   "1001016": "EsoCash_1001016_0_ESOCH",
   "1001017": "CommunityAction_1001017_0_CAT",
+<<<<<<< HEAD
   "1001018": "tronwatchmarket_1001018_0_TWM",
   "1001019": "Jocknuts_1001019_0_JN",
   "1001020": "Tebro_1001020_0_Tbr",
+=======
+  "1001019": "Jocknuts_1001019_0_JN",
+>>>>>>> dev2019
   "1001021": "AIgang_1001021_0_Agan",
   "1001022": "Karma_1001022_0_KRMA",
   "1001023": "Blood_1001023_0_BLD",
@@ -1034,7 +1359,10 @@ export const tokensMap = {
   "1001033": "TMW_1001033_0_TMW",
   "1001034": "TronWatchToken_1001034_0_TWT",
   "1001035": "TronADS_1001035_0_ADST",
+<<<<<<< HEAD
   "1001036": "SesameSEED_1001036_0_SEED",
+=======
+>>>>>>> dev2019
   "1001037": "CyberTrons_1001037_0_CTRX",
   "1001038": "BESTCOIN_1001038_0_BCL",
   "1001039": "GoodVibes_1001039_0_Vibe",
@@ -1058,8 +1386,11 @@ export const tokensMap = {
   "1001057": "BerryBonds_1001057_0_BONDS",
   "1001058": "DigitalDollar_1001058_0_DLL",
   "1001059": "FuegoCat_1001059_0_FUC",
+<<<<<<< HEAD
   "1001060": "STARBUCKS_1001060_0_str",
   "1001061": "Buisness_1001061_0_BNP",
+=======
+>>>>>>> dev2019
   "1001062": "SECRET_1001062_0_SCRT",
   "1001063": "BolsonaroPresidente_1001063_0_JBP",
   "1001064": "RCNT_1001064_0_REO",
@@ -1072,7 +1403,10 @@ export const tokensMap = {
   "1001071": "MarshMeloToken_1001071_0_MMT",
   "1001072": "NTFM_1001072_0_NTFM",
   "1001073": "walmart_1001073_0_WMT",
+<<<<<<< HEAD
   "1001074": "MenzCoin_1001074_0_MENZ",
+=======
+>>>>>>> dev2019
   "1001075": "ProjectTree_1001075_0_TREE",
   "1001076": "digitize_1001076_0_DIG",
   "1001077": "INGOTcoin_1001077_0_IC",
@@ -1099,7 +1433,10 @@ export const tokensMap = {
   "1001098": "HAPPY_1001098_0_Hap",
   "1001099": "KulaCoin_1001099_0_KULA",
   "1001100": "Ervincoin_1001100_0_ERVN",
+<<<<<<< HEAD
   "1001101": "TronPay_1001101_0_TPX",
+=======
+>>>>>>> dev2019
   "1001102": "Developers_1001102_0_DEV",
   "1001103": "Jade_1001103_0_Jade",
   "1001104": "BaconBitCoin_1001104_0_Bacon",
@@ -1108,6 +1445,7 @@ export const tokensMap = {
   "1001107": "KAOSCANDY_1001107_0_KAOS",
   "1001108": "kaoscandy_1001108_0_kaos",
   "1001109": "TRONbetANTE_1001109_0_ANTE",
+<<<<<<< HEAD
   "1001110": "TRONbetAnte_1001110_0_Ante",
   "1001111": "ROSKACOIN_1001111_0_ROSKA",
   "1001112": "TRONUSD_1001112_0_TUSD",
@@ -1118,6 +1456,13 @@ export const tokensMap = {
   "1001117": "SWOP_1001117_0_SWOP",
   "1001118": "ATMDistribution_1001118_0_ATMTR",
   "1001119": "Rabbit_1001119_0_PSB",
+=======
+  "1001111": "ROSKACOIN_1001111_0_ROSKA",
+  "1001112": "TRONUSD_1001112_0_TUSD",
+  "1001116": "MEDUSA_1001116_0_DUSA",
+  "1001117": "SWOP_1001117_0_SWOP",
+  "1001118": "ATMDistribution_1001118_0_ATMTR",
+>>>>>>> dev2019
   "1001120": "TronPhone_1001120_0_TRXP",
   "1001121": "TronixRed_1001121_0_TXR",
   "1001122": "TRONbetante_1001122_0_ante",
@@ -1125,7 +1470,10 @@ export const tokensMap = {
   "1001124": "HCART_1001124_0_HCART",
   "1001125": "TitheCoin_1001125_0_TITHE",
   "1001126": "DinwiddieCoin_1001126_0_DWC",
+<<<<<<< HEAD
   "1001127": "KaosCandy_1001127_0_FAKE",
+=======
+>>>>>>> dev2019
   "1001128": "Kaoscandy_1001128_0_FAKE",
   "1001129": "KAOSKANDY_1001129_0_FAKE",
   "1001130": "cityuptake_1001130_0_NOT",
@@ -1144,7 +1492,10 @@ export const tokensMap = {
   "1001143": "GazuaCash_1001143_0_GZC",
   "1001144": "TKG_1001144_0_TKG",
   "1001145": "Git_1001145_0_GIT",
+<<<<<<< HEAD
   "1001146": "GoldenDragon_1001146_0_Draco",
+=======
+>>>>>>> dev2019
   "1001147": "MillionCoinX_1001147_0_MONx",
   "1001148": "Slavacoin_1001148_0_SLAVA",
   "1001149": "Repertoire_1001149_0_RPT",
@@ -1161,13 +1512,17 @@ export const tokensMap = {
   "1001160": "poppy_1001160_0_POPPY",
   "1001161": "PORN_1001161_0_PORN",
   "1001162": "GemCash_1001162_0_GCASH",
+<<<<<<< HEAD
   "1001163": "Tronnabis_1001163_0_TNN",
+=======
+>>>>>>> dev2019
   "1001164": "ADVCoin_1001164_0_ADV",
   "1001165": "CowardCash_1001165_0_CWC",
   "1001166": "XXX_1001166_0_XXX",
   "1001167": "TronLIFE_1001167_0_LIFE",
   "1001168": "Silver_1001168_0_Silver",
   "1001169": "TXW_1001169_0_TXW",
+<<<<<<< HEAD
   "1001170": "Trx_1001170_0_Trx",
   "1001171": "ACES_1001171_0_ACES",
   "1001172": "Music_1001172_0_Music",
@@ -1175,6 +1530,11 @@ export const tokensMap = {
   "1001174": "AmericanGoldEagle_1001174_0_EAu",
   "1001175": "KrugerrandGold_1001175_0_KAu",
   "1001176": "GoldMapleLeaf_1001176_0_MAu",
+=======
+  "1001171": "ACES_1001171_0_ACES",
+  "1001172": "Music_1001172_0_Music",
+  "1001173": "for_1001173_0_for",
+>>>>>>> dev2019
   "1001177": "Schilling_1001177_0_ATS",
   "1001178": "DeutscheMark_1001178_0_DM",
   "1001179": "BlockchainDNSNetwork_1001179_0_DNSX",
@@ -1187,22 +1547,33 @@ export const tokensMap = {
   "1001186": "POINT_1001186_0_POINT",
   "1001187": "GoldBars_1001187_0_AU",
   "1001188": "hlau_1001188_0_cic",
+<<<<<<< HEAD
   "1001189": "Gekko_1001189_0_Gek",
+=======
+>>>>>>> dev2019
   "1001190": "Dildo_1001190_0_DDO",
   "1001191": "VERITAS_1001191_0_VTS",
   "1001192": "Pepe_1001192_0_MEME",
   "1001193": "BUY_1001193_0_BUY",
+<<<<<<< HEAD
   "1001194": "Disney_1001194_0_WDW",
   "1001195": "Baggi_1001195_0_Bgi",
   "1001196": "TIP_1001196_0_TIP",
   "1001197": "ZaraCoin_1001197_0_Zara",
+=======
+  "1001195": "Baggi_1001195_0_Bgi",
+  "1001196": "TIP_1001196_0_TIP",
+>>>>>>> dev2019
   "1001198": "GAME_1001198_0_GAME",
   "1001199": "BAGGl_1001199_0_BAGGl",
   "1001200": "PoSiTRoN_1001200_0_BoOM",
   "1001201": "CHEHAR_1001201_0_!CMC",
   "1001202": "ShareTheLoveOfGod_1001202_0_SLOG",
   "1001203": "MedicCoin_1001203_0_MEDIC",
+<<<<<<< HEAD
   "1001204": "MedIBlock_1001204_0_MIB",
+=======
+>>>>>>> dev2019
   "1001205": "MedXHealth_1001205_0_MEDX",
   "1001206": "Medikament_1001206_0_Med",
   "1001207": "KroneMinus_1001207_0_minus",
@@ -1217,7 +1588,10 @@ export const tokensMap = {
   "1001216": "Eventz_1001216_0_EVZ",
   "1001217": "EOY_1001217_0_EOY",
   "1001218": "LeeKuanYew_1001218_0_LKY",
+<<<<<<< HEAD
   "1001219": "TRUMP_1001219_0_TRUMP",
+=======
+>>>>>>> dev2019
   "1001220": "TOKEN_1001220_0_TOKEN",
   "1001221": "gazua_1001221_0_gz",
   "1001222": "Scintilla_1001222_0_SCN",
@@ -1228,6 +1602,7 @@ export const tokensMap = {
   "1001227": "ANTEs_1001227_0_ANTE",
   "1001228": "KornsiriCherryCoinNET_1001228_0_KCCN",
   "1001229": "cybertron_1001229_0_CTRX",
+<<<<<<< HEAD
   "1001230": "ethereum_1001230_0_ETH",
   "1001231": "DOLLAR_1001231_0_DOL",
   "1001232": "AIivio_1001232_0_ALIV",
@@ -1236,6 +1611,10 @@ export const tokensMap = {
   "1001235": "ClTYUPTAKE_1001235_0_NOT",
   "1001236": "TRONchat_1001236_0_TRCT",
   "1001237": "TRXMarket_1001237_0_TRXMT",
+=======
+  "1001232": "AIivio_1001232_0_ALIV",
+  "1001233": "EWOKS_1001233_0_EWOK",
+>>>>>>> dev2019
   "1001238": "WheelOfTron_1001238_0_WOT",
   "1001239": "BLOKmail_1001239_0_BLOKm",
   "1001240": "Cowrie_1001240_0_COW",
@@ -1257,9 +1636,13 @@ export const tokensMap = {
   "1001256": "WOOKIE_1001256_0_CHEWY",
   "1001257": "JEDI_1001257_0_jedi",
   "1001258": "SITH_1001258_0_sith",
+<<<<<<< HEAD
   "1001259": "EGGUlTY_1001259_0_EGGTY",
   "1001260": "SCO_1001260_0_SCO",
   "1001261": "GOOGLE_1001261_0_GOOGL",
+=======
+  "1001260": "SCO_1001260_0_SCO",
+>>>>>>> dev2019
   "1001262": "TRONTONIC_1001262_0_TTT",
   "1001263": "trontonic_1001263_0_ttt",
   "1001264": "Tarqiun_1001264_0_Tarq",
@@ -1280,7 +1663,10 @@ export const tokensMap = {
   "1001279": "RoboEmerald_1001279_0_RbE",
   "1001280": "SW_1001280_0_Sw",
   "1001281": "tarquin_1001281_0_Tarq",
+<<<<<<< HEAD
   "1001282": "TronWeekIyJournaI_1001282_0_TWYhk",
+=======
+>>>>>>> dev2019
   "1001283": "RedCoin_1001283_0_RED",
   "1001284": "SEEDEGG_1001284_0_SEGG",
   "1001285": "MAGATOKEN_1001285_0_MAGA",
@@ -1295,10 +1681,14 @@ export const tokensMap = {
   "1001294": "Letsy_1001294_0_Letsy",
   "1001295": "AQUA_1001295_0_AQA",
   "1001296": "YUM_1001296_0_YUM",
+<<<<<<< HEAD
   "1001297": "VEGAN_1001297_0_VEGAN",
   "1001298": "APPLE_1001298_0_APPLE",
   "1001299": "TronGold_1001299_0_TRG",
   "1001300": "BigCoin_1001300_0_BIGC",
+=======
+  "1001299": "TronGold_1001299_0_TRG",
+>>>>>>> dev2019
   "1001301": "COLORBIKE_1001301_0_CBK",
   "1001302": "TRD_1001302_0_TRD",
   "1001303": "Artificial_1001303_0_ART",
@@ -1312,15 +1702,21 @@ export const tokensMap = {
   "1001311": "TronMulti_1001311_0_TRM",
   "1001312": "PokerTRON_1001312_0_PTRX",
   "1001313": "CryptoGuyInZA_1001313_0_CGIZA",
+<<<<<<< HEAD
   "1001314": "TRXInfo_1001314_0_Info",
   "1001315": "EarthXploration_1001315_0_XPLR",
   "1001316": "TronSociety_1001316_0_TSY",
   "1001317": "MarcusCoin_1001317_0_MARC",
+=======
+  "1001315": "EarthXploration_1001315_0_XPLR",
+  "1001316": "TronSociety_1001316_0_TSY",
+>>>>>>> dev2019
   "1001318": "FourSixFour_1001318_0_FSF",
   "1001319": "TronConstruction_1001319_0_TCON",
   "1001320": "TronTV_1001320_0_TTV",
   "1001321": "MultiplayerGameCoin_1001321_0_MPG",
   "1001322": "SmartPhi_1001322_0_SPhi",
+<<<<<<< HEAD
   "1001323": "IWillBuyYourSEEDEGG_1001323_0_BUY",
   "1001324": "TR_1001324_0_TR",
   "1001325": "ThoreCashTRX_1001325_0_TCHTX",
@@ -1334,6 +1730,16 @@ export const tokensMap = {
   "1001333": "SEVLACOIN_1001333_0_SEVLA",
   "1001334": "Snow_1001334_0_SNW",
   "1001335": "win_1001335_0_WIN",
+=======
+  "1001324": "TR_1001324_0_TR",
+  "1001325": "ThoreCashTRX_1001325_0_TCHTX",
+  "1001327": "sportxcoin_1001327_0_sprtx",
+  "1001328": "gaclife_1001328_0_GAC",
+  "1001329": "Antimatter_1001329_0_ANT",
+  "1001332": "SCHNEID_1001332_0_RCJ",
+  "1001333": "SEVLACOIN_1001333_0_SEVLA",
+  "1001334": "Snow_1001334_0_SNW",
+>>>>>>> dev2019
   "1001336": "Mineral_1001336_0_MNR",
   "1001337": "MineralHub_1001337_0_MNRH",
   "1001338": "SoftwaresOnDeckMoneyGames_1001338_0_SODMG",
@@ -1343,16 +1749,25 @@ export const tokensMap = {
   "1001342": "LottoCoin_1001342_0_LOTTO",
   "1001343": "ilovepi_1001343_0_pi",
   "1001344": "VIVI_1001344_0_",
+<<<<<<< HEAD
   "1001345": "DAppDollars_1001345_0_DDX",
+=======
+>>>>>>> dev2019
   "1001346": "TRONCLASSIC_1001346_0_TRXC",
   "1001347": "XCube_1001347_0_XCB",
   "1001348": "FOR_1001348_0_FOR",
   "1001349": "GACoin_1001349_0_GAC",
+<<<<<<< HEAD
   "1001350": "BitGuild_1001350_0_BTG",
   "1001351": "CryptoDivaFund_1001351_0_CDF",
   "1001352": "COMPLIANCE_1001352_0_CMP",
   "1001353": "OWL_1001353_0_OWL",
   "1001354": "BaiduToken_1001354_0_BD",
+=======
+  "1001351": "CryptoDivaFund_1001351_0_CDF",
+  "1001352": "COMPLIANCE_1001352_0_CMP",
+  "1001353": "OWL_1001353_0_OWL",
+>>>>>>> dev2019
   "1001355": "PUMP_1001355_0_PUMP",
   "1001356": "Philanthropy_1001356_0_PHIL",
   "1001357": "HitDapps_1001357_0_HIT",
@@ -1360,6 +1775,7 @@ export const tokensMap = {
   "1001359": "TRONCITY_1001359_0_TCO",
   "1001360": "PUBToken_1001360_0_PUB",
   "1001361": "SPOK_1001361_0_SPK",
+<<<<<<< HEAD
   "1001362": "TRx_1001362_0_TRx",
   "1001363": "CaptainKirk_1001363_0_CKK",
   "1001364": "Hazel_1001364_0_HZT",
@@ -1368,10 +1784,18 @@ export const tokensMap = {
   "1001367": "PeerToPeer_1001367_0_PTP",
   "1001368": "VBucksPlus_1001368_0_VBP",
   "1001369": "Cryptospots_1001369_0_cry",
+=======
+  "1001363": "CaptainKirk_1001363_0_CKK",
+  "1001364": "Hazel_1001364_0_HZT",
+  "1001366": "Socialinflunce_1001366_0_SIT",
+  "1001367": "PeerToPeer_1001367_0_PTP",
+  "1001368": "VBucksPlus_1001368_0_VBP",
+>>>>>>> dev2019
   "1001370": "ONE_1001370_0_ONE",
   "1001371": "LONE_1001371_0_LONE",
   "1001372": "DigitalFantasySports_1001372_0_DFS",
   "1001373": "Bitconnect_1001373_0_BCC",
+<<<<<<< HEAD
   "1001374": "ROLEX_1001374_0_ROLEX",
   "1001375": "TRXasHODLemPokerChips_1001375_0_HODL",
   "1001376": "Trontoken_1001376_0_TRX",
@@ -1379,6 +1803,10 @@ export const tokensMap = {
   "1001378": "TronsTronics_1001378_0_TTS",
   "1001379": "TronWalletMe_1001379_0_TWM",
   "1001380": "Eevee_1001380_0_EEV",
+=======
+  "1001375": "TRXasHODLemPokerChips_1001375_0_HODL",
+  "1001376": "Trontoken_1001376_0_TRX",
+>>>>>>> dev2019
   "1001381": "AutoPay_1001381_0_APAY",
   "1001382": "Mewtwo_1001382_0_MWO",
   "1001383": "SwissTRON_1001383_0_CHTRX",
@@ -1398,7 +1826,10 @@ export const tokensMap = {
   "1001397": "PokerTron_1001397_0_POKER",
   "1001398": "ANTE_1001398_0_ANT",
   "1001399": "RouletteEN_1001399_0_REN",
+<<<<<<< HEAD
   "1001400": "Dapp_1001400_0_DApp",
+=======
+>>>>>>> dev2019
   "1001401": "cryptomarket_1001401_0_cryp",
   "1001402": "EntonaX_1001402_0_ETC",
   "1001403": "ATronTripleSevenLotto_1001403_0_TTS",
@@ -1407,8 +1838,11 @@ export const tokensMap = {
   "1001406": "NewYorkCoin_1001406_0_NYC",
   "1001407": "parcelchain_1001407_0_pacha",
   "1001408": "MerryChristmas_1001408_0_MXM",
+<<<<<<< HEAD
   "1001409": "MVISION_1001409_0_MVC",
   "1001410": "BitMain_1001410_0_BTM",
+=======
+>>>>>>> dev2019
   "1001411": "CryptoBankCoin_1001411_0_CBC",
   "1001412": "TRONSKY_1001412_0_TSKY",
   "1001413": "DigiSports_1001413_0_DGS",
@@ -1418,6 +1852,7 @@ export const tokensMap = {
   "1001417": "TronShopVIP_1001417_0_TSVIP",
   "1001418": "BitAi_1001418_0_BITAI",
   "1001419": "HashFables_1001419_0_HASH",
+<<<<<<< HEAD
   "1001420": "RippleTronBank_1001420_0_XRPTB",
   "1001421": "FCBitcoin_1001421_0_FCB",
   "1001422": "TronBet_1001422_0_BET",
@@ -1427,12 +1862,21 @@ export const tokensMap = {
   "1001426": "UFO_1001426_0_UFO",
   "1001427": "TRONREFUNDS_1001427_0_RFD",
   "1001428": "FileCoin_1001428_0_FIL",
+=======
+  "1001423": "Platinum_1001423_0_PLT",
+  "1001424": "DIAMOND_1001424_0_DIAMD",
+  "1001426": "UFO_1001426_0_UFO",
+  "1001427": "TRONREFUNDS_1001427_0_RFD",
+>>>>>>> dev2019
   "1001429": "TronGameCoin_1001429_0_TGC",
   "1001430": "richercoin_1001430_0_richo",
   "1001431": "SMC_1001431_0_SMC",
   "1001432": "BetToken_1001432_0_BET",
   "1001433": "TronMatrixAI_1001433_0_TRXAI",
+<<<<<<< HEAD
   "1001434": "TronBG_1001434_0_TBG",
+=======
+>>>>>>> dev2019
   "1001435": "Virrex_1001435_0_VX",
   "1001436": "TronThereum_1001436_0_TTH",
   "1001437": "CandyCrushSaga_1001437_0_CCS",
@@ -1440,6 +1884,7 @@ export const tokensMap = {
   "1001439": "KloutCoin_1001439_0_KC",
   "1001440": "CHIPS_1001440_0_CHIPS",
   "1001441": "FundMe_1001441_0_FUND",
+<<<<<<< HEAD
   "1001442": "TRXKings_1001442_0_TRXK",
   "1001443": "TronPixel_1001443_0_PIXEL",
   "1001444": "GolFCoin_1001444_0_GFC",
@@ -1449,15 +1894,26 @@ export const tokensMap = {
   "1001448": "Tulip_1001448_0_TPC",
   "1001449": "Tronbay_1001449_0_TBY",
   "1001450": "LuckyGames_1001450_0_LGX",
+=======
+  "1001443": "TronPixel_1001443_0_PIXEL",
+  "1001444": "GolFCoin_1001444_0_GFC",
+  "1001445": "DYOR_1001445_0_DYOR",
+  "1001448": "Tulip_1001448_0_TPC",
+  "1001449": "Tronbay_1001449_0_TBY",
+>>>>>>> dev2019
   "1001451": "BitChit_1001451_0_BITC",
   "1001452": "Workperk_1001452_0_WPK",
   "1001453": "TRONX_1001453_0_TX",
   "1001454": "CityBlockCapital_1001454_0_CBC",
+<<<<<<< HEAD
   "1001455": "ASADividend_1001455_0_ASA",
+=======
+>>>>>>> dev2019
   "1001456": "SUPERTRON_1001456_0_STRX",
   "1001457": "TronATM_1001457_0_TATM",
   "1001458": "KohiNoor_1001458_0_KNR",
   "1001459": "Payment_1001459_0_pay",
+<<<<<<< HEAD
   "1001460": "MXC_1001460_0_MXC",
   "1001461": "IrishGirlCrypto_1001461_0_IGC",
   "1001462": "TRONWALLET_1001462_0_TWX",
@@ -1468,6 +1924,12 @@ export const tokensMap = {
   "1001467": "EXODUS_1001467_0_EXO",
   "1001468": "PRIZE_1001468_0_PRIZE",
   "1001469": "GOLDPOKER_1001469_0_GLD",
+=======
+  "1001461": "IrishGirlCrypto_1001461_0_IGC",
+  "1001464": "TRONplay_1001464_0_TRXp",
+  "1001466": "Tronics_1001466_0_TX",
+  "1001468": "PRIZE_1001468_0_PRIZE",
+>>>>>>> dev2019
   "1001470": "TRONATLAS_1001470_0_ATL",
   "1001471": "TRONMAG_1001471_0_TRM",
   "1001472": "secondamendmenttoken_1001472_0_SEC",
@@ -1479,6 +1941,7 @@ export const tokensMap = {
   "1001478": "BitdogToken_1001478_0_BTDG",
   "1001479": "TronTokensGuardian_1001479_0_TTG",
   "1001480": "CHARITY_1001480_0_CHA",
+<<<<<<< HEAD
   "1001481": "BusyBlaze_1001481_0_bb",
   "1001482": "CryTrExToken_1001482_0_CRYT",
   "1001483": "Cats_1001483_0_CAT",
@@ -1495,6 +1958,18 @@ export const tokensMap = {
   "1001494": "MFG_1001494_0_Work",
   "1001495": "PalmTreeFoundation_1001495_0_PTF",
   "1001496": "Kobe_1001496_0_KOBE",
+=======
+  "1001482": "CryTrExToken_1001482_0_CRYT",
+  "1001483": "Cats_1001483_0_CAT",
+  "1001484": "SatBetEntertainment_1001484_0_SBE",
+  "1001486": "Check_1001486_0_CCK",
+  "1001487": "Storieinc_1001487_0_SiNC",
+  "1001488": "cybercoin_1001488_0_CTRx",
+  "1001491": "BTFY_1001491_0_BTFY",
+  "1001493": "PIT123456789_1001493_0_LPKIT",
+  "1001494": "MFG_1001494_0_Work",
+  "1001495": "PalmTreeFoundation_1001495_0_PTF",
+>>>>>>> dev2019
   "1001497": "TRONtv_1001497_0_TV",
   "1001498": "HITDAPPS_1001498_0_HIT",
   "1001499": "HIT_1001499_0_HIT",
@@ -1507,24 +1982,34 @@ export const tokensMap = {
   "1001506": "MSGFractionalOwnership_1001506_0_MSGFO",
   "1001507": "WordDigitalCurrecy_1001507_0_WDC",
   "1001508": "ModernSportsAgency_1001508_0_MSA",
+<<<<<<< HEAD
   "1001509": "INK_1001509_0_INK",
+=======
+>>>>>>> dev2019
   "1001510": "NMIToken_1001510_0_NMI",
   "1001511": "RIFF_1001511_0_RIFF",
   "1001512": "HALO_1001512_0_HALO",
   "1001513": "halo_1001513_0_halo",
   "1001514": "Slot_1001514_0_Slot",
   "1001515": "HappyNewYear_1001515_0_HNY",
+<<<<<<< HEAD
   "1001516": "OracleBlockchain_1001516_0_ORC",
   "1001517": "Leonardo_1001517_0_SAPL",
   "1001518": "MaryJaneGold_1001518_0_MJAu",
   "1001519": "TronKey_1001519_0_TKE",
   "1001520": "TWITTER_1001520_0_TWEET",
+=======
+  "1001517": "Leonardo_1001517_0_SAPL",
+  "1001518": "MaryJaneGold_1001518_0_MJAu",
+  "1001519": "TronKey_1001519_0_TKE",
+>>>>>>> dev2019
   "1001521": "TCHTRX_1001521_0_TCH",
   "1001522": "TronExchToken_1001522_0_TEX",
   "1001523": "UniversalCoiN_1001523_0_UCN",
   "1001524": "Corl_1001524_0_CRL",
   "1001525": "WoozyFace_1001525_0_WF",
   "1001526": "angrybirdgold_1001526_0_ABG",
+<<<<<<< HEAD
   "1001527": "BlockClash_1001527_0_BLC",
   "1001528": "ReynaExchange_1001528_0_RET",
   "1001529": "Game_1001529_0_Game",
@@ -1538,24 +2023,44 @@ export const tokensMap = {
   "1001537": "GTest_1001537_0_GT",
   "1001538": "FEITIANWALLET_1001538_0_FT",
   "1001539": "RenyaToken_1001539_0_REY",
+=======
+  "1001528": "ReynaExchange_1001528_0_RET",
+  "1001529": "Game_1001529_0_Game",
+  "1001531": "BlueChiliPromo_1001531_0_BCP",
+  "1001532": "TronExpress_1001532_0_TXP",
+  "1001533": "WON_1001533_0_WON",
+  "1001536": "Lawfarm_1001536_0_LAW",
+  "1001537": "GTest_1001537_0_GT",
+  "1001538": "FEITIANWALLET_1001538_0_FT",
+>>>>>>> dev2019
   "1001540": "GTestC_1001540_0_GTC",
   "1001541": "TronChain_1001541_0_TRC",
   "1001542": "BlockchainCenter_1001542_0_BLC",
   "1001543": "Governance_1001543_0_LAW",
+<<<<<<< HEAD
   "1001544": "ReynaExchangeToken_1001544_0_RET",
+=======
+>>>>>>> dev2019
   "1001545": "DigitalTokeN_1001545_0_DTN",
   "1001546": "TRONHERO_1001546_0_THX",
   "1001547": "UgotTRONed_1001547_0_UTRON",
   "1001548": "TronSports_1001548_0_TSP",
+<<<<<<< HEAD
   "1001549": "Dice_1001549_0_dice",
+=======
+>>>>>>> dev2019
   "1001550": "VAGINA_1001550_0_VGN",
   "1001551": "PokemonTron_1001551_0_POK",
   "1001552": "Win_1001552_0_WIN",
   "1001553": "TESTBOOK_1001553_0_TWRT",
   "1001554": "TRXFan_1001554_0_5X",
+<<<<<<< HEAD
   "1001555": "WAI_1001555_0_WatsonAI",
   "1001556": "Abra_1001556_0_Abra",
   "1001557": "NITRON_1001557_0_NTN",
+=======
+  "1001556": "Abra_1001556_0_Abra",
+>>>>>>> dev2019
   "1001558": "REO_1001558_0_RCNT",
   "1001559": "TronID_1001559_0_TronID",
   "1001560": "E-TokeN_1001560_0_E-TokeN",
@@ -1568,7 +2073,10 @@ export const tokensMap = {
   "1001567": "TronSecurityToken_1001567_0_TST",
   "1001568": "TronixLottery_1001568_0_TLY",
   "1001569": "ZerkZ_1001569_0_ZRK",
+<<<<<<< HEAD
   "1001570": "BlockchainCapital_1001570_0_BC",
+=======
+>>>>>>> dev2019
   "1001571": "TronSafe_1001571_0_TRS",
   "1001572": "SonOfChrome_1001572_0_SOC",
   "1001573": "ConsumerAlliance_1001573_0_CA",
@@ -1581,26 +2089,38 @@ export const tokensMap = {
   "1001580": "TWLT_1001580_0_",
   "1001581": "HealthPort_1001581_0_EHR",
   "1001582": "DogeTron_1001582_0_DOGET",
+<<<<<<< HEAD
   "1001583": "BnB_1001583_0_BnB",
+=======
+>>>>>>> dev2019
   "1001584": "SUDWA_1001584_0_SUDWA",
   "1001585": "TronLotto_1001585_0_TRXLT",
   "1001586": "TRONLOTTO_1001586_0_TRXLT",
   "1001587": "PSV_1001587_0_PSV",
   "1001588": "BenficaFans_1001588_0_SLBFa",
+<<<<<<< HEAD
   "1001589": "TRONDIAMOND_1001589_0_TRD",
   "1001590": "twlt_1001590_0_",
+=======
+>>>>>>> dev2019
   "1001591": "TronETF_1001591_0_ETF",
   "1001592": "airbitclub_1001592_0_abc",
   "1001593": "InternationalFootbalCoin_1001593_0_IFC",
   "1001594": "CRYPTYK_1001594_0_CTK",
+<<<<<<< HEAD
   "1001595": "Minion_1001595_0_MNON",
+=======
+>>>>>>> dev2019
   "1001596": "TronSecure_1001596_0_TSC",
   "1001597": "IOSpades_1001597_0_IOSP",
   "1001598": "JELLY_1001598_0_JELLY",
   "1001599": "SEEDR_1001599_0_SEEDR",
   "1001600": "901tokens_1001600_0_901",
   "1001601": "TronJoy_1001601_0_Joy",
+<<<<<<< HEAD
   "1001602": "TronWeb_1001602_0_TW",
+=======
+>>>>>>> dev2019
   "1001603": "HelpToBuy_1001603_0_HTB",
   "1001604": "Fasttrx_1001604_0_Fast",
   "1001605": "Casino_1001605_0_Dao",
@@ -1608,21 +2128,32 @@ export const tokensMap = {
   "1001607": "TIGER_1001607_0_TIGER",
   "1001608": "TensorFlow_1001608_0_TPU",
   "1001609": "TronPoker10JQKA_1001609_0_TPA",
+<<<<<<< HEAD
   "1001610": "TRXLite_1001610_0_TRL",
   "1001611": "TRXTwitterClassic_1001611_0_TTC",
   "1001612": "PalaTrx_1001612_0_PALA",
   "1001613": "InfinityToken_1001613_0_INF",
   "1001614": ".TRXminer.net_1001614_0_TRXM",
+=======
+  "1001611": "TRXTwitterClassic_1001611_0_TTC",
+  "1001612": "PalaTrx_1001612_0_PALA",
+  "1001613": "InfinityToken_1001613_0_INF",
+>>>>>>> dev2019
   "1001615": "AnusCoin_1001615_0_ANUS",
   "1001616": "TronPlayer_1001616_0_TIP",
   "1001617": "TronArt_1001617_0_TAR",
   "1001618": "TRC_1001618_0_TRC",
+<<<<<<< HEAD
   "1001619": "BAN_1001619_0_BAN",
   "1001620": "TRONDOGE_1001620_0_TRXDG",
   "1001621": "FwelcoPolinateProject_1001621_0_FPP",
   "1001622": "Jamean_1001622_0_JMN",
   "1001623": "BurtSkirt_1001623_0_BSKT",
   "1001624": "FUN_1001624_0_FUN",
+=======
+  "1001622": "Jamean_1001622_0_JMN",
+  "1001623": "BurtSkirt_1001623_0_BSKT",
+>>>>>>> dev2019
   "1001625": "CryptoNite_1001625_0_CNITE",
   "1001626": "SuperNova_1001626_0_SNR",
   "1001627": "PHOENIX_1001627_0_PHXT",
@@ -1630,15 +2161,21 @@ export const tokensMap = {
   "1001629": "FCB_1001629_0_fcb",
   "1001630": "GeoCash_1001630_0_GeoC",
   "1001631": "TronPlayerDisc_1001631_0_DISC",
+<<<<<<< HEAD
   "1001632": "TronWeeklyJournaI_1001632_0_TRWJ",
   "1001633": "GAMEx_1001633_0_GAMEx",
   "1001634": "Reynatoken_1001634_0_REYNA",
   "1001635": "MIC_1001635_0_MIC",
   "1001636": "TRONMAN_1001636_0_MAN",
+=======
+  "1001633": "GAMEx_1001633_0_GAMEx",
+  "1001635": "MIC_1001635_0_MIC",
+>>>>>>> dev2019
   "1001637": "RoboCoal_1001637_0_RbC",
   "1001638": ".HELPUS._1001638_0_.HP.",
   "1001639": "CryptoJaeger_1001639_0_CTJ",
   "1001640": "RSHCoin_1001640_0_RSH",
+<<<<<<< HEAD
   "1001641": "ORACLE_1001641_0_OCX",
   "1001642": "ARTron_1001642_0_ART",
   "1001643": "Trans_1001643_0_TRS",
@@ -1648,6 +2185,12 @@ export const tokensMap = {
   "1001647": "MAYA_1001647_0_MAA",
   "1001648": "CryptoFluenceToken_1001648_0_CFT",
   "1001649": "FUNCoin_1001649_0_FUN",
+=======
+  "1001642": "ARTron_1001642_0_ART",
+  "1001643": "Trans_1001643_0_TRS",
+  "1001644": "TronBingo_1001644_0_BIN",
+  "1001648": "CryptoFluenceToken_1001648_0_CFT",
+>>>>>>> dev2019
   "1001650": "SGP_1001650_0_SGP",
   "1001651": "TronBBS_1001651_0_BBS",
   "1001652": "ORACLETRX_1001652_0_OCTX",
@@ -1657,14 +2200,20 @@ export const tokensMap = {
   "1001656": "TronAmore_1001656_0_CPD",
   "1001657": "CupidAmore_1001657_0_UPI",
   "1001658": "GameofTronsHolderToken_1001658_0_GoTH",
+<<<<<<< HEAD
   "1001659": "TronChat_1001659_0_TRC",
   "1001660": "TikTokToken_1001660_0_TTT",
+=======
+>>>>>>> dev2019
   "1001661": "TreeOfLife_1001661_0_TOL",
   "1001662": "WORLDTOKEN_1001662_0_WT",
   "1001663": "SurgicaLTron_1001663_0_SLT",
   "1001664": "CRAZY_1001664_0_CRAZY",
   "1001665": "OnGameToken_1001665_0_OGT",
+<<<<<<< HEAD
   "1001666": "NXToken_1001666_0_NXT",
+=======
+>>>>>>> dev2019
   "1001667": "BOZKURT_1001667_0_CCC",
   "1001668": "FREELANCE_1001668_0_FL",
   "1001669": "CryptoInfluencerToken_1001669_0_CIT",
@@ -1681,13 +2230,19 @@ export const tokensMap = {
   "1001680": "TronCasino_1001680_0_TCS",
   "1001681": "ZEZEEGG_1001681_0_ZEEGG",
   "1001682": "HOLOYOLO_1001682_0_HYT",
+<<<<<<< HEAD
   "1001683": "HighSociety_1001683_0_HSS",
   "1001684": "TronGameGlobal_1001684_0_GTG",
+=======
+>>>>>>> dev2019
   "1001685": "SMARTPEOPLE_1001685_0_SMART",
   "1001686": "ViPay_1001686_0_VPAY",
   "1001687": "DeadSeaScrolls_1001687_0_DSS",
   "1001688": "cyberTron_1001688_0_CTRX",
+<<<<<<< HEAD
   "1001689": "Converse_1001689_0_",
+=======
+>>>>>>> dev2019
   "1001690": "LMC_1001690_0_LMC",
   "1001691": "TRUDEX_1001691_0_TDEX",
   "1001692": "TRONCLOUD_1001692_0_CLOUD",
@@ -1698,17 +2253,26 @@ export const tokensMap = {
   "1001697": "ShitCoinToken_1001697_0_SC",
   "1001698": "ONGISTRON_1001698_0_ONGIS",
   "1001699": "NoleWater_1001699_0_AMSK",
+<<<<<<< HEAD
   "1001700": "Sesameseedit_1001700_0_SEED",
+=======
+>>>>>>> dev2019
   "1001701": "JELLYEGG_1001701_0_JEEGG",
   "1001702": "CYCLOEGG_1001702_0_CYEGG",
   "1001703": "Pipefitter_1001703_0_PIPE",
   "1001704": "LAVAEGG_1001704_0_LAEGG",
+<<<<<<< HEAD
   "1001705": "BLACKBEARD_1001705_0_BLACK",
   "1001706": "TRXLotto_1001706_0_TLOT",
   "1001707": "TRXDEXio_1001707_0_TDI",
   "1001708": "TIPster_1001708_0_TIP",
   "1001709": "INRcoin_1001709_0_INRC",
   "1001710": "PokeTron_1001710_0_PKM",
+=======
+  "1001706": "TRXLotto_1001706_0_TLOT",
+  "1001707": "TRXDEXio_1001707_0_TDI",
+  "1001709": "INRcoin_1001709_0_INRC",
+>>>>>>> dev2019
   "1001711": "fud_1001711_0_fud",
   "1001712": "MOON_1001712_0_MOON",
   "1001713": "REWARD_1001713_0_RWD",
@@ -1722,7 +2286,10 @@ export const tokensMap = {
   "1001721": "CRANIUMEGG_1001721_0_CREGG",
   "1001722": "MoonMarketingGold_1001722_0_MMG",
   "1001723": "BetterME_1001723_0_BM",
+<<<<<<< HEAD
   "1001724": "RUM_1001724_0_RUM",
+=======
+>>>>>>> dev2019
   "1001725": "GUNPOWDER_1001725_0_GPD",
   "1001726": "PayItForward_1001726_0_PAY",
   "1001727": "KODAKCoin_1001727_0_KODAK",
@@ -1730,7 +2297,10 @@ export const tokensMap = {
   "1001729": "MiamiVice_1001729_0_VICE",
   "1001730": "DonTRONDraw_1001730_0_DTXD",
   "1001731": "GEMSD_1001731_0_GEMSD",
+<<<<<<< HEAD
   "1001732": "tronchat_1001732_0_TRCT",
+=======
+>>>>>>> dev2019
   "1001733": "TronLotteryIO_1001733_0_TL",
   "1001734": "VoteReward_1001734_0_VOTE",
   "1001735": "CNNBS_1001735_0_CNNBS",
@@ -1738,6 +2308,7 @@ export const tokensMap = {
   "1001737": "SportHeraldToken_1001737_0_SHT",
   "1001738": "BusinessCoin_1001738_0_BSS",
   "1001739": "Poker_1001739_0_PKR",
+<<<<<<< HEAD
   "1001740": "TRONENVELOPE_1001740_0_TRE",
   "1001741": "UPGRADETOKEN_1001741_0_UG",
   "1001742": "NPR_1001742_0_NPR",
@@ -1752,6 +2323,15 @@ export const tokensMap = {
   "1001751": "$myrabbit.org_1001751_0_myr",
   "1001752": "CYBR_1001752_0_CYBR",
   "1001753": "BEAR_1001753_0_BEAR",
+=======
+  "1001741": "UPGRADETOKEN_1001741_0_UG",
+  "1001742": "NPR_1001742_0_NPR",
+  "1001745": "TronWeekly_1001745_0_TWJ",
+  "1001746": "Tronbor_1001746_0_BOR",
+  "1001748": "SFAGoldenJack_1001748_0_SFAGJ",
+  "1001751": "$myrabbit.org_1001751_0_myr",
+  "1001752": "CYBR_1001752_0_CYBR",
+>>>>>>> dev2019
   "1001754": "Painite_1001754_0_PNT",
   "1001755": "HoliDay_1001755_0_HD",
   "1001756": "MEMPHIS_1001756_0_MEM",
@@ -1761,6 +2341,7 @@ export const tokensMap = {
   "1001760": "Beatz_1001760_0_BtZ",
   "1001761": "TronGameGlobalPay_1001761_0_GTP",
   "1001762": "ELECTRON_1001762_0_ELE",
+<<<<<<< HEAD
   "1001763": "Bee_1001763_0_BEE",
   "1001764": "ANTEGG_1001764_0_ANEGG",
   "1001765": "RealPropertyToken_1001765_0_RPT",
@@ -1771,21 +2352,37 @@ export const tokensMap = {
   "1001770": "TronStore_1001770_0_TRS",
   "1001771": "TronFundMe_1001771_0_FUND",
   "1001772": "LifeTimeCoin_1001772_0_LTC",
+=======
+  "1001765": "RealPropertyToken_1001765_0_RPT",
+  "1001766": "TRZ_1001766_0_True",
+  "1001767": "beatzcoin_1001767_0_BTZC",
+  "1001770": "TronStore_1001770_0_TRS",
+  "1001771": "TronFundMe_1001771_0_FUND",
+>>>>>>> dev2019
   "1001773": "VinE_1001773_0_VinE",
   "1001774": "PSACOIN_1001774_0_PSA",
   "1001775": "HashDice_1001775_0_HDT",
   "1001776": "PIRATESHIP_1001776_0_PSS",
+<<<<<<< HEAD
   "1001777": "JOLLYROGER_1001777_0_JRGR",
+=======
+>>>>>>> dev2019
   "1001778": "Awesome_1001778_0_AWS",
   "1001779": "Tolar_1001779_0_TLR",
   "1001780": "PaulyandMark_1001780_0_PMTX",
   "1001781": "CrytoCannabisDispensaryLicense_1001781_0_CCDL",
   "1001782": "CryptoCannabisDispensaryLicense_1001782_0_CCDL",
+<<<<<<< HEAD
   "1001783": "PIRATEKING_1001783_0_PKING",
   "1001784": "HopeNebulaCoin_1001784_0_HNC",
   "1001785": "TRE_1001785_0_TRE",
   "1001786": "FreeAgeControl_1001786_0_FSC",
   "1001787": "TRONArcade_1001787_0_TA",
+=======
+  "1001784": "HopeNebulaCoin_1001784_0_HNC",
+  "1001785": "TRE_1001785_0_TRE",
+  "1001786": "FreeAgeControl_1001786_0_FSC",
+>>>>>>> dev2019
   "1001788": "AttentionMoveVotesToSRTRONEurope_1001788_0_MOVE",
   "1001789": "MarshMeIoToken_1001789_0_MMTE",
   "1001790": "DigitalGeoTreasureToken_1001790_0_DGTT",
@@ -1794,13 +2391,19 @@ export const tokensMap = {
   "1001793": "Techniko_1001793_0_NIKO",
   "1001794": "QuarkChainToken_1001794_0_QKC",
   "1001795": "soccertoken_1001795_0_sct",
+<<<<<<< HEAD
   "1001796": "ShutTheFuckUp_1001796_0_STFU",
+=======
+>>>>>>> dev2019
   "1001797": "SEEDRSHARE_1001797_0_SHARE",
   "1001798": "SEEDRAPTS_1001798_0_SAPTS",
   "1001799": "DCG_1001799_0_DCG",
   "1001800": "!SocialHelp!_1001800_0_SOCL",
   "1001801": "Baba_1001801_0_BABA",
+<<<<<<< HEAD
   "1001802": "Virgin_1001802_0_VAG",
+=======
+>>>>>>> dev2019
   "1001803": "LIME_1001803_0_LIME",
   "1001804": "STEPS_1001804_0_STEPS",
   "1001805": "ATETHEASS_1001805_0_ATETHEASS",
@@ -1811,12 +2414,18 @@ export const tokensMap = {
   "1001810": "Colorpop_1001810_0_CLP",
   "1001811": "Moccacoin_1001811_0_MOC",
   "1001812": "STEPSTOKEN_1001812_0_ST",
+<<<<<<< HEAD
   "1001813": "PLAY_1001813_0_PLAY",
+=======
+>>>>>>> dev2019
   "1001814": "CryptoFlash_1001814_0_CFTX",
   "1001815": "TronRoyal_1001815_0_TRL",
   "1001816": "TRONROYAL_1001816_0_TRXR",
   "1001817": "TRONA_1001817_0_TRA",
+<<<<<<< HEAD
   "1001818": "TronInfo_1001818_0_TiTo",
+=======
+>>>>>>> dev2019
   "1001819": "AITechnology_1001819_0_ATN",
   "1001820": "TronDubai_1001820_0_TDBX",
   "1001821": "WLC_1001821_0_WLC",
@@ -1824,7 +2433,10 @@ export const tokensMap = {
   "1001823": "WL_1001823_0_WL",
   "1001824": "SulMiners_1001824_0_SM",
   "1001825": "CYBER_1001825_0_CYBR",
+<<<<<<< HEAD
   "1001826": "TearsOfSorrow_1001826_0_ToS",
+=======
+>>>>>>> dev2019
   "1001827": "iGenomics_1001827_0_IGX",
   "1001828": "CommunitySupportedAgriculture_1001828_0_CSA",
   "1001829": "GroceriesCoin_1001829_0_GC",
@@ -1834,9 +2446,12 @@ export const tokensMap = {
   "1001833": "preChargeTRX_1001833_0_PCPit",
   "1001834": "DeepCloudAI_1001834_0_DEEP",
   "1001835": "JinTRX_1001835_0_JTRXE",
+<<<<<<< HEAD
   "1001836": "BITCOIN_1001836_0_BTC",
   "1001837": "POS_1001837_0_POS",
   "1001838": "ENlGMAEGG_1001838_0_ENEGG",
+=======
+>>>>>>> dev2019
   "1001839": "UPRISING_1001839_0_UPRZ",
   "1001840": "SuperNovaTron_1001840_0_SNT",
   "1001841": "TronLOTTO_1001841_0_LOTTO",
@@ -1846,6 +2461,7 @@ export const tokensMap = {
   "1001845": "TimerGuardBox_1001845_0_TGB",
   "1001846": "MINERRI_1001846_0_MNRRI",
   "1001847": "ATARI_1001847_0_ATARI",
+<<<<<<< HEAD
   "1001848": "GOC_1001848_0_GOC",
   "1001849": "Atom_1001849_0_ATOM",
   "1001850": "BEREKET_1001850_0_BRKT",
@@ -1854,6 +2470,13 @@ export const tokensMap = {
   "1001853": "UTCP_1001853_0_UTCP",
   "1001854": "NeuralFractalZ_1001854_0_NFZ",
   "1001855": "ante_1001855_0_ANTE",
+=======
+  "1001849": "Atom_1001849_0_ATOM",
+  "1001850": "BEREKET_1001850_0_BRKT",
+  "1001851": "FreeCoinCash_1001851_0_FCC",
+  "1001853": "UTCP_1001853_0_UTCP",
+  "1001854": "NeuralFractalZ_1001854_0_NFZ",
+>>>>>>> dev2019
   "1001856": "Frame_1001856_0_FRM",
   "1001857": "BYC_1001857_0_BYC",
   "1001858": "TronRefunds_1001858_0_TRFD",
@@ -1870,6 +2493,7 @@ export const tokensMap = {
   "1001869": "RToken_1001869_0_RT",
   "1001870": "DONO_1001870_0_DONO",
   "1001871": "RODEX_1001871_0_RDX",
+<<<<<<< HEAD
   "1001872": "TWX_1001872_0_TWX",
   "1001873": "SEED_1001873_0_Trx",
   "1001874": "try_1001874_0_try",
@@ -1908,4 +2532,10 @@ export const tokensMap = {
   "1001907": "spade_1001907_0_SPX",
   "1001908": "LINXIAOWANG_1001908_1_LXW",
   "1001909": "DEP_1001909_5_dep"
+=======
+  "1001874": "try_1001874_0_try",
+  "1001875": "Colorpop_1001875_4_CLP",
+  "1001876": "HasanahTRON_1001876_0_HTRON",
+  "1001878": "TronSilver_1001878_0_TRS"
+>>>>>>> dev2019
 }

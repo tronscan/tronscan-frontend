@@ -191,7 +191,7 @@ class ContractTrans extends React.Component {
                     <div className="col-md-12 table_pos">
                         {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
                       {
-                        <div className="transactions-rangePicker" style={{width: "350px"}}>
+                          total ? <div className="transactions-rangePicker" style={{width: "350px"}}>
                           <RangePicker
                               defaultValue={[moment(this.start), moment(this.end)]}
                               ranges={{
@@ -204,7 +204,7 @@ class ContractTrans extends React.Component {
                               onChange={this.onChangeDate}
                               onOk={this.onDateOk}
                           />
-                        </div>
+                        </div>:''
 
                       }
                         <SmartTable bordered={true} loading={loading}

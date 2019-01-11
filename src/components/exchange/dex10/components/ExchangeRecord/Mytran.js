@@ -65,7 +65,7 @@ class Mytran extends Component {
         title: upperFirst(intl.formatMessage({id: 'TxTime'})),
         dataIndex: 'createTime',
         key: 'createTime',
-        width: '200px',
+       // width: '200px',
         render: (text, record, index) => {
           return <span>
             <FormattedDate value={Number(text)}/>&nbsp;
@@ -85,7 +85,7 @@ class Mytran extends Component {
         title: upperFirst(intl.formatMessage({id: 'TxAmount'})),
         dataIndex: 'quant',
         key: 'quant',
-        width: '200px',
+        //width: '200px',
         render: (text, record, index) => {
           return  record.tokenName == 'TRX'? 
           <TRXPrice amount={record.quant / ONE_TRX}/>

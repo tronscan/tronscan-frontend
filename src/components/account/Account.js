@@ -222,7 +222,11 @@ class Account extends Component {
                   tokenBalances.map((token) => (
                       <tr key={token.name}>
                         <td>
+<<<<<<< HEAD
                           <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+=======
+                          <TokenLink name={token.map_token_name} address={token.owner_address}/>
+>>>>>>> dev2019
                         </td>
                         <td>
                           <div className="tokenBalances_id">{token.map_token_id}</div>
