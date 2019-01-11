@@ -56,7 +56,7 @@ class TokenList extends Component {
 
         let tokens = result.data['trc20_tokens'];
         tokens.map((item,index) =>{
-            item.index = index + 1
+            item.index = index + 1 +(page - 1) * pageSize
         })
 
         // if (tokens.length === 0) {
