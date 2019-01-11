@@ -347,7 +347,7 @@ class Address extends React.Component {
                                 <td>
                                   <ul className="list-unstyled m-0">
                                     <li>
-                                      <TRXPrice showCurreny={false} amount={(address.frozen.total + address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0) / ONE_TRX}/>
+                                      <TRXPrice showCurreny={false} amount={(address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance?address.accountResource.frozen_balance_for_energy.frozen_balance: 0)) / ONE_TRX}/>
                                     </li>
                                   </ul>
                                 </td>
