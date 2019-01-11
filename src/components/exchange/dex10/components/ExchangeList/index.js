@@ -268,11 +268,11 @@ class ExchangeList extends React.Component {
 
     handleSearch = async(e) => {
         let {search} = this.state;
-        let {data} = await Client.getExchangesList({
+        let {exchangesAllList} = await Client.getexchangesAllList({
             name:search
         });
         this.setState({
-            searchExchangesList:data,
+            searchExchangesList:exchangesAllList,
             showSearch:true
         });
     }

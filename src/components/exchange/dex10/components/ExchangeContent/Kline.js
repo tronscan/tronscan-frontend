@@ -294,7 +294,8 @@ class Kline extends React.Component {
     const {tokeninfoItem,detailShow} = this.state
     const {selectData} = this.props;
     let imgDefault = require('../../../../../images/logo_default.png')
-
+    let high = Number(selectData.high).toFixed(6);
+    let low = Number(selectData.low).toFixed(6);
     return (
       <div className="exchange__kline p-3 mb-2">
       {/* title 信息 */}
@@ -318,8 +319,8 @@ class Kline extends React.Component {
             <span className='col-green ml-2'>{selectData.up_down_percent}</span>
             }
           </div>
-          <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high}</span></div>
-          <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low}</span></div>
+          <div className="mr-3">{tu('H')}<span className=" ml-2">{high}</span></div>
+          <div className="mr-3">{tu('L')}<span className=" ml-2">{low}</span></div>
           <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume/Math.pow(10,6)} /></span>
             {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
               {/*≈*/}
@@ -335,7 +336,7 @@ class Kline extends React.Component {
               <p className="title">{tu('trc20_exchange_status')}</p>
               <p className="value">
               {
-                 selectData.status == 0?
+                 selectData.status == 1?
                  <span className="badge badge-success-block text-uppercase">{tu("trc20_examine")}</span> :
                  <span className="badge badge-danger-block text-uppercase">{tu("trc20_unexamine")}</span>
               }
