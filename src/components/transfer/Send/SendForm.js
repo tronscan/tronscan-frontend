@@ -349,21 +349,22 @@ class SendForm extends React.Component {
 
   componentDidUpdate() {
     let {tokenBalances} = this.props;
-    tokenBalances = _(tokenBalances).filter(tb => tb.balance > 0).value();
-    let {token,tokens20} = this.state;
-    if (!token && tokenBalances.length > 0) {
-      this.setState({
-        token: tokenBalances[0].map_token_name + '-' +tokenBalances[0].map_token_id + '-TRC10',
-      },() =>{
-        this.getSelectedTokenBalance()
-      })
+    tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
 
-    }else if(!token && tokens20.length > 0 && tokenBalances.length === 0){
-        this.setState({
-            token: tokens20[0].name + '-TRC20',
-        },() =>{
-            this.getSelectedTokenBalance()
-        })
+    let {token, tokens20} = this.state;
+    if (!token && tokenBalances.length > 0) {
+      this.setState(
+        {
+        token: tokenBalances[0].map_token_name + '-' + tokenBalances[0].map_token_id + '-TRC10',
+        },
+        () => this.getSelectedTokenBalance())
+
+    } else if (!token && tokens20.length > 0 && tokenBalances.length === 0) {
+      this.setState(
+        {
+          token: tokens20[0].name + '-TRC20',
+        },
+        () => this.getSelectedTokenBalance())
     }
   }
 
