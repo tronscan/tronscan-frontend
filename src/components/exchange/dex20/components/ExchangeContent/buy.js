@@ -1,22 +1,17 @@
-import React, { Component } from "react";
-import { Form, Input, Button, Radio,Slider } from "antd";
-import { QuestionMark } from "../../../../common/QuestionMark";
-import { withRouter } from "react-router";
-import { Client, Client20 } from "../../../../../services/api";
+import React, {Component} from "react";
+import {Button, Form, Slider} from "antd";
+import {withRouter} from "react-router";
+import {Client20} from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { tu } from "../../../../../utils/i18n";
-import { connect } from "react-redux";
-import { injectIntl } from "react-intl";
-import { ONE_TRX } from "../../../../../constants";
-import { find } from "lodash";
-import { TW } from "../../TW";
+import {tu} from "../../../../../utils/i18n";
+import {connect} from "react-redux";
+import {injectIntl} from "react-intl";
+import {TW} from "../../TW";
 import {setUpdateTran} from '../../../../../actions/exchange'
 
 import NumericInput from "./NumericInput";
-import {
-  getDecimalsNum,
-  onlyInputNumAndPoint
-} from "../../../../../utils/number";
+import {getDecimalsNum, onlyInputNumAndPoint} from "../../../../../utils/number";
+import {withTronWeb} from "../../../../../utils/tronWeb";
 
 const marks = {
   0: "",
@@ -31,6 +26,8 @@ function formatter(value) {
 }
 
 const FormItem = Form.Item;
+
+@withTronWeb
 class Buy extends Component {
   constructor(props) {
     super(props);
@@ -278,7 +275,7 @@ class Buy extends Component {
   handleSubmit = e => {
     let { price, amount, secondError, firstError, limitError,buttonLoading } = this.state;
     let { intl } = this.props;
-    
+
     if (price * amount < 10) {
       this.setState({
         secondError: intl.formatMessage({ id: "trc20_enter_10" })
@@ -311,9 +308,11 @@ class Buy extends Component {
 
   async orderSubmit() {
     let { exchangeData, account } = this.props;
-    let { amount, price,balanceTimer } = this.state;
+    let { amount, price, balanceTimer } = this.state;
     let tokenA = exchangeData.fTokenAddr;
     let tokenB = exchangeData.sTokenAddr;
+
+    const tronWeb = this.props.tronWeb();
 
     const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
     const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
@@ -325,7 +324,7 @@ class Buy extends Component {
       _tokenB: tokenB,
       _price: price * secondPrecision,
       _amountB: amount * price * secondPrecision,
-      tronWeb: account.tronWeb
+      tronWeb: tronWeb
     };
 
     let id;
@@ -349,15 +348,15 @@ class Buy extends Component {
         this.setState({
           buttonLoading:false
         })
-        
-      
+
+
         let timer = setInterval(()=>{
           this.setBalance();
         },1000)
         this.setState({
           balanceTimer:timer
         })
-        
+
       }
     } catch (error) {
       this.setState({
@@ -382,26 +381,27 @@ class Buy extends Component {
   };
 
   async setBalance() {
-    let { account, exchangeData } = this.props;
-    let {firstBalance,balanceTimer} = this.state
+    let {account, exchangeData} = this.props;
+    let {firstBalance, balanceTimer} = this.state;
 
     let _b = 0;
     if (account.address && exchangeData.sTokenAddr) {
       if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
         _b =
-          (await account.tronWeb.trx.getUnconfirmedBalance(account.address)) /
+          (await this.props.tronWeb().tronWeb.trx.getUnconfirmedBalance(account.address)) /
           Math.pow(10, exchangeData.sPrecision);
       } else {
         _b = await TW.getBalance({
           _tokenA: exchangeData.sTokenAddr,
           _uToken: account.address,
           _precision: exchangeData.sPrecision,
-          tronWeb: account.tronWeb
+          tronWeb: this.props.tronWeb(),
         });
       }
     }
-    if(_b != firstBalance){
-      clearInterval(balanceTimer)
+
+    if (_b !== firstBalance) {
+      clearInterval(balanceTimer);
       this.setState({
         balanceTimer: null
       });

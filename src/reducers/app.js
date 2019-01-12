@@ -6,6 +6,7 @@ import {
   LOGIN,
   LOGIN_ADDRESS,
   LOGIN_TRONLINK,
+  LOGIN_LEDGER,
   LOGIN_PK,
   LOGOUT,
   SET_ACCOUNTS,
@@ -16,7 +17,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {IS_DESKTOP} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -56,6 +57,11 @@ const initialState = {
     key: undefined,
     address: undefined,
     isLoggedIn: false,
+  },
+  wallet: {
+    type: undefined,
+    isOpen: false,
+    address: undefined,
   },
   activeCurrency: Lockr.get("currency", 'TRX'),
   currencyConversions: [
@@ -139,22 +145,24 @@ export function appReducer(state = initialState, action) {
 
       Lockr.set("account_key", base64DecodeFromString(action.password));
 
-        return {
+      return {
         ...state,
         account: {
+          type: ACCOUNT_PRIVATE_KEY,
           key: base64DecodeFromString(action.password),
           isLoggedIn: true,
           address: passwordToAddress(action.password)
-        }
+        },
+        wallet: {
+          type: ACCOUNT_PRIVATE_KEY,
+          address: passwordToAddress(action.password),
+          isOpen: true,
+        },
       };
     }
 
     case LOGIN_PK: {
 
-      if (IS_DESKTOP) {
-        Lockr.set("account_key", action.privateKey);
-        Lockr.rm("account_address");
-      }
       const ServerNode =  "https://api.trongrid.io";
       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
@@ -171,58 +179,70 @@ export function appReducer(state = initialState, action) {
       return {
         ...state,
         account: {
+          type: ACCOUNT_PRIVATE_KEY,
           key: action.privateKey,
           isLoggedIn: true,
           address: pkToAddress(action.privateKey),
-          tronWeb:tronWeb,
-        }
+          tronWeb: tronWeb,
+        },
+        wallet: {
+          type: ACCOUNT_PRIVATE_KEY,
+          address: pkToAddress(action.privateKey),
+          isOpen: true,
+        },
       };
     }
 
     case LOGIN_ADDRESS: {
 
-      if (IS_DESKTOP) {
-        Lockr.rm("account_key");
-        // Lockr.set("account_address", action.address);
-      }
+      return {
+        ...state,
+        account: {
+          type: ACCOUNT_ADDRESS,
+          key: false,
+          isLoggedIn: true,
+          address: action.address
+        },
+        wallet: {
+          type: ACCOUNT_ADDRESS,
+          address: action.address,
+          isOpen: true,
+        },
+      };
+    }
+
+    case LOGIN_LEDGER: {
 
       return {
         ...state,
         account: {
+          type: ACCOUNT_LEDGER,
           key: false,
           isLoggedIn: true,
-          address: action.address
-        }
+          address: action.address,
+        },
+        wallet: {
+          type: ACCOUNT_LEDGER,
+          address: action.address,
+          isOpen: true,
+        },
       };
-    }
-
-    case LOGIN_TRONLINK:{
-
-        if (IS_DESKTOP) {
-            Lockr.rm("account_key");
-            // Lockr.set("account_address", action.address);
-        }
-        return {
-            ...state,
-            account: {
-                key: false,
-                isLoggedIn: true,
-                address: action.address,
-                tronWeb:action.tronWeb,
-            }
-        };
     }
 
     case LOGOUT: {
       Lockr.rm("account_key");
       Lockr.rm("account_address");
-      Lockr.set("islogin",0)
       return {
         ...state,
         account: {
           key: undefined,
           isLoggedIn: false,
-        }
+        },
+        wallet: {
+          type: undefined,
+          address: undefined,
+          isOpen: false,
+        },
       }
     }
 

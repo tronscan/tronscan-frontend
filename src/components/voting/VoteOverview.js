@@ -3,7 +3,7 @@ import {tu} from "../../utils/i18n";
 import React, {Fragment} from "react";
 import {AddressLink} from "../common/Links";
 import {FormattedNumber, injectIntl} from "react-intl";
-import {filter, isNaN, sortBy, sumBy, trim} from "lodash";
+import {filter, isNaN, sumBy, trim} from "lodash";
 import Countdown from "react-countdown-now";
 import {Sticky, StickyContainer} from "react-sticky";
 import {connect} from "react-redux";
@@ -18,9 +18,9 @@ import palette from "google-palette";
 import {Truncate} from "../common/text";
 import {withTimers} from "../../utils/timing";
 import {loadVoteTimer} from "../../actions/votes";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {transactionResultManager} from "../../utils/tron";
 import Lockr from "lockr";
+import {withTronWeb} from "../../utils/tronWeb";
 
 function VoteChange({value, arrow = false}) {
   if (value > 0) {
@@ -48,7 +48,25 @@ function VoteChange({value, arrow = false}) {
   )
 }
 
-class VoteOverview extends React.Component {
+@withTronWeb
+@injectIntl
+@withTimers
+@connect(
+  state => ({
+    account: state.app.account,
+    tokenBalances: state.account.tokens,
+    wallet: state.wallet,
+    flags: state.app.flags,
+    voteList: state.voting.voteList,
+    voteTimer: state.voting.voteTimer,
+  }),
+  {
+    login,
+    reloadWallet,
+    loadVoteTimer,
+  }
+)
+export default class VoteOverview extends React.Component {
 
   constructor() {
     super();
@@ -168,7 +186,7 @@ class VoteOverview extends React.Component {
   loadVotes = async () => {
 
     let {voteList} = this.props;
-    
+
     if (voteList.length === 0) {
       this.setState({loading: true});
     }
@@ -337,66 +355,9 @@ class VoteOverview extends React.Component {
     });
   };
 
-  onInputChange = (value) => {
-    let {account} = this.props;
-    if (value && value.length === 64) {
-      this.privateKey.className = "form-control";
-      if (pkToAddress(value) !== account.address)
-        this.privateKey.className = "form-control is-invalid";
-    }
-    else {
-      this.privateKey.className = "form-control is-invalid";
-    }
-    this.setState({privateKey: value})
-    this.privateKey.value = value;
-  }
-
-  confirmPrivateKey = (param) => {
-    let {privateKey} = this.state;
-    let {account} = this.props;
-
-    let reConfirm = () => {
-      if (this.privateKey.value && this.privateKey.value.length === 64) {
-        if (pkToAddress(this.privateKey.value) === account.address)
-          this.submitVotes();
-      }
-    }
-
-    this.setState({
-      modal: (
-          <SweetAlert
-              info
-              showCancel
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("confirm")}
-              confirmBtnBsStyle="success"
-              cancelBtnBsStyle="default"
-              title={tu("confirm_private_key")}
-              onConfirm={reConfirm}
-              onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
-          >
-            <div className="form-group">
-              <div className="input-group mb-3">
-                <input type="text"
-                       ref={ref => this.privateKey = ref}
-                       onChange={(ev) => {
-                         this.onInputChange(ev.target.value)
-                       }}
-                       className="form-control is-invalid"
-                />
-                <div className="invalid-feedback">
-                  {tu("fill_a_valid_private_key")}
-                </div>
-              </div>
-            </div>
-          </SweetAlert>
-      )
-    });
-  }
   submitVotes = async () => {
     let {account} = this.props;
-    let {votes, privateKey} = this.state;
+    let {votes } = this.state;
     let res;
     this.setState({submittingVotes: true,});
 
@@ -405,19 +366,21 @@ class VoteOverview extends React.Component {
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
-    if (Lockr.get("islogin")) {
-        const { tronWeb } = account;
-        try {
-            const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, tronWeb.defaultAddress.hex).catch(e=>false);
-            const {result} = await transactionResultManager(unSignTransaction,tronWeb)
-            res = result;
-        } catch (e) {
-            console.log(e)
-        }
-    }else{
-        let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
-        res = success
+
+    if (account.isLoggedIn) {
+      const tronWeb = this.props.tronWeb();
+      try {
+          const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+          const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+          res = result;
+      } catch (e) {
+          console.error(e)
+      }
+    } else {
+      let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+      res = success
     }
+
     if (res) {
       setTimeout(() => this.props.reloadWallet(), 1200);
       setTimeout(() => this.setState({votesSubmitted: false,}), 5000);
@@ -457,7 +420,7 @@ class VoteOverview extends React.Component {
     let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
     let {wallet} = this.props;
     let candidates = votesList.data || []
-  
+
     let filteredCandidates = candidates.map((v, i) => Object.assign({
       rank: i
     }, v));
@@ -709,23 +672,3 @@ class VoteOverview extends React.Component {
     );
   }
 }
-
-
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    wallet: state.wallet,
-    flags: state.app.flags,
-    voteList: state.voting.voteList,
-    voteTimer: state.voting.voteTimer,
-  };
-}
-
-const mapDispatchToProps = {
-  login,
-  reloadWallet,
-  loadVoteTimer,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(VoteOverview)))

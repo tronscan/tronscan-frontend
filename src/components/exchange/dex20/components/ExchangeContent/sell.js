@@ -19,6 +19,7 @@ import {
   getDecimalsNum,
   onlyInputNumAndPoint
 } from "../../../../../utils/number";
+import {withTronWeb} from "../../../../../utils/tronWeb";
 
 const marks = {
   0: "",
@@ -33,6 +34,8 @@ function formatter(value) {
 }
 
 const FormItem = Form.Item;
+
+@withTronWeb
 class Sell extends Component {
   constructor(props) {
     super(props);
@@ -284,7 +287,7 @@ class Sell extends Component {
       limitError,
       firstBalance
     } = this.state;
-    
+
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
     if (price * amount < 10) {
@@ -342,7 +345,7 @@ class Sell extends Component {
       _price: price * secondPrecision,
       _tokenB: tokenB,
       _amountB: amountB,
-      tronWeb: account.tronWeb
+      tronWeb: this.props.tronWeb(),
     };
     try {
       const id = await TW.sellByContract(data);
@@ -362,14 +365,14 @@ class Sell extends Component {
           buttonLoading:false
         })
         this.setBalance();
-       
+
         let timer = setInterval(()=>{
           this.setBalance();
         },1000)
         this.setState({
           balanceTimer:timer
         })
-        
+
       }
     } catch (error) {
       console.log(error);
@@ -407,12 +410,12 @@ class Sell extends Component {
         _tokenA: exchangeData.fTokenAddr,
         _uToken: account.address,
         _precision: exchangeData.fPrecision,
-        tronWeb: account.tronWeb
+        tronWeb: this.props.tronWeb(),
       });
     }
 
-    if(_b != firstBalance){
-      clearInterval(balanceTimer)
+    if(_b !== firstBalance) {
+      clearInterval(balanceTimer);
       this.setState({
         balanceTimer: null
       });
@@ -478,7 +481,7 @@ class Sell extends Component {
     }
     let value1 = onlyInputNumAndPoint(value, precision);
 
-  
+
     // this.setMaxLen(value, precision)
     this.setState(
       {

@@ -1,12 +1,12 @@
-import React, {Component, Fragment} from 'react';
-import {t, tu} from "../../utils/i18n";
+import React, {Component} from 'react';
+import {tu} from "../../utils/i18n";
 import {Client} from "../../services/api";
 import {connect} from "react-redux";
 import {loadTokens} from "../../actions/tokens";
 import {login} from "../../actions/app";
-import {filter, trim, some, sumBy} from "lodash";
-import {ASSET_ISSUE_COST, ONE_TRX, API_URL} from "../../constants";
-import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
+import {filter, trim} from "lodash";
+import {API_URL, ASSET_ISSUE_COST, ONE_TRX} from "../../constants";
+import {injectIntl} from "react-intl";
 import {addDays, addHours, isAfter} from "date-fns";
 import "react-datetime/css/react-datetime.css";
 import {Link} from "react-router-dom";
@@ -21,11 +21,13 @@ import {TronLoader} from "../common/loaders";
 import {Steps} from 'antd';
 import {transactionResultManager} from "../../utils/tron";
 import Lockr from "lockr";
+import {withTronWeb} from "../../utils/tronWeb";
 
+@withTronWeb
 class TokenCreate extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     let startTime = new Date();
     startTime.setHours(0, 0, 0, 0);
@@ -112,13 +114,13 @@ class TokenCreate extends Component {
           </SweetAlert>)
     });
 
-  }
+  };
 
   submit = async () => {
     let {account, intl} = this.props;
     let {logoData} = this.state;
     let res,createInfo,errorInfo;
-    const { tronWeb } = account;
+    const tronWeb = this.props.tronWeb();
     this.setState({
       modal:
           <SweetAlert
@@ -239,7 +241,7 @@ class TokenCreate extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
-        
+
         if (token) {
           this.setState({
             issuedAsset: token,

@@ -36,28 +36,28 @@ class ApplyForDelegate extends Component {
 
   doApply = async () => {
     let res;
-    let {account,isTronLink} = this.props;
+    let {account, isTronLink} = this.props;
     let {url} = this.state;
-    this.setState({loading: true});
-    if(isTronLink === 1){
-      const {tronWeb} = account;
-      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex,url).catch(e=>false);
-      const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
+    this.setState({ loading: true });
+    if (isTronLink === 1) {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       let {success} = await Client.applyForDelegate(account.address, url)(account.key);
       res = success;
     }
-    this.setState({loading: false});
+    this.setState({ loading: false });
     if (res) {
       this.confirm();
     } else {
       this.setState({
         modal: (
-            <SweetAlert warning title={tu("error")} onConfirm={this.hideModal}>
-              {tu("apply_representative_error_message_0")} <br/>
-              {tu("apply_representative_error_message_1")}
-            </SweetAlert>
+          <SweetAlert warning title={tu("error")} onConfirm={this.hideModal}>
+            {tu("apply_representative_error_message_0")} <br/>
+            {tu("apply_representative_error_message_1")}
+          </SweetAlert>
         )
       })
     }

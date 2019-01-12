@@ -1,46 +1,43 @@
 import React from "react";
-import { filter, flatten } from "lodash";
+import {flatten} from "lodash";
 import Block from "./components/blockchain/Block";
 import Transaction from "./components/blockchain/Transaction";
 import Address from "./components/addresses/Address";
 import Home from "./components/Home";
 import {
-  MarketsAsync,
-  StatisticsAsync,
-  SingleChartAsync,
-  VerifyContractCodeAsync,
-  TransactionViewerAsync,
-  VoteLiveAsync,
-  VoteOverviewAsync,
-  WalletWizardAsync,
-  RepresentativesAsync,
+  AboutAsync,
   AccountAsync,
-  NodeTesterAsync,
-  TronConvertToolAsync,
-  SystemAsync,
+  AccountsAsync,
+  CopyrightAsync,
   DemoAsync,
   FaqAsync,
-  MyTokenAsync,
-  TRONRatingAsync,
-  CopyrightAsync,
-  AboutAsync,
-  LedgerHelpAsync,
-  TokenOverviewAsync,
-  TokenListAsync,
-  TokenTRC20ListAsync,
-  TokensCreateAsync,
-  AccountsAsync,
   FoundationAsync,
-  NodesAsync,
+  LedgerHelpAsync,
   LiveAsync,
-  TokenDetailAsync,
+  MyTokenAsync,
+  NodesAsync,
+  NodeTesterAsync,
+  ProposalDetailAsync,
+  RepresentativesAsync,
+  SingleChartAsync,
+  StatisticsAsync,
+  SystemAsync,
   Token20DetailAsync,
-  ProposalDetailAsync
+  TokenDetailAsync,
+  TokenListAsync,
+  TokenOverviewAsync,
+  TokensCreateAsync,
+  TokenTRC20ListAsync,
+  TransactionViewerAsync,
+  TronConvertToolAsync,
+  TRONRatingAsync,
+  VoteLiveAsync,
+  VoteOverviewAsync,
+  WalletWizardAsync
 } from "./components/async";
 import Blocks from "./components/blockchain/Blocks";
 import Transactions from "./components/blockchain/Transactions";
 import Transfers from "./components/blockchain/Transfers";
-import ContractInter from "./components/blockchain/Contractinter";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
@@ -50,7 +47,8 @@ import Notice from "./components/exchange/notice";
 import ContractTrans from "./components/blockchain/ContractTrans";
 import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import {LedgerComponent} from "./hw/ledger/LedgerComponent";
 
 export const routes = [
   {
@@ -633,6 +631,14 @@ export const routes = [
     showSubMenu: false,
     showSubHeader: false,
     component: DemoAsync
+  },
+  {
+    path: "/hw",
+    label: "hardware",
+    showInMenu: true,
+    showSubMenu: false,
+    showSubHeader: false,
+    component: LedgerComponent,
   },
   {
     path: "/",

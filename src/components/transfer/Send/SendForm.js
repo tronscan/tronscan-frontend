@@ -1,29 +1,26 @@
 /* eslint-disable no-restricted-globals */
 import {connect} from "react-redux";
 import React, {Fragment} from "react";
-import {injectIntl} from "react-intl";
+import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
-import SendOption from "./../SendOption";
-import {find, round} from "lodash";
-import {ONE_TRX,API_URL} from "../../../constants";
+import _, {find, round} from "lodash";
+import {API_URL, ONE_TRX} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
-import {FormattedNumber} from "react-intl";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {TronLoader} from "../../common/loaders";
 import {login} from "../../../actions/app";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import rebuildList from "../../../utils/rebuildList";
-import _ from "lodash";
 import Lockr from "lockr";
 import xhr from "axios";
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
+import {withTronWeb} from "../../../utils/tronWeb";
+
 const { Option, OptGroup } = Select;
 
-
+@withTronWeb
 class SendForm extends React.Component {
 
   constructor(props) {
@@ -67,80 +64,83 @@ class SendForm extends React.Component {
   /**
    * Send the transaction
    */
-  send =() =>{
-      let {token} = this.state;
-      let TokenType =  token.substr(token.length-5,5);
-      if(TokenType == 'TRC20'){
-          this.token20Send()
-      }else if(TokenType == 'TRC10'){
-          if (Lockr.get("islogin")) {
-              this.tokenSendWithTronLink();
-          }else {
-              this.token10Send()
-          }
-      }
+  send = async () => {
+    let {token} = this.state;
+    let TokenType = token.substr(token.length - 5, 5);
+    switch (TokenType) {
+      case 'TRC10':
+        if (Lockr.get("islogin")) {
+          await this.tokenSendWithTronLink();
+        } else {
+          await this.token10Send();
+        }
+        break;
+      case 'TRC20':
+        await this.token20Send();
+        break;
+    }
   };
 
   tokenSendWithTronLink = async() => {
-      let {to, token, amount, note, privateKey,decimals} = this.state;
-      let list = token.split('-')
-      let TokenName =  list[1];
-      let {account, onSend} = this.props;
-      let result,success;
-      const { tronWeb } = account;
-      this.setState({isLoading: true, modal: null});
+    let {to, token, amount, decimals} = this.state;
+    let list = token.split('-');
+    let TokenName = list[1];
+    let { onSend} = this.props;
 
-      if (TokenName === "_") {
-          amount = amount * ONE_TRX;
-          result = await tronWeb.trx.sendTransaction(to, amount, false).catch(function (e) {
-              console.log(e)
-          });
-          if(result){
-              success = result.result;
-          }else{
-              success = false;
-          }
+    let result, success;
+    this.setState({isLoading: true, modal: null});
 
-      }else{
-          amount = amount * Math.pow(10,decimals);
-          result = await tronWeb.trx.sendToken(to, amount, TokenName, false);
-          success = result.result;
-          if(result){
-              success = result.result;
-          }else{
-              success = false;
-          }
-      }
-
-      //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
-
-      if (success) {
-          this.refreshTokenBalances();
-
-          onSend && onSend();
-          //two work flows!
-
-          this.setState({
-              sendStatus: 'success',
-              isLoading: false,
-          });
+    if (TokenName === "_") {
+      amount = amount * ONE_TRX;
+      result = await this.props.tronWeb().trx.sendTransaction(to, amount, false).catch(function (e) {
+        console.log(e)
+      });
+      if (result) {
+        success = result.result;
       } else {
-          this.setState({
-              sendStatus: 'failure',
-              isLoading: false,
-          });
-
-          setTimeout(() => {
-              this.setState({
-                  sendStatus: 'waiting',
-              });
-          }, 2000);
+        success = false;
       }
-  }
+
+    } else {
+      amount = amount * Math.pow(10, decimals);
+      result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, false);
+      success = result.result;
+      if (result) {
+        success = result.result;
+      } else {
+        success = false;
+      }
+    }
+
+    //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
+
+    if (success) {
+      this.refreshTokenBalances();
+
+      onSend && onSend();
+      //two work flows!
+
+      this.setState({
+        sendStatus: 'success',
+        isLoading: false,
+      });
+    } else {
+      this.setState({
+        sendStatus: 'failure',
+        isLoading: false,
+      });
+
+      setTimeout(() => {
+        this.setState({
+          sendStatus: 'waiting',
+        });
+      }, 2000);
+    }
+  };
 
   token10Send = async () => {
     let {to, token, amount, note, decimals} = this.state;
-    let list = token.split('-')
+    let list = token.split('-');
     let TokenName =  list[1];
     let {account, onSend} = this.props;
 
@@ -180,46 +180,45 @@ class SendForm extends React.Component {
 
   token20Send = async () => {
 
-      let {to, token, amount, note, decimals,tokens20} = this.state;
-      let TokenName =  token.substring(0,token.length-6);
-      let {account, onSend} = this.props;
-      this.setState({isLoading: true, modal: null});
-      let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-      let  contractInstance = await account.tronWeb.contract().at(contractAddress);
-      const transctionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
-      if (transctionId) {
-          this.refreshTokenBalances();
-          onSend && onSend();
-          //two work flows!
+    let {to, token, amount, decimals, tokens20} = this.state;
+    let TokenName = token.substring(0, token.length - 6);
+    let {onSend} = this.props;
+    this.setState({ isLoading: true, modal: null });
+    let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
+    let contractInstance = await this.props.tronWeb().contract().at(contractAddress);
+    const transactionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
+    if (transactionId) {
+      this.refreshTokenBalances();
+      onSend && onSend();
+      //two work flows!
 
-          this.setState({
-              sendStatus: 'success',
-              isLoading: false,
-          });
-      }else {
-          this.setState({
-              sendStatus: 'failure',
-              isLoading: false,
-          });
+      this.setState({
+        sendStatus: 'success',
+        isLoading: false,
+      });
+    } else {
+      this.setState({
+        sendStatus: 'failure',
+        isLoading: false,
+      });
 
-          setTimeout(() => {
-              this.setState({
-                  sendStatus: 'waiting',
-              });
-          }, 2000);
-      }
-
-  }
+      setTimeout(() => {
+        this.setState({
+          sendStatus: 'waiting',
+        });
+      }, 2000);
+    }
+  };
 
   confirmSend = () => {
 
     let {to, token, amount} = this.state;
-    let list = token.split('-')
+    let list = token.split('-');
     let TokenName =  list[0];
     let TokenID;
-    const style = isMobile? {}: {marginLeft: '-240px', marginTop: '-195px'}
-    if(list[1] !== '_' && list[1] !== 'TRC20'){
-        TokenID = list[1];
+    const style = isMobile? {}: {marginLeft: '-240px', marginTop: '-195px'};
+    if (list[1] !== '_' && list[1] !== 'TRC20') {
+      TokenID = list[1];
     }
     this.setState({
       modal: (
@@ -258,34 +257,34 @@ class SendForm extends React.Component {
 
   setAmount = (amount) => {
     let {token, decimals} = this.state;
-    let TokenType =  token.substr(token.length-5,5);
-    let TokenName =  token.substring(0,token.length-6);
-    if (token && TokenType == 'TRC10') {
-        if(TokenName == 'TRX'){
-            if (amount !== '') {
-                amount = parseFloat(amount);
-                amount = round(amount, 6);
-                if (amount <= 0) {
-                    amount = 0;
-                }
-            }
-        }else{
-            if (amount !== '') {
-                amount = parseFloat(amount);
-                amount = round(amount,decimals);
-                if (amount <= 0) {
-                    amount = 0;
-                }
-            }
-        }
-    }else if(token && TokenType == 'TRC20'){
+    let TokenType = token.substr(token.length - 5, 5);
+    let TokenName = token.substring(0, token.length - 6);
+    if (token && TokenType === 'TRC10') {
+      if (TokenName === 'TRX') {
         if (amount !== '') {
-            amount = parseFloat(amount);
-            amount = round(amount, decimals);
-            if (amount <= 0) {
-                amount = 0;
-            }
+          amount = parseFloat(amount);
+          amount = round(amount, 6);
+          if (amount <= 0) {
+            amount = 0;
+          }
         }
+      } else {
+        if (amount !== '') {
+          amount = parseFloat(amount);
+          amount = round(amount, decimals);
+          if (amount <= 0) {
+            amount = 0;
+          }
+        }
+      }
+    } else if (token && TokenType === 'TRC20') {
+      if (amount !== '') {
+        amount = parseFloat(amount);
+        amount = round(amount, decimals);
+        if (amount <= 0) {
+          amount = 0;
+        }
+      }
     }
 
 
@@ -359,7 +358,7 @@ class SendForm extends React.Component {
         this.getSelectedTokenBalance()
       })
 
-    }else if(!token && tokens20.length > 0 && tokenBalances.length == 0){
+    }else if(!token && tokens20.length > 0 && tokenBalances.length === 0){
         this.setState({
             token: tokens20[0].name + '-TRC20',
         },() =>{
@@ -447,7 +446,7 @@ class SendForm extends React.Component {
           tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
               item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
+              let  contractInstance = await this.props.tronWeb().contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
                   item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);

@@ -11,8 +11,22 @@ import {reloadWallet} from "../../actions/wallet";
 import {NumberField} from "../common/Fields";
 import {transactionResultManager} from "../../utils/tron";
 import Lockr from "lockr";
+import {withTronWeb} from "../../utils/tronWeb";
 
-class FreezeBalanceModal extends React.PureComponent {
+@connect(
+  state => ({
+    account: state.app.account,
+    wallet: state.app.wallet,
+    tokenBalances: state.account.tokens,
+    trxBalance: state.account.trxBalance || state.account.balance,
+  }),
+  {
+    reloadWallet
+  }
+)
+@injectIntl
+@withTronWeb
+export default class FreezeBalanceModal extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -56,13 +70,18 @@ class FreezeBalanceModal extends React.PureComponent {
 
     let {trxBalance} = this.props;
 
+    console.log("props", this.props);
+
     let amount = parseInt(value);
     if (!isNaN(amount)) {
       amount = amount > 0 ? Math.floor(amount) : Math.abs(amount);
-      amount = amount < trxBalance ? amount : trxBalance;
+      // amount = amount < trxBalance ? amount : trxBalance;
     } else {
       amount = "";
     }
+
+    console.log("Amount changed", value, amount, parseInt(value), Math.floor(amount), Math.abs(amount));
+
 
     this.setState({
       amount,
@@ -71,48 +90,65 @@ class FreezeBalanceModal extends React.PureComponent {
 
   freeze = async () => {
 
-    let {account, onError, privateKey} = this.props;
-    let {amount,selectedResource} = this.state;
-    let res,type;
+    let {account, onError, wallet} = this.props;
+    let {amount, selectedResource} = this.state;
+    let res, type;
     this.setState({loading: true});
-    if (Lockr.get("islogin")) {
-        const { tronWeb } = account;
-        if(!selectedResource){
-            type = 'BANDWIDTH';
-        }else{
-            type = 'ENERGY';
+
+    try {
+
+      if (account.isLoggedIn) {
+        const tronWeb = this.props.tronWeb();
+        if (!selectedResource) {
+          type = 'BANDWIDTH';
+        } else {
+          type = 'ENERGY';
         }
-        const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e=>false);
-        const {result} = await transactionResultManager(unSignTransaction,tronWeb)
+
+        console.log("FREEZING", amount * ONE_TRX);
+
+        const unSignTransaction = await this.props.tronWeb().transactionBuilder.freezeBalance(
+          amount * ONE_TRX,
+          3,
+          type,
+          wallet.address);
+
+
+        const {result} = await transactionResultManager(unSignTransaction, tronWeb);
         res = result;
-    }else {
+      } else {
         let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
         res = success
-    }
-    if (res) {
-      this.confirmModal({amount});
-      this.setState({loading: false});
-    } else {
+      }
+
+
+      if (res) {
+        this.confirmModal({amount});
+        this.setState({loading: false});
+      } else {
+        throw new Error("Failed to freeze");
+      }
+
+    } catch (e) {
+      console.error(e);
       onError && onError();
     }
+
   };
+
   resourceSelectChange = (value) => {
     this.setState({
         selectedResource: Number(value)
     });
-  }
+  };
 
-  componentWillUnmount(){
-      this.setState = (state,callback)=>{
-          return;
-      };
-  }
   render() {
 
     let {amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
 
-    let isValid = !loading && (amount > 0 && trxBalance >= amount && confirmed);
+    let isValid = true; //!loading && (amount > 0 && trxBalance >= amount && confirmed);
+
     return (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
           <ModalHeader className="text-center _freezeHeader" toggle={this.hideModal}>
@@ -125,7 +161,9 @@ class FreezeBalanceModal extends React.PureComponent {
                     style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
                 </div>
                 <div style={{position:'relative'}}>
-                  <button type="button" onClick={(e)=>{this.setState({amount:Math.floor(trxBalance)})}} style={{position:'absolute',right:0,top:0,background:'none',height:'35px',border:'none',cursor:'pointer'}}>MAX</button>
+                  <button type="button" onClick={ ()=>{
+                    this.setState({ amount: Math.floor(trxBalance) })
+                  }} style={styles.maxButton}>MAX</button>
                   <NumberField
                       min={1}
                       decimals={0}
@@ -176,16 +214,14 @@ class FreezeBalanceModal extends React.PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    account: state.app.account,
-    tokenBalances: state.account.tokens,
-    trxBalance: state.account.trxBalance,
-  };
-}
-
-const mapDispatchToProps = {
-  reloadWallet
+const styles = {
+  maxButton: {
+    position:'absolute',
+    right:0,
+    top:0,
+    background:'none',
+    height:'35px',
+    border:'none',
+    cursor:'pointer',
+  }
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(FreezeBalanceModal))

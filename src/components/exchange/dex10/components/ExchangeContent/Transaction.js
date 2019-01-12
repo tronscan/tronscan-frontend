@@ -1,15 +1,13 @@
-import React, { Component } from "react";
-import { Form, Input, Button, Radio,Slider } from "antd";
-import { QuestionMark } from "../../../../common/QuestionMark";
-import {transactionResultManager} from "../../../../../utils/tron";
-import { withRouter } from "react-router";
-import { Client, Client20 } from "../../../../../services/api";
+import React, {Component} from "react";
+import {Button, Form, Slider} from "antd";
+import {withRouter} from "react-router";
+import {Client} from "../../../../../services/api";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { tu } from "../../../../../utils/i18n";
-import { connect } from "react-redux";
-import { injectIntl } from "react-intl";
-import { ONE_TRX } from "../../../../../constants";
-import { find } from "lodash";
+import {tu} from "../../../../../utils/i18n";
+import {connect} from "react-redux";
+import {injectIntl} from "react-intl";
+import {ONE_TRX} from "../../../../../constants";
+import {find} from "lodash";
 import Lockr from "lockr";
 
 import NumericInput from "./NumericInput";
@@ -22,7 +20,7 @@ const marks = {
     75: "",
     100: ""
   };
-  
+
   function formatter(value) {
     return `${value}%`;
   }
@@ -40,7 +38,7 @@ class Transaction extends Component {
     };
   }
 
-  
+
 
   componentDidMount() {}
 
@@ -350,7 +348,7 @@ class Transaction extends Component {
       callback()
     }
   }
-  
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -435,7 +433,7 @@ class Transaction extends Component {
               )}
             </FormItem> */}
             <div className="mb-3">
-                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.map_amount + " " + secondBalance.map_token_name: 0}</span>} 
+                { <span className=" text-sm d-block">{tu("TxAvailable")} {(secondBalance && secondBalance.name)?secondBalance.map_amount + " " + secondBalance.map_token_name: 0}</span>}
             </div>
             <div className="mb-3">
             <Slider
@@ -562,7 +560,7 @@ class Transaction extends Component {
                 {tu("TxAvailable")}{" "}
             {((firstBalance && firstBalance.map_amount)?firstBalance.map_amount : 0)+ " " + (exchangeData.map_token_name?exchangeData.map_token_name:"")}
                 </span>
-            )}             
+            )}
             </div>
             <div className="mb-3">
             <Slider

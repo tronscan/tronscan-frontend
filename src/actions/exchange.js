@@ -1,10 +1,7 @@
-import {Client} from "../services/api";
-import {Client20} from "../services/api";
+import {Client, Client20} from "../services/api";
 import Lockr from "lockr";
-import { remove,map } from 'lodash';
+import {cloneDeep, map} from 'lodash';
 import rebuildList from "../utils/rebuildList";
-
-import { cloneDeep,concat } from 'lodash'
 
 
 export const SET_SELECT_DATA = 'SET_SELECT_DATA';
@@ -17,8 +14,6 @@ export const SET_LASTPRICE = 'SET_LASTPRICE';
 export const SET_QUICKSELCET = 'SET_QUICKSELCET'
 export const SET_UPDATE_TRAN = 'SET_UPDATE_TRAN'
 export const SET_10_LOCK = 'SET_10_LOCK'
-
-
 
 
 export const setSelectData = (data) => ({
@@ -64,12 +59,12 @@ export const setQuickSelect = (obj) => ({
 export const setUpdateTran = (is_update_tran)=>({
   type: SET_UPDATE_TRAN,
   is_update_tran,
-})
+});
 
 export const change10lockstatus = (type)=>({
   type: SET_10_LOCK,
   lock: type
-})
+});
 
 export const change10lock = (type) => async (dispatch) => {
   dispatch(change10lockstatus(type))
@@ -99,7 +94,7 @@ export const getExchanges20 = () => async (dispatch) => {
       item.high = item.highestPrice24h
       item.low = item.lowestPrice24h
       item.token_type = 'dex20'
-      
+
       if (item.gain.indexOf('-') != -1) {
           item.up_down_percent = '-' + Math.abs(Number(item.gain*100).toFixed(2)) + '%'
           item.isUp = false
@@ -112,7 +107,7 @@ export const getExchanges20 = () => async (dispatch) => {
           item.isChecked = true
         }
       })
-      
+
      return item
   })
   dispatch(setExchanges20(newList))
@@ -124,10 +119,10 @@ export const getExchangesAllList = () => async (dispatch) => {
   let f_list =  Lockr.get('optional')|| []
   map(exchangesAllList, item => {
     if (item.up_down_percent.indexOf('-') != -1) {
-      item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+      item.up_down_percent = '-' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%';
       item.isUp = false
     } else {
-        item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%'
+        item.up_down_percent = '+' + Math.abs(Number(item.up_down_percent).toFixed(2)) + '%';
         item.isUp = true
     }
     item.token_type = 'dex10'
@@ -140,9 +135,9 @@ export const getExchangesAllList = () => async (dispatch) => {
     })
   })
 
-  
+
   const data = rebuildList(exchangesAllList, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
-  
+
   const newData = data.map(item => {
     item.first_token_id = item.map_token_name
     item.second_token_id = item.map_token_name1
@@ -174,7 +169,7 @@ export const getExchanges = () => async (dispatch) => {
     })
   })
   const exchange10 = rebuildList(data, ['first_token_id','second_token_id'], ['first_token_balance','second_token_balance'])
-  
+
   const newData = exchange10.map(item => {
     item.first_token_id = item.map_token_name
     item.second_token_id = item.map_token_name1
@@ -182,7 +177,7 @@ export const getExchanges = () => async (dispatch) => {
     item.exchange_abbr_name = item.exchange_abbr_name
     return item
   })
-  
+
   dispatch(setExchanges10(newData))
 }
 

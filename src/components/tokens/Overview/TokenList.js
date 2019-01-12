@@ -20,7 +20,10 @@ import {TronLoader} from "../../common/loaders";
 import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
+import {withTronWeb} from "../../../utils/tronWeb";
 
+
+@withTronWeb
 class TokenList extends Component {
 
   constructor(props) {
@@ -59,9 +62,9 @@ class TokenList extends Component {
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }
-    
+
     let tokens = result.data['data'];
-    
+
     if (tokens.length === 0) {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
     }
@@ -265,7 +268,7 @@ class TokenList extends Component {
     let {buyAmount} = this.state;
       let res;
       if (Lockr.get("islogin")) {
-          const { tronWeb } = account;
+        const tronWeb = this.props.tronWeb();
           try {
               const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
               const {result} = await transactionResultManager(unSignTransaction,tronWeb);

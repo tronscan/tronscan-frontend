@@ -1,10 +1,10 @@
-import { Client } from "../services/api";
+import {Client} from "../services/api";
 import xhr from "axios";
-import { loadRecentTransactions } from "./account";
-import { reloadWallet, setWalletLoading } from "./wallet";
-import Lockr from "lockr";
+import {loadRecentTransactions} from "./account";
+import {reloadWallet, setWalletLoading} from "./wallet";
 
 export const SET_ACCOUNTS = "SET_ACCOUNTS";
+export const LOGIN_LEDGER = 'LOGIN_LEDGER';
 export const SET_PRICE = "SET_PRICE";
 export const SET_CURRENCY = "SET_CURRENCY";
 export const SET_LANGUAGE = "SET_LANGUAGE";
@@ -17,6 +17,11 @@ export const ENABLE_FLAG = "ENABLE_FLAG";
 export const DISABLE_FLAG = "DISABLE_FLAG";
 export const SET_THEME = "SET_THEME";
 export const SET_SYNC_STATUS = "SET_SYNC_STATUS";
+
+export const setLoginWithLedger = (address) => ({
+  type: LOGIN_LEDGER,
+  address,
+});
 
 export const setLanguage = (language = "en") => ({
   type: SET_LANGUAGE,
@@ -93,6 +98,15 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   }, 50);
 };
 
+export const loginWithLedger = (address) => async (dispatch, getState) => {
+
+  dispatch(setLoginWithLedger(address));
+
+  setTimeout(() => {
+    dispatch(reloadWallet());
+    dispatch(loadRecentTransactions(address));
+  }, 50);
+};
 
 export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
 

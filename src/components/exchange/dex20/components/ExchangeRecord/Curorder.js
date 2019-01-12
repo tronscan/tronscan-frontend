@@ -1,21 +1,20 @@
-import React, { Component } from "react";
-import { injectIntl ,FormattedDate,FormattedTime} from "react-intl";
-import { Client20 } from "../../../../../services/api";
-import { tu } from "../../../../../utils/i18n";
-import { Table } from "antd";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { upperFirst } from "lodash";
-import { dateFormat } from "../../../../../utils/DateTime";
-import { Wallet } from "ethers";
-import { Modal, Button } from "antd";
+import React, {Component} from "react";
+import {FormattedDate, FormattedTime, injectIntl} from "react-intl";
+import {Client20} from "../../../../../services/api";
+import {tu} from "../../../../../utils/i18n";
+import {Modal, Table} from "antd";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {upperFirst} from "lodash";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { TW } from "../../TW";
+import {TW} from "../../TW";
 import {setUpdateTran} from '../../../../../actions/exchange'
 import {TronLoader} from "../../../../common/loaders";
+import {withTronWeb} from "../../../../../utils/tronWeb";
 
 const confirm = Modal.confirm;
 
+@withTronWeb
 class Curorder extends Component {
   constructor() {
     super();
@@ -25,7 +24,7 @@ class Curorder extends Component {
       list: [],
       timer: null,
       modal: null,
-      isLoading:true
+      isLoading: true
     };
 
     this.cancelOrder = this.cancelOrder.bind(this);
@@ -47,7 +46,7 @@ class Curorder extends Component {
     let { wallet } = this.props;
     if (prevProps.wallet != wallet) {
       clearInterval(timer);
-      
+
       this.setState({
         isLoading:true
       })
@@ -230,9 +229,9 @@ class Curorder extends Component {
   }
 
   async cancleOrderFun(item) {
-    let { app ,setUpdateTran} = this.props;
+    let { app, setUpdateTran } = this.props;
 
-    let tronWeb = app.account ? app.account.tronWeb : window.tronWeb;
+    let tronWeb = app.account ? this.props.tronWeb() : window.tronWeb;
     try {
       const _id = await TW.cancelOrder(item.orderID, tronWeb);
       if (_id) {

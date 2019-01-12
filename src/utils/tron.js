@@ -1,4 +1,5 @@
-
+import {FormattedNumber} from "react-intl";
+import React from "react";
 
 export const tronAddresses = [
   '27d3byPxZXKQWfXX7sJvemJJuv5M65F3vjS',
@@ -7,17 +8,27 @@ export const tronAddresses = [
   '27WtBq2KoSy5v8VnVZBZHHJcDuWNiSgjbE3',
 ];
 
-export async function transactionResultManager(transaction,tronWeb){
-    const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e=>{
-        return false;
-    });
-    if(signedTransaction){
-        const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-        if(!broadcast.result){
-            broadcast.result = false;
-        }
-        return broadcast;
-    }else{
-        return {result:false};
+export async function transactionResultManager(transaction, tronWeb) {
+  const signedTransaction = await tronWeb.trx.sign(transaction, tronWeb.defaultPrivateKey).catch(e => {
+    return false;
+  });
+  if (signedTransaction) {
+    const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+    if (!broadcast.result) {
+      broadcast.result = false;
     }
+    return broadcast;
+  } else {
+    return {result: false};
+  }
+}
+
+
+export function FormattedTRX(props) {
+  return (
+    <FormattedNumber
+      maximumFractionDigits={7}
+      minimunFractionDigits={7}
+      {...props} />
+  );
 }

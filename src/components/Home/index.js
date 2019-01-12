@@ -4,7 +4,7 @@ import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
 import CountUp from 'react-countup';
-import {Client} from "../../services/api";
+import {channel, Client} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
@@ -15,13 +15,22 @@ import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
 import {HrefLink} from "../common/Links";
 import {TronLoader} from "../common/loaders";
-import {LineReactHighChartTx, LineReactHighChartAdd} from "../common/LineCharts";
-import {channel} from "../../services/api";
+import {LineReactHighChartAdd, LineReactHighChartTx} from "../common/LineCharts";
 import {API_URL} from "../../constants";
 
-const subDays = require("date-fns/sub_days");
-
-class Home extends Component {
+@connect(
+  state => (
+    {
+      blocks: state.blockchain.blocks,
+      account: state.app.account,
+      theme: state.app.theme,
+      activeLanguage: state.app.activeLanguage
+    }
+  ),
+)
+@withTimers
+@injectIntl
+export default class Home extends Component {
 
   constructor() {
     super();
@@ -36,13 +45,12 @@ class Home extends Component {
       transactionPerDay: 0,
       txOverviewStats: null,
       addressesStats: null,
-      maxTps:0,
-      tps:0,
+      maxTps: 0,
+      tps: 0,
     };
   }
 
   async loadNodes() {
-    // let {total} = await Client.getNodeLocations();
     let {data} = await xhr.get(`${API_URL}/api/node`);
     this.setState({
       onlineNodes: data.total
@@ -339,6 +347,9 @@ class Home extends Component {
   }
 }
 
+
+
+
 const styles = {
   list: {
     fontSize: 18,
@@ -348,17 +359,3 @@ const styles = {
     borderRadius: 0
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    blocks: state.blockchain.blocks,
-    account: state.app.account,
-    theme: state.app.theme,
-    activeLanguage: state.app.activeLanguage
-  };
-}
-
-const mapDispatchToProps = {};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTimers(injectIntl(Home)))

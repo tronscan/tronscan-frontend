@@ -1,26 +1,26 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {Client} from "../../../services/api";
 import {t, tu} from "../../../utils/i18n";
-import {FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, injectIntl} from "react-intl";
+import {injectIntl} from "react-intl";
 import TokenHolders from "./TokenHolders";
 import {NavLink, Route, Switch} from "react-router-dom";
-import {AddressLink, ExternalLink} from "../../common/Links";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import {Information} from "./Information.js";
-import {API_URL, ONE_TRX} from "../../../constants";
+import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import {pkToAddress} from "@tronscan/client/src/utils/crypto";
-import {Link} from "react-router-dom";
-import {some, toLower} from "lodash";
 import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
+import {withTronWeb} from "../../../utils/tronWeb";
 
+
+@withTronWeb
 class TokenDetail extends React.Component {
 
   constructor() {
@@ -92,7 +92,7 @@ class TokenDetail extends React.Component {
     let {buyAmount, privateKey} = this.state;
       let res;
       if (Lockr.get("islogin")) {
-          const { tronWeb } = account;
+        const tronWeb = this.props.tronWeb();
           try {
               const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
               const {result} = await transactionResultManager(unSignTransaction,tronWeb);
