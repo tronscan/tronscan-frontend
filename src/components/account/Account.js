@@ -114,7 +114,7 @@ class Account extends Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       //if(account.tronWeb.eventServer){
       tokens20 &&  tokens20.map(async item =>{
@@ -222,7 +222,7 @@ class Account extends Component {
                   tokenBalances.map((token) => (
                       <tr key={token.name}>
                         <td>
-                          <TokenLink name={token.map_token_name} address={token.owner_address}/>
+                          <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
                         </td>
                         <td>
                           <div className="tokenBalances_id">{token.map_token_id}</div>
@@ -1083,7 +1083,7 @@ class Account extends Component {
 
   toissuedAsset = () => {
     let {issuedAsset} = this.state;
-    window.location.hash = "#/token/" + issuedAsset.name + '/' + issuedAsset.ownerAddress;
+    window.location.hash = "#/token/" + issuedAsset.id;
   }
 
   handleSwitch = (val) => {
@@ -1279,7 +1279,7 @@ class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
+                          <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress}/>
                             <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>

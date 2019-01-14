@@ -243,6 +243,114 @@ export class LineReactHighChartTx extends React.Component {
     }
 }
 
+export class LineReactHighChartTotalTxns extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'lineTx' + id
+        }
+    }
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data, source} = this.props;
+
+        if (source == 'home'){
+            if (data && data.length > 0) {
+                _config.xAxis.categories = [];
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.newtotalTransaction};
+                    _config.xAxis.categories.push(moment(val.date).format('M/D'));
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.spacingTop = 20;
+            _config.yAxis.tickAmount = 4;
+            _config.yAxis.allowDecimals = true;
+            _config.exporting.enabled = false;
+            _config.yAxis.tickInterval = 1000000;
+            _config.yAxis.labels.formatter = function() {
+                if(this.value < 1000000){
+                    return this.value/1000 + 'k'
+                }else if(this.value >= 1000000){
+                    return this.value/1000000 + 'M'
+                }
+            }
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.date);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+                )
+            }
+        }else{
+            if (data && data.length === 0) {
+                _config.title.text = "No data";
+            }
+            if (data && data.length > 0) {
+                data.map((val) => {
+                    let temp;
+                    temp = {...val, y: val.newtotalTransaction};
+                    _config.series[0].data.push(temp);
+                })
+            }
+            _config.chart.zoomType = 'x';
+            _config.chart.marginTop = 80;
+            _config.title.text = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.subtitle.text = intl.formatMessage({id: 'HighChart_tip'});
+            _config.exporting.filename = intl.formatMessage({id: 'tron_total_transactions_chart'});
+            _config.xAxis.tickPixelInterval = 100;
+            _config.xAxis.minRange=24 * 3600 * 1000;
+            _config.yAxis.title.text = intl.formatMessage({id: 'totle_transactions_per_day'});
+            _config.yAxis.tickAmount = 6;
+            _config.yAxis.min = 0;
+            _config.yAxis.labels.formatter = function() {
+                if(this.value < 1000000){
+                    return this.value/1000 + 'k'
+                }else if(this.value >= 1000000 && this.value < 1000000000){
+                    return this.value/1000000 + 'M'
+                }else if(this.value >= 1000000000){
+                    return this.value/1000000000 + 'B'
+                }
+            }
+            _config.series[0].marker.enabled = false;
+            _config.series[0].pointInterval = 24 * 3600 * 1000;
+            _config.series[0].pointStart = Date.UTC(2018, 5, 25);
+            _config.tooltip.formatter = function () {
+                let date = intl.formatDate(this.point.x);
+                return (
+                    intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
+                )
+            }
+        }
+        Highcharts.chart(document.getElementById(id),_config);
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 export class LineReactHighChartBlockchainSize extends React.Component {
 
     constructor(props) {

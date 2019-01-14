@@ -15,7 +15,6 @@ export const NameWithId = ({value,type, notamount=false}) => {
           maximumFractionDigits={Number(value.map_token_precision)}
           className="mr-1"/>
       }
-     
       {
           type == 'abbr'?<span className="mr-1">{value.map_token_name_abbr}</span>:<span className="mr-1">{value.map_token_name}</span>
       }
