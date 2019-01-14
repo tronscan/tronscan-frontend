@@ -1537,4 +1537,5 @@ export const messages = {
   "check_my_token":"Check my token",
   "totle_transactions_per_day":"Total Daily Transactions",
   "tron_total_transactions_chart":"TRON Total Transactions Chart",
+
 };

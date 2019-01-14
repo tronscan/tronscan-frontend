@@ -1523,6 +1523,10 @@ export const messages = {
     "power_tip":"TRON Power (TP) is used for voting for TRON SRs. Users can gain TP through freezing TRX.",
     "token_precision":"Token Precision",
     "token_precision_message_0":"Set the precision of the token as required, the range is 0-6",
+    "check_my_token":"Check my token",
+    "totle_transactions_per_day":"Total Daily Transactions",
+    "tron_total_transactions_chart":"TRON Total Transactions Chart",
+
 
 
 };
