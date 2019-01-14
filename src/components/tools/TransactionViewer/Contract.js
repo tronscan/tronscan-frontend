@@ -7,7 +7,7 @@ import {tu} from "../../../utils/i18n";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
-
+import { NameWithId } from '../../common/names';
 export default function Contract({contract}) {
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
@@ -111,7 +111,7 @@ export default function Contract({contract}) {
                   <Field label="to"><AddressLink address={contract['owner_address']}/></Field>
                   <Field label="issuer"><AddressLink address={contract['to_address']}/></Field>
                   <Field label="amount">{contract.amount / ONE_TRX}</Field>
-                  <Field label="token">{contract['asset_name']}</Field>
+                  <Field label="token"><NameWithId value={contract} notamount/></Field>
                 </tbody>
               </table>
             </div>
