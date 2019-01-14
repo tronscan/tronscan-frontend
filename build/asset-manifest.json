@@ -19,7 +19,7 @@
   "ProposalDetail.js": "static/js/ProposalDetail.6be41378.chunk.js",
   "Recaptcha.js": "static/js/Recaptcha.d0f48a71.chunk.js",
   "Representatives.js": "static/js/Representatives.40ed192d.chunk.js",
-  "SingleStats.js": "static/js/SingleStats.84ee1d93.chunk.js",
+  "SingleStats.js": "static/js/SingleStats.43b8c5e1.chunk.js",
   "Stats.js": "static/js/Stats.d20c2807.chunk.js",
   "System.js": "static/js/System.7c6bf5d7.chunk.js",
   "TRONRating.js": "static/js/TRONRating.0ebe06a0.chunk.js",
@@ -71,5 +71,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.c6912d3e.js"
+  "vendors.js": "static/js/vendors.b5e49356.js"
 }

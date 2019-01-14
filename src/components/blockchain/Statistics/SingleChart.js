@@ -43,6 +43,7 @@ class Statistics extends React.Component {
             blockStats: null,
             transactionValueStats: null,
             txOverviewStats: null,
+            txOverviewStatsFull: null,
             addressesStats: null,
             blockSizeStats: null,
             blockchainSizeStats: null,
