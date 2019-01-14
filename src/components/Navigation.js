@@ -492,8 +492,6 @@ class Navigation extends React.Component {
 
     }
 
-    console.log(account.isLoggedIn , wallet.isOpen);
-
     return (
         <Fragment>
           {
