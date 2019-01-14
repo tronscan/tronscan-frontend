@@ -24,7 +24,7 @@ function Notification({account, notification}) {
             <li key={notification.id} className="dropdown-item p-1">
               <div className="media">
                 <i className="fa fa-sort-up fa-2x text-danger m-2"/>
-                <div className="media-body">
+                <div className="media-body mr-2">
                   <h6 className="m-0 text-danger">Send <NameWithId value={notification}/></h6>
                   to <AddressLink address={notification.transferToAddress} truncate={false}/>
                 </div>
@@ -36,7 +36,7 @@ function Notification({account, notification}) {
             <li key={notification.id} className="dropdown-item p-1">
               <div className="media">
                 <i className="fa fa-sort-down fa-2x text-success m-2"/>
-                <div className="media-body">
+                <div className="media-body mr-2">
                   <h6 className="m-0 text-success">Received <NameWithId value={notification}/></h6>
                   from <AddressLink address={notification.transferFromAddress} truncate={false}/>
                 </div>
@@ -52,7 +52,7 @@ function Notification({account, notification}) {
           <li key={notification.id} className="dropdown-item p-1">
             <div className="media">
               <i className="fa fa-bullhorn fa-2x text-primary m-2"/>
-              <div className="media-body">
+              <div className="media-body mr-2">
                 <h6 className="m-0 text-primary">Received {notification.votes} votes</h6>
                 from <AddressLink address={notification.voterAddress} truncate={false}/>
               </div>
