@@ -57,7 +57,7 @@ class Navigation extends React.Component {
       address:'',
       announcement: '',
       annountime: '1-1',
-      announId: 80
+      announId: 83
     };
   }
 
