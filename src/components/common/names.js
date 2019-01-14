@@ -3,7 +3,6 @@ import {TRXPrice} from "./Price";
 import { FormattedNumber } from "react-intl";
 
 export const NameWithId = ({value,type, notamount=false}) => {
-  console.log(notamount)
   return (
     value.map_token_name === "TRX" ?
     <TRXPrice amount={value.map_amount}/> :

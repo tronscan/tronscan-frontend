@@ -209,7 +209,7 @@ export const messages = {
     "transactions_past_hour": "过去一小时交易数目",
     "average_blocksize": "平均区块大小",
     "rich_list": "富豪榜",
-    "tron_transaction_chart": "TRON交易数图表",
+    "tron_transaction_chart": "TRON日交易数图表",
     "transactions_per_day": "日交易数",
     "foundation": "基金会地址",
     "foundation_address": "基金会锁仓TRX总数",

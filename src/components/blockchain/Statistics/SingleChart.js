@@ -348,6 +348,7 @@ class Statistics extends React.Component {
 
         this.setState({
             txOverviewStats:  temp.slice(0, temp.length - 1),
+            txOverviewStatsFull:  temp.slice(0, temp.length),
             addressesStats: addressesTemp.slice(0, addressesTemp.length - 1),
             blockSizeStats: blockSizeStatsTemp,
             blockchainSizeStats: blockchainSizeStatsTemp,
@@ -448,7 +449,7 @@ class Statistics extends React.Component {
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
+        let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let unit;
         let uploadURL = "https://server.tron.network/api/v2/node/overview_upload";
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
@@ -503,10 +504,10 @@ class Statistics extends React.Component {
                             match.params.chartName === 'totalTxns' &&
                             <div style={{height: 500}}>
                                 {
-                                    txOverviewStats === null ?
+                                  txOverviewStatsFull === null ?
                                         <TronLoader/> :
                                         <LineReactHighChartTotalTxns source='singleChart' style={{height: 500}}
-                                                                     data={txOverviewStats} intl={intl}/>
+                                                                     data={txOverviewStatsFull} intl={intl}/>
                                 }
                             </div>
                         }
