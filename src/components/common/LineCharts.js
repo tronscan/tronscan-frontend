@@ -323,9 +323,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
                 let date = intl.formatDate(this.point.x);
                 return (
                     intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y + '<br/>' +
-                    intl.formatMessage({id: 'total_BlockCount'}) + ' : ' + this.point.newtotalBlockCount + '<br/>' +
-                    intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.newtotalAddress
+                    intl.formatMessage({id: 'total_transactions'}) + ' : ' + this.point.y
                 )
             }
         }
