@@ -1525,6 +1525,7 @@ export const messages = {
     "check_my_token":"查看我发行的通证",
     "totle_transactions_per_day":"总交易数",
     "tron_total_transactions_chart":"TRON总交易数图表",
+    "sign_in_with_ledger":"使用Ledger登录"
 
 
 
