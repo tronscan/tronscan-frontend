@@ -211,6 +211,23 @@ export function appReducer(state = initialState, action) {
       };
     }
 
+    case LOGIN_TRONLINK:{
+
+      if (IS_DESKTOP) {
+        Lockr.rm("account_key");
+        // Lockr.set("account_address", action.address);
+      }
+      return {
+        ...state,
+        account: {
+          key: false,
+          isLoggedIn: true,
+          address: action.address,
+          tronWeb:action.tronWeb,
+        }
+      };
+    }
+
     case LOGIN_LEDGER: {
 
       return {

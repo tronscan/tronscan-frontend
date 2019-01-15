@@ -85,14 +85,14 @@ class SendForm extends React.Component {
     let {to, token, amount, decimals} = this.state;
     let list = token.split('-');
     let TokenName = list[1];
-    let { onSend} = this.props;
+    let { onSend, wallet} = this.props;
 
     let result, success;
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === "_") {
       amount = amount * ONE_TRX;
-      result = await this.props.tronWeb().trx.sendTransaction(to, amount, false).catch(function (e) {
+      result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address:wallet.address}, false).catch(function (e) {
         console.log(e)
       });
       if (result) {
@@ -103,7 +103,7 @@ class SendForm extends React.Component {
 
     } else {
       amount = amount * Math.pow(10, decimals);
-      result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, false);
+      result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false);
       success = result.result;
       if (result) {
         success = result.result;

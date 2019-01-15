@@ -97,7 +97,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     try {
 
-      if (account.isLoggedIn) {
+      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER") {
         const tronWeb = this.props.tronWeb();
         if (!selectedResource) {
           type = 'BANDWIDTH';
@@ -155,7 +155,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
             {tu("freeze")}
           </ModalHeader>
           <ModalBody className="text-center _freezeBody">
-            <form>
+
               <div className="form-group">
                 <div className="text-left _power">{tu("current_power")}: <span
                     style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
@@ -207,7 +207,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
                   {tu("freeze")}
                 </button>
               </p>
-            </form>
           </ModalBody>
         </Modal>
     )

@@ -24,7 +24,6 @@ export function withTronWeb(InnerComponent) {
     getTronWeb = () => {
 
       // if (typeof window.tronWeb === 'undefined') {
-
       const networkUrl = `https://api.trongrid.io`;
 
       const tronWeb = new TronWeb(
@@ -63,9 +62,13 @@ export function withTronWeb(InnerComponent) {
               try {
 
                 const transactionObj = transactionJsonToProtoBuf(transaction);
+
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
+
                 let raw = transactionObj.getRawData();
+
                 const contractObj = raw.getContractList()[0];
+
                 let contractType = contractObj.getType();
 
                 const ledgerBridge = new LedgerBridge();
@@ -100,17 +103,19 @@ export function withTronWeb(InnerComponent) {
     };
 
     async buildModal(transaction, resolve, error) {
+
       let cancel = () => {
         error();
         this.hideModal();
       };
+
       return (
         <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" >
           <ModalHeader className="text-center" toggle={cancel}>
             Confirm transaction
           </ModalHeader>
           <ModalBody className="p-0">
-            <Contract contract={transaction.raw_data.contract[0]} />
+            <Contract contract={transaction["raw_data"].contract[0]} />
             <div className="text-center my-1">
               <img src={require("../hw/ledger/ledger-nano-s.png")} style={{ height: 50 }}/><br/>
               Confirm the transaction on your ledger
@@ -120,6 +125,7 @@ export function withTronWeb(InnerComponent) {
             </div>
           </ModalBody>
           <ModalFooter>
+
           </ModalFooter>
         </Modal>
       )
