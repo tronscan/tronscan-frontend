@@ -81,7 +81,7 @@ class ApiClient20 {
   }
 
   async gettokenInfo20(query) {
-    let {data}  = await xhr.get(`https://wlcyapi.tronscan.org/api/token_trc20`,{
+    let {data}  = await xhr.get(`https://apilist.tronscan.org/api/token_trc20`,{
       params: {
         sort: 'issue_time',
         start: 0,

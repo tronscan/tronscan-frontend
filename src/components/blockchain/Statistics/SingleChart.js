@@ -17,6 +17,7 @@ import {API_URL} from "../../../constants";
 import {
     LineReactHighChartAdd,
     LineReactHighChartTx,
+    LineReactHighChartTotalTxns,
     LineReactHighChartBlockchainSize,
     BarReactHighChartBlockSize,
     LineReactHighChartPrice,
@@ -296,11 +297,25 @@ class Statistics extends React.Component {
         for (let txs in txOverviewStats) {
             let tx = parseInt(txs);
             if (tx === 0) {
-                temp.push(txOverviewStats[tx]);
+                temp.push({
+                    avgBlockSize: txOverviewStats[tx].avgBlockSize,
+                    avgBlockTime: txOverviewStats[tx].avgBlockTime,
+                    blockchainSize: txOverviewStats[tx].blockchainSize,
+                    date: txOverviewStats[tx].date,
+                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                    newBlockSeen: txOverviewStats[tx].newBlockSeen,
+                    newTransactionSeen: txOverviewStats[tx].newTransactionSeen,
+                    totalAddress: txOverviewStats[tx].totalAddress,
+                    totalBlockCount: txOverviewStats[tx].totalBlockCount,
+                    totalTransaction: txOverviewStats[tx].totalTransaction,
+                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
+                    newtotalAddress:txOverviewStats[tx].totalAddress,
+                    newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
+                })
                 addressesTemp.push({
                     date: txOverviewStats[tx].date,
                     total: txOverviewStats[tx].newAddressSeen,
-                    increment: txOverviewStats[tx].newAddressSeen
+                    increment: txOverviewStats[tx].newAddressSeen,
                 });
             }
             else {
@@ -310,7 +325,10 @@ class Statistics extends React.Component {
                     avgBlockTime: txOverviewStats[tx].avgBlockTime,
                     avgBlockSize: txOverviewStats[tx].avgBlockSize,
                     totalBlockCount: (txOverviewStats[tx].totalBlockCount - txOverviewStats[tx - 1].totalBlockCount),
-                    newAddressSeen: txOverviewStats[tx].newAddressSeen
+                    newAddressSeen: txOverviewStats[tx].newAddressSeen,
+                    newtotalTransaction:txOverviewStats[tx].totalTransaction,
+                    newtotalAddress:txOverviewStats[tx].totalAddress,
+                    newtotalBlockCount:txOverviewStats[tx].totalBlockCount,
                 });
                 addressesTemp.push({
                     date: txOverviewStats[tx].date,
@@ -333,7 +351,6 @@ class Statistics extends React.Component {
             addressesStats: addressesTemp.slice(0, addressesTemp.length - 1),
             blockSizeStats: blockSizeStatsTemp,
             blockchainSizeStats: blockchainSizeStatsTemp,
-
         });
 
         function compare (property) {
@@ -354,6 +371,7 @@ class Statistics extends React.Component {
         let lowest = {date: '', increment: ''};
         let addr = cloneDeep(addressesTemp).sort(compare('increment'));
         let tx = cloneDeep(temp).sort(compare('totalTransaction'));
+        let totaltxns = cloneDeep(temp).sort(compare('newtotalTransaction'));
         let bs = cloneDeep(blockSizeStatsTemp).sort(compare('avgBlockSize'));
         let _bcs = [];
 
@@ -394,6 +412,15 @@ class Statistics extends React.Component {
                         date: tx[0].date,
                         increment: tx[0].totalTransaction
                     }],
+                totalTxns_sort: [
+                    {
+                        date: totaltxns[totaltxns.length - 1].date,
+                        increment: totaltxns[totaltxns.length - 1].newtotalTransaction
+                    },
+                    {
+                        date: totaltxns[0].date,
+                        increment: totaltxns[0].newtotalTransaction
+                    }],
                 blockSizeStats_sort: [
                     {
                         date: bs[bs.length - 1].date,
@@ -423,7 +450,7 @@ class Statistics extends React.Component {
         let {match, intl} = this.props;
         let {txOverviewStats, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let unit;
-        let uploadURL = "http://server.tron.network/api/v2/node/overview_upload";
+        let uploadURL = "https://server.tron.network/api/v2/node/overview_upload";
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
@@ -469,6 +496,17 @@ class Statistics extends React.Component {
                                         <TronLoader/> :
                                         <LineReactHighChartTx source='singleChart' style={{height: 500}}
                                                               data={txOverviewStats} intl={intl}/>
+                                }
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'totalTxns' &&
+                            <div style={{height: 500}}>
+                                {
+                                    txOverviewStats === null ?
+                                        <TronLoader/> :
+                                        <LineReactHighChartTotalTxns source='singleChart' style={{height: 500}}
+                                                                     data={txOverviewStats} intl={intl}/>
                                 }
                             </div>
                         }

@@ -21,6 +21,17 @@ export const loadVoteList = () => async (dispatch) => {
 
 
 export const loadVoteTimer = () => async (dispatch) => {
-  let timeUntilNext = await Client.secondsUntilNextCycle();
-  dispatch(setVoteTimer(addSeconds(new Date(), timeUntilNext)));
+  //let timeUntilNext = await Client.secondsUntilNextCycle();
+
+  let dateString=new Date().toLocaleDateString().replace(/\//g, '-');
+  let dateStringArray=dateString.split('-');
+  if(dateStringArray[1].length<2){
+    dateStringArray[1]='0'+dateStringArray[1];
+  }
+  if(dateStringArray[2].length<2){
+    dateStringArray[2]='0'+dateStringArray[1];
+  }
+  let date=dateStringArray[0]+'-'+dateStringArray[1]+'-'+dateStringArray[2];
+  let time = (new Date(date).getTime() + (Math.floor((Date.parse(new Date() + '') - new Date(date).getTime()) / (6 * 60 * 60 * 1000)) + 1) * 6 * 60 * 60 * 1000 - Date.parse(new Date() + ''));
+  dispatch(setVoteTimer(addSeconds(new Date(), time / 1000)));
 };

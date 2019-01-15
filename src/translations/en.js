@@ -1536,5 +1536,8 @@ export const messages = {
   "token_precision":"Token Precision",
   "token_precision_message_0":"Set the precision of the token as required, the range is 0-6",
   "check_my_token":"Check my token",
+  "totle_transactions_per_day":"Total Daily Transactions",
+  "tron_total_transactions_chart":"TRON Total Transactions Chart",
   "can_be_unlocked_now": "can be unlocked",
+
 };

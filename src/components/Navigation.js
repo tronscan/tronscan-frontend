@@ -6,17 +6,26 @@ import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
 import tronLogoTestNet from "../images/tron-logo-testnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
-import {flatRoutes, routes} from "../routes"
-import {Link, NavLink, withRouter} from "react-router-dom"
-import {filter, find, isString, isUndefined, trim} from "lodash"
+import {flatRoutes, routes} from "../routes";
+import {Link, NavLink, withRouter} from "react-router-dom";
+import {filter, find, isString, isUndefined, trim, debounce} from "lodash";
 import {tu, t} from "../utils/i18n"
-import {enableFlag, login, loginWithAddress, loginWithTronLink, logout, setActiveCurrency, setLanguage, setTheme} from "../actions/app"
+import {
+  enableFlag,
+  login,
+  loginWithAddress,
+  loginWithTronLink,
+  logout,
+  setActiveCurrency,
+  setLanguage,
+  setTheme
+} from "../actions/app"
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"
-import {IS_TESTNET, ONE_TRX} from "../constants"
+import {API_URL, IS_TESTNET, ONE_TRX} from "../constants"
 import {matchPath} from 'react-router'
 import {doSearch, getSearchType} from "../services/search"
 import {readFileContentsFromEvent} from "../services/file"
@@ -33,113 +42,122 @@ import {toastr} from 'react-redux-toastr'
 import Lockr from "lockr";
 import {BarLoader} from "./common/loaders";
 import {Truncate} from "./common/text";
-import { Icon } from 'antd';
+import {Icon} from 'antd';
 import isMobile from '../utils/isMobile';
-import {Client} from '../services/api'
+import {Client} from '../services/api';
+import $ from 'jquery';
+import xhr from "axios/index";
 
 class Navigation extends React.Component {
 
   constructor() {
     super();
-
+    this.callAjax = debounce(this.callAjax, 500);
     this.fileRef = React.createRef();
-
     this.id = 0;
     this.loginFlag = false;
     this.state = {
       search: "",
+      searchResults: null,
       popup: null,
       notifications: [],
-      isImportAccount:false,
-      isTRONlinkLogin:false,
-      loginWarning:false,
-      signInWarning:false,
-      address:'',
+      isImportAccount: false,
+      isTRONlinkLogin: false,
+      loginWarning: false,
+      signInWarning: false,
+      address: '',
       announcement: '',
       annountime: '1-1',
-      announId: 80
+
+      announId: 83
+
     };
   }
 
   // componentDidUpdate(prevProps) {
-    /*
-    if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
-       toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-       this.loginFlag = true;
-     }
-    */
+  /*
+  if (account.isLoggedIn && wallet.isOpen && !this.loginFlag) {
+     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+     this.loginFlag = true;
+   }
+  */
+
   // }
 
 
-  componentWillMount(){
-      this.reLoginWithTronLink();
+  componentWillMount() {
+    this.reLoginWithTronLink();
   }
-  componentDidMount() {
-      let {account} = this.props;
-      let _this = this;
-      window.addEventListener('message',function(e){
 
-          if(e.data.message && isAddressValid(e.data.message.data)){
-              _this.setState({ address: e.data.message.data});
-          }
-      })
-      this.getAnnouncement()
-  }
-  componentWillUpdate(nextProps,nextState)  {
-      if(nextState.address !== this.state.address){
-          this.reLoginWithTronLink();
-         
+  componentDidMount() {
+    let {account} = this.props;
+    let _this = this;
+    window.addEventListener('message', function (e) {
+      if (e.data.message) {
+        _this.setState({address: e.data.message.data});
+
       }
-      
+    })
+    this.getAnnouncement();
+    $(document).click(() => {
+      $('#_searchBox').css({display: 'none'});
+    });
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.address !== this.state.address) {
+      this.reLoginWithTronLink();
+    }
+  }
+
   componentWillUnmount() {
-      this.listener && this.listener.close();
+    this.listener && this.listener.close();
   }
 
   componentDidUpdate(prevProps) {
     const {activeLanguage} = this.props
-    if(activeLanguage !=  prevProps.activeLanguage){
+    if (activeLanguage != prevProps.activeLanguage) {
       this.getAnnouncement()
     }
   }
 
-  async getAnnouncement(){
-    const { announId } = this.state
+  async getAnnouncement() {
+    const {announId} = this.state
     let {activeLanguage} = this.props;
-    
-    const {data} = await Client.getNotices({sort:'-timestamp'});
-    if(data.length){
-      const list = data.filter(o=> o.id == announId)[0]
-      const annt = activeLanguage === 'zh'? list.titleCN: list.titleEN
-      this.setState({ announcement: annt, annountime: list.createTime.substring(5,10)});
+
+    const {data} = await Client.getNotices({sort: '-timestamp'});
+    if (data.length) {
+      const list = data.filter(o => o.id == announId)[0]
+      const annt = activeLanguage === 'zh' ? list.titleCN : list.titleEN
+      this.setState({announcement: annt, annountime: list.createTime.substring(5, 10)});
     }
-    
+
   }
 
- reLoginWithTronLink = () => {
-     let {intl} = this.props;
-     if (Lockr.get("islogin")) {
-         let timer = null;
-         let count = 0;
-         timer = setInterval(() => {
-             const tronWeb = window.tronWeb;
-             if (tronWeb && tronWeb.defaultAddress.base58) {
-                 this.props.loginWithTronLink(tronWeb.defaultAddress.base58,tronWeb).then(() => {
-                     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-                 });
-                 this.setState({ address: tronWeb.defaultAddress.base58});
-                 clearInterval(timer)
-             } else {
-                 count++
-                 if (count > 30) {
-                     count = 0
-                     Lockr.set("islogin",0)
-                     clearInterval(timer)
-                 }
-             }
-         }, 100)
-     }
- }
+  reLoginWithTronLink = () => {
+    let {intl} = this.props;
+    if (Lockr.get("islogin")) {
+      let timer = null;
+      let count = 0;
+      timer = setInterval(() => {
+        const tronWeb = window.tronWeb;
+        if (tronWeb && tronWeb.defaultAddress.base58) {
+          this.props.loginWithTronLink(tronWeb.defaultAddress.base58, tronWeb).then(() => {
+            toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+          });
+          this.setState({address: tronWeb.defaultAddress.base58});
+          clearInterval(timer)
+        } else {
+          count++
+          if (count > 30) {
+            count = 0
+            Lockr.set("islogin", 0)
+            clearInterval(timer)
+          }
+        }
+      }, 100)
+    }
+  }
 
   setLanguage = (language) => {
     this.props.setLanguage(language);
@@ -149,7 +167,7 @@ class Navigation extends React.Component {
     this.props.setActiveCurrency(currency);
   };
 
-  login(e){
+  login(e) {
     e.stopPropagation();
     let {intl} = this.props;
     let {privateKey} = this.state;
@@ -181,7 +199,7 @@ class Navigation extends React.Component {
     return true;
   };
 
-  selectFile(e){
+  selectFile(e) {
     e.stopPropagation();
     this.fileRef.current.click();
   };
@@ -198,8 +216,8 @@ class Navigation extends React.Component {
     this.setState({
       isImportAccount: false,
       isTRONlinkLogin: false,
-      loginWarning:false,
-      signInWarning:false,
+      loginWarning: false,
+      signInWarning: false,
       popup: (
           <SweetAlert
               input
@@ -255,15 +273,15 @@ class Navigation extends React.Component {
     }
   };
 
-  logout (e){
-      e.stopPropagation();
+  logout(e) {
+    e.stopPropagation();
     let {intl, logout} = this.props;
     logout();
     this.loginFlag = false;
     this.setState({
-        privateKey: '',
-        isImportAccount:false,
-        isTRONlinkLogin:false,
+      privateKey: '',
+      isImportAccount: false,
+      isTRONlinkLogin: false,
     });
     toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'logout_success'}));
   };
@@ -281,26 +299,81 @@ class Navigation extends React.Component {
   doSearch = async () => {
 
     let {intl} = this.props;
-    let {search} = this.state;
-    let type = getSearchType(search);
 
-    let result = await doSearch(search, type);
-    
-    if (result === true) {
-      this.setState({search: ""});
-    } else if (result !== null) {
-      window.location.hash = result;
-      this.setState({search: ""});
-    } else {
+    let {searchResults} = this.state;
+    console.log(searchResults);
+    if (searchResults && searchResults.length) {
+      if (searchResults[0].desc === 'Block') {
+        this.afterSearch("#/block/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'Token-TRC20') {
+        this.afterSearch("#/token20/" + trim(searchResults[0].value.split(' ')[searchResults[0].value.split(' ').length-1]));
+      }
+      if (searchResults[0].desc === 'Token-TRC10') {
+        this.afterSearch("#/token/" + trim(searchResults[0].value.split(' ')[searchResults[0].value.split(' ').length-1]));
+      }
+      if (searchResults[0].desc === 'Address') {
+        this.afterSearch("#/address/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'Contract') {
+        this.afterSearch("#/contract/" + trim(searchResults[0].value));
+      }
+      if (searchResults[0].desc === 'TxHash') {
+        this.afterSearch("#/transaction/" + trim(searchResults[0].value));
+      }
+    }
+    else {
       toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'search_not_found'}));
     }
+
   };
 
   onSearchKeyDown = (ev) => {
     if (ev.keyCode === 13) {
       this.doSearch();
+      $('#_searchBox').css({display: 'none'});
     }
   };
+
+  onSearchChange = (ev) => {
+    this.setState({search: ev.target.value});
+    ev.persist();
+    this.callAjax(ev.target.value);
+  }
+
+  callAjax = async (value) => {
+    let {search} = this.state;
+    if (search === "") {
+      this.setState({searchResults: null});
+      $('#_searchBox').css({display: 'none'});
+      return;
+    }
+
+    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + trim(search));
+    let results = result.data;
+    /*let results = [
+      {desc: 'Token-TRC10', value: "IGG 1000029"},
+      {desc: 'Token-TRC20', value: "IGG 1000029"},
+      {desc: 'Block', value: "1000029"},
+      {desc: 'Address', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
+      {desc: 'Contract', value: "TVethjgashn8t4cwKWfGA3VvSgMwVmHKNM"},
+      {desc: 'TxHash', value: "9073aca5dfacd63c8e61f6174c98ab3f350bc9365df6ffc3bc7a70a252711d6f"}
+
+    ];*/
+
+    this.setState({searchResults: results});
+    if (results.length) {
+      $('#_searchBox').css({display: 'block'});
+    } else {
+      $('#_searchBox').css({display: 'none'});
+    }
+  }
+
+  afterSearch = (hash) => {
+    window.location.hash = hash;
+    this.setState({searchResults: null});
+    this.setState({search: ""});
+  }
 
   onSetThemeClick = (ev) => {
 
@@ -389,70 +462,71 @@ class Navigation extends React.Component {
     console.log("LOGIN WITH MOBILE");
   };
 
-  loginWithTronLink(e){
-      let {intl} = this.props;
-      e.stopPropagation();
-      const { loginWarning, signInWarning } = this.state;
-      const tronWeb = window.tronWeb;
-      // 没有下载 tronlink
-      if (!tronWeb) {
-          this.setState({loginWarning:true});
-          // this.loading = false
-          return
-      }
+  loginWithTronLink(e) {
+    let {intl} = this.props;
+    e.stopPropagation();
+    const {loginWarning, signInWarning} = this.state;
+    const tronWeb = window.tronWeb;
+    // 没有下载 tronlink
+    if (!tronWeb) {
+      this.setState({loginWarning: true});
+      // this.loading = false
+      return
+    }
 
-      // 没有登录 tronlink
-      const address = tronWeb.defaultAddress.base58;
-      if (!address) {
-          this.setState({signInWarning:true});
-          //this.loading = false
-          Lockr.set("islogin", 0);
-          return
-      }
+    // 没有登录 tronlink
+    const address = tronWeb.defaultAddress.base58;
+    if (!address) {
+      this.setState({signInWarning: true});
+      //this.loading = false
+      Lockr.set("islogin", 0);
+      return
+    }
 
-      // 已登录 tronlink
-      if (address) {
-          //this.isauot = true
-          Lockr.set("islogin", 1);
-          this.props.loginWithTronLink(address,tronWeb).then(() => {
-              toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
-              this.setState({isImportAccount: false})
-          });
-      }
+    // 已登录 tronlink
+    if (address) {
+      //this.isauot = true
+      Lockr.set("islogin", 1);
+      this.props.loginWithTronLink(address, tronWeb).then(() => {
+        toastr.info(intl.formatMessage({id: 'success'}), intl.formatMessage({id: 'login_success'}));
+        this.setState({isImportAccount: false})
+      });
+    }
   };
 
   closeLoginModel = (e) => {
-      e.stopPropagation()
-      this.setState({
-          isImportAccount: false,
-          isTRONlinkLogin: false,
-          loginWarning:false,
-          signInWarning:false
-      })
+    e.stopPropagation()
+    this.setState({
+      isImportAccount: false,
+      isTRONlinkLogin: false,
+      loginWarning: false,
+      signInWarning: false
+    })
   };
 
-  clickLoginWithTronLink(e){
-      e.stopPropagation()
-      this.setState({
-          isTRONlinkLogin: true,
-          isImportAccount: false
-      },() =>{
+  clickLoginWithTronLink(e) {
+    e.stopPropagation()
+    this.setState({
+      isTRONlinkLogin: true,
+      isImportAccount: false
+    }, () => {
 
-      });
+    });
   }
-  clickLoginWithPk (e){
-      e.stopPropagation()
-      this.setState({
-          isTRONlinkLogin: false,
-          isImportAccount: true
-      },() =>{
 
-      })
+  clickLoginWithPk(e) {
+    e.stopPropagation()
+    this.setState({
+      isTRONlinkLogin: false,
+      isImportAccount: true
+    }, () => {
+
+    })
   }
 
   renderWallet() {
     let {account, totalTransactions = 0, flags, wallet} = this.props;
-    let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address } = this.state;
+    let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address} = this.state;
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -476,25 +550,25 @@ class Navigation extends React.Component {
                   <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3">
                     <li className=" py-1">
                       <div className="row" style={{width: 305}}>
-                      <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
-                        {/* <div className="col-lg-2">
+                        <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
+                          {/* <div className="col-lg-2">
                           <Avatar size={45} value={account.address}/>
                         </div> */}
-                        <div>
-                          <b style={{color: '#333'}}>{wallet.current.name || tu("account")}</b>
-                          <br/>
-                          {/* <AddressLink
+                          <div>
+                            <b style={{color: '#333'}}>{wallet.current.name || tu("account")}</b>
+                            <br/>
+                            {/* <AddressLink
                               address={account.address}
                               className="small text-truncate text-nowrap d-sm-inline-block"
                               style={{width: 150}}/> */}
-                           <Truncate><span>{account.address}</span></Truncate>
-                        </div>
-                        {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
+                            <Truncate><span>{account.address}</span></Truncate>
+                          </div>
+                          {/* <Link to="/account" className="col-lg-4 d-flex justify-content-end align-items-center"> */}
                           <i className="fa fa-angle-right ml-3" aria-hidden="true"></i>
-                        {/* </Link> */}
+                          {/* </Link> */}
                         </Link>
                       </div>
-                      
+
                     </li>
                     {
                       wallet.current.representative.enabled && (
@@ -516,7 +590,8 @@ class Navigation extends React.Component {
                     </Link>
                     <Link className="dropdown-item" to="/account">
                       <i className="fa fa-tachometer-alt mr-2"/>
-                      <FormattedNumber value={wallet.current.bandwidth.netRemaining + wallet.current.bandwidth.freeNetRemaining}/> {tu("bandwidth")}
+                      <FormattedNumber
+                          value={wallet.current.bandwidth.netRemaining + wallet.current.bandwidth.freeNetRemaining}/> {tu("bandwidth")}
                       <i className="fa fa-angle-right float-right" aria-hidden="true"></i>
                     </Link>
                     <Link className="dropdown-item" to="/account">
@@ -548,138 +623,158 @@ class Navigation extends React.Component {
                     <li className="dropdown-divider"/>
                     <li className=" pt-1 pb-2">
                       <button className="btn btn-danger btn-block"
-                              onClick={(e) => {this.logout(e)}}>{tu("sign_out")}</button>
+                              onClick={(e) => {
+                                this.logout(e)
+                              }}>{tu("sign_out")}</button>
                     </li>
                   </ul>
                 </li> :
                 <li className="dropdown nav nav_input">
-                  <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {isMobile && this.clickLoginWithPk(e)}}>
+                  <div className="nav-link dropdown-toggle nav-item" onClick={(e) => {
+                    isMobile && this.clickLoginWithPk(e)
+                  }}>
                     {tu("open_wallet")}
                     <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
-                      <li className="px-2 py-2" onClick={(e) => {this.clickLoginWithTronLink(e)}}>
+                      <li className="px-2 py-2" onClick={(e) => {
+                        this.clickLoginWithTronLink(e)
+                      }}>
                         <div className="dropdown-item text-uppercase text-center">
-                            {tu('sign_in_with_TRONlink')}
+                          {tu('sign_in_with_TRONlink')}
                         </div>
                       </li>
-                      <li className="px-2 py-2" onClick={(e) => {this.clickLoginWithPk(e)}}>
+                      <li className="px-2 py-2" onClick={(e) => {
+                        this.clickLoginWithPk(e)
+                      }}>
                         <div className="dropdown-item text-uppercase text-center">
-                            {tu('import_a_wallet')}
+                          {tu('import_a_wallet')}
                         </div>
                       </li>
                     </ul>
                   </div>
 
-                    {
-                      isImportAccount?  <div className="login-mask">
-                        <ul className="login-import">
-                          <div className="login-cancel" onClick={(e) => {this.closeLoginModel(e)}}>
-                            <Icon type="close" />
+                  {
+                    isImportAccount ? <div className="login-mask">
+                      <ul className="login-import">
+                        <div className="login-cancel" onClick={(e) => {
+                          this.closeLoginModel(e)
+                        }}>
+                          <Icon type="close"/>
+                        </div>
+                        <li className="px-3 py-4">
+                          <div className="text-center">
+                            <label>{tu("private_key")}</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                onChange={ev => this.setState({privateKey: ev.target.value})}
+                                placeholder=""/>
                           </div>
-                          <li className="px-3 py-4">
-                            <div className="text-center">
-                              <label>{tu("private_key")}</label>
-                              <input
-                                  type="text"
-                                  className="form-control"
-                                  onChange={ev => this.setState({privateKey: ev.target.value})}
-                                  placeholder=""/>
-                            </div>
-                            <button className="btn btn-danger btn-block mt-3"
-                                    disabled={!this.isLoginValid()}
-                                    onClick={(e) => {this.login(e)}}>
-                                {tu("sign_in")}
+                          <button className="btn btn-danger btn-block mt-3"
+                                  disabled={!this.isLoginValid()}
+                                  onClick={(e) => {
+                                    this.login(e)
+                                  }}>
+                            {tu("sign_in")}
+                          </button>
+                        </li>
+                        {/* <li className="dropdown-divider blod"/> */}
+                        <li className="px-3 py-4">
+                          <div className="text-center">
+                            <label>{tu("keystore_file")}</label>
+                            <button className="btn btn-danger btn-block" onClick={(e) => {
+                              this.selectFile(e)
+                            }}>
+                              {tu("select_file")}
                             </button>
-                          </li>
-                            {/* <li className="dropdown-divider blod"/> */}
-                          <li className="px-3 py-4">
-                            <div className="text-center">
-                              <label>{tu("keystore_file")}</label>
-                              <button className="btn btn-danger btn-block" onClick={(e) => {this.selectFile(e)}}>
-                                  {tu("select_file")}
-                              </button>
-                              <input type="file" ref={this.fileRef} className="d-none"
-                                     onChange={this.onFileSelected}
-                                     accept=".txt"/>
-                            </div>
+                            <input type="file" ref={this.fileRef} className="d-none"
+                                   onChange={this.onFileSelected}
+                                   accept=".txt"/>
+                          </div>
 
-                          </li>
-                            {/* <li className="dropdown-divider blod"/> */}
-                            {
-                                flags.mobileLogin &&
-                                <Fragment>
-                                  <li className="px-3 py-4 ">
-                                    <div className="text-center">
-                                      <label>{tu("Mobile Login")}</label>
-                                      <button className="btn btn-success btn-block"
-                                              onClick={this.loginWithMobileDevice}>
-                                          {tu("login_mobile")}
-                                      </button>
-                                    </div>
-                                  </li>
-                                    {/* <li className="dropdown-divider"/> */}
-                                </Fragment>
-                            }
-                          <li className="px-3 py-4" onClick={(e) => {this.closeLoginModel(e)}}>
-                            <Link className="btn btn-primary btn-block" to="/wallet/new">
-                                {tu("create_wallet")}
-                            </Link>
-                          </li>
-                        </ul>
-                      </div> :''
-                    }
-                    {
-                      isTRONlinkLogin?  <div className="login-mask">
-                          <div className="login-tronlink">
-                            <div className="login-cancel" onClick={(e) => {this.closeLoginModel(e)}}>
-                              <Icon type="close" />
-                            </div>
-                            <div className="px-3 py-4">
+                        </li>
+                        {/* <li className="dropdown-divider blod"/> */}
+                        {
+                          flags.mobileLogin &&
+                          <Fragment>
+                            <li className="px-3 py-4 ">
                               <div className="text-center">
-                                <label>{tu('sign_in_TRONlink')}</label>
+                                <label>{tu("Mobile Login")}</label>
+                                <button className="btn btn-success btn-block"
+                                        onClick={this.loginWithMobileDevice}>
+                                  {tu("login_mobile")}
+                                </button>
+                              </div>
+                            </li>
+                            {/* <li className="dropdown-divider"/> */}
+                          </Fragment>
+                        }
+                        <li className="px-3 py-4" onClick={(e) => {
+                          this.closeLoginModel(e)
+                        }}>
+                          <Link className="btn btn-primary btn-block" to="/wallet/new">
+                            {tu("create_wallet")}
+                          </Link>
+                        </li>
+                      </ul>
+                    </div> : ''
+                  }
+                  {
+                    isTRONlinkLogin ? <div className="login-mask">
+                      <div className="login-tronlink">
+                        <div className="login-cancel" onClick={(e) => {
+                          this.closeLoginModel(e)
+                        }}>
+                          <Icon type="close"/>
+                        </div>
+                        <div className="px-3 py-4">
+                          <div className="text-center">
+                            <label>{tu('sign_in_TRONlink')}</label>
+                          </div>
+                        </div>
+                        {/* <li className="dropdown-divider blod"/> */}
+                        <div className="px-3 py-2 tronlink-pic">
+                          <img src={require("../images/tronlink.png")} alt="TRONlink"/>
+                        </div>
+                        <div className="text-center pt-2" style={{color: '#C23631'}}>
+                          {
+                            loginWarning ? tu('sign_in_TRONlink_warning') : ''
+                          }
+                          {
+                            signInWarning ? tu('sign_in_TRONlink_warning_0') : ''
+                          }
+                        </div>
+
+                        {
+                          flags.mobileLogin &&
+                          <Fragment>
+                            <div className="px-3 py-4 ">
+                              <div className="text-center">
+                                <label>{tu("Mobile Login")}</label>
+                                <button className="btn btn-success btn-block"
+                                        onClick={this.loginWithMobileDevice}>
+                                  {tu("login_mobile")}
+                                </button>
                               </div>
                             </div>
-                              {/* <li className="dropdown-divider blod"/> */}
-                            <div className="px-3 py-2 tronlink-pic">
-                              <img src={require("../images/tronlink.png")} alt="TRONlink"/>
-                            </div>
-                            <div className="text-center pt-2" style={{color:'#C23631'}}>
-                                {
-                                    loginWarning ? tu('sign_in_TRONlink_warning') : ''
-                                }
-                                {
-                                    signInWarning ? tu('sign_in_TRONlink_warning_0') : ''
-                                }
-                            </div>
-
-                              {
-                                  flags.mobileLogin &&
-                                  <Fragment>
-                                    <div className="px-3 py-4 ">
-                                      <div className="text-center">
-                                        <label>{tu("Mobile Login")}</label>
-                                        <button className="btn btn-success btn-block"
-                                                onClick={this.loginWithMobileDevice}>
-                                            {tu("login_mobile")}
-                                        </button>
-                                      </div>
-                                    </div>
-                                      {/* <li className="dropdown-divider"/> */}
-                                  </Fragment>
-                              }
-                            <div className="px-3 py-4">
-                              <button className="btn btn-warning btn-block"
-                                      onClick={(e) => {this.loginWithTronLink(e)}}>
-                                  {tu("sign_in_TRONlink")}
-                              </button>
-                            </div>
-                            <div className="text-center px-3 pb-4 install-TRONlink">
-                              <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec">
-                                  {tu('uninstall_TRONlink')}>>
-                              </a>
-                            </div>
-                          </div>
-                        </div> :''
-                    }
+                            {/* <li className="dropdown-divider"/> */}
+                          </Fragment>
+                        }
+                        <div className="px-3 py-4">
+                          <button className="btn btn-warning btn-block"
+                                  onClick={(e) => {
+                                    this.loginWithTronLink(e)
+                                  }}>
+                            {tu("sign_in_TRONlink")}
+                          </button>
+                        </div>
+                        <div className="text-center px-3 pb-4 install-TRONlink">
+                          <a href="https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec">
+                            {tu('uninstall_TRONlink')}>>
+                          </a>
+                        </div>
+                      </div>
+                    </div> : ''
+                  }
 
 
                 </li>
@@ -700,7 +795,7 @@ class Navigation extends React.Component {
       syncStatus,
     } = this.props;
 
-    let {search, popup, notifications, announcement, announId,annountime} = this.state;
+    let {search, popup, notifications, announcement, announId, annountime, searchResults} = this.state;
 
     let activeComponent = this.getActiveComponent();
 
@@ -714,40 +809,86 @@ class Navigation extends React.Component {
                   <img src={this.getLogo()} className="logo" alt="Tron"/>
                 </Link>
               </div>
-                {
-                    IS_TESTNET &&
-                    <div className="col text-center text-info font-weight-bold py-2">
-                      TESTNET
-                    </div>
-                }
-                {
-                     (syncStatus && syncStatus.sync.progress < 95) &&
-                    <div className="col text-danger text-center py-2">
-                      Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
-                    </div>
-                }
-                {
-                  announcement&& <div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">
-                    <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}} className="mr-1"/>
-                    <Link to={'/notice/'+announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
-                  </div>
-                }
+              {
+                IS_TESTNET &&
+                <div className="col text-center text-info font-weight-bold py-2">
+                  TESTNET
+                </div>
+              }
+              {
+                (syncStatus && syncStatus.sync.progress < 95) &&
+                <div className="col text-danger text-center py-2">
+                  Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
+                </div>
+              }
+              {
+                announcement &&
+                <div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">
+                  <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}
+                       className="mr-1"/>
+                  <Link to={'/notice/' + announId}>{announcement} <span
+                      style={{color: '#999'}}>({annountime})</span></Link>
+                </div>
+              }
               <div className="ml-auto d-flex">
-                { this.props.location.pathname != '/'&&
-                  <div className= "hidden-mobile nav-searchbar">
-                    <div className="input-group">
+                {
+                  <div className="hidden-mobile nav-searchbar">
+                    <div className="input-group dropdown">
                       <input type="text"
-                            className="form-control p-2 bg-white border-0 box-shadow-none"
-                            style={styles.search}
-                            value={search}
-                            onKeyDown={this.onSearchKeyDown}
-                            onChange={ev => this.setState({search: ev.target.value})}
-                            placeholder={intl.formatMessage({id: "search_description1"})}/>
+                             className="form-control p-2 bg-white border-0 box-shadow-none"
+                             style={styles.search}
+                             value={search}
+                             onKeyDown={this.onSearchKeyDown}
+                             onChange={this.onSearchChange}
+                             onClick={this.callAjax}
+                             placeholder={intl.formatMessage({id: "search_description1"})}/>
                       <div className="input-group-append">
-
                         <button className="btn box-shadow-none" onClick={this.doSearch}>
                           <i className="fa fa-search"/>
                         </button>
+                      </div>
+                      <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                        {
+                          searchResults && searchResults.map((result, index) => {
+                                if (result.desc === 'Block') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/block/" + trim(result.value))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Token-TRC20') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Token-TRC10') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Address') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/address/" + trim(result.value))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'Contract') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/contract/" + trim(result.value))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                                if (result.desc === 'TxHash') {
+                                  return <a className="dropdown-item text-uppercase" onClick={() => {
+                                    this.afterSearch("#/transaction/" + trim(result.value))
+                                  }}
+                                            key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                                }
+                              }
+                          )
+                        }
                       </div>
                     </div>
                   </div>
@@ -763,6 +904,66 @@ class Navigation extends React.Component {
               </div>
             </div>
           </div>
+          <div className="hidden-PC nav-searchbar">
+            <div className="input-group dropdown">
+              <input type="text"
+                     className="form-control p-2 bg-white border-0 box-shadow-none"
+                     style={styles.search}
+                     value={search}
+                     onKeyDown={this.onSearchKeyDown}
+                     onChange={this.onSearchChange}
+                     onClick={this.callAjax}
+                     placeholder={intl.formatMessage({id: "search_description1"})}/>
+              <div className="input-group-append">
+                <button className="btn box-shadow-none" onClick={this.doSearch}>
+                  <i className="fa fa-search"/>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="_searchBox" style={{width: '100%',maxHeight:'300px', overflow:'auto'}}>
+                {
+                  searchResults && searchResults.map((result, index) => {
+                        if (result.desc === 'Block') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/block/" + trim(result.value))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Token-TRC20') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/token20/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Token-TRC10') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/token/" + trim(result.value.split(' ')[result.value.split(' ').length-1]))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Address') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/address/" + trim(result.value))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'Contract') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/contract/" + trim(result.value))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                        if (result.desc === 'TxHash') {
+                          return <a className="dropdown-item text-uppercase" onClick={() => {
+                            this.afterSearch("#/transaction/" + trim(result.value))
+                          }}
+                                    key={index}>{result.desc + ': '}<Truncate><strong>{result.value}</strong></Truncate></a>
+                        }
+                      }
+                  )
+                }
+              </div>
+            </div>
+          </div>
           <nav className="top-bar navbar navbar-expand-md navbar-dark">
             <div className="container">
               <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -770,11 +971,12 @@ class Navigation extends React.Component {
                 <span className="navbar-toggler-icon"/>
               </button>
               {
-                announcement &&<div className="col text-danger d-md-none">
+                announcement && <div className="col text-danger d-md-none">
                   <div className="">
-                 
-                  <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px',height: '16px'}} className="mr-1"/>
-                  <Link to={'/notice/'+announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
+
+                    <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px', height: '16px'}}
+                         className="mr-1"/>
+                    <Link to={'/notice/' + announId}>{announcement} <span style={{color: '#999'}}>({annountime})</span></Link>
                   </div>
                 </div>
               }
@@ -785,7 +987,7 @@ class Navigation extends React.Component {
                         {
                           route.linkHref === true ?
                               <HrefLink
-                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
+                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
                                   href={activeLanguage == 'zh' ? route.zhurl : route.enurl}>
                                 {route.icon &&
                                 <i className={route.icon + " d-none d-lg-inline-block mr-1"}/>}
@@ -793,8 +995,8 @@ class Navigation extends React.Component {
                               </HrefLink>
                               :
                               <NavLink
-                                  className={route.routes?"nav-link dropdown-toggle":"nav-link"}
-                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown' }  : {})}
+                                  className={route.routes ? "nav-link dropdown-toggle" : "nav-link"}
+                                  {...((route.routes && route.routes.length > 0) ? {'data-toggle': 'dropdown'} : {})}
                                   activeClassName="active"
                                   to={route.redirect? route.redirect: route.path}
                               >
@@ -805,7 +1007,7 @@ class Navigation extends React.Component {
                         }
 
                         {
-                          route.routes &&  route.label !=="nav_more" &&
+                          route.routes && route.label !== "nav_more" &&
                           <div className="dropdown-menu">
                             {
                               route.routes && route.routes.map((subRoute, index) => {
@@ -872,73 +1074,73 @@ class Navigation extends React.Component {
                           </div>
                         }
                         {
-                            route.routes &&  route.label == "nav_more" &&
-                            <div className="dropdown-menu more-menu" style={{left:'auto'}}>
-                                {
-                                    route.routes && route.routes.map((subRoute, index) => {
-                                        return  <div className="" key={index}>
-                                                <div className="more-menu-line"></div>
-                                            {
-                                                subRoute.map((Route,j) => {
-                                                    if (isString(Route)) {
-                                                        return (
-                                                            <h6 key={j}
-                                                                className="dropdown-header text-uppercase">{Route}</h6>
-                                                        )
-                                                    }
+                          route.routes && route.label == "nav_more" &&
+                          <div className="dropdown-menu more-menu" style={{left: 'auto'}}>
+                            {
+                              route.routes && route.routes.map((subRoute, index) => {
+                                return <div className="" key={index}>
+                                  <div className="more-menu-line"></div>
+                                  {
+                                    subRoute.map((Route, j) => {
+                                      if (isString(Route)) {
+                                        return (
+                                            <h6 key={j}
+                                                className="dropdown-header text-uppercase">{Route}</h6>
+                                        )
+                                      }
 
-                                                    if (Route.showInMenu === false) {
-                                                        return null;
-                                                    }
+                                      if (Route.showInMenu === false) {
+                                        return null;
+                                      }
 
-                                                    if (!isUndefined(Route.url)) {
-                                                        return (
-                                                            <HrefLink
-                                                                key={Route.url}
-                                                                className="dropdown-item text-uppercase"
-                                                                href={Route.url}>
-                                                                {Route.icon &&
-                                                                <i className={Route.icon + " mr-2"}/>}
-                                                                {tu(Route.label)}
-                                                                {Route.badge &&
-                                                                <Badge value={Route.badge}/>}
-                                                            </HrefLink>
-                                                        );
-                                                    }
-                                                    if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
-                                                        return (
-                                                            <HrefLink
-                                                                key={Route.enurl}
-                                                                className="dropdown-item text-uppercase"
-                                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
-                                                                {Route.icon &&
-                                                                <i className={Route.icon + " mr-2"}/>}
-                                                                {tu(Route.label)}
-                                                                {Route.badge &&
-                                                                <Badge value={Route.badge}/>}
-                                                            </HrefLink>
-                                                        );
-                                                    }
+                                      if (!isUndefined(Route.url)) {
+                                        return (
+                                            <HrefLink
+                                                key={Route.url}
+                                                className="dropdown-item text-uppercase"
+                                                href={Route.url}>
+                                              {Route.icon &&
+                                              <i className={Route.icon + " mr-2"}/>}
+                                              {tu(Route.label)}
+                                              {Route.badge &&
+                                              <Badge value={Route.badge}/>}
+                                            </HrefLink>
+                                        );
+                                      }
+                                      if (!isUndefined(Route.enurl) || !isUndefined(Route.zhurl)) {
+                                        return (
+                                            <HrefLink
+                                                key={Route.enurl}
+                                                className="dropdown-item text-uppercase"
+                                                href={activeLanguage == 'zh' ? Route.zhurl : Route.enurl}>
+                                              {Route.icon &&
+                                              <i className={Route.icon + " mr-2"}/>}
+                                              {tu(Route.label)}
+                                              {Route.badge &&
+                                              <Badge value={Route.badge}/>}
+                                            </HrefLink>
+                                        );
+                                      }
 
-                                                    return (
-                                                        <Link
-                                                            key={Route.path}
-                                                            className="dropdown-item text-uppercase"
-                                                            to={Route.path}>
-                                                            {Route.icon &&
-                                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
-                                                            {tu(Route.label)}
-                                                            {Route.badge && <Badge value={Route.badge}/>}
-                                                        </Link>
-                                                    );
-                                                })
-                                            }
-                                        </div>
-
-
+                                      return (
+                                          <Link
+                                              key={Route.path}
+                                              className="dropdown-item text-uppercase"
+                                              to={Route.path}>
+                                            {Route.icon &&
+                                            <i className={Route.icon + " mr-2" + " fa_width"}/>}
+                                            {tu(Route.label)}
+                                            {Route.badge && <Badge value={Route.badge}/>}
+                                          </Link>
+                                      );
                                     })
-                                }
-                            </div>
+                                  }
+                                </div>
+
+
+                              })
+                            }
+                          </div>
                         }
                       </li>
                   ))}
@@ -981,23 +1183,23 @@ class Navigation extends React.Component {
             </div>
           </nav>
           {
-            activeComponent.none? <div className="container pt-5 pb-4"></div>
-            :
-            (activeComponent && activeComponent.showSubHeader !== false) &&
-            <div className="container d-flex sub-header">
-              {
-                activeComponent && <h4 className="pt-4">
-                  <span className="text-uppercase">{tu(activeComponent.label)}</span> &nbsp;&nbsp;
-                  {activeComponent.label === 'overview' &&
-                  <small className='text-muted'>{tu('token_overview_tron')}</small>
+            activeComponent.none ? <div className="container pt-5 pb-4"></div>
+                :
+                (activeComponent && activeComponent.showSubHeader !== false) &&
+                <div className="container d-flex sub-header">
+                  {
+                    activeComponent && <h4 className="pt-4">
+                      <span className="text-uppercase">{tu(activeComponent.label)}</span> &nbsp;&nbsp;
+                      {activeComponent.label === 'overview' &&
+                      <small className='text-muted'>{tu('token_overview_tron')}</small>
+                      }
+                      {activeComponent.label === 'participate' &&
+                      <small className='text-muted'>{tu('token_participate_tron')}</small>
+                      }
+                    </h4>
                   }
-                  {activeComponent.label === 'participate' &&
-                  <small className='text-muted'>{tu('token_participate_tron')}</small>
-                  }
-                </h4>
-              }
-              
-            </div>
+
+                </div>
           }
         </div>
     )

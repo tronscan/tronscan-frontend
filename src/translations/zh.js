@@ -1524,6 +1524,8 @@ export const messages = {
     "token_precision":"通证精度",
     "token_precision_message_0":"根据需要设置通证的精度，精度范围是0-6",
     "check_my_token":"查看我发行的通证",
+    "totle_transactions_per_day":"总交易数",
+    "tron_total_transactions_chart":"TRON总交易数图表",
     "can_be_unlocked_now": "通证可以解锁",
 
 };

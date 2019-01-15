@@ -348,7 +348,7 @@ class Kline extends React.Component {
             <li>
               <p className="title">{tu('trc20_first_token')}</p>
               <p className="value" style={{"textDecoration":"underline"}}>
-                  <TokenLink name={selectData.map_token_name} address={selectData.first_owner_address}/>
+                  <TokenLink id={selectData.map_token_id} name={selectData.map_token_name} address={selectData.first_owner_address}/>
               </p>
             </li>
             <li>

@@ -268,6 +268,22 @@ class Statistics extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="row mb-4 mt-4">
+              <div className="col-md-4">
+                <div className="card-chart">
+                  <Link className="card-title" to="/blockchain/stats/totalTxns">
+                    <span>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
+                        {tu("tron_total_transactions_chart")}
+                    </span>
+                    <img src={require("../../../images/chart/TRON-Total-Transactions-Chart.png")}
+                         style={{width: 240, filter: 'grayscale(100%)'}}
+                         className="ml-5 mt-2"
+                    />
+                  </Link>
+                </div>
+              </div>
+            </div>
             <hr/>
             <div className="row mt-5">
               <div className="col-md-4">
