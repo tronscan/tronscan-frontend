@@ -1305,6 +1305,7 @@ export const messages = {
     "no_holders_found": "无通证持有者",
     "search_TRC20": "搜索地址",
     "beginners_guide": "新手引导",
+    "Submit_a_bug": "报告问题",
     "TRONdice": "TRONdice 玩游戏得dice币，持有dice币得TRX分红!",
     "Join_TRONdice": "-开始dice游戏!",
     "search_TRC20_error": "请输入正确的地址",
