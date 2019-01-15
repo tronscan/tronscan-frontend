@@ -260,7 +260,7 @@ class TokenOverview extends Component {
     let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
     let res;
-    if (Lockr.get("islogin")) {
+    if (Lockr.get("islogin") || this.props.walletType.type==="ACCOUNT_LEDGER") {
         const tronWeb = this.props.tronWeb();
         try {
             const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
@@ -481,6 +481,7 @@ class TokenOverview extends Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    walletType: state.app.wallet,
     tokens: state.tokens.tokens,
     wallet: state.wallet,
     currentWallet: state.wallet.current,

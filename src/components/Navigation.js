@@ -21,7 +21,7 @@ import {
   setTheme
 } from "../actions/app"
 import {connect} from "react-redux"
-import {Badge} from "reactstrap"
+import {Badge, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import Avatar from "./common/Avatar"
 import {AddressLink, HrefLink} from "./common/Links"
 import {FormattedNumber} from "react-intl"

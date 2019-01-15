@@ -136,7 +136,7 @@ class TokenCreate extends Component {
     });
     let frozenSupplyAmount =  this.state.frozenSupply[0].amount * Math.pow(10,Number(this.state.precision));
     let frozenSupply =  [{amount: frozenSupplyAmount, days:  this.state.frozenSupply[0].days}];
-      if (Lockr.get("islogin")) {
+      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER") {
               const unSignTransaction = await tronWeb.transactionBuilder.createToken({
                   name: trim(this.state.name),
                   abbreviation: trim(this.state.abbr),
@@ -444,6 +444,7 @@ function mapStateToProps(state) {
     activeLanguage: state.app.activeLanguage,
     tokens: state.tokens.tokens,
     account: state.app.account,
+    walletType: state.app.wallet,
     wallet: state.wallet.current,
   };
 }

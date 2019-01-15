@@ -96,7 +96,7 @@ class TokenDetail extends React.Component {
     let {account, currentWallet} = this.props;
     let {buyAmount, privateKey} = this.state;
       let res;
-      if (Lockr.get("islogin")) {
+      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER") {
         const tronWeb = this.props.tronWeb();
           try {
               const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
@@ -462,6 +462,7 @@ function mapStateToProps(state) {
     wallet: state.wallet,
     currentWallet: state.wallet.current,
     account: state.app.account,
+    walletType: state.app.wallet,
   };
 }
 

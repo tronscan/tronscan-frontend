@@ -33,6 +33,7 @@ import {connect} from "react-redux";
 @connect(
   state => ({
     account: state.app.account,
+    walletType: state.app.wallet,
     tokenBalances: state.account.tokens,
     totalTransactions: state.account.totalTransactions,
     frozen: state.account.frozen,
@@ -637,7 +638,7 @@ export default class Account extends Component {
     if(!selectedResource) {
         selectedResource = 0
     }
-    if (Lockr.get("islogin")) {
+    if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER") {
       const tronWeb = this.props.tronWeb();
       if(!selectedResource){
         type = 'BANDWIDTH';
