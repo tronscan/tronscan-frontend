@@ -17,6 +17,7 @@ import {reloadWallet} from "../../../actions/wallet";
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import {transactionResultManager} from "../../../utils/tron";
+import {round} from "lodash";
 import xhr from "axios/index";
 import Lockr from "lockr";
 import {withTronWeb} from "../../../utils/tronWeb";
@@ -33,6 +34,7 @@ class TokenOverview extends Component {
       buyAmount: 0,
       loading: false,
       total: 0,
+      amount: '',
       filter: {},
     };
 
@@ -126,6 +128,7 @@ class TokenOverview extends Component {
     if (value > max) {
       value = max;
     }
+    value =  value.replace(/^0|[^\d*]/g,'')
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price / ONE_TRX);
@@ -133,9 +136,8 @@ class TokenOverview extends Component {
   }
 
   preBuyTokens = (token) => {
-    let {buyAmount} = this.state;
+    let {buyAmount,amount} = this.state;
     let {currentWallet, wallet} = this.props;
-
     if (!wallet.isOpen) {
       this.setState({
         alert: (
@@ -179,6 +181,7 @@ class TokenOverview extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
+                      onKeyUp={(e)=>{ e.target.value = e.target.value.replace(/^0|[^\d*]/g,'') }}
                       onChange={(e) => {
                         this.onBuyInputChange(e.target.value, token.price, token.remaining)
                       }}
@@ -366,7 +369,7 @@ class TokenOverview extends Component {
                     style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }
             <div>
-              <h5><TokenLink name={record.name}
+              <h5><TokenLink name={record.name} id={record.id}
                              namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
               </h5>
               <p style={{wordBreak: "break-all"}}>{record.description}</p>

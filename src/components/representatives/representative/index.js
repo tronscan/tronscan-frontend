@@ -223,7 +223,7 @@ class Representative extends React.Component {
               <ExternalLink className="list-group-item" url={address.representative.url}>Website</ExternalLink>
             </Scrollspy>
           </div>
-          <Link className="btn btn-secondary btn-block mb-2" to="/votes">
+          <Link className="btn btn-secondary btn-block mb-2" to="/sr/votes">
             <i className="fa fa-arrow-left mr-2"/>
             {tu("go_to_votelist")}
           </Link>

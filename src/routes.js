@@ -41,6 +41,7 @@ import Transfers from "./components/blockchain/Transfers";
 import Representative from "./components/representatives/representative";
 import Contracts from "./components/blockchain/Contracts";
 import SmartContract from "./components/blockchain/Contract";
+import Exchangetrc from "./components/exchange/index";
 import Exchange from "./components/exchange/dex10/index";
 import Exchange20 from "./components/exchange/dex20/index";
 import Notice from "./components/exchange/notice";
@@ -212,13 +213,13 @@ export const routes = [
     ]
   },
   {
-    path: "/token/:name/:address",
+    path: "/token/:id",
     label: "token",
     component: TokenDetailAsync,
     showInMenu: false
   },
   {
-    path: "/token20/:name/:address",
+    path: "/token20/:address",
     label: "token",
     component: Token20DetailAsync,
     showInMenu: false
@@ -243,19 +244,27 @@ export const routes = [
   //   zhurl: "https://trx.market",
   //   linkHref: true
   // },
-  {
-    label: "DEX10",
-    path: "/exchange",
-    icon: "fas fa-exchange-alt",
-    component: Exchange,
-    showInMenu: false,
-    none: true
-  },
+  // {
+  //   label: "DEX10",
+  //   path: "/exchange",
+  //   icon: "fas fa-exchange-alt",
+  //   component: Exchange,
+  //   showInMenu: false,
+  //   none: true
+  // },
+  // {
+  //   label: "TRXMarket",
+  //   path: "/exchange20",
+  //   icon: "fas fa-exchange-alt",
+  //   component: Exchange20,
+  //   none: true
+  // },
   {
     label: "TRXMarket",
-    path: "/exchange20",
+    path: "/exchange/:type",
+    redirect: '/exchange/trc10',
     icon: "fas fa-exchange-alt",
-    component: Exchange20,
+    component: Exchangetrc,
     none: true
   },
   {

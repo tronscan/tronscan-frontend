@@ -178,7 +178,7 @@ class Representatives extends Component {
                         <div style={{height: 326, background: '#fff'}} className="pt-2 bg-line_blue">
                           <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={{border:0}}>
                             <h6 className="m-0 lh-150" style={{fontSize:16}}>
-                              <Link to="blockchain/stats/pieChart">
+                              <Link to="/blockchain/stats/pieChart">
                                   {tu("produce_distribution")}
                               </Link>
                             </h6>
@@ -243,10 +243,20 @@ function Row({account, showSync = true, index, state, props}) {
               </td> : <td>&nbsp;</td>
         }
         <td className="text-center  d-none d-lg-table-cell">
-          <BlockNumberLink number={account.latestBlockNumber}/>
+            {
+                account.latestBlockNumber?
+                <BlockNumberLink number={account.latestBlockNumber}/>:
+                '-'
+            }
+
         </td>
         <td className="text-center d-none d-lg-table-cell">
-          <FormattedNumber value={account.producedTotal}/>
+            {
+                account.producedTotal?
+                <FormattedNumber value={account.producedTotal}/>:
+                '-'
+            }
+
         </td>
         <td className="text-center d-none d-lg-table-cell">
           {

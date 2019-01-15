@@ -15,23 +15,23 @@ export const WitnessLink = ({address}) => (
     <Link to={`/witness/${address}`}>{address}</Link>
 );
 
-export const TokenLink = ({name, namePlus, address, children, ...props}) => {
+export const TokenLink = ({id, name, namePlus, address, children, ...props}) => {
 
   if (name && !namePlus) {
-    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || name}</Link>
+    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || name}</Link>
   }
   if (namePlus && name) {
-    return <Link to={`/token/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
+    return <Link to={`/token/${encodeURI(id)}`} {...props}>{children || namePlus}</Link>
   }
 };
 
 export const TokenTRC20Link = ({name, namePlus, address, children, ...props}) => {
 
     if (name && !namePlus) {
-        return <Link to={`/token20/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || name}</Link>
+        return <Link to={`/token20/${encodeURI(address)}`} {...props}>{children || name}</Link>
     }
     if (name && namePlus) {
-        return <Link to={`/token20/${encodeURI(name)}/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
+        return <Link to={`/token20/${encodeURI(address)}`} {...props}>{children || namePlus}</Link>
     }
 };
 
@@ -127,20 +127,20 @@ export class AddressLink extends React.PureComponent {
     }
 
     let wrap = (
-        <Fragment>
+        <div className="d-flex">
           {
             !isContract ?
               <Link
                   to={`/address/${address}/token-balances`}
                   style={style}
-                  className={"address-link text-nowrap " + className}
+                  className={"text-truncate address-link  " + className}
                   {...props}>
                 {children ? children : address}
               </Link> :
               <Link
                   to={`/contract/${address}/code`}
                   style={style}
-                  className={"address-link text-nowrap " + className}
+                  className={"text-truncate address-link " + className}
                   {...props}>
                 {children ? children : address}
               </Link>
@@ -149,7 +149,7 @@ export class AddressLink extends React.PureComponent {
             includeCopy &&
             <CopyText text={address} className="ml-1"/>
           }
-        </Fragment>
+        </div>
     );
 
     if (truncate) {

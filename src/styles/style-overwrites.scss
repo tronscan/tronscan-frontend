@@ -1,7 +1,7 @@
 body{
   @media (min-width: 1000px){
     .modal-dialog{
-      max-width: 400px;
+      max-width: 600px;
       .modal-title{
         &>div{
           white-space: nowrap;
@@ -528,6 +528,9 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   @media screen and (max-width: 768px) {
      margin-top:4rem ;
   }
+}
+.table_pos_addr_data{
+  margin-top:4rem;
 }
 
 

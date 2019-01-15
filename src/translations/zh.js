@@ -209,7 +209,7 @@ export const messages = {
     "transactions_past_hour": "过去一小时交易数目",
     "average_blocksize": "平均区块大小",
     "rich_list": "富豪榜",
-    "tron_transaction_chart": "TRON交易数图表",
+    "tron_transaction_chart": "TRON日交易数图表",
     "transactions_per_day": "日交易数",
     "foundation": "基金会地址",
     "foundation_address": "基金会锁仓TRX总数",
@@ -1523,6 +1523,9 @@ export const messages = {
     "token_precision":"通证精度",
     "token_precision_message_0":"根据需要设置通证的精度，精度范围是0-6",
     "check_my_token":"查看我发行的通证",
+    "totle_transactions_per_day":"总交易数",
+    "tron_total_transactions_chart":"TRON总交易数图表",
+
 
 
 };

@@ -7,7 +7,7 @@ import {tu} from "../../../utils/i18n";
 import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
-
+import { NameWithId } from '../../common/names';
 export default function Contract({contract}) {
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
@@ -111,7 +111,7 @@ export default function Contract({contract}) {
                   <Field label="to"><AddressLink address={contract['owner_address']}/></Field>
                   <Field label="issuer"><AddressLink address={contract['to_address']}/></Field>
                   <Field label="amount">{contract.amount / ONE_TRX}</Field>
-                  <Field label="token">{contract['asset_name']}</Field>
+                  <Field label="token"><NameWithId value={contract} notamount/></Field>
                 </tbody>
               </table>
             </div>
@@ -167,7 +167,7 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="account_name">{contract['account_name']}</Field>
+                <Field label="account_name">{toUtf8(contract['account_name'])}</Field>
               </tbody>
             </table>
           </Fragment>
@@ -293,7 +293,7 @@ export default function Contract({contract}) {
                 <tbody>
                     <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
                     <Field label="token_name">{toUtf8(contract.name)}</Field>
-                    <Field label="total_supply"><FormattedNumber value={contract.total_supply/ Math.pow(10,contract.precision)}/></Field>
+                    <Field label="total_supply"><FormattedNumber value={contract.total_supply/ (contract.precision?Math.pow(10,contract.precision):1)}/></Field>
                     <Field label="TRX_exchange_rate">{contract.trx_num / ONE_TRX} : {contract.num}</Field>
                     <Field label="start_time">
                         {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.start_time}/> : "-"}

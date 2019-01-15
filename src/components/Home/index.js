@@ -51,7 +51,9 @@ export default class Home extends Component {
   }
 
   async loadNodes() {
-    let {data} = await xhr.get(`${API_URL}/api/node`);
+
+    // let {total} = await Client.getNodeLocations();
+    let {data} = await xhr.get(`https://apilist.tronscan.org/api/node`);
     this.setState({
       onlineNodes: data.total
     })
@@ -201,6 +203,7 @@ export default class Home extends Component {
             {/*top: 0,*/}
             {/*bottom: 0,*/}
             {/*}} className="position-absolute"/>*/}
+
             <div className="container home-splash">
               <div className="row justify-content-center text-center">
                 <div className="col-12">
@@ -211,26 +214,29 @@ export default class Home extends Component {
                   {/*<h2 className="mb-5 text-muted animated fadeIn ad-1600ms" style={{fontSize: 32}}>*/}
                   {/*{tu("tron_main_message")}*/}
                   {/*</h2>*/}
-                  <div className={
-                    "input-group input-group-lg mb-4" +
-                    (isShaking ? " animated shake " : "") +
-                    (hasFound ? " animated bounceOut" : "")
-                  }>
-                    <input type="text"
-                           className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
-                           style={{fontSize: 13, borderRadius: 0}}
-                           value={search}
-                           onKeyDown={this.onSearchKeyDown}
-                           onChange={ev => this.setState({search: ev.target.value})}
-                           placeholder={intl.formatMessage({id: 'search_description'})}/>
+                  {/*
+                    <div className={
+                      "input-group input-group-lg mb-4" +
+                      (isShaking ? " animated shake " : "") +
+                      (hasFound ? " animated bounceOut" : "")
+                    }>
+                      <input type="text"
+                             className="form-control p-3 bg-tron-light  color-grey-100 border-0 box-shadow-none"
+                             style={{fontSize: 13, borderRadius: 0}}
+                             value={search}
+                             onKeyDown={this.onSearchKeyDown}
+                             onChange={ev => this.setState({search: ev.target.value})}
+                             placeholder={intl.formatMessage({id: 'search_description'})}/>
 
-                    <div className="input-group-append">
-                      <button className="btn btn-search box-shadow-none" onClick={this.doSearch}
-                              style={{borderRadius: 0}}>
-                        <i className="fa fa-search"/>
-                      </button>
+                      <div className="input-group-append">
+                        <button className="btn btn-search box-shadow-none" onClick={this.doSearch}
+                                style={{borderRadius: 0}}>
+                          <i className="fa fa-search"/>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                    */
+                  }
                 </div>
               </div>
 
