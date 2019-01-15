@@ -47,6 +47,7 @@ import isMobile from '../utils/isMobile';
 import {Client} from '../services/api';
 import $ from 'jquery';
 import xhr from "axios/index";
+import LedgerAccess from "../hw/ledger/LedgerAccess";
 
 class Navigation extends React.Component {
 
@@ -458,6 +459,25 @@ class Navigation extends React.Component {
     }
   };
 
+  loginWithLedger = () => {
+    this.openLedgerModal();
+  };
+
+  openLedgerModal = () => {
+    this.setState({
+      popup: (
+          <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
+            <ModalHeader className="text-center" toggle={this.hideModal}>
+              {tu("open_ledger")}
+            </ModalHeader>
+            <ModalBody className="p-0">
+              <LedgerAccess onClose={this.hideModal} />
+            </ModalBody>
+          </Modal>
+      )
+    });
+  };
+
   loginWithMobileDevice = () => {
     console.log("LOGIN WITH MOBILE");
   };
@@ -640,6 +660,11 @@ class Navigation extends React.Component {
                       }}>
                         <div className="dropdown-item text-uppercase text-center">
                           {tu('sign_in_with_TRONlink')}
+                        </div>
+                      </li>
+                      <li className="px-2 py-2" onClick={(e) => this.loginWithLedger(e)}>
+                        <div className="dropdown-item text-uppercase text-center">
+                          {tu('sign_in_with_ledger')}
                         </div>
                       </li>
                       <li className="px-2 py-2" onClick={(e) => {
