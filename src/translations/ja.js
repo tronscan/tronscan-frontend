@@ -1521,8 +1521,8 @@ export const messages = {
     "token_precision":"トークンプレシジョン",
     "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
     "check_my_token":"私のトークンをチェック",
-    "totle_transactions_per_day":"Total Daily Transactions",
+    "totle_transactions_per_day":"合計トランザクション",
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
-
+    "can_be_unlocked_now": "でロックを解除する",
 }
 
