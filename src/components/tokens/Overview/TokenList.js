@@ -267,7 +267,7 @@ class TokenList extends Component {
     let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
       let res;
-      if (Lockr.get("islogin")) {
+      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER") {
         const tronWeb = this.props.tronWeb();
           try {
               const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);

@@ -69,7 +69,7 @@ class SendForm extends React.Component {
     let TokenType = token.substr(token.length - 5, 5);
     switch (TokenType) {
       case 'TRC10':
-        if (Lockr.get("islogin")) {
+        if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER") {
           await this.tokenSendWithTronLink();
         } else {
           await this.token10Send();
@@ -622,6 +622,7 @@ class SendForm extends React.Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
   };
 }
