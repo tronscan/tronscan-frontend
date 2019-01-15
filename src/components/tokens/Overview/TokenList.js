@@ -20,6 +20,7 @@ import {TronLoader} from "../../common/loaders";
 import {transactionResultManager} from "../../../utils/tron";
 import xhr from "axios/index";
 import Lockr from "lockr";
+import {Link} from "react-router-dom";
 
 class TokenList extends Component {
 
@@ -468,7 +469,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan"></QuestionMark></span></div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan"></QuestionMark></span> &nbsp;&nbsp;  <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link></div> : ''}
                 {/*<SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}*/}
                             {/*onPageChange={(page, pageSize) => {*/}
                               {/*this.loadPage(page, pageSize)*/}
