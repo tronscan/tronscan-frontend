@@ -293,7 +293,7 @@ export default function Contract({contract}) {
                 <tbody>
                     <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
                     <Field label="token_name">{toUtf8(contract.name)}</Field>
-                    <Field label="total_supply"><FormattedNumber value={contract.total_supply/ Math.pow(10,contract.precision)}/></Field>
+                    <Field label="total_supply"><FormattedNumber value={contract.total_supply/ (contract.precision?Math.pow(10,contract.precision):1)}/></Field>
                     <Field label="TRX_exchange_rate">{contract.trx_num / ONE_TRX} : {contract.num}</Field>
                     <Field label="start_time">
                         {contract.end_time - contract.start_time > 1000 ?  <FormattedDate value={contract.start_time}/> : "-"}

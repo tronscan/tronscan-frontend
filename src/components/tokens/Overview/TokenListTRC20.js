@@ -47,16 +47,16 @@ class TokenList extends Component {
         let total
 
         if (filter.name){
-            result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+            result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['trc20_tokens'].length;
         }else{
-            result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+            result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
             total = result.data['total'];
         }
 
         let tokens = result.data['trc20_tokens'];
         tokens.map((item,index) =>{
-            item.index = index + 1
+            item.index = index + 1 +(page - 1) * pageSize
         })
 
         // if (tokens.length === 0) {

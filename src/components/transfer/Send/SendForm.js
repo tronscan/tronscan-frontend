@@ -440,9 +440,10 @@ class SendForm extends React.Component {
 
   }
 
-  async getTRC20Tokens(){
+
+    async getTRC20Tokens(){
         let {account} = this.props;
-        let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+        let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
         let tokens20 = result.data.trc20_tokens;
 
         for (let i = 0; i < tokens20.length; i++) {
@@ -457,7 +458,7 @@ class SendForm extends React.Component {
                 item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
             }
         }
-        
+
         let tokens = _(tokens20)
             .filter(tb => tb.balance > 0)
             .sortBy(tb => tb.name)
@@ -466,8 +467,8 @@ class SendForm extends React.Component {
         this.setState({
             tokens20: tokens
         });
+    }
 
-  }
   render() {
 
     let {intl, tokenBalances, account} = this.props;

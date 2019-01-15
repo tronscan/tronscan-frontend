@@ -215,13 +215,13 @@ export const routes = [
     ]
   },
   {
-    path: "/token/:name/:address",
+    path: "/token/:id",
     label: "token",
     component: TokenDetailAsync,
     showInMenu: false
   },
   {
-    path: "/token20/:name/:address",
+    path: "/token20/:address",
     label: "token",
     component: Token20DetailAsync,
     showInMenu: false
