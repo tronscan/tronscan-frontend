@@ -492,18 +492,15 @@ class Navigation extends React.Component {
 
     }
 
-    console.log("account", account, wallet);
-
     return (
         <Fragment>
           {
             (account.isLoggedIn && wallet.isOpen) ?
-
             <li className="nav-static dropdown token_black nav">
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown-wallet">
+              <a className="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdown-wallet">
                 {tu("wallet")}
               </a>
-              <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3" id="dropdown-wallet">
+              <ul className="dropdown-menu dropdown-menu-right account-dropdown-menu px-3" aria-labelledby="dropdown-wallet">
                 <li className=" py-1">
                   <div className="row" style={{width: 305}}>
                     <Link to="/account" className="col-12 d-flex justify-content-end align-items-center">
