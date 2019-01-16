@@ -78,7 +78,7 @@ class SmartContract extends React.Component {
           id: "transactions",
           path: "",
           label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{contract: id}}  />
+          cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
         },
         // Txns: {
         //   id: "Txns",

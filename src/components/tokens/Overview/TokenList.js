@@ -56,7 +56,7 @@ class TokenList extends Component {
       total = result.data['data'].length;
       totalAll = result.data['totalAll'];
     }else{
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize);
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }

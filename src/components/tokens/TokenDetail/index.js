@@ -54,7 +54,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id);
+    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
 
     if(!token){
@@ -408,7 +408,7 @@ class TokenDetail extends React.Component {
                             <p className="card-text">{token.description}</p>
                           </div>
                           <div className="ml-auto">
-                            {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&
+                            {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack && token.canShow == 1) &&
                             <button className="btn btn-default btn-xs d-inline-block"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }
