@@ -80,7 +80,7 @@ class Account extends Component {
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
     loadRecentTransactions(account.address);
-
+    console.log('account.address',account.address)
     this.setState({
       issuedAsset: null,
       sr: null,
@@ -93,7 +93,7 @@ class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset(account.address).then(({token}) => {
+    Client.getIssuedAsset({owner:account.address}).then(({token}) => {
       this.setState({
         issuedAsset: token,
       });
