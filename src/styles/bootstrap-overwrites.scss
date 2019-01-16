@@ -99,3 +99,9 @@ h6{
         color: #8E8C84;
     }
 }
+
+.border{
+    &-light{
+        border-color: #999!important;
+    }
+}

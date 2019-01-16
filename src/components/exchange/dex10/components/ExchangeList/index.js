@@ -324,19 +324,21 @@ class ExchangeList extends React.Component {
                 <div className="exchange-list-mark p-3">
                     {/* 标题 */}
                     <div className="market-title">
-                        <div className="d-flex">
-                            <h6>{tu("marks")}</h6>
+                        <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
+                            <h6 className="m-0">{tu("marks")}</h6>
+
+                            <div className="d-flex f-12">
+                                <a href="https://t.me/trxmarket2018" target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
+                                <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
+                                    target="_blank" className="px-1 border-right  border-light">{tu('beginners_guide')}</a>
+                                <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
+                                    target="_blank" className="pl-1">{tu('token_application_instructions_title')}</a>
+                            </div>
                             
                         </div>
                         
                     </div>
-                    <div className="d-flex justify-content-between f-12 mb-1">
-                        <a href="https://t.me/trxmarket2018" target="_bank">{tu('Submit_a_bug')}</a>
-                        <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
-                            target="_blank">{tu('beginners_guide')}</a>
-                        <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
-                            target="_blank">{tu('token_application_instructions_title')}</a>
-                    </div>
+                    
                     {/* filter 筛选 */}
                 
                     <div className="dex-tab">
