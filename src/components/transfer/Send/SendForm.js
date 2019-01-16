@@ -447,35 +447,57 @@ class SendForm extends React.Component {
 
   }
 
+  async getTRC20Tokens(){
+      let {account} = this.props;
+      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let tokens20 = result.data.trc20_tokens;
+      const tronWebLedger = this.props.tronWeb();
+      const { tronWeb } = this.props.account;
+      if (this.props.wallet.type === "ACCOUNT_LEDGER"){
+          for (let i = 0; i < tokens20.length; i++) {
+              const item = tokens20[i];
+              item.token20_name = item.name + '(' + item.symbol + ')';
+              item.token_name_type = item.name + '-TRC20';
+              let  contractInstance = await tronWebLedger.contract().at(item.contract_address);
+              let  balanceData = await contractInstance.balanceOf(account.address).call();
+              if(balanceData.balance){
+                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+              }
+          }
+          let tokens = _(tokens20)
+              .filter(tb => tb.balance > 0)
+              .sortBy(tb => tb.name)
+              .value();
 
-  async getTRC20Tokens() {
-    let {account} = this.props;
-    let result = await xhr.get("https://apilist.tronscan.org" + "/api/token_trc20?sort=issue_time&start=0&limit=50");
-    let tokens20 = result.data.trc20_tokens;
-    tokens20.map(async item => {
-      item.token20_name = item.name + '(' + item.symbol + ')';
-      item.token_name_type = item.name + '-TRC20';
-      let contractInstance = await this.props.tronWeb().contract().at(item.contract_address);
-      let balanceData = await contractInstance.balanceOf(account.address).call();
-      if (balanceData.balance) {
-        item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
-      } else {
-        item.balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+          this.setState({
+              tokens20: tokens
+          });
       }
-      return item
-    });
-    setTimeout(() => {
-      let tokens = _(tokens20)
-          .filter(tb => tb.balance > 0)
-          .sortBy(tb => tb.name)
-          .value();
-      this.setState({
-        tokens20: tokens
-      });
-    }, 2000)
+      if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
+          for (let i = 0; i < tokens20.length; i++) {
+              const item = tokens20[i];
+              item.token20_name = item.name + '(' + item.symbol + ')';
+              item.token_name_type = item.name + '-TRC20';
+              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  balanceData = await contractInstance.balanceOf(account.address).call();
+              if(balanceData.balance){
+                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+              }
+          }
+          let tokens = _(tokens20)
+              .filter(tb => tb.balance > 0)
+              .sortBy(tb => tb.name)
+              .value();
 
-
-  }
+          this.setState({
+              tokens20: tokens
+          });
+      }
+    }
 
   render() {
 

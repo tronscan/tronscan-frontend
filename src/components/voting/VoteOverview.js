@@ -59,6 +59,7 @@ function VoteChange({value, arrow = false}) {
     flags: state.app.flags,
     voteList: state.voting.voteList,
     voteTimer: state.voting.voteTimer,
+    walletType: state.app.wallet,
   }),
   {
     login,
@@ -362,26 +363,39 @@ export default class VoteOverview extends React.Component {
     let {votes } = this.state;
     let res;
     this.setState({submittingVotes: true,});
-
     let witnessVotes = {};
-
+    const tronWebLedger = this.props.tronWeb();
+    const { tronWeb } = this.props.account;
     for (let address of Object.keys(votes)) {
       witnessVotes[address] = parseInt(votes[address], 10);
     }
 
-    if (account.isLoggedIn) {
-      const tronWeb = this.props.tronWeb();
-      try {
-          const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
-          const {result} = await transactionResultManager(unSignTransaction,tronWeb);
-          res = result;
-      } catch (e) {
-          console.error(e)
+
+
+      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+          try {
+              const unSignTransaction = await tronWebLedger.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              res = result;
+          } catch (e) {
+              console.error(e)
+          }
+      }else if(this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+          let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
+          res = success
+      }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+          try {
+              const unSignTransaction = await tronWeb.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
+              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              res = result;
+          } catch (e) {
+              console.error(e)
+          }
       }
-    } else {
-      let {success} = await Client.voteForWitnesses(account.address, witnessVotes)(account.key);
-      res = success
-    }
+
+
+
+
 
     if (res) {
       setTimeout(() => this.props.reloadWallet(), 1200);

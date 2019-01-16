@@ -132,10 +132,12 @@ export default class Account extends Component {
       let {account} = this.props;
       let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
-      //if(account.tronWeb.eventServer){
-      tokens20 &&  tokens20.map(async item =>{
+      const tronWebLedger = this.props.tronWeb();
+      const { tronWeb } = this.props.account;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+          tokens20 &&  tokens20.map(async item =>{
               item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await this.props.tronWeb().contract().at(item.contract_address);
+              let  contractInstance = await tronWebLedger.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
                   item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
@@ -147,6 +149,28 @@ export default class Account extends Component {
           this.setState({
               tokens20: tokens20
           });
+      }
+      if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+          tokens20 &&  tokens20.map(async item =>{
+              item.token20_name = item.name + '(' + item.symbol + ')';
+              let  contractInstance = await tronWeb.contract().at(item.contract_address);
+              let  balanceData = await contractInstance.balanceOf(account.address).call();
+              if(balanceData.balance){
+                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+              }else{
+                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+              }
+              return item
+          });
+          this.setState({
+              tokens20: tokens20
+          });
+      }
+
+
+
+      //if(account.tronWeb.eventServer){
+
   }
 
   renderTRC20Tokens() {

@@ -311,9 +311,12 @@ class Buy extends Component {
     let { amount, price, balanceTimer } = this.state;
     let tokenA = exchangeData.fTokenAddr;
     let tokenB = exchangeData.sTokenAddr;
-
-    const tronWeb = this.props.tronWeb();
-
+    let tronWeb;
+    if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+        tronWeb = this.props.tronWeb();
+    }else if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+        tronWeb = account.tronWeb;
+    }
     const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
     const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
 
@@ -380,39 +383,43 @@ class Buy extends Component {
     this.setState({ modal: null });
   };
 
-  async setBalance() {
-    let {account, exchangeData} = this.props;
-    let {firstBalance, balanceTimer} = this.state;
 
-    let _b = 0;
-    if (account.address && exchangeData.sTokenAddr) {
-      if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
-        _b =
-          (await this.props.tronWeb().tronWeb.trx.getUnconfirmedBalance(account.address)) /
-          Math.pow(10, exchangeData.sPrecision);
-      } else {
-        _b = await TW.getBalance({
-          _tokenA: exchangeData.sTokenAddr,
-          _uToken: account.address,
-          _precision: exchangeData.sPrecision,
-          tronWeb: this.props.tronWeb(),
+    async setBalance() {
+        let { account, exchangeData } = this.props;
+        let {firstBalance,balanceTimer} = this.state
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            tronWeb = this.props.tronWeb();
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+            tronWeb = account.tronWeb;
+        }
+        let _b = 0;
+        if (account.address && exchangeData.sTokenAddr) {
+            if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
+                _b =
+                    (await tronWeb.trx.getUnconfirmedBalance(account.address)) /
+                    Math.pow(10, exchangeData.sPrecision);
+            } else {
+                _b = await TW.getBalance({
+                    _tokenA: exchangeData.sTokenAddr,
+                    _uToken: account.address,
+                    _precision: exchangeData.sPrecision,
+                    tronWeb: tronWeb
+                });
+            }
+        }
+        if(_b != firstBalance){
+            clearInterval(balanceTimer)
+            this.setState({
+                balanceTimer: null
+            });
+        }
+        this.setState({
+            firstBalance: _b
         });
-      }
+
+        // this.setTokenBalance({ b: _b })
     }
-
-    if (_b !== firstBalance) {
-      clearInterval(balanceTimer);
-      this.setState({
-        balanceTimer: null
-      });
-    }
-    this.setState({
-      firstBalance: _b
-    });
-
-    // this.setTokenBalance({ b: _b })
-  }
-
   transTotal() {
     let { price, amount } = this.state;
     let { exchangeData } = this.props;
@@ -617,7 +624,8 @@ function mapStateToProps(state) {
     currentWallet: state.wallet.current,
     activeLanguage: state.app.activeLanguage,
     quickSelect: state.exchange.quick_select ? state.exchange.quick_select : {},
-    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false
+    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false,
+    walletType: state.app.wallet,
   };
 }
 
