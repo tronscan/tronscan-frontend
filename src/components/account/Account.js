@@ -1334,7 +1334,7 @@ export default class Account extends Component {
                           </td>
                       </tr>
                       {
-                          wallet.current.frozen_supply.length > 0 &&
+                        wallet.current && wallet.current.frozen_supply.length > 0 &&
                         <tr>
                           <th>{tu("frozen_supply")}:</th>
                           <td>
