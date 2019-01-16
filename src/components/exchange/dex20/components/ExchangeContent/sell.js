@@ -290,12 +290,12 @@ class Sell extends Component {
 
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
-    if (price * amount < 10) {
-      this.setState({
-        secondError: intl.formatMessage({ id: "trc20_enter_10" })
-      });
-      return;
-    }
+    // if (price * amount < 10) {
+    //   this.setState({
+    //     secondError: intl.formatMessage({ id: "trc20_enter_10" })
+    //   });
+    //   return;
+    // }
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -305,12 +305,12 @@ class Sell extends Component {
       });
       return;
     }
-    if (price * amount < 10) {
-      this.setState({
-        limitError: "≥10" + secondTokenName
-      });
-      return;
-    }
+    // if (price * amount < 10) {
+    //   this.setState({
+    //     limitError: "≥10" + secondTokenName
+    //   });
+    //   return;
+    // }
 
     //   this.isOrder = true
     this.setState({
@@ -333,8 +333,15 @@ class Sell extends Component {
   }
 
   async transFun(amountA, tokenA, tokenB, firstPrecision, secondPrecision) {
-    let { exchangeData, account } = this.props;
+    let { exchangeData, account ,walletType} = this.props;
     let { amount, price } = this.state;
+    
+    let tronWebOBJ
+    if (walletType.type === "ACCOUNT_LEDGER"){
+      tronWebOBJ = this.props.tronWeb();
+    }else if(walletType.type === "ACCOUNT_TRONLINK" || walletType.type === "ACCOUNT_PRIVATE_KEY"){
+      tronWebOBJ = account.tronWeb;
+    }
 
     const amountB = (amountA * price * secondPrecision) / firstPrecision;
 
@@ -345,7 +352,7 @@ class Sell extends Component {
       _price: price * secondPrecision,
       _tokenB: tokenB,
       _amountB: amountB,
-      tronWeb: this.props.tronWeb(),
+      tronWeb: tronWebOBJ,
     };
     try {
       const id = await TW.sellByContract(data);
