@@ -17,7 +17,7 @@ import {
 } from "../actions/app";
 import {passwordToAddress, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {base64DecodeFromString} from "@tronscan/client/src/lib/code";
-import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP} from "../constants";
+import {ACCOUNT_ADDRESS, ACCOUNT_LEDGER, ACCOUNT_PRIVATE_KEY, IS_DESKTOP, ACCOUNT_TRONLINK} from "../constants";
 
 const initialState = {
   theme: Lockr.get("theme", "light"),
@@ -224,7 +224,10 @@ export function appReducer(state = initialState, action) {
           isLoggedIn: true,
           address: action.address,
           tronWeb:action.tronWeb,
-        }
+        },
+        wallet: {
+          type: ACCOUNT_TRONLINK,
+        },
       };
     }
 

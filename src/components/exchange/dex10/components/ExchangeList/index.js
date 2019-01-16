@@ -326,23 +326,19 @@ class ExchangeList extends React.Component {
                     <div className="market-title">
                         <div className="d-flex">
                             <h6>{tu("marks")}</h6>
-                            <div className="beginners-guide">
-                                <i className="fas fa-book-open"></i>
-                                <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
-                                target="_blank">{tu('beginners_guide')}</a>
-                            </div>
+                            
                         </div>
-                        <div className="beginners-guide"><a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
-                               target="_blank">{tu('token_application_instructions_title')}</a></div>
+                        
                     </div>
-
+                    <div className="d-flex justify-content-between f-12 mb-1">
+                        <a href="https://t.me/trxmarket2018" target="_bank">{tu('Submit_a_bug')}</a>
+                        <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
+                            target="_blank">{tu('beginners_guide')}</a>
+                        <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
+                            target="_blank">{tu('token_application_instructions_title')}</a>
+                    </div>
                     {/* filter 筛选 */}
-                    <div className="exchange-list__filter d-flex justify-content-between align-items-center mb-3">
-                        <ul className="d-flex ">
-                            {/* <li className="mr-2">全部</li> */}
-                            {/* <li><i className="fas fa-star mr-1" style={{ color: '#F5A623'}}></i>自选</li> */}
-                        </ul>
-                    </div>
+                
                     <div className="dex-tab">
                         <div
                             className={"btn btn-sm"}

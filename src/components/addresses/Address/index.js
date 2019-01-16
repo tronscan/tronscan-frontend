@@ -238,7 +238,7 @@ class Address extends React.Component {
     let {address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
     let addr = match.params.id;
-    let uploadURL = "https://server.tron.network/api/v2/node/info_upload?address=" + match.params.id
+    let uploadURL = "https://apilist.tronscan.org/api/v2/node/info_upload?address=" + match.params.id
 
     if (!address) {
       return null;

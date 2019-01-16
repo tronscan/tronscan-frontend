@@ -96,12 +96,20 @@ class TokenDetail extends React.Component {
     let {account, currentWallet} = this.props;
     let {buyAmount, privateKey} = this.state;
       let res;
-      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER") {
-        const tronWeb = this.props.tronWeb();
+      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+        const tronWebLedger = this.props.tronWeb();
+        const { tronWeb } = this.props.account;
           try {
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id,  buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e=>false);
-              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+            if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWebLedger.defaultAddress.hex).catch(e => false);
+              const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
               res = result;
+            }
+            if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
+              const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+              res = result;
+            }
           } catch (e) {
               console.log(e)
           }

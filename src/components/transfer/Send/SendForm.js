@@ -6,7 +6,7 @@ import {tu} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import _, {find, round} from "lodash";
-import {API_URL, ONE_TRX} from "../../../constants";
+import {ACCOUNT_TRONLINK, API_URL, ONE_TRX} from "../../../constants";
 import {Alert} from "reactstrap";
 import {reloadWallet} from "../../../actions/wallet";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -69,7 +69,7 @@ class SendForm extends React.Component {
     let TokenType = token.substr(token.length - 5, 5);
     switch (TokenType) {
       case 'TRC10':
-        if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER") {
+        if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
           await this.tokenSendWithTronLink();
         } else {
           await this.token10Send();
@@ -92,9 +92,16 @@ class SendForm extends React.Component {
 
     if (TokenName === "_") {
       amount = amount * ONE_TRX;
-      result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address:wallet.address}, false).catch(function (e) {
-        console.log(e)
-      });
+      if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+        result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+          console.log(e)
+        });
+      }
+      if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+        result = await this.props.account.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+          console.log(e)
+        });
+      }
       if (result) {
         success = result.result;
       } else {
@@ -440,33 +447,36 @@ class SendForm extends React.Component {
 
   }
 
-  async getTRC20Tokens(){
-      let {account} = this.props;
-      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      let tokens20 = result.data.trc20_tokens;
-          tokens20.map(async item =>{
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await this.props.tronWeb().contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-              return item
-          });
-          setTimeout(()=>{
-              let tokens = _(tokens20)
-                  .filter(tb => tb.balance > 0)
-                  .sortBy(tb => tb.name)
-                  .value();
-              this.setState({
-                  tokens20: tokens
-              });
-          },2000)
+
+  async getTRC20Tokens() {
+    let {account} = this.props;
+    let result = await xhr.get("https://apilist.tronscan.org" + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let tokens20 = result.data.trc20_tokens;
+    tokens20.map(async item => {
+      item.token20_name = item.name + '(' + item.symbol + ')';
+      item.token_name_type = item.name + '-TRC20';
+      let contractInstance = await this.props.tronWeb().contract().at(item.contract_address);
+      let balanceData = await contractInstance.balanceOf(account.address).call();
+      if (balanceData.balance) {
+        item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+      } else {
+        item.balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+      }
+      return item
+    });
+    setTimeout(() => {
+      let tokens = _(tokens20)
+          .filter(tb => tb.balance > 0)
+          .sortBy(tb => tb.name)
+          .value();
+      this.setState({
+        tokens20: tokens
+      });
+    }, 2000)
+
 
   }
+
   render() {
 
     let {intl, tokenBalances, account} = this.props;

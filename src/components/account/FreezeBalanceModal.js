@@ -92,13 +92,14 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     let {account, onError, wallet} = this.props;
     let {amount, selectedResource} = this.state;
-    let res, type;
+    let res, type, result;
     this.setState({loading: true});
 
     try {
 
-      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER") {
-        const tronWeb = this.props.tronWeb();
+      if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
+        const tronWebLedger = this.props.tronWeb();
+        const { tronWeb } = this.props.account;
         if (!selectedResource) {
           type = 'BANDWIDTH';
         } else {
@@ -107,14 +108,19 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
         console.log("FREEZING", amount * ONE_TRX);
 
-        const unSignTransaction = await this.props.tronWeb().transactionBuilder.freezeBalance(
-          amount * ONE_TRX,
-          3,
-          type,
-          wallet.address);
+        if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+          const unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+              amount * ONE_TRX,
+              3,
+              type,
+              wallet.address);
+           result = await transactionResultManager(unSignTransaction, tronWebLedger);
+        }
+        if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+          const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e=>false);
+           result = await transactionResultManager(unSignTransaction,tronWeb)
+        }
 
-
-        const {result} = await transactionResultManager(unSignTransaction, tronWeb);
         res = result;
       } else {
         let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);

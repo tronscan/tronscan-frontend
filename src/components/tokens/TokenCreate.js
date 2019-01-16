@@ -120,7 +120,8 @@ class TokenCreate extends Component {
     let {account, intl} = this.props;
     let {logoData} = this.state;
     let res,createInfo,errorInfo;
-    const tronWeb = this.props.tronWeb();
+    const tronWebLedger = this.props.tronWeb();
+    const { tronWeb } = this.props.account;
     this.setState({
       modal:
           <SweetAlert
@@ -136,32 +137,59 @@ class TokenCreate extends Component {
     });
     let frozenSupplyAmount =  this.state.frozenSupply[0].amount * Math.pow(10,Number(this.state.precision));
     let frozenSupply =  [{amount: frozenSupplyAmount, days:  this.state.frozenSupply[0].days}];
-      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER") {
-              const unSignTransaction = await tronWeb.transactionBuilder.createToken({
-                  name: trim(this.state.name),
-                  abbreviation: trim(this.state.abbr),
-                  description: this.state.description,
-                  url: this.state.url,
-                  totalSupply: this.state.totalSupply * Math.pow(10,Number(this.state.precision)),
-                  tokenRatio: this.state.numberOfCoins,
-                  trxRatio: this.state.numberOfTron * ONE_TRX,
-                  saleStart: Date.parse(this.state.startTime),
-                  saleEnd:  Date.parse(this.state.endTime),
-                  freeBandwidth:0,
-                  freeBandwidthLimit:0,
-                  frozenAmount:frozenSupplyAmount,
-                  frozenDuration:this.state.frozenSupply[0].days,
-                  precision:Number(this.state.precision),
-              }, tronWeb.defaultAddress.hex).catch (function (e) {
-                  errorInfo = e;
-              })
-              if(!unSignTransaction){
-                  res = false;
-              }else{
-                  const {result} = await transactionResultManager(unSignTransaction,tronWeb);
-                  res = result;
-              }
-
+      if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          const unSignTransaction = await tronWebLedger.transactionBuilder.createToken({
+            name: trim(this.state.name),
+            abbreviation: trim(this.state.abbr),
+            description: this.state.description,
+            url: this.state.url,
+            totalSupply: this.state.totalSupply * Math.pow(10, Number(this.state.precision)),
+            tokenRatio: this.state.numberOfCoins,
+            trxRatio: this.state.numberOfTron * ONE_TRX,
+            saleStart: Date.parse(this.state.startTime),
+            saleEnd: Date.parse(this.state.endTime),
+            freeBandwidth: 0,
+            freeBandwidthLimit: 0,
+            frozenAmount: frozenSupplyAmount,
+            frozenDuration: this.state.frozenSupply[0].days,
+            precision: Number(this.state.precision),
+          }, tronWebLedger.defaultAddress.hex).catch(function (e) {
+            errorInfo = e;
+          })
+          if (!unSignTransaction) {
+            res = false;
+          } else {
+            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+            res = result;
+          }
+        }
+        if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+          const unSignTransaction = await tronWeb.transactionBuilder.createToken({
+            name: trim(this.state.name),
+            abbreviation: trim(this.state.abbr),
+            description: this.state.description,
+            url: this.state.url,
+            totalSupply: this.state.totalSupply * Math.pow(10, Number(this.state.precision)),
+            tokenRatio: this.state.numberOfCoins,
+            trxRatio: this.state.numberOfTron * ONE_TRX,
+            saleStart: Date.parse(this.state.startTime),
+            saleEnd: Date.parse(this.state.endTime),
+            freeBandwidth: 0,
+            freeBandwidthLimit: 0,
+            frozenAmount: frozenSupplyAmount,
+            frozenDuration: this.state.frozenSupply[0].days,
+            precision: Number(this.state.precision),
+          }, tronWeb.defaultAddress.hex).catch(function (e) {
+            errorInfo = e;
+          })
+          if (!unSignTransaction) {
+            res = false;
+          } else {
+            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+            res = result;
+          }
+        }
 
       }else {
            createInfo = await Client.createToken({
