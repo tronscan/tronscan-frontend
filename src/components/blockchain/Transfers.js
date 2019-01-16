@@ -172,7 +172,7 @@ class Transfers extends React.Component {
         width: '180px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <NameWithId value={record} type="abbr"/>
+          return <NameWithId value={record} type="abbr" totoken/>
 
         }
       },
