@@ -227,6 +227,7 @@ export function appReducer(state = initialState, action) {
         },
         wallet: {
           type: ACCOUNT_TRONLINK,
+          isOpen: true,
         },
       };
     }
