@@ -1302,6 +1302,7 @@ export const messages = {
     "no_holders_found":"トークン保有者がいない",
     "search_TRC20": "アドレスを検索する",
     "beginners_guide":"初心者へのご案内",
+    "Submit_a_bug":"問題を報告する",
     "TRONdice":"diceコインの持ち主はTRX配当がもらえます！",
     "Join_TRONdice":"-diceゲームを始めよう！",
     "search_TRC20_error":"正しいアドレスを入力してください",
@@ -1520,8 +1521,8 @@ export const messages = {
     "token_precision":"トークンプレシジョン",
     "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
     "check_my_token":"私のトークンをチェック",
-    "totle_transactions_per_day":"Total Daily Transactions",
+    "totle_transactions_per_day":"合計トランザクション",
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
-
+    "can_be_unlocked_now": "でロックを解除する",
 }
 

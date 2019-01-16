@@ -440,33 +440,35 @@ class SendForm extends React.Component {
 
   }
 
-  async getTRC20Tokens(){
-      let {account} = this.props;
-      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      let tokens20 = result.data.trc20_tokens;
-          tokens20.map(async item =>{
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              item.token_name_type = item.name + '-TRC20';
-              let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-              return item
-          });
-          setTimeout(()=>{
-              let tokens = _(tokens20)
-                  .filter(tb => tb.balance > 0)
-                  .sortBy(tb => tb.name)
-                  .value();
-              this.setState({
-                  tokens20: tokens
-              });
-          },2000)
 
-  }
+    async getTRC20Tokens(){
+        let {account} = this.props;
+        let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+        let tokens20 = result.data.trc20_tokens;
+
+        for (let i = 0; i < tokens20.length; i++) {
+            const item = tokens20[i];
+            item.token20_name = item.name + '(' + item.symbol + ')';
+            item.token_name_type = item.name + '-TRC20';
+            let  contractInstance = await account.tronWeb.contract().at(item.contract_address);
+            let  balanceData = await contractInstance.balanceOf(account.address).call();
+            if(balanceData.balance){
+                item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+            }else{
+                item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+            }
+        }
+
+        let tokens = _(tokens20)
+            .filter(tb => tb.balance > 0)
+            .sortBy(tb => tb.name)
+            .value();
+
+        this.setState({
+            tokens20: tokens
+        });
+    }
+
   render() {
 
     let {intl, tokenBalances, account} = this.props;

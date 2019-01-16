@@ -264,7 +264,7 @@ class VoteOverview extends React.Component {
     }
     if (votingEnabled) {
       return (
-          <div className="d-flex" style={{lineHeight: '36px'}}>
+          <div className="d-flex flex-wrap flex-sm-nowrap" style={{lineHeight: '36px'}}>
             <div className="d-flex">
               <div style={{width: '35px', height: '35px', paddingLeft: '10px'}}>
                 <i className="fa fa-search" aria-hidden="true"></i>
@@ -277,9 +277,11 @@ class VoteOverview extends React.Component {
             <div className="ml-auto">
               {this.renderVoteStatus()}
             </div>
-            <button className="btn btn-danger ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
-            <button className="btn btn-warning ml-1 _reset" onClick={this.resetVotes}>{tu("reset")}</button>
-            <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
+            <div className="ml-2 mt-2 ml-sm-auto mt-sm-0">
+              <button className="btn btn-danger ml-auto _cancel" onClick={this.cancelVotes}>{tu("cancel")}</button>
+              <button className="btn btn-warning ml-1 _reset" onClick={this.resetVotes}>{tu("reset")}</button>
+              <button className="btn btn-success ml-1 _submit" onClick={this.submitVotes}>{tu("submit_votes")}</button>
+            </div>
           </div>
       );
     }
@@ -614,7 +616,7 @@ class VoteOverview extends React.Component {
                                                 </th>
                                           }
                                           <td className="d-flex flex-row ">
-                                            <div className="text-center text-sm-left">
+                                            <div className="text-center text-sm-left" style={{minWidth: '150px'}}>
                                               <Truncate>
                                                 <AddressLink address={candidate.address}
                                                              className="font-weight-bold">{candidate.name || candidate.url}</AddressLink>

@@ -1301,7 +1301,8 @@ export const messages = {
     "nav_more": "more",
     "no_holders_found": "No Token Holders Found",
     "search_TRC20": "Search Address",
-    "beginners_guide": "Beginner's guide",
+    "beginners_guide":"Beginner's guide",
+"Submit_a_bug":"Submit a bug",
     "TRONdice":"Hold dice coin and get TRX dividend!",
     "Join_TRONdice": "-Join TRONdice!",
     "search_TRC20_error": " Please enter the correct address",
@@ -1523,5 +1524,6 @@ export const messages = {
     "check_my_token":"Check my token",
     "totle_transactions_per_day":"Total Daily Transactions",
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
+    "can_be_unlocked_now": "can be unlocked",
 
 };
