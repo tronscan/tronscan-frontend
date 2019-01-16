@@ -133,6 +133,7 @@ export default class Account extends Component {
       let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       const tronWebLedger = this.props.tronWeb();
+      console.log('account.address',account.address)
       const { tronWeb } = this.props.account;
       if (this.props.walletType.type === "ACCOUNT_LEDGER"){
           tokens20 &&  tokens20.map(async item =>{
@@ -627,7 +628,12 @@ export default class Account extends Component {
     let res;
     let {account, currentWallet} = this.props;
     if(this.state.isTronLink === 1){
-        const tronWeb = this.props.tronWeb();
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            tronWeb = this.props.tronWeb();
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+            tronWeb = account.tronWeb;
+        }
         const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e=>false);
         const {result} = await transactionResultManager(unSignTransaction, tronWeb)
         res = result;
@@ -655,7 +661,7 @@ export default class Account extends Component {
   };
 
   unfreeze = async () => {
-    let {account} = this.props;
+    let {account,walletType} = this.props;
     let {privateKey,selectedResource} = this.state;
     let res,type;
     this.hideModal();
@@ -664,7 +670,12 @@ export default class Account extends Component {
     }
     if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER" ||this.props.walletType.type==="ACCOUNT_TRONLINK") {
       const tronWebLedger = this.props.tronWeb();
+      console.log('tronWebLedger',tronWebLedger)
+        console.log('tronWebLedger',tronWebLedger.defaultAddress.base58)
+
       const { tronWeb } = this.props.account;
+        console.log('tronWeb',tronWeb)
+        console.log('tronWeb',tronWeb.defaultAddress.base58)
       if(!selectedResource){
         type = 'BANDWIDTH';
       }else{
@@ -672,7 +683,8 @@ export default class Account extends Component {
       }
         try {
           if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-            const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58).catch(e => false);
+
+            const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(type, walletType.address).catch(e => false);
             const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
             res = result;
         }
@@ -716,7 +728,12 @@ export default class Account extends Component {
     let res;
     this.hideModal();
       if(this.state.isTronLink === 1){
-          const tronWeb = this.props.tronWeb();
+          let tronWeb;
+          if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+              tronWeb = this.props.tronWeb();
+          }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+              tronWeb = account.tronWeb;
+          }
           const unSignTransaction = await tronWeb.fullNode.request('wallet/unfreezeasset', {
               owner_address: tronWeb.defaultAddress.hex,
           }, 'post').catch(e=>false);
@@ -766,7 +783,12 @@ export default class Account extends Component {
     let res;
     let {account, currentWallet} = this.props;
     if(this.state.isTronLink === 1){
-        const tronWeb = this.props.tronWeb();
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            tronWeb = this.props.tronWeb();
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+            tronWeb = account.tronWeb;
+        }
         const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {account_name:tronWeb.fromUtf8(name),owner_address:tronWeb.defaultAddress.hex}, 'post').catch(e=>false);
         const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
         res = result;
@@ -799,12 +821,18 @@ export default class Account extends Component {
     let res;
     let {account, currentWallet} = this.props;
     if (this.state.isTronLink === 1) {
-      const unSignTransaction = await this.props.tronWeb().fullNode.request('wallet/updatewitness', {
-          update_url: this.props.tronWeb().fromUtf8(url),
-          owner_address: this.props.tronWeb().defaultAddress.hex
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            tronWeb = this.props.tronWeb();
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+            tronWeb = account.tronWeb;
+        }
+      const unSignTransaction = await tronWeb.fullNode.request('wallet/updatewitness', {
+          update_url: tronWeb.fromUtf8(url),
+          owner_address: tronWeb.defaultAddress.hex
         },
         'post');
-      const {result} = await transactionResultManager(unSignTransaction, this.props.tronWeb());
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       let {success} = await Client.updateWitnessUrl(currentWallet.address, url)(account.key);
@@ -836,7 +864,12 @@ export default class Account extends Component {
       let res;
       let {account, currentWallet} = this.props;
       if (this.state.isTronLink === 1){
-          const tronWeb = this.props.tronWeb();
+          let tronWeb;
+          if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+              tronWeb = this.props.tronWeb();
+          }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+              tronWeb = account.tronWeb;
+          }
           const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId,firstTokenBalance,secondTokenBalance,tronWeb.defaultAddress.hex).catch(e=>false);
           const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
           res = result;
@@ -870,7 +903,12 @@ export default class Account extends Component {
         let res;
         let {account, currentWallet} = this.props;
         if(this.state.isTronLink === 1){
-          const tronWeb = this.props.tronWeb();
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+                tronWeb = this.props.tronWeb();
+            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                tronWeb = account.tronWeb;
+            }
           const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
           const {result} = await transactionResultManager(unSignTransaction,tronWeb);
           res = result;
@@ -904,7 +942,12 @@ export default class Account extends Component {
         let res;
         let {account, currentWallet} = this.props;
         if(this.state.isTronLink === 1){
-            const tronWeb = this.props.tronWeb();
+            let tronWeb;
+            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+                tronWeb = this.props.tronWeb();
+            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+                tronWeb = account.tronWeb;
+            }
             const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
             const {result} = await transactionResultManager(unSignTransaction,tronWeb)
             res = result;
@@ -1332,7 +1375,7 @@ export default class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                            <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                            <TokenLink  id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.address} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
                             <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>

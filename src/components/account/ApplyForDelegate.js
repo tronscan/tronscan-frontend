@@ -40,7 +40,12 @@ class ApplyForDelegate extends Component {
     let {url} = this.state;
     this.setState({ loading: true });
     if (isTronLink === 1) {
-      const tronWeb = this.props.tronWeb();
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+          tronWeb = this.props.tronWeb();
+      }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+          tronWeb = account.tronWeb;
+      }
       const unSignTransaction = await tronWeb.transactionBuilder.applyForSR(tronWeb.defaultAddress.hex, url).catch(e => false);
       const {result} = await transactionResultManager(unSignTransaction, tronWeb);
       res = result;
@@ -138,6 +143,7 @@ class ApplyForDelegate extends Component {
 function mapStateToProps(state) {
   return {
     account: state.app.account,
+    walletType: state.app.wallet,
   };
 }
 
