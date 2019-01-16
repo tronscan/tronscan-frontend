@@ -11,6 +11,7 @@ import {find} from "lodash";
 import Lockr from "lockr";
 
 import NumericInput from "./NumericInput";
+import {withTronWeb} from "../../../../../utils/tronWeb";
 
 const FormItem = Form.Item;
 const marks = {
@@ -24,6 +25,8 @@ const marks = {
   function formatter(value) {
     return `${value}%`;
   }
+
+@withTronWeb
 class Transaction extends Component {
   constructor(props) {
     super(props);
@@ -172,14 +175,25 @@ class Transaction extends Component {
   ) => {
     let { account, currentWallet, exchangeData, intl } = this.props;
     let res,transactionHash;
-    if (Lockr.get("islogin")) {
+
+    if (Lockr.get("islogin") || this.props.walletType.type==="ACCOUNT_LEDGER" || this.props.walletType.type==="ACCOUNT_TRONLINK") {
+      const tronWebLedger = this.props.tronWeb();
+      const { tronWeb } = this.props.account;
         try {
-            const {tronWeb} = account;
+          if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+            const unSignTransaction = await tronWebLedger.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWebLedger.defaultAddress.hex);
+            const signedTransaction = await tronWebLedger.trx.sign(unSignTransaction);
+            const result = await tronWebLedger.trx.sendRawTransaction(signedTransaction);
+            transactionHash = signedTransaction.txID;
+            res = result;
+          }
+          if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
             const unSignTransaction = await tronWeb.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWeb.defaultAddress.hex);
             const signedTransaction = await tronWeb.trx.sign(unSignTransaction, tronWeb.defaultPrivateKey);
             const result = await tronWeb.trx.sendRawTransaction(signedTransaction);
             transactionHash = signedTransaction.txID;
             res = result;
+          }
         }catch (e) {
             console.log(e)
         }
@@ -600,6 +614,7 @@ function mapStateToProps(state) {
     exchangeData: state.exchange.data,
     selectStatus: state.exchange.status,
     account: state.app.account,
+    walletType: state.app.wallet,
     currentWallet: state.wallet.current,
     activeLanguage: state.app.activeLanguage
   };
