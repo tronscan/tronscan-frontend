@@ -302,7 +302,6 @@ class Navigation extends React.Component {
     let {intl} = this.props;
 
     let {searchResults} = this.state;
-    console.log(searchResults);
     if (searchResults && searchResults.length) {
       if (searchResults[0].desc === 'Block') {
         this.afterSearch("#/block/" + trim(searchResults[0].value));

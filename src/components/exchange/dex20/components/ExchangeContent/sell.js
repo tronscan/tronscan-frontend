@@ -400,17 +400,23 @@ class Sell extends Component {
   };
 
   async setBalance() {
-    let { account, exchangeData } = this.props;
+    let { account, exchangeData, walletType } = this.props;
     let {firstBalance,balanceTimer} = this.state;
 
+    let tronWebOBJ
+    if (walletType.type === "ACCOUNT_LEDGER"){
+      tronWebOBJ = this.props.tronWeb();
+    }else if(walletType.type === "ACCOUNT_TRONLINK" || walletType.type === "ACCOUNT_PRIVATE_KEY"){
+      tronWebOBJ = account.tronWeb;
+    }
     let _b = 0;
-
+    
     if (account.address && exchangeData.fTokenAddr) {
       _b = await TW.getBalance({
         _tokenA: exchangeData.fTokenAddr,
         _uToken: account.address,
         _precision: exchangeData.fPrecision,
-        tronWeb: this.props.tronWeb(),
+        tronWeb: tronWebOBJ,
       });
     }
 
@@ -637,8 +643,8 @@ function mapStateToProps(state) {
     currentWallet: state.wallet.current,
     activeLanguage: state.app.activeLanguage,
     quickSelect: state.exchange.quick_select ? state.exchange.quick_select : {},
-    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false
-
+    is_update_tran:state.exchange.is_update_tran ? state.exchange.is_update_tran:false,
+    walletType: state.app.wallet,
   };
 }
 

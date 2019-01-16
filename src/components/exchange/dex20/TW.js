@@ -153,12 +153,11 @@ class ApiTW {
 
   async getBalance({ _tokenA, _uToken, _precision, tronWeb }) {
     const contractInstance = await tronWeb.contract().at(_tokenA);
-
     const _b = await contractInstance
       .balanceOf(_uToken)
       .call()
-      .catch(e => {});
     let balance = 0;
+   
     if (_b.balance) {
       balance = _b.balance.toString();
     } else {
