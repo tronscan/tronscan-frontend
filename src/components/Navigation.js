@@ -544,8 +544,9 @@ class Navigation extends React.Component {
   }
 
   renderWallet() {
-    let {account, totalTransactions = 0, flags, wallet} = this.props;
+    let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
     let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address} = this.state;
+    console.log(this.props)
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
@@ -556,6 +557,14 @@ class Navigation extends React.Component {
       );
 
     }
+    const STYLE_MAP={
+      default: 156,
+      zh: 137,
+      ja: 180
+    }
+    const style_width = STYLE_MAP[activeLanguage]?
+                        STYLE_MAP[activeLanguage]:
+                        STYLE_MAP['default'];
 
     return (
         <Fragment>
@@ -653,23 +662,28 @@ class Navigation extends React.Component {
                     isMobile && this.clickLoginWithPk(e)
                   }}>
                     {tu("open_wallet")}
-                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{width: 180}}>
-                      <li className="px-2 py-2" onClick={(e) => {
+                    <ul className="dropdown-menu dropdown-menu-right nav-login-wallet" style={{minWidth: style_width}}>
+                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => {
                         this.clickLoginWithTronLink(e)
                       }}>
-                        <div className="dropdown-item text-uppercase text-center">
+                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                          <img src={require("../images/login/tronlink.png")} width="16px" height="16px" className="mr-2"/>
                           {tu('sign_in_with_TRONlink')}
                         </div>
                       </li>
-                      <li className="px-2 py-2" onClick={(e) => this.loginWithLedger(e)}>
-                        <div className="dropdown-item text-uppercase text-center">
+                      <li className="px-2 py-1 border-bottom-0" onClick={(e) => this.loginWithLedger(e)}>
+                        <div className="dropdown-item text-uppercase d-flex  align-items-center text-muted">
+                          <img src={require("../images/login/ledger.png")} width="16px" height="16px" className="mr-2"/>
                           {tu('sign_in_with_ledger')}
                         </div>
                       </li>
-                      <li className="px-2 py-2" onClick={(e) => {
+                      <li className="px-2 py-1" onClick={(e) => {
                         this.clickLoginWithPk(e)
                       }}>
-                        <div className="dropdown-item text-uppercase text-center">
+                        <div className="dropdown-item text-uppercase d-flex align-items-center text-muted">
+                          <div className="d-flex justify-content-center mr-2" style={{width: '16px', height: '16px'}}>
+                          <img src={require("../images/login/kp.png")} width="11px" height="16px"/>
+                          </div>
                           {tu('import_a_wallet')}
                         </div>
                       </li>

@@ -1506,10 +1506,10 @@ export const messages = {
     "create_deal_pair_input_tip2":"The offering price cannot be altered after successful creation, one creation burns 1024 TRX",
     "publish_price":"Your offering price is",
     "pool_revert":"The balance of TRX in pool should be no less than 100,000",
-    "sign_in_with_TRONlink":"TRONlinkでログイン",
+    "sign_in_with_TRONlink":"TRONLINKログイン",
     "import_a_wallet":"アカウントインポート",
     "sign_in_TRONlink_warning":"TRONlinkをインストールしてページを更新してください",
-    "sign_in_TRONlink":"TRONlinkでログイン",
+    "sign_in_TRONlink":"TRONLINKログイン",
     "uninstall_TRONlink":"まだTRONlinkをインストールしていない？ ここをクリック",
     "change_login_method":"TRONlinkログインは現在この機能をサポートしていません。プライベートキーまたはキーストアファイルを使用してログインしてください。",
     "Create_token_link_message_0": "トークンは、Tronscanのトークンレビューに合格した場合にのみ一覧表示されます。",
@@ -1524,5 +1524,6 @@ export const messages = {
     "totle_transactions_per_day":"合計トランザクション",
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
     "can_be_unlocked_now": "でロックを解除する",
+    "sign_in_with_ledger":"LEDGERログイン",
 }
 
