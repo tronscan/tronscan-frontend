@@ -272,7 +272,7 @@ class TokenOverview extends Component {
           res = result;
         }
         if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
+          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
