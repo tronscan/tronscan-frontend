@@ -80,7 +80,6 @@ class Account extends Component {
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
     loadRecentTransactions(account.address);
-    console.log('account.address',account.address)
     this.setState({
       issuedAsset: null,
       sr: null,

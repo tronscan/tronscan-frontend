@@ -98,7 +98,6 @@ class Notifications extends React.Component {
 
     this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
     this.listener.on("transfer", trx => {
-     console.log('trx',trx)
      
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
