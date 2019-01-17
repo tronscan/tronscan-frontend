@@ -16,7 +16,7 @@ export class QuestionMark extends React.Component {
 
     render() {
         let {open, id } = this.state;
-        let {text, placement} = this.props;
+        let {text, placement, testSecond ='', className=''} = this.props;
 
         return (
             <div className="d-inline-block">
@@ -25,8 +25,12 @@ export class QuestionMark extends React.Component {
                      onMouseOut={() => this.setState({open: false})}>
                     <i>?</i>
                 </div>
-                <Tooltip placement={placement} isOpen={open} target={id}>
+                <Tooltip placement={placement} isOpen={open} target={id} className={className}>
                     {t(text)}
+                    {
+                        testSecond? <span><br/> {t(testSecond)}</span> :""
+                    }
+
                 </Tooltip>
             </div>
 

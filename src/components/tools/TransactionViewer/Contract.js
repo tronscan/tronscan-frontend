@@ -82,13 +82,7 @@ export default function Contract({contract}) {
                   <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
                   <Field label="to"><AddressLink address={contract['to_address']}/></Field>
                   <Field label="amount">{tokenIdData.map_amount}</Field>
-                  <Field label="token">{tokenIdData['map_token_name']}
-                      {
-                          tokenIdData.map_token_id ?
-                              <span style={{fontSize:12,color:'#999',margin:'2px 4px 8px'}}>[ID:{tokenIdData.map_token_id}]</span>
-                              :""
-                      }
-                  </Field>
+                  <Field label="token"><NameWithId value={contract} notamount totoken/></Field>
                 </tbody>
               </table>
             </div>
@@ -111,7 +105,7 @@ export default function Contract({contract}) {
                   <Field label="to"><AddressLink address={contract['owner_address']}/></Field>
                   <Field label="issuer"><AddressLink address={contract['to_address']}/></Field>
                   <Field label="amount">{contract.amount / ONE_TRX}</Field>
-                  <Field label="token"><NameWithId value={contract} notamount/></Field>
+                  <Field label="token"><NameWithId value={contract} notamount totoken/></Field>
                 </tbody>
               </table>
             </div>

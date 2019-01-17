@@ -6,9 +6,9 @@ import tronLogoBlue from '../images/tron-banner-tronblue.png'
 import tronLogoDark from '../images/tron-banner-1.png'
 import tronLogoTestNet from "../images/tron-logo-testnet.png";
 import tronLogoInvertedTestNet from "../images/tron-logo-inverted-testnet.png";
-import {flatRoutes, routes} from "../routes";
-import {Link, NavLink, withRouter} from "react-router-dom";
-import {filter, find, isString, isUndefined, trim, debounce} from "lodash";
+import {flatRoutes, routes} from "../routes"
+import {Link, NavLink, withRouter} from "react-router-dom"
+import {filter, find, isString, isUndefined, trim, toUpper,debounce} from "lodash"
 import {tu, t} from "../utils/i18n"
 import {
   enableFlag,
@@ -196,6 +196,15 @@ class Navigation extends React.Component {
     if (privateKey.length !== 64) {
       return false;
     }
+    
+    const HAS_LIST = '0123456789ABCDEF'.split('');
+    for (let i = 0; i < privateKey.length; i++) {
+      const element = toUpper(privateKey[i]);
+      if(HAS_LIST.indexOf(element) === -1){
+        return false
+      }
+    }
+    
 
     return true;
   };

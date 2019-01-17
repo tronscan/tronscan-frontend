@@ -209,7 +209,9 @@ class TokenList extends Component {
                 {
                     <div className="row">
                         <div className="col-md-12 table_pos">
-                            {total ?<div className="table_pos_info d-none d-md-block d-flex" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;  <Link to="/exchange/trc20">{t("Trade_on_TRXMarket")}></Link></div> : ''}
+                            {total ?<div className="table_pos_info d-none d-md-block d-flex" style={{left: 'auto'}}>{tableInfo} &nbsp;&nbsp;
+                                {/*<Link to="/exchange/trc20">{t("Trade_on_TRXMarket")}></Link>*/}
+                            </div> : ''}
                             <a className="apply-trc20" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
                                 <button className="btn btn-danger">
                                     {tu('application_entry')}

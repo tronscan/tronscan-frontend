@@ -96,7 +96,6 @@ export default class Account extends Component {
   loadAccount = async () => {
     let {account, loadRecentTransactions, currentWallet} = this.props;
     loadRecentTransactions(account.address);
-
     this.setState({
       issuedAsset: null,
       sr: null,
@@ -109,7 +108,7 @@ export default class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset(account.address).then(({token}) => {
+    Client.getIssuedAsset({owner:account.address}).then(({token}) => {
       this.setState({
         issuedAsset: token,
       });
@@ -1392,9 +1391,10 @@ export default class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                          <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.address}
-                                     namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                          <span style={{color: "#999", fontSize: 12}}>[{issuedAsset.id}]</span>
+
+                            <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                            <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+
                         </td>
                       </tr>
                       <tr>

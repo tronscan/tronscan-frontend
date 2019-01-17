@@ -15,6 +15,7 @@ import {TronLoader} from "../common/loaders";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
+import queryString from 'query-string';
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -28,6 +29,7 @@ class Transactions extends React.Component {
       transactions: [],
       total: 0,
     };
+    this.addressLock = false
   }
 
   // componentWillReceiveProps() {
@@ -40,7 +42,12 @@ class Transactions extends React.Component {
     this.loadTransactions();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    let {location, match} = this.props;
+
+    if(location.search !== prevProps.location.search){
+      this.loadTransactions();
+    }
     // checkPageChanged(this, this.loadTransactions);
   }
 
@@ -105,6 +112,17 @@ class Transactions extends React.Component {
         });
       }
       */
+     const address = queryString.parse(location.search).address;
+
+     if(address){
+      result = await Client.getTransactions({
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        ...searchParams,
+      });
+      this.setState({addressLock: true})
+     }else{
       result = await Client.getTransactions({
         sort: '-timestamp',
         limit: pageSize,
@@ -113,6 +131,9 @@ class Transactions extends React.Component {
         end_timestamp:this.end,
         ...searchParams,
       });
+      this.setState({addressLock: false})
+     }
+      
 
     }
     this.setState({
@@ -211,7 +232,7 @@ class Transactions extends React.Component {
 
   render() {
 
-    let {transactions, total, loading} = this.state;
+    let {transactions, total, loading, addressLock} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
@@ -223,7 +244,7 @@ class Transactions extends React.Component {
             <div className="col-md-12 table_pos">
               {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
               {
-                  total ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
+                  total && !addressLock ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{

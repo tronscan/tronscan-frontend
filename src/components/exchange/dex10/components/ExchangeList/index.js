@@ -19,6 +19,8 @@ import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
 import {Input} from 'antd';
 import rebuildList from "../../../../../utils/rebuildList";
+import {Tooltip} from "reactstrap";
+import {alpha} from "../../../../../utils/str";
 
 const Search = Input.Search;
 
@@ -39,7 +41,9 @@ class ExchangeList extends React.Component {
             activeIndex:'',
             optionalDisable:false,
             searchAddId:false,
-            tagLock: true
+            tagLock: true,
+            open: false,
+            id: alpha(24),
         };
     }
 
@@ -314,7 +318,7 @@ class ExchangeList extends React.Component {
     }
 
     render() {
-        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
+        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId,id,open} = this.state;
         let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
@@ -324,27 +328,37 @@ class ExchangeList extends React.Component {
                 <div className="exchange-list-mark p-3">
                     {/* 标题 */}
                     <div className="market-title">
-                        <div className="d-flex">
-                            <h6>{tu("marks")}</h6>
+                        <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
+                            <h6 className="m-0">{tu("marks")}</h6>
+
+                            <div className="d-flex f-12">
+                                <a href="https://t.me/trxmarket2018" target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
+                                <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20190116041944.pdf" : "https://coin.top/production/js/20190116042101.pdf"}
+                                    target="_blank" className="px-1 border-right  border-light">{tu('beginners_guide')}</a>
+                                <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
+                                    target="_blank" className="pl-1">{tu('token_application_instructions_title')}</a>
+                            </div>
                             
                         </div>
                         
                     </div>
-                    <div className="d-flex justify-content-between f-12 mb-1">
-                        <a href="https://t.me/trxmarket2018" target="_bank">{tu('Submit_a_bug')}</a>
-                        <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20181211141620.pdf" : "https://coin.top/production/js/20181211141803.pdf"}
-                            target="_blank">{tu('beginners_guide')}</a>
-                        <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
-                            target="_blank">{tu('token_application_instructions_title')}</a>
-                    </div>
+                    
                     {/* filter 筛选 */}
                 
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm"}
-                            onClick={() => this.gotoTrc20()}>
+                            className={"btn-sm dex-tab-TRC20"}
+                            id={this.state.id}
+                            onMouseOver={() => this.setState({open: true})}
+                            onMouseOut={() => this.setState({open: false})}
+                           // onClick={() => this.gotoTrc20()}
+                        >
+                            <i></i>
                             TRC20
                         </div>
+                        <Tooltip placement="top" isOpen={open} target={id}>
+                            <span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>
+                        </Tooltip>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>

@@ -38,14 +38,23 @@ class TokenDetail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.id));
+    if(isNaN(Number(match.params.id))){
+        this.props.history.push('/tokens/list')
+    }else{
+        this.loadToken(decodeURI(match.params.id));
+    }
+
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
-      this.loadToken(decodeURI(match.params.id));
+        if(isNaN(Number(match.params.id))){
+            this.props.history.push('/tokens/list')
+        }else{
+            this.loadToken(decodeURI(match.params.id));
+        }
     }
   }
 
@@ -54,14 +63,13 @@ class TokenDetail extends React.Component {
     this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id);
+    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
-
     if(!token){
       this.setState({loading: false,token: null});
+      this.props.history.push('/tokens/list')
       return;
     }
-
     this.setState({
       loading: false,
       token,
@@ -416,7 +424,7 @@ class TokenDetail extends React.Component {
                             <p className="card-text">{token.description}</p>
                           </div>
                           <div className="ml-auto">
-                            {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack) &&
+                            {(!(token.endTime < new Date() || token.issuedPercentage === 100 || token.startTime > new Date() || token.isBlack) && !token.isBlack && token.canShow == 1) &&
                             <button className="btn btn-default btn-xs d-inline-block"
                                     onClick={() => this.preBuyTokens(token)}>{tu("participate")}</button>
                             }

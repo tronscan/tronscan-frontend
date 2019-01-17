@@ -1211,7 +1211,7 @@ export const messages = {
     "O": "オープン",
     "C": "クローズ",
     "24H_VOL": "24時間の取引量",
-    "token_application_instructions_title":"コイン発行について",
+    "token_application_instructions_title":"通貨で",
     "token_application_instructions_1":"DEX（分散型取引所）に上場するには申し込みが必要です。審査を通過するトークンがDEXのトークンリストに展示されます。審査をされないトークンはDEXリストに展示されなく、検索されたら取引できます。",
     "click_here_to_apply":"適用するにはクリックしてください",
     "TxTime":"取引時間",
@@ -1301,7 +1301,7 @@ export const messages = {
     "nav_more":"もっと多い",
     "no_holders_found":"トークン保有者がいない",
     "search_TRC20": "アドレスを検索する",
-    "beginners_guide":"初心者へのご案内",
+    "beginners_guide":"ガイド",
     "Submit_a_bug":"問題を報告する",
     "TRONdice":"diceコインの持ち主はTRX配当がもらえます！",
     "Join_TRONdice":"-diceゲームを始めよう！",
@@ -1522,8 +1522,14 @@ export const messages = {
     "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
     "check_my_token":"私のトークンをチェック",
     "totle_transactions_per_day":"合計トランザクション",
-    "tron_total_transactions_chart":"TRON Total Transactions Chart",
+    "tron_total_transactions_chart":"TRONトータルトランザクションチャート",
     "can_be_unlocked_now": "でロックを解除する",
+
     "sign_in_with_ledger":"LEDGERログイン",
+
+    "TRC20_under_maintenance":"TRC20 メンテナンス中",
+    "transaction_fewer_than_100000":"1．取引データ量が100,000未満の場合、すべてのデータを表示します",
+    "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
+
 }
 

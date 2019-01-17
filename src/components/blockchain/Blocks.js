@@ -132,7 +132,7 @@ class Blocks extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
           //return <AddressLink address={text}/>
-          return this.setProducedName(record)
+          return <AddressLink address={record.witnessAddress}>{this.setProducedName(record)}</AddressLink>
         }
       },
       {

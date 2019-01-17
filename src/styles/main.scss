@@ -61,6 +61,8 @@ button:focus {
 }
 .f-12{
   font-size: 12px;
+  height: 12px;
+  line-height: 12px;
 }
 
 .logo {
@@ -2386,6 +2388,45 @@ h5 {
 .dex-tab {
   display: flex;
   margin-bottom: 6px;
+  .dex-tab-TRC20{
+    width: 7.525rem;
+    height: 2rem;
+    font-size: 14px;
+    border: 1px solid #F3F3F3;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    color: #999999 !important;
+    position: relative;
+    i{
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-image: url('../images/unallowed.png') !important;
+      background-size: 100% 100%;
+      top: 9px;
+      left: 18px;
+    }
+    &.active {
+      background-color: #F3F3F3;
+      color: #999999;
+      span {
+        color: #999999;
+      }
+      i {
+        color: #999999 !important;
+      }
+    }
+    &:hover {
+      color: #999999 !important;
+      span {
+        color: #999999;
+      }
+    }
+    span {
+      color: #999999;
+    }
+  }
   .btn {
     width: 7.525rem;
     height: 2rem;
@@ -2685,4 +2726,11 @@ h5 {
 
 #_searchBox a {
   padding-left:10px !important;
+}
+.contract-info{
+  .tooltip-inner{
+    max-width: 310px;
+    text-align: left;
+  }
+
 }

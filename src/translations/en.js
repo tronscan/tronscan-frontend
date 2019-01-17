@@ -663,7 +663,7 @@ export const messages = {
   "tron_explorer_api": "TRON Explorer API",
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Doc",
-  "report_an_error": "Submit a bug / suggestion",
+  "report_an_error": "Submit bug / suggestion",
   "frequently_asked_questions": "FAQ",
   "telegram": "Telegram",
   /*
@@ -1225,7 +1225,7 @@ export const messages = {
   "O": "O",
   "C": "C",
   "24H_VOL": "24H VOL",
-  "token_application_instructions_title":"Apply Token Listing",
+  "token_application_instructions_title":"Token Listing",
   "token_application_instructions_1":"Tokens that have passed the review will be displayed on the DEX list. Unreviewed tokens can be traded by search function.",
   "click_here_to_apply":"Click here to apply",
   "TxTime":"Transaction Time",
@@ -1316,8 +1316,8 @@ export const messages = {
   "nav_more":"more",
   "no_holders_found":"No Token Holders Found",
   "search_TRC20": "Search Address",
-  "beginners_guide":"Beginner's guide",
-"Submit_a_bug":"Submit a bug",
+  "beginners_guide":"Guide",
+"Submit_a_bug":"Submit bug",
   "TRONdice":"Hold dice coin and get TRX dividend!",
   "Join_TRONdice":"-Join TRONdice!",
   "search_TRC20_error":" Please enter the correct address",
@@ -1542,6 +1542,9 @@ export const messages = {
   "sign_in_with_ledger":"LEDGER",
 
   "can_be_unlocked_now": "can be unlocked",
+  "TRC20_under_maintenance":"TRC20 under maintenance",
+  "transaction_fewer_than_100000":"1. When there are fewer than 100,000 (including 100,000) transaction data entries, all the data will be displayed.",
+  "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
 
 
 };

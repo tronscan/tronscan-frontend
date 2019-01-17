@@ -101,6 +101,7 @@ class Address extends React.Component {
   }
 
   async loadMedia(address) {
+    return
     try {
       let media = await Client.getAddressMedia(address);
       if (media.success) {
