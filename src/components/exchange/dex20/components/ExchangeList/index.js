@@ -151,8 +151,10 @@ class ExchangeList extends React.Component {
                     {/* filter 筛选 */}
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm" + (tokenAudited? ' active' : '')}
-                            onClick={() => this.handleSelectData(true)}>
+                            className={"btn btn-sm disabled"}
+                            //className={"btn btn-sm" + (tokenAudited? ' active' : '')}
+                            //onClick={() => this.handleSelectData(true)}
+                        >
                             TRC20
                         </div>
                         <div
