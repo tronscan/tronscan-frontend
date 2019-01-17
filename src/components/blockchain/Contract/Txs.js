@@ -58,8 +58,8 @@ class Transactions extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
-      start_timestamp: this.start,
-      end_timestamp: this.end,
+      // start_timestamp: this.start,
+      // end_timestamp: this.end,
       ...filter,
     });
 
@@ -219,13 +219,13 @@ class Transactions extends React.Component {
         <Fragment>
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
-            <div className="col-md-12 table_pos mt-5">
+            <div className="col-md-12 table_pos">
               {total ?
                   <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top"
                                                                                                          text="to_provide_a_better_experience"></QuestionMark></span>
                   </div> : ''}
               {
-                  total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
+                  false && total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
