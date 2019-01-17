@@ -1524,5 +1524,6 @@ export const messages = {
     "totle_transactions_per_day":"合計トランザクション",
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
     "can_be_unlocked_now": "でロックを解除する",
+    "TRC20_under_maintenance":"TRC20 under maintenance",
 }
 

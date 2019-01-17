@@ -19,6 +19,8 @@ import Lockr from "lockr";
 import {QuestionMark} from "../../../../common/QuestionMark";
 import {Input} from 'antd';
 import rebuildList from "../../../../../utils/rebuildList";
+import {Tooltip} from "reactstrap";
+import {alpha} from "../../../../../utils/str";
 
 const Search = Input.Search;
 
@@ -39,7 +41,9 @@ class ExchangeList extends React.Component {
             activeIndex:'',
             optionalDisable:false,
             searchAddId:false,
-            tagLock: true
+            tagLock: true,
+            open: false,
+            id: alpha(24),
         };
     }
 
@@ -314,7 +318,7 @@ class ExchangeList extends React.Component {
     }
 
     render() {
-        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId} = this.state;
+        const {dataSource=[], tokenAudited,search,showSearch,searchExchangesList,activeIndex,searchAddId,id,open} = this.state;
         let {intl} = this.props;
         let tab = Lockr.get("DEX") ? Lockr.get("DEX") : 'Main'
         return (
@@ -341,11 +345,18 @@ class ExchangeList extends React.Component {
                 
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm disabled"}
+                            className={"btn-sm dex-tab-TRC20"}
+                            id={this.state.id}
+                            onMouseOver={() => this.setState({open: true})}
+                            onMouseOut={() => this.setState({open: false})}
                            // onClick={() => this.gotoTrc20()}
                         >
+                            <i></i>
                             TRC20
                         </div>
+                        <Tooltip placement="top" isOpen={open} target={id}>
+                            <span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>
+                        </Tooltip>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>

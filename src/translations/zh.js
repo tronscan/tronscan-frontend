@@ -1527,5 +1527,7 @@ export const messages = {
     "totle_transactions_per_day":"总交易数",
     "tron_total_transactions_chart":"TRON总交易数图表",
     "can_be_unlocked_now": "通证可以解锁",
+    "TRC20_under_maintenance":"TRC20正在维护中",
+
 
 };
