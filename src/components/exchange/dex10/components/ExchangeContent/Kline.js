@@ -23,17 +23,10 @@ class Kline extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   try{
-  //     const { selectData, selectStatus, activeLanguage } = this.props
-  //     const { tvWidget } = this.state
-  //     tvWidget && tvWidget.remove()
-  //     this.createWidget(selectData.exchange_id)
-  //     this.getTokenInfo()
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
+  componentDidMount() {
+    this.props.selectData.exchange_id && 
+    this.createWidget(this.props.selectData.exchange_id)
+  }
 
   componentDidUpdate(prevProps) {
     const { selectData, selectStatus, activeLanguage, widget,setWidget } = this.props
