@@ -555,6 +555,7 @@ class Navigation extends React.Component {
   renderWallet() {
     let {account, totalTransactions = 0, flags, wallet, activeLanguage} = this.props;
     let {isImportAccount, isTRONlinkLogin, loginWarning, signInWarning, address} = this.state;
+
     if (wallet.isLoading) {
       return (
           <li className="nav-item">
