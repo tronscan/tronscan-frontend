@@ -163,6 +163,7 @@ export function appReducer(state = initialState, action) {
 
     case LOGIN_PK: {
 
+      Lockr.set("islogin", 0);
       const ServerNode =  "https://api.trongrid.io";
       const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
       const fullNode = new HttpProvider(ServerNode); // Full node http endpoint
@@ -254,6 +255,7 @@ export function appReducer(state = initialState, action) {
     case LOGOUT: {
       Lockr.rm("account_key");
       Lockr.rm("account_address");
+      Lockr.set("islogin", 0);
       return {
         ...state,
         account: {
