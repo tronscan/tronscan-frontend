@@ -343,8 +343,9 @@ class ExchangeList extends React.Component {
                 
                     <div className="dex-tab">
                         <div
-                            className={"btn btn-sm"}
-                            onClick={() => this.gotoTrc20()}>
+                            className={"btn btn-sm disabled"}
+                           // onClick={() => this.gotoTrc20()}
+                        >
                             TRC20
                         </div>
                         <div
