@@ -24,8 +24,10 @@ class Kline extends React.Component {
   }
 
   componentDidMount() {
-    this.props.selectData.exchange_id && 
-    this.createWidget(this.props.selectData.exchange_id)
+    if(this.props.selectData.exchange_id){
+      this.createWidget(this.props.selectData.exchange_id)
+      this.getTokenInfo()
+    }
   }
 
   componentDidUpdate(prevProps) {
