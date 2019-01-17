@@ -98,7 +98,7 @@ class SendForm extends React.Component {
         });
       }
       if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-        result = await this.props.account.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
+        result = await this.props.account.tronWeb.trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
           console.log(e)
         });
       }
@@ -109,14 +109,23 @@ class SendForm extends React.Component {
       }
 
     } else {
-      amount = amount * Math.pow(10, decimals);
-      result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false);
-      success = result.result;
-      if (result) {
+        amount = amount * Math.pow(10, decimals);
+        if(this.props.wallet.type==="ACCOUNT_LEDGER") {
+            result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+        }
+        if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
+            result = await this.props.account.tronWeb.trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
+                console.log(e)
+            });
+        }
         success = result.result;
-      } else {
-        success = false;
-      }
+        if (result) {
+            success = result.result;
+         } else {
+           success = false;
+        }
     }
 
     //let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
@@ -190,9 +199,15 @@ class SendForm extends React.Component {
     let {to, token, amount, decimals, tokens20} = this.state;
     let TokenName = token.substring(0, token.length - 6);
     let {onSend} = this.props;
+    let tronWeb;
+    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
+       tronWeb = this.props.tronWeb();
+    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
+       tronWeb = this.props.account.tronWeb;
+    }
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-    let contractInstance = await this.props.tronWeb().contract().at(contractAddress);
+    let contractInstance = await tronWeb.contract().at(contractAddress);
     const transactionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
     if (transactionId) {
       this.refreshTokenBalances();

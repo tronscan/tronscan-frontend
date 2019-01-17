@@ -9,9 +9,11 @@ import {injectIntl} from "react-intl";
 import {ONE_TRX} from "../../../../../constants";
 import {find} from "lodash";
 import Lockr from "lockr";
-
+import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes"
+import {stringToBytes} from "@tronscan/client/src/lib/code";
 import NumericInput from "./NumericInput";
 import {withTronWeb} from "../../../../../utils/tronWeb";
+
 
 const FormItem = Form.Item;
 const marks = {
@@ -173,15 +175,18 @@ class Transaction extends Component {
     expected,
     values
   ) => {
-    let { account, currentWallet, exchangeData, intl } = this.props;
+    let { account, currentWallet, exchangeData, intl , walletType} = this.props;
     let res,transactionHash;
 
     if (Lockr.get("islogin") || this.props.walletType.type==="ACCOUNT_LEDGER" || this.props.walletType.type==="ACCOUNT_TRONLINK") {
       const tronWebLedger = this.props.tronWeb();
       const { tronWeb } = this.props.account;
+        console.log('tronWebLedger',tronWebLedger)
+        console.log('tronWebLedger-walletType.address2222-----',byteArray2hexStr(stringToBytes(JSON.stringify(walletType.address))))
+
         try {
           if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-            const unSignTransaction = await tronWebLedger.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, tronWebLedger.defaultAddress.hex);
+            const unSignTransaction = await tronWebLedger.transactionBuilder.tradeExchangeTokens(exchangeId, tokenId, quant, expected, walletType.address);
             const signedTransaction = await tronWebLedger.trx.sign(unSignTransaction);
             const result = await tronWebLedger.trx.sendRawTransaction(signedTransaction);
             transactionHash = signedTransaction.txID;

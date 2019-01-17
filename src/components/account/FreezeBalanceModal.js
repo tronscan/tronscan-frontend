@@ -70,7 +70,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     let {trxBalance} = this.props;
 
-    console.log("props", this.props);
 
     let amount = parseInt(value);
     if (!isNaN(amount)) {
@@ -99,6 +98,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
       if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
         const tronWebLedger = this.props.tronWeb();
+        console.log('tronWebLedger',tronWebLedger)
         const { tronWeb } = this.props.account;
         if (!selectedResource) {
           type = 'BANDWIDTH';
@@ -106,7 +106,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
           type = 'ENERGY';
         }
 
-        console.log("FREEZING", amount * ONE_TRX);
 
         if(this.props.wallet.type==="ACCOUNT_LEDGER") {
           const unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
