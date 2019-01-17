@@ -133,13 +133,11 @@ export default class Account extends Component {
     let result = await xhr.get("https://apilist.tronscan.org" + "/api/token_trc20?sort=issue_time&start=0&limit=50");
     let tokens20 = result.data.trc20_tokens;
     const tronWebLedger = this.props.tronWeb();
-    console.log('account.address', account.address)
     const {tronWeb} = this.props.account;
     if (this.props.walletType.type === "ACCOUNT_LEDGER") {
       tokens20 && tokens20.map(async item => {
         item.token20_name = item.name + '(' + item.symbol + ')';
-        console.log(item.contract_address);
-        console.log(this.props.walletType.address);
+
         let contractInstance = await tronWebLedger.contract().at(item.contract_address);
         let balanceData = await contractInstance.balanceOf(this.props.walletType.address).call();
         if (balanceData.balance) {
@@ -674,12 +672,10 @@ export default class Account extends Component {
     }
     if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
       const tronWebLedger = this.props.tronWeb();
-      console.log('tronWebLedger', tronWebLedger)
-      console.log('tronWebLedger', tronWebLedger.defaultAddress.base58)
+
 
       const {tronWeb} = this.props.account;
-      console.log('tronWeb', tronWeb)
-      console.log('tronWeb', tronWeb.defaultAddress.base58)
+
       if (!selectedResource) {
         type = 'BANDWIDTH';
       } else {

@@ -109,7 +109,7 @@ class TokenDetail extends React.Component {
         const { tronWeb } = this.props.account;
           try {
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWebLedger.defaultAddress.hex).catch(e => false);
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * token.price,  this.props.walletType.address).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
               res = result;
             }

@@ -642,14 +642,6 @@ export const routes = [
     component: DemoAsync
   },
   {
-    path: "/hw",
-    label: "hardware",
-    showInMenu: true,
-    showSubMenu: false,
-    showSubHeader: false,
-    component: LedgerComponent,
-  },
-  {
     path: "/",
     label: "home",
     showInMenu: false,
