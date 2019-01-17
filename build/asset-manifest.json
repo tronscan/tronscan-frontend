@@ -3,6 +3,7 @@
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "About.js": "static/js/About.0cd9834b.chunk.js",
   "Account.js": "static/js/Account.58869db9.chunk.js",
 =======
@@ -97,14 +98,53 @@
   "WalletWizard.js": "static/js/WalletWizard.44590612.chunk.js",
 =======
 >>>>>>> origin/dev2019
+=======
+  "About.js": "static/js/About.f4851329.chunk.js",
+  "Account.js": "static/js/Account.7eae0b77.chunk.js",
+  "Accounts.js": "static/js/Accounts.69e1fdec.chunk.js",
+  "AddSignatureModal.js": "static/js/AddSignatureModal.3f0fd4d9.chunk.js",
+  "CopyrightAsync.js": "static/js/CopyrightAsync.8e72a439.chunk.js",
+  "DemoAsync.js": "static/js/DemoAsync.7eeb91b8.chunk.js",
+  "FaqAsync.js": "static/js/FaqAsync.433a9178.chunk.js",
+  "Foundation.js": "static/js/Foundation.285ac34c.chunk.js",
+  "LedgerHelp.js": "static/js/LedgerHelp.1211878f.chunk.js",
+  "Live.js": "static/js/Live.bfd6a9a6.chunk.js",
+  "Markets.js": "static/js/Markets.942ecbf1.chunk.js",
+  "MyToken.js": "static/js/MyToken.e6ea7c79.chunk.js",
+  "NodeMap.js": "static/js/NodeMap.9f0cfaf7.chunk.js",
+  "NodeTester.js": "static/js/NodeTester.cd3c610d.chunk.js",
+  "Nodes.js": "static/js/Nodes.7c0f784c.chunk.js",
+  "ProposalDetail.js": "static/js/ProposalDetail.51ef0ea8.chunk.js",
+  "Recaptcha.js": "static/js/Recaptcha.f9f7880a.chunk.js",
+  "Representatives.js": "static/js/Representatives.8ff1a70a.chunk.js",
+  "SingleStats.js": "static/js/SingleStats.3e071bcf.chunk.js",
+  "Stats.js": "static/js/Stats.444092f8.chunk.js",
+  "System.js": "static/js/System.f99655e7.chunk.js",
+  "TRONRating.js": "static/js/TRONRating.d98ade94.chunk.js",
+  "Token20Detail.js": "static/js/Token20Detail.ff91118a.chunk.js",
+  "TokenDetail.js": "static/js/TokenDetail.86fb6482.chunk.js",
+  "TokenList.js": "static/js/TokenList.16483942.chunk.js",
+  "TokenOverview.js": "static/js/TokenOverview.0af26a04.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.0df400b8.chunk.js",
+  "TransactionViewer.js": "static/js/TransactionViewer.3a3fa400.chunk.js",
+  "TronConvertTool.js": "static/js/TronConvertTool.3e717e9b.chunk.js",
+  "VerifyContractCode.js": "static/js/VerifyContractCode.ab012276.chunk.js",
+  "VoteLive.js": "static/js/VoteLive.b2b814ec.chunk.js",
+  "VoteOverview.js": "static/js/VoteOverview.95ffb705.chunk.js",
+  "WalletWizard.js": "static/js/WalletWizard.e2d5bbce.chunk.js",
+>>>>>>> origin/dev2019
   "bootstrap.css": "d26ecc887c12f855a908679dae6704e3.css",
-  "languages.js": "static/js/languages.4081682a.chunk.js",
+  "languages.js": "static/js/languages.55df3ad4.chunk.js",
   "main.css": "static/css/main.85328733.css",
+<<<<<<< HEAD
 <<<<<<< HEAD
   "main.js": "static/js/main.cd94487f.js",
 >>>>>>> origin/dev2019
 =======
   "main.js": "static/js/main.4f37ba42.js",
+>>>>>>> origin/dev2019
+=======
+  "main.js": "static/js/main.ca12dacc.js",
 >>>>>>> origin/dev2019
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
@@ -141,11 +181,15 @@
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.17111b18.js"
 =======
   "vendors.js": "static/js/vendors.03eac340.js"
 >>>>>>> origin/dev2019
 =======
   "vendors.js": "static/js/vendors.8e171d30.js"
+>>>>>>> origin/dev2019
+=======
+  "vendors.js": "static/js/vendors.e8aa0bcc.js"
 >>>>>>> origin/dev2019
 }
