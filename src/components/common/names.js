@@ -22,11 +22,19 @@ export const NameWithId = ({value,type, notamount=false, totoken=false}) => {
         totoken?
         <Link to={`/token/${value.map_token_id}`}>
           {
-              type == 'abbr'?<span className="mr-1">{value.map_token_name_abbr}</span>:<span className="mr-1">{value.map_token_name}</span>
+              type == 'abbr'?<span className="mr-1">
+                  {
+                    value.map_token_name_abbr?value.map_token_name_abbr:value.map_token_name
+                  }
+              </span>:<span className="mr-1">{value.map_token_name}</span>
           }
         </Link>:
         
-        type === 'abbr'?<span className="mr-1">{value.map_token_name_abbr}</span>:<span className="mr-1">{value.map_token_name}</span>
+        type === 'abbr'?<span className="mr-1">
+            {
+                value.map_token_name_abbr ?value.map_token_name_abbr:value.map_token_name
+            }
+        </span>:<span className="mr-1">{value.map_token_name}</span>
         
       }
       {value.map_token_id != 0 && <span style={{color: '#808080', fontSize: '12px'}}>[ID:{value.map_token_id}]</span>}
