@@ -1521,5 +1521,8 @@ export const messages = {
     "tron_total_transactions_chart":"TRON Total Transactions Chart",
     "can_be_unlocked_now": "can be unlocked",
     "TRC20_under_maintenance":"TRC20 under maintenance",
+    "transaction_fewer_than_100000":"1. When there are fewer than 100,000 (including 100,000) transaction data entries, all the data will be displayed.",
+    "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
+
 
 };

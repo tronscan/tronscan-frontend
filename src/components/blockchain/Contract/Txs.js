@@ -221,8 +221,10 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos">
               {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top"
-                                                                                                         text="to_provide_a_better_experience"></QuestionMark></span>
+                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
+                  <span className="ml-1 mt-1">
+                    <QuestionMark placement="top" text="transaction_fewer_than_100000" testSecond="transaction_more_than_100000"></QuestionMark>
+                  </span>
                   </div> : ''}
               {
                   false && total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>

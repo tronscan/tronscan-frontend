@@ -16,7 +16,7 @@ export class QuestionMark extends React.Component {
 
     render() {
         let {open, id } = this.state;
-        let {text, placement} = this.props;
+        let {text, placement,testSecond =''} = this.props;
 
         return (
             <div className="d-inline-block">
@@ -27,6 +27,10 @@ export class QuestionMark extends React.Component {
                 </div>
                 <Tooltip placement={placement} isOpen={open} target={id}>
                     {t(text)}
+                    {
+                        testSecond? <span><br/> {t(testSecond)}</span> :""
+                    }
+
                 </Tooltip>
             </div>
 

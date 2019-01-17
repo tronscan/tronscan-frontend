@@ -38,14 +38,23 @@ class TokenDetail extends React.Component {
 
   componentDidMount() {
     let {match} = this.props;
-    this.loadToken(decodeURI(match.params.id));
+    if(isNaN(Number(match.params.id))){
+        this.props.history.push('/tokens/list')
+    }else{
+        this.loadToken(decodeURI(match.params.id));
+    }
+
   }
 
   componentDidUpdate(prevProps) {
     let {match} = this.props;
 
     if (match.params.id !== prevProps.match.params.id) {
-      this.loadToken(decodeURI(match.params.id));
+        if(isNaN(Number(match.params.id))){
+            this.props.history.push('/tokens/list')
+        }else{
+            this.loadToken(decodeURI(match.params.id));
+        }
     }
   }
 
@@ -56,12 +65,11 @@ class TokenDetail extends React.Component {
     //let token = await Client.getToken(name);
     let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
-
     if(!token){
       this.setState({loading: false,token: null});
+      this.props.history.push('/tokens/list')
       return;
     }
-
     this.setState({
       loading: false,
       token,

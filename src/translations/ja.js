@@ -1522,8 +1522,10 @@ export const messages = {
     "token_precision_message_0":"必要に応じてトークンの精度を設定します。範囲は0〜6です",
     "check_my_token":"私のトークンをチェック",
     "totle_transactions_per_day":"合計トランザクション",
-    "tron_total_transactions_chart":"TRON Total Transactions Chart",
+    "tron_total_transactions_chart":"TRONトータルトランザクションチャート",
     "can_be_unlocked_now": "でロックを解除する",
-    "TRC20_under_maintenance":"TRC20 under maintenance",
+    "TRC20_under_maintenance":"TRC20 メンテナンス中",
+    "transaction_fewer_than_100000":"1．取引データ量が100,000未満の場合、すべてのデータを表示します",
+    "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
 }
 
