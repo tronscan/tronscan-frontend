@@ -223,7 +223,7 @@ class Transactions extends React.Component {
               {total ?
                   <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
                   <span className="ml-1 mt-1">
-                    <QuestionMark placement="top" text="transaction_fewer_than_100000" testSecond="transaction_more_than_100000"></QuestionMark>
+                    <QuestionMark placement="top" text="transaction_fewer_than_100000" testSecond="transaction_more_than_100000" className="contract-info"></QuestionMark>
                   </span>
                   </div> : ''}
               {
