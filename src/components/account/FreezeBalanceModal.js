@@ -79,7 +79,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
       amount = "";
     }
 
-    console.log("Amount changed", value, amount, parseInt(value), Math.floor(amount), Math.abs(amount));
 
 
     this.setState({
@@ -98,7 +97,6 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
       if (Lockr.get("islogin") || this.props.wallet.type==="ACCOUNT_LEDGER" || this.props.wallet.type==="ACCOUNT_TRONLINK") {
         const tronWebLedger = this.props.tronWeb();
-        console.log('tronWebLedger',tronWebLedger)
         const { tronWeb } = this.props.account;
         if (!selectedResource) {
           type = 'BANDWIDTH';

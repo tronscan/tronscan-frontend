@@ -52,9 +52,9 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
     else
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data['total'];
     let tokens = result.data['data'];
@@ -128,7 +128,7 @@ class TokenOverview extends Component {
     if (value > max) {
       value = max;
     }
-    value =  value.replace(/^0|[^\d*]/g,'')
+    value = value.replace(/^0|[^\d*]/g, '')
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price / ONE_TRX);
@@ -136,7 +136,7 @@ class TokenOverview extends Component {
   }
 
   preBuyTokens = (token) => {
-    let {buyAmount,amount} = this.state;
+    let {buyAmount, amount} = this.state;
     let {currentWallet, wallet} = this.props;
     if (!wallet.isOpen) {
       this.setState({
@@ -181,7 +181,9 @@ class TokenOverview extends Component {
                       className="form-control"
                       max={token.remaining}
                       min={1}
-                      onKeyUp={(e)=>{ e.target.value = e.target.value.replace(/^0|[^\d*]/g,'') }}
+                      onKeyUp={(e) => {
+                        e.target.value = e.target.value.replace(/^0|[^\d*]/g, '')
+                      }}
                       onChange={(e) => {
                         this.onBuyInputChange(e.target.value, token.price, token.remaining)
                       }}
@@ -260,30 +262,30 @@ class TokenOverview extends Component {
     let {account, currentWallet} = this.props;
     let {buyAmount} = this.state;
     let res;
-    if (Lockr.get("islogin") || this.props.walletType.type==="ACCOUNT_LEDGER" || this.props.walletType.type==="ACCOUNT_TRONLINK") {
-        const tronWebLedger = this.props.tronWeb();
-      const { tronWeb } = this.props.account;
-        try {
-          if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-            const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWebLedger.defaultAddress.hex).catch(e => false);
-            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-            res = result;
-          }
-          if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-            const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
-            const {result} = await transactionResultManager(unSignTransaction, tronWeb);
-            res = result;
-          }
-        } catch (e) {
-            console.log(e)
+    if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWebLedger = this.props.tronWeb();
+      const {tronWeb} = this.props.account;
+      try {
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+          const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * token.price, this.props.walletType.address);
+          const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+          res = result;
         }
-    }else {
-        let isSuccess = await Client.participateAsset(
-            currentWallet.address,
-            token.ownerAddress,
-            token.id,
-            buyAmount * token.price)(account.key);
-        res = isSuccess.success
+        if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id, buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
+          const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+          res = result;
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    } else {
+      let isSuccess = await Client.participateAsset(
+          currentWallet.address,
+          token.ownerAddress,
+          token.id,
+          buyAmount * token.price)(account.key);
+      res = isSuccess.success
     }
 
 
@@ -438,10 +440,10 @@ class TokenOverview extends Component {
         title: intl.formatMessage({id: 'participate'}),
         align: 'center',
         render: (text, record, index) => {
-          if(record.isBlack){
-            return<button className="btn btn-secondary btn-block btn-sm" disabled>{tu("participate")}</button>
+          if (record.isBlack) {
+            return <button className="btn btn-secondary btn-block btn-sm" disabled>{tu("participate")}</button>
           }
-          if (record.endTime < new Date() || record.issuedPercentage === 100 )
+          if (record.endTime < new Date() || record.issuedPercentage === 100)
             return <span style={{fontWeight: 'normal'}}>{tu("finish")}</span>
           else if (record.startTime > new Date())
             return <span style={{fontWeight: 'normal'}}>{tu("not_started")}</span>
@@ -472,7 +474,8 @@ class TokenOverview extends Component {
             <div className="row">
 
               <div className="col-md-12 table_pos">
-                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?
+                    <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
                 <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
                             rowClassName="table-row" onPageChange={(page, pageSize) => {
                   this.loadPage(page, pageSize)

@@ -140,9 +140,22 @@ export default function Contract({ contract }) {
           </div>
           <table className="table">
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
-            <Field label="Name">{TronWeb.toUtf8(contractParams.name)}</Field>
+            <Field label="Name">{TronWeb.toUtf8(contractParams.account_name)}</Field>
           </table>
         </Fragment>
+      );
+
+    case "EXCHANGETRANSACTIONCONTRACT":
+      return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">Exchange Transaction</h5>
+            </div>
+            <table className="table">
+              {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
+              <Field label="id">{contractParams.token_id}</Field>
+            </table>
+          </Fragment>
       );
 
     case "FREEZEBALANCECONTRACT":

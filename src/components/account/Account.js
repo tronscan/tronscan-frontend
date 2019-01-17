@@ -21,7 +21,7 @@ import OperateTxnPairModal from "./OperateTxnPairModal";
 import {addDays, getTime} from "date-fns";
 import TestNetRequest from "./TestNetRequest";
 import Transactions from "../common/Transactions";
-import {pkToAddress} from "@tronscan/client/src/utils/crypto";
+import {decode58Check, pkToAddress} from "@tronscan/client/src/utils/crypto";
 import {QuestionMark} from "../common/QuestionMark";
 import Lockr from "lockr";
 import {withTronWeb} from "../../utils/tronWeb";
@@ -29,27 +29,28 @@ import {login} from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
 import {connect} from "react-redux";
+import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 
 @connect(
-  state => ({
-    account: state.app.account,
-    walletType: state.app.wallet,
-    tokenBalances: state.account.tokens,
-    totalTransactions: state.account.totalTransactions,
-    frozen: state.account.frozen,
-    accountResource: state.account.accountResource,
-    wallet: state.wallet,
-    currentWallet: state.wallet.current,
-    trxBalance: state.account.balance,
-  }),
-  {
-    login,
-    loadRecentTransactions,
-    reloadWallet,
-  }
+    state => ({
+      account: state.app.account,
+      walletType: state.app.wallet,
+      tokenBalances: state.account.tokens,
+      totalTransactions: state.account.totalTransactions,
+      frozen: state.account.frozen,
+      accountResource: state.account.accountResource,
+      wallet: state.wallet,
+      currentWallet: state.wallet.current,
+      trxBalance: state.account.balance,
+    }),
+    {
+      login,
+      loadRecentTransactions,
+      reloadWallet,
+    }
 )
-@withTronWeb
 @injectIntl
+@withTronWeb
 export default class Account extends Component {
   constructor() {
     super();
@@ -62,30 +63,30 @@ export default class Account extends Component {
       showBandwidth: false,
       privateKey: "",
       temporaryName: "",
-      selectedResource:null,
-      hideSmallCurrency:true,
-      tokenTRC10:true,
-      tokens20:[],
-      dealPairTrxLimit:100000,
-      isTronLink:0
+      selectedResource: null,
+      hideSmallCurrency: true,
+      tokenTRC10: true,
+      tokens20: [],
+      dealPairTrxLimit: 100000,
+      isTronLink: 0
     };
 
   }
 
   componentDidMount() {
-      let {account} = this.props;
-      if (account.isLoggedIn) {
-          this.setState({isTronLink:Lockr.get("islogin")});
-          this.reloadTokens();
-          this.loadAccount();
-          this.getTRC20Tokens();
-      }
+    let {account} = this.props;
+    if (account.isLoggedIn) {
+      this.setState({isTronLink: Lockr.get("islogin")});
+      this.reloadTokens();
+      this.loadAccount();
+      this.getTRC20Tokens();
+    }
   }
 
   componentDidUpdate(prevProps) {
     let {account} = this.props;
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
-      this.setState({isTronLink:Lockr.get("islogin")});
+      this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
       this.getTRC20Tokens();
@@ -128,49 +129,50 @@ export default class Account extends Component {
   };
 
 
-  async getTRC20Tokens(){
-      let {account} = this.props;
-      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-      let tokens20 = result.data.trc20_tokens;
-      const tronWebLedger = this.props.tronWeb();
-      console.log('account.address',account.address)
-      const { tronWeb } = this.props.account;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-          tokens20 &&  tokens20.map(async item =>{
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await tronWebLedger.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
-                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }else{
-                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-              return item
-          });
-          this.setState({
-              tokens20: tokens20
-          });
-      }
-      if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
-          tokens20 &&  tokens20.map(async item =>{
-              item.token20_name = item.name + '(' + item.symbol + ')';
-              let  contractInstance = await tronWeb.contract().at(item.contract_address);
-              let  balanceData = await contractInstance.balanceOf(account.address).call();
-              if(balanceData.balance){
-                  item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
-              }else{
-                  item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
-              }
-              return item
-          });
-          this.setState({
-              tokens20: tokens20
-          });
-      }
+  async getTRC20Tokens() {
+    let {account} = this.props;
+    let result = await xhr.get("https://apilist.tronscan.org" + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let tokens20 = result.data.trc20_tokens;
+    const tronWebLedger = this.props.tronWeb();
+    console.log('account.address', account.address)
+    const {tronWeb} = this.props.account;
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      tokens20 && tokens20.map(async item => {
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        console.log(item.contract_address);
+        console.log(this.props.walletType.address);
+        let contractInstance = await tronWebLedger.contract().at(item.contract_address);
+        let balanceData = await contractInstance.balanceOf(this.props.walletType.address).call();
+        if (balanceData.balance) {
+          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+        } else {
+          item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+        }
+        return item
+      });
+      this.setState({
+        tokens20: tokens20
+      });
+    }
+    if (this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY") {
+      tokens20 && tokens20.map(async item => {
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        let contractInstance = await tronWeb.contract().at(item.contract_address);
+        let balanceData = await contractInstance.balanceOf(account.address).call();
+        if (balanceData.balance) {
+          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+        } else {
+          item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+        }
+        return item
+      });
+      this.setState({
+        tokens20: tokens20
+      });
+    }
 
 
-
-      //if(account.tronWeb.eventServer){
+    //if(account.tronWeb.eventServer){
 
   }
 
@@ -178,110 +180,111 @@ export default class Account extends Component {
     let {hideSmallCurrency, tokens20} = this.state;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
-        .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
-        .filter(tb => tb.token20_balance >= 10)
-        .sortBy(tb => tb.token20_name)
-        .value();
+          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+          .filter(tb => tb.token20_balance >= 10)
+          .sortBy(tb => tb.token20_name)
+          .value();
     } else {
       tokens20 = _(tokens20)
-        .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
-        .filter(tb => tb.token20_balance > 0)
-        .sortBy(tb => tb.token20_name)
-        .value();
+          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
+          .filter(tb => tb.token20_balance > 0)
+          .sortBy(tb => tb.token20_name)
+          .value();
     }
 
     if (tokens20.length === 0) {
       return (
-        <div className="text-center d-flex justify-content-center p-4">
-          {tu("no_tokens")}
-        </div>
+          <div className="text-center d-flex justify-content-center p-4">
+            {tu("no_tokens")}
+          </div>
       );
     }
     return (
-      <table className="table mt-3 temp-table">
-        <thead className="thead-light">
-        <tr>
-          <th>{tu("name")}</th>
-          <th className="text-right">{tu("balance")}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {
-          tokens20.map((token) => (
-            <tr key={token.token20_name}>
-              <td>
-                <TokenTRC20Link name={token.name} address={token.contract_address}
-                                namePlus={token.name + ' (' + token.symbol + ')'}/>
-              </td>
-              <td className="text-right">
-                <FormattedNumber value={token.token20_balance} maximumFractionDigits={token.decimals}/>
-              </td>
-            </tr>
-          ))
-        }
-        </tbody>
-      </table>
+        <table className="table mt-3 temp-table">
+          <thead className="thead-light">
+          <tr>
+            <th>{tu("name")}</th>
+            <th className="text-right">{tu("balance")}</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            tokens20.map((token) => (
+                <tr key={token.token20_name}>
+                  <td>
+                    <TokenTRC20Link name={token.name} address={token.contract_address}
+                                    namePlus={token.name + ' (' + token.symbol + ')'}/>
+                  </td>
+                  <td className="text-right">
+                    <FormattedNumber value={token.token20_balance} maximumFractionDigits={token.decimals}/>
+                  </td>
+                </tr>
+            ))
+          }
+          </tbody>
+        </table>
     )
   }
 
   renderTokens() {
-        let {hideSmallCurrency} = this.state;
-        let {tokenBalances = []} = this.props;
-        if(hideSmallCurrency){
-            tokenBalances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance >= 10)
-                .sortBy(tb => tb.name)
-                .value();
-        }else{
-            tokenBalances = _(tokenBalances)
-                .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance > 0)
-                .sortBy(tb => tb.name)
-                .value();
-        }
-
-        if (tokenBalances.length === 0) {
-            return (
-                <div className="text-center d-flex justify-content-center p-4">
-                    {tu("no_tokens")}
-                </div>
-            );
-        }
-
-        return (
-            <table className="table mt-3 temp-table">
-              <thead className="thead-light">
-              <tr>
-                <th>{tu("name")}</th>
-                <th>ID</th>
-                <th>{tu("TRC20_decimals")}</th>
-                <th className="text-right">{tu("balance")}</th>
-              </tr>
-              </thead>
-              <tbody>
-              {
-                  tokenBalances.map((token) => (
-                      <tr key={token.name}>
-                        <td>
-                          <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
-                        </td>
-                        <td>
-                          <div className="tokenBalances_id">{token.map_token_id}</div>
-                        </td>
-                        <td>
-                          <div>{token.map_token_precision}</div>
-                        </td>
-                        <td className="text-right">
-                          <FormattedNumber value={token.map_amount} maximumFractionDigits={Number(token.map_token_precision)}/>
-                        </td>
-                      </tr>
-                  ))
-              }
-              </tbody>
-            </table>
-        )
+    let {hideSmallCurrency} = this.state;
+    let {tokenBalances = []} = this.props;
+    if (hideSmallCurrency) {
+      tokenBalances = _(tokenBalances)
+          .filter(tb => tb.name.toUpperCase() !== "_")
+          .filter(tb => tb.balance >= 10)
+          .sortBy(tb => tb.name)
+          .value();
+    } else {
+      tokenBalances = _(tokenBalances)
+          .filter(tb => tb.name.toUpperCase() !== "_")
+          .filter(tb => tb.balance > 0)
+          .sortBy(tb => tb.name)
+          .value();
     }
+
+    if (tokenBalances.length === 0) {
+      return (
+          <div className="text-center d-flex justify-content-center p-4">
+            {tu("no_tokens")}
+          </div>
+      );
+    }
+
+    return (
+        <table className="table mt-3 temp-table">
+          <thead className="thead-light">
+          <tr>
+            <th>{tu("name")}</th>
+            <th>ID</th>
+            <th>{tu("TRC20_decimals")}</th>
+            <th className="text-right">{tu("balance")}</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            tokenBalances.map((token) => (
+                <tr key={token.name}>
+                  <td>
+                    <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+                  </td>
+                  <td>
+                    <div className="tokenBalances_id">{token.map_token_id}</div>
+                  </td>
+                  <td>
+                    <div>{token.map_token_precision}</div>
+                  </td>
+                  <td className="text-right">
+                    <FormattedNumber value={token.map_amount}
+                                     maximumFractionDigits={Number(token.map_token_precision)}/>
+                  </td>
+                </tr>
+            ))
+          }
+          </tbody>
+        </table>
+    )
+  }
 
   renderBandwidth() {
 
@@ -374,7 +377,7 @@ export default class Account extends Component {
 
   renderFrozenTokens() {
 
-    let {frozen, accountResource,account} = this.props;
+    let {frozen, accountResource, account} = this.props;
     if (frozen.balances.length === 0 && accountResource.frozen_balance === 0) {
       return null;
     }
@@ -390,34 +393,34 @@ export default class Account extends Component {
           </thead>
           <tbody>
           {
-              frozen.balances.length > 0 && <tr>
-                <td>
-                    {tu('bandwidth')}
-                </td>
-                <td>
-                  <TRXPrice amount={frozen.balances[0].amount / ONE_TRX}/>
-                </td>
-                <td className="text-right">
-                  <span className="mr-1">{tu('After')}</span>
-                  <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
-                  <FormattedTime value={frozen.balances[0].expires}/>
-                </td>
-              </tr>
+            frozen.balances.length > 0 && <tr>
+              <td>
+                {tu('bandwidth')}
+              </td>
+              <td>
+                <TRXPrice amount={frozen.balances[0].amount / ONE_TRX}/>
+              </td>
+              <td className="text-right">
+                <span className="mr-1">{tu('After')}</span>
+                <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
+                <FormattedTime value={frozen.balances[0].expires}/>
+              </td>
+            </tr>
           }
           {
-              accountResource.frozen_balance > 0 && <tr>
-                <td>
-                    {tu('energy')}
-                </td>
-                <td>
-                  <TRXPrice amount={accountResource.frozen_balance / ONE_TRX}/>
-                </td>
-                <td className="text-right">
-                  <span className="mr-1">{tu('After')}</span>
-                  <FormattedDate value={accountResource.expire_time}/>&nbsp;
-                  <FormattedTime value={accountResource.expire_time}/>
-                </td>
-              </tr>
+            accountResource.frozen_balance > 0 && <tr>
+              <td>
+                {tu('energy')}
+              </td>
+              <td>
+                <TRXPrice amount={accountResource.frozen_balance / ONE_TRX}/>
+              </td>
+              <td className="text-right">
+                <span className="mr-1">{tu('After')}</span>
+                <FormattedDate value={accountResource.expire_time}/>&nbsp;
+                <FormattedTime value={accountResource.expire_time}/>
+              </td>
+            </tr>
           }
           </tbody>
         </table>
@@ -518,7 +521,7 @@ export default class Account extends Component {
 
     let {privateKey} = this.state;
 
-    let { trxBalance, currentWallet } = this.props;
+    let {trxBalance, currentWallet} = this.props;
     if (trxBalance === 0) {
       this.setState({
         modal: (
@@ -552,29 +555,29 @@ export default class Account extends Component {
     });
   };
   resourceSelectChange = (value) => {
-      this.setState({
-          selectedResource: Number(value)
-      });
+    this.setState({
+      selectedResource: Number(value)
+    });
   }
 
   hideModal = () => {
-      this.setState({
-          modal: null,
-      });
+    this.setState({
+      modal: null,
+    });
   };
 
-  hideFreezeModal = () =>{
-      this.setState({
-          modal: null,
-          selectedResource:null
-      });
+  hideFreezeModal = () => {
+    this.setState({
+      modal: null,
+      selectedResource: null
+    });
   }
 
   showUnfreezeModal = async () => {
-    let {privateKey,selectedResource,resources} = this.state;
+    let {privateKey, selectedResource, resources} = this.state;
     let {intl} = this.props;
     this.setState({
-        modal: (
+      modal: (
           <SweetAlert
               info
               showCancel
@@ -587,17 +590,19 @@ export default class Account extends Component {
               onCancel={this.hideFreezeModal}
               style={{height: '300px'}}
           >
-              <div className="form-group" style={{marginBottom:'36px'}}>
-                <div className="mt-3 mb-2 text-left" style={{color:'#666'}}>
-                    {tu("please_select_the_type_of_unfreeze")}
-                </div>
-                <select className="custom-select"
-                        value={selectedResource}
-                        onChange={(e) => {this.resourceSelectChange(e.target.value)}}>
-                        <option value="0">{intl.formatMessage({id: "unfreeze_bandwidth"})}</option>
-                        <option value="1">{intl.formatMessage({id: "unfreeze_energy"})}</option>
-                </select>
+            <div className="form-group" style={{marginBottom: '36px'}}>
+              <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
+                {tu("please_select_the_type_of_unfreeze")}
               </div>
+              <select className="custom-select"
+                      value={selectedResource}
+                      onChange={(e) => {
+                        this.resourceSelectChange(e.target.value)
+                      }}>
+                <option value="0">{intl.formatMessage({id: "unfreeze_bandwidth"})}</option>
+                <option value="1">{intl.formatMessage({id: "unfreeze_energy"})}</option>
+              </select>
+            </div>
 
           </SweetAlert>
       ),
@@ -627,19 +632,19 @@ export default class Account extends Component {
   claimRewards = async () => {
     let res;
     let {account, currentWallet} = this.props;
-    if(this.state.isTronLink === 1){
-        let tronWeb;
-        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-            tronWeb = this.props.tronWeb();
-        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-            tronWeb = account.tronWeb;
-        }
-        const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e=>false);
-        const {result} = await transactionResultManager(unSignTransaction, tronWeb)
-        res = result;
+    if (this.state.isTronLink === 1) {
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
+      }
+      const unSignTransaction = await tronWeb.transactionBuilder.withdrawBlockRewards(tronWeb.defaultAddress.base58).catch(e => false);
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+      res = result;
     } else {
-        let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
-        res = success;
+      let {success, code} = await Client.withdrawBalance(currentWallet.address)(account.key);
+      res = success;
     }
     if (res) {
       this.setState({
@@ -661,43 +666,43 @@ export default class Account extends Component {
   };
 
   unfreeze = async () => {
-    let {account,walletType} = this.props;
-    let {privateKey,selectedResource} = this.state;
-    let res,type;
+    let {account, walletType} = this.props;
+    let {privateKey, selectedResource} = this.state;
+    let res, type;
     this.hideModal();
-    if(!selectedResource) {
-        selectedResource = 0
+    if (!selectedResource) {
+      selectedResource = 0
     }
-    if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER" ||this.props.walletType.type==="ACCOUNT_TRONLINK") {
+    if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
       const tronWebLedger = this.props.tronWeb();
-      console.log('tronWebLedger',tronWebLedger)
-        console.log('tronWebLedger',tronWebLedger.defaultAddress.base58)
+      console.log('tronWebLedger', tronWebLedger)
+      console.log('tronWebLedger', tronWebLedger.defaultAddress.base58)
 
-      const { tronWeb } = this.props.account;
-        console.log('tronWeb',tronWeb)
-        console.log('tronWeb',tronWeb.defaultAddress.base58)
-      if(!selectedResource){
+      const {tronWeb} = this.props.account;
+      console.log('tronWeb', tronWeb)
+      console.log('tronWeb', tronWeb.defaultAddress.base58)
+      if (!selectedResource) {
         type = 'BANDWIDTH';
-      }else{
+      } else {
         type = 'ENERGY';
       }
-        try {
-          if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+      try {
+        if (this.props.walletType.type === "ACCOUNT_LEDGER") {
 
-            const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(type, walletType.address).catch(e => false);
-            const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
-            res = result;
+          const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(type, walletType.address).catch(e => false);
+          const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
+          res = result;
         }
-        if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
+        if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
           const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58).catch(e => false);
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
 
-        } catch (e) {
-             console.log(e)
-        }
-    }else {
+      } catch (e) {
+        console.log(e)
+      }
+    } else {
       let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
       res = success
     }
@@ -727,22 +732,22 @@ export default class Account extends Component {
     let {privateKey} = this.state;
     let res;
     this.hideModal();
-      if(this.state.isTronLink === 1){
-          let tronWeb;
-          if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-              tronWeb = this.props.tronWeb();
-          }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-              tronWeb = account.tronWeb;
-          }
-          const unSignTransaction = await tronWeb.fullNode.request('wallet/unfreezeasset', {
-              owner_address: tronWeb.defaultAddress.hex,
-          }, 'post').catch(e=>false);
-          const {result} = await transactionResultManager(unSignTransaction,tronWeb)
-          res = result;
-      } else {
-          let {success} = await Client.unfreezeAssets(account.address)(account.key);
-          res = success;
+    if (this.state.isTronLink === 1) {
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
       }
+      const unSignTransaction = await tronWeb.fullNode.request('wallet/unfreezeasset', {
+        owner_address: tronWeb.defaultAddress.hex,
+      }, 'post').catch(e => false);
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+      res = result;
+    } else {
+      let {success} = await Client.unfreezeAssets(account.address)(account.key);
+      res = success;
+    }
 
     if (res) {
       this.setState({
@@ -781,20 +786,31 @@ export default class Account extends Component {
 
   updateName = async (name) => {
     let res;
-    let {account, currentWallet} = this.props;
-    if(this.state.isTronLink === 1){
-        let tronWeb;
-        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-            tronWeb = this.props.tronWeb();
-        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-            tronWeb = account.tronWeb;
-        }
-        const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {account_name:tronWeb.fromUtf8(name),owner_address:tronWeb.defaultAddress.hex}, 'post').catch(e=>false);
-        const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
+    let {account, currentWallet, onError} = this.props;
+
+    try {
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        let tronWebLedger = this.props.tronWeb();
+
+        const unSignTransaction = await tronWebLedger.transactionBuilder.updateAccount(name, this.props.walletType.address);
+        const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
         res = result;
-    }else{
+
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        let tronWeb = account.tronWeb;
+        const unSignTransaction = await tronWeb.fullNode.request('wallet/updateaccount', {
+          account_name: tronWeb.fromUtf8(name),
+          owner_address: tronWeb.defaultAddress.hex
+        }, 'post').catch(e => false);
+        const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+        res = result;
+      } else {
         let {success} = await Client.updateAccountName(currentWallet.address, name)(account.key);
         res = success;
+      }
+    } catch (e) {
+      console.error(e);
+      onError && onError();
     }
     if (res) {
       this.setState({
@@ -821,17 +837,17 @@ export default class Account extends Component {
     let res;
     let {account, currentWallet} = this.props;
     if (this.state.isTronLink === 1) {
-        let tronWeb;
-        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-            tronWeb = this.props.tronWeb();
-        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-            tronWeb = account.tronWeb;
-        }
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
+      }
       const unSignTransaction = await tronWeb.fullNode.request('wallet/updatewitness', {
-          update_url: tronWeb.fromUtf8(url),
-          owner_address: tronWeb.defaultAddress.hex
-        },
-        'post');
+            update_url: tronWeb.fromUtf8(url),
+            owner_address: tronWeb.defaultAddress.hex
+          },
+          'post');
       const {result} = await transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
@@ -842,9 +858,9 @@ export default class Account extends Component {
     if (res) {
       this.setState({
         modal: (
-          <SweetAlert success title={tu("url_changed")} onConfirm={this.hideModal}>
-            {tu("successfully_changed_website_message")} <b>{url}</b>
-          </SweetAlert>
+            <SweetAlert success title={tu("url_changed")} onConfirm={this.hideModal}>
+              {tu("successfully_changed_website_message")} <b>{url}</b>
+            </SweetAlert>
         )
       });
 
@@ -852,130 +868,130 @@ export default class Account extends Component {
     } else {
       this.setState({
         modal: (
-          <SweetAlert warning title={tu("unable_to_change_website_title")} onConfirm={this.hideModal}>
-            {tu("unable_to_change_website_message")}
-          </SweetAlert>
+            <SweetAlert warning title={tu("unable_to_change_website_title")} onConfirm={this.hideModal}>
+              {tu("unable_to_change_website_message")}
+            </SweetAlert>
         )
       })
     }
   };
 
   createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
-      let res;
-      let {account, currentWallet} = this.props;
-      if (this.state.isTronLink === 1){
-          let tronWeb;
-          if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-              tronWeb = this.props.tronWeb();
-          }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-              tronWeb = account.tronWeb;
-          }
-          const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId,firstTokenBalance,secondTokenBalance,tronWeb.defaultAddress.hex).catch(e=>false);
-          const {result} = await  transactionResultManager(unSignTransaction,tronWeb);
-          res = result;
-      } else {
-        const {success} = await Client.createExchange(currentWallet.address, firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)(account.key);
-        res = success;
+    let res;
+    let {account, currentWallet} = this.props;
+    if (this.state.isTronLink === 1) {
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
       }
-      if (res) {
-          this.setState({
-              temporaryName: name,
-              modal: (
-                  <SweetAlert success onConfirm={this.hideModal}>
-                      {tu("successfully_created_pair")}
-                  </SweetAlert>
-              )
-          });
+      const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId, firstTokenBalance, secondTokenBalance, tronWeb.defaultAddress.hex).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    } else {
+      const {success} = await Client.createExchange(currentWallet.address, firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)(account.key);
+      res = success;
+    }
+    if (res) {
+      this.setState({
+        temporaryName: name,
+        modal: (
+            <SweetAlert success onConfirm={this.hideModal}>
+              {tu("successfully_created_pair")}
+            </SweetAlert>
+        )
+      });
 
-          setTimeout(() => this.props.reloadWallet(), 1000);
-      } else {
-          this.setState({
-              modal: (
-                  <SweetAlert warning  onConfirm={this.hideModal}>
-                      {tu("pair_creation_failed")}
-                  </SweetAlert>
-              )
-          })
-      }
+      setTimeout(() => this.props.reloadWallet(), 1000);
+    } else {
+      this.setState({
+        modal: (
+            <SweetAlert warning onConfirm={this.hideModal}>
+              {tu("pair_creation_failed")}
+            </SweetAlert>
+        )
+      })
+    }
   };
 
   injectExchange = async (exchangeId, tokenId, quant) => {
-        let res;
-        let {account, currentWallet} = this.props;
-        if(this.state.isTronLink === 1){
-            let tronWeb;
-            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-                tronWeb = this.props.tronWeb();
-            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                tronWeb = account.tronWeb;
-            }
-          const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
-          const {result} = await transactionResultManager(unSignTransaction,tronWeb);
-          res = result;
-        } else {
-          const {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
-          res = success;
-         }
-        if (res) {
-            this.setState({
-                temporaryName: name,
-                modal: (
-                    <SweetAlert success  onConfirm={this.hideModal}>
-                        {tu("successful_injection")}
-                    </SweetAlert>
-                )
-            });
+    let res;
+    let {account, currentWallet} = this.props;
+    if (this.state.isTronLink === 1) {
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
+      }
+      const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    } else {
+      const {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+      res = success;
+    }
+    if (res) {
+      this.setState({
+        temporaryName: name,
+        modal: (
+            <SweetAlert success onConfirm={this.hideModal}>
+              {tu("successful_injection")}
+            </SweetAlert>
+        )
+      });
 
-            setTimeout(() => this.props.reloadWallet(), 5000);
-        } else {
-            this.setState({
-                modal: (
-                    <SweetAlert warning onConfirm={this.hideModal}>
-                        {tu("sorry_injection_failed")}
-                    </SweetAlert>
-                )
-            })
-        }
-    };
+      setTimeout(() => this.props.reloadWallet(), 5000);
+    } else {
+      this.setState({
+        modal: (
+            <SweetAlert warning onConfirm={this.hideModal}>
+              {tu("sorry_injection_failed")}
+            </SweetAlert>
+        )
+      })
+    }
+  };
 
   withdrawExchange = async (exchangeId, tokenId, quant) => {
-        let res;
-        let {account, currentWallet} = this.props;
-        if(this.state.isTronLink === 1){
-            let tronWeb;
-            if (this.props.walletType.type === "ACCOUNT_LEDGER"){
-                tronWeb = this.props.tronWeb();
-            }else if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-                tronWeb = account.tronWeb;
-            }
-            const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e=>false);
-            const {result} = await transactionResultManager(unSignTransaction,tronWeb)
-            res = result;
-        } else {
-            const {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
-            res = success;
-        }
-        if (res) {
-            this.setState({
-                temporaryName: name,
-                modal: (
-                    <SweetAlert success onConfirm={this.hideModal}>
-                        {tu("successful_withdrawal")}
-                    </SweetAlert>
-                )
-            });
+    let res;
+    let {account, currentWallet} = this.props;
+    if (this.state.isTronLink === 1) {
+      let tronWeb;
+      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+        tronWeb = this.props.tronWeb();
+      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+        tronWeb = account.tronWeb;
+      }
+      const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
+      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+      res = result;
+    } else {
+      const {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
+      res = success;
+    }
+    if (res) {
+      this.setState({
+        temporaryName: name,
+        modal: (
+            <SweetAlert success onConfirm={this.hideModal}>
+              {tu("successful_withdrawal")}
+            </SweetAlert>
+        )
+      });
 
-            setTimeout(() => this.props.reloadWallet(), 5000);
-        } else {
-            this.setState({
-                modal: (
-                    <SweetAlert warning onConfirm={this.hideModal}>
-                        {tu("sorry_withdrawal_failed")}
-                    </SweetAlert>
-                )
-            })
-        }
-    };
+      setTimeout(() => this.props.reloadWallet(), 5000);
+    } else {
+      this.setState({
+        modal: (
+            <SweetAlert warning onConfirm={this.hideModal}>
+              {tu("sorry_withdrawal_failed")}
+            </SweetAlert>
+        )
+      })
+    }
+  };
 
   changeName = () => {
     this.setState({
@@ -988,89 +1004,89 @@ export default class Account extends Component {
   };
 
   changeTxnPair = () => {
-      this.setState({
-          modal: (
-              <CreateTxnPairModal
-                  onCreate={(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance) => this.createTxnPair(firstTokenId,secondTokenId,firstTokenBalance,secondTokenBalance)}
-                  onCancel={this.hideModal}
-                  dealPairTrxLimit={this.state.dealPairTrxLimit}
-              />
-          )
-      })
+    this.setState({
+      modal: (
+          <CreateTxnPairModal
+              onCreate={(firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => this.createTxnPair(firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)}
+              onCancel={this.hideModal}
+              dealPairTrxLimit={this.state.dealPairTrxLimit}
+          />
+      )
+    })
   };
 
   injectTxnPair = (exchange) => {
-      this.setState({
-          modal: (
-              <OperateTxnPairModal
-                  onInject={(exchangeId,tokenId,quant) => this.injectExchange(exchangeId,tokenId,quant)}
-                  onCancel={this.hideModal}
-                  exchange={exchange}
-                  inject={true}
-              />
-          )
-      })
+    this.setState({
+      modal: (
+          <OperateTxnPairModal
+              onInject={(exchangeId, tokenId, quant) => this.injectExchange(exchangeId, tokenId, quant)}
+              onCancel={this.hideModal}
+              exchange={exchange}
+              inject={true}
+          />
+      )
+    })
   };
 
   withdrawTxnPair = (exchange) => {
-        this.setState({
-            modal: (
-                <OperateTxnPairModal
-                    onWithdraw={(exchangeId,tokenId,quant) => this.withdrawExchange(exchangeId,tokenId,quant)}
-                    onCancel={this.hideModal}
-                    exchange={exchange}
-                    inject={false}
-                    dealPairTrxLimit={this.state.dealPairTrxLimit}
-                />
-            )
-        })
-    };
+    this.setState({
+      modal: (
+          <OperateTxnPairModal
+              onWithdraw={(exchangeId, tokenId, quant) => this.withdrawExchange(exchangeId, tokenId, quant)}
+              onCancel={this.hideModal}
+              exchange={exchange}
+              inject={false}
+              dealPairTrxLimit={this.state.dealPairTrxLimit}
+          />
+      )
+    })
+  };
 
 
   changeGithubURL = async () => {
     this.setState({
       modal: (
-        this.state.isTronLink === 1?
-          <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
-              {tu("change_login_method")}
-          </SweetAlert>
-          :
-          <SweetAlert
-              input
-              showCancel
-              cancelBtnBsStyle="default"
-              cancelBtnText={tu("cancel")}
-              confirmBtnText={tu("link_github")}
-              title={tu("link_to_github")}
-              placeHolder="github username or https://github.com/{username}/tronsr-template"
-              onCancel={this.hideModal}
-              validationMsg={tu("you_must_enter_a_url")}
-              onConfirm={async (name) => {
-                if (await this.detectGithubUrl(name)) {
-                  this.setState({
-                    modal: (
-                        <SweetAlert success title={tu("github_linked")} onConfirm={this.hideModal}>
-                          {tu("successfully_linked_github")}
-                        </SweetAlert>
-                    )
-                  });
-                } else {
-                  this.setState({
-                    modal: (
-                        <SweetAlert
-                            danger
-                            showCancel
-                            title={tu("could_not_link_github")}
-                            onCancel={this.hideModal}
-                            onConfirm={this.changeGithubURL}>
-                          {tu("unable_to_link_github_message")}
-                        </SweetAlert>
-                    )
-                  });
-                }
-              }}>
-            {tu("enter_your_github_username")}
-          </SweetAlert>
+          this.state.isTronLink === 1 ?
+              <SweetAlert onCancel={this.hideModal} onConfirm={this.hideModal}>
+                {tu("change_login_method")}
+              </SweetAlert>
+              :
+              <SweetAlert
+                  input
+                  showCancel
+                  cancelBtnBsStyle="default"
+                  cancelBtnText={tu("cancel")}
+                  confirmBtnText={tu("link_github")}
+                  title={tu("link_to_github")}
+                  placeHolder="github username or https://github.com/{username}/tronsr-template"
+                  onCancel={this.hideModal}
+                  validationMsg={tu("you_must_enter_a_url")}
+                  onConfirm={async (name) => {
+                    if (await this.detectGithubUrl(name)) {
+                      this.setState({
+                        modal: (
+                            <SweetAlert success title={tu("github_linked")} onConfirm={this.hideModal}>
+                              {tu("successfully_linked_github")}
+                            </SweetAlert>
+                        )
+                      });
+                    } else {
+                      this.setState({
+                        modal: (
+                            <SweetAlert
+                                danger
+                                showCancel
+                                title={tu("could_not_link_github")}
+                                onCancel={this.hideModal}
+                                onConfirm={this.changeGithubURL}>
+                              {tu("unable_to_link_github_message")}
+                            </SweetAlert>
+                        )
+                      });
+                    }
+                  }}>
+                {tu("enter_your_github_username")}
+              </SweetAlert>
       )
     });
   };
@@ -1105,35 +1121,35 @@ export default class Account extends Component {
     let key = await Client.auth(account.key);
     let [name, repo] = url.split("/");
     let githubLink = name + "/" + (repo || "tronsr-template");
-    if(this.state.isTronLink === 1) {
-        // const tronWeb = this.props.tronWeb();
-        // const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
-        // await transactionResultManager(unSignTransaction,tronWeb)
-        return;
+    if (this.state.isTronLink === 1) {
+      // const tronWeb = this.props.tronWeb();
+      // const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex);
+      // await transactionResultManager(unSignTransaction,tronWeb)
+      return;
     } else {
-        await Client.updateSuperRepresentative(key, {
-            address: currentWallet.address,
-            githubLink,
-        });
+      await Client.updateSuperRepresentative(key, {
+        address: currentWallet.address,
+        githubLink,
+      });
     }
     this.loadAccount();
   };
   changeWebsite = () => {
-      this.setState({
-              modal: (
-                  <SweetAlert
-                      input
-                      showCancel
-                      cancelBtnBsStyle="default"
-                      title={tu("change_website")}
-                      placeHolder="https://"
-                      onCancel={this.hideModal}
-                      validationMsg={tu("you_must_enter_url")}
-                      onConfirm={(name) => this.updateWebsite(name)}>
-                      {tu("specify_the_url")}
-                  </SweetAlert>
-              )
-          });
+    this.setState({
+      modal: (
+          <SweetAlert
+              input
+              showCancel
+              cancelBtnBsStyle="default"
+              title={tu("change_website")}
+              placeHolder="https://"
+              onCancel={this.hideModal}
+              validationMsg={tu("you_must_enter_url")}
+              onConfirm={(name) => this.updateWebsite(name)}>
+            {tu("specify_the_url")}
+          </SweetAlert>
+      )
+    });
   };
 
   applyForDelegate = () => {
@@ -1142,7 +1158,7 @@ export default class Account extends Component {
     this.setState({
       modal: (
           <ApplyForDelegate
-              isTronLink = {this.state.isTronLink}
+              isTronLink={this.state.isTronLink}
               privateKey={privateKey}
               onCancel={this.hideModal}
               onConfirm={() => {
@@ -1183,20 +1199,20 @@ export default class Account extends Component {
   }
 
   handleSwitch = (val) => {
-      this.setState({hideSmallCurrency: val});
+    this.setState({hideSmallCurrency: val});
   }
 
   handleTRC10Token = () => {
-      this.setState({tokenTRC10: true});
+    this.setState({tokenTRC10: true});
   }
 
   handleTRC20Token = () => {
-      this.setState({tokenTRC10: false});
+    this.setState({tokenTRC10: false});
   }
 
   render() {
-    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency,tokenTRC10} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource,trxBalance} = this.props;
+    let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
+    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1213,14 +1229,14 @@ export default class Account extends Component {
       );
     }
     let hasFrozen = frozen.balances.length > 0;
-    let hasResourceFrozen =  accountResource.frozen_balance > 0
+    let hasResourceFrozen = accountResource.frozen_balance > 0
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-              <a href="https://trondice.org" target="_blank" style={{textDecoration:'none'}}>
-                  {tu("account_ad")}
-              </a>
+            <a href="https://trondice.org" target="_blank" style={{textDecoration: 'none'}}>
+              {tu("account_ad")}
+            </a>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -1230,7 +1246,8 @@ export default class Account extends Component {
               <div className="card h-100 bg-line_red bg-image_band">
                 <div className="card-body">
                   <h3 style={{color: '#C23631'}}>
-                    <FormattedNumber value={currentWallet.bandwidth.netRemaining + currentWallet.bandwidth.freeNetRemaining}/>
+                    <FormattedNumber
+                        value={currentWallet.bandwidth.netRemaining + currentWallet.bandwidth.freeNetRemaining}/>
                   </h3>
                   {/* <a href="javascript:;"
                      onClick={() => this.setState(state => ({showBandwidth: !state.showBandwidth}))}>
@@ -1238,7 +1255,7 @@ export default class Account extends Component {
                   </a> */}
                   {tu("bandwidth")}
                   <span className="ml-2">
-                      <QuestionMark placement="top" text="bandwidth_tip" />
+                      <QuestionMark placement="top" text="bandwidth_tip"/>
                   </span>
                 </div>
               </div>
@@ -1250,8 +1267,8 @@ export default class Account extends Component {
                   <h3 style={{color: '#4A90E2'}}>
                     <FormattedNumber value={currentWallet.bandwidth.energyRemaining}/>
                   </h3>
-                    {tu("energy")}
-                    <span className="ml-2">
+                  {tu("energy")}
+                  <span className="ml-2">
                       <QuestionMark placement="top" text="energy_tip"/>
                   </span>
                 </div>
@@ -1264,8 +1281,8 @@ export default class Account extends Component {
                   <h3 style={{color: '#E0AE5C'}}>
                     <FormattedNumber value={currentWallet.frozenTrx / ONE_TRX}/>
                   </h3>
-                    TRON {tu("power")}
-                    <span className="ml-2">
+                  TRON {tu("power")}
+                  <span className="ml-2">
                       <QuestionMark placement="top" text="power_tip"/>
                   </span>
                 </div>
@@ -1299,7 +1316,7 @@ export default class Account extends Component {
                       <tr>
                         <th style={{border: 'none'}}>{tu("name")}:</th>
                         <td style={{border: 'none'}}>
-                          {currentWallet.name|| temporaryName || "-"}
+                          {currentWallet.name || temporaryName || "-"}
                           {
                             (trim(currentWallet.name) === "" && (currentWallet.balance > 0 || currentWallet.frozenTrx > 0)) &&
                             <a href="javascript:" className="float-right text-primary btn btn-default btn-sm"
@@ -1375,30 +1392,36 @@ export default class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                            <TokenLink  id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.address} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                            <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                          <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.address}
+                                     namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                          <span style={{color: "#999", fontSize: 12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>
                       <tr>
                         <th>{tu("start_date")}:</th>
                         <td>
-                          {issuedAsset.endTime - issuedAsset.startTime >1000 ? <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime value={issuedAsset.startTime}/></span>:"-"}
+                          {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                              <span><FormattedDate value={issuedAsset.startTime}/>{' '}<FormattedTime
+                                  value={issuedAsset.startTime}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>
                         <th>{tu("end_date")}:</th>
                         <td>
-                          {issuedAsset.endTime - issuedAsset.startTime >1000 ? <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime value={issuedAsset.endTime}/></span>:"-"}
+                          {issuedAsset.endTime - issuedAsset.startTime > 1000 ?
+                              <span><FormattedDate value={issuedAsset.endTime}/>{' '}<FormattedTime
+                                  value={issuedAsset.endTime}/></span> : "-"}
                         </td>
                       </tr>
                       <tr>
-                          <th>{tu("progress")}:</th>
-                          <td className="d-flex">
-                              <div className="progress mt-1" style={{width:'95%'}}>
-                                  <div className="progress-bar bg-success" style={{width: issuedAsset.issuedPercentage + '%'}}/>
-                              </div>
-                              <div className="ml-2">{issuedAsset.issuedPercentage.toFixed(3) +'%'}</div>
-                          </td>
+                        <th>{tu("progress")}:</th>
+                        <td className="d-flex">
+                          <div className="progress mt-1" style={{width: '95%'}}>
+                            <div className="progress-bar bg-success"
+                                 style={{width: issuedAsset.issuedPercentage + '%'}}/>
+                          </div>
+                          <div className="ml-2">{issuedAsset.issuedPercentage.toFixed(3) + '%'}</div>
+                        </td>
                       </tr>
                       {
                         wallet.current && wallet.current.frozen_supply.length > 0 &&
@@ -1412,16 +1435,16 @@ export default class Account extends Component {
                               {tu("unfreeze_assets")}
                             </a>
                             {
-                                wallet.current.frozen_supply.map((frozen, index) => (
+                              wallet.current.frozen_supply.map((frozen, index) => (
                                   <div key={index}>
-                                    {frozen.amount/Math.pow(10,issuedAsset.precision)}
+                                    {frozen.amount / Math.pow(10, issuedAsset.precision)}
                                     {
-                                      (frozen.expires > getTime(new Date()))?
-                                      <span>
+                                      (frozen.expires > getTime(new Date())) ?
+                                          <span>
                                           <span> {tu("can_be_unlocked")}&nbsp;</span>
                                           <FormattedRelative
-                                          value={frozen.expires}/>
-                                      </span>: <span> {tu("can_be_unlocked_now")}&nbsp;</span>
+                                              value={frozen.expires}/>
+                                      </span> : <span> {tu("can_be_unlocked_now")}&nbsp;</span>
                                     }
                                   </div>
                               ))
@@ -1444,133 +1467,142 @@ export default class Account extends Component {
                 <div className="card-body temp-table">
                   <div className="d-flex justify-content-between account-switch">
                     <h5 className="card-title text-center m-0">
-                        {tu("tokens")}
+                      {tu("tokens")}
                     </h5>
-                    <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
+                    <SwitchToken handleSwitch={this.handleSwitch} text="hide_small_currency"
+                                 hoverText="tokens_less_than_10"/>
                   </div>
                   <div className="account-token-tab">
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm" + (tokenTRC10?' active':'')}
+                       className={"btn btn-default btn-sm" + (tokenTRC10 ? ' active' : '')}
                        onClick={this.handleTRC10Token}>
-                        {tu("TRC10_token")}
+                      {tu("TRC10_token")}
                     </a>
                     <a href="javascript:;"
-                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10?'':' active')}
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 ? '' : ' active')}
                        onClick={this.handleTRC20Token}>
-                        {tu("TRC20_token")}
+                      {tu("TRC20_token")}
                     </a>
                   </div>
-                    {
-                        tokenTRC10?<div>
-                                {this.renderTokens()}
-                            </div>
-                            :
-                            <div>
-                                {this.renderTRC20Tokens()}
-                            </div>
-                    }
+                  {
+                    tokenTRC10 ? <div>
+                          {this.renderTokens()}
+                        </div>
+                        :
+                        <div>
+                          {this.renderTRC20Tokens()}
+                        </div>
+                  }
                 </div>
               </div>
             </div>
           </div>
-            <div className="row mt-3">
-                <div className="col-md-12">
-                    <div className="card">
-                        <div className="card-body">
-                            <div className="d-flex justify-content-between trade_pair_title">
-                                <h5 className="card-title text-center">
-                                    {tu("my_trading_pairs")}
-                                    {tu("deal_pair_tip")}
-                                </h5>
-                                <p className="card-text">
-                                    <a href="javascript:" className={trxBalance >= this.state.dealPairTrxLimit?"btn btn-default btn-sm btn-plus-square":"float-right btn btn-default btn-sm btn-plus-square disabled"}
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex justify-content-between trade_pair_title">
+                    <h5 className="card-title text-center">
+                      {tu("my_trading_pairs")}
+                      {tu("deal_pair_tip")}
+                    </h5>
+                    <p className="card-text">
+                      <a href="javascript:"
+                         className={trxBalance >= this.state.dealPairTrxLimit ? "btn btn-default btn-sm btn-plus-square" : "float-right btn btn-default btn-sm btn-plus-square disabled"}
+                         onClick={() => {
+                           this.changeTxnPair()
+                         }}>
+                        <i className="fa fa-plus-square"></i>
+                        &nbsp;
+                        {tu("create_trading_pairs")}
+                      </a>
+                    </p>
+                  </div>
+                  <div style={{overflowX: 'auto'}}>
+                    <table className="table m-0 temp-table mt-4">
+                      <thead className="thead-light">
+                      <tr>
+                        <th>{tu("pairs")}</th>
+                        <th>{tu("balance")}</th>
+                        <th className="text-right"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {
+                        currentWallet.exchanges.length ? currentWallet.exchanges.map((exchange, index) => {
+                          return (
+                              <tr key={index}>
+                                <td style={{position: 'relative'}}>
+                                  {exchange.map_token_name === "_" ? "TRX" : exchange.map_token_name}/{exchange.map_token_name1 === "_" ? "TRX" : exchange.map_token_name1}
+                                  <div style={{
+                                    fontSize: 12,
+                                    color: '#999',
+                                    position: 'absolute',
+                                    bottom: 0
+                                  }}>[ID:{exchange.map_token_id}]
+                                  </div>
+                                </td>
+                                <td>
+                                  <FormattedNumber value={exchange.map_amount}/>
+                                  /
+                                  <FormattedNumber value={exchange.map_amount1}/>
+                                </td>
+                                <td className="text-right"
+                                    style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                                  <div className="dex-inject" style={{whiteSpace: 'nowrap'}}
                                        onClick={() => {
-                                           this.changeTxnPair()
-                                       }}>
-                                        <i className="fa fa-plus-square"></i>
-                                        &nbsp;
-                                        {tu("create_trading_pairs")}
-                                    </a>
-                                </p>
-                            </div>
-                            <div style={{overflowX:'auto'}}>
-                            <table className="table m-0 temp-table mt-4">
-                                <thead className="thead-light">
-                                <tr>
-                                    <th>{tu("pairs")}</th>
-                                    <th>{tu("balance")}</th>
-                                    <th className="text-right"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    currentWallet.exchanges.length? currentWallet.exchanges.map((exchange, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td style={{position: 'relative'}}>
-                                                    {exchange.map_token_name === "_"?"TRX":exchange.map_token_name}/{exchange.map_token_name1 === "_"?"TRX":exchange.map_token_name1}
-                                                    <div style={{fontSize:12,color:'#999',position:'absolute',bottom:0}}>[ID:{exchange.map_token_id}]</div>
-                                                </td>
-                                                <td>
-                                                    <FormattedNumber value={ exchange.map_amount }/>
-                                                    /
-                                                    <FormattedNumber value={ exchange.map_amount1 }/>
-                                                </td>
-                                                <td className="text-right" style={{display:'flex',flexDirection:'row',justifyContent:'flex-end'}}>
-                                    <div className="dex-inject" style={{whiteSpace:'nowrap'}}
-                                          onClick={() => {
-                                              this.injectTxnPair(exchange)
-                                          }}
-                                    >
-                                        {tu("capital_injection")}
-                                    </div>
-                                                    |
-                                                    <div className="dex-divestment" style={{whiteSpace:'nowrap'}}
-                                                          onClick={() => {
-                                                              this.withdrawTxnPair(exchange)
-                                                          }}
-                                                    >
-                                       {tu("capital_withdrawal")}
-                                    </div>
-                                                </td>
-                                            </tr>
-                                        )
-                                    }):<tr>
-                                        <td></td>
-                                        <td>
-                                            {tu('no_pairs')}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                }
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                    </div>
+                                         this.injectTxnPair(exchange)
+                                       }}
+                                  >
+                                    {tu("capital_injection")}
+                                  </div>
+                                  |
+                                  <div className="dex-divestment" style={{whiteSpace: 'nowrap'}}
+                                       onClick={() => {
+                                         this.withdrawTxnPair(exchange)
+                                       }}
+                                  >
+                                    {tu("capital_withdrawal")}
+                                  </div>
+                                </td>
+                              </tr>
+                          )
+                        }) : <tr>
+                          <td></td>
+                          <td>
+                            {tu('no_pairs')}
+                          </td>
+                          <td></td>
+                        </tr>
+                      }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+              </div>
             </div>
-            {/*<div className="row mt-3">*/}
-                {/*<div className="col-md-12">*/}
-                    {/*<div className="card">*/}
-                        {/*<div className="card-body">*/}
-                            {/*<h5 className="card-title text-center m-0">*/}
-                                {/*{tu('apply_for_process')}*/}
-                            {/*</h5>*/}
-                            {/*<p className="pt-3">*/}
-                                {/*{tu('token_application_instructions_1')}*/}
-                            {/*</p>*/}
-                            {/*<div className="text-center">*/}
-                                {/*<a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">*/}
-                                    {/*<button className="btn btn-danger">*/}
-                                        {/*{t("apply_for_the_currency")}*/}
-                                    {/*</button>*/}
-                                {/*</a>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-            {/*</div>*/}
+          </div>
+          {/*<div className="row mt-3">*/}
+          {/*<div className="col-md-12">*/}
+          {/*<div className="card">*/}
+          {/*<div className="card-body">*/}
+          {/*<h5 className="card-title text-center m-0">*/}
+          {/*{tu('apply_for_process')}*/}
+          {/*</h5>*/}
+          {/*<p className="pt-3">*/}
+          {/*{tu('token_application_instructions_1')}*/}
+          {/*</p>*/}
+          {/*<div className="text-center">*/}
+          {/*<a href="https://goo.gl/forms/OXFG6iaq3xXBHgPf2" target="_blank">*/}
+          {/*<button className="btn btn-danger">*/}
+          {/*{t("apply_for_the_currency")}*/}
+          {/*</button>*/}
+          {/*</a>*/}
+          {/*</div>*/}
+          {/*</div>*/}
+          {/*</div>*/}
+          {/*</div>*/}
+          {/*</div>*/}
           <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
@@ -1603,7 +1635,7 @@ export default class Account extends Component {
                     </p>
                     <div>
                       {
-                          (hasFrozen || hasResourceFrozen) &&
+                        (hasFrozen || hasResourceFrozen) &&
                         <button className="btn btn-danger mr-2" onClick={() => {
                           this.showUnfreezeModal()
                         }}>
@@ -1622,122 +1654,122 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-            {
+          {
             currentWallet.representative.enabled ?
                 <div className="row mt-3">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title text-center">
-                                    {tu("Super Representatives")}
-                                </h5>
-                                <p className="card-text">
-                                    {tu("sr_receive_reward_message_0")}
+                  <div className="col-md-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title text-center">
+                          {tu("Super Representatives")}
+                        </h5>
+                        <p className="card-text">
+                          {tu("sr_receive_reward_message_0")}
+                        </p>
+                        <div className="text-center">
+                          <button className="btn btn-success"
+                                  onClick={() => {
+                                    this.claimRewards()
+                                  }}
+                                  disabled={currentWallet.representative.allowance === 0}
+                          >
+                            {tu("claim_rewards")}
+                          </button>
+                          {
+                            currentWallet.representative.allowance > 0 ?
+                                <p className="m-0 mt-3 text-success">
+                                  Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
+                                                               className="font-weight-bold"/>
+                                </p> :
+                                <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
+                                  No rewards to claim
                                 </p>
-                                <div className="text-center">
-                                    <button className="btn btn-success"
-                                            onClick={() => {
-                                                this.claimRewards()
-                                            }}
-                                            disabled={currentWallet.representative.allowance === 0}
-                                    >
-                                        {tu("claim_rewards")}
-                                    </button>
-                                    {
-                                        currentWallet.representative.allowance > 0 ?
-                                            <p className="m-0 mt-3 text-success">
-                                                Claimable Rewards: <TRXPrice amount={currentWallet.representative.allowance / ONE_TRX}
-                                                                             className="font-weight-bold"/>
-                                            </p> :
-                                            <p className="m-0 mt-3 font-weight-bold" style={{color: '#D0AC6E'}}>
-                                                No rewards to claim
-                                            </p>
-                                    }
-                                </div>
-                                <hr/>
-                                <h5 className="card-title text-center">
-                                    {tu("landing_page")}
-                                </h5>
-                                <div className="text-center">
-                                    <p className="card-text text-center">
-                                        {tu("create_sr_landing_page_message_0")}
-                                    </p>
-                                    <p className="text-center">
-                                        <HrefLink className="btn btn-danger"
-                                                  href="https://github.com/tronscan/tronsr-template#readme">
-                                            {tu("show_more_information_publish_sr_page")}
-                                        </HrefLink>
-                                    </p>
-                                    {
-                                        !this.hasGithubLink() &&
-                                        <Fragment>
-                                            <p className="card-text text-center">
-                                                {tu("set_github_url_message_0")}
-                                            </p>
-                                            <p className="text-center">
-                                                <button className="btn btn-dark mr-2" onClick={() => {
-                                                    this.changeGithubURL()
-                                                }}>
-                                                    {tu("set_github_link")}
-                                                </button>
-                                            </p>
-                                        </Fragment>
-                                    }
-                                </div>
-                            </div>
-                            {
-                                this.hasGithubLink() &&
-                                <table className="table m-0">
-                                    <tbody>
-                                    <tr>
-                                        <th>{tu("Github Link")}:</th>
-                                        <td>
-                                            <HrefLink href={"http://github.com/" + sr.githubLink}
-                                                      target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
-                                            <a href="javascript:;" className="float-right text-primary"
-                                               onClick={() => {
-                                                   this.changeGithubURL()
-                                               }}>
-                                                {tu("Change Github Link")}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{tu("Representative Page")}</th>
-                                        <td><Link className="text-primary"
-                                                  to={`/representative/${currentWallet.address}`}>View</Link>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            }
+                          }
                         </div>
+                        <hr/>
+                        <h5 className="card-title text-center">
+                          {tu("landing_page")}
+                        </h5>
+                        <div className="text-center">
+                          <p className="card-text text-center">
+                            {tu("create_sr_landing_page_message_0")}
+                          </p>
+                          <p className="text-center">
+                            <HrefLink className="btn btn-danger"
+                                      href="https://github.com/tronscan/tronsr-template#readme">
+                              {tu("show_more_information_publish_sr_page")}
+                            </HrefLink>
+                          </p>
+                          {
+                            !this.hasGithubLink() &&
+                            <Fragment>
+                              <p className="card-text text-center">
+                                {tu("set_github_url_message_0")}
+                              </p>
+                              <p className="text-center">
+                                <button className="btn btn-dark mr-2" onClick={() => {
+                                  this.changeGithubURL()
+                                }}>
+                                  {tu("set_github_link")}
+                                </button>
+                              </p>
+                            </Fragment>
+                          }
+                        </div>
+                      </div>
+                      {
+                        this.hasGithubLink() &&
+                        <table className="table m-0">
+                          <tbody>
+                          <tr>
+                            <th>{tu("Github Link")}:</th>
+                            <td>
+                              <HrefLink href={"http://github.com/" + sr.githubLink}
+                                        target="_blank">{"http://github.com/" + sr.githubLink}</HrefLink>
+                              <a href="javascript:;" className="float-right text-primary"
+                                 onClick={() => {
+                                   this.changeGithubURL()
+                                 }}>
+                                {tu("Change Github Link")}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{tu("Representative Page")}</th>
+                            <td><Link className="text-primary"
+                                      to={`/representative/${currentWallet.address}`}>View</Link>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      }
                     </div>
+                  </div>
                 </div>
                 :
                 <div className="row mt-3">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title text-center m-0">
-                                    {tu("Super Representatives")}
-                                </h5>
-                                <p className="pt-3">
-                                    {tu("apply_for_delegate_predescription")}
-                                </p>
-                                <div className="text-center">
-                                    <button className="apply-super-btn btn btn-success"
-                                            onClick={() => {
-                                                this.applyForDelegate()
-                                            }}>
-                                        {tu("apply_super_representative_candidate")}
-                                    </button>
-                                </div>
-                            </div>
+                  <div className="col-md-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title text-center m-0">
+                          {tu("Super Representatives")}
+                        </h5>
+                        <p className="pt-3">
+                          {tu("apply_for_delegate_predescription")}
+                        </p>
+                        <div className="text-center">
+                          <button className="apply-super-btn btn btn-success"
+                                  onClick={() => {
+                                    this.applyForDelegate()
+                                  }}>
+                            {tu("apply_super_representative_candidate")}
+                          </button>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-        }
+          }
           {
             IS_TESTNET && <div className="row mt-3">
               <div className="col-md-12">
@@ -1754,7 +1786,7 @@ export default class Account extends Component {
               </div>
             </div>
           }
-        {/*
+          {/*
         <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">

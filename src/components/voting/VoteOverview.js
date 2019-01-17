@@ -375,7 +375,7 @@ export default class VoteOverview extends React.Component {
       if (this.props.walletType.type === "ACCOUNT_LEDGER"){
           try {
               const unSignTransaction = await tronWebLedger.transactionBuilder.vote(witnessVotes, account.address).catch(e=>false);
-              const {result} = await transactionResultManager(unSignTransaction,tronWeb);
+              const {result} = await transactionResultManager(unSignTransaction,tronWebLedger);
               res = result;
           } catch (e) {
               console.error(e)
