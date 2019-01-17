@@ -1279,7 +1279,7 @@ class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-                            <TokenLink name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                            <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
                             <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                         </td>
                       </tr>
