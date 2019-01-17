@@ -1509,7 +1509,7 @@ export const messages = {
     "create_deal_pair_input_tip2":"交易对创建成功后，上线发行价格无法更改，每次创建需消耗1024 TRX",
     "publish_price":"您的发行价格是",
     "pool_revert":"底池的TRX余额不能少于100，000",
-    "sign_in_with_TRONlink":"使用TRONlink登录",
+    "sign_in_with_TRONlink":"TRONLINK登录",
     "import_a_wallet":"导入账户登录",
     "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
     "sign_in_TRONlink":"TRONlink登录",
@@ -1527,7 +1527,7 @@ export const messages = {
     "totle_transactions_per_day":"总交易数",
     "tron_total_transactions_chart":"TRON总交易数图表",
 
-    "sign_in_with_ledger":"使用Ledger登录",
+    "sign_in_with_ledger":"LEDGER登录",
 
 
 
