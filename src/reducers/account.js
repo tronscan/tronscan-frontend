@@ -1,4 +1,4 @@
-import {SET_RECENT_TRANSACTIONS, SET_TOKEN_BALANCES, SET_TOTAL_TRANSACTIONS} from "../actions/account";
+import {SET_RECENT_TRANSACTIONS, SET_TOKEN_BALANCES, SET_TOTAL_TRANSACTIONS, SET_WEBSOCKET, SET_WS_DATA} from "../actions/account";
 import {LOGIN} from "../actions/app";
 import {find} from "lodash";
 
@@ -11,7 +11,8 @@ const initialState = {
     total: 0,
     balances: [],
   },
-  accountResource:{}
+  accountResource:{},
+  wsdata: []
 };
 
 export function accountReducer(state = initialState, action) {
@@ -52,6 +53,20 @@ export function accountReducer(state = initialState, action) {
       return {
         ...state,
         recentTransactions: action.transactions,
+      }
+    }
+
+    case SET_WEBSOCKET: {
+      return {
+        ...state,
+        websocket: action.socketData,
+      }
+    }
+
+    case SET_WS_DATA: {
+      return {
+        ...state,
+        wsdata: action.wsdata,
       }
     }
 

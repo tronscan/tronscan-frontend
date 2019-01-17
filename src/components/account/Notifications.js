@@ -82,19 +82,24 @@ class Notifications extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    let {wallet} = this.props;
-    if (prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address) {
+    let {wallet,wsdata} = this.props;
+    if(prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address){
+      
+    }
+    if (prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address || wsdata !== prevProps.wsdata) {
       this.reconnect();
     }
   }
 
   reconnect() {
-    let {wallet} = this.props;
+    let {wallet, websocket, wsdata} = this.props;
     this.listener && this.listener.close();
 
     if (!wallet.isOpen) {
       return;
     }
+    console.log(wsdata)
+    // websocket.send(wallet.current.address)
 
     this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
     this.listener.on("transfer", trx => {
@@ -146,6 +151,7 @@ class Notifications extends React.Component {
       this.props.reloadWallet();
     });
   }
+
 
   componentWillUnmount() {
     this.listener && this.listener.close();
@@ -209,8 +215,15 @@ class Notifications extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    websocket: state.account.websocket,
+    wsdata: state.account.wsdata
+  }
+}
+
 const mapDispatchToProps = {
   reloadWallet,
 };
 
-export default connect(null, mapDispatchToProps)(Notifications)
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications)

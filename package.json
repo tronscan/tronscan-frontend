@@ -118,6 +118,7 @@
     "react-vivus": "^0.0.2",
     "reactstrap": "^5.0.0-beta.3",
     "recharts": "^1.0.0-beta.10",
+    "reconnecting-websocket": "^4.1.10",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.7",

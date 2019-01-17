@@ -20,6 +20,7 @@ import {
   setLanguage,
   setTheme
 } from "../actions/app"
+import { setWebsocket } from '../actions/account';
 import {connect} from "react-redux"
 import {Badge} from "reactstrap"
 import Avatar from "./common/Avatar"
@@ -90,8 +91,10 @@ class Navigation extends React.Component {
   }
 
   componentDidMount() {
-    let {account} = this.props;
+    let {account,setWebsocket} = this.props;
     let _this = this;
+
+    setWebsocket()
     window.addEventListener('message', function (e) {
       if (e.data.message) {
         _this.setState({address: e.data.message.data});
@@ -1230,7 +1233,7 @@ function mapStateToProps(state) {
     wallet: state.wallet,
     theme: state.app.theme,
     flags: state.app.flags,
-    syncStatus: state.app.syncStatus,
+    syncStatus: state.app.syncStatus
   };
 }
 
@@ -1243,6 +1246,7 @@ const mapDispatchToProps = {
   setActiveCurrency,
   setTheme,
   enableFlag,
+  setWebsocket
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(withRouter(injectIntl(Navigation)))
