@@ -83,27 +83,31 @@ class Notifications extends React.Component {
 
   componentDidUpdate(prevProps) {
     let {wallet,wsdata} = this.props;
-    if(prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address){
-      
-    }
     if (prevProps.wallet.current === null || wallet.current.address !== prevProps.wallet.current.address || wsdata !== prevProps.wsdata) {
       this.reconnect();
     }
   }
 
   reconnect() {
-    let {wallet, websocket, wsdata} = this.props;
-    this.listener && this.listener.close();
+    let {wallet, wsdata} = this.props;
+    // this.listener && this.listener.close();
 
     if (!wallet.isOpen) {
       return;
     }
-    console.log(wsdata)
-    // websocket.send(wallet.current.address)
+    
 
-    this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
-    this.listener.on("transfer", trx => {
-     
+    // this.listener = channel("/address-" + wallet.current.address,{ forceNew:true });
+    // this.listener.on("transfer", trx => {
+
+    if(wsdata && wsdata.type=== 'transfer'){
+     const trx = wsdata.data
+
+      trx.timestamp = trx.date_created
+      trx.tokenName = trx.token_name
+      trx.transactionHash = trx.hash
+      trx.transferFromAddress = trx.owner_address
+      trx.transferToAddress = trx.to_address
      
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
@@ -129,32 +133,32 @@ class Notifications extends React.Component {
         }
       });
       this.props.reloadWallet();
-    });
+    }
 
+    //TODO vote Ws 
+    // this.listener.on("vote", vote => {
+    //   if (vote.candidateAddress === wallet.current.address) {
+    //     sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
+    //       icon: require("../../images/tron-logo.jpg")
+    //     });
+    //     this.setState(state => ({
+    //       notifications: [{
+    //         id: this.id++,
+    //         type: "vote",
+    //         ...vote,
+    //       }, ...state.notifications.slice(0, 9)]
+    //     }));
+    //   }
+    // });
 
-    this.listener.on("vote", vote => {
-      if (vote.candidateAddress === wallet.current.address) {
-        sendNotification(`Received ${vote.votes} votes from ${vote.voterAddress}`, {
-          icon: require("../../images/tron-logo.jpg")
-        });
-        this.setState(state => ({
-          notifications: [{
-            id: this.id++,
-            type: "vote",
-            ...vote,
-          }, ...state.notifications.slice(0, 9)]
-        }));
-      }
-    });
-
-    this.listener.on("witness-create", event => {
-      this.props.reloadWallet();
-    });
+    // this.listener.on("witness-create", event => {
+    //   this.props.reloadWallet();
+    // });
   }
 
 
   componentWillUnmount() {
-    this.listener && this.listener.close();
+    // this.listener && this.listener.close();
   }
 
   enableDesktopNotifications = async () => {
@@ -217,7 +221,6 @@ class Notifications extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    websocket: state.account.websocket,
     wsdata: state.account.wsdata
   }
 }

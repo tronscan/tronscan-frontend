@@ -55,7 +55,7 @@ export const setLoginWithTronLink = (address,tronWeb) => ({
     tronWeb
 });
 
-export const logout = () => ({
+export const setlLogout = () => ({
   type: LOGOUT
 });
 
@@ -70,6 +70,12 @@ export const setActiveCurrency = currency => ({
   currency
 });
 
+export const logout = () => (dispatch, getState) => {
+  const { account } = getState()
+  account.websocket.send('cancel')
+  dispatch(setlLogout())
+}
+
 export const login = privateKey => async (dispatch, getState) => {
   // let accountKey = Lockr.set("account_key", privateKey);
   // if (Lockr.get("account_address")) {
@@ -81,6 +87,8 @@ export const login = privateKey => async (dispatch, getState) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(getState().app.account.address));
+    await getState().account.websocket.send('cancel')
+    await getState().account.websocket.send(getState().app.account.address)
   // }
 };
 
@@ -90,11 +98,13 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    getState().account.websocket.send('cancel')
+    getState().account.websocket.send(address)
   }, 50);
 };
 
 
-export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
+export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState) => {
 
     dispatch(setWalletLoading(true));
     await dispatch(setLoginWithTronLink(address,tronWeb));
@@ -102,6 +112,8 @@ export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(address));
+    await getState().account.websocket.send('cancel')
+    await getState().account.websocket.send(address)
     //},50)
 };
 

@@ -53,7 +53,6 @@ export const setWebsocket = (address) => async (dispatch) => {
     minReconnectionDelay: 500
   })
   websocket.onopen = res => { 
-    console.log('创建一次链接！！')
   }
 
   websocket.onmessage = res => {
@@ -67,6 +66,5 @@ export const setWebsocket = (address) => async (dispatch) => {
   window.onbeforeunload = function() {
     websocket.close()
   }
-  console.log(websocket)
   dispatch(setWebsocketFn(websocket))
 };
