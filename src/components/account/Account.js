@@ -108,7 +108,7 @@ export default class Account extends Component {
       });
     }
 
-    Client.getIssuedAsset({owner:account.address}).then(({token}) => {
+    Client.getIssuedAsset(account.address).then(({token}) => {
       this.setState({
         issuedAsset: token,
       });
