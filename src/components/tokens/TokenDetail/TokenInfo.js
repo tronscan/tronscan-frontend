@@ -55,7 +55,7 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("circulating_supply")}:</th>
               <td>
-                <FormattedNumber value={token.issued}/>
+                <FormattedNumber  value={token.precision ? token.issued / Math.pow(10,token.precision) :token.issued}/>
               </td>
             </tr>
             <tr>

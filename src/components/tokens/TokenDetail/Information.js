@@ -35,7 +35,7 @@ export function Information({token}) {
                 </Link>
     },{ 
       name: 'circulating_supply', 
-      content: <FormattedNumber value={token.issued}/>
+      content: <FormattedNumber value={token.precision ? token.issued / Math.pow(10,token.precision) :token.issued}/>
     },{ 
       name: 'website', 
       content: <ExternalLink url={token.url}/>

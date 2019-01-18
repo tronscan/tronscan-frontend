@@ -729,8 +729,8 @@ export const messages = {
     "app": "APP",
     "install_latest_version_message_0": "安装最新版本的",
     "opening_your_wallet": "钱包打开中",
-    "open_the_tronscan_desktop_client": "打开波场区块链浏览器桌面版客户端",
-    "click_open_wallet_top_right": "点击右上角的“打开钱包”",
+    "open_the_tronscan_desktop_client": "打开波场区块链浏览器:",
+    "click_open_wallet_top_right": "点击右上角的“登录”",
     "choose_ledger": "选择Ledger",
     "connect_unlock_ledger_with_pin": "连接并使用密码解锁设备",
     "open_tron_app_on_ledger": "在Ledger上打开TRON APP ",
@@ -738,7 +738,7 @@ export const messages = {
     "click_on_open_wallet": "点击“打开钱包”",
     "redirect_to_your_wallet_message": "将跳转至您的钱包，可以在钱包查看您的波场地址",
     "using_ledger_to_sign_transactions": "使用Ledger对交易进行签名",
-    "using_ledger_to_sign_transactions_message_0": "在使用Ledger和桌面版波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持TRON APP处于开启状态",
+    "using_ledger_to_sign_transactions_message_0": "在使用Ledger和波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持TRON APP处于开启状态",
     "using_ledger_to_sign_transactions_message_1": "需要对交易签名时，区块链浏览器会弹出窗口，显示交易信息。在投票、发送TRX、更改账户名称等过程中，都需要进行交易签名。",
     /*
     ##################################################################################
@@ -1526,16 +1526,12 @@ export const messages = {
     "check_my_token":"查看我发行的通证",
     "totle_transactions_per_day":"总交易数",
     "tron_total_transactions_chart":"TRON总交易数图表",
-
     "sign_in_with_ledger":"LEDGER登录",
-
-
-
     "can_be_unlocked_now": "通证可以解锁",
     "TRC20_under_maintenance":"TRC20正在维护中",
     "transaction_fewer_than_100000":"1. 交易数据≤100,000条时，展示全部数据",
     "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
-
+    "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
 
 
 };

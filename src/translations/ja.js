@@ -1524,12 +1524,11 @@ export const messages = {
     "totle_transactions_per_day":"合計トランザクション",
     "tron_total_transactions_chart":"TRONトータルトランザクションチャート",
     "can_be_unlocked_now": "でロックを解除する",
-
     "sign_in_with_ledger":"LEDGERログイン",
-
     "TRC20_under_maintenance":"TRC20 メンテナンス中",
     "transaction_fewer_than_100000":"1．取引データ量が100,000未満の場合、すべてのデータを表示します",
     "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
+    "the_token_wait_few_minutes":"新しく作成されたパスは、数分後にウォレットページに表示されます。",
 
 }
 
