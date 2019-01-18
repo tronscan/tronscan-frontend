@@ -725,8 +725,8 @@ export const messages = {
   "app": "アプリ",
   "install_latest_version_message_0": "最新バージョンをインストールする",
   "opening_your_wallet": "ウォレットを開ける中",
-  "open_the_tronscan_desktop_client": "ブロックチェーン・エクスプローラーのデスクトップ端末を開ける",
-  "click_open_wallet_top_right": "右上の「ウォレットを開ける」をクリックする",
+  "open_the_tronscan_desktop_client": "ブロックチェーン・エクスプローラーのを開ける",
+  "click_open_wallet_top_right": "右上の「ログイン」をクリックする",
   "choose_ledger": "Ledgerを選択する",
   "connect_unlock_ledger_with_pin": "設備と接してパスワードを使って設備ロックを解除する",
   "open_tron_app_on_ledger": "LedgerでTRONアプリを開ける ",
@@ -734,7 +734,7 @@ export const messages = {
   "click_on_open_wallet": "「ウォレットを開ける」をクリックする",
   "redirect_to_your_wallet_message": "お客様のウォレットにジャンプし、ウォレットで自分のTRONアドレスをチェックできる",
   "using_ledger_to_sign_transactions": "Ledgerを使って、取引にサインする",
-  "using_ledger_to_sign_transactions_message_0": "LedgerとTRONブロックチェーンエクスプローラーのデスクトップ版を使って、トランザクションに署名する中では、接続を中断せずにTRON APPを開いたままにしてください。",
+  "using_ledger_to_sign_transactions_message_0": "LedgerとTRONブロックチェーンエクスプローラーのを使って、トランザクションに署名する中では、接続を中断せずにTRON APPを開いたままにしてください。",
   "using_ledger_to_sign_transactions_message_1": "取引に署名する必要がある場合、ブロックチェーンエクスプローラーは取引情報を表示するウィンドウを表示します。 投票、TRXの送信、アカウント名の変更などの処理では、取引の署名が必要です。",
   /*
   ##################################################################################
