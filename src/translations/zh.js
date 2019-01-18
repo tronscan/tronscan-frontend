@@ -653,7 +653,7 @@ export const messages = {
     ##################################################################################
     */
     "what_is_tron": "波场白皮书 V2.0",
-    "tron_explorer_api": "波场浏览器API",
+    "tron_explorer_api": "TRONSCAN API",
     "tron_architechure": "波场架构",
     "tron_protobuf_doc": "TRON Protobuf文档",
     "report_an_error": "提交BUG/建议",

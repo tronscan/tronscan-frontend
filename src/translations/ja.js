@@ -649,7 +649,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "TRONホワイトペーパーV2.0",
-  "tron_explorer_api": "TRONエクスプローラーAPI",
+  "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRONストラクチャー",
   "tron_protobuf_doc": "TRON PROTOBUFドキュメント",
   "report_an_error": "バグ・意見を提出する",

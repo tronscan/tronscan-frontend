@@ -35,7 +35,7 @@
   "VoteOverview.js": "static/js/VoteOverview.0e6057bc.chunk.js",
   "WalletWizard.js": "static/js/WalletWizard.93dfcf43.chunk.js",
   "bootstrap.css": "d26ecc887c12f855a908679dae6704e3.css",
-  "languages.js": "static/js/languages.56af1d5d.chunk.js",
+  "languages.js": "static/js/languages.28732962.chunk.js",
   "main.css": "static/css/main.85328733.css",
   "main.js": "static/js/main.a6285528.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
@@ -72,5 +72,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.94a76f91.js"
+  "vendors.js": "static/js/vendors.eb83c1eb.js"
 }
