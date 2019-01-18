@@ -48,7 +48,7 @@ export const loadRecentTransactions = (address) => async (dispatch) => {
 
 
 export const setWebsocket = (address) => async (dispatch) => {
-  var wsUri = "ws://172.16.20.200:6688/api/tronsocket";
+  var wsUri = "wss://apilist.tronscan.org/api/tronsocket";
   let websocket = new ReconnectingWebSocket(wsUri, [], {
     minReconnectionDelay: 500
   })

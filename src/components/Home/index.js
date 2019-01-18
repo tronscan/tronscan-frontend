@@ -21,10 +21,11 @@ import {API_URL} from "../../constants";
 @connect(
   state => (
     {
-      blocks: state.blockchain.blocks,
-      account: state.app.account,
-      theme: state.app.theme,
-      activeLanguage: state.app.activeLanguage
+        blocks: state.blockchain.blocks,
+        account: state.app.account,
+        theme: state.app.theme,
+        activeLanguage: state.app.activeLanguage,
+        wsdata: state.account.wsdata
     }
   ),
 )
