@@ -179,9 +179,9 @@ export default class Home extends Component {
     const info = wsdata.type === 'tps'&& wsdata.data
 
     this.setState({
-      maxTps:info.maxTps,
-      tps:info.currentTps,
-      blockHeight:info.blockHeight,
+      maxTps:info.maxTps?info.maxTps:0,
+      tps:info.currentTps?info.currentTps:0,
+      blockHeight:info.blockHeight?info.blockHeight:0,
     })
   }
 
