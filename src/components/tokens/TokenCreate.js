@@ -269,7 +269,6 @@ class TokenCreate extends Component {
     let {wallet} = this.props;
     if (wallet !== null) {
       Client.getIssuedAsset(wallet.address).then(({token}) => {
-
         if (token) {
           this.setState({
             issuedAsset: token,
