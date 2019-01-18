@@ -159,6 +159,13 @@ export default class Home extends Component {
     // }, 6000);
   }
 
+  componentDidUpdate(prevProps) {
+    const {wsdata} = this.props
+    if (wsdata !== prevProps.wsdata) {
+      this.reconnect();
+    }
+  }
+
 
 
   componentWillUnmount() {
@@ -167,15 +174,14 @@ export default class Home extends Component {
   }
 
   reconnect() {
-      this.listener && this.listener.close();
-      this.listener = channel("/tronblock",{ forceNew:true });
-      this.listener.on("tron-block", info => {
-          this.setState({
-              maxTps:info.maxTps,
-              tps:info.tps,
-              blockHeight:info.maxBlock,
-          })
-      });
+    const {wsdata} = this.props
+    const info = wsdata.type === 'tps'&& wsdata.data
+
+    this.setState({
+      maxTps:info.maxTps,
+      tps:info.currentTps,
+      blockHeight:info.blockHeight,
+    })
   }
 
   getLogo = () => {
@@ -365,3 +371,17 @@ const styles = {
     borderRadius: 0
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    blocks: state.blockchain.blocks,
+    account: state.app.account,
+    theme: state.app.theme,
+    activeLanguage: state.app.activeLanguage,
+    wsdata: state.account.wsdata
+  };
+}
+
+const mapDispatchToProps = {};
+
+

@@ -11,7 +11,7 @@ export const setActiveWallet = (wallet) => ({
 });
 
 export const reloadWallet = () => async (dispatch, getState) => {
-  let {app} = getState();
+  let {app, account} = getState();
 
   if (app.account.isLoggedIn) {
     let {balances, trc20token_balances, frozen, accountResource, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
@@ -23,7 +23,7 @@ export const reloadWallet = () => async (dispatch, getState) => {
     let balances_new = rebuildList(balances, 'name', 'balance');
     dispatch(setActiveWallet(wallet));
     dispatch(setTokenBalances(balances_new, trc20token_balances, frozen, accountResource.frozen_balance_for_energy));
-  }
+
 };
 
 export const setWalletLoading = (loading = true) => ({
