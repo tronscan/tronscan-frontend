@@ -30,8 +30,7 @@ export function Information({token}) {
     },{ 
       name: 'reputation', 
       content:  <Link to={`/rating`} style={{display: 'flex', alignItems: 'center'}}>
-                  {tu(token.reputation)}
-                  <img src={require('../../../images/state/' + lowerText)} className="ml-1 faceico"/>
+                  {tu(toLower(token.reputation))}
                 </Link>
     },{ 
       name: 'circulating_supply', 
