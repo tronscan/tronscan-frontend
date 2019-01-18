@@ -1420,7 +1420,7 @@ export default class Account extends Component {
                         </td>
                       </tr>
                       {
-                        wallet.current && wallet.current.frozen_supply.length > 0 &&
+                          currentWallet && currentWallet.frozen_supply.length > 0 &&
                         <tr>
                           <th>{tu("frozen_supply")}:</th>
                           <td>
@@ -1431,7 +1431,7 @@ export default class Account extends Component {
                               {tu("unfreeze_assets")}
                             </a>
                             {
-                              wallet.current.frozen_supply.map((frozen, index) => (
+                                currentWallet.frozen_supply.map((frozen, index) => (
                                   <div key={index}>
                                     {frozen.amount / Math.pow(10, issuedAsset.precision)}
                                     {
