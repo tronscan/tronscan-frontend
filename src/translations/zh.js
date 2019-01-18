@@ -1535,7 +1535,7 @@ export const messages = {
     "TRC20_under_maintenance":"TRC20正在维护中",
     "transaction_fewer_than_100000":"1. 交易数据≤100,000条时，展示全部数据",
     "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
-
+    "not_login":"未登录",
 
 
 };

@@ -5,7 +5,10 @@ import {find} from "lodash";
 import SendForm from "./SendForm";
 import {Modal, ModalBody, ModalHeader} from "reactstrap";
 import SweetAlert from "react-bootstrap-sweetalert";
+import {tu} from "../../../utils/i18n";
+import {injectIntl} from "react-intl";
 
+@injectIntl
 class SendModal extends React.PureComponent {
 
   constructor({isOpen = false, to = ""}) {
@@ -40,14 +43,14 @@ class SendModal extends React.PureComponent {
 
   render() {
 
-    let {account} = this.props;
+    let {intl, account} = this.props;
 
     let {modal} = this.state;
 
     if (!account.isLoggedIn) {
       return (
-          <SweetAlert danger title="Not logged in" onConfirm={this.hideModal}>
-            You have to be logged in to make transactions
+          <SweetAlert danger title={intl.formatMessage({id: 'not_login'})} onConfirm={this.hideModal}>
+            {tu("login_first")}
           </SweetAlert>
       )
     }
