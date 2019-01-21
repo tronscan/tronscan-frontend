@@ -160,16 +160,14 @@ export const disableFlag = flag => ({
 
 
 async function setWebsocketContent(getState, address){
-  let { account } = getState()
+  let { account, app } = getState()
   const localAddress = Lockr.get('localAddress')
-  if(localAddress){
+
+  if(app.wallet.type === 'ACCOUNT_TRONLINK'){
     if(localAddress !== address){
       await account.websocket.send('cancel:'+localAddress)
-      Lockr.set('localAddress', address)
     }
-    await account.websocket.send(address)
-  }else{
-    await account.websocket.send(address)
-    Lockr.set('localAddress', address)
   }
+  await account.websocket.send(address)
+  Lockr.set('localAddress', address)
 }
