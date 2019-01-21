@@ -346,19 +346,23 @@ class ExchangeList extends React.Component {
                     {/* filter 筛选 */}
                 
                     <div className="dex-tab">
+                        {/*<div*/}
+                            {/*className={"btn-sm dex-tab-TRC20"}*/}
+                            {/*id={this.state.id}*/}
+                            {/*onMouseOver={() => this.setState({open: true})}*/}
+                            {/*onMouseOut={() => this.setState({open: false})}*/}
+                           {/*// onClick={() => this.gotoTrc20()}*/}
+                        {/*>*/}
+                            {/*<i></i>*/}
                         <div
-                            className={"btn-sm dex-tab-TRC20"}
-                            id={this.state.id}
-                            onMouseOver={() => this.setState({open: true})}
-                            onMouseOut={() => this.setState({open: false})}
-                           // onClick={() => this.gotoTrc20()}
+                             className="btn btn-sm"
+                             onClick={() => this.gotoTrc20()}
                         >
-                            <i></i>
                             TRC20
                         </div>
-                        <Tooltip placement="top" isOpen={open} target={id}>
-                            <span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>
-                        </Tooltip>
+                        {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
+                            {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
+                        {/*</Tooltip>*/}
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>
