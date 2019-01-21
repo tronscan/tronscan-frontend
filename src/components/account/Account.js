@@ -1599,7 +1599,7 @@ export default class Account extends Component {
           {/*</div>*/}
           {/*</div>*/}
           {/*</div>*/}
-          <div className="row mt-3">
+          <div className="row mt-3 d-none">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
