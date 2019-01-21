@@ -181,11 +181,11 @@ class Representative extends React.Component {
               <div className="card text-center">
                 <div className="card-body">
                   <Alert color="warning">
-                    {tu("unable_load_representatives_page")}
+                    {tu("unable_load_representatives_page_message")}
                   </Alert>
                 </div>
                 <p>
-                  <Link to="/votes" className="btn btn-primary">Go Back</Link>
+                  <Link to="/sr/votes" className="btn btn-primary">Go Back</Link>
                 </p>
               </div>
             </main>
