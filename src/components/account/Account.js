@@ -29,6 +29,8 @@ import {login} from "../../actions/app";
 import {loadRecentTransactions} from "../../actions/account";
 import {reloadWallet} from "../../actions/wallet";
 import {connect} from "react-redux";
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 
 @connect(
@@ -1173,15 +1175,29 @@ export default class Account extends Component {
 
   showQrCode = () => {
 
-    let {currentWallet} = this.props;
-
+    let {currentWallet,account} = this.props;
 
     this.setState({
       modal: (
           <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal}>
-            <ModalHeader toggle={this.hideModal}/>
-            <ModalBody className="text-center p-0" onClick={this.hideModal}>
-              <QRImageCode value={currentWallet.address} size={500} style={{width: '100%'}}/>
+            <ModalHeader toggle={this.hideModal}>QR CODE</ModalHeader>
+            <ModalBody className="text-center">
+              <h5 className="py-2">{tu("wallet_address")}</h5>
+              <div className="input-group mb-3">
+                <input type="text"
+                       readOnly={true}
+                       className="form-control"
+                       value={account.address}/>
+                <div className="input-group-append">
+                  <CopyToClipboard text={account.address}>
+                    <button className="btn btn-outline-secondary" type="button">
+                      <i className="fa fa-paste"/>
+                    </button>
+                  </CopyToClipboard>
+                </div>
+              </div>
+              <hr/>
+              <QRCode size={512} style={{width: '100%', height: 'auto'}} value={account.address}/><br/>
             </ModalBody>
           </Modal>
       )
