@@ -1532,6 +1532,6 @@ export const messages = {
     "transaction_fewer_than_100000":"1．取引データ量が100,000未満の場合、すべてのデータを表示します",
     "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
     "the_token_wait_few_minutes":"新しく作成されたパスは、数分後にウォレットページに表示されます。",
-
+    "not_login": "ログインしない",
 }
 
