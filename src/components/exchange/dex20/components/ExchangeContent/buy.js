@@ -90,6 +90,7 @@ class Buy extends Component {
       if (quickSelect.type != "buy") {
         return;
       }
+
       if (
         !prevProps.quickSelect.price ||
         prevProps.quickSelect.price != n.price
@@ -597,17 +598,18 @@ class Buy extends Component {
     Client20.getCurrentPrice(id).then(res => {
       if (res.code === 0 && res.data) {
         if (res.data.sellLowPrice) {
+
           price = res.data.sellLowPrice / secondPrecision;
         } else {
-          price = exchangeData.price / secondPrecision;
+          price = exchangeData.price;
         }
         this.setState(
           {
-            price: price
+            price: parseFloat(price)
           },
           () => {
             this.props.form.setFieldsValue({
-              first_quant_buy: price
+              first_quant_buy: parseFloat(price)
             });
           }
         );
