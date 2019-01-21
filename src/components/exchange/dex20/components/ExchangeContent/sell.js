@@ -290,12 +290,12 @@ class Sell extends Component {
 
     let { intl, exchangeData } = this.props;
     let secondTokenName = exchangeData.sShortName;
-    // if (price * amount < 10) {
-    //   this.setState({
-    //     secondError: intl.formatMessage({ id: "trc20_enter_10" })
-    //   });
-    //   return;
-    // }
+    if (price * amount < 10) {
+      this.setState({
+        secondError: intl.formatMessage({ id: "trc20_enter_10" })
+      });
+      return;
+    }
     if (!price || !amount || firstError || secondError || limitError) {
       return;
     }
@@ -336,7 +336,7 @@ class Sell extends Component {
     let { exchangeData, account ,walletType} = this.props;
     let { amount, price } = this.state;
     
-    let tronWebOBJ
+    let tronWebOBJ;
     if (walletType.type === "ACCOUNT_LEDGER"){
       tronWebOBJ = this.props.tronWeb();
     }else if(walletType.type === "ACCOUNT_TRONLINK" || walletType.type === "ACCOUNT_PRIVATE_KEY"){
@@ -344,7 +344,6 @@ class Sell extends Component {
     }
 
     const amountB = (amountA * price * secondPrecision) / firstPrecision;
-
     const data = {
       _user: account.address,
       _tokenA: tokenA,
@@ -625,7 +624,7 @@ class Sell extends Component {
         if (res.data.buyHighPrice) {
           price = res.data.buyHighPrice / secondPrecision;
         } else {
-          price = exchangeData.price / secondPrecision;
+          price = exchangeData.price;
         }
         this.setState(
           {

@@ -109,7 +109,7 @@ class TokenCreate extends Component {
               title={intl.formatMessage({id: 'confirm_token_issue'})}
               onConfirm={this.submit}
               onCancel={this.hideModal}
-              style={{marginLeft: '-240px', marginTop: '-195px'}}
+              //style={{marginLeft: '-240px', marginTop: '-195px'}}
           >
           </SweetAlert>)
     });
@@ -129,7 +129,7 @@ class TokenCreate extends Component {
               showCancel={false}
               cancelBtnBsStyle="default"
               title={intl.formatMessage({id: 'in_progress'})}
-              style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
+              //style={{marginLeft: '-240px', marginTop: '-195px', width: '450px', height: '300px'}}
           >
             <TronLoader/>
           </SweetAlert>,
@@ -221,13 +221,16 @@ class TokenCreate extends Component {
                   confirmBtnText={intl.formatMessage({id: 'confirm'})}
                   confirmBtnBsStyle="success"
                   onConfirm={this.redirectToTokenList}
-                  style={{marginLeft: '-240px', marginTop: '-195px'}}
+                  style={{ marginTop: '-240px'}}
               >
                 {tu("token_issued_successfully")}<br/>
                 {tu("Create_token_link_message_0")}<br/><br/>
                   <Link to="/account" className="mt-2 check_my_token" style={{color: "#C23631 !important" }}>
                       {tu("check_my_token")}>>
-                  </Link>
+                  </Link><br/><br/>
+                <p className="token_wait_few_minutes">
+                  *{tu("the_token_wait_few_minutes")}
+                </p>
               </SweetAlert>
         });
         if(logoData){

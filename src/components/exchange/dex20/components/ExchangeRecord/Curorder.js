@@ -229,11 +229,16 @@ class Curorder extends Component {
   }
 
   async cancleOrderFun(item) {
-    let { app, setUpdateTran } = this.props;
+    let { app, setUpdateTran, walletType, account } = this.props;
+      let tronWebOBJ
+      if (walletType.type === "ACCOUNT_LEDGER"){
+          tronWebOBJ = this.props.tronWeb();
+      }else if(walletType.type === "ACCOUNT_TRONLINK" || walletType.type === "ACCOUNT_PRIVATE_KEY"){
+          tronWebOBJ = account.tronWeb;
+      }
 
-    let tronWeb = app.account ? this.props.tronWeb() : window.tronWeb;
     try {
-      const _id = await TW.cancelOrder(item.orderID, tronWeb);
+      const _id = await TW.cancelOrder(item.orderID, tronWebOBJ);
       if (_id) {
         this.setState({
           modal: (
@@ -279,7 +284,9 @@ class Curorder extends Component {
 function mapStateToProps(state) {
   return {
     app: state.app ? state.app : {},
-    wallet: state.wallet ? state.wallet.isOpen : false
+    wallet: state.wallet ? state.wallet.isOpen : false,
+    walletType: state.app.wallet,
+    account: state.app.account,
   };
 }
 

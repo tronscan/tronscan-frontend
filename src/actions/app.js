@@ -2,6 +2,7 @@ import {Client} from "../services/api";
 import xhr from "axios";
 import {loadRecentTransactions} from "./account";
 import {reloadWallet, setWalletLoading} from "./wallet";
+import Lockr from "lockr";
 
 export const SET_ACCOUNTS = "SET_ACCOUNTS";
 export const LOGIN_LEDGER = 'LOGIN_LEDGER';
@@ -60,7 +61,7 @@ export const setLoginWithTronLink = (address,tronWeb) => ({
     tronWeb
 });
 
-export const logout = () => ({
+export const setlLogout = () => ({
   type: LOGOUT
 });
 
@@ -75,6 +76,13 @@ export const setActiveCurrency = currency => ({
   currency
 });
 
+export const logout = () => (dispatch, getState) => {
+  const { account, app } = getState()
+  account.websocket.send('cancel:'+app.account.address)
+  Lockr.rm('localAddress')
+  dispatch(setlLogout())
+}
+
 export const login = privateKey => async (dispatch, getState) => {
   // let accountKey = Lockr.set("account_key", privateKey);
   // if (Lockr.get("account_address")) {
@@ -86,6 +94,7 @@ export const login = privateKey => async (dispatch, getState) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(getState().app.account.address));
+    await setWebsocketContent(getState, getState().app.account.address)
   // }
 };
 
@@ -95,6 +104,7 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    setWebsocketContent(getState, address)
   }, 50);
 };
 
@@ -105,10 +115,11 @@ export const loginWithLedger = (address) => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    setWebsocketContent(getState, address)
   }, 50);
 };
 
-export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
+export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState) => {
 
     dispatch(setWalletLoading(true));
     await dispatch(setLoginWithTronLink(address,tronWeb));
@@ -116,6 +127,7 @@ export const loginWithTronLink = (address,tronWeb) => async (dispatch) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(address));
+    await setWebsocketContent(getState, address)
     //},50)
 };
 
@@ -145,3 +157,19 @@ export const disableFlag = flag => ({
   type: DISABLE_FLAG,
   flag
 });
+
+
+async function setWebsocketContent(getState, address){
+  let { account } = getState()
+  const localAddress = Lockr.get('localAddress')
+  if(localAddress){
+    if(localAddress !== address){
+      await account.websocket.send('cancel:'+localAddress)
+      Lockr.set('localAddress', address)
+    }
+    await account.websocket.send(address)
+  }else{
+    await account.websocket.send(address)
+    Lockr.set('localAddress', address)
+  }
+}

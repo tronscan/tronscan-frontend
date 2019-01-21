@@ -23,15 +23,12 @@ export default class LedgerHelp extends Component {
                       {tu('install_the')}<HrefLink href="https://www.ledgerwallet.com/live"> Ledger
                       Live </HrefLink> {tu('app')}
                     </li>
-                    <li>
-                      {tu('install_latest_version_message_0')} <HrefLink
-                        href="https://github.com/tronscan/tronscan-desktop/releases">Tronscan Desktop</HrefLink>
-                    </li>
                   </ol>
                   <h3>{tu('opening_your_wallet')}</h3>
                   <ol>
                     <li>
-                      {tu('open_the_tronscan_desktop_client')}
+                      {tu('open_the_tronscan_desktop_client')}<HrefLink
+                        href="https://tronscan.org/">tronscan.org</HrefLink>
                     </li>
                     <li>
                       {tu('click_open_wallet_top_right')}

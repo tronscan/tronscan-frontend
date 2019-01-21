@@ -660,7 +660,7 @@ export const messages = {
   ##################################################################################
   */
   "what_is_tron": "TRON whitepaper V2.0",
-  "tron_explorer_api": "TRON Explorer API",
+  "tron_explorer_api": "TRONSCAN API",
   "tron_architechure": "TRON Architecture",
   "tron_protobuf_doc": "TRON Protobuf Doc",
   "report_an_error": "Submit bug / suggestion",
@@ -736,8 +736,8 @@ export const messages = {
   "app": "app",
   "install_latest_version_message_0": "Install the latest version of ",
   "opening_your_wallet": "Opening your wallet",
-  "open_the_tronscan_desktop_client": "Open the Tronscan Desktop client",
-  "click_open_wallet_top_right": "Click &ldquo;Open Wallet&rdquo; at the top right",
+  "open_the_tronscan_desktop_client": "Open the blockchain explorer: ",
+  "click_open_wallet_top_right": "Click &ldquo;Sign in&rdquo; at the top right",
   "choose_ledger": "Choose Ledger",
   "connect_unlock_ledger_with_pin": "Connect and unlock your device with your PIN code",
   "open_tron_app_on_ledger": "Open the TRON app on your Ledger",
@@ -745,7 +745,7 @@ export const messages = {
   "click_on_open_wallet": "Click on &ldquo;Open Wallet&rdquo",
   "redirect_to_your_wallet_message": "You will be redirected to your wallet and you can view your TRON address",
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
-  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan Desktop",
+  "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
   /*
   ##################################################################################
@@ -1531,6 +1531,7 @@ export const messages = {
   "uninstall_TRONlink": "Haven't installed TRONlink yet? Click here",
   "change_login_method": "TRONlink login does not support this function at present, please use private key or keystore file to login .",
   "Create_token_link_message_0": "The token will be listed only if it has passed the token review of tronscan.",
+<<<<<<< HEAD
   "sign_in_TRONlink_warning_0": "Please log in to the TRONlink wallet!",
   "account_ad": "Win dice tokens by playing TRONDice. Pledge dice tokens to win TRX dividends every day",
   "bandwidth_tip": "On TRON, bandwidths will be consumed with any transaction but query 5,000 bandwidths will be given to each activated account every day by the system. Users can earn bandwidths by freezing TRX.",
@@ -1549,5 +1550,23 @@ export const messages = {
   "transaction_fewer_than_100000": "1. When there are fewer than 100,000 (including 100,000) transaction data entries, all the data will be displayed.",
   "transaction_more_than_100000": "2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
   "not_login": "Not Login",
+=======
+  "sign_in_TRONlink_warning_0":"Please log in to the TRONlink wallet!",
+  "account_ad":"Win dice tokens by playing TRONDice. Pledge dice tokens to win TRX dividends every day",
+  "bandwidth_tip":"On TRON, bandwidths will be consumed with any transaction but query 5,000 bandwidths will be given to each activated account every day by the system. Users can earn bandwidths by freezing TRX.",
+  "energy_tip":"On TRON, the creation and triggering of smart contracts consume Energy. Users can gain Energy through freezing TRX.",
+  "power_tip":"TRON Power (TP) is used for voting for TRON SRs. Users can gain TP through freezing TRX.",
+  "token_precision":"Token Precision",
+  "token_precision_message_0":"Set the precision of the token as required, the range is 0-6",
+  "check_my_token":"Check my token",
+  "totle_transactions_per_day":"Total Daily Transactions",
+  "tron_total_transactions_chart":"TRON Total Transactions Chart",
+  "sign_in_with_ledger":"LEDGER",
+  "can_be_unlocked_now": "can be unlocked",
+  "TRC20_under_maintenance":"TRC20 under maintenance",
+  "transaction_fewer_than_100000":"1. When there are fewer than 100,000 (including 100,000) transaction data entries, all the data will be displayed.",
+  "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
+  "the_token_wait_few_minutes":"The token will be displayed in the account page in a few minutes.",
+>>>>>>> dev2019
 
 };

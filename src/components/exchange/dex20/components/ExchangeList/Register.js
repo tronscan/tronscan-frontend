@@ -78,7 +78,7 @@ class Register extends Component{
             key: 'sell',
             render: (text, record, index) => {
               return <div className="col-red">
-                {intl.formatMessage({id: 'trc20_sell'})}{(limit-index)}
+                {intl.formatMessage({id: 'trc20_sell'})}{(sellList.length<8?sellList.length-index:limit-index)}
               </div>
             }
           },

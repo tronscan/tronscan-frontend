@@ -510,6 +510,7 @@ export const messages = {
     之后用户可以在发行期限内参与认购，用TRX兑换通证。`,
   "token_issue_guide_message_3": `在发行通证后，您的账户将会收到全部的发行数额。
     当其他用户使用TRX兑换您发行的通证，兑换数额将从您的账户扣除，并以指定汇率获得相应数额的TRX。`,
+<<<<<<< HEAD
   /*
   ##################################################################################
   #                                                                                #
@@ -849,6 +850,376 @@ export const messages = {
     ##################################################################################
     #                                                                                #
     # new variables    20180822 17:11:52                                                              #
+=======
+    /*
+    ##################################################################################
+    #                                                                                #
+    # token creation - error messages                                                #
+    #                                                                                #
+    ##################################################################################
+    */
+    "date_error": "结束日期早于开始日期，或与开始日期相同",
+    "no_name_error": "请填写名称",
+    "no_supply_error": "发行总量至少为1",
+    "coin_value_error": "单位通证数量对应的TRX价值至少为1",
+    "tron_value_error": "TRX的数量至少为1",
+    "invalid_starttime_error": "所填写的开始日期无效",
+    "invalid_endtime_error": "所填写的结束日期无效",
+    "no_description_error": "请填写描述",
+    "no_url_error": "请填写网站URL",
+    "past_starttime_error": "开始日期早于今日日期",
+    "no_transactions": "无交易",
+    "errors_in_form": "表格中有填写错误，请检查后再试",
+    "token_link_message_0": "该通证将展示在",
+    "token_link_message_1": "通证页面",
+    "token_link_message_2": "在几分钟之内",
+    "description_error_message_0": "描述需要不超过200个字符",
+    "token_creation_error": "尝试创建通证时发生错误",
+    "tokenname_error_message_0": "名称需要不超过32个字符",
+    "tokenname_error_message_1": "名称只能包含a-Z的字母",
+    "abbreviation_required": "需要设置一个缩写",
+    "abbreviation_error_message_0": "缩写需要不超过5个字符",
+    "abbreviation_error_message_1": "缩写只能包含a-Z的字母",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # representatives section                                                        #
+    #                                                                                #
+    ##################################################################################
+    */
+    "highest_productivity": "出块效率最高",
+    "lowest_productivity": "出块效率最低",
+    "Super Representatives": "超级代表",
+    "Super Representative Candidates": "超级代表候选人",
+    "loading_representatives": "超级代表加载中",
+    "address_not_super_representative": "本地址非超级代表",
+    "unable_load_representatives_page_message": "页面加载失败，可能原因为地址无效、非超级代表地址或超级代表尚未设置此页面。",
+    "loading_representative": "超级代表加载中",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # markets section                                                                #
+    #                                                                                #
+    ##################################################################################
+    */
+    "average_price_usd": "平均价格（单位：美元）",
+    "average_volume_usd": "平均成交量（单位：美元）",
+    "Trade Volume": "交易量（单位：美元）",
+    "rank": "排名",
+    "pair": "交易对",
+    "volume": "交易量",
+    "usd": "美元",
+    "average_price": "TRX平均价格",
+    "click_the_chart_title_to_find_more": "点击图表标题，查看更多信息",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # votes section                                                                  #
+    #                                                                                #
+    ##################################################################################
+    */
+    "next_round": "下一轮投票",
+    "total_votes": "总票数",
+    "most_ranks": "排名上升最多",
+    "view_live_ranking": "查看实时排名",
+    "open_team_page": "查看团队页面",
+    "warning_votes": "投票需要至少1单位TRON Power，TRON Power 可以通过在(账户页面)冻结TRX获得。",
+    "account_page": "账户页面",
+    "loading_votes": "投票加载中",
+    "3_day_ranking": "三日投票排名(Top 10)",
+    "live_ranking": "实时排名",
+    "live_ranking_msg": "票数每15秒刷新，新增票数可能需要1-2分钟才会计入总票数。",
+    "candidate": "候选人",
+    "current_votes": "当前票数",
+    "click_to_start_voting": "点击进行投票",
+    "votes_remaining_message": "剩余票数",
+    "open_wallet_start_voting_message": "进入钱包开始投票",
+    "thanks_submitting_vote_message": "感谢您的投票!",
+    "need_min_trx_to_vote_message": "您至少需要持有1TRX才能开始投票",
+    "to_much_votes_massage": "投票数量过多!",
+    "all_votes_are_used_message": "您已用尽所有票数!",
+    "submissing_vote_message_title": "感谢您的投票!",
+    "submissing_vote_message_0": "您已投票成功，将会在新一轮投票中生效。",
+    "submissing_vote_message_1": "您可以随时重新分配您的票数",
+    "submitting_vote_error_message": "提交投票时发生错误，请稍后再次尝试。",
+    "loading_super_representatives": "正在加载超级代表",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # transaction Viewer                                                             #
+    #                                                                                #
+    ##################################################################################
+    */
+    "info_tx_viewer": "在此处粘贴十六进制交易哈希值，查看交易内容，随后交易会进行全网广播。",
+    "load_tx": "上传交易",
+    "tx_qrcode": "交易二维码",
+    "load_tx_qrcode": "扫描二维码上传交易",
+    "transaction_load_error": "交易上传错误",
+    "transaction_load_error_message": "上传交易时发生错误，请确认交易哈希值格式正确",
+    "transaction_success_message": "交易广播成功",
+    "transaction_success": "交易成功",
+    "transaction_error_message": "广播交易过程中发生错误",
+    "transaction_error": "交易错误",
+    "confirm_transaction_message": "是否确认发送交易？",
+    "broadcast_transaction_to_network": "全网交易广播",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # tools node tester                                                              #
+    #                                                                                #
+    ##################################################################################
+    */
+    "node_tester_msg": "输入节点IP测试GRPC连接状况",
+    "node_tester_stop": "请停止测试",
+    "node_tester_test": "测试GRPC",
+    "node_tester_rt": "响应时间",
+    "confirmed_block": "已确认的区块",
+    "loading": "加载中",
+    "connection_node": "链接节点",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # tools scanner                                                                  #
+    #                                                                                #
+    ##################################################################################
+    */
+    "no_webcam_found": "未发现网络摄像头",
+    "trying_enable_webcam_message_0": "开启网络摄像头时发生错误。",
+    "trying_enable_webcam_message_1": "请确认摄像头权限已开启。",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # help section                                                                   #
+    #                                                                                #
+    ##################################################################################
+    */
+    "what_is_tron": "波场白皮书 V2.0",
+    "tron_explorer_api": "TRONSCAN API",
+    "tron_architechure": "波场架构",
+    "tron_protobuf_doc": "TRON Protobuf文档",
+    "report_an_error": "提交BUG/建议",
+    "frequently_asked_questions": "常见问题",
+    "telegram_updates": "Telegram更新",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # wallet section                                                                 #
+    #                                                                                #
+    ##################################################################################
+    */
+    "open_wallet": "登录",
+    "private_key": "私钥",
+    "keystore_file": "密钥库文件",
+    "select_file": "选择文档",
+    "login_mobile": "使用移动设备登录",
+    "create_wallet": "创建钱包",
+    "no_open_wallet": "未打开钱包以供查看",
+    "new_wallet": "新钱包",
+    "password_encr_key_message_0": "此密码用于加密私钥，不作为生成私钥的种子。",
+    "password_encr_key_message_1": "您需要使用此密码及私钥才能解锁钱包。",
+    "strong_password_info": "请使用高强度密码。",
+    "save_keystore_file": "保存私钥库文件",
+    "download_keystore_file": "下载密钥",
+    "do_not_lose_it": "请勿遗失！",
+    "do_not_lose_it_message_0": "波场基金将无法帮助您找回遗失的密钥。",
+    "do_not_share_it": "请勿向他人分享！",
+    "do_not_share_it_message_0": "如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。",
+    "make_a_backup": "请制作备份！",
+    "make_a_backup_message_0": "以防您的电脑故障。",
+    "save_private_key": "请保管好您的私钥",
+    "print_paper_wallet": "打印纸钱包",
+    "new_wallet_ready_message": "新钱包已准备就绪",
+    "go_to_account_page": "进入账户页面",
+    "login_first": "请先登录钱包",
+    "contract_name": "合约名称",
+    "compiler": "编译器版本",
+    "tx_count": "交易数",
+    "setting": "设置",
+    "date_verified": "验证日期",
+    "compiler_version": "编译器版本",
+    "creator": "合约开发者",
+    "verify_contract_code": "验证合约代码",
+    "buy_tokens": "购买通证",
+    "fill_a_valid_private_key": "请填写有效的私钥",
+    "confirm_private_key": "确认私钥",
+    "transfer_confirm_info": "你确认要转账",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # blockchain block                                                               #
+    #                                                                                #
+    ##################################################################################
+    */
+    "hash": "哈希值",
+    "time": "时间",
+    "parenthash": "父哈希",
+    "size": "大小",
+    "blockchain_size": "区块链大小",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # ledger help page                                                               #
+    #                                                                                #
+    ##################################################################################
+    */
+    "ledger_guide": "Ledger使用指南",
+    "requirements": "要求",
+    "using_ledger_steps_message_0": "在波场区块链浏览器上使用Ledger需进行以下步骤",
+    "a": "A",
+    "install_the": "安装 ",
+    "app": "APP",
+    "install_latest_version_message_0": "安装最新版本的",
+    "opening_your_wallet": "钱包打开中",
+    "open_the_tronscan_desktop_client": "打开波场区块链浏览器:",
+    "click_open_wallet_top_right": "点击右上角的“登录”",
+    "choose_ledger": "选择Ledger",
+    "connect_unlock_ledger_with_pin": "连接并使用密码解锁设备",
+    "open_tron_app_on_ledger": "在Ledger上打开TRON APP ",
+    "ledger_connected_tronscan_message_0": "如您的Ledger已正常连接，波场区块链浏览器将显示“已连接” ",
+    "click_on_open_wallet": "点击“打开钱包”",
+    "redirect_to_your_wallet_message": "将跳转至您的钱包，可以在钱包查看您的波场地址",
+    "using_ledger_to_sign_transactions": "使用Ledger对交易进行签名",
+    "using_ledger_to_sign_transactions_message_0": "在使用Ledger和波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持TRON APP处于开启状态",
+    "using_ledger_to_sign_transactions_message_1": "需要对交易签名时，区块链浏览器会弹出窗口，显示交易信息。在投票、发送TRX、更改账户名称等过程中，都需要进行交易签名。",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # userinfo - popup notification                                                  #
+    #                                                                                #
+    ##################################################################################
+    */
+    "record_not_found": "未找到记录!",
+    "warning": "警告",
+    "login_success": "登陆成功",
+    "logout_success": "登出成功",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # blockchain - Live                                                              #
+    #                                                                                #
+    ##################################################################################
+    */
+    "applied_for_super_representative": "申请成为超级代表",
+    "sr_candidature": "超级代表候选人",
+    "created_token": "创建的通证",
+    "token_creation": "通证创建",
+    "bought": "买",
+    "voter": "投票人",
+    "voting": "投票",
+    "asset": "资产",
+    "token_transfer": "通证转账",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # buy Tron                                                                       #
+    #                                                                                #
+    ##################################################################################
+    */
+    "buy_trx": "购买TRX",
+    "buy_trx_message_0": "TRX可以直接使用法定货币或是其它加密货币来购买而不需要通过交易所。这是因为我们使用了来自Changelly.com的服务，这也是最简单最快捷的购买TRX的方法。支持兑换的加密货币种类和常见问题请参见：",
+    "buy_trx_using_changelly": "使用Changelly来购买TRX",
+    "cant_load_widget": "无法加载控件",
+    /*
+    ##################################################################################
+    #                                                                                #
+    # new variables                                                                  #
+    #                                                                                #
+    ##################################################################################
+    */
+    "date": "日期",
+    "total_transactions": "总交易数",
+    "avg_blockTime": "平均生成区块时间",
+    "avg_blockSize": "平均区块大小",
+    "total_BlockCount": "总区块数",
+    "new_address_seen": "新产生地址数",
+    "transfer_contract": "转账合约",
+    "TRX_transfer_between_addresses": "地址间转账",
+    "transfer_asset_contract": "通证转账合约",
+    "token_transfer_between_addresses": "地址间转账通证",
+    "participate_asset_issue_contract": "参与通证发行合约",
+    "participate_token_between_addresses": "地址间参与通证",
+    "witness_update_contract": "超级代表更新合约",
+    "updates_a_witness": "更新超级代表",
+    "witness_create_contract": "超级代表创建合约",
+    "create_a_witness": "创建超级代表",
+    "account_update_contract": "账户更新合约",
+    "update_account_name": "更新账户名称",
+    "withdraw_balance_contract": "提现合约",
+    "withdraw_balance": "提现",
+    "freeze_balance_contract": "冻结合约",
+    "freeze_TRX": "冻结TRX",
+    "unfreeze_balance_contract": "解冻合约",
+    "unfreeze_TRX": "解冻TRX",
+    "vote_witness_contract": "超级代表投票合约",
+    "vote_for_a_witness": "选举超级代表",
+    "asset_issue_contract": "资产发行合约",
+    "issue_a_new_asset": "发行资产",
+    "owner_address": "所有者地址",
+    "frozen_balance": "冻结数量",
+    "frozen_days": "冻结天数",
+    "counts": "票数",
+    "TRX_exchange_rate": "TRX汇率",
+    "start_time": "开始时间",
+    "end_time": "结束时间",
+    "contracts": "合约",
+    "search_description": "搜索地址，区块，交易，通证",
+    "search_description1": "搜索地址，区块，交易，通证",
+    "transaction": "交易",
+    "total_addresses": "总地址数",
+    "daily_increment": "日增长数",
+    "address_growth_chart": "地址增长图表",
+    "addresses_amount": "地址数",
+    "past_14_days_of_transactions": "过去14天交易数",
+    "address_growth": "地址增长",
+    "power": "投票权",
+    "token_transfers": "通证转账",
+    "search": "搜索",
+    "inter_tnxl": "合约内部交易",
+    "inter_a_total": "共找到",
+    "inter_transactions_found": "个内部交易",
+    "website_url": "官方网站",
+    "language_support": "目前只支持英文输入",
+    "note": "备注",
+    "_percentage": "百分比",
+    "foundation": "基金会地址",
+    "foundation_address": "基金会锁仓TRX总数",
+    "unfreeze_time": "解冻时间",
+    "addresses_number": "地址数",
+    "copyright": "版权",
+    /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    20180822 17:11:52                                                              #
+      #                                                                                #
+      ##################################################################################
+    */
+    "tron_convert_tool": "编码转换工具",
+    "breakdown_supply_types": "TRX分布",
+    "genesis": "创世块发行",
+    "TRX_distribution_overview": "TRX分布概览",
+    "block_produce_rewards": "出块奖励",
+    "node_rewards": "节点奖励",
+    "independence_day_burned": "独立日烧毁",
+    "fee_burned": "手续费烧毁",
+    "current_total_supply": "当前总流通量",
+    "foundation_freeze": "基金会冻结",
+    "price_per_1000_trx": "TRX价格（每1000TRX）",
+    "in_USD": "以美元计",
+    "in_BTC": "以比特币计",
+    "total_TRX_supply": "TRX总流通量",
+    "market_capitalization": "市值",
+    "circulating_supply": "流通量",
+    "list_trx": "交易所上币",
+    "burned_trx": "TRX烧毁数",
+    "supply_notes": "全球范围可进行众筹和预售，除美国、中国及日本外",
+    "14_day_transaction_history": " 过去14天交易数",
+    "14_day_address_growth": " 过去14天地址增长",
+
+    /*
+    ##################################################################################
+    #                                                                                #
+    # ICO--rating page                                                              #
+>>>>>>> dev2019
     #                                                                                #
     ##################################################################################
   */
@@ -1350,6 +1721,7 @@ export const messages = {
   "TRC20_exchange_online": "TRC20交易所上线啦",
   "Trade_on_TRXMarket": "去TRXMarket交易",
 
+<<<<<<< HEAD
   /*
    ##################################################################################
    #                                                                                #
@@ -1538,6 +1910,42 @@ export const messages = {
   "transaction_fewer_than_100000": "1. 交易数据≤100,000条时，展示全部数据",
   "transaction_more_than_100000": "2. 交易数据>100,000条时,展示最新七天的数据",
   "not_login": "未登录",
+=======
+    /*
+    *  2018-12-18
+    * */
+    "create_deal_pair":"创建交易对",
+    "add_deal_pair_desc":"现已开放交易对创建。",
+    "click_create":"点击创建",
+    "deal_pair_tip":"池底至少注资100,000 TRX",
+    "create_deal_pair_input_tip":"底池TRX必须大于10万",
+    "create_deal_pair_input_tip2":"交易对创建成功后，上线发行价格无法更改，每次创建需消耗1024 TRX",
+    "publish_price":"您的发行价格是",
+    "pool_revert":"底池的TRX余额不能少于100，000",
+    "sign_in_with_TRONlink":"TRONLINK登录",
+    "import_a_wallet":"导入账户登录",
+    "sign_in_TRONlink_warning":"请安装TRONlink钱包后刷新页面重试",
+    "sign_in_TRONlink":"TRONlink登录",
+    "uninstall_TRONlink":"还没有安装TRONlink？点击这里",
+    "change_login_method":"TRONlink登录暂不支持该功能，请您选择导入钱包登录。",
+    "Create_token_link_message_0": "该通证经过Tronscan审核，审核成功方可展示在通证列表中",
+    "sign_in_TRONlink_warning_0":"请登录TRONlink钱包！",
+    "account_ad":"TRONdice 玩游戏得dice币，抵押dice币每日得TRX分红",
+    "bandwidth_tip":"在波场，除查询之外的任何交易都需要消耗带宽,系统每天给每个激活账户赠送5000带宽,用户可以通过冻结trx获得带宽。",
+    "energy_tip":"在波场，智能合约的创建和调用都需要消耗能量，用户可以通过冻结trx获得能量。",
+    "power_tip":"投票权(TP)用来给TRON SR投票,用户可以通过冻结TRX来获得投票权。",
+    "token_precision":"通证精度",
+    "token_precision_message_0":"根据需要设置通证的精度，精度范围是0-6",
+    "check_my_token":"查看我发行的通证",
+    "totle_transactions_per_day":"总交易数",
+    "tron_total_transactions_chart":"TRON总交易数图表",
+    "sign_in_with_ledger":"LEDGER登录",
+    "can_be_unlocked_now": "通证可以解锁",
+    "TRC20_under_maintenance":"TRC20正在维护中",
+    "transaction_fewer_than_100000":"1. 交易数据≤100,000条时，展示全部数据",
+    "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
+    "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
+>>>>>>> dev2019
 
 
 };
