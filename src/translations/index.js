@@ -1,4 +1,5 @@
 import * as messages_en from "./en.js";
+import * as messages_ja from "./ja.js";
 import * as messages_zh from "./zh.js";
 
 
@@ -12,5 +13,6 @@ addLocaleData([
 
 export const languages = {
   'en': messages_en.messages,
+  'ja': messages_ja.messages,
   'zh': messages_zh.messages,
 };
