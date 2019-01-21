@@ -182,7 +182,7 @@ class TransactionViewer extends Component {
             </div>
           }
           {
-            transactionData !== null &&
+            transactionData &&
             <Fragment>
               <div className="card mt-3">
                 <div className="card-body">
