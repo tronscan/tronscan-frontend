@@ -165,9 +165,9 @@ async function setWebsocketContent(getState, address){
   if(localAddress){
     if(localAddress !== address){
       await account.websocket.send('cancel:'+localAddress)
-      await account.websocket.send(address)
       Lockr.set('localAddress', address)
     }
+    await account.websocket.send(address)
   }else{
     await account.websocket.send(address)
     Lockr.set('localAddress', address)
