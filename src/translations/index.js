@@ -5,10 +5,11 @@ import * as messages_zh from "./zh.js";
 
 import {addLocaleData} from 'react-intl';
 import zhLocaleData from 'react-intl/locale-data/zh';
-
+import jaLocaleData from 'react-intl/locale-data/ja';
 
 addLocaleData([
   ...zhLocaleData,
+  ...jaLocaleData,
 ]);
 
 export const languages = {
