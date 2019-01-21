@@ -2,6 +2,7 @@ import {Client} from "../services/api";
 import xhr from "axios";
 import {loadRecentTransactions} from "./account";
 import {reloadWallet, setWalletLoading} from "./wallet";
+import Lockr from "lockr";
 
 export const SET_ACCOUNTS = "SET_ACCOUNTS";
 export const LOGIN_LEDGER = 'LOGIN_LEDGER';
@@ -76,8 +77,9 @@ export const setActiveCurrency = currency => ({
 });
 
 export const logout = () => (dispatch, getState) => {
-  const { account } = getState()
-  account.websocket.send('cancel')
+  const { account, app } = getState()
+  account.websocket.send('cancel:'+app.account.address)
+  Lockr.rm('localAddress')
   dispatch(setlLogout())
 }
 
@@ -92,8 +94,7 @@ export const login = privateKey => async (dispatch, getState) => {
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(getState().app.account.address));
-    await getState().account.websocket.send('cancel')
-    await getState().account.websocket.send(getState().app.account.address)
+    await setWebsocketContent(getState, getState().app.account.address)
   // }
 };
 
@@ -103,8 +104,7 @@ export const loginWithAddress = address => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
-    getState().account.websocket.send('cancel')
-    getState().account.websocket.send(address)
+    setWebsocketContent(getState, address)
   }, 50);
 };
 
@@ -115,6 +115,7 @@ export const loginWithLedger = (address) => async (dispatch, getState) => {
   setTimeout(() => {
     dispatch(reloadWallet());
     dispatch(loadRecentTransactions(address));
+    setWebsocketContent(getState, address)
   }, 50);
 };
 
@@ -126,8 +127,7 @@ export const loginWithTronLink = (address,tronWeb) => async (dispatch, getState)
     await dispatch(reloadWallet());
     dispatch(setWalletLoading(false));
     await dispatch(loadRecentTransactions(address));
-    await getState().account.websocket.send('cancel')
-    await getState().account.websocket.send(address)
+    await setWebsocketContent(getState, address)
     //},50)
 };
 
@@ -157,3 +157,19 @@ export const disableFlag = flag => ({
   type: DISABLE_FLAG,
   flag
 });
+
+
+async function setWebsocketContent(getState, address){
+  let { account } = getState()
+  const localAddress = Lockr.get('localAddress')
+  if(localAddress){
+    if(localAddress !== address){
+      await account.websocket.send('cancel:'+localAddress)
+      await account.websocket.send(address)
+      Lockr.set('localAddress', address)
+    }
+  }else{
+    await account.websocket.send(address)
+    Lockr.set('localAddress', address)
+  }
+}
