@@ -83,7 +83,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 @param count: total number of records;  
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
-@param address: transfers related address;  
+@param address: an account;  
 @return: transactions list;
 
 # 10
