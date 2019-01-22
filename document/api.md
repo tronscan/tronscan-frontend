@@ -71,7 +71,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 @param count: total number of records;  
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
-@return: transations list;  
+@return: transactions list;  
 
 # 9
 **/api/transaction**  
@@ -84,11 +84,11 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
 @param address: transfers related address;  
-@return: transations list;
+@return: transactions list;
 
 # 10
 **/api/transaction**  
-Desc: List the transations related to an smart contract(only support 7 days data query)  
+Desc: List the transactions related to an smart contract(only support 7 days data query)  
 Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/transaction?sort=-timestamp&count=true&limit=20&start=0&contract=TGfbkJww3x5cb9u4ekLtZ9hXvJo48nUSi4  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
@@ -97,14 +97,14 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/transaction?sort=-
 @param start_timestamp: query date range;  
 @param end_timestamp: query date range;  
 @param contract: contract address;  
-@return: transations list;  
+@return: transactions list;  
 
 # 11
 **/api/transaction-info**  
-Desc: List a transation detail  
+Desc: List a transaction detail  
 Demo: curl -X Get  https://apilist.tronscan.org/api/transaction-info?hash=1c25bc75d0bebac2f3aa71c350d67c4eed56ec2501b72302ae6d0110dc40cf96  
 @param hash: query transaction hash;  
-@return: a transation detail info;  
+@return: a transaction detail info;  
 
 # 12
 **/api/transfer**  
