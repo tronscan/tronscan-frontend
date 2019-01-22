@@ -34,6 +34,13 @@ class Transactions extends React.Component {
     this.loadTransactions();
   }
 
+  componentDidUpdate(prevProps) {
+      let {filter,page} = this.props;
+      if (prevProps.filter.address !== filter.address && page.router == 'account') {
+          this.loadTransactions();
+      }
+  }
+
   onChange = (page, pageSize) => {
     this.loadTransactions(page, pageSize);
   };
