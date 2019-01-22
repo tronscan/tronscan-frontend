@@ -100,7 +100,7 @@ class Notifications extends React.Component {
     // this.listener.on("transfer", trx => {
 
     if(wsdata && wsdata.type=== 'transfer'){
-     const trx = wsdata.data
+     const trx = rebuildList([wsdata.data], 'token_id', 'amount')[0]
 
       trx.timestamp = trx.date_created
       trx.tokenName = trx.token_name
@@ -108,9 +108,12 @@ class Notifications extends React.Component {
       trx.transferFromAddress = trx.owner_address
       trx.transferToAddress = trx.to_address
      
+      
       let amount = trx.amount;
       if (trx.tokenName.toUpperCase() === "TRX") {
         amount = amount / ONE_TRX;
+      }else{
+        amount = amount / Math.pow(10,trx.map_token_precision);
       }
 
       if (trx.transferToAddress === wallet.current.address) {
@@ -126,7 +129,7 @@ class Notifications extends React.Component {
           type: "transfer",
           ...trx,
         }, ...this.state.notifications.slice(0, 9)]
-        const newtrx = rebuildList(list, 'tokenName', 'amount')
+        const newtrx = list
         return {
           notifications: newtrx
         }
