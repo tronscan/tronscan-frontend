@@ -100,7 +100,7 @@ class TokenDetail extends React.Component {
   };
 
   submit = async (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {account, currentWallet} = this.props;
     let {buyAmount, privateKey} = this.state;
       let res;
@@ -109,12 +109,12 @@ class TokenDetail extends React.Component {
         const { tronWeb } = this.props.account;
           try {
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * token.price,  this.props.walletType.address).catch(e => false);
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price,  this.props.walletType.address).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
               res = result;
             }
             if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * token.price, tronWeb.defaultAddress.hex).catch(e => false);
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, tronWeb.defaultAddress.hex).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWeb);
               res = result;
             }
@@ -126,7 +126,7 @@ class TokenDetail extends React.Component {
               currentWallet.address,
               token.ownerAddress,
               token.id,
-              buyAmount * token.price)(account.key);
+              buyAmount * price)(account.key);
           res = isSuccess.success
       }
 
@@ -214,7 +214,7 @@ class TokenDetail extends React.Component {
     value =  value.replace(/^0|[^\d*]/g,'')
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
-    let priceTRX = value * (price / ONE_TRX);
+    let priceTRX = value * (price);
     this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
   }
 
@@ -267,7 +267,7 @@ class TokenDetail extends React.Component {
                       min={1}
                       onKeyUp={(e)=>{ e.target.value = e.target.value.replace(/^0|[^\d*]/g,'') }}
                       onChange={(e) => {
-                        this.onBuyInputChange(e.target.value, token.price, token.remaining)
+                        this.onBuyInputChange(e.target.value, ((token.trxNum / token.num)*Math.pow(10, token.precision))/ONE_TRX, token.remaining)
                       }}
                   />
                 </div>
@@ -284,13 +284,13 @@ class TokenDetail extends React.Component {
     }
   }
   buyTokens = (token) => {
-
+    let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {buyAmount} = this.state;
     if (buyAmount <= 0) {
       return;
     }
     let {currentWallet, wallet} = this.props;
-    let tokenCosts = buyAmount * (token.price / ONE_TRX);
+    let tokenCosts = buyAmount * (price/ONE_TRX);
 
     if ((currentWallet.balance / ONE_TRX) < tokenCosts) {
       this.setState({
@@ -328,7 +328,7 @@ class TokenDetail extends React.Component {
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (token.price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {buyAmount * (price / ONE_TRX)} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)

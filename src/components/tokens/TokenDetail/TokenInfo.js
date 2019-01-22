@@ -37,7 +37,7 @@ class TokenInfo extends React.Component {
             <tr>
               <th>{tu("price")}:</th>
               <td>
-                <FormattedNumber value={token.price / ONE_TRX} maximumFractionDigits={6}/> TRX
+                <FormattedNumber value={((token.trxNum / token.num)*Math.pow(10, token.precision))/ONE_TRX} maximumFractionDigits={6}/> TRX
               </td>
             </tr>
             <tr>
