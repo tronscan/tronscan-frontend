@@ -326,7 +326,7 @@ class TokenDetail extends React.Component {
                 <a style={{float: 'right', marginTop: '-155px'}} onClick={() => {
                   this.setState({alert: null})
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
-                <h5 style={{color: 'black'}}>{tu("buy_confirm_message_1")}</h5>
+                <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
                 {buyAmount} {token.name} {t("for")} {buyAmount * (price / ONE_TRX)} TRX?
                 </span>
