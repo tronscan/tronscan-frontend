@@ -1346,6 +1346,7 @@ export const messages = {
     "dex_search_dec":"输入想交易代币的简称",
     "TRC20_exchange_online":"TRC20交易所上线啦",
     "Trade_on_TRXMarket":"去TRXMarket交易",
+    "issued_token_of_tronscan": "已发行的通证，只有经过tronscan审核后，才会展示到TRC 10通证概览中。",
 
     /*
      ##################################################################################

@@ -1344,6 +1344,7 @@ export const messages = {
     "dex_search_dec":"取引したい通貨の略称を入力してください",
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
+    "issued_token_of_tronscan": "発行したトークンは、tronscanによる審査が通過した後にTRC10トークン一覧表に表示されることです。",
   /*
    ##################################################################################
    #                                                                                #

@@ -1344,6 +1344,8 @@ export const messages = {
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
 
+  "issued_token_of_tronscan": "The issued token will only be displayed on the TRC10 overview after they pass the auditon of tronscan.",
+
     /*
     ##################################################################################
     #                                                                                #
