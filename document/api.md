@@ -63,7 +63,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/block?number=5987471
 
 # 8
 **/api/transaction**  
-Desc: List the transations in the blockchain(only support 7 days data query)  
+Desc: List the transactions in the blockchain(only support 7 days data query)  
 Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&count=true&limit=20&start=0&start_timestamp=1548000000000&end_timestamp=1548056638507  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
@@ -75,7 +75,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 
 # 9
 **/api/transaction**  
-Desc: List the transations related to a specified account  
+Desc: List the transactions related to a specified account  
 Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&count=true&limit=20&start=0&address=TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
