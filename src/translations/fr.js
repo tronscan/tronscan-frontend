@@ -1533,4 +1533,10 @@ export const messages = {
     "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
 
 
+
+    "Audit_failed": "Audit failed",
+    "Auditing": "Auditing ",
+    "Passed_audit": "Passed audit",
+    "Have_questions": "Have questions about the progress of token audit?",
+    "Please_contact_us": "Please contact us.",
 };

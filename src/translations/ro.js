@@ -1535,4 +1535,10 @@ export const messages = {
 
 
 
+    "Audit_failed": "Audit failed",
+    "Auditing": "Auditing ",
+    "Passed_audit": "Passed audit",
+    "Have_questions": "Have questions about the progress of token audit?",
+    "Please_contact_us": "Please contact us.",
+
 };

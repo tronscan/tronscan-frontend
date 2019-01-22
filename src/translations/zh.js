@@ -1535,4 +1535,11 @@ export const messages = {
     "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
 
 
+    "Audit_failed": "审核未通过",
+    "Auditing": "审核中",
+    "Passed_audit": "审核已通过",
+    "Have_questions": "对通证状态有疑问？",
+    "Please_contact_us": "请联系我们。",
+
+
 };
