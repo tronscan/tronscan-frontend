@@ -37,13 +37,11 @@ export  class TokenBalances extends React.Component {
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance >= 10)
-                .sortBy(tb => tb.name)
                 .value();
         }else{
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance > 0)
-                .sortBy(tb => tb.name)
                 .value();
         }
         this.setState({

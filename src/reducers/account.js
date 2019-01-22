@@ -1,6 +1,6 @@
 import {SET_RECENT_TRANSACTIONS, SET_TOKEN_BALANCES, SET_TOTAL_TRANSACTIONS, SET_WEBSOCKET, SET_WS_DATA} from "../actions/account";
 import {LOGIN} from "../actions/app";
-import {find} from "lodash";
+import {find, sortBy, toUpper} from "lodash";
 
 const initialState = {
   tokens: [],
@@ -32,7 +32,7 @@ export function accountReducer(state = initialState, action) {
         ...state,
         trxBalance,
         tokens20:action.trc20token,
-        tokens: action.tokens,
+        tokens: sortBy(action.tokens, o => toUpper(o.map_token_name)),
         frozen: {
           ...action.frozen,
         },

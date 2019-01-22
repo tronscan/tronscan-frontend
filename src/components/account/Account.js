@@ -109,7 +109,6 @@ export default class Account extends Component {
     }
 
     Client.getIssuedAsset(account.address).then(({token}) => {
-      console.log(token)
       this.setState({
         issuedAsset: token,
       });
@@ -231,13 +230,11 @@ export default class Account extends Component {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
           .filter(tb => tb.balance >= 10)
-          .sortBy(tb => tb.name)
           .value();
     } else {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
           .filter(tb => tb.balance > 0)
-          .sortBy(tb => tb.name)
           .value();
     }
 
