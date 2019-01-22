@@ -1345,6 +1345,7 @@ export const messages = {
     "freeze_trx_premessage_2":`Either one of bandwidth or energy can be acquired by each freeze. You cannot acquire both resources at the same time. When a user unfreeze a certain resource, his previous votes will be completely voided. If a user would like to vote using the remaining TRON Power, he will have to perform his voting operations all over again.`,
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
+    "issued_token_of_tronscan": "The issued token will only be displayed on the TRC10 overview after they pass the auditon of tronscan.",
     /*
    ##################################################################################
    #                                                                                #
@@ -1532,4 +1533,10 @@ export const messages = {
     "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
 
 
+
+    "Audit_failed": "Audit failed",
+    "Auditing": "Auditing ",
+    "Passed_audit": "Passed audit",
+    "Have_questions": "Have questions about the progress of token audit?",
+    "Please_contact_us": "Please contact us.",
 };

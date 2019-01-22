@@ -109,6 +109,7 @@ export default class Account extends Component {
     }
 
     Client.getIssuedAsset(account.address).then(({token}) => {
+      console.log(token)
       this.setState({
         issuedAsset: token,
       });
@@ -1386,9 +1387,35 @@ export default class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-
-                            <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                            <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                            <div className="d-flex justify-content-between">
+                              <div>
+                                <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                                <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                              </div>
+                              {
+                                issuedAsset.canShow == 1&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/audited.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Passed_audit")}
+                                </div>
+                              }
+                              {
+                                (issuedAsset.canShow == 0 || issuedAsset.canShow == 2)&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/auditing.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Auditing")}
+                                </div>
+                              }
+                              {
+                                issuedAsset.canShow == 3&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/noadit.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Audit_failed")}
+                                </div>
+                              }
+                              
+                            </div>
+                            
 
                         </td>
                       </tr>
@@ -1449,8 +1476,12 @@ export default class Account extends Component {
                       }
                       </tbody>
                     </table>
-                    <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset}
-                            style={{width: '120px', margin: 'auto'}}>{tu('token_detail')}</button>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-danger btn-lg mb-3 mr-3" onClick={this.toissuedAsset}
+                            style={{width: '120px'}}>{tu('token_detail')}</button>
+                      <p>{tu("Have_questions")} <a href="mailto:token@tronscan.org">{tu("Please_contact_us")}</a></p>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
