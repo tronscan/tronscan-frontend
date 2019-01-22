@@ -45,14 +45,14 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/block?sort=-number&limit=20&
 **/api/block**  
 Desc: List all the blocks produced by the specified SR in the blockchain  
 Demo: curl -X Get  https://apilist.tronscan.org/api/block?sort=-number&limit=20&count=true&start=0&producer=TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9  
-@param sort: define the sequence of the records return;
-@param limit: page size for pagination;
-@param start: query index for pagination;
-@param count: total number of records;
-@param start_timestamp: query date range;
-@param end_timestamp: query date range;
-@param producer: SR address;
-@return: blocks produced by the specified SR;
+@param sort: define the sequence of the records return;  
+@param limit: page size for pagination;  
+@param start: query index for pagination;  
+@param count: total number of records;  
+@param start_timestamp: query date range;  
+@param end_timestamp: query date range;  
+@param producer: SR address;  
+@return: blocks produced by the specified SR;  
 
 # 7
 **/api/block**  
