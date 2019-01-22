@@ -16,6 +16,8 @@ import Transfers from "../../common/Transfers";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
+import _ from "lodash";
+
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
@@ -150,8 +152,12 @@ class Address extends React.Component {
     let tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
     let balances = rebuildList(address.balances, 'name', 'balance')
 
-    address.tokenBalances = sortBy(tokenBalances, o => toUpper(o.map_token_name))
-    address.balances = sortBy(balances, o => toUpper(o.map_token_name))
+    address.tokenBalances =_(tokenBalances)
+      .sortBy(tb => toUpper(tb.map_token_name))
+      .sortBy(tb => -tb.map_amount).value();
+    address.balances = _(balances)
+      .sortBy(tb => toUpper(tb.map_token_name))
+      .sortBy(tb => -tb.map_amount).value()
 
     let stats = await Client.getAddressStats(id);
 
