@@ -169,8 +169,6 @@ export default class Account extends Component {
     }
 
 
-    //if(account.tronWeb.eventServer){
-
   }
 
   renderTRC20Tokens() {
@@ -426,8 +424,7 @@ export default class Account extends Component {
 
   renderTransactions() {
 
-    let {account} = this.props;
-
+    let {currentWallet} = this.props;
     return (
         <Transactions
             theadClass="thead-light"
@@ -435,7 +432,9 @@ export default class Account extends Component {
             autoRefresh={30000}
             pagingProps={{showPageSize: false}}
             EmptyState={() => <p className="text-center">No transactions yet</p>}
-            filter={{address: account.address}}/>
+            filter={{address: currentWallet.address}}
+            page={{router:'account'}}
+        />
     )
   }
 
@@ -1599,7 +1598,7 @@ export default class Account extends Component {
           {/*</div>*/}
           {/*</div>*/}
           {/*</div>*/}
-          <div className="row mt-3 d-none">
+          <div className="row mt-3">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body temp-table">
