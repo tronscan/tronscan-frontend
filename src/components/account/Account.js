@@ -109,7 +109,6 @@ export default class Account extends Component {
     }
 
     Client.getIssuedAsset(account.address).then(({token}) => {
-      console.log(token)
       this.setState({
         issuedAsset: token,
       });
