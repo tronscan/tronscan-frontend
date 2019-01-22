@@ -1,9 +1,9 @@
 # 1
-/api/system/status 
-Desc: List data synchronization state
-Demo: curl -X Get  https://apilist.tronscan.org/api/system/status
-@param: null;
-@return: data synchronization state;
+/api/system/status  
+Desc: List data synchronization state  
+Demo: curl -X Get  https://apilist.tronscan.org/api/system/status  
+@param: null;  
+@return: data synchronization state;  
 
 
 # 2
