@@ -14,7 +14,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/block/latest
 @return: the latest block;  
 
 # 3
-**/api/account/list**
+**/api/account/list**  
 Desc: List all the accounts in the blockchain  
 Demo: curl -X Get  https://apilist.tronscan.org/api/account/list?sort=-balance&limit=20&start=0  
 @param sort: define the sequence of the records return;  
