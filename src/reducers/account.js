@@ -32,7 +32,7 @@ export function accountReducer(state = initialState, action) {
         ...state,
         trxBalance,
         tokens20:action.trc20token,
-        tokens: sortBy(action.tokens, o => toUpper(o.map_token_name)),
+        tokens: sortBy(action.tokens, ['balance', 'map_token_name']),
         frozen: {
           ...action.frozen,
         },

@@ -235,7 +235,7 @@ export default class Account extends Component {
           .filter(tb => tb.balance > 0)
           .value();
     }
-
+console.log(tokenBalances)
     if (tokenBalances.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
