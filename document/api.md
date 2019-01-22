@@ -26,7 +26,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/account/list?sort=-balance&l
 **/api/account**  
 Desc: Get a single account's detail  
 Demo: curl -X Get  https://apilist.tronscan.org/api/account?address=TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb  
-@param address: the query address;  
+@param address: an account;  
 @return: an account detail info;  
 
 # 5
