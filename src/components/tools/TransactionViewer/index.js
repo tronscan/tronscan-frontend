@@ -48,10 +48,19 @@ class TransactionViewer extends Component {
   loadTransaction = async (hex) => {
     try {
       let {transaction} = await Client.readTransactionNew(hex);
-
-      this.setState({
-        transactionData: transaction,
-      });
+      if(!transaction){
+          this.setState({
+              modal: (
+                  <SweetAlert danger title={tu("transaction_load_error")} onConfirm={this.hideModal}>
+                      {tu("transaction_load_error_message")}
+                  </SweetAlert>
+              )
+          });
+      }else{
+          this.setState({
+              transactionData: transaction,
+          });
+      }
     } catch (e) {
       this.setState({
         modal: (
@@ -182,7 +191,7 @@ class TransactionViewer extends Component {
             </div>
           }
           {
-            transactionData !== null &&
+            transactionData &&
             <Fragment>
               <div className="card mt-3">
                 <div className="card-body">

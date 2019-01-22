@@ -144,8 +144,8 @@ export const messages = {
   "block_height": "Block Height",
   "online_nodes": "Online Nodes",
   "pice_per_1000trx": "Price (per 1000TRX)",
-  "vote_for_super_representatives": "Vote for Super Representatives",
-  "view_super_representatives": "View Super Representatives",
+  "vote_for_super_representatives": "Vote for SR",
+  "view_super_representatives": "View SR",
   "create_new_wallet": "Create a new Wallet",
   "view_tokens": "View Tokens",
   "transactions_last_day": "Transactions Last Day",
@@ -941,6 +941,9 @@ export const messages = {
   "download_excel": "Download the template",
   "no_message": "N/A (Please send an email to complete this information)",
   "insufficient_message": "Insufficient information",
+  "neutral": "Neutral",
+  "pending": "Pending",
+  "fake": "Fake",
   "token_detail": "Token Detail",
   "contact_us": "Contact us",
   "my_token": "My Token",
@@ -1544,5 +1547,6 @@ export const messages = {
   "transaction_fewer_than_100000":"1. When there are fewer than 100,000 (including 100,000) transaction data entries, all the data will be displayed.",
   "transaction_more_than_100000":"2. When there are more than 100,000 transaction data entries, data of the latest 7 days will be displayed. ",
   "the_token_wait_few_minutes":"The token will be displayed in the account page in a few minutes.",
+  "not_login": "Not Login",
 
 };

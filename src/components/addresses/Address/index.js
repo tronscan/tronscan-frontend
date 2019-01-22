@@ -164,65 +164,109 @@ class Address extends React.Component {
       producer: id,
       limit: 1,
     });
-
-    this.setState(prevProps => ({
-      loading: false,
-      address,
-      blocksProduced: totalProducedBlocks,
-      stats,
-      tabs: {
-        ...prevProps.tabs,
-        transfers: {
-          id: "transfers",
-          // icon: "fa fa-exchange-alt",
-          path: "",
-          label: <span>{tu("transfers")}</span>,
-          cmp: () => <Transfers filter={{address: id}}/>
-        },
-        transactions: {
-          id: "transactions",
-          // icon: "fas fa-handshake",
-          path: "/transactions",
-          label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{address: id}}/>
-        },
-        token_balances: {
-          id: "token_balances",
-          // icon: "fa fa-piggy-bank",
-          path: "/token-balances",
-          label: <span>{tu("token_balances")}</span>,
-          cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
-        },
-        blocks_produced: {
-          id: "blocks-produced",
-          // icon: "fa fa-cube",
-          path: "/blocks",
-          label: <span>{tu("produced_blocks")}</span>,
-          cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
-        },
-        votes: {
-          id: "votes",
-          // icon: "fa fa-bullhorn",
-          path: "/votes",
-          label: <span>{tu("votes")}</span>,
-          cmp: () => <Votes
-              filter={{voter: id}}
-              showVoter={false}
-              showVoterPercentage={false}
-          />,
-        },
-        voters: {
-          id: "voters",
-          // icon: "fa fa-bullhorn",
-          path: "/voters",
-          label: <span>{tu("voters")}</span>,
-          cmp: () => <Votes
-              filter={{candidate: id}}
-              showCandidate={false}
-          />,
-        },
-      }
-    }));
+    if (address.representative.enabled) {
+      this.setState(prevProps => ({
+        loading: false,
+        address,
+        blocksProduced: totalProducedBlocks,
+        stats,
+        tabs: {
+          ...prevProps.tabs,
+          transfers: {
+            id: "transfers",
+            // icon: "fa fa-exchange-alt",
+            path: "",
+            label: <span>{tu("transfers")}</span>,
+            cmp: () => <Transfers filter={{address: id}}/>
+          },
+          transactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/transactions",
+            label: <span>{tu("transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}}/>
+          },
+          token_balances: {
+            id: "token_balances",
+            // icon: "fa fa-piggy-bank",
+            path: "/token-balances",
+            label: <span>{tu("token_balances")}</span>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+          },
+          blocks_produced: {
+            id: "blocks-produced",
+            // icon: "fa fa-cube",
+            path: "/blocks",
+            label: <span>{tu("produced_blocks")}</span>,
+            cmp: () => <Blocks filter={{producer: id}} intl={intl}/>,
+          },
+          votes: {
+            id: "votes",
+            // icon: "fa fa-bullhorn",
+            path: "/votes",
+            label: <span>{tu("votes")}</span>,
+            cmp: () => <Votes
+                filter={{voter: id}}
+                showVoter={false}
+                showVoterPercentage={false}
+            />,
+          },
+          voters: {
+            id: "voters",
+            // icon: "fa fa-bullhorn",
+            path: "/voters",
+            label: <span>{tu("voters")}</span>,
+            cmp: () => <Votes
+                filter={{candidate: id}}
+                showCandidate={false}
+            />,
+          },
+        }
+      }));
+    }
+    else {
+      this.setState(prevProps => ({
+        loading: false,
+        address,
+        blocksProduced: totalProducedBlocks,
+        stats,
+        tabs: {
+          ...prevProps.tabs,
+          transfers: {
+            id: "transfers",
+            // icon: "fa fa-exchange-alt",
+            path: "",
+            label: <span>{tu("transfers")}</span>,
+            cmp: () => <Transfers filter={{address: id}}/>
+          },
+          transactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/transactions",
+            label: <span>{tu("transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}}/>
+          },
+          token_balances: {
+            id: "token_balances",
+            // icon: "fa fa-piggy-bank",
+            path: "/token-balances",
+            label: <span>{tu("token_balances")}</span>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+          },
+          votes: {
+            id: "votes",
+            // icon: "fa fa-bullhorn",
+            path: "/votes",
+            label: <span>{tu("votes")}</span>,
+            cmp: () => <Votes
+                filter={{voter: id}}
+                showVoter={false}
+                showVoterPercentage={false}
+            />,
+          },
+        }
+      }));
+    }
   }
 
   async loadWitness(id) {
