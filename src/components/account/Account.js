@@ -271,7 +271,7 @@ export default class Account extends Component {
                     <div className="tokenBalances_id">{token.map_token_id}</div>
                   </td>
                   <td>
-                    <div>{token.map_token_precision}</div>
+                    <div>{token.map_token_precision?token.map_token_precision:'null'}</div>
                   </td>
                   <td className="text-right">
                     <FormattedNumber value={token.map_amount}

@@ -92,7 +92,7 @@ export  class TokenBalances extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <span>{text}</span>
+                    return <span>{text?text:'null'}}</span>
                 }
             },
             {
