@@ -24,7 +24,7 @@ class ReceiveModal extends React.PureComponent {
 
 
   componentDidMount() {
-    let {wallet} = this.props;
+    let {wallet, account} = this.props;
 
     this.setState({
       modal: (
@@ -37,9 +37,9 @@ class ReceiveModal extends React.PureComponent {
                 <input type="text"
                        readOnly={true}
                        className="form-control"
-                       value={wallet.address}/>
+                       value={account.address}/>
                 <div className="input-group-append">
-                  <CopyToClipboard text={wallet.address}>
+                  <CopyToClipboard text={account.address}>
                     <button className="btn btn-outline-secondary" type="button">
                       <i className="fa fa-paste"/>
                     </button>
@@ -48,7 +48,7 @@ class ReceiveModal extends React.PureComponent {
               </div>
 
               <hr/>
-              <QRCode size={512} style={{width: '100%', height: 'auto'}} value={wallet.address}/><br/>
+              <QRCode size={512} style={{width: '100%', height: 'auto'}} value={account.address}/><br/>
             </ModalBody>
           </Modal>
       )
@@ -65,6 +65,7 @@ class ReceiveModal extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     wallet: state.wallet.current,
+    account:state.app.account,
   };
 }
 

@@ -931,6 +931,9 @@ export const messages = {
     "download_excel": "下载模板",
     "no_message": "暂无，请发邮件补充信息",
     "insufficient_message": "信息不充分",
+  "neutral": "中立",
+  "pending": "审核中",
+  "fake": "虚假",
     "token_detail": "通证详情",
     "contact_us": "联系我们",
     "my_token": "我的通证",
@@ -1532,6 +1535,7 @@ export const messages = {
     "transaction_fewer_than_100000":"1. 交易数据≤100,000条时，展示全部数据",
     "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
     "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
+    "not_login": "未登录",
 
 
 };

@@ -82,7 +82,7 @@ class Representatives extends Component {
               <th className="text-center text-nowrap d-none d-lg-table-cell">{tu("blocks_missed")}</th>
               {/* <th className="text-center text-nowrap">{tu("transactions")}</th> */}
               <th className="text-center text-nowrap">{tu("productivity")}</th>
-              <th className="text-right text-nowrap">{tu("votes")}</th>
+              <th className="text-right text-nowrap" style={{borderRight: '1px solid rgb(223, 215, 202)'}}>{tu("votes")}</th>
 
             </tr>
             </thead>

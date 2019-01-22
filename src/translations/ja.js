@@ -927,6 +927,9 @@ export const messages = {
   "download_excel": "サンプルをダウンロード",
   "no_message": "暂まだありません。情報を追加するには電子メールを送信してください",
   "insufficient_message": "情報が不十分",
+  "neutral": "中立",
+  "pending": "審査中",
+  "fake": "虚偽情報",
   "token_detail": "トークンの詳しい情報",
   "contact_us": "お問い合わせ",
   "my_token": "マイトークン",
@@ -1529,6 +1532,6 @@ export const messages = {
     "transaction_fewer_than_100000":"1．取引データ量が100,000未満の場合、すべてのデータを表示します",
     "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
     "the_token_wait_few_minutes":"新しく作成されたパスは、数分後にウォレットページに表示されます。",
-
+    "not_login": "ログインしない",
 }
 

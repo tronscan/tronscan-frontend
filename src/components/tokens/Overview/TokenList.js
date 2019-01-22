@@ -420,10 +420,9 @@ class TokenList extends Component {
         align: 'center',
         className: 'ant_table',
         render: (text, record, index) => {
-          let lowerText = toLower(text)
+          let lowerText = toLower(text);
           return <div>
-            {text && intl.formatMessage({id: text})}
-            <img src={require('../../../images/state/' + lowerText + '.png')} className="ml-1 faceico"/>
+            {lowerText && intl.formatMessage({id: lowerText})}
           </div>
         }
       },
