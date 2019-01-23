@@ -31,6 +31,16 @@ export  class TokenBalances extends React.Component {
     load =  (page = 1, pageSize = 20) => {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances} = this.props;
+        var btt = tokenBalances.find(function(elem){
+          return elem['map_token_id']==='1002000';
+        });
+        var bttIndex = tokenBalances.findIndex(function(elem){
+          return elem['map_token_id']==='1002000';
+        });
+        if(bttIndex>-1) {
+          tokenBalances.splice(bttIndex, 1);
+          tokenBalances.unshift(btt);
+        }
         let balances;
 
         if(hideSmallCurrency){

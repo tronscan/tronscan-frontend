@@ -60,7 +60,7 @@ class Navigation extends React.Component {
     this.loginFlag = false;
     this.state = {
       search: "",
-      searchResults: null,
+      searchResults: [],
       popup: null,
       notifications: [],
       isImportAccount: false,
@@ -356,7 +356,7 @@ class Navigation extends React.Component {
   callAjax = async (value) => {
     let {search} = this.state;
     if (search === "") {
-      this.setState({searchResults: null});
+      this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
       return;
     }
@@ -383,7 +383,7 @@ class Navigation extends React.Component {
 
   afterSearch = (hash) => {
     window.location.hash = hash;
-    this.setState({searchResults: null});
+    this.setState({searchResults: []});
     this.setState({search: ""});
   }
 
