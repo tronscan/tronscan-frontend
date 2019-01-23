@@ -1347,6 +1347,7 @@ export const messages = {
     "dex_search_dec":"取引したい通貨の略称を入力してください",
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
+    "issued_token_of_tronscan": "発行したトークンは、tronscanによる審査が通過した後にTRC10トークン一覧表に表示されることです。",
   /*
    ##################################################################################
    #                                                                                #
@@ -1533,5 +1534,10 @@ export const messages = {
     "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
     "the_token_wait_few_minutes":"新しく作成されたパスは、数分後にウォレットページに表示されます。",
     "not_login": "ログインしない",
+    "Audit_failed": "審査が通りません",
+    "Auditing": "審査中 ",
+    "Passed_audit": "審査が通ります",
+    "Have_questions": "トークンの状態について質問が御座いましたら、",
+    "Please_contact_us": "ご連絡ください。",
 }
 

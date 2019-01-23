@@ -171,8 +171,6 @@ export default class Account extends Component {
     }
 
 
-    //if(account.tronWeb.eventServer){
-
   }
 
   renderTRC20Tokens() {
@@ -232,16 +230,14 @@ export default class Account extends Component {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
           .filter(tb => tb.balance >= 10)
-          .sortBy(tb => tb.name)
           .value();
     } else {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
           .filter(tb => tb.balance > 0)
-          .sortBy(tb => tb.name)
           .value();
     }
-
+console.log(tokenBalances)
     if (tokenBalances.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
@@ -265,7 +261,13 @@ export default class Account extends Component {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
                   <td>
-                    <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+                      {
+                          token.map_token_id == 1002000?<div className="map-token-top">
+                            <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                            <i></i>
+                          </div>: <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
+                      }
+
                   </td>
                   <td>
                     <div className="tokenBalances_id">{token.map_token_id}</div>
@@ -428,8 +430,7 @@ export default class Account extends Component {
 
   renderTransactions() {
 
-    let {account} = this.props;
-
+    let {currentWallet} = this.props;
     return (
         <Transactions
             theadClass="thead-light"
@@ -437,7 +438,9 @@ export default class Account extends Component {
             autoRefresh={30000}
             pagingProps={{showPageSize: false}}
             EmptyState={() => <p className="text-center">No transactions yet</p>}
-            filter={{address: account.address}}/>
+            filter={{address: currentWallet.address}}
+            page={{router:'account'}}
+        />
     )
   }
 
@@ -1403,9 +1406,35 @@ export default class Account extends Component {
                       <tr>
                         <th style={{width: 150}}>{tu("name")}:</th>
                         <td>
-
-                            <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
-                            <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                            <div className="d-flex justify-content-between">
+                              <div>
+                                <TokenLink id={issuedAsset.id} name={issuedAsset.name} address={issuedAsset.ownerAddress} namePlus={issuedAsset.name + ' (' + issuedAsset.abbr + ')'}/>
+                                <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
+                              </div>
+                              {
+                                issuedAsset.canShow == 1&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/audited.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Passed_audit")}
+                                </div>
+                              }
+                              {
+                                (issuedAsset.canShow == 0 || issuedAsset.canShow == 2)&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/auditing.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Auditing")}
+                                </div>
+                              }
+                              {
+                                issuedAsset.canShow == 3&&
+                                <div className="d-flex align-items-center">
+                                  <img src={require("../../images/token/noadit.png")} width="14" height="14" className="mr-1"/>
+                                  {tu("Audit_failed")}
+                                </div>
+                              }
+                              
+                            </div>
+                            
 
                         </td>
                       </tr>
@@ -1466,8 +1495,12 @@ export default class Account extends Component {
                       }
                       </tbody>
                     </table>
-                    <button className="btn btn-danger btn-lg mb-3" onClick={this.toissuedAsset}
-                            style={{width: '120px', margin: 'auto'}}>{tu('token_detail')}</button>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-danger btn-lg mb-3 mr-3" onClick={this.toissuedAsset}
+                            style={{width: '120px'}}>{tu('token_detail')}</button>
+                      <p>{tu("Have_questions")} <a href="mailto:token@tronscan.org">{tu("Please_contact_us")}</a></p>
+                    </div>
+                    
                   </div>
                 </div>
               </div>

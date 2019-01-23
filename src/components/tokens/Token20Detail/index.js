@@ -379,7 +379,7 @@ class Token20Detail extends React.Component {
                               <img className='token-logo' src={token.icon_url}/> :
                               <img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
-                          <div style={{width: '70%'}}>
+                          <div style={{width: '70%'}} className="token-description">
                             <h5 className="card-title">
                               {token.name} ({token.symbol})
                             </h5>

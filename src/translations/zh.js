@@ -1349,6 +1349,7 @@ export const messages = {
     "dex_search_dec":"输入想交易代币的简称",
     "TRC20_exchange_online":"TRC20交易所上线啦",
     "Trade_on_TRXMarket":"去TRXMarket交易",
+    "issued_token_of_tronscan": "已发行的通证，只有经过tronscan审核后，才会展示到TRC 10通证概览中。",
 
     /*
      ##################################################################################
@@ -1536,6 +1537,11 @@ export const messages = {
     "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
     "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
     "not_login": "未登录",
+    "Audit_failed": "审核未通过",
+    "Auditing": "审核中",
+    "Passed_audit": "审核已通过",
+    "Have_questions": "对通证状态有疑问？",
+    "Please_contact_us": "请联系我们。",
 
 
 };

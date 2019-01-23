@@ -37,13 +37,11 @@ export  class TokenBalances extends React.Component {
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance >= 10)
-                .sortBy(tb => tb.name)
                 .value();
         }else{
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
                 .filter(tb => tb.balance > 0)
-                .sortBy(tb => tb.name)
                 .value();
         }
         this.setState({
@@ -72,7 +70,12 @@ export  class TokenBalances extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                    return (
+                        record.map_token_id == 1002000?<div className="map-token-top">
+                            <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                            <i></i>
+                        </div>: <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                    )
                 }
             },
             {

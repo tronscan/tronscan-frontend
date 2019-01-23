@@ -1075,7 +1075,10 @@ th {
 .token-logo {
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+}
+
+.token-description{
+  margin-left: 20px;
 }
 
 //=========================ICO
@@ -2168,17 +2171,15 @@ h5 {
 }
 
 .approvers-proposal {
-  width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  
   .approvers-proposal-item {
-    width: 150px;
-    display: inline-block;
+    width: 170px;
   }
 
   @media only screen and (max-width: 768px) {
-    width: 300px;
     .approvers-proposal-item {
-      width: 100%;
-      //font-size: 12px;
     }
     .proposal-message {
       width: 150px;
@@ -2743,5 +2744,28 @@ h5 {
   span{
     color: #333333 !important;
     font-size: 1.5rem !important;
+  }
+}
+.map-token-top{
+  display: flex;
+  align-items: center;
+  i{
+    width: 13px;
+    height:13px;
+    background-image: url('../images/token/token-top.png');
+    background-size: 100% 100%;
+    margin-left: 4px;
+  }
+}
+.token-img-top{
+  position: relative;
+  i{
+    position:absolute;
+    background-image: url('../images/token/token-img-top.png');
+    background-size: 100% 100%;
+    width: 18px;
+    height:18px;
+    bottom: -3px;
+    right: -3px;
   }
 }
