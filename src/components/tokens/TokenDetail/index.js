@@ -215,7 +215,9 @@ class TokenDetail extends React.Component {
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX,{
+      maximumFractionDigits: 6,
+    });
   }
 
   preBuyTokens = (token) => {
