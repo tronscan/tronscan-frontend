@@ -52,9 +52,9 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
     else
-      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data['total'];
     let tokens = result.data['data'];

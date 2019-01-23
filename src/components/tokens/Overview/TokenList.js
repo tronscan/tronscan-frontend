@@ -57,11 +57,11 @@ class TokenList extends Component {
     let totalAll;
 
     if (filter.name){
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
       total = result.data['data'].length;
       totalAll = result.data['totalAll'];
     }else{
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }
