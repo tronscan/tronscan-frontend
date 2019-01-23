@@ -374,12 +374,19 @@ class TokenOverview extends Component {
         width: '40%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-            }
+              {record.imgUrl ?
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                      {
+                          record.id == 1002000? <div className="token-img-top">
+                            <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                            <i></i>
+                          </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                      }
+                  </div> :
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                      style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
+              }
+
             <div>
               <h5><TokenLink name={record.name} id={record.id}
                              namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
@@ -466,7 +473,7 @@ class TokenOverview extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + (total - 1) + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
         <main className="container header-overlap token_black">

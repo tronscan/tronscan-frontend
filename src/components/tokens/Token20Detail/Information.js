@@ -78,7 +78,7 @@ export function Information({token}) {
           return(
             <div className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'} key={index}>
               <span>{tu(item.name)}</span>
-              <p>{item.content}</p>
+              <p style={{width:'75%'}}>{item.content}</p>
             </div>)
         })
       }</div>

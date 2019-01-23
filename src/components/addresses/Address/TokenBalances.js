@@ -36,12 +36,12 @@ export  class TokenBalances extends React.Component {
         if(hideSmallCurrency){
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance >= 10)
+                .filter(tb => tb.map_amount >= 10)
                 .value();
         }else{
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance > 0)
+                .filter(tb => tb.map_amount > 0)
                 .value();
         }
         this.setState({
@@ -72,9 +72,9 @@ export  class TokenBalances extends React.Component {
                 render: (text, record, index) => {
                     return (
                         record.map_token_id == 1002000?<div className="map-token-top">
-                            <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                            <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
                             <i></i>
-                        </div>: <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                        </div>:  <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
                     )
                 }
             },

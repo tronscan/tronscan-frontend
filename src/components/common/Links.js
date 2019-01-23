@@ -255,7 +255,7 @@ export class ExternalLink extends React.PureComponent {
     return (
         <Fragment>
           {modal}
-          <a href={url} onClick={this.onClickUrl} {...props}>{children || url}</a>
+          <a href={url} onClick={this.onClickUrl} {...props} className="text-truncate d-block">{children || url}</a>
         </Fragment>
     )
   }

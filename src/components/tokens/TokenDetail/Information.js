@@ -43,7 +43,7 @@ export function Information({token}) {
       content: <FormattedNumber value={token.nrOfTokenHolders}/>
     },{ 
       name: 'issuer', 
-      content: <AddressLink address={token.ownerAddress}/>
+      content: <AddressLink address={token.ownerAddress} includeCopy={true}/>
     },{ 
       name: 'nr_of_Transfers', 
       content: <FormattedNumber value={token.totalTransactions}/>
@@ -64,10 +64,12 @@ export function Information({token}) {
       content:  token.github !== 'no_message' ?
                 <ExternalLink url={token.github && tu(token.github)} _url={token.github}/> :
                 <span style={{color: '#d8d8d8'}}>-</span>
-    },{ 
-      name: 'contract_address', 
-      content:  <span style={{color: '#d8d8d8'}}>-</span>
-    },{ 
+    },
+    // {
+    //   name: 'contract_address',
+    //   content:  <span style={{color: '#d8d8d8'}}>-</span>
+    // },
+    {
       name: 'social_link', 
       content:  <div className="d-flex">
                   {token['social_media'] && token['social_media'].map((media, index) => {
@@ -87,7 +89,7 @@ export function Information({token}) {
           return(
             <div className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
               <span>{tu(item.name)}</span>
-              <p>{item.content}</p>
+              <p style={{width:'75%'}}>{item.content}</p>
             </div>)
         })
       }</div>

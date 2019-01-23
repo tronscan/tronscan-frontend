@@ -309,8 +309,8 @@ class TokenCreate extends Component {
 
   componentDidUpdate(prevProps) {
     let {wallet} = this.props;
-
     if (wallet !== null) {
+
       if (prevProps.wallet === null || wallet.address !== prevProps.wallet.address) {
         this.checkExistingToken();
       }
@@ -318,11 +318,8 @@ class TokenCreate extends Component {
   }
 
   renderSubmit = () => {
-    let {account, intl} = this.props;
-
-    let {wallet} = this.props;
-
-    if (!wallet) {
+    let {account, intl, wallet,currentWallet} = this.props;
+    if (!currentWallet) {
       this.setState({
             modal:
                 <SweetAlert
@@ -338,8 +335,7 @@ class TokenCreate extends Component {
       );
       return false
     }
-
-    if (wallet.balance < ASSET_ISSUE_COST) {
+    if (currentWallet.balance < ASSET_ISSUE_COST) {
       this.setState({
             modal:
                 <SweetAlert
@@ -476,6 +472,7 @@ function mapStateToProps(state) {
     account: state.app.account,
     walletType: state.app.wallet,
     wallet: state.wallet.current,
+    currentWallet: state.wallet.current,
   };
 }
 

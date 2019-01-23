@@ -229,15 +229,14 @@ export default class Account extends Component {
     if (hideSmallCurrency) {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
-          .filter(tb => tb.balance >= 10)
+          .filter(tb => tb.map_amount >= 10)
           .value();
     } else {
       tokenBalances = _(tokenBalances)
           .filter(tb => tb.name.toUpperCase() !== "_")
-          .filter(tb => tb.balance > 0)
+          .filter(tb => tb.map_amount > 0)
           .value();
     }
-console.log(tokenBalances)
     if (tokenBalances.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center p-4">
