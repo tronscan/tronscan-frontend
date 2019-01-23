@@ -100,7 +100,7 @@ export const messages = {
     "send_tokens": "发送资产",
     "desktop_explorer": "桌面浏览器",
     "message": "信息",
-    "wallet_address": "Wallet Address",
+    "wallet_address": "钱包地址",
     "confirm": "确认",
     "_percentage": "百分比",
     "language_support": "目前只支持英文输入",
