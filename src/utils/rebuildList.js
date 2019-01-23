@@ -1,5 +1,6 @@
 import {upperCase} from 'lodash'
 import {tokensMap} from "./tokensMap.js";
+import xhr from "axios/index";
 
 export default (list = [], tokenId, amount) => {
   let IDmap = {};
@@ -8,51 +9,61 @@ export default (list = [], tokenId, amount) => {
   const tokenmap = localStorage.getItem('tokensMap');
   IDmap = JSON.parse(tokenmap);
 
-  if (newList) {
-    if (typeof tokenId === 'string') {
-      newList.map(item => {
 
-        const id = item[tokenId]
-        
-        if(id == '_' || upperCase(id) == "TRX"){
-          setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX')
-        }
-        if(IDmap[id]){
-          const list = IDmap[id].split('_')
-          setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3])
-        }
-        if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
-          setItem(item, item[tokenId], item[tokenId], 0, item[amount],item[tokenId])
-        }
+  if(!IDmap){
+    getTokensMap().then( date => {
+      IDmap = date
+      return reSetData()
+    })
+  }else{
+    return reSetData()
+  }
 
-        return item
-      })
-    } else {
-      newList.map(item => {
+  function reSetData(){
+    if (newList) {
+      if (typeof tokenId === 'string') {
+        newList.map(item => {
 
-        tokenId.map((tid,index) => {
-          const id = item[tid]
+          const id = item[tokenId]
           
           if(id == '_' || upperCase(id) == "TRX"){
-            setItem(item, 'TRX', id, 6, amount[index]?item[amount[index]] / Math.pow(10,6): 0,'TRX',index)
+            setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX')
           }
           if(IDmap[id]){
             const list = IDmap[id].split('_')
-            setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,list[3],index)
+            setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3])
           }
           if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
-            setItem(item, item[tid], item[tid], 0, item[amount[index]],item[tid],index)
+            setItem(item, item[tokenId], item[tokenId], 0, item[amount],item[tokenId])
           }
-        });
+          return item
+        })
+      } else {
+        newList.map(item => {
 
-        return item
-      })
+          tokenId.map((tid,index) => {
+            const id = item[tid]
+            
+            if(id == '_' || upperCase(id) == "TRX"){
+              setItem(item, 'TRX', id, 6, amount[index]?item[amount[index]] / Math.pow(10,6): 0,'TRX',index)
+            }
+            if(IDmap[id]){
+              const list = IDmap[id].split('_')
+              setItem(item, list[0], list[1], list[2], amount[index]? item[amount[index]] / Math.pow(10,list[2]): 0,list[3],index)
+            }
+            if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
+              setItem(item, item[tid], 0, 0, item[amount[index]],item[tid],index)
+            }
+          });
+
+          return item
+        })
+      }
+      return newList
+
+    } else {
+      console.log('token id is undefined!!')
     }
-    return newList
-
-
-  } else {
-    console.log('token id is undefined!!')
   }
 }
 
@@ -68,3 +79,12 @@ function setItem(item,name,id,pre,amount,abbr,index=''){
   return item
 }
 
+async function  getTokensMap() {
+    let {data} = await xhr.get(`https://apilist.tronscan.org/api/token?showAll=1&limit=3000`);
+    for (var i = 0; i < data.data.length; i++) {
+      if (!tokensMap[data.data[i].id]) {
+        tokensMap[data.data[i].id] = data.data[i].name + '_' + data.data[i].id + '_' + data.data[i].precision+'_'+data.data[i].abbr;
+      }
+    }
+    return tokensMap
+  }

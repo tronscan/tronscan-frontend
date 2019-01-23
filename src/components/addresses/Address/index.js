@@ -15,7 +15,9 @@ import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
-import {sortBy} from "lodash";
+import {sortBy, toUpper} from "lodash";
+import _ from "lodash";
+
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
@@ -143,20 +145,19 @@ class Address extends React.Component {
     let {intl} = this.props;
     this.setState({loading: true, address: {address: id}, media: null,});
 
-    // this.live && this.live.close();
-    // this.live = channel("/address-" + id);
-    // this.live.on('transfer', transaction => {
-    //   setTimeout(() => {
-    //     this.refreshAddress(id);
-    //   }, 1500);
-    // });
-
     let address = await Client.getAddress(id);
     if (address.representative.enabled) {
       this.loadMedia(id);
     }
-    address.tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
-    address.balances = rebuildList(address.balances, 'name', 'balance')
+    let tokenBalances = rebuildList(address.tokenBalances, 'name', 'balance')
+    let balances = rebuildList(address.balances, 'name', 'balance')
+
+    address.tokenBalances =_(tokenBalances)
+      .sortBy(tb => toUpper(tb.map_token_name))
+      .sortBy(tb => -tb.map_amount).value();
+    address.balances = _(balances)
+      .sortBy(tb => toUpper(tb.map_token_name))
+      .sortBy(tb => -tb.map_amount).value()
 
     let stats = await Client.getAddressStats(id);
 
