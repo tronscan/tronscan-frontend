@@ -32,9 +32,11 @@ export function accountReducer(state = initialState, action) {
       let tokenList =  _(action.tokens)
           .sortBy(tb => toUpper(tb.map_token_name))
           .sortBy(tb => -tb.map_amount)
-          .sortBy(tb => toUpper(tb.map_token_name) == 'TRX')
           .value()
-          
+      let trxObj = _.remove(tokenList, o => toUpper(o.map_token_name) == 'TRX')[0]
+
+      trxObj && tokenList.unshift(trxObj)
+      
       return {
         ...state,
         trxBalance,

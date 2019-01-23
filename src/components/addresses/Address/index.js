@@ -159,6 +159,12 @@ class Address extends React.Component {
       .sortBy(tb => toUpper(tb.map_token_name))
       .sortBy(tb => -tb.map_amount).value()
 
+    let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
+    trxObj1 && address.tokenBalances.unshift(trxObj1)
+
+    let trxObj2 = _.remove(address.balances, o => toUpper(o.map_token_name) == 'TRX')[0]
+    trxObj2 && address.tokenBalances.unshift(trxObj2)
+
     let stats = await Client.getAddressStats(id);
 
     let {total: totalProducedBlocks} = await Client.getBlocks({
