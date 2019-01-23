@@ -19,10 +19,6 @@ export default class LedgerHelp extends Component {
                       {tu('a')} <HrefLink href="https://www.ledgerwallet.com/products/ledger-nano-s)">Ledger Nano
                       S</HrefLink>
                     </li>
-                    <li>
-                      {tu('install_the')}<HrefLink href="https://www.ledgerwallet.com/live"> Ledger
-                      Live </HrefLink> {tu('app')}
-                    </li>
                   </ol>
                   <h3>{tu('opening_your_wallet')}</h3>
                   <ol>
