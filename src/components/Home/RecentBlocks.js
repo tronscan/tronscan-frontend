@@ -12,6 +12,8 @@ import {withTimers} from "../../utils/timing";
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
+import isMobile from "../../utils/isMobile";
+
 class RecentBlocks extends Component {
 
   constructor() {
@@ -51,6 +53,58 @@ class RecentBlocks extends Component {
             </Link>
           </div>
           <ul className="list-group list-group-flush" style={styles.list}>
+          {
+            isMobile?
+            <PerfectScrollbar>
+              {
+                blocks.map(block => (
+                    <li key={block.number} className="list-group-item overflow-h mobile-block">
+                      <div key={block.number} className="d-flex flex-column">
+                        <div className="media-body mb-0 d-flex" style={{paddingTop: 1}}>
+                          <div className="text-left">
+                            <div className="d-flex justify-content-between align-times-center">
+                              <Link className="mr-1 d-flex justify-content-start color-tron-100 pt-1 list-item-word"
+                                    to={`/block/${block.number}`}>
+                                <i className="fa fa-cube mr-2 mt-1 fa_width color-tron-100"
+                                  style={{fontSize: '1rem'}}></i>
+                                #{block.number}
+                              </Link>
+                              <div className="text-muted color-grey-300 small pt-2">
+                                <TimeAgo date={block.timestamp}/>
+                              </div>
+                            </div>
+                            <div>
+                              <i className="fas fa-exchange-alt mr-2 color-tron-100"/>
+                              <Link className="color-tron-100"
+                                    to={`/blockchain/transactions?block=${block.number}`}>
+                                <FormattedNumber value={block.nrOfTrx}/>{' '}
+                                {tu("transactions")}
+                              </Link>
+                            </div>
+                            <div className="text-gray-dark break-word d-flex list-item-word small">
+                              <span className="mr-2 color-grey-300">{tu("produced_by")}:</span>
+                              <AddressLink address={block.witnessAddress} truncate={false}>
+                                <span className="color-tron-100">{block.witnessName}</span>
+                              </AddressLink>
+                            </div>
+                            <div className="text-gray-dark break-word color-grey-200 list-item-word"
+                                 style={styles.nowrap}>
+                              <span className="small color-grey-300">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                            </div>
+
+                          </div>
+                          <div className="ml-auto text-right d-flex flex-column pt-2">
+
+                            
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                ))
+              }
+            </PerfectScrollbar>
+            :
             <PerfectScrollbar>
               {
                 blocks.map(block => (
@@ -96,6 +150,8 @@ class RecentBlocks extends Component {
                 ))
               }
             </PerfectScrollbar>
+          }
+            
           </ul>
         </div>
     )

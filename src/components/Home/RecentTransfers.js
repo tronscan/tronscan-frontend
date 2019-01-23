@@ -13,6 +13,8 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {NameWithId} from "../common/names";
 import _ from "lodash";
+import isMobile from "../../utils/isMobile";
+
 class RecentTransfers extends Component {
 
   constructor() {
@@ -25,9 +27,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    this.props.setInterval(() => {
-      this.props.loadTransactions();
-    }, 10000);
+    // this.props.setInterval(() => {
+    //   this.props.loadTransactions();
+    // }, 10000);
   }
 
   render() {
@@ -59,44 +61,48 @@ class RecentTransfers extends Component {
               {tu("view_all")}
             </Link>
           </div>
-          <PerfectScrollbar>
+          {
+            isMobile?
+            <PerfectScrollbar>
             <ul className="list-group list-group-flush" style={styles.list}>
 
               {
                 transactions.map((transfer, i) => (
                   transfer &&
-                    <li key={transfer.transactionHash} className="list-group-item overflow-h">
+                    <li key={transfer.transactionHash} className="list-group-item overflow-h mobile-block">
                       <div className="media">
-                        <div className="media-body mb-0 d-flex">
+                        <div className=" mb-0 w-100 d-flex ">
+
                           <div className="text-left pt-1">
-                            <div className="pt-1">
+                            <div className="pt-1 d-flex">
                               <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
                               <TransactionHashLink
-                                  hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
+                                  hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 13)}...</TransactionHashLink>
                             </div>
                             <br/>
 
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                         address={transfer.transferFromAddress} truncate={false}>
+                                          address={transfer.transferFromAddress} truncate={false}>
                               {transfer.transferFromAddress.substr(0, 13)}...
                             </AddressLink>
+                            <br/>
                             <span className="color-grey-300 mr-2">{tu("to")}</span>
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                         address={transfer.transferToAddress} truncate={false}>
+                                          address={transfer.transferToAddress} truncate={false}>
                               {transfer.transferToAddress.substr(0, 13)}...
                             </AddressLink><br/>
                           </div>
-                          <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word"
-                               style={styles.nowrap}>
-                            <div className="color-grey-200" style={{flex: 1}}>
-                              {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
-                              <NameWithId value={transfer} type="abbr" totoken/>
-                            </div>
-                            <div className="text-muted color-grey-300 small" style={styles.nowrap}>
+
+                          <div className="text-right">
+                            <div className="text-muted color-grey-300 small">
                               <TimeAgo date={transfer.timestamp}/>
                             </div>
+                            <div className="color-grey-200">
+                              <NameWithId value={transfer} type="abbr" totoken/>
+                            </div>
                           </div>
+
                         </div>
                       </div>
                     </li>
@@ -104,7 +110,55 @@ class RecentTransfers extends Component {
               }
 
             </ul>
+          </PerfectScrollbar>:
+
+          <PerfectScrollbar>
+          <ul className="list-group list-group-flush" style={styles.list}>
+
+            {
+              transactions.map((transfer, i) => (
+                transfer &&
+                  <li key={transfer.transactionHash} className="list-group-item overflow-h">
+                    <div className="media">
+                      <div className="media-body mb-0 d-flex">
+                        <div className="text-left pt-1">
+                          <div className="pt-1">
+                            <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
+                            <TransactionHashLink
+                                hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
+                          </div>
+                          <br/>
+
+                          <span className="color-grey-300 mr-2">{tu("from")}</span>
+                          <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                      address={transfer.transferFromAddress} truncate={false}>
+                            {transfer.transferFromAddress.substr(0, 13)}...
+                          </AddressLink>
+                          <span className="color-grey-300 mr-2">{tu("to")}</span>
+                          <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                      address={transfer.transferToAddress} truncate={false}>
+                            {transfer.transferToAddress.substr(0, 13)}...
+                          </AddressLink><br/>
+                        </div>
+                        <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word"
+                            style={styles.nowrap}>
+                          <div className="color-grey-200" style={{flex: 1}}>
+                            {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
+                            <NameWithId value={transfer} type="abbr" totoken/>
+                          </div>
+                          <div className="text-muted color-grey-300 small" style={styles.nowrap}>
+                            <TimeAgo date={transfer.timestamp}/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              ))
+            }
+
+          </ul>
           </PerfectScrollbar>
+         }
         </div>
     )
   }

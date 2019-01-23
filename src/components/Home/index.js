@@ -10,6 +10,7 @@ import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
 import {KEY_ENTER} from "../../utils/constants";
 import {withTimers} from "../../utils/timing";
+import isMobile from "../../utils/isMobile";
 import RecentTransfers from "./RecentTransfers";
 import {tu} from "../../utils/i18n";
 import {toastr} from "react-redux-toastr";
@@ -202,7 +203,7 @@ export default class Home extends Component {
         <main className="home pb-0">
           <i className="main-icon-left"></i>
           <i className="main-icon-right"></i>
-          <div className="container-fluid position-relative d-flex pt-4 mx-auto flex-column">
+          <div className="container-fluid position-relative d-flex pt-3 pt-md-4 mx-auto flex-column">
             {/*<div ref={(el) => this.$ref = el} style={{*/}
             {/*zIndex: 0,*/}
             {/*left: 0,*/}
@@ -211,7 +212,7 @@ export default class Home extends Component {
             {/*bottom: 0,*/}
             {/*}} className="position-absolute"/>*/}
 
-            <div className="container home-splash">
+            <div className="container home-splash p-0">
               <div className="row justify-content-center text-center">
                 <div className="col-12">
                   {/*<p className="mt-5 mt-5-logo">*/}
@@ -246,7 +247,61 @@ export default class Home extends Component {
                   }
                 </div>
               </div>
-
+              {
+                isMobile?
+              <div className="row text-center mr-0 ml-0 mobile-home-state">
+                <div className="col-12  card  pt-1 mb-0" style={{border: 'none', borderRadius: 0}}>
+                  <div className="row pt-4 pb-2">
+                    <div className="col-6 ">
+                      <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/node.png')}/>
+                        <h2><CountUp start={0} end={onlineNodes} duration={1}/></h2>
+                        <p className="m-0">{tu("online_nodes")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-6">
+                      <Link to="/blockchain/blocks"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/block.png')}/>
+                        <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
+                        <p className="m-0">{tu("block_height")}</p>
+                      </Link>
+                    </div>
+                   
+                    <div className="col-6">
+                      <Link to="/blockchain/transactions"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/transctions.png')}/>
+                        <h2><CountUp start={0} end={transactionPerDay} duration={1}/></h2>
+                        <p className="m-0">{tu("transactions_last_day")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-6">
+                      <Link to="/blockchain/accounts"
+                            className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/account.png')}/>
+                        <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
+                        <p className="m-0">{tu("total_accounts")}</p>
+                      </Link>
+                    </div>
+                    <div className="col-6">
+                        <HrefLink href="https://coinmarketcap.com/currencies/tron/" target="_blank" className="hvr-underline-from-center hvr-underline-white text-muted">
+                          <img src={require('../../images/home/price.png')}/>
+                          <h2><TRXPrice amount={1} currency="USD" source="home"/></h2>
+                          <p className="m-0">{tu("pice_per_1trx")}</p>
+                        </HrefLink>
+                    </div>
+                    <div className="col-6">
+                      <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/tps.png')}/>
+                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        <p className="m-0">{tu("current_MaxTPS")}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              :
               <div className="row text-center mr-0 ml-0">
                 <div className="col-12  card  pt-1 pl-0 pr-0" style={{border: 'none', borderRadius: 0}}>
                   <div className="card-body d-flex pt-4 pb-4 home-stats">
@@ -289,17 +344,18 @@ export default class Home extends Component {
                           <p className="m-0">{tu("pice_per_1trx")}</p>
                         </HrefLink>
                     </div>
-
                   </div>
                 </div>
               </div>
+              }
+              
             </div>
           </div>
-          <div className="pb-5">
+          <div className=" pb-3 pb-md-5">
             <div className="container">
-              <div className="row mt-4">
+              <div className="row mt-0 mt-md-4 mb-3">
                 <div className="col-md-6 mt-3 mt-md-0 ">
-                  <div className="card" style={styles.card}>
+                  <div className="card " style={styles.card}>
                     <div className="card-header bg-tron-light color-grey-100 text-center pb-0" style={styles.card}>
                       <h5 className="m-0 lh-150">
                         <Link to="blockchain/stats/txOverviewStats">
@@ -344,8 +400,8 @@ export default class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row mt-4">
-                <div className="col-md-6 mt-3 mt-md-0 text-center">
+              <div className="row mt-0 mt-md-4">
+                <div className="col-md-6 mt-0 mb-3 mt-md-0 text-center">
                   <RecentBlocks/>
                 </div>
                 <div className="col-md-6 text-center">
