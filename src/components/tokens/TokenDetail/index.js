@@ -378,7 +378,6 @@ class TokenDetail extends React.Component {
                   this.setState({alert: null})
                 }}>{tu("OK")}</button>
               </div>
-
             </SweetAlert>
         )
       });
@@ -413,11 +412,20 @@ class TokenDetail extends React.Component {
                     <div className="card">
                       <div className="card-body">
                         <div className="d-flex">
-                          {token && token.imgUrl ?
-                              <img className='token-logo' src={token.imgUrl}/> :
-                              <img className='token-logo' src={require('../../../images/logo_default.png')}/>
+                          {token && token.imgUrl && token.tokenID?
+                              <div>
+                                {
+                                    token.tokenID == 1002000?
+                                        <div className="token-img-top">
+                                          <img className='token-logo' src={token.imgUrl}/>
+                                          <i></i>
+                                        </div>
+                                        :<img className='token-logo' src={token.imgUrl}/>
+                                }
+                              </div>
+                               :<img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
-                          <div style={{width: '70%'}}>
+                          <div style={{width: '70%'}} className="token-description">
                             <h5 className="card-title">
                               {token.name} ({token.abbr})
                             </h5>

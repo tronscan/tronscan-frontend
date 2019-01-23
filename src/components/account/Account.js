@@ -265,7 +265,13 @@ export default class Account extends Component {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
                   <td>
-                    <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+                      {
+                          token.map_token_id == 1002000?<div className="map-token-top">
+                            <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+                            <i></i>
+                          </div>: <TokenLink id={token.map_token_id} name={token.map_token_name} address={token.address}/>
+                      }
+
                   </td>
                   <td>
                     <div className="tokenBalances_id">{token.map_token_id}</div>
