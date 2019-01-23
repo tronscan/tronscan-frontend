@@ -31,7 +31,9 @@ export function accountReducer(state = initialState, action) {
       let {map_amount: trxBalance = 0} = find(action.tokens, tb => tb.name.toUpperCase() === "_") || {};
       let tokenList =  _(action.tokens)
           .sortBy(tb => toUpper(tb.map_token_name))
-          .sortBy(tb => -tb.map_amount).value()
+          .sortBy(tb => -tb.map_amount)
+          .sortBy(tb => toUpper(tb.map_token_name) == 'TRX')
+          .value()
           
       return {
         ...state,

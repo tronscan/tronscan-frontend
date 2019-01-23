@@ -1247,7 +1247,7 @@ class Navigation extends React.Component {
                       <small className='text-muted'>{tu('token_participate_tron')}</small>
                       }
                       {activeComponent.label === 'create' &&
-                      <small className='text-muted'>{tu('issued_token_of_tronscan')}</small>
+                      <small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>
                       }
                     </h4>
                   }
