@@ -536,7 +536,6 @@ class SendForm extends React.Component {
    // let isPrivateKeyValid = privateKey && privateKey.length === 64 && pkToAddress(privateKey) === account.address;
     let isAmountValid = this.isAmountValid();
 
-
     if (sendStatus === 'success') {
       return (
           <Fragment>
@@ -570,7 +569,7 @@ class SendForm extends React.Component {
             </div>
           </div>
           {
-            (toAccount && toAccount.name !== "") && <Alert color="info">
+            (toAccount && toAccount.name) && <Alert color="info">
               <b>{toAccount.name}</b>
             </Alert>
           }
