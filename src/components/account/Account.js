@@ -1497,7 +1497,7 @@ export default class Account extends Component {
                     <div className="d-flex align-items-center">
                       <button className="btn btn-danger btn-lg mb-3 mr-3" onClick={this.toissuedAsset}
                             style={{width: '120px'}}>{tu('token_detail')}</button>
-                      <p>{tu("Have_questions")} <a href="mailto:token@tronscan.org">{tu("Please_contact_us")}</a></p>
+                      <p style={{color: 'rgb(153, 153, 153)',fontSize: '12px'}}>{tu("Have_questions")} <a href="mailto:token@tronscan.org">{tu("Please_contact_us")}</a></p>
                     </div>
                     
                   </div>
