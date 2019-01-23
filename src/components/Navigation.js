@@ -242,7 +242,7 @@ class Navigation extends React.Component {
               placeHolder="Password"
               onCancel={this.hideModal}
               validationMsg={tu("enter_password_message")}
-              confirmBtnText={tu("ok")}
+              confirmBtnText={tu("ok_confirm")}
               onConfirm={(password) => this.unlockKeyFile(password, contents)}>
             {tu("password")}
           </SweetAlert>
@@ -266,7 +266,7 @@ class Navigation extends React.Component {
             <SweetAlert
                 success title={tu("wallet_unlocked")}
                 onConfirm={this.hideModal}
-                confirmBtnText={tu("ok")}/>
+                confirmBtnText={tu("ok_confirm")}/>
         )
       });
       this.props.login(privateKey);

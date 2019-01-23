@@ -1554,4 +1554,5 @@ export const messages = {
   "Passed_audit": "Passed audit",
   "Have_questions": "Have questions about the progress of token audit?",
   "Please_contact_us": "Please contact us.",
+  "ok_confirm":"OK",
 };

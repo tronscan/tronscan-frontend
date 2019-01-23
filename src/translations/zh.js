@@ -34,7 +34,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "ok": "确定",
+    "ok": "OK",
     "app_title": "波场协议",
     "password": "密码",
     "money_price": "价格",
@@ -1542,6 +1542,6 @@ export const messages = {
     "Passed_audit": "审核已通过",
     "Have_questions": "对通证状态有疑问？",
     "Please_contact_us": "请联系我们。",
-
+    "ok_confirm":"确定",
 
 };
