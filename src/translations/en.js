@@ -1561,4 +1561,10 @@ export const messages = {
   "Have_questions": "Have questions about the progress of token audit?",
   "Please_contact_us": "Please contact us.",
   "ok_confirm":"OK",
+  "high_risk":"High Risk",
+
+
+
+
+
 };

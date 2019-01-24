@@ -308,7 +308,7 @@ class Kline extends React.Component {
             {
                 selectData.exchange_name &&<h5 className="mr-3 font-weight-bold">{selectData.exchange_name} ≈ <span>{ selectData.price }</span>
                     {
-                        selectData.status != 1 && <span className="badge badge-danger-block text-uppercase ml-1">{tu("trc20_unexamine")}</span>
+                        selectData.status != 1 && <span className="badge badge-danger-block text-uppercase ml-1">{tu("high_risk")}</span>
                     }
                 </h5>
 
@@ -321,8 +321,8 @@ class Kline extends React.Component {
             <span className='col-green ml-2'>{selectData.up_down_percent}</span>
             }
           </div>
-          <div className="mr-3">{tu('H')}<span className=" ml-2">{high}</span></div>
-          <div className="mr-3">{tu('L')}<span className=" ml-2">{low}</span></div>
+          <div className="mr-3">{tu('H')}<span className=" ml-2">{selectData.high?high:0}</span></div>
+          <div className="mr-3">{tu('L')}<span className=" ml-2">{selectData.low?low:0}</span></div>
           <div className="mr-3">{tu('24H_VOL')} <span className="ml-1"> <TRXPrice amount={selectData.svolume} /></span>
             {/*<span className=" ml-2">{selectData.volume} {selectData.first_token_id}</span>*/}
               {/*≈*/}

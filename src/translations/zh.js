@@ -1549,5 +1549,6 @@ export const messages = {
     "Have_questions": "对通证状态有疑问？",
     "Please_contact_us": "请联系我们。",
     "ok_confirm":"确定",
+    "high_risk":"高风险",
 
 };

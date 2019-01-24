@@ -1545,5 +1545,7 @@ export const messages = {
     "Have_questions": "トークンの状態について質問が御座いましたら、",
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
+    "high_risk":"高リスク",
+
 }
 
