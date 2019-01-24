@@ -87,7 +87,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/transaction?sort=-timestamp&
 @return: transactions list;
 
 # 10
-**/api/transaction**  
+**/api/contracts/transaction**  
 Desc: List the transactions related to an smart contract(only support 7 days data query)  
 Demo: curl -X Get  https://apilist.tronscan.org/api/contracts/transaction?sort=-timestamp&count=true&limit=20&start=0&contract=TGfbkJww3x5cb9u4ekLtZ9hXvJo48nUSi4  
 @param sort: define the sequence of the records return;  
