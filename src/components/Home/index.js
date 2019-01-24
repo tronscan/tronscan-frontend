@@ -200,8 +200,6 @@ export default class Home extends Component {
     let {search, isShaking, hasFound, onlineNodes, blockHeight, transactionPerDay, totalAccounts, txOverviewStats, addressesStats,maxTps,tps} = this.state;
     return (
         <main className="home pb-0">
-          <i className="main-icon-left"></i>
-          <i className="main-icon-right"></i>
           <div className="container-fluid position-relative d-flex pt-4 mx-auto flex-column">
             {/*<div ref={(el) => this.$ref = el} style={{*/}
             {/*zIndex: 0,*/}
