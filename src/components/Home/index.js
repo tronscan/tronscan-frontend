@@ -251,7 +251,7 @@ export default class Home extends Component {
                 isMobile?
               <div className="row text-center mr-0 ml-0 mobile-home-state">
                 <div className="col-12  card  pt-1 mb-0" style={{border: 'none', borderRadius: 0}}>
-                  <div className="row pt-4 pb-2">
+                  <div className="row pt-3">
                     <div className="col-6 ">
                       <Link to="/blockchain/nodes" className="hvr-underline-from-center hvr-underline-white text-muted">
                         <img src={require('../../images/home/node.png')}/>
@@ -353,6 +353,56 @@ export default class Home extends Component {
           </div>
           <div className=" pb-3 pb-md-5">
             <div className="container">
+            {
+              isMobile? 
+              <div className="row mt-0 mt-md-4 mb-3">
+                <div className="col-md-6 mt-3 mt-md-0 ">
+                  <div className="card " style={styles.card}>
+                    <div className="card-header bg-tron-light pb-0" style={styles.card}>
+                      <h5 className="m-0 lh-150">
+                        <Link to="blockchain/stats/txOverviewStats">
+                          {tu("14_day_transaction_history")}
+                        </Link>
+                      </h5>
+                    </div>
+                    <div className="card-body pt-0">
+
+                      <div style={{minWidth: 255, height: 140}}>
+                        {
+                          txOverviewStats === null ?
+                              <TronLoader/> :
+                              <LineReactHighChartTx style={{minWidth: 255, height: 140}} data={txOverviewStats}
+                                                    intl={intl} source='home'/>
+                        }
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 mt-3 mt-md-0 ">
+                  <div className="card" style={styles.card}>
+                    <div className="card-header bg-tron-light pb-0" style={styles.card}>
+                      <h5 className="m-0 lh-150">
+                        <Link to="blockchain/stats/addressesStats">
+                          {tu("14_day_address_growth")}
+                        </Link>
+                      </h5>
+                    </div>
+                    <div className="card-body pt-0">
+
+                      <div style={{minWidth: 255, height: 140}}>
+                        {
+                          addressesStats === null ?
+                              <TronLoader/> :
+                              <LineReactHighChartAdd style={{minWidth: 255, height: 140}} data={addressesStats}
+                                                     intl={intl} source='home'/>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              : 
               <div className="row mt-0 mt-md-4 mb-3">
                 <div className="col-md-6 mt-3 mt-md-0 ">
                   <div className="card " style={styles.card}>
@@ -400,6 +450,8 @@ export default class Home extends Component {
                   </div>
                 </div>
               </div>
+            }
+             
               <div className="row mt-0 mt-md-4">
                 <div className="col-md-6 mt-0 mb-3 mt-md-0 text-center">
                   <RecentBlocks/>

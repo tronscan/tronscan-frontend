@@ -4,6 +4,7 @@ import {injectIntl} from "react-intl";
 import {loadTransactions} from "../../actions/blockchain";
 import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
+import {Truncate} from "../common/text";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 import TimeAgo from "react-timeago";
@@ -27,9 +28,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    // this.props.setInterval(() => {
-    //   this.props.loadTransactions();
-    // }, 10000);
+    this.props.setInterval(() => {
+      this.props.loadTransactions();
+    }, 10000);
   }
 
   render() {
@@ -73,32 +74,40 @@ class RecentTransfers extends Component {
                       <div className="media">
                         <div className=" mb-0 w-100 d-flex ">
 
-                          <div className="text-left pt-1">
-                            <div className="pt-1 d-flex">
-                              <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
-                              <TransactionHashLink
-                                  hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 13)}...</TransactionHashLink>
+                          <div className="text-left pt-1 w-100">
+                            <div className="d-flex justify-content-between">
+                              <div className="pt-1 d-flex flex-1">
+                                <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
+                                {/* <TransactionHashLink
+                                    hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 13)}...</TransactionHashLink> */}
+                                <div className="flex-1">
+                                <Truncate>
+                                <TransactionHashLink
+                                    hash={transfer.transactionHash}>{transfer.transactionHash}...</TransactionHashLink>
+                                </Truncate>
+                                    </div>
+                              </div>
+                              <div className="text-muted color-grey-300 small pt-2 pl-3">
+                                <TimeAgo date={transfer.timestamp}/>
+                              </div>
                             </div>
-                            <br/>
-
-                            <span className="color-grey-300 mr-2">{tu("from")}</span>
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                          address={transfer.transferFromAddress} truncate={false}>
-                              {transfer.transferFromAddress.substr(0, 13)}...
-                            </AddressLink>
-                            <br/>
-                            <span className="color-grey-300 mr-2">{tu("to")}</span>
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                          address={transfer.transferToAddress} truncate={false}>
-                              {transfer.transferToAddress.substr(0, 13)}...
-                            </AddressLink><br/>
-                          </div>
-
-                          <div className="text-right">
-                            <div className="text-muted color-grey-300 small">
-                              <TimeAgo date={transfer.timestamp}/>
+                            
+                            <div className="d-flex align-items-center">
+                              <span className="color-grey-300 mr-2">{tu("from")}</span>
+                              <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
+                                            address={transfer.transferFromAddress}>
+                                {transfer.transferFromAddress}...
+                              </AddressLink>
                             </div>
-                            <div className="color-grey-200">
+                            <div className="d-flex align-items-center">
+                              <span className="color-grey-300 mr-2">{tu("to")}</span>
+                              <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
+                                            address={transfer.transferToAddress}>
+                                {transfer.transferToAddress.substr(0, 20)}...
+                              </AddressLink>
+                            </div>
+                            <div className="color-grey-200 pb-2">
+                              <span className="color-grey-300 mr-2">{tu("value")}</span>
                               <NameWithId value={transfer} type="abbr" totoken/>
                             </div>
                           </div>

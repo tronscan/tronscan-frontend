@@ -2748,10 +2748,10 @@ h5 {
 
 .mobile-home-state{
   .col-6{
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   img{
-    width: 16px;
+    width: 18px;
   }
   h2{
     font-size: 18px;
@@ -2769,5 +2769,25 @@ h5 {
 
   .w-left{
     width: 200px;
+  }
+  .flex-1{
+    flex: 1;
+  }
+}
+.mobile-footer{
+  h5{
+    color:#d8d8d8!important;
+    font-weight: normal;
+  }
+  .list li{
+    font-size: 14px;
+    text-align: left;
+    padding:4px 0;
+    a{
+      color:#9a9a9a!important;
+    }
+  }
+  .donate > div{
+    border: none;
   }
 }

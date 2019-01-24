@@ -37,7 +37,7 @@ export const NameWithId = ({value,type, notamount=false, totoken=false}) => {
         </span>:<span className="mr-1">{value.map_token_name}</span>
         
       }
-      {value.map_token_id != 0 && <span style={{color: '#808080', fontSize: '12px!important'}}>[ID:{value.map_token_id}]</span>}
+      {value.map_token_id != 0 && <span style={{color: '#808080', fontSize: '12px'}}>[ID:{value.map_token_id}]</span>}
     </span>
   );
 }
