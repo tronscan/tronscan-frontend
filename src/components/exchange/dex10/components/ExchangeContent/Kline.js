@@ -305,7 +305,14 @@ class Kline extends React.Component {
           <div className="kline_down" onClick={() => this.setState({detailShow: !detailShow})}>
               <Icon type="caret-down" theme="filled" />
           </div>
-          <h5 className="mr-3 font-weight-bold">{selectData.exchange_name} ≈ <span>{ selectData.price }</span></h5>
+            {
+                selectData.exchange_name &&<h5 className="mr-3 font-weight-bold">{selectData.exchange_name} ≈ <span>{ selectData.price }</span>
+                    {
+                        selectData.status != 1 && <span className="badge badge-danger-block text-uppercase ml-1">{tu("trc20_unexamine")}</span>
+                    }
+                </h5>
+
+            }
         </div>
         <div className="d-flex">
           <div className="mr-3">{tu('pairs_change')}{

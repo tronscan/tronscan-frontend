@@ -113,7 +113,7 @@ export function withTronWeb(InnerComponent) {
       };
 
       return (
-        <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" >
+        <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered" zIndex="9999">
           <ModalHeader className="text-center" toggle={cancel}>
             Confirm transaction
           </ModalHeader>
