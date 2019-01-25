@@ -212,7 +212,7 @@ export default class Home extends Component {
             {/*bottom: 0,*/}
             {/*}} className="position-absolute"/>*/}
 
-            <div className="container home-splash p-0">
+            <div className="container home-splash p-0 p-md-3">
               <div className="row justify-content-center text-center">
                 <div className="col-12">
                   {/*<p className="mt-5 mt-5-logo">*/}
@@ -267,6 +267,13 @@ export default class Home extends Component {
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
+                    <div className="col-6">
+                      <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
+                        <img src={require('../../images/home/tps.png')}/>
+                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
+                        <p className="m-0">{tu("current_MaxTPS")}</p>
+                      </div>
+                    </div>
                    
                     <div className="col-6">
                       <Link to="/blockchain/transactions"
@@ -291,13 +298,7 @@ export default class Home extends Component {
                           <p className="m-0">{tu("pice_per_1trx")}</p>
                         </HrefLink>
                     </div>
-                    <div className="col-6">
-                      <div href="javascript:;" className="hvr-underline-from-center hvr-underline-white text-muted">
-                        <img src={require('../../images/home/tps.png')}/>
-                        <h2><CountUp start={0} end={tps} duration={1}/>/<CountUp start={0} end={maxTps} duration={1}/></h2>
-                        <p className="m-0">{tu("current_MaxTPS")}</p>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
