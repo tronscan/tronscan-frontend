@@ -71,9 +71,7 @@ class Navigation extends React.Component {
       address: '',
       announcement: '',
       annountime: '1-1',
-
       announId: 83
-
     };
   }
 
@@ -110,7 +108,7 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.address !== this.state.address) {
+    if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
       this.reLoginWithTronLink();
     }
   }
@@ -124,6 +122,10 @@ class Navigation extends React.Component {
     if (activeLanguage != prevProps.activeLanguage) {
       this.getAnnouncement()
     }
+  }
+
+  isString(str){
+     return (typeof str=='string')&&str.constructor==String;
   }
 
   async getAnnouncement() {
