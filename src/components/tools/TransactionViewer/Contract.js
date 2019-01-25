@@ -349,7 +349,7 @@ export default function Contract({contract}) {
                         })
                       }
 
-                      contract.method && <Field label="contract_method">{contract.method}</Field>
+                      {contract.method && <Field label="contract_method">{contract.method}</Field>}
 
                       {
                         contract.parameter && Object.keys(contract.parameter).map((p)=>{
