@@ -747,7 +747,7 @@ export const messages = {
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
   "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
-  "ledger_note":"注意",
+  "ledger_note":"Note",
   "ledger_note_message_1":"only support Ledger Nano S for now.",
   "ledger_note_message_2":"use chrome explorer.",
   "ledger_note_message_3":"We support：TRX and TRC10 token transfer, freeze and unfreeze TRX, voting, setting name.",
