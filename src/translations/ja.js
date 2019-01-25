@@ -718,7 +718,7 @@ export const messages = {
   ##################################################################################
   */
   "ledger_guide": "Ledgerのご案内",
-  "requirements": "要求",
+  "requirements": "リクエスト",
   "using_ledger_steps_message_0": "TRONのブロックチェーンエクスプローラーでLedgerを使うと、以下のステップをフォローしてください。",
   "a": "A",
   "install_the": "インストール ",
@@ -736,6 +736,11 @@ export const messages = {
   "using_ledger_to_sign_transactions": "Ledgerを使って、取引にサインする",
   "using_ledger_to_sign_transactions_message_0": "LedgerとTRONブロックチェーンエクスプローラーのを使って、トランザクションに署名する中では、接続を中断せずにTRON APPを開いたままにしてください。",
   "using_ledger_to_sign_transactions_message_1": "取引に署名する必要がある場合、ブロックチェーンエクスプローラーは取引情報を表示するウィンドウを表示します。 投票、TRXの送信、アカウント名の変更などの処理では、取引の署名が必要です。",
+  "ledger_note":"ご注意",
+  "ledger_note_message_1":"現在ledger nano Sのみに対応しています",
+  "ledger_note_message_2":"ブラウザはchromeをお使いください",
+  "ledger_note_message_3":"現在利用可能な機能：TRXの送金、TRC‐10トークンの送金、凍結、解凍、投票、アカウント名の編集。",
+  "ledger_note_message_4":"現在利用不可な機能：TRC‐20トークンの送金、トークン新規作成、取引所での取引、スーパー代表の申請、ロックされたトークンの解凍、ブロック生成報酬の受取、githubリンクの変更、取引ペアの作成、取引ペアへの入金、取引ペアからの出金。",
   /*
   ##################################################################################
   #                                                                                #
@@ -1347,6 +1352,7 @@ export const messages = {
     "dex_search_dec":"取引したい通貨の略称を入力してください",
     "TRC20_exchange_online":"TRC20 exchange is online now",
     "Trade_on_TRXMarket":"Trade on TRXMarket",
+    "issued_token_of_tronscan": "発行したトークンは、tronscanによる審査が通過した後にTRC10トークン一覧表に表示されることです。",
   /*
    ##################################################################################
    #                                                                                #
@@ -1533,5 +1539,13 @@ export const messages = {
     "transaction_more_than_100000":"2．取引データ量が100,000を超える場合、過去7日間のデータを表示します",
     "the_token_wait_few_minutes":"新しく作成されたパスは、数分後にウォレットページに表示されます。",
     "not_login": "ログインしない",
+    "Audit_failed": "審査が通りません",
+    "Auditing": "審査中 ",
+    "Passed_audit": "審査が通ります",
+    "Have_questions": "トークンの状態について質問が御座いましたら、",
+    "Please_contact_us": "ご連絡ください。",
+    "ok_confirm":"オッケー",
+    "high_risk":"高リスク",
+
 }
 

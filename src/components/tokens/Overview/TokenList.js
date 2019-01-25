@@ -57,11 +57,11 @@ class TokenList extends Component {
     let totalAll;
 
     if (filter.name){
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
       total = result.data['data'].length;
       totalAll = result.data['totalAll'];
     }else{
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }
@@ -142,7 +142,9 @@ class TokenList extends Component {
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX,{
+      maximumFractionDigits: 6,
+    });
   }
 
   preBuyTokens = (token) => {
@@ -256,7 +258,7 @@ class TokenList extends Component {
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)
@@ -277,12 +279,12 @@ class TokenList extends Component {
         const { tronWeb } = this.props.account;
           try {
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, this.props.walletType.address).catch(e => false);
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), this.props.walletType.address).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
               res = result;
             }
             if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, tronWeb.defaultAddress.hex).catch(e => false);
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), tronWeb.defaultAddress.hex).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWeb);
               res = result;
             }
@@ -293,8 +295,8 @@ class TokenList extends Component {
           let isSuccess = await Client.participateAsset(
               currentWallet.address,
               token.ownerAddress,
-              token.id,
-              buyAmount * price)(account.key);
+              token.id+"",
+              parseInt((buyAmount * price).toFixed(0)))(account.key);
           res = isSuccess.success
       }
 
@@ -382,8 +384,14 @@ class TokenList extends Component {
         render: (text, record, index) => {
           return <div className="table-imgtext">
             {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
+                <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                    {
+                        record.id == 1002000? <div className="token-img-top">
+                          <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                          <i></i>
+                        </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                    }
+                </div> :
                 <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
                     style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
             }

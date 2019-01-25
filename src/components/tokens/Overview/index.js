@@ -52,9 +52,9 @@ class TokenOverview extends Component {
     let result;
 
     if (filter.name)
-      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico" + "&name=" + filter.name);
     else
-      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=-name&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
+      result = await xhr.get("https://apilist.tronscan.org" + "/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&status=ico");
 
     let total = result.data['total'];
     let tokens = result.data['data'];
@@ -132,7 +132,9 @@ class TokenOverview extends Component {
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX) + ' TRX';
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX, {
+      maximumFractionDigits: 6,
+    }) + ' TRX';
   }
 
   preBuyTokens = (token) => {
@@ -246,7 +248,7 @@ class TokenOverview extends Component {
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)
@@ -267,12 +269,12 @@ class TokenOverview extends Component {
       const {tronWeb} = this.props.account;
       try {
         if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-          const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, this.props.walletType.address);
+          const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), this.props.walletType.address);
           const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
           res = result;
         }
         if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, tronWeb.defaultAddress.hex).catch(e => false);
+          const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), tronWeb.defaultAddress.hex).catch(e => false);
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
@@ -283,8 +285,8 @@ class TokenOverview extends Component {
       let isSuccess = await Client.participateAsset(
           currentWallet.address,
           token.ownerAddress,
-          token.id,
-          buyAmount * price)(account.key);
+          token.id+"",
+          parseInt((buyAmount * price).toFixed(0)))(account.key);
       res = isSuccess.success
     }
 
@@ -372,12 +374,19 @@ class TokenOverview extends Component {
         width: '40%',
         render: (text, record, index) => {
           return <div className="table-imgtext">
-            {record.imgUrl ?
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={record.imgUrl}/></div> :
-                <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
-                    style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
-            }
+              {record.imgUrl ?
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}>
+                      {
+                          record.id == 1002000? <div className="token-img-top">
+                            <img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                            <i></i>
+                          </div>:<img style={{width: '42px', height: '42px'}} src={record.imgUrl}/>
+                      }
+                  </div> :
+                  <div style={{width: '42px', height: '42px', marginRight: '18px'}}><img
+                      style={{width: '42px', height: '42px'}} src={require('../../../images/logo_default.png')}/></div>
+              }
+
             <div>
               <h5><TokenLink name={record.name} id={record.id}
                              namePlus={record.name + ' (' + record.abbr + ')'} address={record.ownerAddress}/>
@@ -464,7 +473,7 @@ class TokenOverview extends Component {
     let {tokens, alert, loading, total} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'view_pass'})
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + (total - 1) + ' ' + intl.formatMessage({id: 'view_pass'})
 
     return (
         <main className="container header-overlap token_black">

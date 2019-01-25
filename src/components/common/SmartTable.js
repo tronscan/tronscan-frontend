@@ -30,7 +30,7 @@ export default class SmartTable extends Component {
   loadDatas = async (page = 1, pageSize = 40) => {
     let {filter} = this.state;
     let result = await Client.getTokens({
-      sort: '-name',
+      sort: 'rank',
       limit: pageSize,
       start: (page - 1) * pageSize,
       ...filter,

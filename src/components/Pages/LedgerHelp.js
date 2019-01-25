@@ -20,7 +20,7 @@ export default class LedgerHelp extends Component {
                       S</HrefLink>
                     </li>
                     <li>
-                      {tu('install_the')}<HrefLink href="https://www.ledgerwallet.com/live"> Ledger
+                        {tu('install_the')}<HrefLink href="https://www.ledgerwallet.com/live"> Ledger
                       Live </HrefLink> {tu('app')}
                     </li>
                   </ol>
@@ -59,6 +59,20 @@ export default class LedgerHelp extends Component {
                     </li>
                     <li>
                       {tu('using_ledger_to_sign_transactions_message_1')}
+                    </li>
+                  </ol>
+                  <h3>{tu('ledger_note')}</h3>
+                  <ol>
+                    <li>
+                        {tu('ledger_note_message_1')}
+                    </li>
+                    <li>
+                        {tu('ledger_note_message_2')}
+                    </li>
+                    <li>
+                        {tu('ledger_note_message_3')}
+                        <br/>
+                        {tu('ledger_note_message_4')}
                     </li>
                   </ol>
                 </div>

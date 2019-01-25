@@ -31,19 +31,27 @@ export  class TokenBalances extends React.Component {
     load =  (page = 1, pageSize = 20) => {
         let {hideSmallCurrency} = this.state;
         let {tokenBalances} = this.props;
+        var btt = tokenBalances.find(function(elem){
+          return elem['map_token_id']==='1002000';
+        });
+        var bttIndex = tokenBalances.findIndex(function(elem){
+          return elem['map_token_id']==='1002000';
+        });
+        if(bttIndex>-1) {
+          tokenBalances.splice(bttIndex, 1);
+          tokenBalances.unshift(btt);
+        }
         let balances;
 
         if(hideSmallCurrency){
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance >= 10)
-                .sortBy(tb => tb.name)
+                .filter(tb => tb.map_amount >= 10)
                 .value();
         }else{
             balances = _(tokenBalances)
                 .filter(tb => tb.name.toUpperCase() !== "_")
-                .filter(tb => tb.balance > 0)
-                .sortBy(tb => tb.name)
+                .filter(tb => tb.map_amount > 0)
                 .value();
         }
         this.setState({
@@ -72,7 +80,12 @@ export  class TokenBalances extends React.Component {
                 align: 'left',
                 className: 'ant_table',
                 render: (text, record, index) => {
-                    return <TokenLink id={record.map_token_id} name={text} address={record.address}/>
+                    return (
+                        record.map_token_id == 1002000?<div className="map-token-top">
+                            <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
+                            <i></i>
+                        </div>:  <TokenLink id={record.map_token_id} name={record.map_token_name+' ('+record.map_token_name_abbr+")"} address={record.address}/>
+                    )
                 }
             },
             {

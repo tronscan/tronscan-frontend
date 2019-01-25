@@ -109,12 +109,12 @@ class TokenDetail extends React.Component {
         const { tronWeb } = this.props.account;
           try {
             if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price,  this.props.walletType.address).catch(e => false);
+              const unSignTransaction = await tronWebLedger.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)),  this.props.walletType.address).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
               res = result;
             }
             if(this.props.walletType.type === "ACCOUNT_TRONLINK"){
-              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", buyAmount * price, tronWeb.defaultAddress.hex).catch(e => false);
+              const unSignTransaction = await tronWeb.transactionBuilder.purchaseToken(token.ownerAddress, token.id+"", parseInt((buyAmount * price).toFixed(0)), tronWeb.defaultAddress.hex).catch(e => false);
               const {result} = await transactionResultManager(unSignTransaction, tronWeb);
               res = result;
             }
@@ -125,8 +125,8 @@ class TokenDetail extends React.Component {
           let isSuccess = await Client.participateAsset(
               currentWallet.address,
               token.ownerAddress,
-              token.id,
-              buyAmount * price)(account.key);
+              token.id+"",
+              parseInt((buyAmount * price).toFixed(0)))(account.key);
           res = isSuccess.success
       }
 
@@ -215,7 +215,9 @@ class TokenDetail extends React.Component {
     this.setState({buyAmount: value});
     this.buyAmount.value = value;
     let priceTRX = value * (price);
-    this.priceTRX.innerHTML = intl.formatNumber(priceTRX);
+    this.priceTRX.innerHTML = intl.formatNumber(priceTRX,{
+      maximumFractionDigits: 6,
+    });
   }
 
   preBuyTokens = (token) => {
@@ -328,7 +330,7 @@ class TokenDetail extends React.Component {
                 }}><i className="fa fa-times" ariaHidden="true"></i></a>
                 <p className="ml-auto buy_confirm_message">{tu("buy_confirm_message_1")}</p>
                 <span>
-                {buyAmount} {token.name} {t("for")} {buyAmount * (price / ONE_TRX)} TRX?
+                {buyAmount} {token.name} {t("for")} {parseFloat((buyAmount * (price / ONE_TRX)).toFixed(6))} TRX?
                 </span>
                 <button className="btn btn-danger btn-block mt-3" onClick={() => {
                   this.confirmTransaction(token)
@@ -378,7 +380,6 @@ class TokenDetail extends React.Component {
                   this.setState({alert: null})
                 }}>{tu("OK")}</button>
               </div>
-
             </SweetAlert>
         )
       });
@@ -413,11 +414,20 @@ class TokenDetail extends React.Component {
                     <div className="card">
                       <div className="card-body">
                         <div className="d-flex">
-                          {token && token.imgUrl ?
-                              <img className='token-logo' src={token.imgUrl}/> :
-                              <img className='token-logo' src={require('../../../images/logo_default.png')}/>
+                          {token && token.imgUrl && token.tokenID?
+                              <div>
+                                {
+                                    token.tokenID == 1002000?
+                                        <div className="token-img-top">
+                                          <img className='token-logo' src={token.imgUrl}/>
+                                          <i></i>
+                                        </div>
+                                        :<img className='token-logo' src={token.imgUrl}/>
+                                }
+                              </div>
+                               :<img className='token-logo' src={require('../../../images/logo_default.png')}/>
                           }
-                          <div style={{width: '70%'}}>
+                          <div style={{width: '70%'}} className="token-description">
                             <h5 className="card-title">
                               {token.name} ({token.abbr})
                             </h5>

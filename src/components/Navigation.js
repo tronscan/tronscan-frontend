@@ -60,7 +60,7 @@ class Navigation extends React.Component {
     this.loginFlag = false;
     this.state = {
       search: "",
-      searchResults: null,
+      searchResults: [],
       popup: null,
       notifications: [],
       isImportAccount: false,
@@ -70,9 +70,7 @@ class Navigation extends React.Component {
       address: '',
       announcement: '',
       annountime: '1-1',
-
       announId: 83
-
     };
   }
 
@@ -109,7 +107,7 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.address !== this.state.address) {
+    if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
       this.reLoginWithTronLink();
     }
   }
@@ -123,6 +121,10 @@ class Navigation extends React.Component {
     if (activeLanguage != prevProps.activeLanguage) {
       this.getAnnouncement()
     }
+  }
+
+  isString(str){
+     return (typeof str=='string')&&str.constructor==String;
   }
 
   async getAnnouncement() {
@@ -242,7 +244,7 @@ class Navigation extends React.Component {
               placeHolder="Password"
               onCancel={this.hideModal}
               validationMsg={tu("enter_password_message")}
-              confirmBtnText={tu("ok")}
+              confirmBtnText={tu("ok_confirm")}
               onConfirm={(password) => this.unlockKeyFile(password, contents)}>
             {tu("password")}
           </SweetAlert>
@@ -266,7 +268,7 @@ class Navigation extends React.Component {
             <SweetAlert
                 success title={tu("wallet_unlocked")}
                 onConfirm={this.hideModal}
-                confirmBtnText={tu("ok")}/>
+                confirmBtnText={tu("ok_confirm")}/>
         )
       });
       this.props.login(privateKey);
@@ -356,7 +358,7 @@ class Navigation extends React.Component {
   callAjax = async (value) => {
     let {search} = this.state;
     if (search === "") {
-      this.setState({searchResults: null});
+      this.setState({searchResults: []});
       $('#_searchBox').css({display: 'none'});
       return;
     }
@@ -383,7 +385,7 @@ class Navigation extends React.Component {
 
   afterSearch = (hash) => {
     window.location.hash = hash;
-    this.setState({searchResults: null});
+    this.setState({searchResults: []});
     this.setState({search: ""});
   }
 
@@ -1245,6 +1247,9 @@ class Navigation extends React.Component {
                       }
                       {activeComponent.label === 'participate' &&
                       <small className='text-muted'>{tu('token_participate_tron')}</small>
+                      }
+                      {activeComponent.label === 'create' &&
+                      <small className='text-muted' style={{fontSize: '14px'}}>{tu('issued_token_of_tronscan')}</small>
                       }
                     </h4>
                   }

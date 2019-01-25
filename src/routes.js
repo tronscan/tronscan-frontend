@@ -499,11 +499,11 @@ export const routes = [
                 //     icon: "fa fa-download",
                 //     label: "desktop_explorer"
                 // },
-                {
-                    url: "https://explorer.shasta.trongrid.io",
-                    icon: "fa fa-link",
-                    label: "link_test_server"
-                },
+                // {
+                //     url: "https://explorer.shasta.trongrid.io",
+                //     icon: "fa fa-link",
+                //     label: "link_test_server"
+                // },
                 {
                     url: "https://www.trongrid.io/shasta",
                     icon: "fa fa-recycle",

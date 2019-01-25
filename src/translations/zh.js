@@ -34,7 +34,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "ok": "确定",
+    "ok": "OK",
     "app_title": "波场协议",
     "password": "密码",
     "money_price": "价格",
@@ -100,7 +100,7 @@ export const messages = {
     "send_tokens": "发送资产",
     "desktop_explorer": "桌面浏览器",
     "message": "信息",
-    "wallet_address": "Wallet Address",
+    "wallet_address": "钱包地址",
     "confirm": "确认",
     "_percentage": "百分比",
     "language_support": "目前只支持英文输入",
@@ -740,6 +740,12 @@ export const messages = {
     "using_ledger_to_sign_transactions": "使用Ledger对交易进行签名",
     "using_ledger_to_sign_transactions_message_0": "在使用Ledger和波场区块链浏览器对交易进行签名的过程中，请不要中断Ledger的连接，并保持TRON APP处于开启状态",
     "using_ledger_to_sign_transactions_message_1": "需要对交易签名时，区块链浏览器会弹出窗口，显示交易信息。在投票、发送TRX、更改账户名称等过程中，都需要进行交易签名。",
+    "ledger_note":"注意",
+    "ledger_note_message_1":"目前仅支持ledger nano S",
+    "ledger_note_message_2":"使用谷歌chrome浏览器",
+    "ledger_note_message_3":"支持功能：TRX转账，TRC 10 通证转账，冻结TRX，解冻TRX，投票，设置账户名称。",
+    "ledger_note_message_4":"目前不支持的功能：TRC 20 通证转账，创建通证，交易所交易，申请超级代表，解冻锁仓的通证，领取出块奖励，更新github链接，创建交易对，交易对注资，交易对撤资。",
+
     /*
     ##################################################################################
     #                                                                                #
@@ -1349,6 +1355,7 @@ export const messages = {
     "dex_search_dec":"输入想交易代币的简称",
     "TRC20_exchange_online":"TRC20交易所上线啦",
     "Trade_on_TRXMarket":"去TRXMarket交易",
+    "issued_token_of_tronscan": "已发行的通证，只有经过tronscan审核后，才会展示到TRC 10通证概览中。",
 
     /*
      ##################################################################################
@@ -1536,6 +1543,12 @@ export const messages = {
     "transaction_more_than_100000":"2. 交易数据>100,000条时,展示最新七天的数据",
     "the_token_wait_few_minutes":"新创建的通证将会在几分钟后显示在钱包页中",
     "not_login": "未登录",
-
+    "Audit_failed": "审核未通过",
+    "Auditing": "审核中",
+    "Passed_audit": "审核已通过",
+    "Have_questions": "对通证状态有疑问？",
+    "Please_contact_us": "请联系我们。",
+    "ok_confirm":"确定",
+    "high_risk":"高风险",
 
 };
