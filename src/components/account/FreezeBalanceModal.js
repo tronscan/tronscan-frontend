@@ -45,7 +45,8 @@ export default class FreezeBalanceModal extends React.PureComponent {
           value:1
         }
       ],
-      selectedResource:0
+      selectedResource:0,
+      receiver:''
     };
   }
 
@@ -89,7 +90,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
   freeze = async () => {
 
     let {account, onError, wallet} = this.props;
-    let {amount, selectedResource} = this.state;
+    let {amount, selectedResource, receiver} = this.state;
     let res, type, result;
     this.setState({loading: true});
 
@@ -120,7 +121,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
         res = result;
       } else {
-        let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource)(account.key);
+        let {success} = await Client.freezeBalance(account.address, amount * ONE_TRX, 3, selectedResource, receiver)(account.key);
         res = success
       }
 
@@ -144,10 +145,12 @@ export default class FreezeBalanceModal extends React.PureComponent {
         selectedResource: Number(value)
     });
   };
-
+  setReceiverAddress = (address) => {
+    this.setState({receiver: address});
+  };
   render() {
 
-    let {amount, confirmed, loading, resources, selectedResource} = this.state;
+    let {receiver, amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
 
     let isValid = true; //!loading && (amount > 0 && trxBalance >= amount && confirmed);
@@ -163,6 +166,14 @@ export default class FreezeBalanceModal extends React.PureComponent {
                 <div className="text-left _power">{tu("current_power")}: <span
                     style={{fontWeight: 800}}>{frozenTrx / ONE_TRX}</span>
                 </div>
+              </div>
+            <div className="form-group">
+            <input type="text"
+                   onChange={(ev) => this.setReceiverAddress(ev.target.value)}
+                   className="form-control"
+                   value={receiver}/>
+            </div>
+            <div className="form-group">
                 <div style={{position:'relative'}}>
                   <button type="button" onClick={ ()=>{
                     this.setState({ amount: Math.floor(trxBalance) })
