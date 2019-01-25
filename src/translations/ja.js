@@ -1546,8 +1546,14 @@ export const messages = {
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
     "high_risk":"高リスク",
-  "contract_method":"コントラクトメソッド",
-  "contract_parameters":"メソッドパラメータ"
+    "contract_method":"コントラクトメソッド",
+    "contract_parameters":"メソッドパラメータ",
+    "energy_fee":"エネルギーを消耗するためのTRX",
+    "energy_usage":"凍結したTRXを消耗する",
+    "energy_usage_total":"消耗したエネルギー総額",
+    "origin_energy_usage":"コントラクトを消耗するためのエネルギー",
+    "net_fee":"バンド幅を消耗するためのTRX",
+    "net_usage":"凍結したバンド幅を消耗する",
 
 }
 
