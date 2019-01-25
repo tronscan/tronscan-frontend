@@ -1546,6 +1546,8 @@ export const messages = {
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
     "high_risk":"高リスク",
+  "contract_method":"コントラクトメソッド",
+  "contract_parameters":"メソッドパラメータ"
 
 }
 

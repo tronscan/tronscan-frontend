@@ -1562,7 +1562,14 @@ export const messages = {
   "Please_contact_us": "Please contact us.",
   "ok_confirm":"OK",
   "high_risk":"High Risk",
-
+  "contract_method":"Contract Method",
+  "contract_parameters":"Method Parameters",
+  "energy_fee":"Burning TRX Number to Get Energy",
+  "energy_usage":"Energy Usage from User's Frozen Energy",
+  "energy_usage_total":"Total Energy Cost",
+  "origin_energy_usage":"Energy Usage from Contract Provided",
+  "net_fee":"Burning TRX Number to Get Bandwidth",
+  "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
 
 
 
