@@ -353,7 +353,7 @@ export default function Contract({contract}) {
 
                       {
                         contract.parameter && Object.keys(contract.parameter).map((p)=>{
-                          return p.indexOf('_')>-1 && <Field label={p}>{contract.parameter[p]}</Field>
+                          return <Field label={p}>{contract.parameter[p]}</Field>
                         })
                       }
 
