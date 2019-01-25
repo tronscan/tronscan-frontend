@@ -62,15 +62,12 @@ class SmartContract extends React.Component {
 
 
     let contract = await Client.getContractOverview(id);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
-    let tokens20 = result.data.trc20_tokens;
-    let token20 = _(tokens20)
-        .filter(tb => tb.contract_address === id)
-        .value();
 
+    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?contract="+id);
+    let token20 = result.data.trc20_tokens.length >0?result.data.trc20_tokens[0]:'';
     this.setState(prevProps => ({
       loading: false,
-      token20:token20[0],
+      token20:token20,
       contract:contract.data[0],
       tabs: {
         ...prevProps.tabs,
