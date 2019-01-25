@@ -56,10 +56,11 @@ class Transactions extends React.Component {
 
     this.setState({loading: true});
 
-    let contractEvent = await Client.getContractEvent(filter.address);
-
-    let newList = [] 
-    contractEvent.map((item, index) => {
+   // let contractEvent = await Client.getContractEvent(filter.address);
+    let {data} = await xhr.get(`https://api.trongrid.io/event/contract/${filter.address}`);
+    let contractEvent = data
+    let newList = []
+      contractEvent.map((item, index) => {
       let eventList = []
       forIn(item.result, (value, key) => {
         eventList.push({
