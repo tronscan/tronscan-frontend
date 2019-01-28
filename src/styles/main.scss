@@ -470,7 +470,7 @@ tr a {
     margin-right: auto;
   }
   .home .card {
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
   }
   // Wallet wizard
   .wallet-wizard .wallet-wizard-logo {
@@ -2746,6 +2746,53 @@ h5 {
     font-size: 1.5rem !important;
   }
 }
+
+.mobile-home-state{
+  .col-6{
+    margin-bottom: 16px;
+  }
+  img{
+    width: 18px;
+  }
+  h2{
+    font-size: 18px;
+    color: #333333;
+    margin: 10px 0 4px;
+  }
+}
+.mobile-block{
+  padding-top: 4px;
+  padding-bottom: 4px;
+  * {font-size: 14px!important}
+  .small{
+    &, & * {font-size: 12px!important;}
+  }
+
+  .w-left{
+    width: 200px;
+  }
+  .flex-1{
+    flex: 1;
+  }
+}
+.mobile-footer{
+  h5{
+    color:#d8d8d8!important;
+    font-weight: normal;
+  }
+  .list li{
+    font-size: 14px;
+    text-align: left;
+    padding:4px 0;
+    a{
+      color:#9a9a9a!important;
+    }
+  }
+  .donate > div{
+    border: none;
+  }
+}
+
 .map-token-top{
   display: flex;
   align-items: center;

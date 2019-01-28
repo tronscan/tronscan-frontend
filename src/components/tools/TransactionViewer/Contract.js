@@ -39,6 +39,7 @@ export default function Contract({contract}) {
         }
 
     }
+
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
@@ -342,6 +343,19 @@ export default function Contract({contract}) {
                           :<Field label="value"><TRXPrice amount={0}/></Field>
                       }
 
+                      {
+                        contract.cost && Object.keys(contract.cost).map((c)=>{
+                          return (c==='energy_fee'||c==='net_fee')?<Field label={c}>{contract.cost[c]/1000000} TRX</Field>:<Field label={c}>{contract.cost[c]}</Field>
+                        })
+                      }
+
+                      {contract.method && <Field label="contract_method">{contract.method}</Field>}
+
+                      {
+                        contract.parameter && Object.keys(contract.parameter).map((p)=>{
+                          return <Field label={p}>{contract.parameter[p]}</Field>
+                        })
+                      }
 
                       </tbody>
                   </table>

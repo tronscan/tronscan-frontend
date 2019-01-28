@@ -71,7 +71,7 @@ class Transaction extends React.Component {
         });
         return;
     }
-    
+
     this.setState({
       loading: false,
       transaction,
@@ -83,7 +83,9 @@ class Transaction extends React.Component {
           label: <span>{tu("contracts")}</span>,
           cmp: () => (
               <Contract contract={{
+                  ...{cost:transaction.cost},
                 ...transaction.contractData,
+                  ...transaction['trigger_info'],
                 contractType: ContractTypes[transaction.contractType],
               }}/>
           ),
@@ -176,7 +178,7 @@ class Transaction extends React.Component {
                     </div>
 
                     <div className="card mt-3  list-style-body">
-                      <div className="card-body p-0  list-style-body__body">
+                      <div className="card-body p-0  list-style-body__body" style={{"overflow":"auto"}}>
                         <Switch>
                           {
                             Object.values(tabs).map(tab => (

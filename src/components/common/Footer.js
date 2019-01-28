@@ -6,6 +6,8 @@ import { withTimers } from "../../utils/timing";
 import { tu,pure_t } from "../../utils/i18n";
 import { toastr } from "react-redux-toastr";
 import { HrefLink } from "../common/Links";
+import isMobile from "../../utils/isMobile";
+import {Truncate} from "./text";
 
 class Footer extends Component {
   constructor() {
@@ -17,6 +19,137 @@ class Footer extends Component {
     return (
       <main className="home pb-0">
         <div className="pt-5 home-footer">
+        {
+          isMobile?
+          <div className="container mobile-footer">
+            <div className="row text-center text-xs-center text-sm-left text-md-left list">
+              <div className="col-7 col-md-3">
+                <h5>Tronscan</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <HrefLink href="https://t.me/tronscan">Telegram</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">{tu('report_an_error')}</HrefLink>
+                  </li>
+                  <li>
+                    <Link to="/help/about">{tu('about_us')}</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-5 col-md-3">
+                <h5>TRON</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <HrefLink href="https://dapphouse.org">DApps</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://twitter.com/tronfoundation">Twitter</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://www.facebook.com/tronfoundation/">Facebook</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://medium.com/@Tronfoundation">Medium</HrefLink>
+                  </li>
+
+                </ul>
+              </div>
+              <div className="col-7 col-md-3">
+                <h5>Quick links</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <Link to="/sr/votes">{tu("vote_for_super_representatives")}</Link>
+                  </li>
+                  <li>
+                    <Link to="/sr/representatives">{tu("view_super_representatives")}</Link>
+                  </li>
+                  <li>
+                    <Link to="/wallet/new">{tu("create_new_wallet")}</Link>
+                  </li>
+                  <li>
+                    <Link to="/tokens/view">{tu("view_tokens")}</Link>
+                  </li>
+                  <li>
+                    <Link to="/help/copyright">{tu("copyright")}</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-5 col-md-3">
+                <h5>Development</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <HrefLink href="https://github.com/tronprotocol">Github</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://github.com/tronprotocol/java-tron">java-tron</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://github.com/tronprotocol/Documentation">Documentation</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://developers.tron.network/">Developer Hub</HrefLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="row mt-3">
+              <div className="col-xs-12 col-sm-12 col-md-12">
+                <ul
+                  className="list-unstyled list-inline social text-center"
+                  style={{ marginBottom: 4 }}
+                >
+                  <li className="list-inline-item">
+                    <HrefLink href="https://www.facebook.com/tronfoundation/">
+                      <i className="fab fa-facebook" />
+                    </HrefLink>
+                  </li>
+                  <li className="list-inline-item">
+                    <HrefLink href="https://github.com/tronscan/tronscan-frontend">
+                      <i className="fab fa-github" />
+                    </HrefLink>
+                  </li>
+                  <li className="list-inline-item">
+                    <HrefLink href="mailto:feedback@tronscan.org" target="_blank">
+                      <i className="fa fa-envelope" />
+                    </HrefLink>
+                  </li>
+                  <li className="list-inline-item">
+                    <HrefLink
+                      href="https://www.reddit.com/r/Tronix"
+                      target="_blank"
+                    >
+                      <i className="fab fa-reddit-alien" />
+                    </HrefLink>
+                  </li>
+                </ul>
+              </div>
+              <hr />
+            </div>
+            <div className="row donate m-0">
+                <div className="px-3 d-flex w-100 justify-content-center">
+                    <div className="d-flex align-items-center pr-2">
+                        <img src={require('../../images/footer/icon-heart.png')} width="15px" height="13px" alt="" className="mr-1"/>
+                        {tu('donateAddress')}
+                        <span>:</span>
+                    </div>
+                    <Link to={`/address/${donate_address}`} className="text-truncate">{donate_address}</Link>
+                   
+                </div>
+            </div>
+            
+            <div className="row ">
+              <div className="col-xs-12 col-sm-12 col-md-12 text-center mb-3">
+                <Link to="/help/copyright" className="color-grey-300">
+                  Copyright© 2017-2018 tronscan.org
+                </Link>
+              </div>
+            </div>
+          </div>
+          :
           <div className="container">
             <div className="row text-center text-xs-center text-sm-left text-md-left">
               <div className="col-xs-12 col-sm-3 col-md-3">
@@ -195,6 +328,8 @@ class Footer extends Component {
               </div>
             </div>
           </div>
+        }
+          
         </div>
       </main>
     );
