@@ -1546,6 +1546,15 @@ export const messages = {
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
     "high_risk":"高リスク",
+  "delegate_list":"レンタルリスト",
+  "type":"タイプ",
+  "delegate_other":"他人よりの凍結",
+  "freeze_self":"独自の凍結",
+  "total_amount":"総額",
+  "receive_address":"受信アドレス",
+  "my_account":"My Account",
+  "receive_list":"受信アドレス",
+  "unfreeze_warning":"自分で凍結したTRXのみを解凍できます。 解凍を続けますか?",
 
 }
 

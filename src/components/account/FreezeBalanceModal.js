@@ -169,6 +169,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
               </div>
             <div className="form-group">
             <input type="text"
+                   placeholder={intl.formatMessage({id: 'receive_address'})}
                    onChange={(ev) => this.setReceiverAddress(ev.target.value)}
                    className="form-control"
                    value={receiver}/>

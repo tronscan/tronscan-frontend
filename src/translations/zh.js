@@ -1550,5 +1550,14 @@ export const messages = {
     "Please_contact_us": "请联系我们。",
     "ok_confirm":"确定",
     "high_risk":"高风险",
+    "delegate_list":"租借列表",
+    "type":"类型",
+    "delegate_other":"他人冻结",
+    "freeze_self":"自身冻结",
+  "total_amount":"总额",
+  "receive_address":"接收账户（不填默认自己）",
+  "my_account":"我的账户",
+  "receive_list":"接收账户",
+  "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
 
 };
