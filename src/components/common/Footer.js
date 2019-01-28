@@ -198,11 +198,11 @@ class Footer extends Component {
                       {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
                     {/*</HrefLink>*/}
                   {/*</li>*/}
-                  <li className="p-2">
-                    <HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">
-                      <i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}
-                    </HrefLink>
-                  </li>
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
                   <li className="p-2">
                     <HrefLink href="https://github.com/tronscan/tronscan-frontend">
                       <i className="fa fa-angle-right mr-4" /> Tronscan Github
@@ -210,8 +210,7 @@ class Footer extends Component {
                   </li>
                   <li className="p-2">
                     <Link to="/help/about">
-                      <i className="fa fa-angle-right mr-4" />
-                        {tu('about_us')}
+                      <i className="fa fa-angle-right mr-4" /> {tu('about_us')}
                     </Link>
                   </li>
                 </ul>
