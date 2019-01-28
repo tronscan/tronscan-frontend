@@ -747,7 +747,7 @@ export const messages = {
   "using_ledger_to_sign_transactions": "Using the ledger to sign transactions",
   "using_ledger_to_sign_transactions_message_0": "Make sure to keep the Ledger connected and the TRON app open to sign transactions using the Ledger while using Tronscan",
   "using_ledger_to_sign_transactions_message_1": "Tronscan will show a popup with the transaction details when a transaction signature is required. Signatures are required whenever you vote, send TRX, change account name, etc..",
-  "ledger_note":"注意",
+  "ledger_note":"Note",
   "ledger_note_message_1":"only support Ledger Nano S for now.",
   "ledger_note_message_2":"use chrome explorer.",
   "ledger_note_message_3":"We support：TRX and TRC10 token transfer, freeze and unfreeze TRX, voting, setting name.",
@@ -1562,6 +1562,7 @@ export const messages = {
   "Please_contact_us": "Please contact us.",
   "ok_confirm":"OK",
   "high_risk":"High Risk",
+
   "delegate_list":"Rental List",
   "type":"Type",
   "delegate_other":"Freeze by Others",
@@ -1571,5 +1572,17 @@ export const messages = {
   "my_account":"My Account",
   "receive_list":"Recipient Address",
   "unfreeze_warning":"You can only unfreeze TRX frozen by yourself. Do you wish to continue unfreezing?",
+
+  "contract_method":"Contract Method",
+  "contract_parameters":"Method Parameters",
+  "energy_fee":"Burning TRX Number to Get Energy",
+  "energy_usage":"Energy Usage from User's Frozen Energy",
+  "energy_usage_total":"Total Energy Cost",
+  "origin_energy_usage":"Energy Usage from Contract Provided",
+  "net_fee":"Burning TRX Number to Get Bandwidth",
+  "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
+
+
+  
 
 };

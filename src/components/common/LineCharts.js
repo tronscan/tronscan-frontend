@@ -164,11 +164,14 @@ export class LineReactHighChartTx extends React.Component {
             _config.yAxis.allowDecimals = true;
             _config.exporting.enabled = false;
             _config.yAxis.tickInterval = 1000000;
+            _config.yAxis.min = 0;
             _config.yAxis.labels.formatter = function() {
-                if(this.value < 1000000){
+                if(this.value < 1000000 && this.value >= 1000 ){
                     return this.value/1000 + 'k'
                 }else if(this.value >= 1000000){
                     return this.value/1000000 + 'M'
+                }else if(this.value <1000){
+                    return this.value
                 }
             }
             _config.tooltip.formatter = function () {

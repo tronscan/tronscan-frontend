@@ -196,7 +196,7 @@ export const messages = {
     "current_power": "当前投票权",
     "produce_distribution": "算力分配图",
     "confirm_token_issue": "确认通证发行",
-    "_to": "至",
+    "__to": "至",
     /*
     ##################################################################################
     #                                                                                #
@@ -1550,6 +1550,7 @@ export const messages = {
     "Please_contact_us": "请联系我们。",
     "ok_confirm":"确定",
     "high_risk":"高风险",
+
     "delegate_list":"租借列表",
     "type":"类型",
     "delegate_other":"他人冻结",
@@ -1559,5 +1560,15 @@ export const messages = {
   "my_account":"我的账户",
   "receive_list":"接收账户",
   "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
+
+    "contract_method":"合约方法",
+    "contract_parameters":"方法参数",
+    "energy_fee":"消耗能量使用的TRX",
+    "energy_usage":"消耗用户冻结的能量",
+    "energy_usage_total":"总消耗的能量",
+    "origin_energy_usage":"消耗合约提供的能量",
+    "net_fee":"消耗带宽使用的TRX",
+    "net_usage":"消耗用户冻结的带宽",
+
 
 };

@@ -150,7 +150,14 @@ export  class TokenBalances extends React.Component {
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
-               <SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
+                {
+                    Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
+                    <div className="text-center p-3 no-data">
+                        {tu("no_tokens_found")}
+                    </div>
+                    :<SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
+                }
+               
             </div>
         )
     }
