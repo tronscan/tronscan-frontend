@@ -58,7 +58,7 @@ export class AddressLink extends React.PureComponent {
 
     this.setState({
       modal: (
-          <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal}>
+          <Modal className="modal-dialog-centered animated zoomIn" fade={false} isOpen={true} toggle={this.hideModal} style={{width: '400px'}}>
             <ModalHeader toggle={this.hideModal}>QR CODE</ModalHeader>
             <ModalBody className="text-center">
               <h5 className="py-2">{tu("wallet_address")}</h5>
