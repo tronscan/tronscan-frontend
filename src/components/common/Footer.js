@@ -204,6 +204,11 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
+                    <HrefLink href="https://github.com/tronscan/tronscan-frontend">
+                      <i className="fa fa-angle-right mr-4" /> Tronscan Github
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
                     <Link to="/help/about">
                       <i className="fa fa-angle-right mr-4" />
                         {tu('about_us')}
