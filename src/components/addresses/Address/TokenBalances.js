@@ -130,16 +130,16 @@ export  class TokenBalances extends React.Component {
 
         let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
         let locale  = {emptyText: intl.formatMessage({id: 'no_tokens_found'})}
-        // if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
-        //     if (!EmptyState) {
-        //         return (
-        //             <div className="text-center p-3 no-data">
-        //                 {tu("no_tokens_found")}
-        //             </div>
-        //         );
-        //     }
-        //     return <EmptyState />;
-        // }
+        if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
+            if (!EmptyState) {
+                return (
+                    <div className="text-center p-3 no-data">
+                        {tu("no_tokens_found")}
+                    </div>
+                );
+            }
+            return <EmptyState />;
+        }
         return (
             <div className="token_black table_pos">
                 <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
