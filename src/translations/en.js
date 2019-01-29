@@ -1574,7 +1574,7 @@ export const messages = {
 
   "Basic_info": "Basic info",
     "Internal_txns": "Internal txns",
-    "Fee_Consumption": "Fee Consumption",
+    "Fee_Consumption": "Fee",
     "Method_calling": "Method calling",
     "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
     "CONTRACT_CREATION": "CONTRACT CREATION"

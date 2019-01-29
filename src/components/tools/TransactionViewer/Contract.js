@@ -404,11 +404,11 @@ export default function Contract({contract}) {
                           Object.keys(contract.cost).map((c)=>{
                             return (c==='energy_fee'||c==='net_fee')?
                             <div className="d-flex border-bottom content_item">
-                              <div className="content_name" style={{width: '150px'}}>{tu(c)}:</div>
+                              <div className="content_name" style={{width: '250px'}}>{tu(c)}:</div>
                               <div className="flex1">{contract.cost[c]/1000000} TRX</div>
                             </div>:
                             <div className="d-flex border-bottom content_item">
-                              <div className="content_name" style={{width: '150px'}}>{tu(c)}:</div>
+                              <div className="content_name" style={{width: '250px'}}>{tu(c)}:</div>
                               <div className="flex1">{contract.cost[c]}</div>
                             </div>
                           })
