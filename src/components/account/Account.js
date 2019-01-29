@@ -458,7 +458,7 @@ export default class Account extends Component {
             </tr>
           }
           {
-            accountResource.frozen_balance > 0 && <tr>
+            (accountResource.frozen_balance > 0 || (delegated&&delegated.receivedDelegatedResource&&delegated.receivedDelegatedResource.length >0))&& <tr>
               <td>
                 {tu('energy')}
               </td>
@@ -471,11 +471,12 @@ export default class Account extends Component {
               <td>
                 <TRXPrice amount={(frozenEnergy+receiveDelegateResource) / ONE_TRX}/>
               </td>
-              <td className="text-right">
+              {accountResource.frozen_balance > 0?<td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={accountResource.expire_time}/>&nbsp;
                 <FormattedTime value={accountResource.expire_time}/>
-              </td>
+              </td>:<td></td>
+              }
               <td className="text-right">
                 {
                   <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
