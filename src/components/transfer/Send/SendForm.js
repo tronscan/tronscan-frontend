@@ -91,7 +91,7 @@ class SendForm extends React.Component {
     this.setState({isLoading: true, modal: null});
 
     if (TokenName === "_") {
-      amount = amount * ONE_TRX;
+      amount = this.Mul(amount,ONE_TRX);
       if(this.props.wallet.type==="ACCOUNT_LEDGER") {
         result = await this.props.tronWeb().trx.sendTransaction(to, amount, {address: wallet.address}, false).catch(function (e) {
           console.log(e)
@@ -109,7 +109,8 @@ class SendForm extends React.Component {
       }
 
     } else {
-        amount = amount * Math.pow(10, decimals);
+        //amount = amount * Math.pow(10, decimals);
+        amount = this.Mul(amount,Math.pow(10, decimals));
         if(this.props.wallet.type==="ACCOUNT_LEDGER") {
             result = await this.props.tronWeb().trx.sendToken(to, amount, TokenName, {address:wallet.address}, false).catch(function (e) {
                 console.log(e)
@@ -154,6 +155,12 @@ class SendForm extends React.Component {
     }
   };
 
+  Mul (arg1, arg2) {
+      let r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = arguments[2];
+      m = (r1.split(".")[1] ? r1.split(".")[1].length : 0) + (r2.split(".")[1] ? r2.split(".")[1].length : 0);
+      resultVal = Number(r1.replace(".", "")) * Number(r2.replace(".", "")) / Math.pow(10, m);
+      return typeof d !== "number" ? Number(resultVal) : Number(resultVal.toFixed(parseInt(d)));
+  }
   token10Send = async () => {
     let {to, token, amount, note, decimals} = this.state;
     let list = token.split('-');
@@ -162,10 +169,11 @@ class SendForm extends React.Component {
 
     this.setState({isLoading: true, modal: null});
 
-    if (TokenName === 'TRX') {
-      amount = amount * ONE_TRX;
+    if (TokenName === '_') {
+      amount = this.Mul(amount,ONE_TRX);
     }else{
-      amount = amount * Math.pow(10, decimals)
+
+      amount = this.Mul(amount,Math.pow(10, decimals))
     }
 
     let {success} = await Client.sendWithNote(TokenName, account.address, to, amount, note)(account.key);
@@ -208,7 +216,8 @@ class SendForm extends React.Component {
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
     let contractInstance = await tronWeb.contract().at(contractAddress);
-    const transactionId = await contractInstance.transfer(to, Math.ceil(amount * Math.pow(10, decimals))).send();
+    amount = this.Mul(amount,Math.pow(10, decimals));
+    const transactionId = await contractInstance.transfer(to, amount).send();
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();
@@ -279,10 +288,11 @@ class SendForm extends React.Component {
 
   setAmount = (amount) => {
     let {token, decimals} = this.state;
-    let TokenType = token.substr(token.length - 5, 5);
-    let TokenName = token.substring(0, token.length - 6);
+    let list = token.split('-');
+    let TokenName =  list[1];
+    let TokenType = list[2];
     if (token && TokenType === 'TRC10') {
-      if (TokenName === 'TRX') {
+      if (TokenName === '_') {
         if (amount !== '') {
           amount = parseFloat(amount);
           amount = round(amount, 6);

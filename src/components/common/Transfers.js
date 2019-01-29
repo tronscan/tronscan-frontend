@@ -244,18 +244,16 @@ class Transfers extends React.Component {
                 </div>
             }
 
-            {
-                transfers.length?
-                  <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
-                              onPageChange={(page, pageSize) => {
-                                  this.onChange(page, pageSize)
-                              }}/> :<div className="pt-5">
-                  <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
-                              onPageChange={(page, pageSize) => {
-                                  this.onChange(page, pageSize)
-                              }}/>
-                </div>
+{
+              (!loading && transfers.length === 0)?
+              <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
+              :
+              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
+                onPageChange={(page, pageSize) => {
+                    this.onChange(page, pageSize)
+                }}/>
             }
+
 
 
 
