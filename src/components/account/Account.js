@@ -412,6 +412,7 @@ export default class Account extends Component {
     }
 
     return (
+        <div style={{overflow:'auto'}}>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -491,6 +492,7 @@ export default class Account extends Component {
           }
           </tbody>
         </table>
+        </div>
     )
   }
 
@@ -502,6 +504,7 @@ export default class Account extends Component {
     }
 
     return (
+        <div style={{overflow:'auto'}}>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -580,6 +583,7 @@ export default class Account extends Component {
           }
           </tbody>
         </table>
+        </div>
     )
   }
 
