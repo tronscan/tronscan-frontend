@@ -750,7 +750,7 @@ export default class Account extends Component {
           >
             <div className="form-group" style={{marginBottom: '36px'}}>
               <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
-                {tu("unfreeze_warning")}
+               
               </div>
             </div>
 
