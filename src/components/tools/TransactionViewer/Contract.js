@@ -44,6 +44,7 @@ export default function Contract({contract}) {
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+    console.log(contract)
 
    
   switch (contract.contractType.toUpperCase()) {
@@ -360,7 +361,7 @@ export default function Contract({contract}) {
                     </div>
 
 
-                    {contract.internal_transactions && <div className="d-flex border-bottom pt-2">
+                    {JSON.stringify(contract.internal_transactions) != '{}' && <div className="d-flex border-bottom pt-2">
                       <div className="content_box_name">{tu('Internal_txns')}</div>
                       <div className="flex1">
                       {
@@ -396,7 +397,7 @@ export default function Contract({contract}) {
                       </div>
                     </div>}
 
-                    {contract.cost &&
+                    {JSON.stringify(contract.cost) != '{}' &&
                     <div className="d-flex border-bottom pt-2">
                       <div className="content_box_name">{tu('Fee_Consumption')}</div>
                       <div className="flex1">
