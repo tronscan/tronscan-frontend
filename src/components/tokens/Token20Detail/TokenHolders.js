@@ -10,6 +10,7 @@ import xhr from "axios/index";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {toastr} from 'react-redux-toastr'
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
+import { trim } from 'lodash'
 
 class TokenHolders extends React.Component {
 
@@ -48,8 +49,8 @@ class TokenHolders extends React.Component {
     //   start: (page - 1) * pageSize,
     //   count: true
     // });
-    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
-    let addresses = data.token_holders;
+    let { data } = await xhr.get("https://apilist.tronscan.org/"+"api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let addresses = data.trc20_tokens;
     let total= data.total;
     for (let index in addresses) {
       addresses[index].index = parseInt(index) + 1;
@@ -70,8 +71,8 @@ class TokenHolders extends React.Component {
         title: '#',
         dataIndex: 'index',
         key: 'index',
-        width: '10%',
-        align: 'left',
+        width: '5%',
+        align: 'center',
         className: 'ant_table',
       },
       {
@@ -116,13 +117,12 @@ class TokenHolders extends React.Component {
   doSearch = async () => {
       let {intl,filter} = this.props;
       let {search,addresses} = this.state;
-      let resultData = [];
+
       if (isAddressValid(search)){
-          let result = await  xhr.get(API_URL+"/api/token_trc20/holder_balance?contract_address=" + filter.token +"&holder_address=" + search);
-          result.data.index = 1
-          resultData.push(result.data);
+          let result = await  xhr.get("https://apilist.tronscan.org/"+"api/token_trc20/holders?contract_address=" + filter.token +"&holder_address=" + search);
+          result.data.trc20_tokens[0].index = 1
           this.setState({
-              addresses:resultData,
+              addresses:result.data.trc20_tokens,
               total:1,
               search: ""
           });
@@ -160,7 +160,7 @@ class TokenHolders extends React.Component {
                   <input type="text"
                          className="form-control p-2 bg-white border-0 box-shadow-none"
                           value={search}
-                          onChange={ev => this.setState({search: ev.target.value})}
+                          onChange={ev => this.setState({search: trim(ev.target.value)})}
                          placeholder={intl.formatMessage({id: "search_TRC20"})}/>
                   <div className="input-group-append">
                     <button className="btn box-shadow-none" onClick={this.doSearch}>

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {Client} from "../../../services/api";
-import {AddressLink, TransactionHashLink} from "../../common/Links";
+import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {TRXPrice} from "../../common/Price";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {tu, t} from "../../../utils/i18n";
@@ -49,9 +49,9 @@ class Transfers extends React.Component {
     let {showTotal} = this.state;
 
     this.setState({loading: true});
-    let { data } = await xhr.get(API_URL+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let { data } = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let transfers = data.token_transfers;
-    let total = data.total
+    let total = data.total;
 
     // let {transfers, total} = await Client.getTransfers({
     //   sort: '-timestamp',
@@ -135,7 +135,9 @@ class Transfers extends React.Component {
         className: 'ant_table',
         render: (text, record, index) => {
             return <span>
-                    <FormattedNumber value={record.quant / (Math.pow(10,token.decimals))}/>  {token.name}
+                    <FormattedNumber value={record.quant / (Math.pow(10,token.decimals))}/>
+                    &nbsp;&nbsp;
+                    <TokenTRC20Link name={token.symbol} address={token.contract_address} />
                 </span>
 
         },

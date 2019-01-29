@@ -61,7 +61,7 @@ class TokenList extends Component {
       total = result.data['data'].length;
       totalAll = result.data['totalAll'];
     }else{
-      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1");
+      result = await xhr.get("https://apilist.tronscan.org"+"/api/token?sort=rank&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&totalAll=1&showAll=2");
       total = result.data['total'];
       totalAll = result.data['totalAll'];
     }
@@ -489,7 +489,7 @@ class TokenList extends Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan"></QuestionMark></span> &nbsp;&nbsp;  <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link></div> : ''}
+                {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo} <span><QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark></span> &nbsp;&nbsp;  <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link></div> : ''}
                 {/*<SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}*/}
                             {/*onPageChange={(page, pageSize) => {*/}
                               {/*this.loadPage(page, pageSize)*/}

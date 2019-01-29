@@ -1363,7 +1363,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
+  "newly_issued_token_by_tronscan":"The fake tokens will be added to the blacklist and not displayed.",
   "Favorites":"Favorites",
   "dex_search_dec":"Enter the Abbreviation of the token",
   "TRC20_exchange_online":"TRC20 exchange is online now",

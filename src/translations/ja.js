@@ -1347,7 +1347,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "newly_issued_token_by_tronscan":"新しく発行されたトークンは、tronscanによって監査された後でのみオンラインになることができます。 監査に合格しなかった場合は表示されません",
+    "newly_issued_token_by_tronscan":"偽のトークンはブラックリストに追加され、表示されません。",
     "Favorites":"オプション",
     "dex_search_dec":"取引したい通貨の略称を入力してください",
     "TRC20_exchange_online":"TRC20 exchange is online now",
