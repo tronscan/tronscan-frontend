@@ -329,10 +329,12 @@ class ExchangeList extends React.Component {
                     {/* 标题 */}
                     <div className="market-title">
                         <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
-                            <h6 className="m-0">{tu("marks")}</h6>
+                            <h6 className="m-0">
+                                <a href="https://trx.market" target="_blank" className="">TRXMarket</a>
+                            </h6>
 
                             <div className="d-flex f-12">
-                                <a href="https://t.me/trxmarket2018" target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
+                                <a href="https://t.me/trxmarket2018" target="_blank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
                                 <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20190116041944.pdf" : "https://coin.top/production/js/20190116042101.pdf"}
                                     target="_blank" className="px-1 border-right  border-light">{tu('beginners_guide')}</a>
                                 <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"

@@ -1363,7 +1363,7 @@ export const messages = {
   #                                                                                #
   ##################################################################################
   */
-  "newly_issued_token_by_tronscan":"The newly issued token can only be online after being audited by tronscan. If it fails to pass the audit, it will not be displayed",
+  "newly_issued_token_by_tronscan":"The fake tokens will be added to the blacklist and not displayed.",
   "Favorites":"Favorites",
   "dex_search_dec":"Enter the Abbreviation of the token",
   "TRC20_exchange_online":"TRC20 exchange is online now",
@@ -1570,8 +1570,7 @@ export const messages = {
   "origin_energy_usage":"Energy Usage from Contract Provided",
   "net_fee":"Burning TRX Number to Get Bandwidth",
   "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
-
-
+  "TRC20_transfers":"TRC20 transfer",
   "Basic_info": "Basic info",
     "Internal_txns": "Internal txns",
     "Fee_Consumption": "Fee",
