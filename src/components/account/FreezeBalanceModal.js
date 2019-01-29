@@ -156,7 +156,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
     let {receiver, amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
 
-    let isValid = true; //!loading && (amount > 0 && trxBalance >= amount && confirmed);
+    let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
 
     return (
         <Modal isOpen={true} toggle={this.hideModal} fade={false} className="modal-dialog-centered _freezeContent">
