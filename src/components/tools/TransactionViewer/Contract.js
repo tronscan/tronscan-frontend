@@ -217,7 +217,7 @@ export default function Contract({contract}) {
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
                 {contract['receiver_address']&&<Field label="receive_list"><AddressLink address={contract['receiver_address']}/></Field>}
-                <Field label="type">{contract['resource']}</Field>
+                {contract['resource']?<Field label="type">{contract['resource']}</Field>:<Field label="type">Bandwidth</Field>}
                 <Field label="frozen_balance">{contract['frozen_balance'] / ONE_TRX}</Field>
                 <Field label="frozen_days">{contract['frozen_duration']}</Field>
               </tbody>

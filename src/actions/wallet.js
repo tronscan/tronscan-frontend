@@ -17,7 +17,33 @@ export const reloadWallet = () => async (dispatch, getState) => {
       let {balances, trc20token_balances, frozen, accountResource, delegated, tokenBalances, exchanges, ...wallet} = await Client.getAccountByAddressNew(app.account.address);
       // let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       wallet.frozenEnergy = accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0;
-      wallet.frozenTrx = frozen.total + (accountResource.frozen_balance_for_energy.frozen_balance ? accountResource.frozen_balance_for_energy.frozen_balance : 0);
+
+    let sentDelegateBandwidth = 0;
+    if(delegated&&delegated.sentDelegatedBandwidth) {
+      for (let i = 0; i < delegated.sentDelegatedBandwidth.length; i++) {
+        sentDelegateBandwidth = sentDelegateBandwidth + delegated.sentDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
+      }
+    }
+
+    let frozenBandwidth=0;
+    if(frozen.balances.length > 0){
+      frozenBandwidth=frozen.balances[0].amount;
+    }
+
+    let sentDelegateResource=0;
+    if(delegated&&delegated.sentDelegatedResource) {
+      for (let i = 0; i < delegated.sentDelegatedResource.length; i++) {
+        sentDelegateResource = sentDelegateResource + delegated.sentDelegatedResource[i]['frozen_balance_for_energy'];
+      }
+    }
+
+    let frozenEnergy=0;
+    if(accountResource.frozen_balance_for_energy.frozen_balance > 0){
+      frozenEnergy=accountResource.frozen_balance_for_energy.frozen_balance;
+    }
+
+      wallet.frozenTrx = sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
+
       wallet.exchanges = rebuildList(exchanges, ['first_token_id', 'second_token_id'], ['first_token_balance', 'second_token_balance']);
       wallet.tokenBalances = rebuildList(tokenBalances, 'name', 'balance');
       let balances_new = rebuildList(balances, 'name', 'balance');
