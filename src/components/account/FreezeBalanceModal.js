@@ -90,7 +90,10 @@ export default class FreezeBalanceModal extends React.PureComponent {
   freeze = async () => {
 
     let {account, onError, wallet} = this.props;
-    let {amount, selectedResource, receiver} = this.state;
+    let {amount, selectedResource, receiver,confirmed } = this.state;
+    if(!confirmed){
+      return;
+    }
     let res, type, result;
     this.setState({loading: true});
 
