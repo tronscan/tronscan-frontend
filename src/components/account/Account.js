@@ -382,16 +382,14 @@ export default class Account extends Component {
   renderFrozenTokens() {
 
     let {frozen, accountResource, delegated,  account} = this.props;
-    if (frozen.balances.length === 0 && (accountResource.frozen_balance === 0|| !accountResource.frozen_balance)) {
-      return null;
-    }
 
     let receiveDelegateBandwidth = 0;
     if(delegated&&delegated.receivedDelegatedBandwidth) {
       for (let i = 0; i < delegated.receivedDelegatedBandwidth.length; i++) {
-        receiveDelegateBandwidth = receiveDelegateBandwidth + delegated.receivedDelegatedBandwidth['frozen_balance_for_bandwidth'];
+        receiveDelegateBandwidth = receiveDelegateBandwidth + delegated.receivedDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
       }
     }
+
     let frozenBandwidth=0;
     if(frozen.balances.length > 0){
       frozenBandwidth=frozen.balances[0].amount;
@@ -400,12 +398,17 @@ export default class Account extends Component {
     let receiveDelegateResource=0;
     if(delegated&&delegated.receivedDelegatedResource) {
       for (let i = 0; i < delegated.receivedDelegatedResource.length; i++) {
-        receiveDelegateResource = receiveDelegateResource + delegated.receivedDelegatedResource['frozen_balance_for_energy'];
+        receiveDelegateResource = receiveDelegateResource + delegated.receivedDelegatedResource[i]['frozen_balance_for_energy'];
       }
     }
+
     let frozenEnergy=0;
     if(accountResource.frozen_balance > 0){
       frozenEnergy=accountResource.frozen_balance;
+    }
+
+    if (frozenEnergy === 0 && frozenBandwidth===0 && receiveDelegateBandwidth===0 && receiveDelegateResource===0) {
+      return null;
     }
 
     return (
@@ -435,11 +438,11 @@ export default class Account extends Component {
               <td>
                 <TRXPrice amount={(receiveDelegateBandwidth+frozenBandwidth) / ONE_TRX}/>
               </td>
-              <td className="text-right">
+              {frozen.balances.length > 0 ? <td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
                 <FormattedTime value={frozen.balances[0].expires}/>
-              </td>
+              </td>:<td></td>}
               <td className="text-right">
 
                   {
