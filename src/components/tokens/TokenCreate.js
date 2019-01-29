@@ -223,8 +223,8 @@ class TokenCreate extends Component {
                   onConfirm={this.redirectToTokenList}
                   style={{ marginTop: '-240px'}}
               >
-                {tu("token_issued_successfully")}<br/>
-                {tu("Create_token_link_message_0")}<br/><br/>
+                {tu("token_issued_successfully")}<br/><br/>
+                {/*{tu("Create_token_link_message_0")}<br/>*/}
                   <Link to="/account" className="mt-2 check_my_token" style={{color: "#C23631 !important" }}>
                       {tu("check_my_token")}>>
                   </Link><br/><br/>

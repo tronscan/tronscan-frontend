@@ -13,6 +13,7 @@ import Transactions from "./Txs";
 import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
+import Transfers from "./Transfers";
 import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
@@ -65,38 +66,86 @@ class SmartContract extends React.Component {
 
     let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?contract="+id);
     let token20 = result.data.trc20_tokens.length >0?result.data.trc20_tokens[0]:'';
-    this.setState(prevProps => ({
-      loading: false,
-      token20:token20,
-      contract:contract.data[0],
-      tabs: {
-        ...prevProps.tabs,
-        transactions: {
-          id: "transactions",
-          path: "",
-          label: <span>{tu("transactions")}</span>,
-          cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
-        },
-        // Txns: {
-        //   id: "Txns",
-        //   path: "/Txns",
-        //   label: <span>{tu('token_txns')}</span>,
-        //   cmp: () => <Txhash filter={{address: id}} />,
-        // },
-        voters: {
-          id: "code",
-          path: "/code",
-          label: <span>{tu("Code")}</span>,
-          cmp: () => <Code filter={{address: id}} />,
-        },
-        events: {
-          id: "events",
-          path: "/events",
-          label: <span>{tu('Events')}</span>,
-          cmp: () => <Events filter={{address: id}} />,
-        }
-      }
-    }));
+    if(token20){
+        this.setState(prevProps => ({
+            loading: false,
+            token20:token20,
+            contract:contract.data[0],
+            tabs: {
+                ...prevProps.tabs,
+                transactions: {
+                    id: "transactions",
+                    path: "",
+                    label: <span>{tu("transactions")}</span>,
+                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                },
+                // Txns: {
+                //   id: "Txns",
+                //   path: "/Txns",
+                //   label: <span>{tu('token_txns')}</span>,
+                //   cmp: () => <Txhash filter={{address: id}} />,
+                // },
+                Transfers: {
+                    id: "Transfers",
+                    path: "/transfers",
+                    label: <span>{tu('TRC20_transfers')}</span>,
+                    cmp: () => <Transfers filter={{token: id}} token={token20}/>,
+                },
+                voters: {
+                    id: "code",
+                    path: "/code",
+                    label: <span>{tu("Code")}</span>,
+                    cmp: () => <Code filter={{address: id}} />,
+                },
+                events: {
+                    id: "events",
+                    path: "/events",
+                    label: <span>{tu('Events')}</span>,
+                    cmp: () => <Events filter={{address: id}} />,
+                }
+            }
+        }));
+    }else{
+        this.setState(prevProps => ({
+            loading: false,
+            token20:token20,
+            contract:contract.data[0],
+            tabs: {
+                ...prevProps.tabs,
+                transactions: {
+                    id: "transactions",
+                    path: "",
+                    label: <span>{tu("transactions")}</span>,
+                    cmp: () => <Transactions filter={{contract: id}}  count={{trxCount:contract.data[0].trxCount}}/>
+                },
+                // Txns: {
+                //   id: "Txns",
+                //   path: "/Txns",
+                //   label: <span>{tu('token_txns')}</span>,
+                //   cmp: () => <Txhash filter={{address: id}} />,
+                // },
+                // Transfers: {
+                //     id: "Transfers",
+                //     path: "/transfers",
+                //     label: <span>{tu('TRC20_transfers')}</span>,
+                //     cmp: () => <Transfers filter={{token: id}} token={token20}/>,
+                // },
+                voters: {
+                    id: "code",
+                    path: "/code",
+                    label: <span>{tu("Code")}</span>,
+                    cmp: () => <Code filter={{address: id}} />,
+                },
+                events: {
+                    id: "events",
+                    path: "/events",
+                    label: <span>{tu('Events')}</span>,
+                    cmp: () => <Events filter={{address: id}} />,
+                }
+            }
+        }));
+    }
+
 
    
   }

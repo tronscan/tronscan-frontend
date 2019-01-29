@@ -71,8 +71,8 @@ class TokenHolders extends React.Component {
         title: '#',
         dataIndex: 'index',
         key: 'index',
-        width: '10%',
-        align: 'left',
+        width: '5%',
+        align: 'center',
         className: 'ant_table',
       },
       {

@@ -2738,7 +2738,6 @@ h5 {
     max-width: 310px;
     text-align: left;
   }
-
 }
 .buy_confirm_message{
   span{
@@ -2814,5 +2813,12 @@ h5 {
     height:18px;
     bottom: -3px;
     right: -3px;
+  }
+}
+
+.token-list-info{
+  .tooltip-inner{
+    max-width: 310px;
+    text-align: center;
   }
 }
