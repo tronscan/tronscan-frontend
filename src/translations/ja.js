@@ -1554,7 +1554,7 @@ export const messages = {
     "origin_energy_usage":"コントラクトを消耗するためのエネルギー",
     "net_fee":"バンド幅を消耗するためのTRX",
     "net_usage":"凍結したバンド幅を消耗する",
-
+    "TRC20_transfers":"TRC20 転送",
     "Basic_info": "基本情報",
     "Internal_txns": "内部取引",
     "Fee_Consumption": "手数料の消耗",

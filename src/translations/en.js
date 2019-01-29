@@ -1570,14 +1570,13 @@ export const messages = {
   "origin_energy_usage":"Energy Usage from Contract Provided",
   "net_fee":"Burning TRX Number to Get Bandwidth",
   "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
-
-
+  "TRC20_transfers":"TRC20 transfer",
   "Basic_info": "Basic info",
-    "Internal_txns": "Internal txns",
-    "Fee_Consumption": "Fee Consumption",
-    "Method_calling": "Method calling",
-    "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
-    "CONTRACT_CREATION": "CONTRACT CREATION"
+  "Internal_txns": "Internal txns",
+  "Fee_Consumption": "Fee Consumption",
+  "Method_calling": "Method calling",
+  "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
+  "CONTRACT_CREATION": "CONTRACT CREATION"
 
 
 

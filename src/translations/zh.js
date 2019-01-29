@@ -1559,8 +1559,6 @@ export const messages = {
     "net_fee":"消耗带宽使用的TRX",
     "net_usage":"消耗用户冻结的带宽",
     "TRC20_transfers":"TRC20 转账",
-
-
     "Basic_info": "基本信息",
     "Internal_txns": "内部交易",
     "Fee_Consumption": "费用消耗",
