@@ -1572,6 +1572,14 @@ export const messages = {
   "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
 
 
+  "Basic_info": "Basic info",
+    "Internal_txns": "Internal txns",
+    "Fee_Consumption": "Fee Consumption",
+    "Method_calling": "Method calling",
+    "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
+    "CONTRACT_CREATION": "CONTRACT CREATION"
+
+
 
 
 };

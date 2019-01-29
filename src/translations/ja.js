@@ -1555,5 +1555,12 @@ export const messages = {
     "net_fee":"バンド幅を消耗するためのTRX",
     "net_usage":"凍結したバンド幅を消耗する",
 
+    "Basic_info": "基本情報",
+    "Internal_txns": "内部取引",
+    "Fee_Consumption": "手数料の消耗",
+    "Method_calling": "メソッド呼び出し",
+    "SELF_DESTRUCT Contract": "コントラクト自己破壊",
+    "CONTRACT_CREATION": "コントラクト作成"
+
 }
 

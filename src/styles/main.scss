@@ -2816,3 +2816,35 @@ h5 {
     right: -3px;
   }
 }
+
+.content{
+  color: #666;
+  font-size: 12px;
+  &_box_name{
+    font-size: 14px;
+    width: 100px;
+    padding-top: 7px;
+  }
+  &_name{
+    width: 100px;
+    font-size: 12px;
+    color:#666666;
+  }
+  &_item{
+    padding: 10px 0;
+
+    &:last-child{
+      border: none!important;
+    }
+  }
+  .flex1{
+    flex: 1;
+  }
+  .border-bottom{
+    border-color: #eee!important;
+  }
+
+  @for $i from 2 through 10 {
+    .index-#{$i} { margin-left: 10px * $i; }
+  }
+}

@@ -8,6 +8,7 @@ import {FormattedNumber, FormattedDate, injectIntl} from "react-intl";
 import rebuildList from "../../../utils/rebuildList";
 import {toUtf8} from 'tronweb'
 import { NameWithId } from '../../common/names';
+
 export default function Contract({contract}) {
     let parametersArr = [
         'MAINTENANCE_TIME_INTERVAL',
@@ -43,6 +44,8 @@ export default function Contract({contract}) {
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
+
+   
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
 
@@ -333,32 +336,107 @@ export default function Contract({contract}) {
                           <small>{tu('normal_address_trigger_smart_contract')}</small>
                       </h5>
                   </div>
-                  <table className="table">
-                      <tbody>
-                      <Field label="contract_triggers_owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                      <Field label="contract_address"><AddressLink address={contract['contract_address']} isContract={true}/></Field>
-                      {
-                          contract['call_value']?
-                          <Field label="value"><TRXPrice amount={contract['call_value'] / ONE_TRX}/></Field>
-                          :<Field label="value"><TRXPrice amount={0}/></Field>
-                      }
+                  <div className="content">
+                    <div className="d-flex border-bottom pt-2">
+                      <div className="content_box_name">{tu('Basic_info')}</div>
+                      <div className="flex1">
+                        <div className="d-flex border-bottom content_item">
+                          <div className="content_name">{tu('contract_triggers_owner_address')}:</div>
+                          <div className="flex1"><AddressLink address={contract['owner_address']}/></div>
+                        </div>
+                        <div className="d-flex border-bottom content_item">
+                          <div className="content_name">{tu('contract_address')}:</div>
+                          <div className="flex1"><AddressLink address={contract['contract_address']} isContract={true}/></div>
+                        </div>
+                        <div className="d-flex content_item">
+                          <div className="content_name">{tu('value')}:</div>
+                          {
+                            contract['call_value']?
+                            <TRXPrice amount={contract['call_value'] / ONE_TRX}/>
+                            :<TRXPrice amount={0}/>
+                          }
+                        </div>
+                      </div>
+                    </div>
 
+
+                    {contract.internal_transactions && <div className="d-flex border-bottom pt-2">
+                      <div className="content_box_name">{tu('Internal_txns')}</div>
+                      <div className="flex1">
                       {
-                        contract.cost && Object.keys(contract.cost).map((c)=>{
-                          return (c==='energy_fee'||c==='net_fee')?<Field label={c}>{contract.cost[c]/1000000} TRX</Field>:<Field label={c}>{contract.cost[c]}</Field>
+                        Object.keys(contract.internal_transactions).map((o,index) => {
+                          let vdom = []
+                          contract.internal_transactions[o].map((item,cindex) => {
+                            let tokenInfo = rebuildList(JSON.parse(item.value_info_list), 'token_id', 'call_value')[0]
+
+                            vdom.push(
+                              <div className={'d-flex align-items-center content_item'}>
+                                {/* {
+                                  (index> 0&& cindex== 0) &&
+                                  <img src={require('../../../images/tip.png')} className="mr-2" width='13px' height='11px'/>
+                                }
+                                {
+                                  (index> 0&& cindex != 0) &&
+                                  <div className="mr-2" style={{width: '13px', height: '11px'}}/>
+                                } */}
+                                <div className="d-flex">
+                                  <div className="mr-1">{tu('transfers')}</div>
+                                  <div className="mr-1">{tokenInfo.map_amount +' '+tokenInfo.map_token_name_abbr}</div>
+                                  <div className="mr-1">{tu('from')}</div>
+                                  <div className="mr-1" style={{width: '150px'}}><AddressLink address={item['caller_address']}/></div>
+                                  <div className="mr-1">{tu('to')}</div>
+                                  <div className="mr-1" style={{width: '150px'}}><AddressLink address={item['transfer_to_address']}/></div>
+                                </div>
+                              </div>
+                            )
+                          })
+                          return vdom
                         })
                       }
+                      </div>
+                    </div>}
 
-                      {contract.method && <Field label="contract_method">{contract.method}</Field>}
+                    {contract.cost &&
+                    <div className="d-flex border-bottom pt-2">
+                      <div className="content_box_name">{tu('Fee_Consumption')}</div>
+                      <div className="flex1">
+                        {
+                          Object.keys(contract.cost).map((c)=>{
+                            return (c==='energy_fee'||c==='net_fee')?
+                            <div className="d-flex border-bottom content_item">
+                              <div className="content_name" style={{width: '150px'}}>{tu(c)}:</div>
+                              <div className="flex1">{contract.cost[c]/1000000} TRX</div>
+                            </div>:
+                            <div className="d-flex border-bottom content_item">
+                              <div className="content_name" style={{width: '150px'}}>{tu(c)}:</div>
+                              <div className="flex1">{contract.cost[c]}</div>
+                            </div>
+                          })
+                        }
+                      </div>
+                    </div>}
 
-                      {
-                        contract.parameter && Object.keys(contract.parameter).map((p)=>{
-                          return <tr><th>{p}</th><td>{contract.parameter[p]}</td></tr>
-                        })
-                      }
+                    {contract.method &&
+                    <div className="d-flex border-bottom pt-2">
+                      <div className="content_box_name">{tu('Method_calling')}</div>
+                      <div className="flex1">
+                        <div className="d-flex border-bottom content_item">
+                          <div className="content_name" >{tu("contract_method")}:</div>
+                          <div className="flex1">{contract.method}</div>
+                        </div>
+                        {
+                          contract.parameter && Object.keys(contract.parameter).map((p)=>{
+                            return (
+                            <div className="d-flex border-bottom content_item">
+                              <div className="content_name">{tu(p)}:</div>
+                              <div className="flex1">{contract.parameter[p]}</div>
+                            </div>)
+                          })
+                        }
+                      </div>
+                    </div>}
 
-                      </tbody>
-                  </table>
+                  </div>
               </Fragment>
           );
     default:

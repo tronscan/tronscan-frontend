@@ -1559,4 +1559,13 @@ export const messages = {
     "net_fee":"消耗带宽使用的TRX",
     "net_usage":"消耗用户冻结的带宽",
 
+
+    "Basic_info": "基本信息",
+    "Internal_txns": "内部交易",
+    "Fee_Consumption": "费用消耗",
+    "Method_calling": "方法调用",
+    "SELF_DESTRUCT Contract": "合约自杀",
+    "CONTRACT_CREATION": "合约创建"
+
+
 };
