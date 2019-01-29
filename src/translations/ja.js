@@ -1560,7 +1560,7 @@ export const messages = {
     "Fee_Consumption": "手数料の消耗",
     "Method_calling": "メソッド呼び出し",
     "SELF_DESTRUCT Contract": "コントラクト自己破壊",
-    "CONTRACT_CREATION": "コントラクト作成"
+    "CONTRACT_CREATION": "コントラクト作成",
 
 }
 
