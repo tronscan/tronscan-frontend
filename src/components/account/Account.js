@@ -446,7 +446,7 @@ export default class Account extends Component {
               <td className="text-right">
 
                   {
-                    <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
+                    frozenBandwidth!==0 && <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
                       marginBottom: '-5px'}} onClick={() => {
                       this.showUnfreezeModal(0, false, '')
                     }}>
@@ -479,7 +479,7 @@ export default class Account extends Component {
               }
               <td className="text-right">
                 {
-                  <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
+                  frozenEnergy!==0 && <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
                     marginBottom: '-5px'}} onClick={() => {
                     this.showUnfreezeModal(1, false, '')
                   }}>
