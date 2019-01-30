@@ -26,14 +26,14 @@ export default (list = [], tokenId, amount) => {
 
           const id = item[tokenId]
           
-          if(id == '_' || upperCase(id) == "TRX"){
+          if(id == '_' || upperCase(id) == "TRX" || id == ''){
             setItem(item, 'TRX', id, 6, amount?item[amount] / Math.pow(10,6): 0,'TRX')
           }
           if(IDmap[id]){
             const list = IDmap[id].split('_')
             setItem(item, list[0], list[1], list[2], amount? item[amount] / Math.pow(10,list[2]): 0,list[3])
           }
-          if(!IDmap[id] && id != "_" && upperCase(id) != "TRX"){
+          if(!IDmap[id] && id != "_" && upperCase(id) != "TRX" && id != ''){
             setItem(item, item[tokenId], item[tokenId], 0, item[amount],item[tokenId])
           }
           return item
@@ -44,7 +44,7 @@ export default (list = [], tokenId, amount) => {
           tokenId.map((tid,index) => {
             const id = item[tid]
             
-            if(id == '_' || upperCase(id) == "TRX"){
+            if(id == '_' || upperCase(id) == "TRX" || id == ''){
               setItem(item, 'TRX', id, 6, amount[index]?item[amount[index]] / Math.pow(10,6): 0,'TRX',index)
             }
             if(IDmap[id]){

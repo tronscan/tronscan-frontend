@@ -1350,7 +1350,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "newly_issued_token_by_tronscan": "新发行的通证需要经过tronscan审核并通过后才能上线，未通过审核则不予显示",
+    "newly_issued_token_by_tronscan": "虚假token会加入黑名单，不予显示。",
     "Favorites":"自选",
     "dex_search_dec":"输入想交易代币的简称",
     "TRC20_exchange_online":"TRC20交易所上线啦",
@@ -1569,6 +1569,14 @@ export const messages = {
     "origin_energy_usage":"消耗合约提供的能量",
     "net_fee":"消耗带宽使用的TRX",
     "net_usage":"消耗用户冻结的带宽",
+    "TRC20_transfers":"TRC20 转账",
+    "Basic_info": "基本信息",
+    "Internal_txns": "内部交易",
+    "Fee_Consumption": "费用消耗",
+    "Method_calling": "方法调用",
+    "SELF_DESTRUCT Contract": "合约自杀",
+    "CONTRACT_CREATION": "合约创建",
+
 
 
 };

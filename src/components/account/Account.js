@@ -212,7 +212,7 @@ export default class Account extends Component {
           {
             tokens20.map((token) => (
                 <tr key={token.token20_name}>
-                  <td>
+                  <td className="text-nowrap">
                     <TokenTRC20Link name={token.name} address={token.contract_address}
                                     namePlus={token.name + ' (' + token.symbol + ')'}/>
                   </td>
@@ -263,7 +263,7 @@ export default class Account extends Component {
           {
             tokenBalances.map((token) => (
                 <tr key={token.name}>
-                  <td>
+                  <td className="text-nowrap">
                       {
                           token.map_token_id == 1002000?<div className="map-token-top">
                             <TokenLink id={token.map_token_id} name={token.map_token_name+' ('+token.map_token_name_abbr+")"} address={token.address}/>
@@ -1686,11 +1686,11 @@ export default class Account extends Component {
                     </a>
                   </div>
                   {
-                    tokenTRC10 ? <div>
+                    tokenTRC10 ? <div className="table-responsive-token">
                           {this.renderTokens()}
                         </div>
                         :
-                        <div>
+                        <div className="table-responsive-token">
                           {this.renderTRC20Tokens()}
                         </div>
                   }

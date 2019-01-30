@@ -86,6 +86,7 @@ class Transaction extends React.Component {
                   ...{cost:transaction.cost},
                 ...transaction.contractData,
                   ...transaction['trigger_info'],
+                  ...{internal_transactions: transaction['internal_transactions']},
                 contractType: ContractTypes[transaction.contractType],
               }}/>
           ),

@@ -1347,7 +1347,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "newly_issued_token_by_tronscan":"新しく発行されたトークンは、tronscanによって監査された後でのみオンラインになることができます。 監査に合格しなかった場合は表示されません",
+    "newly_issued_token_by_tronscan":"偽のトークンはブラックリストに追加され、表示されません。",
     "Favorites":"オプション",
     "dex_search_dec":"取引したい通貨の略称を入力してください",
     "TRC20_exchange_online":"TRC20 exchange is online now",
@@ -1565,6 +1565,13 @@ export const messages = {
     "origin_energy_usage":"コントラクトを消耗するためのエネルギー",
     "net_fee":"バンド幅を消耗するためのTRX",
     "net_usage":"凍結したバンド幅を消耗する",
+    "TRC20_transfers":"TRC20 振替",
+    "Basic_info": "基本情報",
+    "Internal_txns": "内部取引",
+    "Fee_Consumption": "手数料の消耗",
+    "Method_calling": "メソッド呼び出し",
+    "SELF_DESTRUCT Contract": "コントラクト自己破壊",
+    "CONTRACT_CREATION": "コントラクト作成",
 
 
 }

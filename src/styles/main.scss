@@ -2739,7 +2739,6 @@ h5 {
     max-width: 310px;
     text-align: left;
   }
-
 }
 .buy_confirm_message{
   span{
@@ -2816,4 +2815,61 @@ h5 {
     bottom: -3px;
     right: -3px;
   }
+}
+
+.content{
+  color: #666;
+  font-size: 12px;
+  &_box_name{
+    font-size: 14px;
+    min-width: 130px;
+    padding-top: 7px;
+  }
+  &_name{
+    width: 120px;
+    font-size: 12px;
+    color:#666666;
+  }
+  &_item{
+    padding: 10px 0;
+
+    &:last-child{
+      border: none!important;
+    }
+  }
+  .flex1{
+    flex: 1;
+  }
+  .border-bottom{
+    border-color: #eee!important;
+  }
+
+  @for $i from 2 through 10 {
+    .index-#{$i} {
+      margin-left: 10px * $i;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .content{
+    overflow-x: scroll;
+    &_pos{
+      min-width: 1000px;
+    }
+  }
+}
+.token-list-info{
+  .tooltip-inner{
+    max-width: 310px;
+    text-align: center;
+
+  }
+}
+
+.table-responsive-token{
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
