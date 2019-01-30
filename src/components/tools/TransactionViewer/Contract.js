@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {ONE_TRX} from "../../../constants";
-import {AddressLink, ExternalLink} from "../../common/Links";
+import {AddressLink, ExternalLink, ContractLink} from "../../common/Links";
 import Field from "./Field";
 import {TRXPrice} from "../../common/Price";
 import {tu} from "../../../utils/i18n";
@@ -337,6 +337,7 @@ export default function Contract({contract}) {
                       </h5>
                   </div>
                   <div className="content">
+                  <div className="content_pos">
                     <div className="d-flex border-bottom pt-2">
                       <div className="content_box_name">{tu('Basic_info')}</div>
                       <div className="flex1">
@@ -383,9 +384,9 @@ export default function Contract({contract}) {
                                   <div className="mr-1">{tu('transfers')}</div>
                                   <div className="mr-1">{tokenInfo.map_amount +' '+tokenInfo.map_token_name_abbr}</div>
                                   <div className="mr-1">{tu('from')}</div>
-                                  <div className="mr-1" style={{width: '150px'}}><AddressLink address={item['caller_address']}/></div>
+                                  <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['caller_address']}/></div>
                                   <div className="mr-1">{tu('to')}</div>
-                                  <div className="mr-1" style={{width: '150px'}}><AddressLink address={item['transfer_to_address']}/></div>
+                                  <div className="mr-1" style={{width: '150px'}}><ContractLink address={item['transfer_to_address']}/></div>
                                 </div>
                               </div>
                             )
@@ -435,7 +436,7 @@ export default function Contract({contract}) {
                         }
                       </div>
                     </div>}
-
+                    </div>
                   </div>
               </Fragment>
           );

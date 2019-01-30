@@ -10,6 +10,7 @@ import {CopyText} from "./Copy";
 import {App} from "../../app";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
+import { Client } from '../../services/api';
 
 export const WitnessLink = ({address}) => (
     <Link to={`/witness/${address}`}>{address}</Link>
@@ -297,5 +298,21 @@ export const BlockNumberLink = ({number, children = null}) => {
       <Link to={`/block/${number}`}>
         {children || number}
       </Link>
+  );
+};
+
+export const ContractLink = ({address, children = null}) => {
+  async function pushto(){
+    let {data} = await Client.getContractOverview(address);
+    if(data instanceof Array){
+      location.href = '/#/contract/'+address+'/code'
+    }else{
+      location.href = '/#/address/'+address+'/token-balances'
+    }
+  }
+  return (
+    <div className="text-truncate">
+      <a href="javascript:;" onClick={pushto}>{children || address}</a>
+    </div>
   );
 };

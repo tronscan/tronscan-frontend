@@ -2821,7 +2821,7 @@ h5 {
   font-size: 12px;
   &_box_name{
     font-size: 14px;
-    width: 130px;
+    min-width: 130px;
     padding-top: 7px;
   }
   &_name{
@@ -2846,6 +2846,14 @@ h5 {
   @for $i from 2 through 10 {
     .index-#{$i} {
       margin-left: 10px * $i;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .content{
+    overflow-x: scroll;
+    &_pos{
+      min-width: 1000px;
     }
   }
 }
