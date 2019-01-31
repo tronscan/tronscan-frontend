@@ -1565,6 +1565,7 @@ export const messages = {
     "Method_calling": "方法调用",
     "SELF_DESTRUCT Contract": "合约自杀",
     "CONTRACT_CREATION": "合约创建",
+    "open_ledger":"打开 Ledger",
 
 
 };

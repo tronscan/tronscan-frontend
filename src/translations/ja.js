@@ -1561,6 +1561,7 @@ export const messages = {
     "Method_calling": "メソッド呼び出し",
     "SELF_DESTRUCT Contract": "コントラクト自己破壊",
     "CONTRACT_CREATION": "コントラクト作成",
+    "open_ledger":"開いた Ledger",
 
 }
 

@@ -481,7 +481,12 @@ class Navigation extends React.Component {
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
-              {tu("open_ledger")}
+              {tu("open_ledger")}&nbsp;&nbsp;
+              {/*<Link to="/help/ledger">*/}
+                {/*<small>*/}
+                    {/*{tu("beginners_guide")}*/}
+                {/*</small>*/}
+              {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
               <LedgerAccess onClose={this.hideModal} />

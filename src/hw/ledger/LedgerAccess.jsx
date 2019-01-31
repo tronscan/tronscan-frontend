@@ -74,7 +74,7 @@ export default class LedgerAccess extends Component {
         { loading &&
         <div className="mt-4">
           <div className="text-muted">
-            Open the Tron app on your Ledger
+              {tu('open_tron_app_on_ledger')}
           </div>
           <div className="my-3">
             <PulseLoader color="#343a40" loading={true} height={5} width={150} />
