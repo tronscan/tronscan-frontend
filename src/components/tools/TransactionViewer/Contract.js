@@ -128,7 +128,7 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="URL">{contract.url}</Field>
+                <Field label="URL">{toUtf8(contract.update_url)}</Field>
               </tbody>
             </table>
           </Fragment>
@@ -146,7 +146,7 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
-                <Field label="URL">{contract.url}</Field>
+                <Field label="URL">{toUtf8(contract.url)}</Field>
               </tbody>
             </table>
           </Fragment>
