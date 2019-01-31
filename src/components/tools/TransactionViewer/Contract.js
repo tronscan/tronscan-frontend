@@ -429,7 +429,7 @@ export default function Contract({contract}) {
                           contract.parameter && Object.keys(contract.parameter).map((p)=>{
                             return (
                             <div className="d-flex border-bottom content_item">
-                              <div className="content_name">{tu(p)}:</div>
+                              <div className="content_name">{p}:</div>
                               <div className="flex1">{contract.parameter[p]}</div>
                             </div>)
                           })
