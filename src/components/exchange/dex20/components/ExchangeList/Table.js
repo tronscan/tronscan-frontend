@@ -50,7 +50,8 @@ class ExchangeTable extends React.Component {
                   }
               </span>
           </span>
-          <span className="exchange-abbr-name">{record.exchange_abbr_name}</span>
+          {(record.id===35||record.id===26||record.id===36)?<span className="exchange-abbr-name" style={{textDecoration: 'line-through'}}>{record.exchange_abbr_name}</span>:
+          <span className="exchange-abbr-name">{record.exchange_abbr_name}</span>}
         </div>
       }
     },
