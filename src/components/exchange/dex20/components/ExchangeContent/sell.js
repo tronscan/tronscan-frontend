@@ -266,7 +266,7 @@ class Sell extends Component {
             className="warning mb-1"
             size="large"
             htmlType="button"
-            disabled={!account.address||exchangeData.id===35||exchangeData.id===26}
+            disabled={!account.address||exchangeData.id===35||exchangeData.id===26||exchangeData.id===36}
             onClick={this.handleSubmit}
             loading={buttonLoading}
           >
