@@ -1568,19 +1568,19 @@ export default class Account extends Component {
                                 <span style={{color:"#999",fontSize:12}}>[{issuedAsset.id}]</span>
                               </div>
                               {
-                                issuedAsset.canShow == 1&&
+                                  (issuedAsset.canShow == 0 || issuedAsset.canShow == 1 || issuedAsset.canShow == 2)&&
                                 <div className="d-flex align-items-center">
                                   <img src={require("../../images/token/audited.png")} width="14" height="14" className="mr-1"/>
                                   {tu("Passed_audit")}
                                 </div>
                               }
-                              {
-                                (issuedAsset.canShow == 0 || issuedAsset.canShow == 2)&&
-                                <div className="d-flex align-items-center">
-                                  <img src={require("../../images/token/auditing.png")} width="14" height="14" className="mr-1"/>
-                                  {tu("Auditing")}
-                                </div>
-                              }
+                              {/*{*/}
+                                {/*(issuedAsset.canShow == 0 || issuedAsset.canShow == 2)&&*/}
+                                {/*<div className="d-flex align-items-center">*/}
+                                  {/*<img src={require("../../images/token/auditing.png")} width="14" height="14" className="mr-1"/>*/}
+                                  {/*{tu("Auditing")}*/}
+                                {/*</div>*/}
+                              {/*}*/}
                               {
                                 issuedAsset.canShow == 3&&
                                 <div className="d-flex align-items-center">
