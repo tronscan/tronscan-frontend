@@ -873,15 +873,15 @@ class Navigation extends React.Component {
                   Tronscan is syncing, data might not be up-to-date ({Math.round(syncStatus.sync.progress)}%)
                 </div>
               }
-              {
-                announcement &&
-                <div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">
-                  <img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}
-                       className="mr-1"/>
-                  <Link to={'/notice/' + announId}>{announcement} <span
-                      style={{color: '#999'}}>({annountime})</span></Link>
-                </div>
-              }
+              {/*{*/}
+                {/*announcement &&*/}
+                {/*<div className="col text-danger text-center py-2 d-none d-md-block text-truncate nav_notice">*/}
+                  {/*<img src={require('../images/announcement-logo.png')} alt="" style={{width: '16px'}}*/}
+                       {/*className="mr-1"/>*/}
+                  {/*<Link to={'/notice/' + announId}>{announcement} <span*/}
+                      {/*style={{color: '#999'}}>({annountime})</span></Link>*/}
+                {/*</div>*/}
+              {/*}*/}
               <div className="ml-auto d-flex">
                 {
                   <div className="hidden-mobile nav-searchbar">
