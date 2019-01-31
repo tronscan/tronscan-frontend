@@ -70,33 +70,50 @@ class TokenDetail extends React.Component {
       this.props.history.push('/tokens/list')
       return;
     }
-    this.setState({
-      loading: false,
-      token,
-      tabs: [
-        {
-          id: "tokenInfo",
-          icon: "",
-          path: "",
-          label: <span>{tu("issue_info")}</span>,
-          cmp: () => <TokenInfo token={token}/>
-        },
-        {
-          id: "transfers",
-          icon: "",
-          path: "/transfers",
-          label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
-        },
-        {
-          id: "holders",
-          icon: "",
-          path: "/holders",
-          label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
-        },
-      ]
-    });
+    if(token.tokenID == 1002000){
+        this.setState({
+            loading: false,
+            token,
+            tabs: [
+                {
+                    id: "tokenInfo",
+                    icon: "",
+                    path: "",
+                    label: <span>{tu("issue_info")}</span>,
+                    cmp: () => <TokenInfo token={token}/>
+                }
+            ]
+        });
+    }else{
+        this.setState({
+            loading: false,
+            token,
+            tabs: [
+                {
+                    id: "tokenInfo",
+                    icon: "",
+                    path: "",
+                    label: <span>{tu("issue_info")}</span>,
+                    cmp: () => <TokenInfo token={token}/>
+                },
+                {
+                    id: "transfers",
+                    icon: "",
+                    path: "/transfers",
+                    label: <span>{tu("token_transfers")}</span>,
+                    cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
+                },
+                {
+                    id: "holders",
+                    icon: "",
+                    path: "/holders",
+                    label: <span>{tu("token_holders")}</span>,
+                    cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
+                },
+            ]
+        });
+    }
+
   };
 
   submit = async (token) => {
