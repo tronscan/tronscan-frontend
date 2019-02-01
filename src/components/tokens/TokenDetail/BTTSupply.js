@@ -140,7 +140,6 @@ class BTTSupply extends React.Component {
 
     render() {
         let {match, intl,activeLanguage} = this.props;
-        console.log('activeLanguage',activeLanguage)
         let {supplyTypesChart,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let supplyURL = "https://ex.bnbstatic.com/images/20190128/c015d0e0-f442-4245-a963-b3e2ad50617b.jpg";
         return (
@@ -171,7 +170,7 @@ class BTTSupply extends React.Component {
                                                                     <td>
                                                                         {tu('genesis')}:
                                                                     </td>
-                                                                    <td>
+                                                                    <td className="text-nowrap">
                                                                         {genesisNum} BTT
                                                                     </td>
                                                                 </tr>
@@ -206,7 +205,7 @@ class BTTSupply extends React.Component {
                                                                 <tr>
                                                                     <td>= <b>{tu('current_total_supply')}:</b><br/>
                                                                     </td>
-                                                                    <td>
+                                                                    <td className="text-nowrap">
                                                                         <b>{intl.formatNumber(currentTotalSupply)} BTT</b>
                                                                     </td>
                                                                 </tr>
@@ -264,7 +263,7 @@ class BTTSupply extends React.Component {
                                                                 <span className="counter">
                                                                     <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={2} />
                                                                 </span>
-                                                                <h4>{tu('total_BTT_supply')}</h4>
+                                                                <h4>{tu('circulating_supply')}</h4>
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
@@ -274,7 +273,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="card">
-                                                            <div className="card-body" style={{height: 300}}>
+                                                            <div className="card-body" style={{height: 315}}>
                                                                 {
                                                                     activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>
                                                                 }

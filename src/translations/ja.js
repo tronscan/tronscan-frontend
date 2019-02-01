@@ -1565,6 +1565,7 @@ export const messages = {
     "price_per_1000_btt": "BTT価格（1000TRXごとに）",
     "BTT_distribution_overview": "BTT分布の概要",
     "total_BTT_supply": "BTTの総ボリューム",
+    "BTT_supply": "BTT 供給",
 
 }
 

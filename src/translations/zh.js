@@ -1569,4 +1569,8 @@ export const messages = {
     "price_per_1000_btt": "BTT价格（每1000BTT）",
     "BTT_distribution_overview": "BTT分布概览",
     "total_BTT_supply": "BTT总流通量",
+    "BTT_supply": "BTT 流通量",
+
+
+
 };

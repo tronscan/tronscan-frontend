@@ -87,7 +87,7 @@ class TokenDetail extends React.Component {
                     id: "BTTSupply",
                     icon: "",
                     path: "/supply",
-                    label: <span>{tu("total_BTT_supply")}</span>,
+                    label: <span>{tu("BTT_supply")}</span>,
                     cmp: () => <BTTSupply token={token}/>
                 },
             ]
