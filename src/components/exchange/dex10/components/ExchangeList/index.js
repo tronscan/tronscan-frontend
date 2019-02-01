@@ -360,7 +360,7 @@ class ExchangeList extends React.Component {
                              className="btn btn-sm"
                              onClick={() => this.gotoTrc20()}
                         >
-                            TRC20
+                            Market
                         </div>
                         {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
                             {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
@@ -368,7 +368,7 @@ class ExchangeList extends React.Component {
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' active' : '')}
                             onClick={this.handleAuditedToken}>
-                           TRC10
+                           Bancor
                         </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? '' : ' active')}
