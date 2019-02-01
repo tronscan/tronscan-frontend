@@ -35,15 +35,9 @@
   "VoteOverview.js": "static/js/VoteOverview.0f61f871.chunk.js",
   "WalletWizard.js": "static/js/WalletWizard.b834a45c.chunk.js",
   "bootstrap.css": "d26ecc887c12f855a908679dae6704e3.css",
-<<<<<<< HEAD
   "languages.js": "static/js/languages.aaa5cfb2.chunk.js",
   "main.css": "static/css/main.85328733.css",
   "main.js": "static/js/main.4b01f020.js",
-=======
-  "languages.js": "static/js/languages.85c0b8b7.chunk.js",
-  "main.css": "static/css/main.53cd82d3.css",
-  "main.js": "static/js/main.31e89fd8.js",
->>>>>>> e4405142488b356573ab8c4c7f36ec76740acddf
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Bittorrent-Supply-EN.jpg": "static/media/Bittorrent-Supply-EN.b4b91cc0.jpg",
