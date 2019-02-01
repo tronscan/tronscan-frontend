@@ -1578,6 +1578,9 @@ export const messages = {
   "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
   "CONTRACT_CREATION": "CONTRACT CREATION",
   "open_ledger":"Open Ledger",
+  "price_per_1000_btt": "PRICE PER 1000 BTT",
+  "BTT_distribution_overview": "BTT DISTRIBUTION OVERVIEW",
+  "total_BTT_supply": "Total BTT Supply",
 
 
 

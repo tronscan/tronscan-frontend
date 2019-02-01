@@ -1562,6 +1562,9 @@ export const messages = {
     "SELF_DESTRUCT Contract": "コントラクト自己破壊",
     "CONTRACT_CREATION": "コントラクト作成",
     "open_ledger":"開いた Ledger",
+    "price_per_1000_btt": "BTT価格（1000TRXごとに）",
+    "BTT_distribution_overview": "BTT分布の概要",
+    "total_BTT_supply": "BTTの総ボリューム",
 
 }
 

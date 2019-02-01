@@ -87,29 +87,30 @@ class BTTSupply extends React.Component {
 
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
-        const {funds} = await Client.getFundsSupply();
+        const {funds} = await Client.getBttFundsSupply();
 
         let supplyTypesChartData = [
             {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
             {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
         ]
+
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
-            supplyTypesChart: supplyTypesChartData,
-            genesisNum:intl.formatNumber(funds.genesisBlockIssue),
-            blockProduceRewardsNum:intl.formatNumber(funds.totalBlockPay),
-            nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
-            independenceDayBurned:intl.formatNumber(funds.burnPerDay),
-            feeBurnedNum:intl.formatNumber(funds.burnByCharge),
+            //supplyTypesChart: supplyTypesChartData,
+             genesisNum:intl.formatNumber(990000000000),
+            // blockProduceRewardsNum:intl.formatNumber(funds.totalBlockPay),
+            // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
+            // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
+            // feeBurnedNum:intl.formatNumber(funds.burnByCharge),
             currentTotalSupply:funds.totalTurnOver,
             priceUSD:priceUSD,
             priceBTC:priceBTC,
             marketCapitalization:marketCapitalization,
-            foundationFreeze:intl.formatNumber(funds.fundTrx),
-            circulatingNum:intl.formatNumber(funds.turnOver)
+            //foundationFreeze:intl.formatNumber(funds.fundTrx),
+            //circulatingNum:intl.formatNumber(funds.turnOver)
         });
     }
 
@@ -138,8 +139,10 @@ class BTTSupply extends React.Component {
     }
 
     render() {
-        let {match, intl} = this.props;
+        let {match, intl,activeLanguage} = this.props;
+        console.log('activeLanguage',activeLanguage)
         let {supplyTypesChart,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
+        let supplyURL = "https://ex.bnbstatic.com/images/20190128/c015d0e0-f442-4245-a963-b3e2ad50617b.jpg";
         return (
 
                 <div className="row">
@@ -149,7 +152,7 @@ class BTTSupply extends React.Component {
                                 {
                                     <div>
                                         {
-                                            supplyTypesChart === null ?
+                                            !currentTotalSupply?
                                                 <TronLoader/> :
                                                 <div className="row" style={{fontSize : 12,marginRight:0}}>
                                                     <div className="col-md-5">
@@ -159,7 +162,7 @@ class BTTSupply extends React.Component {
                                                                 <tr>
                                                                     <th style={{border:0}}>
                                                                         <i className="fa fa-puzzle-piece" ></i>
-                                                                        <span style={{marginTop:2}}>{tu('TRX_distribution_overview')}</span>
+                                                                        <span style={{marginTop:2}}>{tu('BTT_distribution_overview')}</span>
                                                                     </th>
                                                                 </tr>
                                                                 </thead>
@@ -169,59 +172,59 @@ class BTTSupply extends React.Component {
                                                                         {tu('genesis')}:
                                                                     </td>
                                                                     <td>
-                                                                        {genesisNum} TRX
+                                                                        {genesisNum} BTT
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>+  {tu('block_produce_rewards')}:
-                                                                    </td>
-                                                                    <td>
-                                                                        {blockProduceRewardsNum} TRX
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>+ {tu('node_rewards')}:
-                                                                    </td>
-                                                                    <td>
-                                                                        {nodeRewardsNum} TRX
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>- {tu('independence_day_burned')}:
-                                                                    </td>
-                                                                    <td>
-                                                                        {independenceDayBurned} TRX
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>- {tu('fee_burned')}:
-                                                                    </td>
-                                                                    <td>
-                                                                        {feeBurnedNum} TRX
-                                                                    </td>
-                                                                </tr>
+                                                                {/*<tr>*/}
+                                                                    {/*<td>+  {tu('block_produce_rewards')}:*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{blockProduceRewardsNum} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
+                                                                {/*<tr>*/}
+                                                                    {/*<td>+ {tu('node_rewards')}:*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{nodeRewardsNum} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
+                                                                {/*<tr>*/}
+                                                                    {/*<td>- {tu('independence_day_burned')}:*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{independenceDayBurned} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
+                                                                {/*<tr>*/}
+                                                                    {/*<td>- {tu('fee_burned')}:*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{feeBurnedNum} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
                                                                 <tr>
                                                                     <td>= <b>{tu('current_total_supply')}:</b><br/>
                                                                     </td>
                                                                     <td>
-                                                                        <b>{intl.formatNumber(currentTotalSupply)} TRX</b>
+                                                                        <b>{intl.formatNumber(currentTotalSupply)} BTT</b>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td style={{color:'red'}} className="go-foundation">
-                                                                        <Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>
-                                                                    </td>
-                                                                    <td>
-                                                                        {foundationFreeze} TRX
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>{tu('circulating_supply')}:
-                                                                    </td>
-                                                                    <td>
-                                                                        {circulatingNum} TRX
-                                                                    </td>
-                                                                </tr>
+                                                                {/*<tr>*/}
+                                                                    {/*<td style={{color:'red'}} className="go-foundation">*/}
+                                                                        {/*<Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{foundationFreeze} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
+                                                                {/*<tr>*/}
+                                                                    {/*<td>{tu('circulating_supply')}:*/}
+                                                                    {/*</td>*/}
+                                                                    {/*<td>*/}
+                                                                        {/*{circulatingNum} TRX*/}
+                                                                    {/*</td>*/}
+                                                                {/*</tr>*/}
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -230,7 +233,7 @@ class BTTSupply extends React.Component {
                                                             <table className="table" style={{marginBottom:0}}>
                                                                 <thead>
                                                                 <tr>
-                                                                    <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_trx')}</th>
+                                                                    <th style={{border:0}}><br/><i className="fa fa-coins" ></i> {tu('price_per_1000_btt')}</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody><tr>
@@ -250,7 +253,7 @@ class BTTSupply extends React.Component {
                                                                 </tbody></table>
                                                             <div style={{fontSize:12,color:'#999',whiteSpace: 'nowrap',textAlign:'left', padding: '0.75rem',borderTop: '1px solid #DFD7CA',verticalAlign: 'top'}}>
                                                                 <div style={{transform:'scale(.9)',marginLeft: '-1.3rem'}}>
-                                                                    *{tu('supply_notes')}
+                                                                    {/**{tu('supply_notes')}*/}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -261,7 +264,7 @@ class BTTSupply extends React.Component {
                                                                 <span className="counter">
                                                                     <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={2} />
                                                                 </span>
-                                                                <h4>{tu('total_TRX_supply')}</h4>
+                                                                <h4>{tu('total_BTT_supply')}</h4>
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
@@ -271,14 +274,10 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="card">
-                                                            <div className="card-body" style={{height: 400}}>
-                                                                <SupplyTypesTRXPieChart
-                                                                    message={{id: 'breakdown_supply_types'}}
-                                                                    intl={intl}
-                                                                    data={supplyTypesChart}
-                                                                    style={{height: 300,marginTop:25}}
-                                                                    source='singleChart'
-                                                                />
+                                                            <div className="card-body" style={{height: 300}}>
+                                                                {
+                                                                    activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,7 +298,8 @@ function
 
 mapStateToProps(state) {
     return {
-        priceGraph: state.markets.price
+        priceGraph: state.markets.price,
+        activeLanguage: state.app.activeLanguage,
     };
 }
 

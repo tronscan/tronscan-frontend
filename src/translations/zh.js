@@ -1566,6 +1566,7 @@ export const messages = {
     "SELF_DESTRUCT Contract": "合约自杀",
     "CONTRACT_CREATION": "合约创建",
     "open_ledger":"打开 Ledger",
-
-
+    "price_per_1000_btt": "BTT价格（每1000BTT）",
+    "BTT_distribution_overview": "BTT分布概览",
+    "total_BTT_supply": "BTT总流通量",
 };
