@@ -1570,6 +1570,8 @@ export const messages = {
     "BTT_distribution_overview": "BTT分布概览",
     "total_BTT_supply": "BTT总流通量",
     "BTT_supply": "BTT 流通量",
+    "BTT_Token_Release_Schedule":"BTT 代币解锁时间表",
+    "source_btt_team":"信息来源：BTT管理团队",
 
 
 

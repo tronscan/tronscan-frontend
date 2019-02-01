@@ -7,7 +7,6 @@ import {injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
-import PieReact from "../../common/PieChart";
 import LineReact from "../../common/LineChart";
 import {cloneDeep} from "lodash";
 import {tu} from "../../../utils/i18n";
@@ -15,19 +14,9 @@ import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
 import {API_URL} from "../../../constants";
 import {
-    LineReactHighChartAdd,
-    LineReactHighChartTx,
-    LineReactHighChartTotalTxns,
-    LineReactHighChartBlockchainSize,
-    BarReactHighChartBlockSize,
-    LineReactHighChartPrice,
-    LineReactHighChartVolumeUsd
+    SupplyAreaHighChart
 } from "../../common/LineCharts";
 
-import {
-    RepresentativesRingPieReact,
-    SupplyTypesTRXPieChart,
-} from "../../common/RingPieChart";
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
@@ -88,10 +77,11 @@ class BTTSupply extends React.Component {
     loadTotalTRXSupply = async() =>{
         let {intl} = this.props;
         const {funds} = await Client.getBttFundsSupply();
-
+        let total = 990000000000;
         let supplyTypesChartData = [
-            {value: funds.turnOver, name: 'circulating_supply', selected: true,sliced: true},
-            {value: funds.fundTrx, name: 'total_frozen', selected: false,sliced: false},
+            {data: [59400000000/total], name: 'Launchpad Public Sale'},
+            {data: [(1650000000*1000)/total, (1650000000*2000)/total, (1650000000*3000)/total, (1650000000*4000)/total, (1650000000*5000)/total, (1650000000*6000)/total, (1650000000*7000)/total, (1650000000*8000)/total, (1650000000*9000)/total, (1650000000*10000)/total, (1650000000*1100)/total, (1650000000*1200)/total], name: 'Private Sale'},
+            {data: [(5225000000*1000)/total,(5225000000*2000)/total,(5225000000*3000)/total,(5225000000*4000)/total,(5225000000*5000)/total,(5225000000*6000)/total,(5225000000*7000)/total,(5225000000*8000)/total,(5225000000*9000)/total,(5225000000*9000)/total,(5225000000*1000)/total,(5225000000*1100)/total,(5225000000*1000)/total], name: 'Team'},
         ]
 
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
@@ -99,8 +89,8 @@ class BTTSupply extends React.Component {
         let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
         let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
         this.setState({
-            //supplyTypesChart: supplyTypesChartData,
-             genesisNum:intl.formatNumber(990000000000),
+            supplyTypesChart: supplyTypesChartData,
+             genesisNum:intl.formatNumber(total),
             // blockProduceRewardsNum:intl.formatNumber(funds.totalBlockPay),
             // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
             // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
@@ -274,9 +264,14 @@ class BTTSupply extends React.Component {
                                                         </div>
                                                         <div className="card">
                                                             <div className="card-body">
-                                                                {
-                                                                    activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>
-                                                                }
+                                                                {/*{*/}
+                                                                    {/*activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>*/}
+                                                                {/*}*/}
+                                                                <SupplyAreaHighChart
+                                                                    intl={intl}
+                                                                    data={supplyTypesChart}
+                                                                    style={{height: 400,marginTop:10}}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>

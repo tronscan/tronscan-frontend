@@ -1582,6 +1582,8 @@ export const messages = {
   "BTT_distribution_overview": "BTT DISTRIBUTION OVERVIEW",
   "total_BTT_supply": "Total BTT Supply",
   "BTT_supply": "BTT Supply",
+  "BTT_Token_Release_Schedule":"BTT Token Release Schedule",
+  "source_btt_team":"Source: BTT Management Team",
 
 
 

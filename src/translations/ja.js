@@ -1566,6 +1566,9 @@ export const messages = {
     "BTT_distribution_overview": "BTT分布の概要",
     "total_BTT_supply": "BTTの総ボリューム",
     "BTT_supply": "BTT 供給",
+    "BTT_Token_Release_Schedule":"BTTトークンリリーススケジュール",
+    "source_btt_team":"出典：BTT管理チーム",
+
 
 }
 

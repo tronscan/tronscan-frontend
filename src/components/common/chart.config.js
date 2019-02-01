@@ -730,45 +730,127 @@ module.exports = {
         }]
     },
   supplyPieHighChart: {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: ''
-        },
-        credits: {
-            enabled: false
-        },
-        exporting: {
-            enabled: true,
-            sourceWidth: 562,
-            sourceHeight: 400,
-            filename:''
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        colors: [
-            '#c84a45',
-            '#e7afad'
-        ],
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true
-                },
-                showInLegend: true
-            }
-        },
-        series: [{
-            name: '',
-            colorByPoint: true,
-            data: []
-        }]
-    }
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: ''
+      },
+      credits: {
+          enabled: false
+      },
+      exporting: {
+          enabled: true,
+          sourceWidth: 562,
+          sourceHeight: 400,
+          filename:''
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      colors: [
+          '#c84a45',
+          '#e7afad'
+      ],
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true
+              },
+              showInLegend: true
+          }
+      },
+      series: [{
+          name: '',
+          colorByPoint: true,
+          data: []
+      }]
+  },
+
+  supplyAreaHighChart:{
+      chart: {
+          type: 'area'
+      },
+      title: {
+          text: ''
+      },
+      subtitle: {
+          text: ''
+      },
+      credits: {
+          enabled: false
+      },
+      xAxis: {
+          type: 'datetime',
+          ordinal: false,
+          dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+          },
+          gridLineColor: '#eeeeee',
+          labels: {
+              style: {
+                  color: "#999999"
+              },
+              autoRotation: [-10, -20, -30, -40, -50, -60, -70, -80, -90]
+          },
+          tickmarkPlacement: 'on',
+          title: {
+              enabled: false
+          },
+          //categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+      },
+      // xAxis: {
+       //    categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+      //     tickmarkPlacement: 'on',
+      //     title: {
+      //         enabled: false
+      //     }
+      // },
+      yAxis: {
+          title: {
+              text: ''
+          },
+          labels: {
+              style: {
+                  color: "#999999"
+              }
+          },
+      },
+      // tooltip: {
+      //     split: true,
+      //     valueSuffix: ' 百万'
+      // },
+      exporting: {
+          enabled: true,
+          sourceWidth: 1072,
+          sourceHeight: 500,
+          filename:''
+      },
+      plotOptions: {
+          area: {
+              stacking: 'normal',
+              lineColor: '#666666',
+              lineWidth: 1,
+              marker: {
+                  lineWidth: 1,
+                  lineColor: '#666666'
+              }
+          }
+      },
+      series: []
+
+  }
+
 };
