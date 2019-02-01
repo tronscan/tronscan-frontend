@@ -261,7 +261,7 @@ class Buy extends Component {
             className="success mb-1"
             size="large"
             htmlType="button"
-            disabled={!account.address||exchangeData.id===35||exchangeData.id===26||exchangeData.id===36}
+            disabled={!account.address||exchangeData.id===35||exchangeData.id===26}
             onClick={this.handleSubmit}
             loading={buttonLoading}
           >
