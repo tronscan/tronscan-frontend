@@ -7,6 +7,7 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
+import BTTSupply from "./BTTSupply.js";
 import {Information} from "./Information.js";
 import {ONE_TRX} from "../../../constants";
 import {login} from "../../../actions/app";
@@ -81,7 +82,14 @@ class TokenDetail extends React.Component {
                     path: "",
                     label: <span>{tu("issue_info")}</span>,
                     cmp: () => <TokenInfo token={token}/>
-                }
+                },
+                {
+                    id: "BTTSupply",
+                    icon: "",
+                    path: "/supply",
+                    label: <span>{tu("BTTSupply")}</span>,
+                    cmp: () => <BTTSupply token={token}/>
+                },
             ]
         });
     }else{
