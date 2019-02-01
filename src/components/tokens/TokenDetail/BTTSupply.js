@@ -273,7 +273,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="card">
-                                                            <div className="card-body" style={{height: 315}}>
+                                                            <div className="card-body">
                                                                 {
                                                                     activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>
                                                                 }
