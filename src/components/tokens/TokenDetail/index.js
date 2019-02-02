@@ -83,13 +83,13 @@ class TokenDetail extends React.Component {
                     label: <span>{tu("issue_info")}</span>,
                     cmp: () => <TokenInfo token={token}/>
                 },
-                {
+               /* {
                     id: "BTTSupply",
                     icon: "",
                     path: "/supply",
                     label: <span>{tu("BTT_supply")}</span>,
                     cmp: () => <BTTSupply token={token}/>
-                },
+                },*/
             ]
         });
     }else{

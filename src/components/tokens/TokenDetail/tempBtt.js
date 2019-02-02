@@ -229,7 +229,7 @@ class BTTSupplyTemp extends React.Component {
                                                                 style={{height: 400, marginTop: 10}}
                                                             />
                                                           </div>
-                                                        </div> 
+                                                        </div>
 
                             </div>
                             <a href='https://support.binance.com/hc/en-us/articles/360022340552'>Binance Launchpad Public Sale</a>
