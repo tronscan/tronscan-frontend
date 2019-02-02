@@ -170,7 +170,7 @@ class ExchangeList extends React.Component {
                             className={"btn btn-sm" + (tokenAudited? ' active' : '')}
                             onClick={() => this.handleSelectData(true)}
                         >
-                            TRC20
+                            Market
                         </div>
                         {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
                             {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
@@ -178,7 +178,7 @@ class ExchangeList extends React.Component {
                         <div
                             className={"btn btn-sm"}
                             onClick={() => this.gotoTrc10()}>
-                            TRC10
+                            Bancor
                         </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}
