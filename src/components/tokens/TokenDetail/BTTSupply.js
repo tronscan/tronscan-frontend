@@ -78,11 +78,9 @@ class BTTSupply extends React.Component {
         let {intl} = this.props;
         const {funds} = await Client.getBttFundsSupply();
         let total = 990000000000;
-        let supplyTypesChartData = [
-            {data: [59400000000/total], name: 'Launchpad Public Sale'},
-            {data: [(1650000000*1000)/total, (1650000000*2000)/total, (1650000000*3000)/total, (1650000000*4000)/total, (1650000000*5000)/total, (1650000000*6000)/total, (1650000000*7000)/total, (1650000000*8000)/total, (1650000000*9000)/total, (1650000000*10000)/total, (1650000000*1100)/total, (1650000000*1200)/total], name: 'Private Sale'},
-            {data: [(5225000000*1000)/total,(5225000000*2000)/total,(5225000000*3000)/total,(5225000000*4000)/total,(5225000000*5000)/total,(5225000000*6000)/total,(5225000000*7000)/total,(5225000000*8000)/total,(5225000000*9000)/total,(5225000000*9000)/total,(5225000000*1000)/total,(5225000000*1100)/total,(5225000000*1000)/total], name: 'Team'},
-        ]
+        let result=await xhr.get(`https://apilist.tronscan.org/api/bittorrent/graphic`);
+
+      let supplyTypesChartData = result.data;
 
         let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
         let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
@@ -95,7 +93,7 @@ class BTTSupply extends React.Component {
             // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
             // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
             // feeBurnedNum:intl.formatNumber(funds.burnByCharge),
-            currentTotalSupply:funds.totalTurnOver,
+            currentTotalSupply:parseInt(funds.totalTurnOver),
             priceUSD:priceUSD,
             priceBTC:priceBTC,
             marketCapitalization:marketCapitalization,
@@ -144,7 +142,7 @@ class BTTSupply extends React.Component {
                                             !currentTotalSupply?
                                                 <TronLoader/> :
                                                 <div className="row" style={{fontSize : 12,marginRight:0}}>
-                                                    <div className="col-md-5">
+                                                    <div className="col-md-12">
                                                         <div className="table-responsive">
                                                             <table className="table" style={{marginTop : 10}}>
                                                                 <thead>
@@ -157,63 +155,22 @@ class BTTSupply extends React.Component {
                                                                 </thead>
                                                                 <tbody>
                                                                 <tr>
-                                                                    <td>
+                                                                    <td style={{  width: '20%'}}>
                                                                         {tu('genesis')}:
                                                                     </td>
                                                                     <td className="text-nowrap">
                                                                         {genesisNum} BTT
                                                                     </td>
                                                                 </tr>
-                                                                {/*<tr>*/}
-                                                                    {/*<td>+  {tu('block_produce_rewards')}:*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{blockProduceRewardsNum} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
-                                                                {/*<tr>*/}
-                                                                    {/*<td>+ {tu('node_rewards')}:*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{nodeRewardsNum} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
-                                                                {/*<tr>*/}
-                                                                    {/*<td>- {tu('independence_day_burned')}:*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{independenceDayBurned} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
-                                                                {/*<tr>*/}
-                                                                    {/*<td>- {tu('fee_burned')}:*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{feeBurnedNum} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
+
                                                                 <tr>
-                                                                    <td>= <b>{tu('current_total_supply')}:</b><br/>
+                                                                    <td><b>{tu('current_total_supply')}:</b><br/>
                                                                     </td>
                                                                     <td className="text-nowrap">
                                                                         <b>{intl.formatNumber(currentTotalSupply)} BTT</b>
                                                                     </td>
                                                                 </tr>
-                                                                {/*<tr>*/}
-                                                                    {/*<td style={{color:'red'}} className="go-foundation">*/}
-                                                                        {/*<Link to="/blockchain/foundation" style={{color:'red',}}>{tu("total_frozen")}</Link>*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{foundationFreeze} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
-                                                                {/*<tr>*/}
-                                                                    {/*<td>{tu('circulating_supply')}:*/}
-                                                                    {/*</td>*/}
-                                                                    {/*<td>*/}
-                                                                        {/*{circulatingNum} TRX*/}
-                                                                    {/*</td>*/}
-                                                                {/*</tr>*/}
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -226,7 +183,7 @@ class BTTSupply extends React.Component {
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody><tr>
-                                                                    <td>{tu('in_USD')}:
+                                                                    <td style={{  width: '20%'}}>{tu('in_USD')}:
                                                                     </td>
                                                                     <td>
                                                                         ${priceUSD}
@@ -247,26 +204,23 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-7" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
-                                                        <div className="main-counters row">
+                                                    <div className="col-md-12" style={{backgroundColor: '#F5F5F5',marginTop:0,paddingBottom:15}}>
+                                                        <div className="main-counters row" style={{marginBottom:'0px'}}>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
-                                                                    <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={2} />
+                                                                    <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={0} />
                                                                 </span>
                                                                 <h4>{tu('circulating_supply')}</h4>
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
                                                                     $<CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>
-                                                                </span>
+                                                                </span> BTT
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>
                                                         </div>
                                                         <div className="card">
                                                             <div className="card-body">
-                                                                {/*{*/}
-                                                                    {/*activeLanguage == 'zh'?<img src={require('../../../images/chart/Bittorrent-Supply.jpg')} style={{maxWidth:'100%'}}/>:<img src={require('../../../images/chart/Bittorrent-Supply-EN.jpg')} style={{maxWidth:'100%'}}/>*/}
-                                                                {/*}*/}
                                                                 <SupplyAreaHighChart
                                                                     intl={intl}
                                                                     data={supplyTypesChart}
@@ -275,6 +229,7 @@ class BTTSupply extends React.Component {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <a href='https://support.binance.com/hc/en-us/articles/360022340552'>Binance Launchpad Public Sale</a>
                                                 </div>
                                         }
                                     </div>

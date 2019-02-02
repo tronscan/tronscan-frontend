@@ -57,29 +57,21 @@ export class SupplyAreaHighChart extends React.Component {
         _config.title.text = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
         _config.subtitle.text = intl.formatMessage({id: 'source_btt_team'});
         _config.exporting.filename = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
-        _config.xAxis.categories = ['2019-1','2019-2','2019-3','2019-4','2019-5','2019-6','2019-7','2019-8','2019-9','2019-1','2019-10','2019-11','2019-12']
+        _config.xAxis.categories = ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'];
         // _config.xAxis.tickPixelInterval = 100;
         // _config.xAxis.minRange=24 * 3600 * 1000;
         // _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
         // _config.yAxis.tickAmount = 5;
         // _config.yAxis.min = 0;
-        _config.yAxis.tickPositions = [0, 20, 40, 60, 80, 100];
+        _config.yAxis.tickPositions = [0,5,10,15,20,25,30,35,40,45,50];
         _config.yAxis.labels.formatter = function() {
-            console.log()
             return this.value + '%'
         }
         //_config.series[0].marker.enabled = false;
 
         //_config.series[0].pointInterval = 24 * 3600 * 1000;
         //_config.series[0].pointStart = Date.UTC(2018, 5, 25);
-        // _config.tooltip.formatter = function () {
-        //     let date = intl.formatDate(this.point.x);
-        //     return (
-        //         intl.formatMessage({id: 'date'}) + ' : ' + date + '<br/>' +
-        //         intl.formatMessage({id: 'daily_increment'}) + ' : ' + this.point.increment + '<br/>' +
-        //         intl.formatMessage({id: 'total_addresses'}) + ' : ' + this.point.total
-        //     )
-        // }
+
 
         Highcharts.chart(document.getElementById(id),_config);
 

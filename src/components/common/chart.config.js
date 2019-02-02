@@ -811,13 +811,7 @@ module.exports = {
           },
           //categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
       },
-      // xAxis: {
-       //    categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-      //     tickmarkPlacement: 'on',
-      //     title: {
-      //         enabled: false
-      //     }
-      // },
+
       yAxis: {
           title: {
               text: ''
@@ -828,10 +822,10 @@ module.exports = {
               }
           },
       },
-      // tooltip: {
-      //     split: true,
-      //     valueSuffix: ' 百万'
-      // },
+    tooltip: {
+      shared: true,
+      valueSuffix:'%',
+    },
       exporting: {
           enabled: true,
           sourceWidth: 1072,
@@ -845,9 +839,11 @@ module.exports = {
               lineWidth: 1,
               marker: {
                   lineWidth: 1,
-                  lineColor: '#666666'
+                  lineColor: '#666666',
+                radius: 1
               }
-          }
+          },
+
       },
       series: []
 
