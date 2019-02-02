@@ -209,13 +209,14 @@ class BTTSupply extends React.Component {
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
                                                                     <CountUp start={0} end={currentTotalSupply} duration={2}  separator="," decimals={0} />
+                                                                    &nbsp; BTT
                                                                 </span>
                                                                 <h4>{tu('circulating_supply')}</h4>
                                                             </div>
                                                             <div className="counters col-md-6 col-sm-6">
                                                                 <span className="counter">
                                                                     $<CountUp start={0} end={marketCapitalization} duration={2}  separator="," decimals={2}/>
-                                                                </span> BTT
+                                                                </span>
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>
                                                         </div>
