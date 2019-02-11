@@ -124,6 +124,7 @@ import { injectIntl } from "react-intl";
 class ApiTW {
   constructor() {
     this.contranctAddress = "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5";
+    this.contractAddress10 = "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e";
   }
 
   /**
@@ -131,6 +132,10 @@ class ApiTW {
    */
   async getContract(tronWeb) {
     return await tronWeb.contract().at(this.contranctAddress);
+    // return await tronWeb.contract().at(contranctAddress)
+  }
+  async getContract10(tronWeb) {
+    return await tronWeb.contract().at(this.contractAddress10);
     // return await tronWeb.contract().at(contranctAddress)
   }
 
@@ -176,7 +181,8 @@ class ApiTW {
     _tokenB,
     _price,
     _amountB,
-    tronWeb
+    _pairType,
+    tronWeb,
   }) {
     let allowAmount = false;
     let callValue = 0;
@@ -195,18 +201,20 @@ class ApiTW {
       );
     }
     if (!allowAmount) return;
-    const _c = await this.getContract(tronWeb);
+    let _c;
+    if(_pairType===1)
+       _c = await this.getContract10(tronWeb);
+    if(_pairType===2)
+       _c = await this.getContract(tronWeb);
     const transactionID = _c
       .buyOrder(
-        _tokenA,
-        Math.round(_amountA).toString(),
-        _tokenB,
-        Math.round(_amountB),
-        Math.round(_price)
+          _tokenA,
+          Math.round(_amountA).toString(),
+          Math.round(_amountB),
+          Math.round(_price)
       )
       .send({
-        callValue: callValue,
-        shouldPollResponse: false
+        callValue: Math.round(_amountB)
       });
 
     return transactionID;
@@ -221,6 +229,7 @@ class ApiTW {
     _tokenB,
     _price,
     _amountB,
+    _pairType,
     tronWeb
   }) {
     let allowAmount = await this.authorization(
@@ -230,15 +239,22 @@ class ApiTW {
       tronWeb
     );
     if (!allowAmount) return;
-    const transactionID = (await this.getContract(tronWeb))
+    let _c;
+    if(_pairType===1)
+       _c = await this.getContract10(tronWeb);
+    if(_pairType===2)
+       _c = await this.getContract(tronWeb);
+    const transactionID = _c
       .sellOrder(
-        _tokenA,
-        Math.round(_amountA).toString(),
-        _tokenB,
-        Math.round(_amountB),
-        Math.round(_price)
+          _tokenA,
+          Math.round(_amountA).toString(),
+          Math.round(_amountB),
+          Math.round(_price)
       )
-      .send();
+      .send({
+        tokenValue: Math.round(_amountA).toString(),
+        tokenId: _tokenA
+      });
     // const transactionID = (await getContract()).sellOrder
     return transactionID;
   }

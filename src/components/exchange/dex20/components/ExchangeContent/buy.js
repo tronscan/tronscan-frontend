@@ -312,6 +312,7 @@ class Buy extends Component {
     let { amount, price, balanceTimer } = this.state;
     let tokenA = exchangeData.fTokenAddr;
     let tokenB = exchangeData.sTokenAddr;
+    let pairType=exchangeData.pairType;
     let tronWeb;
     if (this.props.walletType.type === "ACCOUNT_LEDGER"){
         tronWeb = this.props.tronWeb();
@@ -328,7 +329,8 @@ class Buy extends Component {
       _tokenB: tokenB,
       _price: price * secondPrecision,
       _amountB: amount * price * secondPrecision,
-      tronWeb: tronWeb
+      _pairType: pairType,
+      tronWeb: tronWeb,
     };
 
     let id;

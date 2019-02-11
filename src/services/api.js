@@ -40,7 +40,7 @@ class ApiClient20 {
   }
 
   async getRegisterList(id) {
-    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/orderList/${id}`);
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/orderListV2/${id}`);
 
     return data;
   }

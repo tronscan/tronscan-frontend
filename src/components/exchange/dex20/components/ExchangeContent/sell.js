@@ -324,15 +324,16 @@ class Sell extends Component {
     let { amount, price } = this.state;
     let tokenA = exchangeData.fTokenAddr;
     let tokenB = exchangeData.sTokenAddr;
+    let pairType=exchangeData.pairType;
 
     const firstPrecision = Math.pow(10, exchangeData.fPrecision || 8);
     const secondPrecision = Math.pow(10, exchangeData.sPrecision || 8);
     let amountA = Math.round(amount * firstPrecision);
     // await authorization(this.account.address, tokenA, 0)
-    this.transFun(amountA, tokenA, tokenB, firstPrecision, secondPrecision);
+    this.transFun(amountA, tokenA, tokenB, firstPrecision, secondPrecision, pairType);
   }
 
-  async transFun(amountA, tokenA, tokenB, firstPrecision, secondPrecision) {
+  async transFun(amountA, tokenA, tokenB, firstPrecision, secondPrecision, pairType) {
     let { exchangeData, account ,walletType} = this.props;
     let { amount, price } = this.state;
     
@@ -351,6 +352,7 @@ class Sell extends Component {
       _price: price * secondPrecision,
       _tokenB: tokenB,
       _amountB: amountB,
+      _pairType:pairType,
       tronWeb: tronWebOBJ,
     };
     try {
