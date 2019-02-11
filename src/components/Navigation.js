@@ -100,7 +100,7 @@ class Navigation extends React.Component {
 
       }
     })
-    //this.getAnnouncement();
+    this.getAnnouncement();
     $(document).click(() => {
       $('#_searchBox').css({display: 'none'});
     });
@@ -119,7 +119,7 @@ class Navigation extends React.Component {
   componentDidUpdate(prevProps) {
     const {activeLanguage} = this.props
     if (activeLanguage != prevProps.activeLanguage) {
-      //this.getAnnouncement()
+      this.getAnnouncement()
     }
   }
 
