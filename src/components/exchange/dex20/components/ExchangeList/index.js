@@ -165,11 +165,12 @@ class ExchangeList extends React.Component {
                             {/*onMouseOut={() => this.setState({open: false})}*/}
                         {/*>*/}
 
-                            {/*<i></i>*/}
+
                         <div
                             className={"btn btn-sm" + (tokenAudited? ' active' : '')}
-                            onClick={() => this.handleSelectData(true)}
                         >
+                          <i className="fa fa-ban"></i>&nbsp;
+                          {/* onClick={() => this.handleSelectData(true)} */}
                             Market
                         </div>
                         {/*<Tooltip placement="top" isOpen={open} target={id}>*/}

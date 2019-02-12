@@ -355,11 +355,12 @@ class ExchangeList extends React.Component {
                             {/*onMouseOut={() => this.setState({open: false})}*/}
                            {/*// onClick={() => this.gotoTrc20()}*/}
                         {/*>*/}
-                            {/*<i></i>*/}
+
                         <div
                              className="btn btn-sm"
-                             onClick={() => this.gotoTrc20()}
                         >
+                          <i className="fa fa-ban"></i>&nbsp;
+                          {/* onClick={() => this.gotoTrc20()}*/}
                             Market
                         </div>
                         {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
