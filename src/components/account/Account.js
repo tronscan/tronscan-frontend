@@ -1057,20 +1057,21 @@ export default class Account extends Component {
   createTxnPair = async (firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId, firstTokenBalance, secondTokenBalance, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.createTRXExchange(firstTokenId, firstTokenBalance, secondTokenBalance, tronWeb.defaultAddress.hex).catch(e => false);
       const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
-    } else {
+    }else {
       const {success} = await Client.createExchange(currentWallet.address, firstTokenId, secondTokenId, firstTokenBalance, secondTokenBalance)(account.key);
       res = success;
     }
+    
     if (res) {
       this.setState({
         temporaryName: name,
@@ -1096,15 +1097,15 @@ export default class Account extends Component {
   injectExchange = async (exchangeId, tokenId, quant) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.injectExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       const {success} = await Client.injectExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
@@ -1135,15 +1136,15 @@ export default class Account extends Component {
   withdrawExchange = async (exchangeId, tokenId, quant) => {
     let res;
     let {account, currentWallet} = this.props;
-    if (this.state.isTronLink === 1) {
-      let tronWeb;
-      if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-        tronWeb = this.props.tronWeb();
-      } else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-        tronWeb = account.tronWeb;
-      }
+    if (this.props.walletType.type === "ACCOUNT_LEDGER") {
+      const tronWeb = this.props.tronWeb();
+      const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, currentWallet.address).catch(e => false);
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
+      res = result;
+    }else if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
+      const tronWeb = account.tronWeb;
       const unSignTransaction = await tronWeb.transactionBuilder.withdrawExchangeTokens(exchangeId, tokenId, quant, tronWeb.defaultAddress.hex).catch(e => false);
-      const {result} = await transactionResultManager(unSignTransaction, tronWeb)
+      const {result} = await  transactionResultManager(unSignTransaction, tronWeb);
       res = result;
     } else {
       const {success} = await Client.withdrawExchange(currentWallet.address, exchangeId, tokenId, quant)(account.key);
