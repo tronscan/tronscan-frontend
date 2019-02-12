@@ -18,7 +18,9 @@ const { splitPath, foreach } = require("./utils");
 const CLA = 0xE0;
 const PATH_SIZE = 4;
 const PATHS_LENGTH_SIZE = 1;
-const CHUNK_SIZE = 233;
+const CHUNK_SIZE = 240;
+const SIGN = 0x04
+
 /**
  * Tron API
  *
@@ -34,10 +36,11 @@ export default class Trx {
       [
         "getAddress",
         "signTransaction",
+        "signTransactionWithTokenName",
         "signPersonalMessage",
         "getAppConfiguration"
       ],
-      "w0w"
+      "TRX"
     );
   }
   /**
@@ -143,6 +146,104 @@ export default class Trx {
           response = apduResponse;
         });
     }).then(() => response);
+  }
+  /**
+   * sign a Tron transaction with a given BIP 32 path and Token Names
+   *
+   * @param path a path in BIP 32 format
+   * @param rawTxHex a raw transaction hex string
+   * @param tokenSignatures Tokens Signatures array
+   * @return a signature as hex string
+   * example
+   */send
+  async signTransactionWithTokenName(
+    path: string,
+    rawTxHex: string,
+    tokenSignatures: string[],
+  ): Promise<string> {
+    console.log(tokenSignatures);
+    //const bipPath = BIPPath.fromString(path).toPathArray();
+    let paths = splitPath(path);
+    const rawTx = new Buffer(rawTxHex, "hex");
+    let buffers = [];
+    let offset = 0;
+    console.log("GOT SIGN REQUEST");
+    while (offset !== rawTx.length) {
+        let maxChunkSize = offset === 0 ?
+          CHUNK_SIZE - PATHS_LENGTH_SIZE - (paths.length * PATH_SIZE)
+          : CHUNK_SIZE;
+  
+        let chunkSize = offset + maxChunkSize > rawTx.length
+            ? rawTx.length - offset
+            : maxChunkSize;
+  
+        let buffer = new Buffer.alloc(
+          offset === 0 ? 1 + paths.length * PATH_SIZE + chunkSize : chunkSize
+        );
+  
+        if (offset === 0) {
+          buffer[0] = paths.length;
+          paths.forEach((element, index) => {
+            buffer.writeUInt32BE(element, 1 + 4 * index);
+          });
+          rawTx.copy(buffer, PATHS_LENGTH_SIZE + PATH_SIZE * paths.length, offset, offset + chunkSize);
+        } else {
+          rawTx.copy(buffer, 0, offset, offset + chunkSize);
+        }
+  
+        buffers.push(buffer);
+        offset += chunkSize;
+    }
+    
+    if (tokenSignatures!== undefined){
+      for (let i=0; i < tokenSignatures.length; i++){
+        let buffer = new Buffer(
+          tokenSignatures[i], "hex"
+        );
+        buffers.push(buffer)  
+      }
+    }  
+
+    if (buffers.length === 1) {
+        buffers = [
+          [0x10, buffers[0]]
+        ];
+    } else if (buffers.length > 1) {
+        buffers = buffers.map((p, i) => {
+            let startByte;
+            if (i === 0) {
+                startByte = 0x00;
+            } else if (buffers.length > 1 && i === buffers.length - 1) {
+                if (tokenSignatures!== undefined){
+                    startByte = 0xA8|(tokenSignatures.length-1);
+                }else {  
+                    startByte = 0x90;
+                }
+            } else {
+                let pos = (buffers.length - tokenSignatures.length);
+                if (pos!== undefined) {
+                    startByte = 0xA0|( i - pos);
+                } else{
+                  startByte = 0x80;
+                }
+            }
+    
+            return [startByte, p];
+        });
+    }
+
+    console.log("CHUNKS", buffers.length);
+    console.log("FULL SEND", buffers.map(([startByte, data]) => data.toString("hex")).join(""));
+    let response;
+    return foreach(buffers, ([startByte, data]) => {
+      console.log("SENDING", startByte, data.length, data.toString("hex"));
+      return this.transport
+        .send(CLA, SIGN, startByte, 0x00, data)
+        .then(apduResponse => {
+          response = apduResponse;
+        });
+    }).then(() => response.slice(0,65));
+
   }
   /**
    */

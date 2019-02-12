@@ -145,7 +145,7 @@ class TokenCreate extends Component {
             description: this.state.description,
             url: this.state.url,
             totalSupply: this.state.totalSupply * Math.pow(10, Number(this.state.precision)),
-            tokenRatio: this.state.numberOfCoins,
+            tokenRatio: this.state.numberOfCoins * Math.pow(10, Number(this.state.precision)),
             trxRatio: this.state.numberOfTron * ONE_TRX,
             saleStart: Date.parse(this.state.startTime),
             saleEnd: Date.parse(this.state.endTime),
