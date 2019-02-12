@@ -238,7 +238,7 @@ class Curorder extends Component {
       }
 
     try {
-      const _id = await TW.cancelOrder(item.orderID, tronWebOBJ);
+      const _id = await TW.cancelOrder(item.orderID, tronWebOBJ, item.pairType);
       if (_id) {
         this.setState({
           modal: (

@@ -142,8 +142,12 @@ class ApiTW {
   /**
    * 撤单
    */
-  async cancelOrder(_id, tronWeb) {
-    const contract = await this.getContract(tronWeb);
+  async cancelOrder(_id, tronWeb, pairType) {
+    let contract;
+    if(pairType===1)
+      contract = await this.getContract10(tronWeb);
+    if(pairType===2)
+      contract = await this.getContract(tronWeb);
 
     const transactionID = contract
       .cancelOrder(_id)
