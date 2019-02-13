@@ -153,7 +153,7 @@ class Representative extends React.Component {
 
   async reloadPages() {
     let sr = await Client.getSuperRepresentative(this.getAddress());
-    await this.loadGithubData(sr.githubLink);
+    await this.loadGithubData(sr.data.githubLink);
   }
 
   async loadAddress(id) {
