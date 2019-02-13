@@ -643,7 +643,7 @@ export const routes = [
     component: DemoAsync
   },
   {
-    path: "/btt/supply",
+    path: "/demo/btt/supply",
     label: "supply",
     showInMenu: false,
     showSubMenu: false,
