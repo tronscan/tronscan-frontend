@@ -474,7 +474,7 @@ class SendForm extends React.Component {
 
   async getTRC20Tokens(){
       let {account} = this.props;
-      let result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&start=0&limit=50");
+      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?sort=issue_time&start=0&limit=50");
       let tokens20 = result.data.trc20_tokens;
       const tronWebLedger = this.props.tronWeb();
       const { tronWeb } = this.props.account;
