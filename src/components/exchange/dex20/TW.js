@@ -161,6 +161,7 @@ class ApiTW {
    */
 
   async getBalance({ _tokenA, _uToken, _precision, tronWeb }) {
+
     const contractInstance = await tronWeb.contract().at(_tokenA);
     const _b = await contractInstance
       .balanceOf(_uToken)
@@ -206,20 +207,36 @@ class ApiTW {
     }
     if (!allowAmount) return;
     let _c;
-    if(_pairType===1)
-       _c = await this.getContract10(tronWeb);
-    if(_pairType===2)
-       _c = await this.getContract(tronWeb);
-    const transactionID = _c
-      .buyOrder(
-          _tokenA,
-          Math.round(_amountA).toString(),
-          Math.round(_amountB),
-          Math.round(_price)
-      )
-      .send({
-        callValue: Math.round(_amountB)
-      });
+    let transactionID;
+    if(_pairType===1) {
+      _c = await this.getContract10(tronWeb);
+       transactionID = _c
+          .buyOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            callValue: Math.round(_amountB)
+          });
+    }
+    if(_pairType===2) {
+      _c = await this.getContract(tronWeb);
+      transactionID = _c
+          .buyOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              _tokenB,
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            callValue: callValue,
+            shouldPollResponse: false
+          });
+    }
+
 
     return transactionID;
   }
@@ -236,29 +253,45 @@ class ApiTW {
     _pairType,
     tronWeb
   }) {
-    let allowAmount = await this.authorization(
-      _user,
-      _tokenA,
-      Math.round(_amountA),
-      tronWeb
-    );
-    if (!allowAmount) return;
-    let _c;
-    if(_pairType===1)
-       _c = await this.getContract10(tronWeb);
-    if(_pairType===2)
-       _c = await this.getContract(tronWeb);
-    const transactionID = _c
-      .sellOrder(
+
+    if(_pairType===2) {
+      let allowAmount = await this.authorization(
+          _user,
           _tokenA,
-          Math.round(_amountA).toString(),
-          Math.round(_amountB),
-          Math.round(_price)
-      )
-      .send({
-        tokenValue: Math.round(_amountA).toString(),
-        tokenId: _tokenA
-      });
+          Math.round(_amountA),
+          tronWeb
+      );
+      if (!allowAmount) return;
+    }
+    let _c;
+    let transactionID;
+    if(_pairType===1) {
+      _c = await this.getContract10(tronWeb);
+       transactionID = _c
+          .sellOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            tokenValue: Math.round(_amountA).toString(),
+            tokenId: _tokenA
+          });
+    }
+    if(_pairType===2) {
+      _c = await this.getContract(tronWeb);
+      transactionID = _c
+          .sellOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              _tokenB,
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send();
+    }
+
     // const transactionID = (await getContract()).sellOrder
     return transactionID;
   }
