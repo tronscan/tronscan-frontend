@@ -423,7 +423,7 @@ class Sell extends Component {
     let _b = 0;
 
 
-    if (currentWallet && typeof parseInt(exchangeData.fTokenAddr) === 'number') {
+    if (currentWallet && !isNaN(parseInt(exchangeData.fTokenAddr))) {
 
       var result = find(currentWallet.tokenBalances, function (o) {
         return o['name']+'' === exchangeData.fTokenAddr+''
@@ -434,6 +434,7 @@ class Sell extends Component {
       }
     }
     else if (account.address && exchangeData.fTokenAddr) {
+     
       _b = await TW.getBalance({
         _tokenA: exchangeData.fTokenAddr,
         _uToken: account.address,
