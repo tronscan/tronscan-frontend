@@ -434,7 +434,7 @@ class Sell extends Component {
       }
     }
     else if (account.address && exchangeData.fTokenAddr) {
-     
+
       _b = await TW.getBalance({
         _tokenA: exchangeData.fTokenAddr,
         _uToken: account.address,

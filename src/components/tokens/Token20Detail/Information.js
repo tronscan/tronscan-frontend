@@ -49,18 +49,16 @@ export function Information({token}) {
     },
     {
         name: 'social_link',
-        content:  <span style={{color: '#d8d8d8'}}>-</span>
-        //     token.social_media? <div className="d-flex">
-        //     {/*{token['social_media'] && token['social_media'].map((media, index) => {*/}
-        //         {/*return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>*/}
-        //           {/*<a href={media.url}>*/}
-        //             {/*<img  src={require('../../../images/' + media.name + '.png')}/>*/}
-        //           {/*</a>*/}
-        //         {/*</div>)*/}
-        //     {/*})}*/}
-        //     {/*{ !social_display && <span style={{color: '#d8d8d8'}}>-</span> }*/}
-        //   <span>{token.social_media}</span>
-        // </div>:
+        content:
+             token.social_media.length>0? <div className="d-flex">
+             {token['social_media'] && token['social_media'].map((media, index) => {
+                return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
+                   <a href={media.url}>
+                     <img  src={require('../../../images/' + media.name + '.png')}/>
+                   </a>
+                 </div>)
+             })}
+         </div>:<span style={{color: '#d8d8d8'}}>-</span>
 
     },
     {
