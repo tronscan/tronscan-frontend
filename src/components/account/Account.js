@@ -1802,19 +1802,21 @@ export default class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <div className="text-center">
-                          <button className="apply-super-btn btn btn-success"
-                                  onClick={() => {
-                                    this.applyForDelegate()
-                                  }}>
-                            {tu("apply_super_representative_candidate")}
-                          </button>
+                          {
+                            !IS_TESTNET && <button className="apply-super-btn btn btn-success"
+                                    onClick={() => {
+                                      this.applyForDelegate()
+                                    }}>
+                              {tu("apply_super_representative_candidate")}
+                            </button>
+                          }
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
           }
-          {
+          {/*
             IS_TESTNET && <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">
@@ -1829,6 +1831,7 @@ export default class Account extends Component {
                 </div>
               </div>
             </div>
+            */
           }
           {/*
         <div className="row mt-3">
