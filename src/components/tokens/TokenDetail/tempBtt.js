@@ -76,7 +76,8 @@ class BTTSupplyTemp extends React.Component {
 
   loadTotalTRXSupply = async() =>{
     let {intl} = this.props;
-    const {funds} = await Client.getBttFundsSupply();
+    //const {funds} = await Client.getBttFundsSupply();
+    const funds = 170421000000;
     let total = 990000000000;
     let result=await xhr.get(`https://apilist.tronscan.org/api/bittorrent/graphic`);
 
@@ -85,7 +86,8 @@ class BTTSupplyTemp extends React.Component {
     let trxPriceData = await xhr.get(`https://api.coinmarketcap.com/v1/ticker/bittorrent/?convert=EUR`);
     let priceUSD = ((parseFloat(trxPriceData.data[0].price_usd))*1000).toFixed(2);
     let priceBTC = ((parseFloat(trxPriceData.data[0].price_btc))*1000).toFixed(5);
-    let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+   // let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds.totalTurnOver))).toFixed(2);
+    let marketCapitalization = ((parseFloat(trxPriceData.data[0].price_usd)*(funds))).toFixed(2);
     this.setState({
       supplyTypesChart: supplyTypesChartData,
       genesisNum:intl.formatNumber(total),
@@ -93,7 +95,7 @@ class BTTSupplyTemp extends React.Component {
       // nodeRewardsNum:intl.formatNumber(funds.totalNodePay),
       // independenceDayBurned:intl.formatNumber(funds.burnPerDay),
       // feeBurnedNum:intl.formatNumber(funds.burnByCharge),
-      currentTotalSupply:parseInt(funds.totalTurnOver),
+      currentTotalSupply:parseInt(funds),
       priceUSD:priceUSD,
       priceBTC:priceBTC,
       marketCapitalization:marketCapitalization,

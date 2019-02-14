@@ -54,7 +54,7 @@ export function Information({token}) {
              {token['social_media'] && token['social_media'].map((media, index) => {
                 return (media.url !== "" && <div key={index} style={{marginRight: '10px'}}>
                    <a href={media.url}>
-                     <img  src={require('../../../images/' + media.name + '.png')}/>
+                     <img  src={require('../../../images/' + media.name.substring(0,1).toUpperCase()+media.name.substring(1) + '.png')}/>
                    </a>
                  </div>)
              })}

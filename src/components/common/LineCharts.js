@@ -63,7 +63,7 @@ export class SupplyAreaHighChart extends React.Component {
         // _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
         // _config.yAxis.tickAmount = 5;
         // _config.yAxis.min = 0;
-        _config.yAxis.tickPositions = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5];
+        _config.yAxis.tickPositions = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5];
         _config.yAxis.labels.formatter = function() {
             return this.value + '%'
         }
