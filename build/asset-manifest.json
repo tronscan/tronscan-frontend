@@ -23,7 +23,7 @@
   "Stats.js": "static/js/Stats.5bc28e78.chunk.js",
   "System.js": "static/js/System.a1783218.chunk.js",
   "TRONRating.js": "static/js/TRONRating.2ff4107f.chunk.js",
-  "Token20Detail.js": "static/js/Token20Detail.7d4f0548.chunk.js",
+  "Token20Detail.js": "static/js/Token20Detail.b127b190.chunk.js",
   "TokenDetail.js": "static/js/TokenDetail.e7cbf13a.chunk.js",
   "TokenList.js": "static/js/TokenList.aa68e765.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.a546cb47.chunk.js",
@@ -72,5 +72,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.12360a0e.js"
+  "vendors.js": "static/js/vendors.18bbe502.js"
 }
