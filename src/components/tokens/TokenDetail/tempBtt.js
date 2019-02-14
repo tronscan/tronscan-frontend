@@ -79,7 +79,7 @@ class BTTSupplyTemp extends React.Component {
     //const {funds} = await Client.getBttFundsSupply();
     const funds = 170421000000;
     let total = 990000000000;
-    let result=await xhr.get(`https://apilist.tronscan.org/api/bittorrent/graphic`);
+    let result=await xhr.get(`${API_URL}/api/bittorrent/graphic`);
 
     let supplyTypesChartData = result.data;
 

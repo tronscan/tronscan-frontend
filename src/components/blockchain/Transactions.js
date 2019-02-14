@@ -85,33 +85,7 @@ class Transactions extends React.Component {
 
     }
     else {
-      /*
-      let req = {
-        "query": {
-          "bool": {
-            "must": [
-              {"range": {"date_created": {"gt": this.start, "lt": this.end}}}
-            ]
-          }
-        },
-        "from": (page - 1) * pageSize,
-        "size": pageSize,
-        "sort": {"date_created": "desc"}
-      }
-      let {data} = await xhr.post(`https://apilist.tronscan.org/transactions/transactions/_search`, req);
-      transactions = [];
-      total = data.hits.total;
-      for (let record of data.hits.hits) {
-        transactions.push({
-          id: '',
-          block: record['_source']['block'],
-          hash: record['_source']['hash'],
-          timestamp: record['_source']['date_created'],
-          ownerAddress: record['_source']['owner_address'],
-          contractType: record['_source']['contract_type'],
-        });
-      }
-      */
+
      const address = queryString.parse(location.search).address;
 
      if(address){

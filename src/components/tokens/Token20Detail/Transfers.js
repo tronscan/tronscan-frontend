@@ -49,7 +49,7 @@ class Transfers extends React.Component {
     let {showTotal} = this.state;
 
     this.setState({loading: true});
-    let { data } = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let transfers = data.token_transfers;
     let total = data.total;
 

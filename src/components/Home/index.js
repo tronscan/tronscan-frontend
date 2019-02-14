@@ -55,7 +55,7 @@ export default class Home extends Component {
   async loadNodes() {
 
     // let {total} = await Client.getNodeLocations();
-    let {data} = await xhr.get(`https://apilist.tronscan.org/api/node`);
+    let {data} = await xhr.get(`${API_URL}/api/node`);
     this.setState({
       onlineNodes: data.total
     })

@@ -9,7 +9,7 @@ import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
 import BTTSupply from "./BTTSupply.js";
 import {Information} from "./Information.js";
-import {ONE_TRX} from "../../../constants";
+import {ONE_TRX,API_URL} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -64,7 +64,7 @@ class TokenDetail extends React.Component {
     this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id + "&showAll=1");
+    let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
     if(!token){
       this.setState({loading: false,token: null});

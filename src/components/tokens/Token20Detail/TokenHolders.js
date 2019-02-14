@@ -49,7 +49,7 @@ class TokenHolders extends React.Component {
     //   start: (page - 1) * pageSize,
     //   count: true
     // });
-    let { data } = await xhr.get("https://apilist.tronscan.org/"+"api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let { data } = await xhr.get(API_URL+"api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let addresses = data.trc20_tokens;
     let total= data.total;
     for (let index in addresses) {
@@ -119,7 +119,7 @@ class TokenHolders extends React.Component {
       let {search,addresses} = this.state;
 
       if (isAddressValid(search)){
-          let result = await  xhr.get("https://apilist.tronscan.org/"+"api/token_trc20/holders?contract_address=" + filter.token +"&holder_address=" + search);
+          let result = await  xhr.get(API_URL+"/api/token_trc20/holders?contract_address=" + filter.token +"&holder_address=" + search);
           result.data.trc20_tokens[0].index = 1
           this.setState({
               addresses:result.data.trc20_tokens,

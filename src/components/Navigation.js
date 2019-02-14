@@ -124,7 +124,7 @@ class Navigation extends React.Component {
   }
 
   isString(str){
-     return (typeof str=='string')&&str.constructor==String;
+     return (typeof str==='string')&&str.constructor==String;
   }
 
   async getAnnouncement() {
@@ -134,8 +134,10 @@ class Navigation extends React.Component {
     const {data} = await Client.getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
-      const annt = activeLanguage === 'zh' ? list.titleCN : list.titleEN
-      this.setState({announcement: annt, annountime: list.createTime.substring(5, 10)});
+      if(list){
+        const annt = activeLanguage === 'zh' ? list.titleCN : list.titleEN
+        this.setState({announcement: annt, annountime: list.createTime.substring(5, 10)});
+      }
     }
 
   }
@@ -363,7 +365,7 @@ class Navigation extends React.Component {
       return;
     }
 
-    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + trim(search));
+    let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
     /*let results = [
       {desc: 'Token-TRC10', value: "IGG 1000029"},

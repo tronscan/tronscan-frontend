@@ -22,6 +22,8 @@ import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
 
+import {API_URL} from '../../../constants.js'
+
 class Address extends React.Component {
   constructor({match}) {
     super();
@@ -290,7 +292,7 @@ class Address extends React.Component {
     let {address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
     let addr = match.params.id;
-    let uploadURL = "https://apilist.tronscan.org/api/v2/node/info_upload?address=" + match.params.id
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
     if (!address) {
       return null;
