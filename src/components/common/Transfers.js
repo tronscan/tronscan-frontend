@@ -83,7 +83,7 @@ class Transfers extends React.Component {
     }else{
       // TODO trc20 transfer api
       // ${filter.address}
-      let {data} = await xhr.get(`${API_URL}/api/contract/events?address=TX8f6dT8gZh2ad9mye5aaTdTFQ8Q8QcgdU&start=${(page - 1) * pageSize}&limit=${pageSize}`);
+      let {data} = await xhr.get(`${API_URL}/api/contract/events?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
       
       list = data.data
       total = data.total
@@ -101,7 +101,7 @@ class Transfers extends React.Component {
         item.totip = true
       }
     })
-    
+
     if(hideSmallCurrency){
         transfersTRX = _(transfers)
             .filter(tb => tb.tokenName === "_" || upperCase(tb.tokenName) === "TRX")
