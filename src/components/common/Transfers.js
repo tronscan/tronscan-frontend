@@ -61,19 +61,27 @@ class Transfers extends React.Component {
 
   load = async (page, pageSize) => {
     let transfersTRX;
-    let {filter} = this.props;
+    let {filter, istrc20=false} = this.props;
     let {showTotal,hideSmallCurrency,tokenName} = this.state;
     this.setState({loading: true});
+    let list,total;
 
-    let {transfers: list, total} = await Client.getTransfers({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      count: showTotal ? true : null,
-      total: this.state.total,
-      token: tokenName,
-      ...filter,
-    });
+    if(!istrc20){
+      let {transfers, total:totaldata} = await Client.getTransfers({
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        count: showTotal ? true : null,
+        total: this.state.total,
+        token: tokenName,
+        ...filter,
+      });
+      list = transfers
+      total = totaldata
+    }else{
+      // TODO trc20 transfer api
+    }
+    
 
     const transfers = rebuildList(list, 'tokenName', 'amount')
 

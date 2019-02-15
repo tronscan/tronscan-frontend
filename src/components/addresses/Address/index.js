@@ -180,7 +180,7 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
-          ...prevProps.tabs,
+          // ...prevProps.tabs,
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -188,12 +188,26 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}}/>
           },
+          transfers20: {
+            id: "transfers",
+            // icon: "fa fa-exchange-alt",
+            path: "/20transfers",
+            label: <span>{tu("20_transfers")}</span>,
+            cmp: () => <Transfers filter={{address: id}} istrc20/>
+          },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}}/>
+          },
+          intransactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/internal-transactions",
+            label: <span>{tu("internal_transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}} isinternal/>
           },
           token_balances: {
             id: "token_balances",
@@ -240,7 +254,7 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
-          ...prevProps.tabs,
+          // ...prevProps.tabs,
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -248,12 +262,26 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}}/>
           },
+          transfers20: {
+            id: "transfers",
+            // icon: "fa fa-exchange-alt",
+            path: "/20transfers",
+            label: <span>{tu("20_transfers")}</span>,
+            cmp: () => <Transfers filter={{address: id}} istrc20/>
+          },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}}/>
+          },
+          intransactions: {
+            id: "transactions",
+            // icon: "fas fa-handshake",
+            path: "/internal-transactions",
+            label: <span>{tu("internal_transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}} isinternal/>
           },
           token_balances: {
             id: "token_balances",
