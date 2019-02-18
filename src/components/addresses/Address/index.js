@@ -13,6 +13,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
+import TransfersTrc20 from "../../common/TransfersTrc20";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
@@ -189,11 +190,11 @@ class Address extends React.Component {
             cmp: () => <Transfers filter={{address: id}}/>
           },
           transfers20: {
-            id: "transfers",
+            id: "transfers20",
             // icon: "fa fa-exchange-alt",
             path: "/20transfers",
             label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} istrc20/>
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
           },
           transactions: {
             id: "transactions",
@@ -203,7 +204,7 @@ class Address extends React.Component {
             cmp: () => <Transactions filter={{address: id}}/>
           },
           intransactions: {
-            id: "transactions",
+            id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
@@ -263,11 +264,11 @@ class Address extends React.Component {
             cmp: () => <Transfers filter={{address: id}}/>
           },
           transfers20: {
-            id: "transfers",
+            id: "transfers20",
             // icon: "fa fa-exchange-alt",
             path: "/20transfers",
             label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} istrc20/>
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
           },
           transactions: {
             id: "transactions",
@@ -277,7 +278,7 @@ class Address extends React.Component {
             cmp: () => <Transactions filter={{address: id}}/>
           },
           intransactions: {
-            id: "transactions",
+            id: "intransactions",
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
