@@ -1569,7 +1569,7 @@ export const messages = {
     "BTT_Token_Release_Schedule":"BTTトークンリリーススケジュール",
     "source_btt_team":"出典：BTT管理チーム",
 
-    "20_transfers": "20 transfers",
+    "20_transfers": "TRC-20 transfers",
     "internal_transactions": "internal transactions"
 
 

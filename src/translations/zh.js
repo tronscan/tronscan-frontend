@@ -1573,7 +1573,7 @@ export const messages = {
     "BTT_Token_Release_Schedule":"BTT 代币解锁时间表",
     "source_btt_team":"信息来源：BTT管理团队",
 
-    "20_transfers": "20转账",
+    "20_transfers": "TRC-20转账",
     "internal_transactions": "合约内交易"
 
 

@@ -1585,7 +1585,7 @@ export const messages = {
   "BTT_Token_Release_Schedule":"BTT Token Release Schedule",
   "source_btt_team":"Source: BTT Management Team",
 
-  "20_transfers": "20 transfers",
+  "20_transfers": "TRC-20 transfers",
   "internal_transactions": "internal transactions"
 
 
