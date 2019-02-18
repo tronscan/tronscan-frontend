@@ -13,6 +13,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
+import TransfersTrc20 from "../../common/TransfersTrc20";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
@@ -193,7 +194,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/20transfers",
             label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} istrc20/>
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
           },
           transactions: {
             id: "transactions",
@@ -267,7 +268,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "/20transfers",
             label: <span>{tu("20_transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}} istrc20/>
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
           },
           transactions: {
             id: "transactions",
