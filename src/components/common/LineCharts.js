@@ -127,6 +127,7 @@ export class LineReactHighChartAdd extends React.Component {
             }
             _config.chart.spacingTop = 20;
             _config.exporting.enabled = false;
+            _config.yAxis.min = data[0].total - 100000;
             _config.yAxis.tickInterval = 100000;
             _config.yAxis.tickAmount = 4;
             _config.yAxis.allowDecimals = true;

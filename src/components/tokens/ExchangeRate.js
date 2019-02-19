@@ -249,7 +249,7 @@ export class ExchangeRate extends PureComponent {
                         onChange={(data) => this.setState({startTime: data.toDate()})}
                         isValidDate={this.isValidStartTime}
                         value={startTime}
-                        closeOnSelect={true}
+                        //closeOnSelect={true}
                         input={true}
                     />
                     {ErrorLabel(errors.startDate)}
@@ -261,7 +261,7 @@ export class ExchangeRate extends PureComponent {
                         onChange={(data) => this.setState({endTime: data.toDate()})}
                         isValidDate={this.isValidEndTime}
                         value={endTime}
-                        closeOnSelect={true}
+                        //closeOnSelect={true}
                         input={true}
                     />
                     {ErrorLabel(errors.endDate)}
