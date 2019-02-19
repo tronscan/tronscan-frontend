@@ -18,6 +18,8 @@ import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import {QuestionMark} from "./QuestionMark";
 import {NameWithId} from "./names";
+import xhr from "axios/index";
+import {API_URL} from '../../constants.js'
 
 import _ from "lodash";
 
@@ -61,19 +63,32 @@ class Transfers extends React.Component {
 
   load = async (page, pageSize) => {
     let transfersTRX;
-    let {filter} = this.props;
+    let {filter, istrc20=false} = this.props;
     let {showTotal,hideSmallCurrency,tokenName} = this.state;
     this.setState({loading: true});
+    let list,total;
 
-    let {transfers: list, total} = await Client.getTransfers({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      count: showTotal ? true : null,
-      total: this.state.total,
-      token: tokenName,
-      ...filter,
-    });
+    if(!istrc20){
+      let {transfers, total:totaldata} = await Client.getTransfers({
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        count: showTotal ? true : null,
+        total: this.state.total,
+        token: tokenName,
+        ...filter,
+      });
+      list = transfers
+      total = totaldata
+    }else{
+      // TODO trc20 transfer api
+      // ${filter.address}
+      let {data} = await xhr.get(`${API_URL}/api/contract/events?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
+      
+      list = data.data
+      total = data.total
+    }
+    
 
     const transfers = rebuildList(list, 'tokenName', 'amount')
 
@@ -93,8 +108,8 @@ class Transfers extends React.Component {
             .value();
     }else{
         transfersTRX = transfers
-
     }
+   
     this.setState({
       page,
       transfers:transfersTRX,

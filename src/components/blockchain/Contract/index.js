@@ -64,7 +64,7 @@ class SmartContract extends React.Component {
 
     let contract = await Client.getContractOverview(id);
 
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?contract="+id);
+    let result = await xhr.get(API_URL+"/api/token_trc20?contract="+id);
     let token20 = result.data.trc20_tokens.length >0?result.data.trc20_tokens[0]:'';
     if(token20){
         this.setState(prevProps => ({

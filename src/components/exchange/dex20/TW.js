@@ -124,6 +124,7 @@ import { injectIntl } from "react-intl";
 class ApiTW {
   constructor() {
     this.contranctAddress = "TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5";
+    this.contractAddress10 = "THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e";
   }
 
   /**
@@ -133,12 +134,20 @@ class ApiTW {
     return await tronWeb.contract().at(this.contranctAddress);
     // return await tronWeb.contract().at(contranctAddress)
   }
+  async getContract10(tronWeb) {
+    return await tronWeb.contract().at(this.contractAddress10);
+    // return await tronWeb.contract().at(contranctAddress)
+  }
 
   /**
    * 撤单
    */
-  async cancelOrder(_id, tronWeb) {
-    const contract = await this.getContract(tronWeb);
+  async cancelOrder(_id, tronWeb, pairType) {
+    let contract;
+    if(pairType===1)
+      contract = await this.getContract10(tronWeb);
+    if(pairType===2)
+      contract = await this.getContract(tronWeb);
 
     const transactionID = contract
       .cancelOrder(_id)
@@ -152,6 +161,7 @@ class ApiTW {
    */
 
   async getBalance({ _tokenA, _uToken, _precision, tronWeb }) {
+
     const contractInstance = await tronWeb.contract().at(_tokenA);
     const _b = await contractInstance
       .balanceOf(_uToken)
@@ -176,7 +186,8 @@ class ApiTW {
     _tokenB,
     _price,
     _amountB,
-    tronWeb
+    _pairType,
+    tronWeb,
   }) {
     let allowAmount = false;
     let callValue = 0;
@@ -195,19 +206,37 @@ class ApiTW {
       );
     }
     if (!allowAmount) return;
-    const _c = await this.getContract(tronWeb);
-    const transactionID = _c
-      .buyOrder(
-        _tokenA,
-        Math.round(_amountA).toString(),
-        _tokenB,
-        Math.round(_amountB),
-        Math.round(_price)
-      )
-      .send({
-        callValue: callValue,
-        shouldPollResponse: false
-      });
+    let _c;
+    let transactionID;
+    if(_pairType===1) {
+      _c = await this.getContract10(tronWeb);
+       transactionID = _c
+          .buyOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            callValue: Math.round(_amountB)
+          });
+    }
+    if(_pairType===2) {
+      _c = await this.getContract(tronWeb);
+      transactionID = _c
+          .buyOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              _tokenB,
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            callValue: callValue,
+            shouldPollResponse: false
+          });
+    }
+
 
     return transactionID;
   }
@@ -221,24 +250,48 @@ class ApiTW {
     _tokenB,
     _price,
     _amountB,
+    _pairType,
     tronWeb
   }) {
-    let allowAmount = await this.authorization(
-      _user,
-      _tokenA,
-      Math.round(_amountA),
-      tronWeb
-    );
-    if (!allowAmount) return;
-    const transactionID = (await this.getContract(tronWeb))
-      .sellOrder(
-        _tokenA,
-        Math.round(_amountA).toString(),
-        _tokenB,
-        Math.round(_amountB),
-        Math.round(_price)
-      )
-      .send();
+
+    if(_pairType===2) {
+      let allowAmount = await this.authorization(
+          _user,
+          _tokenA,
+          Math.round(_amountA),
+          tronWeb
+      );
+      if (!allowAmount) return;
+    }
+    let _c;
+    let transactionID;
+    if(_pairType===1) {
+      _c = await this.getContract10(tronWeb);
+       transactionID = _c
+          .sellOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send({
+            tokenValue: Math.round(_amountA).toString(),
+            tokenId: _tokenA
+          });
+    }
+    if(_pairType===2) {
+      _c = await this.getContract(tronWeb);
+      transactionID = _c
+          .sellOrder(
+              _tokenA,
+              Math.round(_amountA).toString(),
+              _tokenB,
+              Math.round(_amountB),
+              Math.round(_price)
+          )
+          .send();
+    }
+
     // const transactionID = (await getContract()).sellOrder
     return transactionID;
   }

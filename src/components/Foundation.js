@@ -41,7 +41,7 @@ class Accounts extends Component {
     this.setState({loading: true});
     const {list} = await Client.getlistdonators();
     let random = Math.random();
-    let data = await xhr.get(`https://apilist.tronscan.org/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
+    let data = await xhr.get(`${API_URL}/api/fund?random="${random}&page_index=${page}&per_page=${pageSize}`);
     const {funds} = await Client.getFundsSupply();
     function compare(property) {
         return function (obj1, obj2) {

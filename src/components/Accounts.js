@@ -35,30 +35,7 @@ class Accounts extends Component {
   loadAccounts = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
-    /*
-    let req = {
-      "from": (page - 1) * pageSize,
-      "size": pageSize,
-      "sort": {"balance": "desc"}
-    }
-    let {data} = await xhr.post(`https://apilist.tronscan.org/accounts/accounts/_search`, req);
-    let accounts = [];
-    let total = data.hits.total;
-    for (let record of data.hits.hits) {
-      let power = 0;
-      if (record['_source']['frozen']) {
-        for (let f of record['_source']['frozen']) {
-          power = power + f.frozen_balance;
-        }
-      }
-      accounts.push({
-        address: record['_source']['address'],
-        balance: record['_source']['balance']?record['_source']['balance']:0,
-        dateCreated: record['_source']['date_created'],
-        power: power,
-      });
-    }
-    */
+
     let {accounts, total} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,

@@ -136,7 +136,7 @@ export default class Account extends Component {
 
   async getTRC20Tokens() {
     let {account} = this.props;
-    let result = await xhr.get("https://apilist.tronscan.org" + "/api/token_trc20?sort=issue_time&start=0&limit=50");
+    let result = await xhr.get(API_URL + "/api/token_trc20?sort=issue_time&start=0&limit=50");
     let tokens20 = result.data.trc20_tokens;
     const tronWebLedger = this.props.tronWeb();
     const {tronWeb} = this.props.account;
@@ -1954,19 +1954,21 @@ export default class Account extends Component {
                           {tu("apply_for_delegate_predescription")}
                         </p>
                         <div className="text-center">
-                          <button className="apply-super-btn btn btn-success"
-                                  onClick={() => {
-                                    this.applyForDelegate()
-                                  }}>
-                            {tu("apply_super_representative_candidate")}
-                          </button>
+                          {
+                            !IS_TESTNET && <button className="apply-super-btn btn btn-success"
+                                    onClick={() => {
+                                      this.applyForDelegate()
+                                    }}>
+                              {tu("apply_super_representative_candidate")}
+                            </button>
+                          }
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
           }
-          {
+          {/*
             IS_TESTNET && <div className="row mt-3">
               <div className="col-md-12">
                 <div className="card">
@@ -1981,6 +1983,7 @@ export default class Account extends Component {
                 </div>
               </div>
             </div>
+            */
           }
           {/*
         <div className="row mt-3">

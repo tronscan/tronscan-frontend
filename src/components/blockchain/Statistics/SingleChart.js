@@ -452,7 +452,7 @@ class Statistics extends React.Component {
         let {match, intl} = this.props;
         let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
         let unit;
-        let uploadURL = "https://apilist.tronscan.org/api/v2/node/overview_upload";
+        let uploadURL = API_URL + "/api/v2/node/overview_upload";
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {

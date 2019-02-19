@@ -24,6 +24,80 @@ HighchartsDrilldown(Highcharts);
 Highcharts3D(Highcharts);
 Exporting(Highcharts);
 
+export class SupplyAreaHighChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            areaId: 'areaBtt' + id
+        }
+    }
+    initArea(id) {
+        let total = 990000000000;
+        let _config = cloneDeep(config.supplyAreaHighChart);
+        let {intl, data, source} = this.props;
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        if (data && data.length > 0) {
+            data.map((val) => {
+                let temp;
+                temp = {...val};
+                _config.series.push(temp);
+            })
+        }
+        _config.chart.zoomType = 'x';
+        _config.chart.marginTop = 80;
+        _config.title.text = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
+        _config.subtitle.text = intl.formatMessage({id: 'source_btt_team'});
+        _config.exporting.filename = intl.formatMessage({id: 'BTT_Token_Release_Schedule'});
+        _config.xAxis.categories = ['2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09','2019-10','2019-11','2019-12','2020-01', '2020-02', '2020-03','2020-04','2020-05','2020-06','2020-07','2020-08','2020-09','2020-10','2020-11','2020-12','2021-01','2021-02','2021-03','2021-04','2021-05','2021-06','2021-07','2021-08','2021-09','2021-10','2021-11','2021-12','2022-01','2022-02','2022-03','2022-04','2022-05','2022-06','2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'];
+        // _config.xAxis.tickPixelInterval = 100;
+        // _config.xAxis.minRange=24 * 3600 * 1000;
+        // _config.yAxis.title.text = intl.formatMessage({id: 'addresses_amount'});
+        // _config.yAxis.tickAmount = 5;
+        // _config.yAxis.min = 0;
+        _config.yAxis.tickPositions = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5];
+        _config.yAxis.labels.formatter = function() {
+            return this.value + '%'
+        }
+        //_config.series[0].marker.enabled = false;
+
+        //_config.series[0].pointInterval = 24 * 3600 * 1000;
+        //_config.series[0].pointStart = Date.UTC(2018, 5, 25);
+
+
+        Highcharts.chart(document.getElementById(id),_config);
+
+    }
+    shouldComponentUpdate(nextProps)  {
+        if(nextProps.intl.locale !== this.props.intl.locale){
+            return true
+        }
+        return  false
+    }
+    componentDidMount() {
+        this.initArea(this.state.areaId);
+    }
+    componentDidUpdate() {
+        this.initArea(this.state.areaId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.areaId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
 export class LineReactHighChartAdd extends React.Component {
 
     constructor(props) {
@@ -43,6 +117,7 @@ export class LineReactHighChartAdd extends React.Component {
         if (source == 'home'){
             if (data && data.length > 0) {
                 _config.xAxis.categories = [];
+
                 data.map((val) => {
                     let temp;
                     temp = {...val, y: val.total};

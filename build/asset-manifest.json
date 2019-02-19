@@ -3,6 +3,7 @@
   "20.svg": "8b13bad9e9381c9866a96fc4ef728bbf.svg",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "About.js": "static/js/About.73f30501.chunk.js",
   "Account.js": "static/js/Account.781e08ed.chunk.js",
   "Accounts.js": "static/js/Accounts.f9199599.chunk.js",
@@ -78,15 +79,54 @@
   "VoteLive.js": "static/js/VoteLive.0058297f.chunk.js",
   "VoteOverview.js": "static/js/VoteOverview.eca01d68.chunk.js",
   "WalletWizard.js": "static/js/WalletWizard.d8001d1b.chunk.js",
+=======
+  "About.js": "static/js/About.5fa1acfb.chunk.js",
+  "Account.js": "static/js/Account.dda6e87a.chunk.js",
+  "Accounts.js": "static/js/Accounts.1563b5fb.chunk.js",
+  "AddSignatureModal.js": "static/js/AddSignatureModal.e33b9b93.chunk.js",
+  "CopyrightAsync.js": "static/js/CopyrightAsync.f4856bab.chunk.js",
+  "DemoAsync.js": "static/js/DemoAsync.138ac2b5.chunk.js",
+  "FaqAsync.js": "static/js/FaqAsync.dfae2645.chunk.js",
+  "Foundation.js": "static/js/Foundation.1b9da0d9.chunk.js",
+  "LedgerHelp.js": "static/js/LedgerHelp.f8f294cb.chunk.js",
+  "Live.js": "static/js/Live.ac441a41.chunk.js",
+  "Markets.js": "static/js/Markets.a38a377a.chunk.js",
+  "MyToken.js": "static/js/MyToken.d60e8afa.chunk.js",
+  "NodeMap.js": "static/js/NodeMap.b9a82381.chunk.js",
+  "NodeTester.js": "static/js/NodeTester.becd38d4.chunk.js",
+  "Nodes.js": "static/js/Nodes.6e39f8d5.chunk.js",
+  "ProposalDetail.js": "static/js/ProposalDetail.eb15e868.chunk.js",
+  "Recaptcha.js": "static/js/Recaptcha.80c31bc1.chunk.js",
+  "Representatives.js": "static/js/Representatives.db69092d.chunk.js",
+  "SingleStats.js": "static/js/SingleStats.30be3caf.chunk.js",
+  "Stats.js": "static/js/Stats.cbb51f71.chunk.js",
+  "System.js": "static/js/System.c4807e5f.chunk.js",
+  "TRONRating.js": "static/js/TRONRating.4b134a29.chunk.js",
+  "Token20Detail.js": "static/js/Token20Detail.98db96f4.chunk.js",
+  "TokenDetail.js": "static/js/TokenDetail.018f6476.chunk.js",
+  "TokenList.js": "static/js/TokenList.51d5a2fb.chunk.js",
+  "TokenOverview.js": "static/js/TokenOverview.ab8727a8.chunk.js",
+  "TokensCreate.js": "static/js/TokensCreate.6bf7ba13.chunk.js",
+  "TransactionViewer.js": "static/js/TransactionViewer.af37033d.chunk.js",
+  "TronConvertTool.js": "static/js/TronConvertTool.fb919340.chunk.js",
+  "VerifyContractCode.js": "static/js/VerifyContractCode.d06e82c9.chunk.js",
+  "VoteLive.js": "static/js/VoteLive.746d18b3.chunk.js",
+  "VoteOverview.js": "static/js/VoteOverview.8a412dcb.chunk.js",
+  "WalletWizard.js": "static/js/WalletWizard.d7e5126e.chunk.js",
+>>>>>>> dev2019
   "bootstrap.css": "d26ecc887c12f855a908679dae6704e3.css",
-  "languages.js": "static/js/languages.310a0a33.chunk.js",
+  "languages.js": "static/js/languages.ee099250.chunk.js",
   "main.css": "static/css/main.53cd82d3.css",
+<<<<<<< HEAD
 <<<<<<< HEAD
   "main.js": "static/js/main.61cdfa58.js",
 >>>>>>> origin/dev2019
 =======
   "main.js": "static/js/main.4f8176d6.js",
 >>>>>>> origin/dev2019
+=======
+  "main.js": "static/js/main.ea25d5a6.js",
+>>>>>>> dev2019
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -123,6 +163,7 @@
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "vendors.js": "static/js/vendors.7d753d86.js"
 =======
   "vendors.js": "static/js/vendors.c7e4088c.js"
@@ -130,4 +171,7 @@
 =======
   "vendors.js": "static/js/vendors.c9bd5576.js"
 >>>>>>> origin/dev2019
+=======
+  "vendors.js": "static/js/vendors.60e165a4.js"
+>>>>>>> dev2019
 }

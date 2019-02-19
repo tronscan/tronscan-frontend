@@ -60,36 +60,6 @@ class Transfers extends React.Component {
           break;
       }
     }
-    /*
-    let req = {
-      "query": {
-        "bool": {
-          "must": [
-            {"range": {"date_created": {"gt": this.start, "lt": this.end}}}
-          ]
-        }
-      },
-      "from": (page - 1) * pageSize,
-      "size": pageSize,
-      "sort": {"date_created": "desc"}
-    }
-    let {data} = await xhr.post(`https://apilist.tronscan.org/transfers/transfers/_search`, req);
-    let transfers = [];
-    let total = data.hits.total;
-    for (let record of data.hits.hits) {
-      transfers.push({
-        id: '',
-        block: record['_source']['block'],
-        transactionHash: record['_source']['hash'],
-        timestamp: record['_source']['date_created'],
-        transferFromAddress: record['_source']['owner_address'],
-        transferToAddress: record['_source']['to_address'],
-        amount: record['_source']['amount'],
-        tokenName: record['_source']['token_name'],
-      });
-    }
-   */
-
 
     let {transfers, total} = await Client.getTransfers({
       sort: '-timestamp',

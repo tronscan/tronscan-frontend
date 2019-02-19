@@ -1576,6 +1576,17 @@ export const messages = {
     "Method_calling": "方法调用",
     "SELF_DESTRUCT Contract": "合约自杀",
     "CONTRACT_CREATION": "合约创建",
+    "open_ledger":"打开 Ledger",
+    "price_per_1000_btt": "BTT价格（每1000BTT）",
+    "BTT_distribution_overview": "BTT分布概览",
+    "total_BTT_supply": "BTT总流通量",
+    "BTT_supply": "BTT 流通量",
+    "BTT_Token_Release_Schedule":"BTT 代币解锁时间表",
+    "source_btt_team":"信息来源：BTT管理团队",
+
+    "20_transfers": "TRC-20转账",
+    "internal_transactions": "合约内交易"
+
 
 
 

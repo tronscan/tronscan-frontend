@@ -13,6 +13,7 @@ import {TronLoader} from "../../common/loaders";
 import Transactions from "../../common/Transactions";
 import Votes from "../../common/Votes";
 import Transfers from "../../common/Transfers";
+import TransfersTrc20 from "../../common/TransfersTrc20";
 import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
@@ -21,6 +22,8 @@ import _ from "lodash";
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
+
+import {API_URL} from '../../../constants.js'
 
 class Address extends React.Component {
   constructor({match}) {
@@ -179,7 +182,7 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
-          ...prevProps.tabs,
+          // ...prevProps.tabs,
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -187,12 +190,26 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}}/>
           },
+          transfers20: {
+            id: "transfers20",
+            // icon: "fa fa-exchange-alt",
+            path: "/20transfers",
+            label: <span>{tu("20_transfers")}</span>,
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}}/>
+          },
+          intransactions: {
+            id: "intransactions",
+            // icon: "fas fa-handshake",
+            path: "/internal-transactions",
+            label: <span>{tu("internal_transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}} isinternal/>
           },
           token_balances: {
             id: "token_balances",
@@ -239,7 +256,7 @@ class Address extends React.Component {
         blocksProduced: totalProducedBlocks,
         stats,
         tabs: {
-          ...prevProps.tabs,
+          // ...prevProps.tabs,
           transfers: {
             id: "transfers",
             // icon: "fa fa-exchange-alt",
@@ -247,12 +264,26 @@ class Address extends React.Component {
             label: <span>{tu("transfers")}</span>,
             cmp: () => <Transfers filter={{address: id}}/>
           },
+          transfers20: {
+            id: "transfers20",
+            // icon: "fa fa-exchange-alt",
+            path: "/20transfers",
+            label: <span>{tu("20_transfers")}</span>,
+            cmp: () => <TransfersTrc20 filter={{address: id}}/>
+          },
           transactions: {
             id: "transactions",
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
             cmp: () => <Transactions filter={{address: id}}/>
+          },
+          intransactions: {
+            id: "intransactions",
+            // icon: "fas fa-handshake",
+            path: "/internal-transactions",
+            label: <span>{tu("internal_transactions")}</span>,
+            cmp: () => <Transactions filter={{address: id}} isinternal/>
           },
           token_balances: {
             id: "token_balances",
@@ -320,7 +351,7 @@ class Address extends React.Component {
     let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
     let addr = match.params.id;
-    let uploadURL = "https://apilist.tronscan.org/api/v2/node/info_upload?address=" + match.params.id
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
     if (!address) {
       return null;

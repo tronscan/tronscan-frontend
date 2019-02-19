@@ -50,6 +50,7 @@ import Committee from "./components/committee/index";
 import Proposals from "./components/committee/Proposals";
 import {Redirect} from "react-router-dom";
 import {LedgerComponent} from "./hw/ledger/LedgerComponent";
+import BTTSupplyTemp from "./components/tokens/TokenDetail/tempBtt.js";
 
 export const routes = [
   {
@@ -640,6 +641,14 @@ export const routes = [
     showSubMenu: false,
     showSubHeader: false,
     component: DemoAsync
+  },
+  {
+    path: "/test/btt/supply",
+    label: "supply",
+    showInMenu: false,
+    showSubMenu: false,
+    showSubHeader: false,
+    component: BTTSupplyTemp
   },
   {
     path: "/",

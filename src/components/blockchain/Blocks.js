@@ -35,25 +35,7 @@ class Blocks extends React.Component {
   loadBlocks = async (page = 1, pageSize = 20) => {
 
     this.setState({loading: true});
-    /*
-    let req = {
-      "from": (page - 1) * pageSize,
-      "size": pageSize,
-      "sort": {"date_created": "desc"}
-    }
-    let {data} = await xhr.post(`https://apilist.tronscan.org/blocks/blocks/_search`, req);
-    let blocks = [];
-    let total = data.hits.total;
-    for (let record of data.hits.hits) {
-      blocks.push({
-        number: record['_source']['number'],
-        nrOfTrx: record['_source']['transactions'],
-        size: record['_source']['size'],
-        timestamp: record['_source']['date_created'],
-        witnessName: record['_source']['witness_name'],
-      });
-    }
-   */
+
     let {blocks, total} = await Client.getBlocks({
       sort: '-number',
       limit: pageSize,

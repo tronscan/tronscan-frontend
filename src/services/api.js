@@ -2,6 +2,7 @@ import {Client as ApiClient} from "@tronscan/client";
 import io from 'socket.io-client';
 import TronWeb from 'tronweb';
 import xhr from "axios/index";
+import {API_URL} from '../constants.js'
 
 const ServerNode =  "https://api.trongrid.io";
 const HttpProvider = TronWeb.providers.HttpProvider; // This provider is optional, you can just use a url for the nodes instead
@@ -40,7 +41,7 @@ class ApiClient20 {
   }
 
   async getRegisterList(id) {
-    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/orderList/${id}`);
+    let {data}  = await xhr.get(`${this.apiUrl}/api/exchange/common/orderListV2/${id}`);
 
     return data;
   }
@@ -81,7 +82,7 @@ class ApiClient20 {
   }
 
   async gettokenInfo20(query) {
-    let {data}  = await xhr.get(`https://apilist.tronscan.org/api/token_trc20`,{
+    let {data}  = await xhr.get(`${API_URL}/api/token_trc20`,{
       params: {
         sort: 'issue_time',
         start: 0,

@@ -399,6 +399,14 @@
                 }
             }
         }
+        @media (max-width: 768px) {
+            .counters {
+                span {
+                    font-size: 24px;
+                }
+            }
+        }
+
     }
     .go-foundation {
         color: red;

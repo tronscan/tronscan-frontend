@@ -48,9 +48,7 @@ class AppCmp extends Component {
                 transitionOut="fadeOut"
                 progressBar
             />
-
           </PriceProvider>
-
         </Provider>
     )
   }

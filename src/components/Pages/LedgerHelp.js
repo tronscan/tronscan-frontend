@@ -12,6 +12,20 @@ export default class LedgerHelp extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
+                  <h3>{tu('ledger_note')}</h3>
+                  <ol>
+                    <li>
+                        {tu('ledger_note_message_1')}
+                    </li>
+                    <li>
+                        {tu('ledger_note_message_2')}
+                    </li>
+                    <li>
+                        {tu('ledger_note_message_3')}
+                      <br/>
+                        {tu('ledger_note_message_4')}
+                    </li>
+                  </ol>
                   <h3>{tu('requirements')}</h3>
                   <p>{tu('using_ledger_steps_message_0')}</p>
                   <ol>
@@ -59,20 +73,6 @@ export default class LedgerHelp extends Component {
                     </li>
                     <li>
                       {tu('using_ledger_to_sign_transactions_message_1')}
-                    </li>
-                  </ol>
-                  <h3>{tu('ledger_note')}</h3>
-                  <ol>
-                    <li>
-                        {tu('ledger_note_message_1')}
-                    </li>
-                    <li>
-                        {tu('ledger_note_message_2')}
-                    </li>
-                    <li>
-                        {tu('ledger_note_message_3')}
-                        <br/>
-                        {tu('ledger_note_message_4')}
                     </li>
                   </ol>
                 </div>

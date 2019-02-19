@@ -10,7 +10,7 @@ export function Information({token}) {
 
   let social_display = 0;
   let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
-
+  let issuer_address = token.id == 1002000?<span>{token.ownerAddress}</span>:<AddressLink address={token.ownerAddress} includeCopy={true}/>
   token && token['social_media'] && token['social_media'].map((media, index) => {
     if (media.url) {
       social_display++;
@@ -43,7 +43,7 @@ export function Information({token}) {
       content: <FormattedNumber value={token.nrOfTokenHolders}/>
     },{ 
       name: 'issuer', 
-      content: <AddressLink address={token.ownerAddress} includeCopy={true}/>
+      content:issuer_address
     },{ 
       name: 'nr_of_Transfers', 
       content: <FormattedNumber value={token.totalTransactions}/>

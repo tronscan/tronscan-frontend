@@ -125,7 +125,7 @@ class Navigation extends React.Component {
   }
 
   isString(str){
-     return (typeof str=='string')&&str.constructor==String;
+     return (typeof str==='string')&&str.constructor==String;
   }
 
   async getAnnouncement() {
@@ -135,8 +135,10 @@ class Navigation extends React.Component {
     const {data} = await Client.getNotices({sort: '-timestamp'});
     if (data.length) {
       const list = data.filter(o => o.id == announId)[0]
-      const annt = activeLanguage === 'zh' ? list.titleCN : list.titleEN
-      this.setState({announcement: annt, annountime: list.createTime.substring(5, 10)});
+      if(list){
+        const annt = activeLanguage === 'zh' ? list.titleCN : list.titleEN
+        this.setState({announcement: annt, annountime: list.createTime.substring(5, 10)});
+      }
     }
 
   }
@@ -365,7 +367,7 @@ class Navigation extends React.Component {
       return;
     }
 
-    let result = await xhr.get("https://apilist.tronscan.org/api/search?term=" + trim(search));
+    let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
     this.isSearching = false;
     /*let results = [
@@ -484,7 +486,12 @@ class Navigation extends React.Component {
       popup: (
           <Modal isOpen={true} fade={false} keyboard={false} size="lg" className="modal-dialog-centered">
             <ModalHeader className="text-center" toggle={this.hideModal}>
-              {tu("open_ledger")}
+              {tu("open_ledger")}&nbsp;&nbsp;
+              {/*<Link to="/help/ledger">*/}
+                {/*<small>*/}
+                    {/*{tu("beginners_guide")}*/}
+                {/*</small>*/}
+              {/*</Link>*/}
             </ModalHeader>
             <ModalBody className="p-0">
               <LedgerAccess onClose={this.hideModal} />

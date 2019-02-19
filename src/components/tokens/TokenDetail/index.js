@@ -7,8 +7,9 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import {TronLoader} from "../../common/loaders";
 import Transfers from "./Transfers.js";
 import TokenInfo from "./TokenInfo.js";
+import BTTSupply from "./BTTSupply.js";
 import {Information} from "./Information.js";
-import {ONE_TRX} from "../../../constants";
+import {ONE_TRX,API_URL} from "../../../constants";
 import {login} from "../../../actions/app";
 import {reloadWallet} from "../../../actions/wallet";
 import {connect} from "react-redux";
@@ -63,40 +64,64 @@ class TokenDetail extends React.Component {
     this.setState({loading: true});
 
     //let token = await Client.getToken(name);
-    let result = await xhr.get("https://apilist.tronscan.org"+"/api/token?id=" + id + "&showAll=1");
+    let result = await xhr.get(API_URL+"/api/token?id=" + id + "&showAll=1");
     let token = result.data.data[0];
     if(!token){
       this.setState({loading: false,token: null});
       this.props.history.push('/tokens/list')
       return;
     }
-    this.setState({
-      loading: false,
-      token,
-      tabs: [
-        {
-          id: "tokenInfo",
-          icon: "",
-          path: "",
-          label: <span>{tu("issue_info")}</span>,
-          cmp: () => <TokenInfo token={token}/>
-        },
-        {
-          id: "transfers",
-          icon: "",
-          path: "/transfers",
-          label: <span>{tu("token_transfers")}</span>,
-          cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
-        },
-        {
-          id: "holders",
-          icon: "",
-          path: "/holders",
-          label: <span>{tu("token_holders")}</span>,
-          cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
-        },
-      ]
-    });
+    if(token.tokenID == 1002000){
+        this.setState({
+            loading: false,
+            token,
+            tabs: [
+                {
+                    id: "tokenInfo",
+                    icon: "",
+                    path: "",
+                    label: <span>{tu("issue_info")}</span>,
+                    cmp: () => <TokenInfo token={token}/>
+                },
+               /* {
+                    id: "BTTSupply",
+                    icon: "",
+                    path: "/supply",
+                    label: <span>{tu("BTT_supply")}</span>,
+                    cmp: () => <BTTSupply token={token}/>
+                },*/
+            ]
+        });
+    }else{
+        this.setState({
+            loading: false,
+            token,
+            tabs: [
+                {
+                    id: "tokenInfo",
+                    icon: "",
+                    path: "",
+                    label: <span>{tu("issue_info")}</span>,
+                    cmp: () => <TokenInfo token={token}/>
+                },
+                {
+                    id: "transfers",
+                    icon: "",
+                    path: "/transfers",
+                    label: <span>{tu("token_transfers")}</span>,
+                    cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
+                },
+                {
+                    id: "holders",
+                    icon: "",
+                    path: "/holders",
+                    label: <span>{tu("token_holders")}</span>,
+                    cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
+                },
+            ]
+        });
+    }
+
   };
 
   submit = async (token) => {

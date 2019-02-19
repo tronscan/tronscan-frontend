@@ -3,7 +3,7 @@ import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-i
 import {Sticky, StickyContainer} from "react-sticky";
 import Paging from "./Paging";
 import {Client} from "../../services/api";
-import {TransactionHashLink} from "./Links";
+import {TransactionHashLink, AddressLink} from "./Links";
 import {tu} from "../../utils/i18n";
 import TimeAgo from "react-timeago";
 import {TronLoader} from "./loaders";
@@ -12,6 +12,10 @@ import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
+import {NameWithId} from "./names";
+import rebuildList from "../../utils/rebuildList";
+import xhr from "axios/index";
+import {API_URL} from '../../constants.js'
 
 class Transactions extends React.Component {
 
@@ -47,17 +51,30 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter} = this.props;
+    let {filter, isinternal=false} = this.props;
 
     this.setState({loading: true});
 
-    let {transactions, total} = await Client.getTransactions({
-      sort: '-timestamp',
-      limit: pageSize,
-      start: (page - 1) * pageSize,
-      total: this.state.total,
-      ...filter,
-    });
+    let transactions, total;
+
+    if(!isinternal){
+      let data = await Client.getTransactions({
+        sort: '-timestamp',
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        total: this.state.total,
+        ...filter,
+      });
+      transactions = data.transactions
+      total = data.total
+    }else{
+      // TODO internal transctions
+      let {data} = await xhr.get(`${API_URL}/api/internal-transaction?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
+
+      let newdata = rebuildList(data.data, 'tokenId', 'callValue', 'valueInfoList')
+      transactions = newdata
+      total = data.total
+    }
 
     this.setState({
       transactions,
@@ -121,11 +138,108 @@ class Transactions extends React.Component {
     return column;
   }
 
+  trc20CustomizedColumn = () => {
+    let {intl} = this.props;
+    let column = [
+      
+      {
+        title: upperFirst(intl.formatMessage({id: 'hash'})),
+        dataIndex: 'hash',
+        key: 'hash',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <Truncate>
+            <TransactionHashLink hash={text}>
+              {text}
+            </TransactionHashLink>
+          </Truncate>
+        }
+      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'age'})),
+      //   dataIndex: 'timestamp',
+      //   key: 'timestamp',
+      //   align: 'left',
+      //   className: 'ant_table',
+      //   width: '14%',
+      //   render: (text, record, index) => {
+      //     return <TimeAgo date={text}/>
+      //   }
+      // },
+      {
+        title: upperFirst(intl.formatMessage({id: 'from'})),
+        dataIndex: 'from',
+        key: 'from',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <AddressLink address={text}/>
+        }
+      },
+      {
+        title: '',
+        className: 'ant_table',
+        width: '30px',
+        render: (text, record, index) => {
+          return <img src={require("../../images/arrow.png")}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'to'})),
+        dataIndex: 'to',
+        key: 'to',
+        align: 'left',
+        className: 'ant_table',
+        render: (text, record, index) => {
+          return <AddressLink address={text}/>
+        }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'rejected'})),
+        dataIndex: 'rejected',
+        key: 'rejected',
+        align: 'left',
+        className: 'ant_table _text_nowrap',
+        render: (text, record, index) => {
+          return <span>{text.toString()}</span>
+        }
+      
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'amount'})),
+        dataIndex: 'valueInfoList',
+        key: 'valueInfoList',
+        align: 'right',
+        className: 'ant_table _text_nowrap',
+        render: (text, record, index) => {
+          return record.valueInfoList.map((item,index) => {
+            return <span><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
+          })
+        }
+      },
+      // {
+      //   title: upperFirst(intl.formatMessage({id: 'contract_type'})),
+      //   dataIndex: 'contractType',
+      //   key: 'contractType',
+      //   align: 'right',
+      //   width: '20%',
+      //   className: 'ant_table _text_nowrap',
+      //   render: (text, record, index) => {
+      //     return <span>{ContractTypes[text]}</span>
+      //   }
+      // },
+    ];
+    return column;
+  }
+
   render() {
 
     let {transactions, total, loading, EmptyState = null} = this.state;
-    let column = this.customizedColumn();
-    let {intl} = this.props;
+    let {intl, isinternal} = this.props;
+    let column = !isinternal? this.customizedColumn():
+                              this.trc20CustomizedColumn()
+    
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
     if (!loading && transactions && transactions.length === 0) {

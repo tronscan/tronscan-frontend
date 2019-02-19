@@ -145,7 +145,7 @@ class ExchangeList extends React.Component {
                         
 
                         <div className="d-flex f-12">
-                            <a href="https://t.me/trxmarket2018" target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
+                            <a href={intl.locale == 'zh' ? "https://t.me/trxmarketCN" : "https://t.me/trxmarketEN"} target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
                             <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20190116041944.pdf" : "https://coin.top/production/js/20190116042101.pdf"}
                                 target="_blank" className="px-1 border-right  border-light">{tu('beginners_guide')}</a>
                             <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
@@ -170,7 +170,7 @@ class ExchangeList extends React.Component {
                             className={"btn btn-sm" + (tokenAudited? ' active' : '')}
                             onClick={() => this.handleSelectData(true)}
                         >
-                            TRC20
+                            Market
                         </div>
                         {/*<Tooltip placement="top" isOpen={open} target={id}>*/}
                             {/*<span className="text-capitalize">{tu("TRC20_under_maintenance")}</span>*/}
@@ -178,7 +178,7 @@ class ExchangeList extends React.Component {
                         <div
                             className={"btn btn-sm"}
                             onClick={() => this.gotoTrc10()}>
-                            TRC10
+                            Bancor
                         </div>
                         <div
                             className={"btn btn-sm" + (tokenAudited ? ' ' : ' active')}

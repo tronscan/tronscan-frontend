@@ -1583,11 +1583,21 @@ export const messages = {
   "net_usage":"Bandwidth Usage from User's Frozen Bandwidth",
   "TRC20_transfers":"TRC20 transfers",
   "Basic_info": "Basic info",
-    "Internal_txns": "Internal txns",
-    "Fee_Consumption": "Fee Consumption",
-    "Method_calling": "Method calling",
-    "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
-    "CONTRACT_CREATION": "CONTRACT CREATION"
+  "Internal_txns": "Internal txns",
+  "Fee_Consumption": "Fee Consumption",
+  "Method_calling": "Method calling",
+  "SELF_DESTRUCT Contract": "SELF DESTRUCT Contract",
+  "CONTRACT_CREATION": "CONTRACT CREATION",
+  "open_ledger":"Open Ledger",
+  "price_per_1000_btt": "PRICE PER 1000 BTT",
+  "BTT_distribution_overview": "BTT DISTRIBUTION OVERVIEW",
+  "total_BTT_supply": "Total BTT Supply",
+  "BTT_supply": "BTT Supply",
+  "BTT_Token_Release_Schedule":"BTT Token Release Schedule",
+  "source_btt_team":"Source: BTT Management Team",
+
+  "20_transfers": "TRC-20 transfers",
+  "internal_transactions": "internal transactions"
 
 
 

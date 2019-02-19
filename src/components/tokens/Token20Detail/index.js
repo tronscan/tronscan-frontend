@@ -51,7 +51,7 @@ class Token20Detail extends React.Component {
   loadToken = async (address) => {
 
     this.setState({loading: true});
-      let result = await xhr.get("https://apilist.tronscan.org"+"/api/token_trc20?contract="+address);
+      let result = await xhr.get(API_URL+"/api/token_trc20?contract="+address);
       let token = result.data.trc20_tokens[0];
       this.setState({
       loading: false,
