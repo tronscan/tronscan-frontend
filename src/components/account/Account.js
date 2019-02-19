@@ -535,16 +535,18 @@ export default class Account extends Component {
                   <FormattedDate value={item.expire_time_for_bandwidth}/>&nbsp;
                   <FormattedTime value={item.expire_time_for_bandwidth}/>
                 </td>
-                <td className="text-right">
-                  {
-                    <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
-                      marginBottom: '-5px'}} onClick={() => {
-                      this.showUnfreezeModal(0, true, item.to)
-                    }}>
-                      {tu("unfreeze")}
-                    </button>
-                  }
-                </td>
+                  <td className="text-right">
+                    {
+                      <button className="btn btn-danger mr-2" disabled={true} style={{
+                        marginTop: '-5px',
+                        marginBottom: '-5px'
+                      }} onClick={() => {
+                        this.showUnfreezeModal(0, true, item.to)
+                      }}>
+                        {tu("unfreeze")}
+                      </button>
+                    }
+                  </td>
               </tr>
             })
           }
@@ -569,7 +571,7 @@ export default class Account extends Component {
                 </td>
                 <td className="text-right">
                   {
-                    <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
+                    <button className="btn btn-danger mr-2" disabled={true} style={{marginTop: '-5px',
                       marginBottom: '-5px'}} onClick={() => {
                       this.showUnfreezeModal(1, true, item.to)
                     }}>
