@@ -7,12 +7,13 @@ export const SET_TOTAL_TRANSACTIONS = 'SET_TOTAL_TRANSACTIONS';
 export const SET_WEBSOCKET = 'SET_WEBSOCKET';
 export const SET_WS_DATA = 'SET_WS_DATA';
 
-export const setTokenBalances = (tokens = [], trc20token = [], frozen = {}, accountResource = {} ) => ({
+export const setTokenBalances = (tokens = [], trc20token = [], frozen = {}, accountResource = {}, delegated={} ) => ({
   type: SET_TOKEN_BALANCES,
   tokens,
   trc20token,
   frozen,
   accountResource,
+  delegated,
 });
 
 

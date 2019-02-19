@@ -41,6 +41,7 @@ import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
       totalTransactions: state.account.totalTransactions,
       frozen: state.account.frozen,
       accountResource: state.account.accountResource,
+      delegated: state.account.delegated,
       wallet: state.wallet,
       currentWallet: state.wallet.current,
       trxBalance: state.account.balance,
@@ -70,7 +71,10 @@ export default class Account extends Component {
       tokenTRC10: true,
       tokens20: [],
       dealPairTrxLimit: 100000,
-      isTronLink: 0
+      isTronLink: 0,
+      delegateType: 0,
+      delegate: false,
+      delegateValue: ''
     };
 
   }
@@ -377,53 +381,211 @@ export default class Account extends Component {
 
   renderFrozenTokens() {
 
-    let {frozen, accountResource, account} = this.props;
-    if (frozen.balances.length === 0 && accountResource.frozen_balance === 0) {
+    let {frozen, accountResource, delegated,  account} = this.props;
+
+    let receiveDelegateBandwidth = 0;
+    if(delegated&&delegated.receivedDelegatedBandwidth) {
+      for (let i = 0; i < delegated.receivedDelegatedBandwidth.length; i++) {
+        receiveDelegateBandwidth = receiveDelegateBandwidth + delegated.receivedDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
+      }
+    }
+
+    let frozenBandwidth=0;
+    if(frozen.balances.length > 0){
+      frozenBandwidth=frozen.balances[0].amount;
+    }
+
+    let receiveDelegateResource=0;
+    if(delegated&&delegated.receivedDelegatedResource) {
+      for (let i = 0; i < delegated.receivedDelegatedResource.length; i++) {
+        receiveDelegateResource = receiveDelegateResource + delegated.receivedDelegatedResource[i]['frozen_balance_for_energy'];
+      }
+    }
+
+    let frozenEnergy=0;
+    if(accountResource.frozen_balance > 0){
+      frozenEnergy=accountResource.frozen_balance;
+    }
+
+    if (frozenEnergy === 0 && frozenBandwidth===0 && receiveDelegateBandwidth===0 && receiveDelegateResource===0) {
       return null;
     }
 
     return (
+        <div style={{overflow:'auto'}}>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
             <th>{tu("freeze_type")}</th>
-            <th>{tu("balance")}</th>
+            <th>{tu("delegate_other")}</th>
+            <th>{tu("freeze_self")}</th>
+            <th>{tu("total_amount")}</th>
             <th className="text-right">{tu("unfreeze_time")}</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
           {
-            frozen.balances.length > 0 && <tr>
+            (frozen.balances.length > 0 || (delegated&&delegated.receivedDelegatedBandwidth&&delegated.receivedDelegatedBandwidth.length >0)) && <tr>
               <td>
                 {tu('bandwidth')}
               </td>
               <td>
-                <TRXPrice amount={frozen.balances[0].amount / ONE_TRX}/>
+                <TRXPrice amount={receiveDelegateBandwidth / ONE_TRX}/>
               </td>
-              <td className="text-right">
+              <td>
+                <TRXPrice amount={frozenBandwidth / ONE_TRX}/>
+              </td>
+              <td>
+                <TRXPrice amount={(receiveDelegateBandwidth+frozenBandwidth) / ONE_TRX}/>
+              </td>
+              {frozen.balances.length > 0 ? <td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={frozen.balances[0].expires}/>&nbsp;
                 <FormattedTime value={frozen.balances[0].expires}/>
+              </td>:<td></td>}
+              <td className="text-right">
+
+                  {
+                    frozenBandwidth!==0 && <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
+                      marginBottom: '-5px'}} onClick={() => {
+                      this.showUnfreezeModal(0, false, '')
+                    }}>
+                      {tu("unfreeze")}
+                    </button>
+                  }
+
               </td>
             </tr>
           }
           {
-            accountResource.frozen_balance > 0 && <tr>
+            (accountResource.frozen_balance > 0 || (delegated&&delegated.receivedDelegatedResource&&delegated.receivedDelegatedResource.length >0))&& <tr>
               <td>
                 {tu('energy')}
               </td>
               <td>
-                <TRXPrice amount={accountResource.frozen_balance / ONE_TRX}/>
+                <TRXPrice amount={receiveDelegateResource / ONE_TRX}/>
               </td>
-              <td className="text-right">
+              <td>
+                <TRXPrice amount={frozenEnergy / ONE_TRX}/>
+              </td>
+              <td>
+                <TRXPrice amount={(frozenEnergy+receiveDelegateResource) / ONE_TRX}/>
+              </td>
+              {accountResource.frozen_balance > 0?<td className="text-right">
                 <span className="mr-1">{tu('After')}</span>
                 <FormattedDate value={accountResource.expire_time}/>&nbsp;
                 <FormattedTime value={accountResource.expire_time}/>
+              </td>:<td></td>
+              }
+              <td className="text-right">
+                {
+                  frozenEnergy!==0 && <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
+                    marginBottom: '-5px'}} onClick={() => {
+                    this.showUnfreezeModal(1, false, '')
+                  }}>
+                    {tu("unfreeze")}
+                  </button>
+                }
               </td>
             </tr>
           }
           </tbody>
         </table>
+        </div>
+    )
+  }
+
+  renderDelegateFrozenTokens() {
+
+    let {frozen, accountResource, account, delegated} = this.props;
+    if (!delegated||((delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.length===0)&&(delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.length===0))) {
+      return null;
+    }
+
+    return (
+        <div style={{overflow:'auto'}}>
+        <table className="table m-0 temp-table">
+          <thead className="thead-light">
+          <tr>
+            <th>{tu('receive_list')}</th>
+            <th>{tu('type')}</th>
+            <th>{tu('amount')}</th>
+            <th className="text-right">{tu("unfreeze_time")}</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.map((item)=>{
+              return <tr>
+                <td>
+                  <AddressLink address={item.to} truncate={false}>
+                    <span className="color-tron-100">{item.to}</span>
+                  </AddressLink>
+                </td>
+                <td>
+                  {tu('bandwidth')}
+                </td>
+                <td>
+                  <TRXPrice amount={item.frozen_balance_for_bandwidth / ONE_TRX}/>
+                </td>
+                <td className="text-right">
+                  <span className="mr-1">{tu('After')}</span>
+                  <FormattedDate value={item.expire_time_for_bandwidth}/>&nbsp;
+                  <FormattedTime value={item.expire_time_for_bandwidth}/>
+                </td>
+                  <td className="text-right">
+                    {
+                      <button className="btn btn-danger mr-2" disabled={true} style={{
+                        marginTop: '-5px',
+                        marginBottom: '-5px'
+                      }} onClick={() => {
+                        this.showUnfreezeModal(0, true, item.to)
+                      }}>
+                        {tu("unfreeze")}
+                      </button>
+                    }
+                  </td>
+              </tr>
+            })
+          }
+          {
+            delegated&&delegated.sentDelegatedResource&&delegated.sentDelegatedResource.map((item)=>{
+              return <tr>
+                <td>
+                  <AddressLink address={item.to} truncate={false}>
+                    <span className="color-tron-100">{item.to}</span>
+                  </AddressLink>
+                </td>
+                <td>
+                  {tu('energy')}
+                </td>
+                <td>
+                  <TRXPrice amount={item.frozen_balance_for_energy / ONE_TRX}/>
+                </td>
+                <td className="text-right">
+                  <span className="mr-1">{tu('After')}</span>
+                  <FormattedDate value={item.expire_time_for_energy}/>&nbsp;
+                  <FormattedTime value={item.expire_time_for_energy}/>
+                </td>
+                <td className="text-right">
+                  {
+                    <button className="btn btn-danger mr-2" disabled={true} style={{marginTop: '-5px',
+                      marginBottom: '-5px'}} onClick={() => {
+                      this.showUnfreezeModal(1, true, item.to)
+                    }}>
+                      {tu("unfreeze")}
+                    </button>
+                  }
+                </td>
+              </tr>
+            })
+
+          }
+          </tbody>
+        </table>
+        </div>
     )
   }
 
@@ -574,7 +736,8 @@ export default class Account extends Component {
     });
   }
 
-  showUnfreezeModal = async () => {
+  showUnfreezeModal = async (delegateType, delegate, delegateValue) => {
+    this.setState({delegateType:delegateType, delegate:delegate, delegateValue:delegateValue});
     let {privateKey, selectedResource, resources} = this.state;
     let {intl} = this.props;
     this.setState({
@@ -593,16 +756,8 @@ export default class Account extends Component {
           >
             <div className="form-group" style={{marginBottom: '36px'}}>
               <div className="mt-3 mb-2 text-left" style={{color: '#666'}}>
-                {tu("please_select_the_type_of_unfreeze")}
+
               </div>
-              <select className="custom-select"
-                      value={selectedResource}
-                      onChange={(e) => {
-                        this.resourceSelectChange(e.target.value)
-                      }}>
-                <option value="0">{intl.formatMessage({id: "unfreeze_bandwidth"})}</option>
-                <option value="1">{intl.formatMessage({id: "unfreeze_energy"})}</option>
-              </select>
             </div>
 
           </SweetAlert>
@@ -667,33 +822,32 @@ export default class Account extends Component {
   };
 
   unfreeze = async () => {
+    let {delegateType, delegate, delegateValue}=this.state;
     let {account, walletType} = this.props;
-    let {privateKey, selectedResource} = this.state;
-    let res, type;
+    let {privateKey} = this.state;
+    let res;
     this.hideModal();
-    if (!selectedResource) {
-      selectedResource = 0
-    }
     if (Lockr.get("islogin") || this.props.walletType.type === "ACCOUNT_LEDGER" || this.props.walletType.type === "ACCOUNT_TRONLINK") {
       const tronWebLedger = this.props.tronWeb();
 
 
       const {tronWeb} = this.props.account;
 
-      if (!selectedResource) {
-        type = 'BANDWIDTH';
+      if (!delegateType) {
+        delegateType = 'BANDWIDTH';
       } else {
-        type = 'ENERGY';
+        delegateType = 'ENERGY';
       }
+
       try {
         if (this.props.walletType.type === "ACCOUNT_LEDGER") {
 
-          const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(type, walletType.address).catch(e => false);
+          const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
           const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
           res = result;
         }
         if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(type, tronWeb.defaultAddress.base58).catch(e => false);
+          const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
@@ -702,8 +856,13 @@ export default class Account extends Component {
         console.log(e)
       }
     } else {
-      let {success} = await Client.unfreezeBalance(account.address, selectedResource)(account.key);
-      res = success
+      if(!delegate) {
+        let {success} = await Client.unfreezeBalance(account.address, delegateType, '')(account.key);
+        res = success
+      }else{
+        let {success} = await Client.unfreezeBalance(account.address, delegateType, delegateValue)(account.key);
+        res = success
+      }
     }
 
     if (res) {
@@ -1678,14 +1837,6 @@ export default class Account extends Component {
                       <br/>{tu("freeze_trx_premessage_2")}
                     </p>
                     <div>
-                      {
-                        (hasFrozen || hasResourceFrozen) &&
-                        <button className="btn btn-danger mr-2" onClick={() => {
-                          this.showUnfreezeModal()
-                        }}>
-                          {tu("unfreeze")}
-                        </button>
-                      }
                       <button className="btn btn-primary" onClick={() => {
                         this.showFreezeBalance()
                       }}>
@@ -1693,7 +1844,10 @@ export default class Account extends Component {
                       </button>
                     </div>
                   </div>
+                  <h5>{tu("my_account")}</h5>
                   {this.renderFrozenTokens()}
+                  <h5 style={{marginTop: '10px'}}>{tu("delegate_list")}</h5>
+                  {this.renderDelegateFrozenTokens()}
                 </div>
               </div>
             </div>

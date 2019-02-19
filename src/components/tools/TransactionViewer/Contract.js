@@ -219,6 +219,8 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                {contract['receiver_address']&&<Field label="receive_list"><AddressLink address={contract['receiver_address']}/></Field>}
+                {contract['resource']?<Field label="type">{contract['resource']}</Field>:<Field label="type">Bandwidth</Field>}
                 <Field label="frozen_balance">{contract['frozen_balance'] / ONE_TRX}</Field>
                 <Field label="frozen_days">{contract['frozen_duration']}</Field>
               </tbody>
@@ -239,6 +241,7 @@ export default function Contract({contract}) {
             <table className="table">
               <tbody>
                 <Field label="owner_address"><AddressLink address={contract['owner_address']}/></Field>
+                {contract['receiver_address']&&<Field label="receive_list"><AddressLink address={contract['receiver_address']}/></Field>}
               </tbody>
             </table>
           </Fragment>

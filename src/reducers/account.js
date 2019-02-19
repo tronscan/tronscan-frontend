@@ -13,6 +13,7 @@ const initialState = {
     balances: [],
   },
   accountResource:{},
+  delegated:{},
   wsdata: []
 };
 
@@ -47,6 +48,9 @@ export function accountReducer(state = initialState, action) {
         },
         accountResource:{
           ...action.accountResource,
+        },
+        delegated:{
+          ...action.delegated,
         }
       }
     }

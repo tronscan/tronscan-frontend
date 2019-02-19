@@ -30,6 +30,7 @@ class Address extends React.Component {
     super();
 
     this.state = {
+      totalPower:0,
       candidates: [],
       showQrCode: false,
       loading: true,
@@ -305,6 +306,35 @@ class Address extends React.Component {
         }
       }));
     }
+
+
+    let sentDelegateBandwidth = 0;
+    if(address.delegated&&address.delegated.sentDelegatedBandwidth) {
+      for (let i = 0; i < address.delegated.sentDelegatedBandwidth.length; i++) {
+        sentDelegateBandwidth = sentDelegateBandwidth + address.delegated.sentDelegatedBandwidth[i]['frozen_balance_for_bandwidth'];
+      }
+    }
+
+    let frozenBandwidth=0;
+    if(address.frozen.balances.length > 0){
+      frozenBandwidth=address.frozen.balances[0].amount;
+    }
+
+    let sentDelegateResource=0;
+    if(address.delegated&&address.delegated.sentDelegatedResource) {
+      for (let i = 0; i < address.delegated.sentDelegatedResource.length; i++) {
+        sentDelegateResource = sentDelegateResource + address.delegated.sentDelegatedResource[i]['frozen_balance_for_energy'];
+      }
+    }
+
+    let frozenEnergy=0;
+    if(address.accountResource.frozen_balance_for_energy.frozen_balance > 0){
+      frozenEnergy=address.accountResource.frozen_balance_for_energy.frozen_balance;
+    }
+
+    let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
+    this.setState({totalPower:totalPower});
+
   }
 
   async loadWitness(id) {
@@ -318,7 +348,7 @@ class Address extends React.Component {
 
   render() {
 
-    let {address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
+    let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
     let addr = match.params.id;
     let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
@@ -326,6 +356,9 @@ class Address extends React.Component {
     if (!address) {
       return null;
     }
+
+
+
     let pathname = this.props.location.pathname;
     let tabName = ''
     let rex = /[a-zA-Z0-9]{34}\/?([a-zA-Z\\-]+)$/
@@ -432,7 +465,7 @@ class Address extends React.Component {
                                   <ul className="list-unstyled m-0">
                                     <li>
                                       <TRXPrice showCurreny={false}
-                                                amount={(address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}/>
+                                                amount={(totalPower) / ONE_TRX}/>
                                     </li>
                                   </ul>
                                 </td>
@@ -530,7 +563,8 @@ class Address extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+  };
 }
 
 const mapDispatchToProps = {};

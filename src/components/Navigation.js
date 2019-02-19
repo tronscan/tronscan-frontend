@@ -58,6 +58,7 @@ class Navigation extends React.Component {
     this.fileRef = React.createRef();
     this.id = 0;
     this.loginFlag = false;
+    this.isSearching=true;
     this.state = {
       search: "",
       searchResults: [],
@@ -314,7 +315,7 @@ class Navigation extends React.Component {
 
 
   doSearch = async () => {
-
+    this.isSearching = true;
     let {intl} = this.props;
 
     let {searchResults} = this.state;
@@ -358,6 +359,7 @@ class Navigation extends React.Component {
   }
 
   callAjax = async (value) => {
+    this.isSearching = true;
     let {search} = this.state;
     if (search === "") {
       this.setState({searchResults: []});
@@ -367,6 +369,7 @@ class Navigation extends React.Component {
 
     let result = await xhr.get(API_URL+"/api/search?term=" + trim(search));
     let results = result.data;
+    this.isSearching = false;
     /*let results = [
       {desc: 'Token-TRC10', value: "IGG 1000029"},
       {desc: 'Token-TRC20', value: "IGG 1000029"},
@@ -902,7 +905,7 @@ class Navigation extends React.Component {
                              onClick={this.callAjax}
                              placeholder={intl.formatMessage({id: "search_description1"})}/>
                       <div className="input-group-append">
-                        <button className="btn box-shadow-none" onClick={this.doSearch}>
+                        <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
                           <i className="fa fa-search"/>
                         </button>
                       </div>
@@ -974,7 +977,7 @@ class Navigation extends React.Component {
                      onClick={this.callAjax}
                      placeholder={intl.formatMessage({id: "search_description1"})}/>
               <div className="input-group-append">
-                <button className="btn box-shadow-none" onClick={this.doSearch}>
+                <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
                   <i className="fa fa-search"/>
                 </button>
               </div>

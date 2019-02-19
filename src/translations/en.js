@@ -1562,6 +1562,17 @@ export const messages = {
   "Please_contact_us": "Please contact us.",
   "ok_confirm":"OK",
   "high_risk":"High Risk",
+
+  "delegate_list":"Rental List",
+  "type":"Type",
+  "delegate_other":"Freeze by Others",
+  "freeze_self":"Freeze by Yourself",
+  "total_amount":"Total Amount",
+"receive_address":"Recipient Address (The default address is your own)",
+  "my_account":"My Account",
+  "receive_list":"Recipient Address",
+  "unfreeze_warning":"You can only unfreeze TRX frozen by yourself. Do you wish to continue unfreezing?",
+
   "contract_method":"Contract Method",
   "contract_parameters":"Method Parameters",
   "energy_fee":"Burning TRX Number to Get Energy",
