@@ -586,10 +586,10 @@ export default class VoteOverview extends React.Component {
                                             viewStats ?
                                                 <th className="font-weight-bold pt-4 text-center"
                                                     style={{backgroundColor: "#" + colors[candidate.rank]}}>
-                                                  {candidate.realTimeRanking}
+                                                  {candidate.lastRanking}
                                                 </th> :
                                                 <th className="font-weight-bold pt-4 text-center">
-                                                  {candidate.realTimeRanking}
+                                                  {candidate.lastRanking}
                                                 </th>
                                           }
                                           <td className="d-flex flex-row ">
