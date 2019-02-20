@@ -28,9 +28,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    this.props.setInterval(() => {
-      this.props.loadTransactions();
-    }, 10000);
+    // this.props.setInterval(() => {
+    //   this.props.loadTransactions();
+    // }, 10000);
   }
 
   render() {
@@ -146,8 +146,8 @@ class RecentTransfers extends Component {
                           
                           
                         </div>
-                        <div className="ml-auto d-flex pt-2 list-item-word">
-                          <div className="pt-2" style={{fontSize: '14px'}}>
+                        <div className="d-flex pt-2 list-item-word">
+                          <div className="pt-2 text-left" style={{fontSize: '14px'}}>
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                               
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
