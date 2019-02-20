@@ -28,9 +28,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    // this.props.setInterval(() => {
-    //   this.props.loadTransactions();
-    // }, 10000);
+    this.props.setInterval(() => {
+      this.props.loadTransactions();
+    }, 10000);
   }
 
   render() {
