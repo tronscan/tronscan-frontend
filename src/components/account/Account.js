@@ -183,13 +183,13 @@ export default class Account extends Component {
       tokens20 = _(tokens20)
           .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance >= 10)
-          .sortBy(tb => tb.token20_name)
+          .sortBy(tb => -tb.token20_balance)
           .value();
     } else {
       tokens20 = _(tokens20)
           .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance > 0)
-          .sortBy(tb => tb.token20_name)
+          .sortBy(tb => -tb.token20_balance)
           .value();
     }
 

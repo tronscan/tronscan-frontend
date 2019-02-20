@@ -493,7 +493,7 @@ class SendForm extends React.Component {
           }
           let tokens = _(tokens20)
               .filter(tb => tb.balance > 0)
-              .sortBy(tb => tb.name)
+              .sortBy(tb => -tb.balance)
               .value();
 
           this.setState({
@@ -515,7 +515,7 @@ class SendForm extends React.Component {
           }
           let tokens = _(tokens20)
               .filter(tb => tb.balance > 0)
-              .sortBy(tb => tb.name)
+              .sortBy(tb => -tb.balance)
               .value();
 
           this.setState({
