@@ -28,9 +28,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    this.props.setInterval(() => {
-      this.props.loadTransactions();
-    }, 10000);
+    // this.props.setInterval(() => {
+    //   this.props.loadTransactions();
+    // }, 10000);
   }
 
   render() {
@@ -127,7 +127,7 @@ class RecentTransfers extends Component {
             {
               transactions.map((transfer, i) => (
                 transfer &&
-                  <li key={transfer.transactionHash} className="list-group-item overflow-h" style={{height: '100px'}}>
+                  <li key={transfer.transactionHash} className="list-group-item overflow-h" style={{minHeight: '100px'}}>
                     <div className="media">
                       <div className="media-body mb-0">
                         <div className="text-left pt-1 d-flex justify-content-between">
