@@ -64,7 +64,7 @@ export default function Contract({contract}) {
                 <Field label="to"><AddressLink address={contract['to_address']}/></Field>
                 <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX}/></Field>
                 {contract.contract_note &&
-                    <Field label="note">{contract.contract_note}</Field>
+                    <Field label="note">{decodeURIComponent(contract.contract_note)}</Field>
                 }
                 </tbody>
               </table>
