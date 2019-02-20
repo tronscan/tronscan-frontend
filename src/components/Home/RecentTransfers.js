@@ -129,33 +129,39 @@ class RecentTransfers extends Component {
                 transfer &&
                   <li key={transfer.transactionHash} className="list-group-item overflow-h">
                     <div className="media">
-                      <div className="media-body mb-0 d-flex">
-                        <div className="text-left pt-1">
-                          <div className="pt-1">
+                      <div className="media-body mb-0">
+                        <div className="text-left pt-1 d-flex justify-content-between">
+                          <div className="pt-1 d-flex pr-2" style={{flex: 1, maxWidth: '400px'}}>
                             <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
-                            <TransactionHashLink
-                                hash={transfer.transactionHash}>{transfer.transactionHash.substr(0, 30)}...</TransactionHashLink>
+                              <Truncate>
+                              <TransactionHashLink
+                                  hash={transfer.transactionHash}>{transfer.transactionHash}</TransactionHashLink>
+                            </Truncate>
+                           
                           </div>
-                          <br/>
-
-                          <span className="color-grey-300 mr-2">{tu("from")}</span>
-                          <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                      address={transfer.transferFromAddress} truncate={false}>
-                            {transfer.transferFromAddress.substr(0, 13)}...
-                          </AddressLink>
-                          <span className="color-grey-300 mr-2">{tu("to")}</span>
-                          <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                      address={transfer.transferToAddress} truncate={false}>
-                            {transfer.transferToAddress.substr(0, 13)}...
-                          </AddressLink><br/>
-                        </div>
-                        <div className="ml-auto text-right d-flex flex-column pt-2 list-item-word"
-                            style={styles.nowrap}>
-                          <div className="color-grey-200" style={{flex: 1}}>
+                          <div className="color-grey-200 pt-1 ">
                             {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
                             <NameWithId value={transfer} type="abbr" totoken/>
                           </div>
-                          <div className="text-muted color-grey-300 small" style={styles.nowrap}>
+                          
+                          
+                        </div>
+                        <div className="ml-auto d-flex pt-3 list-item-word">
+                          <div className="pt-2" style={{fontSize: '14px'}}>
+                            <span className="color-grey-300 mr-2">{tu("from")}</span>
+                              
+                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                        address={transfer.transferFromAddress} truncate={false}>
+                              {transfer.transferFromAddress.substr(0, 13)}...
+                            </AddressLink>
+                            
+                            <span className="color-grey-300 mr-2">{tu("to")}</span>
+                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
+                                        address={transfer.transferToAddress} truncate={false}>
+                              {transfer.transferToAddress.substr(0, 13)}...
+                            </AddressLink>
+                          </div>
+                          <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
                             <TimeAgo date={transfer.timestamp}/>
                           </div>
                         </div>
