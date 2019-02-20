@@ -28,9 +28,9 @@ class RecentTransfers extends Component {
 
   componentDidMount() {
     this.props.loadTransactions();
-    // this.props.setInterval(() => {
-    //   this.props.loadTransactions();
-    // }, 10000);
+    this.props.setInterval(() => {
+      this.props.loadTransactions();
+    }, 10000);
   }
 
   render() {
@@ -129,9 +129,9 @@ class RecentTransfers extends Component {
                 transfer &&
                   <li key={transfer.transactionHash} className="list-group-item overflow-h" style={{minHeight: '100px'}}>
                     <div className="media">
-                      <div className="media-body mb-0">
+                      <div className="media-body mb-0 w-100">
                         <div className="text-left pt-1 d-flex justify-content-between">
-                          <div className="pt-1 d-flex pr-2" style={{flex: 1, maxWidth: '400px'}}>
+                          <div className="pt-1 d-flex mr-2" style={{flex: 1, maxWidth: '400px'}}>
                             <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
                               <Truncate>
                               <TransactionHashLink
@@ -146,22 +146,29 @@ class RecentTransfers extends Component {
                           
                           
                         </div>
-                        <div className="d-flex pt-2 list-item-word">
-                          <div className="pt-2 text-left" style={{fontSize: '0.8rem'}}>
+                        <div className="d-flex pt-2 list-item-word w-100 justify-content-between">
+                          <div className="pt-2 text-left d-flex flex-1 mr-2" style={{fontSize: '0.8rem', maxWidth: '400px'}}>
+                            <div className="d-flex">
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
-                              
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                        address={transfer.transferFromAddress} truncate={false}>
-                              {transfer.transferFromAddress.substr(0, 10)}...
+                            <div className="flex-1 mr-2">
+                            <AddressLink className="color-tron-100"
+                                        address={transfer.transferFromAddress}>
+                              {transfer.transferFromAddress}
                             </AddressLink>
-                            
-                            <span className="color-grey-300 mr-2">{tu("to")}</span>
-                            <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
-                                        address={transfer.transferToAddress} truncate={false}>
-                              {transfer.transferToAddress.substr(0, 10)}...
-                            </AddressLink>
+                            </div>
+                            </div>
+
+                            <div className="d-flex">
+                              <span className="color-grey-300 mr-2">{tu("to")}</span>
+                              <div className="flex-1 mr-2">
+                              <AddressLink className="color-tron-100"
+                                          address={transfer.transferToAddress}>
+                                {transfer.transferToAddress}
+                              </AddressLink>
+                              </div>
+                            </div>
                           </div>
-                          <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
+                          <div className="text-muted text-right color-grey-300 small">
                             <TimeAgo date={transfer.timestamp}/>
                           </div>
                         </div>
