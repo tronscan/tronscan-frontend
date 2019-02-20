@@ -152,13 +152,13 @@ class RecentTransfers extends Component {
                               
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
                                         address={transfer.transferFromAddress} truncate={false}>
-                              {transfer.transferFromAddress.substr(0, 10)}...
+                              {transfer.transferFromAddress.substr(0, 12)}...
                             </AddressLink>
                             
                             <span className="color-grey-300 mr-2">{tu("to")}</span>
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
                                         address={transfer.transferToAddress} truncate={false}>
-                              {transfer.transferToAddress.substr(0, 10)}...
+                              {transfer.transferToAddress.substr(0, 12)}...
                             </AddressLink>
                           </div>
                           <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
