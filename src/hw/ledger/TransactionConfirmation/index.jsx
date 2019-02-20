@@ -5,9 +5,11 @@ import Field from "./Field";
 import {Transaction} from "@tronscan/client/src/protocol/core/Tron_pb";
 import AccountName from "../../../components/common/AccountName";
 import {FormattedTRX} from "../../../utils/tron";
+import {FormattedNumber} from 'react-intl';
+import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
-export default function Contract({ contract }) {
+export default function Contract({ contract, extra }) {
 
   const contractParams = contract.parameter.value;
 
@@ -34,6 +36,13 @@ export default function Contract({ contract }) {
               <Field label="Amount">
                 <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
               </Field>
+              {(extra && extra.hash && 
+                <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+            )}
             </tbody>
           </table>
         </Fragment>
@@ -59,9 +68,16 @@ export default function Contract({ contract }) {
                 loading={() => <span>Loading...</span>} />
             </Field>
             <Field label="Amount">
-              <FormattedTRX value={contractParams.amount}/>&nbsp;
-              {TronWeb.fromUtf8(contractParams.asset_name)}
+              <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals} 
+                    value={contractParams.amount/Math.pow(10,extra.decimals)}/>&nbsp;{extra.token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
             </Field>
+            {(extra && extra.hash && 
+                <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+            )}
             </tbody>
           </table>
         </Fragment>
@@ -77,6 +93,13 @@ export default function Contract({ contract }) {
           <table className="table">
             <tbody>
               <Field label="URL">{TronWeb.toUtf8(contractParams.url)}</Field>
+              {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
             </tbody>
           </table>
         </Fragment>
@@ -94,6 +117,13 @@ export default function Contract({ contract }) {
           </div>
           <table className="table">
             <Field label="URL">{TronWeb.toUtf8(contractParams.url)}</Field>
+            {(extra && extra.hash && 
+                 <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+              )}
           </table>
         </Fragment>
       );
@@ -113,6 +143,13 @@ export default function Contract({ contract }) {
             <Field label="End Time">{contractParams.endTime}</Field>
             <Field label="Description">{contractParams.description}</Field>
             <Field label="URL">{contractParams.url}</Field>
+            {(extra && extra.hash && 
+                 <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+              )}
           </table>
         </Fragment>
       );
@@ -127,6 +164,13 @@ export default function Contract({ contract }) {
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
             <Field label="Token">{TronWeb.toUtf8(contractParams.asset_name)}</Field>
             <Field label="Amount">{contractParams.amount}</Field>
+            {(extra && extra.hash && 
+                 <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+              )}
           </table>
         </Fragment>
       );
@@ -141,21 +185,15 @@ export default function Contract({ contract }) {
           <table className="table">
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
             <Field label="Name">{TronWeb.toUtf8(contractParams.account_name)}</Field>
+            {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
           </table>
         </Fragment>
-      );
-
-    case "EXCHANGETRANSACTIONCONTRACT":
-      return (
-          <Fragment>
-            <div className="card-body">
-              <h5 className="card-title text-center">Exchange Transaction</h5>
-            </div>
-            <table className="table">
-              {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
-              <Field label="id">{contractParams.token_id}</Field>
-            </table>
-          </Fragment>
       );
 
     case "FREEZEBALANCECONTRACT":
@@ -170,6 +208,14 @@ export default function Contract({ contract }) {
               <FormattedTRX value={contractParams.frozen_balance / ONE_TRX} />
             </Field>
             <Field label="Number of days frozen">{contractParams.frozen_duration}</Field>
+            <Field label="Resource">{contractParams.resource=="ENERGY"?"Energy":"Bandwidth"}</Field>
+            {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
           </table>
         </Fragment>
       );
@@ -180,6 +226,18 @@ export default function Contract({ contract }) {
           <div className="card-body">
             <h5 className="card-title text-center">Unfreeze Coins</h5>
           </div>
+          <table className="table">
+            <tbody>
+            <Field label="Resource">{contractParams.resource=="ENERGY"?"Energy":"Bandwidth"}</Field>
+            {(extra && extra.hash && 
+                 <Field label="Hash">
+                    <Truncate>
+                      #{extra.hash}
+                    </Truncate>
+                </Field>
+              )}
+            </tbody>
+          </table>
         </Fragment>
       );
 
@@ -189,6 +247,17 @@ export default function Contract({ contract }) {
           <div className="card-body">
             <h5 className="card-title text-center">Claim Rewards</h5>
           </div>
+          <table className="table">
+            <tbody>
+            {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
+              </tbody>
+          </table>
         </Fragment>
       );
 
@@ -199,20 +268,207 @@ export default function Contract({ contract }) {
             <h5 className="card-title text-center">Vote for Super Representatives</h5>
           </div>
           <table className="table">
+          <tbody>
             <Field label="Votes">
               <ul>
                 {
                   contractParams.votes.map(vote => (
-                    <div className="text-right">
+                    <div className="text-right" key={vote.vote_address}>
                       {TronWeb.address.fromHex(vote.vote_address)}: {vote.vote_count} Votes
                     </div>
                   ))
                 }
               </ul>
             </Field>
+            {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
+          </tbody>
           </table>
         </Fragment>
       );
+
+      case "TRIGGERSMARTCONTRACT":
+      return (
+        <Fragment>
+          <div className="card-body">
+            <h5 className="card-title text-center">Send TRC20</h5>
+          </div>
+          <table className="table">
+            <tbody>
+            <Field label="From">
+              {TronWeb.address.fromHex(contractParams.owner_address)}
+            </Field>
+            <Field label="To">
+              {extra.to}
+            </Field>
+            {(extra && extra.to_name && 
+                <Field label="To Name">
+                  {extra.to_name}
+                </Field>
+            )}
+            <Field label="Contract">
+              {TronWeb.address.fromHex(contractParams.contract_address)}
+            </Field>
+            {(extra && extra.to_name && 
+                <Field label="To Name">
+                  {extra.to_name}
+                </Field>
+            )}
+            <Field label="Amount">
+              <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}  
+              value={extra.amount}/>&nbsp;
+              {extra.token_name}
+            </Field>
+            {(extra && extra.hash && 
+                  <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+              )}
+            </tbody>
+          </table>
+        </Fragment>
+      );
+
+      case "EXCHANGETRANSACTIONCONTRACT":
+        return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">Exchange Transaction</h5>
+            </div>
+            <table className="table">
+              <tbody>
+              <Field label="Exchange ID">
+                {contractParams.exchange_id}
+              </Field>
+              <Field label="Pair">
+                {extra.pair}
+              </Field>
+              <Field label="Action">
+                {extra.action}
+              </Field>
+              
+                <Field label={extra.action==="Buy"?"Cost":"Amount"}>
+                  <FormattedNumber maximumFractionDigits={extra.decimals2} minimunFractionDigits={extra.decimals2}  
+                  value={contractParams.quant/Math.pow(10,extra.decimals2) }/>{extra.action==="Buy"?" TRX":""}
+                </Field>
+                <Field label="Expected">
+                  <FormattedNumber maximumFractionDigits={extra.decimals1} minimunFractionDigits={extra.decimals1}
+                  value={contractParams.expected/Math.pow(10,extra.decimals1)}/>{extra.action==="Sell"?" TRX":""}
+                </Field>
+              {(extra && extra.hash && 
+                    <Field label="Hash">
+                        <Truncate>
+                          #{extra.hash}
+                        </Truncate>
+                    </Field>
+                )}
+              </tbody>
+            </table>
+          </Fragment>
+        );
+
+      case "EXCHANGECREATECONTRACT":
+        return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">Exchange Create</h5>
+            </div>
+            <table className="table">
+              <tbody>
+              <Field label="Pair">
+                {extra.token1}[{TronWeb.toUtf8(contractParams.first_token_id)}]&lt;
+                =&gt;{extra.token2}[{TronWeb.toUtf8(contractParams.second_token_id)}]
+              </Field>
+              
+              <Field label="Ratio">
+                  <FormattedNumber maximumFractionDigits={extra.decimals1} minimunFractionDigits={extra.decimals1}  
+                  value={contractParams.first_token_balance/Math.pow(10,extra.decimals1) }/>:
+                  <FormattedNumber maximumFractionDigits={extra.decimals2} minimunFractionDigits={extra.decimals2}  
+                  value={contractParams.second_token_balance/Math.pow(10,extra.decimals2) }/>
+              </Field>
+
+              {(extra && extra.hash && 
+                   <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+                )}
+              </tbody>
+            </table>
+          </Fragment>
+        );
+
+        case "EXCHANGEWITHDRAWCONTRACT":
+        return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">Exchange Withdraw</h5>
+            </div>
+            <table className="table">
+              <tbody>
+              <Field label="Pair">
+                {extra.pair}
+              </Field>
+              <Field label="Token base">
+                {extra.token}
+              </Field>
+              
+              <Field label="Amount">
+                  <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}  
+                  value={contractParams.quant/Math.pow(10,extra.decimals) }/>
+              </Field>
+
+              {(extra && extra.hash && 
+                   <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+                )}
+              </tbody>
+            </table>
+          </Fragment>
+        );
+
+        case "EXCHANGEINJECTCONTRACT":
+        return (
+          <Fragment>
+            <div className="card-body">
+              <h5 className="card-title text-center">Exchange Inject</h5>
+            </div>
+            <table className="table">
+              <tbody>
+              <Field label="Pair">
+                {extra.pair}
+              </Field>
+              <Field label="Token base">
+                {extra.token}
+              </Field>
+              
+              <Field label="Amount">
+                  <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals}  
+                  value={contractParams.quant/Math.pow(10,extra.decimals) }/>
+              </Field>
+
+              {(extra && extra.hash && 
+                   <Field label="Hash">
+                      <Truncate>
+                        #{extra.hash}
+                      </Truncate>
+                  </Field>
+                )}
+              </tbody>
+            </table>
+          </Fragment>
+        );
 
     default:
       return (

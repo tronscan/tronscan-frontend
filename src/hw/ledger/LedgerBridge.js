@@ -47,11 +47,10 @@ export default class LedgerBridge {
       const transport = await Transport.create();
       try {
         const trx = new AppTrx(transport);
-        let response = await trx.signTransaction(
+        let response = await trx.signTransactionWithTokenName(
           this.path,
           transaction.hex,
-          false, //transaction.sha256,
-          transaction.contractType);
+          transaction.info);
         resolve(response);
       } catch(e) {
         reject(e);
