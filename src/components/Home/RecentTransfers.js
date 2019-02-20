@@ -127,7 +127,7 @@ class RecentTransfers extends Component {
             {
               transactions.map((transfer, i) => (
                 transfer &&
-                  <li key={transfer.transactionHash} className="list-group-item overflow-h">
+                  <li key={transfer.transactionHash} className="list-group-item overflow-h" style={{height: '100px'}}>
                     <div className="media">
                       <div className="media-body mb-0">
                         <div className="text-left pt-1 d-flex justify-content-between">
@@ -146,7 +146,7 @@ class RecentTransfers extends Component {
                           
                           
                         </div>
-                        <div className="ml-auto d-flex pt-3 list-item-word">
+                        <div className="ml-auto d-flex pt-2 list-item-word">
                           <div className="pt-2" style={{fontSize: '14px'}}>
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                               
