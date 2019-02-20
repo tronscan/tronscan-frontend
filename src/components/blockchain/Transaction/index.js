@@ -84,10 +84,11 @@ class Transaction extends React.Component {
           cmp: () => (
               <Contract contract={{
                   ...{cost:transaction.cost},
-                ...transaction.contractData,
+                  ...transaction.contractData,
                   ...transaction['trigger_info'],
                   ...{internal_transactions: transaction['internal_transactions']},
-                contractType: ContractTypes[transaction.contractType],
+                  ...{contract_note:transaction.data},
+                  contractType: ContractTypes[transaction.contractType],
               }}/>
           ),
         },
@@ -161,18 +162,18 @@ class Transaction extends React.Component {
                                 </td>
                               </tr>
                             }
-                            {
-                              (transaction.data && trim(transaction.data).length > 0) ?
-                              <tr>
-                                <th>{tu("note")}:</th>
-                                <td>
-                                  <pre className="border border-grey bg-light-grey m-0 p-2 rounded"
-                                      style={{whiteSpace: 'pre-wrap'}}>
-                                    {decodeURIComponent(hextoString(transaction.data))}
-                                  </pre>
-                                </td>
-                              </tr>:<tr></tr>
-                            }
+                            {/*{*/}
+                              {/*(transaction.data && trim(transaction.data).length > 0) ?*/}
+                              {/*<tr>*/}
+                                {/*<th>{tu("note")}:</th>*/}
+                                {/*<td>*/}
+                                  {/*<pre className="border border-grey bg-light-grey m-0 p-2 rounded"*/}
+                                      {/*style={{whiteSpace: 'pre-wrap'}}>*/}
+                                    {/*{decodeURIComponent(transaction.data)}*/}
+                                  {/*</pre>*/}
+                                {/*</td>*/}
+                              {/*</tr>:<tr></tr>*/}
+                            {/*}*/}
                           </tbody>
                         </table>
                       </div>

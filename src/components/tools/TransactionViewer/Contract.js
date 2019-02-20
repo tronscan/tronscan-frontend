@@ -44,7 +44,6 @@ export default function Contract({contract}) {
     let TokenIDList = [];
     TokenIDList.push(contract)
     let tokenIdData  = rebuildList(TokenIDList,'asset_name','amount')[0]
-
    
   switch (contract.contractType.toUpperCase()) {
     case "TRANSFERCONTRACT":
@@ -64,6 +63,9 @@ export default function Contract({contract}) {
                 <Field label="from"><AddressLink address={contract['owner_address']}/></Field>
                 <Field label="to"><AddressLink address={contract['to_address']}/></Field>
                 <Field label="amount"><TRXPrice amount={contract.amount / ONE_TRX}/></Field>
+                {contract.contract_note &&
+                    <Field label="note">{contract.contract_note}</Field>
+                }
                 </tbody>
               </table>
             </div>
