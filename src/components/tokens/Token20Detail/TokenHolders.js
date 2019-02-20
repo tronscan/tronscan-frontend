@@ -49,7 +49,7 @@ class TokenHolders extends React.Component {
     //   start: (page - 1) * pageSize,
     //   count: true
     // });
-    let { data } = await xhr.get(API_URL+"api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
+    let { data } = await xhr.get(API_URL+"/api/token_trc20/holders?sort=-balance&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
     let addresses = data.trc20_tokens;
     let total= data.total;
     for (let index in addresses) {

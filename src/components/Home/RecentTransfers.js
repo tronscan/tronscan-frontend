@@ -139,7 +139,7 @@ class RecentTransfers extends Component {
                             </Truncate>
                            
                           </div>
-                          <div className="color-grey-200 pt-1 ">
+                          <div className="color-grey-200 pt-1 " style={{fontSize:'1rem'}}>
                             {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}
                             <NameWithId value={transfer} type="abbr" totoken/>
                           </div>
