@@ -7,6 +7,7 @@ import {AddressLink, TransactionHashLink} from "./Links";
 import {TRXPrice} from "./Price";
 import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
+import { FormatNumberByDecimals } from '../../utils/number'
 import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
@@ -179,7 +180,7 @@ class Transfers extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           // return <NameWithId value={record}/>
-          return <sapn>{this.FormatNumber(record.amount, record.decimals) +' '+record.tokenName}</sapn>
+          return <sapn>{FormatNumberByDecimals(record.amount, record.decimals) +' '+record.tokenName}</sapn>
         }
       },
       // {
@@ -196,37 +197,6 @@ class Transfers extends React.Component {
       // }
     ];
     return column;
-  }
-
-  FormatNumber(number, decimals){
-    let Newnumber = 0
-    if(!number){
-      return 0
-    }
-
-    if(decimals){
-     
-      const numberString = (number).toString()
-      const arr = numberString.split('.')
-      const cerrentLength = arr[0].length
-      const newString = arr.join('')
-
-      const diffLenght = cerrentLength - decimals
-      if(diffLenght > 0){
-        Newnumber = newString.slice(0, diffLenght) + '.' + newString.slice(diffLenght);
-      }else{
-        let dudo = ''
-        for (let i = 0; i < Math.abs(diffLenght); i++) {
-          dudo+= '0'
-        }
-        Newnumber = '0.'+ dudo +newString
-      }
-      Newnumber = Newnumber.replace(/(\.0+|0+)$/,'')
-    }else{
-      Newnumber = number
-    }
-    return Newnumber
-
   }
 
   render() {
