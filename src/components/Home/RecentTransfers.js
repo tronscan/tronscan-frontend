@@ -131,13 +131,12 @@ class RecentTransfers extends Component {
                     <div className="media">
                       <div className="media-body mb-0">
                         <div className="text-left pt-1 d-flex justify-content-between">
-                          <div className="pt-1 d-flex pr-2" style={{flex: 1, maxWidth: '400px'}}>
+                          <div className="pt-1 d-flex pr-2 color-transfers-hash" style={{flex: 1, maxWidth: '400px'}}>
                             <i className="fa fa-bars mr-2 mt-1 fa_width color-tron-100"></i>
                               <Truncate>
-                              <TransactionHashLink
-                                  hash={transfer.transactionHash}>{transfer.transactionHash}</TransactionHashLink>
-                            </Truncate>
-                           
+                                  <TransactionHashLink hash={transfer.transactionHash}>{transfer.transactionHash}</TransactionHashLink>
+                              </Truncate>
+
                           </div>
                           <div className="color-grey-200 pt-1 " style={{fontSize:'1rem'}}>
                             {/* <TRXPrice amount={transfer.amount} name={transfer.tokenName} source='transfers'/> */}

@@ -564,6 +564,9 @@ $color:#C23631;
   .home .color-tron-100{
     color:$color !important;
   }
+  .home .color-transfers-hash .truncate-ellipsis span{
+    color:$color !important;
+  }
   .home-footer{
     background-color: $color-grey-100;
   }
