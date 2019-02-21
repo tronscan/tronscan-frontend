@@ -179,7 +179,7 @@ class Transfers extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           // return <NameWithId value={record}/>
-          return <sapn>{record.amount / Math.pow(10, record.decimals) +' '+record.tokenName}</sapn>
+          return <sapn>{(record.amount / Math.pow(10, record.decimals)).toLocaleString() +' '+record.tokenName}</sapn>
         }
       },
       // {
