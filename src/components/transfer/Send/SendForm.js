@@ -17,6 +17,7 @@ import xhr from "axios";
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
+import { FormatNumberByDecimals } from '../../../utils/number'
 
 const { Option, OptGroup } = Select;
 
@@ -508,9 +509,12 @@ class SendForm extends React.Component {
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+
+                  //item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+                  item.balance = FormatNumberByDecimals(balanceData.balance.toString() , item.decimals);
               }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+                  item.balance = FormatNumberByDecimals(balanceData.toString() , item.decimals);
+                  //item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
           }
           let tokens = _(tokens20)
