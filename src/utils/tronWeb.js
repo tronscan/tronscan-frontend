@@ -60,7 +60,7 @@ export function withTronWeb(InnerComponent) {
               });
 
               try {
-
+                console.log(1);
                 const transactionObj = transactionJsonToProtoBuf(transaction);
 
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
@@ -72,7 +72,7 @@ export function withTronWeb(InnerComponent) {
                 let contractType = contractObj.getType();
 
                 const ledgerBridge = new LedgerBridge();
-
+                console.log(2);
                 const signedResponse = await ledgerBridge.signTransaction({
                   hex: rawDataHex,
                   contractType,

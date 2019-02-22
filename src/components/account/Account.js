@@ -852,13 +852,22 @@ export default class Account extends Component {
 
       try {
         if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-
-          const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
+          let unSignTransaction;
+          if(!delegate) {
+             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
+          }else{
+             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address, delegateValue).catch(e => false);
+          }
           const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
           res = result;
         }
         if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
+          let unSignTransaction;
+          if(!delegate) {
+             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
+          }else{
+             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58,delegateValue).catch(e => false);
+          }
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
