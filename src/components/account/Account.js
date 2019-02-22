@@ -32,6 +32,7 @@ import {connect} from "react-redux";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
+import { FormatNumberByDecimals } from '../../utils/number'
 
 @connect(
     state => ({
@@ -163,9 +164,12 @@ export default class Account extends Component {
         let contractInstance = await tronWeb.contract().at(item.contract_address);
         let balanceData = await contractInstance.balanceOf(account.address).call();
         if (balanceData.balance) {
-          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+          //item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+            item.token20_balance = FormatNumberByDecimals(balanceData.balance.toString() , item.decimals);
         } else {
-          item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+            item.token20_balance = FormatNumberByDecimals(balanceData.toString() , item.decimals);
+         // item.token20_balance = FormatNumberByDecimals(balanceData.toString() , item.decimals)
+
         }
         return item
       });
@@ -192,6 +196,9 @@ export default class Account extends Component {
           .sortBy(tb => -tb.token20_balance)
           .value();
     }
+    // for (let token of tokens20) {
+    //     token.token20Balance = toThousands(token.token20_balance);
+    // }
 
     if (tokens20.length === 0) {
       return (
@@ -217,7 +224,8 @@ export default class Account extends Component {
                                     namePlus={token.name + ' (' + token.symbol + ')'}/>
                   </td>
                   <td className="text-right">
-                    <FormattedNumber value={token.token20_balance} maximumFractionDigits={token.decimals}/>
+                    <span>{token.token20_balance}</span>
+                    {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
                 </tr>
             ))
@@ -412,7 +420,9 @@ export default class Account extends Component {
     }
 
     return (
+
         <div style={{overflow:'auto'}}>
+        <h5>{tu("my_account")}</h5>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -505,6 +515,7 @@ export default class Account extends Component {
 
     return (
         <div style={{overflow:'auto'}}>
+        <h5 style={{marginTop: '10px'}}>{tu("delegate_list")}</h5>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -1844,9 +1855,8 @@ export default class Account extends Component {
                       </button>
                     </div>
                   </div>
-                  <h5>{tu("my_account")}</h5>
+
                   {this.renderFrozenTokens()}
-                  <h5 style={{marginTop: '10px'}}>{tu("delegate_list")}</h5>
                   {this.renderDelegateFrozenTokens()}
                 </div>
               </div>
