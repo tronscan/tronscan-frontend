@@ -18,12 +18,12 @@ import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
 import _ from "lodash";
-
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
-
 import {API_URL} from '../../../constants.js'
+import { FormatNumberByDecimals } from '../../../utils/number'
+
 
 class Address extends React.Component {
   constructor({match}) {
@@ -161,7 +161,18 @@ class Address extends React.Component {
       .sortBy(tb => -tb.map_amount).value();
     address.balances = _(balances)
       .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value()
+      .sortBy(tb => -tb.map_amount).value();
+
+    address.trc20token_balances && address.trc20token_balances.map(item => {
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+        return item
+    });
+    console.log('address.trc20token_balances',address.trc20token_balances)
+    address.token20List =  _(address.trc20token_balances)
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => -tb.token20_balance)
+        .value();
 
     let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
     trxObj1 && address.tokenBalances.unshift(trxObj1)
@@ -564,6 +575,7 @@ class Address extends React.Component {
 
 function mapStateToProps(state) {
   return {
+      tokens20: state.account.tokens20,
   };
 }
 

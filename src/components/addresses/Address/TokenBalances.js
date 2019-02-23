@@ -17,6 +17,7 @@ export  class TokenBalances extends React.Component {
             hideSmallCurrency:true,
             balances:[],
             emptyState: props.emptyState,
+            tokenTRC10:true,
         };
     }
 
@@ -122,9 +123,17 @@ export  class TokenBalances extends React.Component {
         ];
         return column;
     }
+
+    handleTRC10Token = () => {
+        this.setState({tokenTRC10: true});
+    }
+
+    handleTRC20Token = () => {
+        this.setState({tokenTRC10: false});
+    }
     render() {
 
-        let {page, total, pageSize, loading, balances, emptyState: EmptyState = null} = this.state;
+        let {page, total, pageSize, loading, balances, emptyState: EmptyState = null, tokenTRC10} = this.state;
         let column = this.customizedColumn();
         let {intl} = this.props;
 
@@ -150,13 +159,52 @@ export  class TokenBalances extends React.Component {
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
-                {
-                    Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
-                    <div className="text-center p-3 no-data">
-                        {tu("no_tokens_found")}
-                    </div>
-                    :<SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
-                }
+                <div className="account-token-tab address-token-tab">
+                    <a href="javascript:;"
+                       className={"btn btn-default btn-sm" + (tokenTRC10 ? ' active' : '')}
+                       onClick={this.handleTRC10Token}>
+                        {tu("TRC10_token")}
+                    </a>
+                    <a href="javascript:;"
+                       className={"btn btn-default btn-sm ml-2" + (tokenTRC10 ? '' : ' active')}
+                       onClick={this.handleTRC20Token}>
+                        {tu("TRC20_token")}
+                    </a>
+                </div>
+                <div>
+                    {
+                        tokenTRC10?
+                            <div>
+                                {
+                                    Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
+                                        <div className="text-center p-3 no-data">
+                                            {tu("no_tokens_found")}
+                                        </div>
+                                        :
+                                        <div className="mt-5">
+                                            <SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
+                                        </div>
+                                }
+                            </div>:
+                            <div>
+                                {
+                                    Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].map_token_name === "TRX")?
+                                        <div className="text-center p-3 no-data">
+                                            {tu("no_tokens_found")}
+                                        </div>
+                                        :
+                                        <div className="mt-5">
+                                            <SmartTable bordered={true} column={column} data={balances} total={balances.length} locale={locale} addr="address"/>
+                                        </div>
+                                }
+                            </div>
+
+
+
+
+                    }
+                </div>
+
                
             </div>
         )
