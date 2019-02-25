@@ -168,7 +168,6 @@ class Address extends React.Component {
         item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
         return item
     });
-    console.log('address.trc20token_balances',address.trc20token_balances)
     address.token20List =  _(address.trc20token_balances)
         .filter(tb => tb.balance > 0)
         .sortBy(tb => -tb.token20_balance)
@@ -227,7 +226,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
           },
           blocks_produced: {
             id: "blocks-produced",
@@ -301,7 +300,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
           },
           votes: {
             id: "votes",

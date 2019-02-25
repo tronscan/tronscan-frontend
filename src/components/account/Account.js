@@ -185,7 +185,6 @@ export default class Account extends Component {
   renderTRC20Tokens() {
     let { hideSmallCurrency } = this.state;
     let { tokens20 } = this.props;
-    console.log('tokens20',tokens20)
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
           .filter(tb => tb.token20_balance >= 10)
