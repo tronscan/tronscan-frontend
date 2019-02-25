@@ -11,6 +11,7 @@ import {API_URL, ONE_TRX} from "../../../constants";
 import {toastr} from 'react-redux-toastr'
 import {isAddressValid} from "@tronscan/client/src/utils/crypto";
 import { trim } from 'lodash'
+import { FormatNumberByDecimals } from '../../../utils/number'
 
 class TokenHolders extends React.Component {
 
@@ -91,7 +92,8 @@ class TokenHolders extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={Number(record.balance) / (Math.pow(10,token.decimals))}/>
+          // return <FormattedNumber value={Number(record.balance) / (Math.pow(10,token.decimals))}/>
+          return  <span>{ FormatNumberByDecimals(record.balance , token.decimals) }</span>
         }
       },
       {
