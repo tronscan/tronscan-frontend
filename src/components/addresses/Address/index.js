@@ -343,7 +343,9 @@ class Address extends React.Component {
     }
 
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
-    this.setState({totalPower:totalPower});
+    this.setState({
+        totalPower:totalPower,
+    });
 
   }
 
@@ -486,9 +488,9 @@ class Address extends React.Component {
                                   <ul className="list-unstyled m-0">
                                     <li>
                                       <TRXPrice
-                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}/>{' '}
+                                          amount={(address.balance + totalPower) / ONE_TRX}/>{' '}
                                       <span className="small">(<TRXPrice
-                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}
+                                          amount={(address.balance + totalPower) / ONE_TRX}
                                           currency="USD"
                                           showPopup={false}/>)</span>
                                     </li>

@@ -51,14 +51,3 @@ export function FormatNumberByDecimals(number, decimals){
     }
     return Newnumber
 }
-
-// export function toThousands(num) {
-//     let numberString = (num || 0).toString(), result = '';
-//     const arr = numberString.split('.')
-//     const cerrentLength = arr[0].length;
-//     while (cerrentLength > 3) {
-//         result = ',' + arr[0].slice(-3) + arr[0];
-//     }
-//     if (numberString) { result = result + '.' + arr[1]; }
-//     return result;
-// }
