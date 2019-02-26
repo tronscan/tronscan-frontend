@@ -169,7 +169,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     let {receiver, amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
-
+    trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
 
     return (
