@@ -205,9 +205,9 @@ class SendForm extends React.Component {
 
   token20Send = async () => {
 
-    let {to, token, amount, decimals, tokens20} = this.state;
+    let {to, token, amount, decimals} = this.state;
     let TokenName = token.substring(0, token.length - 6);
-    let {onSend} = this.props;
+    let {onSend,tokens20} = this.props;
     let tronWeb;
     if (this.props.wallet.type === "ACCOUNT_LEDGER"){
        tronWeb = this.props.tronWeb();
@@ -327,8 +327,8 @@ class SendForm extends React.Component {
   };
 
   getSelectedTokenBalance = () => {
-    let {tokenBalances} = this.props;
-    let {token,tokens20} = this.state;
+    let {tokenBalances,tokens20} = this.props;
+    let {token} = this.state;
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     if (token && TokenType == 'TRC10') {
@@ -348,7 +348,7 @@ class SendForm extends React.Component {
         }
     }else if(token && TokenType == 'TRC20'){
         let TokenName =  list[0];
-        let balance = parseFloat(find(tokens20, t => t.name === TokenName).balance);
+        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance);
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
             decimals: TokenDecimals,
@@ -381,10 +381,10 @@ class SendForm extends React.Component {
   };
 
   componentDidUpdate() {
-    let {tokenBalances} = this.props;
+    let {tokenBalances,tokens20} = this.props;
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
 
-    let {token, tokens20} = this.state;
+    let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState(
         {
@@ -530,14 +530,20 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances, account, tokens20} = this.props;
+    let {intl, tokenBalances, account, tokens20 } = this.props;
     let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
+    console.log('tokens20',tokens20)
+    console.log('this.state.tokens20',this.state.tokens20)
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
         .value();
     tokenBalances.map(item =>{
         item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
+        return item
+    });
+    tokens20.map(item =>{
+        item.token_name_type =  item.name + '-TRC20';
         return item
     });
     let placeholder = '0.000000';
@@ -628,6 +634,8 @@ class SendForm extends React.Component {
                     {
                         tokens20.map((token, index) => (
                             <Option value={token.token_name_type} key={index}>
+                                {/*<span>{token.name}</span>*/}
+                                {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
                                 {token.name} ({token.token20_balance} {intl.formatMessage({id: "available"})})
                             </Option>
                         ))

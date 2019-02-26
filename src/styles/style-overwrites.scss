@@ -512,6 +512,7 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   }
   &_info_addr2{
     @media screen and (max-width: 768px) {
+      left: 0px;
       top: 30px;
     }
   }
@@ -519,6 +520,12 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
     @media screen and (max-width: 768px) {
       left: 0px;
       top: 55px;
+    }
+  }
+  &_switch_addr3{
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 26px;
     }
   }
 

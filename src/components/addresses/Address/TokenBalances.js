@@ -180,7 +180,7 @@ export  class TokenBalances extends React.Component {
         let columnTRC20 = this.customizedColumnTRC20();
         let {intl} = this.props;
 
-        let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
+        let tableInfo =tokenTRC10? intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'}):intl.formatMessage({id: 'view_total'}) + ' ' + TRC20balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
         let locale  = {emptyText: intl.formatMessage({id: 'no_tokens_found'})}
         // if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
         //     if (!EmptyState) {
@@ -195,10 +195,10 @@ export  class TokenBalances extends React.Component {
         return (
             <div className="token_black table_pos">
                 <div className=" d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-md-block table_pos_info_addr">
+                  <div className="table_pos_info d-md-block table_pos_info_addr d-none">
                       {tableInfo}
                   </div>
-                  <div className="table_pos_switch d-md-block table_pos_switch_addr">
+                  <div className="table_pos_switch d-md-block table_pos_switch_addr3">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
