@@ -31,6 +31,9 @@ const initialState = {
     en: "English",
     zh: "简体中文",
     ja:  "日本語",
+    ko: "한국어",
+    // ar: "العربية",
+    ru: "Pусский",
   },
   activeLanguage: 'en',
   account: {
