@@ -39,6 +39,7 @@ import { FormatNumberByDecimals } from '../../utils/number'
       account: state.app.account,
       walletType: state.app.wallet,
       tokenBalances: state.account.tokens,
+      tokens20: state.account.tokens20,
       totalTransactions: state.account.totalTransactions,
       frozen: state.account.frozen,
       accountResource: state.account.accountResource,
@@ -86,7 +87,7 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   }
 
@@ -96,7 +97,7 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   }
 
@@ -182,16 +183,15 @@ export default class Account extends Component {
   }
 
   renderTRC20Tokens() {
-    let {hideSmallCurrency, tokens20} = this.state;
+    let { hideSmallCurrency } = this.state;
+    let { tokens20 } = this.props;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance >= 10)
           .sortBy(tb => -tb.token20_balance)
           .value();
     } else {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance > 0)
           .sortBy(tb => -tb.token20_balance)
           .value();

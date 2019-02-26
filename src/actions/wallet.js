@@ -1,6 +1,7 @@
 import {Client} from "../services/api";
 import {setTokenBalances} from "./account";
 import rebuildList from "../utils/rebuildList";
+import { FormatNumberByDecimals } from '../utils/number'
 
 export const SET_ACTIVE_WALLET = 'SET_ACTIVE_WALLET';
 export const SET_WALLET_LOADING = 'SET_WALLET_LOADING';
@@ -47,6 +48,11 @@ export const reloadWallet = () => async (dispatch, getState) => {
       wallet.exchanges = rebuildList(exchanges, ['first_token_id', 'second_token_id'], ['first_token_balance', 'second_token_balance']);
       wallet.tokenBalances = rebuildList(tokenBalances, 'name', 'balance');
       let balances_new = rebuildList(balances, 'name', 'balance');
+      trc20token_balances && trc20token_balances.map(item => {
+          item.token20_name = item.name + '(' + item.symbol + ')';
+          item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+          return item
+      });
       dispatch(setActiveWallet(wallet));
       dispatch(setTokenBalances(balances_new, trc20token_balances, frozen, accountResource.frozen_balance_for_energy, delegated));
   }

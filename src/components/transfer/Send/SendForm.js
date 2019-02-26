@@ -376,7 +376,7 @@ class SendForm extends React.Component {
     let {account} = this.props;
     if (account.isLoggedIn) {
       this.props.reloadWallet();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   };
 
@@ -530,8 +530,8 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances, account} = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20,decimals} = this.state;
+    let {intl, tokenBalances, account, tokens20} = this.props;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
@@ -628,7 +628,7 @@ class SendForm extends React.Component {
                     {
                         tokens20.map((token, index) => (
                             <Option value={token.token_name_type} key={index}>
-                                {token.name} ({token.balance} {intl.formatMessage({id: "available"})})
+                                {token.name} ({token.token20_balance} {intl.formatMessage({id: "available"})})
                             </Option>
                         ))
                     }
@@ -684,6 +684,7 @@ function mapStateToProps(state) {
     account: state.app.account,
     wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
+    tokens20: state.account.tokens20,
   };
 }
 
