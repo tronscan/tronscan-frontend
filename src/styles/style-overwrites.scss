@@ -361,6 +361,7 @@ body .token_black {
     }
     span{
       color: $text-block-dark;
+      position: relative;
     }
     h3, h3 *{
       color: $bg-color;
