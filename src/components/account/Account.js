@@ -261,7 +261,7 @@ export default class Account extends Component {
         <table className="table mt-3 temp-table">
           <thead className="thead-light">
           <tr>
-            <th>{tu("name")}</th>
+            <th width="40%">{tu("name")}</th>
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
@@ -528,8 +528,8 @@ export default class Account extends Component {
           </thead>
           <tbody>
           {
-            delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.map((item)=>{
-              return <tr>
+            delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.map((item,index)=>{
+              return <tr key={index}>
                 <td>
                   <AddressLink address={item.to} truncate={false}>
                     <span className="color-tron-100">{item.to}</span>
