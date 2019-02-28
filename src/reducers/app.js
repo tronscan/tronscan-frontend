@@ -77,7 +77,8 @@ const initialState = {
     mobileLogin: false,
     showSr: false,
     scanTransactionQr: false,
-  }
+  },
+  isRightText: false
 };
 
 export function appReducer(state = initialState, action) {
@@ -109,9 +110,15 @@ export function appReducer(state = initialState, action) {
 
       Lockr.set("language", language);
 
+      let isright = false
+      if(language === 'ar'){
+        isright = true
+      }
+
       return {
         ...state,
         activeLanguage: language,
+        isRightText: isright
       };
     }
 
