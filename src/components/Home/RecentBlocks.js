@@ -27,7 +27,7 @@ class RecentBlocks extends Component {
   componentDidMount() {
     this.props.loadBlocks();
     this.props.setInterval(() => {
-      // this.props.loadBlocks();
+      this.props.loadBlocks();
     }, 10000);
   }
 

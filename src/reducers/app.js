@@ -111,7 +111,7 @@ export function appReducer(state = initialState, action) {
       Lockr.set("language", language);
 
       let isright = false
-      if(language === 'ar'){
+      if(language === 'ar' || language === 'fa'){
         isright = true
       }
 
