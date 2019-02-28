@@ -180,7 +180,7 @@ export const messages = {
     "split_by_country": "以国家/地区划分",
     "total_accounts_last_day": "截止上一天总账户数",
     "chart_tip": "拖拽数据窗口来放大或缩小",
-    "link_test_server": "测试网",
+    "link_test_server": "测试网（shasta）",
     "highest": "最大",
     "lowest": "最小",
     "increase": "增长",

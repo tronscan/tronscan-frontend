@@ -180,7 +180,7 @@ export const messages = {
     "split_by_country": "국가 및 지역별 순위",
     "total_accounts_last_day": "전날까지 총 계좌 수",
     "chart_tip": "데이터 영역을 드래그하여 확대하고 축소하세요",
-    "link_test_server": "테스트 넷",
+    "link_test_server": "테스트 넷（shasta）",
     "highest": "최대",
     "lowest": "최소",
     "increase": "증가",

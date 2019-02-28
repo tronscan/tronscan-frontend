@@ -500,16 +500,6 @@ export const routes = [
                 //     icon: "fa fa-download",
                 //     label: "desktop_explorer"
                 // },
-                // {
-                //     url: "https://explorer.shasta.trongrid.io",
-                //     icon: "fa fa-link",
-                //     label: "link_test_server"
-                // },
-                {
-                    url: "https://www.trongrid.io/shasta",
-                    icon: "fa fa-recycle",
-                    label: "link_test_fauct"
-                }
             ],
             [
                   "Documentation",
@@ -579,6 +569,16 @@ export const routes = [
             ],
             [
                   "Other",
+                  {
+                      url: "https://shasta.tronscan.org",
+                      icon: "fa fa-link",
+                      label: "link_test_server"
+                  },
+                  {
+                      url: "https://www.trongrid.io/shasta",
+                      icon: "fa fa-recycle",
+                      label: "link_test_fauct"
+                  },
                   {
                       url: "https://dapphouse.org",
                       icon:"fa fa-archive",
