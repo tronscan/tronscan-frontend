@@ -181,7 +181,7 @@ export const messages = {
   "split_by_country": "Рейтинг по странам и регионам",
   "total_accounts_last_day": "Всего счетов за последний день",
   "chart_tip": "Выберите область данных, чтобы увеличить или уменьшить масштаб",
-  "link_test_server": "Тестнет",
+  "link_test_server": "Тестнет（shasta）",
   "highest": "Наибольший ",
   "lowest": "Низший ",
   "increase": "увеличить ",

@@ -148,7 +148,7 @@ class ExchangeList extends React.Component {
                             <a href={intl.locale == 'zh' ? "https://t.me/trxmarketCN" : "https://t.me/trxmarketEN"} target="_bank" className="pr-1 border-right border-light">{tu('Submit_a_bug')}</a>
                             <a href={intl.locale == 'zh' ? "https://coin.top/production/js/20190116041944.pdf" : "https://coin.top/production/js/20190116042101.pdf"}
                                 target="_blank" className="px-1 border-right  border-light">{tu('beginners_guide')}</a>
-                            <a href="https://goo.gl/forms/EduMcD5OvkZFi18H3"
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoD6LrVpSdtcb0fJEnkck90IpJ1LTyWKkVd3kQGOKw8rtYhA/viewform"
                                 target="_blank" className="pl-1">{tu('token_application_instructions_title')}</a>
                         </div>
                         

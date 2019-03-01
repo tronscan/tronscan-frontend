@@ -181,7 +181,7 @@ export const messages = {
     "split_by_country": "国・地域で区割り",
     "total_accounts_last_day": "総アカウント数（昨日まで）",
     "chart_tip": "データウィンドウをドラッグしてズームインまたはズームアウトする",
-    "link_test_server": "テストネット",
+    "link_test_server": "テストネット（shasta）",
     "highest": "最大",
     "lowest": "最低",
     "increase": "増加",
