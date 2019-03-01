@@ -17,6 +17,8 @@ import xhr from "axios";
 import {Select} from 'antd';
 import isMobile from '../../../utils/isMobile';
 import {withTronWeb} from "../../../utils/tronWeb";
+import { FormatNumberByDecimals } from '../../../utils/number'
+import {transactionResultManager} from "../../../utils/tron"
 
 const { Option, OptGroup } = Select;
 
@@ -121,7 +123,6 @@ class SendForm extends React.Component {
                 console.log(e)
             });
         }
-        success = result.result;
         if (result) {
             success = result.result;
          } else {
@@ -204,20 +205,45 @@ class SendForm extends React.Component {
 
   token20Send = async () => {
 
-    let {to, token, amount, decimals, tokens20} = this.state;
+    let {to, token, amount, decimals} = this.state;
     let TokenName = token.substring(0, token.length - 6);
-    let {onSend} = this.props;
+    let {onSend,tokens20} = this.props;
     let tronWeb;
-    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
-       tronWeb = this.props.tronWeb();
-    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
-       tronWeb = this.props.account.tronWeb;
-    }
+    let transactionId;
     this.setState({ isLoading: true, modal: null });
     let contractAddress = find(tokens20, t => t.name === TokenName).contract_address;
-    let contractInstance = await tronWeb.contract().at(contractAddress);
-    amount = this.Mul(amount,Math.pow(10, decimals));
-    const transactionId = await contractInstance.transfer(to, amount).send();
+
+    if (this.props.wallet.type === "ACCOUNT_LEDGER"){
+      tronWeb = this.props.tronWeb();
+
+      // Send TRC20
+      let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
+                  tronWeb.address.toHex(contractAddress),
+                  'transfer(address,uint256)',
+                  10000000, 0,
+                  [
+                  { type: 'address', value: tronWeb.address.toHex(to)},
+                  { type: 'uint256', value: this.Mul(amount,Math.pow(10, decimals))}
+                  ],
+                  tronWeb.address.toHex(this.props.wallet.address),
+              );
+      if (unSignTransaction.transaction !== undefined)
+        unSignTransaction = unSignTransaction.transaction;
+        
+      unSignTransaction.extra = {
+            to: to,
+            decimals: decimals,
+            token_name: TokenName,
+            amount: amount,
+      }
+      transactionId = await transactionResultManager(unSignTransaction, tronWeb)
+
+    }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
+      tronWeb = this.props.account.tronWeb;
+      let contractInstance = await tronWeb.contract().at(contractAddress);
+      transactionId = await contractInstance.transfer(to, this.Mul(amount,Math.pow(10, decimals))).send();
+    }
+    
     if (transactionId) {
       this.refreshTokenBalances();
       onSend && onSend();
@@ -326,8 +352,8 @@ class SendForm extends React.Component {
   };
 
   getSelectedTokenBalance = () => {
-    let {tokenBalances} = this.props;
-    let {token,tokens20} = this.state;
+    let {tokenBalances,tokens20} = this.props;
+    let {token} = this.state;
     let TokenType =  token.substr(token.length-5,5);
     let list = token.split('-')
     if (token && TokenType == 'TRC10') {
@@ -347,7 +373,7 @@ class SendForm extends React.Component {
         }
     }else if(token && TokenType == 'TRC20'){
         let TokenName =  list[0];
-        let balance = parseFloat(find(tokens20, t => t.name === TokenName).balance);
+        let balance = parseFloat(find(tokens20, t => t.name === TokenName).token20_balance);
         let TokenDecimals = parseFloat(find(tokens20, t => t.name === TokenName).decimals);
         this.setState({
             decimals: TokenDecimals,
@@ -375,15 +401,15 @@ class SendForm extends React.Component {
     let {account} = this.props;
     if (account.isLoggedIn) {
       this.props.reloadWallet();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   };
 
   componentDidUpdate() {
-    let {tokenBalances} = this.props;
+    let {tokenBalances,tokens20} = this.props;
     tokenBalances = _.filter(tokenBalances, tb => tb.balance > 0);
 
-    let {token, tokens20} = this.state;
+    let {token} = this.state;
     if (!token && tokenBalances.length > 0) {
       this.setState(
         {
@@ -508,9 +534,12 @@ class SendForm extends React.Component {
               let  contractInstance = await tronWeb.contract().at(item.contract_address);
               let  balanceData = await contractInstance.balanceOf(account.address).call();
               if(balanceData.balance){
-                  item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+
+                  //item.balance = parseFloat(balanceData.balance.toString()) / Math.pow(10,item.decimals);
+                  item.balance = FormatNumberByDecimals(balanceData.balance.toString() , item.decimals);
               }else{
-                  item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
+                  item.balance = FormatNumberByDecimals(balanceData.toString() , item.decimals);
+                  //item.balance = parseFloat(balanceData.toString()) / Math.pow(10,item.decimals);
               }
           }
           let tokens = _(tokens20)
@@ -526,14 +555,20 @@ class SendForm extends React.Component {
 
   render() {
 
-    let {intl, tokenBalances, account} = this.props;
-    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,tokens20,decimals} = this.state;
+    let {intl, tokenBalances, account, tokens20 } = this.props;
+    let {isLoading, sendStatus, modal, to, note, toAccount, token, amount, privateKey,decimals} = this.state;
+    console.log('tokens20',tokens20)
+    console.log('this.state.tokens20',this.state.tokens20)
     tokenBalances = _(tokenBalances)
         .filter(tb => tb.balance > 0)
         .filter(tb => tb.map_token_id > 0 || tb.map_token_id == '_')
         .value();
     tokenBalances.map(item =>{
         item.token_name_type = item.map_token_name + '-' + item.map_token_id + '-TRC10';
+        return item
+    });
+    tokens20.map(item =>{
+        item.token_name_type =  item.name + '-TRC20';
         return item
     });
     let placeholder = '0.000000';
@@ -624,7 +659,9 @@ class SendForm extends React.Component {
                     {
                         tokens20.map((token, index) => (
                             <Option value={token.token_name_type} key={index}>
-                                {token.name} ({token.balance} {intl.formatMessage({id: "available"})})
+                                {/*<span>{token.name}</span>*/}
+                                {/*({token.token20_balance} {intl.formatMessage({id: "available"})})*/}
+                                {token.name} ({token.token20_balance} {intl.formatMessage({id: "available"})})
                             </Option>
                         ))
                     }
@@ -680,6 +717,7 @@ function mapStateToProps(state) {
     account: state.app.account,
     wallet: state.app.wallet,
     tokenBalances: state.account.tokens,
+    tokens20: state.account.tokens20,
   };
 }
 

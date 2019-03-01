@@ -110,15 +110,29 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
 
         if(this.props.wallet.type==="ACCOUNT_LEDGER") {
-          const unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
-              amount * ONE_TRX,
-              3,
-              type,
-              wallet.address);
+          let unSignTransaction;
+          if(receiver==="") {
+             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                amount * ONE_TRX,
+                3,
+                type,
+                wallet.address);
+          }else{
+             unSignTransaction = await tronWebLedger.transactionBuilder.freezeBalance(
+                amount * ONE_TRX,
+                3,
+                type,
+                wallet.address, receiver);
+          }
            result = await transactionResultManager(unSignTransaction, tronWebLedger);
         }
         if(this.props.wallet.type==="ACCOUNT_TRONLINK"){
-          const unSignTransaction = await tronWeb.transactionBuilder.freezeBalance( amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e=>false);
+          let unSignTransaction;
+          if(receiver==="") {
+             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58).catch(e => false);
+          }else{
+             unSignTransaction = await tronWeb.transactionBuilder.freezeBalance(amount * ONE_TRX, 3, type, tronWeb.defaultAddress.base58,receiver).catch(e => false);
+          }
            result = await transactionResultManager(unSignTransaction,tronWeb)
         }
 
@@ -155,7 +169,7 @@ export default class FreezeBalanceModal extends React.PureComponent {
 
     let {receiver, amount, confirmed, loading, resources, selectedResource} = this.state;
     let {trxBalance, frozenTrx, intl} = this.props;
-
+    trxBalance = !trxBalance ? 0 :  trxBalance;
     let isValid =  (amount > 0 && trxBalance >= amount && confirmed);
 
     return (

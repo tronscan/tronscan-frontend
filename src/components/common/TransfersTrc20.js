@@ -7,6 +7,7 @@ import {AddressLink, TransactionHashLink} from "./Links";
 import {TRXPrice} from "./Price";
 import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
+import { FormatNumberByDecimals } from '../../utils/number'
 import TimeAgo from "react-timeago";
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
@@ -179,7 +180,7 @@ class Transfers extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           // return <NameWithId value={record}/>
-          return <sapn>{record.amount / Math.pow(10, record.decimals) +' '+record.tokenName}</sapn>
+          return <sapn>{FormatNumberByDecimals(record.amount, record.decimals) +' '+record.tokenName}</sapn>
         }
       },
       // {

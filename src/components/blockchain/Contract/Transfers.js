@@ -10,6 +10,8 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
 import {API_URL} from '../../../constants.js'
+import { FormatNumberByDecimals } from '../../../utils/number'
+
 
 
 class Transfers extends React.Component {
@@ -134,7 +136,8 @@ class Transfers extends React.Component {
                 className: 'ant_table',
                 render: (text, record, index) => {
                     return <span>
-                    <FormattedNumber value={record.quant / (Math.pow(10,token.decimals))}/>
+                    {/*<FormattedNumber value={parseFloat(record.quant) / (Math.pow(10,token.decimals))}/>*/}
+                        <span>{ FormatNumberByDecimals(record.quant , token.decimals) }</span>
                     &nbsp;&nbsp;
                     <TokenTRC20Link name={token.symbol} address={token.contract_address} />
                 </span>

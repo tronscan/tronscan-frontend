@@ -18,12 +18,12 @@ import PieReact from "../../common/PieChart";
 import xhr from "axios/index";
 import {sortBy, toUpper} from "lodash";
 import _ from "lodash";
-
 import Blocks from "../../common/Blocks";
 import {channel} from "../../../services/api";
 import rebuildList from "../../../utils/rebuildList";
-
 import {API_URL} from '../../../constants.js'
+import { FormatNumberByDecimals } from '../../../utils/number'
+
 
 class Address extends React.Component {
   constructor({match}) {
@@ -161,7 +161,17 @@ class Address extends React.Component {
       .sortBy(tb => -tb.map_amount).value();
     address.balances = _(balances)
       .sortBy(tb => toUpper(tb.map_token_name))
-      .sortBy(tb => -tb.map_amount).value()
+      .sortBy(tb => -tb.map_amount).value();
+
+    address.trc20token_balances && address.trc20token_balances.map(item => {
+        item.token20_name = item.name + '(' + item.symbol + ')';
+        item.token20_balance = FormatNumberByDecimals(item.balance, item.decimals);
+        return item
+    });
+    address.token20List =  _(address.trc20token_balances)
+        .filter(tb => tb.balance > 0)
+        .sortBy(tb => -tb.token20_balance)
+        .value();
 
     let trxObj1 = _.remove(address.tokenBalances, o => toUpper(o.map_token_name) == 'TRX')[0]
     trxObj1 && address.tokenBalances.unshift(trxObj1)
@@ -216,7 +226,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
           },
           blocks_produced: {
             id: "blocks-produced",
@@ -290,7 +300,7 @@ class Address extends React.Component {
             // icon: "fa fa-piggy-bank",
             path: "/token-balances",
             label: <span>{tu("token_balances")}</span>,
-            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl}/>,
+            cmp: () => <TokenBalances tokenBalances={address.balances} intl={intl} token20Balances={address.token20List}/>,
           },
           votes: {
             id: "votes",
@@ -333,7 +343,9 @@ class Address extends React.Component {
     }
 
     let totalPower=sentDelegateBandwidth+frozenBandwidth+sentDelegateResource+frozenEnergy;
-    this.setState({totalPower:totalPower});
+    this.setState({
+        totalPower:totalPower,
+    });
 
   }
 
@@ -476,9 +488,9 @@ class Address extends React.Component {
                                   <ul className="list-unstyled m-0">
                                     <li>
                                       <TRXPrice
-                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}/>{' '}
+                                          amount={(address.balance + totalPower) / ONE_TRX}/>{' '}
                                       <span className="small">(<TRXPrice
-                                          amount={(address.balance + address.frozen.total + (address.accountResource.frozen_balance_for_energy.frozen_balance ? address.accountResource.frozen_balance_for_energy.frozen_balance : 0)) / ONE_TRX}
+                                          amount={(address.balance + totalPower) / ONE_TRX}
                                           currency="USD"
                                           showPopup={false}/>)</span>
                                     </li>
@@ -564,6 +576,7 @@ class Address extends React.Component {
 
 function mapStateToProps(state) {
   return {
+      tokens20: state.account.tokens20,
   };
 }
 

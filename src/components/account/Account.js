@@ -32,12 +32,14 @@ import {connect} from "react-redux";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
+import { FormatNumberByDecimals } from '../../utils/number'
 
 @connect(
     state => ({
       account: state.app.account,
       walletType: state.app.wallet,
       tokenBalances: state.account.tokens,
+      tokens20: state.account.tokens20,
       totalTransactions: state.account.totalTransactions,
       frozen: state.account.frozen,
       accountResource: state.account.accountResource,
@@ -85,7 +87,7 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   }
 
@@ -95,7 +97,7 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      this.getTRC20Tokens();
+      //this.getTRC20Tokens();
     }
   }
 
@@ -163,9 +165,12 @@ export default class Account extends Component {
         let contractInstance = await tronWeb.contract().at(item.contract_address);
         let balanceData = await contractInstance.balanceOf(account.address).call();
         if (balanceData.balance) {
-          item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+          //item.token20_balance = parseFloat(balanceData.balance.toString()) / Math.pow(10, item.decimals);
+            item.token20_balance = FormatNumberByDecimals(balanceData.balance.toString() , item.decimals);
         } else {
-          item.token20_balance = parseFloat(balanceData.toString()) / Math.pow(10, item.decimals);
+            item.token20_balance = FormatNumberByDecimals(balanceData.toString() , item.decimals);
+         // item.token20_balance = FormatNumberByDecimals(balanceData.toString() , item.decimals)
+
         }
         return item
       });
@@ -178,20 +183,22 @@ export default class Account extends Component {
   }
 
   renderTRC20Tokens() {
-    let {hideSmallCurrency, tokens20} = this.state;
+    let { hideSmallCurrency } = this.state;
+    let { tokens20 } = this.props;
     if (hideSmallCurrency) {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance >= 10)
           .sortBy(tb => -tb.token20_balance)
           .value();
     } else {
       tokens20 = _(tokens20)
-          .filter(tb => tb.token20_name.toUpperCase() !== "TRX")
           .filter(tb => tb.token20_balance > 0)
           .sortBy(tb => -tb.token20_balance)
           .value();
     }
+    // for (let token of tokens20) {
+    //     token.token20Balance = toThousands(token.token20_balance);
+    // }
 
     if (tokens20.length === 0) {
       return (
@@ -217,7 +224,8 @@ export default class Account extends Component {
                                     namePlus={token.name + ' (' + token.symbol + ')'}/>
                   </td>
                   <td className="text-right">
-                    <FormattedNumber value={token.token20_balance} maximumFractionDigits={token.decimals}/>
+                    <span>{token.token20_balance}</span>
+                    {/*<FormattedNumber value={token.token20_balance} maximumFractionDigits={20}/>*/}
                   </td>
                 </tr>
             ))
@@ -253,7 +261,7 @@ export default class Account extends Component {
         <table className="table mt-3 temp-table">
           <thead className="thead-light">
           <tr>
-            <th>{tu("name")}</th>
+            <th width="40%">{tu("name")}</th>
             <th>ID</th>
             <th>{tu("TRC20_decimals")}</th>
             <th className="text-right">{tu("balance")}</th>
@@ -412,7 +420,9 @@ export default class Account extends Component {
     }
 
     return (
+
         <div style={{overflow:'auto'}}>
+        <h5>{tu("my_account")}</h5>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -505,6 +515,7 @@ export default class Account extends Component {
 
     return (
         <div style={{overflow:'auto'}}>
+        <h5 style={{marginTop: '10px'}}>{tu("delegate_list")}</h5>
         <table className="table m-0 temp-table">
           <thead className="thead-light">
           <tr>
@@ -517,8 +528,8 @@ export default class Account extends Component {
           </thead>
           <tbody>
           {
-            delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.map((item)=>{
-              return <tr>
+            delegated&&delegated.sentDelegatedBandwidth&&delegated.sentDelegatedBandwidth.map((item,index)=>{
+              return <tr key={index}>
                 <td>
                   <AddressLink address={item.to} truncate={false}>
                     <span className="color-tron-100">{item.to}</span>
@@ -841,13 +852,22 @@ export default class Account extends Component {
 
       try {
         if (this.props.walletType.type === "ACCOUNT_LEDGER") {
-
-          const unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
+          let unSignTransaction;
+          if(!delegate) {
+             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address).catch(e => false);
+          }else{
+             unSignTransaction = await tronWebLedger.transactionBuilder.unfreezeBalance(delegateType, walletType.address, delegateValue).catch(e => false);
+          }
           const {result} = await transactionResultManager(unSignTransaction, tronWebLedger);
           res = result;
         }
         if (this.props.walletType.type === "ACCOUNT_TRONLINK") {
-          const unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
+          let unSignTransaction;
+          if(!delegate) {
+             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58).catch(e => false);
+          }else{
+             unSignTransaction = await tronWeb.transactionBuilder.unfreezeBalance(delegateType, tronWeb.defaultAddress.base58,delegateValue).catch(e => false);
+          }
           const {result} = await transactionResultManager(unSignTransaction, tronWeb);
           res = result;
         }
@@ -1845,9 +1865,8 @@ export default class Account extends Component {
                       </button>
                     </div>
                   </div>
-                  <h5>{tu("my_account")}</h5>
+
                   {this.renderFrozenTokens()}
-                  <h5 style={{marginTop: '10px'}}>{tu("delegate_list")}</h5>
                   {this.renderDelegateFrozenTokens()}
                 </div>
               </div>

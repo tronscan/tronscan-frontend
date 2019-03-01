@@ -19,7 +19,7 @@ export async function transactionResultManager(transaction, tronWeb) {
     }
     return broadcast;
   } else {
-    return {result: false};
+    return false;
   }
 }
 

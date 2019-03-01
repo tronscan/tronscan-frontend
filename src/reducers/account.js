@@ -37,11 +37,14 @@ export function accountReducer(state = initialState, action) {
       let trxObj = _.remove(tokenList, o => toUpper(o.map_token_name) == 'TRX')[0]
 
       trxObj && tokenList.unshift(trxObj)
-      
+      let token20List =  _(action.trc20token)
+          .filter(tb => tb.balance > 0)
+          .sortBy(tb => -tb.token20_balance)
+          .value();
       return {
         ...state,
         trxBalance,
-        tokens20:action.trc20token,
+        tokens20:token20List,
         tokens: tokenList,
         frozen: {
           ...action.frozen,

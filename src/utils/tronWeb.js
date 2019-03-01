@@ -60,7 +60,6 @@ export function withTronWeb(InnerComponent) {
 
 
               try {
-
                 const transactionObj = transactionJsonToProtoBuf(transaction);
 
                 const rawDataHex = byteArray2hexStr(transactionObj.getRawData().serializeBinary());
@@ -139,10 +138,14 @@ export function withTronWeb(InnerComponent) {
                       };
                       tokenInfo.push(exchange.message);
                       break;
+
+                    case 31: //Trigger Smart Contract
+                      extra = transaction.extra;
+                      break;
                 }
 
-                extra.hash = rawDataHex;
-                  
+                extra.hash = transaction.txID;
+
                 this.setState({
                   modal: await this.buildModal(extra, transaction)
                 });
