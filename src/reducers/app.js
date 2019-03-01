@@ -35,6 +35,7 @@ const initialState = {
     ar: "العربية",
     ru: "Pусский",
     fa: "فارسی",
+    es: "Español",
   },
   activeLanguage: 'en',
   account: {
