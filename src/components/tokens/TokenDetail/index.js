@@ -84,6 +84,20 @@ class TokenDetail extends React.Component {
                     cmp: () => <TokenInfo token={token}/>
                 },
                 {
+                    id: "transfers",
+                    icon: "",
+                    path: "/transfers",
+                    label: <span>{tu("token_transfers")}</span>,
+                    cmp: () => <Transfers filter={{token: token.name, address: token.ownerAddress}}/>
+                },
+                {
+                    id: "holders",
+                    icon: "",
+                    path: "/holders",
+                    label: <span>{tu("token_holders")}</span>,
+                    cmp: () => <TokenHolders filter={{token: token.name, address: token.ownerAddress}} token={{totalSupply: token.totalSupply}} tokenPrecision ={{precision:token.precision}}/>
+                },
+                {
                     id: "BTTSupply",
                     icon: "",
                     path: "/supply",
