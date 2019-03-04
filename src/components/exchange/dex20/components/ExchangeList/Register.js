@@ -90,12 +90,19 @@ class Register extends Component{
           {
             title:trc20_amount,
             dataIndex: 'amount',
-            key: 'amount'
+            key: 'amount',
+            align:'right',
+            render:(text)=>{
+              return (
+                <span>{Number(text).toFixed(2)}</span>
+              )
+            }
           },
           {
             title:trc20_accumulative,
             dataIndex: 'cje',
-            key: 'cje'
+            key: 'cje',
+            align:'right'
           }
         ];
 
@@ -116,12 +123,19 @@ class Register extends Component{
           {
             title:'',
             dataIndex: 'amount',
-            key: 'amount'
+            key: 'amount',
+            align:'right',
+            render:(text)=>{
+              return (
+                <span>{Number(text).toFixed(2)}</span>
+              )
+            }
           },
           {
             title:'',
             dataIndex: 'cje',
-            key: 'cje'
+            key: 'cje',
+            align:'right'
           }
         ];
 

@@ -30,6 +30,7 @@ class ExchangeTable extends React.Component {
     const columns = [{
       title: upperFirst(intl.formatMessage({id: 'pairs'})),
       key: 'first_token_id',
+      width:120,
       render: (text, record, index) => {
         return <div className="position-relative">
           {
@@ -56,14 +57,20 @@ class ExchangeTable extends React.Component {
       }
     },
     {
-      title: upperFirst(intl.formatMessage({id: 'last_price'})),
+      title:upperFirst(intl.formatMessage({id: 'last_price'})),
+      align:'right',
       dataIndex: 'price',
       key: 'price',
+      render:(text,record)=>{
+        return (<div className="textRight">{(text).toFixed(record.sPrecision) }</div>)
+      } 
     }, 
     {
       title:upperFirst(intl.formatMessage({id: 'pairs_change'})),
       dataIndex: 'up_down_percent',
       key: 'up_down_percent',
+      align:'right',
+      width:100,
       render: (text, record, index) => {
         return (
           text.indexOf('-') != -1?

@@ -93,6 +93,20 @@ class ApiClient20 {
     return data;
   }
 
+    /**
+   * 添加订单渠道ID
+   */
+  async addChannelId(query, headers) {
+    let {data} =  await xhr({
+      method: 'post',
+      url: `${this.apiUrl}/api/exchange/user/chanIdAdd`,
+      // url:'http://172.16.21.24:21110/api/exchange/user/chanIdAdd',
+      data: query,
+      headers:headers
+    });
+    return data;
+  }
+
 }
 
 export const Client20 = new ApiClient20()
