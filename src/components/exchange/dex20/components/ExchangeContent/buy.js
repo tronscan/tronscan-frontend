@@ -382,6 +382,7 @@ class Buy extends Component {
             )
             clearInterval(timer2)
             if (c_id) {
+
               Client20.addChannelId(
                 {
                   hash: id,
