@@ -32,7 +32,7 @@ class RecentBlocks extends Component {
   }
 
   render() {
-    let {blocks} = this.props;
+    let {blocks, isRightText} = this.props;
     if (blocks.length === 0) {
       return (
           <div className="text-center d-flex justify-content-center">
@@ -89,14 +89,11 @@ class RecentBlocks extends Component {
                             </div>
                             <div className="text-gray-dark break-word color-grey-200 list-item-word"
                                  style={styles.nowrap}>
-                              <span className="small color-grey-300">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
+                              <span className="small color-grey-300 d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
                             </div>
 
                           </div>
                           <div className="ml-auto text-right d-flex flex-column pt-2">
-
-                            
-                            
                           </div>
                         </div>
                       </div>
@@ -138,7 +135,7 @@ class RecentBlocks extends Component {
 
                             <div className="text-gray-dark break-word color-grey-200 list-item-word"
                                  style={styles.nowrap}>
-                              {tu("block_reward")}: <TRXPrice amount={32}/>
+                              <span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
                             </div>
                             <div className="text-muted color-grey-300 small" style={styles.nowrap}>
                               <TimeAgo date={block.timestamp}/>
@@ -163,6 +160,7 @@ function mapStateToProps(state) {
   return {
     blocks: state.blockchain.blocks,
     activeLanguage: state.app.activeLanguage,
+    isRightText: state.app.isRightText
   };
 }
 

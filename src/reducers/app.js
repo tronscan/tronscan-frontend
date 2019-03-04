@@ -31,9 +31,11 @@ const initialState = {
     en: "English",
     zh: "简体中文",
     ja:  "日本語",
-    //ko: "한국어",
-    // ar: "العربية",
-    //ru: "Pусский",
+    ko: "한국어",
+    ar: "العربية",
+    ru: "Pусский",
+    fa: "فارسی",
+    es: "Español",
   },
   activeLanguage: 'en',
   account: {
@@ -76,7 +78,8 @@ const initialState = {
     mobileLogin: false,
     showSr: false,
     scanTransactionQr: false,
-  }
+  },
+  isRightText: false
 };
 
 export function appReducer(state = initialState, action) {
@@ -108,9 +111,15 @@ export function appReducer(state = initialState, action) {
 
       Lockr.set("language", language);
 
+      let isright = false
+      if(language === 'ar' || language === 'fa'){
+        isright = true
+      }
+
       return {
         ...state,
         activeLanguage: language,
+        isRightText: isright
       };
     }
 

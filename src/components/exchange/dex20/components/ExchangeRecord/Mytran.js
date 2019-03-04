@@ -69,6 +69,7 @@ class Mytran extends Component {
         title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_time'})),
         dataIndex: 'orderTime',
         key: 'orderTime',
+        width:200,
         render: (text, record, index) => {
           return <span>
           <FormattedDate value={Number(record.orderTime)}/> &nbsp;
@@ -105,6 +106,19 @@ class Mytran extends Component {
         render: (text, record, index) => {
           return   <span>{ this.numFormat(record.curTurnover.toFixed(4))}{ record.sShortName }</span>
         }
+      },
+      {
+        title: upperFirst(intl.formatMessage({id: 'trc20_cur_order_header_progress'})),
+        dataIndex: 'schedule',
+        key: 'schedule',
+        align: 'center',
+        render: (text, record, index) => {
+          return (
+            record.orderType === 0 ?
+          <span className="col-green">{(+record.schedule * 100).toFixed(2)}%</span>:
+          <span className="col-red">{(+record.schedule * 100).toFixed(2)}%</span>
+          );
+        },
       },
       {
         title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
