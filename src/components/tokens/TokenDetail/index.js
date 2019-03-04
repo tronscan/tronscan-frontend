@@ -34,6 +34,7 @@ class TokenDetail extends React.Component {
       tabs: [],
       buyAmount: 0,
       alert: null,
+      currentTotalSupply:'',
     };
   }
 
@@ -58,7 +59,12 @@ class TokenDetail extends React.Component {
         }
     }
   }
-
+    loadTotalTRXSupply = async() =>{
+        const {funds} = await Client.getBttFundsSupply();
+        this.setState({
+            currentTotalSupply:parseInt(funds.totalTurnOver),
+        });
+    }
   loadToken = async (id) => {
 
     this.setState({loading: true});
@@ -71,7 +77,8 @@ class TokenDetail extends React.Component {
       this.props.history.push('/tokens/list')
       return;
     }
-    if(token.tokenID == 1002000){
+      if(token.tokenID == 1002000){
+        this.loadTotalTRXSupply();
         this.setState({
             loading: false,
             token,
@@ -142,6 +149,7 @@ class TokenDetail extends React.Component {
     let price=((token.trxNum / token.num)*Math.pow(10, token.precision));
     let {account, currentWallet} = this.props;
     let {buyAmount, privateKey} = this.state;
+
       let res;
       if (Lockr.get("islogin")||this.props.walletType.type==="ACCOUNT_LEDGER"||this.props.walletType.type==="ACCOUNT_TRONLINK") {
         const tronWebLedger = this.props.tronWeb();
@@ -436,7 +444,7 @@ class TokenDetail extends React.Component {
   render() {
 
     let {match, wallet} = this.props;
-    let {token, tabs, loading, buyAmount, alert} = this.state;
+    let {token, tabs, loading, buyAmount, alert,currentTotalSupply} = this.state;
 
     return (
         <main className="container header-overlap token_black mc-donalds-coin">
@@ -481,7 +489,7 @@ class TokenDetail extends React.Component {
                           </div>
                         </div>
                       </div>
-                      {token&&<Information token={token}></Information>}
+                      {token&&<Information token={token} currentTotalSupply={currentTotalSupply}></Information>}
                     </div>
 
                     <div className="card mt-3 border_table">
