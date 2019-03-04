@@ -60,6 +60,7 @@ function VoteChange({value, arrow = false}) {
     voteList: state.voting.voteList,
     voteTimer: state.voting.voteTimer,
     walletType: state.app.wallet,
+    isRightText: state.app.isRightText
   }),
   {
     login,
@@ -434,7 +435,7 @@ export default class VoteOverview extends React.Component {
   render() {
 
     let {votingEnabled, votes, votesList, loading, modal, viewStats, colors, searchCriteria} = this.state;
-    let {wallet} = this.props;
+    let {wallet, isRightText} = this.props;
     let candidates = votesList.data || []
 
     let filteredCandidates = candidates.map((v, i) => Object.assign({
@@ -501,9 +502,10 @@ export default class VoteOverview extends React.Component {
                   <h3 className="text-success">
                     <VoteChange value={biggestGainer.change_cycle} arrow={true}/>
                   </h3>
-                  <div className="d-flex">
-                    <div className="_ranks" style={{whiteSpace: 'nowrap'}}>{tu("most_ranks")}--</div>
-                    <div className="text-nowrap text-truncate">
+                  <div className={(isRightText? 'flex-row-reverse justify-content-end': '') +" d-flex"}>
+                    <div className="_ranks mr-2" style={{whiteSpace: 'nowrap'}}>{tu("most_ranks")}</div>
+                    {/* <div>--</div> */}
+                    <div className="" style={isRightText? {maxWidth: '110px'}: {}}>
                       <AddressLink address={biggestGainer.address}>
                         {biggestGainer.name || biggestGainer.url}
                       </AddressLink>
