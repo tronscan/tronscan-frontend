@@ -12,10 +12,12 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import {QuestionMark} from "../common/QuestionMark";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
 import queryString from 'query-string';
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -209,14 +211,21 @@ class Transactions extends React.Component {
     let {transactions, total, loading, addressLock} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
-    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + <br/> +'仅展示前10,100条数据'
+    let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'});
+    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+    let tableInfo =  total > 10000? tableInfoBig: tableInfoSmall;
+    let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
+    let tableInfoTipBig = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
+    let tableInfoTip = total > 10000? tableInfoTipBig: tableInfoTipSmall;
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
+                <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
+              </div>:""}
               {
                   total && !addressLock ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker

@@ -9,6 +9,8 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
+import {QuestionMark} from "../common/QuestionMark";
+import {DatePicker} from 'antd';
 import xhr from "axios/index";
 
 
@@ -16,7 +18,8 @@ class Blocks extends React.Component {
 
   constructor() {
     super();
-
+    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.end = new Date().getTime();
     this.state = {
       loading: false,
       blocks: [],
@@ -33,13 +36,17 @@ class Blocks extends React.Component {
   };
 
   loadBlocks = async (page = 1, pageSize = 20) => {
-
+    let {location, match} = this.props;
+    let date_to = match.params.date;
+    let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
     this.setState({loading: true});
 
     let {blocks, total} = await Client.getBlocks({
-      sort: '-number',
       limit: pageSize,
       start: (page - 1) * pageSize,
+      sort: '-timestamp',
+      start_timestamp:this.start,
+      end_timestamp:this.end,
     });
 
     this.setState({
@@ -148,7 +155,12 @@ class Blocks extends React.Component {
     let {blocks, total, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'block_unit'})
+    let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'});
+    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+    let tableInfo =  total > 10000? tableInfoBig: tableInfoSmall;
+    let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
+    let tableInfoTipBig = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
+    let tableInfoTip = total > 10000? tableInfoTipBig: tableInfoTipSmall;
 
     return (
         <main className="container header-overlap pb-3 token_black">
@@ -156,8 +168,10 @@ class Blocks extends React.Component {
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?
-                    <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                  <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
+                  <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
+                </div>:""}
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)
