@@ -12,9 +12,11 @@ export default class SmartTable extends Component {
       searchText: '',
       filtered: false,
       pagination: {
+        showQuickJumper:true,
         position: 'both',
         showSizeChanger: true,
-        defaultPageSize:20
+        defaultPageSize:20,
+
         // showTotal: function (total) {
         //   return <div>{total} {tu('records')}</div>
         // }
@@ -191,6 +193,7 @@ export default class SmartTable extends Component {
                       onChange={this.handleTableChange}
                   /> </div>:<div className="card table_pos">
                   <Table
+
                       bordered={bordered}
                       columns={columns}
                       rowKey={(record, index) => {

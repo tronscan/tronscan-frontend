@@ -45,6 +45,7 @@ class Transactions extends React.Component {
   componentDidUpdate(prevProps) {
     let {location, match} = this.props;
 
+
     if(location.search !== prevProps.location.search){
       this.loadTransactions();
     }
@@ -64,7 +65,6 @@ class Transactions extends React.Component {
     this.setState({loading: true});
 
     let searchParams = {};
-
     for (let [key, value] of Object.entries(getQueryParams(location))) {
       switch (key) {
         case "address":
@@ -200,7 +200,7 @@ class Transactions extends React.Component {
     if (!time) {
       return false
     } else {
-      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+      return time < moment([2018,5,25]) || time > moment().add(0, 'd')
     }
   }
 
@@ -210,7 +210,7 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
-
+    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + <br/> +'仅展示前10,100条数据'
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
