@@ -15,7 +15,7 @@ import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
 import TotalInfo from "../common/TableTotal";
-import moment from "moment/moment";
+import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
 const RangePicker = DatePicker.RangePicker;
 
@@ -125,7 +125,7 @@ class ContractTrans extends React.Component {
                 key: 'timestamp',
                 align: 'left',
                 render: (text, record, index) => {
-                    return <TimeAgo date={text}/>
+                    return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 }
             },
             {

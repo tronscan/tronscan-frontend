@@ -152,7 +152,7 @@ class Transactions extends React.Component {
         key: 'timestamp',
         align: 'left',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

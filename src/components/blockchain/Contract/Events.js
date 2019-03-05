@@ -6,6 +6,7 @@ import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Li
 import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
@@ -116,7 +117,7 @@ class Transactions extends React.Component {
           return <Truncate>
                   <TransactionHashLink hash={record.transaction_id}>{record.transaction_id}</TransactionHashLink><br/>
                   <span className="contract-event-block-number">#</span><BlockNumberLink number={record.block_number}/><br/>
-                  <TimeAgo date={record.block_timestamp}/>
+                  <TimeAgo date={record.block_timestamp} title={moment(record.block_timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                 </Truncate>
         }
       },

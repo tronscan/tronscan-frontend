@@ -6,6 +6,7 @@ import {TransactionHashLink, BlockNumberLink, AddressLink} from "../../common/Li
 import {FormattedNumber, injectIntl} from "react-intl";
 import {tu} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {TronLoader} from "../../common/loaders";
 import {Truncate} from "../../common/text";
 import {ContractTypes} from "../../../utils/protocol";
@@ -103,7 +104,7 @@ class Transactions extends React.Component {
         width: '120px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

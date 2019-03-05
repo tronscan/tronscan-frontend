@@ -133,7 +133,7 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -312,10 +312,15 @@ class Transactions extends React.Component {
               </div> : ''
 
           }
-          <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
-                      onPageChange={(page, pageSize) => {
-                        this.loadTransactions(page, pageSize)
-                      }}/>
+          {
+              (!loading && transactions.length === 0)?
+                  <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                              onPageChange={(page, pageSize) => {
+                                  this.loadTransactions(page, pageSize)
+                              }}/>
+          }
+
         </div>
     )
   }

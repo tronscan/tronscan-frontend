@@ -5,6 +5,7 @@ import {TRXPrice} from "../../common/Price";
 import {API_URL, ONE_TRX} from "../../../constants";
 import {tu, t} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Truncate} from "../../common/text";
 import {withTimers} from "../../../utils/timing";
 import {FormattedNumber, injectIntl} from "react-intl";
@@ -98,7 +99,7 @@ class Transfers extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={Number(record.block_ts)}/>
+          return <TimeAgo date={Number(record.block_ts)} title={moment(record.block_ts).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

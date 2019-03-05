@@ -17,7 +17,7 @@ import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import TotalInfo from "../../common/TableTotal";
 import {Tooltip} from 'antd'
-import moment from "moment/moment";
+import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
 
 const RangePicker = DatePicker.RangePicker;
@@ -126,7 +126,7 @@ class Transactions extends React.Component {
         width: '150px',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

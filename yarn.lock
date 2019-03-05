@@ -97,9 +97,9 @@
     "@ledgerhq/errors" "^4.41.1"
     events "^3.0.0"
 
-"@tronscan/client@^0.2.43":
-  version "0.2.43"
-  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.43.tgz#30fa3635d4be53c411d385a79f5a1e312feb6c22"
+"@tronscan/client@^0.2.44":
+  version "0.2.44"
+  resolved "https://registry.yarnpkg.com/@tronscan/client/-/client-0.2.44.tgz#d75066cd59940368d29743d9b39c6fed3fa98be6"
   dependencies:
     axios "^0.18.0"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -8326,9 +8326,9 @@ react-sticky@^6.0.2:
     prop-types "^15.5.8"
     raf "^3.3.0"
 
-react-timeago@^3.4.3:
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-3.4.3.tgz#eb9061eefb044e4a2b09ce8c99d34645b2dbfa25"
+react-timeago@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-4.4.0.tgz#4520dd9ba63551afc4d709819f52b14b9343ba2b"
 
 react-transition-group@2.x, react-transition-group@^2.2.1, react-transition-group@^2.3.1, react-transition-group@^2.5.0:
   version "2.6.0"
@@ -9760,9 +9760,9 @@ trim@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
 
-tronweb@2.1.27:
-  version "2.1.27"
-  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.1.27.tgz#97257709d5b61d5968a8f6b11c31ba2618b02b82"
+tronweb@^2.1.27:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tronweb/-/tronweb-2.2.0.tgz#4d83d245a4bffeb3f4cfac3c96498520ac882afb"
   dependencies:
     "@babel/runtime" "^7.0.0"
     axios "^0.18.0"

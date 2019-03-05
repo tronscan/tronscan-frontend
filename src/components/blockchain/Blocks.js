@@ -3,6 +3,7 @@ import React from "react";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {FormattedNumber, injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink} from "../common/Links";
@@ -12,7 +13,6 @@ import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
 import {DatePicker} from 'antd';
 import xhr from "axios/index";
-import moment from 'moment';
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -103,7 +103,7 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
