@@ -167,6 +167,10 @@ class Contracts extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_source_codes_found'})
+    
+    if(intl.locale === 'ar'){
+      tableInfo = total + '' + intl.formatMessage({id: 'contract_total'})
+    }
 
     return (
       <main className="container header-overlap pb-3 token_black">
