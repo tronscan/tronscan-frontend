@@ -54,7 +54,6 @@ class Exchange extends React.Component {
           <div className="notice">
             <img src={require("../../images/announcement-logo.png")} alt="" />
             <div className="notice-wrap">
-              {console.log(this.state.notice)}
               {this.state.notice.map((v, i) => (
                 <a
                   className="item"
