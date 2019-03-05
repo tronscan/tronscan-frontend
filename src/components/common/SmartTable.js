@@ -171,14 +171,14 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr} = this.props;
+    let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr,transfers} = this.props;
     let columns = this.setColumn(column);
     const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
     
     return (
         <div>
             {
-                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"")}>
+                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"") + (transfers?"mt-5":"")}>
                   <Table
                       bordered={bordered}
                       columns={columns}

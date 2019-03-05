@@ -15,7 +15,7 @@ import xhr from "axios";
 import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
-import {QuestionMark} from "../../common/QuestionMark.js"
+import TotalInfo from "../../common/TableTotal";
 import {Tooltip} from 'antd'
 import moment from "moment/moment";
 import {DatePicker} from "antd/lib/index";
@@ -58,8 +58,8 @@ class Transactions extends React.Component {
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
-      // start_timestamp: this.start,
-      // end_timestamp: this.end,
+      start_timestamp: this.start,
+      end_timestamp: this.end,
       ...filter,
     });
 
@@ -69,6 +69,7 @@ class Transactions extends React.Component {
     this.setState({
       transactions: transactions.data,
       total: transactions.total,
+      rangeTotal :transactions.rangeTotal,
       loading: false
     });
   };
@@ -84,7 +85,7 @@ class Transactions extends React.Component {
     if (!time) {
       return false
     } else {
-      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+        return time < moment([2018,5,25]) || time > moment().add(0, 'd')
     }
   }
   customizedColumn = () => {
@@ -200,10 +201,9 @@ class Transactions extends React.Component {
 
   render() {
 
-    let {transactions, total, loading, EmptyState = null} = this.state;
+    let {transactions, total,rangeTotal, loading, EmptyState = null} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transaction_info'})
 
     if (!loading && transactions.length === 0) {
       if (!EmptyState) {
@@ -219,15 +219,10 @@ class Transactions extends React.Component {
         <Fragment>
           {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
           <div className="row">
-            <div className="col-md-12 table_pos">
-              {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
-                  <span className="ml-1 mt-1">
-                    <QuestionMark placement="top" text="transaction_fewer_than_100000" testSecond="transaction_more_than_100000" className="contract-info"></QuestionMark>
-                  </span>
-                  </div> : ''}
+            <div className="col-md-12 table_pos mt-5">
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit"/>:""}
               {
-                  false && total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
+                  total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{

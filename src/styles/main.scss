@@ -2885,6 +2885,21 @@ h5 {
   z-index: 999;
 }
 .table-question-mark{
-  position: absolute;
-  top:0;
+  margin-top: -22px;
+  display: block;
+  float: right;
+}
+
+.table-question-mark-small{
+  display: block;
+  margin-top: -1px;
+  float: right;
+  padding-left: 5px;
+}
+
+.table-question-mark-triggers{
+  margin-top: -22px;
+  display: block;
+  float: right;
+  padding-left: 30px;
 }

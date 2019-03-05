@@ -14,7 +14,7 @@ import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
-import {QuestionMark} from "../common/QuestionMark.js"
+import TotalInfo from "../common/TableTotal";
 import moment from "moment/moment";
 import {DatePicker} from "antd/lib/index";
 const RangePicker = DatePicker.RangePicker;
@@ -81,14 +81,15 @@ class ContractTrans extends React.Component {
                 limit: pageSize,
                 start: (page - 1) * pageSize,
                 start_timestamp:this.start,
-              end_timestamp:this.end,
+                end_timestamp:this.end,
                 ...searchParams,
             });
         }
         this.setState({
             transactions: result.triggers,
             loading: false,
-            total: result.total
+            total: result.total,
+            rangeTotal:result.rangeTotal,
         });
     };
 
@@ -174,12 +175,13 @@ class ContractTrans extends React.Component {
     if (!time) {
       return false
     } else {
-      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+      //return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+        return time < moment([2018,5,25]) || time > moment().add(0, 'd')
     }
   }
     render() {
 
-        let {transactions, total, loading} = this.state;
+        let {transactions, total,rangeTotal, loading} = this.state;
         let {match, intl} = this.props;
         let column = this.customizedColumn();
         let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'contract_triggers_total'})
@@ -189,8 +191,8 @@ class ContractTrans extends React.Component {
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 <div className="row">
                     <div className="col-md-12 table_pos">
-                        {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
-                      {
+                        {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_triggers_total" markName="table-question-mark-triggers"/>:""}
+                        {
                           total ? <div className="transactions-rangePicker" style={{width: "350px"}}>
                           <RangePicker
                               defaultValue={[moment(this.start), moment(this.end)]}

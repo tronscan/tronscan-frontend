@@ -12,7 +12,7 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
-import {QuestionMark} from "../common/QuestionMark";
+import TotalInfo from "../common/TableTotal";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
@@ -84,7 +84,6 @@ class Transactions extends React.Component {
         date_start: date_start,
         date_to: date_to
       });
-
     }
     else {
 
@@ -112,10 +111,12 @@ class Transactions extends React.Component {
       
 
     }
+
     this.setState({
       transactions: result.transactions,
       loading: false,
-      total: result.total
+      total: result.total,
+      rangeTotal: result.rangeTotal,
     });
   };
 
@@ -208,26 +209,17 @@ class Transactions extends React.Component {
 
   render() {
 
-    let {transactions, total, loading, addressLock} = this.state;
+    let {transactions, total, rangeTotal, loading, addressLock} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'});
-    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
-    let tableInfo =  total > 10000? tableInfoBig: tableInfoSmall;
-    let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-    let tableInfoTipBig = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-    let tableInfoTip = total > 10000? tableInfoTipBig: tableInfoTipSmall;
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
-                <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
-              </div>:""}
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock}/>:""}
               {
-                  total && !addressLock ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
+                   !addressLock ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{

@@ -323,8 +323,7 @@ export default class Home extends Component {
                     <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/blocks"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        {/*<h2><CountUp start={0} end={blockHeight} duration={1}/></h2>*/}
-                        <h2><CountUp start={0} end={7192549} duration={1}/></h2>
+                        <h2><CountUp start={0} end={blockHeight} duration={1}/></h2>
                         <p className="m-0">{tu("block_height")}</p>
                       </Link>
                     </div>
@@ -344,8 +343,7 @@ export default class Home extends Component {
                     <div className="col-md-2 col-sm-12 col-xs-12">
                       <Link to="/blockchain/accounts"
                             className="hvr-underline-from-center hvr-underline-white text-muted">
-                        {/*<h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>*/}
-                        <h2><CountUp start={0} end={2000000} duration={1}/></h2>
+                        <h2><CountUp start={0} end={totalAccounts} duration={1}/></h2>
                         <p className="m-0">{tu("total_accounts")}</p>
                       </Link>
                     </div>

@@ -10,6 +10,7 @@ import {TRXPrice} from "./common/Price";
 import SmartTable from "./common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./common/loaders";
+import {QuestionMark} from "./common/QuestionMark";
 import xhr from "axios/index";
 import {Client} from "../services/api";
 import {Tooltip} from 'antd'
@@ -36,18 +37,18 @@ class Accounts extends Component {
 
     this.setState({loading: true});
 
-    let {accounts, total} = await Client.getAccounts({
+    let {accounts, total, rangeTotal} = await Client.getAccounts({
       sort: '-balance',
       limit: pageSize,
       start: (page - 1) * pageSize
     })
 
      // let {txOverviewStats} = await Client.getTxOverviewStats();
-
     this.setState({
       loading: false,
       accounts: accounts,
-      total: total
+      total: total,
+      rangeTotal:rangeTotal,
     });
   };
 
@@ -193,11 +194,11 @@ class Accounts extends Component {
   render() {
 
     let {match, intl} = this.props;
-    let {total, loading, accounts} = this.state;
+    let {total, loading, rangeTotal, accounts} = this.state;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'account_unit'})
-
-    return (
+    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'account_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
+    let tableInfoTip = intl.formatMessage({id: 'table_info_account_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_account_tip2'});
+      return (
         <main className="container header-overlap pb-3 token_black">
           <div className="row">
             <div className="col-md-12">
@@ -205,7 +206,7 @@ class Accounts extends Component {
                 {/* <WidgetIcon className="fa fa-users text-secondary"/> */}
                 <div className="card-body">
                   <h3 className="text-primary">
-                    <FormattedNumber value={total}/>
+                    <FormattedNumber value={rangeTotal}/>
                   </h3>
                   {tu("total_accounts")}
                 </div>
@@ -216,7 +217,10 @@ class Accounts extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
+                <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
+                <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
+              </div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {
                             this.loadAccounts(page, pageSize)

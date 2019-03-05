@@ -9,10 +9,12 @@ import {AddressLink, BlockNumberLink} from "../common/Links";
 import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
-import {QuestionMark} from "../common/QuestionMark";
+import TotalInfo from "../common/TableTotal";
 import {DatePicker} from 'antd';
 import xhr from "axios/index";
+import moment from 'moment';
 
+const RangePicker = DatePicker.RangePicker;
 
 class Blocks extends React.Component {
 
@@ -41,10 +43,10 @@ class Blocks extends React.Component {
     let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
     this.setState({loading: true});
 
-    let {blocks, total} = await Client.getBlocks({
+    let {blocks, total, rangeTotal} = await Client.getBlocks({
       limit: pageSize,
       start: (page - 1) * pageSize,
-      sort: '-timestamp',
+      sort: '-number',
       start_timestamp:this.start,
       end_timestamp:this.end,
     });
@@ -52,7 +54,8 @@ class Blocks extends React.Component {
     this.setState({
       loading: false,
       blocks,
-      total
+      total,
+      rangeTotal
     });
   };
   setProducedName = (record) => {
@@ -148,30 +151,52 @@ class Blocks extends React.Component {
       // }
     ];
     return column;
+  };
+
+  onChangeDate = (dates, dateStrings) => {
+      this.start = new Date(dateStrings[0]).getTime();
+      this.end = new Date(dateStrings[1]).getTime();
+  }
+  onDateOk = () => {
+      this.loadBlocks();
+  }
+  disabledDate = (time) => {
+      if (!time) {
+          return false
+      } else {
+          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
+      }
   }
 
   render() {
 
-    let {blocks, total, loading} = this.state;
+    let {blocks, total, rangeTotal, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'});
-    let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
-    let tableInfo =  total > 10000? tableInfoBig: tableInfoSmall;
-    let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-    let tableInfoTipBig = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + total + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-    let tableInfoTip = total > 10000? tableInfoTipBig: tableInfoTipSmall;
-
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                  <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
-                  <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
-                </div>:""}
+                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
+                  {
+                      total ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
+                        <RangePicker
+                            defaultValue={[moment(this.start), moment(this.end)]}
+                            ranges={{
+                                'Today': [moment().startOf('day'), moment()],
+                                'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                            }}
+                            disabledDate={this.disabledDate}
+                            showTime
+                            format="YYYY/MM/DD HH:mm:ss"
+                            onChange={this.onChangeDate}
+                            onOk={this.onDateOk}
+                        />
+                      </div> : ''
+
+                  }
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)

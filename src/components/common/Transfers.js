@@ -16,17 +16,23 @@ import {TronLoader} from "./loaders";
 import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
+import TotalInfo from "./TableTotal";
+import {DatePicker} from 'antd';
+import moment from 'moment';
 import {QuestionMark} from "./QuestionMark";
 import {NameWithId} from "./names";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
-
 import _ from "lodash";
+
+const RangePicker = DatePicker.RangePicker;
 
 class Transfers extends React.Component {
 
   constructor(props) {
     super(props);
+    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.end = new Date().getTime();
 
     this.state = {
       filter: {},
@@ -66,20 +72,23 @@ class Transfers extends React.Component {
     let {filter, istrc20=false} = this.props;
     let {showTotal,hideSmallCurrency,tokenName} = this.state;
     this.setState({loading: true});
-    let list,total;
+    let list,total,range = 0;
 
     if(!istrc20){
-      let {transfers, total:totaldata} = await Client.getTransfers({
+      let {transfers, total:totaldata, rangeTotal} = await Client.getTransfers({
         sort: '-timestamp',
         limit: pageSize,
         start: (page - 1) * pageSize,
         count: showTotal ? true : null,
         total: this.state.total,
         token: tokenName,
+        start_timestamp:this.start,
+        end_timestamp:this.end,
         ...filter,
       });
       list = transfers
       total = totaldata
+      range = rangeTotal
     }else{
       // TODO trc20 transfer api
       // ${filter.address}
@@ -114,6 +123,7 @@ class Transfers extends React.Component {
       page,
       transfers:transfersTRX,
       total:total,
+      rangeTotal:range,
       loading: false,
     });
   };
@@ -224,11 +234,25 @@ class Transfers extends React.Component {
     return column;
   }
 
+  onChangeDate = (dates, dateStrings) => {
+      this.start = new Date(dateStrings[0]).getTime();
+      this.end = new Date(dateStrings[1]).getTime();
+  }
+  onDateOk = () => {
+      this.load();
+  }
+  disabledDate = (time) => {
+      if (!time) {
+          return false
+      } else {
+          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
+      }
+  }
   render() {
 
-    let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
+    let {transfers, page, total, rangeTotal, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
-    let {intl} = this.props;
+    let {intl, istrc20, address = false} = this.props;
 
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
     let locale  = {emptyText: intl.formatMessage({id: 'no_transfers'})}
@@ -247,23 +271,60 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo} <span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>
+                  <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
+                  {/*<div className="table_pos_info d-md-block table_pos_info_addr">{tableInfo} <span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
                   <div className="table_pos_switch d-md-block table_pos_switch_addr">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
+                    {
+                        address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "350px"}}>
+                          <RangePicker
+                              defaultValue={[moment(this.start), moment(this.end)]}
+                              ranges={{
+                                  'Today': [moment().startOf('day'), moment()],
+                                  'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                              }}
+                              disabledDate={this.disabledDate}
+                              showTime
+                              format="YYYY/MM/DD HH:mm:ss"
+                              onChange={this.onChangeDate}
+                              onOk={this.onDateOk}
+                          />
+                        </div> : ''
+
+                    }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>
+                  {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
+                  <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
+                    {
+                        address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "350px"}}>
+                          <RangePicker
+                              defaultValue={[moment(this.start), moment(this.end)]}
+                              ranges={{
+                                  'Today': [moment().startOf('day'), moment()],
+                                  'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
+                              }}
+                              disabledDate={this.disabledDate}
+                              showTime
+                              format="YYYY/MM/DD HH:mm:ss"
+                              onChange={this.onChangeDate}
+                              onOk={this.onDateOk}
+                          />
+                        </div> : ''
+
+                    }
                 </div>
             }
 
-{
+
+            {
               (!loading && transfers.length === 0)?
               <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
               :
-              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
+              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address" transfers="address"
                 onPageChange={(page, pageSize) => {
                     this.onChange(page, pageSize)
                 }}/>

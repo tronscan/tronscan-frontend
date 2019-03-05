@@ -17,7 +17,6 @@ export class QuestionMark extends React.Component {
     render() {
         let {open, id } = this.state;
         let {text, placement, testSecond ='', className='',info=''} = this.props;
-        console.log('tableInfo',typeof tableInfo)
         return (
             <div className="d-inline-block">
                 <div className="question-mark" id={id}

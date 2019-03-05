@@ -500,6 +500,13 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       top: 43px;
     }
   }
+  &_picker{
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+    right:0!important;
+    margin-top: 0!important;
+  }
   &_info_addr{
     @media screen and (max-width: 768px) {
       top: -40px;
