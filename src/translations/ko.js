@@ -1569,7 +1569,23 @@ export const messages = {
     "BTT_supply": "BTT 유통량",
     "BTT_Token_Release_Schedule":"BTT 토큰 해동 타임라인",
     "source_btt_team":"정보 출처：BTT 관리팀",
+    "20_transfers": "TRC-20 transfers",
+    "internal_transactions": "internal transactions",
 
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"처음 10,000 개의 데이터 만 표시됨",
+    "table_info_big_tip1":"선택한 기간에는 총",
+    "table_info_big_tip2":"개의 데이터가 있으며",
+    "table_info_big_tip3":"현재 처음 10,000 개의 데이터 만 표시됩니다.",
+    "table_info_big_tip4":"다른 통계를 보려면 선택한 기간을 변경하십시오.",
+    "table_info_account_tip1":"TRON의 메인넷에는 총",
+    "table_info_account_tip2":"개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
 
 
 };

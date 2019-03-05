@@ -1584,8 +1584,23 @@ export const messages = {
   "BTT_supply": "Suministro BTT",
   "BTT_Token_Release_Schedule":"Horario de lanzamiento de token BTT",
   "source_btt_team":"Fuente: Equipo de Gestión de BTT.",
+  "20_transfers": "TRC-20 transfers",
+  "internal_transactions": "internal transactions",
 
-
+  /*
+      ##################################################################################
+      #                                                                                #
+      # new variables    2019-03-04                                    #
+      #                                                                                #
+      ##################################################################################
+  */
+  "table_info_big":"Sólo se muestran los primeros 10.000 datos",
+  "table_info_big_tip1":"Hubo",
+  "table_info_big_tip2":"datos en el pero de tiempo seleccionado y ",
+  "table_info_big_tip3":"solo se mostraron 10,000 datos.",
+  "table_info_big_tip4":"Si desea buscar otras estadísticas, le recomendamos que cambie la duración del tiempo seleccionado.",
+  "table_info_account_tip1":"La red principal de TRON tiene ",
+  "table_info_account_tip2":"cuentas, mostrando solo 10,000 cuentas (ordenadas de alta a baja TRX)",
 
 
 };
