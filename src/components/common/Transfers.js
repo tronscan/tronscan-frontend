@@ -250,7 +250,7 @@ class Transfers extends React.Component {
   }
   render() {
 
-    let {transfers, page, total, rangeTotal, pageSize, loading, emptyState: EmptyState = null} = this.state;
+    let {transfers, page, total, rangeTotal = 0, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let column = this.customizedColumn();
     let {intl, istrc20, address = false} = this.props;
 
@@ -295,7 +295,7 @@ class Transfers extends React.Component {
                     }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
-                  <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
+                    <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
