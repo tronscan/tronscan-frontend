@@ -37,7 +37,7 @@
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "languages.js": "static/js/languages.af2097a5.chunk.js",
   "main.css": "static/css/main.fcc8ad13.css",
-  "main.js": "static/js/main.74957f75.js",
+  "main.js": "static/js/main.bea7fcf4.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -72,5 +72,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.08a9fddf.js"
+  "vendors.js": "static/js/vendors.dc48e22e.js"
 }
