@@ -1326,3 +1326,164 @@ export class LineReactVolumeUsd extends React.Component {
         )
     }
 }
+
+
+export class EnergyConsumeChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'EnergyConsumeChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+       
+        if (data && data.length > 0) {
+            let options = {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'TRON Daily EnergyUsed History'
+                },
+                subtitle: {text: 'Click and drag in the point area to zoom in'},
+                xAxis: {
+                    categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'energy'
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    symbolRadius: 0
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            '总量: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: data
+            }
+
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class ContractInvocationChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'EnergyConsumeChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+       
+        if (data && data.length > 0) {
+            let options = {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'TRON Daily EnergyUsed History'
+                },
+                subtitle: {text: 'Click and drag in the point area to zoom in'},
+                xAxis: {
+                    categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'energy'
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    symbolRadius: 0
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            '总量: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: data
+            }
+
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}

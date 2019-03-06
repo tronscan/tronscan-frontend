@@ -21,7 +21,9 @@ import {
     LineReactHighChartBlockchainSize,
     BarReactHighChartBlockSize,
     LineReactHighChartPrice,
-    LineReactHighChartVolumeUsd
+    LineReactHighChartVolumeUsd,
+    EnergyConsumeChart,
+    ContractInvocationChart
 } from "../../common/LineCharts";
 
 import {
@@ -62,7 +64,9 @@ class Statistics extends React.Component {
             priceBTC:null,
             marketCapitalization:null,
             foundationFreeze:null,
-            circulatingNum:null
+            circulatingNum:null,
+            energyConsumeData: null,
+            ContractInvocation: null
         };
     }
 
@@ -89,6 +93,13 @@ class Statistics extends React.Component {
             case 'accounts':
                 this.loadAccounts();
                 break;
+            case 'EnergyConsume':
+                this.loadEnergyConsumeData();
+                break;
+            case 'ContractInvocation':
+                this.loadContractInvocation();
+                break;
+                
             default:
                 this.loadTxOverviewStats();
                 break;
@@ -447,10 +458,43 @@ class Statistics extends React.Component {
         });
     }
 
+    loadEnergyConsumeData() {
+        let data =  [{
+            name: '小张',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: '小彭',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: '小潘',
+            data: [3, 4, 4, 2, 5]
+        }]
+
+        this.setState({
+            energyConsumeData: data
+        });
+    }
+    loadContractInvocation() {
+        let data =  [{
+            name: '小张',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: '小彭',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: '小潘',
+            data: [3, 4, 4, 2, 5]
+        }]
+
+        this.setState({
+            ContractInvocation: data
+        });
+    }
+
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum} = this.state;
+        let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum, energyConsumeData, ContractInvocation} = this.state;
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
@@ -615,13 +659,40 @@ class Statistics extends React.Component {
                                 {
                                     volumeStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartVolumeUsd source='singleChart'
-                                                                     style={{height: 500}}
+                                        <LineReactHighChartVolumeUsd style={{height: 500}}
                                                                      data={volumeStats}
                                                                      intl={intl}/>
                                 }
                             </div>
                         }
+                        {
+                            match.params.chartName === 'EnergyConsume' &&
+                            <div style={{height: 500}}>
+                                {
+                                    energyConsumeData === null ?
+                                        <TronLoader/> :
+                                        <EnergyConsumeChart source='singleChart'
+                                                                     style={{height: 500}}
+                                                                     data={energyConsumeData}
+                                                                     intl={intl}/>
+                                }
+                            </div>
+                        }
+                        {
+                            match.params.chartName === 'ContractInvocation' &&
+                            <div style={{height: 500}}>
+                                {
+                                    ContractInvocation === null ?
+                                        <TronLoader/> :
+                                        <ContractInvocationChart source='singleChart'
+                                                                     style={{height: 500}}
+                                                                     data={ContractInvocation}
+                                                                     intl={intl}/>
+                                }
+                            </div>
+                        }
+
+                        
                         {
 
                             match.params.chartName === 'pieChart' &&
