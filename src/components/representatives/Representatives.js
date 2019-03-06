@@ -288,7 +288,7 @@ function Row({account, showSync = true, index, state, props}) {
         <td className="text-right">
           {
             <Fragment>
-              <FormattedNumber value={account.votes}/><br/>
+              <FormattedNumber value={account.votes || 0}/><br/>
               {'('}
               <FormattedNumber
                   minimumFractionDigits={2}

@@ -198,7 +198,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}}/>
+            cmp: () => <Transfers filter={{address: id}} address/>
           },
           transfers20: {
             id: "transfers20",
@@ -212,7 +212,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}}/>
+            cmp: () => <Transactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",
@@ -272,7 +272,7 @@ class Address extends React.Component {
             // icon: "fa fa-exchange-alt",
             path: "",
             label: <span>{tu("transfers")}</span>,
-            cmp: () => <Transfers filter={{address: id}}/>
+            cmp: () => <Transfers filter={{address: id}} address/>
           },
           transfers20: {
             id: "transfers20",
@@ -286,7 +286,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/transactions",
             label: <span>{tu("transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}}/>
+            cmp: () => <Transactions filter={{address: id}} address/>
           },
           intransactions: {
             id: "intransactions",

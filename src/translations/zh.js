@@ -1550,17 +1550,15 @@ export const messages = {
     "Please_contact_us": "请联系我们。",
     "ok_confirm":"确定",
     "high_risk":"高风险",
-
     "delegate_list":"租借列表",
     "type":"类型",
     "delegate_other":"他人冻结",
     "freeze_self":"自身冻结",
-  "total_amount":"总额",
-  "receive_address":"接收账户（不填默认自己）",
-  "my_account":"我的账户",
-  "receive_list":"接收账户",
-  "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
-
+    "total_amount":"总额",
+    "receive_address":"接收账户（不填默认自己）",
+    "my_account":"我的账户",
+    "receive_list":"接收账户",
+    "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
     "contract_method":"合约方法",
     "contract_parameters":"方法参数",
     "energy_fee":"消耗能量使用的TRX",
@@ -1583,9 +1581,23 @@ export const messages = {
     "BTT_supply": "BTT 流通量",
     "BTT_Token_Release_Schedule":"BTT 代币解锁时间表",
     "source_btt_team":"信息来源：BTT管理团队",
-
     "20_transfers": "TRC-20转账",
-    "internal_transactions": "合约内交易"
+    "internal_transactions": "合约内交易",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"仅展示前10,000条数据",
+    "table_info_big_tip1":"所选时间内共",
+    "table_info_big_tip2":"条数据，",
+    "table_info_big_tip3":"目前只展示前10,000条。",
+    "table_info_big_tip4":"如果您想要查询其他数据，建议调整时间范围。",
+    "table_info_account_tip1":"波场主链共",
+    "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
 
 
 

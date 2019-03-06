@@ -2884,3 +2884,33 @@ h5 {
   top:66px;
   z-index: 999;
 }
+.table-question-mark{
+  margin-top: -22px;
+  display: block;
+  float: right;
+}
+
+.table-question-mark-small{
+  display: block;
+  margin-top: -1px;
+  float: right;
+  padding-left: 5px;
+}
+
+.table-question-mark-triggers{
+  margin-top: -22px;
+  display: block;
+  float: right;
+  padding-left: 30px;
+}
+
+.ant-calendar-picker{
+  width: 360px!important;
+}
+
+.ant-pagination-options-quick-jumper{
+  input{
+    width: 60px;
+  }
+
+}

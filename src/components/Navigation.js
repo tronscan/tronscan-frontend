@@ -904,7 +904,7 @@ class Navigation extends React.Component {
                              onChange={this.onSearchChange}
                              onClick={this.callAjax}
                              placeholder={intl.formatMessage({id: "search_description1"})}/>
-                      <div className="input-group-append">
+                      <div className="input-group-append" style={{marginLeft:0}}>
                         <button className="btn box-shadow-none" disabled={this.isSearching} onClick={this.doSearch}>
                           <i className="fa fa-search"/>
                         </button>
@@ -1276,6 +1276,7 @@ const styles = {
   search: {
     fontSize: 13,
     minWidth: 260,
+    height:36,
   },
   searchType: {
     fontSize: 13,

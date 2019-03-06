@@ -57,7 +57,8 @@ class ExchangeTable extends React.Component {
     {
       title: upperFirst(intl.formatMessage({id: 'last_price'})),
       dataIndex: 'price',
-      key: 'price',
+      key: 'price'
+        
     }, 
     {
       title:upperFirst(intl.formatMessage({id: 'pairs_change'})),

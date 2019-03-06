@@ -9,6 +9,7 @@ import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
 import { FormatNumberByDecimals } from '../../utils/number'
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Truncate} from "./text";
 import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
@@ -137,7 +138,7 @@ class Transfers extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

@@ -8,6 +8,7 @@ import {Truncate} from "../common/text";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -15,6 +16,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import {NameWithId} from "../common/names";
 import _ from "lodash";
 import isMobile from "../../utils/isMobile";
+
 
 class RecentTransfers extends Component {
 
@@ -34,7 +36,7 @@ class RecentTransfers extends Component {
   }
 
   render() {
-    let {transactions} = this.props;
+    let {transactions, isRightText} = this.props;
     if (transactions === null) {
       return (
           <div className="text-center d-flex justify-content-center">
@@ -88,18 +90,18 @@ class RecentTransfers extends Component {
                                     </div>
                               </div>
                               <div className="text-muted color-grey-300 small pt-2 pl-3">
-                                <TimeAgo date={transfer.timestamp}/>
+                                <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                               </div>
                             </div>
                             
-                            <div className="d-flex align-items-center">
+                            <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex align-items-center"}>
                               <span className="color-grey-300 mr-2">{tu("from")}</span>
                               <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
                                             address={transfer.transferFromAddress}>
                                 {transfer.transferFromAddress}...
                               </AddressLink>
                             </div>
-                            <div className="d-flex align-items-center">
+                            <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex align-items-center"}>
                               <span className="color-grey-300 mr-2">{tu("to")}</span>
                               <AddressLink className="color-tron-100 small" wrapClassName="d-inline-block w-50"
                                             address={transfer.transferToAddress}>
@@ -107,7 +109,7 @@ class RecentTransfers extends Component {
                               </AddressLink>
                             </div>
                             <div className="color-grey-200 pb-2">
-                              <span className="color-grey-300 mr-2">{tu("value")}</span>
+                              <span className="color-grey-300 mr-2 d-inline-block">{tu("value")}</span>
                               <NameWithId value={transfer} type="abbr" totoken/>
                             </div>
                           </div>
@@ -146,7 +148,7 @@ class RecentTransfers extends Component {
                           
                         </div>
                         <div className="d-flex pt-2 list-item-word">
-                          <div className="pt-2 text-left" style={{fontSize: '0.8rem'}}>
+                          <div className={(isRightText? 'flex-row-reverse justify-content-end': '') + " d-flex pt-2 text-left"} style={{fontSize: '0.8rem'}}>
                             <span className="color-grey-300 mr-2">{tu("from")}</span>
                               
                             <AddressLink wrapClassName="d-inline-block mr-2" className="color-tron-100"
@@ -161,7 +163,7 @@ class RecentTransfers extends Component {
                             </AddressLink>
                           </div>
                           <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
-                            <TimeAgo date={transfer.timestamp}/>
+                            <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                           </div>
                         </div>
                       </div>
@@ -183,6 +185,7 @@ function mapStateToProps(state) {
   return {
     transactions: state.blockchain.transactions,
     activeLanguage: state.app.activeLanguage,
+    isRightText: state.app.isRightText
   };
 }
 
