@@ -143,7 +143,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/nodemap
 /api/listdonators
 Desc: List all the donators to the foundation address
 Demo: curl -X Get  https://apilist.tronscan.org/api/listdonators
-@param: null;
+@param: null;  
 @return: all the donators;
 
 # 16
