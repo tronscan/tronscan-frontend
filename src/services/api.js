@@ -75,7 +75,9 @@ class ApiClient20 {
   }
 
   async getCurrentPrice(id) {
-    let { data } = await xhr.get(`${this.apiUrl}/api/exchange/topprice/${id}`);
+    let { data } = await xhr.get(
+      `${this.apiUrl}/api/exchange/toppriceV2/${id}`
+    );
     return data;
   }
 
