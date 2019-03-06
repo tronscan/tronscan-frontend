@@ -30,7 +30,7 @@ class TotalInfo extends React.Component {
                     </div>:<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
                         {
                             rangeTotal > 10000?
-                               <div>{tu('view_total')} {rangeTotal} {tu(typeText)} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>{tu('table_info_big')}</span></div>
+                               <div>{tu('view_total')} {rangeTotal} {tu(typeText)} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>({tu('table_info_big')})</span></div>
                              : <span>{tu('view_total')} {rangeTotal} {tu(typeText)} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
 
                         }
