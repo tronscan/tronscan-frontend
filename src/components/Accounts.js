@@ -218,8 +218,7 @@ class Accounts extends Component {
           <div className="row mt-2">
             <div className="col-md-12 table_pos">
               {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
-                <span dangerouslySetInnerHTML={{__html:tableInfo}}></span>
-                <span className="table-question-mark"><QuestionMark placement="top" info={tableInfoTip} ></QuestionMark></span>
+                      <div>{tu('view_total')} {rangeTotal} {tu('account_unit')} <QuestionMark placement="top" info={tableInfoTip} ></QuestionMark> <br/> <span>({tu('table_info_big')})</span></div>
               </div> : ''}
               <SmartTable bordered={true} loading={loading} column={column} data={accounts} total={total}
                           onPageChange={(page, pageSize) => {
