@@ -15,7 +15,7 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/block/latest
 
 # 3
 **/api/account/list**  
-Desc: List all the accounts in the blockchain  
+Desc: List all the accounts in the blockchain (only 10,000 accounts are displayed, sorted by TRX balance from high to low) 
 Demo: curl -X Get  https://apilist.tronscan.org/api/account/list?sort=-balance&limit=20&start=0  
 @param sort: define the sequence of the records return;  
 @param limit: page size for pagination;  
