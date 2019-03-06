@@ -1586,6 +1586,6 @@ export const messages = {
     "table_info_big_tip4":"다른 통계를 보려면 선택한 기간을 변경하십시오.",
     "table_info_account_tip1":"TRON의 메인넷에는 총",
     "table_info_account_tip2":"개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
-
+    "Singapore":"Singapore",
 
 };

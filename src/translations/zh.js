@@ -1598,7 +1598,7 @@ export const messages = {
     "table_info_big_tip4":"如果您想要查询其他数据，建议调整时间范围。",
     "table_info_account_tip1":"波场主链共",
     "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
-
+    "Singapore":"新加坡",
 
 
 
