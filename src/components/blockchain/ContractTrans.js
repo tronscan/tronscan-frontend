@@ -23,8 +23,8 @@ class ContractTrans extends React.Component {
 
     constructor() {
         super();
-      this.start = new Date(new Date().toLocaleDateString()).getTime();
-      this.end = new Date().getTime();
+        this.start = moment().startOf('day').subtract(1, 'weeks')
+        this.end = new Date().getTime();
         this.state = {
             transactions: [],
             total: 0,
@@ -55,7 +55,13 @@ class ContractTrans extends React.Component {
         let date_to = match.params.date;
         let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
 
-        this.setState({loading: true});
+        this.setState(
+            {
+                loading: true,
+                page: page,
+                pageSize: pageSize,
+            }
+        );
 
         let searchParams = {};
 
@@ -169,7 +175,8 @@ class ContractTrans extends React.Component {
     this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-    this.loadTriggers();
+      let {page, pageSize} = this.state;
+      this.loadTriggers(page, pageSize);
   }
   disabledDate = (time) => {
     if (!time) {
@@ -193,7 +200,7 @@ class ContractTrans extends React.Component {
                     <div className="col-md-12 table_pos">
                         {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="contract_triggers_total" markName="table-question-mark-triggers"/>:""}
                         {
-                          total ? <div className="transactions-rangePicker" style={{width: "350px"}}>
+                          total ? <div className="transactions-rangePicker" style={{width: "360px"}}>
                           <RangePicker
                               defaultValue={[moment(this.start), moment(this.end)]}
                               ranges={{

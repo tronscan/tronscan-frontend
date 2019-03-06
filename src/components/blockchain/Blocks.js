@@ -20,7 +20,8 @@ class Blocks extends React.Component {
 
   constructor() {
     super();
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    //this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.start = moment().startOf('day').subtract(1, 'weeks')
     this.end = new Date().getTime();
     this.state = {
       loading: false,
@@ -41,7 +42,13 @@ class Blocks extends React.Component {
     let {location, match} = this.props;
     let date_to = match.params.date;
     let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
-    this.setState({loading: true});
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
     let {blocks, total, rangeTotal} = await Client.getBlocks({
       limit: pageSize,
@@ -158,7 +165,8 @@ class Blocks extends React.Component {
       this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-      this.loadBlocks();
+      let {page, pageSize} = this.state;
+      this.loadBlocks(page,pageSize);
   }
   disabledDate = (time) => {
       if (!time) {
@@ -181,7 +189,7 @@ class Blocks extends React.Component {
               <div className="col-md-12 table_pos">
                 {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
                   {
-                      total ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
+                      total ?  <div className="transactions-rangePicker" style={{width: "360px"}}>
                         <RangePicker
                             defaultValue={[moment(this.start), moment(this.end)]}
                             ranges={{

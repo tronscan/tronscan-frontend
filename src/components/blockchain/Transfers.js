@@ -27,7 +27,7 @@ class Transfers extends React.Component {
 
   constructor() {
     super();
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.start = moment().startOf('day').subtract(1, 'weeks')
     this.end = new Date().getTime();
     this.state = {
       transfers: [],
@@ -49,9 +49,13 @@ class Transfers extends React.Component {
   load = async (page = 1, pageSize = 20) => {
 
     let {location} = this.props;
-
-    this.setState({loading: true});
-
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
     let searchParams = {};
 
     for (let [key, value] of Object.entries(getQueryParams(location))) {
@@ -169,7 +173,8 @@ class Transfers extends React.Component {
     this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-    this.load();
+    let {page, pageSize} = this.state;
+    this.load(page, pageSize);
   }
   disabledDate = (time) => {
     if (!time) {
@@ -194,7 +199,7 @@ class Transfers extends React.Component {
             <div className="col-md-12 table_pos">
               {total ?<TotalInfo total={total} rangeTotal={rangeTotal}  typeText="transfers_unit"/>:""}
               {
-                total?<div className="transactions-rangePicker" style={{width: "350px"}}>
+                total?<div className="transactions-rangePicker" style={{width: "360px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{

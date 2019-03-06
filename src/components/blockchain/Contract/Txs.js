@@ -26,7 +26,7 @@ class Transactions extends React.Component {
 
   constructor(props) {
     super(props);
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.start = moment().startOf('day').subtract(1, 'weeks')
     this.end = new Date().getTime();
     this.state = {
       filter: {},
@@ -52,7 +52,13 @@ class Transactions extends React.Component {
 
     let {filter, intl, isInternal = false} = this.props;
 
-    this.setState({loading: true});
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
     let transactions = await Client.getContractTxs({
       sort: '-timestamp',
@@ -79,7 +85,8 @@ class Transactions extends React.Component {
     this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-    this.loadTransactions();
+    let {page, pageSize} = this.state;
+    this.loadTransactions(page,pageSize);
   }
   disabledDate = (time) => {
     if (!time) {
@@ -205,15 +212,15 @@ class Transactions extends React.Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
 
-    if (!loading && transactions.length === 0) {
-      if (!EmptyState) {
-        return (
-            <div className="p-3 text-center no-data">{tu("no_tnx")}</div>
-        );
-      }
-
-      return <EmptyState/>;
-    }
+    // if (!loading && transactions.length === 0) {
+    //   if (!EmptyState) {
+    //     return (
+    //         <div className="p-3 text-center no-data">{tu("no_tnx")}</div>
+    //     );
+    //   }
+    //
+    //   return <EmptyState/>;
+    // }
 
     return (
         <Fragment>
@@ -221,8 +228,8 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
               {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit"/>:""}
-              {
-                  total? <div className="transactions-rangePicker-txs" style={{width: "350px"}}>
+
+                <div className="transactions-rangePicker-txs" style={{width: "360px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
                       ranges={{
@@ -235,14 +242,16 @@ class Transactions extends React.Component {
                       onChange={this.onChangeDate}
                       onOk={this.onDateOk}
                   />
-                </div>:''
+                </div>
+                {
+                    (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
+                      <SmartTable bordered={true} loading={loading}
+                                  column={column} data={transactions} total={total}
+                                  onPageChange={(page, pageSize) => {
+                                     this.loadTransactions(page, pageSize)
+                    }}/>
+                }
 
-              }
-              <SmartTable bordered={true} loading={loading}
-                          column={column} data={transactions} total={total}
-                          onPageChange={(page, pageSize) => {
-                            this.loadTransactions(page, pageSize)
-                          }}/>
             </div>
           </div>
         </Fragment>

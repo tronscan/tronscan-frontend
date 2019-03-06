@@ -27,7 +27,7 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.start = moment().startOf('day').subtract(1, 'weeks')
     this.end = new Date().getTime();
     this.state = {
       filter: {},
@@ -60,7 +60,13 @@ class Transactions extends React.Component {
 
     let {filter, isinternal=false, address=false} = this.props;
 
-    this.setState({loading: true});
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
     let transactions, total,rangeTotal = 0;
 
@@ -263,7 +269,8 @@ class Transactions extends React.Component {
       this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-      this.loadTransactions();
+      let {page, pageSize} = this.state;
+      this.loadTransactions(page, pageSize);
   }
   disabledDate = (time) => {
       if (!time) {
