@@ -58,7 +58,7 @@ class DateRange extends React.Component {
 
         const { startValue, endValue, endOpen } = this.state;
         return (
-            <div>
+            <div className="date-range-box">
                 <DatePicker
                     disabledDate={this.disabledStartDate}
                     showTime
@@ -68,6 +68,7 @@ class DateRange extends React.Component {
                     onChange={this.onStartChange}
                     onOpenChange={this.handleStartOpenChange}
                 />
+                &nbsp;&nbsp;~&nbsp;&nbsp;
                 <DatePicker
                     disabledDate={this.disabledEndDate}
                     showTime

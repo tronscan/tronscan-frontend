@@ -11,7 +11,7 @@ import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
-import DateRange from "../common/TableTotal";
+import DateRange from "../common/DateRange";
 
 import {DatePicker} from 'antd';
 import xhr from "axios/index";

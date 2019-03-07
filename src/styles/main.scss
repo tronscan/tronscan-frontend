@@ -2904,13 +2904,13 @@ h5 {
   padding-left: 30px;
 }
 
-.ant-calendar-picker{
-  width: 360px!important;
-  @media only screen and (max-width: 768px) {
-    width: 340px!important;
-    right: -27px;
-  }
-}
+//.ant-calendar-picker{
+//  width: 360px!important;
+//  @media only screen and (max-width: 768px) {
+//    width: 340px!important;
+//    right: -27px;
+//  }
+//}
 
 .ant-pagination-options-quick-jumper{
   input{
@@ -2930,5 +2930,18 @@ h5 {
 .address-token-tab-mobile{
   @media only screen and (max-width: 768px) {
     top: -20px;
+  }
+}
+.date-range-box{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -35px;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
   }
 }
