@@ -11,6 +11,8 @@ import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/TableTotal";
+
 import {DatePicker} from 'antd';
 import xhr from "axios/index";
 
@@ -188,23 +190,23 @@ class Blocks extends React.Component {
             <div className="row">
               <div className="col-md-12 table_pos">
                 {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
-                  {
-                      total ?  <div className="transactions-rangePicker" style={{width: "360px"}}>
-                        <RangePicker
-                            defaultValue={[moment(this.start), moment(this.end)]}
-                            ranges={{
-                                'Today': [moment().startOf('day'), moment()],
-                                'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                            }}
-                            disabledDate={this.disabledDate}
-                            showTime
-                            format="YYYY/MM/DD HH:mm:ss"
-                            onChange={this.onChangeDate}
-                            onOk={this.onDateOk}
-                        />
-                      </div> : ''
-
-                  }
+                  {/*{*/}
+                      {/*total ?  <div className="transactions-rangePicker" style={{width: "360px"}}>*/}
+                        {/*<RangePicker*/}
+                            {/*defaultValue={[moment(this.start), moment(this.end)]}*/}
+                            {/*ranges={{*/}
+                                {/*'Today': [moment().startOf('day'), moment()],*/}
+                                {/*'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],*/}
+                            {/*}}*/}
+                            {/*disabledDate={this.disabledDate}*/}
+                            {/*showTime*/}
+                            {/*format="YYYY/MM/DD HH:mm:ss"*/}
+                            {/*onChange={this.onChangeDate}*/}
+                            {/*onOk={this.onDateOk}*/}
+                        {/*/>*/}
+                      {/*</div> : ''*/}
+                  {/*}*/}
+                <DateRange/>
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)
