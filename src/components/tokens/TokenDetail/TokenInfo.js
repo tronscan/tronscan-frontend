@@ -25,10 +25,8 @@ class TokenInfo extends React.Component {
   render() {
     let {token} = this.props;
     let { currentTotalSupply } = this.state;
-      let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
-      let currentTotal =  currentTotalSupply ? currentTotalSupply : issued;
-      console.log('currentTotalSupply',currentTotalSupply)
-    console.log('token',token)
+    let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
+    let currentTotal =  currentTotalSupply ? currentTotalSupply : issued;
     return (
         <div className="tokenDetail_box">
           <table className="table m-0 tokenDetail">
@@ -91,9 +89,15 @@ class TokenInfo extends React.Component {
             </tr>
             <tr>
               <th>{tu("fund_raised")}:</th>
-              <td>
-                <FormattedNumber value={token.participated / ONE_TRX}/> TRX
-              </td>
+                {
+                    token.id == '1002000'? <td>
+                          <FormattedNumber value={159403820.4} /> TRX
+                        </td>:
+                        <td>
+                          <FormattedNumber value={token.participated / ONE_TRX}/> TRX
+                        </td>
+                }
+
             </tr>
             <tr>
               <th>{tu("country")}:</th>
