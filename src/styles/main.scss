@@ -2906,11 +2906,29 @@ h5 {
 
 .ant-calendar-picker{
   width: 360px!important;
+  @media only screen and (max-width: 768px) {
+    width: 340px!important;
+    right: -27px;
+  }
 }
 
 .ant-pagination-options-quick-jumper{
   input{
     width: 60px;
   }
+}
 
+.transfer-mt-100{
+  margin-top: 4.25rem;
+}
+
+.transfers_pos_picker{
+  @media only screen and (max-width: 768px) {
+    top: -20px;
+  }
+}
+.address-token-tab-mobile{
+  @media only screen and (max-width: 768px) {
+    top: -20px;
+  }
 }

@@ -31,7 +31,7 @@ class Transfers extends React.Component {
 
   constructor(props) {
     super(props);
-    this.start = moment().startOf('day').subtract(1, 'weeks');
+    this.start = moment().startOf('day').subtract(6, 'day').valueOf();
     this.end = new Date().getTime();
 
     this.state = {
@@ -279,11 +279,11 @@ class Transfers extends React.Component {
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
-                  <div className="table_pos_switch d-md-block table_pos_switch_addr">
+                  <div className="table_pos_switch d-md-block table_pos_switch_addr table_pos_switch_addr_transfers">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
                     {
-                        address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "360px"}}>
+                        address ?  <div className="transactions-rangePicker table_pos_picker transfers_pos_picker" style={{width: "360px"}}>
                           <RangePicker
                               defaultValue={[moment(this.start), moment(this.end)]}
                               ranges={{

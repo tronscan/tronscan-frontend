@@ -276,10 +276,11 @@ function Row({account, showSync = true, index, state, props}) {
           {
             account.producedTotal > 0 ? (
                 <Fragment>
-                  <FormattedNumber
-                      maximumFractionDigits={2}
-                      minimunFractionDigits={2}
-                      value={account.producePercentage}/>%
+                  {/*<FormattedNumber*/}
+                      {/*maximumFractionDigits={3}*/}
+                      {/*minimunFractionDigits={2}*/}
+                      {/*value={}/>%*/}
+                    {(Math.floor(account.producePercentage*100))/100 }%
                 </Fragment>
             ) : '-'
           }
