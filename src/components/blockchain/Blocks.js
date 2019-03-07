@@ -21,7 +21,7 @@ class Blocks extends React.Component {
   constructor() {
     super();
     //this.start = new Date(new Date().toLocaleDateString()).getTime();
-    this.start = moment().startOf('day').subtract(1, 'weeks')
+    this.start = moment().startOf('day').subtract(6, 'day').valueOf();
     this.end = new Date().getTime();
     this.state = {
       loading: false,
