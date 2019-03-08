@@ -17,6 +17,7 @@ import {ContractTypes} from "../../utils/protocol";
 import rebuildList from "../../utils/rebuildList";
 import {SwitchToken} from "./Switch";
 import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {QuestionMark} from "./QuestionMark";
@@ -31,9 +32,9 @@ class Transfers extends React.Component {
 
   constructor(props) {
     super(props);
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf();
-    this.end = new Date().getTime();
 
+    this.start = "";
+    this.end = "";
     this.state = {
       filter: {},
       transfers: [],
@@ -240,21 +241,13 @@ class Transfers extends React.Component {
     return column;
   }
 
-  onChangeDate = (dates, dateStrings) => {
-      this.start = new Date(dateStrings[0]).getTime();
-      this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
       let {page, pageSize} = this.state;
-      this.load(page, pageSize);
+      this.load(page,pageSize);
   }
-  disabledDate = (time) => {
-      if (!time) {
-          return false
-      } else {
-          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-      }
-  }
+
   render() {
 
     let {transfers, page, total, rangeTotal = 0, pageSize, loading, emptyState: EmptyState = null} = this.state;
@@ -284,18 +277,7 @@ class Transfers extends React.Component {
                   </div>
                     {
                         address ?  <div className="transactions-rangePicker table_pos_picker transfers_pos_picker" style={{width: "360px"}}>
-                          <RangePicker
-                              defaultValue={[moment(this.start), moment(this.end)]}
-                              ranges={{
-                                  'Today': [moment().startOf('day'), moment()],
-                                  'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                              }}
-                              disabledDate={this.disabledDate}
-                              showTime
-                              format="YYYY/MM/DD HH:mm:ss"
-                              onChange={this.onChangeDate}
-                              onOk={this.onDateOk}
-                          />
+                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
                         </div> : ''
 
                     }
@@ -307,18 +289,7 @@ class Transfers extends React.Component {
                   </div>
                     {
                         address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "360px"}}>
-                          <RangePicker
-                              defaultValue={[moment(this.start), moment(this.end)]}
-                              ranges={{
-                                  'Today': [moment().startOf('day'), moment()],
-                                  'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                              }}
-                              disabledDate={this.disabledDate}
-                              showTime
-                              format="YYYY/MM/DD HH:mm:ss"
-                              onChange={this.onChangeDate}
-                              onOk={this.onDateOk}
-                          />
+                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
                         </div> : ''
 
                     }

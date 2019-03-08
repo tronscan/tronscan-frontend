@@ -16,6 +16,7 @@ import {API_URL} from "../../../constants";
 import {TRXPrice} from "../../common/Price";
 import {ONE_TRX} from "../../../constants";
 import TotalInfo from "../../common/TableTotal";
+import DateRange from "../../common/DateRange";
 import {Tooltip} from 'antd'
 import moment from 'moment';
 import {DatePicker} from "antd/lib/index";
@@ -26,8 +27,10 @@ class Transactions extends React.Component {
 
   constructor(props) {
     super(props);
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf()
-    this.end = new Date().getTime();
+    //this.start = moment().startOf('day').subtract(6, 'day').valueOf()
+    //this.end = new Date().getTime();
+    this.start = "";
+    this.end = "";
     this.state = {
       filter: {},
       transactions: [],
@@ -80,21 +83,6 @@ class Transactions extends React.Component {
     });
   };
 
-  onChangeDate = (dates, dateStrings) => {
-    this.start = new Date(dateStrings[0]).getTime();
-    this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
-    let {page, pageSize} = this.state;
-    this.loadTransactions(page,pageSize);
-  }
-  disabledDate = (time) => {
-    if (!time) {
-      return false
-    } else {
-        return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-    }
-  }
   customizedColumn = () => {
     let {intl, isInternal = false} = this.props;
 
@@ -206,6 +194,13 @@ class Transactions extends React.Component {
     return column;
   }
 
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.loadTransactions(page,pageSize);
+  }
+
   render() {
 
     let {transactions, total,rangeTotal, loading, EmptyState = null} = this.state;
@@ -228,29 +223,15 @@ class Transactions extends React.Component {
           <div className="row">
             <div className="col-md-12 table_pos mt-5">
               {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit"/>:""}
-
-                <div className="transactions-rangePicker-txs" style={{width: "360px"}}>
-                  <RangePicker
-                      defaultValue={[moment(this.start), moment(this.end)]}
-                      ranges={{
-                        'Today': [moment().startOf('day'), moment()],
-                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                      }}
-                      disabledDate={this.disabledDate}
-                      showTime
-                      format="YYYY/MM/DD HH:mm:ss"
-                      onChange={this.onChangeDate}
-                      onOk={this.onDateOk}
-                  />
-                </div>
-                {
-                    (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
-                      <SmartTable bordered={true} loading={loading}
-                                  column={column} data={transactions} total={total}
-                                  onPageChange={(page, pageSize) => {
-                                     this.loadTransactions(page, pageSize)
-                    }}/>
-                }
+              <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+              {
+                  (!loading && transactions.length === 0)? <div className="p-3 text-center no-data">{tu("no_tnx")}</div>:
+                    <SmartTable bordered={true} loading={loading}
+                                column={column} data={transactions} total={total}
+                                onPageChange={(page, pageSize) => {
+                                   this.loadTransactions(page, pageSize)
+                  }}/>
+              }
 
             </div>
           </div>

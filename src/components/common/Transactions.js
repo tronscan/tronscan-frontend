@@ -13,6 +13,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -27,8 +28,8 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf()
-    this.end = new Date().getTime();
+    this.start = "";
+    this.end = "";
     this.state = {
       filter: {},
       transactions: [],
@@ -264,29 +265,20 @@ class Transactions extends React.Component {
     return column;
   }
 
-  onChangeDate = (dates, dateStrings) => {
-      this.start = new Date(dateStrings[0]).getTime();
-      this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
       let {page, pageSize} = this.state;
-      this.loadTransactions(page, pageSize);
+      this.loadTransactions(page,pageSize);
   }
-  disabledDate = (time) => {
-      if (!time) {
-          return false
-      } else {
-          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-      }
-  }
+
 
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
     let {intl, isinternal, address = false} = this.props;
     let column = !isinternal? this.customizedColumn():
-                              this.trc20CustomizedColumn()
-
+                              this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
     // if (!loading && transactions && transactions.length === 0) {
@@ -303,20 +295,7 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {total ? <TotalInfo total={total} rangeTotal={!isinternal?rangeTotal:total} typeText="transactions_unit" common={!address}/>:""}
           {
-              address ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
-                <RangePicker
-                    defaultValue={[moment(this.start), moment(this.end)]}
-                    ranges={{
-                        'Today': [moment().startOf('day'), moment()],
-                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                    }}
-                    disabledDate={this.disabledDate}
-                    showTime
-                    format="YYYY/MM/DD HH:mm:ss"
-                    onChange={this.onChangeDate}
-                    onOk={this.onDateOk}
-                />
-              </div> : ''
+              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />: ''
 
           }
           {
