@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { injectIntl } from "react-intl";
 import { DatePicker } from 'antd';
+import moment from 'moment';
+import {toastr} from 'react-redux-toastr'
 import {t, tu} from "../../utils/i18n";
 
 class DateRange extends React.Component {
@@ -17,17 +19,19 @@ class DateRange extends React.Component {
     disabledStartDate = (startValue) => {
         const endValue = this.state.endValue;
         if (!startValue || !endValue) {
-            return false;
+            return startValue.valueOf() > moment().valueOf() || startValue.valueOf() < moment([2018,5,25]).valueOf();
         }
-        return startValue.valueOf() > endValue.valueOf();
+
+
+        return  startValue.valueOf() > endValue.valueOf()
     }
 
     disabledEndDate = (endValue) => {
         const startValue = this.state.startValue;
         if (!endValue || !startValue) {
-            return false;
+            return endValue.valueOf() > moment().valueOf();
         }
-        return endValue.valueOf() <= startValue.valueOf();
+        return endValue.valueOf() <= startValue.valueOf() || endValue.valueOf() > moment().valueOf();
     }
 
     onChange = (field, value) => {
@@ -54,9 +58,25 @@ class DateRange extends React.Component {
         this.setState({ endOpen: open });
     }
 
+    handleOk = (startValue, endValue) =>{
+        let { onDateOk, intl } = this.props;
+        if(!startValue){
+            toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'select_start_time'}));
+            return;
+        }else if(!endValue){
+            toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'select_end_time'}));
+            return;
+        }
+        onDateOk(startValue, endValue)
+    }
+
+
     render() {
 
         const { startValue, endValue, endOpen } = this.state;
+        console.log('startValue',startValue)
+        console.log('endValue',endValue)
+
         return (
             <div className="date-range-box">
                 <DatePicker
@@ -78,6 +98,7 @@ class DateRange extends React.Component {
                     onChange={this.onEndChange}
                     open={endOpen}
                     onOpenChange={this.handleEndOpenChange}
+                    onOk={() => this.handleOk(startValue, endValue)}
                 />
             </div>
         );

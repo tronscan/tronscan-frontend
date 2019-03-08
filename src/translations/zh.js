@@ -1599,7 +1599,8 @@ export const messages = {
     "table_info_account_tip1":"波场主链共",
     "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
 
-
+    "select_start_time":"请选择开始时间",
+    "select_end_time":"请选择结束时间",
 
 
 };
