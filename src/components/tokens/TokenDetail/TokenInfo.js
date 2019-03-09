@@ -26,7 +26,7 @@ class TokenInfo extends React.Component {
     let {token} = this.props;
     let { currentTotalSupply } = this.state;
     let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
-    let currentTotal =  currentTotalSupply ? currentTotalSupply : issued;
+    let currentTotal =   token.id == '1002000' ? currentTotalSupply : issued;
     return (
         <div className="tokenDetail_box">
           <table className="table m-0 tokenDetail">
