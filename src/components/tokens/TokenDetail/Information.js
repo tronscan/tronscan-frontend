@@ -17,7 +17,7 @@ export function Information({token,currentTotalSupply}) {
     }
   })
   let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
-  let currentTotal =  currentTotalSupply ? currentTotalSupply : issued;
+  let currentTotal =  token.id == 1002000? currentTotalSupply : issued;
 
   const tokenList = [
     { 
