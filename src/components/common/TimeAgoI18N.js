@@ -1,4 +1,5 @@
 import React from "react";
+import moment from 'moment';
 import TimeAgo from 'react-timeago';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
@@ -54,7 +55,7 @@ const timeLanguages = {
 
 const TimeAgoI18N = ({date, activeLanguage}) => {
     const formatter = buildFormatter(timeLanguages[activeLanguage]);
-    return <TimeAgo date={date} formatter={formatter}/>;
+    return <TimeAgo date={date} formatter={formatter} title={moment(date).format("MMM-DD-YYYY HH:mm:ss A")}/>;
 };
 
 export default TimeAgoI18N;

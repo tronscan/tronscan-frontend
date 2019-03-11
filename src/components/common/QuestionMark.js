@@ -6,8 +6,8 @@ import {tu,t} from "../../utils/i18n";
 
 export class QuestionMark extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             open: false,
             id: alpha(24),
@@ -16,8 +16,7 @@ export class QuestionMark extends React.Component {
 
     render() {
         let {open, id } = this.state;
-        let {text, placement, testSecond ='', className=''} = this.props;
-
+        let {text, placement, testSecond ='', className='',info=''} = this.props;
         return (
             <div className="d-inline-block">
                 <div className="question-mark" id={id}
@@ -26,11 +25,9 @@ export class QuestionMark extends React.Component {
                     <i>?</i>
                 </div>
                 <Tooltip placement={placement} isOpen={open} target={id} className={className}>
-                    {t(text)}
-                    {
-                        testSecond? <span><br/> {t(testSecond)}</span> :""
-                    }
-
+                    {text?t(text):""}
+                    {testSecond? <span><br/> {t(testSecond)}</span> :""}
+                    {info?info:""}
                 </Tooltip>
             </div>
 

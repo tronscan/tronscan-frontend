@@ -180,7 +180,7 @@ export const messages = {
     "split_by_country": "국가 및 지역별 순위",
     "total_accounts_last_day": "전날까지 총 계좌 수",
     "chart_tip": "데이터 영역을 드래그하여 확대하고 축소하세요",
-    "link_test_server": "테스트 넷",
+    "link_test_server": "테스트 넷（shasta）",
     "highest": "최대",
     "lowest": "최소",
     "increase": "증가",
@@ -1569,7 +1569,23 @@ export const messages = {
     "BTT_supply": "BTT 유통량",
     "BTT_Token_Release_Schedule":"BTT 토큰 해동 타임라인",
     "source_btt_team":"정보 출처：BTT 관리팀",
+    "20_transfers": "TRC-20 transfers",
+    "internal_transactions": "internal transactions",
 
-
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"처음 10,000 개의 데이터 만 표시됨",
+    "table_info_big_tip1":"선택한 기간에는 총",
+    "table_info_big_tip2":"개의 데이터가 있으며",
+    "table_info_big_tip3":"현재 처음 10,000 개의 데이터 만 표시됩니다.",
+    "table_info_big_tip4":"다른 통계를 보려면 선택한 기간을 변경하십시오.",
+    "table_info_account_tip1":"TRON의 메인넷에는 총",
+    "table_info_account_tip2":"개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
+    "Singapore":"Singapore",
 
 };

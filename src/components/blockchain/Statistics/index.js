@@ -150,7 +150,7 @@ class Statistics extends React.Component {
     ]
 
 
-    let {txOverviewStats} = await Client.getTxOverviewStats();
+    let {txOverviewStats} = await Client.getTxOverviewStatsAll();
     let temp = [];
     let addressesTemp = [];
     let blockSizeStatsTemp = [];

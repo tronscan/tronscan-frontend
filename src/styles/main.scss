@@ -2884,3 +2884,51 @@ h5 {
   top:66px;
   z-index: 999;
 }
+.table-question-mark{
+  margin-top: -22px;
+  display: block;
+  float: right;
+}
+
+.table-question-mark-small{
+  display: block;
+  margin-top: -1px;
+  float: right;
+  padding-left: 5px;
+}
+
+.table-question-mark-triggers{
+  margin-top: -22px;
+  display: block;
+  float: right;
+  padding-left: 30px;
+}
+
+.ant-calendar-picker{
+  width: 360px!important;
+  @media only screen and (max-width: 768px) {
+    width: 340px!important;
+    right: -27px;
+  }
+}
+
+.ant-pagination-options-quick-jumper{
+  input{
+    width: 60px;
+  }
+}
+
+.transfer-mt-100{
+  margin-top: 4.25rem;
+}
+
+.transfers_pos_picker{
+  @media only screen and (max-width: 768px) {
+    top: -20px;
+  }
+}
+.address-token-tab-mobile{
+  @media only screen and (max-width: 768px) {
+    top: -20px;
+  }
+}

@@ -202,7 +202,7 @@ export  class TokenBalances extends React.Component {
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
-                <div className="account-token-tab address-token-tab">
+                <div className="account-token-tab address-token-tab address-token-tab-mobile">
                     <a href="javascript:;"
                        className={"btn btn-default btn-sm" + (tokenTRC10 ? ' active' : '')}
                        onClick={this.handleTRC10Token}>

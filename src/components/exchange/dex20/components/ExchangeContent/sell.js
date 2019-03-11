@@ -383,6 +383,55 @@ class Sell extends Component {
         this.setState({
           balanceTimer: timer
         })
+        let tronWeb;
+        if (this.props.walletType.type === "ACCOUNT_LEDGER"){
+            tronWeb = this.props.tronWeb();
+        }else if(this.props.walletType.type === "ACCOUNT_TRONLINK" || this.props.walletType.type === "ACCOUNT_PRIVATE_KEY"){
+            tronWeb = account.tronWeb;
+        }
+
+        let _times = 0
+        const timer2 = setInterval(async () => {
+          const info = await tronWeb.trx.getTransactionInfo(id)
+          _times += 1
+          if (info.log && info.log.length > 0) {
+            let c_id
+            for (let i = 0; i < info.log.length; i++) {
+              const _addr = tronWeb.address.fromHex(
+                '41' + info.log[i].address
+              )
+              if (
+                _addr === 'TSMbPm5mUsaTDSEjHCd55ZJaib3Ysvjyc5' ||
+                _addr === 'THnCkTX1GfDArAuyzzv2nGpDt4vChm8t2e'
+              ) {
+                c_id = parseInt(
+                  info.log[i].data.toString().substring(0, 64),
+                  16
+                )
+                clearInterval(timer2)
+                if (c_id) {
+                  Client20.addChannelId(
+                    {
+                      hash: id,
+                      orderId: c_id.toString(),
+                      channelId: '10000'
+                    },
+                    {
+                      Key: 'Tron@123456'
+                    }
+                  ).then(res => {})
+                }
+                break
+              }
+            }
+
+          } else {
+            if (_times > 6) {
+              clearInterval(timer2)
+            }
+          }
+        }, 20000)
+
 
       }
     } catch (error) {

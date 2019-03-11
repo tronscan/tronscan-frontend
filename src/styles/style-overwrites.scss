@@ -361,6 +361,7 @@ body .token_black {
     }
     span{
       color: $text-block-dark;
+      position: relative;
     }
     h3, h3 *{
       color: $bg-color;
@@ -499,6 +500,13 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
       top: 43px;
     }
   }
+  &_picker{
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+    right:0!important;
+    margin-top: 0!important;
+  }
   &_info_addr{
     @media screen and (max-width: 768px) {
       top: -40px;
@@ -508,6 +516,12 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
     @media screen and (max-width: 768px) {
       left: 0px;
       top: -15px;
+    }
+  }
+  &_switch_addr_transfers{
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: -55px;
     }
   }
   &_info_addr2{
@@ -525,7 +539,7 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   &_switch_addr3{
     @media screen and (max-width: 768px) {
       left: 0px;
-      top: 26px;
+      top: -55px;
     }
   }
 

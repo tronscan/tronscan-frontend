@@ -12,10 +12,12 @@ import {ContractTypes} from "../../utils/protocol";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import TotalInfo from "../common/TableTotal";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
 import queryString from 'query-string';
+
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -23,7 +25,8 @@ const RangePicker = DatePicker.RangePicker;
 class Transactions extends React.Component {
   constructor() {
     super();
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
+    //this.start = new Date(new Date().toLocaleDateString()).getTime();
+    this.start = moment().startOf('day').subtract(6, 'day').valueOf()
     this.end = new Date().getTime();
     this.state = {
       transactions: [],
@@ -45,6 +48,7 @@ class Transactions extends React.Component {
   componentDidUpdate(prevProps) {
     let {location, match} = this.props;
 
+
     if(location.search !== prevProps.location.search){
       this.loadTransactions();
     }
@@ -60,11 +64,15 @@ class Transactions extends React.Component {
     let {location, match} = this.props;
     let date_to = match.params.date;
     let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
-
-    this.setState({loading: true});
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
     let searchParams = {};
-
     for (let [key, value] of Object.entries(getQueryParams(location))) {
       switch (key) {
         case "address":
@@ -82,7 +90,6 @@ class Transactions extends React.Component {
         date_start: date_start,
         date_to: date_to
       });
-
     }
     else {
 
@@ -110,10 +117,12 @@ class Transactions extends React.Component {
       
 
     }
+
     this.setState({
       transactions: result.transactions,
       loading: false,
-      total: result.total
+      total: result.total,
+      rangeTotal: result.rangeTotal,
     });
   };
 
@@ -149,7 +158,7 @@ class Transactions extends React.Component {
         key: 'timestamp',
         align: 'left',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -190,43 +199,47 @@ class Transactions extends React.Component {
   }
 
   onChangeDate = (dates, dateStrings) => {
+
     this.start = new Date(dateStrings[0]).getTime();
     this.end = new Date(dateStrings[1]).getTime();
   }
   onDateOk = () => {
-    this.loadTransactions();
+    let {page, pageSize} = this.state;
+    this.loadTransactions(page, pageSize);
   }
   disabledDate = (time) => {
     if (!time) {
       return false
     } else {
-      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
+      return time < moment([2018,5,25]) || time > moment().add(0, 'd')
     }
   }
 
   render() {
 
-    let {transactions, total, loading, addressLock} = this.state;
+    let {transactions, total, rangeTotal, loading, addressLock,dateStart,dateEnd} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
-
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock}/>:""}
               {
-                  total && !addressLock ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
+                   !addressLock ?  <div className="transactions-rangePicker" style={{width: "360px"}}>
                   <RangePicker
                       defaultValue={[moment(this.start), moment(this.end)]}
+                     // value={[moment(dateStart), moment(dateEnd)]}
                       ranges={{
                         'Today': [moment().startOf('day'), moment()],
                         'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
                       }}
                       disabledDate={this.disabledDate}
                       showTime
+                      // showTime={{
+                      //     defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
+                      // }}
                       format="YYYY/MM/DD HH:mm:ss"
                       onChange={this.onChangeDate}
                       onOk={this.onDateOk}

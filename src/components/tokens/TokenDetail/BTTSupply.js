@@ -220,7 +220,7 @@ class BTTSupply extends React.Component {
                                                                 <h4>{tu('market_capitalization')}</h4>
                                                             </div>
                                                         </div>
-                                                      {/*
+                                                      {
                                                         <div className="card">
                                                           <div className="card-body">
                                                             <SupplyAreaHighChart
@@ -229,7 +229,7 @@ class BTTSupply extends React.Component {
                                                                 style={{height: 400, marginTop: 10}}
                                                             />
                                                           </div>
-                                                        </div> */
+                                                        </div>
                                                       }
                                                     </div>
                                                     <a href='https://support.binance.com/hc/en-us/articles/360022340552'>Binance Launchpad Public Sale</a>

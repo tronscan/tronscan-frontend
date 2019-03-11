@@ -81,13 +81,21 @@ export default class Home extends Component {
     for (let txs in txOverviewStats) {
       let tx = parseInt(txs);
       if (tx === 0) {
-        temp.push(txOverviewStats[tx]);
+        //temp.push(txOverviewStats[tx]);
         addressesTemp.push({
           date: txOverviewStats[tx].date,
-          total: txOverviewStats[tx].newAddressSeen,
+          total: txOverviewStats[tx].totalAddress,
           increment: txOverviewStats[tx].newAddressSeen
         });
-
+        temp.push({
+            date: txOverviewStats[tx].date,
+            // totalTransaction: (txOverviewStats[tx].totalTransaction - txOverviewStats[tx - 1].totalTransaction),
+            totalTransaction: txOverviewStats[tx].newTransactionSeen ,
+            avgBlockTime: txOverviewStats[tx].avgBlockTime,
+            avgBlockSize: txOverviewStats[tx].avgBlockSize,
+            totalBlockCount: txOverviewStats[tx].totalBlockCount,
+            newAddressSeen: txOverviewStats[tx].newAddressSeen
+        });
       }
       else {
         temp.push({
@@ -106,9 +114,9 @@ export default class Home extends Component {
         });
       }
     }
-    this.setState({
-      txOverviewStats: temp.slice(temp.length - 15, temp.length - 1),
-      addressesStats: addressesTemp.slice(addressesTemp.length - 15, addressesTemp.length-1),
+      this.setState({
+      txOverviewStats: temp.slice(0, 14),
+      addressesStats: addressesTemp.slice(0, 14),
       transactionPerDay: temp[temp.length - 2].totalTransaction,
       blockHeight: blocks[0] ? blocks[0].number : 0,
       totalAccounts: txOverviewStats[txOverviewStats.length-1].totalAddress,

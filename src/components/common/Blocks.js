@@ -6,6 +6,7 @@ import {BlockNumberLink} from "./Links";
 import {t, tu} from "../../utils/i18n";
 import {FormattedNumber,injectIntl} from "react-intl";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "./loaders";
@@ -75,7 +76,7 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {

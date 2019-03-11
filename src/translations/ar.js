@@ -1,4 +1,4 @@
-export const messages = {
+﻿export const messages = {
     /*
     ##################################################################################
     #                                                                                #
@@ -50,7 +50,7 @@ export const messages = {
     "register": "تسجيل",
     "login": "تسجيل الدخول",
     "height": "إرتفاع",
-    "age": "العمر",
+    "age": "الوقت",
     "bytes": "البايت",
     "MByte": "ميغا بايت",
     "produced_by": "التي يتم انتاجها",
@@ -570,7 +570,7 @@ export const messages = {
     "pair": "زوج التداول",
     "volume": "حجم التداول",
     "usd": "دولار",
-    "average_price": "ترون متوسط ​​سعر ",
+    "average_price": "متوسط ​​سعر ترون ",
     "click_the_chart_title_to_find_more": "انقر على عنوان المخطط لرؤية المزيد من المعلومات",
     /*
     ##################################################################################
@@ -581,7 +581,7 @@ export const messages = {
     */
     "next_round": "الجولة القادمة من التصويت",
     "total_votes": "مجموع الاصوات",
-    "most_ranks": "معظم الرتب المكتسبة في هذه الجولة",
+    "most_ranks": "في المرتبة الاكثر تقدماً",
     "view_live_ranking": "عرض الترتيب المباشر",
     "open_team_page": "افتح صفحة الفريق",
     "warning_votes": "مطلوب على الأقل واحد من طاقة ترون لبدء التصويت ، وسيتم اكتساب طاقة ترون بواسطة تجميد عملة ترون على",
@@ -611,7 +611,7 @@ export const messages = {
     #                                                                                #
     ##################################################################################
     */
-    "info_tx_viewer": "قم بلصق قيمة تجزئة المعاملة السداسية عشرية هنا لعرض محتوى المعاملة ، ومن ثم سيتم بث المعاملة عبر الشبكة بالكامل.",
+   "info_tx_viewer": "hex لعرض محتوى المعاملة ومن ثم بث المعاملة عبر الشبكة بالكامل ستحتاج الى لصق قيمة تجزئة المعاملة وهي",
     "load_tx": "تحميل المعاملات",
     "tx_qrcode": "رمز الاستجابة السريعة للمعاملة",
     "load_tx_qrcode": "مسح رمز الاستجابة السريعة لتحميل المعاملة",
@@ -847,7 +847,7 @@ export const messages = {
     "foundation_address": "العدد الإجمالي لأقفال ترون في المؤسسة",
     "unfreeze_time": "وقت الغاء التجميد",
     "addresses_number": "عدد العناوين",
-    "copyright": "حق النشر",
+    "copyright": "حقوق النشر",
     /*
       ##################################################################################
       #                                                                                #
@@ -868,14 +868,14 @@ export const messages = {
     "price_per_1000_trx": "سعر ترون 'لكل 1000 ترون' ",
     "in_USD": "بالدولار الأمريكي",
     "in_BTC": "في بيتكوين",
-    "total_TRX_supply": "ترون إجمالي سيولة",
+    "total_TRX_supply": "إجمالي السيولة في ترون",
     "market_capitalization": "القيمة السوقية",
     "circulating_supply": "العرض المتداول",
-    "list_trx": "ترون قائمة",
+    "list_trx": "قائمة ترون",
     "burned_trx": "ترون حرق",
     "supply_notes": "التمويل الجماعي ومبيعات ما قبل البيع في جميع أنحاء العالم ، باستثناء الولايات المتحدة والصين واليابان",
     "14_day_transaction_history": " عدد المعاملات في الـ 14 يومًا الماضية",
-    "14_day_address_growth": " معالجة النمو خلال الـ 14 يومًا الماضية",
+    "14_day_address_growth": " حالة النمو خلال الـ 14 يومًا الماضية",
 
     /*
     ##################################################################################
@@ -971,15 +971,15 @@ export const messages = {
     "a_totle": "المجموع",
     "transaction_info": "معلومات المعاملة",
     "hold_addr": "أصحاب الرمز المميز",
-    "transactions_unit": "المعاملات",
+    "transactions_unit": "معاملة",
     "transfers_unit": "التحويل",
-    "block_unit": "الكتل",
+    "block_unit": "كتلة",
     "record_unit": "السجل",
     "token_unit": "الرموز",
     "voter_unit": "المرشحين",
     "vote_unit": "المصوتون",
-    "account_unit": "الحسابات",
-    "address_unit": "العناوين",
+    "account_unit": "حساب",
+    "address_unit": "عنوان",
     "contract_unit": "تم التحقق من العقد",
     "inter_contract_unit": "عقد تداول داخلي",
 
@@ -1460,7 +1460,7 @@ export const messages = {
    "trc20_cur_order_header_price": "السعر",
    "trc20_cur_order_header_amount": "الكمية",
    "trc20_cur_order_header_volume": "قيمة التداول",
-   "trc20_cur_order_header_progress": "إحراز تقدم",
+   "trc20_cur_order_header_progress": "نسبة التقدم",
    "trc20_cur_order_header_action": "التشغيل",
    "trc20_cur_order_cancel": "إالغاء",
    "trc20_trans_record_header_block":"الكتل",
@@ -1569,7 +1569,24 @@ export const messages = {
     "BTT_supply": "BTT سيولة",
     "BTT_Token_Release_Schedule":"BTT رمز فتح قفل",
     "source_btt_team":"BTT المصدر: فريق إدارة ",
+    "contract_total": "المجموع الحالي للعقد التي تم العثور عليها هو",
+    "20_transfers": "TRC-20 transfers",
+    "internal_transactions": "internal transactions",
 
-
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"عرض أول 10000 بيانات فقط",
+    "table_info_big_tip1":"تم اختيار ما مجموعه",
+    "table_info_big_tip2":"من البيانات خلال الوقت المحدد ، ",
+    "table_info_big_tip3":"ولم يتم عرض سوى 10000",
+    "table_info_big_tip4":" وإذا كنت تريد الاستعلام عن بيانات أخرى ، فمن المستحسن ضبط نطاق الوقت.",
+    "table_info_account_tip1":"تمتلك السلسلة الرئيسية لشركة ترون ما مجموعه ",
+    "table_info_account_tip2":" حساب ، وتعرض حاليًا أعلى 10000 حساب (وهذا وفقًا لرصيد TRX من الكبير إلى الصغير)",
+    "Singapore":"Singapore",
 
 };

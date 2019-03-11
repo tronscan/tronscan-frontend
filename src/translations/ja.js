@@ -181,7 +181,7 @@ export const messages = {
     "split_by_country": "国・地域で区割り",
     "total_accounts_last_day": "総アカウント数（昨日まで）",
     "chart_tip": "データウィンドウをドラッグしてズームインまたはズームアウトする",
-    "link_test_server": "テストネット",
+    "link_test_server": "テストネット（shasta）",
     "highest": "最大",
     "lowest": "最低",
     "increase": "増加",
@@ -1546,17 +1546,15 @@ export const messages = {
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
     "high_risk":"高リスク",
-
-  "delegate_list":"レンタルリスト",
-  "type":"タイプ",
-  "delegate_other":"他人よりの凍結",
-  "freeze_self":"独自の凍結",
-  "total_amount":"総額",
-  "receive_address":"受信アドレス(デフォルトのアドレスはあなた自身のアドレスです)",
-  "my_account":"マイ・アカウント",
-  "receive_list":"受信アドレス",
-  "unfreeze_warning":"自分で凍結したTRXのみを解凍できます。 解凍を続けますか?",
-
+    "delegate_list":"レンタルリスト",
+    "type":"タイプ",
+    "delegate_other":"他人よりの凍結",
+    "freeze_self":"独自の凍結",
+    "total_amount":"総額",
+    "receive_address":"受信アドレス(デフォルトのアドレスはあなた自身のアドレスです)",
+    "my_account":"マイ・アカウント",
+    "receive_list":"受信アドレス",
+    "unfreeze_warning":"自分で凍結したTRXのみを解凍できます。 解凍を続けますか?",
     "contract_method":"コントラクトメソッド",
     "contract_parameters":"メソッドパラメータ",
     "energy_fee":"エネルギーを消耗するためのTRX",
@@ -1579,11 +1577,24 @@ export const messages = {
     "BTT_supply": "BTT 供給",
     "BTT_Token_Release_Schedule":"BTTトークンリリーススケジュール",
     "source_btt_team":"出典：BTT管理チーム",
-
     "20_transfers": "TRC-20 transfers",
-    "internal_transactions": "internal transactions"
+    "internal_transactions": "internal transactions",
 
-
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"最初の10,000個データの表示されています",
+    "table_info_big_tip1":"選択した時間帯に",
+    "table_info_big_tip2":"のデータがあり、",
+    "table_info_big_tip3":"今、最初の10,000のデータのみが表示されています。",
+    "table_info_big_tip4":"他のデータを検索したい場合は、時間範囲を調整してください。",
+    "table_info_account_tip1":"TRONの主鎖には",
+    "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
+    "Singapore":"Singapore",
 
 }
 

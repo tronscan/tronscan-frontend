@@ -1676,7 +1676,7 @@ export default class Account extends Component {
                     </table>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-danger btn-lg mb-3 mr-3" onClick={this.toissuedAsset}
-                            style={{width: '120px'}}>{tu('token_detail')}</button>
+                            style={{minWidth: '120px'}}>{tu('token_detail')}</button>
                       <p style={{color: 'rgb(153, 153, 153)',fontSize: '12px'}}>{tu("Have_questions")} <a href="https://t.me/tronscan_org" target="_bank">{tu("Please_contact_us")}</a></p>
                     </div>
                     
