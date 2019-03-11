@@ -202,15 +202,6 @@ class Transactions extends React.Component {
 
     this.start = new Date(dateStrings[0]).getTime();
     this.end = new Date(dateStrings[1]).getTime();
-    // let dateArr = dateStrings[1].split(" ");
-    // let dateEnd = dateArr[0] + ' 23:59:59'
-    //   console.log('dateEnd',dateEnd)
-    // this.end = new Date(dateEnd).getTime();
-
-    // this.setState({
-    //     dateStart: new Date(dateStrings[0]).getTime(),
-    //     dateEnd: new Date(dateEnd).getTime(),
-    // });
   }
   onDateOk = () => {
     let {page, pageSize} = this.state;

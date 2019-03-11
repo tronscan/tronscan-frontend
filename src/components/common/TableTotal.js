@@ -23,7 +23,7 @@ class TotalInfo extends React.Component {
         return (
             <Fragment>
                 {
-                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
+                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfoSmall}
                     <span>
                             <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark>
                     </span>
