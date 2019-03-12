@@ -68,7 +68,6 @@ class TokenHolders extends React.Component {
         })
       })
     }
-    console.log(addresses)
     
 
     this.setState({
@@ -100,8 +99,7 @@ class TokenHolders extends React.Component {
               <Tooltip placement="topLeft" title={upperCase(intl.formatMessage({id: record.ico}))}>
                 <span className="d-flex align-items-center">
                   <img src={require("../../../images/"+record.ico+'-logo.png')}
-                      style={{width: '14px'}}
-                      className="mr-1"
+                      style={{width: '14px', marginLeft: '-20px', marginRight: '6px'}}
                   />
                 <AddressLink address={record.address}/>
               </span>
