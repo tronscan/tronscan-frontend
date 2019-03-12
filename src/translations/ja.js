@@ -1594,7 +1594,7 @@ export const messages = {
     "table_info_big_tip4":"他のデータを検索したい場合は、時間範囲を調整してください。",
     "table_info_account_tip1":"TRONの主鎖には",
     "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
-
+    "Singapore":"Singapore",
 
 }
 

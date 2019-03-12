@@ -393,7 +393,6 @@ class Sell extends Component {
         let _times = 0
         const timer2 = setInterval(async () => {
           const info = await tronWeb.trx.getTransactionInfo(id)
-          // console.log(info)
           _times += 1
           if (info.log && info.log.length > 0) {
             let c_id
@@ -426,7 +425,6 @@ class Sell extends Component {
               }
             }
 
-            // console.log(c_id)
           } else {
             if (_times > 6) {
               clearInterval(timer2)
