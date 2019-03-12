@@ -1588,5 +1588,6 @@
     "table_info_account_tip1":"تمتلك السلسلة الرئيسية لشركة ترون ما مجموعه ",
     "table_info_account_tip2":" حساب ، وتعرض حاليًا أعلى 10000 حساب (وهذا وفقًا لرصيد TRX من الكبير إلى الصغير)",
     "Singapore":"Singapore",
+    "binance": "binance"
 
 };

@@ -1592,5 +1592,7 @@ export const messages = {
     "table_info_account_tip2":"  حساب دارد و در حال حاضر فقط 10،000 صفحه را نشان می دهد (مطابق با تراز ترانس از بزرگ تا کوچک).",
     "Singapore":"Singapore",
 
+    "binance": "binance"
+
 
 };

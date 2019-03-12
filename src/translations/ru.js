@@ -1603,6 +1603,8 @@ export const messages = {
   "table_info_account_tip2":"учетных записей и в настоящее время отображает только первые 10000 (отображено в соответствии с балансом TRX от большого до малого).",
   "Singapore":"Singapore",
 
+  "binance": "binance"
+
 
 
 };

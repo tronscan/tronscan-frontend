@@ -1596,5 +1596,7 @@ export const messages = {
     "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
     "Singapore":"Singapore",
 
+    "binance": "binance"
+
 }
 

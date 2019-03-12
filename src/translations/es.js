@@ -1603,5 +1603,7 @@ export const messages = {
   "table_info_account_tip2":"cuentas, mostrando solo 10,000 cuentas (ordenadas de alta a baja TRX)",
   "Singapore":"Singapore",
 
+  "binance": "binance"
+
 
 };
