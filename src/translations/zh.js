@@ -1600,7 +1600,7 @@ export const messages = {
     "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
     "Singapore":"新加坡",
 
-    "binance": "币安"
+    "binance": "币安BINANCE"
 
 
 

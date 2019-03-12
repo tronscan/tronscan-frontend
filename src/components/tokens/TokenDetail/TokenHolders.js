@@ -6,7 +6,7 @@ import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
-import {upperFirst} from "lodash";
+import {upperFirst, upperCase} from "lodash";
 import { Tooltip } from 'antd';
 
 class TokenHolders extends React.Component {
@@ -97,7 +97,7 @@ class TokenHolders extends React.Component {
         render: (text, record, index) => {
 
           return record.ico?
-              <Tooltip placement="topLeft" title={intl.formatMessage({id: record.ico})}>
+              <Tooltip placement="topLeft" title={upperCase(intl.formatMessage({id: record.ico}))}>
                 <span className="d-flex align-items-center">
                   <img src={require("../../../images/"+record.ico+'-logo.png')}
                       style={{width: '14px'}}
