@@ -1597,9 +1597,14 @@ export const messages = {
   "source_btt_team":"Source: BTT Management Team",
 
   "20_transfers": "TRC-20 transfers",
-  "internal_transactions": "internal transactions"
+  "internal_transactions": "internal transactions",
 
 
+  "total_enegy_used": "Total Energy Used",
+  "EnergyConsume_title": "TRON Daily EnergyUsed History",
+  "EnergyConsume_subtitle": "Click and drag in the point area to zoom in",
+  "EnergyConsume_yaxis": "energy",
+  "EnergyConsume_legend_first": "",
 
 
 };

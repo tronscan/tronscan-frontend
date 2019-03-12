@@ -1349,16 +1349,16 @@ export class EnergyConsumeChart extends React.Component {
                     type: 'column'
                 },
                 title: {
-                    text: 'TRON Daily EnergyUsed History'
+                    text: intl.formatMessage({id: 'EnergyConsume_title'})
                 },
-                subtitle: {text: 'Click and drag in the point area to zoom in'},
+                subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
                 xAxis: {
                     categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'energy'
+                        text: intl.formatMessage({id: 'EnergyConsume_yaxis'})
                     }
                 },
                 legend: {
@@ -1368,10 +1368,13 @@ export class EnergyConsumeChart extends React.Component {
                 },
                 tooltip: {
                     formatter: function () {
-                        return '<b>' + this.x + '</b><br/>' +
-                            this.series.name + ': ' + this.y + '<br/>' +
-                            '总量: ' + this.point.stackTotal;
-                    }
+                        return intl.formatMessage({id: 'date'}) +': '+ '<br/>' +
+                        intl.formatMessage({id: 'total_enegy_used'}) +': '+ this.points[0].total+'<br/>' +
+                        this.points.map(item => {
+                            return `<span style="color:${item.color}">${item.series.name}: </span>${item.y}<br/>`
+                        }).join('')
+                    },
+                    shared: true
                 },
                 plotOptions: {
                     column: {
@@ -1415,7 +1418,7 @@ export class ContractInvocationChart extends React.Component {
         this.myChart = null;
         let id = ('_' + Math.random()).replace('.', '_');
         this.state = {
-            lineId: 'EnergyConsumeChart' + id
+            lineId: 'ContractInvocationChart' + id
         }
     }
 
@@ -1424,41 +1427,46 @@ export class ContractInvocationChart extends React.Component {
         let {intl, data} = this.props;
        
         if (data && data.length > 0) {
-            let options = {
-                chart: {
-                    type: 'column'
-                },
+            let options =  {
                 title: {
-                    text: 'TRON Daily EnergyUsed History'
+                    text: '两地月平均温度'
                 },
-                subtitle: {text: 'Click and drag in the point area to zoom in'},
+                subtitle: {
+                    text: '数据来源: WorldClimate.com'
+                },
                 xAxis: {
-                    categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+                    categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                                 '七月', '八月', '九月', '十月', '十一月']
                 },
                 yAxis: {
-                    min: 0,
                     title: {
-                        text: 'energy'
-                    }
+                        text: '温度'
+                    },
                 },
                 legend: {
                     align: 'center',
-                    verticalAlign: 'bottom',
-                    symbolRadius: 0
+                    verticalAlign: 'bottom'
                 },
                 tooltip: {
                     formatter: function () {
-                        return '<b>' + this.x + '</b><br/>' +
-                            this.series.name + ': ' + this.y + '<br/>' +
-                            '总量: ' + this.point.stackTotal;
+                        return '日期: ' + this.x + '<br/>' +
+                            this.series.name + ': ' + this.y
                     }
                 },
                 plotOptions: {
-                    column: {
-                        stacking: 'normal'
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
                     }
                 },
-                series: data
+                series: [{
+                    name: '次数',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 23.3, 18.3, 13.9, 9.6]
+                }, {
+                    name: '地址数',
+                    data: [ 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                }]
             }
 
             Object.keys(options).map(item => {
