@@ -20,16 +20,10 @@ import TotalInfo from "./TableTotal";
 import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
-import {QuestionMark} from "./QuestionMark";
 import {NameWithId} from "./names";
-import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
 import _ from "lodash";
 
-const RangePicker = DatePicker.RangePicker;
-
 class Transfers extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -80,35 +74,23 @@ class Transfers extends React.Component {
         }
     );
     let list,total,range = 0;
+    let {transfers, total:totaldata, rangeTotal} = await Client.getTransfers({
+          sort: '-timestamp',
+          limit: pageSize,
+          start: (page - 1) * pageSize,
+          count: showTotal ? true : null,
+          total: this.state.total,
+          token: tokenName,
+          start_timestamp:this.start,
+          end_timestamp:this.end,
+          ...filter,
+    });
+    list = transfers
+    total = totaldata
+    range = rangeTotal
 
-    if(!istrc20){
-      let {transfers, total:totaldata, rangeTotal} = await Client.getTransfers({
-        sort: '-timestamp',
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        count: showTotal ? true : null,
-        total: this.state.total,
-        token: tokenName,
-        start_timestamp:this.start,
-        end_timestamp:this.end,
-        ...filter,
-      });
-      list = transfers
-      total = totaldata
-      range = rangeTotal
-    }else{
-      // TODO trc20 transfer api
-      // ${filter.address}
-      let {data} = await xhr.get(`${API_URL}/api/contract/events?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
-      
-      list = data.data
-      total = data.total
-    }
-    
-
-    const transfers = rebuildList(list, 'tokenName', 'amount')
-
-    transfers.map( item => {
+    const rebuildRransfers = rebuildList(list, 'tokenName', 'amount');
+    rebuildRransfers.map( item => {
       if(filter.address){
         item.fromtip = !(item.transferFromAddress == filter.address)
         item.totip = !(item.transferToAddress == filter.address)
@@ -271,7 +253,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
             {
                 transfers.length? <div className="d-flex justify-content-between" style={{left: 'auto'}}>
-                  <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
+                  <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr table_pos_switch_addr_transfers">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>
@@ -283,7 +265,7 @@ class Transfers extends React.Component {
                     }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}
-                    <TotalInfo total={total} rangeTotal={!istrc20?rangeTotal:total} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
+                    <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address} divClass="table_pos_info_addr2"/>
                   <div className="table_pos_switch d-md-block table_pos_switch_addr2">
                     <SwitchToken  handleSwitch={this.handleSwitch} text="only_TRX_transfers" isHide={false}/>
                   </div>

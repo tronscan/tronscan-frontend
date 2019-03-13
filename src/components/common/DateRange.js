@@ -74,11 +74,10 @@ class DateRange extends React.Component {
     render() {
 
         const { startValue, endValue, endOpen } = this.state;
-        console.log('startValue',startValue)
-        console.log('endValue',endValue)
+        const { dateClass="date-range-box" } = this.props;
 
         return (
-            <div className="date-range-box">
+            <div className={dateClass}>
                 <DatePicker
                     disabledDate={this.disabledStartDate}
                     showTime

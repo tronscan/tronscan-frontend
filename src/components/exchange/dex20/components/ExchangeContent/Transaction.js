@@ -154,20 +154,20 @@ class Transaction extends Component {
           </SweetAlert>
         )
       });
-      await Client.exchange({
-        creatorAddress: currentWallet.address,
-        trx_hash: transaction.hash,
-        exchangeID: exchangeData.exchange_id,
-        first_token_id: exchangeData.first_token_id,
-        first_token_quant: values.first_quant_buy
-          ? parseFloat(values.first_quant_buy)
-          : parseFloat(values.first_quant_sell),
-        second_token_id: exchangeData.second_token_id,
-        second_token_quant: values.second_quant_buy
-          ? parseFloat(values.second_quant_buy)
-          : parseFloat(values.second_quant_sell),
-        price: exchangeData.price
-      });
+      // await Client.exchange({
+      //   creatorAddress: currentWallet.address,
+      //   trx_hash: transaction.hash,
+      //   exchangeID: exchangeData.exchange_id,
+      //   first_token_id: exchangeData.first_token_id,
+      //   first_token_quant: values.first_quant_buy
+      //     ? parseFloat(values.first_quant_buy)
+      //     : parseFloat(values.first_quant_sell),
+      //   second_token_id: exchangeData.second_token_id,
+      //   second_token_quant: values.second_quant_buy
+      //     ? parseFloat(values.second_quant_buy)
+      //     : parseFloat(values.second_quant_sell),
+      //   price: exchangeData.price
+      // });
     } else {
       this.setState({
         modal: (

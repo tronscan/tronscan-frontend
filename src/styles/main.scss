@@ -2922,6 +2922,10 @@ h5 {
   margin-top: 4.25rem;
 }
 
+.transfer-pt-100{
+  padding-top: 4.25rem!important;
+}
+
 .transfers_pos_picker{
   @media only screen and (max-width: 768px) {
     top: -20px;
@@ -2945,3 +2949,36 @@ h5 {
     }
   }
 }
+
+.date-range-box-trc20{
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  z-index: 2;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.date-range-box-token{
+  display: flex;
+  position: absolute;
+  right: 36px;
+  top: 20px;
+  z-index: 2;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+
+

@@ -178,7 +178,7 @@ export default class SmartTable extends Component {
     return (
         <div>
             {
-                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"") + (transfers?"transfer-mt-100":"")}>
+                addr?<div className={"card table_pos table_pos_addr "+ (data.length == 0?"table_pos_addr_data":"") + (transfers == "address"?" transfer-mt-100":" transfer-pt-100")}>
                   <Table
                       bordered={bordered}
                       columns={columns}

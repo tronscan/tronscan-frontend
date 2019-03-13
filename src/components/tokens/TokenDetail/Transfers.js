@@ -14,6 +14,8 @@ import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
 import xhr from "axios/index";
 import {NameWithId} from "../../common/names";
+import TotalInfo from "../../common/TableTotal";
+import DateRange from "../../common/DateRange";
 import rebuildList from "../../../utils/rebuildList";
 
 class Transfers extends React.Component {
@@ -21,6 +23,8 @@ class Transfers extends React.Component {
   constructor(props) {
     super(props);
 
+    this.start = "";
+    this.end = "";
     this.state = {
       filter: {},
       transfers: [],
@@ -46,25 +50,26 @@ class Transfers extends React.Component {
   };
 
   loadPage = async (page = 1, pageSize = 20) => {
-
     let {filter} = this.props;
-
     let {showTotal} = this.state;
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
-    this.setState({loading: true});
+    let {list, total, rangeTotal} = await Client.getAssetTransfers({
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        name: filter.token,
+        issueAddress:filter.address,
+        start_timestamp:this.start,
+        end_timestamp:this.end,
+    });
+    let transfers = rebuildList(list,'tokenName','amount');
 
-    let { data } = await xhr.get(API_URL+"/api/asset/transfer?start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&name=" + filter.token+ "&issueAddress="+filter.address);
-
-    let transfers = rebuildList(data.Data,'tokenName','amount');
-    let total = data.total
-
-    // let {transfers, total} = await Client.getTransfers({
-    //   sort: '-timestamp',
-    //   limit: pageSize,
-    //   start: (page - 1) * pageSize,
-    //   count: showTotal ? true : null,
-    //   ...filter,
-    // });
 
     for (let index in transfers) {
       transfers[index].index = parseInt(index) + 1;
@@ -74,6 +79,7 @@ class Transfers extends React.Component {
       page,
       transfers,
       total,
+      rangeTotal,
       loading: false,
     });
   };
@@ -149,9 +155,16 @@ class Transfers extends React.Component {
     return column;
   }
 
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.loadPage(page,pageSize);
+  }
+
   render() {
 
-    let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
+    let {transfers, page, total, rangeTotal, pageSize, loading, emptyState: EmptyState = null} = this.state;
     let {theadClass = "thead-dark", intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
@@ -162,20 +175,29 @@ class Transfers extends React.Component {
             <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
         );
       }
-
       return <EmptyState/>;
     }
 
     return (
         <Fragment>
         {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
+
         <div className="row transfers">
           <div className="col-md-12 table_pos">
-            {/* {total? <div className="table_pos_info">{tableInfo}</div>: ''} */}
-            <SmartTable border={false} loading={loading} column={column} data={transfers} total={total}
-                        onPageChange={(page, pageSize) => {
-                          this.loadPage(page, pageSize)
-                        }}/>
+            <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
+                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
+                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+            </div>
+              {
+                  (!loading && transfers.length === 0)?
+                      <div className="p-5 text-center no-data bg-white">{tu("no_transfers")}</div>
+                      :
+                      <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                                  onPageChange={(page, pageSize) => {
+                                      this.loadPage(page, pageSize)
+                                  }}/>
+              }
+
           </div>
         </div>
         </Fragment>

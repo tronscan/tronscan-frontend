@@ -1,11 +1,8 @@
 import React, {Fragment} from "react";
 import {FormattedDate, FormattedNumber, FormattedTime, injectIntl} from "react-intl";
 import {Sticky, StickyContainer} from "react-sticky";
-import Paging from "./Paging";
 import {Client} from "../../services/api";
 import {AddressLink, TransactionHashLink} from "./Links";
-import {TRXPrice} from "./Price";
-import {ONE_TRX} from "../../constants";
 import {tu} from "../../utils/i18n";
 import { FormatNumberByDecimals } from '../../utils/number'
 import TimeAgo from "react-timeago";
@@ -15,14 +12,8 @@ import {withTimers} from "../../utils/timing";
 import SmartTable from "./SmartTable.js"
 import {upperFirst,upperCase} from "lodash";
 import {TronLoader} from "./loaders";
-import {ContractTypes} from "../../utils/protocol";
-import rebuildList from "../../utils/rebuildList";
-import {SwitchToken} from "./Switch";
-import {QuestionMark} from "./QuestionMark";
-import {NameWithId} from "./names";
-import xhr from "axios/index";
-import {API_URL} from '../../constants.js'
-
+import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
 import _ from "lodash";
 
 class Transfers extends React.Component {
@@ -30,11 +21,14 @@ class Transfers extends React.Component {
   constructor(props) {
     super(props);
 
+    this.start = "";
+    this.end = "";
     this.state = {
       filter: {},
       transfers: [],
       page: 1,
       total: 0,
+      rangeTotal:0,
       pageSize: 20,
       showTotal: props.showTotal !== false,
       emptyState: props.emptyState,
@@ -64,16 +58,21 @@ class Transfers extends React.Component {
   };
 
   load = async (page, pageSize) => {
-    let transfersTRX;
     let {filter} = this.props;
-    let {showTotal,hideSmallCurrency,tokenName} = this.state;
-    this.setState({loading: true});
-    let list,total;
-
-    let {data} = await xhr.get(`${API_URL}/api/contract/events?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
-      
-    list = data.data
-    total = data.total
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
+    let {list, total, rangeTotal} = await Client.getTRC20tfs({
+        limit: pageSize,
+        start: (page - 1) * pageSize,
+        address: filter.address,
+        start_timestamp:this.start,
+        end_timestamp:this.end,
+    });
 
     list.map( item => {
       if(filter.address){
@@ -89,28 +88,11 @@ class Transfers extends React.Component {
       page,
       transfers:list,
       total:total,
+      rangeTotal:rangeTotal,
       loading: false,
     });
   };
-  handleSwitch = (val) => {
-      let {page, pageSize} = this.state;
-      if(val){
-          this.setState({
-              hideSmallCurrency: val,
-              tokenName:"_",
-          },() => {
-              this.load(1,20);
-          });
-      }else {
-          this.setState({
-              hideSmallCurrency: val,
-              tokenName:'',
-          },() => {
-              this.load(1,20);
-          });
-      }
 
-  }
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
@@ -181,7 +163,7 @@ class Transfers extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           // return <NameWithId value={record}/>
-          return <sapn>{FormatNumberByDecimals(record.amount, record.decimals) +' '+record.tokenName}</sapn>
+          return <span>{FormatNumberByDecimals(record.amount, record.decimals) +' '+record.tokenName}</span>
         }
       },
       // {
@@ -198,11 +180,17 @@ class Transfers extends React.Component {
       // }
     ];
     return column;
-  }
+  };
 
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.load(page,pageSize);
+  }
   render() {
 
-    let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
+    let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null, rangeTotal} = this.state;
     let column = this.customizedColumn();
     let {intl} = this.props;
 
@@ -221,16 +209,19 @@ class Transfers extends React.Component {
     return (
         <div className="token_black table_pos">
           {loading && <div className="loading-style"><TronLoader/></div>}
-
-{
-              (!loading && transfers.length === 0)?
-              <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
-              :
-              <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address"
-                onPageChange={(page, pageSize) => {
-                    this.onChange(page, pageSize)
-                }}/>
-            }
+          <div className="d-flex justify-content-between" style={{left: 'auto'}}>
+            {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr"/> :""}
+            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-trc20"/>
+          </div>
+          {
+            (!loading && transfers.length === 0)?
+            <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
+            :
+            <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total} locale={locale} addr="address" transfers="address"
+              onPageChange={(page, pageSize) => {
+                  this.onChange(page, pageSize)
+            }}/>
+          }
 
 
 

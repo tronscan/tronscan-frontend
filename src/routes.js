@@ -95,7 +95,8 @@ export const routes = [
         label: "accounts",
         icon: "fa fa-users",
         component: AccountsAsync
-      }, // {
+      },
+      // {
       //   path: "/blockchain/contracts",
       //   label: "Verified_contracts",
       //   icon: "fa fa-file",

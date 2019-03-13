@@ -77,6 +77,7 @@ class Contracts extends React.Component {
     
   };
 
+
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
