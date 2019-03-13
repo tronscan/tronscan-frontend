@@ -28,8 +28,8 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = "";
-    this.end = "";
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       filter: {},
       transactions: [],
@@ -304,7 +304,7 @@ class Transactions extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
           {
-              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />: ''
+              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
 
           }
           {

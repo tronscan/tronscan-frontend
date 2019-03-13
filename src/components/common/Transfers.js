@@ -27,8 +27,8 @@ class Transfers extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = "";
-    this.end = "";
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       filter: {},
       transfers: [],
@@ -261,7 +261,6 @@ class Transfers extends React.Component {
                         address ?  <div className="transactions-rangePicker table_pos_picker transfers_pos_picker" style={{width: "360px"}}>
                           <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-address-transfer"/>
                         </div> : ''
-
                     }
                 </div>:<div className="d-flex justify-content-between" style={{left: 'auto'}}>
                   {/*<div className="table_pos_info d-md-block table_pos_info_addr2">{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div>*/}

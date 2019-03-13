@@ -23,8 +23,8 @@ class Transfers extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = "";
-    this.end = "";
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       filter: {},
       transfers: [],

@@ -27,8 +27,8 @@ class Transactions extends React.Component {
   constructor() {
     super();
 
-    this.start = "";
-    this.end = "";
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       transactions: [],
       total: 0,

@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import {Client} from "../../../services/api";
 import {AddressLink, TransactionHashLink, TokenTRC20Link} from "../../common/Links";
 import {tu, t} from "../../../utils/i18n";
 import TimeAgo from "react-timeago";
@@ -9,6 +10,8 @@ import {FormattedNumber, injectIntl} from "react-intl";
 import SmartTable from "../../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../../common/loaders";
+import TotalInfo from "../../common/TableTotal";
+import DateRange from "../../common/DateRange";
 import xhr from "axios/index";
 import {API_URL} from '../../../constants.js'
 import { FormatNumberByDecimals } from '../../../utils/number'
@@ -19,7 +22,8 @@ class Transfers extends React.Component {
 
     constructor(props) {
         super(props);
-
+        this.start = moment([2018,5,25]).startOf('day').valueOf();
+        this.end = moment().valueOf();
         this.state = {
             filter: {},
             transfers: [],
@@ -49,20 +53,22 @@ class Transfers extends React.Component {
         let {filter} = this.props;
 
         let {showTotal} = this.state;
+        this.setState(
+            {
+                loading: true,
+                page: page,
+                pageSize: pageSize,
+            }
+        );
 
-        this.setState({loading: true});
-        let { data } = await xhr.get(API_URL+"/api/token_trc20/transfers?sort=-block_number&start=" +(page - 1) * pageSize+ "&limit="+pageSize+"&contract_address=" + filter.token);
-        let transfers = data.token_transfers;
-        let total = data.total;
-
-        // let {transfers, total} = await Client.getTransfers({
-        //   sort: '-timestamp',
-        //   limit: pageSize,
-        //   start: (page - 1) * pageSize,
-        //   count: showTotal ? true : null,
-        //   ...filter,
-        // });
-
+        let {list, total, rangeTotal} = await Client.getTokenTRC20Transfers({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            contract_address: filter.token,
+            start_timestamp:this.start,
+            end_timestamp:this.end,
+        });
+        let transfers = list;
         for (let index in transfers) {
             transfers[index].index = parseInt(index) + 1;
         }
@@ -71,6 +77,7 @@ class Transfers extends React.Component {
             page,
             transfers,
             total,
+            rangeTotal,
             loading: false,
         });
     };
@@ -150,36 +157,50 @@ class Transfers extends React.Component {
 
         return column;
     }
+    onDateOk (start,end) {
+        this.start = start.valueOf();
+        this.end = end.valueOf();
+        let {page, pageSize} = this.state;
+        this.loadPage(page,pageSize);
+    }
 
     render() {
 
-        let {transfers, page, total, pageSize, loading, emptyState: EmptyState = null} = this.state;
+        let {transfers, page, total, rangeTotal, pageSize, loading, emptyState: EmptyState = null} = this.state;
         if(total == 0){
             transfers =[];
         }
         let {theadClass = "thead-dark", intl} = this.props;
         let column = this.customizedColumn();
         let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
-        if (!loading && transfers.length === 0) {
-            if (!EmptyState) {
-                return (
-                    <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
-                );
-            }
-
-            return <EmptyState/>;
-        }
+        // if (!loading && transfers.length === 0) {
+        //     if (!EmptyState) {
+        //         return (
+        //             <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
+        //         );
+        //     }
+        //
+        //     return <EmptyState/>;
+        // }
 
         return (
             <Fragment>
                 {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
                 <div className="row transfers">
                     <div className="col-md-12 table_pos">
-                        {/* {total? <div className="table_pos_info">{tableInfo}</div>: ''} */}
-                        <SmartTable border={false} loading={loading} column={column} data={transfers} total={total}
-                                    onPageChange={(page, pageSize) => {
-                                        this.loadPage(page, pageSize)
-                                    }}/>
+                        <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
+                            {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
+                            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+                        </div>
+                        {
+                            (!loading && transfers.length === 0)?
+                                <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
+                            : <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
+                                          onPageChange={(page, pageSize) => {
+                                              this.loadPage(page, pageSize)
+                                          }}/>
+                        }
+
                     </div>
                 </div>
             </Fragment>

@@ -10,8 +10,8 @@ class DateRange extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startValue: null,
-            endValue: null,
+            startValue: moment([2018,5,25]).startOf('day'),
+            endValue: moment(),
             endOpen: false,
         };
     }
@@ -23,7 +23,7 @@ class DateRange extends React.Component {
         }
 
 
-        return  startValue.valueOf() > endValue.valueOf()
+        return  startValue.valueOf() > endValue.valueOf() || startValue.valueOf() < moment([2018,5,25]).valueOf();
     }
 
     disabledEndDate = (endValue) => {

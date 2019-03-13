@@ -2954,11 +2954,25 @@ h5 {
   }
 }
 
+.date-range-box-address{
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: -28px;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: -8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
 .date-range-box-address-transfer{
   display: flex;
   position: absolute;
   right: 16px;
-  top: -35px;
+  top: -40px;
   @media only screen and (max-width: 768px) {
     top: -22px;
     right: 8px;
