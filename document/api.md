@@ -335,5 +335,5 @@ Demo: curl -X Get  https://apilist.tronscan.org/api/stats/overview
 **/api/broadcast**  
 Desc: Broadcast a transaction to the blockchain  
 Demo: curl -X Post  https://apilist.tronscan.org/api/broadcast  
-@param: null;  
+@param: transaction: signature generated hex;  
 @return: broadcast result;  

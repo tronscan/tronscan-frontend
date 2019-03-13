@@ -1590,5 +1590,6 @@ export const messages = {
     "table_info_new_tip":"상위 10,000 개의 데이터 만 표시됩니다. 다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
     "select_start_time":"시작 시간을 선택하십시오.",
     "select_end_time":"종료 시간을 선택하십시오.",
+    "binance": "binance",
 
 };

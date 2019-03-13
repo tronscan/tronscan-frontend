@@ -1616,5 +1616,6 @@ export const messages = {
   "table_info_new_tip":"Only 10,000 pieces of data are displayed. If you would like to look up other statistics, we recommend that you change the selected duration of time.",
   "select_start_time":"Please select the start time",
   "select_end_time":"Please select the end time",
+  "binance": "binance",
 
 };

@@ -1605,7 +1605,7 @@ export const messages = {
   "table_info_new_tip":"Actualmente solo se muestran los primeros 10,000 datos, le recomendamos que ajuste el tiempo seleccionado.",
   "select_start_time":"Por favor seleccione la hora de inicio",
   "select_end_time":"Por favor, seleccione la hora de finalización",
-
+  "binance": "binance",
 
 
 };
