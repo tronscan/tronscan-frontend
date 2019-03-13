@@ -27,13 +27,15 @@ const RangePicker = DatePicker.RangePicker;
 class Transfers extends React.Component {
 
   constructor() {
-    super();
-    this.start = "";
-    this.end = ""
-    this.state = {
-      transfers: [],
-      total: 0,
-    };
+     super();
+     //this.start = moment([2018,5,25]).startOf('day').valueOf()
+     //this.end = new Date().getTime();
+     this.start = "";
+     this.end = ""
+     this.state = {
+       transfers: [],
+       total: 0,
+     };
   }
 
   componentDidMount() {
