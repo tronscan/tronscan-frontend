@@ -1602,6 +1602,10 @@ export const messages = {
   "table_info_account_tip1":"La red principal de TRON tiene ",
   "table_info_account_tip2":"cuentas, mostrando solo 10,000 cuentas (ordenadas de alta a baja TRX)",
   "Singapore":"Singapore",
+  "table_info_new_tip":"Actualmente solo se muestran los primeros 10,000 datos, le recomendamos que ajuste el tiempo seleccionado.",
+  "select_start_time":"Por favor seleccione la hora de inicio",
+  "select_end_time":"Por favor, seleccione la hora de finalización",
+
 
 
 };

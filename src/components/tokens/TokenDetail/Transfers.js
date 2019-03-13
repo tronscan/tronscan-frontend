@@ -169,14 +169,14 @@ class Transfers extends React.Component {
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'a_totle'})+' ' + total +' '+ intl.formatMessage({id: 'transaction_info'});
     
-    if (!loading && transfers.length === 0) {
-      if (!EmptyState) {
-        return (
-            <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
-        );
-      }
-      return <EmptyState/>;
-    }
+    // if (!loading && transfers.length === 0) {
+    //   if (!EmptyState) {
+    //     return (
+    //         <div className="p-3 text-center no-data">{tu("no_transfers")}</div>
+    //     );
+    //   }
+    //   return <EmptyState/>;
+    // }
 
     return (
         <Fragment>
@@ -190,7 +190,7 @@ class Transfers extends React.Component {
             </div>
               {
                   (!loading && transfers.length === 0)?
-                      <div className="p-5 text-center no-data bg-white">{tu("no_transfers")}</div>
+                      <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
                       :
                       <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
                                   onPageChange={(page, pageSize) => {

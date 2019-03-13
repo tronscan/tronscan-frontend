@@ -1587,5 +1587,8 @@ export const messages = {
     "table_info_account_tip1":"TRON의 메인넷에는 총",
     "table_info_account_tip2":"개의 계정이 있으며, 현재 상위 10,000 개만 표시됩니다 (TRX 잔액 높은 가격에서 낮은 가격으로 정렬).",
     "Singapore":"Singapore",
+    "table_info_new_tip":"상위 10,000 개의 데이터 만 표시됩니다. 다른 데이터를 조회하려면  시간 범위를 변경해 주시기 바랍니다.",
+    "select_start_time":"시작 시간을 선택하십시오.",
+    "select_end_time":"종료 시간을 선택하십시오.",
 
 };

@@ -206,7 +206,7 @@ class Transfers extends React.Component {
             </div>
             {
               (!loading && transfers.length === 0)?
-                  <div className="p-5 text-center no-data bg-white">{tu("no_transfers")}</div>
+                  <div className="pt-5 pb-5 text-center no-data transfers-bg-white">{tu("no_transfers")}</div>
                   : <SmartTable border={false} loading={loading} column={column} data={transfers} total={total} addr="address" transfers="token"
                                 onPageChange={(page, pageSize) => {
                                     this.loadPage(page, pageSize)
