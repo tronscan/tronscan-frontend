@@ -2924,11 +2924,15 @@ h5 {
 
 .transfer-pt-100{
   padding-top: 4.25rem!important;
+  margin-top: 0!important;
+  @media only screen and (max-width: 768px) {
+    padding-top: 3.25rem!important;
+  }
 }
 
 .transfers_pos_picker{
   @media only screen and (max-width: 768px) {
-    top: -20px;
+    top: -5px;
   }
 }
 .address-token-tab-mobile{
@@ -2943,6 +2947,33 @@ h5 {
   top: -35px;
   @media only screen and (max-width: 768px) {
     top: -22px;
+    right: -8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.date-range-box-address-transfer{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -35px;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+.date-range-box-address-nodata{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -35px;
+  @media only screen and (max-width: 768px) {
+    top: -50px;
     right: 8px;
     .ant-calendar-picker{
       width: 10rem!important;
@@ -2957,8 +2988,8 @@ h5 {
   top: 20px;
   z-index: 2;
   @media only screen and (max-width: 768px) {
-    top: -22px;
-    right: 8px;
+    top: -2.75rem;
+    right: -8px;
     .ant-calendar-picker{
       width: 10rem!important;
     }
@@ -2972,8 +3003,8 @@ h5 {
   top: 20px;
   z-index: 2;
   @media only screen and (max-width: 768px) {
-    top: -22px;
-    right: 8px;
+    top: 18px;
+    right: 16px;
     .ant-calendar-picker{
       width: 10rem!important;
     }

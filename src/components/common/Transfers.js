@@ -259,7 +259,7 @@ class Transfers extends React.Component {
                   </div>
                     {
                         address ?  <div className="transactions-rangePicker table_pos_picker transfers_pos_picker" style={{width: "360px"}}>
-                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-address-transfer"/>
                         </div> : ''
 
                     }
@@ -271,7 +271,7 @@ class Transfers extends React.Component {
                   </div>
                     {
                         address ?  <div className="transactions-rangePicker table_pos_picker" style={{width: "360px"}}>
-                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
+                          <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-address-nodata" />
                         </div> : ''
 
                     }

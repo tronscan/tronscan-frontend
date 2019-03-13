@@ -178,7 +178,7 @@ class Contracts extends React.Component {
       {loading && <div className="loading-style"><TronLoader/></div>}
       <div className="row">
         <div className="col-md-12 table_pos">
-          {total ? <div className="table_pos_info" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
+          {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
           <SmartTable bordered={true} loading={loading}
                       column={column} data={contracts} total={total}
                       onPageChange={(page, pageSize) => {
