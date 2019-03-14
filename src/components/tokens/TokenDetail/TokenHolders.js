@@ -8,6 +8,7 @@ import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
 import {upperFirst, upperCase} from "lodash";
 import { Tooltip } from 'antd';
+import { FormatNumberByDecimals } from '../../../utils/number';
 
 class TokenHolders extends React.Component {
 
@@ -52,9 +53,9 @@ class TokenHolders extends React.Component {
       address: filter.address
     });
 
-    for (let index in addresses) {
-      addresses[index].index = parseInt(index) + 1;
-    }
+    // for (let index in addresses) {
+    //   addresses[index].index = parseInt(index) + 1;
+    // }
    
 
     if(addresses.length && addresses[0].name == 'BitTorrent'){
@@ -116,7 +117,8 @@ class TokenHolders extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={record.balance/ Math.pow(10,tokenPrecision.precision)}/>
+          //return <FormattedNumber value={record.balance/ Math.pow(10,tokenPrecision.precision)}/>
+          return <span>{FormatNumberByDecimals(record.balance , tokenPrecision.precision)}</span>
         }
       },
       {
