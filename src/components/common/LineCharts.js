@@ -1526,7 +1526,8 @@ export class ContractInvocationDistributionChart extends React.Component {
             return {
                 name: o.address,
                 y: Number(o.total),
-                real_name: o.name
+                real_name: o.name,
+                percent: o.percent
             }
         })
 console.log('intl :', intl);
@@ -1553,8 +1554,8 @@ console.log('intl :', intl);
                 tooltip: {
                     headerFormat: '',
                     pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-                    '面积 (平方千米): <b>{point.y}</b><br/>' +
-                    '人口密度 (每平方千米人数): <b>{point.z}</b><br/>'
+                    intl.formatMessage({id: 'total_energy_used'}) + ': <b>{point.y}</b><br/>' +
+                    intl.formatMessage({id: 'energy_scale'}) + ': <b>{point.percent}</b><br/>'
                 },
                 series: [{
                     minPointSize: 70,

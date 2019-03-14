@@ -509,10 +509,10 @@ class Statistics extends React.Component {
     loadContractInvocationDistribution(){
 
         let data =  []
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 20; i++) {
             data.push({
                 name: 'TronDice',
-                total: i*1000,
+                total: Math.abs(Math.cos(i))*1000,
                 frozen: '6300',
                 distroy: '700',
                 percent: '10%',
