@@ -3,7 +3,7 @@ import xhr from "axios/index";
 import {Client} from "../../../services/api";
 import {ONE_TRX} from "../../../constants";
 import {connect} from "react-redux";
-import {injectIntl} from "react-intl";
+import {FormattedNumber, injectIntl} from "react-intl";
 import {filter, includes} from "lodash";
 import {tronAddresses} from "../../../utils/tron";
 import {TronLoader} from "../../common/loaders";
@@ -14,6 +14,13 @@ import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
 import {API_URL} from "../../../constants";
+import { DatePicker, Select } from 'antd';
+import SmartTable from "../../common/SmartTable.js"
+import moment from 'moment';
+import { upperFirst } from 'lodash'
+import {AddressLink} from "../../common/Links";
+import {Truncate} from "../../common/text";
+
 import {
     LineReactHighChartAdd,
     LineReactHighChartTx,
@@ -23,7 +30,8 @@ import {
     LineReactHighChartPrice,
     LineReactHighChartVolumeUsd,
     EnergyConsumeChart,
-    ContractInvocationChart
+    ContractInvocationChart,
+    ContractInvocationDistributionChart
 } from "../../common/LineCharts";
 
 import {
@@ -33,6 +41,8 @@ import {
 
 import {loadPriceData} from "../../../actions/markets";
 import {t} from "../../../utils/i18n";
+
+const Option = Select.Option;
 
 class Statistics extends React.Component {
 
@@ -66,7 +76,8 @@ class Statistics extends React.Component {
             foundationFreeze:null,
             circulatingNum:null,
             energyConsumeData: null,
-            ContractInvocation: null
+            ContractInvocation: null,
+            ContractInvocationDistribution: null
         };
     }
 
@@ -99,6 +110,11 @@ class Statistics extends React.Component {
             case 'ContractInvocation':
                 this.loadContractInvocation();
                 break;
+            case 'ContractInvocationDistribution':
+                this.loadContractInvocationDistribution();
+                break;
+
+                
                 
             default:
                 this.loadTxOverviewStats();
@@ -490,13 +506,129 @@ class Statistics extends React.Component {
             ContractInvocation: data
         });
     }
+    loadContractInvocationDistribution(){
+
+        let data =  []
+        for (let i = 0; i < 100; i++) {
+            data.push({
+                name: 'TronDice',
+                total: i*1000,
+                frozen: '6300',
+                distroy: '700',
+                percent: '10%',
+                address: 'TBXB5tobBPCFkC8ihFDBWjaiwW2iSpzSfr',
+            })
+        }
+
+        data.map((item, index) => {
+            item.index = index+1
+        })
+        this.setState({
+            ContractInvocationDistribution: data
+        });
+    }
+
+    onChangeDate = (date, dateString) => {
+        console.log(date, dateString);
+
+        this.loadContractInvocationDistribution({date: dateString})
+    }
+    handleChangeSelect = (value) => {
+        console.log(`selected ${value}`);
+        this.loadContractInvocationDistribution({type: value})
+    }
+
+    disabledEndDate = (endValue) => {
+        const startValue = new Date()
+        if (!endValue || !startValue) {
+          return false;
+        }
+        return endValue.valueOf() > startValue.valueOf();
+    }
+
+    customizedColumn = () => {
+        let {intl} = this.props;
+        let column = [
+            {
+                title: "#",
+                dataIndex: 'index',
+                key: 'index',
+                width: '40px',
+                align: 'center',
+                render: (text, record, index) => {
+                  return <span>{text}</span>
+                }
+            },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_address'})),
+            dataIndex: 'address',
+            key: 'address',
+            render: (text, record, index) => {
+              return <AddressLink address={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'contract_name'})),
+            dataIndex: 'name',
+            key: 'name',
+            render: (text, record, index) => {
+              return <span>{text || '-'}</span>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'total_energy_used'})),
+            dataIndex: 'total',
+            key: 'total',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'freezing_energy'})),
+            dataIndex: 'frozen',
+            key: 'frozen',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'burning_energy'})),
+            dataIndex: 'distroy',
+            key: 'distroy',
+            render: (text, record, index) => {
+              return <FormattedNumber value={text}/>
+            }
+          },
+          {
+            title: upperFirst(intl.formatMessage({id: 'energy_scale'})),
+            dataIndex: 'percent',
+            key: 'percent',
+            render: (text, record, index) => {
+              return <span>{text}</span>
+            }
+          },
+        ];
+        return column;
+      }
+
 
 
     render() {
         let {match, intl} = this.props;
-        let {txOverviewStats, txOverviewStatsFull, addressesStats, blockSizeStats, blockchainSizeStats, priceStats, transactionStats, transactionValueStats, blockStats, accounts, volumeStats, pieChart, supplyTypesChart, summit,genesisNum,blockProduceRewardsNum,nodeRewardsNum,independenceDayBurned,feeBurnedNum,currentTotalSupply,priceUSD,priceBTC,marketCapitalization,foundationFreeze,circulatingNum, energyConsumeData, ContractInvocation} = this.state;
+        let {txOverviewStats, txOverviewStatsFull, 
+            addressesStats, blockSizeStats, blockchainSizeStats, 
+            priceStats, transactionStats, transactionValueStats, 
+            blockStats, accounts, volumeStats, pieChart, 
+            supplyTypesChart, summit,genesisNum,
+            blockProduceRewardsNum,nodeRewardsNum,
+            independenceDayBurned,feeBurnedNum,currentTotalSupply,
+            priceUSD,priceBTC,marketCapitalization,foundationFreeze,
+            circulatingNum, energyConsumeData, ContractInvocation,
+            ContractInvocationDistribution } = this.state;
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
+        let column = this.customizedColumn()
+
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
@@ -505,7 +637,7 @@ class Statistics extends React.Component {
         return (
             <main className="container header-overlap">
                 {
-                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' ?
+                    match.params.chartName != 'pieChart' && match.params.chartName != 'supply' && match.params.chartName != 'ContractInvocationDistribution' ?
                         <div className="alert alert-light" role="alert">
                           <div className="row">
                             <div className="col-md-6 text-center">
@@ -689,6 +821,53 @@ class Statistics extends React.Component {
                                                                      data={ContractInvocation}
                                                                      intl={intl}/>
                                 }
+                            </div>
+                        }
+
+                        {
+                           
+                            match.params.chartName === 'ContractInvocationDistribution' &&
+                            <div>
+                            {
+                                ContractInvocationDistribution === null ? <TronLoader/> :
+                                <div>
+                                    <div className="d-md-flex justify-content-between pb-3">
+                                        <DatePicker 
+                                            onChange={this.onChangeDate}
+                                            disabledDate={this.disabledEndDate}
+                                            defaultValue={moment(new Date(new Date().getTime() - 24*60*60*1000), 'YYYY-MM-DD')}/>
+
+                                        <div className="pt-3 pt-md-0">
+                                            <span className="mr-2">{tu('range')}: </span>
+                                            <Select defaultValue="top20" style={{ width: 160 }} onChange={this.handleChangeSelect}>
+                                                <Option value="20">top20</Option>
+                                                <Option value="50">top50</Option>
+                                                <Option value="100">top100</Option>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                
+                                    <ContractInvocationDistributionChart
+                                        style={{height: 500}}
+                                        data={ContractInvocationDistribution}
+                                        intl={intl}
+                                    />
+                                    <div className="token_black">
+                                    <div className="col-md-12 table_pos">
+                                        <p>a total 1234000 energe(with the proportion of 50%) uesd by the top10 contracts from the total used of 2468000 energy</p>
+                                        {( ContractInvocationDistribution.length === 0)?
+                                        <div className="p-3 text-center no-data">{tu("no_data")}</div>
+                                        :
+                                        <SmartTable 
+                                            bordered={true} 
+                                            column={column} 
+                                            data={ContractInvocationDistribution} 
+                                        />}
+                                    </div>
+                                    </div>
+
+                                </div>
+                            }
                             </div>
                         }
 

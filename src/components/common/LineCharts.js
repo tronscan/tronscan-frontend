@@ -16,6 +16,7 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsDrilldown from 'highcharts/modules/drilldown';
 import Highcharts3D from 'highcharts/highcharts-3d';
 import Exporting from 'highcharts/modules/exporting';
+import Variabled from 'highcharts/modules/variable-pie.js';
 
 import {cloneDeep} from "lodash";
 
@@ -23,6 +24,7 @@ HighchartsMore(Highcharts)
 HighchartsDrilldown(Highcharts);
 Highcharts3D(Highcharts);
 Exporting(Highcharts);
+Variabled(Highcharts)
 
 export class SupplyAreaHighChart extends React.Component {
 
@@ -1466,6 +1468,100 @@ export class ContractInvocationChart extends React.Component {
                 }, {
                     name: '地址数',
                     data: [ 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                }]
+            }
+
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+
+export class ContractInvocationDistributionChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'ContractInvocationChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
+        let totalUsedEnergy = 0
+        let freezingEnergy = 0
+        let burningEnergy = 0
+
+        
+        var chartdata = data.slice(0).map(o => {
+            totalUsedEnergy += Number(o.total)
+            freezingEnergy += Number(o.frozen)
+            burningEnergy += Number(o.distroy)
+
+            return {
+                name: o.address,
+                y: Number(o.total),
+                real_name: o.name
+            }
+        })
+console.log('intl :', intl);
+        const SUBTITLE = `
+            ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
+            ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
+            ${intl.formatMessage({id: 'energy_used_by_burning_TRX'})} ${intl.formatNumber(burningEnergy)}
+            )
+        `
+       
+        if (data && data.length > 0) {
+            let options =  {
+                chart: {
+                    type: 'variablepie'
+                },
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
+   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+                title: {
+                    text: intl.formatMessage({id: 'total_energy_used_chart'})
+                },
+                subtitle: {
+                    text: SUBTITLE
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    '面积 (平方千米): <b>{point.y}</b><br/>' +
+                    '人口密度 (每平方千米人数): <b>{point.z}</b><br/>'
+                },
+                series: [{
+                    minPointSize: 70,
+                    innerSize: '30%',
+                    zMin: 0,
+                    name: 'countries',
+                    data: chartdata
                 }]
             }
 

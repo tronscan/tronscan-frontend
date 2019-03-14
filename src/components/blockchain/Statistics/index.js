@@ -416,6 +416,35 @@ class Statistics extends React.Component {
                 </div>
               </div>
 
+              <div className="col-md-4">
+                <div className="card-chart">
+                  <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
+                    <span>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
+                        {tu("日合约调用")}
+                    </span>
+                    <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                         style={{width: 240, filter: 'grayscale(100%)'}}
+                         className="ml-5 mt-2"/>
+                  </Link>
+                </div>
+              </div>
+
+
+              <div className="col-md-4">
+                <div className="card-chart">
+                  <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
+                    <span>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
+                        {tu("日能量消耗")}
+                    </span>
+                    <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                         style={{width: 240, filter: 'grayscale(100%)'}}
+                         className="ml-5 mt-2"/>
+                  </Link>
+                </div>
+              </div>
+
             </div>
 
           </div>
