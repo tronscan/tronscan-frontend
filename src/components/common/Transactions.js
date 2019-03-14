@@ -237,13 +237,17 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'rejected'})),
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return <span>{text.toString()}</span>
+          return <span>
+              {
+                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_error.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_success.png")}/>
+              }
+          </span>
         }
       
       },
@@ -305,7 +309,6 @@ class Transactions extends React.Component {
           {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
           {
               address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
-
           }
           {
               (!loading && transactions.length === 0)?

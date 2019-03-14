@@ -190,7 +190,7 @@ class Transfers extends React.Component {
                     <div className="col-md-12 table_pos">
                         <div className="d-flex justify-content-between pl-3 pr-3" style={{left: 'auto'}}>
                             {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transaction_info" divClass="table_pos_info_addr"/> :""}
-                            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-token"/>
+                            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-TRC20token"/>
                         </div>
                         {
                             (!loading && transfers.length === 0)?

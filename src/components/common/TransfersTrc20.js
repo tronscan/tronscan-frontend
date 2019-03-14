@@ -211,7 +211,7 @@ class Transfers extends React.Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="d-flex justify-content-between" style={{left: 'auto'}}>
             {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" divClass="table_pos_info_addr"/> :""}
-            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass="date-range-box-trc20"/>
+            <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} dateClass={total?"date-range-box-trc20":"date-range-box-trc20-nodata"}/>
           </div>
           {
             (!loading && transfers.length === 0)?

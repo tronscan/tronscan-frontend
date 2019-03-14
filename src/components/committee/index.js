@@ -136,7 +136,6 @@ class Committee extends React.Component {
             }
         })
 
-
         this.setState({
             dataSource: tronParameters
         })

@@ -539,7 +539,13 @@ nextvote, node, nodest, sr, totle, up, vote, accounts, nextRound, totalVotes, mo
   &_switch_addr3{
     @media screen and (max-width: 768px) {
       left: 0px;
-      top: -55px;
+      top: -35px;
+    }
+  }
+  &_switch_addr4{
+    @media screen and (max-width: 768px) {
+      left: 0px;
+      top: 15px;
     }
   }
 
