@@ -30,8 +30,6 @@ class Transfers extends React.Component {
      super();
      this.start = moment([2018,5,25]).startOf('day').valueOf();
      this.end = moment().valueOf();
-     // this.start = moment([2018,5,25]).startOf('day').valueOf();
-     // this.end = moment().valueOf();
      this.state = {
        transfers: [],
        total: 0,

@@ -137,7 +137,7 @@ class Committee extends React.Component {
         })
 
         this.setState({
-            dataSource: tronParameters
+            dataSource: tronParameters.slice(0,19)
         })
     }
 

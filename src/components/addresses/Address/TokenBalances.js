@@ -179,8 +179,6 @@ export  class TokenBalances extends React.Component {
         let column = this.customizedColumn();
         let columnTRC20 = this.customizedColumnTRC20();
         let {intl} = this.props;
-        console.log('balances',balances)
-        console.log('TRC20balances',TRC20balances)
         let tableInfo =tokenTRC10? intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'}):intl.formatMessage({id: 'view_total'}) + ' ' + TRC20balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
         let locale  = {emptyText: intl.formatMessage({id: 'no_tokens_found'})}
         // if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {

@@ -22,8 +22,8 @@ class Blocks extends React.Component {
 
   constructor() {
     super();
-    this.start = moment([2018,5,25]).startOf('day').valueOf();
-    this.end =  "";
+    this.start = "";
+    this.end = "";
     this.state = {
       loading: false,
       blocks: [],
