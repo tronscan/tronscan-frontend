@@ -59,6 +59,13 @@ class Proposal extends React.Component {
             'getTotalEnergyLimit',
             'getAllowTvmTransferTrc10',
             'getTotalEnergyLimitNew',
+            'getTotalEnergyCurrentLimit',
+            'getAllowMultiSign',
+            'getAllowAdaptiveEnergy',
+            'getTotalEnergyTargetLimit',
+            'getTotalEnergyAverageUsage',
+            'getUpdateAccountPermissionFee',
+            'getMultiSignFee',
         ];
         for(let item in proposal){
             for(let j in proposal[item]['paramters']){
@@ -98,7 +105,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_1'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;
+                            <span>{text / (1000 * 60 * 60)}</span> &nbsp;
                             <span>{intl.formatMessage({id: "propose_hour"})}
                             </span>
                         </div>
@@ -108,7 +115,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_2'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span>
                         </div>
                     }
@@ -117,7 +124,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_3'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span>
                         </div>
                     }
@@ -126,7 +133,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_4'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text}</span> &nbsp;
+                            <span>{text}</span> &nbsp;
                             <span>Sun/byte</span>
                         </div>
                     }
@@ -135,7 +142,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_5'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span>
                         </div>
                     }
@@ -144,7 +151,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_6'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span>
                         </div>
                     }
@@ -153,7 +160,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_7'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span></div>
                     }
                     {
@@ -161,7 +168,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_8'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX}</span> &nbsp;
+                            <span>{text / ONE_TRX}</span> &nbsp;
                             <span>TRX</span></div>
                     }
                     {
@@ -169,7 +176,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_9'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text}</span> &nbsp;
+                            <span>{text}</span> &nbsp;
                             <span>bandwith/byte</span>
                         </div>
                     }
@@ -177,7 +184,7 @@ class Proposal extends React.Component {
                         record.key == 'getAllowCreationOfContracts' &&
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_10'})}</span>
-                            <span className='col-green'>{tu('propose_activate')}</span>
+                            <span>{tu('propose_activate')}</span>
                         </div>
                     }
                     {
@@ -191,7 +198,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_12'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX} TRX</span>
+                            <span>{text / ONE_TRX} TRX</span>
                         </div>
                     }
                     {
@@ -199,7 +206,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_13'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text / ONE_TRX} TRX</span>
+                            <span>{text / ONE_TRX} TRX</span>
                         </div>
                     }
                     {
@@ -207,7 +214,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_14'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text} ms</span>
+                            <span>{text} ms</span>
                         </div>
                     }
                     {
@@ -216,8 +223,8 @@ class Proposal extends React.Component {
                             <span>{ intl.formatMessage({id: 'propose_15'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
@@ -227,8 +234,8 @@ class Proposal extends React.Component {
                             <span>{ intl.formatMessage({id: 'propose_16'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
@@ -238,8 +245,8 @@ class Proposal extends React.Component {
                             <span>{ intl.formatMessage({id: 'propose_17'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
@@ -248,7 +255,7 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_18'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text}</span>
+                            <span>{text}</span>
                         </div>
                     }
                     {
@@ -257,8 +264,8 @@ class Proposal extends React.Component {
                             <span>{ intl.formatMessage({id: 'propose_19'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
@@ -267,7 +274,75 @@ class Proposal extends React.Component {
                         <div>
                             <span>{ intl.formatMessage({id: 'propose_18'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
-                            <span className='col-green'>{text}</span>
+                            <span>{text}</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyCurrentLimit' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_20'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            <span>{text}</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowMultiSign' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_21'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowAdaptiveEnergy' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_22'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyTargetLimit' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_23'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            <span>{text}</span>/
+                            <span>{tu('propose_minute')}</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyAverageUsage' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_24'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            {
+                                text?<span><span>{text}</span>/<span>{tu('propose_minute')}</span></span>:
+                                    <span>{tu('propose_unactivate')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getUpdateAccountPermissionFee' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_25'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            <span>{text / ONE_TRX}</span> &nbsp;
+                            <span>TRX</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getMultiSignFee' &&
+                        <div>
+                            <span>{ intl.formatMessage({id: 'propose_26'})}</span>
+                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                            <span>{text / ONE_TRX}</span> &nbsp;
+                            <span>TRX</span>
                         </div>
                     }
                 </div>
@@ -371,7 +446,7 @@ class Proposal extends React.Component {
             <main className="container header-overlap committee">
                 <div className="token_black table_pos">
                     {loading && <div className="loading-style"><TronLoader/></div>}
-                    <SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} addr="address"/>
+                    {!loading&&<SmartTable bordered={true} column={column} data={dataSource} total={dataSource.length} locale={locale} addr="address"/>}
                 </div>
             </main>
         )

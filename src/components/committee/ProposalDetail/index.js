@@ -48,6 +48,13 @@ class ProposalDetail extends React.Component {
             'getTotalEnergyLimit',
             'getAllowTvmTransferTrc10',
             'getTotalEnergyLimitNew',
+            'getTotalEnergyCurrentLimit',
+            'getAllowMultiSign',
+            'getAllowAdaptiveEnergy',
+            'getTotalEnergyTargetLimit',
+            'getTotalEnergyAverageUsage',
+            'getUpdateAccountPermissionFee',
+            'getMultiSignFee',
         ];
 
         for(let item in data.paramters){
@@ -288,6 +295,74 @@ class ProposalDetail extends React.Component {
                                                                             <span>{ intl.formatMessage({id: 'propose_18'})}</span>
                                                                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                                                                             <span className='col-green'>{proposal.proposalVal}</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getTotalEnergyCurrentLimit' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_20'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span>{proposal.proposalVal}</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowMultiSign' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_21'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                    <span>{tu('propose_not_allowed')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getAllowAdaptiveEnergy' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_22'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal? <span>{tu('propose_allowed')}</span>:
+                                                                                    <span>{tu('propose_not_allowed')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getTotalEnergyTargetLimit' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_23'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span>{proposal.proposalVal}</span>/
+                                                                            <span>{tu('propose_minute')}</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getTotalEnergyAverageUsage' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_24'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            {
+                                                                                proposal.proposalVal?<span><span>{proposal.proposalVal}</span>/<span>{tu('propose_minute')}</span></span>:
+                                                                                    <span>{tu('propose_unactivate')}</span>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getUpdateAccountPermissionFee' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_25'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                            <span>TRX</span>
+                                                                        </div>
+                                                                    }
+                                                                    {
+                                                                        proposal.key == 'getMultiSignFee' &&
+                                                                        <div>
+                                                                            <span>{ intl.formatMessage({id: 'propose_26'})}</span>
+                                                                            <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
+                                                                            <span>{proposal.proposalVal / ONE_TRX}</span> &nbsp;
+                                                                            <span>TRX</span>
                                                                         </div>
                                                                     }
                                                                 </td>
