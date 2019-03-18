@@ -11,6 +11,8 @@ import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/DateRange";
+
 import {DatePicker} from 'antd';
 import xhr from "axios/index";
 
@@ -20,9 +22,8 @@ class Blocks extends React.Component {
 
   constructor() {
     super();
-    //this.start = new Date(new Date().toLocaleDateString()).getTime();
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf();
-    this.end = new Date().getTime();
+    this.start = "";
+    this.end = "";
     this.state = {
       loading: false,
       blocks: [],
@@ -49,7 +50,6 @@ class Blocks extends React.Component {
             pageSize: pageSize,
         }
     );
-
     let {blocks, total, rangeTotal} = await Client.getBlocks({
       limit: pageSize,
       start: (page - 1) * pageSize,
@@ -160,25 +160,17 @@ class Blocks extends React.Component {
     return column;
   };
 
-  onChangeDate = (dates, dateStrings) => {
-      this.start = new Date(dateStrings[0]).getTime();
-      this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
+
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
       let {page, pageSize} = this.state;
       this.loadBlocks(page,pageSize);
-  }
-  disabledDate = (time) => {
-      if (!time) {
-          return false
-      } else {
-          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-      }
   }
 
   render() {
 
-    let {blocks, total, rangeTotal, loading} = this.state;
+    let {blocks, total, rangeTotal, loading, page, pageSize} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     return (
@@ -188,23 +180,7 @@ class Blocks extends React.Component {
             <div className="row">
               <div className="col-md-12 table_pos">
                 {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
-                  {
-                      total ?  <div className="transactions-rangePicker" style={{width: "360px"}}>
-                        <RangePicker
-                            defaultValue={[moment(this.start), moment(this.end)]}
-                            ranges={{
-                                'Today': [moment().startOf('day'), moment()],
-                                'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                            }}
-                            disabledDate={this.disabledDate}
-                            showTime
-                            format="YYYY/MM/DD HH:mm:ss"
-                            onChange={this.onChangeDate}
-                            onOk={this.onDateOk}
-                        />
-                      </div> : ''
-
-                  }
+                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)

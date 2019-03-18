@@ -13,6 +13,7 @@ import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
 import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import {NameWithId} from "./names";
@@ -27,8 +28,8 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
 
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf()
-    this.end = new Date().getTime();
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       filter: {},
       transactions: [],
@@ -97,22 +98,31 @@ class Transactions extends React.Component {
           rangeTotal = data.rangeTotal
       }
 
-    }else{
-      // TODO internal transctions
-      let {data} = await xhr.get(`${API_URL}/api/internal-transaction?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
+    }else {
+        // TODO internal transctions
 
-      let newdata = rebuildList(data.data, 'tokenId', 'callValue', 'valueInfoList')
-      transactions = newdata;
-      total = data.total
+        let data = await Client.getInternalTransaction({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            address: filter.address,
+            start_timestamp: this.start,
+            end_timestamp: this.end,
+        });
+
+        let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
+        transactions = newdata;
+        total = data.total,
+            rangeTotal = data.rangeTotal
     }
 
     this.setState({
-      transactions,
-      total,
-      rangeTotal,
-      loading: false,
+        transactions,
+        total,
+        rangeTotal,
+        loading: false,
     });
   };
+
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
@@ -227,13 +237,17 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'rejected'})),
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return <span>{text.toString()}</span>
+          return <span>
+              {
+                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_error.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_success.png")}/>
+              }
+          </span>
         }
       
       },
@@ -245,7 +259,7 @@ class Transactions extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return record.valueInfoList.map((item,index) => {
-            return <span><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
+            return <span key={index}><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
           })
         }
       },
@@ -264,32 +278,23 @@ class Transactions extends React.Component {
     return column;
   }
 
-  onChangeDate = (dates, dateStrings) => {
-      this.start = new Date(dateStrings[0]).getTime();
-      this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
       let {page, pageSize} = this.state;
-      this.loadTransactions(page, pageSize);
+      this.loadTransactions(page,pageSize);
   }
-  disabledDate = (time) => {
-      if (!time) {
-          return false
-      } else {
-          return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-      }
-  }
+
 
   render() {
 
     let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
     let {intl, isinternal, address = false} = this.props;
     let column = !isinternal? this.customizedColumn():
-                              this.trc20CustomizedColumn()
-
+                              this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
-    // if (!loading && transactions && transactions.length === 0) {
+      // if (!loading && transactions && transactions.length === 0) {
     //   if (!EmptyState) {
     //     return (
     //         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
@@ -301,23 +306,9 @@ class Transactions extends React.Component {
     return (
       <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ? <TotalInfo total={total} rangeTotal={!isinternal?rangeTotal:total} typeText="transactions_unit" common={!address}/>:""}
+          {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
           {
-              address ?  <div className="transactions-rangePicker" style={{width: "350px"}}>
-                <RangePicker
-                    defaultValue={[moment(this.start), moment(this.end)]}
-                    ranges={{
-                        'Today': [moment().startOf('day'), moment()],
-                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                    }}
-                    disabledDate={this.disabledDate}
-                    showTime
-                    format="YYYY/MM/DD HH:mm:ss"
-                    onChange={this.onChangeDate}
-                    onOk={this.onDateOk}
-                />
-              </div> : ''
-
+              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
           }
           {
               (!loading && transactions.length === 0)?

@@ -90,9 +90,9 @@ export function Information({token,currentTotalSupply}) {
       <div className="information-bg">{
         tokenList.map((item,index) => {
           return(
-            <div className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
+            <div key={index} className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
               <span>{tu(item.name)}</span>
-              <p style={{width:'75%'}}>{item.content}</p>
+              <div style={{width:'75%'}}>{item.content}</div>
             </div>)
         })
       }</div>

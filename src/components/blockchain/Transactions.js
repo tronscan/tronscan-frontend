@@ -13,6 +13,7 @@ import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
 import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/DateRange";
 import {DatePicker} from 'antd';
 import moment from 'moment';
 import xhr from "axios/index";
@@ -25,9 +26,9 @@ const RangePicker = DatePicker.RangePicker;
 class Transactions extends React.Component {
   constructor() {
     super();
-    //this.start = new Date(new Date().toLocaleDateString()).getTime();
-    this.start = moment().startOf('day').subtract(6, 'day').valueOf()
-    this.end = new Date().getTime();
+
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       transactions: [],
       total: 0,
@@ -198,21 +199,11 @@ class Transactions extends React.Component {
     return column;
   }
 
-  onChangeDate = (dates, dateStrings) => {
-
-    this.start = new Date(dateStrings[0]).getTime();
-    this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
-    let {page, pageSize} = this.state;
-    this.loadTransactions(page, pageSize);
-  }
-  disabledDate = (time) => {
-    if (!time) {
-      return false
-    } else {
-      return time < moment([2018,5,25]) || time > moment().add(0, 'd')
-    }
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.loadTransactions(page,pageSize);
   }
 
   render() {
@@ -227,25 +218,7 @@ class Transactions extends React.Component {
             <div className="col-md-12 table_pos">
               {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={addressLock}/>:""}
               {
-                   !addressLock ?  <div className="transactions-rangePicker" style={{width: "360px"}}>
-                  <RangePicker
-                      defaultValue={[moment(this.start), moment(this.end)]}
-                     // value={[moment(dateStart), moment(dateEnd)]}
-                      ranges={{
-                        'Today': [moment().startOf('day'), moment()],
-                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                      }}
-                      disabledDate={this.disabledDate}
-                      showTime
-                      // showTime={{
-                      //     defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
-                      // }}
-                      format="YYYY/MM/DD HH:mm:ss"
-                      onChange={this.onChangeDate}
-                      onOk={this.onDateOk}
-                  />
-                </div> : ''
-
+                   !addressLock && total?  <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> : ''
               }
               <SmartTable bordered={true} loading={loading}
                           column={column} data={transactions} total={total}

@@ -506,9 +506,12 @@ export default class VoteOverview extends React.Component {
                     <div className="_ranks mr-2" style={{whiteSpace: 'nowrap'}}>{tu("most_ranks")}</div>
                     {/* <div>--</div> */}
                     <div className="" style={isRightText? {maxWidth: '110px'}: {}}>
-                      <AddressLink address={biggestGainer.address}>
-                        {biggestGainer.name || biggestGainer.url}
-                      </AddressLink>
+                        {
+                            Math.abs(biggestGainer.change_cycle)?<AddressLink address={biggestGainer.address}>
+                                {biggestGainer.name || biggestGainer.url}
+                            </AddressLink>:<span style={{color:"#999999"}}>-</span>
+                        }
+
                     </div>
                   </div>
                 </div>

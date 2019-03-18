@@ -2883,6 +2883,14 @@ h5 {
   position: absolute;
   top:66px;
   z-index: 999;
+    @media only screen and (max-width: 768px) {
+      top: 0px;
+    }
+  &-mobile {
+    @media only screen and (max-width: 768px) {
+      top: 3.125rem;
+    }
+  }
 }
 .table-question-mark{
   margin-top: -22px;
@@ -2904,13 +2912,13 @@ h5 {
   padding-left: 30px;
 }
 
-.ant-calendar-picker{
-  width: 360px!important;
-  @media only screen and (max-width: 768px) {
-    width: 340px!important;
-    right: -27px;
-  }
-}
+//.ant-calendar-picker{
+//  width: 360px!important;
+//  @media only screen and (max-width: 768px) {
+//    width: 340px!important;
+//    right: -27px;
+//  }
+//}
 
 .ant-pagination-options-quick-jumper{
   input{
@@ -2922,13 +2930,138 @@ h5 {
   margin-top: 4.25rem;
 }
 
+.transfer-pt-100{
+  padding-top: 4.25rem!important;
+  margin-top: 0!important;
+  @media only screen and (max-width: 768px) {
+    padding-top: 3.25rem!important;
+  }
+}
+
 .transfers_pos_picker{
   @media only screen and (max-width: 768px) {
-    top: -20px;
+    top: -5px;
   }
 }
-.address-token-tab-mobile{
+
+.date-range-box{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -35px;
   @media only screen and (max-width: 768px) {
-    top: -20px;
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
   }
 }
+
+.date-range-box-address{
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: -28px;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: -8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.date-range-box-address-transfer{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -40px;
+  @media only screen and (max-width: 768px) {
+    top: -22px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+.date-range-box-address-nodata{
+  display: flex;
+  position: absolute;
+  right: 16px;
+  top: -35px;
+  @media only screen and (max-width: 768px) {
+    top: -50px;
+    right: 8px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.date-range-box-trc20{
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  z-index: 2;
+  @media only screen and (max-width: 768px) {
+    top: -2.75rem;
+    right: -8px;
+    .ant-calendar-picker {
+      width: 10rem !important;
+    }
+  }
+  &-nodata {
+    display: flex;
+    position: absolute;
+    right: 0px;
+    top: 20px;
+    z-index: 2;
+    @media only screen and (max-width: 768px) {
+      top: 1.25rem;
+      right: -8px;
+      .ant-calendar-picker {
+        width: 10rem !important;
+      }
+    }
+  }
+
+}
+
+.date-range-box-token{
+  display: flex;
+  position: absolute;
+  right: 36px;
+  top: 20px;
+  z-index: 2;
+  @media only screen and (max-width: 768px) {
+    top: 18px;
+    right: 16px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.date-range-box-TRC20token{
+  display: flex;
+  position: absolute;
+  right: 36px;
+  top: 20px;
+  z-index: 2;
+  @media only screen and (max-width: 768px) {
+    top: 18px;
+    right: 7px;
+    .ant-calendar-picker{
+      width: 10rem!important;
+    }
+  }
+}
+
+.transfers-bg-white{
+  background-color: #ffffff;
+}
+
+
+

@@ -42,35 +42,10 @@ class Committee extends React.Component {
 
     async getChainparameters() {
         let { tronParameters } = await Client.getChainparameters();
-        let EnergyLimitNew   = {key: "getMaintenanceTimeInterval", value: 100000000000};
-        tronParameters.push(EnergyLimitNew)
-        let parametersArr = [
-            'getMaintenanceTimeInterval',
-            'getAccountUpgradeCost',
-            'getCreateAccountFee',
-            'getTransactionFee',
-            'getAssetIssueFee',
-            'getWitnessPayPerBlock',
-            'getWitnessStandbyAllowance',
-            'getCreateNewAccountFeeInSystemContract',
-            'getCreateNewAccountBandwidthRate',
-            'getAllowCreationOfContracts',
-            'getRemoveThePowerOfTheGr',
-            'getEnergyFee',
-            'getExchangeCreateFee',
-            'getMaxCpuTimeOfOneTx',
-            'getAllowUpdateAccountName',
-            'getAllowSameTokenName',
-            'getAllowDelegateResource',
-            'getTotalEnergyLimit',
-            'getAllowTvmTransferTrc10',
-            'getTotalEnergyLimitNew',
-        ];
-        for(let item in tronParameters){
-            tronParameters[item].proposalVal = parametersArr[item];
-        }
+        let EnergyLimitNew   = {key: "getTotalEnergyLimitNew", value: 100000000000};
+        tronParameters.splice(19, 0, EnergyLimitNew);
         tronParameters.map(item => {
-            switch (item['proposalVal']){
+            switch (item['key']){
                 case "getMaintenanceTimeInterval":
                     item.name = 'propose_1';
                 break;
@@ -129,16 +104,41 @@ class Committee extends React.Component {
                     item.name = 'propose_19';
                 break;
                 case "getTotalEnergyLimitNew":
-                    item.name = 'propose_18';
+                    item.name = 'propose_18_1';
                 break;
-
-
+                // case "getTotalEnergyCurrentLimit":
+                //     item.name = 'propose_20';
+                // break;
+                case "getAllowMultiSign":
+                    item.name = 'propose_21';
+                break;
+                case "getAllowAdaptiveEnergy":
+                    item.name = 'propose_22';
+                break;
+                // case "getTotalEnergyTargetLimit":
+                //     item.name = 'propose_23';
+                // break;
+                // case "getTotalEnergyAverageUsage":
+                //     item.name = 'propose_24';
+                // break;
+                case "getUpdateAccountPermissionFee":
+                    item.name = 'propose_25';
+                break;
+                case "getMultiSignFee":
+                    item.name = 'propose_26';
+                break;
+            }
+        });
+        let tronParametersNew = [];
+        tronParameters.map(item => {
+            if(item.name){
+                tronParametersNew.push(item)
             }
         })
-
+        console.log('tronParametersNew',tronParametersNew)
 
         this.setState({
-            dataSource: tronParameters
+            dataSource: tronParametersNew
         })
     }
 
@@ -151,7 +151,7 @@ class Committee extends React.Component {
             key: 'index',
             width:'20%',
             render: (text, record, index) => {
-                return  '#' + (index+1)
+                return  '#' + (index)
             }
         }, {
             title: upperFirst(intl.formatMessage({id: 'propose_parameters'})),
@@ -172,118 +172,163 @@ class Committee extends React.Component {
             render: (text, record, index) => {
                 return  <div>
                     {
-                        record.proposalVal == 'getMaintenanceTimeInterval' && <div><span className='col-green'>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
+                        record.key == 'getMaintenanceTimeInterval' && <div><span>{text / (1000 * 60 * 60)}</span> &nbsp;<span>{
                             intl.formatMessage({id: "propose_hour"})
                         }</span></div>
                     }
                     {
-                        record.proposalVal == 'getAccountUpgradeCost' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getAccountUpgradeCost' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getCreateAccountFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getCreateAccountFee' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getTransactionFee' && <div><span className='col-green'>{text}</span> &nbsp;<span>Sun/byte</span></div>
+                        record.key == 'getTransactionFee' && <div><span>{text}</span> &nbsp;<span>Sun/byte</span></div>
                     }
                     {
-                        record.proposalVal == 'getAssetIssueFee' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getAssetIssueFee' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getWitnessPayPerBlock' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getWitnessPayPerBlock' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getWitnessStandbyAllowance' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getWitnessStandbyAllowance' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getCreateNewAccountFeeInSystemContract' && <div><span className='col-green'>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
+                        record.key == 'getCreateNewAccountFeeInSystemContract' && <div><span>{text / ONE_TRX}</span> &nbsp;<span>TRX</span></div>
                     }
                     {
-                        record.proposalVal == 'getCreateNewAccountBandwidthRate' && <div><span className='col-green'>{text}</span> &nbsp;<span>bandwith/byte</span></div>
+                        record.key == 'getCreateNewAccountBandwidthRate' && <div><span>{text}</span> &nbsp;<span>bandwith/byte</span></div>
                     }
                     {
-                        record.proposalVal == 'getAllowCreationOfContracts' && <div>
+                        record.key == 'getAllowCreationOfContracts' && <div>
                             {
-                                <span className='col-green'>{tu('propose_activate')}</span>
+                                <span>{tu('propose_activate')}</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getRemoveThePowerOfTheGr' && <div>
+                        record.key == 'getRemoveThePowerOfTheGr' && <div>
                             {
-                                <span className='col-green'>{tu('propose_finished')}</span>
+                                <span>{tu('propose_finished')}</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getEnergyFee' && <div>
+                        record.key == 'getEnergyFee' && <div>
                             {
-                                <span className='col-green'>{text / ONE_TRX} TRX</span>
+                                <span>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getExchangeCreateFee' && <div>
+                        record.key == 'getExchangeCreateFee' && <div>
                             {
-                                <span className='col-green'>{text / ONE_TRX} TRX</span>
+                                <span>{text / ONE_TRX} TRX</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getMaxCpuTimeOfOneTx' && <div>
+                        record.key == 'getMaxCpuTimeOfOneTx' && <div>
                             {
-                                <span className='col-green'>{text} ms</span>
+                                <span>{text} ms</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getAllowUpdateAccountName' && <div>
+                        record.key == 'getAllowUpdateAccountName' && <div>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getAllowSameTokenName' && <div>
+                        record.key == 'getAllowSameTokenName' && <div>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
                     {
-                        record.proposalVal == 'getAllowDelegateResource' && <div>
+                        record.key == 'getAllowDelegateResource' && <div>
                             {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
-                            }
-                        </div>
-                    }
-
-                    {
-                        record.proposalVal == 'getTotalEnergyLimit' && <div>
-                            {
-                                <span className='col-green'>{text}</span>
-                            }
-                        </div>
-                    }
-                    {
-                        record.proposalVal == 'getAllowTvmTransferTrc10' && <div>
-                            {
-                                text? <span className='col-green'>{tu('propose_allowed')}</span>:
-                                    <span className='col-green'>{tu('propose_not_allowed')}</span>
-                            }
-                        </div>
-                    }
-                    {
-                        record.proposalVal == 'getTotalEnergyLimitNew' && <div>
-                            {
-                                <span className='col-green'>{text}</span>
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
                             }
                         </div>
                     }
 
-
+                    {
+                        record.key == 'getTotalEnergyLimit' && <div>
+                            {
+                                <span>{text}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowTvmTransferTrc10' && <div>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyLimitNew' && <div>
+                            {
+                                <span>{text}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyCurrentLimit' && <div>
+                            {
+                                <span>{text}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowMultiSign' && <div>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getAllowAdaptiveEnergy' && <div>
+                            {
+                                text? <span>{tu('propose_allowed')}</span>:
+                                    <span>{tu('propose_not_allowed')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyTargetLimit' && <div>
+                                <span>{text}</span>/
+                                <span>{tu('propose_minute')}</span>
+                        </div>
+                    }
+                    {
+                        record.key == 'getTotalEnergyAverageUsage' && <div>
+                            {
+                                text?<span><span>{text}</span>/<span>{tu('propose_minute')}</span></span>:
+                                    <span>{tu('propose_unactivate')}</span>
+                            }
+                        </div>
+                    }
+                    {
+                        record.key == 'getUpdateAccountPermissionFee' && <div>
+                            <span>{text / ONE_TRX}</span> &nbsp;
+                            <span>TRX</span></div>
+                    }
+                    {
+                        record.key == 'getMultiSignFee' && <div>
+                            <span>{text / ONE_TRX}</span> &nbsp;
+                            <span>TRX</span></div>
+                    }
                 </div>
 
             }

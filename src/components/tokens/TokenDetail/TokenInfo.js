@@ -10,7 +10,9 @@ class TokenInfo extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        currentTotalSupply:0,
+    };
   }
 
   componentDidMount() {

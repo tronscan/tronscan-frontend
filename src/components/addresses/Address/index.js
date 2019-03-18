@@ -219,7 +219,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} isinternal address={false}/>
+            cmp: () => <Transactions filter={{address: id}} isinternal />
           },
           token_balances: {
             id: "token_balances",
@@ -293,7 +293,7 @@ class Address extends React.Component {
             // icon: "fas fa-handshake",
             path: "/internal-transactions",
             label: <span>{tu("internal_transactions")}</span>,
-            cmp: () => <Transactions filter={{address: id}} isinternal address={false}/>
+            cmp: () => <Transactions filter={{address: id}} isinternal address/>
           },
           token_balances: {
             id: "token_balances",

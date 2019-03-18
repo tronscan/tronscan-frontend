@@ -1283,7 +1283,17 @@ export const messages = {
     "propose_16":"トークンの同名を可能にしようと提議します",
     "propose_17":"リソース配分を提議します",
     "propose_18":"総エネルギー上限の編集を提議します",
+    "propose_18_1":"総エネルギー上限の編集を提議します",
     "propose_19":"スマート・コントラクトをTRC10トークンに切り替えようと提議します",
+    "propose_20":"現在のエネルギー上限",
+    "propose_21":"複数署名機能を許可することを提案する",
+    "propose_22":"エネルギー総額を自動的に調整することを提案する",
+    "propose_23":"目標エネルギーの使用上限",
+    "propose_24":"平均エネルギー上限",
+    "propose_25":"アカウント権限を更新する費用",
+    "propose_26":"複数署名を変更することを提案する",
+    "propose_minute":"min",
+    "propose_unactivate":"開かない",
     "propose_not_allowed":"不許可です",
     "propose_allowed":"許可する",
     "propose_activate":"起動",
@@ -1595,6 +1605,10 @@ export const messages = {
     "table_info_account_tip1":"TRONの主鎖には",
     "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
     "Singapore":"Singapore",
+    "table_info_new_tip":"今、最初の10,000のデータのみが表示されています。他のデータを検索したい場合は、時間範囲を調整してください。",
+    "select_start_time":"開始時間を選択してください",
+    "select_end_time":"終了時間を選択してください",
+    "binance": "binance",
 
 }
 

@@ -17,13 +17,12 @@ class TotalInfo extends React.Component {
         let tableInfoSmall = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText});
         let tableInfoBig = intl.formatMessage({id: 'view_total'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: typeText}) + '<br/>' +  '(' + intl.formatMessage({id: 'table_info_big'}) + ')';
         let tableInfo =  rangeTotal > 10000? tableInfoBig : tableInfoSmall;
-        let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-        let tableInfoTipBig = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip3'}) + intl.formatMessage({id: 'table_info_big_tip4'});
-        let tableInfoTip = rangeTotal > 10000? tableInfoTipBig: tableInfoTipSmall;
+        //let tableInfoTipSmall = intl.formatMessage({id: 'table_info_big_tip1'}) + ' ' + rangeTotal + ' ' + intl.formatMessage({id: 'table_info_big_tip2'}) + intl.formatMessage({id: 'table_info_big_tip4'});
+        let tableInfoTip = intl.formatMessage({id: 'table_info_new_tip'})
         return (
             <Fragment>
                 {
-                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfoSmall}
+                    common? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}
                     <span>
                             <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark>
                     </span>
