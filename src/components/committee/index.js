@@ -104,23 +104,23 @@ class Committee extends React.Component {
                     item.name = 'propose_19';
                 break;
                 case "getTotalEnergyLimitNew":
-                    item.name = 'propose_18';
+                    item.name = 'propose_18_1';
                 break;
-                case "getTotalEnergyCurrentLimit":
-                    item.name = 'propose_20';
-                break;
+                // case "getTotalEnergyCurrentLimit":
+                //     item.name = 'propose_20';
+                // break;
                 case "getAllowMultiSign":
                     item.name = 'propose_21';
                 break;
                 case "getAllowAdaptiveEnergy":
                     item.name = 'propose_22';
                 break;
-                case "getTotalEnergyTargetLimit":
-                    item.name = 'propose_23';
-                break;
-                case "getTotalEnergyAverageUsage":
-                    item.name = 'propose_24';
-                break;
+                // case "getTotalEnergyTargetLimit":
+                //     item.name = 'propose_23';
+                // break;
+                // case "getTotalEnergyAverageUsage":
+                //     item.name = 'propose_24';
+                // break;
                 case "getUpdateAccountPermissionFee":
                     item.name = 'propose_25';
                 break;
@@ -129,10 +129,16 @@ class Committee extends React.Component {
                 break;
             }
         });
+        let tronParametersNew = [];
+        tronParameters.map(item => {
+            if(item.name){
+                tronParametersNew.push(item)
+            }
+        })
+        console.log('tronParametersNew',tronParametersNew)
 
-        console.log("tronParameters",tronParameters)
         this.setState({
-            dataSource: tronParameters
+            dataSource: tronParametersNew
         })
     }
 
@@ -145,7 +151,7 @@ class Committee extends React.Component {
             key: 'index',
             width:'20%',
             render: (text, record, index) => {
-                return  '#' + (index+1)
+                return  '#' + (index)
             }
         }, {
             title: upperFirst(intl.formatMessage({id: 'propose_parameters'})),

@@ -1299,6 +1299,7 @@ export const messages = {
   "propose_16":"Proponer permitir el mismo nombre de token",
   "propose_17":"Proponer permitir la delegación de recursos.",
   "propose_18":"Proponer modificar el límite de energía total.",
+  "propose_18_1":"Propose to modify the total energy limit",
   "propose_19":"Proponer permitir la transferencia de token TRC-10 en contratos inteligentes.",
   "propose_20":"Límite de la energía",
   "propose_21":"Recomiendan que habilite multi-firma",

@@ -59,11 +59,11 @@ class Proposal extends React.Component {
             'getTotalEnergyLimit',
             'getAllowTvmTransferTrc10',
             'getTotalEnergyLimitNew',
-            'getTotalEnergyCurrentLimit',
             'getAllowMultiSign',
+           // 'getTotalEnergyCurrentLimit',
             'getAllowAdaptiveEnergy',
-            'getTotalEnergyTargetLimit',
-            'getTotalEnergyAverageUsage',
+            //'getTotalEnergyTargetLimit',
+            //'getTotalEnergyAverageUsage',
             'getUpdateAccountPermissionFee',
             'getMultiSignFee',
         ];
@@ -272,7 +272,7 @@ class Proposal extends React.Component {
                     {
                         record.key == 'getTotalEnergyLimitNew' &&
                         <div>
-                            <span>{ intl.formatMessage({id: 'propose_18'})}</span>
+                            <span>{ intl.formatMessage({id: 'propose_18_1'})}</span>
                             <span>{ intl.formatMessage({id: 'proposal_to'})}</span>
                             <span>{text}</span>
                         </div>
