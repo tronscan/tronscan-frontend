@@ -1299,7 +1299,17 @@ export const messages = {
   "propose_16":"Propose to allow the same token name",
   "propose_17":"Propose to allow resource delegation",
   "propose_18":"Propose to modify the total energy limit",
+  "propose_18_1":"Propose to modify current total energy limit",
   "propose_19":"Propose to allow the TRC-10 token transfer in smart contracts",
+  "propose_20":"Current Energy Limit",
+  "propose_21":"Propose to allow the initiation of multi-signature",
+  "propose_22":"Propose to allow adaptive adjustment for total Energy",
+  "propose_23":"Target Energy Limit",
+  "propose_24":"Average Energy Limit",
+  "propose_25":"Propose to modify the fee for updating account permission",
+  "propose_26":"Propose to modify the fee for multi-signature",
+  "propose_minute":"minute",
+  "propose_unactivate": "Not activated",
   "propose_not_allowed":"Not allowed",
   "propose_allowed":"Allowed",
   "propose_activate":"Activate",
@@ -1615,7 +1625,9 @@ export const messages = {
   "table_info_account_tip1":"There are altogether ",
   "table_info_account_tip2":"accounts on TRON's MainNet and only 10,000 accounts are displayed (sorted by TRX balance from high to low)",
   "Singapore":"Singapore",
-
-  "binance": "binance"
+  "table_info_new_tip":"Only 10,000 pieces of data are displayed. If you would like to look up other statistics, we recommend that you change the selected duration of time.",
+  "select_start_time":"Please select the start time",
+  "select_end_time":"Please select the end time",
+  "binance": "binance",
 
 };

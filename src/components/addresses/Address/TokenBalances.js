@@ -179,7 +179,6 @@ export  class TokenBalances extends React.Component {
         let column = this.customizedColumn();
         let columnTRC20 = this.customizedColumnTRC20();
         let {intl} = this.props;
-
         let tableInfo =tokenTRC10? intl.formatMessage({id: 'view_total'}) + ' ' + balances.length + ' ' + intl.formatMessage({id: 'token_unit'}):intl.formatMessage({id: 'view_total'}) + ' ' + TRC20balances.length + ' ' + intl.formatMessage({id: 'token_unit'})
         let locale  = {emptyText: intl.formatMessage({id: 'no_tokens_found'})}
         // if (Object.keys(balances).length === 0 || (Object.keys(balances).length === 1 && balances[0].name === "TRX")) {
@@ -198,11 +197,11 @@ export  class TokenBalances extends React.Component {
                   <div className="table_pos_info d-md-block table_pos_info_addr d-none">
                       {tableInfo}
                   </div>
-                  <div className="table_pos_switch d-md-block table_pos_switch_addr3">
+                  <div className={"table_pos_switch d-md-block " + (balances.length && tokenTRC10? "table_pos_switch_addr3" : "table_pos_switch_addr4")}>
                     <SwitchToken  handleSwitch={this.handleSwitch} text="hide_small_currency" hoverText="tokens_less_than_10"/>
                   </div>
                 </div>
-                <div className="account-token-tab address-token-tab address-token-tab-mobile">
+                <div className={"account-token-tab address-token-tab " + (balances.length ? '' : "address-token-tab-mobile")}>
                     <a href="javascript:;"
                        className={"btn btn-default btn-sm" + (tokenTRC10 ? ' active' : '')}
                        onClick={this.handleTRC10Token}>

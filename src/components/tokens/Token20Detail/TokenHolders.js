@@ -54,7 +54,7 @@ class TokenHolders extends React.Component {
     let addresses = data.trc20_tokens;
     let total= data.total;
     for (let index in addresses) {
-      addresses[index].index = parseInt(index) + 1;
+      addresses[index].index = parseInt(index) + 1 + (page-1)*pageSize;
     }
 
     this.setState({
