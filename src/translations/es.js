@@ -1518,6 +1518,8 @@ export const messages = {
    "trc20_first_token": "Primer Token",
    "trc20_balance": "Saldo",
    "trc20_second_token": "Segundo Token",
+   "trc20_kchart":"CHART",
+   "trc20_depth":"DEPTH",
 
 
   /*

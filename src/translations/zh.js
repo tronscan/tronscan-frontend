@@ -1506,6 +1506,8 @@ export const messages = {
    "trc20_first_token": "名称",
    "trc20_balance": "余额",
    "trc20_second_token": "名称",
+   "trc20_kchart":"K线",
+   "trc20_depth":"深度",
 
 
     /*

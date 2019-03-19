@@ -1503,6 +1503,8 @@
    "trc20_first_token": "الاسم",
    "trc20_balance": "الرصيد",
    "trc20_second_token": "الاسم",
+   "trc20_kchart":"CHART",
+   "trc20_depth":"DEPTH",
 
 
     /*

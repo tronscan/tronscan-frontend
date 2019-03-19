@@ -37,7 +37,7 @@
     "date-fns": "^1.29.0",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
-    "echarts": "^4.0.4",
+    "echarts": "^4.1.0",
     "electron": "^2.0.1",
     "electron-packager": "^12.1.0",
     "elliptic": "^6.4.0",
