@@ -27,7 +27,6 @@ class Energy extends React.Component {
   }
 
   async loadEnergyConsumeData() {
-    console.log(this.props)
     let {filter: {address}} = this.props
     let {data: {data}} = await xhr.get(API_URL + "/api/onecontractenergystatistic?address="+ address);
 

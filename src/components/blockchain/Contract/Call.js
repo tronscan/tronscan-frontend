@@ -76,7 +76,6 @@ class Energy extends React.Component {
     data.map(item => {
       item.scale = (item.amount / totalCallerAmount).toFixed(2) + '%';
     })
-    console.log(data)
     this.setState({
         ContractInvocation: data,
         loading: false,
@@ -93,7 +92,6 @@ class Energy extends React.Component {
   }
 
   onChangeDate = (date, dateString) => {
-    console.log(date, dateString);
     this.setState({
       date: date.valueOf()
     }, () => {

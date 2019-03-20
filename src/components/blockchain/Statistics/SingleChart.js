@@ -565,7 +565,6 @@ class Statistics extends React.Component {
         })
 
         used_scale = (totle_used_energy / totalEnergy).toFixed(2) + '%'
-console.log(data)
 
         this.setState({
             EnergyConsumeDistribution: data,

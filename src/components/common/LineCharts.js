@@ -408,7 +408,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
                 )
             }
         }
-        console.log(_config)
+         
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -555,7 +555,7 @@ export class BarReactHighChartBlockSize extends React.Component {
                 intl.formatMessage({id: 'average_blocksize'}) + ' : ' + this.point.avgBlockSize
             )
         }
-console.log(_config)
+ 
         Highcharts.chart(document.getElementById(id),_config);
 
     }
@@ -654,7 +654,7 @@ export class LineReactHighChartPrice extends React.Component {
                 )
             }
         }
-        console.log(_config)
+         
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -1403,7 +1403,7 @@ export class EnergyConsumeChart extends React.Component {
 
             setOption(_config, options)
         }
-        console.log(_config)
+         
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
@@ -1441,7 +1441,6 @@ export class ContractInvocationChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
-        console.log('data :', data);
        
         if (data) {
             let options =  {
@@ -1486,7 +1485,7 @@ export class ContractInvocationChart extends React.Component {
                     data: data.address_amount
                 }]
             }
-            console.log(_config)
+             
             setOption(_config, options)
         }
         
@@ -1571,7 +1570,6 @@ export class ContractInvocationDistributionChart extends React.Component {
             Object.keys(options).map(item => {
                 _config[item] = options[item]
             })
-            console.log('_config :', _config);
         }
         if (data && data.length === 0) {
             _config.title.text = "No data";
@@ -1664,7 +1662,6 @@ export class EnergyConsumeDistributionChart extends React.Component {
             Object.keys(options).map(item => {
                 _config[item] = options[item]
             })
-            console.log('_config :', _config);
         }
         if (data && data.length === 0) {
             _config.title.text = "No data";
