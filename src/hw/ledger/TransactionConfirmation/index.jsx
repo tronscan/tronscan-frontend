@@ -5,6 +5,7 @@ import Field from "./Field";
 import {Transaction} from "@tronscan/client/src/protocol/core/Tron_pb";
 import AccountName from "../../../components/common/AccountName";
 import {FormattedTRX} from "../../../utils/tron";
+import rebuildList from "../../../utils/rebuildList";
 import {FormattedNumber} from 'react-intl';
 import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
@@ -13,6 +14,17 @@ export default function Contract({ contract, extra }) {
   console.log("extra=================",extra)
   const contractParams = contract.parameter.value;
   console.log("contractParams=================",contractParams)
+  let tokenInfo = '';
+  let tokenList = [{"token_id":"","amount":""}];
+  if(contract.type.toUpperCase() == "PARTICIPATEASSETISSUECONTRACT"){
+      tokenList[0].token_id = TronWeb.toUtf8(contractParams.asset_name);
+      tokenList[0].amount = contractParams.amount;
+      console.log('tokenList',tokenList);
+      tokenInfo = rebuildList(tokenList, 'token_id', 'amount')[0];
+      console.log('tokenInfo',tokenInfo);
+
+  }
+
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":
       return (
@@ -162,8 +174,8 @@ export default function Contract({ contract, extra }) {
           </div>
           <table className="table">
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
-            <Field label="Token">{TronWeb.toUtf8(contractParams.asset_name)}</Field>
-            <Field label="Amount">{contractParams.amount}</Field>
+            <Field label="Token">{tokenInfo.map_token_name + "( ID:" +tokenInfo.map_token_id +")"}</Field>
+            <Field label="Amount">{tokenInfo.map_amount}</Field>
             {(extra && extra.hash && 
                  <Field label="Hash">
                     <Truncate>
@@ -358,10 +370,10 @@ export default function Contract({ contract, extra }) {
                   <FormattedNumber maximumFractionDigits={extra.decimals2} minimunFractionDigits={extra.decimals2}  
                   value={extra.action==="Buy"?contractParams.quant/ Math.pow(10, extra.decimals2):contractParams.quant/ Math.pow(10, extra.decimals1)}/>{extra.action==="Buy"?" TRX":""}
                 </Field>
-                <Field label="Expected">
-                  <FormattedNumber maximumFractionDigits={extra.decimals1} minimunFractionDigits={extra.decimals1}
-                  value={contractParams.expected/Math.pow(10,extra.decimals1)}/>{extra.action==="Sell"?" TRX":""}
-                </Field>
+                {/*<Field label="Expected">*/}
+                  {/*<FormattedNumber maximumFractionDigits={extra.decimals1} minimunFractionDigits={extra.decimals1}*/}
+                  {/*value={contractParams.expected/Math.pow(10,extra.decimals1)}/>{extra.action==="Sell"?" TRX":""}*/}
+                {/*</Field>*/}
               {(extra && extra.hash && 
                     <Field label="Hash">
                         <Truncate>
