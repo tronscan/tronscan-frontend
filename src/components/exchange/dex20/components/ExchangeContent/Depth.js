@@ -15,20 +15,6 @@ const echarts = require("echarts/lib/echarts");
 require("echarts/lib/chart/line");
 require("echarts/lib/component/tooltip");
 
-let obj2arr = (arr, key, up = true) => {
-  let array = [];
-  arr.map(item => {
-    array.push(item[key]);
-  });
-  if (up) {
-    return array.sort();
-  } else {
-    return array.sort(function(x, y) {
-      return y - x;
-    });
-  }
-};
-
 class Depth extends React.Component {
   constructor() {
     super();
@@ -40,7 +26,9 @@ class Depth extends React.Component {
       tvStatus: true,
       myChart: null,
       buyList: [],
-      sellList: []
+      sellList: [],
+      buyFlag:false,
+      sellFlag:false
     };
   }
 
@@ -51,58 +39,82 @@ class Depth extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { tokeninfo } = this.state;
+    const { tokeninfo,buyFlag,sellFlag,myChart } = this.state;
     const { selectData, activeLanguage, widget, register } = this.props;
 
     if (
-      selectData.exchange_id != prevProps.selectData.exchange_id ||
-      prevProps.activeLanguage != activeLanguage
+      selectData.exchange_id != prevProps.selectData.exchange_id 
     ) {
-      if (!widget) {
-        this.createWidget(selectData.exchange_id);
-      } else {
-        widget.chart().setSymbol(selectData.exchange_id.toString());
-      }
+      myChart.dispose();
+      this.setState({
+        myChart:null,
+        buyFlag:false,
+        sellFlag:false
+      })
     }
 
     if (
       prevProps.register &&
-      prevProps.register.buyList &&
-      register &&
-      register.buyList &&
-      prevProps.register.buyList != register.buyList
+      prevProps.register.buyList  
     ) {
-      this.setState(
-        {
-          buyList: register.buyList
-        },
-        () => {
-          this.createWidget();
+      if(
+        register &&
+        register.buyList &&
+        prevProps.register.buyList != register.buyList){
+          this.setState(
+            {
+              buyList: register.buyList
+            },
+            () => {   
+              this.resetOption()
+            }
+          );
         }
-      );
+        if(!buyFlag){
+          this.setState(
+            {
+              buyList: prevProps.register.buyList,
+              buyFlag:true
+            },
+            () => {
+              this.createWidget();
+            }
+          );
+          
+        }
+        
     }
 
     if (
       prevProps.register &&
-      prevProps.register.sellList &&
-      register &&
-      register.sellList &&
-      prevProps.register.sellList != register.sellList
+      prevProps.register.sellList 
     ) {
-      this.setState(
-        {
-          sellList: register.sellList
-        },
-        () => {
-          this.createWidget();
+      if(
+        register &&
+        register.sellList &&
+        prevProps.register.sellList != register.sellList){
+          this.setState(
+            {
+              sellList: register.sellList
+            },
+            () => {
+              this.resetOption()
+            }
+          );
         }
-      );
-    }
-    // if (register && register.sellList) {
-    //   this.setState({
-    //     sellList: register.sellList
-    //   });
-    // }
+
+      if(!sellFlag){
+        this.setState(
+          {
+            sellList: prevProps.register.sellList,
+            sellFlag:true
+          },
+          () => { 
+            this.createWidget();
+          }
+        );
+      }   
+    } 
   }
 
   componentWillUnmount() {
@@ -128,7 +140,7 @@ class Depth extends React.Component {
           type: "cross",
           label: {
             backgroundColor: "#fff",
-            borderColor: "yellow",
+            borderColor: "#f2ba00",
             borderWidth: "1",
             color: "#666",
             fontSize: 12
@@ -139,11 +151,19 @@ class Depth extends React.Component {
         type: "category",
         boundaryGap: false,
         axisLabel: {
-          showMinLabel: false
-          // formatter: function(val) {
-          //   return "￥" + val;
-          // }
+          showMinLabel: false,
+          color: function (value, index) {
+            return  '#999'
+          },
+          lineStyle: {
+            color: "#ccc"
+          }
         },
+          axisLine:{
+             lineStyle:{
+                color:'#ccc'
+            }
+          },
         splitLine: {
           show: true,
           lineStyle: {
@@ -152,6 +172,13 @@ class Depth extends React.Component {
             opacity: 0.3
           }
         }
+      },
+      grid: {  
+        left: '1%',  
+        right: '1%',  
+        bottom: '1%',  
+        top:'20',
+        containLabel: true  
       },
       yAxis: [
         {
@@ -166,15 +193,18 @@ class Depth extends React.Component {
           axisLabel: {
             inside: true,
             showMinLabel: false,
+            color: function (value, index) {
+              return  '#999999'
+            },
             lineStyle: {
               color: "#ccc"
             }
           },
-          //   axisLine:{
-          //      lineStyle:{
-          //         color:'#ccc'
-          //     }
-          //   },
+            axisLine:{
+               lineStyle:{
+                  color:'#ccc'
+              }
+            },
           splitLine: {
             show: true,
             lineStyle: {
@@ -185,7 +215,7 @@ class Depth extends React.Component {
           },
           splitArea: {
             areaStyle: {
-              color: ["red", "green"]
+              color: ["#F15454", "#69C265"]
             }
           }
         }
@@ -351,7 +381,7 @@ class Depth extends React.Component {
           symbolSize: 4,
           itemStyle: {
             color: "#fff",
-            borderColor: "yellow",
+            borderColor: "#f2ba00",
             shadowColor: "rgba(0, 0, 0, 0.5)",
             shadowBlur: 10
           },
@@ -382,15 +412,15 @@ class Depth extends React.Component {
               colorStops: [
                 {
                   offset: 0,
-                  color: "green" // 0% 处的颜色
+                  color: "#69C265" // 0% 处的颜色
                 },
                 {
                   offset: 0.5,
-                  color: "green" // 0% 处的颜色
+                  color: "#69C265" // 0% 处的颜色
                 },
                 {
                   offset: 1,
-                  color: "#eee" // 100% 处的颜色
+                  color: "#fff" // 100% 处的颜色
                 }
               ],
               global: false // 缺省为 false
@@ -572,7 +602,7 @@ class Depth extends React.Component {
           symbolSize: 5,
           itemStyle: {
             color: "#fff",
-            borderColor: "yellow",
+            borderColor: "#f2ba00",
             shadowColor: "rgba(0, 0, 0, 0.5)",
             shadowBlur: 10
           },
@@ -613,15 +643,15 @@ class Depth extends React.Component {
               colorStops: [
                 {
                   offset: 0,
-                  color: "red" // 0% 处的颜色
+                  color: "#F15454" // 0% 处的颜色
                 },
                 {
                   offset: 0.5,
-                  color: "red" // 0% 处的颜色
+                  color: "#F15454" // 0% 处的颜色
                 },
                 {
                   offset: 1,
-                  color: "#eee" // 100% 处的颜色
+                  color: "#fff" // 100% 处的颜色
                 }
               ],
               global: false // 缺省为 false
@@ -631,6 +661,19 @@ class Depth extends React.Component {
         }
       ]
     });
+
+    this.setState({
+      myChart:myChart
+    })
+    
+  }
+
+  resetOption(){
+      let {myChart,buyList,sellList} = this.state;
+      var option = myChart && myChart.getOption();
+      option.series[0].data = buyList;
+      option.series[1].data = sellList;
+      myChart.setOption(option); 
   }
 
   getTokenInfo() {}
@@ -642,7 +685,7 @@ class Depth extends React.Component {
 
     return (
       <div>
-        <div className="exchange__kline__pic" id="myChart" />
+        <div className="exchange__kline__pic exchange__depth " id="myChart"/>
       </div>
     );
   }

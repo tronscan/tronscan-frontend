@@ -199,6 +199,7 @@ class ExchangeList extends React.Component {
         showSearch: false,
         tagLock: false
       });
+      
       if (auditedTokenList && auditedTokenList.length > 0) {
         this.props.history.push(
           "/exchange/trc10?token=" +

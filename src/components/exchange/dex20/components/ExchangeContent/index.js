@@ -18,13 +18,16 @@ class ExchangeContent extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      select:'kchart'
+    };
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {}
 
   render() {
-    const { dataSource } = this.state;
+    const { select } = this.state;
 
     return (
       <div className="exchange-content">
@@ -32,28 +35,32 @@ class ExchangeContent extends React.Component {
         {/* <Kline/> */}
         <div className="exchange__kline p-3 mb-2">
           <Tokeninfo />
-          <div>
+          <div className="mb-2">
             <Select
-              defaultValue="lucy"
+              defaultValue="kchart"
               style={{ width: 120 }}
-              // onChange={handleChange}
+              onChange={this.handleChange}
             >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="disabled" disabled>
-                Disabled
-              </Option>
-              <Option value="Yiminghe">yiminghe</Option>
+              <Option value="kchart">{tu('trc20_kchart')}</Option>
+              <Option value="depth">{tu('trc20_depth')}</Option>
             </Select>
           </div>
-          {/* <Depth /> */}
-          <Kline />
+          {
+            select === 'kchart' ? <Kline /> :  <Depth />
+          }
+        
         </div>
 
         {/* transaction */}
         <Transaction />
       </div>
     );
+  }
+
+  handleChange(value){
+    this.setState({
+      select:value
+    })
   }
 }
 

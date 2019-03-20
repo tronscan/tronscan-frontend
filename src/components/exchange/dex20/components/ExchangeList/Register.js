@@ -51,6 +51,9 @@ class Register extends Component {
           this.getData();
         }, 3000)
       });
+
+
+      setRegister({ buyList: [], sellList:[]});
     }
   }
 
@@ -279,6 +282,7 @@ class Register extends Component {
         });
 
       let amount_list = [];
+      let amountSum = 0;
       list.map((v, index) => {
         let amount = obj1[v].amount;
         let curTurnover = obj1[v].curTurnover;
@@ -292,10 +296,12 @@ class Register extends Component {
           cje: cje.toFixed(sPrecision)
         });
         amount_list.push(amount);
+        amountSum += cje;
         //数据拼接成深度图所需数据[[价格，数量]，[价格，数量]]
         let item = [
           parseFloat((+v).toFixed(sPrecision)),
-          parseFloat(amount.toFixed(2))
+          // parseFloat(amount.toFixed(2))
+          amountSum
         ];
         arr.push(item);
       });
@@ -309,7 +315,7 @@ class Register extends Component {
       listN.length > limit && (listN.length = limit);
     }
 
-    return { listN, arr: arr.reverse() };
+    return { listN, arr: type === 1 ? arr.reverse() : arr };
   }
 
   setActiveClass = (record, index) => {
