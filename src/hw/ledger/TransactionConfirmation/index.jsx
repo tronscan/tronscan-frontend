@@ -12,7 +12,7 @@ import TronWeb from "tronweb";
 export default function Contract({ contract, extra }) {
   console.log("extra=================",extra)
   const contractParams = contract.parameter.value;
-
+  console.log("contractParams=================",contractParams)
   switch (contract.type.toUpperCase()) {
     case "TRANSFERCONTRACT":
       return (
@@ -356,7 +356,7 @@ export default function Contract({ contract, extra }) {
               
                 <Field label={extra.action==="Buy"?"Cost":"Amount"}>
                   <FormattedNumber maximumFractionDigits={extra.decimals2} minimunFractionDigits={extra.decimals2}  
-                  value={contractParams.quant/Math.pow(10,extra.decimals2) }/>{extra.action==="Buy"?" TRX":""}
+                  value={extra.action==="Buy"?contractParams.quant/ Math.pow(10, extra.decimals2):contractParams.quant/ Math.pow(10, extra.decimals1)}/>{extra.action==="Buy"?" TRX":""}
                 </Field>
                 <Field label="Expected">
                   <FormattedNumber maximumFractionDigits={extra.decimals1} minimunFractionDigits={extra.decimals1}
