@@ -393,7 +393,7 @@ class Statistics extends React.Component {
                   <Link className="card-title" to="/blockchain/stats/EnergyConsume">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("volume_24")}
+                        {tu("TRON日能量消耗图表")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
@@ -402,26 +402,40 @@ class Statistics extends React.Component {
                 </div>
               </div>
 
-              {/*<div className="col-md-4">
+              <div className="col-md-4">
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/ContractInvocation">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("volume_24")}
+                        {tu("TRON日合约调用图表")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
                          className="ml-5 mt-2"/>
                   </Link>
                 </div>
-              </div> */}
+              </div>
+
+              <div className="col-md-4">
+                <div className="card-chart">
+                  <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
+                    <span>
+                      <i className="fas fa-chart-area ml-5 mr-2"/>
+                        {tu("每日合约消耗能量分布")}
+                    </span>
+                    <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
+                         style={{width: 240, filter: 'grayscale(100%)'}}
+                         className="ml-5 mt-2"/>
+                  </Link>
+                </div>
+              </div>
 
               <div className="col-md-4">
                 <div className="card-chart">
                   <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("日能量消耗")}
+                        {tu("每日合约调用分布")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}

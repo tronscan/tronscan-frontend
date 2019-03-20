@@ -1587,15 +1587,34 @@ export const messages = {
     "20_transfers": "TRC-20转账",
     "internal_transactions": "合约内交易",
 
+    
+
     "total_energy_used_chart": "每日合约能量消耗图",
     "total_used_energy": "total used energy",
     "energy_used_by_freezing_TRX": "energy used by freezing TRX",
     "energy_used_by_burning_TRX": "energy uese by burning TRX",
     "total_energy_used": "总能量消耗",
-    "freezing_energy": "冻结trx能量",
-    "burning_energy": "销毁trx能量",
+    "freezing_energy": "冻结trx的能量",
+    "burning_energy": "烧毁trx的能量",
     "energy_scale": "能量消耗占比",
-    "range": "range"
+    "range": "range",
+
+    "call": "调用",
+    "caller": "调用者",
+    "call_time": "调用次数",
+    "call_scale": "调用次数占比",
+    "call_address_time": "调用地址数",
+    "call_address_scale": "调用地址数占比",
+
+    "contract_call_chart": "TRON合约调用情况表",
+    "call_address_number": "地址数",
+    "contract_call_per_day": "Contract Call Per Day",
+    "contract_call_chart_day": '每日合约调用图',
+    "Tron_energy_chart": "TRON日能量消耗图表",
+    "contract_energy_consumption_chart": "合约日消耗能量图表",
+    "": "",
+    "": "",
+    "": "",
 
 
 

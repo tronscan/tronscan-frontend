@@ -408,6 +408,7 @@ export class LineReactHighChartTotalTxns extends React.Component {
                 )
             }
         }
+        console.log(_config)
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -554,7 +555,7 @@ export class BarReactHighChartBlockSize extends React.Component {
                 intl.formatMessage({id: 'average_blocksize'}) + ' : ' + this.point.avgBlockSize
             )
         }
-
+console.log(_config)
         Highcharts.chart(document.getElementById(id),_config);
 
     }
@@ -653,6 +654,7 @@ export class LineReactHighChartPrice extends React.Component {
                 )
             }
         }
+        console.log(_config)
         Highcharts.chart(document.getElementById(id),_config);
     }
     shouldComponentUpdate(nextProps)  {
@@ -1126,7 +1128,6 @@ export class LineReactPrice extends React.Component {
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
-
         myChart.setOption(_config);
         this.myChart = myChart;
 
@@ -1344,19 +1345,32 @@ export class EnergyConsumeChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
-       
+
         if (data && data.length > 0) {
+            let chartData = [
+                { name: intl.formatMessage({id: 'freezing_energy'}), data: []},
+                { name: intl.formatMessage({id: 'burning_energy'}), data: []},
+            ]
+            data.map(item => {
+                chartData[0].data.push([
+                    item.day,
+                    Number(item.energy)
+                ])
+                chartData[1].data.push([
+                    item.day,
+                    Number(item.trx)
+                ])
+            })
+
             let options = {
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    zoomType: 'x'
                 },
                 title: {
                     text: intl.formatMessage({id: 'EnergyConsume_title'})
                 },
                 subtitle: {text: intl.formatMessage({id: 'EnergyConsume_subtitle'})},
-                xAxis: {
-                    categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
-                },
                 yAxis: {
                     min: 0,
                     title: {
@@ -1366,14 +1380,15 @@ export class EnergyConsumeChart extends React.Component {
                 legend: {
                     align: 'center',
                     verticalAlign: 'bottom',
-                    symbolRadius: 0
+                    symbolRadius: 0,
+                    enabled: true
                 },
                 tooltip: {
                     formatter: function () {
-                        return intl.formatMessage({id: 'date'}) +': '+ '<br/>' +
-                        intl.formatMessage({id: 'total_enegy_used'}) +': '+ this.points[0].total+'<br/>' +
+                        return intl.formatMessage({id: 'date'}) +': '+intl.formatDate(this.x)+ '<br/>' +
+                        intl.formatMessage({id: 'total_enegy_used'}) +': '+ intl.formatNumber(this.points[0].total)+'<br/>' +
                         this.points.map(item => {
-                            return `<span style="color:${item.color}">${item.series.name}: </span>${item.y}<br/>`
+                            return `<span style="color:${item.color}">${item.series.name}: </span>${intl.formatNumber(item.y)}<br/>`
                         }).join('')
                     },
                     shared: true
@@ -1383,13 +1398,12 @@ export class EnergyConsumeChart extends React.Component {
                         stacking: 'normal'
                     }
                 },
-                series: data
+                series: chartData
             }
 
-            Object.keys(options).map(item => {
-                _config[item] = options[item]
-            })
+            setOption(_config, options)
         }
+        console.log(_config)
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
@@ -1427,31 +1441,33 @@ export class ContractInvocationChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
+        console.log('data :', data);
        
-        if (data && data.length > 0) {
+        if (data) {
             let options =  {
+                chart: { zoomType: 'x' },
                 title: {
-                    text: '两地月平均温度'
+                    text: intl.formatMessage({id: 'contract_call_chart'})
                 },
                 subtitle: {
-                    text: '数据来源: WorldClimate.com'
+                    text: intl.formatMessage({id: 'HighChart_tip'})
                 },
                 xAxis: {
-                    categories: ['一月', '二月', '三月', '四月', '五月', '六月',
-                                 '七月', '八月', '九月', '十月', '十一月']
+                    tickPixelInterval: 100
                 },
                 yAxis: {
                     title: {
-                        text: '温度'
+                        text: intl.formatMessage({id: 'contract_call_per_day'})
                     },
                 },
                 legend: {
                     align: 'center',
-                    verticalAlign: 'bottom'
+                    verticalAlign: 'bottom',
+                    enabled: true
                 },
                 tooltip: {
                     formatter: function () {
-                        return '日期: ' + this.x + '<br/>' +
+                        return intl.formatMessage({id: 'date'}) + ': ' + intl.formatDate(this.x) + '<br/>' +
                             this.series.name + ': ' + this.y
                     }
                 },
@@ -1463,18 +1479,17 @@ export class ContractInvocationChart extends React.Component {
                     }
                 },
                 series: [{
-                    name: '次数',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 23.3, 18.3, 13.9, 9.6]
+                    name: intl.formatMessage({id: 'call_time'}),
+                    data: data.trigger_amount
                 }, {
-                    name: '地址数',
-                    data: [ 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                    name: intl.formatMessage({id: 'call_address_number'}),
+                    data: data.address_amount
                 }]
             }
-
-            Object.keys(options).map(item => {
-                _config[item] = options[item]
-            })
+            console.log(_config)
+            setOption(_config, options)
         }
+        
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }
@@ -1513,24 +1528,105 @@ export class ContractInvocationDistributionChart extends React.Component {
     initLine(id) {
         let _config = cloneDeep(config.overviewHighChart);
         let {intl, data} = this.props;
+
+        
+        var chartdata = data.slice(0).map(o => {
+            o.y= o.trigger_amount
+            o.name = o.contract_address
+            return o
+            // return {
+            //     name: o.contract_address,
+            //     y: o.trigger_amount,
+            //     real_name: o.name,
+            //     trigger_percent: o.trigger_percent
+            // }
+        })
+       
+        if (data && data.length > 0) {
+            let options =  {
+                chart: {
+                    type: 'variablepie'
+                },
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
+   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+                title: {
+                    text: intl.formatMessage({id: 'contract_call_chart_day'})
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    intl.formatMessage({id: 'call_address_time'}) + ': <b>{point.caller_amount}</b><br/>' +
+                    intl.formatMessage({id: 'call_address_scale'}) + ': <b>{point.caller_percent}</b><br/>'+
+                    intl.formatMessage({id: 'call_time'}) + ': <b>{point.y}</b><br/>' +
+                    intl.formatMessage({id: 'call_scale'}) + ': <b>{point.trigger_percent}</b><br/>'
+                },
+                series: [{
+                    minPointSize: 70,
+                    innerSize: '30%',
+                    zMin: 0,
+                    name: 'countries',
+                    data: chartdata
+                }]
+            }
+            Object.keys(options).map(item => {
+                _config[item] = options[item]
+            })
+            console.log('_config :', _config);
+        }
+        if (data && data.length === 0) {
+            _config.title.text = "No data";
+        }
+        Highcharts.chart(id, _config);
+    }
+
+    componentDidMount() {
+        this.initLine(this.state.lineId);
+    }
+
+    componentDidUpdate() {
+        this.initLine(this.state.lineId);
+    }
+
+    render() {
+        return (
+            <div>
+                <div id={this.state.lineId} style={this.props.style}></div>
+            </div>
+        )
+    }
+}
+
+export class EnergyConsumeDistributionChart extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.myChart = null;
+        let id = ('_' + Math.random()).replace('.', '_');
+        this.state = {
+            lineId: 'ContractInvocationChart' + id
+        }
+    }
+
+    initLine(id) {
+        let _config = cloneDeep(config.overviewHighChart);
+        let {intl, data} = this.props;
         let totalUsedEnergy = 0
         let freezingEnergy = 0
         let burningEnergy = 0
 
         
         var chartdata = data.slice(0).map(o => {
-            totalUsedEnergy += Number(o.total)
-            freezingEnergy += Number(o.frozen)
-            burningEnergy += Number(o.distroy)
+            totalUsedEnergy += Number(o.total_energy)
+            freezingEnergy += Number(o.energy)
+            burningEnergy += Number(o.trx)
 
             return {
-                name: o.address,
-                y: Number(o.total),
+                name: o.contract_address,
+                y: Number(o.total_energy),
                 real_name: o.name,
                 percent: o.percent
             }
         })
-console.log('intl :', intl);
         const SUBTITLE = `
             ${intl.formatMessage({id: 'total_used_energy'})}: ${intl.formatNumber(totalUsedEnergy)}(
             ${intl.formatMessage({id: 'energy_used_by_freezing_TRX'})} ${intl.formatNumber(freezingEnergy)}
@@ -1565,10 +1661,10 @@ console.log('intl :', intl);
                     data: chartdata
                 }]
             }
-
             Object.keys(options).map(item => {
                 _config[item] = options[item]
             })
+            console.log('_config :', _config);
         }
         if (data && data.length === 0) {
             _config.title.text = "No data";
@@ -1591,4 +1687,15 @@ console.log('intl :', intl);
             </div>
         )
     }
+}
+
+function setOption(config, child) {
+    Object.keys(child).map(item => {
+        if(child[item] && child[item].toString() === '[object Object]'){
+            config[item] = config[item] || {}
+            setOption(config[item] , child[item])
+        }else{
+            config[item] = child[item]
+        }
+    }) 
 }
