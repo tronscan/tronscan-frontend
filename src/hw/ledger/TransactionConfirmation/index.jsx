@@ -169,8 +169,8 @@ export default function Contract({ contract, extra }) {
           </div>
           <table className="table">
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
-            <Field label="Token">{tokenInfo.map_token_name + "( ID:" +tokenInfo.map_token_id +")"}</Field>
-            <Field label="Cost">{contractParams.amount / ONE_TRX}</Field>
+            <Field label="Token">{tokenInfo.map_token_name + "[ID:" +tokenInfo.map_token_id +"]"}</Field>
+            <Field label="Cost">{contractParams.amount / ONE_TRX} TRX</Field>
             {(extra && extra.hash && 
                  <Field label="Hash">
                     <Truncate>
