@@ -10,7 +10,7 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
-
+  console.log("extra=================",extra)
   const contractParams = contract.parameter.value;
 
   switch (contract.type.toUpperCase()) {
