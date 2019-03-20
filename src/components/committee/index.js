@@ -135,7 +135,6 @@ class Committee extends React.Component {
                 tronParametersNew.push(item)
             }
         })
-        console.log('tronParametersNew',tronParametersNew)
 
         this.setState({
             dataSource: tronParametersNew

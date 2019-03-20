@@ -11,18 +11,13 @@ import {Truncate} from "../../../components/common/text";
 import TronWeb from "tronweb";
 
 export default function Contract({ contract, extra }) {
-  console.log("extra=================",extra)
   const contractParams = contract.parameter.value;
-  console.log("contractParams=================",contractParams)
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
   if(contract.type.toUpperCase() == "PARTICIPATEASSETISSUECONTRACT"){
       tokenList[0].token_id = TronWeb.toUtf8(contractParams.asset_name);
       tokenList[0].amount = contractParams.amount;
-      console.log('tokenList',tokenList);
       tokenInfo = rebuildList(tokenList, 'token_id', 'amount')[0];
-      console.log('tokenInfo',tokenInfo);
-
   }
 
   switch (contract.type.toUpperCase()) {
@@ -175,7 +170,7 @@ export default function Contract({ contract, extra }) {
           <table className="table">
             {/*<Field label="Owner Address"><AddressLink address={contract.ownerAddress} /></Field>*/}
             <Field label="Token">{tokenInfo.map_token_name + "( ID:" +tokenInfo.map_token_id +")"}</Field>
-            <Field label="Amount">{tokenInfo.map_amount}</Field>
+            <Field label="Cost">{contractParams.amount / ONE_TRX}</Field>
             {(extra && extra.hash && 
                  <Field label="Hash">
                     <Truncate>
