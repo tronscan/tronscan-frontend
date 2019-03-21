@@ -215,7 +215,7 @@ class SendForm extends React.Component {
 
     if (this.props.wallet.type === "ACCOUNT_LEDGER"){
       tronWeb = this.props.tronWeb();
-
+      console.log('tronWeb',tronWeb)
       // Send TRC20
       let unSignTransaction = await tronWeb.transactionBuilder.triggerSmartContract(
                   tronWeb.address.toHex(contractAddress),
@@ -227,17 +227,19 @@ class SendForm extends React.Component {
                   ],
                   tronWeb.address.toHex(this.props.wallet.address),
               );
+        console.log('unSignTransaction11111',unSignTransaction)
       if (unSignTransaction.transaction !== undefined)
         unSignTransaction = unSignTransaction.transaction;
-        
+        console.log('unSignTransaction22222',unSignTransaction)
       unSignTransaction.extra = {
             to: to,
             decimals: decimals,
             token_name: TokenName,
             amount: amount,
       }
+      console.log('unSignTransaction3333',unSignTransaction)
       transactionId = await transactionResultManager(unSignTransaction, tronWeb)
-
+      console.log('transactionId',transactionId)
     }else if(this.props.wallet.type === "ACCOUNT_TRONLINK" || this.props.wallet.type === "ACCOUNT_PRIVATE_KEY"){
       tronWeb = this.props.account.tronWeb;
       let contractInstance = await tronWeb.contract().at(contractAddress);
