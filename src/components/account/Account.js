@@ -72,7 +72,7 @@ export default class Account extends Component {
       hideSmallCurrency: true,
       tokenTRC10: true,
       tokens20: [],
-      dealPairTrxLimit: 100000,
+      dealPairTrxLimit: 10,
       isTronLink: 0,
       delegateType: 0,
       delegate: false,
