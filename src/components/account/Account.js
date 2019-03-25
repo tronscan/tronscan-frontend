@@ -46,7 +46,7 @@ import { FormatNumberByDecimals } from '../../utils/number'
       delegated: state.account.delegated,
       wallet: state.wallet,
       currentWallet: state.wallet.current,
-      trxBalance: state.wallet.current.balance/ONE_TRX ,
+      trxBalance: state.account.balance,
     }),
     {
       login,
