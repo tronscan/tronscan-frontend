@@ -548,7 +548,7 @@ export default class Account extends Component {
                 </td>
                   <td className="text-right">
                     {
-                      <button className="btn btn-danger mr-2" disabled={true} style={{
+                      <button className="btn btn-danger mr-2"  style={{
                         marginTop: '-5px',
                         marginBottom: '-5px'
                       }} onClick={() => {
@@ -582,7 +582,7 @@ export default class Account extends Component {
                 </td>
                 <td className="text-right">
                   {
-                    <button className="btn btn-danger mr-2" disabled={true} style={{marginTop: '-5px',
+                    <button className="btn btn-danger mr-2" style={{marginTop: '-5px',
                       marginBottom: '-5px'}} onClick={() => {
                       this.showUnfreezeModal(1, true, item.to)
                     }}>
