@@ -33,6 +33,7 @@ import {CopyToClipboard} from "react-copy-to-clipboard";
 import QRCode from "qrcode.react";
 import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
+import { getQueryString } from "../../utils/url";
 
 @connect(
     state => ({
@@ -82,12 +83,18 @@ export default class Account extends Component {
   }
 
   componentDidMount() {
-    let {account} = this.props;
+
+    let {account,match} = this.props;
+
+
     if (account.isLoggedIn) {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
       //this.getTRC20Tokens();
+      if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
+          this.scrollToAnchor()
+      }
     }
   }
 
@@ -99,6 +106,13 @@ export default class Account extends Component {
       this.loadAccount();
       //this.getTRC20Tokens();
     }
+  }
+
+  scrollToAnchor = () => {
+
+      let anchorElement = document.getElementById('tronPower');
+      if(anchorElement) { anchorElement.scrollIntoView(); }
+
   }
 
   loadAccount = async () => {
@@ -1467,7 +1481,7 @@ export default class Account extends Component {
               </div>
             </div>
 
-            <div className="col-md-3 mt-3 mt-md-0">
+            <div className="col-md-3 mt-3 mt-md-0" >
               <div className="card h-100 bg-line_yellow bg-image_vote">
                 <div className="card-body">
                   <h3 style={{color: '#E0AE5C'}}>
@@ -1838,7 +1852,7 @@ export default class Account extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-3">
+          <div className="row mt-3" id="tronPower">
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
