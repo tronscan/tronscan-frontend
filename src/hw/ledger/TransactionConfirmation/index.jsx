@@ -14,11 +14,13 @@ export default function Contract({ contract, extra }) {
   const contractParams = contract.parameter.value;
   let tokenInfo = '';
   let tokenList = [{"token_id":"","amount":""}];
-  if(contract.type.toUpperCase() == "PARTICIPATEASSETISSUECONTRACT"){
+  if(contract.type.toUpperCase() == "PARTICIPATEASSETISSUECONTRACT" || contract.type.toUpperCase() == "TRANSFERASSETCONTRACT"){
       tokenList[0].token_id = TronWeb.toUtf8(contractParams.asset_name);
       tokenList[0].amount = contractParams.amount;
       tokenInfo = rebuildList(tokenList, 'token_id', 'amount')[0];
   }
+
+
   console.log("contract.type.toUpperCase()",contract.type.toUpperCase())
   console.log('contractParams',contractParams)
   console.log('extra',extra)
@@ -38,11 +40,12 @@ export default function Contract({ contract, extra }) {
               <Field label="To">
                 {TronWeb.address.fromHex(contractParams.to_address)}
               </Field>
-              <Field label="To Name">
-                <AccountName
-                  address={TronWeb.address.fromHex(contractParams.to_address)}
-                  loading={() => <span>Loading...</span>} />
-              </Field>
+              {/*<Field label="To Name">*/}
+                {/*<AccountName*/}
+                  {/*address={TronWeb.address.fromHex(contractParams.to_address)}*/}
+                  {/*loading={() => <span>Loading...</span>}*/}
+                {/*/>*/}
+              {/*</Field>*/}
               <Field label="Amount">
                 <FormattedTRX value={contractParams.amount / ONE_TRX}/> TRX
               </Field>
@@ -72,14 +75,14 @@ export default function Contract({ contract, extra }) {
             <Field label="To">
               {TronWeb.address.fromHex(contractParams.to_address)}
             </Field>
-            <Field label="To Name">
-              <AccountName
-                address={TronWeb.address.fromHex(contractParams.to_address)}
-                loading={() => <span>Loading...</span>} />
-            </Field>
+            {/*<Field label="To Name">*/}
+              {/*<AccountName*/}
+                {/*address={TronWeb.address.fromHex(contractParams.to_address)}*/}
+                {/*loading={() => <span>Loading...</span>} />*/}
+            {/*</Field>*/}
             <Field label="Amount">
               <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals} 
-                    value={contractParams.amount/Math.pow(10,extra.decimals)}/>&nbsp;{extra.token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
+                    value={tokenInfo.map_amount}/>&nbsp;{tokenInfo.map_token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
             </Field>
             {(extra && extra.hash && 
                 <Field label="Hash">
