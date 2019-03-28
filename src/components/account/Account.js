@@ -88,17 +88,17 @@ export default class Account extends Component {
 
 
     if (account.isLoggedIn) {
+        console.log("0000")
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-      //
-
+        console.log(111)
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
-              console.log(111)
+              console.log(222)
               this.scrollToAnchor()
-              console.log(2222)
-          },2000)
+              console.log(333)
+          },3000)
       }
     }
   }
