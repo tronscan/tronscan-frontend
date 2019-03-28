@@ -92,19 +92,15 @@ export default class Account extends Component {
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
-        console.log(111)
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
           setTimeout(()=>{
-              console.log(222)
               this.scrollToAnchor()
-              console.log(333)
-          },3000)
+          },2000)
       }
     }
   }
 
   componentDidUpdate(prevProps) {
-      console.log("6666")
     let {account} = this.props;
     if (((prevProps.account.isLoggedIn !== account.isLoggedIn) && account.isLoggedIn) || ((prevProps.account.address !== account.address) && account.isLoggedIn)) {
       this.setState({isTronLink: Lockr.get("islogin")});
