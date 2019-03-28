@@ -233,22 +233,22 @@ class Register extends Component {
       isLoading: false
     });
 
-    let buyObj = await this.getList(data.buy, 1);
-    let sellObj = await this.getList(data.sell);
+    let buyObj = await this.getList(data ? data.buy : [], 1);
+    let sellObj = await this.getList(data ? data.sell : []);
     if (code === 0) {
       if (data) {
         this.setState(
           {
             buyList: buyObj.listN,
             sellList: sellObj.listN.reverse()
-          },
-          () => {
-            setRegister({
-              buyList: buyObj.arr,
-              sellList: sellObj.arr,
-              tokenId: buyObj.tokenId
-            });
           }
+          // () => {
+          // setRegister({
+          //   buyList: buyObj.arr,
+          //   sellList: sellObj.arr,
+          //   tokenId: buyObj.tokenId
+          // });
+          // }
         );
       }
     }
@@ -321,8 +321,8 @@ class Register extends Component {
 
     return {
       listN,
-      arr: type === 1 ? arr.reverse() : arr,
-      tokenId: data[0].ExchangeID
+      arr: type === 1 ? arr.reverse() : arr
+      // tokenId: data[0].ExchangeID
     };
   }
 

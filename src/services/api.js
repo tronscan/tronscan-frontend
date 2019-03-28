@@ -31,7 +31,8 @@ class ApiClient20 {
 
   async getexchanges20(options = {}) {
     let { data } = await xhr.get(
-      `${this.apiUrl}/api/exchange/marketPair/list`,
+      // `${this.apiUrl}/api/exchange/marketPair/list`,
+      `http://13.58.63.31:21110/api/exchange/marketPair/list`,
       {
         params: options
       }
@@ -48,9 +49,13 @@ class ApiClient20 {
   }
 
   async getCurrentList(query) {
-    let { data } = await xhr.get(`${this.apiUrl}/api/exchange/user/order`, {
-      params: query
-    });
+    let { data } = await xhr.get(
+      // `${this.apiUrl}/api/exchange/user/order`,
+      `http://13.58.63.31:21110/api/exchange/user/order`,
+      {
+        params: query
+      }
+    );
 
     return data;
   }

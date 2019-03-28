@@ -352,6 +352,7 @@ class Buy extends Component {
     let id;
     try {
       id = await TW.buyByContract(data);
+      console.log(id);
 
       if (id) {
         this.setState({
@@ -451,6 +452,7 @@ class Buy extends Component {
     ) {
       tronWeb = account.tronWeb;
     }
+
     let _b = 0;
     if (account.address && exchangeData.sTokenAddr) {
       if (exchangeData.sTokenAddr === "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb") {
