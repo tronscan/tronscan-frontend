@@ -42,7 +42,8 @@ class Register extends Component {
     let { pairs } = this.props;
     if (prevProps.pairs.id != pairs.id) {
       this.setState({
-        isLoading: true
+        isLoading: true,
+        timer: null
       });
       this.getData();
       clearInterval(timer);
@@ -52,8 +53,7 @@ class Register extends Component {
         }, 3000)
       });
 
-
-      setRegister({ buyList: [], sellList:[]});
+      setRegister({ buyList: [], sellList: [] });
     }
   }
 
@@ -243,7 +243,11 @@ class Register extends Component {
             sellList: sellObj.listN.reverse()
           },
           () => {
-            setRegister({ buyList: buyObj.arr, sellList: sellObj.arr });
+            setRegister({
+              buyList: buyObj.arr,
+              sellList: sellObj.arr,
+              tokenId: buyObj.tokenId
+            });
           }
         );
       }
@@ -296,7 +300,7 @@ class Register extends Component {
           cje: cje.toFixed(sPrecision)
         });
         amount_list.push(amount);
-        amountSum += cje;
+        amountSum += amount;
         //数据拼接成深度图所需数据[[价格，数量]，[价格，数量]]
         let item = [
           parseFloat((+v).toFixed(sPrecision)),
@@ -315,7 +319,11 @@ class Register extends Component {
       listN.length > limit && (listN.length = limit);
     }
 
-    return { listN, arr: type === 1 ? arr.reverse() : arr };
+    return {
+      listN,
+      arr: type === 1 ? arr.reverse() : arr,
+      tokenId: data[0].ExchangeID
+    };
   }
 
   setActiveClass = (record, index) => {

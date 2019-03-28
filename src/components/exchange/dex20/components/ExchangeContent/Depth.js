@@ -27,94 +27,108 @@ class Depth extends React.Component {
       myChart: null,
       buyList: [],
       sellList: [],
-      buyFlag:false,
-      sellFlag:false
+      buyFlag: false,
+      sellFlag: false,
+      timer: null
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { tokeninfo, tvWidget } = this.state;
     const { selectData } = this.props;
+    await this.getData();
     this.createWidget();
+    let timer = setInterval(() => {
+      this.getData();
+      this.resetOption();
+    }, 20000);
+
+    this.setState({
+      timer: timer
+    });
   }
 
-  componentDidUpdate(prevProps) {
-    const { tokeninfo,buyFlag,sellFlag,myChart } = this.state;
+  async componentDidUpdate(prevProps) {
+    const { tokeninfo, buyFlag, sellFlag, myChart, timer } = this.state;
     const { selectData, activeLanguage, widget, register } = this.props;
 
-    if (
-      selectData.exchange_id != prevProps.selectData.exchange_id 
-    ) {
+    if (selectData.exchange_id != prevProps.selectData.exchange_id) {
       myChart.dispose();
       this.setState({
-        myChart:null,
-        buyFlag:false,
-        sellFlag:false
-      })
+        myChart: null,
+        buyFlag: false,
+        sellFlag: false
+      });
+
+      await this.getData();
+      this.createWidget();
+      clearInterval(timer);
+      this.setState({
+        timer: setInterval(() => {
+          this.getData();
+          this.resetOption();
+        }, 20000)
+      });
     }
 
-    if (
-      prevProps.register &&
-      prevProps.register.buyList  
-    ) {
-      if(
-        register &&
-        register.buyList &&
-        prevProps.register.buyList != register.buyList){
-          this.setState(
-            {
-              buyList: register.buyList
-            },
-            () => {   
-              this.resetOption()
-            }
-          );
-        }
-        if(!buyFlag){
-          this.setState(
-            {
-              buyList: prevProps.register.buyList,
-              buyFlag:true
-            },
-            () => {
-              this.createWidget();
-            }
-          );
-          
-        }
-        
-    }
+    // if (prevProps.register && prevProps.register.buyList) {
+    //   if (
+    //     register &&
+    //     register.buyList &&
+    //     prevProps.register.buyList != register.buyList &&
+    //     register.tokenId === selectData.exchange_id
+    //   ) {
+    //     this.setState(
+    //       {
+    //         buyList: register.buyList
+    //       },
+    //       () => {
+    //         this.resetOption();
+    //       }
+    //     );
+    //   }
+    //   if (!buyFlag) {
+    //     this.setState(
+    //       {
+    //         buyList: prevProps.register.buyList,
+    //         buyFlag: true
+    //       },
+    //       () => {
+    //         this.createWidget();
+    //       }
+    //     );
+    //   }
+    // }
 
-    if (
-      prevProps.register &&
-      prevProps.register.sellList 
-    ) {
-      if(
-        register &&
-        register.sellList &&
-        prevProps.register.sellList != register.sellList){
-          this.setState(
-            {
-              sellList: register.sellList
-            },
-            () => {
-              this.resetOption()
-            }
-          );
-        }
+    // if (prevProps.register && prevProps.register.sellList) {
+    //   if (
+    //     register &&
+    //     register.sellList &&
+    //     prevProps.register.sellList != register.sellList &&
+    //     register.tokenId === selectData.exchange_id
+    //   ) {
+    //     this.setState(
+    //       {
+    //         sellList: register.sellList
+    //       },
+    //       () => {
+    //         this.resetOption();
+    //       }
+    //     );
+    //   }
 
-      if(!sellFlag){
-        this.setState(
-          {
-            sellList: prevProps.register.sellList,
-            sellFlag:true
-          },
-          () => { 
-            this.createWidget();
-          }
-        );
-      }   
-    } 
+    //   if (!sellFlag) {
+    //     this.setState(
+    //       {
+    //         sellList: prevProps.register.sellList,
+    //         sellFlag: true
+    //       },
+    //       () => {
+    //         this.createWidget();
+    //       }
+    //     );
+    //   }
+    // }
   }
 
   componentWillUnmount() {
@@ -130,6 +144,8 @@ class Depth extends React.Component {
     const locale = this.props.intl.locale || "en";
     // 基于准备好的dom，初始化echarts实例
     myChart = echarts.init(document.getElementById("myChart"));
+    myChart.showLoading();
+    console.log(buyList);
     // 绘制图表
     myChart.setOption({
       animation: false,
@@ -152,18 +168,18 @@ class Depth extends React.Component {
         boundaryGap: false,
         axisLabel: {
           showMinLabel: false,
-          color: function (value, index) {
-            return  '#999'
+          color: function(value, index) {
+            return "#999";
           },
           lineStyle: {
             color: "#ccc"
           }
         },
-          axisLine:{
-             lineStyle:{
-                color:'#ccc'
-            }
-          },
+        axisLine: {
+          lineStyle: {
+            color: "#ccc"
+          }
+        },
         splitLine: {
           show: true,
           lineStyle: {
@@ -173,12 +189,12 @@ class Depth extends React.Component {
           }
         }
       },
-      grid: {  
-        left: '1%',  
-        right: '1%',  
-        bottom: '1%',  
-        top:'20',
-        containLabel: true  
+      grid: {
+        left: "1%",
+        right: "1%",
+        bottom: "1%",
+        top: "20",
+        containLabel: true
       },
       yAxis: [
         {
@@ -193,18 +209,18 @@ class Depth extends React.Component {
           axisLabel: {
             inside: true,
             showMinLabel: false,
-            color: function (value, index) {
-              return  '#999999'
+            color: function(value, index) {
+              return "#999999";
             },
             lineStyle: {
               color: "#ccc"
             }
           },
-            axisLine:{
-               lineStyle:{
-                  color:'#ccc'
-              }
-            },
+          axisLine: {
+            lineStyle: {
+              color: "#ccc"
+            }
+          },
           splitLine: {
             show: true,
             lineStyle: {
@@ -662,18 +678,42 @@ class Depth extends React.Component {
       ]
     });
 
-    this.setState({
-      myChart:myChart
-    })
-    
+    this.setState(
+      {
+        myChart: myChart
+      },
+      () => {
+        myChart.hideLoading();
+      }
+    );
   }
 
-  resetOption(){
-      let {myChart,buyList,sellList} = this.state;
-      var option = myChart && myChart.getOption();
-      option.series[0].data = buyList;
-      option.series[1].data = sellList;
-      myChart.setOption(option); 
+  resetOption() {
+    let { myChart, buyList, sellList } = this.state;
+    var option = myChart && myChart.getOption();
+    option.series[0].data = buyList;
+    option.series[1].data = sellList;
+    myChart.setOption(option);
+  }
+
+  async getData() {
+    let res = await Client20.depthChart(112);
+    let { data } = res;
+    let buyList = [],
+      sellList = [];
+    for (let i in data.buy) {
+      let item = data.buy[i];
+      buyList.push([item.Price, item.amount]);
+    }
+    for (let i in data.sell) {
+      let item = data.sell[i];
+      sellList.push([item.Price, item.amount]);
+    }
+
+    this.setState({
+      buyList: buyList.reverse(),
+      sellList: sellList
+    });
   }
 
   getTokenInfo() {}
@@ -685,7 +725,7 @@ class Depth extends React.Component {
 
     return (
       <div>
-        <div className="exchange__kline__pic exchange__depth " id="myChart"/>
+        <div className="exchange__kline__pic exchange__depth " id="myChart" />
       </div>
     );
   }

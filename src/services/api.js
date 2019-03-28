@@ -115,6 +115,18 @@ class ApiClient20 {
   }
 
   /**
+   * 深度图
+   */
+  async depthChart(id) {
+    let { data } = await xhr({
+      method: "get",
+      // url: `${this.apiUrl}/api/exchange/common/deepgraph/${id}`,
+      url: `http://18.222.178.103:3006/dex/exchange/common/deepgraph/${id}`
+    });
+    return data;
+  }
+
+  /**
    * 获取zendesk消息系统
    */
   async getNotice(lan, query) {
