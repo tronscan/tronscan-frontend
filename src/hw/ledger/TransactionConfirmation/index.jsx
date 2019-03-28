@@ -82,7 +82,7 @@ export default function Contract({ contract, extra }) {
                 {/*loading={() => <span>Loading...</span>} />*/}
             {/*</Field>*/}
             <Field label="Amount">
-              <FormattedNumber maximumFractionDigits={extra.decimals} minimunFractionDigits={extra.decimals} 
+              <FormattedNumber maximumFractionDigits={tokenInfo.map_token_precision} minimunFractionDigits={tokenInfo.map_token_precision}
                     value={tokenInfo.map_amount}/>&nbsp;{tokenInfo.map_token_name}&nbsp;<font size="-2">[{TronWeb.toUtf8(contractParams.asset_name)}]</font>
             </Field>
             {(extra && extra.hash && 
