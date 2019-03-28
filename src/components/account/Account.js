@@ -94,11 +94,11 @@ export default class Account extends Component {
       //
 
       if(getQueryString('from') == 'tronlink' && getQueryString('type') == 'frozen'){
-        setTimeout(function(){
-            console.log(111)
-            this.scrollToAnchor()
-            console.log(2222)
-        },2000)
+          setTimeout(()=>{
+              console.log(111)
+              this.scrollToAnchor()
+              console.log(2222)
+          },2000)
       }
     }
   }
