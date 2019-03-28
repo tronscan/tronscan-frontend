@@ -989,6 +989,7 @@ class Statistics extends React.Component {
                                         <EnergyConsumeChart source='singleChart'
                                                                      style={{height: 500}}
                                                                      data={energyConsumeData}
+                                                                     type="c2"
                                                                      intl={intl}/>
                                 }
                             </div>

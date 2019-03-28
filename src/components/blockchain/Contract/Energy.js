@@ -42,13 +42,13 @@ class Energy extends React.Component {
 
     return (
         <main className="container pt-5">
-            {loading && <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>}
             {
               energyConsumeData === null ? <TronLoader/> :
               <EnergyConsumeChart 
                 source='singleChart'
                 style={{height: 500}}
                 data={energyConsumeData}
+                type="c1"
                 intl={intl}
               />
             }
