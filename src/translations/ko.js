@@ -1570,6 +1570,54 @@ export const messages = {
     "BTT_Token_Release_Schedule":"BTT 토큰 해동 타임라인",
     "source_btt_team":"정보 출처：BTT 관리팀",
 
+    "total_energy_used_chart": "일일 컨트랙트 에너지 소모 차트",
+    "total_used_energy": "총 소모한 에너지",
+    "energy_used_by_freezing_TRX": " TRX 동결에 사용되는 에너지",
+    "energy_used_by_burning_TRX": "TRX 소각에 사용되는 에너지",
+    "total_energy_used": "총 에너지 소모",
+    "freezing_energy": "TRX 에너지 동결",
+    "burning_energy": "TRX 에너지 소각",
+    "energy_scale": "에너지 소비 비율",
+    "range": "range",
+
+    "call": " 콜",
+    "caller": " 콜러 ",
+    "call_time": " 콜 횟수", 
+    "call_scale": " 콜 횟수 비율 ",
+    "call_address_time": " call_address_time ",
+    "call_address_scale": " call_address_scale ",
+
+    "contract_call_chart": "TRON 컨트랙트 사용 상황표",
+    "call_address_number": "주소 번호",
+    "contract_call_per_day": "Contract Call Per Day",
+    "contract_call_chart_day": '일일 컨트랙스 사용 차트',
+    "Tron_energy_chart": "TRON일일 에너지 소모 차트",
+    "tron_contract_call_chart": "TRON일일 컨트랙트 사용 차트",
+    "day_contract_energy_distribution": "일일 컨트랙트 에너지 소모 분포",
+    "day_contract_call_distribution": "일일 컨트랙트 사용 분포",
+
+    "a_total": "총",
+    "with_the_proportion_of": "의 비율로",
+    "uesd_by_the": "에 의해 사용되는",
+    "contracts_from_the_total_used_of": "총 사용량에서 컨트랙트",
+"Contract_times_calls": "컨트랙트 타임 콜 (계약 시간 값을 내림차순으로 정렬)",
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
 
 
 };

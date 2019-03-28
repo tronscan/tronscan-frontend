@@ -1575,6 +1575,39 @@ export const messages = {
     "source_btt_team": "منبع: تیم مدیریت بی تی تی",
 
 
+    "total_energy_used_chart": "نمودار مصرف انرژی روزانه قرارداد",	
+    "total_used_energy": "کل انرژی استفاده شده،",	
+    "energy_used_by_freezing_TRX": "انرژی استفاده شده توسط فریز تی آر ایکس",	
+    "energy_used_by_burning_TRX": "انرژی استفاده شده توسط سوزاندن تی آر ایکس",	
+    "total_energy_used": "کل انرژی مصرف شده",	
+    "freezing_energy": "انرژی از تی آر ایکس فریز شده",	
+    "burning_energy": "انرژی از تی آر ایکس سوزانده شده",	
+    "energy_scale": "نسبت مصرف انرژی",	
+    "range": "محدوده",	
+	
+    "call": "تماس",	
+    "caller": "تماس گیرنده",	
+    "call_time": "زمان تماس",	
+    "call_scale": "	تعداد تماس",
+    "call_address_time": "آدرس زمان تماس",	
+    "call_address_scale": "آدرس تعداد تماس",	
+	
+    "contract_call_chart": "جدول وضعیت تماس قرارداد ترون",	
+    "call_address_number": "تعداد آدرس ها",
+    "contract_call_per_day": "قرارداد تماس در هر روز",	
+    "contract_call_chart_day": 'نمودار تماس قرارداد روزانه',	
+    "Tron_energy_chart": "مصرف انرژی روزانه ترون",	
+    "tron_contract_call_chart": "	نمودار تماس قرارداد روز ترون",
+    "day_contract_energy_distribution": "	توزیع انرژی مصرفی روزانه",
+    "day_contract_call_distribution": " تماس روزانه",	
+	
+    "a_total": "مجموع",	
+    "with_the_proportion_of": "با نسبت",	
+    "uesd_by_the": "	استفاده شده توسط",
+    "contracts_from_the_total_used_of": "قرارداد از مجموع استفاده از",	
+    "Contract_times_calls": "زمان های تماس قرارداد (مرتب شده بر اساس قرارداد برابر ارزش به ترتیب نزولی)",	
+
+
 
 
 };

@@ -1367,6 +1367,7 @@ export class EnergyConsumeChart extends React.Component {
                     type: 'column',
                     zoomType: 'x'
                 },
+                colors: ['#C23631', '#D5887F'],
                 title: {
                     text: intl.formatMessage({id: 'EnergyConsume_title'})
                 },
@@ -1445,6 +1446,7 @@ export class ContractInvocationChart extends React.Component {
         if (data) {
             let options =  {
                 chart: { zoomType: 'x' },
+                colors: ['#f7a35c', '#f15c80'],
                 title: {
                     text: intl.formatMessage({id: 'contract_call_chart'})
                 },
@@ -1458,6 +1460,9 @@ export class ContractInvocationChart extends React.Component {
                     title: {
                         text: intl.formatMessage({id: 'contract_call_per_day'})
                     },
+                    type: 'logarithmic',
+                    minorTickInterval: 0.1,
+                    // tickPositions: [0, 500, 1000, 1500, 2000, 2500, 3000, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000]
                 },
                 legend: {
                     align: 'center',
@@ -1488,7 +1493,6 @@ export class ContractInvocationChart extends React.Component {
              
             setOption(_config, options)
         }
-        
         if (data && data.length === 0) {
             _config.title.text = "No data";
         }

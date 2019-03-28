@@ -82,7 +82,7 @@ class Statistics extends React.Component {
             ContractInvocation: null,
             ContractInvocationDistribution: null,
             ContractInvocationDistributionParams: {
-                time: new Date().getTime(),
+                time: new Date().getTime() - 24*60*60*1000,
                 range: 20,
                 total_used_energy: 0,
                 scale: '',
@@ -1037,11 +1037,11 @@ class Statistics extends React.Component {
                                     />
                                     <div className="token_black">
                                     <div className="col-md-12 table_pos">
-                                        <p>{'a total '+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
-                                            ' energe(with the proportion of '+ContractInvocationDistributionParams.scale+
-                                            ') uesd by the '+ ContractInvocationDistributionParams.range_type +
-                                            ' contracts from the total used of '+ intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
-                                            ' energy'}
+                                        <p>{intl.formatMessage({id:'a_total'})+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                        intl.formatMessage({id:'energe'})+' ('+ intl.formatMessage({id:'with_the_proportion_of'})+ContractInvocationDistributionParams.scale+
+                                            ') '+ intl.formatMessage({id:'uesd_by_the'}) + ContractInvocationDistributionParams.range_type +
+                                            intl.formatMessage({id:'contracts_from_the_total_used_of'}) + intl.formatNumber(ContractInvocationDistributionParams.total_used_energy)+
+                                            intl.formatMessage({id:'energe'})}
                                         </p>
                                         {( EnergyConsumeDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>
@@ -1089,8 +1089,8 @@ class Statistics extends React.Component {
                                     />
                                     <div className="token_black">
                                     <div className="col-md-12 table_pos">
-                                        <p>{'A total '+ intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
-                                            ' Contract times calls(Sorted by Contract times value in descending order)'}
+                                        <p>{ intl.formatMessage({id: 'a_total'}) + intl.formatNumber(ContractInvocationDistributionParams.total_energy)+ 
+                                            intl.formatMessage({id: 'Contract_times_calls'})}
                                         </p>
                                         {( ContractInvocationDistribution.length === 0)?
                                         <div className="p-3 text-center no-data">{tu("no_data")}</div>

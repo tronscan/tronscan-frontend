@@ -393,7 +393,7 @@ class Statistics extends React.Component {
                   <Link className="card-title" to="/blockchain/stats/EnergyConsume">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("TRON日能量消耗图表")}
+                        {tu("Tron_energy_chart")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
@@ -407,7 +407,7 @@ class Statistics extends React.Component {
                   <Link className="card-title" to="/blockchain/stats/ContractInvocation">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("TRON日合约调用图表")}
+                        {tu("tron_contract_call_chart")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
@@ -421,7 +421,7 @@ class Statistics extends React.Component {
                   <Link className="card-title" to="/blockchain/stats/EnergyConsumeDistribution">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("每日合约消耗能量分布")}
+                        {tu("day_contract_energy_distribution")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
@@ -435,7 +435,7 @@ class Statistics extends React.Component {
                   <Link className="card-title" to="/blockchain/stats/ContractInvocationDistribution">
                     <span>
                       <i className="fas fa-chart-area ml-5 mr-2"/>
-                        {tu("每日合约调用分布")}
+                        {tu("day_contract_call_distribution")}
                     </span>
                     <img src={require("../../../images/chart/24-Hour-Trading-Volume.png")}
                          style={{width: 240, filter: 'grayscale(100%)'}}
