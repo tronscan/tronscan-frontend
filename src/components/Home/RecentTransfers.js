@@ -8,6 +8,7 @@ import {Truncate} from "../common/text";
 import {TRXPrice} from "../common/Price";
 import {AddressLink, TransactionHashLink} from "../common/Links";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Link} from "react-router-dom";
 import {withTimers} from "../../utils/timing";
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -15,6 +16,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import {NameWithId} from "../common/names";
 import _ from "lodash";
 import isMobile from "../../utils/isMobile";
+
 
 class RecentTransfers extends Component {
 
@@ -88,7 +90,7 @@ class RecentTransfers extends Component {
                                     </div>
                               </div>
                               <div className="text-muted color-grey-300 small pt-2 pl-3">
-                                <TimeAgo date={transfer.timestamp}/>
+                                <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                               </div>
                             </div>
                             
@@ -161,7 +163,7 @@ class RecentTransfers extends Component {
                             </AddressLink>
                           </div>
                           <div className="text-muted text-right color-grey-300 small" style={styles.nowrap}>
-                            <TimeAgo date={transfer.timestamp}/>
+                            <TimeAgo date={transfer.timestamp} title={moment(transfer.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                           </div>
                         </div>
                       </div>

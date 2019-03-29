@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {toLower} from "lodash";
 
 
-export function Information({token}) {
+export function Information({token,currentTotalSupply}) {
 
   let social_display = 0;
   let lowerText = token.reputation? toLower(token.reputation) + '_active.png': '';
@@ -16,6 +16,8 @@ export function Information({token}) {
       social_display++;
     }
   })
+  let  issued = token.precision ? token.issued / Math.pow(10,token.precision) :token.issued
+  let currentTotal =  token.id == 1002000? currentTotalSupply : issued;
 
   const tokenList = [
     { 
@@ -34,8 +36,9 @@ export function Information({token}) {
                 </Link>
     },{ 
       name: 'circulating_supply', 
-      content: <FormattedNumber value={token.precision ? token.issued / Math.pow(10,token.precision) :token.issued}/>
-    },{ 
+      content: <FormattedNumber value={currentTotal}/>
+    },
+    {
       name: 'website', 
       content: <ExternalLink url={token.url}/>
     },{ 
@@ -87,9 +90,9 @@ export function Information({token}) {
       <div className="information-bg">{
         tokenList.map((item,index) => {
           return(
-            <div className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
+            <div key={index} className={index%2 == 0? 'information-bg-item': 'information-bg-item ml'}>
               <span>{tu(item.name)}</span>
-              <p style={{width:'75%'}}>{item.content}</p>
+              <div style={{width:'75%'}}>{item.content}</div>
             </div>)
         })
       }</div>

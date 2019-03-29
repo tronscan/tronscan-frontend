@@ -3,20 +3,27 @@ import React from "react";
 import {loadTokens} from "../../actions/tokens";
 import {connect} from "react-redux";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {FormattedNumber, injectIntl} from "react-intl";
 import {Client} from "../../services/api";
 import {AddressLink, BlockNumberLink} from "../common/Links";
 import SmartTable from "../common/SmartTable.js"
 import {upperFirst} from "lodash";
 import {TronLoader} from "../common/loaders";
+import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/DateRange";
+
+import {DatePicker} from 'antd';
 import xhr from "axios/index";
 
+const RangePicker = DatePicker.RangePicker;
 
 class Blocks extends React.Component {
 
   constructor() {
     super();
-
+    this.start = "";
+    this.end = "";
     this.state = {
       loading: false,
       blocks: [],
@@ -33,19 +40,29 @@ class Blocks extends React.Component {
   };
 
   loadBlocks = async (page = 1, pageSize = 20) => {
-
-    this.setState({loading: true});
-
-    let {blocks, total} = await Client.getBlocks({
-      sort: '-number',
+    let {location, match} = this.props;
+    let date_to = match.params.date;
+    let date_start = parseInt(match.params.date) - 24 * 60 * 60 * 1000;
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
+    let {blocks, total, rangeTotal} = await Client.getBlocks({
       limit: pageSize,
       start: (page - 1) * pageSize,
+      sort: '-number',
+      start_timestamp:this.start,
+      end_timestamp:this.end,
     });
 
     this.setState({
       loading: false,
       blocks,
-      total
+      total,
+      rangeTotal
     });
   };
   setProducedName = (record) => {
@@ -93,7 +110,7 @@ class Blocks extends React.Component {
         align: 'left',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -141,23 +158,29 @@ class Blocks extends React.Component {
       // }
     ];
     return column;
+  };
+
+
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.loadBlocks(page,pageSize);
   }
 
   render() {
 
-    let {blocks, total, loading} = this.state;
+    let {blocks, total, rangeTotal, loading, page, pageSize} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'block_unit'})
-
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
               <div className="col-md-12 table_pos">
-                {total ?
-                    <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+                {total ?<TotalInfo total={total} rangeTotal={rangeTotal} typeText="block_unit" /> :""}
+                <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} />
                 <SmartTable bordered={true} loading={loading} column={column} data={blocks} total={total}
                             onPageChange={(page, pageSize) => {
                               this.loadBlocks(page, pageSize)

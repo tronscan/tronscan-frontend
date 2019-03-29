@@ -1283,7 +1283,17 @@ export const messages = {
     "propose_16":"トークンの同名を可能にしようと提議します",
     "propose_17":"リソース配分を提議します",
     "propose_18":"総エネルギー上限の編集を提議します",
+    "propose_18_1":"総エネルギー上限の編集を提議します",
     "propose_19":"スマート・コントラクトをTRC10トークンに切り替えようと提議します",
+    "propose_20":"現在のエネルギー上限",
+    "propose_21":"複数署名機能を許可することを提案する",
+    "propose_22":"エネルギー総額を自動的に調整することを提案する",
+    "propose_23":"目標エネルギーの使用上限",
+    "propose_24":"平均エネルギー上限",
+    "propose_25":"アカウント権限を更新する費用",
+    "propose_26":"複数署名を変更することを提案する",
+    "propose_minute":"min",
+    "propose_unactivate":"開かない",
     "propose_not_allowed":"不許可です",
     "propose_allowed":"許可する",
     "propose_activate":"起動",
@@ -1546,17 +1556,15 @@ export const messages = {
     "Please_contact_us": "ご連絡ください。",
     "ok_confirm":"オッケー",
     "high_risk":"高リスク",
-
-  "delegate_list":"レンタルリスト",
-  "type":"タイプ",
-  "delegate_other":"他人よりの凍結",
-  "freeze_self":"独自の凍結",
-  "total_amount":"総額",
-  "receive_address":"受信アドレス(デフォルトのアドレスはあなた自身のアドレスです)",
-  "my_account":"マイ・アカウント",
-  "receive_list":"受信アドレス",
-  "unfreeze_warning":"自分で凍結したTRXのみを解凍できます。 解凍を続けますか?",
-
+    "delegate_list":"レンタルリスト",
+    "type":"タイプ",
+    "delegate_other":"他人よりの凍結",
+    "freeze_self":"独自の凍結",
+    "total_amount":"総額",
+    "receive_address":"受信アドレス(デフォルトのアドレスはあなた自身のアドレスです)",
+    "my_account":"マイ・アカウント",
+    "receive_list":"受信アドレス",
+    "unfreeze_warning":"自分で凍結したTRXのみを解凍できます。 解凍を続けますか?",
     "contract_method":"コントラクトメソッド",
     "contract_parameters":"メソッドパラメータ",
     "energy_fee":"エネルギーを消耗するためのTRX",
@@ -1579,7 +1587,6 @@ export const messages = {
     "BTT_supply": "BTT 供給",
     "BTT_Token_Release_Schedule":"BTTトークンリリーススケジュール",
     "source_btt_team":"出典：BTT管理チーム",
-
     "20_transfers": "TRC-20 transfers",
     "internal_transactions": "internal transactions",
 
@@ -1620,6 +1627,26 @@ export const messages = {
     "EnergyConsume_subtitle": "描画領域をドラッグしてズームインする",
     "EnergyConsume_yaxis": "エネルギー",
 
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"最初の10,000個データの表示されています",
+    "table_info_big_tip1":"選択した時間帯に",
+    "table_info_big_tip2":"のデータがあり、",
+    "table_info_big_tip3":"今、最初の10,000のデータのみが表示されています。",
+    "table_info_big_tip4":"他のデータを検索したい場合は、時間範囲を調整してください。",
+    "table_info_account_tip1":"TRONの主鎖には",
+    "table_info_account_tip2":"のアカウントがあり、今、最初の10,000のデータのみが表示されています。（TRX残高の多い順に並べます。）",
+    "Singapore":"Singapore",
+    "table_info_new_tip":"今、最初の10,000のデータのみが表示されています。他のデータを検索したい場合は、時間範囲を調整してください。",
+    "select_start_time":"開始時間を選択してください",
+    "select_end_time":"終了時間を選択してください",
+    "binance": "binance",
 
 }
 

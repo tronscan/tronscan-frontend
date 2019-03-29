@@ -12,16 +12,24 @@ import {ContractTypes} from "../../utils/protocol";
 import SmartTable from "./SmartTable.js"
 import {upperFirst} from "lodash";
 import {QuestionMark} from "./QuestionMark";
+import TotalInfo from "./TableTotal";
+import DateRange from "./DateRange";
+import {DatePicker} from 'antd';
+import moment from 'moment';
 import {NameWithId} from "./names";
 import rebuildList from "../../utils/rebuildList";
 import xhr from "axios/index";
 import {API_URL} from '../../constants.js'
+
+const RangePicker = DatePicker.RangePicker;
 
 class Transactions extends React.Component {
 
   constructor(props) {
     super(props);
 
+    this.start = moment([2018,5,25]).startOf('day').valueOf();
+    this.end = moment().valueOf();
     this.state = {
       filter: {},
       transactions: [],
@@ -51,37 +59,70 @@ class Transactions extends React.Component {
 
   loadTransactions = async (page = 1, pageSize = 20) => {
 
-    let {filter, isinternal=false} = this.props;
+    let {filter, isinternal=false, address=false} = this.props;
 
-    this.setState({loading: true});
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
 
-    let transactions, total;
+    let transactions, total,rangeTotal = 0;
 
-    if(!isinternal){
-      let data = await Client.getTransactions({
-        sort: '-timestamp',
-        limit: pageSize,
-        start: (page - 1) * pageSize,
-        total: this.state.total,
-        ...filter,
-      });
-      transactions = data.transactions
-      total = data.total
-    }else{
-      // TODO internal transctions
-      let {data} = await xhr.get(`${API_URL}/api/internal-transaction?address=${filter.address}&start=${(page - 1) * pageSize}&limit=${pageSize}`);
+    if(!isinternal ){
+      if(address){
+          let data = await Client.getTransactions({
+              sort: '-timestamp',
+              limit: pageSize,
+              start: (page - 1) * pageSize,
+              total: this.state.total,
+              start_timestamp:this.start,
+              end_timestamp:this.end,
+              ...filter,
+          });
+          transactions = data.transactions;
+          total = data.total,
+          rangeTotal = data.rangeTotal
+      }else{
+          let data = await Client.getTransactions({
+              sort: '-timestamp',
+              limit: pageSize,
+              start: (page - 1) * pageSize,
+              total: this.state.total,
+              ...filter,
+          });
+          transactions = data.transactions;
+          total = data.total,
+          rangeTotal = data.rangeTotal
+      }
 
-      let newdata = rebuildList(data.data, 'tokenId', 'callValue', 'valueInfoList')
-      transactions = newdata
-      total = data.total
+    }else {
+        // TODO internal transctions
+
+        let data = await Client.getInternalTransaction({
+            limit: pageSize,
+            start: (page - 1) * pageSize,
+            address: filter.address,
+            start_timestamp: this.start,
+            end_timestamp: this.end,
+        });
+
+        let newdata = rebuildList(data.list, 'tokenId', 'callValue', 'valueInfoList')
+        transactions = newdata;
+        total = data.total,
+            rangeTotal = data.rangeTotal
     }
 
     this.setState({
-      transactions,
-      total,
-      loading: false,
+        transactions,
+        total,
+        rangeTotal,
+        loading: false,
     });
   };
+
   customizedColumn = () => {
     let {intl} = this.props;
     let column = [
@@ -108,7 +149,7 @@ class Transactions extends React.Component {
         className: 'ant_table',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -196,13 +237,17 @@ class Transactions extends React.Component {
         }
       },
       {
-        title: upperFirst(intl.formatMessage({id: 'rejected'})),
+        title: upperFirst(intl.formatMessage({id: 'trc20_my_trans_header_status'})),
         dataIndex: 'rejected',
         key: 'rejected',
         align: 'left',
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
-          return <span>{text.toString()}</span>
+          return <span>
+              {
+                  text?<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_error.png")}/>:<img style={{width: '20px', height: '20px'}} src={require("../../images/internal_success.png")}/>
+              }
+          </span>
         }
       
       },
@@ -214,7 +259,7 @@ class Transactions extends React.Component {
         className: 'ant_table _text_nowrap',
         render: (text, record, index) => {
           return record.valueInfoList.map((item,index) => {
-            return <span><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
+            return <span key={index}><NameWithId value={item}/><span className={index == record.valueInfoList.length -1? 'd-none': ''}>, </span></span>
           })
         }
       },
@@ -233,32 +278,47 @@ class Transactions extends React.Component {
     return column;
   }
 
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.loadTransactions(page,pageSize);
+  }
+
+
   render() {
 
-    let {transactions, total, loading, EmptyState = null} = this.state;
-    let {intl, isinternal} = this.props;
+    let {transactions, total, rangeTotal, loading, EmptyState = null} = this.state;
+    let {intl, isinternal, address = false} = this.props;
     let column = !isinternal? this.customizedColumn():
-                              this.trc20CustomizedColumn()
-    
+                              this.trc20CustomizedColumn();
     let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transactions_unit'})
 
-    if (!loading && transactions && transactions.length === 0) {
-      if (!EmptyState) {
-        return (
-            <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
-        );
-      }
-      return <EmptyState/>;
-    }
+      // if (!loading && transactions && transactions.length === 0) {
+    //   if (!EmptyState) {
+    //     return (
+    //         <div className="p-3 text-center no-data">{tu("no_transactions")}</div>
+    //     );
+    //   }
+    //   return <EmptyState/>;
+    // }
 
     return (
-        <div className="token_black table_pos">
+      <div className={"token_black table_pos " + (address?"mt-5":"")}>
           {loading && <div className="loading-style"><TronLoader/></div>}
-          {total ?<div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}<span> <QuestionMark placement="top" text="to_provide_a_better_experience"></QuestionMark></span></div> : ''}
-          <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
-                      onPageChange={(page, pageSize) => {
-                        this.loadTransactions(page, pageSize)
-                      }}/>
+          {total ? <TotalInfo total={total} rangeTotal={rangeTotal} typeText="transactions_unit" common={!address}/>:""}
+          {
+              address ? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)}  dateClass="date-range-box-address" />: ''
+          }
+          {
+              (!loading && transactions.length === 0)?
+                  <div className="p-3 text-center no-data">{tu("no_transactions")}</div>:
+                  <SmartTable bordered={true} loading={loading} column={column} data={transactions} total={total}
+                              onPageChange={(page, pageSize) => {
+                                  this.loadTransactions(page, pageSize)
+                              }}/>
+          }
+
         </div>
     )
   }

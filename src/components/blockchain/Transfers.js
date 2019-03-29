@@ -11,26 +11,29 @@ import {Truncate} from "../common/text";
 import {upperFirst} from "lodash";
 import SmartTable from "../common/SmartTable.js"
 import {TronLoader} from "../common/loaders";
+import TotalInfo from "../common/TableTotal";
+import DateRange from "../common/DateRange";
 import {TRXPrice} from "../common/Price";
 import {ONE_TRX} from "../../constants";
 import {DatePicker} from 'antd';
-import moment from "moment/moment";
+import moment from 'moment';
 import xhr from "axios/index";
 import {NameWithId} from "../common/names";
 import rebuildList from "../../utils/rebuildList";
+
 
 const RangePicker = DatePicker.RangePicker;
 
 class Transfers extends React.Component {
 
   constructor() {
-    super();
-    this.start = new Date(new Date().toLocaleDateString()).getTime();
-    this.end = new Date().getTime();
-    this.state = {
-      transfers: [],
-      total: 0,
-    };
+     super();
+     this.start = moment([2018,5,25]).startOf('day').valueOf();
+     this.end = moment().valueOf();
+     this.state = {
+       transfers: [],
+       total: 0,
+     };
   }
 
   componentDidMount() {
@@ -47,9 +50,13 @@ class Transfers extends React.Component {
   load = async (page = 1, pageSize = 20) => {
 
     let {location} = this.props;
-
-    this.setState({loading: true});
-
+    this.setState(
+        {
+            loading: true,
+            page: page,
+            pageSize: pageSize,
+        }
+    );
     let searchParams = {};
 
     for (let [key, value] of Object.entries(getQueryParams(location))) {
@@ -61,7 +68,7 @@ class Transfers extends React.Component {
       }
     }
 
-    let {transfers, total} = await Client.getTransfers({
+    let {transfers, total, rangeTotal} = await Client.getTransfers({
       sort: '-timestamp',
       limit: pageSize,
       start: (page - 1) * pageSize,
@@ -73,7 +80,8 @@ class Transfers extends React.Component {
     this.setState({
       transfers: transfersList,
       loading: false,
-      total
+      total,
+      rangeTotal,
     });
   };
 
@@ -111,7 +119,7 @@ class Transfers extends React.Component {
         align: 'left',
         width: '14%',
         render: (text, record, index) => {
-          return <TimeAgo date={text}/>
+          return <TimeAgo date={text} title={moment(text).format("MMM-DD-YYYY HH:mm:ss A")}/>
         }
       },
       {
@@ -161,50 +169,29 @@ class Transfers extends React.Component {
     ];
     return column;
   }
-  onChangeDate = (dates, dateStrings) => {
-    this.start = new Date(dateStrings[0]).getTime();
-    this.end = new Date(dateStrings[1]).getTime();
-  }
-  onDateOk = () => {
-    this.load();
-  }
-  disabledDate = (time) => {
-    if (!time) {
-      return false
-    } else {
-      return time < moment().subtract(7, "days") || time > moment().add(0, 'd')
-    }
+
+  onDateOk (start,end) {
+      this.start = start.valueOf();
+      this.end = end.valueOf();
+      let {page, pageSize} = this.state;
+      this.load(page,pageSize);
   }
 
   render() {
 
-    let {transfers, total, loading} = this.state;
+    let {transfers, total, rangeTotal, loading} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
-    let tableInfo = intl.formatMessage({id: 'view_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'transfers_unit'})
+
 
     return (
         <main className="container header-overlap pb-3 token_black">
           {loading && <div className="loading-style"><TronLoader/></div>}
           <div className="row">
             <div className="col-md-12 table_pos">
-              {total ? <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>{tableInfo}</div> : ''}
+              {total ?<TotalInfo total={total} rangeTotal={rangeTotal}  typeText="transfers_unit"/>:""}
               {
-                <div className="transactions-rangePicker" style={{width: "350px"}}>
-                  <RangePicker
-                      defaultValue={[moment(this.start), moment(this.end)]}
-                      ranges={{
-                        'Today': [moment().startOf('day'), moment()],
-                        'Yesterday': [moment().startOf('day').subtract(1, 'days'), moment().endOf('day').subtract(1, 'days')],
-                      }}
-                      disabledDate={this.disabledDate}
-                      showTime
-                      format="YYYY/MM/DD HH:mm:ss"
-                      onChange={this.onChangeDate}
-                      onOk={this.onDateOk}
-                  />
-                </div>
-
+                total? <DateRange onDateOk={(start,end) => this.onDateOk(start,end)} /> :''
               }
               <SmartTable bordered={true} loading={loading} column={column} data={transfers} total={total}
                           onPageChange={(page, pageSize) => {

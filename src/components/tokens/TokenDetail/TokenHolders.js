@@ -6,7 +6,9 @@ import {ONE_TRX} from "../../../constants";
 import SmartTable from "../../common/SmartTable.js"
 import {FormattedNumber, injectIntl} from "react-intl";
 import {TronLoader} from "../../common/loaders";
-import {upperFirst} from "lodash";
+import {upperFirst, upperCase} from "lodash";
+import { Tooltip } from 'antd';
+import { FormatNumberByDecimals } from '../../../utils/number';
 
 class TokenHolders extends React.Component {
 
@@ -19,6 +21,9 @@ class TokenHolders extends React.Component {
       page: 0,
       total: 0,
       pageSize: 25,
+      exchangeFlag: [
+        {name: 'binance', addressList: ['TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9', 'TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX']}
+      ]
     };
   }
 
@@ -36,6 +41,8 @@ class TokenHolders extends React.Component {
 
   loadTokenHolders = async (page = 1, pageSize = 20) => {
     let {filter} = this.props;
+    let {exchangeFlag} = this.state;
+
     this.setState({loading: true});
 
     let {addresses, total} = await Client.getTokenHolders(filter.token, {
@@ -46,9 +53,23 @@ class TokenHolders extends React.Component {
       address: filter.address
     });
 
-    for (let index in addresses) {
-      addresses[index].index = parseInt(index) + 1;
+    // for (let index in addresses) {
+    //   addresses[index].index = parseInt(index) + 1;
+    // }
+   
+
+    if(addresses.length && addresses[0].name == 'BitTorrent'){
+      addresses.map(item => {
+        exchangeFlag.map(exchange => {
+          exchange.addressList.map(address => {
+            if(item.address == address){
+              item.ico = exchange.name
+            }
+          })
+        })
+      })
     }
+    
 
     this.setState({
       page,
@@ -74,7 +95,18 @@ class TokenHolders extends React.Component {
         dataIndex: 'address',
         key: 'address',
         render: (text, record, index) => {
-          return <AddressLink address={record.address}/>
+
+          return record.ico?
+              <Tooltip placement="topLeft" title={upperCase(intl.formatMessage({id: record.ico}))}>
+                <span className="d-flex align-items-center">
+                  <img src={require("../../../images/"+record.ico+'-logo.png')}
+                      style={{width: '14px', marginLeft: '-20px', marginRight: '6px'}}
+                  />
+                <AddressLink address={record.address}/>
+              </span>
+            </Tooltip>:
+            <AddressLink address={record.address}/>
+          
         }
       },
       {
@@ -85,7 +117,8 @@ class TokenHolders extends React.Component {
         align: 'right',
         className: 'ant_table',
         render: (text, record, index) => {
-          return <FormattedNumber value={record.balance/ Math.pow(10,tokenPrecision.precision)}/>
+          //return <FormattedNumber value={record.balance/ Math.pow(10,tokenPrecision.precision)}/>
+          return <span>{FormatNumberByDecimals(record.balance , tokenPrecision.precision)}</span>
         }
       },
       {

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {TronLoader} from "../common/loaders";
 import {AddressLink} from "../common/Links";
 import TimeAgo from "react-timeago";
+import moment from 'moment';
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import {withTimers} from "../../utils/timing";
@@ -70,7 +71,7 @@ class RecentBlocks extends Component {
                                 #{block.number}
                               </Link>
                               <div className="text-muted color-grey-300 small pt-2">
-                                <TimeAgo date={block.timestamp}/>
+                                <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
                               </div>
                             </div>
                             <div>
@@ -138,7 +139,8 @@ class RecentBlocks extends Component {
                               <span className="d-inline-block">{tu("block_reward")}:</span> <TRXPrice amount={32}/>
                             </div>
                             <div className="text-muted color-grey-300 small" style={styles.nowrap}>
-                              <TimeAgo date={block.timestamp}/>
+                              <TimeAgo date={block.timestamp} title={moment(block.timestamp).format("MMM-DD-YYYY HH:mm:ss A")}/>
+
                             </div>
                           </div>
                         </div>

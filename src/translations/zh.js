@@ -1287,7 +1287,17 @@ export const messages = {
     "propose_16": "提议允许通证同名",
     "propose_17": "提议允许资源委派",
     "propose_18": "提议修改总Energy上限",
+    "propose_18_1": "提议修改当前总Energy上限",
     "propose_19": "提议允许智能合约转TRC-10的通证",
+    "propose_20": "当前能量上限",
+    "propose_21": "提议允许开启多重签名功能",
+    "propose_22": "提议允许ENERGY总量自适应调整",
+    "propose_23": "目标能量使用上限",
+    "propose_24": "平均能量上限",
+    "propose_25": "提议修改更新账户权限的费用",
+    "propose_26": "提议修改多重签名的费用",
+    "propose_minute": "分钟",
+    "propose_unactivate": "未开启",
     "propose_not_allowed": "不允许",
     "propose_allowed": "允许",
     "propose_activate": "开启",
@@ -1550,17 +1560,15 @@ export const messages = {
     "Please_contact_us": "请联系我们。",
     "ok_confirm":"确定",
     "high_risk":"高风险",
-
     "delegate_list":"租借列表",
     "type":"类型",
     "delegate_other":"他人冻结",
     "freeze_self":"自身冻结",
-  "total_amount":"总额",
-  "receive_address":"接收账户（不填默认自己）",
-  "my_account":"我的账户",
-  "receive_list":"接收账户",
-  "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
-
+    "total_amount":"总额",
+    "receive_address":"接收账户（不填默认自己）",
+    "my_account":"我的账户",
+    "receive_list":"接收账户",
+    "unfreeze_warning":"只能解冻自身冻结的TRX，是否继续解冻？",
     "contract_method":"合约方法",
     "contract_parameters":"方法参数",
     "energy_fee":"消耗能量使用的TRX",
@@ -1583,7 +1591,6 @@ export const messages = {
     "BTT_supply": "BTT 流通量",
     "BTT_Token_Release_Schedule":"BTT 代币解锁时间表",
     "source_btt_team":"信息来源：BTT管理团队",
-
     "20_transfers": "TRC-20转账",
     "internal_transactions": "合约内交易",
 
@@ -1624,6 +1631,26 @@ export const messages = {
     "EnergyConsume_title": "每日能量消耗",
     "EnergyConsume_subtitle": "拖拽数据窗口来放大或缩小",
     "EnergyConsume_yaxis": "能量",
+
+    /*
+        ##################################################################################
+        #                                                                                #
+        # new variables    2019-03-04                                    #
+        #                                                                                #
+        ##################################################################################
+    */
+    "table_info_big":"仅展示前10,000条数据",
+    "table_info_big_tip1":"所选时间内共",
+    "table_info_big_tip2":"条数据，",
+    "table_info_big_tip3":"目前只展示前10,000条。",
+    "table_info_big_tip4":"如果您想要查询其他数据，建议调整时间范围。",
+    "table_info_account_tip1":"波场主链共",
+    "table_info_account_tip2":"个账户，目前只展示前10,000个（按照TRX余额从大到小排列）。",
+    "Singapore":"新加坡",
+    "table_info_new_tip":"目前只展示前10,000条数据.如果您想要查询其他数据，建议调整时间范围。",
+    "select_start_time":"请选择开始时间",
+    "select_end_time":"请选择结束时间",
+    "binance": "币安BINANCE"
 
 
 };
