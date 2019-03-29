@@ -137,7 +137,7 @@ class Energy extends React.Component {
     let column = this.customizedColumn()
 
     return (
-        <main className="container pt-5">
+        <main className="mt-5 p-0">
             {loading? <div className="loading-style" style={{marginTop: '-20px'}}><TronLoader/></div>:
               <div>
               <div className="pb-4">
@@ -158,7 +158,7 @@ class Energy extends React.Component {
               disabledDate={this.disabledEndDate}
               defaultValue={moment(new Date(new Date().getTime() - 24*60*60*1000), 'YYYY-MM-DD')}/>
 
-              <div className="token_black show-current-style">
+              <div className="token_black">
                 <div className="col-md-12 table_pos">
                     {( !ContractInvocation || ContractInvocation.length === 0)?
                     <div className="p-3 text-center no-data">{tu("no_data")}</div>
