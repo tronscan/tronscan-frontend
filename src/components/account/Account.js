@@ -35,7 +35,8 @@ import {byteArray2hexStr} from "@tronscan/client/src/utils/bytes";
 import { FormatNumberByDecimals } from '../../utils/number'
 
 @connect(
-    state => ({
+    state => {
+      return {
       account: state.app.account,
       walletType: state.app.wallet,
       tokenBalances: state.account.tokens,
@@ -46,8 +47,8 @@ import { FormatNumberByDecimals } from '../../utils/number'
       delegated: state.account.delegated,
       wallet: state.wallet,
       currentWallet: state.wallet.current,
-      trxBalance: state.account.balance,
-    }),
+      trxBalance: state.account.trxBalance,
+    }},
     {
       login,
       loadRecentTransactions,
@@ -1406,6 +1407,7 @@ export default class Account extends Component {
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
     let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance} = this.props;
+
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
