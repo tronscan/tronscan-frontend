@@ -1618,7 +1618,9 @@ export const messages = {
   "Contract_times_calls": " Вызовы времени контракта (отсортировано по значению времени контракта в порядке убывания)",
 
 
-
+  "EnergyConsume_title": "Ежедневная История Использованной Энергии TRON",
+  "EnergyConsume_subtitle": "Нажмите и перетащите в область для увеличения",
+  "EnergyConsume_yaxis": "Энергия",
 
 
 };

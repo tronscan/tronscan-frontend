@@ -1605,7 +1605,9 @@ export const messages = {
 
 
 
-
+"EnergyConsume_title": "TRON 일일 에너지 사용 내역",
+"EnergyConsume_subtitle": "포인트 영역을 클릭하고 드래그하여 확대하십시오",
+"EnergyConsume_yaxis": "에너지",
 
 
 

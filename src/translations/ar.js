@@ -1603,6 +1603,10 @@
     "contracts_from_the_total_used_of": " مجموع العقود المستخدمة من",
     "Contract_times_calls": " عدد الدعوات للعقد (مرتبة حسب قيمة أوقات العقد بترتيب تنازلي)",
 
+    "EnergyConsume_title": "تاريخ استخدام الطاقة اليومي من ترون",
+    "EnergyConsume_subtitle":"انقر واسحب في المنطقة ومن ثم قم بالتأشير للتكبير",
+    "EnergyConsume_yaxis": "الطاقة"
+
 
 
 };

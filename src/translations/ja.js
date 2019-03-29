@@ -1616,7 +1616,9 @@ export const messages = {
     "contracts_from_the_total_used_of": "_合計使用量からのコントラクト",
     "Contract_times_calls": "コントラクトのコール回数",
 
-
+    "EnergyConsume_title": "TRON日々エネルギー消費の履歴",
+    "EnergyConsume_subtitle": "描画領域をドラッグしてズームインする",
+    "EnergyConsume_yaxis": "エネルギー",
 
 
 }

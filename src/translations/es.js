@@ -1618,7 +1618,9 @@ export const messages = {
   "Contract_times_calls": "Tiempo de llamada de contrato(Ordenadas por tiempos en orden descendente)",
 
 
-
+  "EnergyConsume_title": "TRON Daily EnergyUsed History",
+  "EnergyConsume_subtitle": "Click and drag in the point area to zoom in",
+  "EnergyConsume_yaxis": "energy",
 
 
 

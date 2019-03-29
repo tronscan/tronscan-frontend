@@ -1621,7 +1621,9 @@ export const messages = {
     "contracts_from_the_total_used_of": "合约从总使用中",
     "Contract_times_calls": "合约调用次数（按照合约次数从大到小排）",
 
-
+    "EnergyConsume_title": "每日能量消耗",
+    "EnergyConsume_subtitle": "拖拽数据窗口来放大或缩小",
+    "EnergyConsume_yaxis": "能量",
 
 
 };

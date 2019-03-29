@@ -1608,6 +1608,8 @@ export const messages = {
     "Contract_times_calls": "زمان های تماس قرارداد (مرتب شده بر اساس قرارداد برابر ارزش به ترتیب نزولی)",	
 
 
-
+    "EnergyConsume_title": "تاریخ مصرف انرژی روزانه TRON",
+    "EnergyConsume_subtitle": "برای بزرگنمایی کلیک کنید و در قسمت نقطه بکشید",
+    "EnergyConsume_yaxis": "انرژی"
 
 };
