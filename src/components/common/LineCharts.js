@@ -1392,7 +1392,7 @@ export class EnergyConsumeChart extends React.Component {
                 tooltip: {
                     formatter: function () {
                         return intl.formatMessage({id: 'date'}) +': '+intl.formatDate(this.x)+ '<br/>' +
-                        intl.formatMessage({id: 'total_enegy_used'}) +': '+ intl.formatNumber(this.points[0].total)+'<br/>' +
+                        intl.formatMessage({id: 'total_energy_used'}) +': '+ intl.formatNumber(this.points[0].total)+'<br/>' +
                         this.points.map(item => {
                             return `<span style="color:${item.color}">${item.series.name}: </span>${intl.formatNumber(item.y)}<br/>`
                         }).join('')
