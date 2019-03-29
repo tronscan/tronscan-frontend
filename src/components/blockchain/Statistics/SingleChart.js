@@ -21,6 +21,7 @@ import { upperFirst } from 'lodash'
 import {AddressLink} from "../../common/Links";
 import {Truncate} from "../../common/text";
 
+import isMobile from "../../../utils/isMobile";
 import {
     LineReactHighChartAdd,
     LineReactHighChartTx,
@@ -811,6 +812,8 @@ class Statistics extends React.Component {
         let column = this.customizedColumn()
         let call_colum = this.callCustomizedColumn()
 
+        let chartHeight = isMobile? 240: 500
+
         if (match.params.chartName === 'blockchainSizeStats' || match.params.chartName === 'addressesStats') {
             unit = 'increase';
         } else {
@@ -848,46 +851,46 @@ class Statistics extends React.Component {
               <div className="row">
                 <div className="col-md-12">
                   <div className="card">
-                    <div className="card-body p-5">
+                    <div className="card-body p-3 p-md-5">
                         {
                             match.params.chartName === 'txOverviewStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     txOverviewStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartTx source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartTx source='singleChart' style={{height: chartHeight}}
                                                               data={txOverviewStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'totalTxns' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                   txOverviewStatsFull === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartTotalTxns source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartTotalTxns source='singleChart' style={{height: chartHeight}}
                                                                      data={txOverviewStatsFull} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'addressesStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     addressesStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartAdd source='singleChart' style={{height: 500}} data={addressesStats} intl={intl}/>
+                                        <LineReactHighChartAdd source='singleChart' style={{height: chartHeight}} data={addressesStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'blockSizeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockSizeStats === null ?
                                         <TronLoader/> :
-                                        <BarReactHighChartBlockSize source='singleChart' style={{height: 500}}
+                                        <BarReactHighChartBlockSize source='singleChart' style={{height: chartHeight}}
                                                                     data={blockSizeStats}
                                                                     intl={intl}/>
                                 }
@@ -895,39 +898,39 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'blockchainSizeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockchainSizeStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartBlockchainSize source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartBlockchainSize source='singleChart' style={{height: chartHeight}}
                                                                           data={blockchainSizeStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'priceStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     priceStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartPrice source='singleChart' style={{height: 500}}
+                                        <LineReactHighChartPrice source='singleChart' style={{height: chartHeight}}
                                                                  data={priceStats} intl={intl}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'accounts' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     accounts === null ?
                                         <TronLoader/> :
-                                        <PieReact style={{height: 500}} data={accounts}/>
+                                        <PieReact style={{height: chartHeight}} data={accounts}/>
                                 }
                             </div>
                         }
                         {
                             match.params.chartName === 'transactionValueStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     transactionValueStats === null ?
                                         <TronLoader/> :
@@ -935,7 +938,7 @@ class Statistics extends React.Component {
                                             id: 'trx_transferred_past_hour',
                                             href: 'transactionValueStats'
                                         }}
-                                                   style={{height: 500}} data={transactionValueStats}
+                                                   style={{height: chartHeight}} data={transactionValueStats}
                                                    keysData={['timestamp', 'value']}
                                                    format={{timestamp: true}}/>
                                 }
@@ -943,13 +946,13 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'transactionStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     transactionStats === null ?
                                         <TronLoader/> :
                                         <LineReact
                                             message={{id: 'transactions_past_hour', href: 'transactionStats'}}
-                                            style={{height: 500}} data={transactionStats}
+                                            style={{height: chartHeight}} data={transactionStats}
                                             keysData={['timestamp', 'value']}
                                             format={{timestamp: true}}/>
                                 }
@@ -957,12 +960,12 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'blockStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     blockStats === null ?
                                         <TronLoader/> :
                                         <LineReact message={{id: 'average_blocksize', href: 'blockStats'}}
-                                                   style={{height: 500}} data={blockStats}
+                                                   style={{height: chartHeight}} data={blockStats}
                                                    keysData={['timestamp', 'value']}
                                                    format={{timestamp: true}}/>
                                 }
@@ -970,11 +973,11 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'volumeStats' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     volumeStats === null ?
                                         <TronLoader/> :
-                                        <LineReactHighChartVolumeUsd style={{height: 500}}
+                                        <LineReactHighChartVolumeUsd style={{height: chartHeight}}
                                                                      data={volumeStats}
                                                                      intl={intl}/>
                                 }
@@ -982,12 +985,12 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'EnergyConsume' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     energyConsumeData === null ?
                                         <TronLoader/> :
                                         <EnergyConsumeChart source='singleChart'
-                                                                     style={{height: 500}}
+                                                                     style={{height: chartHeight}}
                                                                      data={energyConsumeData}
                                                                      type="c2"
                                                                      intl={intl}/>
@@ -996,12 +999,12 @@ class Statistics extends React.Component {
                         }
                         {
                             match.params.chartName === 'ContractInvocation' &&
-                            <div style={{height: 500}}>
+                            <div style={{height: chartHeight}}>
                                 {
                                     ContractInvocation === null ?
                                         <TronLoader/> :
                                         <ContractInvocationChart source='singleChart'
-                                                                     style={{height: 500}}
+                                                                     style={{height: chartHeight}}
                                                                      data={ContractInvocation}
                                                                      intl={intl}/>
                                 }
@@ -1032,7 +1035,7 @@ class Statistics extends React.Component {
                                     </div>
                                 
                                     <EnergyConsumeDistributionChart
-                                        style={{height: 500}}
+                                        style={{height: chartHeight}}
                                         data={EnergyConsumeDistribution}
                                         intl={intl}
                                     />
@@ -1084,7 +1087,7 @@ class Statistics extends React.Component {
                                     </div>
                                 
                                     <ContractInvocationDistributionChart
-                                        style={{height: 500}}
+                                        style={{height: chartHeight}}
                                         data={ContractInvocationDistribution}
                                         intl={intl}
                                     />
@@ -1121,7 +1124,7 @@ class Statistics extends React.Component {
                                                                      message={{id: 'produce_distribution'}}
                                                                      intl={intl}
                                                                      data={pieChart}
-                                                                     style={{height: 500}}/>
+                                                                     style={{height: chartHeight}}/>
 
                                 }
                             </div>

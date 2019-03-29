@@ -1542,12 +1542,6 @@ export class ContractInvocationDistributionChart extends React.Component {
             o.y= o.trigger_amount
             o.name = o.contract_address
             return o
-            // return {
-            //     name: o.contract_address,
-            //     y: o.trigger_amount,
-            //     real_name: o.name,
-            //     trigger_percent: o.trigger_percent
-            // }
         })
        
         if (data && data.length > 0) {
