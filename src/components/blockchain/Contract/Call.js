@@ -24,7 +24,7 @@ class Energy extends React.Component {
       ContractInvocation: null,
       ContractInvocationChartData: null,
       loading: true,
-      date: new Date().getTime(),
+      date: new Date().getTime() - 24*60*60*1000,
       total: 0
     };
   }
