@@ -655,11 +655,11 @@ class Statistics extends React.Component {
     }
 
     disabledEndDate = (endValue) => {
-        const startValue = new Date()
+        const startValue = new Date() -  24*60*60*1000
         if (!endValue || !startValue) {
           return false;
         }
-        return endValue.valueOf() > startValue.valueOf();
+        return endValue.valueOf() >= startValue.valueOf();
     }
 
     customizedColumn = () => {

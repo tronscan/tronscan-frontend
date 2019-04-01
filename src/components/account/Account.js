@@ -88,7 +88,6 @@ export default class Account extends Component {
 
 
     if (account.isLoggedIn) {
-        console.log("0000")
       this.setState({isTronLink: Lockr.get("islogin")});
       this.reloadTokens();
       this.loadAccount();
