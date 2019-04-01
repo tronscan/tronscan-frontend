@@ -363,9 +363,7 @@ class Address extends React.Component {
     let {totalPower, address, tabs, stats, loading, blocksProduced, media, candidates, rank, totalVotes} = this.state;
     let {match} = this.props;
     let addr = match.params.id;
-    // let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
-
-    let uploadURL = 'http://52.15.68.74:10000' + "/api/v2/node/info_upload?address=" + match.params.id
+    let uploadURL = API_URL + "/api/v2/node/info_upload?address=" + match.params.id
 
     if (!address) {
       return null;

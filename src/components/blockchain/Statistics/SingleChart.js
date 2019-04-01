@@ -13,7 +13,7 @@ import {cloneDeep} from "lodash";
 import {tu} from "../../../utils/i18n";
 import CountUp from 'react-countup';
 import {Link} from "react-router-dom"
-// import {API_URL} from "../../../constants";
+import {API_URL} from "../../../constants";
 import { DatePicker, Select } from 'antd';
 import SmartTable from "../../common/SmartTable.js"
 import moment from 'moment';
@@ -46,7 +46,7 @@ import {t} from "../../../utils/i18n";
 
 const Option = Select.Option;
 
-const API_URL = 'http://52.15.68.74:10000'
+// const API_URL = 'http://52.15.68.74:10000'
 
 class Statistics extends React.Component {
 
