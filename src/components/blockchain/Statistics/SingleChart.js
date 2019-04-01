@@ -83,7 +83,7 @@ class Statistics extends React.Component {
             ContractInvocation: null,
             ContractInvocationDistribution: null,
             ContractInvocationDistributionParams: {
-                time: new Date().getTime() - 24*60*60*1000,
+                time: new Date().getTime() - 2*24*60*60*1000,
                 range: 20,
                 total_used_energy: 0,
                 scale: '',
@@ -490,6 +490,7 @@ class Statistics extends React.Component {
     // 获取TRON日能量消耗图表
     async loadEnergyConsumeData() {
         let {data} = await xhr.get(API_URL + "/api/energystatistic");
+        data.data.pop()
         this.setState({
             energyConsumeData: data.data,
             summit: {
@@ -514,6 +515,9 @@ class Statistics extends React.Component {
         let {data } = await xhr.get(API_URL + "/api/triggerstatistic");
         // 地址数
         let {data: addressData } = await xhr.get(API_URL + "/api/calleraddressstatistic");
+
+        data.data.pop()
+        addressData.data.pop()
 
         let payload = {
             trigger_amount: [],
@@ -655,7 +659,7 @@ class Statistics extends React.Component {
     }
 
     disabledEndDate = (endValue) => {
-        const startValue = new Date() -  24*60*60*1000
+        const startValue = new Date() -  2*24*60*60*1000
         if (!endValue || !startValue) {
           return false;
         }
@@ -1022,7 +1026,7 @@ class Statistics extends React.Component {
                                         <DatePicker 
                                             onChange={this.onChangeDate}
                                             disabledDate={this.disabledEndDate}
-                                            defaultValue={moment(new Date(new Date().getTime() - 24*60*60*1000), 'YYYY-MM-DD')}/>
+                                            defaultValue={moment(new Date(ContractInvocationDistributionParams.time), 'YYYY-MM-DD')}/>
 
                                         <div className="pt-3 pt-md-0">
                                             <span className="mr-2">{tu('range')}: </span>
@@ -1074,7 +1078,7 @@ class Statistics extends React.Component {
                                         <DatePicker 
                                             onChange={this.onChangeDate}
                                             disabledDate={this.disabledEndDate}
-                                            defaultValue={moment(new Date(new Date().getTime() - 24*60*60*1000), 'YYYY-MM-DD')}/>
+                                            defaultValue={moment(new Date(ContractInvocationDistributionParams.time), 'YYYY-MM-DD')}/>
 
                                         <div className="pt-3 pt-md-0">
                                             <span className="mr-2">{tu('range')}: </span>

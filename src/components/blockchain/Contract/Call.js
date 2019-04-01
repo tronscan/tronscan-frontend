@@ -24,7 +24,7 @@ class Energy extends React.Component {
       ContractInvocation: null,
       ContractInvocationChartData: null,
       loading: true,
-      date: new Date().getTime() - 24*60*60*1000,
+      date: new Date().getTime() - 2 * 24*60*60*1000,
       total: 0
     };
   }
@@ -46,6 +46,9 @@ class Energy extends React.Component {
         trigger_amount: [],
         address_amount: []
       }
+      result[0].data.data.pop()
+      result[1].data.data.pop()
+
       result[0].data.data.map(item => {
         data.trigger_amount.push([item.day, item.amount])
       })
@@ -71,6 +74,7 @@ class Energy extends React.Component {
       limit: pageSize,
       start: (page - 1) * pageSize,
     }})
+    data.pop()
    
 
     data.map(item => {
@@ -84,11 +88,11 @@ class Energy extends React.Component {
   }
 
   disabledEndDate = (endValue) => {
-    const startValue = new Date() - 24*60*60*1000
+    const startValue =  new Date().getTime() - 2*24*60*60*1000
     if (!endValue || !startValue) {
       return false;
     }
-    return endValue.valueOf() >= startValue.valueOf();
+    return endValue.valueOf() > startValue.valueOf();
   }
 
   onChangeDate = (date, dateString) => {
@@ -132,7 +136,7 @@ class Energy extends React.Component {
   }
 
   render() {
-    let {ContractInvocation, ContractInvocationChartData, loading, total} = this.state;
+    let {ContractInvocation, ContractInvocationChartData, loading, total, date} = this.state;
     let {intl} = this.props
     let column = this.customizedColumn()
 
@@ -156,7 +160,7 @@ class Energy extends React.Component {
               <DatePicker 
               onChange={this.onChangeDate}
               disabledDate={this.disabledEndDate}
-              defaultValue={moment(new Date(new Date().getTime() - 24*60*60*1000), 'YYYY-MM-DD')}/>
+              defaultValue={moment(new Date(date), 'YYYY-MM-DD')}/>
 
               <div className="token_black">
                 <div className="col-md-12 table_pos">
