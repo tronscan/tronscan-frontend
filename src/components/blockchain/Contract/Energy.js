@@ -4,13 +4,12 @@ import {CopyText} from "../../common/Copy";
 import {tu, tv} from "../../../utils/i18n";
 import {Client} from "../../../services/api";
 import xhr from "axios";
-// import {API_URL} from "../../../constants";
+import {API_URL} from "../../../constants";
 import { AddressLink} from "../../common/Links";
 import { injectIntl } from "react-intl";
 import { TronLoader } from "../../common/loaders";
 import { EnergyConsumeChart } from "../../common/LineCharts";
 
-const API_URL = 'http://52.15.68.74:10000'
 class Energy extends React.Component {
 
   constructor(props) {
