@@ -37,7 +37,6 @@ import { getQueryString } from "../../utils/url";
 
 @connect(
     state => {
-      console.log('account',account)
       return {
       account: state.app.account,
       walletType: state.app.wallet,
