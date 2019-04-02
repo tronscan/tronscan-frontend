@@ -37,6 +37,7 @@ import { getQueryString } from "../../utils/url";
 
 @connect(
     state => {
+      console.log('account',account)
       return {
       account: state.app.account,
       walletType: state.app.wallet,
@@ -74,7 +75,7 @@ export default class Account extends Component {
       hideSmallCurrency: true,
       tokenTRC10: true,
       tokens20: [],
-      dealPairTrxLimit: 10,
+      dealPairTrxLimit: 100000,
       isTronLink: 0,
       delegateType: 0,
       delegate: false,
