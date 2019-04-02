@@ -563,7 +563,7 @@ class Statistics extends React.Component {
         let used_scale = ''
 
         data.map((item, index) => {
-            item.percent = (item.total_energy / totalEnergy).toFixed(2) + '%'
+            item.percent = ((item.total_energy / totalEnergy).toFixed(2)*100) + '%'
             item.index = index+1
             item.name = item.name || '-'
             totle_used_energy += item.total_energy
