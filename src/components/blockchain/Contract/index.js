@@ -14,6 +14,8 @@ import Code from "./Code";
 import Txhash from "./Txhash";
 import Events from "./Events";
 import Transfers from "./Transfers";
+import Energy from "./Energy";
+import Call from "./Call";
 import {upperFirst, filter} from "lodash";
 import {Truncate} from "../../common/text";
 import xhr from "axios/index";
@@ -102,7 +104,19 @@ class SmartContract extends React.Component {
                     path: "/events",
                     label: <span>{tu('Events')}</span>,
                     cmp: () => <Events filter={{address: id}} />,
-                }
+                },
+                energy: {
+                    id: "energy",
+                    path: "/energy",
+                    label: <span>{tu('energy')}</span>,
+                    cmp: () => <Energy filter={{address: id}} />,
+                },
+                call: {
+                  id: "call",
+                  path: "/call",
+                  label: <span>{tu('call')}</span>,
+                  cmp: () => <Call filter={{address: id}} />,
+              }
             }
         }));
     }else{
@@ -141,7 +155,19 @@ class SmartContract extends React.Component {
                     path: "/events",
                     label: <span>{tu('Events')}</span>,
                     cmp: () => <Events filter={{address: id}} />,
-                }
+                },
+                energy: {
+                  id: "energy",
+                  path: "/energy",
+                  label: <span>{tu('energy')}</span>,
+                  cmp: () => <Energy filter={{address: id}} />,
+                },
+                call: {
+                  id: "call",
+                  path: "/call",
+                  label: <span>{tu('call')}</span>,
+                  cmp: () => <Call filter={{address: id}} />,
+              }
             }
         }));
     }

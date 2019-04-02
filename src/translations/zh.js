@@ -1594,6 +1594,44 @@ export const messages = {
     "20_transfers": "TRC-20转账",
     "internal_transactions": "合约内交易",
 
+    
+
+    "total_energy_used_chart": "每日合约能量消耗图",
+    "total_used_energy": "总能量消耗",
+    "energy_used_by_freezing_TRX": "冻结trx的能量",
+    "energy_used_by_burning_TRX": "烧毁trx的能量",
+    "total_energy_used": "总能量消耗",
+    "freezing_energy": "冻结trx的能量",
+    "burning_energy": "烧毁trx的能量",
+    "energy_scale": "能量消耗占比",
+    "range": "range",
+
+    "call": "调用",
+    "caller": "调用者",
+    "call_time": "调用次数",
+    "call_scale": "调用次数占比",
+    "call_address_time": "调用地址数",
+    "call_address_scale": "调用地址数占比",
+
+    "contract_call_chart": "TRON合约调用情况表",
+    "call_address_number": "地址数",
+    "contract_call_per_day": "每日合约调用数",
+    "contract_call_chart_day": '每日合约调用图',
+    "Tron_energy_chart": "TRON日能量消耗图表",
+    "tron_contract_call_chart": "TRON日合约调用图表",
+    "day_contract_energy_distribution": "每日合约消耗能量分布",
+    "day_contract_call_distribution": "每日合约调用分布",
+
+    "a_total": "总共",
+    "with_the_proportion_of": "占比",
+    "uesd_by_the": "被使用",
+    "contracts_from_the_total_used_of": "合约从总使用中",
+    "Contract_times_calls": "合约调用次数（按照合约次数从大到小排）",
+
+    "EnergyConsume_title": "每日能量消耗",
+    "EnergyConsume_subtitle": "拖拽数据窗口来放大或缩小",
+    "EnergyConsume_yaxis": "能量",
+
     /*
         ##################################################################################
         #                                                                                #

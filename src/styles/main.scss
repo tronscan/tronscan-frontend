@@ -1398,6 +1398,27 @@ $border-color-dark: #d8d8d8;
     a {
       color: $main-red;
     }
+
+    .show-current-style{
+      .ant-table.ant-table-bordered {
+        border: 1px solid #d8d8d8 !important;
+      }
+      th {
+        background: #F3F3F3 !important;
+      }
+      th:first-child, td:first-child, {
+        padding-left: 13px !important;
+      }
+      th:last-child, td:last-child {
+        padding-right: 13px!important;
+      }
+      td {
+        border-right: 1px solid #e8e8e8 !important;
+      }
+      tr:last-child td, th {
+        border-bottom: none !important;
+      }
+    }
   }
 }
 

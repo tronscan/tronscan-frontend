@@ -49,6 +49,7 @@ import {Client} from '../services/api';
 import $ from 'jquery';
 import xhr from "axios/index";
 import LedgerAccess from "../hw/ledger/LedgerAccess";
+import { getQueryString } from "../utils/url";
 
 class Navigation extends React.Component {
 
@@ -108,7 +109,7 @@ class Navigation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
+      if (nextState.address !== this.state.address && this.isString(nextState.address) && this.isString(this.state.address)) {
       this.reLoginWithTronLink();
     }
   }
@@ -145,6 +146,10 @@ class Navigation extends React.Component {
 
   reLoginWithTronLink = () => {
     let {intl} = this.props;
+    let { address } = this.state;
+    if(getQueryString('from') == 'tronlink'){
+        Lockr.set("islogin", 1)
+    }
     if (Lockr.get("islogin")) {
       let timer = null;
       let count = 0;
