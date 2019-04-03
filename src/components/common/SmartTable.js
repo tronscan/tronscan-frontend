@@ -171,7 +171,7 @@ export default class SmartTable extends Component {
 
   render() {
 
-    let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr,transfers} = this.props;
+    let {total, loading, data, column, bordered, pagination=true, scroll,locale,addr,transfers,contractAddress} = this.props;
     let columns = this.setColumn(column);
     const paginationStatus = pagination? {total: total, ...this.state.pagination}: pagination;
     
@@ -205,6 +205,15 @@ export default class SmartTable extends Component {
                       pagination={paginationStatus}
                       loading={loading}
                       onChange={this.handleTableChange}
+                      onRow={(record) => {
+                          return {
+                              onClick: (event) => {
+                                if(record.contract_address == contractAddress){
+                                    window.open('https://www.baidu.com')
+                                }
+                              },
+                          };
+                      }}
                   />
                 </div>
             }

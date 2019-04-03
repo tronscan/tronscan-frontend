@@ -30,6 +30,7 @@ class TokenList extends Component {
             loading: false,
             total: 0,
             filter: {},
+            contractAddress:"TB2SqC48afC9FX36bPQQHatoKo5m79JXKL",
         };
 
         let nameQuery = trim(getQueryParam(props.location, "search"));
@@ -113,6 +114,21 @@ class TokenList extends Component {
                 width: '48px',
                 align: 'center',
                 className: 'ant_table _text_nowrap',
+                render: (text, record, index) => {
+                    return <span>
+                        {
+                            record.contract_address == "TB2SqC48afC9FX36bPQQHatoKo5m79JXKL"?
+                                <div>
+                                    <span className="starbeat"><i class="fas fa-star"></i> </span>
+                                    <span className="star-tip"></span>
+                                </div>
+
+                                :
+                                <span>{text + 1}</span>
+                        }
+
+                    </span>
+                }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -199,12 +215,13 @@ class TokenList extends Component {
     }
 
     render() {
-        let {tokens, alert, loading, total} = this.state;
+        let {tokens, alert, loading, total, contractAddress} = this.state;
         let {match, intl} = this.props;
         let column = this.customizedColumn();
         let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
+
         return (
-            <main className="container header-overlap token_black">
+            <main className="container header-overlap token_black trc20-ad-bg">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 {
                     <div className="row">
@@ -217,7 +234,7 @@ class TokenList extends Component {
                                     {tu('application_entry')}
                                 </button>
                             </a>
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} contractAddress={contractAddress}
                                         onPageChange={(page, pageSize) => {
                                             this.loadPage(page, pageSize)
                                         }}/>

@@ -4,7 +4,7 @@ import xhr from "axios/index";
 import {injectIntl} from "react-intl";
 import {doSearch, getSearchType} from "../../services/search";
 import CountUp from 'react-countup';
-import {channel, Client} from "../../services/api";
+import {channel, Client, Client20} from "../../services/api";
 import {Link} from "react-router-dom";
 import {TRXPrice} from "../common/Price";
 import RecentBlocks from "./RecentBlocks";
@@ -49,6 +49,7 @@ export default class Home extends Component {
       addressesStats: null,
       maxTps: 0,
       tps: 0,
+      notice: []
     };
   }
 
@@ -158,10 +159,14 @@ export default class Home extends Component {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.loadNodes();
     this.load();
     this.reconnect();
+
+    let { intl } = this.props;
+    const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+    this.setState({ notice: data.articles });
     // constellationPreset(this.$ref, "Hot Sparks");
 
     // this.props.setInterval(() => {
@@ -169,10 +174,14 @@ export default class Home extends Component {
     // }, 6000);
   }
 
-  componentDidUpdate(prevProps) {
-    const {wsdata} = this.props
+  async  componentDidUpdate(prevProps) {
+    const {wsdata, intl} = this.props
     if (wsdata !== prevProps.wsdata) {
       this.reconnect();
+    }
+    if (prevProps.intl.locale !== intl.locale) {
+        const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+        this.setState({ notice: data.articles });
     }
   }
 
@@ -222,7 +231,39 @@ export default class Home extends Component {
 
             <div className="container home-splash p-0 p-md-3">
               <div className="row justify-content-center text-center">
-                <div className="col-12">
+                <div className="col-12 exchange">
+                  <div className="notice">
+                    <img src={require("../../images/announcement-logo.png")} alt="" />
+                    <div className="notice-wrap">
+                        {this.state.notice.map((v, i) => (
+                            <a
+                                className="item"
+                                key={v.id}
+                                href={v.html_url}
+                                target="_blank"
+                            >
+                  <span title={v.name} className="title">
+                    {v.name}
+                  </span>
+                              <span className="date">
+                    ({v.created_at.substring(5, 10)})
+                  </span>
+                            </a>
+                        ))}
+                    </div>
+                      {this.state.notice.length > 0 ? (
+                          <a
+                              href={
+                                  intl.locale == "zh"
+                                      ? "https://support.trx.market/hc/zh-cn/categories/360001523732-Announcements"
+                                      : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
+                              }
+                              target="_blank"
+                          >
+                              {tu("learn_more")}>
+                          </a>
+                      ) : null}
+                  </div>
                   {/*<p className="mt-5 mt-5-logo">*/}
                   {/*<img src={this.getLogo()}*/}
                   {/*className="animated ad-600ms zoomIn"/>*/}

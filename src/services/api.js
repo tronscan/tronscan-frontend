@@ -27,6 +27,7 @@ class ApiClient20 {
   constructor() {
     this.apiUrl = "https://api.trx.market";
     this.ZDUrl = "https://tron274.zendesk.com";
+    this.SCANUrl = "https://tronscanorg.zendesk.com";
   }
 
   async getexchanges20(options = {}) {
@@ -115,7 +116,7 @@ class ApiClient20 {
   }
 
   /**
-   * 获取zendesk消息系统
+   * 获取zendesk TRXMarket消息系统
    */
   async getNotice(lan, query) {
     let langauage = "en-us";
@@ -130,6 +131,23 @@ class ApiClient20 {
     });
     return data;
   }
+
+    /**
+     * 获取zendesk TRONSCAN消息系统
+     */
+    async getTRONNotice(lan, query) {
+        let langauage = "en-us";
+        lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
+        let { data } = await xhr({
+            method: "get",
+            url: `${
+                this.SCANUrl
+                }/api/v2/help_center/${langauage}/categories/360001618172/articles.json?sort_by=created_at&sort_order=desc&per_page=${
+                query.page
+                }`
+        });
+        return data;
+    }
 }
 
 export const Client20 = new ApiClient20();

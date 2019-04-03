@@ -3084,5 +3084,126 @@ h5 {
   background-color: #ffffff;
 }
 
+.market-ad{
+  width: 340px;
+  margin: 0 auto;
+  display:block;
+  position: relative;
+  img{
+    width: 100%;
+    display: inline-block;
+  }
+  ul{
+    display: flex;
+    position: absolute;
+    color: #333333;
+    top: 115px;
+    left: 101px;
+    li:not(:nth-child(1)){
+      margin-left: 22px;
+    }
+  }
+  .market-ad-close{
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #ffffff;
+    position: absolute;
+    right: 4px;
+    top:0px;
+    transition: all 1s ease .5s;
+    &:hover{
+      transform: rotate(360deg);
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    width: 352px;
+    margin: 0 auto;
+    display:block;
+    position: relative;
+    img{
+      width: 100%;
+      display: inline-block;
+    }
+    ul{
+      top: 122px;
+      left: 106px;
+      li:not(:nth-child(1)){
+        margin-left: 26px;
+      }
+    }
+  }
 
+}
 
+.trc20-ad-bg{
+  .ant-table-tbody tr:nth-child(1){
+    background-color: rgb(234, 240, 255);
+    cursor: pointer;
+    &:hover{
+      background-color: rgb(234, 240, 255)!important;
+    }
+    td:nth-child(1){
+      position: relative;
+      .star-tip{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../images/token/star_tip.png');
+        background-size: 100% 100%;
+      }
+    }
+  }
+
+}
+
+.starbeat {
+  -webkit-animation: starbeat 1s infinite;
+  animation: starbeat 1s infinite;
+  display: inline-block;
+}
+
+@-webkit-keyframes starbeat {
+  0% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  40% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  80% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  100% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+}
+
+@keyframes starbeat {
+  0% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  40% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  60% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  80% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+  100% {
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75); }
+}
