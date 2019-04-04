@@ -71,10 +71,10 @@ class Footer extends Component {
                     <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://t.me/tronscan">Twitter</HrefLink>
+                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">Twitter</HrefLink>
                   </li>
                   <li>
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">Medium</HrefLink>
+                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">Medium</HrefLink>
                   </li>
                 </ul>
               </div>
@@ -214,12 +214,12 @@ class Footer extends Component {
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://t.me/tronscan">
+                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">
                       <i className="fa fa-angle-right mr-4" /> Twitter
                     </HrefLink>
                   </li>
                   <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">
                       <i className="fa fa-angle-right mr-4" /> Medium
                     </HrefLink>
                   </li>

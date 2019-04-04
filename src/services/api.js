@@ -137,12 +137,14 @@ class ApiClient20 {
      */
     async getTRONNotice(lan, query) {
         let langauage = "en-us";
+        let id = "360001621692";
         lan == "zh" ? (langauage = "zh-cn") : (langauage = "en-us");
+        lan == "zh" ? (id = "360001618172") : (id = "360001621692");
         let { data } = await xhr({
             method: "get",
             url: `${
                 this.SCANUrl
-                }/api/v2/help_center/${langauage}/categories/360001618172/articles.json?sort_by=created_at&sort_order=desc&per_page=${
+                }/api/v2/help_center/${langauage}/categories/${id}/articles.json?sort_by=created_at&sort_order=desc&per_page=${
                 query.page
                 }`
         });
