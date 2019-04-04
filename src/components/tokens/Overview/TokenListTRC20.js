@@ -30,7 +30,7 @@ class TokenList extends Component {
             loading: false,
             total: 0,
             filter: {},
-            contractAddress:"TB2SqC48afC9FX36bPQQHatoKo5m79JXKL",
+            contractAddress:"TEah9XiNsebAtqCNARVG91D7WTANf9bmXp",
         };
 
         let nameQuery = trim(getQueryParam(props.location, "search"));
@@ -117,14 +117,14 @@ class TokenList extends Component {
                 render: (text, record, index) => {
                     return <span>
                         {
-                            record.contract_address == "TB2SqC48afC9FX36bPQQHatoKo5m79JXKL"?
+                            record.contract_address == "TEah9XiNsebAtqCNARVG91D7WTANf9bmXp"?
                                 <div>
                                     <span className="starbeat"><i class="fas fa-star"></i> </span>
                                     <span className="star-tip"></span>
                                 </div>
 
                                 :
-                                <span>{text + 1}</span>
+                                <span>{text-1}</span>
                         }
 
                     </span>
