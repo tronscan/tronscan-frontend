@@ -23,20 +23,21 @@ import xhr from "axios/index";
 class TokenList extends Component {
     constructor(props) {
         super(props);
-
+        this.star_ad = React.createRef()
         this.state = {
             tokens: [],
             buyAmount: 0,
             loading: false,
             total: 0,
             filter: {},
-            contractAddress:"TEah9XiNsebAtqCNARVG91D7WTANf9bmXp",
+            contractAddress:"TB2SqC48afC9FX36bPQQHatoKo5m79JXKL",
         };
 
         let nameQuery = trim(getQueryParam(props.location, "search"));
         if (nameQuery.length > 0) {
             this.state.filter.name = `%25${nameQuery}%25`;
         }
+
     }
 
     loadPage = async (page = 1, pageSize = 20) => {
@@ -73,7 +74,15 @@ class TokenList extends Component {
     };
 
     componentDidMount() {
-        this.loadPage();
+        this.loadPage()
+        setTimeout(()=>{
+            this.star_ad.current.parentNode.parentNode.parentNode.className += ' trc20-star-ad'
+        },2000)
+
+        // if(document.querySelectorAll('.star_ad')){
+        //     //console.log('this.refs.star_ad.parentNode',this.refs.star_ad.parentNode)
+        //
+        // }
     }
 
     setSearch = () => {
@@ -106,6 +115,7 @@ class TokenList extends Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        let {contractAddress} = this.state;
         let column = [
             {
                 title: '#',
@@ -117,12 +127,11 @@ class TokenList extends Component {
                 render: (text, record, index) => {
                     return <span>
                         {
-                            record.contract_address == "TEah9XiNsebAtqCNARVG91D7WTANf9bmXp"?
-                                <div>
-                                    <span className="starbeat"><i class="fas fa-star"></i> </span>
+                            record.contract_address == contractAddress?
+                                <div ref={this.star_ad}>
+                                    <span className="starbeat"><i className="fas fa-star"></i> </span>
                                     <span className="star-tip"></span>
                                 </div>
-
                                 :
                                 <span>{text-1}</span>
                         }

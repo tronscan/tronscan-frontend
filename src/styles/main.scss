@@ -3138,7 +3138,7 @@ h5 {
 }
 
 .trc20-ad-bg{
-  .ant-table-tbody tr:nth-child(1){
+  .ant-table-tbody tr.trc20-star-ad{
     background-color: rgb(234, 240, 255);
     cursor: pointer;
     &:hover{
