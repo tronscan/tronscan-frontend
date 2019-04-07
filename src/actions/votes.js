@@ -29,7 +29,7 @@ export const loadVoteTimer = () => async (dispatch) => {
     dateStringArray[1]='0'+dateStringArray[1];
   }
   if(dateStringArray[2].length<2){
-    dateStringArray[2]='0'+dateStringArray[1];
+    dateStringArray[2]='0'+dateStringArray[2];
   }
   let date=dateStringArray[0]+'-'+dateStringArray[1]+'-'+dateStringArray[2];
   let time = (new Date(date).getTime() + (Math.floor((Date.parse(new Date() + '') - new Date(date).getTime()) / (6 * 60 * 60 * 1000)) + 1) * 6 * 60 * 60 * 1000 - Date.parse(new Date() + ''));
