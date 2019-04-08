@@ -1652,7 +1652,9 @@ export const messages = {
     "select_end_time":"请选择结束时间",
     "binance": "币安BINANCE",
 
-    "token_fliter": '通证筛选'
+    "token_fliter": '通证筛选',
+    "gain": "涨跌幅",
+    "volume_24_trx": '成交量'
 
 
 };
