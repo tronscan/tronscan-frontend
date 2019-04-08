@@ -72,6 +72,7 @@ export function withTronWeb(InnerComponent) {
 
                 let tokenInfo = [];
                 let extra = {};
+                console.log('contractType',contractType)
                 switch (contractType){
                     case 2: // Transfer Assets
                       const ID = tronWeb.toUtf8(
