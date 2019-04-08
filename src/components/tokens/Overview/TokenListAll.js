@@ -93,7 +93,7 @@ class TokenList extends Component {
   handleTableChange = (pagination, filters, sorter) => {
     const pager = { ...this.state.pagination };
     pager.current = pagination.current;
-    console.log(sorter)
+    pager.pageSize = pagination.pageSize;
 
     const map = {
       descend: 'desc',
@@ -114,7 +114,7 @@ class TokenList extends Component {
         sort: sortMap[sorter.columnKey] || 'marketcap',
         order: map[sorter.order] || 'desc'
       }
-    }, () => this.loadPage());
+    }, () => this.loadPage(pager.current, pager.pageSize));
   }
 
   customizedColumn = () => {
