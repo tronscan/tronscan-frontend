@@ -205,15 +205,6 @@ export default class SmartTable extends Component {
                       pagination={paginationStatus}
                       loading={loading}
                       onChange={this.handleTableChange}
-                      onRow={(record) => {
-                          return {
-                              onClick: (event) => {
-                                if(record.contract_address == contractAddress){
-                                    window.open('http://www.tronace.com')
-                                }
-                              },
-                          };
-                      }}
                   />
                 </div>
             }

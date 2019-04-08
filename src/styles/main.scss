@@ -3085,7 +3085,7 @@ h5 {
 }
 
 .market-ad{
-  width: 340px;
+  //width: 340px;
   margin: 0 auto;
   display:block;
   position: relative;
@@ -3119,7 +3119,7 @@ h5 {
     }
   }
   @media only screen and (max-width: 768px) {
-    width: 352px;
+    //width: 352px;
     margin: 0 auto;
     display:block;
     position: relative;
@@ -3128,10 +3128,10 @@ h5 {
       display: inline-block;
     }
     ul{
-      top: 122px;
-      left: 106px;
+      top: 108px;
+      left: 96px;
       li:not(:nth-child(1)){
-        margin-left: 26px;
+        margin-left: 24px;
       }
     }
   }

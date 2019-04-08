@@ -107,6 +107,11 @@ class TokenList extends Component {
             table.classList.remove('trc20-star-ad')
             console.log('table',222)
         }
+        if(document.querySelector('.trc20-star-ad')){
+            document.querySelector('.trc20-star-ad').addEventListener("click", function(){
+                window.open('http://www.tronace.com')
+            });
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
