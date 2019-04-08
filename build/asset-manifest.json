@@ -25,7 +25,7 @@
   "TRONRating.js": "static/js/TRONRating.7e679cc3.chunk.js",
   "Token20Detail.js": "static/js/Token20Detail.02944a27.chunk.js",
   "TokenDetail.js": "static/js/TokenDetail.7b785e2a.chunk.js",
-  "TokenList.js": "static/js/TokenList.57919e5b.chunk.js",
+  "TokenList.js": "static/js/TokenList.e66efac1.chunk.js",
   "TokenOverview.js": "static/js/TokenOverview.7420d6bb.chunk.js",
   "TokensCreate.js": "static/js/TokensCreate.b46bde9a.chunk.js",
   "TransactionViewer.js": "static/js/TransactionViewer.d482a52f.chunk.js",
@@ -37,11 +37,7 @@
   "bootstrap.css": "d59729439a203fc474f5677b8d18d8bb.css",
   "languages.js": "static/js/languages.c9e4cc51.chunk.js",
   "main.css": "static/css/main.a5181ee8.css",
-<<<<<<< HEAD
-  "main.js": "static/js/main.ccf1460a.js",
-=======
-  "main.js": "static/js/main.8ad26f3c.js",
->>>>>>> origin/dev2019
+  "main.js": "static/js/main.d6a82c6e.js",
   "static/media/24-Hour-Trading-Volume.png": "static/media/24-Hour-Trading-Volume.b6ff215b.png",
   "static/media/Average-Price.png": "static/media/Average-Price.fca4d71b.png",
   "static/media/Block-Producer-Chart.png": "static/media/Block-Producer-Chart.3369eae3.png",
@@ -58,8 +54,8 @@
   "static/media/body_backgound_dark_theme_transparent.png": "static/media/body_backgound_dark_theme_transparent.4aca17ac.png",
   "static/media/body_backgound_transparent.png": "static/media/body_backgound_transparent.8d0012fe.png",
   "static/media/body_backgound_tronblue_transparent.png": "static/media/body_backgound_tronblue_transparent.8ca26328.png",
-  "static/media/ieo_en.png": "static/media/ieo_en.320d152b.png",
-  "static/media/ieo_zh.png": "static/media/ieo_zh.7a8b450a.png",
+  "static/media/ieo_en.png": "static/media/ieo_en.f0c721e8.png",
+  "static/media/ieo_zh.png": "static/media/ieo_zh.e39ce506.png",
   "static/media/item1.png": "static/media/item1.b7cf0d9a.png",
   "static/media/ledger-nano-s.png": "static/media/ledger-nano-s.6dae0eea.png",
   "static/media/mian_bg_left.png": "static/media/mian_bg_left.e18dd834.png",
@@ -82,5 +78,5 @@
   "static/media/tron-logo-testnet.png": "static/media/tron-logo-testnet.66063d4d.png",
   "static/media/tron-logo.jpg": "static/media/tron-logo.f142f640.jpg",
   "static/media/wallet-preview.png": "static/media/wallet-preview.d53c0b10.png",
-  "vendors.js": "static/js/vendors.590bbfea.js"
+  "vendors.js": "static/js/vendors.42a5eb51.js"
 }

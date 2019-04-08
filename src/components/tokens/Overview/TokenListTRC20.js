@@ -23,7 +23,6 @@ import xhr from "axios/index";
 class TokenList extends Component {
     constructor(props) {
         super(props);
-        this.star_ad = React.createRef()
         this.state = {
             tokens: [],
             buyAmount: 0,
@@ -64,7 +63,7 @@ class TokenList extends Component {
         // if (tokens.length === 0) {
         //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
         // }
-
+        console.log('tokens',tokens);
         this.setState({
             loading: false,
             tokens,
@@ -75,11 +74,20 @@ class TokenList extends Component {
 
     componentDidMount() {
         this.loadPage()
-        setTimeout(()=>{
-            this.star_ad.current.parentNode.parentNode.parentNode.className += ' trc20-star-ad'
-        },2000)
 
-        // if(document.querySelectorAll('.star_ad')){
+
+        let rows = document.getElementsByTagName('table')[0].rows
+        console.log(rows)
+        for(let i=1; i < rows.length; i++){
+            let row = rows[i];//获取每一行
+            let id = row.cells[1].innerHTML;//获取具体单元格
+            console.log(id)
+        }
+        // setTimeout(()=>{
+        //     this.star_ad.current.parentNode.parentNode.parentNode.className += ' trc20-star-ad'
+        // },2000)
+
+        // if(){
         //     //console.log('this.refs.star_ad.parentNode',this.refs.star_ad.parentNode)
         //
         // }
@@ -128,7 +136,7 @@ class TokenList extends Component {
                     return <span>
                         {
                             record.contract_address == contractAddress?
-                                <div ref={this.star_ad}>
+                                <div>
                                     <span className="starbeat"><i className="fas fa-star"></i> </span>
                                     <span className="star-tip"></span>
                                 </div>
