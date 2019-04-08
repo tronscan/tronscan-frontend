@@ -216,3 +216,13 @@
         border-color: $main-red;
     }
 }
+
+.ant-btn{
+    &:hover, &:focus{
+        color: $main-red;
+        border-color:  $main-red;
+        span{
+            color: $main-red;
+        }
+    }
+}

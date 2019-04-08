@@ -28,6 +28,7 @@ import {
   TokenOverviewAsync,
   TokensCreateAsync,
   TokenTRC20ListAsync,
+  TokenAllAsync,
   TransactionViewerAsync,
   TronConvertToolAsync,
   TRONRatingAsync,
@@ -187,18 +188,24 @@ export const routes = [
     icon: "fas fa-coins",
     component: TokenOverviewAsync,
     routes: [
+      // {
+      //   label: "overview_TRC20",
+      //   path: "/tokens/trc20",
+      //   icon: "fas fa-table",
+      //   component: TokenTRC20ListAsync
+      // },
+      // "-",
+      // {
+      //   label: "overview_TRC10",
+      //   path: "/tokens/list",
+      //   icon: "fa fa-list",
+      //   component: TokenListAsync
+      // },
       {
-        label: "overview_TRC20",
-        path: "/tokens/trc20",
-        icon: "fas fa-table",
-        component: TokenTRC20ListAsync
-      },
-      "-",
-      {
-        label: "overview_TRC10",
+        label: "overview",
         path: "/tokens/list",
         icon: "fa fa-list",
-        component: TokenListAsync
+        component: TokenAllAsync
       },
       {
         label: "participate",
