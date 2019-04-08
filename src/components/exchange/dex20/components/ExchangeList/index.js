@@ -32,7 +32,7 @@ const Search = Input.Search;
 class ExchangeList extends React.Component {
   constructor() {
     super();
-      this.date =  "2019-04-19T15:00:00.000Z"
+      this.date =  "2019-04-18T15:00:00.000Z"
       this.state = {
       dataSource: [],
       time: null,

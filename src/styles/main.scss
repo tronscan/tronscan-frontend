@@ -3118,7 +3118,24 @@ h5 {
       transform: rotate(360deg);
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media screen and (max-width: 375px)   {
+    margin: 0 auto;
+    display:block;
+    position: relative;
+    img{
+      width: 100%;
+      display: inline-block;
+    }
+    ul{
+      top: 62%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      li:not(:nth-child(1)){
+        margin-left: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 414px) and (min-width: 376px)  {
     //width: 352px;
     margin: 0 auto;
     display:block;
@@ -3128,10 +3145,11 @@ h5 {
       display: inline-block;
     }
     ul{
-      top: 108px;
-      left: 96px;
+      top: 62%;
+      left: 49.5%;
+      transform: translate(-50%,-50%);
       li:not(:nth-child(1)){
-        margin-left: 24px;
+        margin-left: 28px;
       }
     }
   }
