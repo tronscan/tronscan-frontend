@@ -39,7 +39,7 @@ class TokenList extends Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
     const {filter} = this.state
-    const {data: {tokens, total}} = await xhr.get("http://52.15.68.74:8899/api/tokens/overview", {params: {
+    const {data: {tokens, total}} = await xhr.get("http://52.15.68.74:10000/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
