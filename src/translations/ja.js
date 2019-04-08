@@ -1651,5 +1651,9 @@ export const messages = {
     "TRON_ecosystem":"TRONエコシステム",
     "accunt_ad_tip":"TRXMarket LaunchBaseから注目発表 ACE華やかに登場",
 
+    "token_fliter": 'トークンフィルター',
+    "gain": "変更（％）",
+    "volume_24_trx": 'ボリューム（24時間）',
+
 }
 

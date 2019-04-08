@@ -1713,4 +1713,8 @@ export const messages = {
   "TRON_ecosystem":"TRON Ecosystem",
   "accunt_ad_tip":"TRXMarket LaunchBase project presentation ACE heavy landing",
 
+  "token_fliter": 'token fliter',
+  "gain": "Change (%)",
+  "volume_24_trx": 'Volume (24H)',
+
 };

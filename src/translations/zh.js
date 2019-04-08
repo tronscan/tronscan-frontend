@@ -1653,8 +1653,9 @@ export const messages = {
     "binance": "币安BINANCE",
 
     "token_fliter": '通证筛选',
-    "gain": "涨跌幅",
-    "volume_24_trx": '成交量',
+    "gain": "涨跌幅（%）",
+    "volume_24_trx": '成交量（24H）',
+
     "social_link":"社交链接",
     "TRON_ecosystem":"TRON生态",
     "accunt_ad_tip":"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",

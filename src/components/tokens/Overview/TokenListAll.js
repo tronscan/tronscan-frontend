@@ -178,7 +178,7 @@ class TokenList extends Component {
         className: 'ant_table d-none d-md-table-cell _text_nowrap'
       },
       {
-        title: intl.formatMessage({id: 'gain'}) + '(%)',
+        title: intl.formatMessage({id: 'gain'}),
         sorter: true,
         dataIndex: 'gain',
         key: 'gain',

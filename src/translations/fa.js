@@ -1645,6 +1645,10 @@ export const messages = {
 
     "social_link":"لینک های اجتماعی",
     "TRON_ecosystem":"محیط زیست ترون",
-    "accunt_ad_tip":"نمایش پروژه TRXMarket LaunchBase ACE فرود سنگین"
+    "accunt_ad_tip":"نمایش پروژه TRXMarket LaunchBase ACE فرود سنگین",
+
+    "token_fliter": 'فیلتر توکن',
+    "gain": "تغییر (٪)",
+    "volume_24_trx": '(24H) جلد',
 
 };

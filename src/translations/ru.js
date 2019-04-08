@@ -1656,5 +1656,9 @@ export const messages = {
   "TRON_ecosystem":"Экосистема TRON",
   "accunt_ad_tip":"TRXMarket LaunchBase укажет свой первый токен -ACE",
 
+  "token_fliter": 'Фильтр токенов',
+  "gain": "Изменение (%)",
+  "volume_24_trx": 'Объем (24 часа)',
+
 
 };

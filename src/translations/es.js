@@ -1699,5 +1699,9 @@ export const messages = {
   "select_end_time":"Por favor, seleccione la hora de finalización",
   "binance": "binance",
 
+  "token_fliter": 'Filtro de fichas',
+  "gain": "Cambio (%)",
+  "volume_24_trx": 'Volumen (24H)',
+
 
 };
