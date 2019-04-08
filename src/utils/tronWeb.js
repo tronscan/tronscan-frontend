@@ -46,8 +46,9 @@ export function withTronWeb(InnerComponent) {
       const {account, wallet} = this.props;
 
       return async (transaction) => {
-
+        console.log('transaction111')
         console.log("SIGNING TRANSACTION", transaction);
+          console.log('transaction222')
 
         if (!wallet.isOpen) {
           throw new Error("wallet is not open");
@@ -146,7 +147,7 @@ export function withTronWeb(InnerComponent) {
                 }
 
                 extra.hash = transaction.txID;
-
+                console.log('transaction8888',transaction)
                 this.setState({
                   modal: await this.buildModal(extra, transaction)
                 });
@@ -158,7 +159,7 @@ export function withTronWeb(InnerComponent) {
                 });
 
                 transaction.signature = [Buffer.from(signedResponse).toString('hex')];
-
+                  console.log('transaction9999',transaction)
                 return transaction;
               } finally {
                 this.hideModal();
