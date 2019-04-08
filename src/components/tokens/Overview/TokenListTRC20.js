@@ -29,6 +29,7 @@ class TokenList extends Component {
             loading: false,
             total: 0,
             filter: {},
+            page:1,
             contractAddress:"TB2SqC48afC9FX36bPQQHatoKo5m79JXKL",
         };
 
@@ -45,8 +46,7 @@ class TokenList extends Component {
         this.setState({loading: true});
         let token;
         let result;
-        let total
-
+        let total;
         if (filter.name){
             result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['trc20_tokens'].length;
@@ -68,29 +68,17 @@ class TokenList extends Component {
             loading: false,
             tokens,
             total,
+            page
         });
+        this.addIEOClass()
         return total;
     };
 
     componentDidMount() {
         this.loadPage()
-
-
-        let rows = document.getElementsByTagName('table')[0].rows
-        console.log(rows)
-        for(let i=1; i < rows.length; i++){
-            let row = rows[i];//获取每一行
-            let id = row.cells[1].innerHTML;//获取具体单元格
-            console.log(id)
-        }
-        // setTimeout(()=>{
-        //     this.star_ad.current.parentNode.parentNode.parentNode.className += ' trc20-star-ad'
-        // },2000)
-
-        // if(){
-        //     //console.log('this.refs.star_ad.parentNode',this.refs.star_ad.parentNode)
-        //
-        // }
+        setTimeout(()=>{
+            this.addIEOClass()
+        },1000)
     }
 
     setSearch = () => {
@@ -107,6 +95,19 @@ class TokenList extends Component {
             });
         }
     };
+
+    addIEOClass = () =>{
+        let { page } = this.state;
+        let table = document.querySelector('.ant-table-tbody').firstElementChild;//获取第一个表格
+        console.log('page',page)
+        if(page == 1){
+            table.classList.add('trc20-star-ad')
+            console.log('table',111)
+        }else{
+            table.classList.remove('trc20-star-ad')
+            console.log('table',222)
+        }
+    }
 
     componentDidUpdate(prevProps, prevState) {
         // if (this.props.location !== prevProps.location) {

@@ -59,7 +59,8 @@ class ExchangeList extends React.Component {
       min:"",
       sec:"",
       AdClose:false,
-    };
+      adURL:"http://www.tronace.com",
+      };
   }
 
   componentDidMount() {
@@ -126,7 +127,8 @@ class ExchangeList extends React.Component {
       }, 1000);
   }
 
-  marketAdClose = () =>{
+  marketAdClose = (e) =>{
+      window.event.returnValue=false
       this.setState({
           AdClose:true
       });
@@ -194,6 +196,7 @@ class ExchangeList extends React.Component {
       min,
       sec,
       AdClose,
+      adURL,
     } = this.state;
     let { intl } = this.props;
     return (
@@ -202,7 +205,7 @@ class ExchangeList extends React.Component {
 
         <div className="exchange-list-mark p-3 mb-2">
           {/* 标题 */}
-          {!AdClose &&<a href="javascript:;" className="market-ad">
+          {!AdClose &&<a href={adURL}  target="_blank" className="market-ad">
               <img src={ intl.locale == "zh"?require("../../../../../images/market/ieo_zh.png"):require("../../../../../images/market/ieo_en.png")} alt="ieo"/>
               <ul>
                 <li>{day}</li>
@@ -210,7 +213,7 @@ class ExchangeList extends React.Component {
                 <li>{min}</li>
                 <li>{sec}</li>
               </ul>
-              <i className="market-ad-close" onClick={this.marketAdClose}>×</i>
+              <i className="market-ad-close" onClick={ (e)=>{this.marketAdClose(e)}}>×</i>
             </a>
           }
           <div className="d-flex  justify-content-between align-items-center w-100 mb-3">

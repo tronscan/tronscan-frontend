@@ -3113,6 +3113,7 @@ h5 {
     right: 4px;
     top:0px;
     transition: all 1s ease .5s;
+    z-index: 9;
     &:hover{
       transform: rotate(360deg);
     }

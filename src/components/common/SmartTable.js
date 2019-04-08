@@ -209,7 +209,7 @@ export default class SmartTable extends Component {
                           return {
                               onClick: (event) => {
                                 if(record.contract_address == contractAddress){
-                                    window.open('https://www.baidu.com')
+                                    window.open('http://www.tronace.com')
                                 }
                               },
                           };

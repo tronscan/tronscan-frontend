@@ -1441,8 +1441,8 @@ export default class Account extends Component {
         <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-            <a href="https://trondice.org" target="_blank" style={{textDecoration: 'none'}}>
-              {tu("account_ad")}
+            <a href="http://www.tronace.com" target="_blank" style={{textDecoration: 'none'}}>
+              {tu("accunt_ad_tip")}
             </a>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
