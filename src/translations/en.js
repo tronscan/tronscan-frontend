@@ -1709,5 +1709,8 @@ export const messages = {
   "select_start_time":"Please select the start time",
   "select_end_time":"Please select the end time",
   "binance": "binance",
+  "social_link":"Social Link",
+  "TRON_ecosystem":"TRON Ecosystem",
+  "accunt_ad_tip":"TRXMarket LaunchBase project presentation ACE heavy landing",
 
 };

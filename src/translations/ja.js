@@ -1647,6 +1647,9 @@ export const messages = {
     "select_start_time":"開始時間を選択してください",
     "select_end_time":"終了時間を選択してください",
     "binance": "binance",
+    "social_link":"ソーシャルリンク",
+    "TRON_ecosystem":"TRONエコシステム",
+    "accunt_ad_tip":"TRXMarket LaunchBaseから注目発表 ACE華やかに登場",
 
 }
 

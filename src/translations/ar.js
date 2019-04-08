@@ -1639,5 +1639,8 @@
     "select_start_time":"يرجى تحديد وقت البدء",
     "select_end_time":"يرجى اختيار وقت الانتهاء",
     "binance": "binance",
+    "social_link":"رابط وسائل التواصل الاجتماعي",
+    "TRON_ecosystem":"بيئة ترون",
+    "accunt_ad_tip":"TRXMarket LaunchBase عرض مشروع ACE تسجيل الدخول متاح الى",
 
 };

@@ -77,7 +77,7 @@ class Energy extends React.Component {
    
 
     data.map(item => {
-      item.scale = (item.amount / totalCallerAmount).toFixed(2) + '%';
+      item.scale = ((item.amount / totalCallerAmount)*100).toFixed(2) + '%';
     })
     this.setState({
         ContractInvocation: data,
