@@ -40,6 +40,7 @@ class TokenList extends Component {
   }
 
   loadPage = async (page = 1, pageSize = 20) => {
+    this.setState({loading: true})
     const {filter} = this.state
     const {data: {tokens, total, totalAll}} = await xhr.get("http://52.15.68.74:10000/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
@@ -87,6 +88,7 @@ class TokenList extends Component {
       totalAll
     });
     return total;
+    
   };
 
   componentDidMount() {
@@ -308,7 +310,7 @@ class TokenList extends Component {
                   columns={column}
                   rowKey={(record, index) => index}
                   dataSource={tokens}
-                  loading={this.state.loading}
+                  loading={loading}
                   onChange={this.handleTableChange}
                   pagination={this.state.pagination}
                   bordered={true}
