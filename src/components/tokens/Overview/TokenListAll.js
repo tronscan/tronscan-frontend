@@ -42,7 +42,7 @@ class TokenList extends Component {
   loadPage = async (page = 1, pageSize = 20) => {
     this.setState({loading: true})
     const {filter} = this.state
-    const {data: {tokens, total, totalAll}} = await xhr.get("http://52.15.68.74:10000/api/tokens/overview", {params: {
+    const {data: {tokens, total, totalAll}} = await xhr.get(API_URL+"/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
@@ -282,7 +282,7 @@ class TokenList extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12 table_pos trc20-ad-bg">
+              <div className="col-md-12 table_pos trc20-ad-bg pt-5 pt-md-0">
                 {total ?
                   <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
                       <div>
@@ -292,15 +292,15 @@ class TokenList extends Component {
                         <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link>
                       </div>
                     </div> : ''}
-                    <div className="d-flex apply-trc20 align-items-center">
-                      <div className="d-flex align-items-center mr-4">
+                    <div className="d-md-flex apply-trc20 apply-all align-items-center">
+                      <div className="d-flex align-items-center mr-md-4 mb-2 mb-md-0">
                         <Radio.Group size="Small" value={filter.filter}  onChange={this.onChange}>
                           <Radio.Button value="all">{tu('all')}</Radio.Button>
                           <Radio.Button value="trc10">TRC10</Radio.Button>
                           <Radio.Button value="trc20">TRC20</Radio.Button>
                         </Radio.Group>
                       </div>
-                      <a className="ml-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
+                      <a className="ml-md-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
                       <button className="btn btn-danger" style={{lineHeight: '18px'}}>
                           {tu('application_entry')}
                       </button>

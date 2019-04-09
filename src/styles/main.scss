@@ -2192,6 +2192,18 @@ h5 {
   }
 }
 
+.apply-all {
+  margin-top: -35px;
+  position: absolute;
+  right: 16px;
+  @media only screen and (max-width: 768px) {
+    margin-top: -64px;
+    position: absolute;
+    right: 10px;
+    left: 10px;
+  }
+}
+
 .approvers-proposal {
   display: flex;
   flex-wrap: wrap;
