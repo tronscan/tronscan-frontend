@@ -284,9 +284,7 @@ class TokenList extends Component {
                           <Radio.Button value="trc10">TRC10</Radio.Button>
                           <Radio.Button value="trc20">TRC20</Radio.Button>
                           <Radio.Button value="all">{tu('all')}</Radio.Button>
-                        </Radio.Group>  
-                        {/*<Button className="mx-2" onClick={() => this.onChange({filter: 'trc10'})}>{tu('TRC10_token')}</Button>  
-                        <Button onClick={() => this.onChange({filter: 'trc20'})}>{tu('TRC20_token')}</Button> */}
+                        </Radio.Group>
                       </div>
                       <a className="ml-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
                       <button className="btn btn-danger" style={{lineHeight: '18px'}}>
@@ -315,7 +313,6 @@ class TokenList extends Component {
                       }
                     }}}}
                 />
-
               </div>
             </div>
           }
