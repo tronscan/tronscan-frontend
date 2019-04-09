@@ -60,17 +60,18 @@ class TokenList extends Component {
       item.priceInTrx = item.priceInTrx || '-'
 
       if(item.gain != undefined){
+        item.gain = item.gain *10000
         if(item.gain<0){
           item.color = 'col-red'
-          item.gain = item.gain.toFixed(2) + '%'
+          item.gain = parseInt(item.gain) / 100 + '%'
         }
         if(item.gain>0){
           item.color = 'col-green'
-          item.gain = '+' + item.gain.toFixed(2) + '%'
+          item.gain = '+' + parseInt(item.gain) / 100 + '%'
         }
         if(item.gain==0){
           item.color = 'col-green'
-          item.gain =  item.gain.toFixed(2)+ '%'
+          item.gain =  parseInt(item.gain) / 100+ '%'
         }
       }else{
         item.gain= '-'
@@ -294,9 +295,9 @@ class TokenList extends Component {
                     <div className="d-flex apply-trc20 align-items-center">
                       <div className="d-flex align-items-center mr-4">
                         <Radio.Group size="Small" value={filter.filter}  onChange={this.onChange}>
+                          <Radio.Button value="all">{tu('all')}</Radio.Button>
                           <Radio.Button value="trc10">TRC10</Radio.Button>
                           <Radio.Button value="trc20">TRC20</Radio.Button>
-                          <Radio.Button value="all">{tu('all')}</Radio.Button>
                         </Radio.Group>
                       </div>
                       <a className="ml-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
