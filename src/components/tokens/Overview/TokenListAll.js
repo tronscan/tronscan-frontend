@@ -11,7 +11,7 @@ import xhr from "axios/index";
 
 import {withTronWeb} from "../../../utils/tronWeb";
 import {Link} from "react-router-dom";
-import { Button,Table } from 'antd';
+import { Button,Table, Radio } from 'antd';
 @withTronWeb
 class TokenList extends Component {
 
@@ -22,6 +22,7 @@ class TokenList extends Component {
       tokens: [],
       loading: false,
       total: 0,
+      totalAll: 0,
       filter: {
         order: 'desc',
         filter: 'all',
@@ -39,26 +40,35 @@ class TokenList extends Component {
 
   loadPage = async (page = 1, pageSize = 20) => {
     const {filter} = this.state
-    const {data: {tokens, total}} = await xhr.get("http://52.15.68.74:10000/api/tokens/overview", {params: {
+    const {data: {tokens, total, totalAll}} = await xhr.get("http://52.15.68.74:10000/api/tokens/overview", {params: {
       start:  (page - 1) * pageSize,
       limit: pageSize,
       ...filter
     }});
-
+    let count = 0
     tokens.map((item,index) => {
-      item.index = index + 1
+      if(!item.isTop){
+        item.index = count + 1
+        count++
+      }
+     
       item.marketcap = item.marketcap || 0
       item.nrOfTokenHolders = item.nrOfTokenHolders || '-'
       item.volume24hInTrx =  item.volume24hInTrx|| 0
       item.priceInTrx = item.priceInTrx || '-'
 
-      if(item.gain){
+      if(item.gain != undefined){
         if(item.gain<0){
           item.color = 'col-red'
           item.gain = item.gain.toFixed(2) + '%'
-        }else{
+        }
+        if(item.gain>0){
           item.color = 'col-green'
           item.gain = '+' + item.gain.toFixed(2) + '%'
+        }
+        if(item.gain==0){
+          item.color = 'col-green'
+          item.gain =  item.gain.toFixed(2)+ '%'
         }
       }else{
         item.gain= '-'
@@ -72,7 +82,8 @@ class TokenList extends Component {
         ...this.state.pagination,
         total
       },
-      total: total
+      total: total,
+      totalAll
     });
     return total;
   };
@@ -81,11 +92,11 @@ class TokenList extends Component {
     this.loadPage();
   }
 
-  onChange = (params) => {
+  onChange = (e) => {
     this.setState({
       filter: {
         ...this.state.filter,
-        ...params
+        filter: e.target.value
       }
     }, () =>  this.loadPage())
   };
@@ -124,8 +135,23 @@ class TokenList extends Component {
         title: '#',
         dataIndex: 'index',
         key: 'index',
+        width: '48px',
         align: 'center',
         className: 'ant_table _text_nowrap',
+        render: (text, record, index) => {
+            return <span>
+                {
+                    record.isTop?
+                        <div>
+                            <span className="starbeat"><i className="fas fa-star"></i> </span>
+                            <span className="star-tip"></span>
+                        </div>
+                        :
+                        <span>{text}</span>
+                }
+
+            </span>
+        }
       },
       {
         title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -149,20 +175,26 @@ class TokenList extends Component {
 
             <div>
               <h5>
-                {
-                  record.tokenType == 'trc10'&&
-                  <TokenLink 
-                    name={record.name} 
-                    id={record.tokenId}
-                    namePlus={record.name + ' (' + record.abbr + ')'}/>
-                }
-                {
-                  record.tokenType == 'trc20'&&
-                  <TokenTRC20Link 
-                    name={record.name}
-                    namePlus={record.name + ' (' + record.abbr + ')'} 
-                    address={record.contractAddress}/>
-                }
+              {
+                record.isTop?
+                <a href="javascript:;">{record.name + ' (' + record.abbr + ')'}</a>:
+                <div>
+                  {
+                    record.tokenType == 'trc10'&&
+                    <TokenLink 
+                      name={record.name} 
+                      id={record.tokenId}
+                      namePlus={record.name + ' (' + record.abbr + ')'}/>
+                  }
+                  {
+                    record.tokenType == 'trc20'&&
+                    <TokenTRC20Link 
+                      name={record.name}
+                      namePlus={record.name + ' (' + record.abbr + ')'} 
+                      address={record.contractAddress}/>
+                  }
+                </div>
+              }
               </h5>
               <p style={{wordBreak: "break-all"}}>{record.description}</p>
             </div>
@@ -226,7 +258,7 @@ class TokenList extends Component {
   }
 
   render() {
-    let {tokens, alert, loading, total, totalAll} = this.state;
+    let {tokens, alert, loading, total, totalAll, filter} = this.state;
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
@@ -236,14 +268,9 @@ class TokenList extends Component {
           {loading && <div className="loading-style"><TronLoader/></div>}
           {
             <div className="row">
-              <div className="col-md-12 table_pos">
+              <div className="col-md-12 table_pos trc20-ad-bg">
                 {total ?
-                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto', top: '0px'}}>
-                      <div className="d-flex align-items-center mb-1">
-                        {tu('token_fliter')}:   
-                        <Button className="mx-2" onClick={() => this.onChange({filter: 'trc10'})}>{tu('TRC10_token')}</Button>  
-                        <Button onClick={() => this.onChange({filter: 'trc20'})}>{tu('TRC20_token')}</Button>
-                      </div>
+                  <div className="table_pos_info d-none d-md-block" style={{left: 'auto'}}>
                       <div>
                         {tableInfo} <span>
                           <QuestionMark placement="top" text="newly_issued_token_by_tronscan" className="token-list-info"></QuestionMark>
@@ -251,11 +278,23 @@ class TokenList extends Component {
                         <Link to="/exchange/trc10">{t("Trade_on_TRXMarket")}></Link>
                       </div>
                     </div> : ''}
-                    <a className="apply-trc20" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
-                      <button className="btn btn-danger">
+                    <div className="d-flex apply-trc20 align-items-center">
+                      <div className="d-flex align-items-center mr-4">
+                        <Radio.Group size="Small" value={filter.filter}  onChange={this.onChange}>
+                          <Radio.Button value="trc10">TRC10</Radio.Button>
+                          <Radio.Button value="trc20">TRC20</Radio.Button>
+                          <Radio.Button value="all">{tu('all')}</Radio.Button>
+                        </Radio.Group>  
+                        {/*<Button className="mx-2" onClick={() => this.onChange({filter: 'trc10'})}>{tu('TRC10_token')}</Button>  
+                        <Button onClick={() => this.onChange({filter: 'trc20'})}>{tu('TRC20_token')}</Button> */}
+                      </div>
+                      <a className="ml-2" href="https://goo.gl/forms/PiyLiDeaXv3uesSE3" target="_blank" style={{color:'#C23631'}}>
+                      <button className="btn btn-danger" style={{lineHeight: '18px'}}>
                           {tu('application_entry')}
                       </button>
                     </a>
+                    </div>
+                    
                 <Table
                   columns={column}
                   rowKey={record => record.index}
@@ -264,6 +303,17 @@ class TokenList extends Component {
                   onChange={this.handleTableChange}
                   pagination={this.state.pagination}
                   bordered={true}
+                  rowClassName={ (record, index) => {
+                    if(record.isTop){
+                      return 'trc20-star-ad'
+                    }
+                  }}
+                  onRow={(record) => {
+                    return {onClick: (event) => {
+                      if(record.isTop){
+                        window.open('https://www.tronace.com?utm_source=TS3')
+                      }
+                    }}}}
                 />
 
               </div>

@@ -1659,5 +1659,5 @@ export const messages = {
   "token_fliter": '토큰 필터',
   "gain": "변경 (%)",
   "volume_24_trx": '볼륨 (24H)',
-
+  'all': '모두'
 };

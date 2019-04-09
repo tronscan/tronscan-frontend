@@ -1650,5 +1650,5 @@ export const messages = {
     "token_fliter": 'فیلتر توکن',
     "gain": "تغییر (٪)",
     "volume_24_trx": '(24H) جلد',
-
+    'all': 'همه'
 };

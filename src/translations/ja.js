@@ -1654,6 +1654,6 @@ export const messages = {
     "token_fliter": 'トークンフィルター',
     "gain": "変更（％）",
     "volume_24_trx": 'ボリューム（24時間）',
-
+    'all': 'すべて'
 }
 

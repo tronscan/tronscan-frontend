@@ -1659,6 +1659,7 @@ export const messages = {
     "social_link":"社交链接",
     "TRON_ecosystem":"TRON生态",
     "accunt_ad_tip":"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
+    'all': '全部'
 
 
 

@@ -230,3 +230,23 @@
 .ant-table-thead > tr > th .ant-table-column-sorter-up.on, .ant-table-thead > tr > th .ant-table-column-sorter-down.on{
     color: $main-red;
 }
+
+.ant-radio-button-wrapper-checked:first-child{
+    border-color: $main-red;
+    &:hover{
+        border-color: $main-red;
+    }
+}
+.ant-radio-button-wrapper-checked{
+    color: $main-red;
+    border-color: $main-red;
+    box-shadow: -1px 0 0 0 $main-red;
+    &:hover{
+        color: $main-red;
+        border-color: $main-red;
+        box-shadow: -1px 0 0 0 $main-red;
+    }
+}
+.ant-radio-button-wrapper:hover{
+    color: $main-red;
+}

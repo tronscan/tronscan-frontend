@@ -1659,6 +1659,6 @@ export const messages = {
   "token_fliter": 'Фильтр токенов',
   "gain": "Изменение (%)",
   "volume_24_trx": 'Объем (24 часа)',
-
+  'all': 'полный'
 
 };

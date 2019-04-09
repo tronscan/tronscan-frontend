@@ -1702,6 +1702,6 @@ export const messages = {
   "token_fliter": 'Filtro de fichas',
   "gain": "Cambio (%)",
   "volume_24_trx": 'Volumen (24H)',
-
+  'all': 'TODO'
 
 };
