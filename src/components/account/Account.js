@@ -1419,7 +1419,7 @@ export default class Account extends Component {
 
   render() {
     let {modal, sr, issuedAsset, showBandwidth, showBuyTokens, temporaryName, hideSmallCurrency, tokenTRC10} = this.state;
-    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance} = this.props;
+    let {account, frozen, totalTransactions, currentWallet, wallet, accountResource, trxBalance, intl} = this.props;
     if (!wallet.isOpen || !currentWallet) {
       return (
           <main className="container header-overlap">
@@ -1437,11 +1437,15 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
+    let url = 'https://www.tronace.com?utm_source=TS4'
+    if(intl.locale == 'zh'){
+      url = 'https://www.tronace.com/ch/?utm_source=TS4'
+    }
     return (
         <main className="container header-overlap token_black accounts">
           {modal}
           <div className="text-center alert alert-light alert-dismissible fade show" role="alert">
-            <a href="https://www.tronace.com?utm_source=TS4" target="_blank" style={{textDecoration: 'none'}}>
+            <a href={url} target="_blank" style={{textDecoration: 'none'}}>
               {tu("accunt_ad_tip")}
             </a>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">

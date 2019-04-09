@@ -60,6 +60,7 @@ class ExchangeList extends React.Component {
       sec:"",
       AdClose:false,
       adURL:"https://www.tronace.com?utm_source=TS2",
+      adchURL: "https://www.tronace.com/ch/?utm_source=TS2",
       };
   }
 
@@ -198,6 +199,7 @@ class ExchangeList extends React.Component {
       sec,
       AdClose,
       adURL,
+      adchURL
     } = this.state;
     let { intl } = this.props;
     return (
@@ -206,7 +208,7 @@ class ExchangeList extends React.Component {
 
         <div className="exchange-list-mark p-3 mb-2">
           {/* 标题 */}
-          {!AdClose &&<a href={adURL}  target="_blank" className="market-ad">
+          {!AdClose &&<a href={intl.locale == 'zh'? adchURL: adURL}  target="_blank" className="market-ad">
               <img src={ intl.locale == "zh"?require("../../../../../images/market/ieo_zh.png"):require("../../../../../images/market/ieo_en.png")} alt="ieo"/>
               <ul>
                 <li>{day}</li>

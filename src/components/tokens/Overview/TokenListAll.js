@@ -326,7 +326,7 @@ class TokenList extends Component {
                   }}
                   onRow={(record) => {
                     return {onClick: (event) => {
-                      if(!record.isTop){
+                      if(record.isTop){
                         window.open(url)
                       }
                     }}}}
