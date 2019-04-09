@@ -49,8 +49,8 @@ class ExchangeList extends React.Component {
       min:"",
       sec:"",
       AdClose:false,
-      adURL:"https://www.tronace.com?utm_source=TS2",
-      adchURL:"https://www.tronace.com/ch/?utm_source=TS2",
+      adURL:"https://trx.market/launchBase?utm_source=TS2",
+      adchURL:"https://trx.market/zh/launchBase?utm_source=TS2",
     };
   }
 

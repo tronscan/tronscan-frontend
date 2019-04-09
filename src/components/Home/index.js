@@ -52,13 +52,13 @@ export default class Home extends Component {
       notice: [],
       noticezhIEO:{
           id:1,
-          html_url:"https://www.tronace.com/ch/?utm_source=TS1",
+          html_url:"https://trx.market/zh/launchBase?utm_source=TS1",
           name:"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
           created_at: "2019-04-09T12:00:00Z",
       },
       noticeenIEO:{
           id:1,
-          html_url:"https://www.tronace.com?utm_source=TS1",
+          html_url:"https://trx.market/launchBase?utm_source=TS1",
           name:"TRXMarket LaunchBase grand open ACE is waiting for you",
           created_at: "2019-04-09T12:00:00Z"
       },

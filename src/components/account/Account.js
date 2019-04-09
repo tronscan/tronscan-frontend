@@ -1437,9 +1437,9 @@ export default class Account extends Component {
     }
     let hasFrozen = frozen.balances.length > 0;
     let hasResourceFrozen = accountResource.frozen_balance > 0
-    let url = 'https://www.tronace.com?utm_source=TS4'
+    let url = 'https://trx.market/launchBase?utm_source=TS4'
     if(intl.locale == 'zh'){
-      url = 'https://www.tronace.com/ch/?utm_source=TS4'
+      url = 'https://trx.market/zh/launchBase?utm_source=TS4'
     }
     return (
         <main className="container header-overlap token_black accounts">

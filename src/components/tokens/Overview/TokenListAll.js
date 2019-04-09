@@ -276,9 +276,9 @@ class TokenList extends Component {
     let {match, intl} = this.props;
     let column = this.customizedColumn();
     let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + '/' + totalAll + ' ' + intl.formatMessage({id: 'part_pass'})
-    let url = 'https://www.tronace.com?utm_source=TS3'
+    let url = 'https://trx.market/launchBase?utm_source=TS3'
     if(intl.locale == 'zh'){
-      url = 'https://www.tronace.com/ch/?utm_source=TS3'
+      url = 'https://trx.market/zh/launchBase?utm_source=TS3'
     }
     return (
         <main className="container header-overlap token_black">
