@@ -1711,8 +1711,7 @@ export const messages = {
   "binance": "binance",
   "social_link":"Social Link",
   "TRON_ecosystem":"TRON Ecosystem",
-  "accunt_ad_tip":"TRXMarket LaunchBase project presentation ACE heavy landing",
-
+  "accunt_ad_tip":"TRXMarket LaunchBase grand open ACE is waiting for you",
   "token_fliter": 'token fliter',
   "gain": "Change (%)",
   "volume_24_trx": 'Volume (24H)',

@@ -49,7 +49,7 @@ class ExchangeList extends React.Component {
       min:"",
       sec:"",
       AdClose:false,
-      adURL:"http://www.tronace.com",
+      adURL:"https://www.tronace.com?utm_source=TS2",
     };
   }
 
@@ -85,6 +85,7 @@ class ExchangeList extends React.Component {
       let sec = parseInt((msec / 1000) % 60);
 
       // 个位数前补零
+      day = day > 9 ? day : "0" + day;
       hr = hr > 9 ? hr : "0" + hr;
       min = min > 9 ? min : "0" + min;
       sec = sec > 9 ? sec : "0" + sec;

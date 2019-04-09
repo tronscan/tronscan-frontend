@@ -49,7 +49,19 @@ export default class Home extends Component {
       addressesStats: null,
       maxTps: 0,
       tps: 0,
-      notice: []
+      notice: [],
+      noticezhIEO:{
+          id:1,
+          html_url:"https://www.tronace.com?utm_source=TS1",
+          name:"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
+          created_at: "2019-04-09T12:00:00Z",
+      },
+      noticeenIEO:{
+          id:1,
+          html_url:"https://www.tronace.com?utm_source=TS1",
+          name:"TRXMarket LaunchBase grand open ACE is waiting for you",
+          created_at: "2019-04-09T12:00:00Z"
+      },
     };
   }
 
@@ -165,7 +177,9 @@ export default class Home extends Component {
     this.reconnect();
 
     let { intl } = this.props;
-    const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+    let { noticezhIEO, noticeenIEO } = this.state;
+    const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
+    intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
     this.setState({ notice: data.articles });
     // constellationPreset(this.$ref, "Hot Sparks");
 
@@ -175,12 +189,14 @@ export default class Home extends Component {
   }
 
   async  componentDidUpdate(prevProps) {
-    const {wsdata, intl} = this.props
+    const {wsdata, intl} = this.props;
+    let { noticezhIEO, noticeenIEO } = this.state;
     if (wsdata !== prevProps.wsdata) {
       this.reconnect();
     }
     if (prevProps.intl.locale !== intl.locale) {
-        const data = await Client20.getTRONNotice(intl.locale, { page: 3 });
+        const data = await Client20.getTRONNotice(intl.locale, { page: 2 });
+        intl.locale == "zh"? data.articles.unshift(noticezhIEO):data.articles.unshift(noticeenIEO);
         this.setState({ notice: data.articles });
     }
   }
