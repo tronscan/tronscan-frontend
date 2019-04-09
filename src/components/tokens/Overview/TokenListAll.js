@@ -26,7 +26,8 @@ class TokenList extends Component {
       filter: {
         order: 'desc',
         filter: 'all',
-        sort: 'marketcap'
+        sort: 'marketcap',
+        order_current: "descend"
       },
       pagination: {
         showQuickJumper:true,
@@ -96,7 +97,10 @@ class TokenList extends Component {
     this.setState({
       filter: {
         ...this.state.filter,
-        filter: e.target.value
+        order: 'desc',
+        sort: 'marketcap',
+        filter: e.target.value,
+        order_current: "descend"
       }
     }, () =>  this.loadPage())
   };
@@ -123,12 +127,14 @@ class TokenList extends Component {
       filter: {
         ...this.state.filter,
         sort: sortMap[sorter.columnKey] || 'marketcap',
-        order: map[sorter.order] || 'desc'
+        order: map[sorter.order] || 'desc',
+        order_current: sorter.order
       }
     }, () => this.loadPage(pager.current, pager.pageSize));
   }
 
   customizedColumn = () => {
+    let {filter} = this.state
     let {intl} = this.props;
     let column = [
       {
@@ -206,12 +212,14 @@ class TokenList extends Component {
         dataIndex: 'priceInTrx',
         key: 'priceInTrx',
         sorter: true,
+        sortOrder: filter.sort === 'priceInTrx' && filter.order_current,
         align: 'center',
         className: 'ant_table d-none d-md-table-cell _text_nowrap'
       },
       {
         title: intl.formatMessage({id: 'gain'}),
         sorter: true,
+        sortOrder: filter.sort === 'gain' && filter.order_current,
         dataIndex: 'gain',
         key: 'gain',
         render: (text, record, index) => {
@@ -227,6 +235,7 @@ class TokenList extends Component {
         align: 'center',
         className: 'ant_table',
         sorter: true,
+        sortOrder: filter.sort === 'volume24hInTrx' && filter.order_current,
         render: (text, record, index) => {
           return text>0? <FormattedNumber value={text} maximumFractionDigits={2}/>: '-'
         }
@@ -236,6 +245,7 @@ class TokenList extends Component {
         dataIndex: 'marketcap',
         key: 'marketcap',
         sorter: true,
+        sortOrder: filter.sort === 'marketcap' && filter.order_current,
         render: (text, record, index) => {
           return text>0? <FormattedNumber value={text}/>: '-'
         },
@@ -247,6 +257,7 @@ class TokenList extends Component {
         dataIndex: 'nrOfTokenHolders',
         key: 'nrOfTokenHolders',
         sorter: true,
+        sortOrder: filter.sort === 'holderCount' && filter.order_current,
         render: (text, record, index) => {
           return text>0? <FormattedNumber value={text}/>: '-'
         },
@@ -295,7 +306,7 @@ class TokenList extends Component {
                     
                 <Table
                   columns={column}
-                  rowKey={record => record.index}
+                  rowKey={(record, index) => index}
                   dataSource={tokens}
                   loading={this.state.loading}
                   onChange={this.handleTableChange}

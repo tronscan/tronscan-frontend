@@ -250,3 +250,7 @@
 .ant-radio-button-wrapper:hover{
     color: $main-red;
 }
+.ant-radio-button-wrapper{
+    min-width: 80px;
+    text-align: center;
+}
