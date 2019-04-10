@@ -23,19 +23,21 @@ import xhr from "axios/index";
 class TokenList extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             tokens: [],
             buyAmount: 0,
             loading: false,
             total: 0,
             filter: {},
+            page:1,
+            contractAddress:"TB2SqC48afC9FX36bPQQHatoKo5m79JXKL",
         };
 
         let nameQuery = trim(getQueryParam(props.location, "search"));
         if (nameQuery.length > 0) {
             this.state.filter.name = `%25${nameQuery}%25`;
         }
+
     }
 
     loadPage = async (page = 1, pageSize = 20) => {
@@ -44,8 +46,7 @@ class TokenList extends Component {
         this.setState({loading: true});
         let token;
         let result;
-        let total
-
+        let total;
         if (filter.name){
             result = await xhr.get(API_URL+"/api/token_trc20?sort=issue_time&limit=" + pageSize + "&start=" + (page - 1) * pageSize + "&name=" + filter.name);
             total = result.data['trc20_tokens'].length;
@@ -62,17 +63,22 @@ class TokenList extends Component {
         // if (tokens.length === 0) {
         //     toastr.warning(intl.formatMessage({id: 'warning'}), intl.formatMessage({id: 'record_not_found'}));
         // }
-
+        console.log('tokens',tokens);
         this.setState({
             loading: false,
             tokens,
             total,
+            page
         });
+        this.addIEOClass()
         return total;
     };
 
     componentDidMount() {
-        this.loadPage();
+        this.loadPage()
+        setTimeout(()=>{
+            this.addIEOClass()
+        },1000)
     }
 
     setSearch = () => {
@@ -90,6 +96,24 @@ class TokenList extends Component {
         }
     };
 
+    addIEOClass = () =>{
+        let { page } = this.state;
+        let table = document.querySelector('.ant-table-tbody').firstElementChild;//获取第一个表格
+        console.log('page',page)
+        if(page == 1){
+            table.classList.add('trc20-star-ad')
+            console.log('table',111)
+        }else{
+            table.classList.remove('trc20-star-ad')
+            console.log('table',222)
+        }
+        if(document.querySelector('.trc20-star-ad')){
+            document.querySelector('.trc20-star-ad').addEventListener("click", function(){
+                window.open('http://www.tronace.com')
+            });
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
         // if (this.props.location !== prevProps.location) {
         //     this.setSearch();
@@ -105,6 +129,7 @@ class TokenList extends Component {
 
     customizedColumn = () => {
         let {intl} = this.props;
+        let {contractAddress} = this.state;
         let column = [
             {
                 title: '#',
@@ -113,6 +138,20 @@ class TokenList extends Component {
                 width: '48px',
                 align: 'center',
                 className: 'ant_table _text_nowrap',
+                render: (text, record, index) => {
+                    return <span>
+                        {
+                            record.contract_address == contractAddress?
+                                <div>
+                                    <span className="starbeat"><i className="fas fa-star"></i> </span>
+                                    <span className="star-tip"></span>
+                                </div>
+                                :
+                                <span>{text-1}</span>
+                        }
+
+                    </span>
+                }
             },
             {
                 title: upperFirst(intl.formatMessage({id: 'token'})),
@@ -199,12 +238,13 @@ class TokenList extends Component {
     }
 
     render() {
-        let {tokens, alert, loading, total} = this.state;
+        let {tokens, alert, loading, total, contractAddress} = this.state;
         let {match, intl} = this.props;
         let column = this.customizedColumn();
         let tableInfo = intl.formatMessage({id: 'part_total'}) + ' ' + total + ' ' + intl.formatMessage({id: 'part_pass'})
+
         return (
-            <main className="container header-overlap token_black">
+            <main className="container header-overlap token_black trc20-ad-bg">
                 {loading && <div className="loading-style"><TronLoader/></div>}
                 {
                     <div className="row">
@@ -217,7 +257,7 @@ class TokenList extends Component {
                                     {tu('application_entry')}
                                 </button>
                             </a>
-                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total}
+                <SmartTable bordered={true} loading={loading} column={column} data={tokens} total={total} contractAddress={contractAddress}
                                         onPageChange={(page, pageSize) => {
                                             this.loadPage(page, pageSize)
                                         }}/>

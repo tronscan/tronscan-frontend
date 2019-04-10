@@ -1652,6 +1652,13 @@ export const messages = {
   "select_start_time":"Пожалуйста, выберите время начала",
   "select_end_time":"Пожалуйста, выберите время окончания",
   "binance": "binance",
+  "social_link":"Ссылка на социальную сеть",
+  "TRON_ecosystem":"Экосистема TRON",
+  "accunt_ad_tip":"TRXMarket LaunchBase укажет свой первый токен -ACE",
 
+  "token_fliter": 'Фильтр токенов',
+  "gain": "Изменение (%)",
+  "volume_24_trx": 'Объем (24 часа)',
+  'all': 'полный'
 
 };

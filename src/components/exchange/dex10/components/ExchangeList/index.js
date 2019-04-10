@@ -27,7 +27,8 @@ const Search = Input.Search;
 class ExchangeList extends React.Component {
   constructor() {
     super();
-    this.state = {
+      this.date =  "2019-04-18T15:00:00.000Z"
+      this.state = {
       dataSource: [],
       time: null,
       tokenAudited: true,
@@ -42,7 +43,14 @@ class ExchangeList extends React.Component {
       searchAddId: false,
       tagLock: true,
       open: false,
-      id: alpha(24)
+      id: alpha(24),
+      day:"",
+      hr:"",
+      min:"",
+      sec:"",
+      AdClose:false,
+      adURL:"https://trx.market/launchBase?utm_source=TS2",
+      adchURL:"https://trx.market/zh/launchBase?utm_source=TS2",
     };
   }
 
@@ -55,12 +63,52 @@ class ExchangeList extends React.Component {
     }, 10000);
 
     this.setState({ time: getDataTime });
+    this.countdown();
   }
 
   componentWillUnmount() {
     const { time } = this.state;
     time && clearInterval(time);
   }
+  //活动倒计时
+  countdown(){
+      // 目标日期时间戳
+      const end = Date.parse(new Date(this.date));
+      // 当前时间戳
+      const now = Date.parse(new Date());
+      // 相差的毫秒数
+      const msec = end - now;
+
+      // 计算时分秒数
+      let day = parseInt(msec / 1000 / 60 / 60 / 24);
+      let hr = parseInt((msec / 1000 / 60 / 60) % 24);
+      let min = parseInt((msec / 1000 / 60) % 60);
+      let sec = parseInt((msec / 1000) % 60);
+
+      // 个位数前补零
+      day = day > 9 ? day : "0" + day;
+      hr = hr > 9 ? hr : "0" + hr;
+      min = min > 9 ? min : "0" + min;
+      sec = sec > 9 ? sec : "0" + sec;
+      this.setState({
+          day: day,
+          hr: hr,
+          min: min,
+          sec: sec,
+      });
+
+      // 一秒后递归
+      setTimeout(() => {
+          this.countdown();
+      }, 1000);
+  }
+
+  marketAdClose = (e) =>{
+      window.event.returnValue=false
+      this.setState({
+          AdClose:true
+      });
+  };
   getExchangesAllList = async () => {
     let { exchangesAllList } = await Client.getexchangesAllList();
 
@@ -360,14 +408,33 @@ class ExchangeList extends React.Component {
       activeIndex,
       searchAddId,
       id,
-      open
+      open,
+      day,
+      hr,
+      min,
+      sec,
+      AdClose,
+      adURL,
+      adchURL
     } = this.state;
     let { intl } = this.props;
     let tab = Lockr.get("DEX") ? Lockr.get("DEX") : "Main";
     return (
       <div className="exchange-list mr-2">
         {/* 市场 */}
+
         <div className="exchange-list-mark p-3">
+          {!AdClose &&<a href={intl.locale == 'zh'? adchURL: adURL}  target="_blank" className="market-ad">
+              <img src={ intl.locale == "zh"?require("../../../../../images/market/ieo_zh.png"):require("../../../../../images/market/ieo_en.png")} alt="ieo"/>
+              <ul>
+                <li>{day}</li>
+                <li>{hr}</li>
+                <li>{min}</li>
+                <li>{sec}</li>
+              </ul>
+              <i className="market-ad-close" onClick={(e)=>{this.marketAdClose(e)}}>×</i>
+            </a>
+          }
           {/* 标题 */}
           <div className="market-title">
             <div className="d-flex  justify-content-between align-items-center w-100 mb-3">
@@ -455,7 +522,7 @@ class ExchangeList extends React.Component {
           </div>
           {showSearch ? (
             <PerfectScrollbar>
-              <div className="exchange-list__table" style={styles.list}>
+              <div className="exchange-list__table" style={AdClose?styles.list:styles.adlist}>
                 <SearchTable
                   dataSource={searchExchangesList}
                   props={this.props}
@@ -467,7 +534,7 @@ class ExchangeList extends React.Component {
             </PerfectScrollbar>
           ) : (
             <PerfectScrollbar>
-              <div className="exchange-list__table" style={styles.list}>
+              <div className="exchange-list__table" style={AdClose?styles.list:styles.adlist}>
                 <ExchangeTable
                   dataSource={dataSource}
                   props={this.props}
@@ -512,5 +579,8 @@ export default connect(
 const styles = {
   list: {
     height: 370
+  },
+  adlist: {
+      height: 226
   }
 };

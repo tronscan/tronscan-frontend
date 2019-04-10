@@ -1650,7 +1650,17 @@ export const messages = {
     "table_info_new_tip":"目前只展示前10,000条数据.如果您想要查询其他数据，建议调整时间范围。",
     "select_start_time":"请选择开始时间",
     "select_end_time":"请选择结束时间",
-    "binance": "币安BINANCE"
+    "binance": "币安BINANCE",
+
+    "token_fliter": '通证筛选',
+    "gain": "涨跌幅（%）",
+    "volume_24_trx": '成交量（24H）',
+
+    "social_link":"社交链接",
+    "TRON_ecosystem":"TRON生态",
+    "accunt_ad_tip":"TRXMarket LaunchBase 瞩目呈现 ACE重磅登陆",
+    'all': '全部'
+
 
 
 };

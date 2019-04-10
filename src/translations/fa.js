@@ -1641,6 +1641,14 @@ export const messages = {
 
     "EnergyConsume_title": "تاریخ مصرف انرژی روزانه TRON",
     "EnergyConsume_subtitle": "برای بزرگنمایی کلیک کنید و در قسمت نقطه بکشید",
-    "EnergyConsume_yaxis": "انرژی"
+    "EnergyConsume_yaxis": "انرژی",
 
+    "social_link":"لینک های اجتماعی",
+    "TRON_ecosystem":"محیط زیست ترون",
+    "accunt_ad_tip":"نمایش پروژه TRXMarket LaunchBase ACE فرود سنگین",
+
+    "token_fliter": 'فیلتر توکن',
+    "gain": "تغییر (٪)",
+    "volume_24_trx": '(24H) جلد',
+    'all': 'همه'
 };

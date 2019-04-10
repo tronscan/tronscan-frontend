@@ -563,13 +563,13 @@ class Statistics extends React.Component {
         let used_scale = ''
 
         data.map((item, index) => {
-            item.percent = (item.total_energy / totalEnergy).toFixed(2) + '%'
+            item.percent = ((item.total_energy / totalEnergy)*100).toFixed(2) + '%'
             item.index = index+1
             item.name = item.name || '-'
             totle_used_energy += item.total_energy
         })
 
-        used_scale = (totle_used_energy / totalEnergy).toFixed(2) + '%'
+        used_scale = ((totle_used_energy / totalEnergy)*100).toFixed(2) + '%'
 
         this.setState({
             EnergyConsumeDistribution: data,
@@ -684,7 +684,7 @@ class Statistics extends React.Component {
             dataIndex: 'contract_address',
             key: 'contract_address',
             render: (text, record, index) => {
-              return <AddressLink address={text}/>
+              return <AddressLink address={text} isContract={true}/>
             }
           },
           {
@@ -811,6 +811,7 @@ class Statistics extends React.Component {
             circulatingNum, energyConsumeData, ContractInvocation,
             ContractInvocationDistribution, ContractInvocationDistributionParams,
             EnergyConsumeDistribution } = this.state;
+
         let unit;
         let uploadURL = API_URL + "/api/v2/node/overview_upload";
         let column = this.customizedColumn()

@@ -1652,5 +1652,12 @@ export const messages = {
   "select_start_time": "시작 시간을 선택하십시오.",
   "select_end_time": "종료 시간을 선택하십시오.",
   "binance": "binance",
+  "social_link":"소셜 링크",
+  "TRON_ecosystem":"TRON 생태",
+  "accunt_ad_tip":"TRXMarket LaunchBase 에서 중점 발표 ACE 출시",
 
+  "token_fliter": '토큰 필터',
+  "gain": "변경 (%)",
+  "volume_24_trx": '볼륨 (24H)',
+  'all': '모두'
 };
