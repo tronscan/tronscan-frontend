@@ -1672,7 +1672,11 @@ export const messages = {
 
   "token_input": "通证录入",
   "input": "录入",
-  "result": "结果"
+  "result": "结果",
+  "select_type": "请选择通证类型",
+  "name_v_required": '通证名称必须填写',
+  "name_v_format": "通证名称必须由字母，数字和空格组成",
+  "name_v_length": ""
 
 
 
