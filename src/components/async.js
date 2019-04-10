@@ -406,7 +406,8 @@ export const TokensCreateAsync = asyncComponent({
         [],
         require => {
           $script("", () => {
-            resolve(require("./tokens/TokenCreate"));
+            // resolve(require("./tokens/TokenCreate"));
+            resolve(require("./tokens/TokenCreate/index"));
           });
         },
         "TokensCreate"
