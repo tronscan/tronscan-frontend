@@ -214,7 +214,7 @@ export const routes = [
         component: TokenOverviewAsync
       },
       {
-        label: "create",
+        label: "token_input",
         path: "/tokens/create",
         icon: "fa fa-plus-square",
         component: TokensCreateAsync
