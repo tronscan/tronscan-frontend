@@ -43,6 +43,27 @@ class Footer extends Component {
                   </li>
                 </ul>
               </div>
+             
+
+              <div className="col-7 col-md-3">
+                <h5>{tu('social_link')}</h5>
+                <ul className="list-unstyled">
+                  <li>
+                    <HrefLink href="https://t.me/tronscan_org">Telegram</HrefLink>
+                  </li>
+                 
+                  <li>
+                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">Twitter</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">Medium</HrefLink>
+                  </li>
+                  <li>
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
+                  </li>
+                </ul>
+              </div>
+
               <div className="col-5 col-md-3">
                 <h5>Development</h5>
                 <ul className="list-unstyled">
@@ -61,25 +82,8 @@ class Footer extends Component {
                 </ul>
               </div>
 
-              <div className="col-7 col-md-3">
-                <h5>社交链接</h5>
-                <ul className="list-unstyled">
-                  <li>
-                    <HrefLink href="https://t.me/tronscan">Telegram</HrefLink>
-                  </li>
-                  <li>
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">Discord</HrefLink>
-                  </li>
-                  <li>
-                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">Twitter</HrefLink>
-                  </li>
-                  <li>
-                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">Medium</HrefLink>
-                  </li>
-                </ul>
-              </div>
               <div className="col-5 col-md-3">
-                <h5>TRON生态</h5>
+                <h5>{tu('TRON_ecosystem')}</h5>
                 <ul className="list-unstyled">
                   <li>
                     <HrefLink href="https://tron.network">tron.network</HrefLink>
@@ -174,6 +178,48 @@ class Footer extends Component {
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-3 col-md-3">
+                <h5>{tu('social_link')}</h5>
+                <div className="line" />
+                <ul className="list-unstyled quick-links pt-3">
+                  <li className="p-2">
+                    <HrefLink href="https://t.me/tronscan_org">
+                      <i className="fa fa-angle-right mr-4" /> Telegram
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">
+                      <i className="fa fa-angle-right mr-4" /> Twitter
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">
+                      <i className="fa fa-angle-right mr-4" /> Medium
+                    </HrefLink>
+                  </li>
+                  <li className="p-2">
+                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
+                      <i className="fa fa-angle-right mr-4" /> Discord
+                    </HrefLink>
+                  </li>
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://twitter.com/tronscan3">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
+                  {/*<li className="p-2">*/}
+                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend">*/}
+                      {/*<i className="fa fa-angle-right mr-4" /> Tronscan Github*/}
+                    {/*</HrefLink>*/}
+                  {/*</li>*/}
+
+                </ul>
+              </div>
+              <div className="col-xs-12 col-sm-3 col-md-3">
                 <h5>Development</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
@@ -200,49 +246,7 @@ class Footer extends Component {
                 </ul>
               </div>
               <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>社交链接</h5>
-                <div className="line" />
-                <ul className="list-unstyled quick-links pt-3">
-                  <li className="p-2">
-                    <HrefLink href="https://t.me/tronscan">
-                      <i className="fa fa-angle-right mr-4" /> Telegram
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://discordapp.com/invite/GsRgsTD">
-                      <i className="fa fa-angle-right mr-4" /> Discord
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://twitter.com/TRONSCAN_ORG">
-                      <i className="fa fa-angle-right mr-4" /> Twitter
-                    </HrefLink>
-                  </li>
-                  <li className="p-2">
-                    <HrefLink href="https://medium.com/@TRONSCAN_ORG">
-                      <i className="fa fa-angle-right mr-4" /> Medium
-                    </HrefLink>
-                  </li>
-                  {/*<li className="p-2">*/}
-                    {/*<HrefLink href="https://twitter.com/tronscan3">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> Twitter-tronscan*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="p-2">*/}
-                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend/issues/new">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> {tu('report_an_error')}*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-                  {/*<li className="p-2">*/}
-                    {/*<HrefLink href="https://github.com/tronscan/tronscan-frontend">*/}
-                      {/*<i className="fa fa-angle-right mr-4" /> Tronscan Github*/}
-                    {/*</HrefLink>*/}
-                  {/*</li>*/}
-
-                </ul>
-              </div>
-              <div className="col-xs-12 col-sm-3 col-md-3">
-                <h5>TRON生态</h5>
+                <h5>{tu('TRON_ecosystem')}</h5>
                 <div className="line" />
                 <ul className="list-unstyled quick-links pt-3">
                   <li className="p-2">
