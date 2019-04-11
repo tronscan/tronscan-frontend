@@ -6,6 +6,7 @@ import 'moment/min/locales';
 import { Steps } from 'antd';
 import SelectTrc from './SelectTrc';
 import InputInfo from './InputInfo';
+import SubmitInfo from './SubmitInfo';
 
 const Step = Steps.Step;
 
@@ -15,7 +16,7 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 0,
       type: 'trc10',
       paramData: {
         token_name: '',
@@ -47,18 +48,20 @@ export class TokenCreate extends Component {
     this.setState({step: step});
   }
   changeState = (params) => {
+    console.log(params)
     this.setState(params);
   }
 
   render() {
-    let {step} = this.state
+    let {step} = this.state;
     return (
 
         <main  className="container pb-3 token-create header-overlap">
           <Steps size="small" current={step}>
-            <Step title="Finished" />
-            <Step title="In Progress" />
-            <Step title="Waiting" />
+            <Step title="类型" />
+            <Step title="录入" />
+            <Step title="确认" />
+            <Step title="结果" />
           </Steps>,
           <div className="row">
             <div className="col-sm-12">
@@ -85,6 +88,17 @@ export class TokenCreate extends Component {
                         this.changeState(params)
                       }}
                     /> 
+                  }
+                  { step === 2 &&
+                    <SubmitInfo
+                        state={this.state}
+                        nextStep={(number) => {
+                            this.changeStep(number)
+                        }}
+                        nextState={(params) => {
+                            this.changeState(params)
+                        }}
+                    />
                   }
                 </div>
               </div>
