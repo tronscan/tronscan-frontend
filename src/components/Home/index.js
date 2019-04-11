@@ -271,8 +271,8 @@ export default class Home extends Component {
                           <a
                               href={
                                   intl.locale == "zh"
-                                      ? "https://support.trx.market/hc/zh-cn/categories/360001523732-Announcements"
-                                      : "https://support.trx.market/hc/en-us/categories/360001523732-Announcements"
+                                      ? "https://support.tronscan.org/hc/zh-cn/categories/360001618172-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83"
+                                      : "https://support.tronscan.org/hc/en-us/categories/360001621692-Announcements"
                               }
                               target="_blank"
                           >
