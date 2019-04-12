@@ -1,0 +1,75 @@
+.tokencreated {
+  .ant-input {
+
+    &,
+    &-number-input,
+    &-number-input {
+      border-radius: 2px;
+    }
+  }
+
+  .ant-select-search {
+    &--inline &__field {
+      border-radius: 2px;
+    }
+  }
+
+  .btn {
+    min-width: 90px;
+  }
+
+  .ant-form-item-label label {
+    color: #666;
+  }
+
+  .icon-list {
+    h5 {
+      color: #666;
+      font-size: 15px;
+    }
+
+    &-item {
+      cursor: pointer;
+    }
+  }
+
+  @each $name in weibo,
+  weixin,
+  discord,
+  Facebook,
+  Group,
+  steemit,
+  Instagram,
+  Medium,
+  reddit,
+  telegram,
+  twitter,
+  delete {
+    .#{$name} {
+      width: 20px;
+      height: 20px;
+      background-image: url(../images/socoal_links/#{$name}.png);
+      background-size: 100% 100%;
+    }
+
+    .#{$name}-active {
+      width: 20px;
+      height: 20px;
+      background-image: url(../images/socoal_links/#{$name}-active.png);
+      background-size: 100% 100%;
+    }
+  }
+  i{
+    display: inline-block;
+  }
+
+  .text-lighter {
+    font-size: 12px;
+    color: #aaa;
+    
+  }
+  .cursor-pointer{
+    cursor: pointer;
+  }
+
+}

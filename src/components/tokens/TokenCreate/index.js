@@ -16,16 +16,16 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 0,
-      type: 'trc10',
+      step: 1,
+      type: 'trc20',
       paramData: {
         token_name: '',
         token_abbr: '',
-        tonken_introduction: '',
-        issue: 0,
+        token_introduction: '',
+        token_supply: 0,
         precision: 0,
         logo_url: '',
-        author: '',
+        author: 'rabbit',
         contract_address: '',
         contract_create_date: '',
         contract_code: "",
@@ -56,7 +56,7 @@ export class TokenCreate extends Component {
     let {step} = this.state;
     return (
 
-        <main  className="container pb-3 token-create header-overlap">
+        <main  className="container pb-3 token-create header-overlap tokencreated">
           <Steps size="small" current={step}>
             <Step title="类型" />
             <Step title="录入" />
