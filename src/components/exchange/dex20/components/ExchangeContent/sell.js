@@ -52,7 +52,7 @@ class Sell extends Component {
       trs_proportion: 0,
       balanceTimer: null,
       buttonLoading: false,
-      offlineToken: [27]
+      offlineToken: [30]
     };
 
     this.slideChange = this.slideChange.bind(this);
