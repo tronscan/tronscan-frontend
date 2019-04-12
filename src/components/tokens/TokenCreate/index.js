@@ -16,7 +16,7 @@ export class TokenCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 3,
       type: 'trc20',
       paramData: {
         token_name: '',
@@ -32,7 +32,6 @@ export class TokenCreate extends Component {
         website: '',
         email: '',
         while_paper: '',
-
       }
     };
   }
@@ -100,6 +99,17 @@ export class TokenCreate extends Component {
                         }}
                     />
                   }
+                    { step === 3 &&
+                    <SubmitInfo
+                        state={this.state}
+                        nextStep={(number) => {
+                            this.changeStep(number)
+                        }}
+                        nextState={(params) => {
+                            this.changeState(params)
+                        }}
+                    />
+                    }
                 </div>
               </div>
             </div>

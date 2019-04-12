@@ -3240,3 +3240,19 @@ h5 {
     -webkit-transform: scale(0.75);
     transform: scale(0.75); }
 }
+
+.token-submit{
+  label{
+    color: #979797;
+  }
+  .border-dashed{
+    padding-top: 0.875rem;
+    padding-bottom: 0.125rem;
+    font-size:16px;
+    color:#666666;
+    text-align:left;
+    border-bottom: 1px dashed #eeeeee;
+    line-height: 22px;
+    height: 2.375rem;
+  }
+}

@@ -109,7 +109,7 @@ export default class TestNetRequest extends React.Component {
                 <React.Fragment>
                     <div className="d-flex justify-content-center">
                         <RecaptchaAsync
-                            sitekey="6Lds9nQUAAAAAAMMUjLOyu4KL_XQROPLBoHi8rTr"
+                            sitekey="6LeaxJ0UAAAAAFEa6VoFNWWD6jJSiwWOYnlbqn3G"
                             render="explicit"
                             onloadCallback={this.onLoad}
                             expiredCallback={this.onExpired}
